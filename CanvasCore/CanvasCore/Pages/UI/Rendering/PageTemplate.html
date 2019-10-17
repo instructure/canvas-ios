@@ -4,20 +4,21 @@
   <title>{$TITLE$}</title>
   <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
   <style>
+    html {
+        background: {$BACKGROUND_COLOR$};
+        color: {$TEXT_COLOR$};
+        font: -apple-system-body;
+        font-size: 16px;
+    }
     body {
-      font: -apple-system-body;
       -webkit-overflow-scrolling: touch;
-      font-size: 16px;
       height: auto;
       margin: 16px;
-      direction: {$CONTENT_DIRECTION};
+      direction: {$CONTENT_DIRECTION$};
     }
     a {
-      color: #0081bd;
+      color: {$LINK_COLOR$};
       overflow-wrap: break-word;
-    }
-    p {
-      color: #444;
     }
     #title {
       font-size: 25px;
@@ -47,9 +48,9 @@
       display: block;
       margin: 20 auto 20 auto;
       padding: 12px 8px 12px 8px;
-      background-color: {$PRIMARY_BUTTON_COLOR$};
+      background-color: {$PRIMARY_BUTTON_BACKGROUND$};
       border-radius: 4px;
-      color: white;
+      color: {$PRIMARY_BUTTON_TEXT$};
       text-decoration: none;
       text-align: center;
     }

@@ -58,7 +58,7 @@ exports[`my chat bubbles render correctly 1`] = `
             "paddingTop": 12,
           },
           Object {
-            "color": "white",
+            "color": "#FFFFFF",
           },
         ],
       ]
@@ -106,7 +106,7 @@ exports[`their chat bubbles render correctly 1`] = `
           "width": null,
         },
         Object {
-          "tintColor": "#f5f5f5",
+          "tintColor": "#F5F5F5",
           "transform": Array [
             Object {
               "scaleX": -1,

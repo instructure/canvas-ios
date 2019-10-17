@@ -96,7 +96,8 @@ open class HorizontalMenuViewController: UIViewController {
 
         view.addSubview(menu)
         menu.pinToLeftAndRightOfSuperview()
-        menuHeightConstraint = menu.addConstraintsWithVFL("V:[view(height)]", metrics: ["height": menuCellHeight])?.first
+        let h = itemCount == 1 ? 0 : menuCellHeight
+        menuHeightConstraint = menu.addConstraintsWithVFL("V:[view(height)]", metrics: ["height": h])?.first
         menu.addConstraintsWithVFL("V:|[view]")
     }
 
@@ -141,7 +142,7 @@ open class HorizontalMenuViewController: UIViewController {
     func setupBottomBorder() {
         bottomBorder = UIView()
         guard let bottomBorder = bottomBorder, let underlineView = underlineView else { return }
-        bottomBorder.backgroundColor = UIColor.named(.borderDark)
+        bottomBorder.backgroundColor = UIColor.named(.borderMedium)
         view.insertSubview(bottomBorder, belowSubview: underlineView)
         bottomBorder.pinToLeftAndRightOfSuperview()
         let bottoms = NSLayoutConstraint(item: bottomBorder, attribute: .bottom, relatedBy: .equal, toItem: menu, attribute: .bottom, multiplier: 1.0, constant: -1)
@@ -260,7 +261,7 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
             contentView.addSubview(title)
             title.pin(inside: contentView)
             title.textColor = .systemBlue
-            contentView.backgroundColor = .white
+            backgroundColor = .named(.backgroundLightest)
         }
 
         override public var isSelected: Bool {

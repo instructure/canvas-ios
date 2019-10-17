@@ -358,6 +358,7 @@ open class HelmManager: NSObject {
                 factory.presenter == nil,
                 nav == nil {
                 toPresent = HelmNavigationController(rootViewController: viewController)
+                viewController.navigationController?.navigationBar.useModalStyle()
             }
 
             configureModalProps(for: toPresent)
@@ -378,6 +379,7 @@ open class HelmManager: NSObject {
             helmVC = vc
             if let embedInNavigationController: Bool = options["embedInNavigationController"] as? Bool, embedInNavigationController {
                 toPresent = HelmNavigationController(rootViewController: vc)
+                vc.navigationController?.navigationBar.useModalStyle()
             }
 
             configureModalProps(for: toPresent)

@@ -20,13 +20,12 @@
 
 import React, { PureComponent } from 'react'
 import {
-  StyleSheet,
   View,
   TouchableHighlight,
   Image,
 } from 'react-native'
 import i18n from 'format-message'
-import colors from '@common/colors'
+import { createStyleSheet } from '@common/stylesheet'
 
 import Row from '@common/components/rows/Row'
 import AccessIcon from '@common/components/AccessIcon'
@@ -191,7 +190,7 @@ export default class DiscussionsRow extends PureComponent<Props> {
 }
 
 const unreadDotSize = 5
-const style = StyleSheet.create({
+const style = createStyleSheet((colors, vars) => ({
   rowContent: {
     flex: 1,
     flexDirection: 'row',
@@ -210,7 +209,7 @@ const style = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   subtitle: {
-    color: '#8B969E',
+    color: colors.textDark,
     fontSize: 14,
     marginTop: 2,
   },
@@ -224,7 +223,7 @@ const style = StyleSheet.create({
     width: unreadDotSize,
     height: unreadDotSize,
     borderRadius: unreadDotSize / 2,
-    backgroundColor: '#008EE4',
+    backgroundColor: colors.textInfo,
     position: 'absolute',
     top: 6,
     left: 8,
@@ -237,13 +236,13 @@ const style = StyleSheet.create({
     width: 43,
     height: 43,
     marginTop: -15,
-    marginRight: -global.style.defaultPadding / 2,
+    marginRight: -vars.padding / 2,
   },
   kabob: {
     alignSelf: 'center',
     width: 18,
     height: 18,
-    tintColor: colors.grey5,
+    tintColor: colors.textDark,
     transform: [{ rotate: '180deg' }],
   },
-})
+}))

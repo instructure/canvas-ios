@@ -4,7 +4,7 @@ exports[`SubmissionViewer renders a discussion_topic submission 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "white",
+      "backgroundColor": "#FFFFFF",
       "flex": 1,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -37,7 +37,7 @@ exports[`SubmissionViewer renders a file (stub) 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "white",
+      "backgroundColor": "#FFFFFF",
       "flex": 1,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -79,7 +79,7 @@ exports[`SubmissionViewer renders a media submission 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "white",
+      "backgroundColor": "#FFFFFF",
       "flex": 1,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -107,7 +107,7 @@ exports[`SubmissionViewer renders a moderated graded assignment submission 1`] =
 <View
   style={
     Object {
-      "backgroundColor": "white",
+      "backgroundColor": "#FFFFFF",
       "flex": 1,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -157,7 +157,7 @@ exports[`SubmissionViewer renders an online_quiz submission 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "white",
+      "backgroundColor": "#FFFFFF",
       "flex": 1,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -191,7 +191,7 @@ exports[`SubmissionViewer renders an online_text_entry submission 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "white",
+      "backgroundColor": "#FFFFFF",
       "flex": 1,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -241,7 +241,7 @@ exports[`SubmissionViewer renders external tool submission 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "white",
+      "backgroundColor": "#FFFFFF",
       "flex": 1,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -283,7 +283,7 @@ exports[`SubmissionViewer renders external tool submission with a submission 1`]
 <View
   style={
     Object {
-      "backgroundColor": "white",
+      "backgroundColor": "#FFFFFF",
       "flex": 1,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -325,7 +325,7 @@ exports[`SubmissionViewer renders grade-only submission 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "white",
+      "backgroundColor": "#FFFFFF",
       "flex": 1,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -367,7 +367,7 @@ exports[`SubmissionViewer renders no group submission 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "white",
+      "backgroundColor": "#FFFFFF",
       "flex": 1,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -409,7 +409,7 @@ exports[`SubmissionViewer renders no submission 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "white",
+      "backgroundColor": "#FFFFFF",
       "flex": 1,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -451,7 +451,7 @@ exports[`SubmissionViewer renders on-paper submission 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "white",
+      "backgroundColor": "#FFFFFF",
       "flex": 1,
       "paddingLeft": 16,
       "paddingRight": 16,
@@ -493,7 +493,7 @@ exports[`SubmissionViewer renders submission type of none 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "white",
+      "backgroundColor": "#FFFFFF",
       "flex": 1,
       "paddingLeft": 16,
       "paddingRight": 16,

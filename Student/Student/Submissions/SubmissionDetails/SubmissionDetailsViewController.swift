@@ -45,6 +45,9 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
     }
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .named(.backgroundLightest)
+
         setupTitleViewInNavbar(title: NSLocalizedString("Submission", bundle: .student, comment: ""))
         drawer?.tabs?.addTarget(self, action: #selector(drawerTabChanged), for: .valueChanged)
         emptyView?.submitCallback = { [weak self] button in
@@ -52,6 +55,7 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         }
         picker?.dataSource = self
         picker?.delegate = self
+        picker?.backgroundColor = .named(.backgroundLightest)
         pickerButton?.setTitleColor(.named(.textDark), for: .disabled)
         presenter?.viewIsReady()
     }

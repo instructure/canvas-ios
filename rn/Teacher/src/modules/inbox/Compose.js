@@ -21,7 +21,6 @@
 import React, { PureComponent } from 'react'
 import ReactNative, {
   View,
-  StyleSheet,
   TextInput,
   TouchableHighlight,
   TouchableOpacity,
@@ -36,7 +35,7 @@ import i18n from 'format-message'
 import Images from '../../images'
 import Actions from './actions'
 import Screen from '../../routing/Screen'
-import colors from '../../common/colors'
+import { colors, createStyleSheet } from '../../common/stylesheet'
 import DisclosureIndicator from '../../common/components/DisclosureIndicator'
 import RowWithSwitch from '../../common/components/rows/RowWithSwitch'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -271,8 +270,8 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
             accessibilityLabel: i18n('Edit attachments ({count})', { count: this.state.attachments.length }),
             badge: this.state.attachments.length > 0 && {
               text: i18n.number(this.state.attachments.length),
-              backgroundColor: processColor('#008EE2'),
-              textColor: processColor('white'),
+              backgroundColor: processColor(colors.textInfo),
+              textColor: processColor(colors.white),
             },
           },
         ]}
@@ -285,7 +284,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
             contentContainerStyle={{ flexGrow: 1, paddingBottom: 16 }}
           >
             { Boolean(this.props.showCourseSelect) &&
-              <TouchableHighlight testID='compose.course-select' underlayColor='#fff' style={styles.wrapper} onPress={this.props.canSelectCourse ? this.selectCourse : undefined}>
+              <TouchableHighlight testID='compose.course-select' underlayColor='#ffffff00' style={styles.wrapper} onPress={this.props.canSelectCourse ? this.selectCourse : undefined}>
                 <View style={styles.courseSelect}>
                   <Text style={[styles.courseSelectText, this.state.contextName ? styles.courseSelectedText : undefined]}>
                     { this.state.contextName || i18n('Select a Course') }
@@ -327,7 +326,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
                 placeholder={i18n('Subject')}
                 value={this.props.canEditSubject ? this.state.subject : this.state.subject || i18n('(no subject)')}
                 style={[styles.cell, styles.courseSelectText, styles.courseSelectedText]}
-                placeholderTextColor={colors.lightText}
+                placeholderTextColor={colors.textDark}
                 onChangeText={this._subjectChanged}
                 editable={this.props.canEditSubject}
               />
@@ -345,7 +344,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
               <AutoGrowingTextInput
                 placeholder={i18n('Compose Message')}
                 style={styles.cell}
-                placeholderTextColor={colors.lightText}
+                placeholderTextColor={colors.textDark}
                 defaultHeight={54}
                 onContentSizeChange={this.scrollToEnd}
                 onChangeText={this._bodyChanged}
@@ -366,7 +365,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   compose: {
     flex: 1,
   },
@@ -374,6 +373,7 @@ const styles = StyleSheet.create({
     height: 54,
     fontSize: 16,
     lineHeight: 19,
+    color: colors.textDarkest,
   },
   messageWrapper: {
     borderBottomWidth: 0,
@@ -381,14 +381,14 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
   message: {
-    paddingTop: global.style.defaultPadding / 1.25,
-    paddingBottom: global.style.defaultPadding / 1.25,
-    paddingLeft: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
+    paddingTop: vars.padding / 1.25,
+    paddingBottom: vars.padding / 1.25,
+    paddingLeft: vars.padding,
+    paddingRight: vars.padding,
   },
   wrapper: {
-    borderBottomColor: '#C7CDD1',
-    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
+    borderBottomWidth: vars.hairlineWidth,
     paddingHorizontal: 16,
   },
   courseSelect: {
@@ -400,10 +400,10 @@ const styles = StyleSheet.create({
   courseSelectText: {
     fontSize: 16,
     lineHeight: 19,
-    color: colors.lightText,
+    color: colors.textDark,
   },
   courseSelectedText: {
-    color: colors.darkText,
+    color: colors.textDarkest,
   },
   toContainer: {
     flexDirection: 'row',
@@ -427,7 +427,7 @@ const styles = StyleSheet.create({
   forwardedMessageText: {
     fontWeight: '300',
   },
-})
+}))
 
 export function mapStateToProps (): any {
   return {}

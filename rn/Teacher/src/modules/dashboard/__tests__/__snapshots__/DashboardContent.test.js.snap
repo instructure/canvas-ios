@@ -5,7 +5,6 @@ exports[`dashboard content renders 1`] = `
   style={
     Array [
       Object {
-        "backgroundColor": "#ffffff01",
         "shadowColor": "#000",
         "shadowOffset": Object {
           "height": 1,
@@ -22,8 +21,8 @@ exports[`dashboard content renders 1`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "white",
-          "borderColor": "#e3e3e3",
+          "backgroundColor": "#FFFFFF",
+          "borderColor": "#F5F5F5",
           "borderRadius": 4,
           "borderWidth": 0.5,
           "flex": 1,

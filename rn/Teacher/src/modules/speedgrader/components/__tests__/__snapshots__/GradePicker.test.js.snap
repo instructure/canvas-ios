@@ -11,7 +11,7 @@ exports[`GradePicker disables the button and has correct text for not graded ass
   <View
     style={
       Object {
-        "borderBottomColor": "lightgray",
+        "borderBottomColor": "#C7CDD1",
         "borderBottomWidth": 0.5,
         "paddingVertical": 12,
       }
@@ -94,7 +94,7 @@ exports[`GradePicker doesnt render late policy if no grade 1`] = `
   <View
     style={
       Object {
-        "borderBottomColor": "lightgray",
+        "borderBottomColor": "#C7CDD1",
         "borderBottomWidth": 0.5,
         "paddingVertical": 12,
       }
@@ -120,7 +120,7 @@ exports[`GradePicker doesnt render late policy if no grade 1`] = `
               "fontWeight": "800",
             },
             Object {
-              "color": "#7F91A7",
+              "color": "#8B969E",
             },
           ]
         }
@@ -155,7 +155,7 @@ exports[`GradePicker doesnt render late policy if no grade 1`] = `
             }
             style={
               Object {
-                "tintColor": "#368BD8",
+                "tintColor": "#008EE2",
               }
             }
           />
@@ -228,7 +228,7 @@ exports[`GradePicker doesnt render late policy if no grade 1`] = `
           onStartShouldSetResponder={[Function]}
           style={
             Object {
-              "borderTopColor": "#A5AFB5",
+              "borderTopColor": "#C7CDD1",
               "borderTopWidth": 1,
               "height": 1,
             }
@@ -262,8 +262,8 @@ exports[`GradePicker doesnt render late policy if no grade 1`] = `
           onStartShouldSetResponderCapture={[Function]}
           style={
             Object {
-              "backgroundColor": "#fff",
-              "borderColor": "#A5AFB5",
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#C7CDD1",
               "borderRadius": 15,
               "borderWidth": 1,
               "height": 30,
@@ -337,7 +337,7 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
   <View
     style={
       Object {
-        "borderBottomColor": "lightgray",
+        "borderBottomColor": "#C7CDD1",
         "borderBottomWidth": 0.5,
         "paddingVertical": 12,
       }
@@ -363,7 +363,7 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
               "fontWeight": "800",
             },
             Object {
-              "color": "#7F91A7",
+              "color": "#8B969E",
             },
           ]
         }
@@ -400,7 +400,7 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
                   "fontWeight": "800",
                 },
                 Object {
-                  "color": "#7F91A7",
+                  "color": "#8B969E",
                 },
               ]
             }
@@ -562,7 +562,7 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
           onStartShouldSetResponder={[Function]}
           style={
             Object {
-              "borderTopColor": "#A5AFB5",
+              "borderTopColor": "#C7CDD1",
               "borderTopWidth": 1,
               "height": 1,
             }
@@ -596,8 +596,8 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
           onStartShouldSetResponderCapture={[Function]}
           style={
             Object {
-              "backgroundColor": "#fff",
-              "borderColor": "#A5AFB5",
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#C7CDD1",
               "borderRadius": 15,
               "borderWidth": 1,
               "height": 30,
@@ -671,7 +671,7 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
   <View
     style={
       Object {
-        "borderBottomColor": "lightgray",
+        "borderBottomColor": "#C7CDD1",
         "borderBottomWidth": 0.5,
         "paddingVertical": 12,
       }
@@ -697,7 +697,7 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
               "fontWeight": "800",
             },
             Object {
-              "color": "#7F91A7",
+              "color": "#8B969E",
             },
           ]
         }
@@ -734,7 +734,7 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
                   "fontWeight": "800",
                 },
                 Object {
-                  "color": "#7F91A7",
+                  "color": "#8B969E",
                 },
               ]
             }
@@ -896,7 +896,7 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
           onStartShouldSetResponder={[Function]}
           style={
             Object {
-              "borderTopColor": "#A5AFB5",
+              "borderTopColor": "#C7CDD1",
               "borderTopWidth": 1,
               "height": 1,
             }
@@ -930,8 +930,8 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
           onStartShouldSetResponderCapture={[Function]}
           style={
             Object {
-              "backgroundColor": "#fff",
-              "borderColor": "#A5AFB5",
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#C7CDD1",
               "borderRadius": 15,
               "borderWidth": 1,
               "height": 30,
@@ -1005,7 +1005,7 @@ exports[`GradePicker renders points based grades 1`] = `
   <View
     style={
       Object {
-        "borderBottomColor": "lightgray",
+        "borderBottomColor": "#C7CDD1",
         "borderBottomWidth": 0.5,
         "paddingVertical": 12,
       }
@@ -1139,7 +1139,7 @@ exports[`GradePicker renders points based grades 1`] = `
           onStartShouldSetResponder={[Function]}
           style={
             Object {
-              "borderTopColor": "#A5AFB5",
+              "borderTopColor": "#C7CDD1",
               "borderTopWidth": 1,
               "height": 1,
             }
@@ -1173,8 +1173,8 @@ exports[`GradePicker renders points based grades 1`] = `
           onStartShouldSetResponderCapture={[Function]}
           style={
             Object {
-              "backgroundColor": "#fff",
-              "borderColor": "#A5AFB5",
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#C7CDD1",
               "borderRadius": 15,
               "borderWidth": 1,
               "height": 30,
@@ -1248,7 +1248,7 @@ exports[`GradePicker renders the activity indicator when pending 1`] = `
   <View
     style={
       Object {
-        "borderBottomColor": "lightgray",
+        "borderBottomColor": "#C7CDD1",
         "borderBottomWidth": 0.5,
         "paddingVertical": 12,
       }
@@ -1373,7 +1373,7 @@ exports[`GradePicker renders the activity indicator when pending 1`] = `
           onStartShouldSetResponder={[Function]}
           style={
             Object {
-              "borderTopColor": "#A5AFB5",
+              "borderTopColor": "#C7CDD1",
               "borderTopWidth": 1,
               "height": 1,
             }
@@ -1407,8 +1407,8 @@ exports[`GradePicker renders the activity indicator when pending 1`] = `
           onStartShouldSetResponderCapture={[Function]}
           style={
             Object {
-              "backgroundColor": "#fff",
-              "borderColor": "#A5AFB5",
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#C7CDD1",
               "borderRadius": 15,
               "borderWidth": 1,
               "height": 30,
@@ -1482,7 +1482,7 @@ exports[`GradePicker renders the picker for pass fail assignments 1`] = `
   <View
     style={
       Object {
-        "borderBottomColor": "lightgray",
+        "borderBottomColor": "#C7CDD1",
         "borderBottomWidth": 0.5,
         "paddingVertical": 12,
       }
@@ -1540,7 +1540,7 @@ exports[`GradePicker renders the picker for pass fail assignments 1`] = `
             }
             style={
               Object {
-                "tintColor": "#368BD8",
+                "tintColor": "#008EE2",
               }
             }
           />
@@ -1592,7 +1592,7 @@ exports[`GradePicker renders the rubric score when useRubricForGrading 1`] = `
   <View
     style={
       Object {
-        "borderBottomColor": "lightgray",
+        "borderBottomColor": "#C7CDD1",
         "borderBottomWidth": 0.5,
         "paddingVertical": 12,
       }
@@ -1675,7 +1675,7 @@ exports[`GradePicker renders with excused 1`] = `
   <View
     style={
       Object {
-        "borderBottomColor": "lightgray",
+        "borderBottomColor": "#C7CDD1",
         "borderBottomWidth": 0.5,
         "paddingVertical": 12,
       }
@@ -1809,7 +1809,7 @@ exports[`GradePicker renders with excused 1`] = `
           onStartShouldSetResponder={[Function]}
           style={
             Object {
-              "borderTopColor": "#A5AFB5",
+              "borderTopColor": "#C7CDD1",
               "borderTopWidth": 1,
               "height": 1,
             }
@@ -1843,8 +1843,8 @@ exports[`GradePicker renders with excused 1`] = `
           onStartShouldSetResponderCapture={[Function]}
           style={
             Object {
-              "backgroundColor": "#fff",
-              "borderColor": "#A5AFB5",
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#C7CDD1",
               "borderRadius": 15,
               "borderWidth": 1,
               "height": 30,
@@ -1918,7 +1918,7 @@ exports[`GradePicker renders with no grade 1`] = `
   <View
     style={
       Object {
-        "borderBottomColor": "lightgray",
+        "borderBottomColor": "#C7CDD1",
         "borderBottomWidth": 0.5,
         "paddingVertical": 12,
       }
@@ -1976,7 +1976,7 @@ exports[`GradePicker renders with no grade 1`] = `
             }
             style={
               Object {
-                "tintColor": "#368BD8",
+                "tintColor": "#008EE2",
               }
             }
           />
@@ -2049,7 +2049,7 @@ exports[`GradePicker renders with no grade 1`] = `
           onStartShouldSetResponder={[Function]}
           style={
             Object {
-              "borderTopColor": "#A5AFB5",
+              "borderTopColor": "#C7CDD1",
               "borderTopWidth": 1,
               "height": 1,
             }
@@ -2083,8 +2083,8 @@ exports[`GradePicker renders with no grade 1`] = `
           onStartShouldSetResponderCapture={[Function]}
           style={
             Object {
-              "backgroundColor": "#fff",
-              "borderColor": "#A5AFB5",
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#C7CDD1",
               "borderRadius": 15,
               "borderWidth": 1,
               "height": 30,
@@ -2158,7 +2158,7 @@ exports[`GradePicker updates the visible rubric score when useRubricForGrading a
   <View
     style={
       Object {
-        "borderBottomColor": "lightgray",
+        "borderBottomColor": "#C7CDD1",
         "borderBottomWidth": 0.5,
         "paddingVertical": 12,
       }

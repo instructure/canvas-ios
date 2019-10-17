@@ -21,10 +21,9 @@
 import React, { PureComponent } from 'react'
 import {
   TouchableOpacity,
-  StyleSheet,
   View,
 } from 'react-native'
-import branding from '../branding'
+import { colors, createStyleSheet } from '../stylesheet'
 import { Text } from '../text'
 
 type Props = {
@@ -66,14 +65,14 @@ export default class CircleToggle extends PureComponent<Props> {
     let textStyle = {
       fontSize: 20,
       fontWeight: '500',
-      color: '#8B969E',
+      color: colors.textDark,
     }
     if (this.props.on) {
       viewStyle.push({
-        backgroundColor: branding.primaryBrandColor,
+        backgroundColor: colors.primary,
         borderWidth: 0,
       })
-      textStyle.color = 'white'
+      textStyle.color = colors.white
     }
 
     // don't set the longPress if the consumer didn't provide a handler
@@ -105,10 +104,10 @@ export default class CircleToggle extends PureComponent<Props> {
   }
 }
 
-const circleButtonStyles = StyleSheet.create({
+const circleButtonStyles = createStyleSheet((colors, vars) => ({
   container: {
-    borderColor: '#C7CDD1',
-    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.borderMedium,
+    borderWidth: vars.hairlineWidth,
     minWidth: 48,
     height: 48,
     justifyContent: 'center',
@@ -117,4 +116,4 @@ const circleButtonStyles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 8,
   },
-})
+}))

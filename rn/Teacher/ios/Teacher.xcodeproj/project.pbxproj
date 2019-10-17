@@ -25,8 +25,6 @@
 		3B55FEC922FC871400FCB7B2 /* PostGradesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B55FEC822FC871400FCB7B2 /* PostGradesViewController.storyboard */; };
 		3B55FECB22FCB90000FCB7B2 /* PostSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B55FECA22FCB90000FCB7B2 /* PostSettingsViewController.swift */; };
 		3B55FECD22FCB91800FCB7B2 /* PostGradesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B55FECC22FCB91800FCB7B2 /* PostGradesViewController.swift */; };
-		3B55FECF22FD059500FCB7B2 /* PostToVisibilitySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B55FECE22FD059500FCB7B2 /* PostToVisibilitySelectionViewController.swift */; };
-		3B55FED122FD05E500FCB7B2 /* PostToVisibilitySelectionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B55FED022FD05E500FCB7B2 /* PostToVisibilitySelectionViewController.storyboard */; };
 		3B55FED422FDE70F00FCB7B2 /* HideGradesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B55FED222FDE70E00FCB7B2 /* HideGradesViewController.storyboard */; };
 		3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B55FED322FDE70F00FCB7B2 /* HideGradesViewController.swift */; };
 		3BC35E42230F1F9F00C0D35D /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 3BC35E41230F1F9F00C0D35D /* Localizable.stringsdict */; };
@@ -210,8 +208,6 @@
 		3B55FEC822FC871400FCB7B2 /* PostGradesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostGradesViewController.storyboard; sourceTree = "<group>"; };
 		3B55FECA22FCB90000FCB7B2 /* PostSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSettingsViewController.swift; sourceTree = "<group>"; };
 		3B55FECC22FCB91800FCB7B2 /* PostGradesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGradesViewController.swift; sourceTree = "<group>"; };
-		3B55FECE22FD059500FCB7B2 /* PostToVisibilitySelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostToVisibilitySelectionViewController.swift; sourceTree = "<group>"; };
-		3B55FED022FD05E500FCB7B2 /* PostToVisibilitySelectionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostToVisibilitySelectionViewController.storyboard; sourceTree = "<group>"; };
 		3B55FED222FDE70E00FCB7B2 /* HideGradesViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HideGradesViewController.storyboard; sourceTree = "<group>"; };
 		3B55FED322FDE70F00FCB7B2 /* HideGradesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideGradesViewController.swift; sourceTree = "<group>"; };
 		3BC35E41230F1F9F00C0D35D /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
@@ -426,12 +422,10 @@
 			children = (
 				3B55FED222FDE70E00FCB7B2 /* HideGradesViewController.storyboard */,
 				3B55FED322FDE70F00FCB7B2 /* HideGradesViewController.swift */,
-				3B55FECA22FCB90000FCB7B2 /* PostSettingsViewController.swift */,
 				3B18E82A230C683D006CAF5C /* PostGradesPresenter.swift */,
-				3B55FECC22FCB91800FCB7B2 /* PostGradesViewController.swift */,
 				3B55FEC822FC871400FCB7B2 /* PostGradesViewController.storyboard */,
-				3B55FECE22FD059500FCB7B2 /* PostToVisibilitySelectionViewController.swift */,
-				3B55FED022FD05E500FCB7B2 /* PostToVisibilitySelectionViewController.storyboard */,
+				3B55FECC22FCB91800FCB7B2 /* PostGradesViewController.swift */,
+				3B55FECA22FCB90000FCB7B2 /* PostSettingsViewController.swift */,
 			);
 			path = Submissions;
 			sourceTree = "<group>";
@@ -524,11 +518,11 @@
 		B18359A1222447200005A918 /* ModuleList */ = {
 			isa = PBXGroup;
 			children = (
-				B15CA291221E082D0014FB02 /* ModuleListPresenter.swift */,
-				B15CA244221DC5BC0014FB02 /* ModuleListViewController.swift */,
-				B15CA246221DC5CC0014FB02 /* ModuleListViewController.storyboard */,
 				B15CA298221E10900014FB02 /* ModuleItemCell.swift */,
 				B1A890A9224D272D00CEE000 /* ModuleItemSubHeaderCell.swift */,
+				B15CA291221E082D0014FB02 /* ModuleListPresenter.swift */,
+				B15CA246221DC5CC0014FB02 /* ModuleListViewController.storyboard */,
+				B15CA244221DC5BC0014FB02 /* ModuleListViewController.swift */,
 				B1A890BB224F161100CEE000 /* ModuleSectionHeaderView.swift */,
 				B1A890BD224F16F900CEE000 /* ModuleSectionHeaderView.xib */,
 			);
@@ -730,7 +724,6 @@
 				2C8E35722093AD760071ED94 /* Settings.bundle in Resources */,
 				B1A890BE224F16F900CEE000 /* ModuleSectionHeaderView.xib in Resources */,
 				78AD913121C8180C0075FBCF /* GoogleService-Info.plist in Resources */,
-				3B55FED122FD05E500FCB7B2 /* PostToVisibilitySelectionViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -898,7 +891,6 @@
 			files = (
 				494AE0BB1F843CB5001A8F31 /* TeacherAttendanceViewController.swift in Sources */,
 				B1A890BC224F161100CEE000 /* ModuleSectionHeaderView.swift in Sources */,
-				3B55FECF22FD059500FCB7B2 /* PostToVisibilitySelectionViewController.swift in Sources */,
 				B1A890AA224D272D00CEE000 /* ModuleItemSubHeaderCell.swift in Sources */,
 				494AE0BA1F843CB5001A8F31 /* AppDelegate+Routes.swift in Sources */,
 				3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */,

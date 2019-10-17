@@ -68,7 +68,6 @@ import EditFolder from '../modules/files/EditFolder'
 import ViewFile from '../modules/files/ViewFile'
 import PageDetails from '../modules/pages/details/PageDetails'
 import PageEdit from '../modules/pages/edit/PageEdit'
-import UI from '../common/UI'
 import PickerPage from '../common/components/PickerPage'
 import Dashboard from '../modules/dashboard/Dashboard'
 import TermsOfUse from '../modules/tos/TermsOfUse'
@@ -150,7 +149,6 @@ export function registerScreens (store: Store): void {
   registerScreen('/accounts/:accountID/terms_of_service', wrap(TermsOfUse), store)
   registerScreen('/profile/settings')
   registerScreen('/support/:type', undefined, undefined, { deepLink: true })
-  registerScreen('/ui', wrap(UI), store)
   registerScreen('/push-notifications', wrap(PushNotifications), store)
   registerScreen('/page-view-events', wrap(PageViewEvents), store)
   registerScreen('/dev-menu/experimental-features', wrap(ExperimentalFeatures), store)

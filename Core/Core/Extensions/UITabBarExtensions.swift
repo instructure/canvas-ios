@@ -35,7 +35,7 @@ extension UITabBar {
 
         for item in items ?? [] {
             item.badgeColor = .named(.crimson)
-            item.setBadgeTextAttributes([.foregroundColor: UIColor.named(.textLightest)], for: .normal)
+            item.setBadgeTextAttributes([.foregroundColor: UIColor.named(.white)], for: .normal)
         }
     }
 }

@@ -46,15 +46,15 @@ public final class Group: NSManagedObject, Context, WriteableModel {
 
 extension Group {
     public var color: UIColor {
-        let request = NSFetchRequest<Color>(entityName: String(describing: Color.self))
+        let request = NSFetchRequest<ContextColor>(entityName: String(describing: ContextColor.self))
         request.fetchLimit = 1
-        request.predicate = NSPredicate(format: "%K == %@", #keyPath(Color.canvasContextID), canvasContextID)
+        request.predicate = NSPredicate(format: "%K == %@", #keyPath(ContextColor.canvasContextID), canvasContextID)
         if let color = try? managedObjectContext?.fetch(request).first {
             return color.color
         }
         if let courseID = courseID {
             let course = ContextModel(.course, id: courseID)
-            request.predicate = NSPredicate(format: "%K == %@", #keyPath(Color.canvasContextID), course.canvasContextID)
+            request.predicate = NSPredicate(format: "%K == %@", #keyPath(ContextColor.canvasContextID), course.canvasContextID)
             if let color = try? managedObjectContext?.fetch(request).first {
                 return color.color
             }

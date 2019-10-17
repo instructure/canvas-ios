@@ -19,12 +19,13 @@
 import UIKit
 import ReactiveSwift
 import Cartography
+import Core
 
 public struct ColorfulViewModel: TableViewCellViewModel {
     public let color = MutableProperty(UIColor.prettyGray())
     public let title = MutableProperty("")
     public let titleFontStyle = MutableProperty(FontStyle.regular)
-    public let titleTextColor = MutableProperty(UIColor.black)
+    public let titleTextColor = MutableProperty(UIColor.named(.textDarkest))
     public let subtitle = MutableProperty("")
     public let rightDetail = MutableProperty("")
     public let icon = MutableProperty<UIImage?>(nil)
@@ -54,7 +55,6 @@ public struct ColorfulViewModel: TableViewCellViewModel {
     
     public func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ColorfulTableViewCell") as? ColorfulTableViewCell else { fatalError("be sure and call prepareTableView:") }
-        
         cell.viewModel.value = self
         
         let indexPathIdentifier = "\(indexPath.section)_\(indexPath.row)"
@@ -131,6 +131,9 @@ public class ColorfulTableViewCell: UITableViewCell {
     
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        backgroundColor = .named(.backgroundLightest)
+        subtitleLabel?.textColor = .named(.textDark)
         
         stack.alignment = .center
         stack.axis = .horizontal
@@ -289,6 +292,7 @@ public class ColorfulTableViewCell: UITableViewCell {
         
         if features.contains(.subtitle) {
             let sub = UILabel()
+            sub.textColor = .named(.textDark)
             sub.font = UIFont.preferredFont(forTextStyle: .caption1)
             sub.numberOfLines = 1
 
@@ -327,7 +331,7 @@ public class ColorfulTableViewCell: UITableViewCell {
         if features.contains(.rightDetail) {
             let right = UILabel()
             right.font = titleLabel.font
-            right.textColor = .prettyGray()
+            right.textColor = .named(.textDark)
             right.textAlignment = .right
             stack.addArrangedSubview(right)
             self.rightDetailLabel = right

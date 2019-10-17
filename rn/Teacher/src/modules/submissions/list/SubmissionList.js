@@ -22,7 +22,6 @@ import React, { Component } from 'react'
 import {
   View,
   FlatList,
-  StyleSheet,
 } from 'react-native'
 import type {
   SubmissionListProps,
@@ -43,6 +42,7 @@ import query from '../../../canvas-api-v2/queries/SubmissionList'
 import * as canvas from '../../../canvas-api'
 import icon from '../../../images/inst-icons'
 import ExperimentalFeature from '../../../common/ExperimentalFeature'
+import { createStyleSheet } from '../../../common/stylesheet'
 
 const { getEnabledFeatureFlags } = canvas
 
@@ -264,14 +264,14 @@ export class SubmissionList extends Component<Props, State> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
 
   },
   header: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'lightgrey',
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'space-between',
@@ -282,12 +282,12 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#2d3b44',
+    color: colors.textDarkest,
   },
   filterButton: {
     marginBottom: 1,
   },
-})
+}))
 
 export function props (props) {
   if (props.data.loading) {
@@ -342,7 +342,7 @@ export default graphql(query, {
   props,
 })(SubmissionList)
 
-function createFilterFromSection (section) {
+export function createFilterFromSection (section) {
   return {
     type: `section.${section.id}`,
     title: () => section.name,
@@ -353,6 +353,11 @@ function createFilterFromSection (section) {
       return {
         sectionIDs: [section.id],
       }
+    },
+    // need this for speedgrader
+    filterFunc: (submission) => {
+      if (!submission || !submission.allSectionIDs) return false
+      return submission.allSectionIDs.includes(section.id)
     },
   }
 }

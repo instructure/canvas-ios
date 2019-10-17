@@ -56,6 +56,7 @@ public class RichContentEditorViewController: UIViewController {
         super.viewDidLoad()
         setupScriptMessaging()
         toolbar.controller = self
+        webView.isOpaque = false
         webView.contentInputAccessoryView = toolbar
         webView.scrollView.keyboardDismissMode = .interactive
         webView.accessibilityIdentifier = "RichContentEditor.webView"

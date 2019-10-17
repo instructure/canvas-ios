@@ -96,9 +96,12 @@ open class CoreWebView: WKWebView {
         let link = Brand.shared.linkColor.ensureContrast(against: .named(.backgroundLightest))
 
         return """
-            body {
+            html {
+                background: \(UIColor.named(.backgroundLightest).hexString);
                 color: \(UIColor.named(.textDarkest).hexString);
                 font: -apple-system-body;
+            }
+            body {
                 margin: 16px;
             }
             a {

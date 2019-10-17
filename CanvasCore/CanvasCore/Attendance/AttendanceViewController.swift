@@ -18,6 +18,7 @@
 
 import UIKit
 import CanvasKit
+import Core
 
 private func attendanceError(message: String) -> Error {
     return NSError(domain: "com.instructure.rollcall", code: 0, userInfo: [
@@ -103,15 +104,15 @@ open class AttendanceViewController: UIViewController {
         navigationItem.rightBarButtonItem = datePickerButton
         
         header.translatesAutoresizingMaskIntoConstraints = false
-        header.backgroundColor = .white
+        header.backgroundColor = .named(.backgroundLightest)
         
         let divider = UIView()
-        divider.backgroundColor = #colorLiteral(red: 0.7803921569, green: 0.8039215686, blue: 0.8196078431, alpha: 1)
+        divider.backgroundColor = .named(.borderMedium)
         divider.translatesAutoresizingMaskIntoConstraints = false
         header.addSubview(divider)
         
         sectionLabel.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.semibold)
-        sectionLabel.textColor = #colorLiteral(red: 0.1764705882, green: 0.231372549, blue: 0.2705882353, alpha: 1)
+        sectionLabel.textColor = .named(.textDarkest)
         sectionLabel.text = NSLocalizedString(currentSectionTitle, comment: "")
         sectionLabel.translatesAutoresizingMaskIntoConstraints = false
         header.addSubview(sectionLabel)
@@ -122,24 +123,28 @@ open class AttendanceViewController: UIViewController {
         changeSectionButton.setTitle(NSLocalizedString("Change Section", tableName: "Localizable", bundle: .core, value: "", comment: ""), for: .normal)
         changeSectionButton.sizeToFit()
         changeSectionButton.addTarget(self, action: #selector(changeSection(_:)), for: .touchUpInside)
+        changeSectionButton.tintColor = Core.Brand.shared.linkColor
         header.addSubview(changeSectionButton)
-        
+
+        tableView.backgroundColor = .named(.backgroundLightest)
         tableView.separatorInset = .zero
+        tableView.separatorColor = .named(.borderMedium)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 60
         tableView.register(StatusCell.self, forCellReuseIdentifier: StatusCell.reuseID)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        
+        tableView.tableFooterView = UIView()
+
         let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector(refreshStatuses(sender:)), for: .valueChanged)
         tableView.refreshControl = refresh
         tableView.refreshControl?.beginRefreshing()
-        
+
         bigBlueButton.backgroundColor = #colorLiteral(red: 0, green: 0.5568627451, blue: 0.8862745098, alpha: 1)
         bigBlueButton.translatesAutoresizingMaskIntoConstraints = false
-        bigBlueButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.semibold)
+        bigBlueButton.titleLabel?.font = .scaledNamedFont(.semibold16)
         bigBlueButton.addTarget(self, action: #selector(markRemainingPresent(_:)), for: .touchUpInside)
         bigBlueButtonBottom = bigBlueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 50)
         
@@ -409,25 +414,25 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate {
         
         if sc.status.attendance != .present {
             let action = UITableViewRowAction(style: .normal, title: NSLocalizedString("Present", tableName: "Localizable", bundle: .core, value: "", comment: "Mark student present"), handler: newStatus(.present))
-            action.backgroundColor = #colorLiteral(red: 0, green: 0.6745098039, blue: 0.09411764706, alpha: 1)
+            action.backgroundColor = .named(.backgroundSuccess)
             actions.append(action)
         }
 
         if sc.status.attendance != .absent {
             let action = UITableViewRowAction(style: .normal, title: NSLocalizedString("Absent", tableName: "Localizable", bundle: .core, value: "", comment: "Mark student absent"), handler: newStatus(.absent))
-            action.backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.02352941176, blue: 0.07058823529, alpha: 1)
+            action.backgroundColor = .named(.backgroundDanger)
             actions.append(action)
         }
         
         if sc.status.attendance != .late {
             let action = UITableViewRowAction(style: .normal, title: NSLocalizedString("Late", tableName: "Localizable", bundle: .core, value: "", comment: "Mark student late"), handler: newStatus(.late))
-            action.backgroundColor = #colorLiteral(red: 0.9882352941, green: 0.368627451, blue: 0.07450980392, alpha: 1)
+            action.backgroundColor = .named(.backgroundWarning)
             actions.append(action)
         }
 
         if sc.status.attendance != nil {
             let action = UITableViewRowAction(style: .normal, title: NSLocalizedString("Unmark", tableName: "Localizable", bundle: .core, value: "", comment: "Remove attendance status"), handler: newStatus(nil))
-            action.backgroundColor = #colorLiteral(red: 0.4509803922, green: 0.5058823529, blue: 0.5490196078, alpha: 1)
+            action.backgroundColor = .named(.oxford)
             actions.append(action)
         }
 

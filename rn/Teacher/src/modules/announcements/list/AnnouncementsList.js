@@ -39,6 +39,7 @@ import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 import { Text } from '../../../common/text'
 import { isRegularDisplayMode } from '../../../routing/utils'
 import type { TraitCollection } from '../../../routing/Navigator'
+import { createStyleSheet } from '../../../common/stylesheet'
 
 const { refreshCourse } = CourseActions
 const { refreshAnnouncements } = ListActions
@@ -227,13 +228,13 @@ export const Refreshed = refresh(
 const Connected = connect(mapStateToProps, Actions)(Refreshed)
 export default (Connected: Component<Props, any>)
 
-const style = StyleSheet.create({
+const style = createStyleSheet(colors => ({
   subtitleContainer: {
     flex: 1,
     flexDirection: 'row',
   },
   subtitle: {
-    color: '#8B969E',
+    color: colors.textDark,
     fontSize: 14,
     marginTop: 2,
   },
@@ -241,4 +242,4 @@ const style = StyleSheet.create({
   delay: {
     fontWeight: '600',
   },
-})
+}))

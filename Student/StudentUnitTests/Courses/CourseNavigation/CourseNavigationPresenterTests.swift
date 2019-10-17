@@ -48,7 +48,7 @@ class CourseNavigationPresenterTests: PersistenceTestCase {
 
     func testLoadColor() {
         Course.make()
-        Color.make()
+        ContextColor.make()
 
         presenter.color.eventHandler()
         XCTAssertEqual(resultingBackgroundColor, UIColor.red)

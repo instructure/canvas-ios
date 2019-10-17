@@ -21,15 +21,13 @@
 import React, { PureComponent } from 'react'
 import {
   View,
-  StyleSheet,
   TouchableHighlight,
   Image,
 } from 'react-native'
 import { Text } from '../../text'
 import i18n from 'format-message'
-import colors from '../../colors'
+import { colors, createStyleSheet, vars } from '../../stylesheet'
 import Images from '../../../images'
-import branding from '../../branding'
 import { extractDateFromString } from '../../../utils/dateUtils'
 
 type DateRowProps = {
@@ -46,8 +44,8 @@ type DateRowProps = {
 
 export default class RowWithDateInput extends PureComponent<DateRowProps, any> {
   render () {
-    let detailTextStyle = this.props.selected ? { color: branding.primaryBrandColor } : styles.detailText
-    let paddingRightWhenEmpty = this.props.showRemoveButton ? 0 : global.style.defaultPadding
+    let detailTextStyle = this.props.selected ? { color: colors.primary } : styles.detailText
+    let paddingRightWhenEmpty = this.props.showRemoveButton ? 0 : vars.padding
 
     let date = extractDateFromString(this.props.date)
     date = date ? i18n("{ date, date, 'MMM d' } { date, time, short }", { date }) : i18n('--')
@@ -83,13 +81,12 @@ export default class RowWithDateInput extends PureComponent<DateRowProps, any> {
   }
 }
 
-const styles = StyleSheet.create({
-
+const styles = createStyleSheet((colors, vars) => ({
   row: {
-    paddingVertical: global.style.defaultPadding / 2,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.seperatorColor,
-    backgroundColor: 'white',
+    paddingVertical: vars.padding / 2,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
+    backgroundColor: colors.backgroundLightest,
     minHeight: 54,
   },
   rowContainer: {
@@ -97,8 +94,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'white',
-    paddingLeft: global.style.defaultPadding,
+    backgroundColor: colors.backgroundLightest,
+    paddingLeft: vars.padding,
   },
   detailsRowContainer: {
     justifyContent: 'flex-end',
@@ -118,8 +115,8 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8,
     paddingLeft: 8,
-    paddingRight: global.style.defaultPadding,
+    paddingRight: vars.padding,
     alignItems: 'center',
     justifyContent: 'center',
   },
-})
+}))

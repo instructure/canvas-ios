@@ -54,7 +54,7 @@ class PeopleListPresenterTests: PersistenceTestCase {
 
     func testLoadCourseColors() {
         Course.make()
-        Color.make()
+        ContextColor.make()
 
         presenter.colors.eventHandler()
         XCTAssertEqual(resultingBackgroundColor, UIColor.red)
@@ -62,7 +62,7 @@ class PeopleListPresenterTests: PersistenceTestCase {
 
     func testLoadGroupColors() {
         let group = Group.make()
-        Color.make(canvasContextID: group.canvasContextID, color: UIColor.blue)
+        ContextColor.make(canvasContextID: group.canvasContextID, color: UIColor.blue)
 
         presenter.colors.eventHandler()
         XCTAssertEqual(resultingBackgroundColor, UIColor.blue)
@@ -70,7 +70,7 @@ class PeopleListPresenterTests: PersistenceTestCase {
 
     func testLoadCourse() {
         let course = Course.make()
-        Color.make()
+        ContextColor.make()
 
         presenter.course.eventHandler()
         XCTAssertEqual(resultingSubtitle, course.name)
@@ -78,7 +78,7 @@ class PeopleListPresenterTests: PersistenceTestCase {
 
     func testLoadGroup() {
         let group = Group.make()
-        Color.make(canvasContextID: group.canvasContextID)
+        ContextColor.make(canvasContextID: group.canvasContextID)
 
         presenter.group.eventHandler()
         XCTAssertEqual(resultingSubtitle, group.name)

@@ -22,8 +22,8 @@ import React, { PureComponent } from 'react'
 import { FormLabel } from '../text'
 import {
   View,
-  StyleSheet,
 } from 'react-native'
+import { createStyleSheet } from '../stylesheet'
 
 /*
   This component is for a form header with a label and additional components to
@@ -40,13 +40,13 @@ export default class EditSectionHeader extends PureComponent<*> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet(colors => ({
   container: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
     height: 'auto',
-    backgroundColor: '#F5F5F5',
+    backgroundColor: colors.backgroundGrouped,
   },
-})
+}))

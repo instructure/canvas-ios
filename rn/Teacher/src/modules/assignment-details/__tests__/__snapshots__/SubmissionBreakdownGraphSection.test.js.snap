@@ -46,9 +46,9 @@ exports[`render 0 submissions 1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}
@@ -132,9 +132,9 @@ exports[`render 0 submissions 1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}
@@ -218,9 +218,9 @@ exports[`render 0 submissions 1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}
@@ -323,9 +323,9 @@ exports[`render 1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}
@@ -409,9 +409,9 @@ exports[`render 1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}
@@ -495,9 +495,9 @@ exports[`render 1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}
@@ -600,9 +600,9 @@ exports[`render 1 needs grading 1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}
@@ -686,9 +686,9 @@ exports[`render 1 needs grading 1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}
@@ -772,9 +772,9 @@ exports[`render 1 needs grading 1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}
@@ -877,9 +877,9 @@ exports[`render 2 need grading 1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}
@@ -963,9 +963,9 @@ exports[`render 2 need grading 1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}
@@ -1049,9 +1049,9 @@ exports[`render 2 need grading 1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}
@@ -1154,9 +1154,9 @@ exports[`render loading with pending set 1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}
@@ -1234,9 +1234,9 @@ exports[`render loading with pending set 1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}
@@ -1314,9 +1314,9 @@ exports[`render loading with pending set 1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}
@@ -1413,9 +1413,9 @@ exports[`render multiple data points  1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}
@@ -1499,9 +1499,9 @@ exports[`render multiple data points  1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}
@@ -1585,9 +1585,9 @@ exports[`render multiple data points  1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}
@@ -1688,9 +1688,9 @@ exports[`render on paper submission type 1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}
@@ -1758,7 +1758,7 @@ exports[`render on paper submission type 1`] = `
       style={
         Array [
           Object {
-            "color": "#7F91A7",
+            "color": "#8B969E",
             "fontSize": 14,
           },
           Object {
@@ -1848,9 +1848,9 @@ exports[`render undefined submission type 1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}
@@ -1934,9 +1934,9 @@ exports[`render undefined submission type 1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}
@@ -2020,9 +2020,9 @@ exports[`render undefined submission type 1`] = `
         >
           <Circle
             animated={true}
-            borderColor="#374A59"
+            borderColor="#008EE2"
             borderWidth={0}
-            color="#374A59"
+            color="#008EE2"
             progress={0}
             showsText={false}
             size={70}

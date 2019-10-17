@@ -50,6 +50,8 @@ class LoginStartViewController: UIViewController, LoginStartViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = .named(.backgroundLightest)
+
         canvasNetworkButton?.setTitle(NSLocalizedString("Canvas Network", bundle: .core, comment: ""), for: .normal)
         canvasNetworkButton?.isHidden = loginDelegate?.supportsCanvasNetwork == false
         findSchoolButton?.setTitle(NSLocalizedString("Find my school", bundle: .core, comment: ""), for: .normal)

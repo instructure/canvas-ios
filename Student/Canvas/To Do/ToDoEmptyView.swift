@@ -26,6 +26,7 @@ class ToDoEmptyView: UIView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        backgroundColor = .named(.backgroundLightest)
         mainLabel?.text = NSLocalizedString("No To-Do Items", comment: "")
         descriptionLabel?.text = NSLocalizedString("It looks like there’s nothing to do today. Enjoy your day!", comment: "")
     }

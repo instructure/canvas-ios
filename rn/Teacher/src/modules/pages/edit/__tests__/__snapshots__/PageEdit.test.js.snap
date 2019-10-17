@@ -56,7 +56,7 @@ exports[`PageEdit renders 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "borderBottomColor": "#C7CDD1",
             "borderBottomWidth": 0.5,
             "borderTopColor": "#C7CDD1",
@@ -166,7 +166,7 @@ exports[`PageEdit renders when the student app 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "borderBottomColor": "#C7CDD1",
             "borderBottomWidth": 0.5,
             "borderTopColor": "#C7CDD1",

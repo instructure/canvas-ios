@@ -158,7 +158,7 @@ class PostGradesPresenterTests: TeacherTestCase {
 
     func testColor() {
         _ = Course.make()
-        let expectedColor = Color.make()
+        let expectedColor = ContextColor.make()
 
         presenter.viewIsReady()
         wait(for: [colorExpectation], timeout: 0.5)

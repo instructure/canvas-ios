@@ -68,7 +68,7 @@ exports[`Inbox filters conversations based on course 1`] = `
                       "fontWeight": "600",
                     },
                     Object {
-                      "color": "#374A59",
+                      "color": "#008EE2",
                     },
                   ],
                 ]
@@ -80,7 +80,7 @@ exports[`Inbox filters conversations based on course 1`] = `
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#374A59",
+                    "backgroundColor": "#008EE2",
                     "bottom": 0,
                     "height": 3,
                     "left": 8,
@@ -88,7 +88,7 @@ exports[`Inbox filters conversations based on course 1`] = `
                     "right": 8,
                   },
                   Object {
-                    "backgroundColor": "#374A59",
+                    "backgroundColor": "#008EE2",
                   },
                 ]
               }
@@ -252,7 +252,7 @@ exports[`Inbox filters conversations based on course 1`] = `
     <View
       style={
         Object {
-          "borderBottomColor": "lightgrey",
+          "borderBottomColor": "#C7CDD1",
           "borderBottomWidth": 0.5,
           "paddingBottom": 8,
           "paddingHorizontal": 16,
@@ -323,7 +323,7 @@ exports[`Inbox filters conversations based on course 1`] = `
                   },
                   Array [
                     Object {
-                      "color": "#374A59",
+                      "color": "#008EE2",
                       "fontSize": 16,
                       "fontWeight": "500",
                     },
@@ -350,7 +350,7 @@ exports[`Inbox filters conversations based on course 1`] = `
               Array [
                 Object {
                   "alignItems": "flex-start",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "padding": 16,
@@ -383,14 +383,10 @@ exports[`Inbox filters conversations based on course 1`] = `
                       "overflow": "hidden",
                     },
                     Object {
+                      "backgroundColor": "#F5F5F5",
+                      "borderRadius": 20,
                       "height": 40,
                       "width": 40,
-                    },
-                    Object {
-                      "borderRadius": 20,
-                    },
-                    Object {
-                      "backgroundColor": "#F5F5F5",
                     },
                   ]
                 }
@@ -587,7 +583,7 @@ exports[`Inbox refreshed component 1`] = `
                       "fontWeight": "600",
                     },
                     Object {
-                      "color": "#374A59",
+                      "color": "#008EE2",
                     },
                   ],
                 ]
@@ -599,7 +595,7 @@ exports[`Inbox refreshed component 1`] = `
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#374A59",
+                    "backgroundColor": "#008EE2",
                     "bottom": 0,
                     "height": 3,
                     "left": 8,
@@ -607,7 +603,7 @@ exports[`Inbox refreshed component 1`] = `
                     "right": 8,
                   },
                   Object {
-                    "backgroundColor": "#374A59",
+                    "backgroundColor": "#008EE2",
                   },
                 ]
               }
@@ -771,7 +767,7 @@ exports[`Inbox refreshed component 1`] = `
     <View
       style={
         Object {
-          "borderBottomColor": "lightgrey",
+          "borderBottomColor": "#C7CDD1",
           "borderBottomWidth": 0.5,
           "paddingBottom": 8,
           "paddingHorizontal": 16,
@@ -844,7 +840,7 @@ exports[`Inbox refreshed component 1`] = `
                   },
                   Array [
                     Object {
-                      "color": "#374A59",
+                      "color": "#008EE2",
                       "fontSize": 16,
                       "fontWeight": "500",
                     },
@@ -992,7 +988,7 @@ exports[`Inbox renders correctly 1`] = `
                       "fontWeight": "600",
                     },
                     Object {
-                      "color": "#374A59",
+                      "color": "#008EE2",
                     },
                   ],
                 ]
@@ -1004,7 +1000,7 @@ exports[`Inbox renders correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#374A59",
+                    "backgroundColor": "#008EE2",
                     "bottom": 0,
                     "height": 3,
                     "left": 8,
@@ -1012,7 +1008,7 @@ exports[`Inbox renders correctly 1`] = `
                     "right": 8,
                   },
                   Object {
-                    "backgroundColor": "#374A59",
+                    "backgroundColor": "#008EE2",
                   },
                 ]
               }
@@ -1176,7 +1172,7 @@ exports[`Inbox renders correctly 1`] = `
     <View
       style={
         Object {
-          "borderBottomColor": "lightgrey",
+          "borderBottomColor": "#C7CDD1",
           "borderBottomWidth": 0.5,
           "paddingBottom": 8,
           "paddingHorizontal": 16,
@@ -1249,7 +1245,7 @@ exports[`Inbox renders correctly 1`] = `
                   },
                   Array [
                     Object {
-                      "color": "#374A59",
+                      "color": "#008EE2",
                       "fontSize": 16,
                       "fontWeight": "500",
                     },
@@ -1276,7 +1272,7 @@ exports[`Inbox renders correctly 1`] = `
               Array [
                 Object {
                   "alignItems": "flex-start",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "padding": 16,
@@ -1309,14 +1305,10 @@ exports[`Inbox renders correctly 1`] = `
                       "overflow": "hidden",
                     },
                     Object {
+                      "backgroundColor": "#F5F5F5",
+                      "borderRadius": 20,
                       "height": 40,
                       "width": 40,
-                    },
-                    Object {
-                      "borderRadius": 20,
-                    },
-                    Object {
-                      "backgroundColor": "#F5F5F5",
                     },
                   ]
                 }
@@ -1451,7 +1443,7 @@ exports[`Inbox renders correctly 1`] = `
               Array [
                 Object {
                   "alignItems": "flex-start",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "padding": 16,
@@ -1480,14 +1472,10 @@ exports[`Inbox renders correctly 1`] = `
                       "overflow": "hidden",
                     },
                     Object {
+                      "backgroundColor": "#F5F5F5",
+                      "borderRadius": 20,
                       "height": 40,
                       "width": 40,
-                    },
-                    Object {
-                      "borderRadius": 20,
-                    },
-                    Object {
-                      "backgroundColor": "#F5F5F5",
                     },
                   ]
                 }
@@ -1684,7 +1672,7 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
                       "fontWeight": "600",
                     },
                     Object {
-                      "color": "#374A59",
+                      "color": "#008EE2",
                     },
                   ],
                 ]
@@ -1696,7 +1684,7 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#374A59",
+                    "backgroundColor": "#008EE2",
                     "bottom": 0,
                     "height": 3,
                     "left": 8,
@@ -1704,7 +1692,7 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
                     "right": 8,
                   },
                   Object {
-                    "backgroundColor": "#374A59",
+                    "backgroundColor": "#008EE2",
                   },
                 ]
               }
@@ -1868,7 +1856,7 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
     <View
       style={
         Object {
-          "borderBottomColor": "lightgrey",
+          "borderBottomColor": "#C7CDD1",
           "borderBottomWidth": 0.5,
           "paddingBottom": 8,
           "paddingHorizontal": 16,
@@ -1941,7 +1929,7 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
                   },
                   Array [
                     Object {
-                      "color": "#374A59",
+                      "color": "#008EE2",
                       "fontSize": 16,
                       "fontWeight": "500",
                     },
@@ -2120,7 +2108,7 @@ exports[`Inbox renders the starred empty state 1`] = `
                       "fontWeight": "600",
                     },
                     Object {
-                      "color": "#374A59",
+                      "color": "#008EE2",
                     },
                   ],
                 ]
@@ -2132,7 +2120,7 @@ exports[`Inbox renders the starred empty state 1`] = `
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#374A59",
+                    "backgroundColor": "#008EE2",
                     "bottom": 0,
                     "height": 3,
                     "left": 8,
@@ -2140,7 +2128,7 @@ exports[`Inbox renders the starred empty state 1`] = `
                     "right": 8,
                   },
                   Object {
-                    "backgroundColor": "#374A59",
+                    "backgroundColor": "#008EE2",
                   },
                 ]
               }
@@ -2228,7 +2216,7 @@ exports[`Inbox renders the starred empty state 1`] = `
     <View
       style={
         Object {
-          "borderBottomColor": "lightgrey",
+          "borderBottomColor": "#C7CDD1",
           "borderBottomWidth": 0.5,
           "paddingBottom": 8,
           "paddingHorizontal": 16,
@@ -2301,7 +2289,7 @@ exports[`Inbox renders the starred empty state 1`] = `
                   },
                   Array [
                     Object {
-                      "color": "#374A59",
+                      "color": "#008EE2",
                       "fontSize": 16,
                       "fontWeight": "500",
                     },
@@ -2449,7 +2437,7 @@ exports[`Inbox renders with an empty state 1`] = `
                       "fontWeight": "600",
                     },
                     Object {
-                      "color": "#374A59",
+                      "color": "#008EE2",
                     },
                   ],
                 ]
@@ -2461,7 +2449,7 @@ exports[`Inbox renders with an empty state 1`] = `
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#374A59",
+                    "backgroundColor": "#008EE2",
                     "bottom": 0,
                     "height": 3,
                     "left": 8,
@@ -2469,7 +2457,7 @@ exports[`Inbox renders with an empty state 1`] = `
                     "right": 8,
                   },
                   Object {
-                    "backgroundColor": "#374A59",
+                    "backgroundColor": "#008EE2",
                   },
                 ]
               }
@@ -2633,7 +2621,7 @@ exports[`Inbox renders with an empty state 1`] = `
     <View
       style={
         Object {
-          "borderBottomColor": "lightgrey",
+          "borderBottomColor": "#C7CDD1",
           "borderBottomWidth": 0.5,
           "paddingBottom": 8,
           "paddingHorizontal": 16,
@@ -2706,7 +2694,7 @@ exports[`Inbox renders with an empty state 1`] = `
                   },
                   Array [
                     Object {
-                      "color": "#374A59",
+                      "color": "#008EE2",
                       "fontSize": 16,
                       "fontWeight": "500",
                     },

@@ -55,7 +55,7 @@ class StudentSyllabusPresenterTests: PersistenceTestCase {
     func testLoadNavBarStuff() {
         //  given
         let course = Course.make(from: .make(course_code: "abc"))
-        Color.make(canvasContextID: course.canvasContextID)
+        ContextColor.make(canvasContextID: course.canvasContextID)
 
         //  when
         presenter.viewIsReady()

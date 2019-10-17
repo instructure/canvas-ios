@@ -21,7 +21,6 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   ActionSheetIOS,
   Alert,
   LayoutAnimation,
@@ -49,7 +48,7 @@ import AttachmentPicker from '../attachments/AttachmentPicker'
 import uuid from 'uuid/v1'
 import { wait } from '../../utils/async-wait'
 import { isTeacher } from '../app'
-import color from '../../common/colors'
+import { colors, createStyleSheet, vars } from '../../common/stylesheet'
 import { Text } from '../../common/text'
 import { isRegularDisplayMode } from '../../routing/utils'
 import type { TraitCollection } from '../../routing/Navigator'
@@ -372,7 +371,7 @@ export class FilesList extends Component<Props, State> {
     let name
     let icon
     let subtitle
-    let tintColor = color.grey5
+    let tintColor = colors.textDark
     let statusOffset = {}
     let selected = false
     if (item.type === 'file') {
@@ -544,11 +543,10 @@ export class FilesList extends Component<Props, State> {
       <Screen
         customPageViewPath={this.props.customPageViewPath ? this.props.customPageViewPath : null}
         title={title}
-        navBarColor={isCourse ? this.props.courseColor : color.navBarColor}
-        navBarStyle={isCourse ? 'dark' : color.statusBarStyle}
-        navBarButtonColor={isCourse ? 'white' : color.navBarTextColor}
-        navBarTitleColor={isCourse ? 'white' : color.navBarTextColor}
-        statusBarStyle={isCourse ? 'light' : color.statusBarStyle}
+        navBarColor={isCourse ? this.props.courseColor : colors.navBackground}
+        navBarStyle={isCourse ? 'dark' : vars.navBarStyle}
+        navBarButtonColor={isCourse ? colors.white : colors.navTextColor}
+        navBarTitleColor={isCourse ? colors.white : colors.navTextColor}
         rightBarButtons={rightBarButtons}
         onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
       >
@@ -612,7 +610,7 @@ export function mapStateToProps (state: Object, props: FileListNavProps) {
   return { data, folder: parentFolder, courseColor }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   icon: {
     alignSelf: 'flex-start',
   },
@@ -624,12 +622,12 @@ const styles = StyleSheet.create({
     left: 0,
   },
   queryLength: {
-    marginHorizontal: global.style.defaultPadding,
+    marginHorizontal: vars.padding,
     marginTop: -5,
     fontSize: 13,
-    color: color.grey5,
+    color: colors.textDark,
   },
-})
+}))
 
 let Connected = connect(mapStateToProps, Actions)(FilesList)
 export default (Connected: Component<any, any>)

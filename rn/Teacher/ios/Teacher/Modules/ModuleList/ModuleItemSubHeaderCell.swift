@@ -26,6 +26,7 @@ class ModuleItemSubHeaderCell: UITableViewCell {
 
     var indent: Int = 0 {
         didSet {
+            backgroundColor = .named(.backgroundLightest)
             indentConstraint.constant = CGFloat(indent) * ModuleItemCell.IndentMultiplier
         }
     }

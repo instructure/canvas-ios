@@ -62,6 +62,8 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
 
     open override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .named(.backgroundLightest)
+        sourcesTabBar?.barTintColor = .named(.backgroundLightest)
         tableView.tableFooterView = UIView(frame: .zero)
 
         var tabBarItems: [UITabBarItem] = []

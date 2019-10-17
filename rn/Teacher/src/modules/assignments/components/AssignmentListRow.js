@@ -23,7 +23,6 @@
 import React, { PureComponent } from 'react'
 import {
   View,
-  StyleSheet,
 } from 'react-native'
 
 import i18n from 'format-message'
@@ -33,6 +32,7 @@ import AssignmentDates from '../../../common/AssignmentDates'
 import { Text } from '../../../common/text'
 import Row from '../../../common/components/rows/Row'
 import Images from '../../../images'
+import { createStyleSheet } from '../../../common/stylesheet'
 
 type Props = {
   assignment: Assignment,
@@ -120,17 +120,17 @@ export default class AssignmentListRow extends PureComponent<Props> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   ungradedText: {
     flex: 0,
     alignSelf: 'flex-start',
     fontSize: 11,
     fontWeight: '600',
-    color: '#008EE2',
+    color: colors.textInfo,
     borderRadius: 9,
-    borderColor: '#008EE2',
+    borderColor: colors.borderInfo,
     borderWidth: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     paddingTop: 2,
     paddingBottom: 2,
     paddingLeft: 6,
@@ -141,4 +141,4 @@ const styles = StyleSheet.create({
   icon: {
     alignSelf: 'flex-start',
   },
-})
+}))

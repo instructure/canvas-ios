@@ -84,7 +84,7 @@ exports[`DiscussionEdit renders 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "borderBottomColor": "#C7CDD1",
             "borderBottomWidth": 0.5,
             "borderTopColor": "#C7CDD1",
@@ -265,7 +265,7 @@ exports[`DiscussionEdit renders new form 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "borderBottomColor": "#C7CDD1",
             "borderBottomWidth": 0.5,
             "borderTopColor": "#C7CDD1",
@@ -439,7 +439,7 @@ exports[`DiscussionEdit updates from props 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "borderBottomColor": "#C7CDD1",
             "borderBottomWidth": 0.5,
             "borderTopColor": "#C7CDD1",
@@ -620,7 +620,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "borderBottomColor": "#C7CDD1",
             "borderBottomWidth": 0.5,
             "borderTopColor": "#C7CDD1",

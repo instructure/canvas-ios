@@ -26,14 +26,13 @@ import {
   View,
   TouchableHighlight,
   TouchableOpacity,
-  StyleSheet,
   Alert,
   LayoutAnimation,
   DatePickerIOS,
   Image,
 } from 'react-native'
 import i18n from 'format-message'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import AssignmentDates from '../../../common/AssignmentDates'
 import { type Assignee } from '../../assignee-picker/map-state-to-props'
 import uuid from 'uuid/v1'
@@ -567,8 +566,8 @@ export default class AssignmentDatesEditor extends Component<Props, any> {
         accessibilityTraits={['button']}
       >
         <View style={styles.buttonInnerContainer}>
-          <Image source={Images.add} style={[styles.buttonImage, { tintColor: colors.primaryButtonColor }]} />
-          <Text style={[styles.buttonText, { color: colors.primaryButtonColor }]}>{i18n('Add Due Date')}</Text>
+          <Image source={Images.add} style={[styles.buttonImage, { tintColor: colors.buttonPrimaryBackground }]} />
+          <Text style={[styles.buttonText, { color: colors.buttonPrimaryBackground }]}>{i18n('Add Due Date')}</Text>
         </View>
       </TouchableHighlight>
     )
@@ -591,7 +590,7 @@ export default class AssignmentDatesEditor extends Component<Props, any> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
   },
@@ -600,17 +599,17 @@ const styles = StyleSheet.create({
   row: {
     minHeight: 54,
     height: 'auto',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.seperatorColor,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
   },
   rowContainer: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'white',
-    paddingLeft: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
+    backgroundColor: colors.backgroundGroupedCell,
+    paddingLeft: vars.padding,
+    paddingRight: vars.padding,
   },
   detailsRowContainer: {
     justifyContent: 'flex-end',
@@ -619,8 +618,8 @@ const styles = StyleSheet.create({
   },
   headerText: {
     borderTopWidth: 0,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.seperatorColor,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
   },
   titleText: {
     fontWeight: '600',
@@ -628,32 +627,31 @@ const styles = StyleSheet.create({
   detailText: {
   },
   detailTextMissing: {
-    color: '#8B969E',
+    color: colors.textDark,
   },
   space: {
     height: 24,
-    backgroundColor: '#F5F5F5',
   },
   button: {
     minHeight: 54,
     height: 'auto',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.seperatorColor,
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: colors.seperatorColor,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
   },
   buttonInnerContainer: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundGroupedCell,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingLeft: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
+    paddingLeft: vars.padding,
+    paddingRight: vars.padding,
   },
   buttonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#008EE2',
+    color: colors.textInfo,
   },
   buttonImage: {
     marginRight: 8,
@@ -665,26 +663,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
-    paddingRight: global.style.defaultPadding,
+    paddingRight: vars.padding,
     paddingTop: 14,
   },
   removeButton: {
     fontSize: 14,
-    color: '#EE0612',
+    color: colors.textDanger,
     fontWeight: '500',
   },
   dateEditorContainer: {
     flex: 1,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.seperatorColor,
-    backgroundColor: 'white',
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
+    backgroundColor: colors.backgroundGroupedCell,
   },
   deleteDateTypeButton: {
     paddingTop: 8,
     paddingBottom: 8,
     paddingLeft: 8,
-    paddingRight: global.style.defaultPadding,
+    paddingRight: vars.padding,
     alignItems: 'center',
     justifyContent: 'center',
   },
-})
+}))

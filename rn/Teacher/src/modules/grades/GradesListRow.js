@@ -21,7 +21,6 @@
 import React, { PureComponent } from 'react'
 import {
   View,
-  StyleSheet,
 } from 'react-native'
 
 import AccessIcon from '../../common/components/AccessIcon'
@@ -31,6 +30,7 @@ import SubmissionStatusLabel from '../submissions/list/SubmissionStatusLabel'
 import { submissionTypeIsOnline } from '@common/submissionTypes'
 import { Text } from '@common/text'
 import { formatStudentGrade } from '@common/formatters'
+import { createStyleSheet } from '../../common/stylesheet'
 
 type Props = {
   assignment: Assignment,
@@ -93,17 +93,17 @@ export default class GradesListRow extends PureComponent<Props> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   ungradedText: {
     flex: 0,
     alignSelf: 'flex-start',
     fontSize: 11,
     fontWeight: '600',
-    color: '#008EE2',
+    color: colors.textInfo,
     borderRadius: 9,
-    borderColor: '#008EE2',
+    borderColor: colors.textInfo,
     borderWidth: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     paddingTop: 3,
     paddingBottom: 1,
     paddingLeft: 6,
@@ -119,4 +119,4 @@ const styles = StyleSheet.create({
   icon: {
     alignSelf: 'flex-start',
   },
-})
+}))

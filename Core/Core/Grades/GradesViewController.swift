@@ -18,6 +18,10 @@
 
 import UIKit
 
+public protocol ColorDelegate: class {
+    var iconColor: UIColor? { get }
+}
+
 public class GradesViewController: UIViewController {
 
     @IBOutlet weak var filterButton: DynamicButton!
@@ -27,6 +31,7 @@ public class GradesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     private var presenter: GradesPresenter!
     @IBOutlet weak var loadingView: UIView!
+    public weak var colorDelegate: ColorDelegate?
     static let dateParser: DateFormatter = {
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd HH:mm:ss ZZ"
@@ -39,8 +44,9 @@ public class GradesViewController: UIViewController {
         return dateFormatter
     }()
 
-    public static func create(courseID: String, studentID: String) -> GradesViewController {
+    public static func create(courseID: String, studentID: String, colorDelegate: ColorDelegate? = nil) -> GradesViewController {
         let vc = GradesViewController.loadFromStoryboard()
+        vc.colorDelegate = colorDelegate
         vc.presenter = GradesPresenter(view: vc, courseID: courseID, studentID: studentID)
         return vc
     }
@@ -52,6 +58,7 @@ public class GradesViewController: UIViewController {
 
         headerGradeHeader.text = NSLocalizedString("Total Grade", comment: "")
         filterButton.setTitle(presenter.filterButtonTitle, for: .normal)
+        filterButton.setTitleColor(colorDelegate?.iconColor, for: .normal)
     }
 
     func setupTableView() {
@@ -116,6 +123,7 @@ extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
         let a = presenter.assignments[indexPath]
         let cell: GradesCell =  tableView.dequeue(for: indexPath)
         cell.update(a, studentID: presenter.studentID)
+        cell.typeImage.tintColor = colorDelegate?.iconColor ?? Brand.shared.buttonPrimaryBackground
         return cell
     }
 

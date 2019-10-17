@@ -22,7 +22,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ReactNative, {
   View,
-  StyleSheet,
   LayoutAnimation,
   DatePickerIOS,
   NativeModules,
@@ -36,7 +35,7 @@ import RowWithTextInput from '../../../common/components/rows/RowWithTextInput'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import RowWithDateInput from '../../../common/components/rows/RowWithDateInput'
 import RowWithDetail from '../../../common/components/rows/RowWithDetail'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import images from '../../../images'
 import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
 import { extractDateFromString } from '../../../utils/dateUtils'
@@ -153,8 +152,8 @@ export class AnnouncementEdit extends Component<Props, any> {
             accessibilityLabel: i18n('Add attachment'),
             badge: this.state.attachment && {
               text: '1',
-              backgroundColor: processColor(colors.primaryButtonColor),
-              textColor: processColor(colors.primaryBrandColor),
+              backgroundColor: processColor(colors.buttonPrimaryBackground),
+              textColor: processColor(colors.primary),
             },
           },
         ]}
@@ -388,23 +387,23 @@ export class AnnouncementEdit extends Component<Props, any> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: colors.backgroundLight,
   },
   description: {
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: colors.seperatorColor,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.seperatorColor,
-    backgroundColor: 'white',
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
+    backgroundColor: colors.backgroundLightest,
     height: 200,
   },
   deleteButtonTitle: {
-    color: '#EE0612',
+    color: colors.textDanger,
   },
-})
+}))
 
 export function mapStateToProps ({ entities }: AppState, { context, contextID, announcementID }: OwnProps): DataProps {
   let announcement = {}

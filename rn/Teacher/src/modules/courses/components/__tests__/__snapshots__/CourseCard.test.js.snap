@@ -24,8 +24,8 @@ exports[`renders 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
-          "borderColor": "#e3e3e3",
+          "backgroundColor": "#FFFFFF",
+          "borderColor": "#F5F5F5",
           "borderRadius": 4,
           "borderWidth": 0.5,
           "flex": 1,
@@ -116,7 +116,7 @@ exports[`renders 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969D",
+                "color": "#8B969E",
                 "fontSize": 12,
                 "fontWeight": "600",
                 "marginTop": 2,
@@ -167,7 +167,7 @@ exports[`renders 1`] = `
         style={
           Object {
             "height": 18,
-            "tintColor": "white",
+            "tintColor": "#FFFFFF",
             "width": 18,
           }
         }
@@ -201,8 +201,8 @@ exports[`renders with a grade 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
-          "borderColor": "#e3e3e3",
+          "backgroundColor": "#FFFFFF",
+          "borderColor": "#F5F5F5",
           "borderRadius": 4,
           "borderWidth": 0.5,
           "flex": 1,
@@ -256,7 +256,7 @@ exports[`renders with a grade 1`] = `
         <View
           style={
             Object {
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderRadius": 14,
               "flex": 1,
               "left": 8,
@@ -331,7 +331,7 @@ exports[`renders with a grade 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969D",
+                "color": "#8B969E",
                 "fontSize": 12,
                 "fontWeight": "600",
                 "marginTop": 2,
@@ -382,7 +382,7 @@ exports[`renders with a grade 1`] = `
         style={
           Object {
             "height": 18,
-            "tintColor": "white",
+            "tintColor": "#FFFFFF",
             "width": 18,
           }
         }
@@ -416,8 +416,8 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
-          "borderColor": "#e3e3e3",
+          "backgroundColor": "#FFFFFF",
+          "borderColor": "#F5F5F5",
           "borderRadius": 4,
           "borderWidth": 0.5,
           "flex": 1,
@@ -471,7 +471,7 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
         <View
           style={
             Object {
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderRadius": 14,
               "flex": 1,
               "left": 8,
@@ -546,7 +546,7 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969D",
+                "color": "#8B969E",
                 "fontSize": 12,
                 "fontWeight": "600",
                 "marginTop": 2,
@@ -597,7 +597,7 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
         style={
           Object {
             "height": 18,
-            "tintColor": "white",
+            "tintColor": "#FFFFFF",
             "width": 18,
           }
         }
@@ -631,8 +631,8 @@ exports[`renders with empty image url 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
-          "borderColor": "#e3e3e3",
+          "backgroundColor": "#FFFFFF",
+          "borderColor": "#F5F5F5",
           "borderRadius": 4,
           "borderWidth": 0.5,
           "flex": 1,
@@ -711,7 +711,7 @@ exports[`renders with empty image url 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969D",
+                "color": "#8B969E",
                 "fontSize": 12,
                 "fontWeight": "600",
                 "marginTop": 2,
@@ -762,7 +762,7 @@ exports[`renders with empty image url 1`] = `
         style={
           Object {
             "height": 18,
-            "tintColor": "white",
+            "tintColor": "#FFFFFF",
             "width": 18,
           }
         }
@@ -796,8 +796,8 @@ exports[`renders with image url 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
-          "borderColor": "#e3e3e3",
+          "backgroundColor": "#FFFFFF",
+          "borderColor": "#F5F5F5",
           "borderRadius": 4,
           "borderWidth": 0.5,
           "flex": 1,
@@ -888,7 +888,7 @@ exports[`renders with image url 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969D",
+                "color": "#8B969E",
                 "fontSize": 12,
                 "fontWeight": "600",
                 "marginTop": 2,
@@ -939,7 +939,7 @@ exports[`renders with image url 1`] = `
         style={
           Object {
             "height": 18,
-            "tintColor": "white",
+            "tintColor": "#FFFFFF",
             "width": 18,
           }
         }
@@ -973,8 +973,8 @@ exports[`renders without image url 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
-          "borderColor": "#e3e3e3",
+          "backgroundColor": "#FFFFFF",
+          "borderColor": "#F5F5F5",
           "borderRadius": 4,
           "borderWidth": 0.5,
           "flex": 1,
@@ -1053,7 +1053,7 @@ exports[`renders without image url 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969D",
+                "color": "#8B969E",
                 "fontSize": 12,
                 "fontWeight": "600",
                 "marginTop": 2,
@@ -1104,7 +1104,7 @@ exports[`renders without image url 1`] = `
         style={
           Object {
             "height": 18,
-            "tintColor": "white",
+            "tintColor": "#FFFFFF",
             "width": 18,
           }
         }
@@ -1138,8 +1138,8 @@ exports[`renders without the color overlay 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
-          "borderColor": "#e3e3e3",
+          "backgroundColor": "#FFFFFF",
+          "borderColor": "#F5F5F5",
           "borderRadius": 4,
           "borderWidth": 0.5,
           "flex": 1,
@@ -1230,7 +1230,7 @@ exports[`renders without the color overlay 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#8B969D",
+                "color": "#8B969E",
                 "fontSize": 12,
                 "fontWeight": "600",
                 "marginTop": 2,
@@ -1281,7 +1281,7 @@ exports[`renders without the color overlay 1`] = `
         style={
           Object {
             "height": 18,
-            "tintColor": "white",
+            "tintColor": "#FFFFFF",
             "width": 18,
           }
         }

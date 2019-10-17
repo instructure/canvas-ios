@@ -24,7 +24,6 @@ import i18n from 'format-message'
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
 } from 'react-native'
 
 import AccessIcon from '../../common/components/AccessIcon'
@@ -34,7 +33,7 @@ import Images from '../../images'
 import OldSubmissionStatusLabel from '../submissions/list/OldSubmissionStatusLabel'
 import LinearGradient from 'react-native-linear-gradient'
 import Token from '../../common/components/Token'
-import colors from '../../common/colors'
+import { colors, createStyleSheet } from '../../common/stylesheet'
 import { formatGradeText } from '../../common/formatters'
 
 type Props = {
@@ -110,7 +109,7 @@ export default class UserSubmissionRow extends Component<Props, any> {
         {submission.grading_status === 'graded' && this.grade()}
         {needsGrading &&
           <View style={{ flexDirection: 'row' }}>
-            <Token color='#FC5E13'>{i18n('Needs Grading')}</Token>
+            <Token color={colors.textWarning}>{i18n('Needs Grading')}</Token>
           </View>
         }
       </Row>
@@ -138,17 +137,17 @@ export default class UserSubmissionRow extends Component<Props, any> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   ungradedText: {
     flex: 0,
     alignSelf: 'flex-start',
     fontSize: 11,
     fontWeight: '600',
-    color: '#008EE2',
+    color: colors.textInfo,
     borderRadius: 9,
-    borderColor: '#008EE2',
+    borderColor: colors.borderInfo,
     borderWidth: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     paddingTop: 3,
     paddingBottom: 1,
     paddingLeft: 6,
@@ -167,7 +166,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   progressBackground: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: colors.backgroundLight,
     borderColor: 'transparent',
     height: 18,
     flex: 1,
@@ -183,10 +182,10 @@ const styles = StyleSheet.create({
     minWidth: 67,
     flex: 0,
     fontSize: 14,
-    color: colors.lightText,
+    color: colors.textDark,
     fontWeight: '500',
   },
   needsGradingText: {
     flex: 0,
   },
-})
+}))

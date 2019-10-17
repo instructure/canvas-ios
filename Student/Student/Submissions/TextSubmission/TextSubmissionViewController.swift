@@ -36,6 +36,7 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .named(.backgroundLightest)
         title = NSLocalizedString("Text Entry", bundle: .student, comment: "")
 
         navigationController?.navigationBar.useModalStyle()

@@ -20,7 +20,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "borderBottomColor": "lightgrey",
+          "borderBottomColor": "#C7CDD1",
           "borderBottomWidth": 0.5,
           "flexDirection": "row",
           "height": "auto",
@@ -93,7 +93,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                 },
                 Array [
                   Object {
-                    "color": "#374A59",
+                    "color": "#008EE2",
                     "fontSize": 16,
                     "fontWeight": "500",
                   },
@@ -130,7 +130,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "paddingBottom": 10,
@@ -157,14 +157,10 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                         "overflow": "hidden",
                       },
                       Object {
+                        "backgroundColor": "#F5F5F5",
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
-                      },
-                      Object {
-                        "borderRadius": 20,
-                      },
-                      Object {
-                        "backgroundColor": "#F5F5F5",
                       },
                     ]
                   }
@@ -225,7 +221,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                         },
                         undefined,
                         Object {
-                          "color": "#07AF1F",
+                          "color": "#00AC18",
                         },
                       ],
                     ]
@@ -243,7 +239,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                     },
                     Array [
                       Object {
-                        "color": "#374A59",
+                        "color": "#2D3B45",
                         "fontSize": 14,
                         "fontWeight": "600",
                       },
@@ -262,7 +258,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                     Object {
                       "alignSelf": "center",
                       "backgroundColor": "transparent",
-                      "borderColor": "#c7c7cc",
+                      "borderColor": "#C7CDD1",
                       "borderRightWidth": 2,
                       "borderTopWidth": 2,
                       "height": 10,
@@ -305,7 +301,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
       <Text
         style={
           Object {
-            "color": "#fff",
+            "color": "#FFFFFF",
             "fontSize": 14,
             "fontWeight": "400",
           }
@@ -371,7 +367,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "borderBottomColor": "lightgrey",
+          "borderBottomColor": "#C7CDD1",
           "borderBottomWidth": 0.5,
           "flexDirection": "row",
           "height": "auto",
@@ -444,7 +440,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                 },
                 Array [
                   Object {
-                    "color": "#374A59",
+                    "color": "#008EE2",
                     "fontSize": 16,
                     "fontWeight": "500",
                   },
@@ -481,7 +477,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "paddingBottom": 10,
@@ -508,14 +504,10 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                         "overflow": "hidden",
                       },
                       Object {
+                        "backgroundColor": "#F5F5F5",
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
-                      },
-                      Object {
-                        "borderRadius": 20,
-                      },
-                      Object {
-                        "backgroundColor": "#F5F5F5",
                       },
                     ]
                   }
@@ -576,7 +568,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                         },
                         undefined,
                         Object {
-                          "color": "#07AF1F",
+                          "color": "#00AC18",
                         },
                       ],
                     ]
@@ -594,7 +586,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                     },
                     Array [
                       Object {
-                        "color": "#374A59",
+                        "color": "#2D3B45",
                         "fontSize": 14,
                         "fontWeight": "600",
                       },
@@ -613,7 +605,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                     Object {
                       "alignSelf": "center",
                       "backgroundColor": "transparent",
-                      "borderColor": "#c7c7cc",
+                      "borderColor": "#C7CDD1",
                       "borderRightWidth": 2,
                       "borderTopWidth": 2,
                       "height": 10,
@@ -656,7 +648,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
       <Text
         style={
           Object {
-            "color": "#fff",
+            "color": "#FFFFFF",
             "fontSize": 14,
             "fontWeight": "400",
           }
@@ -689,7 +681,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "borderBottomColor": "lightgrey",
+          "borderBottomColor": "#C7CDD1",
           "borderBottomWidth": 0.5,
           "flexDirection": "row",
           "height": "auto",
@@ -762,7 +754,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                 },
                 Array [
                   Object {
-                    "color": "#374A59",
+                    "color": "#008EE2",
                     "fontSize": 16,
                     "fontWeight": "500",
                   },
@@ -799,7 +791,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "paddingBottom": 10,
@@ -826,14 +818,10 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                         "overflow": "hidden",
                       },
                       Object {
+                        "backgroundColor": "#F5F5F5",
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
-                      },
-                      Object {
-                        "borderRadius": 20,
-                      },
-                      Object {
-                        "backgroundColor": "#F5F5F5",
                       },
                     ]
                   }
@@ -894,7 +882,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                         },
                         undefined,
                         Object {
-                          "color": "#07AF1F",
+                          "color": "#00AC18",
                         },
                       ],
                     ]
@@ -912,7 +900,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                     },
                     Array [
                       Object {
-                        "color": "#374A59",
+                        "color": "#2D3B45",
                         "fontSize": 14,
                         "fontWeight": "600",
                       },
@@ -931,7 +919,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                     Object {
                       "alignSelf": "center",
                       "backgroundColor": "transparent",
-                      "borderColor": "#c7c7cc",
+                      "borderColor": "#C7CDD1",
                       "borderRightWidth": 2,
                       "borderTopWidth": 2,
                       "height": 10,
@@ -974,7 +962,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
       <Text
         style={
           Object {
-            "color": "#fff",
+            "color": "#FFFFFF",
             "fontSize": 14,
             "fontWeight": "400",
           }

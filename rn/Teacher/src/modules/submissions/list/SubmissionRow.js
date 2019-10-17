@@ -22,13 +22,12 @@ import React, { Component } from 'react'
 import {
   View,
   Image,
-  StyleSheet,
   TouchableHighlight,
 } from 'react-native'
 import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
 import Token from '../../../common/components/Token'
 import i18n from 'format-message'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import { Text } from '../../../common/text'
 import SubmissionStatusLabel from './SubmissionStatusLabel'
 import Avatar from '../../../common/components/Avatar'
@@ -133,7 +132,7 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
             <SubmissionStatusLabel submission={submission} />
           }
           {submission.gradingStatus === 'needs_grading' &&
-            <Token style={{ alignSelf: 'flex-start', marginTop: 8 }} color={ colors.primaryButton }>
+            <Token style={{ alignSelf: 'flex-start', marginTop: 8 }} color={ colors.textInfo }>
               {i18n('Needs Grading')}
             </Token>
           }
@@ -143,7 +142,7 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
           <Image
             source={images.off}
             testID='SubmissionRow.hiddenIcon'
-            style={{ tintColor: colors.destructiveButtonColor, height: 20, width: 20, marginLeft: 10 }}
+            style={{ tintColor: colors.textDanger, height: 20, width: 20, marginLeft: 10 }}
           />
         }
       </Row>
@@ -153,13 +152,13 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
 
 export default SubmissionRow
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   touchableHighlight: {
     flex: 1,
   },
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     alignItems: 'center',
     flexDirection: 'row',
     paddingTop: 10,
@@ -174,16 +173,16 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#2D3B45',
+    color: colors.textDarkest,
   },
   gradeText: {
     fontSize: 14,
     fontWeight: '600',
-    color: colors.primaryButtonColor,
+    color: colors.textDarkest,
   },
   avatar: {
     width: 40,
     height: 40,
     marginRight: 8,
   },
-})
+}))

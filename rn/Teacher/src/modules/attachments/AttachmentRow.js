@@ -20,7 +20,6 @@
 
 import React, { Component } from 'react'
 import {
-  StyleSheet,
   TouchableHighlight,
   Image,
   View,
@@ -29,7 +28,7 @@ import {
 } from 'react-native'
 import Row from '../../common/components/rows/Row'
 import images from '../../images'
-import colors from '../../common/colors'
+import { colors, createStyleSheet } from '../../common/stylesheet'
 import { Circle } from 'react-native-progress'
 import bytes from '../../utils/locale-bytes'
 import i18n from 'format-message'
@@ -126,7 +125,7 @@ export default class AttachmentRow extends Component<Props, any> {
         <View style={{ flex: 1, justifyContent: 'center' }}>
           <View style={style.cancel}>
             <View
-              style={[style.cancelInner, { backgroundColor: colors.primaryBrandColor }]}
+              style={[style.cancelInner, { backgroundColor: colors.primary }]}
             >
             </View>
           </View>
@@ -135,9 +134,9 @@ export default class AttachmentRow extends Component<Props, any> {
             borderWidth={0}
             thickness={2}
             progress={this.props.progress.loaded / this.props.progress.total}
-            unfilledColor={'#F5F5F5'}
-            borderColor={colors.primaryBrandColor}
-            color={colors.primaryBrandColor}
+            unfilledColor={colors.backgroundLight}
+            borderColor={colors.primary}
+            color={colors.primary}
           />
         </View>
       </TouchableHighlight>
@@ -148,7 +147,7 @@ export default class AttachmentRow extends Component<Props, any> {
     return (
       <TouchableHighlight
         onPress={this.onPressRemove}
-        underlayColor='white'
+        underlayColor={colors.backgroundLightest}
         hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
         testID={`${this.props.testID}.remove.btn`}
         accessibilityLabel={i18n('Remove attachment')}
@@ -185,11 +184,11 @@ export default class AttachmentRow extends Component<Props, any> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet(colors => ({
   remove: {
     width: 14,
     height: 14,
-    tintColor: 'black',
+    tintColor: colors.textDarkest,
   },
   cancel: {
     position: 'absolute',
@@ -205,4 +204,4 @@ const style = StyleSheet.create({
     height: 6,
   },
   image: {},
-})
+}))

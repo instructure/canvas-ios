@@ -20,8 +20,6 @@
 
 import React, { Component } from 'react'
 import {
-  StyleSheet,
-  Text,
   TouchableHighlight,
   View,
   Image,
@@ -30,7 +28,8 @@ import {
 import i18n from 'format-message'
 import { AudioRecorder as RNAudioRecorder, AudioUtils } from 'react-native-audio'
 import images from '../../images'
-import colors from '../colors'
+import { Text } from '../text'
+import { createStyleSheet } from '../stylesheet'
 
 type Props = {
   onFinishedRecording: (Recording) => any,
@@ -249,13 +248,13 @@ export default class AudioRecorder extends Component<Props, any> {
     const text = this.props.doneButtonText || i18n('Upload')
     return (
       <TouchableHighlight
-        style={[style.sendButton, { backgroundColor: colors.primaryButtonColor }]}
+        style={style.sendButton}
         onPress={this._sendRecording}
         testID='audio-recorder.done-btn'
         accessibilityLabel={text}
       >
         <View>
-          <Text style={[style.sendButtonText, { color: colors.primaryButtonTextColor }]}>
+          <Text style={style.sendButtonText}>
             {text}
           </Text>
         </View>
@@ -264,12 +263,12 @@ export default class AudioRecorder extends Component<Props, any> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet(colors => ({
   recorder: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-around',
-    backgroundColor: '#F5F5F5',
+    backgroundColor: colors.backgroundLight,
   },
   header: {
     marginTop: 10,
@@ -288,7 +287,7 @@ const style = StyleSheet.create({
     width: 24,
   },
   headerButtonImage: {
-    tintColor: '#9FA9AF',
+    tintColor: colors.textDark,
     width: 24,
     height: 24,
   },
@@ -303,7 +302,7 @@ const style = StyleSheet.create({
   buttonOuter: {
     height: 80,
     width: 80,
-    borderColor: '#d9ddde',
+    borderColor: colors.borderMedium,
     borderWidth: 4,
     borderRadius: 80 * 0.5,
     justifyContent: 'center',
@@ -313,14 +312,15 @@ const style = StyleSheet.create({
     height: 64,
     width: 64,
     borderRadius: 64 * 0.5,
-    backgroundColor: 'rgba(235,15,33,1)',
+    backgroundColor: colors.textDanger,
   },
   stopButton: {
     height: 32,
     width: 32,
-    backgroundColor: 'red',
+    backgroundColor: colors.textDanger,
   },
   sendButton: {
+    backgroundColor: colors.buttonPrimaryBackground,
     flexDirection: 'row',
     justifyContent: 'center',
     paddingVertical: 12,
@@ -328,7 +328,8 @@ const style = StyleSheet.create({
     borderRadius: 6,
   },
   sendButtonText: {
+    color: colors.buttonPrimaryText,
     fontSize: 16,
     fontWeight: '700',
   },
-})
+}))

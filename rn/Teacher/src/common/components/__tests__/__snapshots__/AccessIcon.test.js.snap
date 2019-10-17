@@ -14,7 +14,7 @@ exports[`AccessIcon published takes precedence over other properties 1`] = `
     resizeMode="cover"
     source={
       Object {
-        "testUri": "../../../src/images/kabob.png",
+        "uri": "instructureLine",
       }
     }
     style={
@@ -32,7 +32,7 @@ exports[`AccessIcon published takes precedence over other properties 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "borderRadius": 8,
         "bottom": -6,
         "height": 16,
@@ -46,7 +46,7 @@ exports[`AccessIcon published takes precedence over other properties 1`] = `
     <Image
       source={
         Object {
-          "testUri": "../../../src/images/publish-small.png",
+          "uri": "publishSolid",
         }
       }
       style={
@@ -76,7 +76,7 @@ exports[`AccessIcon shows published when not locked or hidden 1`] = `
     resizeMode="cover"
     source={
       Object {
-        "testUri": "../../../src/images/kabob.png",
+        "uri": "instructureLine",
       }
     }
     style={
@@ -94,7 +94,7 @@ exports[`AccessIcon shows published when not locked or hidden 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "borderRadius": 8,
         "bottom": -6,
         "height": 16,
@@ -108,7 +108,7 @@ exports[`AccessIcon shows published when not locked or hidden 1`] = `
     <Image
       source={
         Object {
-          "testUri": "../../../src/images/publish-small.png",
+          "uri": "publishSolid",
         }
       }
       style={
@@ -138,7 +138,7 @@ exports[`AccessIcon shows resticted when hidden 1`] = `
     resizeMode="cover"
     source={
       Object {
-        "testUri": "../../../src/images/kabob.png",
+        "uri": "instructureLine",
       }
     }
     style={
@@ -156,7 +156,7 @@ exports[`AccessIcon shows resticted when hidden 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "borderRadius": 8,
         "bottom": -6,
         "height": 16,
@@ -170,13 +170,13 @@ exports[`AccessIcon shows resticted when hidden 1`] = `
     <Image
       source={
         Object {
-          "testUri": "../../../src/images/Restricted.png",
+          "uri": "cloudLockLine",
         }
       }
       style={
         Object {
           "height": 14,
-          "tintColor": "#FF0000",
+          "tintColor": "#FC5E13",
           "width": 14,
         }
       }
@@ -200,7 +200,7 @@ exports[`AccessIcon shows resticted when lock_at is specified 1`] = `
     resizeMode="cover"
     source={
       Object {
-        "testUri": "../../../src/images/kabob.png",
+        "uri": "instructureLine",
       }
     }
     style={
@@ -218,7 +218,7 @@ exports[`AccessIcon shows resticted when lock_at is specified 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "borderRadius": 8,
         "bottom": -6,
         "height": 16,
@@ -232,13 +232,13 @@ exports[`AccessIcon shows resticted when lock_at is specified 1`] = `
     <Image
       source={
         Object {
-          "testUri": "../../../src/images/Restricted.png",
+          "uri": "cloudLockLine",
         }
       }
       style={
         Object {
           "height": 14,
-          "tintColor": "#FF0000",
+          "tintColor": "#FC5E13",
           "width": 14,
         }
       }
@@ -262,7 +262,7 @@ exports[`AccessIcon shows resticted when unlock_at is specified 1`] = `
     resizeMode="cover"
     source={
       Object {
-        "testUri": "../../../src/images/kabob.png",
+        "uri": "instructureLine",
       }
     }
     style={
@@ -280,7 +280,7 @@ exports[`AccessIcon shows resticted when unlock_at is specified 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "borderRadius": 8,
         "bottom": -6,
         "height": 16,
@@ -294,13 +294,13 @@ exports[`AccessIcon shows resticted when unlock_at is specified 1`] = `
     <Image
       source={
         Object {
-          "testUri": "../../../src/images/Restricted.png",
+          "uri": "cloudLockLine",
         }
       }
       style={
         Object {
           "height": 14,
-          "tintColor": "#FF0000",
+          "tintColor": "#FC5E13",
           "width": 14,
         }
       }
@@ -324,7 +324,7 @@ exports[`AccessIcon shows unpublished when locked 1`] = `
     resizeMode="cover"
     source={
       Object {
-        "testUri": "../../../src/images/kabob.png",
+        "uri": "instructureLine",
       }
     }
     style={
@@ -342,7 +342,7 @@ exports[`AccessIcon shows unpublished when locked 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "borderRadius": 8,
         "bottom": -6,
         "height": 16,
@@ -356,7 +356,7 @@ exports[`AccessIcon shows unpublished when locked 1`] = `
     <Image
       source={
         Object {
-          "testUri": "../../../src/images/unpublish-small.png",
+          "uri": "noSolid",
         }
       }
       style={
@@ -386,7 +386,7 @@ exports[`AccessIcon shows unpublished when published is false 1`] = `
     resizeMode="cover"
     source={
       Object {
-        "testUri": "../../../src/images/kabob.png",
+        "uri": "instructureLine",
       }
     }
     style={
@@ -404,7 +404,7 @@ exports[`AccessIcon shows unpublished when published is false 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "borderRadius": 8,
         "bottom": -6,
         "height": 16,
@@ -418,7 +418,7 @@ exports[`AccessIcon shows unpublished when published is false 1`] = `
     <Image
       source={
         Object {
-          "testUri": "../../../src/images/unpublish-small.png",
+          "uri": "noSolid",
         }
       }
       style={

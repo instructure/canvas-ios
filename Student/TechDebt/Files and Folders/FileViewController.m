@@ -33,6 +33,7 @@
 @import PSPDFKitUI;
 @import CanvasKit;
 @import QuickLook;
+@import Core;
 
 @interface FileViewController () <UIDocumentInteractionControllerDelegate, QLPreviewControllerDelegate, QLPreviewControllerDataSource>
 @property (nonatomic, strong) UIActivityIndicatorView *activityView;
@@ -97,7 +98,7 @@
 
     [self updateForURLState];
     
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.view setBackgroundColor:[UIColor colorNamed:@"backgroundLightest" inBundle:NSBundle.core compatibleWithTraitCollection:nil]];
 
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self setEdgesForExtendedLayout:UIRectEdgeNone];

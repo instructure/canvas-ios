@@ -44,7 +44,7 @@ class NotificationChannelsViewController: UIViewController {
 
         title = channelType.name
 
-        tableView.backgroundColor = .named(.backgroundLight)
+        tableView.backgroundColor = .named(.backgroundGrouped)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.refreshControl = UIRefreshControl()
@@ -82,6 +82,7 @@ extension NotificationChannelsViewController: UITableViewDataSource, UITableView
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let channel = rows[indexPath.row]
         let cell: RightDetailTableViewCell = tableView.dequeue(for: indexPath)
+        cell.backgroundColor = .named(.backgroundGroupedCell)
         cell.textLabel?.text = channel.address
         cell.accessoryType = .disclosureIndicator
         return cell

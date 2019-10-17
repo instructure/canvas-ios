@@ -41,12 +41,18 @@ exports[`AudioRecorder renders default state 1`] = `
       <Text
         accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
         style={
-          Object {
-            "flex": 1,
-            "fontSize": 20,
-            "marginHorizontal": 4,
-            "textAlign": "center",
-          }
+          Array [
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "flex": 1,
+              "fontSize": 20,
+              "marginHorizontal": 4,
+              "textAlign": "center",
+            },
+          ]
         }
       >
         00:00
@@ -88,7 +94,7 @@ exports[`AudioRecorder renders default state 1`] = `
           style={
             Object {
               "height": 24,
-              "tintColor": "#9FA9AF",
+              "tintColor": "#8B969E",
               "width": 24,
             }
           }
@@ -109,7 +115,7 @@ exports[`AudioRecorder renders default state 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "borderColor": "#d9ddde",
+          "borderColor": "#C7CDD1",
           "borderRadius": 40,
           "borderWidth": 4,
           "height": 80,
@@ -124,7 +130,7 @@ exports[`AudioRecorder renders default state 1`] = `
         onPress={[Function]}
         style={
           Object {
-            "backgroundColor": "rgba(235,15,33,1)",
+            "backgroundColor": "#EE0612",
             "borderRadius": 32,
             "height": 64,
             "width": 64,
@@ -180,12 +186,18 @@ exports[`AudioRecorder renders recording state 1`] = `
       <Text
         accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
         style={
-          Object {
-            "flex": 1,
-            "fontSize": 20,
-            "marginHorizontal": 4,
-            "textAlign": "center",
-          }
+          Array [
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "flex": 1,
+              "fontSize": 20,
+              "marginHorizontal": 4,
+              "textAlign": "center",
+            },
+          ]
         }
       >
         00:00
@@ -217,7 +229,7 @@ exports[`AudioRecorder renders recording state 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "borderColor": "#d9ddde",
+          "borderColor": "#C7CDD1",
           "borderRadius": 40,
           "borderWidth": 4,
           "height": 80,
@@ -232,7 +244,7 @@ exports[`AudioRecorder renders recording state 1`] = `
         onPress={[Function]}
         style={
           Object {
-            "backgroundColor": "red",
+            "backgroundColor": "#EE0612",
             "height": 32,
             "width": 32,
           }
@@ -287,12 +299,18 @@ exports[`AudioRecorder renders reset state 1`] = `
       <Text
         accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
         style={
-          Object {
-            "flex": 1,
-            "fontSize": 20,
-            "marginHorizontal": 4,
-            "textAlign": "center",
-          }
+          Array [
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "flex": 1,
+              "fontSize": 20,
+              "marginHorizontal": 4,
+              "textAlign": "center",
+            },
+          ]
         }
       >
         00:00
@@ -334,7 +352,7 @@ exports[`AudioRecorder renders reset state 1`] = `
           style={
             Object {
               "height": 24,
-              "tintColor": "#9FA9AF",
+              "tintColor": "#8B969E",
               "width": 24,
             }
           }
@@ -355,7 +373,7 @@ exports[`AudioRecorder renders reset state 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "borderColor": "#d9ddde",
+          "borderColor": "#C7CDD1",
           "borderRadius": 40,
           "borderWidth": 4,
           "height": 80,
@@ -370,7 +388,7 @@ exports[`AudioRecorder renders reset state 1`] = `
         onPress={[Function]}
         style={
           Object {
-            "backgroundColor": "rgba(235,15,33,1)",
+            "backgroundColor": "#EE0612",
             "borderRadius": 32,
             "height": 64,
             "width": 64,
@@ -438,7 +456,7 @@ exports[`AudioRecorder renders stopped state 1`] = `
           style={
             Object {
               "height": 24,
-              "tintColor": "#9FA9AF",
+              "tintColor": "#8B969E",
               "width": 24,
             }
           }
@@ -457,12 +475,18 @@ exports[`AudioRecorder renders stopped state 1`] = `
       <Text
         accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
         style={
-          Object {
-            "flex": 1,
-            "fontSize": 20,
-            "marginHorizontal": 4,
-            "textAlign": "center",
-          }
+          Array [
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "flex": 1,
+              "fontSize": 20,
+              "marginHorizontal": 4,
+              "textAlign": "center",
+            },
+          ]
         }
       >
         00:00
@@ -504,7 +528,7 @@ exports[`AudioRecorder renders stopped state 1`] = `
           style={
             Object {
               "height": 24,
-              "tintColor": "#9FA9AF",
+              "tintColor": "#8B969E",
               "width": 24,
             }
           }
@@ -525,18 +549,14 @@ exports[`AudioRecorder renders stopped state 1`] = `
       accessibilityLabel="Upload"
       onPress={[Function]}
       style={
-        Array [
-          Object {
-            "borderRadius": 6,
-            "flexDirection": "row",
-            "justifyContent": "center",
-            "paddingHorizontal": 38,
-            "paddingVertical": 12,
-          },
-          Object {
-            "backgroundColor": "#374A59",
-          },
-        ]
+        Object {
+          "backgroundColor": "#008EE2",
+          "borderRadius": 6,
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "paddingHorizontal": 38,
+          "paddingVertical": 12,
+        }
       }
       testID="audio-recorder.done-btn"
     >
@@ -545,11 +565,13 @@ exports[`AudioRecorder renders stopped state 1`] = `
           style={
             Array [
               Object {
+                "color": "#2D3B45",
                 "fontSize": 16,
-                "fontWeight": "700",
               },
               Object {
-                "color": "white",
+                "color": "#FFFFFF",
+                "fontSize": 16,
+                "fontWeight": "700",
               },
             ]
           }

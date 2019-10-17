@@ -55,5 +55,6 @@ class ParentTestCase: XCTestCase {
         ExperimentalFeature.allEnabled = false
         Parent.currentStudentID = "1"
         Parent.legacySession = Session.current
+        UIView.setAnimationsEnabled(false)
     }
 }

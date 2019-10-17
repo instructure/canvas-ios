@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,25 +13,23 @@
             <objects>
                 <viewController storyboardIdentifier="FilePickerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="322-BI-Xkc" customClass="FilePickerViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d2d-X9-ntc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PJu-Wl-5yf" userLabel="Content">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="535"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="724"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ivp-6e-qcJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="535"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="724"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KBk-nG-lHe" customClass="FilePickerProgressView" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="70" id="Tq4-1T-32v"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GfU-Vo-pWl" customClass="DividerView" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="70" width="600" height="1"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GfU-Vo-pWl" customClass="DividerView" customModule="Core" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="70" width="414" height="1"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="eIm-fQ-lEG"/>
                                                 </constraints>
@@ -42,24 +38,24 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pZl-T1-Myp">
-                                                <rect key="frame" x="0.0" y="71" width="600" height="464"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <rect key="frame" x="0.0" y="71" width="414" height="653"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FilePickerCell" id="pcl-I5-RWL" customClass="FilePickerCell" customModule="Core" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                                        <rect key="frame" x="0.0" y="28" width="414" height="89.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pcl-I5-RWL" id="ZS2-mP-O7B">
-                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="89.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mGL-9R-YWD">
-                                                                    <rect key="frame" x="16" y="20" width="343" height="3.5"/>
+                                                                    <rect key="frame" x="16" y="23" width="382" height="43.5"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Dhw-5t-pcT">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="327" height="3.5"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="334" height="43.5"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayS-WB-6W3" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="327" height="1.5"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="334" height="20.5"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
@@ -68,7 +64,7 @@
                                                                                     </userDefinedRuntimeAttributes>
                                                                                 </label>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TbO-YC-yC8" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                                    <rect key="frame" x="0.0" y="3.5" width="327" height="0.0"/>
+                                                                                    <rect key="frame" x="0.0" y="22.5" width="334" height="21"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
@@ -79,7 +75,7 @@
                                                                             </subviews>
                                                                         </stackView>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="251" image="troubleSolid" translatesAutoresizingMaskIntoConstraints="NO" id="dQm-mE-bZr" customClass="IconView" customModule="Core" customModuleProvider="target">
-                                                                            <rect key="frame" x="327" y="0.0" width="16" height="3.5"/>
+                                                                            <rect key="frame" x="334" y="0.0" width="48" height="43.5"/>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="warning"/>
                                                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="textDanger"/>
@@ -113,7 +109,6 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Ivp-6e-qcJ" secondAttribute="bottom" id="R5u-Un-4WI"/>
                                     <constraint firstAttribute="trailing" secondItem="Ivp-6e-qcJ" secondAttribute="trailing" id="Sr0-4s-Wgu"/>
@@ -122,8 +117,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uej-Jh-rpx" customClass="EmptyView" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="535"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="724"/>
                                 <accessibility key="accessibilityConfiguration" identifier="FilePicker.emptyView"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Choose a File"/>
@@ -137,9 +131,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="imageName" value="PandaFilePicker"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RNN-Ca-8UT" customClass="DividerView" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="535" width="600" height="1"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RNN-Ca-8UT" customClass="DividerView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="724" width="414" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="uFL-yt-qk5"/>
                                 </constraints>
@@ -148,7 +141,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <tabBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SnX-m6-lex">
-                                <rect key="frame" x="0.0" y="536" width="600" height="0.0"/>
+                                <rect key="frame" x="0.0" y="725" width="414" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -145,7 +145,7 @@ public struct Brand: Equatable {
         case "primary":
             return primary
         default:
-            return UIColor.Name(rawValue: name).flatMap { UIColor.named($0) }
+            return InstColorName(rawValue: name).flatMap { UIColor.named($0) }
         }
     }
 }

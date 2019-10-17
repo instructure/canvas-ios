@@ -5,7 +5,7 @@ exports[`renders ModalOverlayText correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#fff",
+        "color": "#FFFFFF",
         "fontSize": 24,
         "fontWeight": "600",
       },
@@ -51,7 +51,7 @@ exports[`renders paragraph correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#7F91A7",
+        "color": "#8B969E",
         "fontSize": 16,
         "lineHeight": 23,
       },

@@ -23,8 +23,6 @@ class UrlSubmissionViewController: UIViewController {
 
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var webView: CoreWebView!
-    @IBOutlet weak var borderHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var borderView: UIView!
     @IBOutlet weak var loadingView: UIView!
     var presenter: UrlSubmissionPresenter!
     var assignmentID: String!
@@ -40,10 +38,9 @@ class UrlSubmissionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .named(.backgroundLightest)
+        loadingView?.backgroundColor = .named(.backgroundLightest)
         title = NSLocalizedString("Website Address", comment: "")
-
-        borderHeightConstraint.constant = 1.0 / UIScreen.main.scale
-        borderView.backgroundColor = .named(.ash)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .plain, target: self, action: #selector(submit))
         navigationItem.rightBarButtonItem?.accessibilityIdentifier = "URLSubmission.submit"

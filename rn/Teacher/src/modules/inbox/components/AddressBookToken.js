@@ -21,15 +21,14 @@
 import React, { Component } from 'react'
 import {
   View,
-  Text,
-  StyleSheet,
   Image,
   TouchableOpacity,
 } from 'react-native'
 import i18n from 'format-message'
 
-import Images from '../../../images'
-import colors from '../../../common/colors'
+import { Text } from '../../../common/text'
+import icon from '../../../images/inst-icons'
+import { createStyleSheet } from '../../../common/stylesheet'
 import Avatar from '../../../common/components/Avatar'
 
 type Props = {
@@ -69,7 +68,7 @@ export default class AddressBookToken extends Component<Props, any> {
             accessibilityTraits={['button']}
             testID={`message-recipient.${this.props.item.id}.delete-btn`}
           >
-            <Image source={Images.x} style={styles.deleteIcon} />
+            <Image source={icon('x', 'line')} style={styles.deleteIcon} />
           </TouchableOpacity>
         }
       </View>
@@ -79,7 +78,7 @@ export default class AddressBookToken extends Component<Props, any> {
 
 const TOKEN_HEIGHT = 30
 const TOKEN_SUBVIEW_SPACING = 8
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   token: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -90,12 +89,12 @@ const styles = StyleSheet.create({
     paddingLeft: 2,
     height: TOKEN_HEIGHT,
     borderRadius: TOKEN_HEIGHT / 2,
-    backgroundColor: '#EBEDEE',
+    backgroundColor: colors.backgroundLight,
   },
   deleteIcon: {
     marginLeft: TOKEN_SUBVIEW_SPACING,
-    tintColor: colors.darkText,
+    tintColor: colors.textDarkest,
     width: 12,
     height: 12,
   },
-})
+}))

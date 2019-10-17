@@ -38,6 +38,7 @@ import Images from '../../../images'
 import Button from 'react-native-button'
 import i18n from 'format-message'
 import Video from '../../../common/components/Video'
+import { vars } from '../../../common/stylesheet'
 
 export default class CommentRow extends Component<CommentRowProps, any> {
   showFailedOptions = () => {
@@ -178,7 +179,7 @@ export default class CommentRow extends Component<CommentRowProps, any> {
 
 const styles = StyleSheet.create({
   row: {
-    paddingHorizontal: global.style.defaultPadding,
+    paddingHorizontal: vars.padding,
     paddingVertical: 8,
   },
   contents: {

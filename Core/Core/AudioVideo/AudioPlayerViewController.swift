@@ -44,6 +44,7 @@ public class AudioPlayerViewController: UIViewController {
     public static func create() -> AudioPlayerViewController {
         let controller = loadFromStoryboard()
         controller.loadViewIfNeeded() // So the didSets work correctly.
+        controller.color = .named(.textLightest) // trigger didSet
         return controller
     }
 
@@ -62,7 +63,7 @@ public class AudioPlayerViewController: UIViewController {
         set { backgroundView?.backgroundColor = newValue }
     }
 
-    public var color: UIColor = .white {
+    public var color: UIColor = .named(.textLightest) {
         didSet {
             currentTimeLabel?.textColor = color
             loadingView?.color = color

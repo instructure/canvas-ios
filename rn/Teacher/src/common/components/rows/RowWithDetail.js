@@ -25,7 +25,7 @@ import {
 } from 'react-native'
 import Row, { type RowProps } from './Row'
 import { Text } from '../../text'
-import branding from '../../branding'
+import { colors } from '../../stylesheet'
 
 type RowWithSwitchProps = RowProps & {
   detail: string,
@@ -35,7 +35,7 @@ type RowWithSwitchProps = RowProps & {
 
 export default class RowWithDetail extends Component<RowWithSwitchProps, any> {
   render () {
-    let detailStyle = this.props.detailSelected ? { color: branding.primaryBrandColor } : {}
+    let detailStyle = this.props.detailSelected ? { color: colors.primary } : {}
     const accessories = (
       <View style={style.accessories}>
         <Text style={detailStyle} numberOfLines={1} testID={this.props.detailTestID}>{this.props.detail}</Text>
