@@ -20,14 +20,13 @@
 
 import React, { Component } from 'react'
 import i18n from 'format-message'
-import colors from '../../../common/colors'
+import { createStyleSheet } from '../../../common/stylesheet'
 import images from '../../../images'
 import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
 
 import {
   Text,
   TouchableHighlight,
-  StyleSheet,
   View,
   Image,
 } from 'react-native'
@@ -156,21 +155,21 @@ export default class SimilarityScore extends Component<Props, any> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet((colors, vars) => ({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderBottomColor: '#D8D8D8',
-    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomWidth: vars.hairlineWidth,
     borderStyle: 'solid',
-    marginHorizontal: 16,
+    marginHorizontal: vars.padding,
     paddingVertical: 4,
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
   },
   label: {
     fontSize: 14,
-    color: colors.darkText,
+    color: colors.textDark,
     fontFamily: '.SFUIDisplay-semibold',
   },
   scoreContainer: {
@@ -180,16 +179,16 @@ const style = StyleSheet.create({
   },
   score: {
     fontSize: 16,
-    color: 'white',
+    color: colors.white,
     fontFamily: '.SFUIDisplay-semibold',
   },
   statusIcon: {
     width: 18,
     height: 18,
-    tintColor: 'white',
+    tintColor: colors.white,
   },
   statusContainer: {
     borderRadius: 4,
     padding: 4,
   },
-})
+}))
