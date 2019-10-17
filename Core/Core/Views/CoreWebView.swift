@@ -147,16 +147,18 @@ open class CoreWebView: WKWebView {
             // Handle Math Equations
             let foundMath = !!document.querySelector('math')
             document.querySelectorAll('img.equation_image').forEach(img => {
-                if (!img.dataset.mathml && !img.dataset.equationContent) return
-                foundMath = true
-                const div = document.createElement('div')
-                div.innerHTML = img.dataset.mathml || `$$${img.dataset.equationContent}$$`
-                img.parentNode.replaceChild(div.firstChild, img)
+              let mathml = img.getAttribute('x-canvaslms-safe-mathml')
+              if (!mathml && !img.dataset.equationContent) return
+              foundMath = true
+              const div = document.createElement('div')
+              div.innerHTML = mathml || '$$' + img.dataset.equationContent + '$$'
+              if (mathml) div.firstChild.setAttribute('style', img.getAttribute('style'))
+              img.parentNode.replaceChild(div.firstChild, img)
             })
             if (foundMath) {
-                const script = document.createElement('script')
-                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
-                document.body.appendChild(script)
+              const script = document.createElement('script')
+              script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_NativeMML'
+              document.body.appendChild(script)
             }
 
             // Replace all iframes with a button to launch in SFSafariViewController
