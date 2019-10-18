@@ -187,7 +187,7 @@ class ModuleItemViewModel: NSObject {
             }
         vm.titleTextColor <~ self.locked.producer.map { $0 && type != .assignment && type != .discussion ? .lightGray : .black }
         vm.indentationLevel <~ self.moduleItem.producer.map { $0?.indent ?? 0 }.map { Int($0) }
-        vm.selectionEnabled <~ self.locked.producer.map { !$0 || type == .assignment || type == .discussion }
+        vm.selectionEnabled <~ self.locked.producer.map { !$0 && type != .subHeader || type == .assignment || type == .discussion }
         vm.setSelected <~ self.selected
 
         let contentType = self.moduleItem.producer.map { $0?.contentType.accessibilityLabel }

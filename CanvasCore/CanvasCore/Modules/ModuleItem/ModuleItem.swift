@@ -19,9 +19,6 @@
 import Foundation
 import CoreData
 
-
-
-
 open class ModuleItem: NSManagedObject, LockableModel {
     @NSManaged internal (set) open var id: String
     @NSManaged internal (set) open var moduleID: String
@@ -49,7 +46,7 @@ open class ModuleItem: NSManagedObject, LockableModel {
         case masteryPaths = "MasteryPaths"
     }
 
-    public enum Content {
+    public enum Content: Equatable {
         case file(id: String)
         case page(url: String)
         case discussion(id: String)
@@ -284,30 +281,3 @@ extension ModuleItem: SynchronizedModel {
 
     }
 }
-
-extension ModuleItem.Content: Equatable {}
-public func ==(lhs: ModuleItem.Content, rhs: ModuleItem.Content) -> Bool {
-    switch (lhs, rhs) {
-    case let (.file(r), .file(l)):
-        return r == l
-    case let (.page(r), .page(l)):
-        return r == l
-    case let (.discussion(r), .discussion(l)):
-        return r == l
-    case let (.assignment(r), .assignment(l)):
-        return r == l
-    case let (.quiz(r), .quiz(l)):
-        return r == l
-    case (.subHeader, .subHeader):
-        return true
-    case let (.externalURL(r), .externalURL(l)):
-        return r == l
-    case let (.externalTool(r, r1), .externalTool(l, l1)):
-        return r == l && r1 == l1
-    case (.masteryPaths, .masteryPaths):
-        return true
-    default:
-        return false
-    }
-}
-
