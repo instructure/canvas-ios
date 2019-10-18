@@ -110,6 +110,7 @@ export class SubmissionList extends Component<Props, State> {
         filter: filter,
         studentIndex: index,
         flags: this.state.flags,
+        onDismiss: this.refresh.bind(null, false),
       }
     )
   }
@@ -183,8 +184,10 @@ export class SubmissionList extends Component<Props, State> {
     })
   }
 
-  refresh = async () => {
-    this.setState({ refreshing: true })
+  refresh = async (triggerRefreshIndicator = true) => {
+    if (triggerRefreshIndicator) {
+      this.setState({ refreshing: true })
+    }
     await this.props.refetch({
       assignmentID: this.props.assignmentID,
       ...this.state.filter,

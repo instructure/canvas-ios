@@ -174,6 +174,34 @@ test('SubmissionList select filter function', () => {
   expect(props.refetch).toHaveBeenCalledTimes(7)
 })
 
+test('refresh sets refreshing true by default', async () => {
+  let resolveIt
+  let promise = new Promise(resolve => { resolveIt = resolve })
+  const tree = renderer.create(
+    <SubmissionList {...props} refetch={() => promise} />
+  )
+  let instance = tree.getInstance()
+  instance.refresh()
+  expect(instance.state.refreshing).toEqual(true)
+  resolveIt()
+  await promise
+  expect(instance.state.refreshing).toEqual(false)
+})
+
+test('refresh doesnt set refreshing true when told not to', async () => {
+  let resolveIt
+  let promise = new Promise(resolve => { resolveIt = resolve })
+  const tree = renderer.create(
+    <SubmissionList {...props} refetch={() => promise} />
+  )
+  let instance = tree.getInstance()
+  instance.refresh(false)
+  expect(instance.state.refreshing).toEqual(false)
+  resolveIt()
+  await promise
+  expect(instance.state.refreshing).toEqual(false)
+})
+
 test('SubmissionList renders correctly with empty list', () => {
   const tree = renderer.create(
     <SubmissionList {...props} submissions={[]} navigator={template.navigator()} />
@@ -261,7 +289,7 @@ test('should navigate to a submission', () => {
   expect(navigator.show).toHaveBeenCalledWith(
     '/courses/12/assignments/32/submissions/2',
     { modal: true, modalPresentationStyle: 'fullscreen' },
-    { filter: expect.any(Function), studentIndex: 1, flags: [] }
+    { filter: expect.any(Function), studentIndex: 1, flags: [], onDismiss: expect.any(Function) }
   )
 
   ExperimentalFeature.allEnabled = true
