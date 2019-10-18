@@ -1,0 +1,153 @@
+---
+app:
+  envs:
+  - TRIGGER_PATHS: |-
+      rn/Teacher/
+      CanvasCore/
+      Podfile.lock
+      Frameworks/SoAnnotated/
+      Frameworks/Attendance/
+      Frameworks/CanvasKeymaster/
+    opts:
+      is_expand: false
+  - TEAM_ID: B6333T4PXQ
+    opts:
+      is_expand: false
+  - BITRISE_PROJECT_PATH: "./Canvas.xcworkspace"
+    opts:
+      is_expand: false
+  - BITRISE_XCARCHIVE_PATH: "./archives/Teacher.xcarchive"
+    opts:
+      is_expand: false
+  - BITRISE_SCHEME: Teacher
+    opts:
+      is_expand: false
+  - BITRISE_CONFIGURATION: Release
+    opts:
+      is_expand: false
+  - RELEASE_BRANCH: release/teacher
+    opts:
+      is_expand: false
+  - APP_NAME: Teacher
+    opts:
+      is_expand: false
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+format_version: '4'
+project_type: other
+workflows:
+  _common:
+    steps:
+    - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
+        title: Canvas iOS Secrets
+    - cache-pull: {}
+    - carthage:
+        inputs:
+        - carthage_options: "--platform ios"
+    - yarn:
+        inputs:
+        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
+        title: yarn install dependencies
+    - npm:
+        inputs:
+        - command: install -g react-native-cli
+        title: npm install -g react-native-cli
+    - cocoapods-install: {}
+    - ios-auto-provision:
+        inputs:
+        - generate_profiles: 'yes'
+        - distribution_type: "$BITRISE_EXPORT_METHOD"
+        - team_id: B6333T4PXQ
+        - configuration: "$BITRISE_CONFIGURATION"
+        outputs:
+        - BITRISE_DEVELOPMENT_CODESIGN_IDENTITY: BITRISE_CODESIGN_IDENTITY
+        - BITRISE_PRODUCTION_CODESIGN_IDENTITY: BITRISE_CODESIGN_IDENTITY
+        - BITRISE_DEVELOPMENT_PROFILE: BITRISE_PROFILE
+        - BITRISE_PRODUCTION_PROFILE: BITRISE_PROFILE
+    - set-xcode-build-number:
+        inputs:
+        - plist_path: rn/Teacher/ios/Teacher/Info.plist
+    - bitrise-step-stamp-appicon-with-version-number:
+        inputs:
+        - stamp_path_to_icons: rn/Teacher/ios/Teacher/Assets.xcassets/AppIcon.appiconset
+        - stamp_version: PR
+        run_if: '{{enveq "BITRISE_EXPORT_METHOD" "ad-hoc"}}'
+        title: Stamp AppIcon with version number if ad-hoc
+    - xcode-archive:
+        inputs:
+        - configuration: "$BITRISE_CONFIGURATION"
+        - compile_bitcode: 'no'
+        - upload_bitcode: 'no'
+        - export_method: "$BITRISE_EXPORT_METHOD"
+        - custom_export_options_plist_content: |-
+            <?xml version="1.0" encoding="UTF-8"?>
+            <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+            <plist version="1.0">
+                <dict>
+                <key>iCloudContainerEnvironment</key>
+                <string>$ICLOUD_CONTAINER_ENV</string>
+                <key>compileBitcode</key>
+                <false></false>
+                <key>method</key>
+                <string>$BITRISE_EXPORT_METHOD</string>
+                <key>provisioningProfiles</key>
+                <dict>
+                    <key>com.instructure.ios.teacher</key>
+                    <string>$BITRISE_PROFILE</string>
+                </dict>
+                <key>signingCertificate</key>
+                <string>$BITRISE_CODESIGN_IDENTITY</string>
+                <key>teamID</key>
+                <string>$BITRISE_DEVELOPER_TEAM</string>
+                </dict>
+            </plist>
+    - cache-push@2.2.0:
+        inputs:
+        - cache_paths: "$BITRISE_SOURCE_DIR/Carthage/Build/iOS/"
+    - deploy-to-bitrise-io: {}
+  ad-hoc:
+    before_run:
+    - _common
+    envs:
+    - BITRISE_EXPORT_METHOD: ad-hoc
+    - ICLOUD_CONTAINER_ENV: Production
+  app-store:
+    before_run:
+    - _common
+    envs:
+    - BITRISE_EXPORT_METHOD: app-store
+    - ICLOUD_CONTAINER_ENV: Production
+    steps:
+    - deploy-to-itunesconnect-application-loader:
+        inputs:
+        - password: "$APPSTORECONNECT_PASSWORD"
+        - itunescon_user: "$APPSTORECONNECT_EMAIL"
+  app-store-automated:
+    steps:
+    - yarn:
+        title: yarn install
+    - script:
+        inputs:
+        - content: |+
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            # set -e
+            set -x
+
+            scripts/build_automation/automateVersioning.sh verifyInputs
+            scripts/build_automation/automateVersioning.sh checkoutReleaseBranch
+            scripts/build_automation/automateVersioning.sh updateVersionAndBuildNumberInPlist rn/Teacher/ios/Teacher/Info.plist
+            scripts/build_automation/automateVersioning.sh generateReleaseNotes
+            git add rn/Teacher/ios/Teacher/Info.plist
+            scripts/build_automation/automateVersioning.sh checkInReleaseBranchAndTag
+
+        title: Branch,Tag,Trigger Release
+    - slack:
+        inputs:
+        - is_debug_mode: 'no'
+        - channel: "#ios"
+        - text: "$RELEASE_NOTES"
+        - from_username: Bob the Bitrise Bot
+        - color: "#0480e5"
+        - pretext: "*Releasing Teacher $APP_RELEASE_VERSION*"
+        - webhook_url: "$SLACK_URL"
+    - deploy-to-bitrise-io: {}
