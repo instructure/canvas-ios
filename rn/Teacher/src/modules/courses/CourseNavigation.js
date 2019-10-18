@@ -275,7 +275,7 @@ export let Refreshed: any = refresh(
     if (isTeacher()) {
       props.refreshLTITools(props.courseID)
     }
-    props.refreshCourses()
+    props.refreshCourse(props.courseID)
     props.refreshTabs(props.courseID)
     props.getUserSettings()
   },
