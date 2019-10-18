@@ -30,7 +30,7 @@ import i18n from 'format-message'
 import type {
   SubmissionDataProps,
 } from '../../submissions/list/submission-prop-types'
-import SubmissionStatusLabel from '../../submissions/list/SubmissionStatusLabel'
+import OldSubmissionStatusLabel from '../../submissions/list/OldSubmissionStatusLabel'
 import Avatar from '../../../common/components/Avatar'
 import { isAssignmentAnonymous } from '../../../common/anonymous-grading'
 import { submissionTypeIsOnline } from '@common/submissionTypes'
@@ -115,7 +115,7 @@ export class Header extends Component<HeaderProps, State> {
             </View>
             <View style={styles.nameContainer}>
               <Text style={styles.name} accessibilityTraits='header' numberOfLines={1}>{name}</Text>
-              <SubmissionStatusLabel
+              <OldSubmissionStatusLabel
                 status={sub.status}
                 onlineSubmissionType={onlineSubmissionType}
               />
