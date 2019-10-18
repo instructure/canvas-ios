@@ -307,6 +307,13 @@ extension Assignment {
         guard let number = number else { return nil }
         return NumberFormatter.localizedString(from: NSNumber(value: (number * 100) / 100), number: .decimal)
     }
+
+    public func requiresLTILaunch(toViewSubmission submission: Submission) -> Bool {
+        // If it's an online_upload with an attachment
+        // we would rather show the attachment than launch the LTI (ex: Google Cloud Assignments)
+        let onlineUploadWithAttachment = submission.type == .online_upload && submission.attachments?.isEmpty == false
+        return submissionTypes.contains(.external_tool) && !onlineUploadWithAttachment
+    }
 }
 
 extension Assignment: DueViewable, GradeViewable, SubmissionViewable {

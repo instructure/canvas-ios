@@ -162,7 +162,7 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
 
         // external tools submission may be unsubmitted and the type nil but there could
         // still be a submission inside the tool
-        if assignment.submissionTypes.contains(.external_tool) {
+        if assignment.requiresLTILaunch(toViewSubmission: submission) {
             return ExternalToolSubmissionContentViewController.create(env: self.env, assignment: assignment)
         }
 
