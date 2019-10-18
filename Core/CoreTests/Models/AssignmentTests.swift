@@ -491,4 +491,16 @@ class AssignmentTests: CoreTestCase {
         XCTAssertEqual(submissions?.first?.id, "1")
         XCTAssertEqual(submissions?.last?.id, "2")
     }
+
+    func testRequiresLTILaunchToViewSubmission() {
+        let onPaper = Assignment.make(from: .make(id: "1", submission_types: [.on_paper]))
+        let externalTool = Assignment.make(from: .make(id: "2", submission_types: [.external_tool]))
+        let onlineUploadWithAttachment = Submission.make(from: .make(submission_type: .online_upload, attempt: 1, attachments: [.make(id: "1")]))
+        let onlineUploadWithoutAttachment = Submission.make(from: .make(submission_type: .online_upload, attempt: 2, attachments: []))
+        let onlineQuizWithAttachment = Submission.make(from: .make(submission_type: .online_quiz, attempt: 3, attachments: [.make(id: "2")]))
+        XCTAssertFalse(onPaper.requiresLTILaunch(toViewSubmission: onlineUploadWithAttachment))
+        XCTAssertFalse(externalTool.requiresLTILaunch(toViewSubmission: onlineUploadWithAttachment))
+        XCTAssertTrue(externalTool.requiresLTILaunch(toViewSubmission: onlineUploadWithoutAttachment))
+        XCTAssertTrue(externalTool.requiresLTILaunch(toViewSubmission: onlineQuizWithAttachment))
+    }
 }
