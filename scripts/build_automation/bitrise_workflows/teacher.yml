@@ -84,7 +84,7 @@ workflows:
             <plist version="1.0">
                 <dict>
                 <key>iCloudContainerEnvironment</key>
-                <string>$ICLOUD_CONTAINER_ENV</string>
+                <string>Production</string>
                 <key>compileBitcode</key>
                 <false></false>
                 <key>method</key>
@@ -106,16 +106,13 @@ workflows:
     - deploy-to-bitrise-io: {}
   ad-hoc:
     before_run:
+    - _set-export-ad-hoc
     - _common
-    envs:
-    - BITRISE_EXPORT_METHOD: ad-hoc
-    - ICLOUD_CONTAINER_ENV: Production
   app-store:
     before_run:
     - _common
     envs:
     - BITRISE_EXPORT_METHOD: app-store
-    - ICLOUD_CONTAINER_ENV: Production
     steps:
     - deploy-to-itunesconnect-application-loader:
         inputs:
@@ -151,6 +148,13 @@ workflows:
         - pretext: "*Releasing Teacher $APP_RELEASE_VERSION*"
         - webhook_url: "$SLACK_URL"
     - deploy-to-bitrise-io: {}
+
+  _set-export-ad-hoc:
+    steps:
+    - set-env-var:
+        inputs:
+        - destination_keys: BITRISE_EXPORT_METHOD
+        - value: ad-hoc
 
 # Temporary, will be removed once bitrise is reconfigured:
   ad-hoc-experimental:
