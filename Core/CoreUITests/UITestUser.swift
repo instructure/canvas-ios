@@ -17,9 +17,10 @@
 //
 
 import Foundation
+import XCTest
 @testable import Core
 
-public class UITestUser {
+public class UITestUser: NSObject, XCTestObservation {
     public static let readAdmin1 = UITestUser(.testReadAdmin1)
     public static let readStudent1 = UITestUser(.testReadStudent1)
     public static let readStudent2 = UITestUser(.testReadStudent2)
@@ -31,7 +32,12 @@ public class UITestUser {
     public let host: String
     public let username: String
     public let password: String
-    public var session: LoginSession?
+    public var session: LoginSession? {
+        didSet {
+            guard let session = oldValue else { return }
+            URLSessionAPI().makeRequest(DeleteLoginOAuthRequest(session: session)) { _, _, _ in }
+        }
+    }
 
     public var profile: String {
         return """
@@ -56,5 +62,11 @@ public class UITestUser {
         host = url.host!
         username = url.user!
         password = url.password!
+        super.init()
+        XCTestObservationCenter.shared.addTestObserver(self)
+    }
+
+    public func testBundleDidFinish(_ testBundle: Bundle) {
+        session = nil // ensure sessions get cleaned up
     }
 }
