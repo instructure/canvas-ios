@@ -23,6 +23,6 @@ open class TodoAPI {
     }
 
     open class func ignoreTodo(_ session: Session, todo: Todo) throws -> URLRequest {
-        return try session.DELETE(todo.ignoreURL)
+        return try session.DELETE(URL(string: todo.ignoreURL)?.path ?? todo.ignoreURL)
     }
 }
