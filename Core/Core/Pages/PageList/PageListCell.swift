@@ -19,9 +19,9 @@
 import UIKit
 
 class PageListCell: UITableViewCell {
-    @IBOutlet weak var accessIconView: AccessIconView!
-    @IBOutlet weak var titleLabel: DynamicLabel!
-    @IBOutlet weak var dateLabel: DynamicLabel!
+    @IBOutlet weak var accessIconView: AccessIconView?
+    @IBOutlet weak var titleLabel: DynamicLabel?
+    @IBOutlet weak var dateLabel: DynamicLabel?
 
     static var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -32,14 +32,14 @@ class PageListCell: UITableViewCell {
 
     func update(page: Page, color: UIColor?) {
         guard !page.isDeleted else { return }
-        PageListCell.dateFormatter.string(from: page.lastUpdated)
+        dateLabel?.text = PageListCell.dateFormatter.string(from: page.lastUpdated)
         titleLabel?.text = page.title
-        accessIconView.icon = UIImage.icon(.document, .line)
-        accessIconView.tintColor = color
+        accessIconView?.icon = UIImage.icon(.document, .line)
+        accessIconView?.tintColor = color
         if Bundle.main.isTeacherApp {
-            accessIconView.published = page.published
+            accessIconView?.published = page.published
         } else {
-            accessIconView.state = nil
+            accessIconView?.state = nil
         }
     }
 }
