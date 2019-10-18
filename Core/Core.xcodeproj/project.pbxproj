@@ -252,9 +252,8 @@
 		7D80AC21212B89C500C40ECE /* APIAccountRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC20212B89C500C40ECE /* APIAccountRequestable.swift */; };
 		7D80AC23212B8A2100C40ECE /* APIAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC22212B8A2100C40ECE /* APIAccount.swift */; };
 		7D80AC25212C61F100C40ECE /* APIAccountRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC24212C61F100C40ECE /* APIAccountRequestableTests.swift */; };
-		7D80AC29212C76E600C40ECE /* APIOAuthRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC28212C76E600C40ECE /* APIOAuthRequestable.swift */; };
 		7D80AC2B212C77C600C40ECE /* APIOAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC2A212C77C600C40ECE /* APIOAuth.swift */; };
-		7D80AC2D212C801600C40ECE /* APIOAuthRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC2C212C801600C40ECE /* APIOAuthRequestableTests.swift */; };
+		7D80AC2D212C801600C40ECE /* APIOAuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC2C212C801600C40ECE /* APIOAuthTests.swift */; };
 		7D80AC56212CF41900C40ECE /* APIRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC55212CF41900C40ECE /* APIRequestableTests.swift */; };
 		7D80AC58212DAE4C00C40ECE /* URLResponseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC57212DAE4C00C40ECE /* URLResponseExtensions.swift */; };
 		7D80AC5B212DB0B500C40ECE /* URLResponseExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC5A212DB0B500C40ECE /* URLResponseExtensionsTests.swift */; };
@@ -1095,9 +1094,8 @@
 		7D80AC20212B89C500C40ECE /* APIAccountRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountRequestable.swift; sourceTree = "<group>"; };
 		7D80AC22212B8A2100C40ECE /* APIAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccount.swift; sourceTree = "<group>"; };
 		7D80AC24212C61F100C40ECE /* APIAccountRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountRequestableTests.swift; sourceTree = "<group>"; };
-		7D80AC28212C76E600C40ECE /* APIOAuthRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOAuthRequestable.swift; sourceTree = "<group>"; };
 		7D80AC2A212C77C600C40ECE /* APIOAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOAuth.swift; sourceTree = "<group>"; };
-		7D80AC2C212C801600C40ECE /* APIOAuthRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOAuthRequestableTests.swift; sourceTree = "<group>"; };
+		7D80AC2C212C801600C40ECE /* APIOAuthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOAuthTests.swift; sourceTree = "<group>"; };
 		7D80AC55212CF41900C40ECE /* APIRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestableTests.swift; sourceTree = "<group>"; };
 		7D80AC57212DAE4C00C40ECE /* URLResponseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLResponseExtensions.swift; sourceTree = "<group>"; };
 		7D80AC5A212DB0B500C40ECE /* URLResponseExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLResponseExtensionsTests.swift; sourceTree = "<group>"; };
@@ -2297,7 +2295,7 @@
 				7D86285A224C05BB003A37DC /* APIMediaCommentRequestableTests.swift */,
 				B15CA274221DE8E50014FB02 /* APIModuleRequestableTests.swift */,
 				B1F1328B224BB383002C0555 /* APIModuleTests.swift */,
-				7D80AC2C212C801600C40ECE /* APIOAuthRequestableTests.swift */,
+				7D80AC2C212C801600C40ECE /* APIOAuthTests.swift */,
 				EE424B3322E8DE2E00D083EE /* APIPageRequestableTests.swift */,
 				7D0970EE22DFB6F200E8A551 /* APIPandataTests.swift */,
 				9FBE536A223C2B9F001EC40C /* APIPermissionsRequestableTests.swift */,
@@ -2397,7 +2395,6 @@
 				B15CA276221DE94F0014FB02 /* APIModule.swift */,
 				B15CA278221DE9660014FB02 /* APIModuleRequestable.swift */,
 				7D80AC2A212C77C600C40ECE /* APIOAuth.swift */,
-				7D80AC28212C76E600C40ECE /* APIOAuthRequestable.swift */,
 				EEC3EF6222E25F6100799FE2 /* APIPage.swift */,
 				EEC3EF6422E25FDC00799FE2 /* APIPageRequestable.swift */,
 				7D0970EC22DF858D00E8A551 /* APIPandata.swift */,
@@ -3457,7 +3454,6 @@
 				7D8262F5212B300F00BD268D /* APIGroupRequestable.swift in Sources */,
 				EEC3EF6922E267BE00799FE2 /* GetPages.swift in Sources */,
 				9FCF1542227B6DB6009D35F6 /* GradeCircleView.swift in Sources */,
-				7D80AC29212C76E600C40ECE /* APIOAuthRequestable.swift in Sources */,
 				3B4687B32355109C00F293A5 /* SyllabusActionableItemsPresenter.swift in Sources */,
 				3B158CA722E1343D0039A568 /* PageViewEventViewControllerLoggingProtocol.swift in Sources */,
 				B1AC8594228F08CA00D6BD0B /* FilePickerPresenter.swift in Sources */,
@@ -3717,7 +3713,7 @@
 				7D80AC25212C61F100C40ECE /* APIAccountRequestableTests.swift in Sources */,
 				9F09A4CF22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift in Sources */,
 				7D85D8E5226A8CFB002DBF63 /* AvatarViewTests.swift in Sources */,
-				7D80AC2D212C801600C40ECE /* APIOAuthRequestableTests.swift in Sources */,
+				7D80AC2D212C801600C40ECE /* APIOAuthTests.swift in Sources */,
 				B1F1328C224BB383002C0555 /* APIModuleTests.swift in Sources */,
 				7DEB5C3C224EBF2D00F28404 /* CreateTextCommentTests.swift in Sources */,
 				3B5369E4219D0FD000D3F62E /* URLExtensionsTests.swift in Sources */,

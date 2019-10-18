@@ -265,6 +265,7 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
 
     func userDidStopActing(as session: LoginSession) {
         LoginSession.remove(session)
+        environment.api.makeRequest(DeleteLoginOAuthRequest(session: session)) { _, _, _ in }
         guard environment.currentSession == session else { return }
         NotificationKitController.deregisterPushNotifications { _ in }
         UIApplication.shared.applicationIconBadgeNumber = 0

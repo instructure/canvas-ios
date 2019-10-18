@@ -160,6 +160,7 @@ extension ParentAppDelegate: LoginDelegate {
 
     func userDidStopActing(as session: LoginSession) {
         LoginSession.remove(session)
+        environment.api.makeRequest(DeleteLoginOAuthRequest(session: session)) { _, _, _ in }
         // TODO: Deregister push notifications?
         guard environment.currentSession == session else { return }
         environment.userDidLogout(session: session)

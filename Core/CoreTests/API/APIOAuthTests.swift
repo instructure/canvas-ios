@@ -62,6 +62,14 @@ class APIOAuthRequestableTests: XCTestCase {
         ])
     }
 
+    func testDeleteLoginOAuthRequest() {
+        let session = LoginSession.make(accessToken: "t")
+        XCTAssertEqual(DeleteLoginOAuthRequest(session: session).path, "\(session.baseURL.absoluteString)/login/oauth2/token")
+        XCTAssertEqual(DeleteLoginOAuthRequest(session: session).headers, [
+            HttpHeader.authorization: "Bearer t",
+        ])
+    }
+
     func testGetWebSessionRequest() {
         XCTAssertEqual(GetWebSessionRequest(to: nil).path, "/login/session_token")
         XCTAssertEqual(GetWebSessionRequest(to: nil).queryItems, [])
@@ -69,5 +77,4 @@ class APIOAuthRequestableTests: XCTestCase {
             URLQueryItem(name: "return_to", value: "/?display=borderless"),
         ])
     }
-
 }
