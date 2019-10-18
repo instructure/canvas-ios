@@ -70,7 +70,7 @@ workflows:
         - compile_bitcode: 'no'
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
-        - icloud_container_environment: "$ICLOUD_CONTAINER_ENV"
+        - icloud_container_environment: "Production"
     - cache-push@2.2.0:
         inputs:
         - cache_paths: "$BITRISE_SOURCE_DIR/Carthage/Build/iOS/"
@@ -78,16 +78,12 @@ workflows:
     - deploy-to-bitrise-io: {}
   ad-hoc:
     before_run:
+    - _set-export-ad-hoc
     - _common
-    envs:
-    - BITRISE_EXPORT_METHOD: ad-hoc
-    - ICLOUD_CONTAINER_ENV: Production
   app-store:
     before_run:
+    - _set-export-app-store
     - _common
-    envs:
-    - BITRISE_EXPORT_METHOD: app-store
-    - ICLOUD_CONTAINER_ENV: Production
     steps:
     - deploy-to-itunesconnect-application-loader:
         inputs:
@@ -126,6 +122,18 @@ workflows:
         - pretext: "*Releasing Student $APP_RELEASE_VERSION*"
         - webhook_url: "$SLACK_URL"
     - deploy-to-bitrise-io: {}
+  _set-export-ad-hoc:
+    steps:
+    - set-env-var:
+        inputs:
+        - destination_keys: BITRISE_EXPORT_METHOD
+        - value: ad-hoc
+  _set-export-app-store:
+    steps:
+    - set-env-var:
+        inputs:
+        - destination_keys: BITRISE_EXPORT_METHOD
+        - value: app-store
 
 # Temporary, will be removed once bitrise is reconfigured:
   ad-hoc-experimental:

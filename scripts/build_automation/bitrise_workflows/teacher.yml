@@ -110,9 +110,9 @@ workflows:
     - _common
   app-store:
     before_run:
+    - _set-export-app-store
     - _common
     envs:
-    - BITRISE_EXPORT_METHOD: app-store
     steps:
     - deploy-to-itunesconnect-application-loader:
         inputs:
@@ -148,13 +148,18 @@ workflows:
         - pretext: "*Releasing Teacher $APP_RELEASE_VERSION*"
         - webhook_url: "$SLACK_URL"
     - deploy-to-bitrise-io: {}
-
   _set-export-ad-hoc:
     steps:
     - set-env-var:
         inputs:
         - destination_keys: BITRISE_EXPORT_METHOD
         - value: ad-hoc
+  _set-export-app-store:
+    steps:
+    - set-env-var:
+        inputs:
+        - destination_keys: BITRISE_EXPORT_METHOD
+        - value: app-store
 
 # Temporary, will be removed once bitrise is reconfigured:
   ad-hoc-experimental:
