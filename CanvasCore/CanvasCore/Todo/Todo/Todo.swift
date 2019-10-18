@@ -52,7 +52,7 @@ public final class Todo: NSManagedObject {
     @NSManaged internal (set) public var id: String
     @NSManaged internal (set) public var done: Bool
     @NSManaged internal (set) public var type: String
-    @NSManaged internal (set) public var ignoreURL: String
+    @NSManaged internal (set) public var ignorePath: String
     @NSManaged internal (set) public var ignorePermanentURL: String
     @NSManaged internal (set) public var htmlURL: String
     @NSManaged internal (set) public var assignmentID: String
@@ -103,7 +103,6 @@ extension Todo: SynchronizedModel {
 
         id                  = try json.stringID("assignment.id")
         type                = try json <| "type"
-        ignoreURL           = try json <| "ignore"
         ignorePermanentURL  = try json <| "ignore_permanently"
         htmlURL             = try json <| "html_url"
 
@@ -112,6 +111,8 @@ extension Todo: SynchronizedModel {
         assignmentName      = try json <| "assignment.name"
         assignmentDueDate   = try json <| "assignment.due_at"
         assignmentHtmlURL   = try json <| "assignment.html_url"
+        let ignoreURL: URL = try json <| "ignore"
+        ignorePath = ignoreURL.path
         let types: [String] = try json <| "assignment.submission_types"
         
         if types.contains(TodoType.discussion.rawValue) {
