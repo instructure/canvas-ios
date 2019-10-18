@@ -281,3 +281,11 @@ workflows:
         - message: ''
         - pretext: "*Nightly Build Succeeded!*"
         is_always_run: false
+
+# Temporary, will be removed once bitrise is reconfigured:
+  danger-experimental:
+    after_run:
+    - danger
+  nightly-experimental:
+    after_run:
+    - nightly

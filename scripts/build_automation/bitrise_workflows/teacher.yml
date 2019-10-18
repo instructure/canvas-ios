@@ -151,3 +151,14 @@ workflows:
         - pretext: "*Releasing Teacher $APP_RELEASE_VERSION*"
         - webhook_url: "$SLACK_URL"
     - deploy-to-bitrise-io: {}
+
+# Temporary, will be removed once bitrise is reconfigured:
+  ad-hoc-experimental:
+    after_run:
+    - ad-hoc
+  app-store-experimental:
+    after_run:
+    - app-store
+  app-store-automated-experimental:
+    after_run:
+    - app-store-automated
