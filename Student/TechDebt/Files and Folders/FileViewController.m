@@ -135,6 +135,12 @@
     return NO;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return self.navigationController.navigationBar.barStyle == UIBarStyleBlack
+        ? UIStatusBarStyleLightContent
+        : UIStatusBarStyleDefault;
+}
+
 #pragma mark - Fetching
 
 - (void)fetchFile {
