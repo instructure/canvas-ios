@@ -26,6 +26,33 @@
 "Act as User" = "Funger som bruger";
 
 /* No comment provided by engineer. */
+"Added To Conversation" = "Føjet til samtale";
+
+/* No comment provided by engineer. */
+"Administrative Notifications" = "Administrative meddelelser";
+
+/* No comment provided by engineer. */
+"Alerts" = "Varslinger";
+
+/* No comment provided by engineer. */
+"All Submissions" = "Alle afleveringer";
+
+/* No comment provided by engineer. */
+"Announcement" = "Besked";
+
+/* No comment provided by engineer. */
+"Announcement Created By You" = "Besked oprettet af dig";
+
+/* No comment provided by engineer. */
+"Appointment Availability" = "Aftaler til rådighed";
+
+/* No comment provided by engineer. */
+"Appointment Cancellations" = "Aflyste aftaler";
+
+/* No comment provided by engineer. */
+"Appointment Signups" = "Tilmeldinger til aftaler";
+
+/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Er du sikker på, at du vil slette denne kommentar?";
 
 /* No comment provided by engineer. */
@@ -53,6 +80,9 @@
 "Bold" = "Fed";
 
 /* No comment provided by engineer. */
+"Calendar" = "Kalender";
+
+/* No comment provided by engineer. */
 "Camera" = "Kamera";
 
 /* No comment provided by engineer. */
@@ -69,6 +99,9 @@
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Canvas on GitHub" = "Canvas på GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
@@ -88,6 +121,9 @@
 /* No comment provided by engineer. */
 "Change User" = "Skift bruger";
 
+/* Description for Chat communication channel */
+"Chat Notifications" = "Chat-meddelelser";
+
 /* No comment provided by engineer. */
 "Check network and try again!" = "Tjek netværk og prøv igen!";
 
@@ -96,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Vælg profilbillede";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Nulstil filter";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Ryd optagelse";
@@ -125,13 +164,46 @@
 "Complete" = "Fuldført";
 
 /* No comment provided by engineer. */
+"Conferences" = "Konferencer";
+
+/* No comment provided by engineer. */
+"Content Link Error" = "Indholdslinkfejl";
+
+/* No comment provided by engineer. */
+"Conversation Created By Me" = "Diskussion oprettet af mig";
+
+/* No comment provided by engineer. */
+"Conversation Message" = "Diskussionsbesked";
+
+/* No comment provided by engineer. */
+"Conversations" = "Samtale";
+
+/* No comment provided by engineer. */
+"Could not save notification preference" = "Kunne ikke gemme meddelelsesindstilling";
+
+/* No comment provided by engineer. */
 "Course" = "Fag";
+
+/* No comment provided by engineer. */
+"Course Activities" = "Fagets aktiviteter";
+
+/* No comment provided by engineer. */
+"Course Content" = "Fagindhold";
+
+/* No comment provided by engineer. */
+"Courses" = "Fag";
 
 /* No comment provided by engineer. */
 "Current position" = "Aktuel position";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Daily" = "Dagligt";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Oversigt";
 
 /* No comment provided by engineer. */
 "Delete" = "Slet";
@@ -155,10 +227,22 @@
 "Developer Menu" = "Udvikler-menu";
 
 /* No comment provided by engineer. */
+"Discussion" = "Diskussion";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Diskussionskommentar";
 
 /* No comment provided by engineer. */
+"Discussion Post" = "Diskussionsopslag";
+
+/* No comment provided by engineer. */
+"Discussions" = "Diskussioner";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Afvis";
+
+/* No comment provided by engineer. */
+"Do not send me anything" = "Send mig ikke noget";
 
 /* No comment provided by engineer. */
 "Domain" = "Domæne";
@@ -167,7 +251,16 @@
 "Done" = "Udført";
 
 /* No comment provided by engineer. */
+"Due Date" = "Afleveringsdato";
+
+/* Description for email communication channel */
+"Email Notifications" = "E-mail-meddelelser";
+
+/* No comment provided by engineer. */
 "Emergency" = "Nødsituation";
+
+/* No comment provided by engineer. */
+"Enable Push Notifications" = "Aktiver push-meddelelser";
 
 /* No comment provided by engineer. */
 "End Act as User" = "Afslut \\'funger som bruger\\'";
@@ -203,6 +296,12 @@
 "Files" = "Filer";
 
 /* No comment provided by engineer. */
+"Filter" = "Filter";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Filtrer efter:";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Endelig karakter: %@";
 
 /* No comment provided by engineer. */
@@ -224,10 +323,19 @@
 "g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
+"Grading" = "Karaktergivning";
+
+/* No comment provided by engineer. */
+"Grading Policies" = "Karakterbestemmelser";
+
+/* No comment provided by engineer. */
 "green" = "grøn";
 
 /* No comment provided by engineer. */
 "grey" = "grå";
+
+/* No comment provided by engineer. */
+"Groups" = "Grupper";
 
 /* No comment provided by engineer. */
 "Help" = "Hjælp";
@@ -245,13 +353,22 @@
 "Image" = "Billede";
 
 /* No comment provided by engineer. */
+"Immediately" = "Straks";
+
+/* No comment provided by engineer. */
 "Impact" = "Indvirkning";
 
 /* No comment provided by engineer. */
 "Impact Level" = "Betydningsniveau";
 
 /* No comment provided by engineer. */
+"Inbox" = "Indbakke";
+
+/* No comment provided by engineer. */
 "Incomplete" = "Ufuldstændig";
+
+/* No comment provided by engineer. */
+"Invitation" = "Invitation";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Det ser ud til, at du ikke er tilmeldt til nogen fag som %@. En af vores andre apps kan være bedre egnet. Tryk på en for at besøge App Store.";
@@ -260,13 +377,22 @@
 "Italic" = "Kursiv";
 
 /* No comment provided by engineer. */
+"Landing Page" = "Landingsside";
+
+/* No comment provided by engineer. */
 "Late" = "Sen";
+
+/* No comment provided by engineer. */
+"Late Grading" = "Sen karaktergivning";
 
 /* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Start eksternt værktøj";
+
+/* No comment provided by engineer. */
+"Legal" = "Juridisk";
 
 /* No comment provided by engineer. */
 "Library" = "Bibliotek";
@@ -320,10 +446,16 @@
 "Media Recording" = "Medieoptagelse";
 
 /* No comment provided by engineer. */
+"Membership Update" = "Opdatering af medlemskab";
+
+/* No comment provided by engineer. */
 "Missing" = "Mangler";
 
 /* No comment provided by engineer. */
 "N/A" = "N/A";
+
+/* No comment provided by engineer. */
+"Never" = "Aldrig";
 
 /* No comment provided by engineer. */
 "No Content" = "Intet indhold";
@@ -348,6 +480,15 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Haster ikke";
+
+/* No comment provided by engineer. */
+"Notifications" = "Notifikationer";
+
+/* No comment provided by engineer. */
+"Notifications are currently disabled in Settings. Tap to enable them again." = "Meddelelser er i øjeblikket deaktiveret i indstillingerne. Tryk for at aktivere dem igen.";
+
+/* No comment provided by engineer. */
+"Notify me right away" = "Informer mig med det samme";
 
 /* No comment provided by engineer. */
 "Observer" = "Observatør";
@@ -383,10 +524,19 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Preferences" = "Indstillinger";
+
+/* No comment provided by engineer. */
 "Previous Logins" = "Tidligere logins";
 
 /* No comment provided by engineer. */
+"Privacy Policy" = "Datapolitik";
+
+/* No comment provided by engineer. */
 "purple" = "lilla";
+
+/* Description for Push Notification channel */
+"Push Notifications" = "Push notifikationer";
 
 /* No comment provided by engineer. */
 "Quiz" = "Test";
@@ -422,6 +572,9 @@
 "Retry" = "Prøv igen";
 
 /* No comment provided by engineer. */
+"Scheduling" = "Planlægning";
+
+/* No comment provided by engineer. */
 "See attached files." = "Se vedhæftede filer.";
 
 /* No comment provided by engineer. */
@@ -446,6 +599,12 @@
 "Send comment" = "Send kommentar";
 
 /* No comment provided by engineer. */
+"Send daily summary" = "Send dagligt sammendrag";
+
+/* No comment provided by engineer. */
+"Send weekly summary" = "Send ugentligt sammendrag";
+
+/* No comment provided by engineer. */
 "Set text color" = "Indstil tekstfarve";
 
 /* No comment provided by engineer. */
@@ -456,6 +615,12 @@
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Websted admin login";
+
+/* Description for Slack communication channel */
+"Slack Notifications" = "Slack-meddelelser";
+
+/* Description for SMS communication channel */
+"SMS Notifications" = "SMS-meddelelser";
 
 /* No comment provided by engineer. */
 "Something is broken but I can work around it" = "Noget virker ikke, men jeg kan klare mig";
@@ -482,10 +647,16 @@
 "Student" = "Studerende";
 
 /* No comment provided by engineer. */
+"Student Appointment Signups" = "Tilmeldinger til studieaftale";
+
+/* No comment provided by engineer. */
 "Style" = "Type";
 
 /* No comment provided by engineer. */
 "Subject" = "Emne";
+
+/* No comment provided by engineer. */
+"Submission Comment" = "Afleveringskommentar";
 
 /* No comment provided by engineer. */
 "Submit" = "Aflever";
@@ -498,6 +669,9 @@
 
 /* Submitted date */
 "Submitted %@" = "Afleveret %@";
+
+/* No comment provided by engineer. */
+"Subscribe to Calendar Feed" = "Tilmeld til kalender-feed";
 
 /* No comment provided by engineer. */
 "Success!" = "Succes!";
@@ -557,7 +731,16 @@
 "Time elapsed" = "Tid gået";
 
 /* No comment provided by engineer. */
+"To Do" = "Opgaveliste";
+
+/* No comment provided by engineer. */
+"Total Grade" = "Total karakter";
+
+/* No comment provided by engineer. */
 "Total time" = "Samlet tid";
+
+/* Description for Twitter communication channel */
+"Twitter Notifications" = "Twitter-meddelelser";
 
 /* No comment provided by engineer. */
 "Undo" = "Fortryd";
@@ -593,6 +776,9 @@
 "Website URL" = "Webside URL";
 
 /* No comment provided by engineer. */
+"Weekly" = "Ugentlig";
+
+/* No comment provided by engineer. */
 "What’s your school’s name?" = "Hvad hedder din skole?";
 
 /* No comment provided by engineer. */
@@ -606,6 +792,9 @@
 
 /* No comment provided by engineer. */
 "yellow" = "gul";
+
+/* Description for Yo communication channel */
+"Yo Notifications" = "Yo-meddelelser";
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Du skal aktivere mikrofontilladelser i indstillinger.";

@@ -26,6 +26,33 @@
 "Act as User" = "ユーザーとして行動する";
 
 /* No comment provided by engineer. */
+"Added To Conversation" = "会話に追加されました";
+
+/* No comment provided by engineer. */
+"Administrative Notifications" = "管理のお知らせ";
+
+/* No comment provided by engineer. */
+"Alerts" = "アラート";
+
+/* No comment provided by engineer. */
+"All Submissions" = "すべての提出物";
+
+/* No comment provided by engineer. */
+"Announcement" = "発表";
+
+/* No comment provided by engineer. */
+"Announcement Created By You" = "あなたが作成したアナウンスメント";
+
+/* No comment provided by engineer. */
+"Appointment Availability" = "予約利用可能性";
+
+/* No comment provided by engineer. */
+"Appointment Cancellations" = "予定の取り消し";
+
+/* No comment provided by engineer. */
+"Appointment Signups" = "受講生予約サインアップ";
+
+/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "このコメントを本当に削除しますか？";
 
 /* No comment provided by engineer. */
@@ -53,6 +80,9 @@
 "Bold" = "ボールド";
 
 /* No comment provided by engineer. */
+"Calendar" = "予定表";
+
+/* No comment provided by engineer. */
 "Camera" = "カメラ";
 
 /* No comment provided by engineer. */
@@ -69,6 +99,9 @@
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Canvas on GitHub" = "（）のCanvasGitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas 親";
@@ -88,6 +121,9 @@
 /* No comment provided by engineer. */
 "Change User" = "ユーザーを変更する";
 
+/* Description for Chat communication channel */
+"Chat Notifications" = "チャットの通知";
+
 /* No comment provided by engineer. */
 "Check network and try again!" = "ネットワークをチェックして、もういちど試してください。";
 
@@ -96,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "プロフィール写真を選択する";
+
+/* No comment provided by engineer. */
+"Clear filter" = "フィルターをクリア";
 
 /* No comment provided by engineer. */
 "Clear recording" = "録音をクリアする";
@@ -125,13 +164,46 @@
 "Complete" = "完了";
 
 /* No comment provided by engineer. */
+"Conferences" = "会議";
+
+/* No comment provided by engineer. */
+"Content Link Error" = "コンテンツリンクエラー";
+
+/* No comment provided by engineer. */
+"Conversation Created By Me" = "私が作成した会話";
+
+/* No comment provided by engineer. */
+"Conversation Message" = "会話メッセージ";
+
+/* No comment provided by engineer. */
+"Conversations" = "会話";
+
+/* No comment provided by engineer. */
+"Could not save notification preference" = "通知設定を保存できませんでした";
+
+/* No comment provided by engineer. */
 "Course" = "コース";
+
+/* No comment provided by engineer. */
+"Course Activities" = "コースアクティビティ";
+
+/* No comment provided by engineer. */
+"Course Content" = "コース内容";
+
+/* No comment provided by engineer. */
+"Courses" = "コース";
 
 /* No comment provided by engineer. */
 "Current position" = "現在のポジション";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Daily" = "毎日";
+
+/* No comment provided by engineer. */
+"Dashboard" = "ダッシュボード";
 
 /* No comment provided by engineer. */
 "Delete" = "削除";
@@ -155,10 +227,22 @@
 "Developer Menu" = "開発者用メニュー";
 
 /* No comment provided by engineer. */
+"Discussion" = "ディスカッション";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "ディスカッションのコメント";
 
 /* No comment provided by engineer. */
+"Discussion Post" = "ディスカッション掲示";
+
+/* No comment provided by engineer. */
+"Discussions" = "ディスカッション";
+
+/* No comment provided by engineer. */
 "Dismiss" = "却下する";
+
+/* No comment provided by engineer. */
+"Do not send me anything" = "何も送信しない";
 
 /* No comment provided by engineer. */
 "Domain" = "ドメイン";
@@ -167,7 +251,16 @@
 "Done" = "完了";
 
 /* No comment provided by engineer. */
+"Due Date" = "期日";
+
+/* Description for email communication channel */
+"Email Notifications" = "メール通知";
+
+/* No comment provided by engineer. */
 "Emergency" = "緊急";
+
+/* No comment provided by engineer. */
+"Enable Push Notifications" = "プッシュ通知を有効にする";
 
 /* No comment provided by engineer. */
 "End Act as User" = "ユーザーとして行動することを止める";
@@ -203,6 +296,12 @@
 "Files" = "ファイル";
 
 /* No comment provided by engineer. */
+"Filter" = "フィルター";
+
+/* No comment provided by engineer. */
+"Filter by:" = "フィルター要素：";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "最終的な成績：%@";
 
 /* No comment provided by engineer. */
@@ -224,10 +323,19 @@
 "g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
+"Grading" = "採点";
+
+/* No comment provided by engineer. */
+"Grading Policies" = "採点方針";
+
+/* No comment provided by engineer. */
 "green" = "グリーン";
 
 /* No comment provided by engineer. */
 "grey" = "グレー";
+
+/* No comment provided by engineer. */
+"Groups" = "グループ";
 
 /* No comment provided by engineer. */
 "Help" = "ヘルプ";
@@ -245,13 +353,22 @@
 "Image" = "画像";
 
 /* No comment provided by engineer. */
+"Immediately" = "ただちに";
+
+/* No comment provided by engineer. */
 "Impact" = "影響";
 
 /* No comment provided by engineer. */
 "Impact Level" = "影響のレベル";
 
 /* No comment provided by engineer. */
+"Inbox" = "受信トレイ";
+
+/* No comment provided by engineer. */
 "Incomplete" = "不完全";
+
+/* No comment provided by engineer. */
+"Invitation" = "招待状";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "あなたは %@ としてコースに在籍していないようです。他に適したアプリがある可能性があります。1つをタップして、App Store をご覧ください。";
@@ -260,13 +377,22 @@
 "Italic" = "イタリック体";
 
 /* No comment provided by engineer. */
+"Landing Page" = "ランディングページ";
+
+/* No comment provided by engineer. */
 "Late" = "遅れている";
+
+/* No comment provided by engineer. */
+"Late Grading" = "遅れた採点";
 
 /* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "外部ツールを起動する";
+
+/* No comment provided by engineer. */
+"Legal" = "法務";
 
 /* No comment provided by engineer. */
 "Library" = "図書館";
@@ -320,10 +446,16 @@
 "Media Recording" = "メディアレコーディング";
 
 /* No comment provided by engineer. */
+"Membership Update" = "メンバーシップ更新";
+
+/* No comment provided by engineer. */
 "Missing" = "欠如";
 
 /* No comment provided by engineer. */
 "N/A" = "N/A";
+
+/* No comment provided by engineer. */
+"Never" = "まったくしない";
 
 /* No comment provided by engineer. */
 "No Content" = "コンテンツなし";
@@ -348,6 +480,15 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "緊急ではありません";
+
+/* No comment provided by engineer. */
+"Notifications" = "通知";
+
+/* No comment provided by engineer. */
+"Notifications are currently disabled in Settings. Tap to enable them again." = "現在、設定で通知は無効になっています。タップすると再度有効になります。";
+
+/* No comment provided by engineer. */
+"Notify me right away" = "すぐにお知らせを送ってください";
 
 /* No comment provided by engineer. */
 "Observer" = "オブザーバー";
@@ -383,10 +524,19 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Preferences" = "優先設定";
+
+/* No comment provided by engineer. */
 "Previous Logins" = "以前のログイン";
 
 /* No comment provided by engineer. */
+"Privacy Policy" = "個人情報保護方針";
+
+/* No comment provided by engineer. */
 "purple" = "パープル";
+
+/* Description for Push Notification channel */
+"Push Notifications" = "プッシュ通知";
 
 /* No comment provided by engineer. */
 "Quiz" = "クイズ";
@@ -422,6 +572,9 @@
 "Retry" = "再試行";
 
 /* No comment provided by engineer. */
+"Scheduling" = "スケジュール中";
+
+/* No comment provided by engineer. */
 "See attached files." = "添付ファイルをご参照ください。";
 
 /* No comment provided by engineer. */
@@ -446,6 +599,12 @@
 "Send comment" = "コメントを送信する";
 
 /* No comment provided by engineer. */
+"Send daily summary" = "毎日のサマリを送信する";
+
+/* No comment provided by engineer. */
+"Send weekly summary" = "毎週のサマリを送信する";
+
+/* No comment provided by engineer. */
 "Set text color" = "テキストの色を設定する";
 
 /* No comment provided by engineer. */
@@ -456,6 +615,12 @@
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "サイト管理者ログイン";
+
+/* Description for Slack communication channel */
+"Slack Notifications" = "Slack 通知";
+
+/* Description for SMS communication channel */
+"SMS Notifications" = "SMS 通知";
 
 /* No comment provided by engineer. */
 "Something is broken but I can work around it" = "何かが壊れていますが、それを避けて作業ができます";
@@ -482,10 +647,16 @@
 "Student" = "受講者";
 
 /* No comment provided by engineer. */
+"Student Appointment Signups" = "受講生予約サインアップ";
+
+/* No comment provided by engineer. */
 "Style" = "スタイル";
 
 /* No comment provided by engineer. */
 "Subject" = "件名";
+
+/* No comment provided by engineer. */
+"Submission Comment" = "提出コメント";
 
 /* No comment provided by engineer. */
 "Submit" = "提出";
@@ -498,6 +669,9 @@
 
 /* Submitted date */
 "Submitted %@" = "タスクの成績を送信%@";
+
+/* No comment provided by engineer. */
+"Subscribe to Calendar Feed" = "カレンダーフィードを購読する";
 
 /* No comment provided by engineer. */
 "Success!" = "成功です！";
@@ -557,7 +731,16 @@
 "Time elapsed" = "経過時間";
 
 /* No comment provided by engineer. */
+"To Do" = "タスク";
+
+/* No comment provided by engineer. */
+"Total Grade" = "合計成績";
+
+/* No comment provided by engineer. */
 "Total time" = "合計時間:";
+
+/* Description for Twitter communication channel */
+"Twitter Notifications" = "Twitter 通知";
 
 /* No comment provided by engineer. */
 "Undo" = "アンドゥーする";
@@ -593,6 +776,9 @@
 "Website URL" = "ウェブサイト URL";
 
 /* No comment provided by engineer. */
+"Weekly" = "毎週";
+
+/* No comment provided by engineer. */
 "What’s your school’s name?" = "学校の名前は？";
 
 /* No comment provided by engineer. */
@@ -606,6 +792,9 @@
 
 /* No comment provided by engineer. */
 "yellow" = "イエロー";
+
+/* Description for Yo communication channel */
+"Yo Notifications" = "Yo 通知";
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "「設定」でマイクの許可を有効にしなければなりません。";

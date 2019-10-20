@@ -26,6 +26,33 @@
 "Act as User" = "Toimi käyttäjänä";
 
 /* No comment provided by engineer. */
+"Added To Conversation" = "Lisätty keskusteluun";
+
+/* No comment provided by engineer. */
+"Administrative Notifications" = "Pääkäyttäjän ilmoitukset";
+
+/* No comment provided by engineer. */
+"Alerts" = "Hälytykset";
+
+/* No comment provided by engineer. */
+"All Submissions" = "Kaikki lähetykset";
+
+/* No comment provided by engineer. */
+"Announcement" = "Ilmoitus";
+
+/* No comment provided by engineer. */
+"Announcement Created By You" = "Luomasi ilmoitus";
+
+/* No comment provided by engineer. */
+"Appointment Availability" = "Tapaamisen saatavilla olo";
+
+/* No comment provided by engineer. */
+"Appointment Cancellations" = "Tapaamisen peruutukset";
+
+/* No comment provided by engineer. */
+"Appointment Signups" = "Tapaamisen rekisteröitymiset";
+
+/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Haluatko varmasti poistaa tämän kommentin?";
 
 /* No comment provided by engineer. */
@@ -53,6 +80,9 @@
 "Bold" = "Lihavoitu";
 
 /* No comment provided by engineer. */
+"Calendar" = "Kalenteri";
+
+/* No comment provided by engineer. */
 "Camera" = "Kamera";
 
 /* No comment provided by engineer. */
@@ -69,6 +99,9 @@
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Canvas-verkosto";
+
+/* No comment provided by engineer. */
+"Canvas on GitHub" = "Canvas GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
@@ -88,6 +121,9 @@
 /* No comment provided by engineer. */
 "Change User" = "Vaihda käyttäjää";
 
+/* Description for Chat communication channel */
+"Chat Notifications" = "Chatin ilmoitukset";
+
 /* No comment provided by engineer. */
 "Check network and try again!" = "Tarkasta verkkoyhteys ja yritä uudelleen!";
 
@@ -96,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Valitse profiilikuva";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Tyhjennä suodatin";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Tyhjennä nauhoitus";
@@ -125,13 +164,46 @@
 "Complete" = "Valmis";
 
 /* No comment provided by engineer. */
+"Conferences" = "Konferenssit";
+
+/* No comment provided by engineer. */
+"Content Link Error" = "Sisällön linkin virhe";
+
+/* No comment provided by engineer. */
+"Conversation Created By Me" = "Luomani keskustelu";
+
+/* No comment provided by engineer. */
+"Conversation Message" = "Keskustelun viesti";
+
+/* No comment provided by engineer. */
+"Conversations" = "Keskustelut";
+
+/* No comment provided by engineer. */
+"Could not save notification preference" = "Ilmoitusasetuksien tallennus ei onnistunut";
+
+/* No comment provided by engineer. */
 "Course" = "Kurssi";
+
+/* No comment provided by engineer. */
+"Course Activities" = "Kurssiaktiviteetit";
+
+/* No comment provided by engineer. */
+"Course Content" = "Kurssisisältö";
+
+/* No comment provided by engineer. */
+"Courses" = "Kurssit";
 
 /* No comment provided by engineer. */
 "Current position" = "Nykyinen asema";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Daily" = "Päivittäin";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Koontinäyttö";
 
 /* No comment provided by engineer. */
 "Delete" = "Poista";
@@ -155,10 +227,22 @@
 "Developer Menu" = "Sovelluskehittäjän valikko";
 
 /* No comment provided by engineer. */
+"Discussion" = "Keskustelu";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Keskustelua koskeva kommentti";
 
 /* No comment provided by engineer. */
+"Discussion Post" = "Keskustelun lähetys";
+
+/* No comment provided by engineer. */
+"Discussions" = "Keskustelut";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Ohita";
+
+/* No comment provided by engineer. */
+"Do not send me anything" = "Älä lähetä minulle mitään";
 
 /* No comment provided by engineer. */
 "Domain" = "Verkkotunnus";
@@ -167,7 +251,16 @@
 "Done" = "Valmis";
 
 /* No comment provided by engineer. */
+"Due Date" = "Määräpäivä";
+
+/* Description for email communication channel */
+"Email Notifications" = "Sähköposti-ilmoitukset";
+
+/* No comment provided by engineer. */
 "Emergency" = "Hätätila";
+
+/* No comment provided by engineer. */
+"Enable Push Notifications" = "Ota Push-ilmoitukset käyttöön";
 
 /* No comment provided by engineer. */
 "End Act as User" = "Päätä toimi käyttäjänä";
@@ -203,6 +296,12 @@
 "Files" = "Tiedostot";
 
 /* No comment provided by engineer. */
+"Filter" = "Suodatin";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Suodatustapa:";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Lopullinen arvosana: %@";
 
 /* No comment provided by engineer. */
@@ -224,10 +323,19 @@
 "g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
+"Grading" = "Arvosanojen anto";
+
+/* No comment provided by engineer. */
+"Grading Policies" = "Arvosanojen antokäytäntö";
+
+/* No comment provided by engineer. */
 "green" = "vihreä";
 
 /* No comment provided by engineer. */
 "grey" = "harmaa";
+
+/* No comment provided by engineer. */
+"Groups" = "Ryhmät";
 
 /* No comment provided by engineer. */
 "Help" = "Ohje";
@@ -245,13 +353,22 @@
 "Image" = "Kuva";
 
 /* No comment provided by engineer. */
+"Immediately" = "Välittömästi";
+
+/* No comment provided by engineer. */
 "Impact" = "Vaikutus";
 
 /* No comment provided by engineer. */
 "Impact Level" = "Vaikutustaso";
 
 /* No comment provided by engineer. */
+"Inbox" = "Tulevien laatikko";
+
+/* No comment provided by engineer. */
 "Incomplete" = "Keskeneräinen";
+
+/* No comment provided by engineer. */
+"Invitation" = "Kutsu";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Näyttää siltä, että et ole rekisteröitynyt millekään kurssille nimellä %@. Yksi sovelluksistamme saattaa sopia paremmin. Käy App Storessa napauttamalla.";
@@ -260,13 +377,22 @@
 "Italic" = "Kursiivi";
 
 /* No comment provided by engineer. */
+"Landing Page" = "Aloitussivu";
+
+/* No comment provided by engineer. */
 "Late" = "Myöhään";
+
+/* No comment provided by engineer. */
+"Late Grading" = "Myöhäinen arvosanojen anto";
 
 /* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Käynnistä ulkoinen työkalu";
+
+/* No comment provided by engineer. */
+"Legal" = "Lakitiedot";
 
 /* No comment provided by engineer. */
 "Library" = "Kirjasto";
@@ -320,10 +446,16 @@
 "Media Recording" = "Median nauhoitus";
 
 /* No comment provided by engineer. */
+"Membership Update" = "Jäsenyyden päivitys";
+
+/* No comment provided by engineer. */
 "Missing" = "Puuttuu";
 
 /* No comment provided by engineer. */
 "N/A" = "Ei sovellettavissa";
+
+/* No comment provided by engineer. */
+"Never" = "Ei koskaan";
 
 /* No comment provided by engineer. */
 "No Content" = "Ei sisältöä";
@@ -348,6 +480,15 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Ei kiireellinen";
+
+/* No comment provided by engineer. */
+"Notifications" = "Ilmoitukset";
+
+/* No comment provided by engineer. */
+"Notifications are currently disabled in Settings. Tap to enable them again." = "Ilmoitukset on parhaillaan poistettu käytöstä asetuksissa Ota ne uudelleen käyttöön napauttamalla";
+
+/* No comment provided by engineer. */
+"Notify me right away" = "Ilmoita minulle välittömästi";
 
 /* No comment provided by engineer. */
 "Observer" = "Havainnoija";
@@ -383,10 +524,19 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Preferences" = "Asetukset";
+
+/* No comment provided by engineer. */
 "Previous Logins" = "Edelliset kirjautumiset";
 
 /* No comment provided by engineer. */
+"Privacy Policy" = "Tietosuojakäytäntö";
+
+/* No comment provided by engineer. */
 "purple" = "purppura";
+
+/* Description for Push Notification channel */
+"Push Notifications" = "Push-ilmoitukset";
 
 /* No comment provided by engineer. */
 "Quiz" = "Tietovisa";
@@ -422,6 +572,9 @@
 "Retry" = "Yritä uudelleen";
 
 /* No comment provided by engineer. */
+"Scheduling" = "Aikatauluttaminen";
+
+/* No comment provided by engineer. */
 "See attached files." = "Katso liitetyt tiedostot.";
 
 /* No comment provided by engineer. */
@@ -446,6 +599,12 @@
 "Send comment" = "Lähetä kommentti";
 
 /* No comment provided by engineer. */
+"Send daily summary" = "Lähetä päivittäinen yhteenveto";
+
+/* No comment provided by engineer. */
+"Send weekly summary" = "Lähetä viikoittainen yhteenveto";
+
+/* No comment provided by engineer. */
 "Set text color" = "Määritä tekstiväri";
 
 /* No comment provided by engineer. */
@@ -456,6 +615,12 @@
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Sivuston pääkäyttäjän kirjautuminen";
+
+/* Description for Slack communication channel */
+"Slack Notifications" = "Slack-huomautukset";
+
+/* Description for SMS communication channel */
+"SMS Notifications" = "SMS-ilmoitukset";
 
 /* No comment provided by engineer. */
 "Something is broken but I can work around it" = "Jotakin on rikki, mutta löydän kiertotien";
@@ -482,10 +647,16 @@
 "Student" = "Opiskelija";
 
 /* No comment provided by engineer. */
+"Student Appointment Signups" = "Opiskelijatapaamisen rekisteröitymiset";
+
+/* No comment provided by engineer. */
 "Style" = "Tyyli";
 
 /* No comment provided by engineer. */
 "Subject" = "Aihe";
+
+/* No comment provided by engineer. */
+"Submission Comment" = "Lähetyksen kommentti";
 
 /* No comment provided by engineer. */
 "Submit" = "Lähetä";
@@ -498,6 +669,9 @@
 
 /* Submitted date */
 "Submitted %@" = "Lähetetty %@";
+
+/* No comment provided by engineer. */
+"Subscribe to Calendar Feed" = "Tilaa kalenterin syöte";
 
 /* No comment provided by engineer. */
 "Success!" = "Onnistui!";
@@ -557,7 +731,16 @@
 "Time elapsed" = "Kulunut aika";
 
 /* No comment provided by engineer. */
+"To Do" = "Tehtävä";
+
+/* No comment provided by engineer. */
+"Total Grade" = "Kokonaisarvosana";
+
+/* No comment provided by engineer. */
 "Total time" = "Aika yhteensä";
+
+/* Description for Twitter communication channel */
+"Twitter Notifications" = "Twitter-ilmoitukset";
 
 /* No comment provided by engineer. */
 "Undo" = "Peruuta";
@@ -593,6 +776,9 @@
 "Website URL" = "Verkkosivuston URL";
 
 /* No comment provided by engineer. */
+"Weekly" = "Viikoittainen";
+
+/* No comment provided by engineer. */
 "What’s your school’s name?" = "Mikä on koulusi nimi?";
 
 /* No comment provided by engineer. */
@@ -606,6 +792,9 @@
 
 /* No comment provided by engineer. */
 "yellow" = "keltainen";
+
+/* Description for Yo communication channel */
+"Yo Notifications" = "Yo-ilmoitukset";
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Mikrofonin käyttöoikeudet täytyy ottaa käyttöön asetuksissa.";

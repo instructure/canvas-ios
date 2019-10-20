@@ -26,6 +26,33 @@
 "Act as User" = "Act as User";
 
 /* No comment provided by engineer. */
+"Added To Conversation" = "Added To Conversation";
+
+/* No comment provided by engineer. */
+"Administrative Notifications" = "Administrative Notifications";
+
+/* No comment provided by engineer. */
+"Alerts" = "Alerts";
+
+/* No comment provided by engineer. */
+"All Submissions" = "All Submissions";
+
+/* No comment provided by engineer. */
+"Announcement" = "Announcement";
+
+/* No comment provided by engineer. */
+"Announcement Created By You" = "Announcement Created By You";
+
+/* No comment provided by engineer. */
+"Appointment Availability" = "Appointment Availability";
+
+/* No comment provided by engineer. */
+"Appointment Cancellations" = "Appointment Cancellations";
+
+/* No comment provided by engineer. */
+"Appointment Signups" = "Appointment Signups";
+
+/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Are you sure you would like to delete this comment?";
 
 /* No comment provided by engineer. */
@@ -53,6 +80,9 @@
 "Bold" = "Bold";
 
 /* No comment provided by engineer. */
+"Calendar" = "Calendar";
+
+/* No comment provided by engineer. */
 "Camera" = "Camera";
 
 /* No comment provided by engineer. */
@@ -69,6 +99,9 @@
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Canvas on GitHub" = "Canvas on GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
@@ -88,6 +121,9 @@
 /* No comment provided by engineer. */
 "Change User" = "Change User";
 
+/* Description for Chat communication channel */
+"Chat Notifications" = "Chat Notifications";
+
 /* No comment provided by engineer. */
 "Check network and try again!" = "Check network and try again!";
 
@@ -96,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Choose Profile Picture";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Clear filter";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Clear recording";
@@ -125,13 +164,46 @@
 "Complete" = "Complete";
 
 /* No comment provided by engineer. */
+"Conferences" = "Conferences";
+
+/* No comment provided by engineer. */
+"Content Link Error" = "Content Link Error";
+
+/* No comment provided by engineer. */
+"Conversation Created By Me" = "Conversation Created By Me";
+
+/* No comment provided by engineer. */
+"Conversation Message" = "Conversation Message";
+
+/* No comment provided by engineer. */
+"Conversations" = "Conversations";
+
+/* No comment provided by engineer. */
+"Could not save notification preference" = "Could not save notification preference";
+
+/* No comment provided by engineer. */
 "Course" = "Course";
+
+/* No comment provided by engineer. */
+"Course Activities" = "Course Activities";
+
+/* No comment provided by engineer. */
+"Course Content" = "Course Content";
+
+/* No comment provided by engineer. */
+"Courses" = "Courses";
 
 /* No comment provided by engineer. */
 "Current position" = "Current position";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Daily" = "Daily";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Dashboard";
 
 /* No comment provided by engineer. */
 "Delete" = "Delete";
@@ -155,10 +227,22 @@
 "Developer Menu" = "Developer Menu";
 
 /* No comment provided by engineer. */
+"Discussion" = "Discussion";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Discussion Comment";
 
 /* No comment provided by engineer. */
+"Discussion Post" = "Discussion Post";
+
+/* No comment provided by engineer. */
+"Discussions" = "Discussions";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Dismiss";
+
+/* No comment provided by engineer. */
+"Do not send me anything" = "Do not send me anything";
 
 /* No comment provided by engineer. */
 "Domain" = "Domain";
@@ -167,7 +251,16 @@
 "Done" = "Done";
 
 /* No comment provided by engineer. */
+"Due Date" = "Due Date";
+
+/* Description for email communication channel */
+"Email Notifications" = "Email Notifications";
+
+/* No comment provided by engineer. */
 "Emergency" = "Emergency";
+
+/* No comment provided by engineer. */
+"Enable Push Notifications" = "Enable Push Notifications";
 
 /* No comment provided by engineer. */
 "End Act as User" = "End Act as User";
@@ -203,6 +296,12 @@
 "Files" = "Files";
 
 /* No comment provided by engineer. */
+"Filter" = "Filter";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Filter by:";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Final Grade: %@";
 
 /* No comment provided by engineer. */
@@ -224,10 +323,19 @@
 "g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
+"Grading" = "Grading";
+
+/* No comment provided by engineer. */
+"Grading Policies" = "Grading Policies";
+
+/* No comment provided by engineer. */
 "green" = "green";
 
 /* No comment provided by engineer. */
 "grey" = "grey";
+
+/* No comment provided by engineer. */
+"Groups" = "Groups";
 
 /* No comment provided by engineer. */
 "Help" = "Help";
@@ -245,13 +353,22 @@
 "Image" = "Image";
 
 /* No comment provided by engineer. */
+"Immediately" = "Immediately";
+
+/* No comment provided by engineer. */
 "Impact" = "Impact";
 
 /* No comment provided by engineer. */
 "Impact Level" = "Impact Level";
 
 /* No comment provided by engineer. */
+"Inbox" = "Inbox";
+
+/* No comment provided by engineer. */
 "Incomplete" = "Incomplete";
+
+/* No comment provided by engineer. */
+"Invitation" = "Invitation";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store.";
@@ -260,13 +377,22 @@
 "Italic" = "Italic";
 
 /* No comment provided by engineer. */
+"Landing Page" = "Landing Page";
+
+/* No comment provided by engineer. */
 "Late" = "Late";
+
+/* No comment provided by engineer. */
+"Late Grading" = "Late Grading";
 
 /* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Launch External Tool";
+
+/* No comment provided by engineer. */
+"Legal" = "Legal";
 
 /* No comment provided by engineer. */
 "Library" = "Library";
@@ -320,10 +446,16 @@
 "Media Recording" = "Media Recording";
 
 /* No comment provided by engineer. */
+"Membership Update" = "Membership Update";
+
+/* No comment provided by engineer. */
 "Missing" = "Missing";
 
 /* No comment provided by engineer. */
 "N/A" = "N/A";
+
+/* No comment provided by engineer. */
+"Never" = "Never";
 
 /* No comment provided by engineer. */
 "No Content" = "No Content";
@@ -348,6 +480,15 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Not Urgent";
+
+/* No comment provided by engineer. */
+"Notifications" = "Notifications";
+
+/* No comment provided by engineer. */
+"Notifications are currently disabled in Settings. Tap to enable them again." = "Notifications are currently disabled in Settings. Tap to enable them again.";
+
+/* No comment provided by engineer. */
+"Notify me right away" = "Notify me right away";
 
 /* No comment provided by engineer. */
 "Observer" = "Observer";
@@ -383,10 +524,19 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Preferences" = "Preferences";
+
+/* No comment provided by engineer. */
 "Previous Logins" = "Previous Logins";
 
 /* No comment provided by engineer. */
+"Privacy Policy" = "Privacy Policy";
+
+/* No comment provided by engineer. */
 "purple" = "purple";
+
+/* Description for Push Notification channel */
+"Push Notifications" = "Push Notifications";
 
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";
@@ -422,6 +572,9 @@
 "Retry" = "Retry";
 
 /* No comment provided by engineer. */
+"Scheduling" = "Scheduling";
+
+/* No comment provided by engineer. */
 "See attached files." = "See attached files.";
 
 /* No comment provided by engineer. */
@@ -446,6 +599,12 @@
 "Send comment" = "Send comment";
 
 /* No comment provided by engineer. */
+"Send daily summary" = "Send daily summary";
+
+/* No comment provided by engineer. */
+"Send weekly summary" = "Send weekly summary";
+
+/* No comment provided by engineer. */
 "Set text color" = "Set text colour";
 
 /* No comment provided by engineer. */
@@ -456,6 +615,12 @@
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Site Admin Login";
+
+/* Description for Slack communication channel */
+"Slack Notifications" = "Slack Notifications";
+
+/* Description for SMS communication channel */
+"SMS Notifications" = "SMS Notifications";
 
 /* No comment provided by engineer. */
 "Something is broken but I can work around it" = "Something is broken but I can work around it.";
@@ -482,10 +647,16 @@
 "Student" = "Student";
 
 /* No comment provided by engineer. */
+"Student Appointment Signups" = "Student Appointment Signups";
+
+/* No comment provided by engineer. */
 "Style" = "Style";
 
 /* No comment provided by engineer. */
 "Subject" = "Subject";
+
+/* No comment provided by engineer. */
+"Submission Comment" = "Submission Comment";
 
 /* No comment provided by engineer. */
 "Submit" = "Submit";
@@ -498,6 +669,9 @@
 
 /* Submitted date */
 "Submitted %@" = "Submitted %@";
+
+/* No comment provided by engineer. */
+"Subscribe to Calendar Feed" = "Subscribe to Calendar Feed";
 
 /* No comment provided by engineer. */
 "Success!" = "Success!";
@@ -557,7 +731,16 @@
 "Time elapsed" = "Time elapsed";
 
 /* No comment provided by engineer. */
+"To Do" = "To Do";
+
+/* No comment provided by engineer. */
+"Total Grade" = "Total Mark";
+
+/* No comment provided by engineer. */
 "Total time" = "Total time";
+
+/* Description for Twitter communication channel */
+"Twitter Notifications" = "Twitter Notifications";
 
 /* No comment provided by engineer. */
 "Undo" = "Undo";
@@ -593,6 +776,9 @@
 "Website URL" = "Website URL";
 
 /* No comment provided by engineer. */
+"Weekly" = "Weekly";
+
+/* No comment provided by engineer. */
 "What’s your school’s name?" = "What’s your school’s name?";
 
 /* No comment provided by engineer. */
@@ -606,6 +792,9 @@
 
 /* No comment provided by engineer. */
 "yellow" = "yellow";
+
+/* Description for Yo communication channel */
+"Yo Notifications" = "Yo Notifications";
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "You must enable Microphone permissions in Settings.";
