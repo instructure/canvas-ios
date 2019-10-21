@@ -31,17 +31,19 @@ class SubmissionCommentsTests: StudentUITestCase {
 
     func testFileComments() {
         mockBaseRequests()
+        let attachments = [
+            APIFile.make(id: "1", display_name: "File 1"),
+            APIFile.make(id: "2", display_name: "File 2"),
+        ]
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             id: "1",
             user_id: "1",
             submission_type: .online_upload,
             attempt: 1,
-            attachments: [
-                APIFile.make(id: "1", display_name: "File 1"),
-                APIFile.make(id: "2", display_name: "File 2"),
-            ],
+            attachments: attachments,
             user: APISubmissionUser.make(id: "1", short_name: "Student")
         ))
+        attachments.forEach { mockDownload($0.url, data: nil) }
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
         SubmissionDetails.drawerGripper.tap()

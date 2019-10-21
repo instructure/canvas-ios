@@ -155,10 +155,11 @@ public class MockDistantURLSession: URLSession {
         return dataTask(with: url, completionHandler: { _, _, _ in })
     }
     @objc public dynamic override func dataTask(with url: URL, completionHandler: @escaping DataHandler) -> URLSessionDataTask {
-        if url.scheme == "file" {
+        if url.scheme?.hasPrefix("http") != false {
+            return MockDataTask(url: url, session: self, completionHandler: completionHandler)
+        } else {
             return URLSession.shared.dataTask(with: url, completionHandler: completionHandler)
         }
-        return MockDataTask(url: url, session: self, completionHandler: completionHandler)
     }
 
     // MARK: download
