@@ -54,11 +54,12 @@ public class LTITools {
             let value = query.first(where: { $0.name == "url" })?.value,
             let url = URL(string: value)
         else { return nil }
-        self.init(env: env, url: url)
+        let context = LTITools.context(forRetrieveURL: retrieve) ?? ContextModel(.account, id: "self")
+        self.init(env: env, context: context, url: url)
     }
 
     public func presentToolInSFSafariViewController(from: UIViewController, animated: Bool, completionHandler: ((Bool) -> Void)? = nil) {
-        getSessionlessLaunchURL { (url) in
+        getSessionlessLaunchURL { url in
             guard let url = url else {
                 completionHandler?(false)
                 return
@@ -76,5 +77,16 @@ public class LTITools {
         env.api.makeRequest(request) { response, _, _ in
             DispatchQueue.main.async { completionBlock(response?.url) }
         }
+    }
+
+    private static func context(forRetrieveURL url: URL) -> Context? {
+        let route = Route("/:context/:contextID/external_tools/retrieve")
+        if let match = RouteHandler(route, factory: { _, _ in nil }).match(.parse(url)),
+            let contextTypeRaw = match["context"],
+            let contextType = ContextType(pathComponent: contextTypeRaw),
+            let contextID = match["contextID"] {
+            return ContextModel(contextType, id: contextID)
+        }
+        return nil
     }
 }

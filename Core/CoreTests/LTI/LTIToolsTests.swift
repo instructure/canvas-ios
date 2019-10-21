@@ -37,6 +37,20 @@ class LTIToolsTests: CoreTestCase {
         XCTAssertEqual(LTITools(link: URL(string: "/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL))?.url, URL(string: "/"))
     }
 
+    func testInitLinkContext() {
+        let defaultContext = LTITools(link: URL(string: "/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL))
+        XCTAssertEqual(defaultContext?.context.contextType, .account)
+        XCTAssertEqual(defaultContext?.context.id, "self")
+
+        let course = LTITools(link: URL(string: "/courses/1/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL))
+        XCTAssertEqual(course?.context.contextType, .course)
+        XCTAssertEqual(course?.context.id, "1")
+
+        let account = LTITools(link: URL(string: "/accounts/2/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL))
+        XCTAssertEqual(account?.context.contextType, .account)
+        XCTAssertEqual(account?.context.id, "2")
+    }
+
     func testGetSessionlessLaunchURL() {
         let tools = LTITools(
             env: environment,
