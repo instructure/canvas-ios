@@ -33,7 +33,10 @@ export let CoursesActions = (api: CanvasApi): * => ({
   })),
   refreshCourse: createAction('course.refresh', (courseID: string) => {
     return {
-      promise: api.getCourse(courseID),
+      promise: Promise.all([
+        api.getCourse(courseID),
+        api.getCustomColors(),
+      ]),
       courseID,
     }
   }),

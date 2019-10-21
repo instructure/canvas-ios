@@ -448,13 +448,13 @@ open class HelmManager: NSObject {
 
 extension HelmManager {
     @objc func navigationControllerForSplitViewControllerPush(splitViewController: HelmSplitViewController?, sourceModule: ModuleName, destinationModule: ModuleName, props: [String: Any], options: [String: Any]) -> UINavigationController? {
-
-        if (splitViewController?.detailTopViewController as? HelmModule)?.moduleName == sourceModule {
+        let canBecomeMaster = options["canBecomeMaster"] as? Bool == true
+        if canBecomeMaster, let masterNav = splitViewController?.masterHelmNavigationController {
+            return masterNav
+        } else if (splitViewController?.detailTopViewController as? HelmModule)?.moduleName == sourceModule {
             return splitViewController?.detailHelmNavigationController ?? splitViewController?.detailNavigationController
         } else {
-            let canBecomeMaster = options["canBecomeMaster"] as? Bool ?? false
-
-            if canBecomeMaster || (splitViewController?.traitCollection.horizontalSizeClass ?? .compact) == .compact {
+            if (splitViewController?.traitCollection.horizontalSizeClass ?? .compact) == .compact {
                 return splitViewController?.masterHelmNavigationController as? HelmNavigationController
             }
 

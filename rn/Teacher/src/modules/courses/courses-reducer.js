@@ -99,7 +99,10 @@ export const normalizeCourse = (course: Course, colors: { [courseId: string]: st
   const color = colors[id] || '#aaa'
   return {
     ...prevState,
-    course,
+    course: {
+      ...prevState.course,
+      ...course,
+    },
     color,
     pending: 0,
   }
@@ -332,16 +335,14 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
     },
   }),
   [refreshCourse.toString()]: handleAsync({
-    resolved: (state, { result, courseID }) => {
+    resolved: (state, { result: [courseResponse, colorsResponse], courseID }) => {
+      let colors = groupCustomColors(colorsResponse.data).custom_colors.course
+      let course = normalizeCourse(courseResponse.data, colors, state[courseID])
       return {
         ...state,
         [courseID]: {
-          ...state[courseID],
-          course: {
-            ...(state[courseID] && state[courseID].course || {}),
-            ...result.data,
-          },
-          permissions: { ...(state[courseID] && state[courseID].permissions || {}), ...result.data.permissions },
+          ...course,
+          permissions: { ...(state[courseID] && state[courseID].permissions || {}), ...courseResponse.data.permissions },
         },
       }
     },
