@@ -99,7 +99,10 @@ export const normalizeCourse = (course: Course, colors: { [courseId: string]: st
   const color = colors[id] || '#aaa'
   return {
     ...prevState,
-    course,
+    course: {
+      ...prevState.course,
+      ...course,
+    },
     color,
     pending: 0,
   }

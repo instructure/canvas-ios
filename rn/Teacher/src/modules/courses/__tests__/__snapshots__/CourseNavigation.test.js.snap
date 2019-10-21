@@ -41,10 +41,12 @@ exports[`CourseNavigation refreshes courses and tabs 1`] = `
     }
   }
   refresh={[Function]}
-  refreshCourses={
+  refreshCourse={
     [MockFunction] {
       "calls": Array [
-        Array [],
+        Array [
+          "1",
+        ],
       ],
       "results": Array [
         Object {
@@ -165,10 +167,12 @@ exports[`CourseNavigation refreshes when props change 1`] = `
     }
   }
   refresh={[Function]}
-  refreshCourses={
+  refreshCourse={
     [MockFunction] {
       "calls": Array [
-        Array [],
+        Array [
+          "1",
+        ],
       ],
       "results": Array [
         Object {

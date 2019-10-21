@@ -34,9 +34,9 @@ export let CoursesActions = (api: CanvasApi): * => ({
   refreshCourse: createAction('course.refresh', (courseID: string) => {
     return {
       promise: Promise.all([
-         api.getCourse(courseID),
-         api.getCustomColors(),
-       ]),
+        api.getCourse(courseID),
+        api.getCustomColors(),
+      ]),
       courseID,
     }
   }),
