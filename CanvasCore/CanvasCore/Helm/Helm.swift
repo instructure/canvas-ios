@@ -136,6 +136,7 @@ open class HelmManager: NSObject {
         let pushOntoNav: (UINavigationController) -> Void
         let replaceInNav: (UINavigationController) -> Void
         let pushToReplace = options["replace"] as? Bool ?? false
+        let detail = options["detail"] as? Bool == true
 
         // The views need to know when they are shown modaly and potentially other options
         // Doing it here instead of in JS so that native routing will also work
@@ -241,7 +242,7 @@ open class HelmManager: NSObject {
                 // because there is no other view controller to navigate back to. pushOnToNav will be called if
                 // a VC can be master or this navigation event was initiated from a non-empty detail view. A Back
                 // button will be shown after pushOnToNav is called...as long as the nav.viewControllers.count > 1.
-                let resetDetailNavStack = sideBySideViews && !canBecomeMaster && (clickedFromMaster || onlyDetailVCWasEmptyVC)
+                let resetDetailNavStack = sideBySideViews && !canBecomeMaster && (clickedFromMaster || onlyDetailVCWasEmptyVC || detail)
                 if (resetDetailNavStack) {
                     replaceInNav(nav)
                     callback?()
