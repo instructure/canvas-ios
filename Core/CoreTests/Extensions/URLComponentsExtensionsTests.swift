@@ -64,5 +64,8 @@ class URLComponentsExtensionsTests: XCTestCase {
         XCTAssertTrue(url.originIsNotification)
 
         XCTAssertEqual(url.url?.absoluteString, "https://foobar.com/courses/165/assignments/900/submissions/1?origin=notification")
+
+        url.originIsNotification = false
+        XCTAssertEqual(url.url?.absoluteString, "https://foobar.com/courses/165/assignments/900/submissions/1?")
     }
 }
