@@ -115,6 +115,6 @@ class ModuleListPresenter {
 
     func showItem(_ item: Core.ModuleItem, from viewController: UIViewController) {
         guard let url = item.url else { return }
-        env.router.route(to: url, from: viewController, options: nil)
+        env.router.route(to: url, from: viewController, options: [.detail])
     }
 }

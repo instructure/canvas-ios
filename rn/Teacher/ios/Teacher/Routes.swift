@@ -31,6 +31,7 @@ class Router: RouterProtocol {
         let userInfo: [AnyHashable: Any] = [
             "url": url.absoluteString,
             "modal": options?.contains(.modal) == true,
+            "detail": options?.contains(.detail) == true,
         ]
         NotificationCenter.default.post(name: name, object: nil, userInfo: userInfo)
     }

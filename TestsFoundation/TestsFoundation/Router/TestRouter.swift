@@ -56,6 +56,10 @@ public class TestRouter: RouterProtocol {
         return lastRoutedTo(route.url)
     }
 
+    public func lastRoutedTo(_ route: Route, withOptions options: RouteOptions?) -> Bool {
+        return lastRoutedTo(route) && calls.last?.2 == options
+    }
+
     public func lastRoutedTo(_ url: URL) -> Bool {
         return calls.last?.0 == URLComponents.parse(url)
     }

@@ -59,7 +59,17 @@ describe('Navigator', () => {
       'push',
       '/courses/:courseID',
       { courseID: '1', screenInstanceID: expect.any(String), location: expect.any(Object) },
-      { canBecomeMaster: true, deepLink: true }
+      { canBecomeMaster: true, deepLink: true, detail: false }
+    )
+  })
+
+  it('passes detail option from show to push', () => {
+    new Navigator('detail').show('/courses/1', { detail: true })
+    expect(NativeModules.Helm.pushFrom).toHaveBeenCalledWith(
+      'detail',
+      '/courses/:courseID',
+      expect.any(Object),
+      { canBecomeMaster: true, deepLink: true, detail: true },
     )
   })
 
