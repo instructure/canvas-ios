@@ -55,4 +55,14 @@ class URLComponentsExtensionsTests: XCTestCase {
         XCTAssertEqual(url.fragment, nil)
         XCTAssertEqual(URLComponents.parse("").path, "")
     }
+
+    func testOriginIsNotification() {
+        var url = URLComponents.parse("https://foobar.com/courses/165/assignments/900/submissions/1")
+        XCTAssertFalse(url.originIsNotification)
+
+        url.originIsNotification = true
+        XCTAssertTrue(url.originIsNotification)
+
+        XCTAssertEqual(url.url?.absoluteString, "https://foobar.com/courses/165/assignments/900/submissions/1?origin=notification")
+    }
 }

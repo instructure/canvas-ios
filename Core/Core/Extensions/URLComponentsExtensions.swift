@@ -56,4 +56,25 @@ public extension URLComponents {
 
         return cleaned
     }
+
+    var originIsNotification: Bool {
+        get {
+            if let origin = queryItems?.first(where: { $0.name == "origin" })?.value, origin == "notification" {
+                return true
+            }
+            return false
+        }
+        set {
+            var qitems = queryItems ?? []
+            if newValue {
+                qitems.append( URLQueryItem(name: "origin", value: "notification") )
+                queryItems = qitems
+            } else {
+                if var items = queryItems {
+                    items.removeAll(where: { $0.name == "origin" && $0.value == "notification" })
+                    queryItems = items
+                }
+            }
+        }
+    }
 }

@@ -343,7 +343,9 @@ extension AppDelegate {
                     finish()
                 }
             } else if let from = self.topViewController {
-                AppEnvironment.shared.router.route(to: url, from: from, options: [.modal, .embedInNav, .addDoneButton])
+                var comps = URLComponents(url: url, resolvingAgainstBaseURL: true)
+                comps?.originIsNotification = true
+                AppEnvironment.shared.router.route(to: comps?.url ?? url, from: from, options: [.modal, .embedInNav, .addDoneButton])
             }
         }
         return true
