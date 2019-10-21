@@ -52,13 +52,34 @@ function setEnv {
 }
 
 try=0
-failures=()
+all_passing_tests=()
+tests_passed_this_run=()
+tests_failed_this_run=()
 total_failures=0
 results_directory=nightly-xcresults
 rm -rf $results_directory
 mkdir -p $results_directory
 
-# usage: doTest testrun.xctestrun [options ...]
+function getTestResults {
+    local result_path=$results_directory/$try.xcresult
+    local test_result_id=($(xcrun xcresulttool get --format json --path $result_path |
+                                 jq -r '.actions._values[].actionResult.testsRef.id._value'))
+    local all_results_path=$results_directory/$try.json
+    xcrun xcresulttool get --format json --path $result_path --id $test_result_id |
+        jq '[.summaries._values[].testableSummaries._values[] |
+                 .name._value as $bundleName |
+                 .tests._values[] |
+                 recurse(.subtests?._values[]?) |
+                 select(._type._name == "ActionTestMetadata") |
+                 ($bundleName + "/" + .identifier._value | rtrimstr("()")) as $testId |
+                 {"status": .testStatus._value, "id": $testId}]' \
+                     > $all_results_path
+    tests_passed_this_run=($(jq -r '.[] | select(.status == "Success").id' $all_results_path))
+    tests_failed_this_run=($(jq -r '.[] | select(.status == "Failure").id' $all_results_path))
+    all_passing_tests+=($tests_passed_this_run)
+}
+
+# usage: doTest testrun.xctestrun
 function doTest {
     local testrun=$1
     shift
@@ -72,30 +93,22 @@ function doTest {
     flags+=(-resultBundlePath $result_path)
     flags+=(-xctestrun $testrun)
     # flags+=(-only-testing StudentUITests)
-    if (( $try < 0 )); then
-        flags+=(-parallel-testing-enabled YES -parallel-testing-worker-count 4)
+    if (( $try < 1 )); then
+        flags+=(-parallel-testing-enabled YES -parallel-testing-worker-count 3)
         formatter=(xcbeautify)
     fi
-    NSUnbufferedIO=YES xcodebuild test-without-building $flags $@ 2>&1 | $formatter ||
+    for skip in $all_passing_tests; do
+        flags+=(-skip-testing:$skip)
+    done
+    NSUnbufferedIO=YES xcodebuild test-without-building $flags 2>&1 | $formatter ||
         ret=$?
 
-    if [[ $ret -eq 0 ]]; then
-        failures=()
-    else
-        failures=($(getFailures))
-    fi
-    banner "${#failures} tests failed"
-    print ${(F)failures}
-    (( total_failures += ${#failures} ))
+    getTestResults
+    banner "${#tests_passed_this_run} tests passed"
+    banner "${#tests_failed_this_run} tests failed"
+    print ${(F)tests_failed_this_run}
+    (( total_failures += ${#tests_failed_this_run} ))
     return $ret
-}
-
-function getFailures {
-    local result_path=$results_directory/$try.xcresult
-    xcrun xcresulttool get --format json --path $result_path |
-          jq -r '.issues.testFailureSummaries?._values[]? |
-                 .producingTarget._value + "." + .testCaseName._value' |
-          tr '.' '/' | tr -d '()'
 }
 
 function retry {
@@ -106,7 +119,7 @@ function retry {
 
     cp $base_xctestrun $retry_run
     setEnv $retry_run CANVAS_TEST_IS_RETRY YES
-    doTest $retry_run ${${:--only-testing}:^^failures}
+    doTest $retry_run
 }
 
 ret=0
@@ -124,9 +137,9 @@ if [[ $ret -eq 0 ]]; then
         banner "All tests passed after $try retries! ($total_failures flaky failures)"
     fi
 else
-    banner "${#failures} Tests still failing after $try retries"
+    banner "${#tests_failed_this_run} Tests still failing after $try retries"
     echo "failing tests:"
-    print ${(F)failures}
+    print ${(F)tests_failed_this_run}
 fi
 
 results=($results_directory/*.xcresult)
