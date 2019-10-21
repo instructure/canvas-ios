@@ -27,7 +27,7 @@ class ActAsUserTests: CoreUITestCase {
         Profile.open()
         XCTAssertEqual(Profile.userNameLabel.label(), "Admin One")
         Profile.actAsUserButton.tap()
-        ActAsUser.userIDField.typeText("613")
+        ActAsUser.userIDField.typeText("613").swipeUp()
         XCTAssertEqual(ActAsUser.domainField.value(), "https://\(user!.host)")
         ActAsUser.actAsUserButton.tap()
 
