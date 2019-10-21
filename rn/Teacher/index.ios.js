@@ -180,7 +180,7 @@ notificationCenter.addListener('route', (notification) => {
     const navigator = new Navigator('')
     navigator.show(userInfo.url, {
       modal: userInfo.modal === true,
-      detail: userInfo.detail == true,
+      detail: userInfo.detail === true,
     })
   }
 })
