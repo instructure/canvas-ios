@@ -22,9 +22,9 @@ import TestsFoundation
 
 class AssignmentPostPolicyTests: TeacherUITestCase {
     func testPostPolicySettings() {
-        let courseID = "263"
-        let assignmentID = "5431"
-        let sectionID = "U2VjdGlvbi0yMjE="
+        let courseID = "1277"
+        let assignmentID = "9298"
+        let sectionID = "U2VjdGlvbi05MjU="
 
         show("/courses/\(courseID)/assignments/\(assignmentID)/submissions")
 

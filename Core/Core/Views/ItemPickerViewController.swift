@@ -32,11 +32,13 @@ public struct ItemPickerItem {
     let image: UIImage?
     let title: String
     let subtitle: String?
+    let accessibilityIdentifier: String?
 
-    public init(image: UIImage? = nil, title: String, subtitle: String? = nil) {
+    public init(image: UIImage? = nil, title: String, subtitle: String? = nil, accessibilityIdentifier: String? = nil) {
         self.image = image
         self.title = title
         self.subtitle = subtitle
+        self.accessibilityIdentifier = accessibilityIdentifier
     }
 }
 
@@ -103,7 +105,11 @@ extension ItemPickerViewController: UITableViewDataSource, UITableViewDelegate {
         cell.imageView?.image = item.image
         cell.textLabel?.text = item.title
         cell.accessibilityTraits.insert(.button)
-        cell.accessibilityIdentifier = "ItemPickerItem.\(indexPath.section)-\(indexPath.row)"
+        if let accessibilityIdentifier = item.accessibilityIdentifier {
+            cell.accessibilityIdentifier = accessibilityIdentifier
+        } else {
+            cell.accessibilityIdentifier = "ItemPickerItem.\(indexPath.section)-\(indexPath.row)"
+        }
         if indexPath == selected {
             let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 18, height: 18))
             image.image = .icon(.check, .solid)
