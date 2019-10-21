@@ -36,14 +36,11 @@ class LoginStartTests: StudentUITestCase {
     }
 
     func testCanvasNetwork() {
+        mockData(GetMobileVerifyRequest(domain: "learn.canvas.net"), value: APIVerifyClient(authorized: true, base_url: nil, client_id: nil, client_secret: "secret"))
+
         XCTAssertTrue(LoginStart.canvasNetworkButton.isEnabled)
         LoginStart.canvasNetworkButton.tap()
 
         LoginWeb.webView.waitToExist()
-    }
-
-    // HACK: relaunch to avoid a double-view bug
-    func testZzz() {
-        launch()
     }
 }
