@@ -26,6 +26,33 @@
 "Act as User" = "Agera som användare";
 
 /* No comment provided by engineer. */
+"Added To Conversation" = "Tillagd i konversationen";
+
+/* No comment provided by engineer. */
+"Administrative Notifications" = "Administrativa aviseringar";
+
+/* No comment provided by engineer. */
+"Alerts" = "Larm";
+
+/* No comment provided by engineer. */
+"All Submissions" = "Alla inlämningar";
+
+/* No comment provided by engineer. */
+"Announcement" = "Meddelande";
+
+/* No comment provided by engineer. */
+"Announcement Created By You" = "Meddelanden skapade av dig";
+
+/* No comment provided by engineer. */
+"Appointment Availability" = "Tillgängliga tider";
+
+/* No comment provided by engineer. */
+"Appointment Cancellations" = "Inställda bokade möten";
+
+/* No comment provided by engineer. */
+"Appointment Signups" = "Mötesbokningar";
+
+/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Är du säker på att du vill radera denna kommentar?";
 
 /* No comment provided by engineer. */
@@ -53,6 +80,9 @@
 "Bold" = "Fet";
 
 /* No comment provided by engineer. */
+"Calendar" = "Kalender";
+
+/* No comment provided by engineer. */
 "Camera" = "Kamera";
 
 /* No comment provided by engineer. */
@@ -69,6 +99,9 @@
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Canvas on GitHub" = "Canvas på GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Förälder";
@@ -88,6 +121,9 @@
 /* No comment provided by engineer. */
 "Change User" = "Byt användare";
 
+/* Description for Chat communication channel */
+"Chat Notifications" = "Chattaviseringar";
+
 /* No comment provided by engineer. */
 "Check network and try again!" = "Kontrollera nätverket och försök igen!";
 
@@ -96,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Välj profilbild";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Rensa filter";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Rensa inspelning";
@@ -125,13 +164,46 @@
 "Complete" = "Fullgjord";
 
 /* No comment provided by engineer. */
+"Conferences" = "Konferenser";
+
+/* No comment provided by engineer. */
+"Content Link Error" = "Felaktig innehållslänk";
+
+/* No comment provided by engineer. */
+"Conversation Created By Me" = "Konversation skapad av mig";
+
+/* No comment provided by engineer. */
+"Conversation Message" = "Konversationsmeddelande";
+
+/* No comment provided by engineer. */
+"Conversations" = "Konversationer";
+
+/* No comment provided by engineer. */
+"Could not save notification preference" = "Det gick inte att spara aviseringsinställning";
+
+/* No comment provided by engineer. */
 "Course" = "Kurs";
+
+/* No comment provided by engineer. */
+"Course Activities" = "Kursaktiviteter";
+
+/* No comment provided by engineer. */
+"Course Content" = "Kursinnehåll";
+
+/* No comment provided by engineer. */
+"Courses" = "Kurser";
 
 /* No comment provided by engineer. */
 "Current position" = "Aktuell position";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Daily" = "Daglig";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Översikt";
 
 /* No comment provided by engineer. */
 "Delete" = "Ta bort";
@@ -155,10 +227,22 @@
 "Developer Menu" = "Utvecklarmeny";
 
 /* No comment provided by engineer. */
+"Discussion" = "Diskussion";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Diskussionskommentar";
 
 /* No comment provided by engineer. */
+"Discussion Post" = "Diskussionsinlägg";
+
+/* No comment provided by engineer. */
+"Discussions" = "Discussions";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Avvisa";
+
+/* No comment provided by engineer. */
+"Do not send me anything" = "Skicka mig ingenting";
 
 /* No comment provided by engineer. */
 "Domain" = "Domän";
@@ -167,7 +251,16 @@
 "Done" = "Färdig";
 
 /* No comment provided by engineer. */
+"Due Date" = "Inlämningsdatum";
+
+/* Description for email communication channel */
+"Email Notifications" = "E-postaviseringar";
+
+/* No comment provided by engineer. */
 "Emergency" = "Nödläge";
+
+/* No comment provided by engineer. */
+"Enable Push Notifications" = "Aktivera pushmeddelanden";
 
 /* No comment provided by engineer. */
 "End Act as User" = "Sluta uppträd som användare";
@@ -203,6 +296,12 @@
 "Files" = "Filer";
 
 /* No comment provided by engineer. */
+"Filter" = "Filtrera";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Filtrerat efter:";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Slutlig bedömning: %@";
 
 /* No comment provided by engineer. */
@@ -224,10 +323,19 @@
 "g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
+"Grading" = "Bedömningsschema";
+
+/* No comment provided by engineer. */
+"Grading Policies" = "Bedömningspolicyer";
+
+/* No comment provided by engineer. */
 "green" = "grön";
 
 /* No comment provided by engineer. */
 "grey" = "grå";
+
+/* No comment provided by engineer. */
+"Groups" = "Grupper";
 
 /* No comment provided by engineer. */
 "Help" = "Hjälp";
@@ -245,13 +353,22 @@
 "Image" = "Bild";
 
 /* No comment provided by engineer. */
+"Immediately" = "Omedelbart";
+
+/* No comment provided by engineer. */
 "Impact" = "Påverkan";
 
 /* No comment provided by engineer. */
 "Impact Level" = "Inverkansnivå";
 
 /* No comment provided by engineer. */
+"Inbox" = "Inkorg";
+
+/* No comment provided by engineer. */
 "Incomplete" = "Ej fullständig";
+
+/* No comment provided by engineer. */
+"Invitation" = "Inbjudan";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Du tycks inte vara inskriven i några kurser som %@. En av dina andra appar kan passa bättre. Knacka på en för att gå till App Store.";
@@ -260,13 +377,22 @@
 "Italic" = "Kursiv";
 
 /* No comment provided by engineer. */
+"Landing Page" = "Landningssida";
+
+/* No comment provided by engineer. */
 "Late" = "Sen";
+
+/* No comment provided by engineer. */
+"Late Grading" = "Försenad bedömning";
 
 /* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Starta externt verktyg";
+
+/* No comment provided by engineer. */
+"Legal" = "Juridik";
 
 /* No comment provided by engineer. */
 "Library" = "Bibliotek";
@@ -320,10 +446,16 @@
 "Media Recording" = "Mediainspelning";
 
 /* No comment provided by engineer. */
+"Membership Update" = "Uppdatering av medlemskap";
+
+/* No comment provided by engineer. */
 "Missing" = "Saknas";
 
 /* No comment provided by engineer. */
 "N/A" = "Ej tillgängligt";
+
+/* No comment provided by engineer. */
+"Never" = "Aldrig";
 
 /* No comment provided by engineer. */
 "No Content" = "Inget innehåll";
@@ -348,6 +480,15 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Ej brådskande";
+
+/* No comment provided by engineer. */
+"Notifications" = "Meddelanden";
+
+/* No comment provided by engineer. */
+"Notifications are currently disabled in Settings. Tap to enable them again." = "Aviseringar är för närvarande inaktiverade i Inställningar. Tryck för att aktivera dem igen.";
+
+/* No comment provided by engineer. */
+"Notify me right away" = "Meddela mig genast";
 
 /* No comment provided by engineer. */
 "Observer" = "Observatör";
@@ -383,10 +524,19 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Preferences" = "Inställningar";
+
+/* No comment provided by engineer. */
 "Previous Logins" = "Tidigare inloggningar";
 
 /* No comment provided by engineer. */
+"Privacy Policy" = "Sekretesspolicy";
+
+/* No comment provided by engineer. */
 "purple" = "lila";
+
+/* Description for Push Notification channel */
+"Push Notifications" = "Pushmeddelanden";
 
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";
@@ -422,6 +572,9 @@
 "Retry" = "Försök igen";
 
 /* No comment provided by engineer. */
+"Scheduling" = "Schemaläggning";
+
+/* No comment provided by engineer. */
 "See attached files." = "Se bifogade filer.";
 
 /* No comment provided by engineer. */
@@ -446,6 +599,12 @@
 "Send comment" = "Skicka kommentar";
 
 /* No comment provided by engineer. */
+"Send daily summary" = "Skicka daglig sammanfattning";
+
+/* No comment provided by engineer. */
+"Send weekly summary" = "Skicka veckovis sammanfattning";
+
+/* No comment provided by engineer. */
 "Set text color" = "Ange textfärg";
 
 /* No comment provided by engineer. */
@@ -456,6 +615,12 @@
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Sidoadministratörs inloggning";
+
+/* Description for Slack communication channel */
+"Slack Notifications" = "Slack-meddelanden";
+
+/* Description for SMS communication channel */
+"SMS Notifications" = "SMS-aviseringar";
 
 /* No comment provided by engineer. */
 "Something is broken but I can work around it" = "Något är trasigt och jag kan inte hitta en alternativ lösning";
@@ -482,10 +647,16 @@
 "Student" = "Elev";
 
 /* No comment provided by engineer. */
+"Student Appointment Signups" = "Elevers mötesregistreringar";
+
+/* No comment provided by engineer. */
 "Style" = "Stil";
 
 /* No comment provided by engineer. */
 "Subject" = "Ämne";
+
+/* No comment provided by engineer. */
+"Submission Comment" = "Inlämningskommentar";
 
 /* No comment provided by engineer. */
 "Submit" = "Lämna in";
@@ -498,6 +669,9 @@
 
 /* Submitted date */
 "Submitted %@" = "Inlämnad %@";
+
+/* No comment provided by engineer. */
+"Subscribe to Calendar Feed" = "Prenumerera på kalenderflöde";
 
 /* No comment provided by engineer. */
 "Success!" = "Lyckades!";
@@ -557,7 +731,16 @@
 "Time elapsed" = "Tidsåtgång";
 
 /* No comment provided by engineer. */
+"To Do" = "Att göra";
+
+/* No comment provided by engineer. */
+"Total Grade" = "Total bedömning";
+
+/* No comment provided by engineer. */
 "Total time" = "Total tid";
+
+/* Description for Twitter communication channel */
+"Twitter Notifications" = "Twitter-aviseringar";
 
 /* No comment provided by engineer. */
 "Undo" = "Ångra";
@@ -593,6 +776,9 @@
 "Website URL" = "Hemsida URL";
 
 /* No comment provided by engineer. */
+"Weekly" = "Veckovis";
+
+/* No comment provided by engineer. */
 "What’s your school’s name?" = "Vad heter din skola?";
 
 /* No comment provided by engineer. */
@@ -606,6 +792,9 @@
 
 /* No comment provided by engineer. */
 "yellow" = "gul";
+
+/* Description for Yo communication channel */
+"Yo Notifications" = "Yo-aviseringar";
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Du måste aktivera mikrofonbehörigheter i Inställningar.";

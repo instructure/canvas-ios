@@ -26,6 +26,33 @@
 "Act as User" = "Nastopajoči v vlogi uporabnika";
 
 /* No comment provided by engineer. */
+"Added To Conversation" = "Dodano pogovoru";
+
+/* No comment provided by engineer. */
+"Administrative Notifications" = "Skrbniška obvestila";
+
+/* No comment provided by engineer. */
+"Alerts" = "Opozorila";
+
+/* No comment provided by engineer. */
+"All Submissions" = "Vse oddaje";
+
+/* No comment provided by engineer. */
+"Announcement" = "Obvestilo";
+
+/* No comment provided by engineer. */
+"Announcement Created By You" = "Obvestila, ki ste jih ustvarili.";
+
+/* No comment provided by engineer. */
+"Appointment Availability" = "Razpoložljivost sestanka";
+
+/* No comment provided by engineer. */
+"Appointment Cancellations" = "Preklici sestankov";
+
+/* No comment provided by engineer. */
+"Appointment Signups" = "Prijave na sestanke";
+
+/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Ali ste prepričani, da želite odstraniti ta komentar?";
 
 /* No comment provided by engineer. */
@@ -53,6 +80,9 @@
 "Bold" = "Krepko";
 
 /* No comment provided by engineer. */
+"Calendar" = "Koledar";
+
+/* No comment provided by engineer. */
 "Camera" = "Fotoaparat";
 
 /* No comment provided by engineer. */
@@ -69,6 +99,9 @@
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Omrežje Canvas Network";
+
+/* No comment provided by engineer. */
+"Canvas on GitHub" = "Sistem Canvas na GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Aplikacija Canvas Parent";
@@ -88,6 +121,9 @@
 /* No comment provided by engineer. */
 "Change User" = "Spremeni uporabnika";
 
+/* Description for Chat communication channel */
+"Chat Notifications" = "Obvestila o klepetu";
+
 /* No comment provided by engineer. */
 "Check network and try again!" = "Preverite omrežje in poskusite znova.";
 
@@ -96,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Izberi sliko profila";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Počisti filter";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Počisti snemanje";
@@ -125,13 +164,46 @@
 "Complete" = "Zaključeno";
 
 /* No comment provided by engineer. */
+"Conferences" = "Konference";
+
+/* No comment provided by engineer. */
+"Content Link Error" = "Napaka povezave do vsebine";
+
+/* No comment provided by engineer. */
+"Conversation Created By Me" = "Pogovori, ki sem jih ustvaril(a) jaz";
+
+/* No comment provided by engineer. */
+"Conversation Message" = "Sporočilo o pogovoru";
+
+/* No comment provided by engineer. */
+"Conversations" = "Pogovori";
+
+/* No comment provided by engineer. */
+"Could not save notification preference" = "Nastavitev sporočil ni bilo mogoče shraniti";
+
+/* No comment provided by engineer. */
 "Course" = "Predmet";
+
+/* No comment provided by engineer. */
+"Course Activities" = "Aktivnosti pri predmetu";
+
+/* No comment provided by engineer. */
+"Course Content" = "Vsebina predmeta";
+
+/* No comment provided by engineer. */
+"Courses" = "Predmeti";
 
 /* No comment provided by engineer. */
 "Current position" = "Trenutni položaj";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Daily" = "Dnevno";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Preglednica";
 
 /* No comment provided by engineer. */
 "Delete" = "Odstrani";
@@ -155,10 +227,22 @@
 "Developer Menu" = "Meni razvijalca";
 
 /* No comment provided by engineer. */
+"Discussion" = "Razprava";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Komentar k razpravi";
 
 /* No comment provided by engineer. */
+"Discussion Post" = "Objava v razpravi";
+
+/* No comment provided by engineer. */
+"Discussions" = "Razprave";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Opusti";
+
+/* No comment provided by engineer. */
+"Do not send me anything" = "Ne pošiljaj mi ničesar.";
 
 /* No comment provided by engineer. */
 "Domain" = "Domena";
@@ -167,7 +251,16 @@
 "Done" = "Dokončano";
 
 /* No comment provided by engineer. */
+"Due Date" = "Rok";
+
+/* Description for email communication channel */
+"Email Notifications" = "E-poštno obveščanje";
+
+/* No comment provided by engineer. */
 "Emergency" = "Nujni primer";
+
+/* No comment provided by engineer. */
+"Enable Push Notifications" = "Omogoči poslana obvestila";
 
 /* No comment provided by engineer. */
 "End Act as User" = "Opustite vlogo uporabnika";
@@ -203,6 +296,12 @@
 "Files" = "Datoteke";
 
 /* No comment provided by engineer. */
+"Filter" = "Filter";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Filtriraj glede na:";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Končna ocena: %@";
 
 /* No comment provided by engineer. */
@@ -224,10 +323,19 @@
 "g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
+"Grading" = "Ocenjevanje";
+
+/* No comment provided by engineer. */
+"Grading Policies" = "Politike ocenjevanja";
+
+/* No comment provided by engineer. */
 "green" = "zelena";
 
 /* No comment provided by engineer. */
 "grey" = "siva";
+
+/* No comment provided by engineer. */
+"Groups" = "Skupine";
 
 /* No comment provided by engineer. */
 "Help" = "Pomoč";
@@ -245,13 +353,22 @@
 "Image" = "Slika";
 
 /* No comment provided by engineer. */
+"Immediately" = "Takoj";
+
+/* No comment provided by engineer. */
 "Impact" = "Vpliv";
 
 /* No comment provided by engineer. */
 "Impact Level" = "Raven vpliva";
 
 /* No comment provided by engineer. */
+"Inbox" = "Pošta";
+
+/* No comment provided by engineer. */
 "Incomplete" = "Nezaključeno";
+
+/* No comment provided by engineer. */
+"Invitation" = "Povabilo";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Videti je, da v noben predmet niste vpisani kot %@. Morda bo primernejša ena od naših drugih aplikacij. Tapnite za obisk trgovine App Store.";
@@ -260,13 +377,22 @@
 "Italic" = "Poševno";
 
 /* No comment provided by engineer. */
+"Landing Page" = "Ciljna stran";
+
+/* No comment provided by engineer. */
 "Late" = "Zamuda";
+
+/* No comment provided by engineer. */
+"Late Grading" = "Zamujen rok za ocenjevanje";
 
 /* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Zaženi zunanje orodje";
+
+/* No comment provided by engineer. */
+"Legal" = "Pravne informacije";
 
 /* No comment provided by engineer. */
 "Library" = "Knjižnica";
@@ -320,10 +446,16 @@
 "Media Recording" = "Medijski posnetek";
 
 /* No comment provided by engineer. */
+"Membership Update" = "Posodobitev članstva";
+
+/* No comment provided by engineer. */
 "Missing" = "Manjkajoče";
 
 /* No comment provided by engineer. */
 "N/A" = "Ni na voljo.";
+
+/* No comment provided by engineer. */
+"Never" = "Nikoli";
 
 /* No comment provided by engineer. */
 "No Content" = "Ni vsebine.";
@@ -348,6 +480,15 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Ni nujno";
+
+/* No comment provided by engineer. */
+"Notifications" = "Obvestila";
+
+/* No comment provided by engineer. */
+"Notifications are currently disabled in Settings. Tap to enable them again." = "Sporočila so trenutno onemogočena v nastavitvah. Tapnite, da jih znova omogočite.";
+
+/* No comment provided by engineer. */
+"Notify me right away" = "Takoj me obvesti.";
 
 /* No comment provided by engineer. */
 "Observer" = "Skriti bralec";
@@ -383,10 +524,19 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Preferences" = "Nastavitve";
+
+/* No comment provided by engineer. */
 "Previous Logins" = "Predhodne prijave";
 
 /* No comment provided by engineer. */
+"Privacy Policy" = "Pravilnik o zasebnosti";
+
+/* No comment provided by engineer. */
 "purple" = "škrlatna";
+
+/* Description for Push Notification channel */
+"Push Notifications" = "Poslana obvestila";
 
 /* No comment provided by engineer. */
 "Quiz" = "Kviz";
@@ -422,6 +572,9 @@
 "Retry" = "Ponovno poskusi";
 
 /* No comment provided by engineer. */
+"Scheduling" = "Razporejanje";
+
+/* No comment provided by engineer. */
 "See attached files." = "Glejte dodane datoteke.";
 
 /* No comment provided by engineer. */
@@ -446,6 +599,12 @@
 "Send comment" = "Pošlji komentar";
 
 /* No comment provided by engineer. */
+"Send daily summary" = "Pošlji dnevni povzetek";
+
+/* No comment provided by engineer. */
+"Send weekly summary" = "Pošlji tedenski povzetek";
+
+/* No comment provided by engineer. */
 "Set text color" = "Nastavi barvo besedila";
 
 /* No comment provided by engineer. */
@@ -456,6 +615,12 @@
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Prijava skrbnika mesta";
+
+/* Description for Slack communication channel */
+"Slack Notifications" = "Obvestila v platformi Slack";
+
+/* Description for SMS communication channel */
+"SMS Notifications" = "Obveščanje po SMS";
 
 /* No comment provided by engineer. */
 "Something is broken but I can work around it" = "Nekaj ne deluje, a znam to rešiti.";
@@ -482,10 +647,16 @@
 "Student" = "Študent";
 
 /* No comment provided by engineer. */
+"Student Appointment Signups" = "Prijave študentov na sestanke";
+
+/* No comment provided by engineer. */
 "Style" = "Slog";
 
 /* No comment provided by engineer. */
 "Subject" = "Kratek opis predmeta";
+
+/* No comment provided by engineer. */
+"Submission Comment" = "Komentar k oddaji";
 
 /* No comment provided by engineer. */
 "Submit" = "Pošlji";
@@ -498,6 +669,9 @@
 
 /* Submitted date */
 "Submitted %@" = "Poslano %@";
+
+/* No comment provided by engineer. */
+"Subscribe to Calendar Feed" = "Naročite se na vir koledarja";
 
 /* No comment provided by engineer. */
 "Success!" = "Uspešno!";
@@ -557,7 +731,16 @@
 "Time elapsed" = "Pretečeni čas";
 
 /* No comment provided by engineer. */
+"To Do" = "Seznam opravil";
+
+/* No comment provided by engineer. */
+"Total Grade" = "Skupna ocena";
+
+/* No comment provided by engineer. */
 "Total time" = "Skupni čas";
+
+/* Description for Twitter communication channel */
+"Twitter Notifications" = "Sporočila v platformi Twitter";
 
 /* No comment provided by engineer. */
 "Undo" = "Razveljavi";
@@ -593,6 +776,9 @@
 "Website URL" = "URL spletnega mesta";
 
 /* No comment provided by engineer. */
+"Weekly" = "Tedensko";
+
+/* No comment provided by engineer. */
 "What’s your school’s name?" = "Kakšno je ime vaše šole?";
 
 /* No comment provided by engineer. */
@@ -606,6 +792,9 @@
 
 /* No comment provided by engineer. */
 "yellow" = "rumena";
+
+/* Description for Yo communication channel */
+"Yo Notifications" = "Vaša sporočila.";
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Za snemanje zvoka morate v možnosti »Nastavitve« omogočiti dovoljenja mikrofona.";
