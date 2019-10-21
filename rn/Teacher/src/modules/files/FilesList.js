@@ -221,6 +221,7 @@ export class FilesList extends Component<Props, State> {
         canSelectFile,
         canEdit,
         canAdd,
+        onChange: this.update,
       })
     }
   }
@@ -249,6 +250,9 @@ export class FilesList extends Component<Props, State> {
   }
 
   handleDeleteFolder = () => {
+    if (this.props.onChange) {
+      this.props.onChange()
+    }
     this.props.navigator.pop()
   }
 
