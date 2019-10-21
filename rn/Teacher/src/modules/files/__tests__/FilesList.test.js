@@ -163,6 +163,7 @@ describe('FilesList', () => {
       canAdd: true,
       canEdit: true,
       canSelectFile: expect.any(Function),
+      onChange: expect.any(Function),
     })
   })
 
@@ -178,6 +179,7 @@ describe('FilesList', () => {
       canAdd: true,
       canEdit: true,
       canSelectFile: expect.any(Function),
+      onChange: expect.any(Function),
     })
   })
 
