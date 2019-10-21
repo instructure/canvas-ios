@@ -21,7 +21,6 @@ import Foundation
 extension NSNotification.Name {
     public static var CompletedModuleItemRequirement = NSNotification.Name("com.instructure.core.notification.ModuleItemProgress")
     public static let SplitViewControllerWillChangeDisplayModeNotification = Notification.Name( "com.instructure.core.notification.splitview.willChangeDisplayMode")
-    public static let ModuleItemSelected = NSNotification.Name("com.instructure.core.notification.moduleItem.selected")
 }
 
 extension NotificationCenter {
