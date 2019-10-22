@@ -128,13 +128,14 @@
       if (!mathml && !img.dataset.equationContent) return
       foundMath = true
       const div = document.createElement('div')
-      div.innerHTML = mathml || '$$' + img.dataset.equationContent + '$$'
-      if (mathml) div.firstChild.setAttribute('style', img.getAttribute('style'))
+      div.innerHTML = mathml || '<span>$$' + img.dataset.equationContent + '$$</span>'
+      div.firstChild.setAttribute('style', img.getAttribute('style'))
       img.parentNode.replaceChild(div.firstChild, img)
     })
     if (foundMath) {
+      window.MathJax = { displayAlign: 'inherit' }
       const script = document.createElement('script')
-      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_NativeMML'
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
       document.body.appendChild(script)
     }
   </script>
