@@ -226,9 +226,11 @@ public struct XCUIElementQueryWrapper: Element {
 
     @discardableResult
     public func waitToExist(_ timeout: TimeInterval, file: StaticString, line: UInt) -> Element {
-        if !exists {
-            XCTAssertTrue(rawElement.waitForExistence(timeout: timeout), "Element \(id) not found", file: file, line: line)
+        let deadline = Date().addingTimeInterval(timeout)
+        while !exists, Date() < deadline {
+            sleep(1)
         }
+        XCTAssertTrue(exists, "Element \(id) still doesn't exists", file: file, line: line)
         return self
     }
 
