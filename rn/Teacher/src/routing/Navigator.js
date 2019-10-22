@@ -30,7 +30,7 @@ type ShowOptions = {
   modal: boolean,
   modalPresentationStyle: string,
   embedInNavigationController: boolean,
-  allowSwipeDownToDismissModal: boolean,
+  disableSwipeDownToDismissModal: boolean,
 }
 
 export type TraitCollectionType = 'compact' | 'regular' | 'unspecified'
