@@ -150,6 +150,7 @@ class SubmissionDetailsTests: StudentUITestCase {
         mockData(GetDocViewerMetadataRequest(path: sessionURL.absoluteString), value: APIDocViewerMetadata.make(
             urls: .make(pdf_download: downloadURL)
         ))
+        mockEncodableRequest("https://doc.viewer/2018-04-06/sessions/123/annotations", value: APIDocViewerAnnotations(data: []))
         mockDownload(downloadURL, data: url)
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
@@ -268,6 +269,8 @@ class SubmissionDetailsTests: StudentUITestCase {
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             submission_type: .online_quiz
         ))
+        mockData(GetQuizRequest(courseID: "1", quizID: "1"), value: APIQuiz.make())
+        mockData(GetQuizSubmissionRequest(courseID: course.id.value, quizID: "1"), value: .init(quiz_submissions: []))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
@@ -279,11 +282,13 @@ class SubmissionDetailsTests: StudentUITestCase {
         mockBaseRequests()
         let url = URL(string: "https://www.instructure.com/")!
         let assignment = mock(assignment: .make(submission_types: [ .online_url ]))
+        let attachment = APIFile.make()
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             submission_type: .online_url,
-            attachments: [ APIFile.make() ],
+            attachments: [ attachment ],
             url: url
         ))
+        mockEncodedData(URLRequest(url: attachment.url), data: Data())
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
