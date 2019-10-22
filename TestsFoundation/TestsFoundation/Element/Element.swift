@@ -235,10 +235,10 @@ public struct XCUIElementQueryWrapper: Element {
     @discardableResult
     public func waitToVanish(_ timeout: TimeInterval, file: StaticString, line: UInt) -> Element {
         let deadline = Date().addingTimeInterval(timeout)
-        while rawElement.exists, Date() < deadline {
+        while exists, Date() < deadline {
             sleep(1)
         }
-        XCTAssertFalse(rawElement.exists, "Element \(id) still exists", file: file, line: line)
+        XCTAssertFalse(exists, "Element \(id) still exists", file: file, line: line)
         return self
     }
 }
