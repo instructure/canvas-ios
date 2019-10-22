@@ -122,6 +122,9 @@ function retry {
     doTest $retry_run
 }
 
+xcrun simctl boot 'iPhone 8' || true
+open -a /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app
+
 ret=0
 doTest $base_xctestrun ||
     retry ||
