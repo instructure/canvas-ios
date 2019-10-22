@@ -96,7 +96,7 @@ open class CoreUITestCase: XCTestCase {
         super.tearDown()
     }
 
-    var failTestOnMissingMock = true
+    public var failTestOnMissingMock = true
     static var currentTestCase: CoreUITestCase?
 
     class ServerDelegate: IPCDriverServerDelegate {
@@ -280,6 +280,13 @@ open class CoreUITestCase: XCTestCase {
     open func mock(assignment: APIAssignment) -> APIAssignment {
         mockData(GetAssignmentRequest(courseID: assignment.course_id.value, assignmentID: assignment.id.value, include: [ .submission ]), value: assignment)
         mockData(GetAssignmentRequest(courseID: assignment.course_id.value, assignmentID: assignment.id.value, include: []), value: assignment)
+        for submission in assignment.submission?.values ?? [] {
+            mockData(GetSubmissionRequest(
+                context: ContextModel(.course, id: assignment.course_id.value),
+                assignmentID: assignment.id.value, userID: "1"),
+                value: submission)
+        }
+
         return assignment
     }
 

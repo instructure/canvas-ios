@@ -95,7 +95,7 @@ function doTest {
     # flags+=(-only-testing StudentUITests)
     if (( $try < 1 )); then
         flags+=(-parallel-testing-enabled YES -parallel-testing-worker-count 3)
-        formatter=(xcbeautify)
+        formatter=(env NSUnbufferedIO=YES xcbeautify)
     fi
     for skip in $all_passing_tests; do
         flags+=(-skip-testing:$skip)
@@ -121,6 +121,9 @@ function retry {
     setEnv $retry_run CANVAS_TEST_IS_RETRY YES
     doTest $retry_run
 }
+
+xcrun simctl boot 'iPhone 8' || true
+open -a /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app
 
 ret=0
 doTest $base_xctestrun ||

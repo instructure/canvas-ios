@@ -143,6 +143,7 @@ class AssignmentDetailsTests: StudentUITestCase {
         let assignment = mock(assignment: .make(
             submission_types: [ .not_graded ]
         ))
+        mockData(GetWebSessionRequest(to: URL(string: "https://canvas.instructure.com/courses/1/assignments1")))
         show("/courses/\(course.id)/assignments\(assignment.id)")
         XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
     }
