@@ -208,7 +208,7 @@ describe('DiscussionDetails', () => {
     const tree = renderer.create(<DiscussionDetails {...props} navigator={navigator} />).toJSON()
     const discussionReply: any = explore(tree).selectByID('discussion-reply')
     discussionReply.props.onPress()
-    expect(navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/reply', { modal: true, disableSwipeDownToDismissModal: true  }, {
+    expect(navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/reply', { modal: true, disableSwipeDownToDismissModal: true }, {
       indexPath: [],
       lastReplyAt: props.discussion && props.discussion.last_reply_at,
       permissions: props.discussion && props.discussion.permissions,
