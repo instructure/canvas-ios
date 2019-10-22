@@ -96,7 +96,7 @@ open class CoreUITestCase: XCTestCase {
         super.tearDown()
     }
 
-    var failTestOnMissingMock = true
+    public var failTestOnMissingMock = true
     static var currentTestCase: CoreUITestCase?
 
     class ServerDelegate: IPCDriverServerDelegate {

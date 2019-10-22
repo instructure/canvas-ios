@@ -20,7 +20,6 @@ import Foundation
 @testable import Core
 import TestsFoundation
 import XCTest
-@testable import CoreUITests
 
 class SubmissionDetailsTests: StudentUITestCase {
     lazy var course = mock(course: .make())
