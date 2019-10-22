@@ -25,6 +25,25 @@ public class ActAsUserWindow: UIWindow {
     lazy var overlay = ActAsUserOverlay(frame: bounds, loginDelegate: loginDelegate)
     public var uiTestHelper: UIButton?
 
+    var isActing = false {
+        didSet {
+            guard oldValue != isActing else { return }
+
+            if overlay.superview == nil, isActing {
+                addSubview(overlay)
+                overlay.frame = bounds
+                overlay.setNeedsLayout()
+            } else if !isActing {
+                overlay.removeFromSuperview()
+            }
+
+            if isActing, let session = AppEnvironment.shared.currentSession {
+                overlay.avatarView.name = session.userName
+                overlay.avatarView.url = session.userAvatarURL
+            }
+        }
+    }
+
     override public func layoutSubviews() {
         isActing = (
             !(rootViewController is LoadingViewController) &&
@@ -32,13 +51,12 @@ public class ActAsUserWindow: UIWindow {
             AppEnvironment.shared.currentSession?.actAsUserID != nil
         )
 
-        super.layoutSubviews()
-        overlay.frame = bounds
         bringSubviewToFront(overlay)
         if let button = uiTestHelper {
             bringSubviewToFront(button)
         }
-        overlay.setNeedsLayout()
+
+        super.layoutSubviews()
     }
 
     public convenience init(frame: CGRect, loginDelegate: LoginDelegate) {
@@ -52,23 +70,6 @@ public class ActAsUserWindow: UIWindow {
 
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    var isActing = false {
-        didSet {
-            guard oldValue != isActing else { return }
-
-            if overlay.superview == nil, isActing {
-                addSubview(overlay)
-            } else if !isActing {
-                overlay.removeFromSuperview()
-            }
-
-            if isActing, let session = AppEnvironment.shared.currentSession {
-                overlay.avatarView.name = session.userName
-                overlay.avatarView.url = session.userAvatarURL
-            }
-        }
     }
 }
 
