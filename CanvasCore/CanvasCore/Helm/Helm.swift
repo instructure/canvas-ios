@@ -381,9 +381,13 @@ open class HelmManager: NSObject {
             if let embedInNavigationController: Bool = options["embedInNavigationController"] as? Bool, embedInNavigationController {
                 toPresent = HelmNavigationController(rootViewController: vc)
                 vc.navigationController?.navigationBar.useModalStyle()
-                if vc.modalPresentationStyle == .formSheet || vc.modalPresentationStyle == .pageSheet {
+                if let disableSwipeDownToDismissModal: Bool = options["disableSwipeDownToDismissModal"] as? Bool,
+                    disableSwipeDownToDismissModal,
+                    vc.modalPresentationStyle == .formSheet || vc.modalPresentationStyle == .pageSheet
+                {
                     toPresent.presentationController?.delegate = self
                 }
+
             }
 
             configureModalProps(for: toPresent)

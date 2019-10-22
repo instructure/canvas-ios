@@ -111,7 +111,7 @@ export default class Reply extends Component<Props, State> {
 
   showAttachment = () => {
     if (this.props.reply.attachment) {
-      this.props.navigator.show('/attachment', { modal: true }, {
+      this.props.navigator.show('/attachment', { modal: true, disableSwipeDownToDismissModal: true }, {
         attachment: this.props.reply.attachment,
       })
     }

@@ -631,7 +631,7 @@ export class DiscussionDetails extends Component<Props, any> {
     } else {
       logEvent('discussion_topic_replied', { nested: false })
     }
-    this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true }, { indexPath: [], lastReplyAt, permissions })
+    this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true, disableSwipeDownToDismissModal: true }, { indexPath: [], lastReplyAt, permissions })
   }
 
   _onPressReplyToEntry = (entryID: string, indexPath: number[]) => {
