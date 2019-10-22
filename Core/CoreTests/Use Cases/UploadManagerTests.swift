@@ -88,6 +88,8 @@ class UploadManagerTests: CoreTestCase {
         try manager.add(url: url, batchID: "1")
         wait(for: [expectation], timeout: 1)
         XCTAssertEqual(store.count, 1)
+        let file = try XCTUnwrap(store.first)
+        XCTAssertGreaterThan(file.size, 0)
     }
 
     func testSubscribeScopedToBatchAndUser() {

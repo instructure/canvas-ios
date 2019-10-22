@@ -100,9 +100,10 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     @discardableResult
     public func add(environment: AppEnvironment = .shared, url: URL, batchID: String? = nil) throws -> File {
         let file: File = viewContext.insert()
-        file.localFileURL = try uploadURL(url)
+        let uploadURL = try self.uploadURL(url)
+        file.localFileURL = uploadURL
         file.batchID = batchID
-        file.size = url.lookupFileSize()
+        file.size = uploadURL.lookupFileSize()
         if let session = environment.currentSession {
             file.user = File.User(id: session.userID, baseURL: session.baseURL, masquerader: session.masquerader)
         }
