@@ -95,7 +95,7 @@ function doTest {
     # flags+=(-only-testing StudentUITests)
     if (( $try < 1 )); then
         flags+=(-parallel-testing-enabled YES -parallel-testing-worker-count 3)
-        formatter=(xcbeautify)
+        formatter=(env NSUnbufferedIO=YES xcbeautify)
     fi
     for skip in $all_passing_tests; do
         flags+=(-skip-testing:$skip)
