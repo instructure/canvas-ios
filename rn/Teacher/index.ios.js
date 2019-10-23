@@ -62,7 +62,6 @@ function logout () {
   setSession(null)
   httpCache.clear()
   store.dispatch(logoutAction)
-  clearClient()
 }
 
 const loginHandler = async ({
@@ -124,6 +123,7 @@ const loginHandler = async ({
     })
   })
 
+  clearClient()
   setSession(session)
 
   try {
