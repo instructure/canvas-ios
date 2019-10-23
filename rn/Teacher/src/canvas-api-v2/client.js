@@ -31,7 +31,6 @@ export default function getClient () {
   return client
 }
 
-// for testing purposes
 export function clearClient () {
   client = null
 }
