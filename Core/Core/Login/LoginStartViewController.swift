@@ -89,7 +89,7 @@ class LoginStartViewController: UIViewController, LoginStartViewProtocol {
         }
         logoView?.alpha = 1
         logoYCenter?.constant = 0
-        previousLoginsBottom?.constant = -(previousLoginsView?.frame.height ?? 175)
+        previousLoginsBottom?.constant = -(previousLoginsView?.frame.height ?? 225)
         view.layoutIfNeeded()
     }
 
@@ -198,7 +198,7 @@ extension LoginStartViewController: UITableViewDataSource, UITableViewDelegate, 
         if logins.isEmpty {
             view.layoutIfNeeded()
             UIView.animate(withDuration: 0.5) {
-                self.previousLoginsBottom?.constant = -(self.previousLoginsView?.frame.height ?? 175)
+                self.previousLoginsBottom?.constant = -(self.previousLoginsView?.frame.height ?? 225)
                 self.view.layoutIfNeeded()
             }
         }
