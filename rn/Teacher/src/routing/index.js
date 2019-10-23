@@ -31,10 +31,7 @@ import ErrorScreen from './ErrorScreen'
 import app from '../modules/app'
 
 import { ApolloProvider } from 'react-apollo'
-import { ApolloClient } from 'apollo-client'
-import { HttpLink } from 'apollo-link-http'
-import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory'
-import graphqlSchema from '../canvas-api-v2/schema.json'
+import getClient from '../canvas-api-v2/client'
 
 export const routes: Map<RouteHandler, RouteConfig> = new Map()
 export const routeProps: Map<string, ?Object> = new Map()
@@ -111,19 +108,8 @@ export function wrapComponentInProviders (moduleName: string, generator: (props:
 
       const ScreenComponent = generator(props)
       const session = getSession()
-      const uri = `${session.baseURL.replace(/\/?$/, '')}/api/graphql`
-      const headers = {
-        'GraphQL-Metrics': true,
-      }
 
-      let fragmentMatcher = new IntrospectionFragmentMatcher({
-        introspectionQueryResultData: graphqlSchema,
-      })
-
-      const client = new ApolloClient({
-        link: new HttpLink({ uri, headers }),
-        cache: new InMemoryCache({ fragmentMatcher }),
-      })
+      let client = getClient()
 
       return (
         <ApolloProvider client={client}>
