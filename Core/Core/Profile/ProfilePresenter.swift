@@ -121,17 +121,23 @@ public class ProfilePresenter {
         }
         cells.append(ProfileViewCell("changeUser", name: NSLocalizedString("Change User", comment: "")) { [weak self] _ in
             guard let delegate = self?.env.loginDelegate else { return }
-            delegate.changeUser()
+            self?.view?.dismiss(animated: true, completion: {
+                delegate.changeUser()
+            })
         })
         if env.currentSession?.actAsUserID != nil {
             cells.append(ProfileViewCell("logOut", name: NSLocalizedString("Stop Act as User", comment: "")) { [weak self] _ in
                 guard let session = self?.env.currentSession else { return }
-                self?.env.loginDelegate?.stopActing(as: session)
+                self?.view?.dismiss(animated: true, completion: {
+                    self?.env.loginDelegate?.stopActing(as: session)
+                })
             })
         } else {
             cells.append(ProfileViewCell("logOut", name: NSLocalizedString("Log Out", comment: "")) { [weak self] _ in
                 guard let session = self?.env.currentSession else { return }
-                self?.env.loginDelegate?.userDidLogout(session: session)
+                self?.view?.dismiss(animated: true, completion: {
+                    self?.env.loginDelegate?.userDidLogout(session: session)
+                })
             })
         }
         if showDevMenu {
