@@ -83,10 +83,10 @@ open class CoreUITestCase: XCTestCase {
         }
         // re-install the existing mocks
         for message in dataMocks {
-            send(.mockData(message))
+            try! send(.mockData(message))
         }
         for message in downloadMocks {
-            send(.mockDownload(message))
+            try! send(.mockDownload(message))
         }
     }
 
@@ -129,10 +129,16 @@ open class CoreUITestCase: XCTestCase {
         app.find(labelContaining: "Loading").waitToVanish(120)
     }
 
-    func send(_ helper: UITestHelpers.Helper) {
-        if let response = ipcAppClient.requestRemote(helper),
-            !response.isEmpty {
-            fatalError("Unexpected IPC response")
+    func send(_ helper: UITestHelpers.Helper, ignoreErrors: Bool = false) {
+        do {
+            if let response = try ipcAppClient.requestRemote(helper),
+                !response.isEmpty {
+                throw IPCError(message: "Unexpected IPC response")
+            }
+        } catch let error {
+            if !ignoreErrors {
+                XCTFail("IPC failed: \(error)")
+            }
         }
     }
 
@@ -178,7 +184,7 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open func currentSession() -> LoginSession? {
-        guard let data = ipcAppClient.requestRemote(UITestHelpers.Helper.currentSession) else {
+        guard let data = try? ipcAppClient.requestRemote(UITestHelpers.Helper.currentSession) else {
             fatalError("Bad IPC response (no data returned)")
         }
         if data.isEmpty || data == "null".data(using: .utf8) {
