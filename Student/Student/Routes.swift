@@ -68,7 +68,10 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
 
     "/:context/:contextID/announcements/:announcementID": nil,
 
-    "/courses/:courseID/assignments": nil,
+    "/courses/:courseID/assignments": { url, params in
+        guard let courseID = params["courseID"] else { return nil }
+        return AssignmentListViewController.create(courseID: courseID)
+    },
 
     "/courses/:courseID/assignments-fromHomeTab": { url, params in
         var props = params as [String: Any]
