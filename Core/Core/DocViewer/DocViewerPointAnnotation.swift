@@ -22,7 +22,7 @@ class DocViewerPointAnnotation: PSPDFStampAnnotation {
     override var isResizable: Bool { return false }
     override var shouldMaintainAspectRatio: Bool { return true }
 
-    override func draw(in context: CGContext, withOptions options: [String: Any]? = nil) {
+    override func draw(context: CGContext, options: PSPDFRenderOptions?) {
         context.saveGState()
         let cgColor = color?.cgColor ?? DocViewerAnnotationColor.blue.color.cgColor
         context.setFillColor(cgColor)

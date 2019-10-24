@@ -138,7 +138,7 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
     }
 
     @objc func stylePSPDFKit() {
-        let styleManager = PSPDFKit.sharedInstance.styleManager
+        let styleManager = PSPDFKitGlobal.sharedInstance.styleManager
         styleManager.setupDefaultStylesIfNeeded()
 
         let highlightPresets = highlightCanvadocsColors.map { return PSPDFColorPreset(color: $0) }

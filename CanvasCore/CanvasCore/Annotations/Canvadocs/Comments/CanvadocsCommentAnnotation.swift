@@ -24,7 +24,7 @@ class CanvadocsPointAnnotation: PSPDFStampAnnotation {
     override var isResizable: Bool { get { return false } }
     override var shouldMaintainAspectRatio: Bool { get { return true } }
 
-    override func draw(in context: CGContext, withOptions options: [String : Any]? = nil) {
+    override func draw(context: CGContext, options: PSPDFRenderOptions?) {
         context.saveGState()
         let cgColor = color?.cgColor ?? CanvadocsAnnotationColor.blue.color.cgColor
         context.setFillColor(cgColor)

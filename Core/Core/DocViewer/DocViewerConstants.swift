@@ -81,7 +81,7 @@ func docViewerConfigurationBuilder(_ builder: PSPDFConfigurationBuilder) {
 }
 
 func stylePSPDFKit() {
-    let styleManager = PSPDFKit.sharedInstance.styleManager
+    let styleManager = PSPDFKitGlobal.sharedInstance.styleManager
     styleManager.setupDefaultStylesIfNeeded()
 
     let highlightPresets = DocViewerHighlightColor.allCases.map { return PSPDFColorPreset(color: $0.color) }
