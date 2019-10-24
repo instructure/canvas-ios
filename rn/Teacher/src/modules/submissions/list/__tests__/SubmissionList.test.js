@@ -443,6 +443,45 @@ describe('graphql props', () => {
     results.assignment.groupSet = undefined
     expect(graphqlProps({ data: results }).isGroupGradedAssignment).toBeFalsy()
   })
+
+  it('sorts grouped submissions by group name', () => {
+    let results = templates.submissionListResult({
+      assignment: templates.assignment({
+        gradeGroupStudentsIndividually: false,
+        groupSet: templates.groupSet(),
+        course: templates.course({
+          sections: { edges: [] },
+          groups: {
+            edges: [{
+              group: templates.group({
+                name: 'b',
+                members: {
+                  edges: [{ member: { user: templates.user({ id: '1' }) } }],
+                },
+              }),
+            }, {
+              group: templates.group({
+                name: 'a',
+                members: {
+                  edges: [{ member: { user: templates.user({ id: '2' }) } }],
+                },
+              }),
+            }],
+          },
+        }),
+        submissions: { edges: [] },
+        groupedSubmissions: { edges: [
+          { submission: templates.submission({ user: templates.user({ id: '1' }) }) },
+          { submission: templates.submission({ user: templates.user({ id: '2' }) }) },
+        ] },
+      }),
+    })
+
+    expect(graphqlProps({ data: results }).submissions).toEqual([
+      templates.submission({ user: templates.user({ id: '2' }) }),
+      templates.submission({ user: templates.user({ id: '1' }) }),
+    ])
+  })
 })
 
 describe('createFilterFromSection', () => {

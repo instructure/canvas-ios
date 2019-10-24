@@ -309,12 +309,20 @@ export function props (props) {
   }
 
   let assignment = props.data.assignment
-  let submissions = assignment.submissions && assignment.submissions.edges.map(({ submission }) => submission)
-  let groupedSubmissions = assignment.groupedSubmissions && assignment.groupedSubmissions.edges.map(({ submission }) => submission)
-  let groupSet = assignment.groupSet
   let course = assignment.course
   let sections = course.sections.edges.map(({ section }) => section)
   let groups = course.groups.edges.map(({ group }) => group)
+  let submissions = assignment.submissions && assignment.submissions.edges.map(({ submission }) => submission)
+  let groupedSubmissions = assignment.groupedSubmissions?.edges
+    .map(({ submission }) => submission)
+    .sort((s1, s2) => {
+      let group1 = groups.find(group => group.members.edges.find(({ member }) => member.user.id === s1.user.id))
+      let group2 = groups.find(group => group.members.edges.find(({ member }) => member.user.id === s2.user.id))
+      if (group1.name < group2.name) return -1
+      if (group1.name > group2.name) return 1
+      return 0
+    }) ?? []
+  let groupSet = assignment.groupSet
   let isGroupGradedAssignment = groupSet && groupSet.id && !assignment.gradeGroupStudentsIndividually
   return {
     isGroupGradedAssignment,
