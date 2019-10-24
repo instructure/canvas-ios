@@ -30,6 +30,7 @@ type ShowOptions = {
   modal: boolean,
   modalPresentationStyle: string,
   embedInNavigationController: boolean,
+  disableSwipeDownToDismissModal: boolean,
 }
 
 export type TraitCollectionType = 'compact' | 'regular' | 'unspecified'
@@ -67,7 +68,8 @@ export default class Navigator {
     }
     if (options.modal) {
       const embedInNavigationController = options.embedInNavigationController == null || options.embedInNavigationController
-      return this.present(r, { modal: options.modal, modalPresentationStyle: options.modalPresentationStyle || 'formsheet', embedInNavigationController, canBecomeMaster: canBecomeMaster, modalTransitionStyle: options.modalTransitionStyle })
+      const disableSwipeDownToDismissModal = options.disableSwipeDownToDismissModal == null || options.disableSwipeDownToDismissModal
+      return this.present(r, { modal: options.modal, modalPresentationStyle: options.modalPresentationStyle || 'formsheet', embedInNavigationController, canBecomeMaster: canBecomeMaster, modalTransitionStyle: options.modalTransitionStyle, disableSwipeDownToDismissModal })
     } else {
       return this.push(r, { detail: options.detail })
     }

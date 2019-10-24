@@ -93,7 +93,7 @@ describe('Navigator', () => {
     expect(NativeModules.Helm.present).toHaveBeenCalledWith(
       '/courses/:courseID',
       { courseID: '1', screenInstanceID: expect.any(String), location: expect.any(Object) },
-      { canBecomeMaster: true, embedInNavigationController: true, modal: true, modalPresentationStyle: 'formsheet' }
+      { canBecomeMaster: true, embedInNavigationController: true, modal: true, modalPresentationStyle: 'formsheet', disableSwipeDownToDismissModal: true }
     )
   })
 
@@ -142,6 +142,7 @@ describe('Navigator', () => {
         modal: true,
         modalPresentationStyle: 'fullscreen',
         canBecomeMaster: false,
+        disableSwipeDownToDismissModal: true,
       },
     )
   })
@@ -163,12 +164,13 @@ describe('Navigator', () => {
       modal: true,
       embedInNavigationController: true,
       deepLink: true,
+      disableSwipeDownToDismissModal: true,
     })
 
     expect(NativeModules.Helm.present).toHaveBeenCalledWith(
       '/:context/:contextID/announcements/:announcementID',
       { context: 'courses', contextID: '1', announcementID: '3', screenInstanceID: expect.any(String), location: expect.any(Object) },
-      { canBecomeMaster: false, embedInNavigationController: true, modal: true, modalPresentationStyle: 'formsheet' }
+      { canBecomeMaster: false, embedInNavigationController: true, modal: true, modalPresentationStyle: 'formsheet', disableSwipeDownToDismissModal: true }
     )
   })
 
