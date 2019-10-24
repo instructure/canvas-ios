@@ -27,6 +27,11 @@ class AssignmentTests: CoreTestCase {
         Clock.reset()
     }
 
+    override func tearDown() {
+        Clock.reset()
+        super.tearDown()
+    }
+
     func testUpdateFromAPIItemWithAPISubmission() {
         let client = databaseClient
         let a = Assignment.make(from: .make(name: "a", submission: nil))
@@ -502,5 +507,148 @@ class AssignmentTests: CoreTestCase {
         XCTAssertFalse(externalTool.requiresLTILaunch(toViewSubmission: onlineUploadWithAttachment))
         XCTAssertTrue(externalTool.requiresLTILaunch(toViewSubmission: onlineUploadWithoutAttachment))
         XCTAssertTrue(externalTool.requiresLTILaunch(toViewSubmission: onlineQuizWithAttachment))
+    }
+
+    func testFormattedDueDate() {
+        let isoString = "2037-06-01T05:59:00Z"
+        let date = Date(fromISOString: isoString)
+        let aa = Assignment.make(from: APIAssignment.make(due_at: date ), in: databaseClient)
+        XCTAssertEqual(aa.formattedDueDate(), "Due May 31, 2037 at 11:59 PM")
+    }
+
+    func testFormattedDueDateNoDueDate() {
+        let aa = Assignment.make(from: APIAssignment.make(), in: databaseClient)
+        XCTAssertEqual(aa.formattedDueDate(), "No Due Date")
+    }
+
+    func testFormattedDueDateAvailabilityClosed() {
+        let lockAt = Date().addDays(-1)
+        let aa = Assignment.make(from: APIAssignment.make(lock_at: lockAt), in: databaseClient)
+        XCTAssertEqual(aa.formattedDueDate(), "Availability: Closed")
+    }
+
+    func testFormattedMultipleDates() {
+        let due = Date().addDays(1)
+        let ad1 = APIAssignmentDate(base: nil, id: "1", title: nil, due_at: due, lock_at: nil, unlock_at: nil)
+        let ad2 = APIAssignmentDate(base: nil, id: "2", title: nil, due_at: due, lock_at: nil, unlock_at: nil)
+        let aa = Assignment.make(from: APIAssignment.make( all_dates:[ad1, ad2] ), in: databaseClient)
+        XCTAssertEqual(aa.formattedDueDate(), "Multiple Due Dates")
+    }
+
+    func testAvailabilityClosedSingleLockDate() {
+        let lock = Date().addDays(-1)
+        let lock2 = Date().addDays(2)
+        let ad1 = APIAssignmentDate(base: nil, id: "1", title: nil, due_at: nil, lock_at: lock2, unlock_at: nil)
+        let a1 = Assignment.make(from: APIAssignment.make(lock_at: lock, all_dates:[ad1] ), in: databaseClient)
+
+        var r = a1.availabilityClosed()
+        XCTAssertTrue(r)
+
+        let ad2 = APIAssignmentDate(base: nil, id: "1", title: nil, due_at: nil, lock_at: lock, unlock_at: nil)
+        let a2 = Assignment.make(from: APIAssignment.make(lock_at: nil, all_dates:[ad2] ), in: databaseClient)
+        r = a2.availabilityClosed()
+        XCTAssertTrue(r)
+    }
+
+    func testAvailabilityClosedMultipleLockDates() {
+        let lock = Date().addDays(-1)
+        let lock2 = Date().addDays(-5)
+        let a = APIAssignmentDate(base: nil, id: "1", title: nil, due_at: nil, lock_at: lock2, unlock_at: nil)
+        let b = APIAssignmentDate(base: nil, id: "2", title: nil, due_at: nil, lock_at: lock, unlock_at: nil)
+
+        let a1 = Assignment.make(from: APIAssignment.make(lock_at: nil, all_dates:[a, b] ), in: databaseClient)
+
+        let r = a1.availabilityClosed()
+        XCTAssertTrue(r)
+    }
+
+    func testBestAvailableToDate() {
+        let lock = Date().addDays(1)
+        let lock1 = Date().addDays(-1)
+        let lock2 = Date().addDays(-2)
+        let a = APIAssignmentDate(base: nil, id: "1", title: nil, due_at: nil, lock_at: lock1, unlock_at: nil)
+        let b = APIAssignmentDate(base: nil, id: "2", title: nil, due_at: nil, lock_at: lock2, unlock_at: nil)
+        let aa = Assignment.make(from: APIAssignment.make(lock_at: lock, all_dates:[a, b] ), in: databaseClient)
+
+        XCTAssertEqual(aa.bestAvailableToDate(), lock)
+    }
+
+    func testBestAvailableToDateUsingBase() {
+
+        let lock1 = Date().addDays(-1)
+        let lock2 = Date().addDays(-2)
+        let a = APIAssignmentDate(base: nil, id: "1", title: nil, due_at: nil, lock_at: lock1, unlock_at: nil)
+        let b = APIAssignmentDate(base: true, id: "2", title: nil, due_at: nil, lock_at: lock2, unlock_at: nil)
+        let aa = Assignment.make(from: APIAssignment.make(lock_at: nil, all_dates:[a, b] ), in: databaseClient)
+
+        XCTAssertEqual(aa.bestAvailableToDate(), lock2)
+    }
+
+    func testBestAvailableToDateUsingFirst() {
+
+        let lock1 = Date().addDays(-1)
+        let lock2 = Date().addDays(-2)
+        let a = APIAssignmentDate(base: nil, id: "1", title: nil, due_at: nil, lock_at: lock1, unlock_at: nil)
+        let b = APIAssignmentDate(base: nil, id: "2", title: nil, due_at: nil, lock_at: lock2, unlock_at: nil)
+        let aa = Assignment.make(from: APIAssignment.make(lock_at: nil, all_dates:[a, b] ), in: databaseClient)
+
+        XCTAssertEqual(aa.bestAvailableToDate(), lock1)
+    }
+
+    func testBestDueDate() {
+        let due = Date().addDays(1)
+        let due1 = Date().addDays(-1)
+        let due2 = Date().addDays(-2)
+        let a = APIAssignmentDate(base: nil, id: "1", title: nil, due_at: due1, lock_at: nil, unlock_at: nil)
+        let b = APIAssignmentDate(base: nil, id: "2", title: nil, due_at: due2, lock_at: nil, unlock_at: nil)
+        let aa = Assignment.make(from: APIAssignment.make(due_at: due, all_dates:[a, b] ), in: databaseClient)
+
+        XCTAssertEqual(aa.bestDueAt(), due)
+    }
+
+    func testBestDueDateUsingBase() {
+        let due1 = Date().addDays(-1)
+        let due2 = Date().addDays(-2)
+        let a = APIAssignmentDate(base: true, id: nil, title: nil, due_at: due1, lock_at: nil, unlock_at: nil)
+        let b = APIAssignmentDate(base: nil, id: "2", title: nil, due_at: due2, lock_at: nil, unlock_at: nil)
+        let aa = Assignment.make(from: APIAssignment.make(due_at: nil, all_dates:[a, b] ), in: databaseClient)
+
+        XCTAssertEqual(aa.bestDueAt(), due1)
+    }
+
+    func testBestDueDateUsingFirst() {
+        let due1 = Date().addDays(-1)
+        let due2 = Date().addDays(-2)
+        let a = APIAssignmentDate(base: nil, id: "1", title: nil, due_at: due1, lock_at: nil, unlock_at: nil)
+        let b = APIAssignmentDate(base: nil, id: "2", title: nil, due_at: due2, lock_at: nil, unlock_at: nil)
+        let aa = Assignment.make(from: APIAssignment.make(due_at: nil, all_dates:[a, b] ), in: databaseClient)
+
+        XCTAssertEqual(aa.bestDueAt(), due1)
+    }
+
+    func testAssignmentDates() {
+        let dt1 = Date().addDays(1)
+        let dt2 = Date().addDays(2)
+        let dt3 = Date().addDays(3)
+        let ad1 = APIAssignmentDate(base: true, id: nil, title: nil, due_at: dt1, lock_at: dt2, unlock_at: dt3)
+        let ad2 = APIAssignmentDate(base: nil, id: "1", title: nil, due_at: dt3, lock_at: dt1, unlock_at: dt2)
+        Assignment.make(from: APIAssignment.make( all_dates:[ad1, ad2] ), in: databaseClient)
+
+        let all: [Assignment] = databaseClient.fetch()
+        XCTAssertEqual(all.count, 1)
+        XCTAssertEqual(all.first?.allDates?.count, 2)
+
+        let fetchedBase = all.first?.allDates?.filter { $0.base == true }.first
+        let fetchedWithID = all.first?.allDates?.filter { $0.id == "1" }.first
+
+        XCTAssertEqual(fetchedBase?.base, true)
+        XCTAssertEqual(fetchedBase?.dueAt, dt1)
+        XCTAssertEqual(fetchedBase?.lockAt, dt2)
+        XCTAssertEqual(fetchedBase?.unlockAt, dt3)
+
+        XCTAssertEqual(fetchedWithID?.id, "1")
+        XCTAssertEqual(fetchedWithID?.dueAt, dt3)
+        XCTAssertEqual(fetchedWithID?.lockAt, dt1)
+        XCTAssertEqual(fetchedWithID?.unlockAt, dt2)
     }
 }

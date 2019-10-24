@@ -82,6 +82,7 @@
 		3B6D23E72267B9000040D3FE /* APIRubricAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D23E62267B9000040D3FE /* APIRubricAssessment.swift */; };
 		3B6FE4A22356371D00000B9D /* SyllabusActionableItemsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6FE4A12356371C00000B9D /* SyllabusActionableItemsPresenterTests.swift */; };
 		3B801BFA2322F64900D143F0 /* AlertThreshold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B801BF92322F64900D143F0 /* AlertThreshold.swift */; };
+		3B8404962362203F00D39060 /* AssignmentDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8404952362203F00D39060 /* AssignmentDate.swift */; };
 		3B84C38F218B9B51005946BA /* AssignmentDatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84C38E218B9B51005946BA /* AssignmentDatesTests.swift */; };
 		3B8F23CD23274FC500788730 /* AlertThresholdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8F23CC23274FC500788730 /* AlertThresholdTests.swift */; };
 		3BA9FF722332B04400196A06 /* APIGradingPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FF702332B04400196A06 /* APIGradingPeriod.swift */; };
@@ -780,6 +781,7 @@
 		3B6D23E62267B9000040D3FE /* APIRubricAssessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRubricAssessment.swift; sourceTree = "<group>"; };
 		3B6FE4A12356371C00000B9D /* SyllabusActionableItemsPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsPresenterTests.swift; sourceTree = "<group>"; };
 		3B801BF92322F64900D143F0 /* AlertThreshold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertThreshold.swift; sourceTree = "<group>"; };
+		3B8404952362203F00D39060 /* AssignmentDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDate.swift; sourceTree = "<group>"; };
 		3B84C38E218B9B51005946BA /* AssignmentDatesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDatesTests.swift; sourceTree = "<group>"; };
 		3B8F23CC23274FC500788730 /* AlertThresholdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertThresholdTests.swift; sourceTree = "<group>"; };
 		3BA9FF702332B04400196A06 /* APIGradingPeriod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIGradingPeriod.swift; sourceTree = "<group>"; };
@@ -1894,6 +1896,7 @@
 			children = (
 				7DCF1EC3216BE0C3003AF358 /* Viewable */,
 				7DF4FFDA21713636007E5F81 /* Assignment.swift */,
+				3B8404952362203F00D39060 /* AssignmentDate.swift */,
 				3B635B32225CDC95001F353D /* CalendarEvent.swift */,
 				7D062AF3212496E600677F66 /* Context.swift */,
 				7DF4FFC4217113DA007E5F81 /* ContextColor.swift */,
@@ -3492,6 +3495,7 @@
 				7DD6CC6B21BD6DB1004C4BB6 /* LoadingViewController.swift in Sources */,
 				B14B704D228F30A100B568D6 /* UploadFileComment.swift in Sources */,
 				7DBED010232C2C7500392F3C /* GetAccountHelpLinks.swift in Sources */,
+				3B8404962362203F00D39060 /* AssignmentDate.swift in Sources */,
 				9FBE5367223C1EE9001EC40C /* APIPermissionsRequestable.swift in Sources */,
 				7D6C8C6922EA0A6E00E5ADD8 /* APIActivity.swift in Sources */,
 				7D9E80D6233DA1EF003C608B /* SwitchTableViewCell.swift in Sources */,

@@ -45,7 +45,8 @@ extension APIAssignment {
         rubric: [APIRubric]? = nil,
         use_rubric_for_grading: Bool? = nil,
         rubric_settings: APIRubricSettings? = nil,
-        assignment_group_id: ID? = nil
+        assignment_group_id: ID? = nil,
+        all_dates: [APIAssignmentDate]? = nil
     ) -> APIAssignment {
 
         var submissionList: APIList<APISubmission>?
@@ -79,7 +80,8 @@ extension APIAssignment {
             submission: submissionList,
             use_rubric_for_grading: use_rubric_for_grading,
             rubric_settings: rubric_settings,
-            assignment_group_id: assignment_group_id
+            assignment_group_id: assignment_group_id,
+            all_dates: all_dates
         )
     }
 }

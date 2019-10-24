@@ -47,6 +47,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var assignmentGroupID: String?
     @NSManaged public var assignmentGroupPosition: Int
     @NSManaged public var gradingPeriodID: String?
+    @NSManaged public var allDates: Set<AssignmentDate>?
 
     /**
      Use this property (vs. submissions) when you want the most recent submission
@@ -146,6 +147,12 @@ extension Assignment {
             } else if let submissions = submissions {
                 client.delete(Array(submissions))
                 self.submissions = nil
+            }
+        }
+
+        if let dates = item.all_dates {
+            for (index,d) in dates.enumerated() {
+                AssignmentDate.save(d, in: client, assignment: self, position: index)
             }
         }
     }
@@ -313,6 +320,78 @@ extension Assignment {
         // we would rather show the attachment than launch the LTI (ex: Google Cloud Assignments)
         let onlineUploadWithAttachment = submission.type == .online_upload && submission.attachments?.isEmpty == false
         return submissionTypes.contains(.external_tool) && !onlineUploadWithAttachment
+    }
+
+    func availabilityClosed() -> Bool {
+        // If there is one single lock_at, compare that against the current time.
+        // If it's before the current time, the availability is closed
+        if let lock = bestAvailableToDate(), (allDates?.count ?? 0) < 2 {
+            return Clock.now > lock
+        }
+
+        if let all = allDates, all.count > 1 {
+            // If there are multiple due dates, ensure that they have *all* passed
+            let filtered = all.filter( { if let lock = $0.lockAt { return Clock.now < lock }
+                // This may seem odd to return true, it's because this is in the filter function.
+                // returning true means that the availibility is *not* passed
+                return true
+            } )
+            return filtered.count == 0
+        }
+
+        return false
+    }
+
+    func bestAvailableToDate() -> Date? {
+        if let dt = lockAt {
+            return dt
+        }
+
+        if let dt = allDates?.filter({ $0.base == true }).first?.lockAt {
+            return dt
+        }
+
+        if let dt = allDates?.filter({ $0.position == 0 }).first?.lockAt {
+            return dt
+        }
+        return nil
+    }
+
+    func bestDueAt() -> Date? {
+        if let dt = dueAt {
+            return dt
+        }
+
+        if let dt = allDates?.filter({ $0.base == true }).first?.dueAt {
+            return dt
+        }
+
+        if let dt = allDates?.filter({ $0.position == 0 }).first?.dueAt {
+            return dt
+        }
+        return nil
+    }
+
+    public func formattedDueDate() -> String? {
+        if availabilityClosed() {
+            return NSLocalizedString("Availability: Closed", comment: "")
+        }
+
+        if (allDates?.count ?? 0) > 1 {
+            return NSLocalizedString("Multiple Due Dates", comment: "")
+        }
+
+        if let bestLockAtDate = bestAvailableToDate(), Clock.now > bestLockAtDate {
+            return NSLocalizedString("Closed", comment: "")
+        }
+
+        if let bestDueAtDate = bestDueAt() {
+            let dtString = DateFormatter.localizedString(from: bestDueAtDate, dateStyle: .medium, timeStyle: .short)
+            let format = NSLocalizedString("Due %@", bundle: .core, comment: "i.e. Due <Jan 10, 2020 at 9:00 PM>")
+            return String.localizedStringWithFormat(format, dtString)
+        }
+
+        return NSLocalizedString("No Due Date", comment: "")
     }
 }
 

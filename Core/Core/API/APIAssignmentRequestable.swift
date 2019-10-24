@@ -83,6 +83,7 @@ public struct GetAssignmentsRequest: APIRequestable {
         case discussion_topic
         case observed_users
         case submission
+        case all_dates
     }
 
     public typealias Response = [APIAssignment]

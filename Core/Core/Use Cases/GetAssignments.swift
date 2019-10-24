@@ -105,15 +105,17 @@ public class GetAssignmentsForGrades: GetAssignments {
 
     let groupBy: GroupBy
     let gradingPeriodID: String?
+    var clearsBeforeWrite: Bool
 
     public enum GroupBy: String {
         case assignmentGroup, dueAt
     }
 
-    public init(courseID: String, gradingPeriodID: String? = nil, groupBy: GroupBy = .dueAt, requestQuerySize: Int = 10) {
+    public init(courseID: String, gradingPeriodID: String? = nil, groupBy: GroupBy = .dueAt, requestQuerySize: Int = 10, clearsBeforeWrite: Bool = true, include: [GetAssignmentsRequest.Include] = [.observed_users, .submission]) {
         self.groupBy = groupBy
         self.gradingPeriodID = gradingPeriodID
-        super.init(courseID: courseID, sort: .dueAt, include: [.observed_users, .submission], requestQuerySize: requestQuerySize)
+        self.clearsBeforeWrite = clearsBeforeWrite
+        super.init(courseID: courseID, sort: .dueAt, include: include, requestQuerySize: requestQuerySize)
     }
 
     public override var scope: Scope {
@@ -121,10 +123,8 @@ public class GetAssignmentsForGrades: GetAssignments {
         case .assignmentGroup:
             let predicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.courseID), courseID)
             let s0 = NSSortDescriptor(key: #keyPath(Assignment.assignmentGroupPosition), ascending: true, selector: nil)
-            let s1 = NSSortDescriptor(key: #keyPath(Assignment.dueAt), ascending: true, selector: nil)
-            let s2 = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))
-
-            return Scope(predicate: predicate, order: [s0, s1, s2], sectionNameKeyPath: #keyPath(Assignment.assignmentGroupPosition))
+            let s1 = NSSortDescriptor(key: #keyPath(Assignment.position), ascending: true, selector: nil)
+            return Scope(predicate: predicate, order: [s0, s1], sectionNameKeyPath: #keyPath(Assignment.assignmentGroupPosition))
         case .dueAt:
             let a = NSSortDescriptor(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true)
             let b = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare))
