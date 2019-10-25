@@ -23,14 +23,14 @@ class AttendanceStatusController {
     private var currentStatus: Status
     private var pendingStatus: Status?
     private var timer: Timer?
-    
+
     var statusDidChange: () -> Void = {}
     var statusUpdateDidFail: (Error) -> Void = {_ in}
-    
+
     var status: Status {
         return pendingStatus ?? currentStatus
     }
-    
+
     init(
         status: Status,
         in session: RollCallSession
@@ -38,7 +38,7 @@ class AttendanceStatusController {
         self.session = session
         self.currentStatus = status
     }
-    
+
     func update(attendance: Attendance?) {
         invalidatePreviousUpdate()
         prepareUpdatedStatus(attendance: attendance)
@@ -46,34 +46,34 @@ class AttendanceStatusController {
             then: sendPendingUpdate
         )
     }
-    
+
     private func invalidatePreviousUpdate() {
         self.timer?.invalidate()
         self.timer = nil
         self.pendingStatus = nil
     }
-    
+
     private func prepareUpdatedStatus(attendance: Attendance?) {
         var pending = currentStatus
         pending.attendance = attendance
         pendingStatus = pending
         statusDidChange()
     }
-    
+
     private func beginWaitingPeriodTimer(then timerExpired: @escaping () -> Void) {
         guard pendingStatus != nil else { return }
-        
-        let timer = Timer(timeInterval: 1, repeats: false, block: { timer in
+
+        let timer = Timer(timeInterval: 1, repeats: false, block: { _ in
             timerExpired()
         })
-        
+
         RunLoop.main.add(timer, forMode: RunLoop.Mode.default)
         self.timer = timer
     }
-    
+
     private func sendPendingUpdate() {
         guard let pending = pendingStatus else { return }
-        
+
         session.updateStatus(pending) { newID, error in
             self.pendingStatus = nil
             defer {
@@ -84,7 +84,7 @@ class AttendanceStatusController {
                 self.statusUpdateDidFail(e)
                 return
             }
-            
+
             var updated = pending
             updated.id = newID
             self.currentStatus = updated

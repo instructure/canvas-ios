@@ -34,12 +34,12 @@ public class RollCallSession: NSObject {
         case active(URLSession)
         case error(Error)
     }
-    
+
     enum RequestState {
         case pendingSession
         case started(URLSessionTask)
     }
-    
+
     var state: State {
         didSet {
             if let delegate = self.delegate {
@@ -48,27 +48,27 @@ public class RollCallSession: NSObject {
                     switch state {
                     case .error(let error): delegate.session?(self, didFailWithError: error)
                     case .launchingTool(let webView): delegate.session?(self, beganLaunchingToolInView: webView)
-                    case .active(_): delegate.sessionDidBecomeActive?(self)
+                    case .active: delegate.sessionDidBecomeActive?(self)
                     default: break
                     }
                 }
             }
         }
     }
-    
+
     @objc weak public var delegate: RollCallSessionDelegate?
 
     @objc public init(client: CKIClient, initialLaunchURL: URL) {
         self.state = .fetchingLaunchURL
         super.init()
-        
-        client.get(initialLaunchURL.absoluteString, parameters: nil, progress: nil, success: { (task, response) in
+
+        client.get(initialLaunchURL.absoluteString, parameters: nil, progress: nil, success: { (_, response) in
             if let response = response as? [String: Any], let sessionlessURL = response["url"] as? String {
                 self.launch(url: URL(string: sessionlessURL)!)
             }
-        }) { (task, error) in
+        }, failure: { (_, error) in
             self.state = .error(error)
-        }
+        })
     }
 
     @objc func launch(url: URL) {
@@ -80,17 +80,19 @@ public class RollCallSession: NSObject {
         state = .launchingTool(webView)
         webView.loadRequest(URLRequest(url: url))
     }
-    
-    public func fetchStatuses(section: String, date: Date, result: @escaping ([Status], Error?) -> ()) {
+
+    public func fetchStatuses(section: String, date: Date, result: @escaping ([Status], Error?) -> Void) {
         guard case .active(let session) = state else { return }
         let date = Status.dateFormatter.string(from: date)
-        
+
         let url = URL(string: "https://rollcall.instructure.com/statuses?section_id=\(section)&class_date=\(date)")!
 
-        task = session.dataTask(with: url) { (data, response, error) in
+        task = session.dataTask(with: url) { (data, _, error) in
             do {
                 guard let data = data else {
-                    let error = NSError(domain: "com.instructure.rollcall", code: 1, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Error: No data returned from the rollcall api.", comment: "rollcall status error")])
+                    let error = NSError(domain: "com.instructure.rollcall", code: 1, userInfo: [
+                        NSLocalizedDescriptionKey: NSLocalizedString("Error: No data returned from the rollcall api.", comment: "rollcall status error"),
+                    ])
                     DispatchQueue.main.async {
                         result([], error)
                     }
@@ -126,9 +128,9 @@ public class RollCallSession: NSObject {
     }
 
     @objc var task: URLSessionTask?
-    public func updateStatus(_ status: Status, completed: @escaping (String?, Error?) -> Void) -> Void {
+    public func updateStatus(_ status: Status, completed: @escaping (String?, Error?) -> Void) {
         guard case .active(let session) = state else { return }
-        
+
         var url = URL(string: "https://rollcall.instructure.com/statuses")!
         var method = "POST"
         if let id = status.id {
@@ -154,10 +156,12 @@ public class RollCallSession: NSObject {
             print(error)
             return
         }
-        
-        task = session.dataTask(with: request) { (data, response, error) in
+
+        task = session.dataTask(with: request) { (data, _, error) in
             guard let data = data else {
-                let error = NSError(domain: "com.instructure.rollcall", code: 1, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Error: No data returned from the rollcall api.", comment: "rollcall status error")])
+                let error = NSError(domain: "com.instructure.rollcall", code: 1, userInfo: [
+                    NSLocalizedDescriptionKey: NSLocalizedString("Error: No data returned from the rollcall api.", comment: "rollcall status error"),
+                ])
                 print(error)
                 DispatchQueue.main.async {
                     completed(nil, error)
@@ -187,10 +191,10 @@ public class RollCallSession: NSObject {
                 }
             }
         }
-        
+
         task?.resume()
     }
-    
+
     private func attemptToActivate() {
         guard
             case .launchingTool(let webView) = state,
@@ -200,7 +204,7 @@ public class RollCallSession: NSObject {
 
         let preTextContent = webView.stringByEvaluatingJavaScript(from: "document.querySelector('pre').textContent")
         let metaContent = webView.stringByEvaluatingJavaScript(from: "document.querySelector('meta[name=\"csrf-token\"]').content")
-        
+
         if let csrfToken = metaContent, !csrfToken.isEmpty {
             let config = URLSessionConfiguration.default
             config.httpAdditionalHeaders = [
@@ -212,7 +216,9 @@ public class RollCallSession: NSObject {
         } else if let message = preTextContent, !message.isEmpty {
             state = .error(NSError(domain: "com.instructure.rollcall", code: 2, userInfo: [NSLocalizedDescriptionKey: message]))
         } else {
-            state = .error(NSError(domain: "com.instructure.rollcall", code: 1, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Error: No data returned from the rollcall api.", comment: "rollcall status error")]))
+            state = .error(NSError(domain: "com.instructure.rollcall", code: 1, userInfo: [
+                NSLocalizedDescriptionKey: NSLocalizedString("Error: No data returned from the rollcall api.", comment: "rollcall status error"),
+            ]))
         }
     }
 }

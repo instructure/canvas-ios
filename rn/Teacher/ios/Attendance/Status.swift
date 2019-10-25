@@ -74,12 +74,12 @@ public struct Status {
     public var teacherID: String
     public var sectionID: String
     public var courseID: String
-    
+
     public var student: Student
-    
+
     public var date: Date // as yyyy-mm-dd in the current timezone
     public var attendance: Attendance?
-    
+
     public var stats: Stats
 
     // seating chart data
@@ -97,13 +97,13 @@ extension Stats: Unmarshaling, Marshaling {
         absences        = try object <| "absences"
         attendanceGrade = (try object <| "attendance_grade") ?? ""
     }
-    
+
     public func marshaled() -> [String: Any] {
         return [
-            "presences"         : presences,
-            "tardies"           : tardies,
-            "absences"          : absences,
-            "attendance_grade"  : attendanceGrade,
+            "presences": presences,
+            "tardies": tardies,
+            "absences": absences,
+            "attendance_grade": attendanceGrade,
         ]
     }
 }
@@ -113,11 +113,11 @@ extension Student: Unmarshaling, Marshaling {
         id              = try object.stringID("id")
         name            = try object <| "name"
         sortableName    = try object <| "sortable_name"
-        
+
         let url: String? = try object <| "avatar_url"
         avatarURL = url.flatMap(URL.init(string:))
     }
-    
+
     public func marshaled() -> [String: Any] {
         return [
             "id": id,
@@ -130,7 +130,7 @@ extension Student: Unmarshaling, Marshaling {
 
 extension Status: Unmarshaling, Marshaling {
     public init(object: MarshaledObject) throws {
-        
+
         id          = try object.stringID("id")
         studentID   = try object.stringID("student_id")
         teacherID   = try object.stringID("teacher_id")
@@ -142,7 +142,7 @@ extension Status: Unmarshaling, Marshaling {
         row         = try object <| "row"
         col         = try object <| "col"
         student     = try object <| "student"
-        
+
         print("STUDENT (\(studentID)): \(student.name)")
         let stringDate: String = try object <| "class_date"
         guard let d = Status.dateFormatter.date(from: stringDate) else {
@@ -150,7 +150,7 @@ extension Status: Unmarshaling, Marshaling {
         }
         date = d
     }
-    
+
     public func marshaled() -> [String: Any] {
         return [
             "id": id ?? NSNull(),

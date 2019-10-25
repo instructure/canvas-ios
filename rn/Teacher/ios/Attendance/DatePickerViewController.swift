@@ -60,7 +60,7 @@ class DatePickerViewController: UIViewController {
         dateFormatter.setLocalizedDateFormatFromTemplate("MMMM")
         return dateFormatter
     }()
-    
+
     static var yearFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.setLocalizedDateFormatFromTemplate("YYYY")
@@ -113,7 +113,11 @@ class DatePickerViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(DatePickerDateCell.self, forCellWithReuseIdentifier: String(describing: DatePickerDateCell.self))
-        collectionView.register(DatePickerMonthHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: DatePickerMonthHeaderView.self))
+        collectionView.register(
+            DatePickerMonthHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: String(describing: DatePickerMonthHeaderView.self)
+        )
 
         collectionView.backgroundColor = .named(.backgroundLightest)
         collectionView.showsVerticalScrollIndicator = false

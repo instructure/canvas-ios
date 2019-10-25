@@ -30,7 +30,7 @@ class AttendanceViewController: UIViewController {
     private let client: CKIClient
     private let courseID: String
     private let session: RollCallSession
-    
+
     private var sections: [CKISection] = [] {
         didSet {
             changeSectionButton.isEnabled = sections.count > 0
@@ -41,15 +41,13 @@ class AttendanceViewController: UIViewController {
             sectionLabel.text = currentSectionTitle
         }
     }
-    
+
     private var currentSectionTitle: String {
-        get {
-            return sectionID.flatMap { id in
-                return sections
-                    .first { section in section.id == id }
-                    .map { $0.name }
-            } ?? ""
-        }
+        return sectionID.flatMap { id in
+            return sections
+                .first { section in section.id == id }
+                .map { $0.name }
+        } ?? ""
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -72,9 +70,9 @@ class AttendanceViewController: UIViewController {
     private let header = UIView()
     private let markAllButton = UIButton(type: .custom)
     private var markAllButtonBottom: NSLayoutConstraint!
-    
+
     private var statii: [AttendanceStatusController] = []
-    
+
     @objc static let dateFormatter: DateFormatter = {
         let d = DateFormatter()
         d.dateStyle = .medium
@@ -92,11 +90,11 @@ class AttendanceViewController: UIViewController {
         self.client = client
         self.courseID = courseID
         self.changeSectionButton.isEnabled = false
-        
+
         super.init(nibName: nil, bundle: nil)
         session.delegate = self
     }
-    
+
     open override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
@@ -115,21 +113,21 @@ class AttendanceViewController: UIViewController {
         calendarDayIconView.isUserInteractionEnabled = false
         datePickerButton.addTarget(self, action: #selector(showDatePicker(_:)), for: .primaryActionTriggered)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: datePickerButton)
-        
+
         header.translatesAutoresizingMaskIntoConstraints = false
         header.backgroundColor = .named(.backgroundLightest)
-        
+
         let divider = UIView()
         divider.backgroundColor = .named(.borderMedium)
         divider.translatesAutoresizingMaskIntoConstraints = false
         header.addSubview(divider)
-        
+
         sectionLabel.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.semibold)
         sectionLabel.textColor = .named(.textDarkest)
         sectionLabel.text = NSLocalizedString(currentSectionTitle, comment: "")
         sectionLabel.translatesAutoresizingMaskIntoConstraints = false
         header.addSubview(sectionLabel)
-        
+
         changeSectionButton.translatesAutoresizingMaskIntoConstraints = false
         changeSectionButton.setContentHuggingPriority(UILayoutPriority.required, for: .horizontal)
         changeSectionButton.titleLabel?.font = .preferredFont(forTextStyle: .caption1)
@@ -161,7 +159,7 @@ class AttendanceViewController: UIViewController {
         markAllButton.titleLabel?.font = .scaledNamedFont(.semibold16)
         markAllButton.addTarget(self, action: #selector(markRemainingPresent(_:)), for: .touchUpInside)
         markAllButtonBottom = markAllButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 50)
-        
+
         view.addSubview(tableView)
         view.addSubview(header)
         view.addSubview(markAllButton)
@@ -173,7 +171,7 @@ class AttendanceViewController: UIViewController {
             divider.leadingAnchor.constraint(equalTo: header.leadingAnchor),
             divider.trailingAnchor.constraint(equalTo: header.trailingAnchor),
             divider.bottomAnchor.constraint(equalTo: header.bottomAnchor),
-            
+
             sectionLabel.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor),
             sectionLabel.trailingAnchor.constraint(equalTo: changeSectionButton.leadingAnchor, constant: -8),
             sectionLabel.bottomAnchor.constraint(equalTo: divider.bottomAnchor, constant: -12.0),
@@ -182,23 +180,23 @@ class AttendanceViewController: UIViewController {
             changeSectionButton.heightAnchor.constraint(equalToConstant: 40),
             changeSectionButton.trailingAnchor.constraint(equalTo: view.readableContentGuide.trailingAnchor),
             changeSectionButton.lastBaselineAnchor.constraint(equalTo: sectionLabel.lastBaselineAnchor),
-            
+
             header.heightAnchor.constraint(greaterThanOrEqualToConstant: 50.0),
             header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             header.bottomAnchor.constraint(equalTo: tableView.topAnchor),
             header.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             header.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
+
             tableView.bottomAnchor.constraint(equalTo: markAllButton.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
+
             markAllButtonBottom,
             markAllButton.heightAnchor.constraint(equalToConstant: 50.0),
             markAllButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             markAllButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
-        
+
         tableView.setEditing(false, animated: false)
     }
 
@@ -206,7 +204,7 @@ class AttendanceViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useContextColor(courseColor)
     }
-    
+
     func updateMarkAllButton() {
         let hasUnmarked = statii.contains(where: { $0.status.attendance == nil })
         let hasMarked = statii.contains(where: { $0.status.attendance != nil })
@@ -247,7 +245,7 @@ class AttendanceViewController: UIViewController {
         let existingControllers = statii
         statii = statuses.enumerated().map { index, status in
             let controller: AttendanceStatusController
-            
+
             if let existing = existingControllers.first(where: { existing in
                 return status.studentID == existing.status.studentID
             }) {
@@ -268,13 +266,13 @@ class AttendanceViewController: UIViewController {
         }
         updateMarkAllButton()
     }
-    
+
     @objc func refreshStatusesForCurrentSection(completed: @escaping () -> Void) {
         guard let sectionID = self.sectionID else {
             completed()
             return
         }
-        
+
         session.fetchStatuses(section: sectionID, date: date) { [weak self] (statii, error) in
             guard let me = self else { return }
             if let error = error {
@@ -285,16 +283,16 @@ class AttendanceViewController: UIViewController {
             completed()
         }
     }
-    
+
     @objc func refreshStatuses(sender: UIRefreshControl?) {
         client.fetchAuthorizedSections(forCourseWithID: courseID) { [weak self] sections, error in
             guard let me = self else { return }
-            
+
             if let error = error {
                 me.alertError(error)
                 return
             }
-            
+
             guard sections.count > 0 else {
                 me.alertError(attendanceError(message:
                     NSLocalizedString("There was a problem fetching the list of course sections.", comment: "")
@@ -302,9 +300,9 @@ class AttendanceViewController: UIViewController {
                 sender?.endRefreshing()
                 return
             }
-            
+
             me.sections = sections
-            
+
             // select the 1st Section ID
             if me.sectionID == nil || !sections.contains(where: { $0.id == me.sectionID }) {
                 if let firstID = sections.first?.id {
@@ -316,17 +314,17 @@ class AttendanceViewController: UIViewController {
                     return
                 }
             }
-            
+
             me.refreshStatusesForCurrentSection {
                 sender?.endRefreshing()
             }
         }
     }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     @objc func showDatePicker(_ sender: Any?) {
         let datePicker = DatePickerViewController()
         datePicker.initialDate = date
@@ -337,12 +335,10 @@ class AttendanceViewController: UIViewController {
         nav.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(nav, animated: true, completion: nil)
     }
-    
+
     @objc func markRemainingPresent(_ sender: Any?) {
-        for statusController in statii {
-            if statusController.status.attendance == nil {
-                statusController.update(attendance: .present)
-            }
+        for statusController in statii where statusController.status.attendance == nil {
+            statusController.update(attendance: .present)
         }
         updateMarkAllButton()
     }
@@ -352,13 +348,13 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate {
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return statii.count
     }
-    
+
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: StatusCell = tableView.dequeue(for: indexPath)
         cell.status = statii[indexPath.row].status
         return cell
     }
-    
+
     open func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -386,7 +382,7 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate {
             return action
         }
     }
-    
+
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sc = statii[indexPath.row]
         switch sc.status.attendance {
@@ -398,7 +394,6 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate {
         updateMarkAllButton()
     }
 }
-
 
 extension AttendanceViewController: DatePickerDelegate {
     @objc func didSelectDate(_ date: Date) {
@@ -415,18 +410,17 @@ extension AttendanceViewController: DatePickerDelegate {
     }
 }
 
-
 extension AttendanceViewController: RollCallSessionDelegate {
     public func sessionDidBecomeActive(_ session: RollCallSession) {
         tableView.refreshControl?.beginRefreshing()
         refreshStatuses(sender: tableView.refreshControl)
     }
-    
+
     public func session(_ session: RollCallSession, didFailWithError error: Error) {
         tableView.refreshControl?.endRefreshing()
         alertError(error)
     }
-    
+
     public func session(_ session: RollCallSession, beganLaunchingToolInView view: UIWebView) {
         loadViewIfNeeded()
         tableView.backgroundView?.addSubview(view)
