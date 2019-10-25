@@ -32,7 +32,7 @@ class AssignmentListPresenter {
     var didGetAssignmentGroups = false
     var assignmentGroups: Store<GetAssignmentGroups>?
     var assignments: Store<GetAssignmentsForGrades>!
-    var currentGradingPeriodID: String?
+    var selectedGradingPeriod: GradingPeriod?
 
     lazy var color = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavbar()
@@ -42,10 +42,6 @@ class AssignmentListPresenter {
         self?.update()
         self?.updateNavbar()
     }
-
-//    lazy var assignments = env.subscribe(GetAssignments(courseID: self.courseID, sort: sort)) { [weak self] in
-//        self?.update()
-//    }
 
     lazy var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in
         self?.update()
@@ -91,10 +87,13 @@ class AssignmentListPresenter {
     }
 
     func refreshAssignments(force: Bool) {
-        let useCase = GetAssignmentsForGrades(courseID: courseID, gradingPeriodID: currentGradingPeriodID, groupBy: .assignmentGroup, requestQuerySize: 99, clearsBeforeWrite: false, include: [.all_dates])
+        let useCase = GetAssignmentsForGrades(courseID: courseID, gradingPeriodID: selectedGradingPeriod?.id, groupBy: .assignmentGroup, requestQuerySize: 99, clearsBeforeWrite: true, include: [.all_dates])
         assignments = env.subscribe( useCase ) { [weak self] in
-            if !(self?.assignments.pending ?? false) && !(self?.didGetAssignmentGroups ?? false) {
+            guard let useCase = self?.assignments, let didGetAssignmentGroups = self?.didGetAssignmentGroups else { return }
+            if !useCase.pending && !didGetAssignmentGroups {
                 self?.refreshAssignmentGroups(force: force)
+            } else {
+                self?.update()
             }
         }
         assignments?.refresh(force: force)
@@ -102,9 +101,31 @@ class AssignmentListPresenter {
 
     func refreshAssignmentGroups(force: Bool) {
         didGetAssignmentGroups = true
-        assignmentGroups = env.subscribe(  GetAssignmentGroups(courseID: courseID, gradingPeriodID: currentGradingPeriodID, include: [.assignments])  ) { [weak self] in
-            self?.update()
+        assignmentGroups = env.subscribe(  GetAssignmentGroups(courseID: courseID, gradingPeriodID: selectedGradingPeriod?.id, include: [.assignments])  ) { [weak self] in
+                self?.update()
         }
         assignmentGroups?.refresh(force: force)
+    }
+
+    func filterByGradingPeriod(_ period: GradingPeriod?) {
+        selectedGradingPeriod = period
+        didGetAssignmentGroups = false
+        refreshAssignments(force: selectedGradingPeriod != nil)
+    }
+
+    var filterButtonTitle: String? {
+        if selectedGradingPeriod != nil {
+            return NSLocalizedString("Clear filter", comment: "")
+        } else {
+            return NSLocalizedString("Filter", comment: "")
+        }
+    }
+
+    var gradingPeriodTitle: String? {
+        if let p = selectedGradingPeriod {
+            return p.title
+        } else {
+            return NSLocalizedString("All Grading Periods", comment: "")
+        }
     }
 }

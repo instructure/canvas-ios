@@ -17,28 +17,64 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1E3-2K-LLJ">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="gSJ-9g-VOW" id="9hh-Zh-Mx4"/>
                                     <outlet property="delegate" destination="gSJ-9g-VOW" id="Zrp-mL-OKg"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" id="UAI-US-qu4">
-                                <rect key="frame" x="0.0" y="426" width="414" height="44"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" insetsLayoutMarginsFromSafeArea="NO" animating="YES" style="medium" id="UAI-US-qu4">
+                                <rect key="frame" x="-0.57894736842104066" y="426.78947368421063" width="414.00000000000006" height="43.999999999999872"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="btZ-WP-IYk">
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Arl-Ra-yRn" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="16" width="339" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold20"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vSO-Og-Wzg" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                                        <rect key="frame" x="363" y="16" width="35" height="30"/>
+                                        <state key="normal" title="Filter"/>
+                                        <connections>
+                                            <action selector="actionFilterClicked:" destination="gSJ-9g-VOW" eventType="touchUpInside" id="W3L-JE-bva"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="vSO-Og-Wzg" firstAttribute="leading" secondItem="Arl-Ra-yRn" secondAttribute="trailing" constant="8" id="2ca-ce-1lr"/>
+                                    <constraint firstItem="Arl-Ra-yRn" firstAttribute="leading" secondItem="btZ-WP-IYk" secondAttribute="leading" constant="16" id="C0b-mh-6dF"/>
+                                    <constraint firstItem="vSO-Og-Wzg" firstAttribute="bottom" secondItem="Arl-Ra-yRn" secondAttribute="bottom" constant="6" id="W4v-yj-qf9"/>
+                                    <constraint firstAttribute="trailing" secondItem="vSO-Og-Wzg" secondAttribute="trailing" constant="16" id="jI0-Je-YxO"/>
+                                    <constraint firstItem="Arl-Ra-yRn" firstAttribute="top" secondItem="btZ-WP-IYk" secondAttribute="top" constant="16" id="xZn-GE-1N8"/>
+                                    <constraint firstAttribute="bottom" secondItem="Arl-Ra-yRn" secondAttribute="bottom" constant="10" id="yA0-dx-FQi"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="1E3-2K-LLJ" firstAttribute="top" secondItem="HtL-XO-kvN" secondAttribute="top" id="Klb-sd-wEN"/>
                             <constraint firstItem="1E3-2K-LLJ" firstAttribute="leading" secondItem="HtL-XO-kvN" secondAttribute="leading" id="Me4-ql-HVd"/>
+                            <constraint firstItem="btZ-WP-IYk" firstAttribute="leading" secondItem="HtL-XO-kvN" secondAttribute="leading" id="ajs-kf-pHS"/>
+                            <constraint firstItem="HtL-XO-kvN" firstAttribute="trailing" secondItem="btZ-WP-IYk" secondAttribute="trailing" id="bJA-Hs-0Qb"/>
+                            <constraint firstItem="1E3-2K-LLJ" firstAttribute="top" secondItem="btZ-WP-IYk" secondAttribute="bottom" id="e1C-DG-185"/>
                             <constraint firstItem="HtL-XO-kvN" firstAttribute="bottom" secondItem="1E3-2K-LLJ" secondAttribute="bottom" id="sq0-eu-DDZ"/>
                             <constraint firstItem="HtL-XO-kvN" firstAttribute="trailing" secondItem="1E3-2K-LLJ" secondAttribute="trailing" id="xD8-U9-xyz"/>
+                            <constraint firstItem="btZ-WP-IYk" firstAttribute="top" secondItem="HtL-XO-kvN" secondAttribute="top" id="zXz-CI-UCU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HtL-XO-kvN"/>
                     </view>
                     <connections>
+                        <outlet property="filterButton" destination="vSO-Og-Wzg" id="RqB-3d-uWe"/>
+                        <outlet property="gradingPeriodLabel" destination="Arl-Ra-yRn" id="OhT-uU-dIw"/>
+                        <outlet property="headerContainerView" destination="btZ-WP-IYk" id="lFT-iU-uxt"/>
                         <outlet property="spinner" destination="UAI-US-qu4" id="dmL-Zr-Mrh"/>
                         <outlet property="tableView" destination="1E3-2K-LLJ" id="zcP-Pj-Xsd"/>
                     </connections>

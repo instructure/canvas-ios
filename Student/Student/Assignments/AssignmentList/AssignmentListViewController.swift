@@ -25,8 +25,11 @@ class AssignmentListViewController: UIViewController {
     var color: UIColor?
     var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var headerContainerView: UIView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-
+    @IBOutlet weak var gradingPeriodLabel: DynamicLabel!
+    @IBOutlet weak var filterButton: DynamicButton!
+    
     static func create(env: AppEnvironment = .shared, courseID: String, sort: GetAssignments.Sort = .position) -> AssignmentListViewController {
         let vc = loadFromStoryboard()
         vc.presenter = AssignmentListPresenter(view: vc, courseID: courseID, sort: sort)
@@ -35,15 +38,50 @@ class AssignmentListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setupTitleViewInNavbar(title: NSLocalizedString("Assignments", comment: ""))
+        configureTableView()
+        presenter?.viewIsReady()
+
+        gradingPeriodLabel.text = presenter?.gradingPeriodTitle
+        filterButton.setTitle(presenter?.filterButtonTitle, for: .normal)
+        filterButton.setTitleColor(color, for: .normal)
+    }
+
+    private func configureTableView() {
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        tableView.refreshControl = refresh
+
         tableView.registerCell(ListCell.self)
         tableView.registerHeaderFooterView(SectionHeaderView.self)
-        presenter?.viewIsReady()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useContextColor(color)
+    }
+
+    @IBAction func actionFilterClicked(_ sender: Any) {
+        if presenter?.selectedGradingPeriod != nil {
+            presenter?.filterByGradingPeriod(nil)
+        } else {
+            let alert = UIAlertController(title: nil, message: NSLocalizedString("Filter by:", comment: ""), preferredStyle: .actionSheet)
+            let gps: [GradingPeriod] = presenter?.gradingPeriods.all ?? []
+            for gp in gps {
+                let action = UIAlertAction(title: gp.title, style: .default) { [weak self] _ in
+                    self?.presenter?.filterByGradingPeriod(gp)
+                }
+                alert.addAction(action)
+            }
+            let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .destructive, handler: nil)
+            alert.addAction(cancel)
+            present(alert, animated: true, completion: nil)
+        }
+    }
+
+    @objc func refresh(_ control: UIRefreshControl) {
+        presenter?.refresh(force: true)
     }
 }
 
@@ -100,6 +138,8 @@ extension AssignmentListViewController: AssignmentListViewProtocol {
         spinner.isHidden = !loading
         if !loading {
             tableView.reloadData()
+            filterButton.setTitle(presenter?.filterButtonTitle, for: .normal)
+            gradingPeriodLabel.text = presenter?.gradingPeriodTitle
         }
         view.layoutIfNeeded()
     }

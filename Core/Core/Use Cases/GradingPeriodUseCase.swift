@@ -32,7 +32,7 @@ public class GetGradingPeriods: CollectionUseCase {
     }
 
     public var scope: Scope {
-        return .where(#keyPath(GradingPeriod.courseID), equals: courseID)
+        return .where(#keyPath(GradingPeriod.courseID), equals: courseID, orderBy: #keyPath(GradingPeriod.title), ascending: true, naturally: true)
     }
 
     public var request: GetGradingPeriodsRequest {

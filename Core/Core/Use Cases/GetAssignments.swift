@@ -119,23 +119,22 @@ public class GetAssignmentsForGrades: GetAssignments {
     }
 
     public override var scope: Scope {
+        let p1 = NSPredicate(format: "%K == %@", argumentArray: [#keyPath(Assignment.courseID), courseID])
+        var preds: [NSPredicate] = [p1]
+        if let gradingPeriodID = gradingPeriodID {
+            let p2 = NSPredicate(format: "%K == %@", argumentArray: [#keyPath(Assignment.gradingPeriodID), gradingPeriodID])
+            preds.append(p2)
+        }
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: preds)
+
         switch groupBy {
         case .assignmentGroup:
-            let predicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.courseID), courseID)
             let s0 = NSSortDescriptor(key: #keyPath(Assignment.assignmentGroupPosition), ascending: true, selector: nil)
             let s1 = NSSortDescriptor(key: #keyPath(Assignment.position), ascending: true, selector: nil)
             return Scope(predicate: predicate, order: [s0, s1], sectionNameKeyPath: #keyPath(Assignment.assignmentGroupPosition))
         case .dueAt:
             let a = NSSortDescriptor(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true)
             let b = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare))
-
-            let p1 = NSPredicate(format: "%K == %@", argumentArray: [#keyPath(Assignment.courseID), courseID])
-            var preds: [NSPredicate] = [p1]
-            if let gradingPeriodID = gradingPeriodID {
-                let p2 = NSPredicate(format: "%K == %@", argumentArray: [#keyPath(Assignment.gradingPeriodID), gradingPeriodID])
-                preds.append(p2)
-            }
-            let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: preds)
             return Scope(predicate: predicate, order: [a, a, b], sectionNameKeyPath: #keyPath(Assignment.dueAtSortNilsAtBottom))
         }
     }
