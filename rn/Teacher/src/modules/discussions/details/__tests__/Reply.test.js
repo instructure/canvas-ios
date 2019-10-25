@@ -186,7 +186,7 @@ describe('DiscussionReplies', () => {
 
     expect(props.navigator.show).toHaveBeenCalledWith(
       '/attachment',
-      { modal: true },
+      { modal: true, disableSwipeDownToDismissModal: true },
       { attachment: props.reply.attachment }
     )
   })

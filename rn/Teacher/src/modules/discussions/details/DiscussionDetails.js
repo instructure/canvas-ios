@@ -631,13 +631,13 @@ export class DiscussionDetails extends Component<Props, any> {
     } else {
       logEvent('discussion_topic_replied', { nested: false })
     }
-    this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true }, { indexPath: [], lastReplyAt, permissions })
+    this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true, disableSwipeDownToDismissModal: true }, { indexPath: [], lastReplyAt, permissions })
   }
 
   _onPressReplyToEntry = (entryID: string, indexPath: number[]) => {
     let lastReplyAt = this.props.discussion && this.props.discussion.last_reply_at
     let permissions = this.props.discussion && this.props.discussion.permissions
-    this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/discussion_topics/${this.props.discussionID}/entries/${entryID}/replies`, { modal: true }, { indexPath: indexPath, entryID, lastReplyAt, permissions })
+    this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/discussion_topics/${this.props.discussionID}/entries/${entryID}/replies`, { modal: true, disableSwipeDownToDismissModal: true }, { indexPath: indexPath, entryID, lastReplyAt, permissions })
   }
 
   _editDiscussion = () => {

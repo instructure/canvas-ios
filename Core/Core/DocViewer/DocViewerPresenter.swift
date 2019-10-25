@@ -120,6 +120,7 @@ extension DocViewerPresenter: PSPDFViewControllerDelegate {
         in annotationRect: CGRect,
         on pageView: PSPDFPageView
     ) -> [PSPDFMenuItem] {
+        annotations?.forEach { (pageView.annotationView(for: $0) as? PSPDFFreeTextAnnotationView)?.resizableView?.allowRotating = false }
         if annotations?.count == 1, let annotation = annotations?.first, let document = pdfController.document, let metadata = metadata?.annotations {
             var realMenuItems = [PSPDFMenuItem]()
             realMenuItems.append(PSPDFMenuItem(title: NSLocalizedString("Comments", bundle: .core, comment: "")) { [weak self] in
