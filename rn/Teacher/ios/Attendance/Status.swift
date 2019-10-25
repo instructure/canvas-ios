@@ -19,9 +19,31 @@
 import Foundation
 
 public enum Attendance: String {
-    case present
-    case absent
-    case late
+    case present, late, absent
+
+    var label: String {
+        switch self {
+        case .present: return NSLocalizedString("Present", comment: "")
+        case .late: return NSLocalizedString("Late", comment: "")
+        case .absent: return NSLocalizedString("Absent", comment: "")
+        }
+    }
+
+    var icon: UIImage {
+        switch self {
+        case .present: return UIImage.icon(.complete, .line)
+        case .late: return UIImage.icon(.clock, .line)
+        case .absent: return UIImage.icon(.trouble, .line)
+        }
+    }
+
+    var tintColor: UIColor {
+        switch self {
+        case .present: return UIColor.named(.backgroundSuccess)
+        case .late: return UIColor.named(.backgroundWarning)
+        case .absent: return UIColor.named(.backgroundDanger)
+        }
+    }
 }
 
 public struct Stats {

@@ -17,28 +17,28 @@
 //
 
 import UIKit
+import Core
 
 class DatePickerDateCell: UICollectionViewCell {
-    @objc let label = UILabel()
-    @objc let highlightView = UIView()
-    
-    @objc var isToday = false
-    
+    let label = UILabel()
+    let highlightView = UIView()
+
+    var isToday = false
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        highlightView.backgroundColor = #colorLiteral(red: 0, green: 0.5568627451, blue: 0.8862745098, alpha: 1)
+
+        highlightView.backgroundColor = .named(.electric)
         highlightView.layer.cornerRadius = 4.0
         highlightView.clipsToBounds = true
         highlightView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(highlightView)
-        
-        label.textColor = isToday ? #colorLiteral(red: 0, green: 0.5568627451, blue: 0.8862745098, alpha: 1) : #colorLiteral(red: 0.1764705882, green: 0.231372549, blue: 0.2705882353, alpha: 1)
+
         label.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(label)
-        
+
         setIsHighlighted(false)
-        
+
         NSLayoutConstraint.activate([
             highlightView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.7),
             highlightView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.7),
@@ -48,63 +48,55 @@ class DatePickerDateCell: UICollectionViewCell {
             label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
         ])
     }
-    
-    @objc func setIsHighlighted(_ highlighted: Bool) {
+
+    func setIsHighlighted(_ highlighted: Bool) {
         if highlighted {
             highlightView.isHidden = false
-            label.textColor = .white
+            label.textColor = .named(.white)
         } else {
             highlightView.isHidden = true
-            label.textColor = isToday ? #colorLiteral(red: 0, green: 0.5568627451, blue: 0.8862745098, alpha: 1) : #colorLiteral(red: 0.1764705882, green: 0.231372549, blue: 0.2705882353, alpha: 1)
+            label.textColor = .named(isToday ? .electric : .textDarkest)
         }
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
 class DatePickerMonthHeaderView: UICollectionReusableView {
-    @objc let stack = UIStackView()
-    @objc let yearLabel = UILabel()
-    @objc let monthLabel = UILabel()
-    
+    let stack = UIStackView()
+    let yearLabel = UILabel()
+    let monthLabel = UILabel()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         stack.axis = .vertical
         stack.alignment = .fill
         stack.spacing = 16
         stack.translatesAutoresizingMaskIntoConstraints = false
-        
+
         addSubview(stack)
         stack.addArrangedSubview(yearLabel)
         stack.addArrangedSubview(monthLabel)
-        
-        yearLabel.font = UIFont.systemFont(ofSize: 34, weight: UIFont.Weight.bold)
-        yearLabel.textColor = #colorLiteral(red: 0.1764705882, green: 0.231372549, blue: 0.2705882353, alpha: 1)
+
+        yearLabel.font = .scaledNamedFont(.heavy24)
+        yearLabel.textColor = .named(.textDarkest)
         yearLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        monthLabel.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.semibold)
-        monthLabel.textColor = #colorLiteral(red: 0.1764705882, green: 0.231372549, blue: 0.2705882353, alpha: 1)
+
+        monthLabel.font = .scaledNamedFont(.semibold20)
+        monthLabel.textColor = .named(.textDarkest)
         monthLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        var leadingAnchor = self.leadingAnchor
-        var trailingAnchor = self.trailingAnchor
-        
-        if #available(iOS 11, *) {
-            leadingAnchor = safeAreaLayoutGuide.leadingAnchor
-            trailingAnchor = safeAreaLayoutGuide.trailingAnchor
-        }
-        
+
         NSLayoutConstraint.activate([
-            stack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            stack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
+            stack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            stack.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 8),
             stack.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             stack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
         ])
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

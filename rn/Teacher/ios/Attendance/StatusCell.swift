@@ -17,58 +17,28 @@
 //
 
 import UIKit
-import AFNetworking
 import Core
 
-extension Status {
-    var subtitle: (label: String, tint: UIColor) {
-        guard let attendance = attendance else { return ("", .white) }
-        
-        switch attendance {
-        case .present: return (NSLocalizedString("Present", tableName: "Localizable", bundle: .core, value: "", comment: "Student is present in class"), UIColor.named(.backgroundSuccess))
-        case .late: return (NSLocalizedString("Late", tableName: "Localizable", bundle: .core, value: "", comment: "Student is present in class"), UIColor.named(.backgroundWarning))
-        case .absent: return (NSLocalizedString("Absent", tableName: "Localizable", bundle: .core, value: "", comment: "Student is present in class"), UIColor.named(.backgroundDanger))
-        }
-    }
-    
-    var icon: UIImage {
-        guard let attendance = attendance else { return UIImage(named: "unmarked-icon", in: .core, compatibleWith: nil)! }
-        
-        switch attendance {
-        case .present: return UIImage(named: "present-icon", in: .core, compatibleWith: nil)!
-        case .late: return UIImage(named: "late-icon", in: .core, compatibleWith: nil)!
-        case .absent: return UIImage(named: "absent-icon", in: .core, compatibleWith: nil)!
-        }
-    }
-}
-
 class StatusCell: UITableViewCell {
-    @objc static let reuseID = "StatusCell"
-    
-    @objc let avatarView = AvatarView()
-    @objc let nameLabel = UILabel()
-    
+    let avatarView = AvatarView()
+    let nameLabel = UILabel()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
         selectionStyle = .none
         backgroundColor = .named(.backgroundLightest)
 
         nameLabel.font = .scaledNamedFont(.semibold16)
         nameLabel.textColor = .named(.textDarkest)
-        
-        let vertStack = UIStackView()
-        vertStack.axis = .vertical
-        vertStack.alignment = .leading
-        vertStack.addArrangedSubview(nameLabel)
-        
+
         let horizontalStack = UIStackView()
         horizontalStack.alignment = .center
         horizontalStack.spacing = 8
         horizontalStack.translatesAutoresizingMaskIntoConstraints = false
         horizontalStack.addArrangedSubview(avatarView)
-        horizontalStack.addArrangedSubview(vertStack)
-        
+        horizontalStack.addArrangedSubview(nameLabel)
+
         let guide = contentView.layoutMarginsGuide
         contentView.addSubview(horizontalStack)
         NSLayoutConstraint.activate([
@@ -80,25 +50,28 @@ class StatusCell: UITableViewCell {
             guide.bottomAnchor.constraint(equalTo: horizontalStack.bottomAnchor),
         ])
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
-        fatalError("Not IB Friendly #sorrynotsorry")
+        fatalError("init(coder:) has not been implemented")
     }
-    
+
     var status: Status? {
         didSet {
             guard let status = status else { return }
-            nameLabel.text = status.student.name
-            var i18nLabel = status.student.name
-            if status.attendance != nil {
-                i18nLabel += " — \(status.subtitle.label)"
-            }
-            accessibilityLabel = i18nLabel
 
+            nameLabel.text = status.student.name
             avatarView.name = status.student.name
             avatarView.url = status.student.avatarURL
-            
-            accessoryView = UIImageView(image: status.icon)
+
+            var i18nLabel = status.student.name
+            if let attendance = status.attendance {
+                accessoryView = UIImageView(image: attendance.icon)
+                accessoryView?.tintColor = attendance.tintColor
+                i18nLabel += " — \(attendance.label)"
+            } else {
+                accessoryView = nil
+            }
+            accessibilityLabel = i18nLabel
         }
     }
 }

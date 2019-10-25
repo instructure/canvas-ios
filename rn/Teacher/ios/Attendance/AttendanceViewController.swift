@@ -26,48 +26,54 @@ private func attendanceError(message: String) -> Error {
     ])
 }
 
-open class AttendanceViewController: UIViewController {
-    fileprivate let client: CKIClient
-    fileprivate let courseID: String
-    fileprivate let session: RollCallSession
+class AttendanceViewController: UIViewController {
+    private let client: CKIClient
+    private let courseID: String
+    private let session: RollCallSession
     
-    fileprivate var sections: [CKISection] = [] {
+    private var sections: [CKISection] = [] {
         didSet {
             changeSectionButton.isEnabled = sections.count > 0
         }
     }
-    fileprivate var sectionID: Int? {
+    private var sectionID: String? {
         didSet {
             sectionLabel.text = currentSectionTitle
         }
     }
     
-    fileprivate var currentSectionTitle: String {
+    private var currentSectionTitle: String {
         get {
             return sectionID.flatMap { id in
                 return sections
-                    .first { section in Int(section.id) == id }
+                    .first { section in section.id == id }
                     .map { $0.name }
             } ?? ""
         }
     }
-    
-    fileprivate var date: Date {
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
+    private var date: Date {
         didSet {
+            calendarDayIconView.setDate(date)
             dateLabel?.text = AttendanceViewController.dateFormatter.string(from: date)
             dateLabel?.sizeToFit()
         }
     }
 
-    fileprivate let tableView = UITableView()
-    fileprivate var dateLabel: UILabel?
-    fileprivate let sectionLabel = UILabel()
-    fileprivate let changeSectionButton = UIButton(type: .system)
-    fileprivate let header = UIView()
-    fileprivate let bigBlueButton = UIButton(type: .custom)
-    fileprivate var bigBlueButtonBottom: NSLayoutConstraint!
+    private let tableView = UITableView()
+    private var dateLabel: UILabel?
+    private lazy var calendarDayIconView = CalendarDayIconView.create(date: date)
+    private let sectionLabel = UILabel()
+    private let changeSectionButton = UIButton(type: .system)
+    private let header = UIView()
+    private let markAllButton = UIButton(type: .custom)
+    private var markAllButtonBottom: NSLayoutConstraint!
     
-    fileprivate var statii: [AttendanceStatusController] = []
+    private var statii: [AttendanceStatusController] = []
     
     @objc static let dateFormatter: DateFormatter = {
         let d = DateFormatter()
@@ -75,8 +81,12 @@ open class AttendanceViewController: UIViewController {
         d.timeStyle = .none
         return d
     }()
-    
-    @objc public init(client: CKIClient, launchURL: URL, courseID: String, date: Date) {
+
+    @objc let courseColor: UIColor
+
+    @objc init(courseName: String, courseColor: UIColor, launchURL: URL, courseID: String, date: Date) throws {
+        guard let client = CKIClient.current else { throw NSError(subdomain: "com.instructure.Teacher", description: "CKIClient client is nil") }
+        self.courseColor = courseColor
         self.session = RollCallSession(client: client, initialLaunchURL: launchURL)
         self.date = date
         self.client = client
@@ -89,19 +99,22 @@ open class AttendanceViewController: UIViewController {
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        
-        
-        let titleStuff = self.titleView(with: NSLocalizedString("Attendance", tableName: "Localizable", bundle: .core, value: "", comment: ""), and: AttendanceViewController.dateFormatter.string(from: date))
-        titleStuff.titleLabel.textColor = .white
-        titleStuff.subtitleLabel.textColor = .white
-        navigationItem.titleView = titleStuff.titleView
-        dateLabel = titleStuff.subtitleLabel
-        
-        let datePickerButton = UIBarButtonItem(image: UIImage(named: "attendance-calendar", in: .core, compatibleWith: nil), style: .plain, target: self, action: #selector(showDatePicker(_:)))
-        datePickerButton.accessibilityLabel = NSLocalizedString("Date picker", tableName: "Localizable", bundle: .core, value: "", comment: "")
-        datePickerButton.accessibilityHint = NSLocalizedString("Select to change the roll call date", tableName: "Localizable", bundle: .core, value: "", comment: "")
-        navigationItem.rightBarButtonItem = datePickerButton
+        view.backgroundColor = .named(.backgroundLightest)
+
+        let titleView = TitleSubtitleView.create()
+        titleView.title = NSLocalizedString("Attendance", comment: "")
+        titleView.subtitle = AttendanceViewController.dateFormatter.string(from: date)
+        navigationItem.titleView = titleView
+        dateLabel = titleView.subtitleLabel
+
+        let datePickerButton = UIButton(type: .custom)
+        datePickerButton.accessibilityIdentifier = "Attendance.selectDateButton"
+        datePickerButton.accessibilityLabel = NSLocalizedString("Date picker", comment: "")
+        datePickerButton.accessibilityHint = NSLocalizedString("Select to change the roll call date", comment: "")
+        datePickerButton.addSubview(calendarDayIconView)
+        calendarDayIconView.isUserInteractionEnabled = false
+        datePickerButton.addTarget(self, action: #selector(showDatePicker(_:)), for: .primaryActionTriggered)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: datePickerButton)
         
         header.translatesAutoresizingMaskIntoConstraints = false
         header.backgroundColor = .named(.backgroundLightest)
@@ -120,7 +133,7 @@ open class AttendanceViewController: UIViewController {
         changeSectionButton.translatesAutoresizingMaskIntoConstraints = false
         changeSectionButton.setContentHuggingPriority(UILayoutPriority.required, for: .horizontal)
         changeSectionButton.titleLabel?.font = .preferredFont(forTextStyle: .caption1)
-        changeSectionButton.setTitle(NSLocalizedString("Change Section", tableName: "Localizable", bundle: .core, value: "", comment: ""), for: .normal)
+        changeSectionButton.setTitle(NSLocalizedString("Change Section", comment: ""), for: .normal)
         changeSectionButton.sizeToFit()
         changeSectionButton.addTarget(self, action: #selector(changeSection(_:)), for: .touchUpInside)
         changeSectionButton.tintColor = Core.Brand.shared.linkColor
@@ -131,7 +144,7 @@ open class AttendanceViewController: UIViewController {
         tableView.separatorColor = .named(.borderMedium)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 60
-        tableView.register(StatusCell.self, forCellReuseIdentifier: StatusCell.reuseID)
+        tableView.registerCell(StatusCell.self)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -142,16 +155,20 @@ open class AttendanceViewController: UIViewController {
         tableView.refreshControl = refresh
         tableView.refreshControl?.beginRefreshing()
 
-        bigBlueButton.backgroundColor = #colorLiteral(red: 0, green: 0.5568627451, blue: 0.8862745098, alpha: 1)
-        bigBlueButton.translatesAutoresizingMaskIntoConstraints = false
-        bigBlueButton.titleLabel?.font = .scaledNamedFont(.semibold16)
-        bigBlueButton.addTarget(self, action: #selector(markRemainingPresent(_:)), for: .touchUpInside)
-        bigBlueButtonBottom = bigBlueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 50)
+        markAllButton.backgroundColor = Brand.shared.buttonPrimaryBackground
+        markAllButton.tintColor = Brand.shared.buttonPrimaryText
+        markAllButton.translatesAutoresizingMaskIntoConstraints = false
+        markAllButton.titleLabel?.font = .scaledNamedFont(.semibold16)
+        markAllButton.addTarget(self, action: #selector(markRemainingPresent(_:)), for: .touchUpInside)
+        markAllButtonBottom = markAllButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 50)
         
         view.addSubview(tableView)
         view.addSubview(header)
-        view.addSubview(bigBlueButton)
+        view.addSubview(markAllButton)
         NSLayoutConstraint.activate([
+            datePickerButton.heightAnchor.constraint(equalTo: datePickerButton.widthAnchor),
+            datePickerButton.widthAnchor.constraint(equalToConstant: 24),
+
             divider.heightAnchor.constraint(equalToConstant: 0.5),
             divider.leadingAnchor.constraint(equalTo: header.leadingAnchor),
             divider.trailingAnchor.constraint(equalTo: header.trailingAnchor),
@@ -172,67 +189,60 @@ open class AttendanceViewController: UIViewController {
             header.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             header.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            tableView.bottomAnchor.constraint(equalTo: bigBlueButton.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: markAllButton.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            bigBlueButtonBottom,
-            bigBlueButton.heightAnchor.constraint(equalToConstant: 50.0),
-            bigBlueButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            bigBlueButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            markAllButtonBottom,
+            markAllButton.heightAnchor.constraint(equalToConstant: 50.0),
+            markAllButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            markAllButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
         
         tableView.setEditing(false, animated: false)
     }
-    
-    @objc func updateBigBlueButton() {
-        // If ALL are unmarked, display "Mark All as Present"
-        // Or, if less than all are unmarked, display "Mark Remaining as Present"
-        
-        let containsNonNull = statii.contains(where: { $0.status.attendance != nil })
-        if !containsNonNull {
-            bigBlueButton.setTitle(NSLocalizedString("Mark All as Present", tableName: "Localizable", bundle: .core, value: "", comment: ""), for: .normal)
-        } else {
-            bigBlueButton.setTitle(NSLocalizedString("Mark Remaining as Present", tableName: "Localizable", bundle: .core, value: "", comment: ""), for: .normal)
-        }
-        
-        showOrHideBigBlueButton()
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.useContextColor(courseColor)
     }
     
-    @objc func showOrHideBigBlueButton() {
-        let containsNull = statii.contains(where: { $0.status.attendance == nil })
-        if containsNull && bigBlueButtonBottom.constant != 0 {
-            bigBlueButtonBottom.constant = 0
-            view.setNeedsUpdateConstraints()
+    func updateMarkAllButton() {
+        let hasUnmarked = statii.contains(where: { $0.status.attendance == nil })
+        let hasMarked = statii.contains(where: { $0.status.attendance != nil })
+
+        let title = hasMarked
+            ? NSLocalizedString("Mark Remaining as Present", comment: "")
+            : NSLocalizedString("Mark All as Present", comment: "")
+        markAllButton.setTitle(title, for: .normal)
+
+        if hasUnmarked, markAllButtonBottom.constant != 0 {
+            view.layoutIfNeeded()
             UIView.animate(withDuration: 0.3, animations: {
+                self.markAllButtonBottom.constant = 0
+                self.view.setNeedsUpdateConstraints()
                 self.view.layoutIfNeeded()
             })
-        } else if !containsNull && bigBlueButtonBottom.constant != 50 {
-            // 49 pts for tab bar stupidness, 50 to make itgo back and hide
-            bigBlueButtonBottom.constant = 50
-            view.setNeedsUpdateConstraints()
+        } else if !hasUnmarked, markAllButtonBottom.constant != markAllButton.frame.height {
+            view.layoutIfNeeded()
             UIView.animate(withDuration: 0.3, animations: {
+                self.markAllButtonBottom.constant = self.markAllButton.frame.height
+                self.view.setNeedsUpdateConstraints()
                 self.view.layoutIfNeeded()
             })
         }
     }
-    
-    @objc func alertError(_ error: Error) {
+
+    func alertError(_ error: Error) {
         let alert = UIAlertController(
-            title: NSLocalizedString("Attendance Error", tableName: "Localizable", bundle: .core, value: "", comment: "Error title for attendance app"),
+            title: NSLocalizedString("Attendance Error", comment: ""),
             message: error.localizedDescription,
             preferredStyle: .alert
         )
-        
-        alert.addAction(UIAlertAction(
-            title: NSLocalizedString("Dismiss", tableName: "Localizable", bundle: .core, value: "", comment: "Dismiss an error alert"),
-            style: .default,
-            handler: nil
-        ))
-        
-        present(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""), style: .default))
+        present(alert, animated: true)
     }
-    
+
     func prepareStatusControllers(for statuses: [Status]) {
         let existingControllers = statii
         statii = statuses.enumerated().map { index, status in
@@ -256,7 +266,7 @@ open class AttendanceViewController: UIViewController {
         if isViewLoaded {
             tableView.reloadData()
         }
-        updateBigBlueButton()
+        updateMarkAllButton()
     }
     
     @objc func refreshStatusesForCurrentSection(completed: @escaping () -> Void) {
@@ -287,7 +297,7 @@ open class AttendanceViewController: UIViewController {
             
             guard sections.count > 0 else {
                 me.alertError(attendanceError(message:
-                    NSLocalizedString("There was a problem fetching the list of course sections.", tableName: "Localizable", bundle: .core, value: "", comment: "")
+                    NSLocalizedString("There was a problem fetching the list of course sections.", comment: "")
                 ))
                 sender?.endRefreshing()
                 return
@@ -296,12 +306,12 @@ open class AttendanceViewController: UIViewController {
             me.sections = sections
             
             // select the 1st Section ID
-            if me.sectionID == nil || !sections.contains(where: { Int($0.id) == me.sectionID }) {
-                if let firstID = sections.first.flatMap({ Int($0.id) }) {
+            if me.sectionID == nil || !sections.contains(where: { $0.id == me.sectionID }) {
+                if let firstID = sections.first?.id {
                     me.sectionID = firstID
                 } else {
                     me.alertError(attendanceError(message:
-                        NSLocalizedString("No sections available. Please make sure you are enrolled as a teacher or TA in at least on section of this course.", tableName: "Localizable", bundle: .core, value: "", comment: "")
+                        NSLocalizedString("No sections available. Please make sure you are enrolled as a teacher or TA in at least on section of this course.", comment: "")
                     ))
                     return
                 }
@@ -317,58 +327,24 @@ open class AttendanceViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func titleView(with title: String, and subtitle: String) -> (titleView: UIView, titleLabel: UILabel, subtitleLabel: UILabel) {
-        let titleLabel = UILabel(frame: CGRect(x:0, y:-2, width:0, height:0))
-        let subtitleLabel = UILabel(frame: CGRect(x:0, y:18, width:0, height:0))
-        
-        titleLabel.backgroundColor = UIColor.clear
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
-        titleLabel.textAlignment = .center
-        
-        subtitleLabel.backgroundColor = UIColor.clear
-        subtitleLabel.font = UIFont.systemFont(ofSize: 12)
-        subtitleLabel.textAlignment = .center
-        
-        titleLabel.text = title
-        titleLabel.sizeToFit()
-        subtitleLabel.text = subtitle
-        subtitleLabel.sizeToFit()
-        
-        let maxWidth = max(titleLabel.frame.size.width, subtitleLabel.frame.size.width)
-        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: maxWidth, height: 30))
-        titleView.addSubview(titleLabel)
-        titleView.addSubview(subtitleLabel)
-        
-        // Center title or subtitle on screen (depending on which is larger)
-        if titleLabel.frame.width >= subtitleLabel.frame.width {
-            var adjustment = subtitleLabel.frame
-            adjustment.origin.x = titleView.frame.origin.x + (titleView.frame.width/2) - (subtitleLabel.frame.width/2)
-            subtitleLabel.frame = adjustment
-        } else {
-            var adjustment = titleLabel.frame
-            adjustment.origin.x = titleView.frame.origin.x + (titleView.frame.width/2) - (titleLabel.frame.width/2)
-            titleLabel.frame = adjustment
-        }
-        
-        return (titleView, titleLabel, subtitleLabel)
-    }
-    
     @objc func showDatePicker(_ sender: Any?) {
         let datePicker = DatePickerViewController()
         datePicker.initialDate = date
         datePicker.delegate = self
         let nav = UINavigationController(rootViewController: datePicker)
+        nav.navigationBar.useModalStyle()
         nav.modalPresentationStyle = .popover
         nav.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(nav, animated: true, completion: nil)
     }
     
     @objc func markRemainingPresent(_ sender: Any?) {
-        statii.forEach { statusController in
+        for statusController in statii {
             if statusController.status.attendance == nil {
                 statusController.update(attendance: .present)
             }
         }
+        updateMarkAllButton()
     }
 }
 
@@ -378,10 +354,7 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: StatusCell.reuseID) as? StatusCell else {
-            fatalError("Expected a StatusCell instance")
-        }
-        
+        let cell: StatusCell = tableView.dequeue(for: indexPath)
         cell.status = statii[indexPath.row].status
         return cell
     }
@@ -389,68 +362,40 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate {
     open func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
+
     open func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
-    
+
     open func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
     }
-    
+
     open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
     }
-    
+
     open func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        var actions: [UITableViewRowAction] = []
         let sc = statii[indexPath.row]
-        
-        let newStatus: (Attendance?) -> ((UITableViewRowAction, IndexPath) -> Void) = { newStatus in
-            return { action, path in
-                sc.update(attendance: newStatus)
+        return [ Attendance.present, Attendance.absent, Attendance.late, nil ].compactMap { (value: Attendance?) -> UITableViewRowAction? in
+            guard sc.status.attendance != value else { return nil }
+            let action = UITableViewRowAction(style: .normal, title: value?.label ?? NSLocalizedString("Unmark", comment: "")) { [weak self] _, _ in
+                sc.update(attendance: value)
+                self?.updateMarkAllButton()
             }
+            action.backgroundColor = value?.tintColor ?? .named(.oxford)
+            return action
         }
-        
-        if sc.status.attendance != .present {
-            let action = UITableViewRowAction(style: .normal, title: NSLocalizedString("Present", tableName: "Localizable", bundle: .core, value: "", comment: "Mark student present"), handler: newStatus(.present))
-            action.backgroundColor = .named(.backgroundSuccess)
-            actions.append(action)
-        }
-
-        if sc.status.attendance != .absent {
-            let action = UITableViewRowAction(style: .normal, title: NSLocalizedString("Absent", tableName: "Localizable", bundle: .core, value: "", comment: "Mark student absent"), handler: newStatus(.absent))
-            action.backgroundColor = .named(.backgroundDanger)
-            actions.append(action)
-        }
-        
-        if sc.status.attendance != .late {
-            let action = UITableViewRowAction(style: .normal, title: NSLocalizedString("Late", tableName: "Localizable", bundle: .core, value: "", comment: "Mark student late"), handler: newStatus(.late))
-            action.backgroundColor = .named(.backgroundWarning)
-            actions.append(action)
-        }
-
-        if sc.status.attendance != nil {
-            let action = UITableViewRowAction(style: .normal, title: NSLocalizedString("Unmark", tableName: "Localizable", bundle: .core, value: "", comment: "Remove attendance status"), handler: newStatus(nil))
-            action.backgroundColor = .named(.oxford)
-            actions.append(action)
-        }
-
-        return actions
     }
     
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sc = statii[indexPath.row]
-        
-        if let attendance = sc.status.attendance {
-            switch attendance {
-            case .present: sc.update(attendance: .absent)
-            case .absent: sc.update(attendance: .late)
-            case .late: sc.update(attendance: nil)
-            }
-        } else {
-            sc.update(attendance: .present)
+        switch sc.status.attendance {
+        case .present: sc.update(attendance: .absent)
+        case .absent: sc.update(attendance: .late)
+        case .late: sc.update(attendance: nil)
+        case .none: sc.update(attendance: .present)
         }
+        updateMarkAllButton()
     }
 }
 
@@ -460,7 +405,7 @@ extension AttendanceViewController: DatePickerDelegate {
         self.date = date
         statii = []
         tableView.reloadData()
-        updateBigBlueButton()
+        updateMarkAllButton()
         let refreshControl = tableView.refreshControl
         refreshControl?.beginRefreshing()
         tableView.setContentOffset(CGPoint(x: 0, y: -(refreshControl?.frame.size.height ?? 0)), animated: true)
@@ -489,16 +434,13 @@ extension AttendanceViewController: RollCallSessionDelegate {
 }
 
 extension AttendanceViewController {
-    
-    @objc func changeToSection(withID sectionID: String) {
-        if let current = self.sectionID, current == Int(sectionID) {
-            return
-        }
-        
+    func changeToSection(withID sectionID: String) {
+        guard self.sectionID != sectionID else { return }
+
         statii = []
         tableView.reloadData()
-        updateBigBlueButton()
-        self.sectionID = Int(sectionID)
+        updateMarkAllButton()
+        self.sectionID = sectionID
         let refreshControl = tableView.refreshControl
         refreshControl?.beginRefreshing()
         tableView.scrollRectToVisible(CGRect(x: 0, y: -66, width: 1, height: 66), animated: true)
@@ -506,36 +448,26 @@ extension AttendanceViewController {
             refreshControl?.endRefreshing()
         }
     }
-    
+
     @objc
-    fileprivate func changeSection(_ sender: UIButton) {
+    private func changeSection(_ sender: UIButton) {
         let alert = UIAlertController(
-            title: NSLocalizedString("Choose a Section", tableName: "Localizable", bundle: .core, value: "", comment: ""),
+            title: NSLocalizedString("Choose a Section", comment: ""),
             message: nil,
             preferredStyle: .actionSheet
         )
-        
-        let changeSection: (String) -> (Any) -> Void = { sectionID in
-            return { [weak self] _ in
-                guard let me = self else { return }
-                me.changeToSection(withID: sectionID)
-            }
+
+        for section in sections {
+            alert.addAction(UIAlertAction(title: section.name, style: .default) { [weak self] _ in
+                self?.changeToSection(withID: section.id)
+            })
         }
-        
-        sections.forEach { section in
-            alert.addAction(
-                UIAlertAction(title: section.name, style: .default, handler: changeSection(section.id))
-            )
-        }
-        alert.addAction(
-            UIAlertAction(title: NSLocalizedString("Cancel", tableName: "Localizable", bundle: .core, value: "", comment: ""),style: .cancel, handler: nil)
-        )
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
 
         if let popover = alert.popoverPresentationController {
             popover.sourceRect = changeSectionButton.bounds
             popover.sourceView = changeSectionButton
         }
-        
-        present(alert, animated: true, completion: nil)
+        present(alert, animated: true)
     }
 }

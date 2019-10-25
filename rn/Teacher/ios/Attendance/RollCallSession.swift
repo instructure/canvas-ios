@@ -81,7 +81,7 @@ public class RollCallSession: NSObject {
         webView.loadRequest(URLRequest(url: url))
     }
     
-    public func fetchStatuses(section: Int, date: Date, result: @escaping ([Status], Error?) -> ()) {
+    public func fetchStatuses(section: String, date: Date, result: @escaping ([Status], Error?) -> ()) {
         guard case .active(let session) = state else { return }
         let date = Status.dateFormatter.string(from: date)
         
@@ -90,7 +90,7 @@ public class RollCallSession: NSObject {
         task = session.dataTask(with: url) { (data, response, error) in
             do {
                 guard let data = data else {
-                    let error = NSError(domain: "com.instructure.rollcall", code: 1, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Error: No data returned from the rollcall api.", tableName: "Localizable", bundle: .core, value: "", comment: "rollcall status error")])
+                    let error = NSError(domain: "com.instructure.rollcall", code: 1, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Error: No data returned from the rollcall api.", comment: "rollcall status error")])
                     DispatchQueue.main.async {
                         result([], error)
                     }
@@ -105,13 +105,13 @@ public class RollCallSession: NSObject {
                 let localizedDescription: String
                 switch error {
                 case .keyNotFound(key: let k):
-                    localizedDescription = NSLocalizedString("Error parsing the Roll Call response. Key not found: \(k)", tableName: "Localizable", bundle: .core, value: "", comment: "")
+                    localizedDescription = NSLocalizedString("Error parsing the Roll Call response. Key not found: \(k)", comment: "")
                 case .nullValue(key: let k):
-                    localizedDescription = NSLocalizedString("Error parsing the Roll Call response. Unexpected null value: \(k)", tableName: "Localizable", bundle: .core, value: "", comment: "")
+                    localizedDescription = NSLocalizedString("Error parsing the Roll Call response. Unexpected null value: \(k)", comment: "")
                 case let .typeMismatch(expected: e, actual: a):
-                    localizedDescription = NSLocalizedString("Error parsing the Roll Call response. Expected \(e), received \(a)", tableName: "Localizable", bundle: .core, value: "", comment: "")
+                    localizedDescription = NSLocalizedString("Error parsing the Roll Call response. Expected \(e), received \(a)", comment: "")
                 case let .typeMismatchWithKey(key: k, expected: e, actual: a):
-                    localizedDescription = NSLocalizedString("Error parsing the Roll Call response. Expected \(e), received \(a) for key \(k)", tableName: "Localizable", bundle: .core, value: "", comment: "")
+                    localizedDescription = NSLocalizedString("Error parsing the Roll Call response. Expected \(e), received \(a) for key \(k)", comment: "")
                 }
                 DispatchQueue.main.async {
                     result([], NSError(domain: "com.instructure.rollcall", code: 0, userInfo: [NSLocalizedDescriptionKey: localizedDescription]))
@@ -157,7 +157,7 @@ public class RollCallSession: NSObject {
         
         task = session.dataTask(with: request) { (data, response, error) in
             guard let data = data else {
-                let error = NSError(domain: "com.instructure.rollcall", code: 1, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Error: No data returned from the rollcall api.", tableName: "Localizable", bundle: .core, value: "", comment: "rollcall status error")])
+                let error = NSError(domain: "com.instructure.rollcall", code: 1, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Error: No data returned from the rollcall api.", comment: "rollcall status error")])
                 print(error)
                 DispatchQueue.main.async {
                     completed(nil, error)
@@ -191,7 +191,7 @@ public class RollCallSession: NSObject {
         task?.resume()
     }
     
-    fileprivate func attemptToActivate() {
+    private func attemptToActivate() {
         guard
             case .launchingTool(let webView) = state,
             let host = webView.request?.url?.host,
@@ -212,7 +212,7 @@ public class RollCallSession: NSObject {
         } else if let message = preTextContent, !message.isEmpty {
             state = .error(NSError(domain: "com.instructure.rollcall", code: 2, userInfo: [NSLocalizedDescriptionKey: message]))
         } else {
-            state = .error(NSError(domain: "com.instructure.rollcall", code: 1, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Error: No data returned from the rollcall api.", tableName: "Localizable", bundle: .core, value: "", comment: "rollcall status error")]))
+            state = .error(NSError(domain: "com.instructure.rollcall", code: 1, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Error: No data returned from the rollcall api.", comment: "rollcall status error")]))
         }
     }
 }

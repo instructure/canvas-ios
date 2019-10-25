@@ -18,114 +18,111 @@
 
 import UIKit
 
-extension Calendar {
-    var daysInWeek: Int {
-        return Int(self.maximumRange(of: .weekday)?.count ?? 0)
-    }
-    
-    func numberOfWeeksForMonth(of date: Date) -> Int {
-        let weekRange = range(of: .weekOfMonth, in: .month, for: date)
-        return weekRange?.count ?? 0
-    }
-}
-
 protocol DatePickerDelegate: NSObjectProtocol {
     func didSelectDate(_ date: Date)
 }
 
 class DatePickerViewController: UIViewController {
-    
-    @objc var initialDate = Date() {
+    var initialDate = Date() {
         didSet {
             selectedDate = initialDate
         }
     }
     weak var delegate: DatePickerDelegate?
-    
-    fileprivate let calendar: Calendar = {
+
+    private let calendar: Calendar = {
         var calendar = Calendar(identifier: .gregorian)
         calendar.locale = Locale.current
         return calendar
     }()
-    fileprivate var collectionView: UICollectionView!
-    fileprivate let layout = UICollectionViewFlowLayout()
-    
-    fileprivate let today = Date()
-    fileprivate var earliestDate: Date!
-    fileprivate var latestDate: Date!
-    fileprivate var selectedDate = Date()
-    
-    @objc static var monthHeaderFormatter: DateFormatter = {
+    private lazy var daysInWeek = calendar.maximumRange(of: .weekday)?.count ?? 0
+    func numberOfWeeksForMonth(of date: Date) -> Int {
+        let weekRange = calendar.range(of: .weekOfMonth, in: .month, for: date)
+        return weekRange?.count ?? 0
+    }
+
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    private let layout = UICollectionViewFlowLayout()
+
+    private let today = Date()
+    private var earliestDate: Date!
+    private var latestDate: Date!
+    private var selectedDate = Date()
+
+    static var dayFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMM", options: 0, locale: Locale.current)
-        return dateFormatter
-    }()
-    
-    @objc static var yearFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "YYYY", options: 0, locale: Locale.current)
+        dateFormatter.setLocalizedDateFormatFromTemplate("d")
         return dateFormatter
     }()
 
-    @objc static var a11yDayFormatter: DateFormatter = {
+    static var monthHeaderFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale.current
+        dateFormatter.setLocalizedDateFormatFromTemplate("MMMM")
+        return dateFormatter
+    }()
+    
+    static var yearFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.setLocalizedDateFormatFromTemplate("YYYY")
+        return dateFormatter
+    }()
+
+    static var a11yDayFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         return dateFormatter
     }()
 
-    @objc static var a11yMonthFormatter: DateFormatter = {
+    static var a11yMonthFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMM YYYY", options: 0, locale: Locale.current)
+        dateFormatter.setLocalizedDateFormatFromTemplate("MMMM YYYY")
         return dateFormatter
     }()
-    
-    fileprivate var hasScrolledToInitialDate = false
-    
-    
+
+    private var hasScrolledToInitialDate = false
+
     init() {
         super.init(nibName: nil, bundle: nil)
-        
+
         let todayComponents = calendar.dateComponents([.year, .month, .day], from: Date())
         let startOfMonth = DateComponents(calendar: calendar, year: todayComponents.year!, month: todayComponents.month!, day: 1).date!
-        
+
         var components = DateComponents()
         components.month = 24
         self.latestDate = calendar.date(byAdding: components, to: startOfMonth)!
-        
+
         components.month = -24
         self.earliestDate = calendar.date(byAdding: components, to: startOfMonth)!
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .white
-        
-        navigationItem.title = NSLocalizedString("Choose Date", tableName: "Localizable", bundle: .core, value: "", comment: "")
+
+        view.backgroundColor = .named(.backgroundLightest)
+
+        navigationItem.title = NSLocalizedString("Choose Date", comment: "")
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done(_:)))
-        
+
         layout.minimumLineSpacing = 0.0
         layout.minimumInteritemSpacing = 0.0
-        
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(DatePickerDateCell.self, forCellWithReuseIdentifier: "DateCell")
-        collectionView.register(DatePickerMonthHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "MonthHeaderView")
-        
-        collectionView.backgroundColor = .white
+        collectionView.register(DatePickerDateCell.self, forCellWithReuseIdentifier: String(describing: DatePickerDateCell.self))
+        collectionView.register(DatePickerMonthHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: DatePickerMonthHeaderView.self))
+
+        collectionView.backgroundColor = .named(.backgroundLightest)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.scrollsToTop = false
         collectionView.allowsSelection = true
         collectionView.allowsMultipleSelection = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
@@ -134,33 +131,34 @@ class DatePickerViewController: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
-    
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
-        let itemWidth: CGFloat = floor((view.bounds.size.width - (2.0 * 16.0)) / CGFloat(calendar.daysInWeek))
-        layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
-        layout.invalidateLayout()
+        updateItemSize(available: view.bounds.width)
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
+
         if !hasScrolledToInitialDate {
             scroll(to: initialDate, animated: false)
             hasScrolledToInitialDate = true
         }
     }
-    
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        
-        let newWidth = size.width - (2.0 * 16.0)
-        let itemWidth: CGFloat = floor((newWidth) / CGFloat(calendar.daysInWeek))
-        layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
+        updateItemSize(available: size.width)
+    }
+
+    func updateItemSize(available: CGFloat) {
+        let itemWidth: CGFloat = floor((available - (2.0 * 16.0)) / CGFloat(daysInWeek))
+        let size = CGSize(width: itemWidth, height: itemWidth)
+        guard size != layout.itemSize else { return }
+        layout.itemSize = size
         layout.invalidateLayout()
     }
-    
+
     @objc func done(_ sender: Any?) {
         dismiss(animated: true, completion: {
             if !self.calendar.isDate(self.selectedDate, inSameDayAs: self.initialDate) {
@@ -168,28 +166,28 @@ class DatePickerViewController: UIViewController {
             }
         })
     }
-    
+
     @objc func scroll(to date: Date, animated: Bool) {
         guard date > earliestDate && date < latestDate else { return }
         let components = calendar.dateComponents([.month, .day], from: earliestDate, to: date)
-        
+
         let indexPath = IndexPath(item: components.day!, section: components.month!)
         collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: false)
     }
-    
-    fileprivate func dateForFirstDay(inSection section: Int) -> Date {
+
+    private func dateForFirstDay(inSection section: Int) -> Date {
         var components = DateComponents()
         components.month = section
         return calendar.date(byAdding: components, to: earliestDate)!
     }
-    
-    fileprivate func dateForCell(at indexPath: IndexPath) -> Date {
+
+    private func dateForCell(at indexPath: IndexPath) -> Date {
         let firstDayInMonth = dateForFirstDay(inSection: indexPath.section)
         let weekday = calendar.component(.weekday, from: firstDayInMonth) - calendar.firstWeekday
-        
+
         let weekdayDeltaComponents = DateComponents(calendar: calendar, day: indexPath.item - weekday)
         let cellDate = calendar.date(byAdding: weekdayDeltaComponents, to: firstDayInMonth)!
-        
+
         return cellDate
     }
 }
@@ -199,22 +197,21 @@ extension DatePickerViewController: UICollectionViewDataSource {
         // 4 years, 2 back, 2 forward
         return 48
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let date = dateForFirstDay(inSection: section)
-        return calendar.daysInWeek * calendar.numberOfWeeksForMonth(of: date)
+        return daysInWeek * numberOfWeeksForMonth(of: date)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DateCell", for: indexPath) as! DatePickerDateCell
-        
+        let cell: DatePickerDateCell = collectionView.dequeue(for: indexPath)
+
         let firstDayInMonth = dateForFirstDay(inSection: indexPath.section)
         let cellDate = dateForCell(at: indexPath)
-        
+
         let month = calendar.component(.month, from: cellDate)
         if month == calendar.component(.month, from: firstDayInMonth) {
-            let day = calendar.component(.day, from: cellDate)
-            cell.label.text = "\(day)"
+            cell.label.text = DatePickerViewController.dayFormatter.string(from: cellDate)
             cell.label.accessibilityLabel = DatePickerViewController.a11yDayFormatter.string(from: cellDate)
             cell.isToday = calendar.isDateInToday(cellDate)
             cell.label.accessibilityTraits = cell.isToday ? UIAccessibilityTraits.selected : UIAccessibilityTraits.none
@@ -223,23 +220,23 @@ extension DatePickerViewController: UICollectionViewDataSource {
             cell.label.text = ""
             cell.setIsHighlighted(false)
         }
-        
+
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "MonthHeaderView", for: indexPath) as! DatePickerMonthHeaderView
-        
+        let view: DatePickerMonthHeaderView = collectionView.dequeue(ofKind: kind, for: indexPath)
+
         let firstDayInSection = dateForFirstDay(inSection: indexPath.section)
         let sectionMonth = calendar.component(.month, from: firstDayInSection)
-        
+
         view.yearLabel.isHidden = sectionMonth != 1
         view.yearLabel.accessibilityElementsHidden = true
         view.yearLabel.text = DatePickerViewController.yearFormatter.string(from: firstDayInSection)
         view.monthLabel.text = DatePickerViewController.monthHeaderFormatter.string(from: firstDayInSection)
         view.monthLabel.accessibilityTraits = UIAccessibilityTraits.header
         view.monthLabel.accessibilityLabel = DatePickerViewController.a11yMonthFormatter.string(from: firstDayInSection)
-        
+
         return view
     }
 }
@@ -250,18 +247,18 @@ extension DatePickerViewController: UICollectionViewDelegate {
 //            scroll(to: initialDate, animated: false)
 //            hasScrolledToInitialDate = true
 //        }
-        
+
         if calendar.isDate(selectedDate, inSameDayAs: dateForCell(at: indexPath)) && (collectionView.indexPathsForSelectedItems ?? []).count == 0 {
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? DatePickerDateCell else { return }
         selectedDate = dateForCell(at: indexPath)
         cell.setIsHighlighted(true)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? DatePickerDateCell else { return }
         cell.setIsHighlighted(false)
@@ -272,21 +269,20 @@ extension DatePickerViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return layout.itemSize
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         let firstDayInSection = dateForFirstDay(inSection: section)
         let sectionMonth = calendar.component(.month, from: firstDayInSection)
-        
-        let header = DatePickerMonthHeaderView(frame: CGRect(x: 0, y: 0, width: collectionView.bounds.size.width, height: 0))
+
+        let header = DatePickerMonthHeaderView(frame: CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: 0))
         header.yearLabel.isHidden = sectionMonth != 1
         header.yearLabel.text = DatePickerViewController.yearFormatter.string(from: firstDayInSection)
         header.monthLabel.text = DatePickerViewController.monthHeaderFormatter.string(from: firstDayInSection)
-        
+
         header.setNeedsLayout()
         header.layoutIfNeeded()
-        
+
         let size = header.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-        
         return size
     }
 }
