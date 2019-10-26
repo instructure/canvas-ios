@@ -41,11 +41,18 @@ class AssignmentListViewController: UIViewController {
 
         setupTitleViewInNavbar(title: NSLocalizedString("Assignments", comment: ""))
         configureTableView()
+        configureSpinner()
         presenter?.viewIsReady()
 
         gradingPeriodLabel.text = presenter?.gradingPeriodTitle
         filterButton.setTitle(presenter?.filterButtonTitle, for: .normal)
         filterButton.setTitleColor(color, for: .normal)
+    }
+
+    private func configureSpinner() {
+        spinner.addConstraintsWithVFL("H:[view(44)]")
+        spinner.addConstraintsWithVFL("V:[view(44)]")
+        spinner.centerInSuperview(yMultiplier: 0.9)
     }
 
     private func configureTableView() {
