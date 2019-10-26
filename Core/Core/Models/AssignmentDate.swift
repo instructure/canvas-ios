@@ -34,7 +34,7 @@ public final class AssignmentDate: NSManagedObject {
         //  APIAssignmentDate can have either a base or an id
         if let base = item.base, base, let ad = assignment.allDates?.filter({ $0.base == true }).first {
             obj = ad
-        } else if let id = item.id?.value, let ad = assignment.allDates?.filter({ $0.id == id }).first  {
+        } else if let id = item.id?.value, let ad = assignment.allDates?.filter({ $0.id == id }).first {
             obj = ad
         } else {
             obj = context.insert() as AssignmentDate

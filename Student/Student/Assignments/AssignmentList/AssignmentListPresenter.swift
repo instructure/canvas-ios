@@ -87,7 +87,12 @@ class AssignmentListPresenter {
     }
 
     func refreshAssignments(force: Bool) {
-        let useCase = GetAssignmentsForGrades(courseID: courseID, gradingPeriodID: selectedGradingPeriod?.id, groupBy: .assignmentGroup, requestQuerySize: 99, clearsBeforeWrite: true, include: [.all_dates])
+        let useCase = GetAssignmentsForGrades(courseID: courseID,
+                                              gradingPeriodID: selectedGradingPeriod?.id,
+                                              groupBy: .assignmentGroup,
+                                              requestQuerySize: 99,
+                                              clearsBeforeWrite: true,
+                                              include: [.all_dates])
         assignments = env.subscribe( useCase ) { [weak self] in
             guard let useCase = self?.assignments, let didGetAssignmentGroups = self?.didGetAssignmentGroups else { return }
             if !useCase.pending && !didGetAssignmentGroups {

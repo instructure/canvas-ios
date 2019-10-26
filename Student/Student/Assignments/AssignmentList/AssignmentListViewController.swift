@@ -29,7 +29,7 @@ class AssignmentListViewController: UIViewController {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var gradingPeriodLabel: DynamicLabel!
     @IBOutlet weak var filterButton: DynamicButton!
-    
+
     static func create(env: AppEnvironment = .shared, courseID: String, sort: GetAssignments.Sort = .position) -> AssignmentListViewController {
         let vc = loadFromStoryboard()
         vc.presenter = AssignmentListPresenter(view: vc, courseID: courseID, sort: sort)

@@ -531,7 +531,7 @@ class AssignmentTests: CoreTestCase {
         let due = Date().addDays(1)
         let ad1 = APIAssignmentDate(base: nil, id: "1", title: nil, due_at: due, lock_at: nil, unlock_at: nil)
         let ad2 = APIAssignmentDate(base: nil, id: "2", title: nil, due_at: due, lock_at: nil, unlock_at: nil)
-        let aa = Assignment.make(from: APIAssignment.make( all_dates:[ad1, ad2] ), in: databaseClient)
+        let aa = Assignment.make(from: APIAssignment.make( all_dates: [ad1, ad2] ), in: databaseClient)
         XCTAssertEqual(aa.formattedDueDate(), "Multiple Due Dates")
     }
 
@@ -539,13 +539,13 @@ class AssignmentTests: CoreTestCase {
         let lock = Date().addDays(-1)
         let lock2 = Date().addDays(2)
         let ad1 = APIAssignmentDate(base: nil, id: "1", title: nil, due_at: nil, lock_at: lock2, unlock_at: nil)
-        let a1 = Assignment.make(from: APIAssignment.make(lock_at: lock, all_dates:[ad1] ), in: databaseClient)
+        let a1 = Assignment.make(from: APIAssignment.make(lock_at: lock, all_dates: [ad1] ), in: databaseClient)
 
         var r = a1.availabilityClosed()
         XCTAssertTrue(r)
 
         let ad2 = APIAssignmentDate(base: nil, id: "1", title: nil, due_at: nil, lock_at: lock, unlock_at: nil)
-        let a2 = Assignment.make(from: APIAssignment.make(lock_at: nil, all_dates:[ad2] ), in: databaseClient)
+        let a2 = Assignment.make(from: APIAssignment.make(lock_at: nil, all_dates: [ad2] ), in: databaseClient)
         r = a2.availabilityClosed()
         XCTAssertTrue(r)
     }
@@ -556,7 +556,7 @@ class AssignmentTests: CoreTestCase {
         let a = APIAssignmentDate(base: nil, id: "1", title: nil, due_at: nil, lock_at: lock2, unlock_at: nil)
         let b = APIAssignmentDate(base: nil, id: "2", title: nil, due_at: nil, lock_at: lock, unlock_at: nil)
 
-        let a1 = Assignment.make(from: APIAssignment.make(lock_at: nil, all_dates:[a, b] ), in: databaseClient)
+        let a1 = Assignment.make(from: APIAssignment.make(lock_at: nil, all_dates: [a, b] ), in: databaseClient)
 
         let r = a1.availabilityClosed()
         XCTAssertTrue(r)
@@ -568,7 +568,7 @@ class AssignmentTests: CoreTestCase {
         let lock2 = Date().addDays(-2)
         let a = APIAssignmentDate(base: nil, id: "1", title: nil, due_at: nil, lock_at: lock1, unlock_at: nil)
         let b = APIAssignmentDate(base: nil, id: "2", title: nil, due_at: nil, lock_at: lock2, unlock_at: nil)
-        let aa = Assignment.make(from: APIAssignment.make(lock_at: lock, all_dates:[a, b] ), in: databaseClient)
+        let aa = Assignment.make(from: APIAssignment.make(lock_at: lock, all_dates: [a, b] ), in: databaseClient)
 
         XCTAssertEqual(aa.bestAvailableToDate(), lock)
     }
@@ -579,7 +579,7 @@ class AssignmentTests: CoreTestCase {
         let lock2 = Date().addDays(-2)
         let a = APIAssignmentDate(base: nil, id: "1", title: nil, due_at: nil, lock_at: lock1, unlock_at: nil)
         let b = APIAssignmentDate(base: true, id: "2", title: nil, due_at: nil, lock_at: lock2, unlock_at: nil)
-        let aa = Assignment.make(from: APIAssignment.make(lock_at: nil, all_dates:[a, b] ), in: databaseClient)
+        let aa = Assignment.make(from: APIAssignment.make(lock_at: nil, all_dates: [a, b] ), in: databaseClient)
 
         XCTAssertEqual(aa.bestAvailableToDate(), lock2)
     }
@@ -590,7 +590,7 @@ class AssignmentTests: CoreTestCase {
         let lock2 = Date().addDays(-2)
         let a = APIAssignmentDate(base: nil, id: "1", title: nil, due_at: nil, lock_at: lock1, unlock_at: nil)
         let b = APIAssignmentDate(base: nil, id: "2", title: nil, due_at: nil, lock_at: lock2, unlock_at: nil)
-        let aa = Assignment.make(from: APIAssignment.make(lock_at: nil, all_dates:[a, b] ), in: databaseClient)
+        let aa = Assignment.make(from: APIAssignment.make(lock_at: nil, all_dates: [a, b] ), in: databaseClient)
 
         XCTAssertEqual(aa.bestAvailableToDate(), lock1)
     }
@@ -601,7 +601,7 @@ class AssignmentTests: CoreTestCase {
         let due2 = Date().addDays(-2)
         let a = APIAssignmentDate(base: nil, id: "1", title: nil, due_at: due1, lock_at: nil, unlock_at: nil)
         let b = APIAssignmentDate(base: nil, id: "2", title: nil, due_at: due2, lock_at: nil, unlock_at: nil)
-        let aa = Assignment.make(from: APIAssignment.make(due_at: due, all_dates:[a, b] ), in: databaseClient)
+        let aa = Assignment.make(from: APIAssignment.make(due_at: due, all_dates: [a, b] ), in: databaseClient)
 
         XCTAssertEqual(aa.bestDueAt(), due)
     }
@@ -611,7 +611,7 @@ class AssignmentTests: CoreTestCase {
         let due2 = Date().addDays(-2)
         let a = APIAssignmentDate(base: true, id: nil, title: nil, due_at: due1, lock_at: nil, unlock_at: nil)
         let b = APIAssignmentDate(base: nil, id: "2", title: nil, due_at: due2, lock_at: nil, unlock_at: nil)
-        let aa = Assignment.make(from: APIAssignment.make(due_at: nil, all_dates:[a, b] ), in: databaseClient)
+        let aa = Assignment.make(from: APIAssignment.make(due_at: nil, all_dates: [a, b] ), in: databaseClient)
 
         XCTAssertEqual(aa.bestDueAt(), due1)
     }
@@ -621,7 +621,7 @@ class AssignmentTests: CoreTestCase {
         let due2 = Date().addDays(-2)
         let a = APIAssignmentDate(base: nil, id: "1", title: nil, due_at: due1, lock_at: nil, unlock_at: nil)
         let b = APIAssignmentDate(base: nil, id: "2", title: nil, due_at: due2, lock_at: nil, unlock_at: nil)
-        let aa = Assignment.make(from: APIAssignment.make(due_at: nil, all_dates:[a, b] ), in: databaseClient)
+        let aa = Assignment.make(from: APIAssignment.make(due_at: nil, all_dates: [a, b] ), in: databaseClient)
 
         XCTAssertEqual(aa.bestDueAt(), due1)
     }
@@ -632,7 +632,7 @@ class AssignmentTests: CoreTestCase {
         let dt3 = Date().addDays(3)
         let ad1 = APIAssignmentDate(base: true, id: nil, title: nil, due_at: dt1, lock_at: dt2, unlock_at: dt3)
         let ad2 = APIAssignmentDate(base: nil, id: "1", title: nil, due_at: dt3, lock_at: dt1, unlock_at: dt2)
-        Assignment.make(from: APIAssignment.make( all_dates:[ad1, ad2] ), in: databaseClient)
+        Assignment.make(from: APIAssignment.make( all_dates: [ad1, ad2] ), in: databaseClient)
 
         let all: [Assignment] = databaseClient.fetch()
         XCTAssertEqual(all.count, 1)

@@ -111,7 +111,12 @@ public class GetAssignmentsForGrades: GetAssignments {
         case assignmentGroup, dueAt
     }
 
-    public init(courseID: String, gradingPeriodID: String? = nil, groupBy: GroupBy = .dueAt, requestQuerySize: Int = 10, clearsBeforeWrite: Bool = true, include: [GetAssignmentsRequest.Include] = [.observed_users, .submission]) {
+    public init(courseID: String,
+                gradingPeriodID: String? = nil,
+                groupBy: GroupBy = .dueAt,
+                requestQuerySize: Int = 10,
+                clearsBeforeWrite: Bool = true,
+                include: [GetAssignmentsRequest.Include] = [.observed_users, .submission]) {
         self.groupBy = groupBy
         self.gradingPeriodID = gradingPeriodID
         self.clearsBeforeWrite = clearsBeforeWrite

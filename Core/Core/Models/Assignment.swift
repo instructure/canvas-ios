@@ -151,7 +151,7 @@ extension Assignment {
         }
 
         if let dates = item.all_dates {
-            for (index,d) in dates.enumerated() {
+            for (index, d) in dates.enumerated() {
                 AssignmentDate.save(d, in: client, assignment: self, position: index)
             }
         }
@@ -331,11 +331,11 @@ extension Assignment {
 
         if let all = allDates, all.count > 1 {
             // If there are multiple due dates, ensure that they have *all* passed
-            let filtered = all.filter( { if let lock = $0.lockAt { return Clock.now < lock }
+            let filtered = all.filter({ if let lock = $0.lockAt { return Clock.now < lock }
                 // This may seem odd to return true, it's because this is in the filter function.
                 // returning true means that the availibility is *not* passed
                 return true
-            } )
+            })
             return filtered.count == 0
         }
 
