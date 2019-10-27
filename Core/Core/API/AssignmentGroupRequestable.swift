@@ -25,12 +25,14 @@ public struct GetAssignmentGroupsRequest: APIRequestable {
 
     let courseID: String
     let gradingPeriodID: String?
+    let scopeAssignmentsToStudent: Bool
     let include: [Include]
 
-    init(courseID: String, gradingPeriodID: String? = nil, include: [Include] = []) {
+    init(courseID: String, gradingPeriodID: String? = nil, include: [Include] = [], scopeAssignmentsToStudent: Bool = true) {
         self.courseID = courseID
         self.gradingPeriodID = gradingPeriodID
         self.include = include
+        self.scopeAssignmentsToStudent = scopeAssignmentsToStudent
     }
 
     public var path: String {
@@ -46,6 +48,10 @@ public struct GetAssignmentGroupsRequest: APIRequestable {
 
         if let gradingPeriodID = gradingPeriodID {
             q.append( .value("grading_period_id", gradingPeriodID))
+        }
+
+        if scopeAssignmentsToStudent {
+            q.append( .name("scope_assignments_to_student") )
         }
 
         return q

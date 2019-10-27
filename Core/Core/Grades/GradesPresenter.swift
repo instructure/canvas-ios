@@ -68,7 +68,7 @@ class GradesPresenter {
     }
 
     func refreshAssignmentGroups(force: Bool) {
-        assignmentGroups = env.subscribe(  GetAssignmentGroups(courseID: courseID, gradingPeriodID: currentGradingPeriodID, include: [.assignments])  ) { [weak self] in
+        assignmentGroups = env.subscribe(  GetAssignmentGroups(courseID: courseID, gradingPeriodID: currentGradingPeriodID, include: [.assignments], scopeAssignmentsToStudent: false) ) { [weak self] in
             if !(self?.assignmentGroups?.pending ?? false) {
                 self?.refreshAssignments(force: false)
             }

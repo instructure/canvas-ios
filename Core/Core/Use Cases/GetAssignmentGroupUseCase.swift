@@ -23,19 +23,23 @@ public class GetAssignmentGroups: CollectionUseCase {
     public let courseID: String
     public let gradingPeriodID: String?
     let include: [GetAssignmentGroupsRequest.Include]
+    let scopeAssignmentsToStudent: Bool
 
-    public init(courseID: String, gradingPeriodID: String?, include: [GetAssignmentGroupsRequest.Include] = []) {
+    public init(courseID: String, gradingPeriodID: String?, include: [GetAssignmentGroupsRequest.Include] = [], scopeAssignmentsToStudent: Bool = true) {
         self.courseID = courseID
         self.gradingPeriodID = gradingPeriodID
         self.include = include
+        self.scopeAssignmentsToStudent = scopeAssignmentsToStudent
     }
 
     public var cacheKey: String? {
-        var key = "get-assignmentGroup-\(courseID)"
-        if let gradingPeriodID = gradingPeriodID {
-            key.append("-\(gradingPeriodID)")
-        }
-        return key
+//        this should not cache, each time it needs to update assignments
+//        ```
+//        assignment.assignmentGroupPosition = AssignmentGroup.position
+//        assignment.gradingPeriodID = gradingPeriodID
+//        ```
+
+        return nil
     }
 
     public var scope: Scope {
@@ -43,13 +47,22 @@ public class GetAssignmentGroups: CollectionUseCase {
     }
 
     public var request: GetAssignmentGroupsRequest {
-        return GetAssignmentGroupsRequest(courseID: courseID, gradingPeriodID: gradingPeriodID, include: include)
+        return GetAssignmentGroupsRequest(courseID: courseID, gradingPeriodID: gradingPeriodID, include: include, scopeAssignmentsToStudent: scopeAssignmentsToStudent)
     }
 
     public func write(response: [APIAssignmentGroup]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
         for item in response {
-            AssignmentGroup.save(item, courseID: courseID, gradingPeriodID: gradingPeriodID, in: client)
+            AssignmentGroup.save(item, courseID: courseID, in: client)
+
+            //  needed for assignmentList(Student) and grades(Parent)
+            for a in item.assignments ?? [] {
+                let assignmentPredicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.id), a.id.value)
+                let assignment: Assignment = client.fetch(assignmentPredicate).first ?? client.insert()
+                assignment.update(fromApiModel: a, in: client, updateSubmission: false)
+                assignment.assignmentGroupPosition = item.position
+                assignment.gradingPeriodID = gradingPeriodID
+            }
         }
     }
 }

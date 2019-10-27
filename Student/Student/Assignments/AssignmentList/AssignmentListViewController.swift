@@ -29,6 +29,8 @@ class AssignmentListViewController: UIViewController {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var gradingPeriodLabel: DynamicLabel!
     @IBOutlet weak var filterButton: DynamicButton!
+    let tableRefresher = UIRefreshControl()
+    var tableViewDefaultOffset: CGPoint = .zero
 
     static func create(env: AppEnvironment = .shared, courseID: String, sort: GetAssignments.Sort = .position) -> AssignmentListViewController {
         let vc = loadFromStoryboard()
@@ -42,10 +44,8 @@ class AssignmentListViewController: UIViewController {
         setupTitleViewInNavbar(title: NSLocalizedString("Assignments", comment: ""))
         configureTableView()
         configureSpinner()
-        presenter?.viewIsReady()
+        presenter?.refresh()
 
-        gradingPeriodLabel.text = presenter?.gradingPeriodTitle
-        filterButton.setTitle(presenter?.filterButtonTitle, for: .normal)
         filterButton.setTitleColor(color, for: .normal)
     }
 
@@ -56,12 +56,13 @@ class AssignmentListViewController: UIViewController {
     }
 
     private func configureTableView() {
-        let refresh = UIRefreshControl()
-        refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
-        tableView.refreshControl = refresh
+        tableRefresher.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        tableView.refreshControl = tableRefresher
 
         tableView.registerCell(ListCell.self)
         tableView.registerHeaderFooterView(SectionHeaderView.self)
+        tableViewDefaultOffset = tableView.contentOffset
+        showSpinner()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -70,7 +71,7 @@ class AssignmentListViewController: UIViewController {
     }
 
     @IBAction func actionFilterClicked(_ sender: Any) {
-        if presenter?.selectedGradingPeriod != nil {
+        if presenter?.selectedGradingPeriodID != nil {
             presenter?.filterByGradingPeriod(nil)
         } else {
             let alert = UIAlertController(title: nil, message: NSLocalizedString("Filter by:", comment: ""), preferredStyle: .actionSheet)
@@ -90,37 +91,48 @@ class AssignmentListViewController: UIViewController {
     @objc func refresh(_ control: UIRefreshControl) {
         presenter?.refresh(force: true)
     }
+
+    func showSpinner(show: Bool = true) {
+        if show {
+            tableRefresher.beginRefreshing()
+            var pt = tableViewDefaultOffset
+            pt.y -= tableRefresher.frame.size.height
+            tableView.setContentOffset(pt, animated: true)
+        } else {
+            tableRefresher.endRefreshing()
+        }
+    }
 }
 
 extension AssignmentListViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return presenter?.assignments.numberOfSections ?? 0
+        return presenter?.assignments?.numberOfSections ?? 0
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let sectionInfo = presenter?.assignments.sectionInfo(inSection: section) else { return 0 }
+        guard let sectionInfo = presenter?.assignments?.sectionInfo(inSection: section) else { return 0 }
         return sectionInfo.numberOfObjects
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ListCell = tableView.dequeue(for: indexPath)
-        cell.textLabel?.text = presenter?.assignments[indexPath]?.name
+        cell.textLabel?.text = presenter?.assignments?[indexPath]?.name
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.lineBreakMode = .byWordWrapping
-        cell.detailTextLabel?.text = presenter?.assignments[indexPath]?.formattedDueDate()
-        cell.imageView?.image = presenter?.assignments[indexPath]?.icon
+        cell.detailTextLabel?.text = presenter?.assignments?[indexPath]?.formattedDueDate()
+        cell.imageView?.image = presenter?.assignments?[indexPath]?.icon
         cell.imageView?.tintColor = color
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let assignment = presenter?.assignments[indexPath.row] else { return }
+        guard let assignment = presenter?.assignments?[indexPath.row] else { return }
         presenter?.select(assignment, from: self)
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueHeaderFooter(SectionHeaderView.self)
-        view.titleLabel?.text = presenter?.assignmentGroups?[section]?.name
+        view.titleLabel?.text = presenter?.title(forSection: section)
         return view
     }
 
@@ -141,8 +153,7 @@ extension AssignmentListViewController: UITableViewDataSource, UITableViewDelega
 
 extension AssignmentListViewController: AssignmentListViewProtocol {
     func update(loading: Bool) {
-        tableView.isHidden = loading
-        spinner.isHidden = !loading
+        showSpinner(show: loading)
         if !loading {
             tableView.reloadData()
             filterButton.setTitle(presenter?.filterButtonTitle, for: .normal)

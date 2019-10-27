@@ -28,22 +28,13 @@ public final class AssignmentGroup: NSManagedObject {
     @NSManaged public var courseID: String
 
     @discardableResult
-    public static func save(_ item: APIAssignmentGroup, courseID: String, gradingPeriodID: String?, in context: NSManagedObjectContext) -> AssignmentGroup {
+    public static func save(_ item: APIAssignmentGroup, courseID: String, in context: NSManagedObjectContext) -> AssignmentGroup {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(AssignmentGroup.id), item.id.value)
         let model: AssignmentGroup = context.fetch(predicate).first ?? context.insert()
         model.id = item.id.value
         model.name = item.name
         model.position = item.position
         model.courseID = courseID
-
-        for a in item.assignments ?? [] {
-            let assignmentPredicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.id), a.id.value)
-            let assignment: Assignment = context.fetch(assignmentPredicate).first ?? context.insert()
-            assignment.update(fromApiModel: a, in: context, updateSubmission: false)
-            assignment.assignmentGroupPosition = item.position
-            assignment.gradingPeriodID = gradingPeriodID
-        }
-
         return model
     }
 }

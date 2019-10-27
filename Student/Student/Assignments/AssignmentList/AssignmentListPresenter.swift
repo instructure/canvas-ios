@@ -31,15 +31,16 @@ class AssignmentListPresenter {
     weak var view: AssignmentListViewProtocol?
     var didGetAssignmentGroups = false
     var assignmentGroups: Store<GetAssignmentGroups>?
-    var assignments: Store<GetAssignmentsForGrades>!
-    var selectedGradingPeriod: GradingPeriod?
+    var assignments: Store<GetAssignmentsForGrades>?
+    var courses: Store<GetCourse>?
+    var selectedGradingPeriodID: String?
+    var selectedGradingPeriodTitle: String?
+    lazy var initSelectedGradingPeriodOnce: () -> Void = {
+        selectedGradingPeriodID = courses?.first?.enrollments?.filter({ $0.isStudent }).first?.currentGradingPeriodID
+        return {}
+    }()
 
     lazy var color = env.subscribe(GetCustomColors()) { [weak self] in
-        self?.updateNavbar()
-    }
-
-    lazy var courses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
-        self?.update()
         self?.updateNavbar()
     }
 
@@ -54,31 +55,28 @@ class AssignmentListPresenter {
         self.sort = sort
     }
 
-    func viewIsReady() {
-//        assignments.exhaust(while: { _ in true })
-//        color.refresh()
-        refresh(force: true)
-    }
-
     func refresh(force: Bool = false) {
         didGetAssignmentGroups = false
         color.refresh(force: force)
-        courses.refresh(force: force)
-        refreshAssignments(force: force)
+        refreshCourses(force: force)
         gradingPeriods.refresh(force: force)
     }
 
     func update() {
         guard
             let assignmentGroups = assignmentGroups,
-            let assignments = assignments
+            let assignments = assignments,
+            let courses = courses
             else { return }
         let loading = assignments.pending || assignmentGroups.pending || gradingPeriods.pending || courses.pending || color.pending
+
+        selectedGradingPeriodTitle = gradingPeriods.filter { $0.id == selectedGradingPeriodID }.first?.title
+
         view?.update(loading: loading)
     }
 
     func updateNavbar() {
-        guard let course = courses.first else { return }
+        guard let course = courses?.first else { return }
         view?.updateNavBar(subtitle: course.name, color: course.color)
     }
 
@@ -86,40 +84,58 @@ class AssignmentListPresenter {
         env.router.route(to: assignment.htmlURL, from: from, options: nil)
     }
 
+    func refreshCourses(force: Bool) {
+        let u = GetCourse(courseID: courseID)
+        courses = env.subscribe( u ) { [weak self] in
+            if let u = self?.courses, !u.pending {
+                self?.refreshAssignments(force: force)
+            }
+            self?.update()
+            self?.updateNavbar()
+        }
+        courses?.refresh(force: force)
+    }
+
     func refreshAssignments(force: Bool) {
-        let useCase = GetAssignmentsForGrades(courseID: courseID,
-                                              gradingPeriodID: selectedGradingPeriod?.id,
+        //  on first load, we want to show the course.enrollment["student"].currentGradingPeriodID
+        //  as the default, but after first load, respect whatever user selects in filter
+        if !(courses?.pending ?? false), courses?.first != nil { initSelectedGradingPeriodOnce() }
+
+        let u = GetAssignmentsForGrades(courseID: courseID,
+                                              gradingPeriodID: selectedGradingPeriodID,
                                               groupBy: .assignmentGroup,
                                               requestQuerySize: 99,
                                               clearsBeforeWrite: true,
                                               include: [.all_dates])
-        assignments = env.subscribe( useCase ) { [weak self] in
+        assignments = env.subscribe( u ) { [weak self] in
             guard let useCase = self?.assignments, let didGetAssignmentGroups = self?.didGetAssignmentGroups else { return }
             if !useCase.pending && !didGetAssignmentGroups {
-                self?.refreshAssignmentGroups(force: force)
+                self?.refreshAssignmentGroups(force: true)
             } else {
                 self?.update()
             }
         }
-        assignments?.refresh(force: force)
+        assignments?.exhaust(while: { _ in true })
     }
 
     func refreshAssignmentGroups(force: Bool) {
         didGetAssignmentGroups = true
-        assignmentGroups = env.subscribe(  GetAssignmentGroups(courseID: courseID, gradingPeriodID: selectedGradingPeriod?.id, include: [.assignments])  ) { [weak self] in
-                self?.update()
+        let useCase = GetAssignmentGroups(courseID: courseID, gradingPeriodID: selectedGradingPeriodID, include: [.assignments])
+        assignmentGroups = env.subscribe( useCase ) { [weak self] in
+            self?.update()
         }
         assignmentGroups?.refresh(force: force)
     }
 
     func filterByGradingPeriod(_ period: GradingPeriod?) {
-        selectedGradingPeriod = period
+        selectedGradingPeriodID = period?.id
+        selectedGradingPeriodTitle = period?.title
         didGetAssignmentGroups = false
-        refreshAssignments(force: selectedGradingPeriod != nil)
+        refreshAssignments(force: true)
     }
 
     var filterButtonTitle: String? {
-        if selectedGradingPeriod != nil {
+        if selectedGradingPeriodID != nil {
             return NSLocalizedString("Clear filter", comment: "")
         } else {
             return NSLocalizedString("Filter", comment: "")
@@ -127,10 +143,11 @@ class AssignmentListPresenter {
     }
 
     var gradingPeriodTitle: String? {
-        if let p = selectedGradingPeriod {
-            return p.title
-        } else {
-            return NSLocalizedString("All Grading Periods", comment: "")
-        }
+        return selectedGradingPeriodTitle ?? NSLocalizedString("All Grading Periods", comment: "")
+    }
+
+    func title(forSection section: Int) -> String? {
+        guard let ag = assignmentGroups, section < ag.count else { return nil }
+        return ag[section]?.name
     }
 }
