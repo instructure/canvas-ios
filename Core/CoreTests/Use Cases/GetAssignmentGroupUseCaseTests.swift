@@ -30,12 +30,7 @@ class GetAssignmentGroupUseCaseTests: XCTestCase {
     }
 
     func testCacheKey() {
-        XCTAssertEqual(useCase.cacheKey, "get-assignmentGroup-\(courseID)")
-    }
-
-    func testCacheKeyWithGradingPeriod() {
-        useCase = GetAssignmentGroups(courseID: courseID, gradingPeriodID: "1")
-        XCTAssertEqual(useCase.cacheKey, "get-assignmentGroup-\(courseID)-1")
+        XCTAssertNil(useCase.cacheKey)
     }
 
     func testScope() {

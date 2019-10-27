@@ -33,18 +33,18 @@ class GetAssignmentGroupRequestTests: XCTestCase {
     }
 
     func testQuery() {
-        let expected: [APIQueryItem] = [.value("per_page", "99")]
+        let expected: [APIQueryItem] = [.value("per_page", "99"), .name("scope_assignments_to_student")]
         XCTAssertEqual(req.query, expected)
     }
 
     func testQueryWithInclude() {
-        req = GetAssignmentGroupsRequest(courseID: courseID, include: [.assignments])
+        req = GetAssignmentGroupsRequest(courseID: courseID, include: [.assignments], scopeAssignmentsToStudent: false)
         let expected: [APIQueryItem] = [.value("per_page", "99"), .array("include", ["assignments"])]
         XCTAssertEqual(req.query, expected)
     }
 
     func testQueryWithIncludeWithGradingPeriodID() {
-        req = GetAssignmentGroupsRequest(courseID: courseID, gradingPeriodID: "1", include: [.assignments])
+        req = GetAssignmentGroupsRequest(courseID: courseID, gradingPeriodID: "1", include: [.assignments], scopeAssignmentsToStudent: false)
         let expected: [APIQueryItem] = [.value("per_page", "99"), .array("include", ["assignments"]), .value("grading_period_id", "1")]
         XCTAssertEqual(req.query, expected)
     }

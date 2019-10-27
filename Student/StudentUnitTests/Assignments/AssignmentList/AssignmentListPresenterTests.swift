@@ -44,10 +44,10 @@ class AssignmentListPresenterTests: PersistenceTestCase {
     }
 
     func testUseCasesSetupProperly() {
-        XCTAssertEqual(presenter.course.useCase.courseID, presenter.courseID)
+        XCTAssertEqual(presenter.courses?.useCase.courseID, presenter.courseID)
 
-        XCTAssertEqual(presenter.assignments.useCase.courseID, presenter.courseID)
-        XCTAssertEqual(presenter.assignments.useCase.sort, .position)
+        XCTAssertEqual(presenter.assignments?.useCase.courseID, presenter.courseID)
+        XCTAssertEqual(presenter.assignments?.useCase.sort, .position)
     }
 
     func testLoadColor() {
@@ -59,21 +59,21 @@ class AssignmentListPresenterTests: PersistenceTestCase {
 
     func testLoadCourse() {
         let course = Course.make()
-        presenter.course.eventHandler()
+        presenter.courses?.eventHandler()
         XCTAssertEqual(resultingSubtitle, course.name)
     }
 
     func testLoadAssignments() {
         Assignment.make()
-        presenter.assignments.eventHandler()
+        presenter.assignments?.eventHandler()
         wait(for: [expectation], timeout: 0.1)
-        XCTAssertEqual(presenter.assignments.count, 1)
+        XCTAssertEqual(presenter.assignments?.count, 1)
     }
 
     func testViewIsReady() {
-        presenter.viewIsReady()
+        presenter.refresh()
         let colorStore = presenter.color as! TestStore
-        let courseStore = presenter.course as! TestStore
+        let courseStore = presenter.courses as! TestStore
         let assignmentsStore = presenter.assignments as! TestStore
 
         wait(for: [colorStore.refreshExpectation, courseStore.refreshExpectation, assignmentsStore.exhaustExpectation], timeout: 0.1)
@@ -88,7 +88,7 @@ class AssignmentListPresenterTests: PersistenceTestCase {
 }
 
 extension AssignmentListPresenterTests: AssignmentListViewProtocol {
-    func update() {
+    func update(loading: Bool) {
         expectation.fulfill()
     }
 

@@ -26,7 +26,7 @@ extension AssignmentGroup {
         from api: APIAssignmentGroup = .make(), courseID: String = "1", gradingPeriodID: String? = nil,
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
         ) -> AssignmentGroup {
-        let model = AssignmentGroup.save(api, courseID: courseID, gradingPeriodID: gradingPeriodID, in: context)
+        let model = AssignmentGroup.save(api, courseID: courseID, in: context)
         try! context.save()
         return model
     }
