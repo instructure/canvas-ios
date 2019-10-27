@@ -154,11 +154,9 @@ extension AssignmentListViewController: UITableViewDataSource, UITableViewDelega
 extension AssignmentListViewController: AssignmentListViewProtocol {
     func update(loading: Bool) {
         showSpinner(show: loading)
-        if !loading {
-            tableView.reloadData()
-            filterButton.setTitle(presenter?.filterButtonTitle, for: .normal)
-            gradingPeriodLabel.text = presenter?.gradingPeriodTitle
-        }
+        filterButton.setTitle(presenter?.filterButtonTitle, for: .normal)
+        gradingPeriodLabel.text = presenter?.gradingPeriodTitle
+        tableView.reloadData()
         view.layoutIfNeeded()
     }
 }
