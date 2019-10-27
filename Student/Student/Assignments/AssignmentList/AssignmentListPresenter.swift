@@ -30,6 +30,7 @@ class AssignmentListPresenter {
     let env: AppEnvironment
     weak var view: AssignmentListViewProtocol?
     var didGetAssignmentGroups = false
+    var didGetAssignments = false
     var assignmentGroups: Store<GetAssignmentGroups>?
     var assignments: Store<GetAssignmentsForGrades>?
     var courses: Store<GetCourse>?
@@ -57,6 +58,7 @@ class AssignmentListPresenter {
 
     func refresh(force: Bool = false) {
         didGetAssignmentGroups = false
+        didGetAssignments = false
         color.refresh(force: force)
         refreshCourses(force: force)
         gradingPeriods.refresh(force: force)
@@ -87,7 +89,7 @@ class AssignmentListPresenter {
     func refreshCourses(force: Bool) {
         let u = GetCourse(courseID: courseID)
         courses = env.subscribe( u ) { [weak self] in
-            if let u = self?.courses, !u.pending {
+            if let useCase = self?.courses, let didGetAssignments = self?.didGetAssignments, !useCase.pending && !didGetAssignments {
                 self?.refreshAssignments(force: force)
             }
             self?.update()
@@ -97,6 +99,7 @@ class AssignmentListPresenter {
     }
 
     func refreshAssignments(force: Bool) {
+        didGetAssignments = true
         //  on first load, we want to show the course.enrollment["student"].currentGradingPeriodID
         //  as the default, but after first load, respect whatever user selects in filter
         if !(courses?.pending ?? false), courses?.first != nil { initSelectedGradingPeriodOnce() }
@@ -131,6 +134,7 @@ class AssignmentListPresenter {
         selectedGradingPeriodID = period?.id
         selectedGradingPeriodTitle = period?.title
         didGetAssignmentGroups = false
+        didGetAssignments = false
         refreshAssignments(force: true)
     }
 
