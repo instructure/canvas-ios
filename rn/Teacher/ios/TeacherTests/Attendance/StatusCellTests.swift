@@ -33,6 +33,6 @@ class StatusCellTests: TeacherTestCase {
         XCTAssertEqual((cell.accessoryView as? UIImageView)?.image, Attendance.present.icon)
 
         cell.status = .make(student: nil, attendance: .present)
-        XCTAssertEqual(cell.accessibilityLabel, " - Present")
+        XCTAssertEqual(cell.accessibilityLabel, " — Present")
     }
 }
