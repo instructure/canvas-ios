@@ -51,6 +51,7 @@ const whitelist = [
   'bullet-list',
   'calendar-month',
   'check',
+  'clock',
   'cloud-lock',
   'complete',
   'courses',

@@ -23,6 +23,7 @@
     "TechDebt\/",
     "UITestHelpers\/",
     "rn/Teacher\/src\/modules\/graphql-speed-grader\/",
+    "rn/Teacher\/ios\/Attendance\/",
     "SubmissionButtonPresenter.swift"
   ],
   "fileMinCoverage": 0.5,

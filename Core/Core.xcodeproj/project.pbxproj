@@ -216,6 +216,9 @@
 		7D63F78E215D7B8100151E49 /* DynamicButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F78D215D7B8100151E49 /* DynamicButtonTests.swift */; };
 		7D63F792215D8EEC00151E49 /* GetBrandVariablesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F791215D8EEC00151E49 /* GetBrandVariablesTests.swift */; };
 		7D6410EE2280C345008FA345 /* ActAsUserWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6410ED2280C345008FA345 /* ActAsUserWindow.swift */; };
+		7D64A96623621690004EAEDF /* CalendarDayIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A96523621690004EAEDF /* CalendarDayIconView.swift */; };
+		7D64A968236219B3004EAEDF /* CalendarDayIconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D64A967236219B3004EAEDF /* CalendarDayIconView.xib */; };
+		7D64A96A23622D3A004EAEDF /* CalendarDayIconViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A96923622D3A004EAEDF /* CalendarDayIconViewTests.swift */; };
 		7D6A2BE2214C11AD00DB15C4 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6A2BE1214C11AD00DB15C4 /* Route.swift */; };
 		7D6A2BE4214C538F00DB15C4 /* RouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6A2BE3214C538F00DB15C4 /* RouteTests.swift */; };
 		7D6C8C6922EA0A6E00E5ADD8 /* APIActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C6822EA0A6E00E5ADD8 /* APIActivity.swift */; };
@@ -1058,6 +1061,9 @@
 		7D63F78D215D7B8100151E49 /* DynamicButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicButtonTests.swift; sourceTree = "<group>"; };
 		7D63F791215D8EEC00151E49 /* GetBrandVariablesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBrandVariablesTests.swift; sourceTree = "<group>"; };
 		7D6410ED2280C345008FA345 /* ActAsUserWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActAsUserWindow.swift; sourceTree = "<group>"; };
+		7D64A96523621690004EAEDF /* CalendarDayIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayIconView.swift; sourceTree = "<group>"; };
+		7D64A967236219B3004EAEDF /* CalendarDayIconView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarDayIconView.xib; sourceTree = "<group>"; };
+		7D64A96923622D3A004EAEDF /* CalendarDayIconViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayIconViewTests.swift; sourceTree = "<group>"; };
 		7D6A2BE1214C11AD00DB15C4 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		7D6A2BE3214C538F00DB15C4 /* RouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTests.swift; sourceTree = "<group>"; };
 		7D6C8C6822EA0A6E00E5ADD8 /* APIActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIActivity.swift; sourceTree = "<group>"; };
@@ -2064,6 +2070,8 @@
 				B18359A9222450DE0005A918 /* AccessIconView.xib */,
 				B1D5EF5D2357907F00B3ACD3 /* AlertAction.swift */,
 				7D005F762239CCEF0040CBD7 /* AvatarView.swift */,
+				7D64A96523621690004EAEDF /* CalendarDayIconView.swift */,
+				7D64A967236219B3004EAEDF /* CalendarDayIconView.xib */,
 				3B339B69226FA9AF00D3283D /* ChatBubbleView.swift */,
 				3B339B6B226FAA1000D3283D /* ChatBubbleView.xib */,
 				7D8B78FC21627887005E08F1 /* CoreWebView.swift */,
@@ -2078,6 +2086,7 @@
 				9FCF153F227B6BC1009D35F6 /* GradeCircleView.xib */,
 				7D70DE91233E808600F5C3D4 /* GroupedSectionFooterView.swift */,
 				7D9E80D1233D9934003C608B /* GroupedSectionHeaderView.swift */,
+				3B166A562343CEAF00B2EFAB /* HorizontalMenuViewController.swift */,
 				7DA057512193A30E00A3CFBB /* IconView.swift */,
 				7DAFBE73231871F500E9A37D /* ItemPickerViewController.swift */,
 				7D1219232243340200D3BF5C /* KeyboardTransitioning.swift */,
@@ -2092,7 +2101,6 @@
 				7D9E80D5233DA1EF003C608B /* SwitchTableViewCell.swift */,
 				7D1758B32159898C00F88613 /* TitleSubtitleView.swift */,
 				7D1758B521598CA400F88613 /* TitleSubtitleView.xib */,
-				3B166A562343CEAF00B2EFAB /* HorizontalMenuViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2101,14 +2109,15 @@
 			isa = PBXGroup;
 			children = (
 				7D85D8E4226A8CFB002DBF63 /* AvatarViewTests.swift */,
+				7D64A96923622D3A004EAEDF /* CalendarDayIconViewTests.swift */,
 				7D8B79022162B9E2005E08F1 /* CoreWebViewTests.swift */,
 				7D979CC9215BDFD500567627 /* DividerViewTests.swift */,
 				7D63F78D215D7B8100151E49 /* DynamicButtonTests.swift */,
 				7DDC450C215BF14A003F3209 /* DynamicLabelTests.swift */,
+				9FCF1553227CC927009D35F6 /* GradeCircleViewTests.swift */,
 				7DD6947A21949DC900BA4984 /* IconViewTests.swift */,
 				7D1758C3215A995200F88613 /* ListFormatterTests.swift */,
 				7D1758C7215A9A7800F88613 /* TitleSubtitleViewTests.swift */,
-				9FCF1553227CC927009D35F6 /* GradeCircleViewTests.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3227,6 +3236,7 @@
 				EE584C7E22F2048D00D1E201 /* PageListViewController.storyboard in Resources */,
 				3B339B6C226FAA1000D3283D /* ChatBubbleView.xib in Resources */,
 				7D86286B224D493C003A37DC /* AudioPlayerViewController.storyboard in Resources */,
+				7D64A968236219B3004EAEDF /* CalendarDayIconView.xib in Resources */,
 				7D2E82882270BB9B00735854 /* FilePickerViewController.storyboard in Resources */,
 				7D1758B621598CA400F88613 /* TitleSubtitleView.xib in Resources */,
 				7D85D8EF226E6901002DBF63 /* SectionHeaderView.xib in Resources */,
@@ -3598,6 +3608,7 @@
 				2C964857211E303E002C3255 /* Router.swift in Sources */,
 				7DCF203C216D5AE2003AF358 /* LockStatusViewable.swift in Sources */,
 				7D148640230B4519003944A2 /* AccountNotificationIcon.swift in Sources */,
+				7D64A96623621690004EAEDF /* CalendarDayIconView.swift in Sources */,
 				7D9E80CC233D2399003C608B /* APINotificationPreferences.swift in Sources */,
 				7D0215AB21BB18C6009A8E69 /* LoginDelegate.swift in Sources */,
 				7DF4FFE521714952007E5F81 /* NSNumberExtensions.swift in Sources */,
@@ -3715,6 +3726,7 @@
 				7D85D8E5226A8CFB002DBF63 /* AvatarViewTests.swift in Sources */,
 				7D80AC2D212C801600C40ECE /* APIOAuthTests.swift in Sources */,
 				B1F1328C224BB383002C0555 /* APIModuleTests.swift in Sources */,
+				7D64A96A23622D3A004EAEDF /* CalendarDayIconViewTests.swift in Sources */,
 				7DEB5C3C224EBF2D00F28404 /* CreateTextCommentTests.swift in Sources */,
 				3B5369E4219D0FD000D3F62E /* URLExtensionsTests.swift in Sources */,
 				B1911CEC21C849BE00F42F91 /* NotificationManagerTests.swift in Sources */,

@@ -30,7 +30,7 @@ extension AppDelegate {
                 let courseColor = props["courseColor"].flatMap(RCTConvert.uiColor)
                 else { return nil }
 
-            return try? TeacherAttendanceViewController(
+            return try? AttendanceViewController(
                 courseName: courseName,
                 courseColor: courseColor,
                 launchURL: destinationURL,
