@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="18G103" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="19A602" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AlertThreshold" representedClassName="Core.AlertThreshold" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="observerID" optional="YES" attributeType="String"/>
@@ -75,6 +75,14 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="syllabusBody" optional="YES" attributeType="String"/>
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="course" inverseEntity="Enrollment"/>
+    </entity>
+    <entity name="CourseSection" representedClassName="Core.CourseSection" syncable="YES">
+        <attribute name="courseID" attributeType="String"/>
+        <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="startAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="totalStudentsRaw" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="DiscussionEntry" representedClassName="Core.DiscussionEntry" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -485,9 +493,10 @@
         <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="463"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="150"/>
-        <element name="ContextColor" positionX="-177.3046875" positionY="-36" width="128" height="73"/>
         <element name="CommunicationChannel" positionX="-531" positionY="-9" width="128" height="133"/>
-        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="195"/>
+        <element name="ContextColor" positionX="-177.3046875" positionY="-36" width="128" height="73"/>
+        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="193"/>
+        <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="150"/>
         <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="255"/>
         <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="330"/>

@@ -59,11 +59,11 @@ class StatusCell: UITableViewCell {
         didSet {
             guard let status = status else { return }
 
-            nameLabel.text = status.student.name
-            avatarView.name = status.student.name
-            avatarView.url = status.student.avatarURL
+            nameLabel.text = status.student?.name
+            avatarView.name = status.student?.name ?? ""
+            avatarView.url = status.student?.avatarURL
 
-            var i18nLabel = status.student.name
+            var i18nLabel = status.student?.name ?? ""
             if let attendance = status.attendance {
                 accessoryView = UIImageView(image: attendance.icon)
                 accessoryView?.tintColor = attendance.tintColor

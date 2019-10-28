@@ -17,22 +17,13 @@
 //
 
 import XCTest
-@testable import Teacher
+@testable import Core
 
-class StatusCellTests: TeacherTestCase {
-    func testStatus() {
-        let cell = StatusCell(style: .default, reuseIdentifier: nil)
-        cell.status = nil
-        XCTAssertNil(cell.nameLabel.text)
-
-        cell.status = .make(attendance: nil)
-        XCTAssertNil(cell.accessoryView)
-        XCTAssertNotNil(cell.nameLabel.text)
-
-        cell.status = .make(attendance: .present)
-        XCTAssertEqual((cell.accessoryView as? UIImageView)?.image, Attendance.present.icon)
-
-        cell.status = .make(student: nil, attendance: .present)
-        XCTAssertEqual(cell.accessibilityLabel, " - Present")
+class APICourseSectionTests: CoreTestCase {
+    func testGetCourseSectionsRequest() {
+        XCTAssertEqual(GetCourseSectionsRequest(courseID: "2", perPage: 5).path, "courses/2/sections")
+        XCTAssertEqual(GetCourseSectionsRequest(courseID: "2", perPage: 5).queryItems, [
+            URLQueryItem(name: "per_page", value: "5"),
+        ])
     }
 }

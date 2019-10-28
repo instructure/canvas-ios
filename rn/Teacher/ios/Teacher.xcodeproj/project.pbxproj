@@ -44,7 +44,6 @@
 		7D3DA83B2187615E000D828F /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7D64A95D23620A27004EAEDF /* AttendanceStatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A9532362092B004EAEDF /* AttendanceStatusController.swift */; };
 		7D64A95E23620A27004EAEDF /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A9542362092B004EAEDF /* AttendanceViewController.swift */; };
-		7D64A95F23620A27004EAEDF /* CKIClient+AuthorizedSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A9552362092B004EAEDF /* CKIClient+AuthorizedSections.swift */; };
 		7D64A96023620A27004EAEDF /* DatePickerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A9562362092B004EAEDF /* DatePickerCollectionView.swift */; };
 		7D64A96123620A27004EAEDF /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A9572362092B004EAEDF /* DatePickerViewController.swift */; };
 		7D64A96223620A27004EAEDF /* RollCallSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A9582362092B004EAEDF /* RollCallSession.swift */; };
@@ -52,6 +51,8 @@
 		7D64A96423620A27004EAEDF /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A95A2362092B004EAEDF /* StatusCell.swift */; };
 		7D64A96D23626C22004EAEDF /* StatusCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A96C23626C22004EAEDF /* StatusCellTests.swift */; };
 		7D64A96F23626F52004EAEDF /* StatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A96E23626F52004EAEDF /* StatusTests.swift */; };
+		7D64A98123676E36004EAEDF /* RollCallSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A98023676E36004EAEDF /* RollCallSessionTests.swift */; };
+		7D64A983236796CC004EAEDF /* AttendanceStatusControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A982236796CC004EAEDF /* AttendanceStatusControllerTests.swift */; };
 		7DBF923B2269791600710D0F /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		840CABA038B02116B1BDA3E0 /* Pods_defaults_TeacherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
@@ -280,7 +281,6 @@
 		7D5D1DFD22BD7DE100371C2F /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D64A9532362092B004EAEDF /* AttendanceStatusController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceStatusController.swift; sourceTree = "<group>"; };
 		7D64A9542362092B004EAEDF /* AttendanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
-		7D64A9552362092B004EAEDF /* CKIClient+AuthorizedSections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CKIClient+AuthorizedSections.swift"; sourceTree = "<group>"; };
 		7D64A9562362092B004EAEDF /* DatePickerCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerCollectionView.swift; sourceTree = "<group>"; };
 		7D64A9572362092B004EAEDF /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		7D64A9582362092B004EAEDF /* RollCallSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RollCallSession.swift; sourceTree = "<group>"; };
@@ -288,6 +288,8 @@
 		7D64A95A2362092B004EAEDF /* StatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
 		7D64A96C23626C22004EAEDF /* StatusCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCellTests.swift; sourceTree = "<group>"; };
 		7D64A96E23626F52004EAEDF /* StatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTests.swift; sourceTree = "<group>"; };
+		7D64A98023676E36004EAEDF /* RollCallSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollCallSessionTests.swift; sourceTree = "<group>"; };
+		7D64A982236796CC004EAEDF /* AttendanceStatusControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceStatusControllerTests.swift; sourceTree = "<group>"; };
 		862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_TeacherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
 		B15CA23F221DBA940014FB02 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Routes.swift; path = Teacher/Routes.swift; sourceTree = "<group>"; };
@@ -463,7 +465,6 @@
 			children = (
 				7D64A9532362092B004EAEDF /* AttendanceStatusController.swift */,
 				7D64A9542362092B004EAEDF /* AttendanceViewController.swift */,
-				7D64A9552362092B004EAEDF /* CKIClient+AuthorizedSections.swift */,
 				7D64A9562362092B004EAEDF /* DatePickerCollectionView.swift */,
 				7D64A9572362092B004EAEDF /* DatePickerViewController.swift */,
 				7D64A9582362092B004EAEDF /* RollCallSession.swift */,
@@ -476,6 +477,8 @@
 		7D64A96B23626C0B004EAEDF /* Attendance */ = {
 			isa = PBXGroup;
 			children = (
+				7D64A982236796CC004EAEDF /* AttendanceStatusControllerTests.swift */,
+				7D64A98023676E36004EAEDF /* RollCallSessionTests.swift */,
 				7D64A96C23626C22004EAEDF /* StatusCellTests.swift */,
 				7D64A96E23626F52004EAEDF /* StatusTests.swift */,
 			);
@@ -942,7 +945,6 @@
 				7D64A95D23620A27004EAEDF /* AttendanceStatusController.swift in Sources */,
 				B1D5CFBC224FDEF3004A1361 /* DividerView.swift in Sources */,
 				B15CA240221DBA940014FB02 /* Routes.swift in Sources */,
-				7D64A95F23620A27004EAEDF /* CKIClient+AuthorizedSections.swift in Sources */,
 				B15CA29D221F16C90014FB02 /* BundleExtensions.swift in Sources */,
 				B15CA245221DC5BC0014FB02 /* ModuleListViewController.swift in Sources */,
 				7D64A96023620A27004EAEDF /* DatePickerCollectionView.swift in Sources */,
@@ -965,7 +967,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D64A98123676E36004EAEDF /* RollCallSessionTests.swift in Sources */,
 				7D64A96D23626C22004EAEDF /* StatusCellTests.swift in Sources */,
+				7D64A983236796CC004EAEDF /* AttendanceStatusControllerTests.swift in Sources */,
 				7D64A96F23626F52004EAEDF /* StatusTests.swift in Sources */,
 				3B1D37C9231085830017CCA2 /* PostGradesPresenterTests.swift in Sources */,
 				B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */,

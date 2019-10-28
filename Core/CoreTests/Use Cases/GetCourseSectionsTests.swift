@@ -16,23 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
 import XCTest
-@testable import Teacher
+@testable import Core
+import TestsFoundation
 
-class StatusCellTests: TeacherTestCase {
-    func testStatus() {
-        let cell = StatusCell(style: .default, reuseIdentifier: nil)
-        cell.status = nil
-        XCTAssertNil(cell.nameLabel.text)
-
-        cell.status = .make(attendance: nil)
-        XCTAssertNil(cell.accessoryView)
-        XCTAssertNotNil(cell.nameLabel.text)
-
-        cell.status = .make(attendance: .present)
-        XCTAssertEqual((cell.accessoryView as? UIImageView)?.image, Attendance.present.icon)
-
-        cell.status = .make(student: nil, attendance: .present)
-        XCTAssertEqual(cell.accessibilityLabel, " - Present")
+class GetCourseSectionsTests: CoreTestCase {
+    func testGetCourseSectionsProperties() {
+        let useCase = GetCourseSections(courseID: "5")
+        XCTAssertEqual(useCase.request.perPage, 100)
+        XCTAssertEqual(useCase.cacheKey, "get-courses-5-sections")
+        XCTAssertEqual(useCase.scope, Scope.where(#keyPath(CourseSection.courseID), equals: "5", orderBy: #keyPath(CourseSection.name), ascending: true, naturally: true))
     }
 }

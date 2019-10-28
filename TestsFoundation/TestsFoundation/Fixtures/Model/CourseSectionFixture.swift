@@ -16,23 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-@testable import Teacher
+import CoreData
+import Foundation
+@testable import Core
 
-class StatusCellTests: TeacherTestCase {
-    func testStatus() {
-        let cell = StatusCell(style: .default, reuseIdentifier: nil)
-        cell.status = nil
-        XCTAssertNil(cell.nameLabel.text)
-
-        cell.status = .make(attendance: nil)
-        XCTAssertNil(cell.accessoryView)
-        XCTAssertNotNil(cell.nameLabel.text)
-
-        cell.status = .make(attendance: .present)
-        XCTAssertEqual((cell.accessoryView as? UIImageView)?.image, Attendance.present.icon)
-
-        cell.status = .make(student: nil, attendance: .present)
-        XCTAssertEqual(cell.accessibilityLabel, " - Present")
+extension CourseSection {
+    @discardableResult
+    public static func make(
+        from api: APICourseSection = .make(),
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> CourseSection {
+        let model = CourseSection.save(api, in: context)
+        try! context.save()
+        return model
     }
 }

@@ -42,8 +42,7 @@ extension APICourse {
         hide_final_grades: Bool? = false,
         access_restricted_by_date: Bool? = nil,
         image_download_url: String? = nil,
-        is_favorite: Bool? = nil,
-        sections: [APISection]? = nil
+        is_favorite: Bool? = nil
     ) -> APICourse {
         return APICourse(
             id: id,
@@ -62,8 +61,7 @@ extension APICourse {
             hide_final_grades: hide_final_grades,
             access_restricted_by_date: access_restricted_by_date,
             image_download_url: image_download_url,
-            is_favorite: is_favorite,
-            sections: sections
+            is_favorite: is_favorite
         )
     }
 }
