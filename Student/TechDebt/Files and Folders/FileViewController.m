@@ -92,14 +92,13 @@
     interactionNavBar.items = @[self.navigationItem];
     
     container = [[UIView alloc] initWithFrame:self.view.bounds];
+    container.backgroundColor = [UIColor clearColor];
     container.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view insertSubview:container belowSubview:_progressToolbar];
 
     [self updateForURLState];
-
-    UIColor *backgroundColor = [UIColor colorNamed:@"backgroundLightest" inBundle:NSBundle.core compatibleWithTraitCollection:nil];
-    self.view.backgroundColor = backgroundColor;
-    container.backgroundColor = backgroundColor;
+    
+    [self.view setBackgroundColor:[UIColor colorNamed:@"backgroundLightest" inBundle:NSBundle.core compatibleWithTraitCollection:nil]];
 
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
