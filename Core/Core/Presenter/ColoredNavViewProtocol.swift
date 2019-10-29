@@ -21,7 +21,7 @@ import UIKit
 public protocol ColoredNavViewProtocol: class {
     var color: UIColor? { get set }
     var navigationController: UINavigationController? { get }
-    var titleSubtitleView: TitleSubtitleView { get set }
+    var titleSubtitleView: TitleSubtitleView { get }
     var navigationItem: UINavigationItem { get }
     func updateNavBar(subtitle: String?, color: UIColor?)
     func setupTitleViewInNavbar(title: String)

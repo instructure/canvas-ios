@@ -68,7 +68,7 @@ public struct APICourse: Codable, Equatable {
     // let blueprint_restrictions_by_object_type: ?
     let image_download_url: String? // include[]=course_image, api sometimes returns an empty string instead of nil so don't use URL
     let is_favorite: Bool? // include[]=favorites
-    let sections: [APISection]? // include[]=sections
+    // let sections: [APISection]? // include[]=sections
 
     // https://canvas.instructure.com/doc/api/courses.html#Term
     struct Term: Codable, Equatable {

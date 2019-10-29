@@ -22,20 +22,12 @@ import Core
 
 extension AppDelegate {
     @objc func registerNativeRoutes() {
-        HelmManager.shared.registerNativeViewController(for: "/attendance", factory: { props in
-            guard
-                let destinationURL = (props["launchURL"] as? String).flatMap(URL.init(string:)),
-                let courseName = props["courseName"] as? String,
-                let courseID = props["courseID"] as? String,
-                let courseColor = props["courseColor"].flatMap(RCTConvert.uiColor)
-                else { return nil }
-
-            return try? AttendanceViewController(
-                courseName: courseName,
-                courseColor: courseColor,
-                launchURL: destinationURL,
-                courseID: courseID,
-                date: Date()
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/attendance/:toolID", factory: { props in
+            guard let courseID = props["courseID"] as? String else { return nil }
+            guard let toolID = props["toolID"] as? String else { return nil }
+            return AttendanceViewController(
+                context: ContextModel(.course, id: courseID),
+                toolID: toolID
             )
         })
 
