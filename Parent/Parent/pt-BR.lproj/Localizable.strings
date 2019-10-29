@@ -1,11 +1,11 @@
 /* <String> <Int> of <Int> */
-"%@ %d of %d" = "%1$@ %2$d of %3$d";
+"%@ %d of %d" = "%1$@ %2$d de %3$d";
 
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ vence às %2$@";
 
 /* No comment provided by engineer. */
-"%@ to %@" = "%1$@ para %2$@";
+"%@ to %@" = "%1$@ a %2$@";
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ começará às %2$@";
@@ -32,7 +32,7 @@
 "An Error Occurred" = "Ocorreu um erro";
 
 /* No comment provided by engineer. */
-"Announcement" = "Anúncio";
+"Announcement" = "Aviso";
 
 /* No comment provided by engineer. */
 "Assignment" = "Tarefa";
@@ -44,7 +44,7 @@
 "Assignment grade below" = "Nota da tarefa abaixo";
 
 /* Assignment Missing Description */
-"Assignment missing" = "Faltando tarefa";
+"Assignment missing" = "Tarefa em falta";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Lembrete da tarefa";
@@ -68,7 +68,7 @@
 "Choose a student" = "Escolha um aluno";
 
 /* Course Announcement Description */
-"Course announcements" = "Anúncios do curso";
+"Course announcements" = "Avisos do curso";
 
 /* Course Grade High On Description */
 "Course grade above" = "Nota do curso acima";
@@ -83,10 +83,10 @@
 "Current student: %@, tap to switch students" = "Aluno atual: %@, toque para alternar alunos";
 
 /* No comment provided by engineer. */
-"Discussion" = "Discussão";
+"Discussion" = "Fórum";
 
 /* No comment provided by engineer. */
-"Dismiss" = "Recusar";
+"Dismiss" = "Descartar";
 
 /* No comment provided by engineer. */
 "Event" = "Evento";
@@ -110,19 +110,19 @@
 "High course grade cannot be lower than low course grade" = "A maior nota do curso não pode ser menor que a menor nota do curso";
 
 /* No comment provided by engineer. */
-"In-Class" = "Em Classe";
+"In-Class" = "Em sala de aula";
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Insira o código de emparelhamento do aluno fornecido.";
 
 /* Institution Announcement Description */
-"Institution announcements" = "Anúncios da instituição";
+"Institution announcements" = "Avisos da instituição";
 
 /* Title for an alert view */
 "Invalid Input" = "Entrada inválida";
 
 /* Last Week Button Accessibility Label */
-"Last Week" = "Última Semana";
+"Last Week" = "Semana passada";
 
 /* No comment provided by engineer. */
 "Late" = "Atrasado";
@@ -140,13 +140,13 @@
 "Low course grade cannot be higher than high course grade" = "A menor nota do curso não pode ser maior que a maior nota do curso";
 
 /* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "Gerenciar crianças";
+"Manage Children" = "Gerenciar associados";
 
 /* No comment provided by engineer. */
-"Missing" = "Faltando";
+"Missing" = "Faltante";
 
 /* No comment provided by engineer. */
-"Missing: (-/%@)" = "Faltando: (-/%@)";
+"Missing: (-/%@)" = "Faltante: (-/%@)";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Próxima Semana";
@@ -158,7 +158,7 @@
 "No Grade" = "Sem Nota";
 
 /* Empty Students Text */
-"No Students" = "Sem Estudantes";
+"No Students" = "Sem Alunos";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Nada esta semana";
@@ -173,7 +173,7 @@
 "Permission Needed" = "Permissão necessária";
 
 /* No comment provided by engineer. */
-"Quiz" = "Questionário";
+"Quiz" = "Teste";
 
 /* No comment provided by engineer. */
 "Settings" = "Configurações";
@@ -188,7 +188,7 @@
 "Submitted: %@ (%@/%@)" = "Enviado: %1$@ (%2$@/%3$@)";
 
 /* Syllabus Button Title */
-"Syllabus" = "Programa ";
+"Syllabus" = "Programa";
 
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Toque para começar a visualizar o Canvas como outra pessoa.";
@@ -203,7 +203,7 @@
 "There was a problem loading the DiscussionKit database file." = "Houve um problema ao carregar o arquivo do banco de dados DiscussionKit .";
 
 /* No comment provided by engineer. */
-"This announcement has expired." = "Este anúncio expirou.";
+"This announcement has expired." = "Este aviso expirou.";
 
 /* No comment provided by engineer. */
 "This student's courses may not be published yet." = "Os cursos desse aluno podem ainda não ter sido publicados.";

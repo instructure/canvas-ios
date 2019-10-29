@@ -161,7 +161,7 @@
 "1 month ago" = "1 mês atrás";
 
 /* Label indicating a submission need grading */
-"1 needs grading" = "1 precisa de classificação";
+"1 needs grading" = "1 precisa de avaliação";
 
 /* time since creation */
 "1 year ago" = "1 ano atrás";
@@ -204,7 +204,7 @@
 
 /* Title for the add-inline-media sheet
    Title on the add-inline-media sheet */
-"Add inline media" = "Adicionar mídia inline";
+"Add inline media" = "Adicionar mídia em linha";
 
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "Adicionar destinatários";
@@ -216,11 +216,11 @@
 "An unknown error occurred" = "Ocorreu um erro desconhecido.";
 
 /* Title of the new announcement view */
-"Announcement" = "Anúncio";
+"Announcement" = "Aviso";
 
 /* Announcements title
    Title for the announcements view controller */
-"Announcements" = "Anúncios";
+"Announcements" = "Avisos";
 
 /* Archive selected messages button
    mark a message as archived */
@@ -302,7 +302,7 @@
 "Canvas failed to find recipients for your current search. Please try again later." = "O Canvas não conseguiu encontrar os destinatários para a sua pesquisa atual. Por favor, tente novamente mais tarde.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Questionários do Canvas suportam vários estilos de avaliação. A maioria dos estilos é suportada em dispositivos móveis; contudo, algumas não. Se você tentar realizar algum destes questionários não suportados no seu celular, talvez você não consiga completar o questionário inteiro, deixando-lhe em desvantagem.\n\nTipos de perguntas não suportadas incluem perguntas contendo conteúdo em Adobe Flash™, carregamentos de arquivos e outros.\n\nSe você acredita que um questionário possui conteúdo não suportado, realize-o no desktop ou laptop. Se você souber que o questionário possui apenas conteúdo suportado, sinta-se livre para realizá-lo no seu dispositivo móvel.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Testes do Canvas suportam vários estilos de avaliação. A maioria dos estilos é suportada em dispositivos móveis; contudo, algumas não. Se você tentar realizar algum destes testes não suportados no seu celular, talvez você não consiga completar o teste inteiro, deixando-lhe em desvantagem.\n\nTipos de perguntas não suportadas incluem perguntas contendo conteúdo em Adobe Flash™, carregamentos de arquivos e outros.\n\nSe você acredita que um teste possui conteúdo não suportado, realize-o no desktop ou laptop. Se você souber que o teste possui apenas conteúdo suportado, sinta-se livre para realizá-lo no seu dispositivo móvel.";
 
 /* No comment provided by engineer. */
 "Change User" = "Trocar Usuário";
@@ -338,7 +338,7 @@
 "Closed for Comments" = "Fechado para comentários";
 
 /* Title for Collaborations tab */
-"Collaborations" = "Collaborations (Colaborações)";
+"Collaborations" = "Colaborações";
 
 /* Add message button for teacher or ta */
 "Comment" = "Comentário";
@@ -366,7 +366,7 @@
 "Compose Message Button" = "Botão Compor Mensagem";
 
 /* Title for Conferences tab */
-"Conferences" = "Conferences";
+"Conferences" = "Conferências";
 
 /* Alert title */
 "Confirm deletion" = "Confirmar a eliminação";
@@ -384,7 +384,7 @@
 "Couldn't Load Submission" = "Não foi possível Carregar Envio";
 
 /* Title for Course Syllabus view controller */
-"Course Syllabus" = "Programa do curso";
+"Course Syllabus" = "Programa";
 
 /* Courses page title */
 "Courses" = "Cursos";
@@ -396,10 +396,10 @@
 "Current Submission" = "Envio Atual";
 
 /* Message telling users that quiz support on mobile is limited */
-"Currently there is limited quiz support on mobile" = "Atualmente há suporte limitado de questionário no celular";
+"Currently there is limited quiz support on mobile" = "Atualmente há suporte limitado de teste no celular";
 
 /* A custom grade not specified by the rubric. */
-"Custom Grade" = "Customizar Nota";
+"Custom Grade" = "Customizar nota";
 
 /* label for customizing a course */
 "Customize" = "Personalizar";
@@ -429,24 +429,24 @@
 "Discard this entry?" = "Descarte esta entrada?";
 
 /* Title of the new discussion view */
-"Discussion" = "Discussão";
+"Discussion" = "Fórum";
 
 /* Title for discussion entry submission */
-"Discussion Entry" = "Entrada de Discussão";
+"Discussion Entry" = "Entrada de Fórum";
 
 /* Title for Discussion Topics view controller */
-"Discussion Topics" = "Tópicos de discussão";
+"Discussion Topics" = "Assuntos do fórum";
 
 /* Discussions title
    Title for Discussions view controller */
-"Discussions" = "Discussões";
+"Discussions" = "Fóruns";
 
 /* Dismiss button title
    uialertaction button name for dismissing the failed refresh error message */
 "Dismiss" = "Descartar";
 
 /* Alert title asking if you want to masquerade */
-"Do you want to masquerade as this user?" = "Você quer se disfarçar como este usuário?";
+"Do you want to masquerade as this user?" = "Você quer agir como como este usuário?";
 
 /* The domain for the institution/school that the user is currently using */
 "Domain" = "Domínio";
@@ -505,7 +505,7 @@
 "Enter User ID and Domain." = "Digite ID de Usuário e Domínio.";
 
 /* Confirmation message after posting a discussion entry */
-"Entry posted" = "Estrada postada";
+"Entry posted" = "Entrada postada";
 
 /* Title of alert box */
 "Error" = "Erro";
@@ -577,13 +577,13 @@
 "Go to App Store" = "Ir para App Store";
 
 /* No comment provided by engineer. */
-"Go to discussion" = "Ir para discussão";
+"Go to discussion" = "Ir para fórum";
 
 /* title for discussion assignment submission button */
-"Go To Discussion" = "Ir Para Discussão";
+"Go To Discussion" = "Ir Para Fórum";
 
 /* text for the \"go to quiz\" button */
-"Go to Quiz" = "Ir para Questionário";
+"Go to Quiz" = "Ir para Teste";
 
 /* No comment provided by engineer. */
 "Grade" = "Nota";
@@ -601,19 +601,19 @@
 "Grade: %1$i / %2$g" = "Nota: %1$i / %2$g";
 
 /* Label for a discussion */
-"Graded Discussion" = "Discussão Avaliada";
+"Graded Discussion" = "Fórum Avaliada";
 
 /* Lets user know discussion is graded */
-"Graded discussion." = "Discussão avaliada.";
+"Graded discussion." = "Fórum avaliada.";
 
 /* Graded discussion. 25 points possible */
-"Graded discussion. %g points possible." = "Discussão avaliada. %g pontos possíveis.";
+"Graded discussion. %g points possible." = "Fórum avaliada. %g pontos possíveis.";
 
 /* Title for Grades view controller */
 "Grades" = "Notas";
 
 /* Button title for starting a group conversation */
-"Group conversation" = "Conversação em grupo";
+"Group conversation" = "Conversa em grupo";
 
 /* Groups page title */
 "Groups" = "Grupos";
@@ -709,7 +709,7 @@
 "Mark as Done" = "Marcar como Feito";
 
 /* Button title for beginning masquerading */
-"Masquerade" = "Mascarar-se";
+"Masquerade" = "Agir como";
 
 /* No comment provided by engineer. */
 "Me" = "Eu";
@@ -744,7 +744,7 @@
 "Messages" = "Mensagens";
 
 /* Warnging for taking quizzes on a mobile device */
-"Mobile Quiz Warning" = "Aviso de Questionário de Celular";
+"Mobile Quiz Warning" = "Aviso de Teste de Celular";
 
 /* title for the modules tab */
 "Modules" = "Módulos";
@@ -756,7 +756,7 @@
 "More Info" = "Mais Informação";
 
 /* Title of a link to show additional due dates customized for sections or groups. */
-"Multiple Due Dates" = "Várias datas de entrega";
+"Multiple Due Dates" = "Vários prazos de entrega";
 
 /* user must contribute to complete requirement */
 "Must contribute" = "Deve contribuir";
@@ -807,10 +807,10 @@
 "No Date" = "Sem Data";
 
 /* String for when assignment has no due date */
-"No due date" = "Sem prazo";
+"No due date" = "Sem prazo de entrega";
 
 /* Label shown for a to do that doesn't have a due date */
-"No Due Date" = "Sem Prazo";
+"No Due Date" = "Sem prazo de entrega";
 
 /* Error message */
 "No installed apps support opening this file" = "Não há aplicativos instalados que suportem a abertura deste arquivo.";
@@ -834,7 +834,7 @@
 "Not Authorized" = "Não autorizado";
 
 /* Accessibility label for points out of points possible label when points are not availiable. */
-"Not available" = "Não disponivel";
+"Not available" = "Não disponível";
 
 /* Pass/fail assignment is not complete */
 "Not Complete" = "Não Concluído";
@@ -927,7 +927,7 @@
 "photo" = "Foto";
 
 /* No comment provided by engineer. */
-"Pinned Discussions" = "Discussões fixadas";
+"Pinned Discussions" = "Fóruns fixados";
 
 /* A button that plays */
 "Play" = "Reproduzir";
@@ -942,13 +942,13 @@
 "Post comment" = "Postar comentário";
 
 /* No comment provided by engineer. */
-"Post Comment" = "Publicar comentário";
+"Post Comment" = "Postar Comentário";
 
 /* Message shown while posting a discussion entry */
 "Posting…" = "Postando...";
 
 /* No comment provided by engineer. */
-"Posts your comment" = "Envia seu comentário";
+"Posts your comment" = "Posta seu comentário";
 
 /* No comment provided by engineer. */
 "Previous item" = "Item anterior";
@@ -961,13 +961,13 @@
 
 /* Label for a quiz
    Title for a quiz submission cell */
-"Quiz" = "Questionário";
+"Quiz" = "Teste";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
-"Quiz Alert" = "Alerta de Questionário";
+"Quiz Alert" = "Alerta de Teste";
 
 /* The title for the list of quizzes for a course */
-"Quizzes" = "Questionários";
+"Quizzes" = "Testes";
 
 /* No comment provided by engineer. */
 "Rate on App Store" = "Valor na App Store";
@@ -976,7 +976,7 @@
 "Rating for %1$@, Score: %2$g" = "Pontuação para %1$@, Pontuação: %2$g";
 
 /* Title for a button allowing user to re-submit files for an assignment */
-"Re-submit Assignment" = "Reenviar tarefa";
+"Re-submit Assignment" = "Re-enviar tarefa";
 
 /* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
 "Recipients" = "Recipientes";
@@ -1064,7 +1064,7 @@
 "Show Grades" = "Mostrar Notas";
 
 /* title for quiz assignment submission button */
-"Show Quiz" = "Mostrar Questionário";
+"Show Quiz" = "Mostrar Teste";
 
 /* VoiceOver text for a button that lets you show recipients */
 "Show recipients" = "Mostrar destinatários";
@@ -1088,7 +1088,7 @@
 "Starts recording a media comment" = "Começa a gravar um comentário de mídia";
 
 /* button title for cancelling a logout. */
-"Stay Logged In" = "Permanecer Loggado";
+"Stay Logged In" = "Permanecer Logado";
 
 /* A button that stops */
 "Stop" = "Parar";
@@ -1106,7 +1106,7 @@
 "Student" = "Aluno";
 
 /* No comment provided by engineer. */
-"Sub Header" = "Sub Cabeçalho";
+"Sub Header" = "Subcabeçalho";
 
 /* View previously submitted assignment */
 "Submission" = "Envio";
@@ -1146,7 +1146,7 @@
 
 /* Syllabus screen name
    Title for Syllabus view controller */
-"Syllabus" = "Programa de estudos";
+"Syllabus" = "Programa";
 
 /* Short name for TA enrollment */
 "TA" = "Assistente";
@@ -1411,7 +1411,7 @@
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "Você não tem o SpeedGrader para iPad. Você pode baixá-lo gratuitamente a partir da App Store.";
 
 /* Masquerade error message */
-"You don't have permission to masquerade as this user or there is no user with that ID" = "Você não tem permissão para disfarçar-se como este usuário ou não existe usuário com esta ID.";
+"You don't have permission to masquerade as this user or there is no user with that ID" = "Você não tem permissão para agir como este usuário ou não existe usuário com esta ID.";
 
 /* No comment provided by engineer. */
 "You have an unsaved reply. Would you like to discard that reply?" = "Você tem uma resposta não salva. Gostaria de descartar aquela resposta?";
@@ -1420,7 +1420,7 @@
 "You must first complete:" = "Você deve completar primeiro:";
 
 /* Error message */
-"You need a title and a description to post" = "Você precisa de um título e uma descrição para enviar";
+"You need a title and a description to post" = "Você precisa de um título e uma descrição para postar";
 
 /* You should go rate Canvas on the App Store! */
 "You should go rate Canvas on the App Store!" = "Você deve ir classificar o Canvas na App Store!";
@@ -1429,5 +1429,5 @@
 "Your files could not be found" = "Não foi possível localizar seus arquivos";
 
 /* Media submission type selected with no Kaltura set up */
-"Your school's configuration does not allow the type of submission selected for this assignment" = "A configuração da sua escola não permite o tipo de apresentação selecionado para esta tarefa";
+"Your school's configuration does not allow the type of submission selected for this assignment" = "A configuração da sua escola não permite o tipo de envio selecionado para esta tarefa";
 
