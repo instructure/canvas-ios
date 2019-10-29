@@ -98,7 +98,7 @@
 
     [self updateForURLState];
     
-    [self.view setBackgroundColor:[UIColor colorNamed:@"backgroundLightest" inBundle:NSBundle.core compatibleWithTraitCollection:nil]];
+    [self.view setBackgroundColor:[UIColor named:@"backgroundLightest"]];
 
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
