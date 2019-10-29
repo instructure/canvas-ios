@@ -85,7 +85,6 @@
 		B1A32BDE2159A1D70071B41E /* APIAssignmentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BDD2159A1D70071B41E /* APIAssignmentFixture.swift */; };
 		B1A32BE02159A28D0071B41E /* APISubmissionFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BDF2159A28D0071B41E /* APISubmissionFixture.swift */; };
 		B1B42C1822404AB20087399A /* FileUploadTargetFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B42C1722404AB20087399A /* FileUploadTargetFixture.swift */; };
-		B1C6BF6521BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C6BF6421BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift */; };
 		B1CA334423393FEC0015CBB4 /* UserFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA334323393FEC0015CBB4 /* UserFixture.swift */; };
 		B1D5EF622358E01200B3ACD3 /* URLAuthenticationChallengeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D5EF612358E01200B3ACD3 /* URLAuthenticationChallengeExtensions.swift */; };
 		B1E789B821B1B06F0087FE4A /* TestLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789B721B1B06F0087FE4A /* TestLogger.swift */; };
@@ -181,7 +180,6 @@
 		B1A32BDD2159A1D70071B41E /* APIAssignmentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignmentFixture.swift; sourceTree = "<group>"; };
 		B1A32BDF2159A28D0071B41E /* APISubmissionFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISubmissionFixture.swift; sourceTree = "<group>"; };
 		B1B42C1722404AB20087399A /* FileUploadTargetFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadTargetFixture.swift; sourceTree = "<group>"; };
-		B1C6BF6421BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensions.swift; sourceTree = "<group>"; };
 		B1CA334323393FEC0015CBB4 /* UserFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFixture.swift; sourceTree = "<group>"; };
 		B1D5EF612358E01200B3ACD3 /* URLAuthenticationChallengeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLAuthenticationChallengeExtensions.swift; sourceTree = "<group>"; };
 		B1E789B721B1B06F0087FE4A /* TestLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLogger.swift; sourceTree = "<group>"; };
@@ -351,7 +349,6 @@
 			isa = PBXGroup;
 			children = (
 				3B84C391218BB102005946BA /* DateExtensions.swift */,
-				B1C6BF6421BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift */,
 				B1D5EF612358E01200B3ACD3 /* URLAuthenticationChallengeExtensions.swift */,
 				7DAC287F22B1A3F900C0B692 /* XCUIApplicationExtensions.swift */,
 				E8BE4F5B233E73E100DC399A /* XCUIElementQueryExtensions.swift */,
@@ -612,7 +609,6 @@
 				7D47769A21AF396500B441CE /* APIQuiz.swift in Sources */,
 				7DCF2048216D6597003AF358 /* APIQuizFixture.swift in Sources */,
 				3BD364AD225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift in Sources */,
-				B1C6BF6521BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift in Sources */,
 				7D47769821AF356200B441CE /* APIQuizRequestable.swift in Sources */,
 				3B19D25D2265391F003A0565 /* RubricFixture.swift in Sources */,
 				7D63F794215D8FC100151E49 /* APIBrandVariablesFixture.swift in Sources */,

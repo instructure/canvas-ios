@@ -41,7 +41,7 @@ class RollCallSession: NSObject, WKNavigationDelegate {
 
     var state: State {
         didSet {
-            DispatchQueue.main.async {
+            performUIUpdate {
                 switch self.state {
                 case .fetchingLaunchURL, .launchingTool: break
                 case .active: self.delegate?.sessionDidBecomeActive(self)
@@ -78,6 +78,7 @@ class RollCallSession: NSObject, WKNavigationDelegate {
     }
 
     func start() {
+        guard case .fetchingLaunchURL = state else { return }
         LTITools(env: env, context: context, id: toolID, launchType: .course_navigation).getSessionlessLaunchURL { url in
             if let url = url {
                 self.launch(url: url)
