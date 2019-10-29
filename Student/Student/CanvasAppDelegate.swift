@@ -343,7 +343,9 @@ extension AppDelegate {
                     finish()
                 }
             } else if let from = self.topViewController {
-                AppEnvironment.shared.router.route(to: url, from: from, options: [.modal, .embedInNav, .addDoneButton])
+                var comps = URLComponents(url: url, resolvingAgainstBaseURL: true)
+                comps?.originIsNotification = true
+                AppEnvironment.shared.router.route(to: comps?.url ?? url, from: from, options: [.modal, .embedInNav, .addDoneButton])
             }
         }
         return true
@@ -394,6 +396,7 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
 
     func userDidLogout(session: LoginSession) {
         let wasCurrent = environment.currentSession == session
+        environment.api.makeRequest(DeleteLoginOAuthRequest(session: session)) { _, _, _ in }
         userDidStopActing(as: session)
         if wasCurrent { changeUser() }
     }

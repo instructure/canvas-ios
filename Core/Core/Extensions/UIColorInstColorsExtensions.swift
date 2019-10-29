@@ -37,6 +37,11 @@ extension UIColor {
         let named = inHighContrast ? "\(name.rawValue)HighContrast" : name.rawValue
         return UIColor(named: named, in: .core, compatibleWith: nil)!
     }
+
+    @objc public static func named(_ name: String) -> UIColor? {
+        guard let color = InstColorName(rawValue: name) else { return nil }
+        return named(color)
+    }
 }
 
 @available(iOS 13, *)

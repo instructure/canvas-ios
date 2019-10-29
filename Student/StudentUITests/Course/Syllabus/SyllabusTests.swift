@@ -45,11 +45,11 @@ class SyllabusTests: StudentUITestCase {
 
         app.find(label: "hello world").waitToExist()
 
+        // There's today's date in a request that has no way to be mocked currently
+        failTestOnMissingMock = false
         app.swipeLeft()
 
-        let cells = app.cells.containing(NSPredicate(format: "label CONTAINS %@", assignmentName))
-
-        let assignmentCell = cells.firstMatch
+        let assignmentCell = app.find(labelContaining: assignmentName)
         assignmentCell.tap()
         AssignmentDetails.name.waitToExist(5)
 

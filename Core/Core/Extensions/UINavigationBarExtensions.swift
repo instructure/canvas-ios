@@ -41,7 +41,7 @@ extension UINavigationBar {
 
     public func useModalStyle(brand: Brand = Brand.shared) {
         let foreground = brand.linkColor.ensureContrast(against: .named(.backgroundLightest))
-        titleTextAttributes = [.foregroundColor: foreground]
+        titleTextAttributes = [.foregroundColor: UIColor.named(.textDarkest)]
         tintColor = foreground
         barTintColor = .named(.backgroundLightest)
         barStyle = .default

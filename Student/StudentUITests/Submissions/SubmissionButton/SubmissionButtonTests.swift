@@ -87,6 +87,7 @@ class SubmissionButtonTests: StudentUITestCase {
         let submission = APIQuizSubmission.make()
         mockData(GetQuizSubmissionRequest(courseID: course.id.value, quizID: quiz.id.value), value: .init(quiz_submissions: [submission]))
         mockEncodableRequest("courses/\(course.id)/quizzes/\(quiz.id)/submission", value: submission)
+        mockData(GetWebSessionRequest(to: URL(string: "/courses/1/quizzes/123?platform=ios")))
 
         logIn()
         show("/courses/\(course.id)/assignments/\(assignment.id)")
@@ -114,7 +115,7 @@ class SubmissionButtonTests: StudentUITestCase {
         NavBar.backButton.tap()
     }
 
-    func testMediaRecording() {
+    func xtestMediaRecording() {
         mockBaseRequests()
         let assignment = mock(assignment: .make(submission_types: [ .media_recording ]))
         mockData(GetMediaServiceRequest(), value: APIMediaService(domain: "canvas.instructure.com"))

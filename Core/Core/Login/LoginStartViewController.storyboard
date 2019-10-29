@@ -130,7 +130,7 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xBc-5O-QU6">
-                                <rect key="frame" x="0.0" y="687" width="414" height="175"/>
+                                <rect key="frame" x="0.0" y="671" width="414" height="225"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Previous Logins" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Op3-kc-wqp" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="16" y="0.0" width="382" height="19.5"/>
@@ -142,9 +142,8 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="body"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k72-wA-dRu" userLabel="Divider" customClass="DividerView" customModule="Core" customModuleProvider="target">
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k72-wA-dRu" userLabel="Divider" customClass="DividerView" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="16" y="23.5" width="382" height="1"/>
-                                        <color key="backgroundColor" red="0.60278356079999995" green="0.63886892799999995" blue="0.66806358099999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="Z9V-hw-fJ8"/>
                                         </constraints>
@@ -153,12 +152,11 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Vec-s2-2D4">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="150.5"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="200.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <view key="tableFooterView" contentMode="scaleToFill" id="PGb-jA-lWX">
                                             <rect key="frame" x="0.0" y="176" width="414" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="LoginStartSessionCell" rowHeight="60" id="2S8-Fv-s54" customClass="LoginStartSessionCell" customModule="Core" customModuleProvider="target">
@@ -303,7 +301,7 @@
                                     <constraint firstItem="Vec-s2-2D4" firstAttribute="leading" secondItem="xBc-5O-QU6" secondAttribute="leading" id="GCc-Dr-KkO"/>
                                     <constraint firstAttribute="trailing" secondItem="k72-wA-dRu" secondAttribute="trailing" constant="16" id="NxQ-js-qpq"/>
                                     <constraint firstItem="Op3-kc-wqp" firstAttribute="leading" secondItem="xBc-5O-QU6" secondAttribute="leading" constant="16" id="QqB-yW-Rd2"/>
-                                    <constraint firstAttribute="height" constant="175" id="WS4-Gy-0Kt"/>
+                                    <constraint firstAttribute="height" priority="750" constant="225" id="WS4-Gy-0Kt"/>
                                     <constraint firstItem="k72-wA-dRu" firstAttribute="top" secondItem="Op3-kc-wqp" secondAttribute="bottom" constant="4" id="bGU-iE-Fk0"/>
                                     <constraint firstAttribute="trailing" secondItem="Vec-s2-2D4" secondAttribute="trailing" id="f6O-Ay-mYa"/>
                                     <constraint firstItem="Vec-s2-2D4" firstAttribute="top" secondItem="k72-wA-dRu" secondAttribute="bottom" id="hVf-va-Ucm"/>
@@ -319,7 +317,7 @@
                             <constraint firstItem="g3X-Rb-xXO" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="040-0l-bYr"/>
                             <constraint firstItem="Al6-ev-ond" firstAttribute="leading" secondItem="1pX-Al-xWp" secondAttribute="trailing" constant="8" id="05N-Iw-HQD"/>
                             <constraint firstItem="g3X-Rb-xXO" firstAttribute="top" secondItem="K3D-iK-gpK" secondAttribute="bottom" constant="16" id="6y7-tf-ieH"/>
-                            <constraint firstItem="NxW-YV-uVK" firstAttribute="bottom" secondItem="xBc-5O-QU6" secondAttribute="bottom" id="AcQ-O0-5EB"/>
+                            <constraint firstAttribute="bottom" secondItem="xBc-5O-QU6" secondAttribute="bottom" id="AcQ-O0-5EB"/>
                             <constraint firstItem="xBc-5O-QU6" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="Duc-2p-Av2"/>
                             <constraint firstItem="K3D-iK-gpK" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="FpS-ol-ufb"/>
                             <constraint firstItem="xBc-5O-QU6" firstAttribute="trailing" secondItem="NxW-YV-uVK" secondAttribute="trailing" priority="750" id="MgA-PG-fka"/>
@@ -330,6 +328,7 @@
                             <constraint firstItem="YBX-Gr-kI6" firstAttribute="centerY" secondItem="soV-nE-xVI" secondAttribute="centerY" constant="-170" id="kGm-Ij-BhX"/>
                             <constraint firstItem="K3D-iK-gpK" firstAttribute="top" secondItem="1qr-uo-RMu" secondAttribute="bottom" constant="32" id="p8y-4Q-PXj"/>
                             <constraint firstItem="xBc-5O-QU6" firstAttribute="leading" secondItem="NxW-YV-uVK" secondAttribute="leading" priority="750" id="plr-4r-4Qu"/>
+                            <constraint firstItem="xBc-5O-QU6" firstAttribute="top" relation="greaterThanOrEqual" secondItem="g3X-Rb-xXO" secondAttribute="bottom" constant="32" id="rIX-DQ-UxL"/>
                             <constraint firstItem="YBX-Gr-kI6" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="twd-Q8-Fto"/>
                             <constraint firstItem="Al6-ev-ond" firstAttribute="centerY" secondItem="1pX-Al-xWp" secondAttribute="centerY" id="uuY-uw-dPv"/>
                             <constraint firstItem="shp-bR-v4y" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="wOX-Fv-fg4"/>

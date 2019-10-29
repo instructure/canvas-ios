@@ -143,7 +143,7 @@
 "Close" = "Fechar";
 
 /* No comment provided by engineer. */
-"Close App" = "Fechar app";
+"Close App" = "Fechar aplicativo";
 
 /* No comment provided by engineer. */
 "Closed" = "Fechado";
@@ -215,7 +215,7 @@
 "Delete Comment" = "Excluir comentário";
 
 /* No comment provided by engineer. */
-"Describe the feature" = "Descreva o recurso";
+"Describe the feature" = "Descreva a funcionalidade";
 
 /* No comment provided by engineer. */
 "Describe the problem" = "Descreva o problema";
@@ -230,7 +230,7 @@
 "Discussion" = "Discussão";
 
 /* No comment provided by engineer. */
-"Discussion Comment" = "Comentário da discussão";
+"Discussion Comment" = "Comentário do fórum";
 
 /* No comment provided by engineer. */
 "Discussion Post" = "Postagem da discussão";
@@ -371,7 +371,7 @@
 "Invitation" = "Convite";
 
 /* No comment provided by engineer. */
-"It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Parece que você não está matriculado em quaisquer cursos como %@. Um dos nossos outros apps pode ser uma opção melhor. Toque em um para visitar a App Store.";
+"It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Parece que você não está matriculado em quaisquer cursos como %@. Um dos nossos outros aplicativos pode ser uma escolha melhor. Toque em um para visitar o App Store.";
 
 /* No comment provided by engineer. */
 "Italic" = "Itálico";
@@ -389,7 +389,7 @@
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
-"Launch External Tool" = "Lançar Ferramenta Externa";
+"Launch External Tool" = "Executar ferramenta externa";
 
 /* No comment provided by engineer. */
 "Legal" = "Legal";
@@ -428,16 +428,16 @@
 "list_or_two" = "%1$@ ou %2$@";
 
 /* No comment provided by engineer. */
-"Log In" = "Entrar";
+"Log In" = "Login";
 
 /* No comment provided by engineer. */
-"Log In Again" = "Entrar novamente";
+"Log In Again" = "Fazer login novamente";
 
 /* No comment provided by engineer. */
 "Log Out" = "Sair";
 
 /* No comment provided by engineer. */
-"Manage Children" = "Gerenciar crianças";
+"Manage Children" = "Gerenciar associados";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "Login manual OAuth";
@@ -449,7 +449,7 @@
 "Membership Update" = "Atualização de associação";
 
 /* No comment provided by engineer. */
-"Missing" = "Faltando";
+"Missing" = "Faltante";
 
 /* No comment provided by engineer. */
 "N/A" = "N/A";
@@ -461,7 +461,7 @@
 "No Content" = "Sem conteúdo";
 
 /* No comment provided by engineer. */
-"No Due Date" = "Sem Prazo";
+"No Due Date" = "Sem prazo de entrega";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Nenhuma imagem encontrada no seletor de imagens";
@@ -539,7 +539,7 @@
 "Push Notifications" = "Notificações Push";
 
 /* No comment provided by engineer. */
-"Quiz" = "Questionário";
+"Quiz" = "Teste";
 
 /* No comment provided by engineer. */
 "red" = "vermelho";
@@ -704,7 +704,7 @@
 "Thanks, your request was received!" = "Obrigado, sua solicitação foi recebida!";
 
 /* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "O app precisa ser reiniciado para usar as novas configurações de idioma. Inicie o app novamente.";
+"The app needs to restart to use the new language settings. Please relaunch the app." = "O aplicativo precisa ser reiniciado para usar as novas configurações de idioma. Reinicie o aplicativo.";
 
 /* No comment provided by engineer. */
 "There are no pages to display." = "Não há páginas para mostrar.";
@@ -800,7 +800,7 @@
 "You must enable Microphone permissions in Settings." = "Você deve habilitar permissões de Microfone nas Configurações.";
 
 /* No comment provided by engineer. */
-"You will need to log into at least one Canvas account from the Student app first." = "Você precisará fazer login em pelo menos uma conta do Canvas a partir do app Student primeiro.";
+"You will need to log into at least one Canvas account from the Student app first." = "Você precisará fazer login em pelo menos uma conta do Canvas a partir do aplicativo Student primeiro.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Você parará de agir como %@ e voltará à sua conta.";

@@ -103,13 +103,21 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
         )
     },
 
-    "/courses/:courseID/assignments/:assignmentID/submissions/:userID": { _, params in
+    "/courses/:courseID/assignments/:assignmentID/submissions/:userID": { url, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = params["userID"] else { return nil }
-        return SubmissionDetailsViewController.create(
-            context: ContextModel(.course, id: ID.expandTildeID(courseID)),
-            assignmentID: ID.expandTildeID(assignmentID),
-            userID: ID.expandTildeID(userID)
-        )
+        if url.originIsNotification {
+            return AssignmentDetailsViewController.create(
+                courseID: ID.expandTildeID(courseID),
+                assignmentID: ID.expandTildeID(assignmentID),
+                fragment: url.fragment
+            )
+        } else {
+            return SubmissionDetailsViewController.create(
+                context: ContextModel(.course, id: ID.expandTildeID(courseID)),
+                assignmentID: ID.expandTildeID(assignmentID),
+                userID: ID.expandTildeID(userID)
+            )
+        }
     },
 
     // No native support, fall back to web

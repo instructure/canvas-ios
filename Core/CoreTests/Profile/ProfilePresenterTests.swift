@@ -211,5 +211,9 @@ class ProfilePresenterTests: CoreTestCase {
         func showError(_ message: String) {}
 
         var navigationController: UINavigationController?
+
+        func dismiss(animated flag: Bool, completion: (() -> Void)?) {
+            completion?()
+        }
     }
 }
