@@ -165,6 +165,7 @@ class AttendanceViewController: UIViewController, ColoredNavViewProtocol {
 
         tableView.setEditing(false, animated: false)
 
+        session.start()
         colors.refresh()
         course.refresh()
         sections.refresh()
