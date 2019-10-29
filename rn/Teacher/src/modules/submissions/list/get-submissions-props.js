@@ -123,11 +123,11 @@ export function dueDate (assignment: Assignment, user: ?User | SessionUser, grou
 }
 
 export function pendingProp (assignmentContent?: AssignmentContentState, courseContent?: CourseContentState): boolean {
-  if (!assignmentContent || !assignmentContent.submissions || !courseContent || !courseContent.enrollments) {
+  if (!assignmentContent || !assignmentContent.submissions || !courseContent || !courseContent.enrollments ) {
     return true // should be getting these things, so we'll say pending til they show up
   }
 
-  return assignmentContent.submissions.pending > 0 || courseContent.enrollments.pending > 0
+  return assignmentContent.submissions.pending > 0 || courseContent.enrollments.pending > 0 || courseContent.groups.pending > 0
 }
 
 // If a submission does not have a grade or an actual submission it will not have a group attached to the submission.
