@@ -52,8 +52,11 @@ class AttendanceViewControllerTests: TeacherTestCase {
         api.mock(URLRequest(url: URL(string: "/statuses/2", relativeTo: controller.session.baseURL)!), data: try? controller.session.encoder.encode(Status.make(id: "2")))
     }
 
+    func cellAt(_ index: IndexPath) -> StatusCell {
+        return controller.tableView.cellForRow(at: index) as! StatusCell
+    }
+
     func testStatusDisplay() {
-        controller.view.frame = CGRect(x: 0, y: 0, width: 375, height: 812)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
         XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
@@ -64,32 +67,32 @@ class AttendanceViewControllerTests: TeacherTestCase {
         // Assert state from mock data
         let first = IndexPath(row: 0, section: 0)
         let second = IndexPath(row: 1, section: 0)
-        XCTAssertEqual(controller.statuses[first.row].status.attendance, .present)
+        XCTAssertEqual(cellAt(first).accessibilityLabel, "Bob — Present")
         XCTAssertEqual(controller.markAllButton.title(for: .normal), "Mark Remaining as Present")
 
         // Mark all as present
         controller.markAllButton.sendActions(for: .primaryActionTriggered)
-        XCTAssertEqual(controller.statuses[first.row].status.attendance, .present)
-        XCTAssertEqual(controller.statuses[first.row].status.attendance, .present)
+        XCTAssertEqual(cellAt(first).accessibilityLabel, "Bob — Present")
+        XCTAssertEqual(cellAt(second).accessibilityLabel, "Sally — Present")
         XCTAssertGreaterThan(controller.markAllButtonBottom.constant, 0)
 
         // Use swipe action to unmark row 1
         let swipes = controller.tableView(controller.tableView, trailingSwipeActionsConfigurationForRowAt: first)?.actions
         XCTAssertEqual(swipes?.count, 3)
         swipes?.last?.handler(swipes!.last!, UIView()) { success in XCTAssertTrue(success) }
-        XCTAssertNil(controller.statuses[first.row].status.attendance)
+        XCTAssertEqual(cellAt(first).accessibilityLabel, "Bob")
         XCTAssertEqual(controller.markAllButton.title(for: .normal), "Mark Remaining as Present")
 
         // Use taps to mark row 2
         controller.tableView(controller.tableView, didSelectRowAt: second)
-        XCTAssertEqual(controller.statuses[second.row].status.attendance, .absent)
+        XCTAssertEqual(cellAt(second).accessibilityLabel, "Sally — Absent")
         controller.tableView(controller.tableView, didSelectRowAt: second)
-        XCTAssertEqual(controller.statuses[second.row].status.attendance, .late)
+        XCTAssertEqual(cellAt(second).accessibilityLabel, "Sally — Late")
         controller.tableView(controller.tableView, didSelectRowAt: second)
-        XCTAssertNil(controller.statuses[second.row].status.attendance)
+        XCTAssertEqual(cellAt(second).accessibilityLabel, "Sally")
         XCTAssertEqual(controller.markAllButton.title(for: .normal), "Mark All as Present")
         controller.tableView(controller.tableView, didSelectRowAt: second)
-        XCTAssertEqual(controller.statuses[second.row].status.attendance, .present)
+        XCTAssertEqual(cellAt(second).accessibilityLabel, "Sally — Present")
     }
 
     func testSessionStartError() {
