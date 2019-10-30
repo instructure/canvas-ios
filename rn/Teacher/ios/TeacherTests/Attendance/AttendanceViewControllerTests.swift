@@ -24,6 +24,7 @@ import TestsFoundation
 class AttendanceViewControllerTests: TeacherTestCase {
     let context = ContextModel(.course, id: "1")
     var controller: AttendanceViewController!
+    var navigation: UINavigationController!
 
     override func setUp() {
         super.setUp()
@@ -34,8 +35,10 @@ class AttendanceViewControllerTests: TeacherTestCase {
         controller = AttendanceViewController(context: context, toolID: "1")
         controller.session.state = .active(MockURLSession())
 
+        navigation = UINavigationController(rootViewController: controller)
+
         api.mock(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
-            context.canvasContextID: "#FFFF00", // yellow
+            context.canvasContextID: "#008EE2", // electric
         ]))
         api.mock(GetCourseRequest(courseID: context.id), value: .make())
         api.mock(GetCourseSectionsRequest(courseID: context.id, perPage: 100), value: [
@@ -59,14 +62,15 @@ class AttendanceViewControllerTests: TeacherTestCase {
     func testStatusDisplay() {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
+        XCTAssertEqual(controller.navigationController?.navigationBar.barTintColor, UIColor(hexString: "#008EE2"))
         XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
-        XCTAssertEqual(controller.statuses.count, 2)
         XCTAssertEqual(controller.preferredStatusBarStyle, .lightContent)
         XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, false)
 
         // Assert state from mock data
         let first = IndexPath(row: 0, section: 0)
         let second = IndexPath(row: 1, section: 0)
+        XCTAssertEqual(controller.tableView(controller.tableView, numberOfRowsInSection: 0), 2)
         XCTAssertEqual(cellAt(first).accessibilityLabel, "Bob — Present")
         XCTAssertEqual(controller.markAllButton.title(for: .normal), "Mark Remaining as Present")
 
