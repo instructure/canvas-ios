@@ -20,6 +20,10 @@
 
 import Foundation
 
+struct IPCError: Error {
+    let message: String
+}
+
 class IPCServer {
     let machPortName: String
     let messagePort: CFMessagePort
@@ -138,7 +142,7 @@ class IPCClient {
         fatalError("client couldn't connect to server port \(serverPortName)")
     }
 
-    func requestRemote<R: Codable>(_ request: R) -> Data? {
+    func requestRemote<R: Codable>(_ request: R) throws -> Data? {
         if messagePort == nil || !CFMessagePortIsValid(messagePort) {
             openMessagePort()
         }
@@ -147,7 +151,7 @@ class IPCClient {
         let requestData = (try? JSONEncoder().encode(request))!
         let status = CFMessagePortSendRequest(messagePort, 0, requestData as CFData, 1000, 1000, CFRunLoopMode.defaultMode.rawValue, &responseData)
         guard status == kCFMessagePortSuccess else {
-            fatalError("IPCClient.requestRemote: error sending IPC request")
+            throw IPCError(message: "IPCClient.requestRemote: error sending IPC request")
         }
         return responseData?.takeRetainedValue() as Data?
     }

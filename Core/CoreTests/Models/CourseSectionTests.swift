@@ -17,22 +17,13 @@
 //
 
 import XCTest
-@testable import Teacher
+@testable import Core
+import TestsFoundation
 
-class StatusCellTests: TeacherTestCase {
-    func testStatus() {
-        let cell = StatusCell(style: .default, reuseIdentifier: nil)
-        cell.status = nil
-        XCTAssertNil(cell.nameLabel.text)
-
-        cell.status = .make(attendance: nil)
-        XCTAssertNil(cell.accessoryView)
-        XCTAssertNotNil(cell.nameLabel.text)
-
-        cell.status = .make(attendance: .present)
-        XCTAssertEqual((cell.accessoryView as? UIImageView)?.image, Attendance.present.icon)
-
-        cell.status = .make(student: nil, attendance: .present)
-        XCTAssertEqual(cell.accessibilityLabel, " — Present")
+class CourseSectionTests: CoreTestCase {
+    func testTotalStudents() {
+        let section = CourseSection.make()
+        section.totalStudents = 123
+        XCTAssertEqual(section.totalStudents, 123)
     }
 }

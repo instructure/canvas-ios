@@ -19,13 +19,14 @@
 
 set -euo pipefail
 
-function banner() {
+function banner() (
+    set +x
     local greenbold=$(export TERM=xterm-color; tput bold; tput setaf 2)
     printf "%s" $greenbold; echo " $@ " | tr -c $'\n' '='
     printf "%s" $greenbold; echo " $@ "
     printf "%s" $greenbold; echo " $@ " | tr -c $'\n' '='
     TERM=xterm-color tput sgr0
-}
+)
 
 destination_flag=(-destination 'platform=iOS Simulator,name=iPhone 8')
 
@@ -36,6 +37,9 @@ NSUnbufferedIO=YES xcodebuild -workspace Canvas.xcworkspace -scheme NightlyTests
 BUILD_DIR=$(xcodebuild -workspace Canvas.xcworkspace -scheme NightlyTests -showBuildSettings build-for-testing -json |
                 jq -r '.[] | select(.target == "CoreTests").buildSettings.BUILD_DIR')
 base_xctestrun=($BUILD_DIR/NightlyTests_NightlyTests_*.xctestrun)
+xctestrun=$base_xctestrun.script_run
+cp $base_xctestrun $xctestrun
+config_name=$(/usr/libexec/PlistBuddy $base_xctestrun -c "print :TestConfigurations:0:Name")
 
 # usage: setEnv testrun.xctestrun VAR value
 function setEnv {
@@ -81,9 +85,9 @@ function getTestResults {
 
 # usage: doTest testrun.xctestrun
 function doTest {
-    local testrun=$1
-    shift
-    banner "Running test run $(basename $testrun) (retry $try)"
+    /usr/libexec/PlistBuddy $xctestrun -c "set :TestConfigurations:0:Name \"$config_name (retry $try)\""
+
+    banner "Running $(basename $xctestrun) (retry $try)"
     local result_path=$results_directory/$try.xcresult
     local ret=0
 
@@ -91,8 +95,7 @@ function doTest {
 
     local flags=($destination_flag)
     flags+=(-resultBundlePath $result_path)
-    flags+=(-xctestrun $testrun)
-    # flags+=(-only-testing StudentUITests)
+    flags+=(-xctestrun $xctestrun)
     if (( $try < 1 )); then
         flags+=(-parallel-testing-enabled YES -parallel-testing-worker-count 3)
         formatter=(env NSUnbufferedIO=YES xcbeautify)
@@ -115,11 +118,8 @@ function retry {
     (( try += 1 ))
     banner "Retrying"
 
-    local retry_run=$base_xctestrun.retry
-
-    cp $base_xctestrun $retry_run
-    setEnv $retry_run CANVAS_TEST_IS_RETRY YES
-    doTest $retry_run
+    setEnv $xctestrun CANVAS_TEST_IS_RETRY YES
+    doTest
 }
 
 xcrun simctl boot 'iPhone 8' || true
