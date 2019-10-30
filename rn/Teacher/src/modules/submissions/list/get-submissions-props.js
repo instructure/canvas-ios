@@ -123,7 +123,7 @@ export function dueDate (assignment: Assignment, user: ?User | SessionUser, grou
 }
 
 export function pendingProp (assignmentContent?: AssignmentContentState, courseContent?: CourseContentState): boolean {
-  if (!assignmentContent || !assignmentContent.submissions || !courseContent || !courseContent.enrollments ) {
+  if (!assignmentContent || !assignmentContent.submissions || !courseContent || !courseContent.enrollments) {
     return true // should be getting these things, so we'll say pending til they show up
   }
 
