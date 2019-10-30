@@ -32,6 +32,9 @@ public struct AssignmentListRequestable: APIGraphQLRequestable {
     }
 
     public var query: String? {
+        //  `filter: {gradingPeriodId: null}` - will return all assignments regardless of grading period
+        //  `filter: {gradingPeriodId: "<id>"}` - will return all assignments in grading period
+        //  `filter: {}` - will return assignments in the current / active grading period, no period id needed
         var gradingPeriodFilter = "gradingPeriodId: null"
         if let id = gradingPeriodID {
             gradingPeriodFilter = "gradingPeriodId: \"\(id)\""
