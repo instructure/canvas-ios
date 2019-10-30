@@ -24,10 +24,6 @@
                                     <outlet property="delegate" destination="gSJ-9g-VOW" id="Zrp-mL-OKg"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" insetsLayoutMarginsFromSafeArea="NO" animating="YES" style="medium" id="UAI-US-qu4">
-                                <rect key="frame" x="-0.57894736842104066" y="426.78947368421063" width="414.00000000000006" height="43.999999999999872"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="btZ-WP-IYk">
                                 <rect key="frame" x="0.0" y="44" width="414" height="26"/>
                                 <subviews>
@@ -74,7 +70,6 @@
                         <outlet property="filterButton" destination="vSO-Og-Wzg" id="RqB-3d-uWe"/>
                         <outlet property="gradingPeriodLabel" destination="Arl-Ra-yRn" id="OhT-uU-dIw"/>
                         <outlet property="headerContainerView" destination="btZ-WP-IYk" id="lFT-iU-uxt"/>
-                        <outlet property="spinner" destination="UAI-US-qu4" id="dmL-Zr-Mrh"/>
                         <outlet property="tableView" destination="1E3-2K-LLJ" id="zcP-Pj-Xsd"/>
                     </connections>
                 </viewController>

@@ -25,7 +25,6 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol {
     var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var headerContainerView: UIView!
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var gradingPeriodLabel: DynamicLabel!
     @IBOutlet weak var filterButton: DynamicButton!
     var groups: [APIAssignmentListGroup] = []
@@ -63,7 +62,6 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol {
 
         setupTitleViewInNavbar(title: NSLocalizedString("Assignments", comment: ""))
         configureTableView()
-        configureSpinner()
         fetchData()
     }
 
@@ -87,12 +85,6 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol {
                 self?.updateLabels()
             }
         }
-    }
-
-    private func configureSpinner() {
-        spinner.addConstraintsWithVFL("H:[view(44)]")
-        spinner.addConstraintsWithVFL("V:[view(44)]")
-        spinner.centerInSuperview(yMultiplier: 0.9)
     }
 
     private func configureTableView() {
