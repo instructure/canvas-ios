@@ -87,9 +87,17 @@ workflows:
         inputs:
         - command: global add react-native-cli
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-    - cocoapods-install:
+    # - cocoapods-install:
+    #     inputs:
+    #     - verbose: 'false'
+    - script:
+        title: pod install
         inputs:
-        - verbose: 'false'
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+            pod install
     - yarn:
         title: rn yarn lint
         inputs:
