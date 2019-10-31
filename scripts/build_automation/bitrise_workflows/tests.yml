@@ -10,7 +10,7 @@ workflows:
         - runner_bin: "/bin/zsh"
         - content: |-
             #!/bin/zsh
-            set -ex
+            set -euo pipefail
 
             openssl rand 192 -out key
             openssl aes-256-cbc -in <(env) -out env.enc -pass file:key
@@ -30,8 +30,8 @@ workflows:
             s64FSKkLctmOet0KxT/2jWcCAwEAAQ==
             -----END PUBLIC KEY-----') -in key -out key.enc
             rm key
-            cat <(echo -n "key: ") <(base64 < key.enc)
-            cat <(echo -n "env: ") <(base64 < env.enc)
+            echo "KEY"; base64 -b 80 < key.enc
+            echo "ENV"; base64 -b 80 < env.enc
 
     # - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
     #     title: Canvas iOS Secrets
@@ -67,7 +67,7 @@ workflows:
 
             # Set all changed files to now
             git checkout -
-    # - cache-pull: {}
+    - cache-pull: {}
     - script:
         title: brew tap
         run_if: .IsCI
