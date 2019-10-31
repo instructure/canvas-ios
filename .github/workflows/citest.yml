@@ -16,4 +16,4 @@ jobs:
       - name: Brew Install
         run: brew install bitrise
       - name: Bitrise
-        run: bitrise --ci run danger --config scripts/build_automation/tests.yml
+        run: bitrise --ci run danger --config scripts/build_automation/bitrise_workflows/tests.yml
