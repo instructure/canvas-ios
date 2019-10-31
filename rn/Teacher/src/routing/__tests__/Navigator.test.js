@@ -142,7 +142,7 @@ describe('Navigator', () => {
         modal: true,
         modalPresentationStyle: 'fullscreen',
         canBecomeMaster: false,
-        disableSwipeDownToDismissModal: true,
+        disableSwipeDownToDismissModal: false,
       },
     )
   })
