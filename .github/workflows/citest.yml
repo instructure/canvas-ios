@@ -1,0 +1,19 @@
+name: CITest
+on:
+  push:
+    branches:
+      - '*'
+      - '!master'
+
+jobs:
+  citest:
+    name: CITest
+    runs-on: macOS-10.14
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - name: Brew Install
+        run: brew install bitrise
+      - name: Bitrise
+        run: bitrise run danger --ci --config scripts/build_automation/tests.yml
