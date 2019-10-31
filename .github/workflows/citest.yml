@@ -31,3 +31,6 @@ jobs:
       - name: Bitrise
         run: |
           bitrise --ci run danger --config scripts/build_automation/bitrise_workflows/tests.yml
+        env:
+          BITRISE_STACK_ID: osx-xcode-11.1.x
+          BITRISEIO_STACK_ID: osx-xcode-11.1.x
