@@ -47,13 +47,14 @@ workflows:
             #!/bin/zsh
             set -euxo pipefail
 
+            brew tap mxcl/made
             brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
     - brew-install:
         title: brew install
         run_if: .IsCI
         inputs:
         - upgrade: 'yes'
-        - packages: awscli swiftlint jq xcbeautify
+        - packages: awscli swiftlint jq xcbeautify mxcl/made/swift-sh
     - script:
         title: Swift Lint
         inputs:
@@ -121,8 +122,20 @@ workflows:
             # Move & handle CITests coverage report
             mv ${TMPDIR}XCUITestOutput*/*.xcresult scripts/coverage/citests.xcresult
             yarn coverage
+            zip --quiet -r "$BITRISE_DEPLOY_DIR/coverage.zip" scripts/coverage/citests
+    - script:
+        title: Report tests
+        run_if: .IsCI
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -euo pipefail
 
-            zip -r "$BITRISE_DEPLOY_DIR/coverage.zip" scripts/coverage/citests
+            ./scripts/build_automation/summarize-test-results.swift scripts/coverage/citests.xcresult |
+                jq -ac | gzip |
+                curl -q -X POST -H "Content-Type: text/plain" -H "Content-Encoding: gzip" --data-binary @- "$SUMO_ENDPOINT_URL"
+        is_always_run: true
     - yarn:
         title: yarn danger ci
         run_if: .IsCI
@@ -172,13 +185,14 @@ workflows:
             #!/bin/zsh
             set -euxo pipefail
 
+            brew tap mxcl/made
             brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
     - brew-install:
         title: brew install
         run_if: .IsCI
         inputs:
         - upgrade: 'yes'
-        - packages: awscli swiftlint jq xcbeautify
+        - packages: awscli swiftlint jq xcbeautify mxcl/made/swift-sh
     - carthage:
         inputs:
         - carthage_options: "--platform ios"
@@ -230,31 +244,22 @@ workflows:
             # fail if any commands fails
             set -ex
 
+            rm -rf scripts/coverage/citests.xcresult
             cp -r nightly-xcresults/merged.xcresult scripts/coverage/citests.xcresult
             yarn coverage
-            zip -r "$BITRISE_DEPLOY_DIR/coverage.zip" scripts/coverage/citests
+            zip --quiet -r "$BITRISE_DEPLOY_DIR/coverage.zip" scripts/coverage/citests
     - script:
-        title: Report flaky tests
+        title: Report tests
+        run_if: .IsCI
         inputs:
         - runner_bin: "/bin/zsh"
         - content: |-
             #!/bin/zsh
-            set -euxo pipefail
+            set -euo pipefail
 
-            xcrun xcresulttool get --format json --path nightly-xcresults/merged.xcresult | \
-            jq '[.issues.testFailureSummaries._values[] | {
-                TestBundle: .producingTarget._value,
-                Message: .message._value,
-                Location: .documentLocationInCreatingWorkspace.url._value,
-                Build: env.BITRISE_BUILD_URL,
-                Branch: env.BITRISE_GIT_BRANCH,
-                Commit: env.BITRISE_GIT_COMMIT,
-            } + (.testCaseName._value | split(".") | {
-                TestClass: .[0],
-                TestName: .[1],
-            })]' | tee flaky.json
-
-            curl -LF 'data=<flaky.json' -X POST $POST_TO_GOOGLE_SHEETS_URL
+            ./scripts/build_automation/summarize-test-results.swift nightly-xcresults/merged.xcresult |
+                jq -ac | gzip |
+                curl -q -X POST -H "Content-Type: text/plain" -H "Content-Encoding: gzip" --data-binary @- "$SUMO_ENDPOINT_URL"
         is_always_run: true
     - yarn:
         title: yarn danger ci
@@ -271,7 +276,7 @@ workflows:
             $BITRISE_SOURCE_DIR/rn/Teacher/node_modules/
             ~/Library/Developer/Xcode/DerivedData
     - deploy-to-bitrise-io: {}
-    - slack@3.1.3:
+    - slack:
         inputs:
         - pretext_on_error: "*Nightly Build Failed!*"
         - webhook_url: "$SLACK_URL"
@@ -280,7 +285,6 @@ workflows:
         - title: ''
         - message: ''
         - pretext: "*Nightly Build Succeeded!*"
-        is_always_run: false
 
 # Temporary, will be removed once bitrise is reconfigured:
   danger-experimental:

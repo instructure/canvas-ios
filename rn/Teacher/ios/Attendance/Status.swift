@@ -17,8 +17,9 @@
 //
 
 import Foundation
+import Core
 
-public enum Attendance: String {
+public enum Attendance: String, Codable {
     case present, late, absent
 
     var label: String {
@@ -46,21 +47,32 @@ public enum Attendance: String {
     }
 }
 
-public struct Stats {
+public struct Stats: Codable {
     public var presences: Int
     public var tardies: Int
     public var absences: Int
-    public var attendanceGrade: String
+    public var attendanceGrade: String?
+
+    enum CodingKeys: String, CodingKey {
+        case presences, tardies, absences
+        case attendanceGrade = "attendance_grade"
+    }
 }
 
-public struct Student {
-    public var id: String
+public struct Student: Codable {
+    public var id: ID
     public var name: String
     public var sortableName: String
     public var avatarURL: URL?
+
+    enum CodingKeys: String, CodingKey {
+        case id, name
+        case sortableName = "sortable_name"
+        case avatarURL = "avatar_url"
+    }
 }
 
-public struct Status {
+public struct Status: Codable {
     public static let dateFormatter: DateFormatter = {
         let d = DateFormatter()
         d.dateFormat = "yyyy-MM-dd"
@@ -69,13 +81,13 @@ public struct Status {
     }()
 
     // such IDs
-    public var id: String? // null if no attendance is set
-    public var studentID: String
-    public var teacherID: String
-    public var sectionID: String
-    public var courseID: String
+    public var id: ID? // null if no attendance is set
+    public var studentID: ID
+    public var teacherID: ID
+    public var sectionID: ID
+    public var courseID: ID
 
-    public var student: Student
+    public var student: Student?
 
     public var date: Date // as yyyy-mm-dd in the current timezone
     public var attendance: Attendance?
@@ -86,85 +98,13 @@ public struct Status {
     public var seated: Bool
     public var row: Int?
     public var col: Int?
-}
 
-import Marshal
-
-extension Stats: Unmarshaling, Marshaling {
-    public init(object: MarshaledObject) throws {
-        presences       = try object <| "presences"
-        tardies         = try object <| "tardies"
-        absences        = try object <| "absences"
-        attendanceGrade = (try object <| "attendance_grade") ?? ""
-    }
-
-    public func marshaled() -> [String: Any] {
-        return [
-            "presences": presences,
-            "tardies": tardies,
-            "absences": absences,
-            "attendance_grade": attendanceGrade,
-        ]
-    }
-}
-
-extension Student: Unmarshaling, Marshaling {
-    public init(object: MarshaledObject) throws {
-        id              = try object.stringID("id")
-        name            = try object <| "name"
-        sortableName    = try object <| "sortable_name"
-
-        let url: String? = try object <| "avatar_url"
-        avatarURL = url.flatMap(URL.init(string:))
-    }
-
-    public func marshaled() -> [String: Any] {
-        return [
-            "id": id,
-            "name": name,
-            "sortable_name": sortableName,
-            "avatar_url": avatarURL?.absoluteString ?? NSNull(),
-        ]
-    }
-}
-
-extension Status: Unmarshaling, Marshaling {
-    public init(object: MarshaledObject) throws {
-
-        id          = try object.stringID("id")
-        studentID   = try object.stringID("student_id")
-        teacherID   = try object.stringID("teacher_id")
-        sectionID   = try object.stringID("section_id")
-        courseID    = try object.stringID("course_id")
-        attendance  = try object <| "attendance"
-        stats       = try object <| "stats"
-        seated      = try object <| "seated"
-        row         = try object <| "row"
-        col         = try object <| "col"
-        student     = try object <| "student"
-
-        print("STUDENT (\(studentID)): \(student.name)")
-        let stringDate: String = try object <| "class_date"
-        guard let d = Status.dateFormatter.date(from: stringDate) else {
-            throw MarshalError.typeMismatch(expected: Date.self, actual: type(of: stringDate))
-        }
-        date = d
-    }
-
-    public func marshaled() -> [String: Any] {
-        return [
-            "id": id ?? NSNull(),
-            "student_id": studentID,
-            "teacher_id": teacherID,
-            "section_id": sectionID,
-            "course_id": courseID,
-            "attendance": attendance?.rawValue ?? NSNull(),
-            "stats": stats.marshaled(),
-            "seated": seated,
-            "row": row ?? NSNull(),
-            "col": col ?? NSNull(),
-            "student": student.marshaled(),
-            "class_date": Status.dateFormatter.string(from: date),
-        ]
+    enum CodingKeys: String, CodingKey {
+        case id, attendance, stats, seated, row, col, student
+        case studentID = "student_id"
+        case teacherID = "teacher_id"
+        case sectionID = "section_id"
+        case courseID = "course_id"
+        case date = "class_date"
     }
 }

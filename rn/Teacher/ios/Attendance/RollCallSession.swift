@@ -17,124 +17,145 @@
 //
 
 import UIKit
-import CanvasKit
-import Marshal
+import WebKit
+import Core
 
-@objc
-public protocol RollCallSessionDelegate {
-    @objc optional func session(_ session: RollCallSession, beganLaunchingToolInView view: UIWebView)
-    @objc optional func session(_ session: RollCallSession, didFailWithError error: Error)
-    @objc optional func sessionDidBecomeActive(_ session: RollCallSession)
+func attendanceError(message: String, code: Int = 0) -> Error {
+    return NSError(domain: "com.instructure.rollcall", code: code, userInfo: [
+        NSLocalizedDescriptionKey: message,
+    ])
 }
 
-public class RollCallSession: NSObject {
+protocol RollCallSessionDelegate: class {
+    func session(_ session: RollCallSession, didFailWithError error: Error)
+    func sessionDidBecomeActive(_ session: RollCallSession)
+}
+
+class RollCallSession: NSObject, WKNavigationDelegate {
     enum State {
         case fetchingLaunchURL
-        case launchingTool(UIWebView)
+        case launchingTool(WKWebView)
         case active(URLSession)
         case error(Error)
     }
 
-    enum RequestState {
-        case pendingSession
-        case started(URLSessionTask)
-    }
-
     var state: State {
         didSet {
-            if let delegate = self.delegate {
-                let state = self.state
-                DispatchQueue.main.async {
-                    switch state {
-                    case .error(let error): delegate.session?(self, didFailWithError: error)
-                    case .launchingTool(let webView): delegate.session?(self, beganLaunchingToolInView: webView)
-                    case .active: delegate.sessionDidBecomeActive?(self)
-                    default: break
-                    }
+            DispatchQueue.main.async {
+                switch self.state {
+                case .fetchingLaunchURL, .launchingTool: break
+                case .active: self.delegate?.sessionDidBecomeActive(self)
+                case .error(let error): self.delegate?.session(self, didFailWithError: error)
                 }
             }
         }
     }
 
-    @objc weak public var delegate: RollCallSessionDelegate?
+    let decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .formatted(Status.dateFormatter)
+        return decoder
+    }()
 
-    @objc public init(client: CKIClient, initialLaunchURL: URL) {
+    let encoder: JSONEncoder = {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .formatted(Status.dateFormatter)
+        return encoder
+    }()
+
+    var baseURL = URL(string: "https://rollcall.instructure.com")!
+    let context: Context
+    weak var delegate: RollCallSessionDelegate?
+    let env = AppEnvironment.shared
+    let toolID: String
+
+    init(context: Context, toolID: String, delegate: RollCallSessionDelegate? = nil) {
+        self.context = context
+        self.delegate = delegate
         self.state = .fetchingLaunchURL
+        self.toolID = toolID
         super.init()
-
-        client.get(initialLaunchURL.absoluteString, parameters: nil, progress: nil, success: { (_, response) in
-            if let response = response as? [String: Any], let sessionlessURL = response["url"] as? String {
-                self.launch(url: URL(string: sessionlessURL)!)
-            }
-        }, failure: { (_, error) in
-            self.state = .error(error)
-        })
     }
 
-    @objc func launch(url: URL) {
+    func start() {
+        LTITools(env: env, context: context, id: toolID, launchType: .course_navigation).getSessionlessLaunchURL { url in
+            if let url = url {
+                self.launch(url: url)
+            } else {
+                self.state = .error(attendanceError(message: NSLocalizedString("Failed to launch rollcall LTI tool.", comment: ""), code: 1))
+            }
+        }
+    }
+
+    func launch(url: URL) {
         guard case .fetchingLaunchURL = state else { return }
 
-        let webView = UIWebView(frame: CGRect(x: 0, y: 0, width: 320, height: 480))
-        webView.delegate = self
-        webView.alpha = 0.0
+        let config = WKWebViewConfiguration()
+        config.websiteDataStore = .nonPersistent()
+        let webView = WKWebView(frame: .zero, configuration: config)
+        webView.navigationDelegate = self
         state = .launchingTool(webView)
-        webView.loadRequest(URLRequest(url: url))
+        webView.load(URLRequest(url: url))
     }
 
-    public func fetchStatuses(section: String, date: Date, result: @escaping ([Status], Error?) -> Void) {
-        guard case .active(let session) = state else { return }
-        let date = Status.dateFormatter.string(from: date)
+    func webView(_ webView: WKWebView, didFinish: WKNavigation!) {
+        guard
+            case .launchingTool(let webView) = state,
+            webView.url?.host == baseURL.host
+        else { return }
 
-        let url = URL(string: "https://rollcall.instructure.com/statuses?section_id=\(section)&class_date=\(date)")!
-
-        task = session.dataTask(with: url) { (data, _, error) in
-            do {
-                guard let data = data else {
-                    let error = NSError(domain: "com.instructure.rollcall", code: 1, userInfo: [
-                        NSLocalizedDescriptionKey: NSLocalizedString("Error: No data returned from the rollcall api.", comment: "rollcall status error"),
-                    ])
-                    DispatchQueue.main.async {
-                        result([], error)
+        // Force cookies to flush. Only works on device. Simulator is flaky.
+        webView.configuration.processPool = WKProcessPool()
+        webView.evaluateJavaScript("""
+        ({
+            error: (document.querySelector('pre') || {}).textContent || '',
+            csrf: (document.querySelector('meta[name=\"csrf-token\"]') || {}).content || '',
+        })
+        """) { (value, _) in
+            let dict = value as? [String: String]
+            if let csrf = dict?["csrf"], !csrf.isEmpty {
+                webView.configuration.websiteDataStore.httpCookieStore.getAllCookies { cookies in
+                    let config = URLSessionConfiguration.ephemeral
+                    config.httpAdditionalHeaders = [ "X-CSRF-Token": csrf ]
+                    for cookie in cookies {
+                        config.httpCookieStorage?.setCookie(cookie)
                     }
-                    return
+                    self.state = .active(URLSessionAPI.delegateURLSession(config, nil, nil))
                 }
-                let json = try JSONParser.JSONArrayWithData(data)
-                let statii: [Status] = try [Status].value(from: json)
-                DispatchQueue.main.async {
-                    result(statii, nil)
-                }
-            } catch let error as MarshalError {
-                let localizedDescription: String
-                switch error {
-                case .keyNotFound(key: let k):
-                    localizedDescription = NSLocalizedString("Error parsing the Roll Call response. Key not found: \(k)", comment: "")
-                case .nullValue(key: let k):
-                    localizedDescription = NSLocalizedString("Error parsing the Roll Call response. Unexpected null value: \(k)", comment: "")
-                case let .typeMismatch(expected: e, actual: a):
-                    localizedDescription = NSLocalizedString("Error parsing the Roll Call response. Expected \(e), received \(a)", comment: "")
-                case let .typeMismatchWithKey(key: k, expected: e, actual: a):
-                    localizedDescription = NSLocalizedString("Error parsing the Roll Call response. Expected \(e), received \(a) for key \(k)", comment: "")
-                }
-                DispatchQueue.main.async {
-                    result([], NSError(domain: "com.instructure.rollcall", code: 0, userInfo: [NSLocalizedDescriptionKey: localizedDescription]))
-                }
-            } catch let error {
-                DispatchQueue.main.async {
-                    result([], error)
-                }
+            } else if let message = dict?["error"], !message.isEmpty {
+                self.state = .error(attendanceError(message: message, code: 2))
+            } else {
+                self.state = .error(attendanceError(message: NSLocalizedString("Error: No data returned from the rollcall api.", comment: ""), code: 1))
             }
         }
-        task?.resume()
     }
 
-    @objc var task: URLSessionTask?
-    public func updateStatus(_ status: Status, completed: @escaping (String?, Error?) -> Void) {
-        guard case .active(let session) = state else { return }
+    func fetchStatuses(section: String, date: Date, completed: @escaping ([Status], Error?) -> Void) {
+        guard case .active(let session) = state else { return completed([], nil) }
 
-        var url = URL(string: "https://rollcall.instructure.com/statuses")!
+        let date = Status.dateFormatter.string(from: date)
+        let url = URL(string: "/statuses?section_id=\(section)&class_date=\(date)", relativeTo: baseURL)!
+        session.dataTask(with: URLRequest(url: url)) { (data, _, error) in
+            do {
+                guard let data = data else {
+                    return completed([], attendanceError(message: NSLocalizedString("Error: No data returned from the rollcall api.", comment: ""), code: 1))
+                }
+                let statuses: [Status] = try self.decoder.decode([Status].self, from: data)
+                completed(statuses, nil)
+            } catch let error {
+                completed([], error)
+            }
+        }
+        .resume()
+    }
+
+    func updateStatus(_ status: Status, completed: @escaping (ID?, Error?) -> Void) {
+        guard case .active(let session) = state else { return completed(nil, nil) }
+
+        var url = URL(string: "/statuses", relativeTo: baseURL)!
         var method = "POST"
-        if let id = status.id {
-            url = URL(string: "https://rollcall.instructure.com/statuses/\(id)")!
+        if let id = status.id?.value {
+            url.appendPathComponent(id)
             if status.attendance == nil {
                 method = "DELETE"
             } else {
@@ -146,85 +167,25 @@ public class RollCallSession: NSObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.httpMethod = method
-        do {
-            let data = try status.marshaled().jsonData()
-            request.httpBody = data
-        } catch let error {
-            DispatchQueue.main.async {
-                completed(nil, error)
-            }
-            print(error)
-            return
-        }
+        request.httpBody = try? encoder.encode(status)
 
-        task = session.dataTask(with: request) { (data, _, error) in
+        session.dataTask(with: request) { (data, _, error) in
             guard let data = data else {
                 let error = NSError(domain: "com.instructure.rollcall", code: 1, userInfo: [
                     NSLocalizedDescriptionKey: NSLocalizedString("Error: No data returned from the rollcall api.", comment: "rollcall status error"),
                 ])
-                print(error)
-                DispatchQueue.main.async {
-                    completed(nil, error)
-                }
-                return
+                return completed(nil, error)
             }
 
+            // don't capture the ID of the deleted status... leave it nil
+            guard status.attendance != nil else { return completed(nil, nil) }
             do {
-                guard status.attendance != nil else {
-                    // don't capture the ID of the deleted status... leave it nil
-                    DispatchQueue.main.async {
-                        completed(nil, nil)
-                    }
-                    return
-                }
-                let statusJSON = try JSONParser.JSONObjectWithData(data)
-                let id: String? = try statusJSON.stringID("id")
-                if let id = id {
-                    DispatchQueue.main.async {
-                        completed(id, nil)
-                    }
-                }
+                let status = try self.decoder.decode(Status.self, from: data)
+                completed(status.id, nil)
             } catch let e {
-                print("Error parsing status response: \(e)")
-                DispatchQueue.main.async {
-                    completed(nil, e)
-                }
+                completed(nil, e)
             }
         }
-
-        task?.resume()
-    }
-
-    private func attemptToActivate() {
-        guard
-            case .launchingTool(let webView) = state,
-            let host = webView.request?.url?.host,
-            host == "rollcall.instructure.com"
-        else { return }
-
-        let preTextContent = webView.stringByEvaluatingJavaScript(from: "document.querySelector('pre').textContent")
-        let metaContent = webView.stringByEvaluatingJavaScript(from: "document.querySelector('meta[name=\"csrf-token\"]').content")
-
-        if let csrfToken = metaContent, !csrfToken.isEmpty {
-            let config = URLSessionConfiguration.default
-            config.httpAdditionalHeaders = [
-                "X-CSRF-Token": csrfToken,
-            ]
-            config.httpCookieStorage = .shared
-            let session = URLSession(configuration: config)
-            state = .active(session)
-        } else if let message = preTextContent, !message.isEmpty {
-            state = .error(NSError(domain: "com.instructure.rollcall", code: 2, userInfo: [NSLocalizedDescriptionKey: message]))
-        } else {
-            state = .error(NSError(domain: "com.instructure.rollcall", code: 1, userInfo: [
-                NSLocalizedDescriptionKey: NSLocalizedString("Error: No data returned from the rollcall api.", comment: "rollcall status error"),
-            ]))
-        }
-    }
-}
-
-extension RollCallSession: UIWebViewDelegate {
-    public func webViewDidFinishLoad(_ webView: UIWebView) {
-        attemptToActivate()
+        .resume()
     }
 }

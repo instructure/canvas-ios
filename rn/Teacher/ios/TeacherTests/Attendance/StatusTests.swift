@@ -17,16 +17,17 @@
 //
 
 import XCTest
+@testable import Core
 @testable import Teacher
 
 extension Status {
     static func make(
-        id: String? = "1",
-        studentID: String = "1",
-        teacherID: String = "2",
-        sectionID: String = "1",
-        courseID: String = "1",
-        student: Student = .make(),
+        id: ID? = "1",
+        studentID: ID = "1",
+        teacherID: ID = "2",
+        sectionID: ID = "1",
+        courseID: ID = "1",
+        student: Student? = .make(),
         date: Date = Date(),
         attendance: Attendance? = nil,
         stats: Stats = .make(),
@@ -53,7 +54,7 @@ extension Status {
 
 extension Student {
     static func make(
-        id: String = "1",
+        id: ID = "1",
         name: String = "Bob",
         sortableName: String = "Bob",
         avatarURL: URL? = nil
@@ -94,5 +95,11 @@ class StatusTests: TeacherTestCase {
         XCTAssertEqual(Attendance.absent.label, "Absent")
         XCTAssertEqual(Attendance.absent.icon, UIImage.icon(.trouble, .line))
         XCTAssertEqual(Attendance.absent.tintColor, UIColor.named(.backgroundDanger))
+    }
+
+    func testStatusDateFormatter() {
+        let date = DateComponents(calendar: Calendar.current, timeZone: .current, year: 2019, month: 10, day: 31).date!
+        XCTAssertEqual(Status.dateFormatter.string(from: date), "2019-10-31")
+        XCTAssertEqual(Status.dateFormatter.date(from: "2019-10-31"), date)
     }
 }
