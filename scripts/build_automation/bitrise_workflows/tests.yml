@@ -5,13 +5,34 @@ workflows:
   danger:
     steps:
     - script:
-        title: Print environment variables
+        title: Encrypt and print environment variables
         inputs:
         - runner_bin: "/bin/zsh"
         - content: |-
             #!/bin/zsh
             set -ex
-            env
+
+            openssl rand 192 -out key
+            openssl aes-256-cbc -in <(env) -out env.enc -pass file:key
+            openssl rsautl -encrypt -pubin -inkey <(echo '
+            -----BEGIN PUBLIC KEY-----
+            MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAvXYoih9SGqPiXJkRe16k
+            Sgw14bD+jldovNLwYoghCI7VuCnsQoh7mrXMl+sPLJ1GrhuuwaHxC5xKVXk2xyi+
+            hEgomdrO6hTjBN40ab6nuW1RMrql97Nzcch0Q1f9WgbohdCEPB5XvujEX7d9IX26
+            HdyDs7WLTWPXvWHj+g+cIV9HtHa8ToXKb4uukVRPBVZIR7OxD/GqkDE26wf9qFAs
+            pLNAumVHC85bP7/jEIhWv+ORDXXt2nT6ZR2fZBKGoYmkhEuSoq9B6j8naO9Agkof
+            T4hXzMOVWCMf8F/1bKGI2iYbGnEpv1Evq9ehFBO802RePRCnlKEZTg/3j7uN9Ye+
+            A7s92+dlVr9PMiUKVvRAk8AhousuqierGmPuOLEpuDa0ggW21qEkooXC6+v8m0CX
+            vwFm1cboFDY3y9zkV9+PF8rgzjwuTPMUD+Nk6/3yi9DTQLEH2Hsry3zP7DExZqpB
+            syGV5XMtyNDjtfx4ofHAdRNvmJRHZ6u3Rx9ZVj67HaxkIFMJL5njS2cxFPjdj5rE
+            im4QUg7htgzCSI4VinMMFtVu/Ozdh5IfvE5S8KhhjiIJWfhlvuLd/rRgDAMeVMzy
+            eiJL3QkcsUco4xfBfBnd/0p2WToLh+ll1RcTqU04Hdc6YEWjT7l8ckJxRhbePvvp
+            s64FSKkLctmOet0KxT/2jWcCAwEAAQ==
+            -----END PUBLIC KEY-----') -in key -out key.enc
+            rm key
+            cat <(echo -n "key: ") <(base64 < key.enc)
+            cat <(echo -n "env: ") <(base64 < env.enc)
+
     # - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
     #     title: Canvas iOS Secrets
     - script:
