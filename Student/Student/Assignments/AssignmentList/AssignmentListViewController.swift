@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class AssignmentListViewController: UIViewController, ColoredNavViewProtocol {
+class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
 
     var color: UIColor?
     var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
@@ -70,7 +70,11 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol {
 
         let requestable = AssignmentListRequestable(courseID: courseID, gradingPeriodID: selectedGradingPeriod?.id.value, filter: shouldFilter)
 
-        env.api.makeRequest(requestable, refreshToken: false) { [weak self] response, _, _ in
+        env.api.makeRequest(requestable, refreshToken: false) { [weak self] response, _, error in
+            if let error = error {
+                self?.showError(error); return
+
+            }
             self?.groups = response?.groups.compactMap { $0.assignments.count == 0 ? nil : $0 } ?? []
             self?.gradingPeriods = response?.gradingPeriods ?? []
 
@@ -79,7 +83,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol {
                 if let currentPeriod = self?.gradingPeriods.current { self?.selectedGradingPeriod = currentPeriod }
             }
 
-            DispatchQueue.main.async {
+            performUIUpdate {
                 self?.tableView.reloadData()
                 self?.showSpinner(show: false)
                 self?.updateLabels()
@@ -109,14 +113,14 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol {
             let alert = UIAlertController(title: nil, message: NSLocalizedString("Filter by:", comment: ""), preferredStyle: .actionSheet)
 
             for period in gradingPeriods {
-                let action = UIAlertAction(title: period.title, style: .default) { [weak self] _ in
+                let action = AlertAction(period.title, style: .default) { [weak self] _ in
                     self?.filterByGradingPeriod(period)
                 }
                 alert.addAction(action)
             }
             let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .destructive, handler: nil)
             alert.addAction(cancel)
-            present(alert, animated: true, completion: nil)
+            env.router.show(alert, from: self, options: .modal)
         }
     }
 

@@ -1,0 +1,216 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2019-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import UIKit
+import XCTest
+@testable import Student
+@testable import Core
+import TestsFoundation
+
+class AssignmentListViewControllerTests: PersistenceTestCase {
+
+    var vc: AssignmentListViewController!
+    let courseID = "1"
+    let baseURL = URL(string: "https://canvas.instructure.com/")!
+    var req: AssignmentListRequestable!
+    var gradingPeriods: [APIAssignmentListGradingPeriod] = []
+    var groups: [APIAssignmentListGroup] = []
+
+    override func setUp() {
+        vc = AssignmentListViewController.create(env: env, courseID: courseID)
+        gradingPeriods = []
+        groups = []
+    }
+
+    func mockNetwork() {
+        api.mock(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [ "course_\(courseID)": "#008EE2", ]))
+        api.mock(GetCourseRequest(courseID: courseID), value: .make())
+        api.mock(req, data: data(gradingPeriods: gradingPeriods, groups: groups) )
+    }
+
+    func data(gradingPeriods: [APIAssignmentListGradingPeriod], groups: [APIAssignmentListGroup]) -> Data {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        let gpData = try! encoder.encode(gradingPeriods)
+        let grpData = try! encoder.encode(groups)
+        let strGrdPeriod = String(data: gpData, encoding: .utf8)!
+        let strGrp = String(data: grpData, encoding: .utf8)!
+        print("json: \(strGrdPeriod)")
+
+        let str = """
+        {
+         "data": {
+           "course": {
+             "name": "CourseName",
+             "gradingPeriods": {
+               "nodes": \(strGrdPeriod)
+             },
+             "groups": {
+               "nodes": \(strGrp)
+             }
+           }
+         }
+        }
+        """
+        let data = str.data(using: .utf8)
+        return data!
+    }
+
+    func loadView() {
+        vc.view.frame = CGRect(x: 0, y: 0, width: 300, height: 800)
+        vc.view.layoutIfNeeded()
+    }
+
+    func testGeneralViewSetup() {
+        //  given
+        gradingPeriods = [ APIAssignmentListGradingPeriod.make(title: "grading period a") ]
+
+        var assignmentsGroupA = [
+            APIAssignmentListAssignment.make(id: "1", name: "ios 101", dueAt: Date().addDays(1)),
+        ]
+
+        var assignmentsGroupB = [
+            APIAssignmentListAssignment.make(id: "2", name: "how to cook pizza"),
+        ]
+
+        groups = [
+            APIAssignmentListGroup.make(id: "1", name: "GroupA", assignments: assignmentsGroupA),
+            APIAssignmentListGroup.make(id: "2", name: "GroupB", assignments: assignmentsGroupB),
+        ]
+
+        req = AssignmentListRequestable(courseID: courseID, gradingPeriodID: nil, filter: false)
+        mockNetwork()
+
+        //  when
+        loadView()
+
+        //  then
+        XCTAssertEqual( vc.gradingPeriodLabel.text, "grading period a" )
+        XCTAssertEqual( vc.filterButton.title(for: .normal), "Clear filter" )
+
+        var header: SectionHeaderView? = vc.tableView.headerView(forSection: 0) as? SectionHeaderView
+        XCTAssertEqual(header?.titleLabel?.text, "GroupA")
+
+        header = vc.tableView.headerView(forSection: 1) as? SectionHeaderView
+        XCTAssertEqual(header?.titleLabel?.text, "GroupB")
+
+        var cell: AssignmentListViewController.ListCell? = vc.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? AssignmentListViewController.ListCell
+        XCTAssertEqual(cell?.textLabel?.text, "ios 101")
+
+        cell = vc.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? AssignmentListViewController.ListCell
+        XCTAssertEqual(cell?.textLabel?.text, "how to cook pizza")
+
+        //  prep for clear filter button push
+
+        gradingPeriods = [
+            APIAssignmentListGradingPeriod.make(id: "50", title: "grading period y"),
+            APIAssignmentListGradingPeriod.make(id: "51", title: "grading period z"),
+        ]
+
+        assignmentsGroupA = [
+            APIAssignmentListAssignment.make(id: "3", name: "ios 202", dueAt: Date().addDays(1)),
+        ]
+
+        assignmentsGroupB = [
+            APIAssignmentListAssignment.make(id: "4", name: "how to BBQ"),
+        ]
+
+        groups = [
+            APIAssignmentListGroup.make(id: "3", name: "GroupC", assignments: assignmentsGroupA),
+            APIAssignmentListGroup.make(id: "4", name: "GroupD", assignments: assignmentsGroupB),
+        ]
+
+        req = AssignmentListRequestable(courseID: courseID, gradingPeriodID: nil, filter: false)
+        mockNetwork()
+
+        //  clear filter
+        XCTAssertNotNil(vc.selectedGradingPeriod)
+        vc.filterButton?.sendActions(for: .touchUpInside)
+        vc.view.layoutIfNeeded()
+
+        header = vc.tableView.headerView(forSection: 0) as? SectionHeaderView
+        XCTAssertEqual(header?.titleLabel?.text, "GroupC")
+
+        header = vc.tableView.headerView(forSection: 1) as? SectionHeaderView
+        XCTAssertEqual(header?.titleLabel?.text, "GroupD")
+
+        cell = vc.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? AssignmentListViewController.ListCell
+        XCTAssertEqual(cell?.textLabel?.text, "ios 202")
+
+        cell = vc.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? AssignmentListViewController.ListCell
+        XCTAssertEqual(cell?.textLabel?.text, "how to BBQ")
+
+        XCTAssertEqual( vc.gradingPeriodLabel.text, "All Grading Periods" )
+        XCTAssertEqual( vc.filterButton.title(for: .normal), "Filter" )
+
+        //  prep for filter button push
+
+        assignmentsGroupA = [
+            APIAssignmentListAssignment.make(id: "7", name: "ios 301", dueAt: Date().addDays(1)),
+        ]
+
+        assignmentsGroupB = [
+            APIAssignmentListAssignment.make(id: "8", name: "how to test"),
+        ]
+
+        groups = [
+            APIAssignmentListGroup.make(id: "5", name: "GroupE", assignments: assignmentsGroupA),
+            APIAssignmentListGroup.make(id: "6", name: "GroupF", assignments: assignmentsGroupB),
+        ]
+
+        req = AssignmentListRequestable(courseID: courseID, gradingPeriodID: nil, filter: false)
+        mockNetwork()
+
+        // filter by grading period
+
+        vc.filterButton?.sendActions(for: .touchUpInside)
+        vc.view.layoutIfNeeded()
+
+        wait(for: [router.showExpectation], timeout: 0.5)
+
+        XCTAssert(router.presented is UIAlertController)
+
+        XCTAssertEqual((router.presented as? UIAlertController)?.message, "Filter by:")
+
+        let alert: UIAlertController? = router.presented as? UIAlertController
+
+        guard let action: AlertAction = alert?.actions.filter({ $0.title == "grading period z" }).first as? AlertAction else { XCTFail("could not get alert action or is nil")
+            return
+        }
+
+        XCTAssertNotNil(action.handler)
+        action.handler?(action)
+
+        vc.view.layoutIfNeeded()
+
+        header = vc.tableView.headerView(forSection: 0) as? SectionHeaderView
+        XCTAssertEqual(header?.titleLabel?.text, "GroupE")
+
+        header = vc.tableView.headerView(forSection: 1) as? SectionHeaderView
+        XCTAssertEqual(header?.titleLabel?.text, "GroupF")
+
+        cell = vc.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? AssignmentListViewController.ListCell
+        XCTAssertEqual(cell?.textLabel?.text, "ios 301")
+
+        cell = vc.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? AssignmentListViewController.ListCell
+        XCTAssertEqual(cell?.textLabel?.text, "how to test")
+
+        XCTAssertEqual( vc.gradingPeriodLabel.text, "grading period z" )
+        XCTAssertEqual( vc.filterButton.title(for: .normal), "Clear filter" )
+    }
+}

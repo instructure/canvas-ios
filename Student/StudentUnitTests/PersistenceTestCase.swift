@@ -32,7 +32,10 @@ class PersistenceTestCase: XCTestCase {
 
     var api = MockURLSession.self
     var queue = OperationQueue()
-    var router = TestRouter()
+    var router: TestRouter {
+        guard let r = env.router as? TestRouter else { fatalError("Invalid test router") }
+        return r
+    }
     var env = TestEnvironment()
     var logger = TestLogger()
     var uploadManager = MockUploadManager()
@@ -43,13 +46,11 @@ class PersistenceTestCase: XCTestCase {
         MockURLSession.reset()
         LoginSession.useTestKeychain()
         queue = OperationQueue()
-        router = TestRouter()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
         env = TestEnvironment()
         env.api = URLSessionAPI()
         env.database = database
         env.globalDatabase = database
-        env.router = router
         env.logger = logger
         env.currentSession = currentSession
         AppEnvironment.shared.api = env.api
