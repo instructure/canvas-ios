@@ -330,7 +330,7 @@ open class HelmManager: NSObject {
                 }
             }
 
-            if let modalTransitionStyle = options[PropKeys.modalPresentationStyle] as? String {
+            if let modalTransitionStyle = options[PropKeys.modalTransitionStyle] as? String {
                 switch modalTransitionStyle {
                 case "flip": viewController.modalTransitionStyle = .flipHorizontal
                 case "fade": viewController.modalTransitionStyle = .crossDissolve
@@ -381,7 +381,7 @@ open class HelmManager: NSObject {
             if let embedInNavigationController: Bool = options["embedInNavigationController"] as? Bool, embedInNavigationController {
                 toPresent = HelmNavigationController(rootViewController: vc)
                 vc.navigationController?.navigationBar.useModalStyle()
-                if let disableSwipeDownToDismissModal: Bool = options["disableSwipeDownToDismissModal"] as? Bool,
+                if let disableSwipeDownToDismissModal: Bool = options[PropKeys.disableDismissOnSwipe] as? Bool,
                     disableSwipeDownToDismissModal,
                     vc.modalPresentationStyle == .formSheet || vc.modalPresentationStyle == .pageSheet
                 {

@@ -313,7 +313,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               "pending": false,
               "refresh": [MockFunction],
               "refreshSubmissionSummary": [MockFunction],
-              "refreshSubmissions": [MockFunction],
               "refreshing": false,
               "resetDrawer": [MockFunction],
               "submissionEntities": Object {},
@@ -426,7 +425,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   pending={false}
                   refresh={[MockFunction]}
                   refreshSubmissionSummary={[MockFunction]}
-                  refreshSubmissions={[MockFunction]}
                   refreshing={false}
                   resetDrawer={[MockFunction]}
                   submissionEntities={Object {}}

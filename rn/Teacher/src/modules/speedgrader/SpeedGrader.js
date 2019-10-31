@@ -108,9 +108,6 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   async componentDidMount () {
     this.setSubmissions(this.props)
     SpeedGrader.drawerState.registerDrawer(this)
-    if (this.props.hasAssignment) {
-      this.props.refreshSubmissions(this.props.courseID, this.props.assignmentID, this.props.groupAssignment != null)
-    }
 
     if (this.state.flags.length === 0) {
       try {
@@ -123,10 +120,6 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
 
   componentWillReceiveProps (nextProps: SpeedGraderProps) {
     this.setSubmissions(nextProps)
-
-    if (this.props.hasAssignment === false && nextProps.hasAssignment === true) {
-      this.props.refreshSubmissions(this.props.courseID, this.props.assignmentID, this.props.groupAssignment != null)
-    }
   }
 
   // DrawerObserver
@@ -424,6 +417,7 @@ export function refreshSpeedGrader (props: SpeedGraderProps): void {
   props.getCourseEnabledFeatures(props.courseID)
   props.refreshGroupsForCourse(props.courseID)
   props.refreshEnrollments(props.courseID)
+  props.refreshSubmissions(props.courseID, props.assignmentID, true)
 }
 
 export function shouldRefresh (props: SpeedGraderProps): boolean {
