@@ -41,7 +41,7 @@ export const submissions: Reducer<SubmissionsState, any> = handleActions({
             selectedAttachmentIndex: 0,
           },
         }), {})
-      return { ...state, ...incoming }
+      return incoming
     },
   }),
 

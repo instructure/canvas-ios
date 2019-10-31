@@ -126,7 +126,7 @@ export class SubmissionList extends Component<Props, State> {
     let group
     if (this.props.isGroupGradedAssignment) {
       let userID = item.user.id
-      group = this.props.groups.find(group => group.members.edges.find(({ member }) => member.user.id === userID))
+      group = this.props.groups.find(group => group.members.nodes.find(({ user }) => user.id === userID))
     }
 
     return (
@@ -309,13 +309,26 @@ export function props (props) {
   }
 
   let assignment = props.data.assignment
-  let submissions = assignment.submissions && assignment.submissions.edges.map(({ submission }) => submission)
-  let groupedSubmissions = assignment.groupedSubmissions && assignment.groupedSubmissions.edges.map(({ submission }) => submission)
-  let groupSet = assignment.groupSet
   let course = assignment.course
   let sections = course.sections.edges.map(({ section }) => section)
-  let groups = course.groups.edges.map(({ group }) => group)
+  let submissions = assignment.submissions && assignment.submissions.edges.map(({ submission }) => submission)
+
+  let groupSet = assignment.groupSet
   let isGroupGradedAssignment = groupSet && groupSet.id && !assignment.gradeGroupStudentsIndividually
+  let groups = groupSet?.groups.nodes ?? []
+  let groupedSubmissions = assignment.groupedSubmissions?.edges
+    .map(({ submission }) => submission)
+    .sort((s1, s2) => {
+      let group1 = groups.find(group => group.members.nodes.find(({ user }) => user.id === s1.user.id))
+      let name1 = group1?.name ?? s1.user.name
+
+      let group2 = groups.find(group => group.members.nodes.find(({ user }) => user.id === s2.user.id))
+      let name2 = group2?.name ?? s1.user.name
+
+      if (name1 < name2) return -1
+      if (name1 > name2) return 1
+      return 0
+    }) ?? []
   return {
     isGroupGradedAssignment,
     courseName: course.name,

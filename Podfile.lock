@@ -203,7 +203,7 @@ DEPENDENCIES:
   - yoga (from `./rn/Teacher/node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - AFNetworking
     - boost-for-react-native
     - Cartography
@@ -287,4 +287,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: b9a73742604fe172ebfc8f1266256388772fba05
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.4

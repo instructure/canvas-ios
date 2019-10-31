@@ -31,28 +31,23 @@ export default gql`query SubmissionList($assignmentID: ID!, $states: [Submission
 
     groupSet {
       id
-    }
-
-    course {
-      name
-
       groups: groupsConnection {
-        edges {
-          group: node {
-            id: _id
-            name
-            members: membersConnection {
-              edges {
-                member: node {
-                  user {
-                    id: _id
-                  }
-                }
+        nodes {
+          id: _id
+          name
+          members: membersConnection {
+            nodes {
+              user {
+                id: _id
               }
             }
           }
         }
       }
+    }
+
+    course {
+      name
 
       sections: sectionsConnection {
         edges{

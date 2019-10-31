@@ -22,11 +22,12 @@ import * as templates from '../../__templates__'
 
 export const submissionListResult: Template<any> = template({
   assignment: templates.assignment({
-    course: templates.course({
-      groupSet: templates.groupSet(),
+    groupSet: templates.groupSet({
       groups: {
-        edges: [{ group: templates.group() }],
+        nodes: [templates.group()],
       },
+    }),
+    course: templates.course({
       sections: {
         edges: [{ section: templates.section() }],
       },

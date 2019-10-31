@@ -312,8 +312,8 @@ it('renders a group row properly', () => {
     })],
     groups: [templates.group({
       members: {
-        edges: [{
-          member: { user: templates.user({ id: '1' }) },
+        nodes: [{
+          user: templates.user({ id: '1' }),
         }],
       },
     })],
@@ -414,18 +414,17 @@ describe('graphql props', () => {
     let results = templates.submissionListResult({
       assignment: templates.assignment({
         gradeGroupStudentsIndividually: true,
-        groupSet: templates.groupSet(),
+        groupSet: templates.groupSet({
+          groups: {
+            nodes: [templates.group({
+              members: {
+                nodes: [{ user: templates.user({ id: '1' }) }],
+              },
+            })],
+          },
+        }),
         course: templates.course({
           sections: { edges: [] },
-          groups: {
-            edges: [{
-              group: templates.group({
-                members: {
-                  edges: [{ member: templates.user({ id: '1' }) }],
-                },
-              }),
-            }],
-          },
         }),
         submissions: { edges: [] },
         groupedSubmissions: { edges: [{ submission: templates.submission({ user_id: '1' }) }] },
@@ -442,6 +441,86 @@ describe('graphql props', () => {
 
     results.assignment.groupSet = undefined
     expect(graphqlProps({ data: results }).isGroupGradedAssignment).toBeFalsy()
+  })
+
+  it('sorts grouped submissions by group name', () => {
+    let results = templates.submissionListResult({
+      assignment: templates.assignment({
+        gradeGroupStudentsIndividually: false,
+        groupSet: templates.groupSet({
+          groups: {
+            nodes: [
+              templates.group({
+                name: 'b',
+                members: {
+                  nodes: [{ user: templates.user({ id: '1' }) }],
+                },
+              }),
+              templates.group({
+                name: 'a',
+                members: {
+                  nodes: [{ user: templates.user({ id: '2' }) }],
+                },
+              }),
+            ],
+          },
+        }),
+        course: templates.course({
+          sections: { edges: [] },
+        }),
+        submissions: { edges: [] },
+        groupedSubmissions: { edges: [
+          { submission: templates.submission({ user: templates.user({ id: '1' }) }) },
+          { submission: templates.submission({ user: templates.user({ id: '2' }) }) },
+        ] },
+      }),
+    })
+
+    expect(graphqlProps({ data: results }).submissions).toEqual([
+      templates.submission({ user: templates.user({ id: '2' }) }),
+      templates.submission({ user: templates.user({ id: '1' }) }),
+    ])
+  })
+
+  it('sorts users without a group with grouped submissions', () => {
+    let results = templates.submissionListResult({
+      assignment: templates.assignment({
+        gradeGroupStudentsIndividually: false,
+        groupSet: templates.groupSet({
+          groups: {
+            nodes: [
+              templates.group({
+                name: 'c',
+                members: {
+                  nodes: [{ user: templates.user({ id: '1' }) }],
+                },
+              }),
+              templates.group({
+                name: 'b',
+                members: {
+                  nodes: [{ user: templates.user({ id: '2' }) }],
+                },
+              }),
+            ],
+          },
+        }),
+        course: templates.course({
+          sections: { edges: [] },
+        }),
+        submissions: { edges: [] },
+        groupedSubmissions: { edges: [
+          { submission: templates.submission({ user: templates.user({ id: '1' }) }) },
+          { submission: templates.submission({ user: templates.user({ id: '2' }) }) },
+          { submission: templates.submission({ user: templates.user({ name: 'a' }) }) },
+        ] },
+      }),
+    })
+
+    expect(graphqlProps({ data: results }).submissions).toEqual([
+      templates.submission({ user: templates.user({ name: 'a' }) }),
+      templates.submission({ user: templates.user({ id: '2' }) }),
+      templates.submission({ user: templates.user({ id: '1' }) }),
+    ])
   })
 })
 
