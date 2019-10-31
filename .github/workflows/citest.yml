@@ -15,5 +15,8 @@ jobs:
           fetch-depth: 1
       - name: Brew Install
         run: brew install bitrise
+      - name: Bitrise Secrets
+        run: |
+          printf "%s" "${{ secrets.BITRISE_SECRETS_YML }}" > .bitrise.secrets.yml
       - name: Bitrise
         run: bitrise --ci run danger --config scripts/build_automation/bitrise_workflows/tests.yml
