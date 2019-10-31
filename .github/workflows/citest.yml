@@ -1,3 +1,4 @@
+---
 name: CITest
 on:
   push:
@@ -18,5 +19,10 @@ jobs:
       - name: Bitrise Secrets
         run: |
           printf "%s" "${{ secrets.BITRISE_SECRETS_YML }}" > .bitrise.secrets.yml
+      - name: Canvas iOS Secrets
+        run: |
+          git clone https://ios-danger:${{ secrets.DANGER_GITHUB_TOKEN }}@github.com/instructure/steps-canvas-ios-secrets ../secrets
+          ../secrets/scripts/setup-dev-secrets.sh
       - name: Bitrise
-        run: bitrise --ci run danger --config scripts/build_automation/bitrise_workflows/tests.yml
+        run: |
+          bitrise --ci run danger --config scripts/build_automation/bitrise_workflows/tests.yml
