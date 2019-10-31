@@ -4,6 +4,14 @@ project_type: other
 workflows:
   danger:
     steps:
+    - script:
+        title: Print environment variables
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -ex
+            env
     # - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
     #     title: Canvas iOS Secrets
     - script:

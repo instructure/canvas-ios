@@ -16,6 +16,9 @@ jobs:
           fetch-depth: 1
       - name: Brew Install
         run: brew install bitrise
+      - uses: actions/setup-node@master
+        with:
+          node-version: 10.16.0
       - name: Bitrise Secrets
         run: |
           printf "%s" "${{ secrets.BITRISE_SECRETS_YML }}" > .bitrise.secrets.yml
