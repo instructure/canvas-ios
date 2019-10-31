@@ -219,6 +219,14 @@ workflows:
             git checkout -
     - cache-pull: {}
     - script:
+            inputs:
+            - content: |-
+                #!/usr/bin/env bash
+                # fail if any commands fails
+                set -ex
+                sudo systemsetup -settimezone America/Denver
+            title: Set TimeZone to MST
+    - script:
         title: brew tap
         run_if: .IsCI
         inputs:
