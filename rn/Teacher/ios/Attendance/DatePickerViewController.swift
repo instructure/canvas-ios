@@ -17,37 +17,30 @@
 //
 
 import UIKit
+import Core
 
 protocol DatePickerDelegate: NSObjectProtocol {
     func didSelectDate(_ date: Date)
 }
 
 class DatePickerViewController: UIViewController {
-    var initialDate = Date() {
-        didSet {
-            selectedDate = initialDate
-        }
-    }
+    let initialDate: Date
     weak var delegate: DatePickerDelegate?
 
-    private let calendar: Calendar = {
-        var calendar = Calendar(identifier: .gregorian)
-        calendar.locale = Locale.current
-        return calendar
-    }()
-    private lazy var daysInWeek = calendar.maximumRange(of: .weekday)?.count ?? 0
+    let calendar = Calendar.current
+    let daysInWeek: Int
     func numberOfWeeksForMonth(of date: Date) -> Int {
         let weekRange = calendar.range(of: .weekOfMonth, in: .month, for: date)
         return weekRange?.count ?? 0
     }
 
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    private let layout = UICollectionViewFlowLayout()
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    let layout = UICollectionViewFlowLayout()
 
-    private let today = Date()
-    private var earliestDate: Date!
-    private var latestDate: Date!
-    private var selectedDate = Date()
+    let today = Clock.now
+    let earliestDate: Date
+    let latestDate: Date
+    var selectedDate = Clock.now
 
     static var dayFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -79,20 +72,25 @@ class DatePickerViewController: UIViewController {
         return dateFormatter
     }()
 
-    private var hasScrolledToInitialDate = false
+    var hasScrolledToInitialDate = false
 
-    init() {
-        super.init(nibName: nil, bundle: nil)
-
-        let todayComponents = calendar.dateComponents([.year, .month, .day], from: Date())
+    init(selected: Date, delegate: DatePickerDelegate?) {
+        let todayComponents = calendar.dateComponents([.year, .month, .day], from: today)
         let startOfMonth = DateComponents(calendar: calendar, year: todayComponents.year!, month: todayComponents.month!, day: 1).date!
 
         var components = DateComponents()
         components.month = 24
-        self.latestDate = calendar.date(byAdding: components, to: startOfMonth)!
+        latestDate = calendar.date(byAdding: components, to: startOfMonth)!
 
         components.month = -24
-        self.earliestDate = calendar.date(byAdding: components, to: startOfMonth)!
+        earliestDate = calendar.date(byAdding: components, to: startOfMonth)!
+
+        daysInWeek = calendar.maximumRange(of: .weekday)?.count ?? 0
+        initialDate = selected
+        selectedDate = selected
+        self.delegate = delegate
+
+        super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -150,11 +148,6 @@ class DatePickerViewController: UIViewController {
         }
     }
 
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        updateItemSize(available: size.width)
-    }
-
     func updateItemSize(available: CGFloat) {
         let itemWidth: CGFloat = floor((available - (2.0 * 16.0)) / CGFloat(daysInWeek))
         let size = CGSize(width: itemWidth, height: itemWidth)
@@ -171,7 +164,7 @@ class DatePickerViewController: UIViewController {
         })
     }
 
-    @objc func scroll(to date: Date, animated: Bool) {
+    func scroll(to date: Date, animated: Bool) {
         guard date > earliestDate && date < latestDate else { return }
         let components = calendar.dateComponents([.month, .day], from: earliestDate, to: date)
 
@@ -179,13 +172,13 @@ class DatePickerViewController: UIViewController {
         collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: false)
     }
 
-    private func dateForFirstDay(inSection section: Int) -> Date {
+    func dateForFirstDay(inSection section: Int) -> Date {
         var components = DateComponents()
         components.month = section
         return calendar.date(byAdding: components, to: earliestDate)!
     }
 
-    private func dateForCell(at indexPath: IndexPath) -> Date {
+    func dateForCell(at indexPath: IndexPath) -> Date {
         let firstDayInMonth = dateForFirstDay(inSection: indexPath.section)
         let weekday = calendar.component(.weekday, from: firstDayInMonth) - calendar.firstWeekday
 
@@ -217,7 +210,7 @@ extension DatePickerViewController: UICollectionViewDataSource {
         if month == calendar.component(.month, from: firstDayInMonth) {
             cell.label.text = DatePickerViewController.dayFormatter.string(from: cellDate)
             cell.label.accessibilityLabel = DatePickerViewController.a11yDayFormatter.string(from: cellDate)
-            cell.isToday = calendar.isDateInToday(cellDate)
+            cell.isToday = calendar.isDate(cellDate, inSameDayAs: today)
             cell.label.accessibilityTraits = cell.isToday ? UIAccessibilityTraits.selected : UIAccessibilityTraits.none
             cell.setIsHighlighted(calendar.isDate(selectedDate, inSameDayAs: cellDate))
         } else {
@@ -247,25 +240,20 @@ extension DatePickerViewController: UICollectionViewDataSource {
 
 extension DatePickerViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        if !hasScrolledToInitialDate {
-//            scroll(to: initialDate, animated: false)
-//            hasScrolledToInitialDate = true
-//        }
-
-        if calendar.isDate(selectedDate, inSameDayAs: dateForCell(at: indexPath)) && (collectionView.indexPathsForSelectedItems ?? []).count == 0 {
+        if calendar.isDate(selectedDate, inSameDayAs: dateForCell(at: indexPath)) && collectionView.indexPathsForSelectedItems?.isEmpty != false {
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? DatePickerDateCell else { return }
+        let cell = collectionView.cellForItem(at: indexPath) as? DatePickerDateCell
         selectedDate = dateForCell(at: indexPath)
-        cell.setIsHighlighted(true)
+        cell?.setIsHighlighted(true)
     }
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? DatePickerDateCell else { return }
-        cell.setIsHighlighted(false)
+        let cell = collectionView.cellForItem(at: indexPath) as? DatePickerDateCell
+        cell?.setIsHighlighted(false)
     }
 }
 
