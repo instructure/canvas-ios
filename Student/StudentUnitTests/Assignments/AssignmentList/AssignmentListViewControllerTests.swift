@@ -47,7 +47,11 @@ class AssignmentListViewControllerTests: PersistenceTestCase {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
 
-        let response = APIAssignmentListResponse(data: APIAssignmentListResponse.Data(course: APIAssignmentListResponse.Course(gradingPeriods: APIAssignmentListResponse.GPNodes(nodes: gradingPeriods), groups: APIAssignmentListResponse.GroupNodes(nodes: groups))))
+        let response = APIAssignmentListResponse(data:
+            APIAssignmentListResponse.Data(course:
+                APIAssignmentListResponse.Course(
+                    gradingPeriods: APIAssignmentListResponse.GPNodes(nodes: gradingPeriods),
+                    groups: APIAssignmentListResponse.GroupNodes(nodes: groups))))
 
         let data = try! encoder.encode(response)
         return data

@@ -71,6 +71,10 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
         if let indexPath = tableView.indexPathForSelectedRow { tableView.deselectRow(at: indexPath, animated: true) }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+
     private func configureTableView() {
         tableRefresher.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView.refreshControl = tableRefresher
@@ -103,11 +107,20 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
                 self?.tableView.reloadData()
                 self?.showSpinner(show: false)
                 self?.updateLabels()
+                selectFirstCellOnIpad()
+            }
+        }
+
+        func selectFirstCellOnIpad() {
+            if let splitView = splitViewController, splitView.viewControllers.count == 2 {
+                let ip = IndexPath(row: 0, section: 0)
+                tableView.selectRow(at: ip, animated: true, scrollPosition: .none)
+                tableView(tableView, didSelectRowAt: ip)
             }
         }
     }
 
-    @IBAction func actionFilterClicked(_ sender: Any) {
+    @IBAction func actionFilterClicked(_ sender: UIButton) {
         if selectedGradingPeriod != nil {
             filterByGradingPeriod(nil)
         } else {
@@ -121,6 +134,10 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
             }
             let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .destructive, handler: nil)
             alert.addAction(cancel)
+
+            alert.popoverPresentationController?.sourceRect = sender.bounds
+            alert.popoverPresentationController?.sourceView = sender
+
             env.router.show(alert, from: self, options: .modal)
         }
     }
@@ -165,7 +182,7 @@ extension AssignmentListViewController: UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let assignment = groups[indexPath.section].assignments[indexPath.row]
         guard let url = assignment.htmlUrl else { return }
-        env.router.route(to: url, from: self, options: nil)
+        env.router.route(to: url, from: self, options: [.detail, .embedInNav])
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
