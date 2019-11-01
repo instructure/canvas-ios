@@ -70,7 +70,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
 
         let requestable = AssignmentListRequestable(courseID: courseID, gradingPeriodID: selectedGradingPeriod?.id.value, filter: shouldFilter)
 
-        env.api.makeRequest(requestable, refreshToken: false) { [weak self] response, _, error in
+        env.api.makeRequest(requestable, refreshToken: true) { [weak self] response, _, error in
             if let error = error {
                 self?.showError(error); return
 
