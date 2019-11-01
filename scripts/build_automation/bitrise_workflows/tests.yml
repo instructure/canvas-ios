@@ -158,6 +158,7 @@ workflows:
                 -sdk iphonesimulator \
                 -destination 'platform=iOS Simulator,name=iPhone 8,OS=13.0' \
                 -configuration Debug \
+                -resultBundlePath scripts/coverage/citests.xcresult \
                 test | xcbeautify
     - script:
         title: Save xcresult
@@ -167,7 +168,7 @@ workflows:
             #!/bin/zsh
             set -euxo pipefail
 
-            zip --quiet -r "$BITRISE_DEPLOY_DIR/citests.xcresult.zip" ${TMPDIR}XCUITestOutput*/*.xcresult
+            zip --quiet -r "$BITRISE_DEPLOY_DIR/citests.xcresult.zip" scripts/coverage/citests.xcresult
         is_always_run: true
     - script:
         title: Report Coverage
@@ -179,7 +180,6 @@ workflows:
             set -ex
 
             # Move & handle CITests coverage report
-            mv ${TMPDIR}XCUITestOutput*/*.xcresult scripts/coverage/citests.xcresult
             yarn coverage
             zip --quiet -r "$BITRISE_DEPLOY_DIR/coverage.zip" scripts/coverage/citests
     - script:
