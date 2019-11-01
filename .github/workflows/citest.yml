@@ -30,4 +30,10 @@ jobs:
           ../secrets/scripts/setup-dev-secrets.sh
       - name: Bitrise
         run: |
+          if [[ "$GITHUB_EVENT_NAME" = pull_request ]]; then
+            export BITRISE_PULL_REQUEST=$(jq '.number' "$GITHUB_EVENT_PATH")
+          fi
+          export GIT_REPOSITORY_URL=git@github.com:instructure/canvas-ios.git
+          # lie to danger
+          export BITRISE_IO=true
           bitrise --ci run danger --config scripts/build_automation/bitrise_workflows/tests.yml
