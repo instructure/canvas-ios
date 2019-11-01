@@ -29,6 +29,7 @@ jobs:
           set -exo pipefail
           if [[ "$GITHUB_EVENT_NAME" = pull_request ]]; then
             export BITRISE_PULL_REQUEST=$(jq '.number' "$GITHUB_EVENT_PATH")
+            export BITRISEIO_GIT_BRANCH_DEST=$(jq '.pull_request.base.ref' "$GITHUB_EVENT_PATH")
           fi
           export GIT_REPOSITORY_URL=git@github.com:instructure/canvas-ios.git
           # lie to danger
