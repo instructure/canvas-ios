@@ -24,6 +24,9 @@ jobs:
         run: |
           git clone https://ios-danger:${{ secrets.DANGER_GITHUB_TOKEN }}@github.com/instructure/steps-canvas-ios-secrets ../secrets
           ../secrets/scripts/setup-dev-secrets.sh
+      - name: super-hacky-temp-carthage-cache
+        run: |
+          curl -L https://github.com/cobbal/temp-carthage-cache/raw/master/Carthage.tar.xz | tar xJf -
       - name: Bitrise
         run: |
           set -exo pipefail
