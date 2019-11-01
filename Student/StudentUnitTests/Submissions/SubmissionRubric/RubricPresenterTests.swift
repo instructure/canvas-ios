@@ -216,7 +216,5 @@ extension RubricPresenterTests: RubricViewProtocol {
         models = rubric
     }
 
-    var navigationController: UINavigationController? {
-        return nil
-    }
+    func showAlert(title: String?, message: String?) {}
 }

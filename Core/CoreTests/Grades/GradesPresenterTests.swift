@@ -63,7 +63,5 @@ extension GradesPresenterTests: GradesViewProtocol {
         if !isLoading { expectation.fulfill() }
     }
 
-    var navigationController: UINavigationController? {
-        return nil
-    }
+    func showAlert(title: String?, message: String?) {}
 }

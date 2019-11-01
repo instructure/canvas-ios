@@ -98,6 +98,8 @@ extension UrlSubmissionPresenterTests: UrlSubmissionViewProtocol {
         resultingUrl = url
     }
 
+    func showAlert(title: String?, message: String?) {}
+
     func showError(_ error: Error) {
         resultingError = error
         onError?()

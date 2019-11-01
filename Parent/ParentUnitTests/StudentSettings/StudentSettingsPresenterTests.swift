@@ -98,9 +98,7 @@ class StudentSettingsPresenterTests: ParentTestCase {
 }
 
 extension StudentSettingsPresenterTests: StudentSettingsViewProtocol {
-    var navigationController: UINavigationController? {
-        return nil
-    }
+    func showAlert(title: String?, message: String?) {}
 
     func didUpdateAlert() {
         updateExpectation.fulfill()

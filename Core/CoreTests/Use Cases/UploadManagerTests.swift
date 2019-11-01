@@ -33,7 +33,7 @@ class UploadManagerTests: CoreTestCase {
     let backgroundSession = MockURLSession()
     let manager = UploadManager(identifier: "upload-manager-tests")
     var context: NSManagedObjectContext {
-        return NSPersistentContainer.shared.viewContext
+        return UploadManager.shared.viewContext
     }
     lazy var url: URL = {
         let url = URL.temporaryDirectory.appendingPathComponent("upload-manager.txt")

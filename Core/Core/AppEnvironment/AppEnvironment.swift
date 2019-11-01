@@ -26,7 +26,7 @@ public protocol AppEnvironmentDelegate {
 open class AppEnvironment {
     public var api: API
     public var database: NSPersistentContainer
-    public var globalDatabase: NSPersistentContainer = NSPersistentContainer.create()
+    public var globalDatabase: NSPersistentContainer = NSPersistentContainer.shared
     public var logger: LoggerProtocol
     public var router: RouterProtocol
     public var currentSession: LoginSession?

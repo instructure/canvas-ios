@@ -26,26 +26,32 @@ public protocol RichContentEditorDelegate: class {
 }
 
 public class RichContentEditorViewController: UIViewController {
+    let toolbar = RichContentToolbarView()
+    public let webView = CoreWebView(frame: .zero)
+
+    let batchID = UUID.string
     public weak var delegate: RichContentEditorDelegate?
-    public var fileUploadContext: FileUploadContext?
-    var presenter: RichContentEditorPresenter?
-    private var html: String?
-    lazy var toolbar = RichContentToolbarView()
-    public lazy var webView = CoreWebView(frame: .zero)
-
-    public static func create(env: AppEnvironment = .shared, context: Context, uploadTo uploadContext: FileUploadContext?) -> RichContentEditorViewController {
-        let controller = RichContentEditorViewController()
-        if let uploadContext = uploadContext {
-            controller.presenter = RichContentEditorPresenter(env: env, view: controller, context: context, uploadTo: uploadContext)
-        }
-        controller.fileUploadContext = uploadContext
-        return controller
-    }
-
+    let env = AppEnvironment.shared
     public var placeholder: String = "" {
         didSet {
             webView.evaluateJavaScript("content.setAttribute('placeholder', \(CoreWebView.jsString(placeholder)))")
         }
+    }
+    var context: Context = ContextModel.currentUser
+    var uploadContext = FileUploadContext.myFiles
+    let uploadManager = UploadManager.shared
+
+    lazy var files = uploadManager.subscribe(batchID: batchID) { [weak self] in
+        self?.updateUploadProgress()
+    }
+
+    lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: context)) {}
+
+    public static func create(context: Context, uploadTo uploadContext: FileUploadContext) -> RichContentEditorViewController {
+        let controller = RichContentEditorViewController()
+        controller.context = context
+        controller.uploadContext = uploadContext
+        return controller
     }
 
     public override func loadView() {
@@ -60,11 +66,31 @@ public class RichContentEditorViewController: UIViewController {
         webView.contentInputAccessoryView = toolbar
         webView.scrollView.keyboardDismissMode = .interactive
         webView.accessibilityIdentifier = "RichContentEditor.webView"
-        presenter?.viewIsReady()
-    }
-}
 
-extension RichContentEditorViewController {
+        featureFlags.refresh { [weak self] _ in
+            self?.loadHTML()
+        }
+    }
+
+    public func showError(_ error: Error) {
+        delegate?.rce(self, didError: error)
+    }
+
+    func loadHTML() {
+        webView.loadHTMLString("""
+            <style>
+            :root {
+                --background-danger: \(UIColor.named(.backgroundDanger).hexString);
+                --background-darkest: \(UIColor.named(.backgroundDarkest).hexString);
+                --brand-link-color: \(Brand.shared.linkColor.ensureContrast(against: .white).hexString);
+                --brand-primary: \(Brand.shared.primary.ensureContrast(against: .white).hexString);
+                --text-dark: \(UIColor.named(.textDark).hexString);
+            }
+            </style>
+            <div id="content" contenteditable=\"true\" placeholder=\"\(placeholder)\"></div>
+        """)
+    }
+
     func undo() {
         webView.evaluateJavaScript("editor.execCommand('undo')")
     }
@@ -101,6 +127,7 @@ extension RichContentEditorViewController {
         webView.evaluateJavaScript("editor.focus()")
     }
 
+    private var html: String?
     public func setHTML(_ html: String) {
         self.html = html // Save to try again when editor is ready
         webView.evaluateJavaScript("editor.setHTML(\(CoreWebView.jsString(html)))")
@@ -120,85 +147,11 @@ extension RichContentEditorViewController {
     }
 
     func setFeatureFlags() {
-        let featureFlags = presenter?.featureFlags.map { $0.name } ?? []
-        if let data = try? JSONSerialization.data(withJSONObject: featureFlags),
+        let flags = featureFlags.map { $0.name }
+        if let data = try? JSONSerialization.data(withJSONObject: flags),
             let flags = String(data: data, encoding: .utf8) {
             webView.evaluateJavaScript("editor.featureFlags = \(flags)")
         }
-    }
-}
-
-extension RichContentEditorViewController {
-    /// This works around a memory leak caused by the WKUserContentController keeping a strong reference to
-    /// message handlers. This has a weak reference back to the controller, breaking the cycle.
-    private class MessagePasser: NSObject, WKScriptMessageHandler {
-        weak var parent: RichContentEditorViewController?
-
-        init(parent: RichContentEditorViewController) {
-            self.parent = parent
-            super.init()
-        }
-
-        func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-            parent?.handleScriptMessage(message)
-        }
-    }
-
-    enum Message: String, CaseIterable {
-        case link, ready, state, retryUpload
-    }
-
-    func setupScriptMessaging() {
-        let messenger = MessagePasser(parent: self)
-        for message in Message.allCases {
-            webView.configuration.userContentController.add(messenger, name: message.rawValue)
-        }
-        if let url = Bundle.core.url(forResource: "RichContentEditor", withExtension: "js"), let source = try? String(contentsOf: url, encoding: .utf8) {
-            let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
-            webView.configuration.userContentController.addUserScript(script)
-        }
-        if let url = Bundle.core.url(forResource: "RichContentEditor", withExtension: "css"), let css = try? String(contentsOf: url, encoding: .utf8) {
-            let source = """
-            var style = document.createElement('style');
-            style.textContent = \(CoreWebView.jsString(css));
-            document.head.appendChild(style);
-            """
-            let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
-            webView.configuration.userContentController.addUserScript(script)
-        }
-    }
-
-    func handleScriptMessage(_ message: WKScriptMessage) {
-        guard let name = Message(rawValue: message.name) else { return }
-        switch name {
-        case .link:
-            toolbar.linkAction()
-        case .ready:
-            setFeatureFlags()
-            if let html = html { setHTML(html) }
-        case .state:
-            updateState(message.body as? [String: Any?])
-        case .retryUpload:
-            guard let url = (message.body as? String).flatMap({ URL(string: $0) }) else { return }
-            presenter?.retry(url)
-        }
-    }
-}
-
-extension RichContentEditorViewController: RichContentEditorViewProtocol {
-    public func loadHTML() {
-        webView.loadHTMLString("""
-            <style>
-            :root {
-                --background-danger: \(UIColor.named(.backgroundDanger).hexString);
-                --background-darkest: \(UIColor.named(.backgroundDarkest).hexString);
-                --brand-link-color: \(Brand.shared.linkColor.ensureContrast(against: .white).hexString);
-                --brand-primary: \(Brand.shared.primary.ensureContrast(against: .white).hexString);
-                --text-dark: \(UIColor.named(.textDark).hexString);
-            }
-            </style>
-            <div id="content" contenteditable=\"true\" placeholder=\"\(placeholder)\">\(html ?? "")</div>
-        """)
     }
 
     func editLink(href: String?, text: String?) {
@@ -213,8 +166,8 @@ extension RichContentEditorViewController: RichContentEditorViewProtocol {
             field.text = text
             field.keyboardType = .URL
         }
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", bundle: .core, comment: ""), style: .default) { [weak self] _ in
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
+        alert.addAction(AlertAction(NSLocalizedString("OK", bundle: .core, comment: ""), style: .default) { [weak self] _ in
             let text = alert.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             var href = alert.textFields?[1].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             if !href.isEmpty, URLComponents.parse(href).scheme == nil {
@@ -222,31 +175,145 @@ extension RichContentEditorViewController: RichContentEditorViewProtocol {
             }
             self?.updateLink(href: href, text: text)
         })
-        present(alert, animated: true)
+        env.router.show(alert, from: self, options: .modal)
+    }
+}
+
+extension RichContentEditorViewController {
+    enum Message: String, CaseIterable {
+        case link, ready, state, retryUpload
     }
 
+    func setupScriptMessaging() {
+        for message in Message.allCases {
+            webView.handle(message.rawValue, handler: handleScriptMessage)
+        }
+        if let url = Bundle.core.url(forResource: "RichContentEditor", withExtension: "js"), let source = try? String(contentsOf: url, encoding: .utf8) {
+            webView.addScript(source)
+        }
+        if let url = Bundle.core.url(forResource: "RichContentEditor", withExtension: "css"), let css = try? String(contentsOf: url, encoding: .utf8) {
+            let source = """
+            var style = document.createElement('style');
+            style.textContent = \(CoreWebView.jsString(css));
+            document.head.appendChild(style);
+            """
+            webView.addScript(source)
+        }
+    }
+
+    func handleScriptMessage(_ message: WKScriptMessage) {
+        guard let name = Message(rawValue: message.name) else { return }
+        switch name {
+        case .link:
+            toolbar.linkAction()
+        case .ready:
+            setFeatureFlags()
+            if let html = html { setHTML(html) }
+            updateState(nil)
+        case .state:
+            updateState(message.body as? [String: Any?])
+        case .retryUpload:
+            guard let url = (message.body as? String).flatMap({ URL(string: $0) }) else { return }
+            retry(url)
+        }
+    }
+}
+
+extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func insertFrom(_ sourceType: UIImagePickerController.SourceType) {
         backupRange()
         let picker = UIImagePickerController()
-        picker.delegate = presenter
+        picker.delegate = self
         picker.imageExportPreset = .compatible
-        picker.sourceType = sourceType
+        picker.sourceType = UIImagePickerController.isSourceTypeAvailable(sourceType) ? sourceType : .photoLibrary
         picker.mediaTypes = [ kUTTypeImage as String, kUTTypeMovie as String ]
-        present(picker, animated: true)
+        env.router.show(picker, from: self, options: .modal)
     }
 
-    public func insertImagePlaceholder(_ url: URL, placeholder: String) {
-        let string = CoreWebView.jsString(url.absoluteString)
-        let datauri = CoreWebView.jsString(placeholder)
-        webView.evaluateJavaScript("editor.insertImagePlaceholder(\(string), \(datauri))")
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        picker.dismiss(animated: true) {
+            self.files.refresh() // Actualize lazy local store
+            do {
+                if let image = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage {
+                    self.createFile(try image.write(), isRetry: false, then: self.uploadImage)
+                } else if let url = info[.mediaURL] as? URL {
+                    self.createFile(url, isRetry: false, then: self.uploadMedia)
+                } else {
+                    throw NSError.instructureError(NSLocalizedString("No image found from image picker", bundle: .core, comment: ""))
+                }
+            } catch {
+                self.showError(error)
+            }
+        }
     }
 
-    public func insertVideoPlaceholder(_ url: URL) {
-        let string = CoreWebView.jsString(url.absoluteString)
-        webView.evaluateJavaScript("editor.insertVideoPlaceholder(\(string))")
+    func retry(_ url: URL) {
+        if ["png", "jpeg", "jpg"].contains(url.pathExtension) {
+            createFile(url, isRetry: true, then: uploadImage)
+        } else {
+            createFile(url, isRetry: true, then: uploadMedia)
+        }
     }
 
-    public func updateUploadProgress(of files: [File]) {
+    func createFile(_ url: URL, isRetry: Bool, then: @escaping (URL, File, Bool) -> Void) {
+        let context = uploadManager.viewContext
+        context.performAndWait {
+            do {
+                let url = try self.uploadManager.uploadURL(url)
+                let file: File = context.insert()
+                file.batchID = self.batchID
+                file.localFileURL = url
+                file.size = url.lookupFileSize()
+                if let session = env.currentSession {
+                    file.setUser(session: session)
+                }
+                try context.save()
+                then(url, file, isRetry)
+            } catch {
+                self.showError(error)
+            }
+        }
+    }
+
+    func uploadImage(_ url: URL, file: File, isRetry: Bool) {
+        do {
+            if !isRetry {
+                let string = CoreWebView.jsString(url.absoluteString)
+                let base64 = try Data(contentsOf: url).base64EncodedString()
+                let datauri = CoreWebView.jsString("data:image/png;base64,\(base64)")
+                webView.evaluateJavaScript("editor.insertImagePlaceholder(\(string), \(datauri))")
+            }
+            uploadManager.upload(file: file, to: uploadContext)
+        } catch {
+            updateFile(file, error: error)
+        }
+    }
+
+    func uploadMedia(_ url: URL, file: File, isRetry: Bool) {
+        if !isRetry {
+            let string = CoreWebView.jsString(url.absoluteString)
+            webView.evaluateJavaScript("editor.insertVideoPlaceholder(\(string))")
+        }
+        UploadMedia(type: .video, url: url, file: file, context: context).fetch { [weak self] mediaID, error in
+            self?.updateFile(file, error: error, mediaID: mediaID)
+        }
+    }
+
+    func updateFile(_ file: File, error: Error?, mediaID: String? = nil) {
+        let context = uploadManager.viewContext
+        context.performAndWait { [weak self] in
+            do {
+                guard let file = try? context.existingObject(with: file.objectID) as? File else { return }
+                file.uploadError = error?.localizedDescription ?? file.uploadError
+                file.mediaEntryID = mediaID
+                try context.save()
+            } catch {
+                self?.showError(error)
+            }
+        }
+    }
+
+    func updateUploadProgress() {
         let data = try? JSONSerialization.data(withJSONObject: files.map { file -> [String: Any?] in [
             "localFileURL": file.localFileURL?.absoluteString,
             "url": file.url?.absoluteString,
@@ -258,9 +325,13 @@ extension RichContentEditorViewController: RichContentEditorViewProtocol {
         ] })
         let json = data.flatMap({ String(data: $0, encoding: .utf8) }) ?? "[]"
         webView.evaluateJavaScript("editor.updateUploadProgress(\(json))")
-    }
 
-    public func showError(_ error: Error) {
-        delegate?.rce(self, didError: error)
+        let completes = files.filter { $0.mediaEntryID != nil || $0.url != nil || $0.uploadError != nil }
+        guard !completes.isEmpty else { return }
+        let context = uploadManager.viewContext
+        context.performAndWait {
+            context.delete(completes)
+            try? context.save()
+        }
     }
 }

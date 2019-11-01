@@ -22,7 +22,7 @@ import XCTest
 
 class LogEventListPresenterTests: CoreTestCase {
     class View: LogEventListViewProtocol {
-        var navigationController: UINavigationController?
+        func showAlert(title: String?, message: String?) {}
         var reloadDataExpectation = XCTestExpectation()
 
         func reloadData() {

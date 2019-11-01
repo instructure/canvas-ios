@@ -96,6 +96,8 @@ extension AssignmentListPresenterTests: AssignmentListViewProtocol {
         return UINavigationController(nibName: nil, bundle: nil)
     }
 
+    func showAlert(title: String?, message: String?) {}
+
     func showError(_ error: Error) {
         resultingError = error as NSError
     }

@@ -477,6 +477,8 @@ extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {
         onUpdate?()
     }
 
+    func showAlert(title: String?, message: String?) {}
+
     func showError(_ error: Error) {
         resultingError = error as NSError
     }

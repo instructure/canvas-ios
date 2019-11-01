@@ -106,6 +106,8 @@ extension GroupNavigationPresenterTests: GroupNavigationViewProtocol {
         expectUpdate.fulfill()
     }
 
+    func showAlert(title: String?, message: String?) {}
+
     func showError(_ error: Error) {
         resultingError = error as NSError
     }

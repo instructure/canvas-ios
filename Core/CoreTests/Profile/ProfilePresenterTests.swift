@@ -210,7 +210,7 @@ class ProfilePresenterTests: CoreTestCase {
         func showError(_ error: Error) {}
         func showError(_ message: String) {}
 
-        var navigationController: UINavigationController?
+        func showAlert(title: String?, message: String?) {}
 
         func dismiss(animated flag: Bool, completion: (() -> Void)?) {
             completion?()
