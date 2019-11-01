@@ -44,6 +44,7 @@ import Navigator from './src/routing/Navigator'
 import APIBridge from './src/canvas-api/APIBridge'
 import { Crashlytics } from './src/common/CanvasCrashlytics'
 import { getLastRoute } from './src/modules/developer-menu/DeveloperMenu'
+import { clearClient } from './src/canvas-api-v2/client'
 
 global.crashReporter = Crashlytics
 
@@ -122,6 +123,7 @@ const loginHandler = async ({
     })
   })
 
+  clearClient()
   setSession(session)
 
   try {
@@ -178,6 +180,9 @@ notificationCenter.addListener('route', (notification) => {
   const userInfo = notification.userInfo
   if (userInfo && userInfo.url) {
     const navigator = new Navigator('')
-    navigator.show(userInfo.url, { modal: userInfo.modal === true })
+    navigator.show(userInfo.url, {
+      modal: userInfo.modal === true,
+      detail: userInfo.detail === true,
+    })
   }
 })

@@ -51,6 +51,7 @@ video.mp4
 # Generated data
 fastlane/1
 bluepill/
+nightly-xcresults/
 
 # rn
 package-lock.json

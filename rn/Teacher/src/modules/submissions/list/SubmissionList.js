@@ -110,6 +110,7 @@ export class SubmissionList extends Component<Props, State> {
         filter: filter,
         studentIndex: index,
         flags: this.state.flags,
+        onDismiss: this.refresh.bind(null, false),
       }
     )
   }
@@ -183,8 +184,10 @@ export class SubmissionList extends Component<Props, State> {
     })
   }
 
-  refresh = async () => {
-    this.setState({ refreshing: true })
+  refresh = async (triggerRefreshIndicator = true) => {
+    if (triggerRefreshIndicator) {
+      this.setState({ refreshing: true })
+    }
     await this.props.refetch({
       assignmentID: this.props.assignmentID,
       ...this.state.filter,
@@ -204,7 +207,8 @@ export class SubmissionList extends Component<Props, State> {
       },
     ]
 
-    if (this.state.flags.includes('new_gradebook')) {
+    let newGradebookEnabled = this.state.flags.includes('new_gradebook')
+    if (newGradebookEnabled) {
       rightBarButtons.push({
         image: icon('eye', 'solid'),
         testID: 'SubmissionsList.postpolicy',
@@ -242,6 +246,7 @@ export class SubmissionList extends Component<Props, State> {
               anonymous={this.props.anonymous}
               muted={this.props.muted}
               navigator={this.props.navigator}
+              newGradebookEnabled={newGradebookEnabled}
             />
             <FlatList
               data={this.props.submissions}

@@ -545,16 +545,20 @@ describe('refresh single course', () => {
     let action = {
       type: CoursesActions().refreshCourse.toString(),
       payload: {
-        result: {
-          data: {
-            id: '1',
-            permissions: {
-              create_announcement: true,
-              create_discussion_topic: true,
-            }
-            ,
+        result: [
+          {
+            data: {
+              id: '1',
+              permissions: {
+                create_announcement: true,
+                create_discussion_topic: true,
+              },
+            },
           },
-        },
+          {
+            data: templates.customColors(),
+          },
+        ],
         context: 'courses',
         courseID: '1',
       },
@@ -568,7 +572,7 @@ describe('refresh single course', () => {
           'announcements': { 'pending': 0, 'refs': [] },
           'assignmentGroups': { 'pending': 0, 'refs': [] },
           'attendanceTool': { 'pending': 0 },
-          'color': '#FFFFFF00',
+          'color': '#fff',
           'course': {
             'id': '1',
             'permissions': {
@@ -599,17 +603,19 @@ describe('refresh single course', () => {
     let action = {
       type: CoursesActions().refreshCourse.toString(),
       payload: {
-        result: {
-          data: {
-            id: '1',
-            name: 'Course 2',
-            permissions: {
-              create_announcement: false,
-              create_discussion_topic: true,
-            }
-            ,
+        result: [
+          {
+            data: {
+              id: '1',
+              name: 'Course 2',
+              permissions: {
+                create_announcement: false,
+                create_discussion_topic: true,
+              },
+            },
           },
-        },
+          { data: templates.customColors() },
+        ],
         context: 'courses',
         courseID: '1',
       },
@@ -650,7 +656,7 @@ describe('refresh single course', () => {
           'announcements': { 'pending': 0, 'refs': [] },
           'assignmentGroups': { 'pending': 0, 'refs': [] },
           'attendanceTool': { 'pending': 0 },
-          'color': '#FFFFFF00',
+          'color': '#fff',
           'course': {
             'id': '1',
             'name': 'Course 2',

@@ -65,7 +65,7 @@ class UINavigationBarExtensionsTests: XCTestCase {
     func testUseModalStyle() {
         let bar = UINavigationBar(frame: .zero)
         bar.useModalStyle()
-        XCTAssertEqual(bar.titleTextAttributes?[.foregroundColor] as? UIColor, Brand.shared.linkColor)
+        XCTAssertEqual(bar.titleTextAttributes?[.foregroundColor] as? UIColor, .named(.textDarkest))
         XCTAssertEqual(bar.tintColor, Brand.shared.linkColor)
         XCTAssertEqual(bar.barTintColor, .named(.backgroundLightest))
         XCTAssertEqual(bar.barStyle, .default)

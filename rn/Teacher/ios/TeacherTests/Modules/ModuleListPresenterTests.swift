@@ -296,6 +296,6 @@ class ModuleListPresenterTests: TeacherTestCase {
         let url = URL(string: "/courses/1/assignments/2")!
         let item = ModuleItem.make(from: .make(url: url))
         presenter.showItem(item, from: MockViewController())
-        XCTAssertTrue(router.lastRoutedTo(.course("1", assignment: "2")))
+        XCTAssertTrue(router.lastRoutedTo(.course("1", assignment: "2"), withOptions: [.detail]))
     }
 }

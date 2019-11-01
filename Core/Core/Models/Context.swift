@@ -21,6 +21,11 @@ import Foundation
 public enum ContextType: String, Codable {
     case account, course, group, user, section
 
+    public init?(pathComponent: String) {
+        guard pathComponent.last == "s" else { return nil }
+        self.init(rawValue: String(pathComponent.dropLast()))
+    }
+
     public var pathComponent: String {
         return "\(self)s"
     }

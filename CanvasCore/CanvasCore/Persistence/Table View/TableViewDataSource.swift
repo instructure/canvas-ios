@@ -43,13 +43,15 @@ extension TableViewDataSource {
 
     public func processUpdates<CollectedType>(_ updates: [CollectionUpdate<CollectedType>]) {
         guard let tableView = tableView else { return }
+        let selectedIndexPath = tableView.indexPathForSelectedRow
+        defer {
+            tableView.selectRow(at: selectedIndexPath, animated: false, scrollPosition: .none)
+        }
 
         if updates == [.reload] {
             tableView.reloadData()
             return
         }
-
-        let selectedIndexPath = tableView.indexPathForSelectedRow
 
         tableView.beginUpdates()
         for update in updates {
@@ -79,8 +81,6 @@ extension TableViewDataSource {
             }
         }
         tableView.endUpdates()
-        
-        tableView.selectRow(at: selectedIndexPath, animated: false, scrollPosition: .none)
     }
 }
 

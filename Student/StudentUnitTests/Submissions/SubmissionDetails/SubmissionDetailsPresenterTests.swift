@@ -163,6 +163,17 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
         XCTAssert(view.embedded is ExternalToolSubmissionContentViewController)
     }
 
+    func testEmbedExternalToolOnlineUploadWithAttachment() {
+        Assignment.make(from: .make(submission_types: [ .external_tool ]))
+        Submission.make(from: .make(
+            submission_type: .online_upload,
+            attachments: [ .make(mime_class: "doc") ]
+        ))
+        presenter.update()
+
+        XCTAssert(view.embedded is DocViewerViewController)
+    }
+
     func testEmbedQuiz() {
         Assignment.make(from: .make(quiz_id: "1"))
         Submission.make(from: .make(submission_type: .online_quiz, attempt: 2))

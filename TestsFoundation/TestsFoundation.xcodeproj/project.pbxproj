@@ -36,6 +36,8 @@
 		7D47769A21AF396500B441CE /* APIQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47769921AF396500B441CE /* APIQuiz.swift */; };
 		7D5C87232239A9EE00D99651 /* SubmissionCommentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5C87222239A9EE00D99651 /* SubmissionCommentFixture.swift */; };
 		7D63F794215D8FC100151E49 /* APIBrandVariablesFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F793215D8FC100151E49 /* APIBrandVariablesFixture.swift */; };
+		7D64A97D23676402004EAEDF /* APICourseSectionFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A97C23676402004EAEDF /* APICourseSectionFixture.swift */; };
+		7D64A97F23676434004EAEDF /* CourseSectionFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A97E23676434004EAEDF /* CourseSectionFixture.swift */; };
 		7D6C8C6B22EA0C5900E5ADD8 /* APIActivityFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C6A22EA0C5900E5ADD8 /* APIActivityFixture.swift */; };
 		7D6C8C6F22EFA29F00E5ADD8 /* APITodoFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C6E22EFA29F00E5ADD8 /* APITodoFixture.swift */; };
 		7D6C8C7A22F351F400E5ADD8 /* ActAsUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C7922F351F400E5ADD8 /* ActAsUser.swift */; };
@@ -85,6 +87,7 @@
 		B1B42C1822404AB20087399A /* FileUploadTargetFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B42C1722404AB20087399A /* FileUploadTargetFixture.swift */; };
 		B1C6BF6521BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C6BF6421BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift */; };
 		B1CA334423393FEC0015CBB4 /* UserFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA334323393FEC0015CBB4 /* UserFixture.swift */; };
+		B1D5EF622358E01200B3ACD3 /* URLAuthenticationChallengeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D5EF612358E01200B3ACD3 /* URLAuthenticationChallengeExtensions.swift */; };
 		B1E789B821B1B06F0087FE4A /* TestLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789B721B1B06F0087FE4A /* TestLogger.swift */; };
 		B1E789BA21B1D0D30087FE4A /* LogEventFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */; };
 		B1F13296224BFE03002C0555 /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */; };
@@ -128,6 +131,8 @@
 		7D47769921AF396500B441CE /* APIQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQuiz.swift; sourceTree = "<group>"; };
 		7D5C87222239A9EE00D99651 /* SubmissionCommentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentFixture.swift; sourceTree = "<group>"; };
 		7D63F793215D8FC100151E49 /* APIBrandVariablesFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBrandVariablesFixture.swift; sourceTree = "<group>"; };
+		7D64A97C23676402004EAEDF /* APICourseSectionFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICourseSectionFixture.swift; sourceTree = "<group>"; };
+		7D64A97E23676434004EAEDF /* CourseSectionFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSectionFixture.swift; sourceTree = "<group>"; };
 		7D6C8C6A22EA0C5900E5ADD8 /* APIActivityFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIActivityFixture.swift; sourceTree = "<group>"; };
 		7D6C8C6E22EFA29F00E5ADD8 /* APITodoFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITodoFixture.swift; sourceTree = "<group>"; };
 		7D6C8C7922F351F400E5ADD8 /* ActAsUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActAsUser.swift; sourceTree = "<group>"; };
@@ -178,6 +183,7 @@
 		B1B42C1722404AB20087399A /* FileUploadTargetFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadTargetFixture.swift; sourceTree = "<group>"; };
 		B1C6BF6421BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensions.swift; sourceTree = "<group>"; };
 		B1CA334323393FEC0015CBB4 /* UserFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFixture.swift; sourceTree = "<group>"; };
+		B1D5EF612358E01200B3ACD3 /* URLAuthenticationChallengeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLAuthenticationChallengeExtensions.swift; sourceTree = "<group>"; };
 		B1E789B721B1B06F0087FE4A /* TestLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLogger.swift; sourceTree = "<group>"; };
 		B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEventFixture.swift; sourceTree = "<group>"; };
 		B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemFixture.swift; sourceTree = "<group>"; };
@@ -277,6 +283,7 @@
 				3B635B38225CE613001F353D /* APICalendarEventFixture.swift */,
 				7D70DE9B233EAB3500F5C3D4 /* APICommunicationChannelFixture.swift */,
 				3B0CEBA221504C2500D07CFA /* APICourseFixture.swift */,
+				7D64A97C23676402004EAEDF /* APICourseSectionFixture.swift */,
 				7DC4A556222EF9A800FA03DC /* APIDiscussionEntryFixture.swift */,
 				3BD364AC225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift */,
 				7D2DC2FE219A0514008FE29A /* APIDocViewerFixture.swift */,
@@ -312,6 +319,7 @@
 				B19792F421767B830000369C /* ContextColorFixture.swift */,
 				7D70DE9F233EACF200F5C3D4 /* CommunicationChannelFixture.swift */,
 				3B032D18215037CA00B570F7 /* CourseFixture.swift */,
+				7D64A97E23676434004EAEDF /* CourseSectionFixture.swift */,
 				7D37BE8E21C8398D0063FAAC /* DiscussionEntryFixture.swift */,
 				3BAA4176218A361100701E03 /* EnrollmentFixture.swift */,
 				B150C6352298D67E0096D58C /* ExternalToolFixture.swift */,
@@ -344,6 +352,7 @@
 			children = (
 				3B84C391218BB102005946BA /* DateExtensions.swift */,
 				B1C6BF6421BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift */,
+				B1D5EF612358E01200B3ACD3 /* URLAuthenticationChallengeExtensions.swift */,
 				7DAC287F22B1A3F900C0B692 /* XCUIApplicationExtensions.swift */,
 				E8BE4F5B233E73E100DC399A /* XCUIElementQueryExtensions.swift */,
 				E818EF20234652A20035613A /* XCTestCaseExtensions.swift */,
@@ -538,6 +547,7 @@
 				9F10A66D22931C5B00E3360C /* UserSettingsFixture.swift in Sources */,
 				7D903C0E22BC133B009D9E9E /* LoginFindSchool.swift in Sources */,
 				B1911CEF21C84B1000F42F91 /* MockNotificationManager.swift in Sources */,
+				7D64A97F23676434004EAEDF /* CourseSectionFixture.swift in Sources */,
 				3B84C392218BB102005946BA /* DateExtensions.swift in Sources */,
 				3B6386A72264F781002DEE72 /* APIRubricFixture.swift in Sources */,
 				7D70DE9E233EAB5500F5C3D4 /* APINotificationPreferencesFixture.swift in Sources */,
@@ -560,6 +570,7 @@
 				B1F13296224BFE03002C0555 /* ModuleItemFixture.swift in Sources */,
 				B141ABE4231EE16F00E73D84 /* APIOAuthTokenFixture.swift in Sources */,
 				7D903C1E22C17128009D9E9E /* TabBar.swift in Sources */,
+				7D64A97D23676402004EAEDF /* APICourseSectionFixture.swift in Sources */,
 				3B6043A1232AAD1A00757B93 /* APIAssignmentGroupFixture.swift in Sources */,
 				7D6C8C7A22F351F400E5ADD8 /* ActAsUser.swift in Sources */,
 				3BDB8F3C22E663A2003D81C3 /* MockPageViewLogger.swift in Sources */,
@@ -581,6 +592,7 @@
 				7DB0A1D421C1C90D009ABB40 /* APIAccountResultsFixture.swift in Sources */,
 				B1F428DC228B5C3C00EC8C37 /* MockURLSession.swift in Sources */,
 				9F62EDD62326C9E800EA9F79 /* APISearchRecipientFixture.swift in Sources */,
+				B1D5EF622358E01200B3ACD3 /* URLAuthenticationChallengeExtensions.swift in Sources */,
 				3BAA4177218A361100701E03 /* EnrollmentFixture.swift in Sources */,
 				3B0CEB732150406400D07CFA /* GroupFixture.swift in Sources */,
 				3B0CEBA421504C2500D07CFA /* APIGroupFixture.swift in Sources */,

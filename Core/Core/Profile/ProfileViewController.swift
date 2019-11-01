@@ -23,6 +23,7 @@ public protocol ProfileViewProtocol: ErrorViewController {
     func route(to: Route, options: RouteOptions?)
     func showHelpMenu(from cell: UITableViewCell)
     func launchLTI(url: URL)
+    func dismiss(animated flag: Bool, completion: (() -> Void)?)
 }
 
 public typealias ProfileViewCellBlock = (UITableViewCell) -> Void

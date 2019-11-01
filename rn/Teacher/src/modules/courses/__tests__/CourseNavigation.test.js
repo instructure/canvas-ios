@@ -56,7 +56,7 @@ describe('CourseNavigation', () => {
   })
 
   it('refreshes courses and tabs', () => {
-    const refreshCourses = jest.fn()
+    const refreshCourse = jest.fn()
     const refreshTabs = jest.fn()
     const refreshLTITools = jest.fn()
     const getUserSettings = jest.fn()
@@ -64,7 +64,7 @@ describe('CourseNavigation', () => {
       navigator: template.navigator(),
       courseID: course.id,
       tabs: [],
-      refreshCourses,
+      refreshCourse,
       refreshTabs,
       refreshLTITools,
       getUserSettings,
@@ -72,13 +72,13 @@ describe('CourseNavigation', () => {
 
     const tree = shallow(<Refreshed {...refreshProps} />)
     expect(tree).toMatchSnapshot()
-    expect(refreshCourses).toHaveBeenCalled()
+    expect(refreshCourse).toHaveBeenCalledWith(course.id)
     expect(refreshTabs).toHaveBeenCalledWith(course.id)
     expect(getUserSettings).toHaveBeenCalled()
   })
 
   it('refreshes when props change', () => {
-    const refreshCourses = jest.fn()
+    const refreshCourse = jest.fn()
     const refreshTabs = jest.fn()
     const refreshLTITools = jest.fn()
     const getUserSettings = jest.fn()
@@ -87,7 +87,7 @@ describe('CourseNavigation', () => {
       courseID: course.id,
       course,
       tabs: [],
-      refreshCourses,
+      refreshCourse,
       refreshTabs,
       refreshLTITools,
       getUserSettings,
@@ -97,7 +97,7 @@ describe('CourseNavigation', () => {
     expect(tree).toMatchSnapshot()
     tree.instance().refresh()
     tree.setProps(refreshProps)
-    expect(refreshCourses).toHaveBeenCalled()
+    expect(refreshCourse).toHaveBeenCalled()
     expect(refreshTabs).toHaveBeenCalledWith(course.id)
     expect(getUserSettings).toHaveBeenCalled()
   })

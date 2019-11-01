@@ -201,7 +201,11 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
     let scoreToUse = latePolicy ? this.props.enteredScore : this.props.score
 
     let score = this.props.useRubricForGrading && !this.state.useCustomGrade ? this.props.rubricScore : scoreToUse
-    let grade = this.props.gradingType !== 'points' && formatGradeText(gradeToUse, this.props.gradingType)
+    let grade = this.props.gradingType !== 'points' && formatGradeText({
+      grade: gradeToUse,
+      score: scoreToUse,
+      gradingType: this.props.gradingType,
+    })
 
     return { grade, score, pointsPossible: this.props.pointsPossible }
   }

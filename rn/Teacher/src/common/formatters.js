@@ -46,7 +46,7 @@ export function formatGrade (grade: number) {
 }
 
 // This is for Teacher
-export function formatGradeText (grade: ?string, gradingType?: GradingType, pointsPossible?: number): ?string {
+export function formatGradeText ({ gradingType, grade, score, pointsPossible }) {
   if (!['points', 'percent'].includes(gradingType)) {
     switch (grade) {
       case 'pass':
@@ -70,7 +70,7 @@ export function formatGradeText (grade: ?string, gradingType?: GradingType, poin
     const percent = +(grade || '').split('%')[0]
     return i18n.number(percent / 100, 'percent')
   }
-  const gradeNum = formatGrade(Number(grade))
+  const gradeNum = formatGrade(score != null ? score : Number(grade))
 
   if (gradingType === 'points' && pointsPossible) {
     return `${gradeNum}/${formatGrade(pointsPossible)}`

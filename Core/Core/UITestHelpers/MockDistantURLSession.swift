@@ -122,7 +122,7 @@ public class MockDistantURLSession: URLSession {
             self.session = nil
             let mock = MockDistantURLSession.dataMocks[url]
             if mock == nil {
-                var failReason = "data mock not found for url:\n\(url.absoluteString)\n"
+                var failReason = "data mock not found for url: \(url.absoluteString)\n"
                 for key in MockDistantURLSession.dataMocks.keys {
                     failReason += "  \(key.absoluteString)\n"
                 }
@@ -152,10 +152,14 @@ public class MockDistantURLSession: URLSession {
         return dataTask(with: request.url!, completionHandler: completionHandler)
     }
     @objc public dynamic override func dataTask(with url: URL) -> URLSessionDataTask {
-        return MockDataTask(url: url, session: self, completionHandler: nil)
+        return dataTask(with: url, completionHandler: { _, _, _ in })
     }
     @objc public dynamic override func dataTask(with url: URL, completionHandler: @escaping DataHandler) -> URLSessionDataTask {
-        return MockDataTask(url: url, session: self, completionHandler: completionHandler)
+        if url.scheme?.hasPrefix("http") != false {
+            return MockDataTask(url: url, session: self, completionHandler: completionHandler)
+        } else {
+            return URLSession.shared.dataTask(with: url, completionHandler: completionHandler)
+        }
     }
 
     // MARK: download
@@ -210,7 +214,7 @@ public class MockDistantURLSession: URLSession {
             self.session = nil
             let mock = MockDistantURLSession.downloadMocks[url]
             if mock == nil {
-                var failReason = "download mock not found for url:\n\(url.absoluteString)\n"
+                var failReason = "download mock not found for url: \(url.absoluteString)\n"
                 for key in MockDistantURLSession.downloadMocks.keys {
                     failReason += "  \(key.absoluteString)\n"
                 }
@@ -282,7 +286,7 @@ public class MockDistantURLSession: URLSession {
             self.session = nil
             let mock = MockDistantURLSession.dataMocks[request.url!]
             if mock == nil {
-                var failReason = "upload mock not found for url:\n\(request.url!.absoluteString)\n"
+                var failReason = "upload mock not found for url: \(request.url!.absoluteString)\n"
                 for key in MockDistantURLSession.dataMocks.keys {
                     failReason += "  \(key.absoluteString)\n"
                 }

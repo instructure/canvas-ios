@@ -21,6 +21,7 @@ import gql from 'graphql-tag'
 
 export default gql`query SubmissionList($assignmentID: ID!, $states: [SubmissionState!], $late: Boolean, $scoredMoreThan: Float, $scoredLessThan: Float, $sectionIDs: [ID!], $gradingStatus: SubmissionGradingStatus) {
   assignment(id: $assignmentID) {
+    id
     name
     pointsPossible
     gradeGroupStudentsIndividually
@@ -79,6 +80,7 @@ export default gql`query SubmissionList($assignmentID: ID!, $states: [Submission
       edges {
         submission: node {
           grade
+          score
           late
           missing
           excused
@@ -113,6 +115,7 @@ export default gql`query SubmissionList($assignmentID: ID!, $states: [Submission
       edges {
         submission: node {
           grade
+          score
           late
           missing
           excused

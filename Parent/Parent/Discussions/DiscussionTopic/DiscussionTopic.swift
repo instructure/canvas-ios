@@ -61,7 +61,7 @@ public final class DiscussionTopic: NSManagedObject, LockableModel {
 
     // Parent only cares about the first attachment's name
     @NSManaged internal (set) public var attachmentName: String?
-    /// MARK: Locking
+    // MARK: Locking
     @NSManaged public var lockedForUser: Bool
     @NSManaged public var lockExplanation: String?
     @NSManaged public var canView: Bool

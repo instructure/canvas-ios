@@ -54,46 +54,23 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open class CoreUITestRun: XCTestCaseRun {
-        var needsRetry = false
-
-        // Don't set this above 1!
-        // There seems to be a bug in how this interacts with XCTest causing too many retries to look like success (!!)
-        var retries = 1
         override open func recordFailure(withDescription description: String, inFile filePath: String?, atLine lineNumber: Int, expected: Bool) {
-            if needsRetry { return }
-            if retries > 0 {
-                retries -= 1
-                // TODO: collect this information across builds
-                print("WARN: \(description) at \(filePath ?? "<unknown>"):\(lineNumber), will retry with clean launch...")
-                needsRetry = true
-            } else {
-                super.recordFailure(withDescription: description, inFile: filePath, atLine: lineNumber, expected: expected)
-            }
+            CoreUITestCase.needsLaunch = true
+            super.recordFailure(withDescription: description, inFile: filePath, atLine: lineNumber, expected: expected)
         }
-    }
-
-    @objc var shouldHaltWhenReceivesControl: Bool {
-        return (testRun as? CoreUITestRun)?.needsRetry ?? false
     }
 
     override open var testRunClass: AnyClass? { return CoreUITestRun.self }
 
-    open override func invokeTest() {
-        super.invokeTest()
-        if let run = testRun as? CoreUITestRun, run.needsRetry {
-            run.needsRetry = false
-            app.terminate()
-            invokeTest()
-        }
-    }
+    private let isRetry = ProcessInfo.processInfo.environment["CANVAS_TEST_IS_RETRY"] == "YES"
 
-    private static var firstRun = true
+    private static var needsLaunch = true
     open override func setUp() {
         super.setUp()
         LoginSession.useTestKeychain()
         continueAfterFailure = false
-        if CoreUITestCase.firstRun || app.state != .runningForeground {
-            CoreUITestCase.firstRun = false
+        if CoreUITestCase.needsLaunch || app.state != .runningForeground || isRetry {
+            CoreUITestCase.needsLaunch = false
             launch()
             if currentSession() != nil {
                 homeScreen.waitToExist()
@@ -104,12 +81,12 @@ open class CoreUITestCase: XCTestCase {
             logInUser(user)
             homeScreen.waitToExist()
         }
-        // If this is a retry, re-install the old mocks
+        // re-install the existing mocks
         for message in dataMocks {
-            send(.mockData(message))
+            try! send(.mockData(message))
         }
         for message in downloadMocks {
-            send(.mockDownload(message))
+            try! send(.mockDownload(message))
         }
     }
 
@@ -119,7 +96,7 @@ open class CoreUITestCase: XCTestCase {
         super.tearDown()
     }
 
-    var failTestOnMissingMock = true
+    public var failTestOnMissingMock = true
     static var currentTestCase: CoreUITestCase?
 
     class ServerDelegate: IPCDriverServerDelegate {
@@ -152,10 +129,16 @@ open class CoreUITestCase: XCTestCase {
         app.find(labelContaining: "Loading").waitToVanish(120)
     }
 
-    func send(_ helper: UITestHelpers.Helper) {
-        if let response = ipcAppClient.requestRemote(helper),
-            !response.isEmpty {
-            fatalError("Unexpected IPC response")
+    func send(_ helper: UITestHelpers.Helper, ignoreErrors: Bool = false) {
+        do {
+            if let response = try ipcAppClient.requestRemote(helper),
+                !response.isEmpty {
+                throw IPCError(message: "Unexpected IPC response")
+            }
+        } catch let error {
+            if !ignoreErrors {
+                XCTFail("IPC failed: \(error)")
+            }
         }
     }
 
@@ -201,7 +184,7 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open func currentSession() -> LoginSession? {
-        guard let data = ipcAppClient.requestRemote(UITestHelpers.Helper.currentSession) else {
+        guard let data = try? ipcAppClient.requestRemote(UITestHelpers.Helper.currentSession) else {
             fatalError("Bad IPC response (no data returned)")
         }
         if data.isEmpty || data == "null".data(using: .utf8) {
@@ -303,6 +286,13 @@ open class CoreUITestCase: XCTestCase {
     open func mock(assignment: APIAssignment) -> APIAssignment {
         mockData(GetAssignmentRequest(courseID: assignment.course_id.value, assignmentID: assignment.id.value, include: [ .submission ]), value: assignment)
         mockData(GetAssignmentRequest(courseID: assignment.course_id.value, assignmentID: assignment.id.value, include: []), value: assignment)
+        for submission in assignment.submission?.values ?? [] {
+            mockData(GetSubmissionRequest(
+                context: ContextModel(.course, id: assignment.course_id.value),
+                assignmentID: assignment.id.value, userID: "1"),
+                value: submission)
+        }
+
         return assignment
     }
 

@@ -274,6 +274,7 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
 
     func userDidLogout(session: LoginSession) {
         let wasCurrent = environment.currentSession == session
+        environment.api.makeRequest(DeleteLoginOAuthRequest(session: session)) { _, _, _ in }
         userDidStopActing(as: session)
         if wasCurrent { changeUser() }
     }

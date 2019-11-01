@@ -83,6 +83,33 @@ extension LoginWebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         presenter?.webViewFinishedLoading()
     }
+
+    func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        guard [NSURLAuthenticationMethodNTLM, NSURLAuthenticationMethodHTTPBasic].contains(challenge.protectionSpace.authenticationMethod) else {
+            completionHandler(.performDefaultHandling, nil)
+            return
+        }
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: NSLocalizedString("Login", comment: ""), message: nil, preferredStyle: .alert)
+            alert.addTextField { textField in
+                textField.placeholder = NSLocalizedString("Username", comment: "")
+            }
+            alert.addTextField { textField in
+                textField.placeholder = NSLocalizedString("Password", comment: "")
+                textField.isSecureTextEntry = true
+            }
+            alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+                completionHandler(.performDefaultHandling, nil)
+            })
+            alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .default) { _ in
+                if let username = alert.textFields?.first?.text, let password = alert.textFields?.last?.text {
+                    let credential = URLCredential(user: username, password: password, persistence: .forSession)
+                    completionHandler(.useCredential, credential)
+                }
+            })
+            AppEnvironment.shared.router.show(alert, from: self, options: [.modal])
+        }
+    }
 }
 
 extension LoginWebViewController: WKUIDelegate {

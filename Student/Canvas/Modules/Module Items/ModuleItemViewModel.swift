@@ -187,8 +187,18 @@ class ModuleItemViewModel: NSObject {
             }
         vm.titleTextColor <~ self.locked.producer.map { $0 && type != .assignment && type != .discussion ? .lightGray : .black }
         vm.indentationLevel <~ self.moduleItem.producer.map { $0?.indent ?? 0 }.map { Int($0) }
-        vm.selectionEnabled <~ self.locked.producer.map { !$0 || type == .assignment || type == .discussion }
-        vm.setSelected <~ self.selected
+        vm.selectionEnabled <~ self.locked.producer.map { !$0 && type != .subHeader || type == .assignment || type == .discussion }
+        let becameActive = NotificationCenter.default.reactive
+            .notifications(forName: .moduleItemBecameActive)
+            .take(duringLifetimeOf: vm.setSelected)
+        vm.setSelected <~ self.moduleItem.producer
+            .combineLatest(with: becameActive)
+            .map { moduleItem, notification in
+                if let moduleItem = moduleItem, let id = notification.userInfo?["moduleItemID"] as? String {
+                    return moduleItem.id == id
+                }
+                return false
+            }
 
         let contentType = self.moduleItem.producer.map { $0?.contentType.accessibilityLabel }
         vm.accessibilityLabel <~ SignalProducer.combineLatest(vm.title.producer, vm.subtitle.producer, contentType, self.completed.producer, self.locked.producer)
@@ -297,7 +307,6 @@ class ModuleItemViewModel: NSObject {
 
         super.init()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(moduleItemBecameActive(_:)), name: .moduleItemBecameActive, object: nil)
         beginObservingLockedStatus()
     }
 
@@ -314,12 +323,6 @@ class ModuleItemViewModel: NSObject {
         let completed = moduleItem.producer.map { $0?.completed ?? false }
         let canFulfill = SignalProducer.combineLatest(sameCompletionRequirement.skipRepeats(==), completed.skipRepeats(==)).map { $0 && !$1 }
         return Property(initial: false, then: canFulfill)
-    }
-
-    @objc func moduleItemBecameActive(_ notification: NSNotification) {
-        if let moduleItem = moduleItem.value, let id = notification.userInfo?["moduleItemID"] as? String {
-            selected.value = moduleItem.id == id
-        }
     }
 
     @objc func moduleItemBecameActive() {
