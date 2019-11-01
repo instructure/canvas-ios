@@ -37,7 +37,6 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
     var courseID: String!
     var env: AppEnvironment!
     var shouldFilter = false
-    var selectedIndexPath: IndexPath?
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavbar()
@@ -69,7 +68,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useContextColor(color)
-        if let indexPath = selectedIndexPath { tableView.deselectRow(at: indexPath, animated: true) }
+        if let indexPath = tableView.indexPathForSelectedRow { tableView.deselectRow(at: indexPath, animated: true) }
     }
 
     private func configureTableView() {
@@ -164,7 +163,6 @@ extension AssignmentListViewController: UITableViewDataSource, UITableViewDelega
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedIndexPath = indexPath
         let assignment = groups[indexPath.section].assignments[indexPath.row]
         guard let url = assignment.htmlUrl else { return }
         env.router.route(to: url, from: self, options: nil)
