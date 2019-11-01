@@ -123,7 +123,6 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
         let alert = router.presented as! UIAlertController
         alert.textFields?[0].text = " Splatoon 2\n"
         alert.textFields?[1].text = "splatoon.ink "
-        print((alert.actions[1] as! AlertAction).handler!)
         update { (alert.actions[1] as! AlertAction).handler?(alert.actions[1]) } // OK
         XCTAssertEqual(getHTML(), "<a href=\"https://splatoon.ink\">Splatoon 2</a>!")
     }
