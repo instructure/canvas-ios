@@ -1,10 +1,6 @@
 ---
 name: CITest
-on:
-  push:
-    branches:
-      - '*'
-      - '!master'
+on: pull_request
 
 jobs:
   citest:
@@ -30,6 +26,7 @@ jobs:
           ../secrets/scripts/setup-dev-secrets.sh
       - name: Bitrise
         run: |
+          set -exo pipefail
           if [[ "$GITHUB_EVENT_NAME" = pull_request ]]; then
             export BITRISE_PULL_REQUEST=$(jq '.number' "$GITHUB_EVENT_PATH")
           fi
