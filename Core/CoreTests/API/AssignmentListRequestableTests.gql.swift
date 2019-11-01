@@ -59,6 +59,7 @@ class AssignmentListRequestableTests: XCTestCase {
             model = try decoder.decode(APIAssignmentListResponse.self, from: data!)
         } catch {
             print("error: \(error)")
+            XCTFail("decode failed  \(error.localizedDescription)")
         }
 
         XCTAssertNotNil(model)

@@ -46,29 +46,11 @@ class AssignmentListViewControllerTests: PersistenceTestCase {
     func data(gradingPeriods: [APIAssignmentListGradingPeriod], groups: [APIAssignmentListGroup]) -> Data {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
-        let gpData = try! encoder.encode(gradingPeriods)
-        let grpData = try! encoder.encode(groups)
-        let strGrdPeriod = String(data: gpData, encoding: .utf8)!
-        let strGrp = String(data: grpData, encoding: .utf8)!
-        print("json: \(strGrdPeriod)")
 
-        let str = """
-        {
-         "data": {
-           "course": {
-             "name": "CourseName",
-             "gradingPeriods": {
-               "nodes": \(strGrdPeriod)
-             },
-             "groups": {
-               "nodes": \(strGrp)
-             }
-           }
-         }
-        }
-        """
-        let data = str.data(using: .utf8)
-        return data!
+        let response = APIAssignmentListResponse(data: APIAssignmentListResponse.Data(course: APIAssignmentListResponse.Course(gradingPeriods: APIAssignmentListResponse.GPNodes(nodes: gradingPeriods), groups: APIAssignmentListResponse.GroupNodes(nodes: groups))))
+
+        let data = try! encoder.encode(response)
+        return data
     }
 
     func loadView() {
