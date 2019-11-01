@@ -149,7 +149,7 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
         controller.webView.evaluateJavaScript("document.querySelector('.retry-upload').onclick()")
         wait(for: [expectation(for: .all, evaluatedWith: self) { () -> Bool in
             !(self.databaseClient.fetch() as [File]).isEmpty
-        }], timeout: 5)
+        }, ], timeout: 5)
     }
 
     func testBadMedia() {
@@ -171,7 +171,7 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
         controller.webView.evaluateJavaScript("document.querySelector('.retry-upload').onclick()")
         wait(for: [expectation(for: .all, evaluatedWith: self) { () -> Bool in
             (self.databaseClient.fetch() as [File]).isEmpty // still empty due to error
-        }], timeout: 5)
+        }, ], timeout: 5)
     }
 }
 
