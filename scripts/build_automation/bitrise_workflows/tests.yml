@@ -40,6 +40,15 @@ workflows:
             git checkout -
     # - cache-pull: {}
     - script:
+        title: super-hacky-temp-carthage-cache
+        run_if: .IsCI
+        inputs:
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            curl -L https://github.com/cobbal/temp-carthage-cache/raw/master/Carthage.tar.xz | tar xJf -
+    - script:
         title: brew tap
         run_if: .IsCI
         inputs:
