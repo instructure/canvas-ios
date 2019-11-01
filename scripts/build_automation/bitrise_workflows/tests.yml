@@ -133,14 +133,32 @@ workflows:
         inputs:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
         - command: test --silent --coverage --color
-    - git::git@github.com:instructure/steps-xcode-test.git@master:
-        inputs:
-        - generate_code_coverage_files: 'yes'
-        - xcpretty_test_options: ''
-        - simulator_device: iPhone 8
-        - export_uitest_artifacts: 'true'
-        - scheme: CITests
+    # - git::git@github.com:instructure/steps-xcode-test.git@master:
+    #     inputs:
+    #     - generate_code_coverage_files: 'yes'
+    #     - xcpretty_test_options: ''
+    #     - simulator_device: iPhone 8
+    #     - export_uitest_artifacts: 'true'
+    #     - scheme: CITests
+    #     title: CITests
+    - script:
         title: CITests
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            export NSUnbufferedIO=YES
+            export CODE_SIGNING_REQUIRED=NO
+
+            xcodebuild \
+                -workspace Canvas.xcworkspace \
+                -scheme CITests \
+                -sdk iphonesimulator \
+                -destination 'platform=iOS Simulator,name=iPhone 8,OS=13.0' \
+                -configuration Debug \
+                test | xcbeautify
     - script:
         title: Save xcresult
         inputs:
