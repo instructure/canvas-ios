@@ -156,7 +156,7 @@ workflows:
                 -workspace Canvas.xcworkspace \
                 -scheme CITests \
                 -sdk iphonesimulator \
-                -destination 'platform=iOS Simulator,name=iPhone 8,OS=13.1' \
+                -destination 'platform=iOS Simulator,name=iPhone 8' \
                 -configuration Debug \
                 -resultBundlePath scripts/coverage/citests.xcresult \
                 test | xcbeautify
