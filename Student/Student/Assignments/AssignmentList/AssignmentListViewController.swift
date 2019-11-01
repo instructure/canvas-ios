@@ -37,6 +37,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
     var courseID: String!
     var env: AppEnvironment!
     var shouldFilter = false
+    var selectedIndexPath: IndexPath?
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavbar()
@@ -65,6 +66,22 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
         fetchData()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.useContextColor(color)
+        if let indexPath = selectedIndexPath { tableView.deselectRow(at: indexPath, animated: true) }
+    }
+
+    private func configureTableView() {
+        tableRefresher.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        tableView.refreshControl = tableRefresher
+
+        tableView.registerCell(ListCell.self)
+        tableView.registerHeaderFooterView(SectionHeaderView.self)
+        tableViewDefaultOffset = tableView.contentOffset
+        showSpinner()
+    }
+
     func fetchData() {
         showSpinner()
 
@@ -89,21 +106,6 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
                 self?.updateLabels()
             }
         }
-    }
-
-    private func configureTableView() {
-        tableRefresher.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
-        tableView.refreshControl = tableRefresher
-
-        tableView.registerCell(ListCell.self)
-        tableView.registerHeaderFooterView(SectionHeaderView.self)
-        tableViewDefaultOffset = tableView.contentOffset
-        showSpinner()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.useContextColor(color)
     }
 
     @IBAction func actionFilterClicked(_ sender: Any) {
@@ -162,7 +164,7 @@ extension AssignmentListViewController: UITableViewDataSource, UITableViewDelega
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        selectedIndexPath = indexPath
         let assignment = groups[indexPath.section].assignments[indexPath.row]
         guard let url = assignment.htmlUrl else { return }
         env.router.route(to: url, from: self, options: nil)
