@@ -4,8 +4,6 @@ project_type: other
 workflows:
   danger:
     steps:
-    # - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
-    #     title: Canvas iOS Secrets
     - script:
         title: Set up environment variables
         inputs:
@@ -17,37 +15,34 @@ workflows:
             if printf "%s\n" "$BITRISE_GIT_MESSAGE" | grep -iF "[run nightly]"; then
                 envman add --key RUN_NIGHTLY --value YES
             fi
+
+    - build-router-start:
+        inputs:
+        - access_token: "$BITRISE_TEST_TOKEN"
+        - workflows: danger-yarn
+    - set-env-var:
+        inputs:
+        - destination_keys: DANGER_YARN_SLUG
+        - value: "$ROUTER_STARTED_BUILD_SLUGS"
+
     - build-router-start:
         run_if: enveq "RUN_NIGHTLY" "YES"
         inputs:
         - access_token: "$BITRISE_TEST_TOKEN"
         - workflows: nightly
-    - script:
+    - set-env-var:
+        run_if: enveq "RUN_NIGHTLY" "YES"
+        inputs:
+        - destination_keys: NIGHTLY_SLUG
+        - value: "$ROUTER_STARTED_BUILD_SLUGS"
+
+    - cache-pull: {}
+    - script-runner:
+        run_if: .IsCI
         title: Set file mtime
-        run_if: .IsCI
         inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            set -ex
-
-            # Set all master files to last changed from commit
-            git fetch origin master
-            git checkout master
-            TIMESTAMP=$(date -r $(git log -1 --format="%at") +%Y%m%d%H%M.%S)
-            find . -exec touch -t $TIMESTAMP {} +
-
-            # Set all changed files to now
-            git checkout -
-    # - cache-pull: {}
-    - script:
-        title: super-hacky-temp-carthage-cache
-        run_if: .IsCI
-        inputs:
-        - content: |-
-            #!/bin/zsh
-            set -euxo pipefail
-
-            curl -L https://github.com/cobbal/temp-carthage-cache/raw/master/Carthage.tar.xz | tar xJf -
+        - runner: "/bin/zsh"
+        - file_path: scripts/build_automation/set-mtime.sh
     - script:
         title: brew tap
         run_if: .IsCI
@@ -64,16 +59,6 @@ workflows:
         inputs:
         - upgrade: 'yes'
         - packages: awscli swiftlint jq xcbeautify mxcl/made/swift-sh
-    - script:
-        title: Swift Lint
-        inputs:
-        - content: |
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            set -o pipefail
-
-            ./scripts/runSwiftLint.sh 2>&1 | xcbeautify
     - carthage:
         inputs:
         - carthage_options: "--platform ios"
@@ -91,26 +76,8 @@ workflows:
     - cocoapods-install:
         inputs:
         - verbose: 'false'
-    - yarn:
-        title: rn yarn lint
-        inputs:
-        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-        - command: lint
-    - yarn:
-        title: rn yarn test
-        inputs:
-        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-        - command: test --silent --coverage --color
-    # - git::git@github.com:instructure/steps-xcode-test.git@master:
-    #     inputs:
-    #     - generate_code_coverage_files: 'yes'
-    #     - xcpretty_test_options: ''
-    #     - simulator_device: iPhone 8
-    #     - export_uitest_artifacts: 'true'
-    #     - scheme: CITests
-    #     title: CITests
     - script:
-        title: CITests
+        title: Build CITests
         inputs:
         - runner_bin: "/bin/zsh"
         - content: |-
@@ -119,15 +86,32 @@ workflows:
 
             export NSUnbufferedIO=YES
             export CODE_SIGNING_REQUIRED=NO
+            export IgnoreFileSystemDeviceInodeChanges=1
 
             xcodebuild \
                 -workspace Canvas.xcworkspace \
                 -scheme CITests \
                 -sdk iphonesimulator \
-                -destination 'platform=iOS Simulator,name=iPhone 8' \
                 -configuration Debug \
+                build-for-testing |
+                tee $BITRISE_DEPLOY_DIR/raw-xcodebuild.log |
+                xcpretty --color
+    - script:
+        title: Run CITests
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            export NSUnbufferedIO=YES
+
+            xcodebuild \
+                -workspace Canvas.xcworkspace \
+                -scheme CITests \
+                -destination 'platform=iOS Simulator,name=iPhone 8' \
                 -resultBundlePath scripts/coverage/citests.xcresult \
-                test | xcbeautify
+                test-without-building | xcbeautify
     - script:
         title: Save xcresult
         inputs:
@@ -138,6 +122,25 @@ workflows:
 
             zip --quiet -r "$BITRISE_DEPLOY_DIR/citests.xcresult.zip" scripts/coverage/citests.xcresult
         is_always_run: true
+    - build-router-wait:
+        inputs:
+        - access_token: "$BITRISE_TEST_TOKEN"
+        - buildslugs: "$DANGER_YARN_SLUG"
+    - script:
+        title: Get danger-yarn results
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            ARTIFACT_SLUG=$(curl -H "Authorization: $BITRISE_TEST_TOKEN" \
+                "https://api.bitrise.io/v0.1/apps/${BITRISE_APP_SLUG}/builds/${DANGER_YARN_SLUG}/artifacts" |
+                jq -r '.data[] | select(.title == "yarn-coverage.tar.xz").slug')
+            ARTIFACT_URL=$(curl -H "Authorization: $BITRISE_TEST_TOKEN" \
+                "https://api.bitrise.io/v0.1/apps/${BITRISE_APP_SLUG}/builds/${DANGER_YARN_SLUG}/artifacts/${ARTIFACT_SLUG}" |
+                jq -r '.data.expiring_download_url')
+            curl -L $ARTIFACT_URL | tar xJf -
     - script:
         title: Report Coverage
         run_if: .IsCI
@@ -168,42 +171,24 @@ workflows:
         run_if: .IsCI
         inputs:
         - command: danger ci
-    # - cache-push:
-    #     inputs:
-    #     - cache_paths: |-
-    #         $BITRISE_SOURCE_DIR/rn/Teacher/node_modules/
-    #         $BITRISE_SOURCE_DIR/Carthage/Build/iOS/
-    #         ~/Library/Developer/Xcode/DerivedData
-    #     - ignore_check_on_paths: |-
-    #         $BITRISE_SOURCE_DIR/rn/Teacher/node_modules/
-    #         ~/Library/Developer/Xcode/DerivedData
-    # - deploy-to-bitrise-io: {}
+    - deploy-to-bitrise-io: {}
     - build-router-wait:
         run_if: enveq "RUN_NIGHTLY" "YES"
         inputs:
         - access_token: "$BITRISE_TEST_TOKEN"
+        - buildslugs: "$NIGHTLY_SLUG"
 
   nightly:
     steps:
     - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
         title: Canvas iOS Secrets
-    - script:
-        title: Set file mtime
-        run_if: .IsCI
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            set -ex
-
-            # Set all master files to last changed from commit
-            git fetch origin master
-            git checkout master
-            TIMESTAMP=$(date -r $(git log -1 --format="%at") +%Y%m%d%H%M.%S)
-            find . -exec touch -t $TIMESTAMP {} +
-
-            # Set all changed files to now
-            git checkout -
     - cache-pull: {}
+    - script-runner:
+        run_if: .IsCI
+        title: Set file mtime
+        inputs:
+        - runner: "/bin/zsh"
+        - file_path: scripts/build_automation/set-mtime.sh
     - script:
         title: brew tap
         run_if: .IsCI
@@ -293,15 +278,6 @@ workflows:
         run_if: .IsCI
         inputs:
         - command: danger ci
-    - cache-push:
-        inputs:
-        - cache_paths: |-
-            $BITRISE_SOURCE_DIR/rn/Teacher/node_modules/
-            $BITRISE_SOURCE_DIR/Carthage/Build/iOS/
-            ~/Library/Developer/Xcode/DerivedData
-        - ignore_check_on_paths: |-
-            $BITRISE_SOURCE_DIR/rn/Teacher/node_modules/
-            ~/Library/Developer/Xcode/DerivedData
     - deploy-to-bitrise-io: {}
     - slack:
         inputs:
@@ -313,10 +289,143 @@ workflows:
         - message: ''
         - pretext: "*Nightly Build Succeeded!*"
 
-# Temporary, will be removed once bitrise is reconfigured:
-  danger-experimental:
-    after_run:
-    - danger
-  nightly-experimental:
-    after_run:
-    - nightly
+  nightly-cache-gen:
+    steps:
+    - cache-pull: {}
+    - script:
+        title: brew tap
+        inputs:
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            brew tap mxcl/made
+            brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
+    - brew-install:
+        title: brew install
+        inputs:
+        - upgrade: 'yes'
+        - packages: awscli swiftlint jq xcbeautify mxcl/made/swift-sh
+    - carthage:
+        inputs:
+        - carthage_options: "--platform ios"
+    - yarn:
+        title: yarn install root dependencies
+    - yarn:
+        inputs:
+        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
+        title: rn yarn install
+    - yarn:
+        title: rn yarn global add react-native-cli
+        inputs:
+        - command: global add react-native-cli
+        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
+    - cocoapods-install:
+        inputs:
+        - verbose: 'false'
+    - script:
+        title: Build
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            export NSUnbufferedIO=YES
+            export CODE_SIGNING_REQUIRED=NO
+            export IgnoreFileSystemDeviceInodeChanges=1
+
+            xcodebuild \
+                -workspace Canvas.xcworkspace \
+                -scheme CITests \
+                -sdk iphonesimulator \
+                -configuration Debug \
+                build-for-testing |
+                tee $BITRISE_DEPLOY_DIR/raw-xcodebuild.log |
+                xcpretty --color
+    - script:
+        title: Prepare cache
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            mkdir -p cache-metadata
+            echo $GIT_CLONE_COMMIT_HASH > cache-metadata/cache-commit-hash
+            # always cache
+            uuidgen > cache-metadata/cache-fingerprint
+    - cache-push:
+        inputs:
+        - compress_archive: true
+        - cache_paths: |-
+            cache-metadata/ -> cache-metadata/cache-fingerprint
+            rn/Teacher/node_modules/ -> cache-metadata/cache-fingerprint
+            Carthage/ -> cache-metadata/cache-fingerprint
+            ~/Library/Developer/Xcode/DerivedData -> cache-metadata/cache-fingerprint
+            /usr/local/Homebrew -> cache-metadata/cache-fingerprint
+  danger-yarn:
+    steps:
+    - cache-pull: {}
+    - script-runner:
+        run_if: .IsCI
+        title: Set file mtime
+        inputs:
+        - runner: "/bin/zsh"
+        - file_path: scripts/build_automation/set-mtime.sh
+    - script:
+        title: brew tap
+        run_if: .IsCI
+        inputs:
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            brew tap mxcl/made
+            brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
+    - brew-install:
+        title: brew install
+        run_if: .IsCI
+        inputs:
+        - upgrade: 'yes'
+        - packages: awscli swiftlint jq xcbeautify mxcl/made/swift-sh
+    - script:
+        title: Swift Lint
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -eo pipefail
+
+            ./scripts/runSwiftLint.sh 2>&1 | xcbeautify
+    - yarn:
+        title: yarn install root dependencies
+    - yarn:
+        inputs:
+        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
+        title: rn yarn install
+    - yarn:
+        title: rn yarn global add react-native-cli
+        inputs:
+        - command: global add react-native-cli
+        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
+    - yarn:
+        title: rn yarn lint
+        inputs:
+        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
+        - command: lint
+    - yarn:
+        title: rn yarn test
+        inputs:
+        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
+        - command: test --silent --coverage --color
+    - script:
+        title: Save coverage
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            tar -cJf $BITRISE_DEPLOY_DIR/yarn-coverage.tar.xz scripts/coverage/react-native
+    - deploy-to-bitrise-io: {}
