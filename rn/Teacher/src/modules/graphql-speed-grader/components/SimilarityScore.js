@@ -20,7 +20,7 @@
 
 import React, { Component } from 'react'
 import i18n from 'format-message'
-import { createStyleSheet } from '../../../common/stylesheet'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import images from '../../../images'
 import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
 
@@ -38,14 +38,6 @@ type StateProps = {
 }
 
 export type Props = StateProps
-
-const TURN_IT_IN_COLORS = {
-  PASS: '#008EE2',
-  DECENT: '#00AC18',
-  SKETCHY: '#FFC100',
-  DANGER: '#FC5E13',
-  THREAT_LEVEL_MIDNIGHT: '#EE0612',
-}
 
 export default class SimilarityScore extends Component<Props, any> {
   render () {
@@ -93,22 +85,22 @@ export default class SimilarityScore extends Component<Props, any> {
   }
 
   renderScore (score: number) {
-    let color = 'white'
+    let color = colors.textInfo
     switch (true) {
       case (score >= 75):
-        color = TURN_IT_IN_COLORS.THREAT_LEVEL_MIDNIGHT
+        color = colors.textDanger
         break
       case (score >= 50):
-        color = TURN_IT_IN_COLORS.DANGER
+        color = colors.textAlert
         break
       case (score >= 25):
-        color = TURN_IT_IN_COLORS.SKETCHY
+        color = colors.textWarning
         break
       case (score >= 1):
-        color = TURN_IT_IN_COLORS.DECENT
+        color = colors.textSuccess
         break
       default:
-        color = TURN_IT_IN_COLORS.PASS
+        color = colors.textInfo
     }
 
     return (
