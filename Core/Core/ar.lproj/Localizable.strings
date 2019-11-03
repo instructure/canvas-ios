@@ -437,6 +437,9 @@
 "Log Out" = "تسجيل الخروج";
 
 /* No comment provided by engineer. */
+"Login" = "تسجيل الدخول";
+
+/* No comment provided by engineer. */
 "Manage Children" = "إدارة الأطفال";
 
 /* No comment provided by engineer. */
@@ -510,6 +513,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "الصفحات";
+
+/* No comment provided by engineer. */
+"Password" = "كلمة المرور";
 
 /* No comment provided by engineer. */
 "Pause" = "إيقاف مؤقت";
@@ -765,6 +771,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "معرف المستخدم";
+
+/* No comment provided by engineer. */
+"Username" = "اسم المستخدم";
 
 /* No comment provided by engineer. */
 "Video" = "فيديو";

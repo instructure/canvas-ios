@@ -17,6 +17,9 @@
 "Act as User" = "Atuar como utilizador";
 
 /* No comment provided by engineer. */
+"Add" = "Adicionar";
+
+/* No comment provided by engineer. */
 "Add Student" = "Adicionar aluno";
 
 /* Label displayed when logged in as an admin */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "Entregue: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Sumário";
 
 /* Syllabus Button Title */
 "Syllabus" = "Apontamentos";

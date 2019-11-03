@@ -17,6 +17,9 @@
 "Act as User" = "Opptre som bruker";
 
 /* No comment provided by engineer. */
+"Add" = "Legg til";
+
+/* No comment provided by engineer. */
 "Add Student" = "Legg til student";
 
 /* Label displayed when logged in as an admin */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "Innsendt: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Sammendrag";
 
 /* Syllabus Button Title */
 "Syllabus" = "Emneoversikt";

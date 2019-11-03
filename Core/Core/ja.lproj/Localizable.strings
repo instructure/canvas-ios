@@ -437,6 +437,9 @@
 "Log Out" = "ログアウト";
 
 /* No comment provided by engineer. */
+"Login" = "ログイン";
+
+/* No comment provided by engineer. */
 "Manage Children" = "「子」を管理する";
 
 /* No comment provided by engineer. */
@@ -510,6 +513,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "ページ";
+
+/* No comment provided by engineer. */
+"Password" = "パスワード";
 
 /* No comment provided by engineer. */
 "Pause" = "一時停止";
@@ -765,6 +771,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "ユーザーID";
+
+/* No comment provided by engineer. */
+"Username" = "ユーザー名";
 
 /* No comment provided by engineer. */
 "Video" = "ビデオ";

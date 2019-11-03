@@ -17,6 +17,9 @@
 "Act as User" = "Mahi rite kaiwhakamahi";
 
 /* No comment provided by engineer. */
+"Add" = "Tāpiri";
+
+/* No comment provided by engineer. */
 "Add Student" = "Tapiri ākonga";
 
 /* Label displayed when logged in as an admin */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "Tukuna: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Whakarāpopototanga";
 
 /* Syllabus Button Title */
 "Syllabus" = "Marautanga";

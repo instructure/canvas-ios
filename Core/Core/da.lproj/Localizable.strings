@@ -437,6 +437,9 @@
 "Log Out" = "Log ud";
 
 /* No comment provided by engineer. */
+"Login" = "Login";
+
+/* No comment provided by engineer. */
 "Manage Children" = "Administrer børn";
 
 /* No comment provided by engineer. */
@@ -510,6 +513,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Sider";
+
+/* No comment provided by engineer. */
+"Password" = "Adgangskode";
 
 /* No comment provided by engineer. */
 "Pause" = "Pause";
@@ -765,6 +771,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "Bruger-id";
+
+/* No comment provided by engineer. */
+"Username" = "Brugernavn";
 
 /* No comment provided by engineer. */
 "Video" = "Video";

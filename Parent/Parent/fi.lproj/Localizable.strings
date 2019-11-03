@@ -17,6 +17,9 @@
 "Act as User" = "Toimi käyttäjänä";
 
 /* No comment provided by engineer. */
+"Add" = "Lisää";
+
+/* No comment provided by engineer. */
 "Add Student" = "Lisää opiskelija";
 
 /* Label displayed when logged in as an admin */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "Lähetetty: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Yhteenveto";
 
 /* Syllabus Button Title */
 "Syllabus" = "Opinto-ohjelma";

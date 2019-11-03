@@ -437,6 +437,9 @@
 "Log Out" = "注销";
 
 /* No comment provided by engineer. */
+"Login" = "登录";
+
+/* No comment provided by engineer. */
 "Manage Children" = "管理儿童";
 
 /* No comment provided by engineer. */
@@ -510,6 +513,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "页面";
+
+/* No comment provided by engineer. */
+"Password" = "密码";
 
 /* No comment provided by engineer. */
 "Pause" = "暂停";
@@ -765,6 +771,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "用户ID";
+
+/* No comment provided by engineer. */
+"Username" = "用户名";
 
 /* No comment provided by engineer. */
 "Video" = "视频";

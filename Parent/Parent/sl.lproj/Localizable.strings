@@ -17,6 +17,9 @@
 "Act as User" = "Nastopajoči v vlogi uporabnika";
 
 /* No comment provided by engineer. */
+"Add" = "Dodaj";
+
+/* No comment provided by engineer. */
 "Add Student" = "Dodaj študenta";
 
 /* Label displayed when logged in as an admin */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "Poslano: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Povzetek";
 
 /* Syllabus Button Title */
 "Syllabus" = "Učni načrt";

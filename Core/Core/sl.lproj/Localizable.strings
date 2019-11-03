@@ -437,6 +437,9 @@
 "Log Out" = "Odjava";
 
 /* No comment provided by engineer. */
+"Login" = "Prijava";
+
+/* No comment provided by engineer. */
 "Manage Children" = "Urejaj otroke";
 
 /* No comment provided by engineer. */
@@ -510,6 +513,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Strani";
+
+/* No comment provided by engineer. */
+"Password" = "Geslo";
 
 /* No comment provided by engineer. */
 "Pause" = "Začasna zaustavitev";
@@ -765,6 +771,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "ID uporabnika";
+
+/* No comment provided by engineer. */
+"Username" = "Uporabniško ime";
 
 /* No comment provided by engineer. */
 "Video" = "Videoposnetek";

@@ -437,6 +437,9 @@
 "Log Out" = "Dekonekte";
 
 /* No comment provided by engineer. */
+"Login" = "Koneksyon";
+
+/* No comment provided by engineer. */
 "Manage Children" = "Jere Timoun yo";
 
 /* No comment provided by engineer. */
@@ -510,6 +513,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Paj";
+
+/* No comment provided by engineer. */
+"Password" = "Modpas";
 
 /* No comment provided by engineer. */
 "Pause" = "Poz";
@@ -765,6 +771,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "ID Itilizatè";
+
+/* No comment provided by engineer. */
+"Username" = "Non Itilizatè";
 
 /* No comment provided by engineer. */
 "Video" = "Videyo";
