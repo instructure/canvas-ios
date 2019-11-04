@@ -52,8 +52,9 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
     }
 
     func update(_ block: () -> Void) {
-        updated = expectation(description: "updated")
         block()
+        updated = expectation(description: "updated")
+        controller.webView.evaluateJavaScript("editor.postState()")
         wait(for: [updated!], timeout: 5)
         updated = nil
     }
