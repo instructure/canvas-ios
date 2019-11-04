@@ -253,9 +253,7 @@ extension DocViewerPresenterTests: DocViewerViewProtocol {
         resetted = true
     }
 
-    var navigationController: UINavigationController? {
-        return nil
-    }
+    func showAlert(title: String?, message: String?) {}
 
     func showError(_ error: Error) {
         self.error = error

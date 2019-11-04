@@ -27,7 +27,6 @@ class LoginWebPresenterTests: XCTestCase {
     var expectation: XCTestExpectation!
     var resultingError: Error?
     var resultingRequest: URLRequest?
-    var navigationController: UINavigationController?
     var script: String?
 
     override func setUp() {
@@ -224,6 +223,8 @@ extension LoginWebPresenterTests: LoginWebViewProtocol, LoginDelegate {
         resultingRequest = request
         expectation.fulfill()
     }
+
+    func showAlert(title: String?, message: String?) {}
 
     func showError(_ error: Error) {
         resultingError = error

@@ -52,6 +52,12 @@ class PersistenceTestCase: XCTestCase {
         env.router = router
         env.logger = logger
         env.currentSession = currentSession
+        AppEnvironment.shared.api = env.api
+        AppEnvironment.shared.database = env.database
+        AppEnvironment.shared.globalDatabase = env.globalDatabase
+        AppEnvironment.shared.router = env.router
+        AppEnvironment.shared.logger = env.logger
+        AppEnvironment.shared.currentSession = env.currentSession
         UploadManager.shared = uploadManager
         MockUploadManager.reset()
     }

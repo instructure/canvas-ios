@@ -135,6 +135,8 @@ extension QuizListPresenterTests: QuizListViewProtocol {
         updateExpectation.fulfill()
     }
 
+    func showAlert(title: String?, message: String?) {}
+
     func showError(_ error: Error) {
         resultingError = error as NSError
     }
