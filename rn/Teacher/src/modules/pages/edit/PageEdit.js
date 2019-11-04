@@ -227,7 +227,7 @@ export class PageEdit extends Component<Props, State> {
       } else {
         NativeNotificationCenter.postNotification('page-created', response.data.raw)
       }
-      await this.props.navigator.dismiss()
+      this.props.navigator.dismiss()
       this.props.onChange && this.props.onChange(response.data)
     } catch (error) {
       alertError(error)
