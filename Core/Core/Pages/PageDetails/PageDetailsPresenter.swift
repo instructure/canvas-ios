@@ -49,7 +49,7 @@ class PageDetailsPresenter {
     var page: Page? {
         return pages.first
     }
-    lazy var pages = env.subscribe(GetPage(context: context, url: pageURL)){ [weak self] in
+    lazy var pages = env.subscribe(GetPage(context: context, url: pageURL)) { [weak self] in
         self?.viewController?.update()
     }
 

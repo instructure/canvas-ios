@@ -36,8 +36,20 @@ public class EmptyViewController: UIViewController {
         logoImageview.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         logoImageview.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
 
-        let width = NSLayoutConstraint(item: logoImageview, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: logoImageview.superview, attribute: NSLayoutConstraint.Attribute.width, multiplier: 0.1, constant: 1.0)
-        let height = NSLayoutConstraint(item: logoImageview, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: logoImageview, attribute: NSLayoutConstraint.Attribute.width, multiplier: 1, constant: 0)
+        let width = NSLayoutConstraint(item: logoImageview,
+                                       attribute: NSLayoutConstraint.Attribute.width,
+                                       relatedBy: NSLayoutConstraint.Relation.equal,
+                                       toItem: logoImageview.superview,
+                                       attribute: NSLayoutConstraint.Attribute.width,
+                                       multiplier: 0.1,
+                                       constant: 1.0)
+        let height = NSLayoutConstraint(item: logoImageview,
+                                        attribute: NSLayoutConstraint.Attribute.height,
+                                        relatedBy: NSLayoutConstraint.Relation.equal,
+                                        toItem: logoImageview,
+                                        attribute: NSLayoutConstraint.Attribute.width,
+                                        multiplier: 1,
+                                        constant: 0)
         logoImageview.superview?.addConstraints([width, height])
     }
 }
