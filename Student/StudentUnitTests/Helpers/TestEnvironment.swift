@@ -23,6 +23,8 @@ import CoreData
 import XCTest
 
 public class TestEnvironment: AppEnvironment {
+    var mockStore = true
+
     override public init() {
         super.init()
         self.api = URLSessionAPI(loginSession: .make(), urlSession: MockURLSession())
@@ -33,7 +35,10 @@ public class TestEnvironment: AppEnvironment {
     }
 
     override public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler) -> Store<U> where U: UseCase {
-        return TestStore(env: self, useCase: useCase, eventHandler: callback)
+        if mockStore {
+            return TestStore(env: self, useCase: useCase, eventHandler: callback)
+        }
+        return super.subscribe(useCase, callback)
     }
 }
 
