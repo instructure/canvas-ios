@@ -37,6 +37,11 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
     var courseID: String!
     var env: AppEnvironment!
     var shouldFilter = false
+    var assignments: [String: [APIAssignmentListAssignment]] = [:]
+    var pagingCursor: String?
+    var sectionHasNext: [Bool] = []
+    var fetchedRequests: [String: String] = [:]
+    var groupIDsWithAssignments = [String: String]()
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavbar()
@@ -86,37 +91,90 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
     }
 
     func fetchData() {
-        showSpinner()
+        DispatchQueue.main.async { [weak self] in self?.showSpinner() }
 
-        let requestable = AssignmentListRequestable(courseID: courseID, gradingPeriodID: selectedGradingPeriod?.id.value, filter: shouldFilter)
+        let requestable = AssignmentListRequestable(courseID: courseID, gradingPeriodID: selectedGradingPeriod?.id.value, filter: shouldFilter, cursor: pagingCursor)
+
+        if let cursor = pagingCursor {
+            guard fetchedRequests[cursor] == nil else { return }
+            fetchedRequests[cursor] = cursor
+        }
 
         env.api.makeRequest(requestable, refreshToken: true) { [weak self] response, _, error in
             if let error = error {
-                self?.showError(error); return
-
-            }
-            self?.groups = response?.groups.compactMap { $0.assignments.count == 0 ? nil : $0 } ?? []
-            self?.gradingPeriods = response?.gradingPeriods ?? []
-
-            if !(self?.shouldFilter ?? false) {
-                self?.shouldFilter = true
-                if let currentPeriod = self?.gradingPeriods.current { self?.selectedGradingPeriod = currentPeriod }
+                self?.showError(error);
+                return
             }
 
-            performUIUpdate {
-                self?.tableView.reloadData()
-                self?.showSpinner(show: false)
-                self?.updateLabels()
-                selectFirstCellOnIpad()
+            self?.processAPIResponse(response)
+        }
+    }
+
+    func processAPIResponse( _ response: APIAssignmentListResponse? ) {
+        guard let response = response else { return }
+        //  if this is the first time we have a count of the groups,
+        //  setup flags for which sections have more pages
+        if sectionHasNext.count == 0 {
+            //  since this is the first pass, get indexes of groups
+            //  that we care about (i.e. assignment.count > 0).  Groups
+            //  w/ 0 assignments should not be shown.  All groups are returned
+            //  with paging, so we need to keep indexes of groups we care about
+            for g in response.groups {
+                if g.assignments.count > 0 {
+                    groupIDsWithAssignments[g.id.value] = g.id.value
+                }
+            }
+            sectionHasNext = Array(repeating: false, count: groupIDsWithAssignments.count)
+        }
+
+        groups = response.groups.filter{ groupIDsWithAssignments[ $0.id.value ] != nil }
+        gradingPeriods = response.gradingPeriods
+
+        //  append new assignments to existing arrays
+        for ( index, g ) in groups.enumerated() {
+            let groupID = g.id.value
+            var existing = assignments[groupID] ?? []
+            //  if it's the first run or hasNextPage == true, then append assignments
+            if existing.count == 0 || sectionHasNext[index] == true {
+                existing += g.assignments
+                assignments[groupID] = existing
+            }
+
+            //  handle paging cursor
+            if let pageInfo = g.pageInfo {
+                sectionHasNext[index] = pageInfo.hasNextPage
             }
         }
 
-        func selectFirstCellOnIpad() {
-            if let splitView = splitViewController, splitView.viewControllers.count == 2 {
-                let ip = IndexPath(row: 0, section: 0)
-                tableView.selectRow(at: ip, animated: true, scrollPosition: .none)
-                tableView(tableView, didSelectRowAt: ip)
-            }
+        //  cursor should be the same for all assignmentConnections
+        pagingCursor = groups.compactMap{ $0.pageInfo?.endCursor }.first
+
+        if !(shouldFilter) {
+            shouldFilter = true
+            if let currentPeriod = gradingPeriods.current { selectedGradingPeriod = currentPeriod }
+        }
+
+        performUIUpdate { [weak self] in
+            self?.tableView.reloadData()
+            self?.showSpinner(show: false)
+            self?.updateLabels()
+            self?.selectFirstCellOnIpad()
+        }
+    }
+
+    func resetAPIRequestState() {
+        assignments = [:]
+        pagingCursor = nil
+        sectionHasNext = []
+        fetchedRequests = [:]
+        groupIDsWithAssignments = [:]
+    }
+
+    func selectFirstCellOnIpad() {
+        if let splitView = splitViewController, splitView.viewControllers.count == 2 {
+            let ip = IndexPath(row: 0, section: 0)
+            tableView.selectRow(at: ip, animated: true, scrollPosition: .none)
+            tableView(tableView, didSelectRowAt: ip)
         }
     }
 
@@ -149,9 +207,6 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
     func showSpinner(show: Bool = true) {
         if show {
             tableRefresher.beginRefreshing()
-            var pt = tableViewDefaultOffset
-            pt.y -= tableRefresher.frame.size.height
-            tableView.setContentOffset(pt, animated: true)
         } else {
             tableRefresher.endRefreshing()
         }
@@ -159,29 +214,47 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
 }
 
 extension AssignmentListViewController: UITableViewDataSource, UITableViewDelegate {
+    func assignment(for indexPath: IndexPath) -> APIAssignmentListAssignment? {
+        return assignments[ groups[indexPath.section].id.value ]?[indexPath.row]
+    }
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return groups.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groups[section].assignments.count
+        let loadCell = sectionHasNext[section] ? 1 : 0
+        let assignmentCnt = assignments[ groups[section].id.value ]?.count ?? 0
+        return assignmentCnt + loadCell
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ListCell = tableView.dequeue(for: indexPath)
-        let a = groups[indexPath.section].assignments[indexPath.row]
-        cell.textLabel?.text = a.name
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.lineBreakMode = .byWordWrapping
-        cell.detailTextLabel?.text = a.formattedDueDate
-        cell.imageView?.image = a.icon
-        cell.imageView?.tintColor = color
+        let loadCell = sectionHasNext[indexPath.section]
+        if loadCell && indexPath.row == assignments[ groups[indexPath.section].id.value ]?.count ?? 0 {
+            cell.textLabel?.text = NSLocalizedString("Loading...", comment: "")
+            cell.detailTextLabel?.text = nil
+            cell.imageView?.image = nil
+
+            DispatchQueue.global().async { [weak self] in
+                self?.fetchData()
+            }
+
+        } else {
+            let a = assignment(for: indexPath)
+            cell.textLabel?.text = a?.name
+            cell.textLabel?.numberOfLines = 0
+            cell.textLabel?.lineBreakMode = .byWordWrapping
+            cell.detailTextLabel?.text = a?.formattedDueDate
+            cell.imageView?.image = a?.icon
+            cell.imageView?.tintColor = color
+        }
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let assignment = groups[indexPath.section].assignments[indexPath.row]
-        guard let url = assignment.htmlUrl else { return }
+        let a = assignment(for: indexPath)
+        guard let url = a?.htmlUrl else { return }
         env.router.route(to: url, from: self, options: [.detail, .embedInNav])
     }
 
@@ -223,7 +296,9 @@ extension AssignmentListViewController {
 
     func filterByGradingPeriod(_ selected: APIAssignmentListGradingPeriod?) {
         selectedGradingPeriod = selected
+        resetAPIRequestState()
         updateLabels()
+        showSpinner(show: true)
         fetchData()
     }
 }

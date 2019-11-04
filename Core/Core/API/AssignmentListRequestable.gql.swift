@@ -24,11 +24,13 @@ public struct AssignmentListRequestable: APIGraphQLRequestable {
     let courseID: String
     let gradingPeriodID: String?
     let filter: Bool
+    let cursor: String?
 
-    public init(courseID: String, gradingPeriodID: String?, filter: Bool = true) {
+    public init(courseID: String, gradingPeriodID: String?, filter: Bool = true, cursor: String? = nil) {
         self.courseID = courseID
         self.gradingPeriodID = gradingPeriodID
         self.filter = filter
+        self.cursor = cursor
     }
 
     public var query: String? {
@@ -40,6 +42,12 @@ public struct AssignmentListRequestable: APIGraphQLRequestable {
             gradingPeriodFilter = "gradingPeriodId: \"\(id)\""
         }
         if !filter { gradingPeriodFilter = "" }
+
+        var after = ""
+        if let cursor = cursor {
+            after = "after: \"\(cursor)\", "
+        }
+
         return """
         {
           course(id: "\(courseID)") {
@@ -56,7 +64,7 @@ public struct AssignmentListRequestable: APIGraphQLRequestable {
               nodes {
                 id: _id
                 name
-                assignmentNodes: assignmentsConnection(filter: {\(gradingPeriodFilter)}) {
+                assignmentNodes: assignmentsConnection(first: 10, \(after)filter: {\(gradingPeriodFilter)}) {
                   nodes {
                     id: _id
                     name
@@ -68,6 +76,10 @@ public struct AssignmentListRequestable: APIGraphQLRequestable {
                     }
                     lockAt
                     dueAt
+                  }
+                  pageInfo {
+                    endCursor
+                    hasNextPage
                   }
                 }
               }
@@ -110,13 +122,24 @@ public struct APIAssignmentListGroup: Codable, Equatable {
     public let id: ID
     public let name: String
     let assignmentNodes: Nodes
+
+    public var pageInfo: APIPageInfo? {
+        return assignmentNodes.pageInfo
+    }
+
     public var assignments: [APIAssignmentListAssignment] {
         return assignmentNodes.nodes
     }
 
     struct Nodes: Codable, Equatable {
         let nodes: [APIAssignmentListAssignment]
+        let pageInfo: APIPageInfo?
     }
+}
+
+public struct APIPageInfo: Codable, Equatable {
+    public let endCursor: String?
+    public let hasNextPage: Bool
 }
 
 public struct APIAssignmentListAssignment: Codable, Equatable {
