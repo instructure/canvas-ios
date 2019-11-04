@@ -437,7 +437,7 @@ class DashboardViewController: UIViewController {
             studentInfoAvatar.name = student.name
             studentInfoAvatar.url = student.avatarURL
             studentInfoContainer.accessibilityLabel = String.localizedStringWithFormat(NSLocalizedString("Current student: %@, tap to switch students", comment: ""), student.name)
-            studentInfoContainer.accessibilityTraits = UIAccessibilityTraits.header
+            studentInfoContainer.isAccessibilityElement = true
         } else {
             studentInfoContainer.isAccessibilityElement = false
         }

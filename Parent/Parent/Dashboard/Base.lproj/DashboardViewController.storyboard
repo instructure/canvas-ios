@@ -99,7 +99,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <accessibility key="accessibilityConfiguration" identifier="user_selection_carousel">
-                                            <accessibilityTraits key="traits" button="YES"/>
+                                            <accessibilityTraits key="traits" button="YES" header="YES"/>
                                             <bool key="isElement" value="YES"/>
                                         </accessibility>
                                         <constraints>
