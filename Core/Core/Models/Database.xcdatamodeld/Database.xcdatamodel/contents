@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="19A602" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15400" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AlertThreshold" representedClassName="Core.AlertThreshold" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="observerID" optional="YES" attributeType="String"/>
@@ -509,7 +509,7 @@
         <element name="HelpLink" positionX="-540" positionY="-27" width="128" height="135"/>
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
         <element name="MediaComment" positionX="-369" positionY="-18" width="128" height="135"/>
-        <element name="Module" positionX="-369" positionY="-18" width="128" height="135"/>
+        <element name="Module" positionX="-369" positionY="-18" width="128" height="133"/>
         <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="225"/>
         <element name="NotificationCategory" positionX="-522" positionY="0" width="128" height="103"/>
         <element name="Page" positionX="-549" positionY="-27" width="128" height="165"/>

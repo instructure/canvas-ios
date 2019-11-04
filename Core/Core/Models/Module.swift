@@ -32,9 +32,9 @@ public class Module: NSManagedObject {
         set { publishedRaw = NSNumber(value: newValue) }
     }
 
-    public var items: [ModuleItem] {
-        get { return itemsRaw?.array as? [ModuleItem] ?? [] }
-        set { itemsRaw = NSOrderedSet(array: newValue) }
+    public var items: [ModuleItem]? {
+        get { return itemsRaw?.array as? [ModuleItem] }
+        set { itemsRaw = newValue.flatMap { NSOrderedSet(array: $0) } }
     }
 
     @discardableResult
@@ -51,7 +51,7 @@ public class Module: NSManagedObject {
         module.name = item.name
         module.position = item.position
         module.published = item.published
-        module.items = item.items?.map { ModuleItem.save($0, forCourse: courseID, in: context) } ?? []
+        module.items = item.items?.map { ModuleItem.save($0, forCourse: courseID, in: context) }
         return module
     }
 }

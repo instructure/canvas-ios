@@ -59,15 +59,14 @@
 		B15CA240221DBA940014FB02 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA23F221DBA940014FB02 /* Routes.swift */; };
 		B15CA245221DC5BC0014FB02 /* ModuleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA244221DC5BC0014FB02 /* ModuleListViewController.swift */; };
 		B15CA247221DC5CC0014FB02 /* ModuleListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B15CA246221DC5CC0014FB02 /* ModuleListViewController.storyboard */; };
-		B15CA26A221DDB9F0014FB02 /* ModuleListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA269221DDB9F0014FB02 /* ModuleListPresenterTests.swift */; };
 		B15CA26D221DDEB40014FB02 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; };
 		B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */; };
-		B15CA292221E082D0014FB02 /* ModuleListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA291221E082D0014FB02 /* ModuleListPresenter.swift */; };
 		B15CA297221E103B0014FB02 /* DynamicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA296221E103B0014FB02 /* DynamicLabel.swift */; };
 		B15CA299221E10900014FB02 /* ModuleItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA298221E10900014FB02 /* ModuleItemCell.swift */; };
 		B15CA29D221F16C90014FB02 /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA29C221F16C90014FB02 /* BundleExtensions.swift */; };
 		B18359B2222485E60005A918 /* AccessIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18359B1222485E60005A918 /* AccessIconView.swift */; };
 		B183F99B2252925F000A6930 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B183F99A2252925F000A6930 /* IconView.swift */; };
+		B18B275F236C76B10043EB2B /* ModuleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18B275E236C76B10043EB2B /* ModuleListViewControllerTests.swift */; };
 		B1992AAB2264D51200396A1F /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1992AAA2264D51200396A1F /* RoutesTests.swift */; };
 		B1A890AA224D272D00CEE000 /* ModuleItemSubHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A890A9224D272D00CEE000 /* ModuleItemSubHeaderCell.swift */; };
 		B1A890BC224F161100CEE000 /* ModuleSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A890BB224F161100CEE000 /* ModuleSectionHeaderView.swift */; };
@@ -297,15 +296,14 @@
 		B15CA246221DC5CC0014FB02 /* ModuleListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ModuleListViewController.storyboard; sourceTree = "<group>"; };
 		B15CA25D221DDB820014FB02 /* TeacherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B15CA261221DDB820014FB02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B15CA269221DDB9F0014FB02 /* ModuleListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleListPresenterTests.swift; sourceTree = "<group>"; };
 		B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTestCase.swift; sourceTree = "<group>"; };
-		B15CA291221E082D0014FB02 /* ModuleListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleListPresenter.swift; sourceTree = "<group>"; };
 		B15CA296221E103B0014FB02 /* DynamicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabel.swift; sourceTree = "<group>"; };
 		B15CA298221E10900014FB02 /* ModuleItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemCell.swift; sourceTree = "<group>"; };
 		B15CA29C221F16C90014FB02 /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
 		B18359B1222485E60005A918 /* AccessIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessIconView.swift; sourceTree = "<group>"; };
 		B183F99A2252925F000A6930 /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
+		B18B275E236C76B10043EB2B /* ModuleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleListViewControllerTests.swift; sourceTree = "<group>"; };
 		B1992AAA2264D51200396A1F /* RoutesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTests.swift; sourceTree = "<group>"; };
 		B1A890A9224D272D00CEE000 /* ModuleItemSubHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemSubHeaderCell.swift; sourceTree = "<group>"; };
 		B1A890BB224F161100CEE000 /* ModuleSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -544,7 +542,7 @@
 		B15CA267221DDB8D0014FB02 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				B15CA269221DDB9F0014FB02 /* ModuleListPresenterTests.swift */,
+				B18B275E236C76B10043EB2B /* ModuleListViewControllerTests.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -566,7 +564,6 @@
 			children = (
 				B15CA298221E10900014FB02 /* ModuleItemCell.swift */,
 				B1A890A9224D272D00CEE000 /* ModuleItemSubHeaderCell.swift */,
-				B15CA291221E082D0014FB02 /* ModuleListPresenter.swift */,
 				B15CA246221DC5CC0014FB02 /* ModuleListViewController.storyboard */,
 				B15CA244221DC5BC0014FB02 /* ModuleListViewController.swift */,
 				B1A890BB224F161100CEE000 /* ModuleSectionHeaderView.swift */,
@@ -950,7 +947,6 @@
 				7D64A96023620A27004EAEDF /* DatePickerCollectionView.swift in Sources */,
 				7D64A95E23620A27004EAEDF /* AttendanceViewController.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */,
-				B15CA292221E082D0014FB02 /* ModuleListPresenter.swift in Sources */,
 				B15CA297221E103B0014FB02 /* DynamicLabel.swift in Sources */,
 				7D64A96223620A27004EAEDF /* RollCallSession.swift in Sources */,
 				7D64A96423620A27004EAEDF /* StatusCell.swift in Sources */,
@@ -974,7 +970,7 @@
 				3B1D37C9231085830017CCA2 /* PostGradesPresenterTests.swift in Sources */,
 				B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */,
 				B1992AAB2264D51200396A1F /* RoutesTests.swift in Sources */,
-				B15CA26A221DDB9F0014FB02 /* ModuleListPresenterTests.swift in Sources */,
+				B18B275F236C76B10043EB2B /* ModuleListViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

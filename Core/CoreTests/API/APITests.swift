@@ -76,6 +76,12 @@ class APITests: XCTestCase {
         }
     }
 
+    struct Exhaustable: APIRequestable {
+        typealias Response = [Int]
+
+        let path: String
+    }
+
     var api: URLSessionAPI!
     override func setUp() {
         super.setUp()
@@ -364,4 +370,48 @@ class APITests: XCTestCase {
         XCTAssertEqual(api.loginSession?.accessToken, "expired-token")
     }
 
+    func testExhaust() {
+        let api = URLSessionAPI(session: .make(), urlSession: MockURLSession())
+        let request = Exhaustable(path: "/1")
+        MockURLSession.mock(request, value: [1], response: HTTPURLResponse(next: "/2"))
+        MockURLSession.mock(Exhaustable(path: "/2"), value: [2], response: HTTPURLResponse(next: "/3"))
+        MockURLSession.mock(Exhaustable(path: "/3"), value: [3], response: nil)
+        var response: [Int]?
+        var urlResponse: URLResponse?
+        var error: Error?
+        let expectation = XCTestExpectation(description: "exhaust callback")
+        api.exhaust(request) {
+            response = $0
+            urlResponse = $1
+            error = $2
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
+        XCTAssertEqual(response, [1, 2, 3])
+        XCTAssertNil(urlResponse)
+        XCTAssertNil(error)
+    }
+
+    func testExhaustError() {
+        let api = URLSessionAPI(session: .make(), urlSession: MockURLSession())
+        let request = Exhaustable(path: "/1")
+        MockURLSession.mock(request, value: [1], response: HTTPURLResponse(next: "/2"))
+        MockURLSession.mock(Exhaustable(path: "/2"), value: [2], response: HTTPURLResponse(next: "/3"))
+        MockURLSession.mock(Exhaustable(path: "/3"), value: nil, error: NSError.internalError())
+        var response: [Int]?
+        var urlResponse: URLResponse?
+        var error: Error?
+        let expectation = XCTestExpectation(description: "exhaust callback")
+        api.exhaust(request) {
+            response = $0
+            urlResponse = $1
+            error = $2
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
+        XCTAssertNil(response)
+        XCTAssertNil(urlResponse)
+        XCTAssertNotNil(error)
+
+    }
 }

@@ -44,3 +44,12 @@ extension URLResponse {
         return (self as? HTTPURLResponse)?.statusCode == 401
     }
 }
+
+extension HTTPURLResponse {
+    public convenience init(next: String) {
+        let headers = [
+            "Link": "<\(next)>; rel=\"next\"; count=1",
+        ]
+        self.init(url: URL(string: "/")!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
+    }
+}

@@ -24,6 +24,10 @@ public struct GetModulesRequest: APIRequestable {
 
     public let courseID: String
 
+    public init(courseID: String) {
+        self.courseID = courseID
+    }
+
     public var path: String {
         let context = ContextModel(.course, id: courseID)
         return "\(context.pathComponent)/modules"
@@ -32,6 +36,29 @@ public struct GetModulesRequest: APIRequestable {
     public var query: [APIQueryItem] {
         return [
             .include([ "items", "content_details" ]),
+        ]
+    }
+}
+
+public struct GetModuleItemsRequest: APIRequestable {
+    public typealias Response = [APIModuleItem]
+
+    public let courseID: String
+    public let moduleID: String
+
+    public init(courseID: String, moduleID: String) {
+        self.courseID = courseID
+        self.moduleID = moduleID
+    }
+
+    public var path: String {
+        let context = ContextModel(.course, id: courseID)
+        return "\(context.pathComponent)/modules/\(moduleID)/items"
+    }
+
+    public var query: [APIQueryItem] {
+        return [
+            .include(["content_details"]),
         ]
     }
 }
