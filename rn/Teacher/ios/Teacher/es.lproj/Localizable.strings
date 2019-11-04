@@ -23,10 +23,10 @@
 "Graded" = "Calificado";
 
 /* No comment provided by engineer. */
-"Grades will be made visible to all students" = "Las calificaciones se harán visibles para todos los alumnos";
+"Grades will be made visible to all students" = "Las calificaciones se harán visibles para todos los estudiantes";
 
 /* No comment provided by engineer. */
-"Grades will be made visible to students with graded submissions" = "Las calificaciones se harán visibles para los alumnos que tienen presentaciones con calificación.";
+"Grades will be made visible to students with graded submissions" = "Las calificaciones se harán visibles para los estudiantes que tienen entregas con calificación.";
 
 /* number of grades hidden */
 "grades_currently_hidden" = "grades_currently_hidden";
@@ -53,5 +53,5 @@
 "Specific Sections" = "Secciones específicas";
 
 /* No comment provided by engineer. */
-"To Do" = "Que hacer";
+"To Do" = "Por hacer";
 

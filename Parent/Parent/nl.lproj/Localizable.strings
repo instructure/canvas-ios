@@ -17,6 +17,9 @@
 "Act as User" = "Optreden als gebruiker";
 
 /* No comment provided by engineer. */
+"Add" = "Toevoegen";
+
+/* No comment provided by engineer. */
 "Add Student" = "Cursist toevoegen";
 
 /* Label displayed when logged in as an admin */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "Ingediend: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Samenvatting";
 
 /* Syllabus Button Title */
 "Syllabus" = "Syllabus";

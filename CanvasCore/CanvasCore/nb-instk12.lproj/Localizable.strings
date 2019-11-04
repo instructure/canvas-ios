@@ -28,10 +28,6 @@
 /* Notification to alert the user that there is only 30 seconds left in the time quiz */
 "30 seconds remaining" = "30 sekunder gjenstår";
 
-/* Mark student absent
-   Student is present in class */
-"Absent" = "Fraværende";
-
 /* Shows the number questions */
 "All %@ Questions" = "Alle %@ spørsmål";
 
@@ -65,12 +61,6 @@
 /* label to be read for visually impaired users with assignment types */
 "assignment" = "Oppgave";
 
-/* No comment provided by engineer. */
-"Attendance" = "Oppmøte";
-
-/* Error title for attendance app */
-"Attendance Error" = "Oppmøte avvik";
-
 /* label for quiz availability date */
 "Available Until" = "Tilgjengelig Frem til";
 
@@ -91,9 +81,6 @@
    Cancel upload */
 "Cancel" = "Avbryt";
 
-/* No comment provided by engineer. */
-"Change Section" = "Bytt seksjon";
-
 /* Choose a file */
 "Choose a File" = "Velg en fil";
 
@@ -103,14 +90,8 @@
 /* Pick a photo or video */
 "Choose a Photo or Video" = "Velg et bilde eller en video";
 
-/* No comment provided by engineer. */
-"Choose a Section" = "Velg en seksjon";
-
 /* Pick a video from library */
 "Choose a Video" = "Velg en video";
-
-/* No comment provided by engineer. */
-"Choose Date" = "Velg dato";
 
 /* No comment provided by engineer. */
 "Collapse" = "Kollaps";
@@ -136,9 +117,6 @@
 /* Error title for a persistence related data failure */
 "Data Error" = "Datafeil";
 
-/* No comment provided by engineer. */
-"Date picker" = "Dato velger";
-
 /* DeepOrange course color button */
 "DeepOrange" = "DeepOrange";
 
@@ -160,8 +138,7 @@
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Diskfeil";
 
-/* Dismiss an error alert
-   Dismiss an error dialog
+/* Dismiss an error dialog
    Dismiss button for error alert
    Dismiss button for error messages */
 "Dismiss" = "Avvise";
@@ -192,25 +169,10 @@
 "Error Loading Quiz" = "Feil under lasting av quiz";
 
 /* No comment provided by engineer. */
-"Error parsing the Roll Call response. Expected (e), received (a)" = "Feil ved analyse av svar på opprop. Forventet (e), mottatt (a)";
-
-/* No comment provided by engineer. */
-"Error parsing the Roll Call response. Expected (e), received (a) for key (k)" = "Feil ved analyse av svar på opprop. Forventet (e), mottatt (a) for nøkkel (k)";
-
-/* No comment provided by engineer. */
-"Error parsing the Roll Call response. Key not found: (k)" = "Feil ved analyse av svar på opprop. Nøkkel ikke funnet: (k)";
-
-/* No comment provided by engineer. */
-"Error parsing the Roll Call response. Unexpected null value: (k)" = "Feil ved analyse av svar på opprop. Uventet null verdi: (k)";
-
-/* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Feil i pålogging av URL";
 
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "Feil ved oppdatering av oppgaven";
-
-/* rollcall status error */
-"Error: No data returned from the rollcall api." = "Avvik: Ingen data returnert fra opprop api.";
 
 /* Exit button to leave the quiz */
 "Exit" = "Avslutt";
@@ -275,10 +237,6 @@
 /* No comment provided by engineer. */
 "Invalid date received from API." = "Ugyldig data mottatt fra API.";
 
-/* Mark student late
-   Student is present in class */
-"Late" = "Sent";
-
 /* No comment provided by engineer. */
 "Launch External Tool" = "Åpne eksternt verktøy";
 
@@ -303,12 +261,6 @@
 /* Title for when another tool called Lockdown Browser is required to take a quiz */
 "Lockdown Browser Required" = "Lockdown-nettleser påkrevd";
 
-/* No comment provided by engineer. */
-"Mark All as Present" = "Merk alle som nåværende";
-
-/* No comment provided by engineer. */
-"Mark Remaining as Present" = "Marker gjenværende som nåværende";
-
 /* Error alert title for network error
    Title for network errors */
 "Network Error" = "Nettverksfeil";
@@ -324,9 +276,6 @@
 
 /* Error when push channel cannot be found in notificaitons */
 "No push channel found" = "Ingen push-kanal funnet";
-
-/* No comment provided by engineer. */
-"No sections available. Please make sure you are enrolled as a teacher or TA in at least on section of this course." = "Ingen seksjoner tilgjengelig. Pass på at du er registrert som lærer eller TA i minst en av seksjonene i dette faget.";
 
 /* when a quiz has no time limit */
 "No time limit" = "Ingen tidsbegrensning";
@@ -390,10 +339,6 @@
 
 /* label for number of points in a quiz */
 "Points" = "Poeng";
-
-/* Mark student present
-   Student is present in class */
-"Present" = "Nåværende";
 
 /* Purple course color button */
 "Purple" = "Lilla";
@@ -485,9 +430,6 @@
 /* Indicates that a matching quiz question needs to have an answer selected */
 "Select Answer" = "Valg svar";
 
-/* No comment provided by engineer. */
-"Select to change the roll call date" = "Velg for å endre dato for opprop";
-
 /* when a button is selected */
 "Selected" = "Valgt";
 
@@ -554,9 +496,6 @@
 
 /* Data encoding error message */
 "There was a problem encoding UTF8 Data" = "Det oppsto et problem med kodingen av UTF8-data";
-
-/* No comment provided by engineer. */
-"There was a problem fetching the list of course sections." = "Det oppstod et problem ved henting av listen over fagseksjoner.";
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Det var et problem med tolkningen av svaret fra serveren.";
@@ -662,9 +601,6 @@
 
 /* When a quiz has no limit on the number of attempts */
 "Unlimited" = "Ubegrenset";
-
-/* Remove attendance status */
-"Unmark" = "Fjern merking";
 
 /* Upcoming assignments */
 "Upcoming" = "Kommende";

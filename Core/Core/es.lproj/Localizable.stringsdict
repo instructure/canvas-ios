@@ -29,9 +29,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>one</key>
-			<string>%g pto.</string>
+			<string>%g pt</string>
 			<key>other</key>
-			<string>%g ptos.</string>
+			<string>%g pts</string>
 		</dict>
 	</dict>
 	<key>g_out_of_g_points_possible</key>
@@ -77,15 +77,15 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>one</key>
-			<string>%g pto.</string>
+			<string>%g pt</string>
 			<key>other</key>
-			<string>%g ptos.</string>
+			<string>%g pts</string>
 		</dict>
 	</dict>
 	<key>late_penalty_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Sanción por presentación tardía (%#@points@)</string>
+		<string>Sanción por entrega con atraso (%#@points@)</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -93,9 +93,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>one</key>
-			<string>%g pto.</string>
+			<string>%g pt</string>
 			<key>other</key>
-			<string>%g ptos.</string>
+			<string>%g pts</string>
 		</dict>
 	</dict>
 	<key>out_of_g_pts</key>
@@ -109,9 +109,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>one</key>
-			<string>%g pto.</string>
+			<string>%g pt</string>
 			<key>other</key>
-			<string>%g ptos.</string>
+			<string>%g pts</string>
 		</dict>
 	</dict>
 	<key>plural_points</key>

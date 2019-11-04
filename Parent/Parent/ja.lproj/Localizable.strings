@@ -17,6 +17,9 @@
 "Act as User" = "ユーザーとして行動する";
 
 /* No comment provided by engineer. */
+"Add" = "追加";
+
+/* No comment provided by engineer. */
 "Add Student" = "受講生を追加";
 
 /* Label displayed when logged in as an admin */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "提出済み: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "概要";
 
 /* Syllabus Button Title */
 "Syllabus" = "シラバス";

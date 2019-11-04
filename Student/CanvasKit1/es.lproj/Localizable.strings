@@ -11,7 +11,7 @@
 "%@ out of %@" = "%1$@ de %2$@";
 
 /* {point range max} to > {point range min} pts */
-"%@ to > %@ pts" = "%1$@ a > %2$@ puntos";
+"%@ to > %@ pts" = "%1$@ a > %2$@ pts";
 
 /* Word and ellipses */
 "%@..." = "%@...";
@@ -62,7 +62,7 @@
 "out of %@" = "de %@";
 
 /* Short name for student enrollment */
-"Student" = "Alumno";
+"Student" = "Estudiante";
 
 /* Short name for TA enrollment */
 "TA" = "Profesor auxiliar";
@@ -71,7 +71,7 @@
 "Teacher" = "Profesor";
 
 /* Generic name for a submission entered online. */
-"Text Submission" = "Presentación del texto";
+"Text Submission" = "Entrega del texto";
 
 /* Error description when a user tries to upload a file that's too big */
 "The file you are trying to uploading is %@, but the maximum size is %@." = "El archivo que está intentando subir es de %1$@, pero el tamaño máximo es de %2$@.";
