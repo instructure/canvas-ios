@@ -437,6 +437,9 @@
 "Log Out" = "Allgofnodi";
 
 /* No comment provided by engineer. */
+"Login" = "Mewngofnodi";
+
+/* No comment provided by engineer. */
 "Manage Children" = "Rheoli Plant";
 
 /* No comment provided by engineer. */
@@ -510,6 +513,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Tudalennau";
+
+/* No comment provided by engineer. */
+"Password" = "Cyfrinair";
 
 /* No comment provided by engineer. */
 "Pause" = "Rhewi";
@@ -765,6 +771,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "ID Defnyddiwr";
+
+/* No comment provided by engineer. */
+"Username" = "Enw defnyddiwr";
 
 /* No comment provided by engineer. */
 "Video" = "Fideo";

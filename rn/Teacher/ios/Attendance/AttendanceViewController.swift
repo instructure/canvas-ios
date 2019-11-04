@@ -20,7 +20,7 @@ import UIKit
 import Core
 
 class AttendanceViewController: UIViewController, ColoredNavViewProtocol {
-    let calendarDayIconView = CalendarDayIconView.create(date: Date())
+    let calendarDayIconView = CalendarDayIconView.create(date: Clock.now)
     let changeSectionButton = UIButton(type: .system)
     let header = UIView()
     let markAllButton = UIButton(type: .custom)
@@ -32,7 +32,7 @@ class AttendanceViewController: UIViewController, ColoredNavViewProtocol {
     var color: UIColor?
     let context: Context
     var currentSection: CourseSection?
-    var date = Date()
+    var date = Clock.now
     let env = AppEnvironment.shared
     let session: RollCallSession
     var statuses: [AttendanceStatusController] = []
@@ -100,7 +100,7 @@ class AttendanceViewController: UIViewController, ColoredNavViewProtocol {
         changeSectionButton.titleLabel?.font = .preferredFont(forTextStyle: .caption1)
         changeSectionButton.setTitle(NSLocalizedString("Change Section", comment: ""), for: .normal)
         changeSectionButton.sizeToFit()
-        changeSectionButton.addTarget(self, action: #selector(changeSection(_:)), for: .touchUpInside)
+        changeSectionButton.addTarget(self, action: #selector(changeSection(_:)), for: .primaryActionTriggered)
         changeSectionButton.tintColor = Core.Brand.shared.linkColor
         header.addSubview(changeSectionButton)
 
@@ -123,7 +123,7 @@ class AttendanceViewController: UIViewController, ColoredNavViewProtocol {
         markAllButton.tintColor = Brand.shared.buttonPrimaryText
         markAllButton.translatesAutoresizingMaskIntoConstraints = false
         markAllButton.titleLabel?.font = .scaledNamedFont(.semibold16)
-        markAllButton.addTarget(self, action: #selector(markRemainingPresent(_:)), for: .touchUpInside)
+        markAllButton.addTarget(self, action: #selector(markRemainingPresent(_:)), for: .primaryActionTriggered)
         markAllButtonBottom = markAllButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 50)
 
         view.addSubview(tableView)
@@ -201,6 +201,7 @@ class AttendanceViewController: UIViewController, ColoredNavViewProtocol {
         if hasUnmarked, markAllButtonBottom.constant != 0 {
             view.layoutIfNeeded()
             UIView.animate(withDuration: 0.3, animations: {
+                self.markAllButton.isHidden = false
                 self.markAllButtonBottom.constant = 0
                 self.view.setNeedsUpdateConstraints()
                 self.view.layoutIfNeeded()
@@ -211,6 +212,8 @@ class AttendanceViewController: UIViewController, ColoredNavViewProtocol {
                 self.markAllButtonBottom.constant = self.markAllButton.frame.height
                 self.view.setNeedsUpdateConstraints()
                 self.view.layoutIfNeeded()
+            }, completion: { _ in
+                self.markAllButton.isHidden = true
             })
         }
     }
@@ -223,7 +226,7 @@ class AttendanceViewController: UIViewController, ColoredNavViewProtocol {
             preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""), style: .default))
-        present(alert, animated: true)
+        env.router.show(alert, from: self, options: .modal)
     }
 
     @objc func refresh() {
@@ -242,16 +245,17 @@ class AttendanceViewController: UIViewController, ColoredNavViewProtocol {
         if !sections.pending {
             changeSectionButton.isEnabled = !sections.isEmpty
             changeToSection(currentSection ?? sections.first)
-        } else if let error = course.error {
+        }
+        if let error = course.error ?? sections.error {
             alertError(error)
             tableView.refreshControl?.endRefreshing()
         }
     }
 
     func refreshStatusesForCurrentSection() {
-        guard let section = currentSection, case .active(_) = session.state else { return }
+        guard let section = currentSection?.id, !section.isEmpty, case .active(_) = session.state else { return }
         tableView.refreshControl?.beginRefreshing()
-        session.fetchStatuses(section: section.id, date: date) { [weak self] (statuses, error) in DispatchQueue.main.async {
+        session.fetchStatuses(section: section, date: date) { [weak self] (statuses, error) in performUIUpdate {
             if let error = error {
                 self?.alertError(error)
             } else {
@@ -289,32 +293,18 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
 
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .none
-    }
-
-    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-    }
-
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let sc = statuses[indexPath.row]
-        return [ Attendance.present, Attendance.absent, Attendance.late, nil ].compactMap { (value: Attendance?) -> UITableViewRowAction? in
+        return UISwipeActionsConfiguration(actions: [ Attendance.present, Attendance.absent, Attendance.late, nil ].compactMap { (value: Attendance?) -> UIContextualAction? in
             guard sc.status.attendance != value else { return nil }
-            let action = UITableViewRowAction(style: .normal, title: value?.label ?? NSLocalizedString("Unmark", comment: "")) { [weak self] _, _ in
+            let action = UIContextualAction(style: .normal, title: value?.label ?? NSLocalizedString("Unmark", comment: "")) { [weak self] _, _, done in
                 sc.update(attendance: value)
                 self?.updateMarkAllButton()
+                done(true)
             }
             action.backgroundColor = value?.tintColor ?? .named(.oxford)
             return action
-        }
+        })
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -342,18 +332,15 @@ extension AttendanceViewController: RollCallSessionDelegate {
 
 extension AttendanceViewController: DatePickerDelegate {
     @objc func showDatePicker(_ sender: Any?) {
-        let datePicker = DatePickerViewController()
-        datePicker.initialDate = date
-        datePicker.delegate = self
+        let datePicker = DatePickerViewController(selected: date, delegate: self)
         let nav = UINavigationController(rootViewController: datePicker)
         nav.navigationBar.useModalStyle()
         nav.modalPresentationStyle = .popover
         nav.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
-        present(nav, animated: true, completion: nil)
+        env.router.show(nav, from: self, options: .modal)
     }
 
     func didSelectDate(_ date: Date) {
-        guard self.date != date else { return }
         self.date = date
         calendarDayIconView.setDate(date)
         titleSubtitleView.subtitle = AttendanceViewController.dateFormatter.string(from: date)
@@ -379,11 +366,9 @@ extension AttendanceViewController {
         }
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
 
-        if let popover = alert.popoverPresentationController {
-            popover.sourceRect = changeSectionButton.bounds
-            popover.sourceView = changeSectionButton
-        }
-        present(alert, animated: true)
+        alert.popoverPresentationController?.sourceRect = changeSectionButton.bounds
+        alert.popoverPresentationController?.sourceView = changeSectionButton
+        env.router.show(alert, from: self, options: .modal)
     }
 
     func changeToSection(_ section: CourseSection?) {

@@ -5,7 +5,7 @@
 "%@ is due at %@" = "%1$@ vence el %2$@";
 
 /* No comment provided by engineer. */
-"%@ to %@" = "%1$@ a %2$@";
+"%@ to %@" = "%1$@ para %2$@";
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ comenzará el %2$@";
@@ -17,10 +17,13 @@
 "Act as User" = "Actuar en nombre de Usuario";
 
 /* No comment provided by engineer. */
+"Add" = "Agregar";
+
+/* No comment provided by engineer. */
 "Add Student" = "Agregar estudiante";
 
 /* Label displayed when logged in as an admin */
-"Admin" = "Admin";
+"Admin" = "Administrador";
 
 /* Alert Section Header */
 "Alert me when:" = "Avíseme cuando:";
@@ -44,7 +47,7 @@
 "Assignment grade below" = "Calificación de la tarea inferior a";
 
 /* Assignment Missing Description */
-"Assignment missing" = "Falta la tarea";
+"Assignment missing" = "Tarea faltante";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Recordatorio de la tarea";
@@ -65,7 +68,7 @@
 "Caught up on Alerts" = "Al día en las alertas";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Elegir un alumno";
+"Choose a student" = "Elegir un estudiante";
 
 /* Course Announcement Description */
 "Course announcements" = "Anuncios del curso";
@@ -80,10 +83,10 @@
 "Courses" = "Cursos";
 
 /* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Alumno actual: %@, toque para cambiar entre alumnos";
+"Current student: %@, tap to switch students" = "Estudiante actual: %@, toque para cambiar entre estudiantes";
 
 /* No comment provided by engineer. */
-"Discussion" = "Foro";
+"Discussion" = "Foro de discusión";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Descartar";
@@ -95,7 +98,7 @@
 "Event reminder" = "Recordatorio del evento";
 
 /* No comment provided by engineer. */
-"Excused" = "Excusado";
+"Excused" = "Justificado";
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "No se pudo cargar (discussionKitModelName) NSManagedObjectModel";
@@ -110,10 +113,10 @@
 "High course grade cannot be lower than low course grade" = "La calificación alta del curso no puede ser más baja que la calificación baja del curso";
 
 /* No comment provided by engineer. */
-"In-Class" = "En clases";
+"In-Class" = "Presencial";
 
 /* No comment provided by engineer. */
-"Input the student pairing code provided to you." = "Introduzca el código de emparejamiento de alumno que se le proporcionó.";
+"Input the student pairing code provided to you." = "Introduzca el código de emparejamiento de estudiante que se le proporcionó.";
 
 /* Institution Announcement Description */
 "Institution announcements" = "Anuncios de la institución";
@@ -122,16 +125,16 @@
 "Invalid Input" = "Entrada inválida";
 
 /* Last Week Button Accessibility Label */
-"Last Week" = "Semana pasada";
+"Last Week" = "Última semana";
 
 /* No comment provided by engineer. */
-"Late" = "Atrasado";
+"Late" = "Con atraso";
 
 /* No comment provided by engineer. */
-"Late: %@" = "Atrasado: %@";
+"Late: %@" = "Con atraso: %@";
 
 /* No comment provided by engineer. */
-"Late: %@ (%@/%@)" = "Atrasado: %1$@ (%2$@/%3$@)";
+"Late: %@ (%@/%@)" = "Con atraso: %1$@ (%2$@/%3$@)";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "La calificación baja de la tarea no puede ser más alta que la calificación alta de la tarea";
@@ -140,13 +143,13 @@
 "Low course grade cannot be higher than high course grade" = "La calificación baja del curso no puede ser más alta que la calificación alta del curso";
 
 /* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "Gestionar niños";
+"Manage Children" = "Administrar niños";
 
 /* No comment provided by engineer. */
-"Missing" = "Falta";
+"Missing" = "Deficiente";
 
 /* No comment provided by engineer. */
-"Missing: (-/%@)" = "Falta: (-/%@)";
+"Missing: (-/%@)" = "Deficiente: (-/%@)";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Próxima semana";
@@ -158,13 +161,13 @@
 "No Grade" = "Sin calificación";
 
 /* Empty Students Text */
-"No Students" = "Sin estudiantes";
+"No Students" = "No hay estudiantes";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Nada para esta semana";
 
 /* OK Button Title */
-"OK" = "OK";
+"OK" = "Aceptar";
 
 /* No comment provided by engineer. */
 "Pairing Code" = "Código de emparejamiento";
@@ -173,22 +176,25 @@
 "Permission Needed" = "Se necesita permiso";
 
 /* No comment provided by engineer. */
-"Quiz" = "Evaluación";
+"Quiz" = "Examen";
 
 /* No comment provided by engineer. */
 "Settings" = "Configuraciones";
 
 /* No comment provided by engineer. */
-"Submitted" = "Enviado";
+"Submitted" = "Entregado";
 
 /* No comment provided by engineer. */
-"Submitted: %@" = "Enviado: %@";
+"Submitted: %@" = "Entregado: %@";
 
 /* No comment provided by engineer. */
-"Submitted: %@ (%@/%@)" = "Enviado: %1$@ (%2$@/%3$@)";
+"Submitted: %@ (%@/%@)" = "Entregado: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Resumen";
 
 /* Syllabus Button Title */
-"Syllabus" = "Plan de estudio ";
+"Syllabus" = "Programa del curso";
 
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Toque para empezar a ver Canvas como otra persona.";
@@ -206,7 +212,7 @@
 "This announcement has expired." = "Este anuncio ha caducado.";
 
 /* No comment provided by engineer. */
-"This student's courses may not be published yet." = "Los cursos de este alumno no pueden publicarse todavía.";
+"This student's courses may not be published yet." = "Los cursos de este estudiante no pueden publicarse todavía.";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "Problemas para iniciar sesión";

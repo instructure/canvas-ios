@@ -47,7 +47,7 @@ class AttendanceStatusController {
         statusDidChange()
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.session.updateStatus(pending) { newID, error in DispatchQueue.main.async {
+            self.session.updateStatus(pending) { newID, error in performUIUpdate {
                 self.pendingStatus = nil
                 defer { self.statusDidChange() }
 

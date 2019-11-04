@@ -17,6 +17,9 @@
 "Act as User" = "Действовать как пользователь";
 
 /* No comment provided by engineer. */
+"Add" = "Добавить";
+
+/* No comment provided by engineer. */
 "Add Student" = "Добавить студента";
 
 /* Label displayed when logged in as an admin */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "Отправлено: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Сводные данные";
 
 /* Syllabus Button Title */
 "Syllabus" = "Учебный план";

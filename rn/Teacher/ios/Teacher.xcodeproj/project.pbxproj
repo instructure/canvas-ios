@@ -53,6 +53,8 @@
 		7D64A96F23626F52004EAEDF /* StatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A96E23626F52004EAEDF /* StatusTests.swift */; };
 		7D64A98123676E36004EAEDF /* RollCallSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A98023676E36004EAEDF /* RollCallSessionTests.swift */; };
 		7D64A983236796CC004EAEDF /* AttendanceStatusControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A982236796CC004EAEDF /* AttendanceStatusControllerTests.swift */; };
+		7D64A98523689DD5004EAEDF /* DatePickerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A98423689DD4004EAEDF /* DatePickerViewControllerTests.swift */; };
+		7D64A9872368C6C0004EAEDF /* AttendanceViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A9862368C6C0004EAEDF /* AttendanceViewControllerTests.swift */; };
 		7DBF923B2269791600710D0F /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		840CABA038B02116B1BDA3E0 /* Pods_defaults_TeacherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
@@ -289,6 +291,8 @@
 		7D64A96E23626F52004EAEDF /* StatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTests.swift; sourceTree = "<group>"; };
 		7D64A98023676E36004EAEDF /* RollCallSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollCallSessionTests.swift; sourceTree = "<group>"; };
 		7D64A982236796CC004EAEDF /* AttendanceStatusControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceStatusControllerTests.swift; sourceTree = "<group>"; };
+		7D64A98423689DD4004EAEDF /* DatePickerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewControllerTests.swift; sourceTree = "<group>"; };
+		7D64A9862368C6C0004EAEDF /* AttendanceViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceViewControllerTests.swift; sourceTree = "<group>"; };
 		862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_TeacherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
 		B15CA23F221DBA940014FB02 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Routes.swift; path = Teacher/Routes.swift; sourceTree = "<group>"; };
@@ -476,6 +480,8 @@
 			isa = PBXGroup;
 			children = (
 				7D64A982236796CC004EAEDF /* AttendanceStatusControllerTests.swift */,
+				7D64A9862368C6C0004EAEDF /* AttendanceViewControllerTests.swift */,
+				7D64A98423689DD4004EAEDF /* DatePickerViewControllerTests.swift */,
 				7D64A98023676E36004EAEDF /* RollCallSessionTests.swift */,
 				7D64A96C23626C22004EAEDF /* StatusCellTests.swift */,
 				7D64A96E23626F52004EAEDF /* StatusTests.swift */,
@@ -967,10 +973,12 @@
 				7D64A96D23626C22004EAEDF /* StatusCellTests.swift in Sources */,
 				7D64A983236796CC004EAEDF /* AttendanceStatusControllerTests.swift in Sources */,
 				7D64A96F23626F52004EAEDF /* StatusTests.swift in Sources */,
+				7D64A98523689DD5004EAEDF /* DatePickerViewControllerTests.swift in Sources */,
 				3B1D37C9231085830017CCA2 /* PostGradesPresenterTests.swift in Sources */,
 				B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */,
 				B1992AAB2264D51200396A1F /* RoutesTests.swift in Sources */,
 				B18B275F236C76B10043EB2B /* ModuleListViewControllerTests.swift in Sources */,
+				7D64A9872368C6C0004EAEDF /* AttendanceViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

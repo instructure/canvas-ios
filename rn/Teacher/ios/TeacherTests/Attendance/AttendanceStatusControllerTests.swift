@@ -24,7 +24,6 @@ import TestsFoundation
 class AttendanceStatusControllerTests: TeacherTestCase {
     func testUpdate() {
         let context = ContextModel(.course, id: "1")
-        api.mock(GetSessionlessLaunchURLRequest(context: context, id: "2", url: nil, assignmentID: nil, moduleItemID: nil, launchType: .course_navigation), error: NSError.internalError())
         let session = RollCallSession(context: context, toolID: "2")
         session.state = .active(MockURLSession())
 

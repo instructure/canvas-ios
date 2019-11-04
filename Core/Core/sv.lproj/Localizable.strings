@@ -437,6 +437,9 @@
 "Log Out" = "Logga ut";
 
 /* No comment provided by engineer. */
+"Login" = "Logga in";
+
+/* No comment provided by engineer. */
 "Manage Children" = "Hantera barn";
 
 /* No comment provided by engineer. */
@@ -510,6 +513,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Sidor";
+
+/* No comment provided by engineer. */
+"Password" = "Lösenord";
 
 /* No comment provided by engineer. */
 "Pause" = "Pausa";
@@ -765,6 +771,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "Användar-ID";
+
+/* No comment provided by engineer. */
+"Username" = "Användarnamn";
 
 /* No comment provided by engineer. */
 "Video" = "Video";

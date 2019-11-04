@@ -437,6 +437,9 @@
 "Log Out" = "Выйти";
 
 /* No comment provided by engineer. */
+"Login" = "Вход в систему";
+
+/* No comment provided by engineer. */
 "Manage Children" = "Управление детьми";
 
 /* No comment provided by engineer. */
@@ -510,6 +513,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Страницы";
+
+/* No comment provided by engineer. */
+"Password" = "Пароль";
 
 /* No comment provided by engineer. */
 "Pause" = "Пауза";
@@ -765,6 +771,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "Идентификатор пользователя";
+
+/* No comment provided by engineer. */
+"Username" = "Имя пользователя";
 
 /* No comment provided by engineer. */
 "Video" = "Видео";

@@ -4,8 +4,8 @@ project_type: other
 workflows:
   danger:
     steps:
-    - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
-        title: Canvas iOS Secrets
+    # - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
+    #     title: Canvas iOS Secrets
     - script:
         title: Set up environment variables
         inputs:
@@ -38,7 +38,16 @@ workflows:
 
             # Set all changed files to now
             git checkout -
-    - cache-pull: {}
+    # - cache-pull: {}
+    - script:
+        title: super-hacky-temp-carthage-cache
+        run_if: .IsCI
+        inputs:
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            curl -L https://github.com/cobbal/temp-carthage-cache/raw/master/Carthage.tar.xz | tar xJf -
     - script:
         title: brew tap
         run_if: .IsCI
@@ -92,14 +101,33 @@ workflows:
         inputs:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
         - command: test --silent --coverage --color
-    - git::git@github.com:instructure/steps-xcode-test.git@master:
-        inputs:
-        - generate_code_coverage_files: 'yes'
-        - xcpretty_test_options: ''
-        - simulator_device: iPhone 8
-        - export_uitest_artifacts: 'true'
-        - scheme: CITests
+    # - git::git@github.com:instructure/steps-xcode-test.git@master:
+    #     inputs:
+    #     - generate_code_coverage_files: 'yes'
+    #     - xcpretty_test_options: ''
+    #     - simulator_device: iPhone 8
+    #     - export_uitest_artifacts: 'true'
+    #     - scheme: CITests
+    #     title: CITests
+    - script:
         title: CITests
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            export NSUnbufferedIO=YES
+            export CODE_SIGNING_REQUIRED=NO
+
+            xcodebuild \
+                -workspace Canvas.xcworkspace \
+                -scheme CITests \
+                -sdk iphonesimulator \
+                -destination 'platform=iOS Simulator,name=iPhone 8' \
+                -configuration Debug \
+                -resultBundlePath scripts/coverage/citests.xcresult \
+                test | xcbeautify
     - script:
         title: Save xcresult
         inputs:
@@ -108,7 +136,7 @@ workflows:
             #!/bin/zsh
             set -euxo pipefail
 
-            zip --quiet -r "$BITRISE_DEPLOY_DIR/citests.xcresult.zip" ${TMPDIR}XCUITestOutput*/*.xcresult
+            zip --quiet -r "$BITRISE_DEPLOY_DIR/citests.xcresult.zip" scripts/coverage/citests.xcresult
         is_always_run: true
     - script:
         title: Report Coverage
@@ -120,7 +148,6 @@ workflows:
             set -ex
 
             # Move & handle CITests coverage report
-            mv ${TMPDIR}XCUITestOutput*/*.xcresult scripts/coverage/citests.xcresult
             yarn coverage
             zip --quiet -r "$BITRISE_DEPLOY_DIR/coverage.zip" scripts/coverage/citests
     - script:
@@ -141,16 +168,16 @@ workflows:
         run_if: .IsCI
         inputs:
         - command: danger ci
-    - cache-push:
-        inputs:
-        - cache_paths: |-
-            $BITRISE_SOURCE_DIR/rn/Teacher/node_modules/
-            $BITRISE_SOURCE_DIR/Carthage/Build/iOS/
-            ~/Library/Developer/Xcode/DerivedData
-        - ignore_check_on_paths: |-
-            $BITRISE_SOURCE_DIR/rn/Teacher/node_modules/
-            ~/Library/Developer/Xcode/DerivedData
-    - deploy-to-bitrise-io: {}
+    # - cache-push:
+    #     inputs:
+    #     - cache_paths: |-
+    #         $BITRISE_SOURCE_DIR/rn/Teacher/node_modules/
+    #         $BITRISE_SOURCE_DIR/Carthage/Build/iOS/
+    #         ~/Library/Developer/Xcode/DerivedData
+    #     - ignore_check_on_paths: |-
+    #         $BITRISE_SOURCE_DIR/rn/Teacher/node_modules/
+    #         ~/Library/Developer/Xcode/DerivedData
+    # - deploy-to-bitrise-io: {}
     - build-router-wait:
         run_if: enveq "RUN_NIGHTLY" "YES"
         inputs:

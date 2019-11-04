@@ -416,6 +416,7 @@
         <attribute name="excusedRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="grade" optional="YES" attributeType="String"/>
         <attribute name="gradedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="gradeMatchesCurrentSubmission" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="late" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="latePolicyStatusRaw" optional="YES" attributeType="String"/>
@@ -520,7 +521,7 @@
         <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="135"/>
         <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="150"/>
         <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="120"/>
-        <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="390"/>
+        <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="403"/>
         <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="253"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>

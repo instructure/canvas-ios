@@ -17,6 +17,9 @@
 "Act as User" = "临时代理用户";
 
 /* No comment provided by engineer. */
+"Add" = "添加";
+
+/* No comment provided by engineer. */
 "Add Student" = "添加学生";
 
 /* Label displayed when logged in as an admin */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "提交：%1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "摘要";
 
 /* Syllabus Button Title */
 "Syllabus" = "教学大纲";

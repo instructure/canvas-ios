@@ -76,3 +76,4 @@ scripts/apiModelCodegen/input.json
 
 # Secrets
 **/*.xcassets/Secrets/*.dataset
+.bitrise.secrets.yml
