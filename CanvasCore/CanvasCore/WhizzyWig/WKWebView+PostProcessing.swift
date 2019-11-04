@@ -16,14 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-//
-//  UIWebView+PostProcessing.swift
-//  WhizzyWig
-//
-//  Created by Nathan Lambson on 2/12/16.
-//
-//
-
 import UIKit
 import WebKit
 
@@ -32,11 +24,5 @@ let webPostProcessingLinkJavascript = "var links = document.getElementsByTagName
 extension WKWebView {
     @objc public func replaceHREFsWithAPISafeURLs() {
         self.evaluateJavaScript(webPostProcessingLinkJavascript, completionHandler: nil)
-    }
-}
-
-extension UIWebView {
-    @objc public func replaceHREFsWithAPISafeURLs() {
-        self.stringByEvaluatingJavaScript(from: webPostProcessingLinkJavascript)
     }
 }
