@@ -69,7 +69,7 @@ public class PageDetailsViewController: UIViewController, PageDetailsViewProtoco
             guard let vc = self, let page = vc.presenter.page else {
                 return
             }
-            self?.env.router.route(to: page.htmlURL + "/edit", from: vc, options: [.modal, .embedInNav, .formSheet])
+            self?.env.router.route(to: page.htmlURL.appendingPathComponent("edit"), from: vc, options: [.modal, .embedInNav, .formSheet])
         })
 
         if presenter.canDelete() {

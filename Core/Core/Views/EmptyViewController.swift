@@ -28,28 +28,14 @@ public class EmptyViewController: UIViewController {
 
     func addLogo() {
         let image = UIImage(named: "EmptyViewControllerLogo", in: .core, compatibleWith: nil)
-        let logoImageview = UIImageView(image: image)
+        let logoImageView = UIImageView(image: image)
 
-        logoImageview.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(logoImageview)
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(logoImageView)
 
-        logoImageview.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        logoImageview.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-
-        let width = NSLayoutConstraint(item: logoImageview,
-                                       attribute: NSLayoutConstraint.Attribute.width,
-                                       relatedBy: NSLayoutConstraint.Relation.equal,
-                                       toItem: logoImageview.superview,
-                                       attribute: NSLayoutConstraint.Attribute.width,
-                                       multiplier: 0.1,
-                                       constant: 1.0)
-        let height = NSLayoutConstraint(item: logoImageview,
-                                        attribute: NSLayoutConstraint.Attribute.height,
-                                        relatedBy: NSLayoutConstraint.Relation.equal,
-                                        toItem: logoImageview,
-                                        attribute: NSLayoutConstraint.Attribute.width,
-                                        multiplier: 1,
-                                        constant: 0)
-        logoImageview.superview?.addConstraints([width, height])
+        logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        logoImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
+        logoImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1).isActive = true
     }
 }

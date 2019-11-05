@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15400" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15400" systemVersion="19A602" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AlertThreshold" representedClassName="Core.AlertThreshold" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="observerID" optional="YES" attributeType="String"/>
@@ -252,7 +252,7 @@
         <attribute name="body" optional="YES" attributeType="String"/>
         <attribute name="contextID" attributeType="String"/>
         <attribute name="editingRoles" optional="YES" attributeType="Transformable"/>
-        <attribute name="htmlURL" attributeType="String"/>
+        <attribute name="htmlURL" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="isFrontPage" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="lastUpdated" attributeType="Date" usesScalarValueType="NO"/>

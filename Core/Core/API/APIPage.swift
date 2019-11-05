@@ -24,7 +24,7 @@ public struct APIPage: Codable, Equatable {
     let front_page: Bool
     let page_id: ID
     let title: String
-    let html_url: String
+    let html_url: URL
     let published: Bool
     let body: String?
     let editing_roles: String?

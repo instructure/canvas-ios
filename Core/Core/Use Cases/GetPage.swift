@@ -38,10 +38,4 @@ public struct GetPage: APIUseCase {
         let order = NSSortDescriptor(key: #keyPath(Page.title), ascending: true)
         return Scope(predicate: predicate, order: [order])
     }
-
-    public func write(response: APIPage?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let response = response else { return }
-        let model = Page.save(response, in: client)
-        model.contextID = context.canvasContextID
-    }
 }

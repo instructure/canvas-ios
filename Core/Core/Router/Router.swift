@@ -93,6 +93,17 @@ public extension RouterProtocol {
             from.show(view, sender: nil)
         }
     }
+
+    func pop(from: UIViewController) {
+        guard let navController = from.navigationController else {
+             return
+         }
+         if navController.viewControllers.count == 1 {
+             navController.viewControllers = [EmptyViewController(nibName: nil, bundle: nil)]
+         } else {
+             navController.popViewController(animated: true)
+         }
+    }
 }
 
 // The Router stores all routes that can be routed to in the app
@@ -142,16 +153,5 @@ public class Router: RouterProtocol {
             }
         }
         fallback(url, from, options)
-    }
-
-    public func pop(from: UIViewController) {
-        guard let navController = from.navigationController else {
-             return
-         }
-         if navController.viewControllers.count == 1 {
-             navController.viewControllers = [EmptyViewController(nibName: nil, bundle: nil)]
-         } else {
-             navController.popViewController(animated: true)
-         }
     }
 }

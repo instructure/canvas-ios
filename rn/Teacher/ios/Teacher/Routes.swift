@@ -35,17 +35,6 @@ class Router: RouterProtocol {
         ]
         NotificationCenter.default.post(name: name, object: nil, userInfo: userInfo)
     }
-
-    public func pop(from: UIViewController) {
-        guard let navController = from.navigationController else {
-            return
-        }
-        if navController.viewControllers.count == 1 {
-            navController.viewControllers = [EmptyViewController(nibName: nil, bundle: nil)]
-        } else {
-            navController.popViewController(animated: true)
-        }
-    }
 }
 
 let router = Router()
