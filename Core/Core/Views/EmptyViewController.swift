@@ -35,7 +35,7 @@ public class EmptyViewController: UIViewController {
 
         logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        logoImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-        logoImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1).isActive = true
+        logoImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.1).isActive = true
+        logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor).isActive = true
     }
 }
