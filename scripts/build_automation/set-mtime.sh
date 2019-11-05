@@ -4,7 +4,7 @@ set -euxo pipefail
 function setLastChanged {
     # Set time on all files from commit
     git fetch origin $1
-    git checkout $1 -
+    git checkout $1
     TIMESTAMP=$(date -r $(git log -1 --format="%at") +%Y%m%d%H%M.%S)
     find . -exec touch -t $TIMESTAMP {} +
 
