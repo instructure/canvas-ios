@@ -76,10 +76,6 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
         if let indexPath = tableView.indexPathForSelectedRow { tableView.deselectRow(at: indexPath, animated: true) }
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-
     private func configureTableView() {
         tableRefresher.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView.refreshControl = tableRefresher

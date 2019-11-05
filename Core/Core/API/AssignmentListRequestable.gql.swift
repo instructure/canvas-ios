@@ -25,12 +25,14 @@ public struct AssignmentListRequestable: APIGraphQLRequestable {
     let gradingPeriodID: String?
     let filter: Bool
     let cursor: String?
+    let pageSize: Int
 
-    public init(courseID: String, gradingPeriodID: String?, filter: Bool = true, cursor: String? = nil) {
+    public init(courseID: String, gradingPeriodID: String?, filter: Bool = true, pageSize: Int = 10, cursor: String? = nil) {
         self.courseID = courseID
         self.gradingPeriodID = gradingPeriodID
         self.filter = filter
         self.cursor = cursor
+        self.pageSize = pageSize
     }
 
     public var query: String? {
@@ -64,7 +66,7 @@ public struct AssignmentListRequestable: APIGraphQLRequestable {
               nodes {
                 id: _id
                 name
-                assignmentNodes: assignmentsConnection(first: 10, \(after)filter: {\(gradingPeriodFilter)}) {
+                assignmentNodes: assignmentsConnection(first: \(pageSize), \(after)filter: {\(gradingPeriodFilter)}) {
                   nodes {
                     id: _id
                     name

@@ -19,13 +19,22 @@
 import Foundation
 @testable import Core
 
+extension APIPageInfo {
+    public static func make(endCursor: String? = nil, hasNextPage: Bool = false) -> APIPageInfo {
+        return APIPageInfo(endCursor: endCursor, hasNextPage: hasNextPage)
+    }
+}
+
 extension APIAssignmentListGroup {
     public static func make(id: ID =  "1",
                             name: String = "GroupA",
-                            assignments: [APIAssignmentListAssignment] = [APIAssignmentListAssignment.make()])
+                            assignments: [APIAssignmentListAssignment] = [APIAssignmentListAssignment.make()],
+                            pageInfo: APIPageInfo? = APIPageInfo.make() )
         -> APIAssignmentListGroup {
-            return APIAssignmentListGroup(id: id, name: name,
-                                          assignmentNodes: APIAssignmentListGroup.Nodes(nodes: assignments) )
+            return APIAssignmentListGroup(id: id,
+                                          name: name,
+                                          assignmentNodes: APIAssignmentListGroup.Nodes(nodes: assignments,
+                                                                                        pageInfo: pageInfo))
     }
 }
 
