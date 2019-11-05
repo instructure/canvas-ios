@@ -98,7 +98,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
 
         env.api.makeRequest(requestable, refreshToken: true) { [weak self] response, _, error in
             if let error = error {
-                self?.showError(error);
+                self?.showError(error)
                 return
             }
 
@@ -115,15 +115,15 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
             //  that we care about (i.e. assignment.count > 0).  Groups
             //  w/ 0 assignments should not be shown.  All groups are returned
             //  with paging, so we need to keep indexes of groups we care about
-            for g in response.groups {
-                if g.assignments.count > 0 {
-                    groupIDsWithAssignments[g.id.value] = g.id.value
+            response.groups.forEach {
+                if $0.assignments.count > 0 {
+                    groupIDsWithAssignments[$0.id.value] = $0.id.value
                 }
             }
             sectionHasNext = Array(repeating: false, count: groupIDsWithAssignments.count)
         }
 
-        groups = response.groups.filter{ groupIDsWithAssignments[ $0.id.value ] != nil }
+        groups = response.groups.filter { groupIDsWithAssignments[ $0.id.value ] != nil }
         gradingPeriods = response.gradingPeriods
 
         //  append new assignments to existing arrays
@@ -143,7 +143,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
         }
 
         //  cursor should be the same for all assignmentConnections
-        pagingCursor = groups.compactMap{ $0.pageInfo?.endCursor }.first
+        pagingCursor = groups.compactMap { $0.pageInfo?.endCursor }.first
 
         if !(shouldFilter) {
             shouldFilter = true

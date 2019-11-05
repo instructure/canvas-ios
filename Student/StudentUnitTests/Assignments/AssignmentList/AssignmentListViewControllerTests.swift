@@ -199,4 +199,89 @@ class AssignmentListViewControllerTests: PersistenceTestCase {
         XCTAssertEqual( vc.gradingPeriodLabel.text, "grading period z" )
         XCTAssertEqual( vc.filterButton.title(for: .normal), "Clear filter" )
     }
+
+    func testSelectFirstOnIpad() {
+        let svc = UISplitViewController(nibName: nil, bundle: nil)
+        let nav = UINavigationController(rootViewController: vc)
+        svc.viewControllers = [nav, UIViewController()]
+
+        gradingPeriods = [ APIAssignmentListGradingPeriod.make(title: "grading period a") ]
+
+        let assignmentsGroupA = [
+            APIAssignmentListAssignment.make(id: "1", name: "ios 101", dueAt: Date().addDays(1)),
+        ]
+
+        let assignmentsGroupB = [
+            APIAssignmentListAssignment.make(id: "2", name: "how to cook pizza"),
+        ]
+
+        groups = [
+            APIAssignmentListGroup.make(id: "1", name: "GroupA", assignments: assignmentsGroupA),
+            APIAssignmentListGroup.make(id: "2", name: "GroupB", assignments: assignmentsGroupB),
+        ]
+
+        req = AssignmentListRequestable(courseID: courseID, gradingPeriodID: nil, filter: false)
+        mockNetwork()
+
+        loadView()
+
+        let expected = IndexPath(row: 0, section: 0)
+        let cell = vc.tableView.cellForRow(at: expected) as? AssignmentListViewController.ListCell
+        XCTAssertTrue(cell?.isSelected ?? false)
+        XCTAssertEqual(expected, vc.tableView.indexPathForSelectedRow)
+    }
+
+    func testPaging() {
+        gradingPeriods = [ APIAssignmentListGradingPeriod.make(title: "grading period a") ]
+        var assignmentsGroupA1 = [APIAssignmentListAssignment]()
+        var assignmentsGroupA2 = [APIAssignmentListAssignment]()
+
+        var count = 5
+        for i in 0..<count {
+            let a = APIAssignmentListAssignment.make(id: ID("\(i)"), name: "\(i)")
+            assignmentsGroupA1.append(a)
+        }
+
+        count = 6
+        for i in 0..<count {
+            let a = APIAssignmentListAssignment.make(id: ID("10\(i)"), name: "\(5+i)")
+            assignmentsGroupA2.append(a)
+        }
+
+        groups = [
+            APIAssignmentListGroup.make(id: "1", name: "GroupA", assignments: assignmentsGroupA1, pageInfo: APIPageInfo(endCursor: "MQ", hasNextPage: true)),
+        ]
+
+        req = AssignmentListRequestable(courseID: courseID, gradingPeriodID: nil, filter: false)
+
+        let d1 = data(gradingPeriods: gradingPeriods, groups: groups)
+
+        groups = [
+            APIAssignmentListGroup.make(id: "1", name: "GroupA", assignments: assignmentsGroupA2),
+        ]
+        let d2 = data(gradingPeriods: gradingPeriods, groups: groups)
+        var cnt = 0
+        api.mock(req, data: nil, response: nil, error: nil, dataHandler: { () -> MockURLSession.UrlResponseTuple in
+            if cnt == 0 {
+                cnt += 1
+                return (d1, nil, nil)
+            } else {
+                return (d2, nil, nil)
+            }
+        })
+
+        loadView()
+        vc.view.layoutIfNeeded()
+
+        XCTAssertEqual( vc.gradingPeriodLabel.text, "grading period a" )
+        XCTAssertEqual( vc.filterButton.title(for: .normal), "Clear filter" )
+
+        let rows =  vc.tableView(vc.tableView, numberOfRowsInSection: 0)
+        XCTAssertEqual(rows, 11)
+
+        for i in 0..<rows {
+            let cell = vc.tableView(vc.tableView, cellForRowAt: IndexPath(row: i, section: 0))
+            XCTAssertEqual(cell.textLabel?.text, "\(i)")
+        }
+    }
 }
