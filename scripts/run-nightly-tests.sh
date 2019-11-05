@@ -47,7 +47,7 @@ function setEnv {
     for (( i = 0; ; i++ )); do
         name=$(/usr/libexec/PlistBuddy $1 -c "print :TestConfigurations:0:TestTargets:$i:BlueprintName" 2>/dev/null) || break
         echo "Setting $2=$3 in $1 $name"
-        /usr/libexec/PlistBuddy $1 -c "add :TestConfigurations:0:TestTargets:$i:EnvironmentVariables:$2 string $3"
+        /usr/libexec/PlistBuddy $1 -c "add :TestConfigurations:0:TestTargets:$i:EnvironmentVariables:$2 string $3" || exit $?
     done
     if [[ i -eq 0 ]]; then
         echo "failed to set any environment variables!"
@@ -72,14 +72,21 @@ function getTestResults {
     xcrun xcresulttool get --format json --path $result_path --id $test_result_id |
         jq '[.summaries._values[].testableSummaries._values[] |
                  .name._value as $bundleName |
-                 .tests._values[] |
+                 .tests?._values[]? |
                  recurse(.subtests?._values[]?) |
                  select(._type._name == "ActionTestMetadata") |
                  ($bundleName + "/" + .identifier._value | rtrimstr("()")) as $testId |
                  {"status": .testStatus._value, "id": $testId}]' \
-                     > $all_results_path
-    tests_passed_this_run=($(jq -r '.[] | select(.status == "Success").id' $all_results_path))
-    tests_failed_this_run=($(jq -r '.[] | select(.status == "Failure").id' $all_results_path))
+                     > $all_results_path || return $?
+    tests_passed_this_run=($(jq -r '.[] | select(.status == "Success").id' $all_results_path)) || return $?
+    tests_failed_this_run=($(jq -r '.[] | select(.status == "Failure").id' $all_results_path)) || return $?
+
+    if (( ${#tests_passed_this_run} + ${#tests_failed_this_run} == 0 )); then
+        echo "Couldn't find any test results... probably a bug!"
+        jq -C . <$all_results_path
+        exit 1
+    fi
+
     all_passing_tests+=($tests_passed_this_run)
 }
 
@@ -96,7 +103,7 @@ function doTest {
     local flags=($destination_flag)
     flags+=(-resultBundlePath $result_path)
     flags+=(-xctestrun $xctestrun)
-    if (( $try < 1 )); then
+    if (( try < 1 )); then
         flags+=(-parallel-testing-enabled YES -parallel-testing-worker-count 3)
         formatter=(env NSUnbufferedIO=YES xcbeautify)
     fi
@@ -106,7 +113,7 @@ function doTest {
     NSUnbufferedIO=YES xcodebuild test-without-building $flags 2>&1 | $formatter ||
         ret=$?
 
-    getTestResults
+    getTestResults || return $?
     banner "${#tests_passed_this_run} tests passed"
     banner "${#tests_failed_this_run} tests failed"
     print ${(F)tests_failed_this_run}
@@ -118,8 +125,8 @@ function retry {
     (( try += 1 ))
     banner "Retrying"
 
-    setEnv $xctestrun CANVAS_TEST_IS_RETRY YES
-    doTest
+    setEnv $xctestrun CANVAS_TEST_IS_RETRY YES || return $?
+    doTest || return $?
 }
 
 xcrun simctl boot 'iPhone 8' || true
