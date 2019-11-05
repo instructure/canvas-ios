@@ -400,9 +400,8 @@
 		7DE3D121225E7074000CAE7C /* RichContentToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE3D120225E7074000CAE7C /* RichContentToolbarView.swift */; };
 		7DE6A7062319973700A5B796 /* APIErrorReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE6A7052319973700A5B796 /* APIErrorReport.swift */; };
 		7DE6A7092319B05700A5B796 /* APIErrorReportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE6A7082319B05700A5B796 /* APIErrorReportTests.swift */; };
-		7DEAD08E2272387F0030C28A /* RichContentEditorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEAD08D2272387F0030C28A /* RichContentEditorPresenter.swift */; };
 		7DEAD09822789E8A0030C28A /* RichContentEditor.css in Resources */ = {isa = PBXBuildFile; fileRef = 7DEAD09722789E8A0030C28A /* RichContentEditor.css */; };
-		7DEAD09E22790B720030C28A /* RichContentEditorPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEAD09D22790B720030C28A /* RichContentEditorPresenterTests.swift */; };
+		7DEAD09E22790B720030C28A /* RichContentEditorViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEAD09D22790B720030C28A /* RichContentEditorViewControllerTests.swift */; };
 		7DEB5C3A224EB02B00F28404 /* CreateTextComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB5C39224EB02A00F28404 /* CreateTextComment.swift */; };
 		7DEB5C3C224EBF2D00F28404 /* CreateTextCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB5C3B224EBF2D00F28404 /* CreateTextCommentTests.swift */; };
 		7DF2F5FB2347DAEA00C1802C /* UIColorInstColorsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF2F5FA2347DAE900C1802C /* UIColorInstColorsExtensions.swift */; };
@@ -1257,9 +1256,8 @@
 		7DE3D120225E7074000CAE7C /* RichContentToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentToolbarView.swift; sourceTree = "<group>"; };
 		7DE6A7052319973700A5B796 /* APIErrorReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorReport.swift; sourceTree = "<group>"; };
 		7DE6A7082319B05700A5B796 /* APIErrorReportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorReportTests.swift; sourceTree = "<group>"; };
-		7DEAD08D2272387F0030C28A /* RichContentEditorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentEditorPresenter.swift; sourceTree = "<group>"; };
 		7DEAD09722789E8A0030C28A /* RichContentEditor.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = RichContentEditor.css; sourceTree = "<group>"; };
-		7DEAD09D22790B720030C28A /* RichContentEditorPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentEditorPresenterTests.swift; sourceTree = "<group>"; };
+		7DEAD09D22790B720030C28A /* RichContentEditorViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentEditorViewControllerTests.swift; sourceTree = "<group>"; };
 		7DEB5C39224EB02A00F28404 /* CreateTextComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTextComment.swift; sourceTree = "<group>"; };
 		7DEB5C3B224EBF2D00F28404 /* CreateTextCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTextCommentTests.swift; sourceTree = "<group>"; };
 		7DF2F5FA2347DAE900C1802C /* UIColorInstColorsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorInstColorsExtensions.swift; sourceTree = "<group>"; };
@@ -2199,7 +2197,6 @@
 			children = (
 				7DEAD09722789E8A0030C28A /* RichContentEditor.css */,
 				7D2FADC3225BBA5600BCE19E /* RichContentEditor.js */,
-				7DEAD08D2272387F0030C28A /* RichContentEditorPresenter.swift */,
 				7D2FADBD225BA50A00BCE19E /* RichContentEditorViewController.swift */,
 				7DE3D120225E7074000CAE7C /* RichContentToolbarView.swift */,
 				7DE3D11E225E7058000CAE7C /* RichContentToolbarView.xib */,
@@ -2553,7 +2550,7 @@
 		7DEAD09C22790B1E0030C28A /* RichContentEditor */ = {
 			isa = PBXGroup;
 			children = (
-				7DEAD09D22790B720030C28A /* RichContentEditorPresenterTests.swift */,
+				7DEAD09D22790B720030C28A /* RichContentEditorViewControllerTests.swift */,
 			);
 			path = RichContentEditor;
 			sourceTree = "<group>";
@@ -3390,7 +3387,6 @@
 				7D0BCEFC227BAAB400CFFCC5 /* ActAsUserPresenter.swift in Sources */,
 				9FBFE6D522412BC0002B3796 /* ActAsUserViewController.swift in Sources */,
 				7D80AC12212B4F8E00C40ECE /* API.swift in Sources */,
-				7DEAD08E2272387F0030C28A /* RichContentEditorPresenter.swift in Sources */,
 				7D13C52C22B956AC00345253 /* UITestHelpers.swift in Sources */,
 				78151DCD21AE75F600692862 /* APIDiscussionRequestable.swift in Sources */,
 				7DCF1E9E216BB6B6003AF358 /* GradingType.swift in Sources */,
@@ -3770,7 +3766,7 @@
 				B119B4BD2307208200A74062 /* GetEnabledFeatureFlagsTests.swift in Sources */,
 				3B158CB122E167CD0039A568 /* PageViewEventTests.swift in Sources */,
 				7D1F704821CAE4E700E78D69 /* AppEnvironmentTests.swift in Sources */,
-				7DEAD09E22790B720030C28A /* RichContentEditorPresenterTests.swift in Sources */,
+				7DEAD09E22790B720030C28A /* RichContentEditorViewControllerTests.swift in Sources */,
 				7DBED03623344EDF00392F3C /* ExternalToolLaunchPlacementTests.swift in Sources */,
 				7D80AC25212C61F100C40ECE /* APIAccountRequestableTests.swift in Sources */,
 				9F09A4CF22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift in Sources */,

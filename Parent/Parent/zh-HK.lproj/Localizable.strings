@@ -17,6 +17,9 @@
 "Act as User" = "作為使用者";
 
 /* No comment provided by engineer. */
+"Add" = "添加";
+
+/* No comment provided by engineer. */
 "Add Student" = "添加學生";
 
 /* Label displayed when logged in as an admin */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "已提交於：%1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "摘要";
 
 /* Syllabus Button Title */
 "Syllabus" = "課程大綱";

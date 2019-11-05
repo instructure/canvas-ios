@@ -437,6 +437,9 @@
 "Log Out" = "Kirjaudu ulos";
 
 /* No comment provided by engineer. */
+"Login" = "Sisäänkirjautuminen";
+
+/* No comment provided by engineer. */
 "Manage Children" = "Hallitse lapsia";
 
 /* No comment provided by engineer. */
@@ -510,6 +513,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Sivut";
+
+/* No comment provided by engineer. */
+"Password" = "Salasana";
 
 /* No comment provided by engineer. */
 "Pause" = "Keskeytä";
@@ -765,6 +771,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "Käyttäjätunnus";
+
+/* No comment provided by engineer. */
+"Username" = "Käyttäjänimi";
 
 /* No comment provided by engineer. */
 "Video" = "Video";

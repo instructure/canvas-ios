@@ -24,6 +24,7 @@ import AVKit
 
 class SubmissionDetailsView: SubmissionDetailsViewProtocol {
     func open(_ url: URL) {}
+    func showAlert(title: String?, message: String?) {}
 
     var color: UIColor?
     var navigationController: UINavigationController?

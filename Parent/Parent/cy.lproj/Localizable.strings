@@ -17,6 +17,9 @@
 "Act as User" = "Gweithredu fel Defnyddiwr";
 
 /* No comment provided by engineer. */
+"Add" = "Ychwanegu";
+
+/* No comment provided by engineer. */
 "Add Student" = "Ychwanegu Myfyriwr";
 
 /* Label displayed when logged in as an admin */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "Wedi cyflwyno: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Crynodeb";
 
 /* Syllabus Button Title */
 "Syllabus" = "Maes Llafur";

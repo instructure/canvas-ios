@@ -22,7 +22,6 @@
 #import "FileViewController.h"
 #import "NoPreviewAvailableController.h"
 #import "ContentLockViewController.h"
-#import "UIWebView+SafeAPIURL.h"
 #import "CBIModuleProgressNotifications.h"
 #import "CKIClient+CBIClient.h"
 #import "UIAlertController+TechDebt.h"

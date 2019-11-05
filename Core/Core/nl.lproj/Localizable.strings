@@ -437,6 +437,9 @@
 "Log Out" = "Afmelden";
 
 /* No comment provided by engineer. */
+"Login" = "Aanmelden";
+
+/* No comment provided by engineer. */
 "Manage Children" = "Kinderen beheren";
 
 /* No comment provided by engineer. */
@@ -510,6 +513,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Pagina's";
+
+/* No comment provided by engineer. */
+"Password" = "Wachtwoord";
 
 /* No comment provided by engineer. */
 "Pause" = "Onderbreken";
@@ -765,6 +771,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "Gebruikers-ID:";
+
+/* No comment provided by engineer. */
+"Username" = "Gebruikersnaam";
 
 /* No comment provided by engineer. */
 "Video" = "Video";

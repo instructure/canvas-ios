@@ -39,6 +39,7 @@ public struct APISubmission: Codable, Equatable {
     let url: URL?
     let media_comment: APIMediaComment?
     let graded_at: Date?
+    let grade_matches_current_submission: Bool
 
     // late policies
     let late_policy_status: LatePolicyStatus?

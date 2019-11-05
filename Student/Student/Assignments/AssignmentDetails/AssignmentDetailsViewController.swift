@@ -208,14 +208,12 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
             }
         }
 
-        guard submission.workflowState != .unsubmitted else {
+        if submission.workflowState == .unsubmitted {
             hideGradeCell()
             return
         }
 
-        gradeSection?.isHidden = false
-
-        guard submission.grade != nil else {
+        if submission.needsGrading, submission.score == nil {
             gradeCircleBottomConstraint?.isActive = false
             submittedView?.isHidden = false
             return
@@ -251,7 +249,8 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         lockedSection?.isHidden = presenter.lockedSectionIsHidden()
         fileTypesSection?.isHidden = presenter.fileTypesSectionIsHidden()
         submissionTypesSection?.isHidden = presenter.submissionTypesSectionIsHidden()
-        gradeSection?.isHidden = presenter.gradesSectionIsHidden()
+        let showGradeSection = assignment.submission?.needsGrading == true || assignment.submission?.isGraded == true
+        gradeSection?.isHidden = !showGradeSection
         submissionButtonSection?.isHidden = presenter.viewSubmissionButtonSectionIsHidden()
         showDescription(!presenter.descriptionIsHidden())
         submitAssignmentButton.isHidden = presenter.submitAssignmentButtonIsHidden()

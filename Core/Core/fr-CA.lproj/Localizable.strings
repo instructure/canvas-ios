@@ -437,6 +437,9 @@
 "Log Out" = "Déconnexion";
 
 /* No comment provided by engineer. */
+"Login" = "Connexion";
+
+/* No comment provided by engineer. */
 "Manage Children" = "Gérer les enfants";
 
 /* No comment provided by engineer. */
@@ -510,6 +513,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Pages";
+
+/* No comment provided by engineer. */
+"Password" = "Mot de passe";
 
 /* No comment provided by engineer. */
 "Pause" = "Mettre en pause";
@@ -765,6 +771,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "ID utilisateur";
+
+/* No comment provided by engineer. */
+"Username" = "Nom d'utilisateur";
 
 /* No comment provided by engineer. */
 "Video" = "Vidéo";

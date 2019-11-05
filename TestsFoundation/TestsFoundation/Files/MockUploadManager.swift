@@ -21,7 +21,6 @@ import CoreData
 
 public class MockUploadManager: UploadManager {
     public static func reset() {
-        try? UploadManager.shared.database.clearAllRecords()
     }
 
     public var uploadWasCalled = false
@@ -30,6 +29,10 @@ public class MockUploadManager: UploadManager {
 
    public init() {
         super.init(identifier: "mock")
+    }
+
+    public override var database: NSPersistentContainer {
+        return singleSharedTestDatabase
     }
 
     open override func upload(environment: AppEnvironment = .shared, batch batchID: String, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {

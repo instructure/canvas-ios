@@ -46,7 +46,9 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     }
     public var completionHandler: (() -> Void)?
 
-    public let database = NSPersistentContainer.shared
+    open var database: NSPersistentContainer {
+        return AppEnvironment.shared.globalDatabase
+    }
     public var viewContext: NSManagedObjectContext {
         return database.viewContext
     }

@@ -17,6 +17,9 @@
 "Act as User" = "Aji tankou Itilizatè";
 
 /* No comment provided by engineer. */
+"Add" = "Ajoute";
+
+/* No comment provided by engineer. */
 "Add Student" = "Ajoute Elèv";
 
 /* Label displayed when logged in as an admin */
@@ -186,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "Soumèt: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Rezime";
 
 /* Syllabus Button Title */
 "Syllabus" = "Pwogram";

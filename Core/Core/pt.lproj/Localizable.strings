@@ -437,6 +437,9 @@
 "Log Out" = "Sair";
 
 /* No comment provided by engineer. */
+"Login" = "Login";
+
+/* No comment provided by engineer. */
 "Manage Children" = "Gerir crianças";
 
 /* No comment provided by engineer. */
@@ -510,6 +513,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Páginas";
+
+/* No comment provided by engineer. */
+"Password" = "Palavra passe";
 
 /* No comment provided by engineer. */
 "Pause" = "Pausa";
@@ -765,6 +771,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "ID do utilizador";
+
+/* No comment provided by engineer. */
+"Username" = "Nome de utilizador";
 
 /* No comment provided by engineer. */
 "Video" = "Vídeo";

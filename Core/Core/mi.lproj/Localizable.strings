@@ -437,6 +437,9 @@
 "Log Out" = "Takiputa";
 
 /* No comment provided by engineer. */
+"Login" = "Takiuru";
+
+/* No comment provided by engineer. */
 "Manage Children" = "Whakahaere ngā tamariki";
 
 /* No comment provided by engineer. */
@@ -510,6 +513,9 @@
 
 /* No comment provided by engineer. */
 "Pages" = "Ngā whārangi";
+
+/* No comment provided by engineer. */
+"Password" = "Kupuhipa";
 
 /* No comment provided by engineer. */
 "Pause" = "Okioki";
@@ -765,6 +771,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "Kaiwhakamahi ID";
+
+/* No comment provided by engineer. */
+"Username" = "Ingoa rēhita";
 
 /* No comment provided by engineer. */
 "Video" = "Ataata";
