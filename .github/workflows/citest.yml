@@ -17,6 +17,8 @@ jobs:
           node-version: 10.16.0
       - name: Use XCode 11
         run: sudo xcode-select -s /Applications/Xcode_11.app/Contents/Developer
+      - name: Set timezone to MST
+        run: sudo systemsetup -settimezone America/Denver
       - name: Bitrise Secrets
         run: |
           printf "%s" "${{ secrets.BITRISE_SECRETS_YML }}" > .bitrise.secrets.yml
