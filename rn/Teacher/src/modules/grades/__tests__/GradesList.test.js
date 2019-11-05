@@ -162,7 +162,6 @@ describe('mapStateToProps', () => {
   })
 
   it('returns the current_score from the enrollment', () => {
-    // $FlowFixMe
     expect(mapStateToProps(defaultState, defaultProps).currentScore).toEqual(course.enrollments[1].computed_current_score)
   })
 
