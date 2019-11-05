@@ -53,7 +53,7 @@ class PageDetailsPresenter {
         self?.viewController?.update()
     }
 
-    func viewDidLoad() {
+    public func viewIsReady() {
         if context.contextType == .course {
             courses.refresh()
         } else {

@@ -53,7 +53,7 @@ public class PageDetailsViewController: UIViewController, PageDetailsViewProtoco
         refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         webView?.scrollView.refreshControl = refresh
 
-        presenter.viewDidLoad()
+        presenter.viewIsReady()
     }
 
     @objc func refresh(_ refresh: UIRefreshControl) {

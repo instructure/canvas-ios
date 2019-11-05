@@ -19,7 +19,7 @@
 import Foundation
 @testable import Student
 import XCTest
-import TestsFoundation
+@testable import TestsFoundation
 import Core
 
 class AssignmentDetailsViewControllerTests: PersistenceTestCase {

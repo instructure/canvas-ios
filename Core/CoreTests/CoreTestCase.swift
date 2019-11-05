@@ -51,13 +51,8 @@ class CoreTestCase: XCTestCase {
         router = TestRouter()
         logger = TestLogger()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
-        environment = AppEnvironment.shared
-        environment.api = URLSessionAPI(urlSession: MockURLSession())
-        environment.globalDatabase = database
-        environment.database = database
-        environment.router = router
+        environment = TestEnvironment()
         environment.loginDelegate = login
-        environment.logger = logger
         environment.currentSession = currentSession
         LoginSession.add(currentSession)
         notificationManager = NotificationManager(notificationCenter: notificationCenter, logger: logger)

@@ -28,8 +28,8 @@ extension APIPage {
         title: String = "Answers Page",
         html_url: URL = URL(string: "/courses/42/pages/Answers-Page")!,
         published: Bool = false,
-        body: String = "This is a page",
-        editing_roles: String = "teacher"
+        body: String? = nil,
+        editing_roles: String? = nil
 	) -> APIPage {
         return APIPage(
             url: url,
