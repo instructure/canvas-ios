@@ -97,6 +97,7 @@ class AssignmentDetailsTests: StudentUITestCase {
         mockBaseRequests()
         let assignment = mock(assignment: .make(
             submission: APISubmission.make(
+                submission_type: .discussion_topic,
                 discussion_entries: [ APIDiscussionEntry.make(
                     message: "My discussion entry"
                 ), ]
