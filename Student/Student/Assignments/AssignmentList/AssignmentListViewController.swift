@@ -154,6 +154,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
             self?.tableView.reloadData()
             self?.showSpinner(show: false)
             self?.updateLabels()
+            self?.updateFilterButton()
             self?.selectFirstCellOnIpad()
         }
     }
@@ -280,6 +281,10 @@ extension AssignmentListViewController {
         let buttonTitle = selectedGradingPeriod == nil ? NSLocalizedString("Filter", comment: "") : NSLocalizedString("Clear filter", comment: "")
         filterButton.setTitle(buttonTitle, for: .normal)
         gradingPeriodLabel.text = selectedGradingPeriod?.title ?? NSLocalizedString("All Grading Periods", comment: "")
+    }
+
+    func updateFilterButton() {
+        filterButton.isHidden = gradingPeriods.count == 0
     }
 
     func updateNavbar() {
