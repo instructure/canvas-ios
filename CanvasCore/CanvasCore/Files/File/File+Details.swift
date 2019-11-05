@@ -17,10 +17,9 @@
 //
 
 import UIKit
-
-
 import CoreData
 import ReactiveSwift
+import Core
 
 extension File {
     public static func observer(_ session: Session, backgroundSessionID: String) throws -> ManagedObjectObserver<FileUpload> {
@@ -50,11 +49,9 @@ extension File {
         override open func viewDidLoad() {
             super.viewDidLoad()
 
-            let webView: UIWebView = UIWebView()
-            webView.scalesPageToFit = true
-            let request: URLRequest = URLRequest(url: self.file.url as URL)
-            webView.loadRequest(request)
-            webView.backgroundColor = UIColor.white
+            let webView = CanvasWebView()
+            webView.load(source: .url(file.url))
+            webView.backgroundColor = .named(.backgroundLightest)
             self.view = webView
             self.edgesForExtendedLayout = UIRectEdge()
         }

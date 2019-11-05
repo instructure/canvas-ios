@@ -26,7 +26,6 @@ import {
   StyleSheet,
   View,
   Dimensions,
-  NativeModules,
 } from 'react-native'
 import * as canvas from '../../../canvas-api'
 
@@ -139,8 +138,6 @@ export default class RichTextEditor extends Component<Props, State> {
   // EDITOR EVENTS
 
   _onLoad = async () => {
-    NativeModules.WebViewHacker.removeInputAccessoryView()
-    NativeModules.WebViewHacker.setKeyboardDisplayRequiresUserAction(false)
     if (this.props.context && this.props.contextID) {
       try {
         let flags = await this.props.getEnabledFeatureFlags(this.props.context, this.props.contextID)
