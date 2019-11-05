@@ -26,8 +26,10 @@ extension APIPage {
         front_page: Bool = false,
         page_id: ID = ID("42"),
         title: String = "Answers Page",
-        html_url: String = "/courses/42/pages/Answers-Page",
-        published: Bool = false
+        html_url: URL = URL(string: "/courses/42/pages/Answers-Page")!,
+        published: Bool = false,
+        body: String = "This is a page",
+        editing_roles: String = "teacher"
 	) -> APIPage {
         return APIPage(
             url: url,
@@ -36,7 +38,9 @@ extension APIPage {
             page_id: page_id,
             title: title,
             html_url: html_url,
-            published: published
+            published: published,
+            body: body,
+            editing_roles: editing_roles
         )
     }
 }
