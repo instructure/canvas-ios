@@ -51,7 +51,7 @@ function setEnv {
     done
     if [[ i -eq 0 ]]; then
         echo "failed to set any environment variables!"
-        exit 1
+        return 1
     fi
 }
 
@@ -84,7 +84,7 @@ function getTestResults {
     if (( ${#tests_passed_this_run} + ${#tests_failed_this_run} == 0 )); then
         echo "Couldn't find any test results... probably a bug!"
         jq -C . <$all_results_path
-        exit 1
+        return 1
     fi
 
     all_passing_tests+=($tests_passed_this_run)
