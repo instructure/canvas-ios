@@ -143,6 +143,110 @@ class AssignmentDetailsViewControllerTests: PersistenceTestCase {
         XCTAssertEqual(viewController.lockedIconHeight.constant, 144)
     }
 
+    func testUpdateGradeCellNoSubmission() {
+        let aa = APIAssignment.make( submission: nil )
+        let a = Assignment.make(from: aa, in: databaseClient)
+
+        load()
+        viewController.updateGradeCell(a)
+
+        XCTAssertTrue(viewController.gradeSection?.isHidden == true)
+    }
+
+    func testUpdateGradeCelWorkflowStateUnsubmitted() {
+        let aa = APIAssignment.make( submission: .make(
+        grade: "10",
+        score: 10,
+        submission_type: .online_text_entry,
+        workflow_state: .unsubmitted))
+        let a = Assignment.make(from: aa, in: databaseClient)
+
+        load()
+        viewController.updateGradeCell(a)
+
+        XCTAssertTrue(viewController.gradeSection?.isHidden == true)
+    }
+
+    func testUpdateGradeCelWorkflowStateNeedsGrading() {
+        let aa = APIAssignment.make( submission: .make(
+        grade: "10",
+        score: nil,
+        submission_type: .online_text_entry,
+        workflow_state: .graded,
+        grade_matches_current_submission: false))
+        let a = Assignment.make(from: aa, in: databaseClient)
+
+        load()
+        viewController.updateGradeCell(a)
+
+        XCTAssertTrue(viewController.submittedView?.isHidden == false)
+    }
+
+
+    func testUpdateGradeCellWhenThereIsUploadState() {
+        let aa = APIAssignment.make( submission: .make(
+            grade: "10",
+            score: 10,
+            submission_type: .online_text_entry,
+            workflow_state: .graded))
+        let a = Assignment.make(from: aa, in: databaseClient)
+
+        load()
+        viewController.presenter?.onlineUploadState = .failed
+        viewController.updateGradeCell(a)
+
+        XCTAssertEqual(viewController.submittedLabel?.text, "Submission Failed")
+
+        XCTAssertEqual(viewController.gradeSection?.isHidden, false)
+        XCTAssertEqual(viewController.gradeCellDivider?.isHidden, false)
+        XCTAssertEqual(viewController.gradedView?.isHidden, true)
+        XCTAssertEqual(viewController.submittedView?.isHidden, true)
+        XCTAssertEqual(viewController.fileSubmissionButton?.isHidden, false)
+        XCTAssertEqual(viewController.submittedDetailsLabel?.isHidden, true)
+    }
+
+    func testUpdateGradeCell() {
+        let aa = APIAssignment.make( submission: .make(
+            grade: "10",
+            score: 10,
+            submission_type: .online_text_entry,
+            workflow_state: .graded))
+        let a = Assignment.make(from: aa, in: databaseClient)
+
+        load()
+
+        viewController.updateGradeCell(a)
+
+        XCTAssertEqual(viewController.submittedLabel?.text, "Successfully submitted!")
+        XCTAssertEqual(viewController.fileSubmissionButton?.isHidden, true)
+        XCTAssertEqual(viewController.submittedView?.isHidden, true)
+        XCTAssertEqual(viewController.submittedLabel?.text, "Successfully submitted!")
+    }
+
+    func testUpdateUpdateSubmissionLabelsFailedState() {
+        load()
+        viewController.updateSubmissionLabels(state: .failed)
+
+        XCTAssertEqual(viewController.submittedLabel?.text, "Submission Failed")
+        XCTAssertEqual(viewController.fileSubmissionButton?.title(for: .normal), "Tap to view details")
+    }
+
+    func testUpdateUpdateSubmissionLabelsUploadingState() {
+        load()
+        viewController.updateSubmissionLabels(state: .uploading)
+
+        XCTAssertEqual(viewController.submittedLabel?.text, "Submission Uploading...")
+        XCTAssertEqual(viewController.fileSubmissionButton?.title(for: .normal), "Tap to view progress")
+    }
+
+    func testUpdateUpdateSubmissionLabelsStagedState() {
+        load()
+        viewController.updateSubmissionLabels(state: .staged)
+
+        XCTAssertEqual(viewController.submittedLabel?.text, "Submission In Progress...")
+        XCTAssertEqual(viewController.fileSubmissionButton?.title(for: .normal), "Tap to view progress")
+    }
+
     func testNeedsGradingAndGraded() {
         let course = APICourse.make(id: ID(courseID))
         api.mock(viewController.presenter!.courses, value: course)
