@@ -47,7 +47,7 @@ function setEnv {
     for (( i = 0; ; i++ )); do
         name=$(/usr/libexec/PlistBuddy $1 -c "print :TestConfigurations:0:TestTargets:$i:BlueprintName" 2>/dev/null) || break
         echo "Setting $2=$3 in $1 $name"
-        /usr/libexec/PlistBuddy $1 -c "add :TestConfigurations:0:TestTargets:$i:EnvironmentVariables:$2 string $3" || exit $?
+        /usr/libexec/PlistBuddy $1 -c "add :TestConfigurations:0:TestTargets:$i:EnvironmentVariables:$2 string $3" || true
     done
     if [[ i -eq 0 ]]; then
         echo "failed to set any environment variables!"
