@@ -90,39 +90,51 @@ class AssignmentDetailsViewControllerTests: PersistenceTestCase {
         XCTAssertEqual(viewController.submitAssignmentButton.alpha, 0)
     }
 
-    func testShowDescription() {
+    func testHideDescription() {
+        mockCourse()
+        let a = APIAssignment.make( unlock_at: Date().addDays(1), locked_for_user: true )
+        api.mock(viewController.presenter!.assignments, value: a)
+
         load()
 
-        viewController.showDescription(false)
         XCTAssertEqual(viewController.descriptionView?.isHidden, true)
         XCTAssertEqual(viewController.descriptionHeadingLabel?.isHidden, true)
+    }
 
-        viewController.showDescription(true)
+    func testShowDescription() {
+        mockCourse()
+        let a = APIAssignment.make()
+        api.mock(viewController.presenter!.assignments, value: a)
+
+        load()
+
         XCTAssertEqual(viewController.descriptionView?.isHidden, false)
         XCTAssertEqual(viewController.descriptionHeadingLabel?.isHidden, false)
     }
 
+    func testGradeCellNotHidden() {
+        load()
+        XCTAssertEqual(viewController.gradeSection?.isHidden, false)
+    }
+
     func testHideGradeCell() {
+        mockCourse()
+        let a = APIAssignment.make(submission: nil)
+        api.mock(viewController.presenter!.assignments, value: a)
+
         load()
 
-        XCTAssertEqual(viewController.gradeSection?.isHidden, false)
-        viewController.hideGradeCell()
         XCTAssertEqual(viewController.gradeSection?.isHidden, true)
     }
 
-    func testHandleLink() {
-        load()
-        let url = URL(string: "/courses/165")!
-        XCTAssertTrue(viewController.handleLink(url))
-        XCTAssertTrue(router.lastRoutedTo(url))
-    }
-
     func testUpdateQuizSettings() {
-        let q = Quiz.make(from: APIQuiz.make(allowed_attempts: 2, question_count: 3, time_limit: 4), courseID: "1", in: databaseClient)
+        mockCourse()
+        let q = APIQuiz.make(allowed_attempts: 2, question_count: 3, time_limit: 4)
+        let qq = Quiz.make(from: q )
+        let a = APIAssignment.make( quiz_id: ID(qq.id) )
+        api.mock(viewController.presenter!.assignments, value: a)
 
         load()
-
-        viewController.updateQuizSettings(q)
 
         XCTAssertEqual(viewController.quizView?.isHidden, false)
         XCTAssertEqual(viewController.quizAttemptsValueLabel?.text, "2")
@@ -133,52 +145,54 @@ class AssignmentDetailsViewControllerTests: PersistenceTestCase {
         XCTAssertEqual(viewController.quizView?.isHidden, true)
     }
 
-    func testCenterLockedIconContainerDelayedStart() {
+    func testUpdateQuizSettingsNoQuiz() {
+        mockCourse()
+        let a = APIAssignment.make( quiz_id: nil )
+        api.mock(viewController.presenter!.assignments, value: a)
+
         load()
 
-        viewController.scrollView?.contentSize = CGSize(width: 320, height: 800)
-        viewController.centerLockedIconContainerDelayedStart()
-
-        XCTAssertEqual(viewController.lockedIconContainerView.alpha, 1.0)
-        XCTAssertEqual(viewController.lockedIconHeight.constant, 144)
+        XCTAssertEqual(viewController.quizView?.isHidden, true)
     }
 
     func testUpdateGradeCellNoSubmission() {
-        let aa = APIAssignment.make( submission: nil )
-        let a = Assignment.make(from: aa, in: databaseClient)
+        mockCourse()
+        let a = APIAssignment.make( submission: nil )
+        api.mock(viewController.presenter!.assignments, value: a)
 
         load()
-        viewController.updateGradeCell(a)
 
         XCTAssertTrue(viewController.gradeSection?.isHidden == true)
     }
 
     func testUpdateGradeCelWorkflowStateUnsubmitted() {
-        let aa = APIAssignment.make( submission: .make(
+        mockCourse()
+        let a = APIAssignment.make( submission: .make(
         grade: "10",
         score: 10,
         submission_type: .online_text_entry,
         workflow_state: .unsubmitted))
-        let a = Assignment.make(from: aa, in: databaseClient)
+        api.mock(viewController.presenter!.assignments, value: a)
 
         load()
-        viewController.updateGradeCell(a)
 
         XCTAssertTrue(viewController.gradeSection?.isHidden == true)
     }
 
     func testUpdateGradeCelWorkflowStateNeedsGrading() {
-        let aa = APIAssignment.make( submission: .make(
-        grade: "10",
-        score: nil,
-        submission_type: .online_text_entry,
-        workflow_state: .graded,
-        grade_matches_current_submission: false))
-        let a = Assignment.make(from: aa, in: databaseClient)
-
+        mockCourse()
+        let assignment = APIAssignment.make(
+            id: ID(assignmentID),
+            course_id: ID(courseID),
+            submission: .make(
+                grade: "10",
+                score: nil,
+                submission_type: .online_text_entry,
+                workflow_state: .graded,
+                grade_matches_current_submission: false)
+        )
+        api.mock(viewController.presenter!.assignments, value: assignment)
         load()
-        viewController.updateGradeCell(a)
-
         XCTAssertTrue(viewController.submittedView?.isHidden == false)
     }
 
@@ -188,14 +202,11 @@ class AssignmentDetailsViewControllerTests: PersistenceTestCase {
             score: 10,
             submission_type: .online_text_entry,
             workflow_state: .graded))
-        let a = Assignment.make(from: aa, in: databaseClient)
 
+        setupFileForSubmittedLabel(uploadError: "error", apiAssignment: aa)
         load()
-        viewController.presenter?.onlineUploadState = .failed
-        viewController.updateGradeCell(a)
 
         XCTAssertEqual(viewController.submittedLabel?.text, "Submission Failed")
-
         XCTAssertEqual(viewController.gradeSection?.isHidden, false)
         XCTAssertEqual(viewController.gradeCellDivider?.isHidden, false)
         XCTAssertEqual(viewController.gradedView?.isHidden, true)
@@ -210,11 +221,9 @@ class AssignmentDetailsViewControllerTests: PersistenceTestCase {
             score: 10,
             submission_type: .online_text_entry,
             workflow_state: .graded))
-        let a = Assignment.make(from: aa, in: databaseClient)
+        Assignment.make(from: aa, in: databaseClient)
 
         load()
-
-        viewController.updateGradeCell(a)
 
         XCTAssertEqual(viewController.submittedLabel?.text, "Successfully submitted!")
         XCTAssertEqual(viewController.fileSubmissionButton?.isHidden, true)
@@ -223,24 +232,24 @@ class AssignmentDetailsViewControllerTests: PersistenceTestCase {
     }
 
     func testUpdateUpdateSubmissionLabelsFailedState() {
+        setupFileForSubmittedLabel(uploadError: "error")
         load()
-        viewController.updateSubmissionLabels(state: .failed)
 
         XCTAssertEqual(viewController.submittedLabel?.text, "Submission Failed")
         XCTAssertEqual(viewController.fileSubmissionButton?.title(for: .normal), "Tap to view details")
     }
 
     func testUpdateUpdateSubmissionLabelsUploadingState() {
+        setupFileForSubmittedLabel(removeID: true, taskID: 1)
         load()
-        viewController.updateSubmissionLabels(state: .uploading)
 
         XCTAssertEqual(viewController.submittedLabel?.text, "Submission Uploading...")
         XCTAssertEqual(viewController.fileSubmissionButton?.title(for: .normal), "Tap to view progress")
     }
 
     func testUpdateUpdateSubmissionLabelsStagedState() {
+        setupFileForSubmittedLabel(removeID: true)
         load()
-        viewController.updateSubmissionLabels(state: .staged)
 
         XCTAssertEqual(viewController.submittedLabel?.text, "Submission In Progress...")
         XCTAssertEqual(viewController.fileSubmissionButton?.title(for: .normal), "Tap to view progress")
@@ -370,5 +379,30 @@ class AssignmentDetailsViewControllerTests: PersistenceTestCase {
         XCTAssertTrue(viewController.gradeSection!.isHidden)
         XCTAssertTrue(viewController.gradedView!.isHidden)
 
+    }
+
+    func setupFileForSubmittedLabel(removeID: Bool = false, taskID: Int? = nil, uploadError: String? = nil, apiAssignment: APIAssignment? = nil) {
+        let course = APICourse.make(id: ID(courseID))
+        api.mock(viewController.presenter!.courses, value: course)
+        let assignment = apiAssignment ?? APIAssignment.make(
+            id: ID(assignmentID),
+            course_id: ID(courseID),
+            submission: .make(
+                grade: "10",
+                score: 10,
+                submission_type: .discussion_topic,
+                workflow_state: .graded,
+                grade_matches_current_submission: false
+            )
+        )
+        File.make(assignmentID: assignmentID, batchID: "assignment-\(assignmentID)",
+            removeID: removeID, taskID: taskID, userID: "1", uploadError: uploadError)
+        api.mock(viewController.presenter!.assignments, value: assignment)
+        XCTAssertEqual(viewController.presenter?.onlineUpload.count, 1)
+    }
+
+    func mockCourse() {
+        let course = APICourse.make(id: ID(courseID))
+        api.mock(viewController.presenter!.courses, value: course)
     }
 }
