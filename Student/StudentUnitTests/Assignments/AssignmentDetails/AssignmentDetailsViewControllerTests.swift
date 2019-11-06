@@ -70,7 +70,7 @@ class AssignmentDetailsViewControllerTests: PersistenceTestCase {
     func testUpdateNavBar() {
         load()
 
-        let _ = UINavigationController(rootViewController: viewController)
+        _ = UINavigationController(rootViewController: viewController)
 
         viewController.updateNavBar(subtitle: "hello", backgroundColor: .red)
         XCTAssertEqual(viewController.titleSubtitleView.subtitle, "hello")
@@ -181,7 +181,6 @@ class AssignmentDetailsViewControllerTests: PersistenceTestCase {
 
         XCTAssertTrue(viewController.submittedView?.isHidden == false)
     }
-
 
     func testUpdateGradeCellWhenThereIsUploadState() {
         let aa = APIAssignment.make( submission: .make(
