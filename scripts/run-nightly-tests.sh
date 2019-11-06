@@ -113,7 +113,7 @@ function doTest {
     NSUnbufferedIO=YES xcodebuild test-without-building $flags 2>&1 | $formatter ||
         ret=$?
 
-    getTestResults || return $?
+    getTestResults || echo "couldn't parse test results!"
     banner "${#tests_passed_this_run} tests passed"
     banner "${#tests_failed_this_run} tests failed"
     print ${(F)tests_failed_this_run}
@@ -125,8 +125,8 @@ function retry {
     (( try += 1 ))
     banner "Retrying"
 
-    setEnv $xctestrun CANVAS_TEST_IS_RETRY YES || return $?
-    doTest || return $?
+    setEnv $xctestrun CANVAS_TEST_IS_RETRY YES
+    doTest
 }
 
 xcrun simctl boot 'iPhone 8' || true
