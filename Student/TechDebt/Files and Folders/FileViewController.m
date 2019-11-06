@@ -412,7 +412,14 @@
             self.navigationItem.rightBarButtonItems = contentChildController.navigationItem.rightBarButtonItems;
             PSPDFViewController *pdfViewController = (PSPDFViewController *)contentChildController;
             if ([pdfViewController.annotationToolbarController.annotationToolbar isKindOfClass:[PSPDFFlexibleToolbar class]]) {
-                ((PSPDFFlexibleToolbar *)pdfViewController.annotationToolbarController.annotationToolbar).toolbarPosition = PSPDFFlexibleToolbarPositionLeft;
+                PSPDFFlexibleToolbar *toolbar = (PSPDFFlexibleToolbar *)pdfViewController.annotationToolbarController.toolbar;
+                toolbar.toolbarPosition = PSPDFFlexibleToolbarPositionLeft;
+                if (@available(iOS 13, *)) {
+                    UINavigationBarAppearance *appearance = [UINavigationBarAppearance new];
+                    [appearance configureWithOpaqueBackground];
+                    appearance.backgroundColor = self.navigationController.navigationBar.barTintColor;
+                    toolbar.standardAppearance = [[UIToolbarAppearance alloc] initWithBarAppearance:appearance];
+                }
             }
             [[NSNotificationCenter defaultCenter] postNotificationName: @"FileViewControllerBarButtonItemsDidChange" object:nil];
         }

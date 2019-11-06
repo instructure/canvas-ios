@@ -40,19 +40,19 @@ class DocViewerConstantsTests: XCTestCase {
 
     func testStyle() {
         stylePSPDFKit()
-        XCTAssertEqual(PSPDFKit.sharedInstance.styleManager.lastUsedProperty(
+        XCTAssertEqual(PSPDFKitGlobal.sharedInstance.styleManager.lastUsedProperty(
            "color",
            forKey: AnnotationStateVariantID(rawValue: AnnotationString.ink.rawValue)
         ) as? UIColor, DocViewerAnnotationColor.red.color)
-        XCTAssertEqual(PSPDFKit.sharedInstance.styleManager.lastUsedProperty(
+        XCTAssertEqual(PSPDFKitGlobal.sharedInstance.styleManager.lastUsedProperty(
             "fillColor",
             forKey: AnnotationStateVariantID(rawValue: AnnotationString.freeText.rawValue)
         ) as? UIColor, .clear)
-        XCTAssertEqual(PSPDFKit.sharedInstance.styleManager.lastUsedProperty(
+        XCTAssertEqual(PSPDFKitGlobal.sharedInstance.styleManager.lastUsedProperty(
             "color",
             forKey: AnnotationStateVariantID(rawValue: AnnotationString.freeText.rawValue)
         ) as? UIColor, .black)
-        let textPresets = PSPDFKit.sharedInstance.styleManager.presets(forKey: AnnotationStateVariantID(rawValue: AnnotationString.freeText.rawValue), type: .colorPreset) as? [PSPDFColorPreset]
+        let textPresets = PSPDFKitGlobal.sharedInstance.styleManager.presets(forKey: AnnotationStateVariantID(rawValue: AnnotationString.freeText.rawValue), type: .colorPreset) as? [PSPDFColorPreset]
         XCTAssertNotNil(textPresets)
         XCTAssertEqual(textPresets?.count, DocViewerAnnotationColor.allCases.count * 2)
         for annotationColor in DocViewerAnnotationColor.allCases {

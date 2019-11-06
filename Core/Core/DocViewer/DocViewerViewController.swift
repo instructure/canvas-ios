@@ -34,7 +34,7 @@ public class DocViewerViewController: UIViewController, DocViewerViewProtocol {
 
     public static func setup(_ secret: Secret) {
         if let key = secret.string {
-            PSPDFKit.setLicenseKey(key)
+            PSPDFKitGlobal.setLicenseKey(key)
         }
         stylePSPDFKit()
     }
