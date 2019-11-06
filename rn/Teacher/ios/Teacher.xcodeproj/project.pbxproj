@@ -73,6 +73,8 @@
 		B1A890AA224D272D00CEE000 /* ModuleItemSubHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A890A9224D272D00CEE000 /* ModuleItemSubHeaderCell.swift */; };
 		B1A890BC224F161100CEE000 /* ModuleSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A890BB224F161100CEE000 /* ModuleSectionHeaderView.swift */; };
 		B1A890BE224F16F900CEE000 /* ModuleSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1A890BD224F16F900CEE000 /* ModuleSectionHeaderView.xib */; };
+		B1C0257723722054001C87A2 /* ModuleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C0257623722054001C87A2 /* ModuleStore.swift */; };
+		B1C0257923732D6D001C87A2 /* ModuleStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C0257823732D6D001C87A2 /* ModuleStoreTests.swift */; };
 		B1D5CFBC224FDEF3004A1361 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D5CFBB224FDEF2004A1361 /* DividerView.swift */; };
 		B1F4060322E2444D008FAFE6 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405FD22E2444D008FAFE6 /* ReactiveObjC.framework */; };
 		B1F4060422E2444D008FAFE6 /* ReactiveObjCBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405FE22E2444D008FAFE6 /* ReactiveObjCBridge.framework */; };
@@ -312,6 +314,8 @@
 		B1A890A9224D272D00CEE000 /* ModuleItemSubHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemSubHeaderCell.swift; sourceTree = "<group>"; };
 		B1A890BB224F161100CEE000 /* ModuleSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleSectionHeaderView.swift; sourceTree = "<group>"; };
 		B1A890BD224F16F900CEE000 /* ModuleSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModuleSectionHeaderView.xib; sourceTree = "<group>"; };
+		B1C0257623722054001C87A2 /* ModuleStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleStore.swift; sourceTree = "<group>"; };
+		B1C0257823732D6D001C87A2 /* ModuleStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleStoreTests.swift; sourceTree = "<group>"; };
 		B1D5CFBB224FDEF2004A1361 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 		B1F405FD22E2444D008FAFE6 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjC.framework; path = ../../../Carthage/Build/iOS/ReactiveObjC.framework; sourceTree = "<group>"; };
 		B1F405FE22E2444D008FAFE6 /* ReactiveObjCBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjCBridge.framework; path = ../../../Carthage/Build/iOS/ReactiveObjCBridge.framework; sourceTree = "<group>"; };
@@ -549,6 +553,7 @@
 			isa = PBXGroup;
 			children = (
 				B18B275E236C76B10043EB2B /* ModuleListViewControllerTests.swift */,
+				B1C0257823732D6D001C87A2 /* ModuleStoreTests.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -574,6 +579,7 @@
 				B15CA244221DC5BC0014FB02 /* ModuleListViewController.swift */,
 				B1A890BB224F161100CEE000 /* ModuleSectionHeaderView.swift */,
 				B1A890BD224F16F900CEE000 /* ModuleSectionHeaderView.xib */,
+				B1C0257623722054001C87A2 /* ModuleStore.swift */,
 			);
 			path = ModuleList;
 			sourceTree = "<group>";
@@ -953,6 +959,7 @@
 				7D64A96023620A27004EAEDF /* DatePickerCollectionView.swift in Sources */,
 				7D64A95E23620A27004EAEDF /* AttendanceViewController.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */,
+				B1C0257723722054001C87A2 /* ModuleStore.swift in Sources */,
 				B15CA297221E103B0014FB02 /* DynamicLabel.swift in Sources */,
 				7D64A96223620A27004EAEDF /* RollCallSession.swift in Sources */,
 				7D64A96423620A27004EAEDF /* StatusCell.swift in Sources */,
@@ -972,6 +979,7 @@
 				7D64A98123676E36004EAEDF /* RollCallSessionTests.swift in Sources */,
 				7D64A96D23626C22004EAEDF /* StatusCellTests.swift in Sources */,
 				7D64A983236796CC004EAEDF /* AttendanceStatusControllerTests.swift in Sources */,
+				B1C0257923732D6D001C87A2 /* ModuleStoreTests.swift in Sources */,
 				7D64A96F23626F52004EAEDF /* StatusTests.swift in Sources */,
 				7D64A98523689DD5004EAEDF /* DatePickerViewControllerTests.swift in Sources */,
 				3B1D37C9231085830017CCA2 /* PostGradesPresenterTests.swift in Sources */,
