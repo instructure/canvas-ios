@@ -532,9 +532,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="PCA-RH-zpk"/>
                                 </constraints>
-                                <state key="normal" title="Submit Assignment">
-                                    <color key="titleColor" red="0.98040133709999999" green="0.98038035629999998" blue="0.98038440940000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
+                                <state key="normal" title="Submit Assignment"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="buttonPrimaryText"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>

@@ -20,7 +20,6 @@
 #import <CanvasKit1/CanvasKit1.h>
 #import <CanvasKit1/CKUploadProgressToolbar.h>
 #import "FileViewController.h"
-#import "NoPreviewAvailableController.h"
 #import "ContentLockViewController.h"
 #import "CBIModuleProgressNotifications.h"
 #import "CKIClient+CBIClient.h"
