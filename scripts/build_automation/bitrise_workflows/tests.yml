@@ -185,6 +185,20 @@ workflows:
 
   nightly:
     steps:
+    - slack:
+        title: "Send build start message to slack"
+        inputs:
+        - webhook_url: $SLACK_URL
+        - channel: '#ios'
+        - pretext: ""
+        - author_name: ""
+        - message: ""
+        - title: 'Nightly build started... ${BITRISE_BUILD_URL}'
+        - fields: ""
+        - color: warning
+        - footer: ""
+        - buttons: ""
+        - timestamp: "no"
     - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
         title: Canvas iOS Secrets
     - script:
@@ -312,11 +326,3 @@ workflows:
         - title: ''
         - message: ''
         - pretext: "*Nightly Build Succeeded!*"
-
-# Temporary, will be removed once bitrise is reconfigured:
-  danger-experimental:
-    after_run:
-    - danger
-  nightly-experimental:
-    after_run:
-    - nightly
