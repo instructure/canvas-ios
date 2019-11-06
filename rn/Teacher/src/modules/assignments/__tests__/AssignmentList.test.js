@@ -262,11 +262,14 @@ describe('AssignmentList', () => {
   it('selects first item on regular horizontal trait collection', () => {
     let traits = { window: { horizontal: 'regular' } }
     defaultProps.navigator.traitCollection = jest.fn(fn => fn(traits))
+    defaultProps.assignmentGroups = [templates.assignmentGroup({
+      assignments: [templates.assignment({ html_url: '/courses/1/assignments/2' })],
+    })]
     let screen = shallow(
       <AssignmentList {...defaultProps} />
     )
     screen.props().onTraitCollectionChange()
-    expect(defaultProps.navigator.show).toHaveBeenCalled()
+    expect(defaultProps.navigator.show).toHaveBeenCalledWith('/courses/1/assignments/2')
   })
 
   it('does not select first item on regular horizontal trait collection when is modal', () => {
