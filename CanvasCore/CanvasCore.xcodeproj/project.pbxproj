@@ -135,8 +135,6 @@
 		494AE0A01F843A09001A8F31 /* PushNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0941F843A03001A8F31 /* PushNotifications.m */; };
 		494AE0A11F843A09001A8F31 /* ScrollViewDisablerManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0951F843A03001A8F31 /* ScrollViewDisablerManager.h */; };
 		494AE0A21F843A09001A8F31 /* ScrollViewDisablerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE08D1F843A01001A8F31 /* ScrollViewDisablerManager.m */; };
-		494AE0A31F843A09001A8F31 /* WebViewHacker.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0981F843A04001A8F31 /* WebViewHacker.h */; };
-		494AE0A41F843A09001A8F31 /* WebViewHacker.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0961F843A03001A8F31 /* WebViewHacker.m */; };
 		494AE0A61F843A8A001A8F31 /* A11yGroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0A51F843A8A001A8F31 /* A11yGroupManager.m */; };
 		494AE0AD1F843AAC001A8F31 /* VideoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0AB1F843AAB001A8F31 /* VideoContainerView.swift */; };
 		494AE0AE1F843AAC001A8F31 /* VideoContainerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0AC1F843AAC001A8F31 /* VideoContainerManager.m */; };
@@ -147,7 +145,6 @@
 		4961F53C1F8FAD9A0093EC86 /* WhizzyTextInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5381F8FAD930093EC86 /* WhizzyTextInputCell.swift */; };
 		4961F53D1F8FAD9A0093EC86 /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5391F8FAD930093EC86 /* String+HTML.swift */; };
 		4961F53E1F8FAD9A0093EC86 /* WhizzyNeverScrollingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F53A1F8FAD930093EC86 /* WhizzyNeverScrollingTextView.swift */; };
-		4961F53F1F8FAD9A0093EC86 /* UIWebView+PostProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5331F8FAD920093EC86 /* UIWebView+PostProcessing.swift */; };
 		4961F5401F8FAD9A0093EC86 /* WhizzyWigTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F53B1F8FAD940093EC86 /* WhizzyWigTableViewCell.swift */; };
 		4961F5411F8FAD9A0093EC86 /* WhizzyWigTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 4961F5351F8FAD930093EC86 /* WhizzyWigTemplate.html */; };
 		4961F5421F8FAD9A0093EC86 /* WhizzyWigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5361F8FAD930093EC86 /* WhizzyWigView.swift */; };
@@ -351,7 +348,6 @@
 		49CE96A41F8FF4A700121A43 /* Session+Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96A01F8FF4A700121A43 /* Session+Progress.swift */; };
 		49CE96B71F8FF94B00121A43 /* PageKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96A81F8FF94A00121A43 /* PageKit.xcdatamodeld */; };
 		49CE96B81F8FF94B00121A43 /* Session+Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96AA1F8FF94A00121A43 /* Session+Page.swift */; };
-		49CE96B91F8FF94B00121A43 /* PagesHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96AC1F8FF94B00121A43 /* PagesHomeViewController.swift */; };
 		49CE96BA1F8FF94B00121A43 /* PageTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 49CE96AE1F8FF94B00121A43 /* PageTemplate.html */; };
 		49CE96BB1F8FF94B00121A43 /* PageTemplateRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96AF1F8FF94B00121A43 /* PageTemplateRenderer.swift */; };
 		49CE96BC1F8FF94B00121A43 /* PageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96B11F8FF94B00121A43 /* PageAPI.swift */; };
@@ -402,6 +398,7 @@
 		78C610CD21CA022400913B93 /* CanvasCrashlytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C610CC21CA022400913B93 /* CanvasCrashlytics.m */; };
 		78C610CE21CA022C00913B93 /* CanvasCrashlytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 78C610CB21C9FFFC00913B93 /* CanvasCrashlytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7D0215A321BAE703009A8E69 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0215A221BAE703009A8E69 /* Core.framework */; };
+		7D2F33A92370DDBC002236DB /* WKWebView+PostProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2F33A82370DDBB002236DB /* WKWebView+PostProcessing.swift */; };
 		7D52D87022FCC73100684932 /* DueDateOverride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52D83E22FCC73100684932 /* DueDateOverride.swift */; };
 		7D52D87422FCC73100684932 /* AssignmentGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52D84322FCC73100684932 /* AssignmentGroup.swift */; };
 		7D52D87522FCC73100684932 /* AssignmentGroup+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52D84422FCC73100684932 /* AssignmentGroup+Network.swift */; };
@@ -616,9 +613,7 @@
 		494AE0931F843A02001A8F31 /* PushNotifications.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushNotifications.h; sourceTree = "<group>"; };
 		494AE0941F843A03001A8F31 /* PushNotifications.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushNotifications.m; sourceTree = "<group>"; };
 		494AE0951F843A03001A8F31 /* ScrollViewDisablerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollViewDisablerManager.h; sourceTree = "<group>"; };
-		494AE0961F843A03001A8F31 /* WebViewHacker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewHacker.m; sourceTree = "<group>"; };
 		494AE0971F843A04001A8F31 /* NativeAccessibility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeAccessibility.h; sourceTree = "<group>"; };
-		494AE0981F843A04001A8F31 /* WebViewHacker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewHacker.h; sourceTree = "<group>"; };
 		494AE0A51F843A8A001A8F31 /* A11yGroupManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = A11yGroupManager.m; sourceTree = "<group>"; };
 		494AE0AB1F843AAB001A8F31 /* VideoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoContainerView.swift; sourceTree = "<group>"; };
 		494AE0AC1F843AAC001A8F31 /* VideoContainerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoContainerManager.m; sourceTree = "<group>"; };
@@ -630,7 +625,6 @@
 		4961F5161F8FAC3C0093EC86 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		4961F5171F8FAC3D0093EC86 /* UIImage+SoIconic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+SoIconic.swift"; sourceTree = "<group>"; };
 		4961F5181F8FAC3D0093EC86 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
-		4961F5331F8FAD920093EC86 /* UIWebView+PostProcessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWebView+PostProcessing.swift"; sourceTree = "<group>"; };
 		4961F5341F8FAD920093EC86 /* WhizzyWigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhizzyWigViewController.swift; sourceTree = "<group>"; };
 		4961F5351F8FAD930093EC86 /* WhizzyWigTemplate.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = WhizzyWigTemplate.html; sourceTree = "<group>"; };
 		4961F5361F8FAD930093EC86 /* WhizzyWigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhizzyWigView.swift; sourceTree = "<group>"; };
@@ -856,7 +850,6 @@
 		49CE96A01F8FF4A700121A43 /* Session+Progress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Progress.swift"; sourceTree = "<group>"; };
 		49CE96A91F8FF94A00121A43 /* PageKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PageKit.xcdatamodel; sourceTree = "<group>"; };
 		49CE96AA1F8FF94A00121A43 /* Session+Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Page.swift"; sourceTree = "<group>"; };
-		49CE96AC1F8FF94B00121A43 /* PagesHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagesHomeViewController.swift; sourceTree = "<group>"; };
 		49CE96AE1F8FF94B00121A43 /* PageTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PageTemplate.html; sourceTree = "<group>"; };
 		49CE96AF1F8FF94B00121A43 /* PageTemplateRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTemplateRenderer.swift; sourceTree = "<group>"; };
 		49CE96B11F8FF94B00121A43 /* PageAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageAPI.swift; sourceTree = "<group>"; };
@@ -919,6 +912,7 @@
 		78C610CB21C9FFFC00913B93 /* CanvasCrashlytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasCrashlytics.h; sourceTree = "<group>"; };
 		78C610CC21CA022400913B93 /* CanvasCrashlytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasCrashlytics.m; sourceTree = "<group>"; };
 		7D0215A221BAE703009A8E69 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D2F33A82370DDBB002236DB /* WKWebView+PostProcessing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebView+PostProcessing.swift"; sourceTree = "<group>"; };
 		7D349C6521430C8C004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349C6621430C8C004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D349C6921430C8E004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
@@ -1537,8 +1531,6 @@
 				496C7D631F8BEF690010DC03 /* TabBarBadgeCounts.swift */,
 				494AE0AC1F843AAC001A8F31 /* VideoContainerManager.m */,
 				494AE0AB1F843AAB001A8F31 /* VideoContainerView.swift */,
-				494AE0981F843A04001A8F31 /* WebViewHacker.h */,
-				494AE0961F843A03001A8F31 /* WebViewHacker.m */,
 			);
 			path = "React Native Modules";
 			sourceTree = "<group>";
@@ -1577,7 +1569,7 @@
 			isa = PBXGroup;
 			children = (
 				4961F5371F8FAD930093EC86 /* Input */,
-				4961F5331F8FAD920093EC86 /* UIWebView+PostProcessing.swift */,
+				7D2F33A82370DDBB002236DB /* WKWebView+PostProcessing.swift */,
 				4961F53B1F8FAD940093EC86 /* WhizzyWigTableViewCell.swift */,
 				4961F5351F8FAD930093EC86 /* WhizzyWigTemplate.html */,
 				4961F5361F8FAD930093EC86 /* WhizzyWigView.swift */,
@@ -2266,7 +2258,6 @@
 		49CE96AB1F8FF94B00121A43 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				49CE96AC1F8FF94B00121A43 /* PagesHomeViewController.swift */,
 				49CE96AD1F8FF94B00121A43 /* Rendering */,
 			);
 			path = UI;
@@ -2553,7 +2544,6 @@
 				494AE0991F843A09001A8F31 /* DrawerHandleViewManager.h in Headers */,
 				2CAF1B251F72AEDB007225DF /* CanvasCore.h in Headers */,
 				494AE09F1F843A09001A8F31 /* PushNotifications.h in Headers */,
-				494AE0A31F843A09001A8F31 /* WebViewHacker.h in Headers */,
 				494AE09D1F843A09001A8F31 /* NativeAccessibility.h in Headers */,
 				494AE0A11F843A09001A8F31 /* ScrollViewDisablerManager.h in Headers */,
 				3BC3E0212315BC8A00E15C6D /* CanvasAnalytics.h in Headers */,
@@ -2783,7 +2773,6 @@
 				9F068D64207C082B0040EFFA /* registerSharedNativeViewControllers.swift in Sources */,
 				494AE0A01F843A09001A8F31 /* PushNotifications.m in Sources */,
 				4930201A1F901CF5006BD777 /* CanvadocsConstants.swift in Sources */,
-				494AE0A41F843A09001A8F31 /* WebViewHacker.m in Sources */,
 				4930206F1F902462006BD777 /* ParameterEncoding.swift in Sources */,
 				49CE96801F8FF41B00121A43 /* EssayAnswerCell.swift in Sources */,
 				4961F5D21F8FB3E80093EC86 /* FetchedCollectionViewController.swift in Sources */,
@@ -2807,7 +2796,6 @@
 				4961F58E1F8FB21F0093EC86 /* CAShapeLayer+Circle.swift in Sources */,
 				2CE40C9D1F87D37300ECEACB /* PSPDFViewManager.m in Sources */,
 				493020501F902364006BD777 /* String+SoLazy.swift in Sources */,
-				49CE96B91F8FF94B00121A43 /* PagesHomeViewController.swift in Sources */,
 				49CE968A1F8FF41B00121A43 /* QuizSubmissionService.swift in Sources */,
 				2C68DCF32086786E00A1EBFA /* UIPickerView+Quiz.swift in Sources */,
 				493020471F902364006BD777 /* NSObject+AssociatedObject.swift in Sources */,
@@ -2879,7 +2867,6 @@
 				494BC6061F953D0D00C77257 /* PreSubmissionPDFDocumentPresenter.swift in Sources */,
 				49301FD51F9014C6006BD777 /* Session+CalendarEvent.swift in Sources */,
 				4961F6841F8FB9620093EC86 /* Colors.swift in Sources */,
-				4961F53F1F8FAD9A0093EC86 /* UIWebView+PostProcessing.swift in Sources */,
 				3BD3220E2242E2F60036C764 /* SiriShortcutManager.swift in Sources */,
 				494AE0A61F843A8A001A8F31 /* A11yGroupManager.m in Sources */,
 				7D52D89422FCC73100684932 /* SubmissionEvent.swift in Sources */,
@@ -3004,6 +2991,7 @@
 				493020101F901CF5006BD777 /* CanvadocsCommentAnnotation.swift in Sources */,
 				49301FE81F901854006BD777 /* NotificationKitController.swift in Sources */,
 				4961F55D1F8FAF310093EC86 /* VolumeLevelMeterView.swift in Sources */,
+				7D2F33A92370DDBC002236DB /* WKWebView+PostProcessing.swift in Sources */,
 				49CE96971F8FF41B00121A43 /* Quiz.swift in Sources */,
 				4961F67E1F8FB9620093EC86 /* Folder+Network.swift in Sources */,
 				4961F5E51F8FB3FC0093EC86 /* Model+CacheKey.swift in Sources */,

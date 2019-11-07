@@ -42,8 +42,6 @@
 		492705B71CF4B73200C631C6 /* NSCache+AvatarCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705751CF4B73200C631C6 /* NSCache+AvatarCache.m */; };
 		492705B81CF4B73200C631C6 /* NSString+IN_Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705761CF4B73200C631C6 /* NSString+IN_Additions.h */; };
 		492705B91CF4B73200C631C6 /* NSString+IN_Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705771CF4B73200C631C6 /* NSString+IN_Additions.m */; };
-		492705BA1CF4B73200C631C6 /* NSString_stripHTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705781CF4B73200C631C6 /* NSString_stripHTML.h */; };
-		492705BB1CF4B73200C631C6 /* NSString_stripHTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705791CF4B73200C631C6 /* NSString_stripHTML.m */; };
 		492705BC1CF4B73200C631C6 /* UIFont+Canvas.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927057A1CF4B73200C631C6 /* UIFont+Canvas.h */; };
 		492705BD1CF4B73200C631C6 /* UIFont+Canvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927057B1CF4B73200C631C6 /* UIFont+Canvas.m */; };
 		492705C21CF4B73200C631C6 /* UIImage+ImageEffects.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705801CF4B73200C631C6 /* UIImage+ImageEffects.h */; };
@@ -58,8 +56,6 @@
 		492705D31CF4B73300C631C6 /* UIView+FloatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705911CF4B73200C631C6 /* UIView+FloatingView.m */; };
 		492705D41CF4B73300C631C6 /* UIView_render_IN.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705921CF4B73200C631C6 /* UIView_render_IN.h */; };
 		492705D51CF4B73300C631C6 /* UIView_render_IN.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705931CF4B73200C631C6 /* UIView_render_IN.m */; };
-		492705E01CF4B73300C631C6 /* UIWebView+SafeAPIURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927059E1CF4B73200C631C6 /* UIWebView+SafeAPIURL.h */; };
-		492705E11CF4B73300C631C6 /* UIWebView+SafeAPIURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927059F1CF4B73200C631C6 /* UIWebView+SafeAPIURL.m */; };
 		492705E41CF4B73900C631C6 /* CBIViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705E21CF4B73900C631C6 /* CBIViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492705E51CF4B73900C631C6 /* CBIViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705E31CF4B73900C631C6 /* CBIViewModel.m */; };
 		492705F01CF4B76A00C631C6 /* CBIColorfulCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705E71CF4B76A00C631C6 /* CBIColorfulCell.h */; };
@@ -163,8 +159,6 @@
 		49AA2BBB1CF4D51B0055862D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AEE1CF4D51B0055862D /* UIImage+Resize.m */; };
 		49AA2BBC1CF4D51B0055862D /* UIImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AEF1CF4D51B0055862D /* UIImage+RoundedCorner.h */; };
 		49AA2BBD1CF4D51B0055862D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AF01CF4D51B0055862D /* UIImage+RoundedCorner.m */; };
-		49AA2BC01CF4D51B0055862D /* UIWebView+AccessoryHiding.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AF31CF4D51B0055862D /* UIWebView+AccessoryHiding.h */; };
-		49AA2BC11CF4D51B0055862D /* UIWebView+AccessoryHiding.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AF41CF4D51B0055862D /* UIWebView+AccessoryHiding.m */; };
 		49AA2BC61CF4D51B0055862D /* CKAssignment.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AFA1CF4D51B0055862D /* CKAssignment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2BC71CF4D51B0055862D /* CKAssignment.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AFB1CF4D51B0055862D /* CKAssignment.m */; };
 		49AA2BC81CF4D51B0055862D /* CKAssignmentGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AFC1CF4D51B0055862D /* CKAssignmentGroup.h */; };
@@ -431,7 +425,6 @@
 		7DCF0FC922F8A8D7000AACCE /* SubmissionFilesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EFE22F8A050000AACCE /* SubmissionFilesCell.swift */; };
 		7DCF0FCA22F8A8D7000AACCE /* SubmissionFilesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0EFF22F8A050000AACCE /* SubmissionFilesViewController.storyboard */; };
 		7DCF0FCB22F8A8D7000AACCE /* SubmissionFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F0022F8A050000AACCE /* SubmissionFilesViewController.swift */; };
-		7DCF0FCC22F8A8D7000AACCE /* TextSubmissionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F0222F8A050000AACCE /* TextSubmissionPresenter.swift */; };
 		7DCF0FCD22F8A8D7000AACCE /* TextSubmissionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0F0322F8A050000AACCE /* TextSubmissionViewController.storyboard */; };
 		7DCF0FCE22F8A8D7000AACCE /* TextSubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F0422F8A050000AACCE /* TextSubmissionViewController.swift */; };
 		7DCF0FCF22F8A8D7000AACCE /* UrlSubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F0622F8A050000AACCE /* UrlSubmissionViewController.swift */; };
@@ -445,13 +438,12 @@
 		7DE1161822F8AB5C005BFE98 /* QuizListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1C22F8A096000AACCE /* QuizListPresenterTests.swift */; };
 		7DE1161922F8AB5C005BFE98 /* UIImageStudentExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2022F8A096000AACCE /* UIImageStudentExtensionTests.swift */; };
 		7DE1161A22F8AB5C005BFE98 /* UIViewControllerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2122F8A096000AACCE /* UIViewControllerExtensionsTests.swift */; };
-		7DE1161B22F8AB5C005BFE98 /* TestEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2322F8A096000AACCE /* TestEnvironment.swift */; };
 		7DE1161D22F8AB5C005BFE98 /* ArcSubmissionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2622F8A096000AACCE /* ArcSubmissionPresenterTests.swift */; };
 		7DE1161E22F8AB5C005BFE98 /* SubmissionButtonPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2822F8A096000AACCE /* SubmissionButtonPresenterTests.swift */; };
 		7DE1161F22F8AB5C005BFE98 /* RubricPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2A22F8A096000AACCE /* RubricPresenterTests.swift */; };
 		7DE1162022F8AB5C005BFE98 /* SubmissionCommentsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2C22F8A096000AACCE /* SubmissionCommentsPresenterTests.swift */; };
 		7DE1162122F8AB5C005BFE98 /* SubmissionDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2E22F8A096000AACCE /* SubmissionDetailsPresenterTests.swift */; };
-		7DE1162222F8AB5C005BFE98 /* TextSubmissionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F3022F8A096000AACCE /* TextSubmissionPresenterTests.swift */; };
+		7DE1162222F8AB5C005BFE98 /* TextSubmissionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F3022F8A096000AACCE /* TextSubmissionViewControllerTests.swift */; };
 		7DE1162322F8AB5C005BFE98 /* UrlSubmissionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F3222F8A096000AACCE /* UrlSubmissionPresenterTests.swift */; };
 		7DE1162422F8AB5C005BFE98 /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F3722F8A096000AACCE /* RoutesTests.swift */; };
 		7DE1162522F8AB5C005BFE98 /* PersistenceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F3822F8A096000AACCE /* PersistenceTestCase.swift */; };
@@ -685,8 +677,6 @@
 		492705751CF4B73200C631C6 /* NSCache+AvatarCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCache+AvatarCache.m"; sourceTree = "<group>"; };
 		492705761CF4B73200C631C6 /* NSString+IN_Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+IN_Additions.h"; sourceTree = "<group>"; };
 		492705771CF4B73200C631C6 /* NSString+IN_Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+IN_Additions.m"; sourceTree = "<group>"; };
-		492705781CF4B73200C631C6 /* NSString_stripHTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_stripHTML.h; sourceTree = "<group>"; };
-		492705791CF4B73200C631C6 /* NSString_stripHTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_stripHTML.m; sourceTree = "<group>"; };
 		4927057A1CF4B73200C631C6 /* UIFont+Canvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Canvas.h"; sourceTree = "<group>"; };
 		4927057B1CF4B73200C631C6 /* UIFont+Canvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Canvas.m"; sourceTree = "<group>"; };
 		492705801CF4B73200C631C6 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -701,8 +691,6 @@
 		492705911CF4B73200C631C6 /* UIView+FloatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FloatingView.m"; sourceTree = "<group>"; };
 		492705921CF4B73200C631C6 /* UIView_render_IN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView_render_IN.h; sourceTree = "<group>"; };
 		492705931CF4B73200C631C6 /* UIView_render_IN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView_render_IN.m; sourceTree = "<group>"; };
-		4927059E1CF4B73200C631C6 /* UIWebView+SafeAPIURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+SafeAPIURL.h"; sourceTree = "<group>"; };
-		4927059F1CF4B73200C631C6 /* UIWebView+SafeAPIURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+SafeAPIURL.m"; sourceTree = "<group>"; };
 		492705E21CF4B73900C631C6 /* CBIViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIViewModel.h; sourceTree = "<group>"; };
 		492705E31CF4B73900C631C6 /* CBIViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIViewModel.m; sourceTree = "<group>"; };
 		492705E71CF4B76A00C631C6 /* CBIColorfulCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIColorfulCell.h; sourceTree = "<group>"; };
@@ -804,8 +792,6 @@
 		49AA2AEE1CF4D51B0055862D /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		49AA2AEF1CF4D51B0055862D /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		49AA2AF01CF4D51B0055862D /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
-		49AA2AF31CF4D51B0055862D /* UIWebView+AccessoryHiding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AccessoryHiding.h"; sourceTree = "<group>"; };
-		49AA2AF41CF4D51B0055862D /* UIWebView+AccessoryHiding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AccessoryHiding.m"; sourceTree = "<group>"; };
 		49AA2AFA1CF4D51B0055862D /* CKAssignment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKAssignment.h; sourceTree = "<group>"; };
 		49AA2AFB1CF4D51B0055862D /* CKAssignment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKAssignment.m; sourceTree = "<group>"; };
 		49AA2AFC1CF4D51B0055862D /* CKAssignmentGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKAssignmentGroup.h; sourceTree = "<group>"; };
@@ -1198,7 +1184,6 @@
 		7DCF0EFE22F8A050000AACCE /* SubmissionFilesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFilesCell.swift; sourceTree = "<group>"; };
 		7DCF0EFF22F8A050000AACCE /* SubmissionFilesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmissionFilesViewController.storyboard; sourceTree = "<group>"; };
 		7DCF0F0022F8A050000AACCE /* SubmissionFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFilesViewController.swift; sourceTree = "<group>"; };
-		7DCF0F0222F8A050000AACCE /* TextSubmissionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubmissionPresenter.swift; sourceTree = "<group>"; };
 		7DCF0F0322F8A050000AACCE /* TextSubmissionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TextSubmissionViewController.storyboard; sourceTree = "<group>"; };
 		7DCF0F0422F8A050000AACCE /* TextSubmissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubmissionViewController.swift; sourceTree = "<group>"; };
 		7DCF0F0622F8A050000AACCE /* UrlSubmissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSubmissionViewController.swift; sourceTree = "<group>"; };
@@ -1212,13 +1197,12 @@
 		7DCF0F1C22F8A096000AACCE /* QuizListPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F2022F8A096000AACCE /* UIImageStudentExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageStudentExtensionTests.swift; sourceTree = "<group>"; };
 		7DCF0F2122F8A096000AACCE /* UIViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
-		7DCF0F2322F8A096000AACCE /* TestEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestEnvironment.swift; sourceTree = "<group>"; };
 		7DCF0F2622F8A096000AACCE /* ArcSubmissionPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcSubmissionPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F2822F8A096000AACCE /* SubmissionButtonPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionButtonPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F2A22F8A096000AACCE /* RubricPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F2C22F8A096000AACCE /* SubmissionCommentsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentsPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F2E22F8A096000AACCE /* SubmissionDetailsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPresenterTests.swift; sourceTree = "<group>"; };
-		7DCF0F3022F8A096000AACCE /* TextSubmissionPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubmissionPresenterTests.swift; sourceTree = "<group>"; };
+		7DCF0F3022F8A096000AACCE /* TextSubmissionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubmissionViewControllerTests.swift; sourceTree = "<group>"; };
 		7DCF0F3222F8A096000AACCE /* UrlSubmissionPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSubmissionPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F3422F8A096000AACCE /* DrawerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DrawerTests.swift; path = StudentUnitTests/Views/DrawerTests.swift; sourceTree = "<group>"; };
 		7DCF0F3622F8A096000AACCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1728,8 +1712,6 @@
 				492705751CF4B73200C631C6 /* NSCache+AvatarCache.m */,
 				492705761CF4B73200C631C6 /* NSString+IN_Additions.h */,
 				492705771CF4B73200C631C6 /* NSString+IN_Additions.m */,
-				492705781CF4B73200C631C6 /* NSString_stripHTML.h */,
-				492705791CF4B73200C631C6 /* NSString_stripHTML.m */,
 				4927057A1CF4B73200C631C6 /* UIFont+Canvas.h */,
 				4927057B1CF4B73200C631C6 /* UIFont+Canvas.m */,
 				492705801CF4B73200C631C6 /* UIImage+ImageEffects.h */,
@@ -1746,8 +1728,6 @@
 				492705911CF4B73200C631C6 /* UIView+FloatingView.m */,
 				492705921CF4B73200C631C6 /* UIView_render_IN.h */,
 				492705931CF4B73200C631C6 /* UIView_render_IN.m */,
-				4927059E1CF4B73200C631C6 /* UIWebView+SafeAPIURL.h */,
-				4927059F1CF4B73200C631C6 /* UIWebView+SafeAPIURL.m */,
 				49A04E251CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.h */,
 				49A04E261CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.m */,
 			);
@@ -2041,8 +2021,6 @@
 				49AA2AEE1CF4D51B0055862D /* UIImage+Resize.m */,
 				49AA2AEF1CF4D51B0055862D /* UIImage+RoundedCorner.h */,
 				49AA2AF01CF4D51B0055862D /* UIImage+RoundedCorner.m */,
-				49AA2AF31CF4D51B0055862D /* UIWebView+AccessoryHiding.h */,
-				49AA2AF41CF4D51B0055862D /* UIWebView+AccessoryHiding.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -2614,7 +2592,6 @@
 		7DCF0F0522F8A050000AACCE /* TextSubmission */ = {
 			isa = PBXGroup;
 			children = (
-				7DCF0F0222F8A050000AACCE /* TextSubmissionPresenter.swift */,
 				7DCF0F0322F8A050000AACCE /* TextSubmissionViewController.storyboard */,
 				7DCF0F0422F8A050000AACCE /* TextSubmissionViewController.swift */,
 			);
@@ -2745,14 +2722,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		7DCF0F2522F8A096000AACCE /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				7DCF0F2322F8A096000AACCE /* TestEnvironment.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		7DCF0F2722F8A096000AACCE /* ArcSubmission */ = {
 			isa = PBXGroup;
 			children = (
@@ -2796,7 +2765,7 @@
 		7DCF0F3122F8A096000AACCE /* TextSubmission */ = {
 			isa = PBXGroup;
 			children = (
-				7DCF0F3022F8A096000AACCE /* TextSubmissionPresenterTests.swift */,
+				7DCF0F3022F8A096000AACCE /* TextSubmissionViewControllerTests.swift */,
 			);
 			path = TextSubmission;
 			sourceTree = "<group>";
@@ -2832,7 +2801,6 @@
 				7DCF0F1E22F8A096000AACCE /* Quizzes */,
 				7DCF0F1F22F8A096000AACCE /* Dashboard */,
 				7DCF0F2222F8A096000AACCE /* Extensions */,
-				7DCF0F2522F8A096000AACCE /* Helpers */,
 				9F62EDD92326E03600EA9F79 /* People */,
 				7DCF0F3322F8A096000AACCE /* Submissions */,
 				7DCF0F3522F8A096000AACCE /* Views */,
@@ -3165,7 +3133,6 @@
 				492705C81CF4B73200C631C6 /* UITableView+in_backgroundImage.h in Headers */,
 				492705D41CF4B73300C631C6 /* UIView_render_IN.h in Headers */,
 				49CE976A1F900B4700121A43 /* MLVCTableViewModel.h in Headers */,
-				492705E01CF4B73300C631C6 /* UIWebView+SafeAPIURL.h in Headers */,
 				492705F71CF4B76A00C631C6 /* CBIColorfulViewModel+CellViewModel.h in Headers */,
 				4927060E1CF4B79B00C631C6 /* InsetTableViewCell.h in Headers */,
 				49642BC11CF4C44A00238B3F /* metamacros.h in Headers */,
@@ -3190,7 +3157,6 @@
 				49A04E271CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.h in Headers */,
 				492705B81CF4B73200C631C6 /* NSString+IN_Additions.h in Headers */,
 				492706931CF4B88600C631C6 /* FileViewController.h in Headers */,
-				492705BA1CF4B73200C631C6 /* NSString_stripHTML.h in Headers */,
 				61F438E61DD667D900552D14 /* MLVCCollectionController+CBIRefresh.h in Headers */,
 				492705A21CF4B73200C631C6 /* CKIUser+SwiftCompatibility.h in Headers */,
 				49CE976E1F900B4700121A43 /* EXTScope.h in Headers */,
@@ -3248,7 +3214,6 @@
 				49A04E1A1CF4F8620051E1E7 /* TouchXML.h in Headers */,
 				49AA2BFC1CF4D51B0055862D /* CKModelObject.h in Headers */,
 				49AA2B9C1CF4D51B0055862D /* CKCanvasAPI.h in Headers */,
-				49AA2BC01CF4D51B0055862D /* UIWebView+AccessoryHiding.h in Headers */,
 				49AA2BBA1CF4D51B0055862D /* UIImage+Resize.h in Headers */,
 				49AA2BFA1CF4D51B0055862D /* CKMediaServer.h in Headers */,
 				49AA291A1CF4D1880055862D /* CanvasKit1.h in Headers */,
@@ -3986,7 +3951,6 @@
 				7DCF0F9922F8A868000AACCE /* GroupNavigationViewController.swift in Sources */,
 				49A04E741CF64ED90051E1E7 /* CalendarTabViewController.swift in Sources */,
 				7DCF0F7822F8A0CC000AACCE /* Routes.swift in Sources */,
-				7DCF0FCC22F8A8D7000AACCE /* TextSubmissionPresenter.swift in Sources */,
 				61592F791DA83C4900552B44 /* ModuleDetailsViewController.swift in Sources */,
 				61A6747E1DB589A3008A27FD /* ModuleViewModel.swift in Sources */,
 				7DCF0FA022F8A897000AACCE /* DynamicTextField.swift in Sources */,
@@ -4039,7 +4003,6 @@
 				49DE1DA41F8808F30055D74A /* CBIConversationStarter.m in Sources */,
 				49F9FA5B1CF8CDC400654758 /* UIImage+TechDebt.m in Sources */,
 				49AA2D301CF4DC540055862D /* CBIPeopleViewModel.m in Sources */,
-				492705BB1CF4B73200C631C6 /* NSString_stripHTML.m in Sources */,
 				492705F11CF4B76A00C631C6 /* CBIColorfulCell.m in Sources */,
 				49CE976F1F900B4700121A43 /* MLVCCollectionViewController.m in Sources */,
 				492705CB1CF4B73200C631C6 /* UITableView+in_updateInBlocks.m in Sources */,
@@ -4065,7 +4028,6 @@
 				492705B91CF4B73200C631C6 /* NSString+IN_Additions.m in Sources */,
 				492706D41CF4BA7B00C631C6 /* ContentLockViewController.m in Sources */,
 				492705B51CF4B73200C631C6 /* NSArray_in_additions.m in Sources */,
-				492705E11CF4B73300C631C6 /* UIWebView+SafeAPIURL.m in Sources */,
 				492705A71CF4B73200C631C6 /* CKIClient+CBIClient.m in Sources */,
 				49CE97671F900B4700121A43 /* MLVCTableViewController.m in Sources */,
 			);
@@ -4124,7 +4086,6 @@
 				49AA2BED1CF4D51B0055862D /* CKEnrollment.m in Sources */,
 				49AA2B9F1CF4D51B0055862D /* CKCanvasAPIResponse.m in Sources */,
 				49AA2BFB1CF4D51B0055862D /* CKMediaServer.m in Sources */,
-				49AA2BC11CF4D51B0055862D /* UIWebView+AccessoryHiding.m in Sources */,
 				49AA2BD51CF4D51B0055862D /* CKCommentAttachment.m in Sources */,
 				49AA2BCF1CF4D51B0055862D /* CKCalendarItem.m in Sources */,
 				49AA2BB31CF4D51B0055862D /* NSFileManager+CKAdditions.m in Sources */,
@@ -4185,11 +4146,10 @@
 				9F62EDDB2326E0FD00EA9F79 /* PeopleListPresenterTests.swift in Sources */,
 				7DE1161A22F8AB5C005BFE98 /* UIViewControllerExtensionsTests.swift in Sources */,
 				7DE1161E22F8AB5C005BFE98 /* SubmissionButtonPresenterTests.swift in Sources */,
-				7DE1161B22F8AB5C005BFE98 /* TestEnvironment.swift in Sources */,
 				7DE1161222F8AB5C005BFE98 /* AssignmentDetailsPresenterTests.swift in Sources */,
 				B1D40D382368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift in Sources */,
 				7DE1161422F8AB5C005BFE98 /* StudentSyllabusPresenterTests.swift in Sources */,
-				7DE1162222F8AB5C005BFE98 /* TextSubmissionPresenterTests.swift in Sources */,
+				7DE1162222F8AB5C005BFE98 /* TextSubmissionViewControllerTests.swift in Sources */,
 				7DE1161D22F8AB5C005BFE98 /* ArcSubmissionPresenterTests.swift in Sources */,
 				7DE1162422F8AB5C005BFE98 /* RoutesTests.swift in Sources */,
 				7DE1161622F8AB5C005BFE98 /* GroupNavigationPresenterTests.swift in Sources */,

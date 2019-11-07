@@ -197,6 +197,10 @@ NativeModules.LTITools = {
   launchExternalTool: jest.fn(),
 }
 
+NativeModules.SiriShortcutManager = {
+  donateSiriShortcut: jest.fn(),
+}
+
 jest.mock('NativeEventEmitter')
 
 jest.mock('Animated', () => {

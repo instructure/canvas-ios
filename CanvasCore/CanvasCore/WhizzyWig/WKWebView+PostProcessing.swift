@@ -16,8 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@interface UIWebView (AccessoryHiding)
+import UIKit
+import WebKit
 
-@property (nonatomic, assign) BOOL hackishlyHidesInputAccessoryView;
+let webPostProcessingLinkJavascript = "var links = document.getElementsByTagName('a'); for (var i = 0; i < links.length; i++){ if(links[i].getAttribute('data-api-endpoint')){ links[i].setAttribute('href',links[i].getAttribute('data-api-endpoint'));}}"
 
-@end
+extension WKWebView {
+    @objc public func replaceHREFsWithAPISafeURLs() {
+        self.evaluateJavaScript(webPostProcessingLinkJavascript, completionHandler: nil)
+    }
+}

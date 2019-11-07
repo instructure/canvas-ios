@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,12 +18,11 @@
 
 import Foundation
 @testable import Core
-import TestsFoundation
 import CoreData
 import XCTest
 
 public class TestEnvironment: AppEnvironment {
-    var mockStore = true
+    public var mockStore = true
 
     override public init() {
         super.init()
@@ -43,17 +42,17 @@ public class TestEnvironment: AppEnvironment {
 }
 
 public class TestStore<U: UseCase>: Store<U> {
-    let refreshExpectation = XCTestExpectation(description: "Refresh")
+    public let refreshExpectation = XCTestExpectation(description: "Refresh")
     override public func refresh(force: Bool = false, callback: ((U.Response?) -> Void)? = nil) {
         refreshExpectation.fulfill()
     }
 
-    let exhaustExpectation = XCTestExpectation(description: "Exhaust")
+    public let exhaustExpectation = XCTestExpectation(description: "Exhaust")
     override public func exhaust(while condition: @escaping (U.Response) -> Bool) {
         exhaustExpectation.fulfill()
     }
 
-    let getNextPageExpectation = XCTestExpectation(description: "Next Page")
+    public let getNextPageExpectation = XCTestExpectation(description: "Next Page")
     override public func getNextPage(_ callback: ((U.Response?) -> Void)? = nil) {
         getNextPageExpectation.fulfill()
     }
