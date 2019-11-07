@@ -185,27 +185,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
             submittedView?.isHidden = false
             fileSubmissionButton?.isHidden = false
             submittedDetailsLabel?.isHidden = true
-            switch onlineUploadState {
-            case .failed:
-                submittedLabel?.text = NSLocalizedString("Submission Failed", bundle: .core, comment: "")
-                submittedLabel?.textColor = UIColor.named(.textDanger).ensureContrast(against: .white)
-                fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view details", bundle: .core, comment: ""), for: .normal)
-                return
-            case .uploading:
-                submittedLabel?.text = NSLocalizedString("Submission Uploading...", bundle: .core, comment: "")
-                submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
-                fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
-                return
-            case .staged:
-                submittedLabel?.text = NSLocalizedString("Submission In Progress...", bundle: .core, comment: "")
-                submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
-                fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
-                return
-            case .completed:
-                if let nav = presentedViewController as? UINavigationController, let filePicker = nav.viewControllers.first as? FilePickerViewController {
-                    filePicker.dismiss(animated: true, completion: nil)
-                }
-            }
+            updateSubmissionLabels(state: onlineUploadState)
         }
 
         if submission.workflowState == .unsubmitted {
@@ -221,6 +201,30 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
         gradeCircleBottomConstraint?.isActive = true
         submittedView?.isHidden = true
+    }
+
+    func updateSubmissionLabels(state: OnlineUploadState) {
+        switch state {
+        case .failed:
+            submittedLabel?.text = NSLocalizedString("Submission Failed", bundle: .core, comment: "")
+            submittedLabel?.textColor = UIColor.named(.textDanger).ensureContrast(against: .white)
+            fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view details", bundle: .core, comment: ""), for: .normal)
+            return
+        case .uploading:
+            submittedLabel?.text = NSLocalizedString("Submission Uploading...", bundle: .core, comment: "")
+            submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
+            fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
+            return
+        case .staged:
+            submittedLabel?.text = NSLocalizedString("Submission In Progress...", bundle: .core, comment: "")
+            submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
+            fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
+            return
+        case .completed:
+            if let nav = presentedViewController as? UINavigationController, let filePicker = nav.viewControllers.first as? FilePickerViewController {
+                filePicker.dismiss(animated: true, completion: nil)
+            }
+        }
     }
 
     func update(assignment: Assignment, quiz: Quiz?, baseURL: URL?) {
@@ -277,7 +281,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
             let svFrame = scrollView?.frame ?? CGRect.zero
             let originInSV = lockedIconContainerView.superview?.convert(lockedIconContainerView.frame, to: scrollView) ?? CGRect.zero
             let height = (svFrame.size.height - originInSV.origin.y) - (submitAssignmentButton.bounds.size.height + scrollViewInsetPadding)
-            self.lockedIconHeight.constant = max( height, minIconHeight )
+            lockedIconHeight.constant = max( height, minIconHeight )
             UIView.animate(withDuration: 0.08) {
                 self.lockedIconContainerView?.layoutIfNeeded()
                 self.lockedIconContainerView.alpha = 1.0

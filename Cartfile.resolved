@@ -1,4 +1,4 @@
-binary "https://customers.pspdfkit.com/carthage/rTqo6AXV42EZLAdXASrGZeckgKVbxZ/pspdfkit.json" "8.5.2"
+binary "https://customers.pspdfkit.com/carthage/rTqo6AXV42EZLAdXASrGZeckgKVbxZ/pspdfkit.json" "9.0.2"
 github "ReactiveCocoa/ReactiveCocoa" "7bbb79edc36bdd6d15041a3980f939b26b64aab5"
 github "ReactiveCocoa/ReactiveObjC" "3.1.1"
 github "ReactiveCocoa/ReactiveObjCBridge" "f9a1c1250a098268994ba27f289295f0d4e49f21"
