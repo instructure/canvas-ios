@@ -73,6 +73,7 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
 
   static defaultProps = {
     ListRow: AssignmentListRowView,
+    getGradesForGradingPeriod,
   }
 
   state = {
@@ -177,7 +178,6 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
     let selected = this.isRegularScreenDisplayMode && this.state.selectedRowID === item.id
     let ListRow = this.props.ListRow
     return (
-      // $FlowFixMe - for some reason flow doesn't like the default prop
       <ListRow
         assignment={item}
         tintColor={this.props.courseColor}
@@ -207,7 +207,7 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
   updateGradeForGradingPeriod = async (gradingPeriod: GradingPeriod) => {
     try {
       this.setState({ loadingGrade: true, gradeError: false })
-      let grades = await getGradesForGradingPeriod(this.props.courseID, 'self', gradingPeriod.id)
+      let grades = await this.props.getGradesForGradingPeriod(this.props.courseID, 'self', gradingPeriod.id)
       this.setState({ loadingGrade: false, currentScore: grades.current_score })
     } catch (err) {
       console.error('Error loading grade', err)
