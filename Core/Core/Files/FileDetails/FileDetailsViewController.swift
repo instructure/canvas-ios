@@ -71,6 +71,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         lockView.isHidden = true
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share(_:)))
+        navigationItem.rightBarButtonItem?.accessibilityIdentifier = "FileDetails.shareButton"
         navigationItem.rightBarButtonItem?.isEnabled = false
 
         progressView.progress = 0
@@ -111,45 +112,30 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         }
     }
 
-    func downloadComplete() {
-        guard let file = files.first, let localURL = localURL, FileManager.default.fileExists(atPath: localURL.path) else { return }
-        navigationItem.rightBarButtonItem?.isEnabled = true
-        switch (file.mimeClass, file.contentType) {
-        case ("audio", _):
-            let player = AudioPlayerViewController.create()
-            player.load(url: localURL)
-            let container = UIView()
-            contentView.addSubview(container)
-            container.pin(inside: contentView, leading: 16, trailing: 16, top: nil, bottom: nil)
-            container.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-            embed(player, in: container)
-            doneLoading()
-        case ("image", _), (_, "image/heic"):
-            embedImageView(for: localURL)
-        case (_, "model/vnd.usdz+zip"):
-            embedQLThumbnail()
-        case ("pdf", _):
-            embedPDFView(for: localURL)
-        case ("video", _):
-            let controller = AVPlayerViewController()
-            controller.player = AVPlayer(url: localURL)
-            controller.view.accessibilityIdentifier = "FileDetails.videoPlayer"
-            embed(controller, in: contentView)
-            doneLoading()
-        default:
-            embedWebView(for: localURL)
-        }
+    func embedAudioView(for url: URL) {
+        let player = AudioPlayerViewController.create()
+        player.load(url: url)
+        let container = UIView()
+        contentView.addSubview(container)
+        container.pin(inside: contentView, leading: 16, trailing: 16, top: nil, bottom: nil)
+        container.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        embed(player, in: container)
+        doneLoading()
     }
 
-    lazy var webView: CoreWebView = {
-        let webView = CoreWebView()
-        contentView.insertSubview(webView, at: 0)
-        webView.pin(inside: contentView)
-        webView.linkDelegate = self
-        return webView
-    }()
+    func embedVideoView(for url: URL) {
+        let controller = AVPlayerViewController()
+        controller.player = AVPlayer(url: url)
+        controller.view.accessibilityIdentifier = "FileDetails.videoPlayer"
+        embed(controller, in: contentView)
+        doneLoading()
+    }
 
     func embedWebView(for url: URL) {
+        let webView = CoreWebView()
+        contentView.addSubview(webView)
+        webView.pin(inside: contentView)
+        webView.linkDelegate = self
         progressView.progress = 0
         loadObservation = webView.observe(\.estimatedProgress, options: .new) { [weak self] webView, _ in
             self?.progressView.setProgress(Float(webView.estimatedProgress), animated: true)
@@ -172,12 +158,20 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     @IBAction func viewModules() {
         env.router.route(to: Route.modules(forCourse: context.id), from: self, options: nil)
     }
+
+    @objc func share(_ sender: UIBarButtonItem) {
+        guard let url = localURL else { return }
+        let controller = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        controller.popoverPresentationController?.barButtonItem = sender
+        env.router.show(controller, from: self, options: .modal)
+    }
 }
 
 extension FileDetailsViewController: URLSessionDownloadDelegate {
     var localURL: URL? {
         guard let sessionID = env.currentSession?.uniqueID, let name = files.first?.filename else { return nil }
-        return URL.documentsDirectory.appendingPathComponent("\(sessionID)/\(fileID)/\(name)")
+        let base = files.first?.mimeClass == "pdf" ? URL.documentsDirectory : URL.temporaryDirectory
+        return base.appendingPathComponent("\(sessionID)/\(fileID)/\(name)")
     }
 
     func downloadFile(at url: URL) {
@@ -196,6 +190,9 @@ extension FileDetailsViewController: URLSessionDownloadDelegate {
         guard let localURL = localURL else { return }
         do {
             try FileManager.default.createDirectory(at: localURL.deletingLastPathComponent(), withIntermediateDirectories: true)
+            if FileManager.default.fileExists(atPath: localURL.path) {
+                try FileManager.default.removeItem(at: localURL)
+            }
             try FileManager.default.moveItem(at: location, to: localURL)
         } catch {
             showError(error)
@@ -209,11 +206,23 @@ extension FileDetailsViewController: URLSessionDownloadDelegate {
         session.invalidateAndCancel()
     }
 
-    @objc func share(_ sender: UIBarButtonItem) {
-        guard let url = localURL else { return }
-        let controller = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-        controller.popoverPresentationController?.barButtonItem = sender
-        env.router.show(controller, from: self, options: .modal)
+    func downloadComplete() {
+        guard let file = files.first, let localURL = localURL, FileManager.default.fileExists(atPath: localURL.path) else { return }
+        navigationItem.rightBarButtonItem?.isEnabled = true
+        switch (file.mimeClass, file.contentType) {
+        case ("audio", _):
+            embedAudioView(for: localURL)
+        case ("image", _), (_, "image/heic"):
+            embedImageView(for: localURL)
+        case (_, "model/vnd.usdz+zip"):
+            embedQLThumbnail()
+        case ("pdf", _):
+            embedPDFView(for: localURL)
+        case ("video", _):
+            embedVideoView(for: localURL)
+        default:
+            embedWebView(for: localURL)
+        }
     }
 }
 
@@ -315,10 +324,23 @@ extension FileDetailsViewController: PSPDFViewControllerDelegate {
             builder.overrideClass(PSPDFAnnotationToolbar.self, with: PSPDFAnnotationToolbar.self)
         })
         controller.annotationToolbarController?.toolbar.toolbarPosition = .positionLeft
+        if #available(iOS 13, *) {
+            let appearance = UIToolbarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = navigationController?.navigationBar.barTintColor
+            controller.annotationToolbarController?.toolbar.standardAppearance = appearance
+        }
         controller.delegate = self
         embed(controller, in: contentView)
 
-        navigationItem.rightBarButtonItems = [ controller.activityButtonItem, controller.annotationButtonItem, controller.searchButtonItem ]
+        let share = UIBarButtonItem(barButtonSystemItem: .action, target: controller.activityButtonItem.target, action: controller.activityButtonItem.action)
+        share.accessibilityIdentifier = "FileDetails.shareButton"
+        let annotate = controller.annotationButtonItem
+        annotate.image = .icon(.highlighter, .line)
+        annotate.accessibilityIdentifier = "FileDetails.annotateButton"
+        let search = controller.searchButtonItem
+        search.accessibilityIdentifier = "FileDetails.searchButton"
+        navigationItem.rightBarButtonItems = [ share, annotate, search ]
 
         doneLoading()
     }
