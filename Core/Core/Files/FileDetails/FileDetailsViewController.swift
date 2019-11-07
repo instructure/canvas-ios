@@ -318,7 +318,7 @@ extension FileDetailsViewController: PSPDFViewControllerDelegate {
             builder.sharingConfigurations = [ PSPDFDocumentSharingConfiguration { builder in
                 builder.annotationOptions = .flatten
                 builder.pageSelectionOptions = .all
-            } ]
+            }, ]
 
             // Override the override
             builder.overrideClass(PSPDFAnnotationToolbar.self, with: PSPDFAnnotationToolbar.self)
@@ -345,7 +345,14 @@ extension FileDetailsViewController: PSPDFViewControllerDelegate {
         doneLoading()
     }
 
-    public func pdfViewController(_ pdfController: PSPDFViewController, shouldShow menuItems: [PSPDFMenuItem], atSuggestedTargetRect rect: CGRect, for annotations: [PSPDFAnnotation]?, in annotationRect: CGRect, on pageView: PSPDFPageView) -> [PSPDFMenuItem] {
+    public func pdfViewController(
+        _ pdfController: PSPDFViewController,
+        shouldShow menuItems: [PSPDFMenuItem],
+        atSuggestedTargetRect rect: CGRect,
+        for annotations: [PSPDFAnnotation]?,
+        in annotationRect: CGRect,
+        on pageView: PSPDFPageView
+    ) -> [PSPDFMenuItem] {
         guard annotations?.count == 1, let annotation = annotations?.first else { return menuItems }
         var items = menuItems.filter {
             guard let identifier = $0.identifier else { return true }
@@ -363,7 +370,7 @@ extension FileDetailsViewController: PSPDFViewControllerDelegate {
         return items
     }
 
-    public func pdfViewController(_ pdfController: PSPDFViewController, shouldShow controller: UIViewController, options: [String : Any]? = nil, animated: Bool) -> Bool {
+    public func pdfViewController(_ pdfController: PSPDFViewController, shouldShow controller: UIViewController, options: [String: Any]? = nil, animated: Bool) -> Bool {
         if controller is PSPDFStampViewController { return false }
         if controller is UIActivityViewController {
             _ = try? pdfController.document?.save()
