@@ -52,10 +52,11 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
     }
     private var presenter: FilePickerPresenter?
 
-    public static func create(environment: AppEnvironment = .shared, batchID: String = UUID.string) -> FilePickerViewController {
-        let presenter = FilePickerPresenter(environment: environment, batchID: batchID)
+    public static func create(environment: AppEnvironment = .shared, batchID: String? = nil) -> FilePickerViewController {
+        let batchIDOrUUID = batchID ?? UUID.string
+        let presenter = FilePickerPresenter(environment: environment, batchID: batchIDOrUUID)
         let controller = loadFromStoryboard()
-        controller.batchID = batchID
+        controller.batchID = batchIDOrUUID
         controller.presenter = presenter
         presenter.view = controller
         return controller

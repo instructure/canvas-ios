@@ -153,11 +153,18 @@ class SubmissionButtonPresenter: NSObject {
         nav.modalPresentationStyle = .formSheet
         view?.present(nav, animated: true, completion: nil)
     }
+
+    private var isMediaRecording: Bool {
+        if let assignment = assignment {
+            return assignment.submissionTypes.contains(.media_recording)
+        }
+        return false
+    }
 }
 
 extension SubmissionButtonPresenter: FilePickerControllerDelegate {
     func pickFiles(for assignment: Assignment) {
-        let filePicker = FilePickerViewController.create(environment: env, batchID: batchID)
+        let filePicker = FilePickerViewController.create(environment: env, batchID: isMediaRecording ? nil : batchID)
         self.assignment = assignment
         filePicker.title = NSLocalizedString("Submission", bundle: .student, comment: "")
         filePicker.cancelButtonTitle = NSLocalizedString("Cancel Submission", bundle: .student, comment: "")
@@ -178,10 +185,12 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
     func submit(_ controller: FilePickerViewController) {
         guard let assignment = assignment else { return }
 
-        if assignment.submissionTypes.contains(.media_recording) {
+        if isMediaRecording {
+            guard let file = controller.files?.first, let url = file.localFileURL else { return }
+            let objectID = file.objectID
             controller.dismiss(animated: true) { [weak self] in
-                guard let file = controller.files?.first, let url = file.localFileURL else { return }
                 self?.submitMediaType(.video, url: url, callback: { error in
+                    guard let file = try? UploadManager.shared.viewContext.existingObject(with: objectID) as? File else { return }
                     UploadManager.shared.complete(file: file, error: error)
                 })
             }
