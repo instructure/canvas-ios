@@ -156,7 +156,8 @@ class SubmissionButtonPresenter: NSObject {
 
     private var isMediaRecording: Bool {
         if let assignment = assignment {
-            return assignment.submissionTypes.contains(.media_recording)
+            let submissionTypes = assignment.submissionTypes
+            return submissionTypes.contains(.media_recording) && !submissionTypes.contains(.online_upload)
         }
         return false
     }
