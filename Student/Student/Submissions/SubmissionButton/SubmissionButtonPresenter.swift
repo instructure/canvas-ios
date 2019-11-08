@@ -179,18 +179,17 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
         guard let assignment = assignment else { return }
 
         if assignment.submissionTypes.contains(.media_recording) {
-            guard let url = controller.files?.first?.localFileURL else { return }
-
-            controller.dismiss(animated: true) {
-                self.submitMediaType(.video, url: url)
+            controller.dismiss(animated: true) { [weak self] in
+                guard let file = controller.files?.first, let url = file.localFileURL else { return }
+                self?.submitMediaType(.video, url: url, callback: { error in
+                    UploadManager.shared.complete(file: file, error: error)
+                })
             }
-
-            return
-        }
-
-        let context = FileUploadContext.submission(courseID: assignment.courseID, assignmentID: assignment.id, comment: nil)
-        controller.dismiss(animated: true) {
-            UploadManager.shared.upload(batch: self.batchID, to: context)
+        } else {
+            let context = FileUploadContext.submission(courseID: assignment.courseID, assignmentID: assignment.id, comment: nil)
+            controller.dismiss(animated: true) {
+                UploadManager.shared.upload(batch: self.batchID, to: context)
+            }
         }
     }
 

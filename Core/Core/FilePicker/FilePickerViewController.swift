@@ -233,7 +233,6 @@ extension FilePickerViewController: UITabBarDelegate {
             cameraController.delegate = self
             cameraController.sourceType = .camera
             cameraController.mediaTypes = mediaTypes
-            cameraController.cameraCaptureMode = .photo
             present(cameraController, animated: true, completion: nil)
         case .library:
             guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
