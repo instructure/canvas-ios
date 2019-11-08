@@ -197,8 +197,7 @@ extension Assignment {
 
         if submissionTypes.contains(.media_recording) {
             types.append(kUTTypeAudio as String)
-        }
-        else {
+        } else {
             types.append(kUTTypeImage as String)
         }
         return types
