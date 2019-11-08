@@ -19,6 +19,12 @@
 
 set -euo pipefail
 
+# needed to run this script:
+# xcbeautify jq
+
+# brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
+# brew install xcbeautify jq
+
 function banner() (
     set +x
     local greenbold=$(export TERM=xterm-color; tput bold; tput setaf 2)
@@ -34,7 +40,7 @@ destination_flag=(-destination 'platform=iOS Simulator,name=iPhone 8')
 
 banner "Building NightlyTests"
 
-NSUnbufferedIO=YES xcodebuild -workspace Canvas.xcworkspace -scheme NightlyTests $destination_flag build-for-testing 2>&1 | xcpretty --color
+NSUnbufferedIO=YES xcodebuild -workspace Canvas.xcworkspace -scheme NightlyTests $destination_flag build-for-testing 2>&1 | xcbeautify
 
 BUILD_DIR=$(xcodebuild -workspace Canvas.xcworkspace -scheme NightlyTests -showBuildSettings build-for-testing -json |
                 jq -r '.[] | select(.target == "CoreTests").buildSettings.BUILD_DIR')
@@ -118,14 +124,12 @@ function doTest {
     local result_path=$results_directory/$try.xcresult
     local ret=0
 
-    local formatter=(xcpretty --color)
 
     local flags=($destination_flag)
     flags+=(-resultBundlePath $result_path)
     flags+=(-xctestrun $xctestrun)
     if (( try < 1 )); then
         flags+=(-parallel-testing-enabled YES -parallel-testing-worker-count 3)
-        formatter=(xcbeautify)
     fi
     for skip in $all_passing_tests; do
         flags+=(-skip-testing:$skip)
@@ -136,7 +140,7 @@ function doTest {
     rm -rf $pipe_file
     mkfifo $pipe_file
 
-    < $pipe_file NSUnbufferedIO=YES $formatter  &
+    < $pipe_file NSUnbufferedIO=YES xcbeautify &
     xcodebuild test-without-building $flags > $pipe_file 2> $pipe_file || ret=$?
     wait
     rm -rf $pipe_file
