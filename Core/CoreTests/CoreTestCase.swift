@@ -59,6 +59,13 @@ class CoreTestCase: XCTestCase {
         environment.loginDelegate = login
         environment.logger = logger
         environment.currentSession = currentSession
+        AppEnvironment.shared.api = environment.api
+        AppEnvironment.shared.globalDatabase = environment.globalDatabase
+        AppEnvironment.shared.database = environment.database
+        AppEnvironment.shared.router = environment.router
+        AppEnvironment.shared.loginDelegate = environment.loginDelegate
+        AppEnvironment.shared.logger = environment.logger
+        AppEnvironment.shared.currentSession = environment.currentSession
         LoginSession.add(currentSession)
         notificationManager = NotificationManager(notificationCenter: notificationCenter, logger: logger)
         UploadManager.shared = MockUploadManager()

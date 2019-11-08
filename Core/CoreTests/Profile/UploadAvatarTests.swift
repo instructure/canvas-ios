@@ -27,7 +27,7 @@ class UploadAvatarTests: CoreTestCase {
     func result() -> Result<URL, Error> {
         let complete = expectation(description: "complete")
         var value: Result<URL, Error>!
-        UploadAvatar(url: url).fetch { result in
+        UploadAvatar(url: url).fetch(env: environment) { result in
             value = result
             complete.fulfill()
         }

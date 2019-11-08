@@ -47,7 +47,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     public var completionHandler: (() -> Void)?
 
     open var database: NSPersistentContainer {
-        return AppEnvironment.shared.globalDatabase
+        return env.globalDatabase
     }
     public var viewContext: NSManagedObjectContext {
         return database.viewContext
@@ -63,7 +63,10 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         return decoder
     }()
 
-    public init(identifier: String) {
+    let env: AppEnvironment
+
+    public init(env: AppEnvironment = .shared, identifier: String) {
+        self.env = env
         self.identifier = identifier
         super.init()
     }

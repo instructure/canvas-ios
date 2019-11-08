@@ -24,7 +24,7 @@ class GetPageTests: CoreTestCase {
     let pageURL = "page-test"
 
     func testCacheKey() {
-        XCTAssertEqual(GetPage(context: context, url: pageURL).cacheKey, "get-course_1-page-test")
+        XCTAssertEqual(GetPage(context: context, url: pageURL).cacheKey, "get-course_1-page-page-test")
     }
 
     func testRequest() {

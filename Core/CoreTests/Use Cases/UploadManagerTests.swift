@@ -80,12 +80,12 @@ class UploadManagerTests: CoreTestCase {
 
     func testAddAndSubscribe() throws {
         let expectation = XCTestExpectation(description: "subscribe event")
-        let store = manager.subscribe(batchID: "1") {
+        let store = manager.subscribe(environment: environment, batchID: "1") {
             expectation.fulfill()
         }
         let url = URL.temporaryDirectory.appendingPathComponent("upload-manager-add-test.txt")
         FileManager.default.createFile(atPath: url.path, contents: "hello".data(using: .utf8), attributes: nil)
-        try manager.add(url: url, batchID: "1")
+        try manager.add(environment: environment, url: url, batchID: "1")
         wait(for: [expectation], timeout: 1)
         XCTAssertEqual(store.count, 1)
         let file = try XCTUnwrap(store.first)
@@ -104,13 +104,13 @@ class UploadManagerTests: CoreTestCase {
         badUser.batchID = good.batchID
         badUser.user = File.User(id: "bad", baseURL: currentSession.baseURL, masquerader: nil)
         try! context.save()
-        let store = manager.subscribe(batchID: good.batchID!) {}
+        let store = manager.subscribe(environment: environment, batchID: good.batchID!) {}
         XCTAssertEqual(store.count, 1)
         XCTAssertEqual(store.first, good)
     }
 
     func testUploadBatch() throws {
-        let file = try manager.add(url: url, batchID: "1")
+        let file = try manager.add(environment: environment, url: url, batchID: "1")
         mockUpload(fileURL: file.localFileURL!, target: mockTarget(name: url.lastPathComponent, size: 0, context: uploadContext))
         let expectation = XCTestExpectation(description: "callback was called")
         manager.upload(batch: "1", to: uploadContext, callback: expectation.fulfill)
@@ -131,7 +131,7 @@ class UploadManagerTests: CoreTestCase {
     }
 
     func testUploadFile() throws {
-        let file = try manager.add(url: url, batchID: "1")
+        let file = try manager.add(environment: environment, url: url, batchID: "1")
         mockUpload(fileURL: file.localFileURL!, target: mockTarget(name: url.lastPathComponent, size: 0, context: uploadContext, taskID: 0), taskID: 1)
         let expectation = XCTestExpectation(description: "callback was called")
         manager.upload(file: file, to: .course("1"), callback: expectation.fulfill)
@@ -154,7 +154,7 @@ class UploadManagerTests: CoreTestCase {
         request.setValue("Bearer \(currentSession.accessToken!)", forHTTPHeaderField: HttpHeader.authorization)
         request.setValue("application/json+canvas-string-ids", forHTTPHeaderField: HttpHeader.accept)
         MockURLSession.mock(request, data: try encoder.encode(APIFile.make(id: "1")), taskID: 2)
-        let file = try manager.add(url: url)
+        let file = try manager.add(environment: environment, url: url)
         file.taskID = 1
         try context.save()
         XCTAssertTrue(file.isUploading)
@@ -186,11 +186,11 @@ class UploadManagerTests: CoreTestCase {
         MockURLSession.mock(request, data: try encoder.encode(APIFile.make(id: "1")), taskID: 2)
         mockSubmission(courseID: "1", assignmentID: "2", fileIDs: ["1", "2"], taskID: 3)
 
-        let one = try manager.add(url: oneURL, batchID: "assignment-2")
+        let one = try manager.add(environment: environment, url: oneURL, batchID: "assignment-2")
         one.id = "1"
         one.taskID = 1
         one.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
-        let two = try manager.add(url: twoURL, batchID: "assignment-2")
+        let two = try manager.add(environment: environment, url: twoURL, batchID: "assignment-2")
         two.id = "2"
         two.taskID = 1
         two.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
@@ -198,7 +198,7 @@ class UploadManagerTests: CoreTestCase {
 
         manager.urlSession(backgroundSession, task: task, didCompleteWithError: nil)
 
-        let store = manager.subscribe(batchID: "assignment-2", eventHandler: {})
+        let store = manager.subscribe(environment: environment, batchID: "assignment-2", eventHandler: {})
         XCTAssertEqual(store.count, 0)
         let notification = notificationCenter.requests.last
         XCTAssertNotNil(notification)
@@ -246,7 +246,7 @@ class UploadManagerTests: CoreTestCase {
         mockSubmission(courseID: "1", assignmentID: "2", fileIDs: ["1"], taskID: 2)
         let task = MockURLSession.dataMocks.first { $0.value.taskIdentifier == 2 }?.value
         manager.cancel(batchID: batchID)
-        let store = manager.subscribe(batchID: batchID, eventHandler: {})
+        let store = manager.subscribe(environment: environment, batchID: batchID, eventHandler: {})
         XCTAssertEqual(store.count, 0)
         XCTAssertEqual(task?.canceled, true)
     }
@@ -313,8 +313,8 @@ class UploadManagerTests: CoreTestCase {
         MockURLSession.mock(
             requestable,
             value: target,
-            baseURL: AppEnvironment.shared.api.baseURL,
-            accessToken: AppEnvironment.shared.api.loginSession?.accessToken,
+            baseURL: environment.api.baseURL,
+            accessToken: environment.api.loginSession?.accessToken,
             taskID: taskID
         )
         return target
