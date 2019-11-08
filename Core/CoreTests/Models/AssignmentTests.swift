@@ -19,6 +19,7 @@
 import Foundation
 import XCTest
 @testable import Core
+import MobileCoreServices
 
 class AssignmentTests: CoreTestCase {
 
@@ -190,6 +191,16 @@ class AssignmentTests: CoreTestCase {
         XCTAssertEqual(result.count, 2)
         XCTAssertTrue(result[0].isImage)
         XCTAssertEqual(result[1], .text)
+    }
+
+    func testAllowedMediaTypesForMediaRecordings() {
+        let a = Assignment.make()
+        a.submissionTypes = [.media_recording]
+        XCTAssertEqual(a.allowedMediaTypes, [kUTTypeVideo as String, kUTTypeAudio as String])
+
+        let b = Assignment.make()
+        b.submissionTypes = [.media_recording, .online_upload]
+        XCTAssertEqual(b.allowedMediaTypes, [kUTTypeVideo as String, kUTTypeImage as String])
     }
 
     func testIsLTIAssignment() {
