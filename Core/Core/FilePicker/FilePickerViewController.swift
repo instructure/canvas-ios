@@ -45,6 +45,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
     public weak var delegate: FilePickerControllerDelegate?
     public var sources = FilePickerSource.allCases
     public var utis: [UTI] = [.any]
+    public var mediaTypes: [String] = [kUTTypeMovie as String, kUTTypeImage as String]
     public var batchID: String!
     public var files: Store<LocalUseCase<File>>? {
         return presenter?.files
@@ -231,7 +232,7 @@ extension FilePickerViewController: UITabBarDelegate {
             let cameraController = UIImagePickerController()
             cameraController.delegate = self
             cameraController.sourceType = .camera
-            cameraController.mediaTypes = [kUTTypeMovie as String, kUTTypeImage as String]
+            cameraController.mediaTypes = mediaTypes
             cameraController.cameraCaptureMode = .photo
             present(cameraController, animated: true, completion: nil)
         case .library:
@@ -239,7 +240,7 @@ extension FilePickerViewController: UITabBarDelegate {
             let libraryController = UIImagePickerController()
             libraryController.delegate = self
             libraryController.sourceType = .photoLibrary
-            libraryController.mediaTypes = [kUTTypeMovie as String, kUTTypeImage as String]
+            libraryController.mediaTypes = mediaTypes
             libraryController.modalPresentationStyle = .overCurrentContext
             present(libraryController, animated: true, completion: nil)
         case .files:

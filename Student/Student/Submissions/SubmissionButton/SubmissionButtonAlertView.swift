@@ -43,7 +43,7 @@ enum SubmissionButtonAlertView {
         return alert
     }
 
-    static func chooseMediaTypeAlert(_ presenter: SubmissionButtonPresenter, button: UIView) -> UIAlertController {
+    static func chooseMediaTypeAlert(_ presenter: SubmissionButtonPresenter, button: UIView, assignment: Assignment) -> UIAlertController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Record Audio", bundle: .student, comment: ""), style: .default) { [weak presenter] _ in
             AudioRecorderViewController.requestPermission { allowed in
@@ -67,6 +67,11 @@ enum SubmissionButtonAlertView {
             cameraController.cameraCaptureMode = .video
             presenter?.view?.present(cameraController, animated: true, completion: nil)
         })
+
+        alert.addAction(UIAlertAction(title: SubmissionType.online_upload.localizedString, style: .default) { [weak presenter] _ in
+            presenter?.submitType(SubmissionType.online_upload, for: assignment, button: button)
+        })
+
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .student, comment: ""), style: .cancel))
         alert.popoverPresentationController?.sourceView = button
         alert.popoverPresentationController?.sourceRect = CGRect(origin: button.center, size: .zero)

@@ -162,11 +162,13 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
         filePicker.title = NSLocalizedString("Submission", bundle: .student, comment: "")
         filePicker.cancelButtonTitle = NSLocalizedString("Cancel Submission", bundle: .student, comment: "")
         let allowedUTIs = assignment.allowedUTIs
+        let mediaTypes = assignment.allowedMediaTypes
         filePicker.sources = [.files]
         if assignment.allowedExtensions.isEmpty == true || allowedUTIs.contains(where: { $0.isImage || $0.isVideo }) {
             filePicker.sources.append(contentsOf: [.library, .camera])
         }
         filePicker.utis = allowedUTIs
+        filePicker.mediaTypes = mediaTypes
         filePicker.delegate = self
         let nav = UINavigationController(rootViewController: filePicker)
         nav.modalPresentationStyle = .formSheet
@@ -175,6 +177,17 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
 
     func submit(_ controller: FilePickerViewController) {
         guard let assignment = assignment else { return }
+
+        if assignment.submissionTypes.contains(.media_recording) {
+            guard let url = controller.files?.first?.localFileURL else { return }
+
+            controller.dismiss(animated: true) {
+                self.submitMediaType(.video, url: url)
+            }
+
+            return
+        }
+
         let context = FileUploadContext.submission(courseID: assignment.courseID, assignmentID: assignment.id, comment: nil)
         controller.dismiss(animated: true) {
             UploadManager.shared.upload(batch: self.batchID, to: context)
@@ -199,7 +212,8 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
 // MARK: - media_recording
 extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func pickMediaRecordingType(button: UIView) {
-        let alert = SubmissionButtonAlertView.chooseMediaTypeAlert(self, button: button)
+        guard let assignment = assignment else { return }
+        let alert = SubmissionButtonAlertView.chooseMediaTypeAlert(self, button: button, assignment: assignment)
         view?.present(alert, animated: true, completion: nil)
     }
 

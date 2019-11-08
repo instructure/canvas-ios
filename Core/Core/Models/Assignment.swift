@@ -18,6 +18,7 @@
 
 import Foundation
 import CoreData
+import MobileCoreServices
 
 public class Assignment: NSManagedObject {
     @NSManaged public var allowedExtensions: [String]
@@ -189,6 +190,18 @@ extension Assignment {
         }
 
         return utis
+    }
+
+    public var allowedMediaTypes: [String] {
+        var types  = [kUTTypeMovie as String]
+
+        if submissionTypes.contains(.media_recording) {
+            types.append(kUTTypeAudio as String)
+        }
+        else {
+            types.append(kUTTypeImage as String)
+        }
+        return types
     }
 
     public var gradeText: String? {
