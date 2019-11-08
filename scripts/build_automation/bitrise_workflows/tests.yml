@@ -217,7 +217,7 @@ workflows:
 
             # Set all changed files to now
             git checkout -
-    # - cache-pull: {}
+    - cache-pull: {}
     - script:
         title: brew tap
         run_if: .IsCI
