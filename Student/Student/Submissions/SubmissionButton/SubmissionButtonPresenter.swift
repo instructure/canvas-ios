@@ -184,21 +184,25 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
 
     func submit(_ controller: FilePickerViewController) {
         guard let assignment = assignment else { return }
-
         if isMediaRecording {
-            guard let file = controller.files?.first, let url = file.localFileURL else { return }
-            let objectID = file.objectID
-            controller.dismiss(animated: true) { [weak self] in
-                self?.submitMediaType(.video, url: url, callback: { error in
-                    guard let file = try? UploadManager.shared.viewContext.existingObject(with: objectID) as? File else { return }
-                    UploadManager.shared.complete(file: file, error: error)
-                })
-            }
+            submitMediaRecording(controller)
         } else {
             let context = FileUploadContext.submission(courseID: assignment.courseID, assignmentID: assignment.id, comment: nil)
             controller.dismiss(animated: true) {
                 UploadManager.shared.upload(batch: self.batchID, to: context)
             }
+        }
+    }
+
+    func submitMediaRecording(_ controller: FilePickerViewController) {
+        guard let file = controller.files?.first, let url = file.localFileURL, let uti = UTI(extension: url.pathExtension) else { return }
+        let mediaType: MediaCommentType = uti.isAudio ? .audio : .video
+        let objectID = file.objectID
+        controller.dismiss(animated: true) { [weak self] in
+            self?.submitMediaType(mediaType, url: url, callback: { error in
+                guard let file = try? UploadManager.shared.viewContext.existingObject(with: objectID) as? File else { return }
+                UploadManager.shared.complete(file: file, error: error)
+            })
         }
     }
 
