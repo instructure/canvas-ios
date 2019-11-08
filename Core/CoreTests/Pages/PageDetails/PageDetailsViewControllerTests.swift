@@ -26,6 +26,8 @@ class PageDetailsViewControllerTests: CoreTestCase {
 
     var viewController: PageDetailsViewController!
 
+    let loadedExpectation = XCTestExpectation(description: "Web View Loaded")
+
     override func setUp() {
         super.setUp()
         viewController = PageDetailsViewController.create(env: environment, context: context, pageURL: pageURL, app: .student)
@@ -33,6 +35,7 @@ class PageDetailsViewControllerTests: CoreTestCase {
 
     func load() {
         XCTAssertNotNil(viewController.view)
+        viewController.webView?.delegate = self
     }
 
     func testViewDidLoad() {
@@ -62,6 +65,18 @@ class PageDetailsViewControllerTests: CoreTestCase {
         viewController.update()
 
         XCTAssertEqual(viewController.titleSubtitleView.title, page.title)
+
+        wait(for: [loadedExpectation], timeout: 5)
+
+        let bodyExpectation = XCTestExpectation(description: "Body")
+        viewController.webView?.evaluateJavaScript("document.body.innerHTML", completionHandler: { (result, error) in
+            if error != nil {
+                XCTFail("Failed to get webview html")
+            }
+            XCTAssertEqual(result as! String, page.body)
+            bodyExpectation.fulfill()
+        })
+        wait(for: [bodyExpectation], timeout: 1)
     }
 
     func testAddEditButtonOnce() {
@@ -222,5 +237,11 @@ class PageDetailsViewControllerTests: CoreTestCase {
 
         wait(for: [router.popExpectation], timeout: 0.1)
         XCTAssertNil(viewController.presenter.page)
+    }
+}
+
+extension PageDetailsViewControllerTests: CoreWebViewDelegate {
+    func didFinish() {
+        loadedExpectation.fulfill()
     }
 }

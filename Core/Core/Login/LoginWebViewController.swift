@@ -29,7 +29,12 @@ class LoginWebViewController: UIViewController, LoginWebViewProtocol {
     var presenter: LoginWebPresenter?
     var env: AppEnvironment!
 
-    static func create(env: AppEnvironment = .shared, authenticationProvider: String? = nil, host: String, mdmLogin: MDMLogin? = nil, loginDelegate: LoginDelegate?, method: AuthenticationMethod) -> LoginWebViewController {
+    static func create(env: AppEnvironment = .shared,
+                       authenticationProvider: String? = nil,
+                       host: String,
+                       mdmLogin: MDMLogin? = nil,
+                       loginDelegate: LoginDelegate?,
+                       method: AuthenticationMethod) -> LoginWebViewController {
         let controller = LoginWebViewController()
         controller.env = env
         controller.title = host

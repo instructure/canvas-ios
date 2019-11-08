@@ -31,10 +31,15 @@ extension CoreWebViewLinkDelegate where Self: UIViewController {
     public var routeLinksFrom: UIViewController { return self }
 }
 
+public protocol CoreWebViewDelegate: class {
+    func didFinish()
+}
+
 @IBDesignable
 open class CoreWebView: WKWebView {
     @IBInspectable public var autoresizesHeight: Bool = false
     public weak var linkDelegate: CoreWebViewLinkDelegate?
+    public weak var delegate: CoreWebViewDelegate?
 
     public static let processPool = WKProcessPool()
 
@@ -247,6 +252,7 @@ extension CoreWebView: WKNavigationDelegate {
         if let fragment = url?.fragment {
             scrollIntoView(fragment: fragment)
         }
+        delegate?.didFinish()
     }
 
     public func scrollIntoView(fragment: String) {
