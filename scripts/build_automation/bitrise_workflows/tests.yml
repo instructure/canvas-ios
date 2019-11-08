@@ -1,3 +1,12 @@
+---
+app:
+  envs:
+  - BITRISE_PROJECT_PATH: "./Canvas.xcworkspace"
+    opts:
+      is_expand: false
+  - BITRISE_SCHEME: NightlyTests
+    opts:
+      is_expand: false
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 format_version: '4'
 project_type: other
