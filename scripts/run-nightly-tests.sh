@@ -128,7 +128,7 @@ function doTest {
     local flags=($destination_flag)
     flags+=(-resultBundlePath $result_path)
     flags+=(-xctestrun $xctestrun)
-    if (( try < 1 )); then
+    if (( try < 2 )); then
         flags+=(-parallel-testing-enabled YES -parallel-testing-worker-count 3)
     fi
     for skip in $all_passing_tests; do
@@ -141,7 +141,7 @@ function doTest {
     mkfifo $pipe_file
 
     < $pipe_file NSUnbufferedIO=YES xcbeautify &
-    xcodebuild test-without-building $flags > $pipe_file 2> $pipe_file || ret=$?
+    NSUnbufferedIO=YES xcodebuild test-without-building $flags > $pipe_file 2> $pipe_file || ret=$?
     wait
     rm -rf $pipe_file
 
