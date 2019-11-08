@@ -128,7 +128,7 @@ function doTest {
     local flags=($destination_flag)
     flags+=(-resultBundlePath $result_path)
     flags+=(-xctestrun $xctestrun)
-    if (( try < 2 )); then
+    if (( try < 0 )); then
         flags+=(-parallel-testing-enabled YES -parallel-testing-worker-count 3)
     fi
     for skip in $all_passing_tests; do
