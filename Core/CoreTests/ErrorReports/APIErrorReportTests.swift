@@ -21,7 +21,7 @@ import XCTest
 
 class APIErroReportTests: CoreTestCase {
     func testMinimalPostErrorReportRequest() {
-        let min = PostErrorReportRequest(subject: "s", impact: 0).body!.error
+        let min = PostErrorReportRequest(subject: "s", impact: 0, env: environment).body!.error
         XCTAssertNil(min.category)
         XCTAssertNil(min.code)
         XCTAssertEqual(min.comments, """
@@ -57,7 +57,7 @@ class APIErroReportTests: CoreTestCase {
             NSLocalizedDescriptionKey: "Oops",
             "extra": "info",
         ])
-        let max = PostErrorReportRequest(error: error, email: "me@example.com", subject: "s", impact: 4, comments: "comment").body!.error
+        let max = PostErrorReportRequest(error: error, email: "me@example.com", subject: "s", impact: 4, comments: "comment", env: environment).body!.error
         XCTAssertEqual(max.category, "com.instructure")
         XCTAssertEqual(max.code, 1)
         XCTAssertEqual(max.comments, """

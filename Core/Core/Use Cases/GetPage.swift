@@ -35,7 +35,6 @@ public struct GetPage: APIUseCase {
 
     public var scope: Scope {
         let predicate = NSPredicate(format: "%K == %@ AND %K == %@", #keyPath(Page.contextID), context.canvasContextID, #keyPath(Page.url), url)
-        let order = NSSortDescriptor(key: #keyPath(Page.title), ascending: true)
-        return Scope(predicate: predicate, order: [order])
+        return Scope(predicate: predicate, order: [])
     }
 }

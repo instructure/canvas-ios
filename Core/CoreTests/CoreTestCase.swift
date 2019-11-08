@@ -24,7 +24,7 @@ import CoreData
 
 class CoreTestCase: XCTestCase {
     var database: NSPersistentContainer {
-        return TestsFoundation.singleSharedTestDatabase
+        return singleSharedTestDatabase
     }
     var databaseClient: NSManagedObjectContext {
         return database.viewContext
@@ -32,7 +32,7 @@ class CoreTestCase: XCTestCase {
     var api = MockURLSession.self
     var router = TestRouter()
     var logger = TestLogger()
-    var environment: AppEnvironment!
+    var environment = TestEnvironment()
     var currentSession = LoginSession.make()
     var login = TestLoginDelegate()
 
@@ -52,7 +52,12 @@ class CoreTestCase: XCTestCase {
         logger = TestLogger()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
         environment = TestEnvironment()
+        environment.api = URLSessionAPI(urlSession: MockURLSession())
+        environment.globalDatabase = database
+        environment.database = database
+        environment.router = router
         environment.loginDelegate = login
+        environment.logger = logger
         environment.currentSession = currentSession
         LoginSession.add(currentSession)
         notificationManager = NotificationManager(notificationCenter: notificationCenter, logger: logger)

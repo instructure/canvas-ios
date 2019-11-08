@@ -42,15 +42,15 @@ class PageTests: CoreTestCase {
         let page = Page.make()
 
         let update = APIPage.make(
-            url: "test-test",
-            updated_at: Date(),
-            front_page: true,
-            page_id: ID("2"),
-            title: "Test Test",
-            html_url: URL(string: "https://canvas.instructure.com/courses/1/pages/test-test")!,
-            published: true,
             body: "This is only a test",
-            editing_roles: "teacher,public"
+            editing_roles: "teacher,public",
+            front_page: true,
+            html_url: URL(string: "https://canvas.instructure.com/courses/1/pages/test-test")!,
+            page_id: ID("2"),
+            published: true,
+            title: "Test Test",
+            updated_at: Date(),
+            url: "test-test"
         )
         page.update(from: update)
 

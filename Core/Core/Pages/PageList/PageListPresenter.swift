@@ -116,8 +116,7 @@ class PageListPresenter: PageViewLoggerPresenterProtocol {
                 currentFrontPage?.isFrontPage = false
             }
 
-            let page = Page.save(apiPage, in: env.database.viewContext)
-            page.contextID = context.canvasContextID
+            Page.save(apiPage, in: env.database.viewContext)
             try env.database.viewContext.save()
         } catch {
             return

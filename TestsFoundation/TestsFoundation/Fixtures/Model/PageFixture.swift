@@ -24,11 +24,9 @@ extension Page {
     @discardableResult
     public static func make(
         from api: APIPage = .make(),
-        context: Context = ContextModel(.course, id: "42"),
         in managedObjectContext: NSManagedObjectContext = singleSharedTestDatabase.viewContext
         ) -> Page {
         let model = Page.save(api, in: managedObjectContext)
-        model.contextID = context.canvasContextID
         try! managedObjectContext.save()
         return model
     }

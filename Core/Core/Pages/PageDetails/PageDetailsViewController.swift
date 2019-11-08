@@ -65,7 +65,7 @@ public class PageDetailsViewController: UIViewController, PageDetailsViewProtoco
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.barButtonItem = sender
 
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Edit", comment: ""), style: .default) { [weak self] _ in
+        alert.addAction(AlertAction(NSLocalizedString("Edit", comment: ""), style: .default) { [weak self] _ in
             guard let vc = self, let page = vc.presenter.page else {
                 return
             }
@@ -73,20 +73,19 @@ public class PageDetailsViewController: UIViewController, PageDetailsViewProtoco
         })
 
         if presenter.canDelete() {
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive) { [weak self] _ in
+            alert.addAction(AlertAction(NSLocalizedString("Delete", comment: ""), style: .destructive) { [weak self] _ in
                 self?.showDeleteConfirmation()
             })
         }
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
         env.router.show(alert, from: self, options: [.modal])
     }
 
     func showDeleteConfirmation() {
         let alert = UIAlertController(title: NSLocalizedString("Are you sure you want to delete this page?", comment: ""), message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .destructive) { [weak self]_ in
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
+        alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .destructive) { [weak self] _ in
             self?.presenter.deletePage()
-            self?.dismiss(animated: true, completion: nil)
         })
         env.router.show(alert, from: self, options: nil)
     }
@@ -104,7 +103,7 @@ public class PageDetailsViewController: UIViewController, PageDetailsViewProtoco
             addNavigationButton(UIBarButtonItem(image: UIImage.icon(.more), style: .plain, target: self, action: #selector(kabobPressed)), side: .right)
         }
 
-        if presenter.pages.pending == false {
+        if webView?.scrollView.refreshControl?.isRefreshing == true && presenter.pages.pending == false {
             webView?.scrollView.refreshControl?.endRefreshing()
         }
     }
