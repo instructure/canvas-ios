@@ -21,11 +21,13 @@ import Foundation
 protocol FilePickerViewProtocol: class {
     func update()
     func showError(_ error: Error)
+    func didReachMaxFileCount()
 }
 
 class FilePickerPresenter {
     let env: AppEnvironment
     let batchID: String
+    var maxFileCount: Int = Int.max
     lazy var files = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
         self?.view?.update()
     }
@@ -44,6 +46,7 @@ class FilePickerPresenter {
         UploadManager.shared.viewContext.perform {
             do {
                 try UploadManager.shared.add(url: url, batchID: self.batchID)
+                if self.files.count == self.maxFileCount { self.view?.didReachMaxFileCount() }
             } catch {
                 self.view?.showError(error)
             }

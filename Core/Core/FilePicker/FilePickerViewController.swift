@@ -51,6 +51,10 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
         return presenter?.files
     }
     private var presenter: FilePickerPresenter?
+    public var maxFileCount: Int {
+        set { presenter?.maxFileCount = newValue }
+        get { presenter?.maxFileCount ?? Int.max }
+    }
 
     public static func create(environment: AppEnvironment = .shared, batchID: String? = nil) -> FilePickerViewController {
         let batchIDOrUUID = batchID ?? UUID.string
@@ -220,6 +224,10 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
             self.progressView?.isHidden = true
             self.view.layoutIfNeeded()
         }
+    }
+
+    func didReachMaxFileCount() {
+        submit()
     }
 }
 

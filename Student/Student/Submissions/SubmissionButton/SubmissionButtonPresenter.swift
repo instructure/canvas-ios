@@ -178,6 +178,7 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
         filePicker.utis = allowedUTIs
         filePicker.mediaTypes = mediaTypes
         filePicker.delegate = self
+        filePicker.maxFileCount = isMediaRecording ? 1 : Int.max
         let nav = UINavigationController(rootViewController: filePicker)
         nav.modalPresentationStyle = .formSheet
         view?.present(nav, animated: true, completion: nil)
