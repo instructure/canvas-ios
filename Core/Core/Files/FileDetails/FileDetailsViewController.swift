@@ -200,10 +200,10 @@ extension FileDetailsViewController: URLSessionDownloadDelegate {
     }
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        if let error = error { showError(error) }
+        if let error = error, (error as NSError).code != -999 { showError(error) }
         downloadTask = nil
         performUIUpdate { self.downloadComplete() }
-        session.invalidateAndCancel()
+        session.finishTasksAndInvalidate()
     }
 
     func downloadComplete() {
@@ -234,7 +234,6 @@ extension FileDetailsViewController: UIScrollViewDelegate {
         image.isAccessibilityElement = true
         let imageSize = image.frame.size
         let scroll = UIScrollView(frame: contentView.bounds)
-        scroll.backgroundColor = .named(.backgroundDark)
         contentView.addSubview(scroll)
         scroll.addSubview(image)
         scroll.pin(inside: contentView)
@@ -291,15 +290,6 @@ extension FileDetailsViewController: QLPreviewControllerDataSource, QLPreviewCon
     public func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
         return localURL! as NSURL
     }
-
-    public func previewController(_ controller: QLPreviewController, transitionImageFor item: QLPreviewItem, contentRect: UnsafeMutablePointer<CGRect>) -> UIImage? {
-        return arImageView.image
-    }
-
-    public func previewController(_ controller: QLPreviewController, frameFor item: QLPreviewItem, inSourceView view: AutoreleasingUnsafeMutablePointer<UIView?>) -> CGRect {
-        view.pointee = arImageView
-        return arImageView.bounds
-    }
 }
 
 extension FileDetailsViewController: PSPDFViewControllerDelegate {
@@ -353,21 +343,16 @@ extension FileDetailsViewController: PSPDFViewControllerDelegate {
         in annotationRect: CGRect,
         on pageView: PSPDFPageView
     ) -> [PSPDFMenuItem] {
-        guard annotations?.count == 1, let annotation = annotations?.first else { return menuItems }
-        var items = menuItems.filter {
-            guard let identifier = $0.identifier else { return true }
-            if identifier == PSPDFTextMenu.annotationMenuInspector.rawValue {
-                $0.title = NSLocalizedString("Style", bundle: .core, comment: "")
+        return menuItems.compactMap { item in
+            guard item.identifier != PSPDFTextMenu.annotationMenuNote.rawValue else { return nil }
+            if item.identifier == PSPDFTextMenu.annotationMenuInspector.rawValue {
+                item.title = NSLocalizedString("Style", bundle: .core, comment: "")
             }
-            return (
-                identifier != PSPDFTextMenu.annotationMenuRemove.rawValue &&
-                identifier != PSPDFTextMenu.annotationMenuNote.rawValue
-            )
+            if item.identifier == PSPDFTextMenu.annotationMenuRemove.rawValue {
+                return PSPDFMenuItem(title: item.title, image: .icon(.trash), block: item.actionBlock, identifier: item.identifier)
+            }
+            return item
         }
-        items.append(PSPDFMenuItem(title: NSLocalizedString("Remove", bundle: .core, comment: ""), image: .icon(.trash), block: {
-            pdfController.document?.remove([annotation], options: nil)
-        }, identifier: PSPDFTextMenu.annotationMenuRemove.rawValue))
-        return items
     }
 
     public func pdfViewController(_ pdfController: PSPDFViewController, shouldShow controller: UIViewController, options: [String: Any]? = nil, animated: Bool) -> Bool {
