@@ -31,11 +31,13 @@ class FilePickerPresenterTests: CoreTestCase, FilePickerViewProtocol {
 
     let batchID = "1"
     lazy var presenter = FilePickerPresenter(environment: environment, batchID: batchID)
+    var didReachMaxFileCountExpectation = XCTestExpectation(description: "expectation")
 
     override func setUp() {
         super.setUp()
         presenter.view = self
         didUpdate.assertForOverFulfill = false
+        didReachMaxFileCountExpectation = XCTestExpectation(description: "expectation")
     }
 
     func testViewIsReady() {
@@ -53,4 +55,18 @@ class FilePickerPresenterTests: CoreTestCase, FilePickerViewProtocol {
         presenter.add(url: url)
         wait(for: [didUpdate], timeout: 0.1)
     }
+
+    func testMaxFileCount() {
+        let url = URL.temporaryDirectory.appendingPathComponent("FilePickerPresenterTests-testAddURL.txt")
+        FileManager.default.createFile(atPath: url.path, contents: "hello".data(using: .utf8), attributes: nil)
+        presenter.maxFileCount = 1
+        presenter.add(url: url)
+        wait(for: [didReachMaxFileCountExpectation], timeout: 0.4)
+        XCTAssertTrue(presenter.files.count == 1)
+    }
+
+    func didReachMaxFileCount() {
+        didReachMaxFileCountExpectation.fulfill()
+    }
+
 }
