@@ -1,5 +1,5 @@
 /* Description for rubric criterion rating object */
-" Rating for %@, Score: %g" = " Värdering för %1$@, resultat: %2$g";
+" Rating for %@, Score: %g" = " Betyg för %1$@, Resultat: %2$g";
 
 /* B- (83 out of 100 points */
 "%@ (%g out of %@)" = "%1$@ (%2$g av %3$@)";
@@ -23,22 +23,22 @@
 "%g out of %@" = "%1$g av %2$@";
 
 /* Assignment grade: Complete */
-"Complete" = "Slutför";
+"Complete" = "Färdig";
 
 /* No comment provided by engineer. */
 "Excused" = "Slipper göra";
 
 /* The file extension for a submission is not acceptable */
-"File extension not allowed: %@" = "Filnamnstillägg som inte tillåt: %@";
+"File extension not allowed: %@" = "Filtillägg som inte tillåts: %@";
 
 /* Comes before a list of file extensions allowed for an assinment submission */
 "File extension(s) permitted for this assignment: " = "Tillåtna filtillägg för den här uppgiften: ";
 
 /* File upload failed. */
-"File upload failed." = "Filuppladdning misslyckades.";
+"File upload failed." = "Det gick inte att ladda upp filen.";
 
 /* Assignment grade: Incomplete */
-"Incomplete" = "Ofullständig";
+"Incomplete" = "Ej fullständig";
 
 /* The name for a video or audio response to something */
 "Media comment" = "Mediakommentar";
@@ -47,10 +47,10 @@
 "Not Complete" = "Ej färdig";
 
 /* not graded string. */
-"Not graded" = "inte bedömd";
+"Not graded" = "Inte bedömd";
 
 /* not graded with points possible */
-"Not graded (0 out of %@)" = "Ej bedömd (0 av %@)";
+"Not graded (0 out of %@)" = "Inte bedömda (0 av %@)";
 
 /* Short name for observer enrollment */
 "Observer" = "Observatör";
@@ -74,7 +74,7 @@
 "Text Submission" = "Textinlämning";
 
 /* Error description when a user tries to upload a file that's too big */
-"The file you are trying to uploading is %@, but the maximum size is %@." = "Filen du försöker att ladda upp är %1$@, men den maximala storleken är %2$@.";
+"The file you are trying to uploading is %@, but the maximum size is %@." = "Filen du försöker ladda upp är %1$@, men maximal storlek är %2$@.";
 
 /* When we don't know the name of a file, we display this */
 "unknown" = "okänd";

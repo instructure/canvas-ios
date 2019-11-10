@@ -138,7 +138,7 @@
     "message": "Vill du ta bort { name }?"
   },
   "are_you_sure_you_want_to_delete_this_announcement_293d51a8": {
-    "message": "Vill du ta bort det här meddelandet?"
+    "message": "Vill du ta bort det här kursmeddelandet?"
   },
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
     "message": "Vill du ta bort diskussionen?"
@@ -699,7 +699,7 @@
     "message": "Bedömning { grade }"
   },
   "grade_override_ff74e3b4": {
-    "message": "Åsidosätt omdöme "
+    "message": "Åsidosätt omdöme"
   },
   "grade_override_grade_4788faec": {
     "message": "Åsidosätt omdöme { grade }"
@@ -747,7 +747,7 @@
     "message": "Har inte blivit bedömd"
   },
   "haven_t_submitted_yet_3a127a27": {
-    "message": "Har inte lämnats in ännu"
+    "message": "Har inte skickats in ännu"
   },
   "help_4c4968b1": {
     "message": "Hjälp"
@@ -1023,7 +1023,7 @@
     "message": "Ej publicerade"
   },
   "not_submitted_7d05fdb4": {
-    "message": "Inte inlämnade"
+    "message": "Inte inskickade"
   },
   "nothing_more_to_do_b017e8bb": {
     "message": "Ingenting mer att göra"
@@ -1314,19 +1314,19 @@
     "message": "{ score, number }/{ pointsPossible, number }"
   },
   "score_to_keep_48ace09b": {
-    "message": "Poäng att behålla"
+    "message": "Resultat att behålla"
   },
   "scored_less_than_93cde0d2": {
-    "message": "Fick färre poäng än ..."
+    "message": "Fick lägre poäng än ..."
   },
   "scored_less_than_promptvalue_7e5f2b5d": {
-    "message": "Fick färre poäng än { promptValue }"
+    "message": "Fick lägre poäng än { promptValue }"
   },
   "scored_more_than_2185a818": {
-    "message": "Fick fler poäng än ..."
+    "message": "Fick högre poängän ..."
   },
   "scored_more_than_promptvalue_9097b1f7": {
-    "message": "Fick fler poäng än { promptValue }"
+    "message": "Fick högre poäng än { promptValue }"
   },
   "search_280d00bd": {
     "message": "Sök"
@@ -1452,13 +1452,13 @@
     "message": "Inlämningstyper"
   },
   "submissions_11e96106": {
-    "message": "Inlämningar"
+    "message": "Inskickningar"
   },
   "submitted_318fad53": {
-    "message": "Inlämnad"
+    "message": "Inskickad"
   },
   "submitted_late_3741af29": {
-    "message": "Sent inlämnad"
+    "message": "Sent inskickad"
   },
   "subscribe_4b301fb7": {
     "message": "Prenumerera"
@@ -1479,7 +1479,7 @@
     "message": "Tryck och håll på ett matrisnummer för att se en beskrivning"
   },
   "tap_the_to_create_a_new_conversation_80f77725": {
-    "message": "Tryck på \"+\" för att skapa en ny konversation"
+    "message": "Tryck på ”+\" för att skapa en ny konversation"
   },
   "tap_to_view_announcement_6724a5d": {
     "message": "Tryck för att visa kursmeddelande"
@@ -1542,7 +1542,7 @@
     "message": "Det finns för närvarande ingen lång beskrivning för detta objekt."
   },
   "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
-    "message": "Ett problem uppstod vid stängning av meddelandet."
+    "message": "Ett problem uppstod vid stängning av kursmeddelandet."
   },
   "there_was_a_problem_loading_discussions_ce5318af": {
     "message": "Ett problem uppstod vid inläsning av diskussionerna."
@@ -1629,7 +1629,7 @@
     "message": "Den här studenten har ingen inlämning för denna uppgift."
   },
   "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
-    "message": "Denna inlämning är en URL till en extern sida. Vi har inkluderat en ögonblicksbild på hur sidan såg ut när den lämnades in."
+    "message": "Denna inlämning är en URL till en extern sida. Vi har inkluderat en ögonblicksbild på hur sidan såg ut när den skickades in."
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
     "message": "Detta kommer att ta bort inlämningsdatumet och alla tillhörande tilldelade personer."

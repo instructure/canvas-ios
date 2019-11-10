@@ -34,9 +34,6 @@
 /* option to view results for all grading periods */
 "All Grading Periods" = "Alle beoordelingsperioden";
 
-/* all pages segmented control title */
-"All Pages" = "Alle pagina's";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Toegestaan aantal pogingen";
 
@@ -200,9 +197,6 @@
 
 /* State of the flagged question */
 "Flagged" = "Gevlagd";
-
-/* front page segmented control title */
-"Front Page" = "Voorpagina";
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Cijfers ophalen voor";

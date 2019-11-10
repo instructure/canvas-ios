@@ -34,9 +34,6 @@
 /* option to view results for all grading periods */
 "All Grading Periods" = "Alle vurderingsperioder";
 
-/* all pages segmented control title */
-"All Pages" = "Alle sider";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Tillatte forsøk";
 
@@ -200,9 +197,6 @@
 
 /* State of the flagged question */
 "Flagged" = "Flagget";
-
-/* front page segmented control title */
-"Front Page" = "Forside";
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Få karakterer for";

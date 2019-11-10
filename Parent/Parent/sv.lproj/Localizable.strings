@@ -104,7 +104,7 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Det gick inte att läsa in (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
-"Grades" = "Omdömen";
+"Grades" = "Bedömningar";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Hög uppgiftsbedömning kan inte vara lägre än låg uppgiftsbedömning";
@@ -116,10 +116,10 @@
 "In-Class" = "Närvarande";
 
 /* No comment provided by engineer. */
-"Input the student pairing code provided to you." = "Ange kopplingskoden du fått för studerande.";
+"Input the student pairing code provided to you." = "Ange kopplingskoden du fått för studenter.";
 
 /* Institution Announcement Description */
-"Institution announcements" = "Institutionsmeddelanden";
+"Institution announcements" = "Institutionens kursmeddelanden";
 
 /* Title for an alert view */
 "Invalid Input" = "Ogiltig inmatning";
@@ -182,13 +182,13 @@
 "Settings" = "Inställningar";
 
 /* No comment provided by engineer. */
-"Submitted" = "Inlämnad";
+"Submitted" = "Inskickad";
 
 /* No comment provided by engineer. */
-"Submitted: %@" = "Inlämnad: %@";
+"Submitted: %@" = "Inskickat: %@";
 
 /* No comment provided by engineer. */
-"Submitted: %@ (%@/%@)" = "Inlämnad: %1$@ (%2$@/%3$@)";
+"Submitted: %@ (%@/%@)" = "Inskickat: %1$@ (%2$@/%3$@)";
 
 /* No comment provided by engineer. */
 "Summary" = "Sammanfattning";
