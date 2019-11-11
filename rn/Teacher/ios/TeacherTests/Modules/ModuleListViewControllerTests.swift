@@ -189,6 +189,15 @@ class ModuleListViewControllerTests: TeacherTestCase {
         XCTAssertNotNil(viewController.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? ModuleItemCell)
     }
 
+    func testLoadingFirstPage() {
+        let task = api.mock(GetModulesRequest(courseID: "1"), value: [])
+        task.paused = true
+        viewController.view.layoutIfNeeded()
+        XCTAssertEqual(viewController.tableView.refreshControl?.isRefreshing, true)
+        task.paused = false
+        XCTAssertEqual(viewController.tableView.refreshControl?.isRefreshing, false)
+    }
+
     func testLoadingNextPage() {
         api.mock(GetModulesRequest(courseID: "1"), value: [])
         let link = "https://canvas.instructure.com/courses/1/modules?page=2"

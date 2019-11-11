@@ -286,8 +286,12 @@ extension ModuleListViewController {
 
 extension ModuleListViewController: ModuleStoreDelegate {
     func moduleStoreDidChange(_ moduleStore: ModuleStore) {
-        if store.isLoading, store.count > 0 {
-            showLoadingNextPage()
+        if store.isLoading {
+            if store.count > 0 {
+                showLoadingNextPage()
+            } else {
+                tableView.refreshControl?.beginRefreshing()
+            }
         } else {
             tableView.refreshControl?.endRefreshing()
             hideLoadingNextPage()

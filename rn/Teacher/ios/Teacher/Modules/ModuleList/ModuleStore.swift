@@ -184,6 +184,8 @@ class ModuleStore: NSObject {
 
 extension ModuleStore: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        delegate?.moduleStoreDidChange(self)
+        performUIUpdate {
+            self.delegate?.moduleStoreDidChange(self)
+        }
     }
 }
