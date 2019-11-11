@@ -19,7 +19,7 @@
 import XCTest
 @testable import Core
 
-class APIFileRequestableTests: XCTestCase {
+class APIFileTests: XCTestCase {
     func testGetFileRequest() {
         let request = GetFileRequest(context: ContextModel(.course, id: "1"), fileID: "2", include: [.avatar])
         XCTAssertEqual(request.path, "courses/1/files/2")

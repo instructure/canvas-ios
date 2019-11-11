@@ -86,6 +86,11 @@ public class AudioPlayerViewController: UIViewController {
         timeSlider?.accessibilityLabel = NSLocalizedString("Current position", bundle: .core, comment: "")
     }
 
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        pause()
+    }
+
     public func load(url: URL?) {
         currentTimeLabel?.text = NSLocalizedString("--:--", bundle: .core, comment: "Unknown time duration")
         remainingTimeLabel?.text = NSLocalizedString("--:--", bundle: .core, comment: "Unknown time duration")
@@ -95,10 +100,10 @@ public class AudioPlayerViewController: UIViewController {
         guard let url = url else { return }
         URLSessionAPI.cachingURLSession.dataTask(with: url) { [weak self] data, _, error in
             guard error == nil, let data = data else {
-                DispatchQueue.main.async { self?.showError(error ?? NSError.internalError()) }
+                performUIUpdate { self?.showError(error ?? NSError.internalError()) }
                 return
             }
-            DispatchQueue.main.async { self?.loadData(data) }
+            performUIUpdate { self?.loadData(data) }
         }.resume()
     }
 
