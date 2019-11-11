@@ -81,7 +81,7 @@ extension APIProfile {
             name: name,
             primary_email: primary_email,
             login_id: login_id,
-            avatar_url: avatar_url,
+            avatar_url: avatar_url.flatMap(APIURL.make(rawValue:)),
             calendar: calendar
         )
     }

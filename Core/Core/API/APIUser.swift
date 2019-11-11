@@ -66,6 +66,15 @@ public struct APIProfile: Codable, Equatable {
     public let name: String
     public let primary_email: String?
     public let login_id: String?
-    public let avatar_url: URL?
+    public let avatar_url: APIURL?
     public let calendar: APICalendar?
+
+    public init(id: ID, name: String, primary_email: String?, login_id: String?, avatar_url: APIURL?, calendar: APICalendar?) {
+        self.id = id
+        self.name = name
+        self.primary_email = primary_email
+        self.login_id = login_id
+        self.avatar_url = avatar_url
+        self.calendar = calendar
+    }
 }
