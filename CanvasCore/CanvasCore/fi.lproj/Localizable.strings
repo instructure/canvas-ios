@@ -34,9 +34,6 @@
 /* option to view results for all grading periods */
 "All Grading Periods" = "Kaikki arvosanojen antojaksot";
 
-/* all pages segmented control title */
-"All Pages" = "Kaikki sivut";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Sallitut yritykset";
 
@@ -200,9 +197,6 @@
 
 /* State of the flagged question */
 "Flagged" = "Merkitty";
-
-/* front page segmented control title */
-"Front Page" = "Etusivu";
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Hae arvosanat kohteesta";

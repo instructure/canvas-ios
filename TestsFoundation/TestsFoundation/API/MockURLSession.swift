@@ -248,12 +248,20 @@ public class MockURLSession: URLSession {
         return task
     }
 
+    public override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+        return dataTask(with: URLRequest(url: url), completionHandler: completionHandler)
+    }
+
     public override func dataTask(with request: URLRequest) -> URLSessionDataTask {
         let task = MockURLSession.dataMocks[request.url!.absoluteString] ?? MockDataTask()
         if task.mock == nil {
             print("⚠️ mock not found for url: \(request.url?.absoluteString ?? "<n/a>")")
         }
         return task
+    }
+
+    public override func dataTask(with url: URL) -> URLSessionDataTask {
+        return dataTask(with: URLRequest(url: url))
     }
 
     public override func uploadTask(with request: URLRequest, fromFile fileURL: URL) -> URLSessionUploadTask {
@@ -270,6 +278,18 @@ public class MockURLSession: URLSession {
             print("⚠️ download mock not found for url: \(request.url?.absoluteString ?? "<n/a>")")
         }
         task.callback = completionHandler
+        return task
+    }
+
+    public override func downloadTask(with url: URL) -> URLSessionDownloadTask {
+        return downloadTask(with: URLRequest(url: url))
+    }
+
+    public override func downloadTask(with request: URLRequest) -> URLSessionDownloadTask {
+        let task = MockURLSession.downloadMocks[request.url!.absoluteString] ?? MockDownloadTask()
+        if task.mock == nil {
+            print("⚠️ download mock not found for url: \(request.url?.absoluteString ?? "<n/a>")")
+        }
         return task
     }
 

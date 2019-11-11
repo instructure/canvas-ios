@@ -2,7 +2,7 @@
 " Error report ID: (reportID)" = "ID för felrapport: (reportID)";
 
 /* Failure reason from the JSON payload from canvas */
-" Failure reason: (reason)." = "Felorsak: (reason).";
+" Failure reason: (reason)." = "Felorsak: (orsak).";
 
 /* Shows the number of flagged questions */
 "%@ Flagged" = "%@ flaggade";
@@ -33,9 +33,6 @@
 
 /* option to view results for all grading periods */
 "All Grading Periods" = "Alla bedömningsperioder";
-
-/* all pages segmented control title */
-"All Pages" = "Alla sidor";
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Tillåtna försök";
@@ -201,9 +198,6 @@
 /* State of the flagged question */
 "Flagged" = "Flaggade";
 
-/* front page segmented control title */
-"Front Page" = "Framsida";
-
 /* No comment provided by engineer. */
 "Get Grades for" = "Hämta bedömningar för";
 
@@ -368,7 +362,7 @@
 "Quiz Error" = "Fel på quiz";
 
 /* Label for indication that the quiz submission was successful */
-"Quiz Submitted" = "Quiz inlämnat";
+"Quiz Submitted" = "Quiz inskickat";
 
 /* Label for indication that the quiz submission failed */
 "QuizSubmission Failure" = "QuizSubmission Fel";
@@ -459,10 +453,10 @@
 
 /* Submit button title
    Turn in this url button */
-"Submit" = "Lämna in";
+"Submit" = "Skicka in";
 
 /* Label for indication of submitting quiz */
-"Submitting Quiz" = "Lämnar in quiz";
+"Submitting Quiz" = "Skickar in quiz";
 
 /* Take a photo submission choice */
 "Take a Photo" = "Ta ett foto";
@@ -486,7 +480,7 @@
 "The Pages are gone!? Why are the pages always gone?" = "Är sidorna borta!? Varför är alltid sidorna borta?";
 
 /* Description for alert that shows when the quiz hits the due date */
-"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Quizzet ska lämnas in om 1 minut. Vill du lämna in det nu och göra det i tid, eller fortsätta med quizzet och kanske lämna in det för sent?";
+"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Quizzet ska lämnas in om 1 minut. Vill du skicka in det nu och göra det i tid, eller fortsätta med quizzet och kanske lämna in det för sent?";
 
 /* Error message for interrupted requests marking a to do as done */
 "The request to mark a to do as done was interrupted" = "Begäran om att markera ett att-göra-objekt som klart avbröts";

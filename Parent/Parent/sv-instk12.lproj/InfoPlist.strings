@@ -1,15 +1,15 @@
 /* Bundle display name */
-"CFBundleDisplayName" = "Canvas Förälder";
+"CFBundleDisplayName" = "Canvas Parent";
 
 /* Privacy - Camera Usage Description */
-"NSCameraUsageDescription" = "Bifoga foton och videoklipp till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter.";
+"NSCameraUsageDescription" = "Bifoga foton och videor till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter.";
 
 /* Privacy - Microphone Usage Description */
-"NSMicrophoneUsageDescription" = "Anslut ljudinspelningar till meddelanden och diskussionsinställningar, eller skicka in dem som inlämningsuppgifter.";
+"NSMicrophoneUsageDescription" = "Bifoga ljudinspelningar till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter.";
 
 /* Privacy - Photo Library Additions Usage Description */
-"NSPhotoLibraryAddUsageDescription" = "Bifoga foton och videoklipp till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter.";
+"NSPhotoLibraryAddUsageDescription" = "Bifoga foton och videor till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter.";
 
 /* Privacy - Photo Library Usage Description */
-"NSPhotoLibraryUsageDescription" = "Bifoga foton och videoklipp till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter.";
+"NSPhotoLibraryUsageDescription" = "Bifoga foton och videor till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter.";
 

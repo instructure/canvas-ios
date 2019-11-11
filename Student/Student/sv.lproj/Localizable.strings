@@ -1,5 +1,5 @@
 /* %@ will be replaced by the filename */
-"'%@' is now ready to submit to assignments" = "\"%@\" är nu redo att lämnas in till uppgifter";
+"'%@' is now ready to submit to assignments" = "'%@' är nu redo att skickas in till uppgifter";
 
 /* explanation for locked module item */
 "&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; är låst som en del av &quot;%2$@&quot;";
@@ -555,7 +555,7 @@
 "Edit items" = "Redigera objekt";
 
 /* Header when editing a discussion entry with name and timestamp */
-"Editing reply by %1$@, %2$@" = "Redigerar svar från %1$@,  %2$@";
+"Editing reply by %1$@, %2$@" = "Redigerar svar från %1$@, %2$@";
 
 /* the users email */
 "Email" = "E-post";
@@ -1131,7 +1131,7 @@
 "Rating for %1$@, Score: %2$g" = "Betyg för %1$@, Poäng: %2$g";
 
 /* Title for a button allowing user to re-submit files for an assignment */
-"Re-submit Assignment" = "Lämna in uppgift igen";
+"Re-submit Assignment" = "Skicka in uppgift igen";
 
 /* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
 "Recipients" = "Mottagare";

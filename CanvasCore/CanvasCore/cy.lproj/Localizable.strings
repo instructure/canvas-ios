@@ -34,9 +34,6 @@
 /* option to view results for all grading periods */
 "All Grading Periods" = "Pob Cyfnod Graddio";
 
-/* all pages segmented control title */
-"All Pages" = "Pob Tudalen";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Ymgeisiau a ganiateir";
 
@@ -200,9 +197,6 @@
 
 /* State of the flagged question */
 "Flagged" = "Wedi fflagio";
-
-/* front page segmented control title */
-"Front Page" = "Tudalen Flaen";
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Nôl Graddau ar gyfer";

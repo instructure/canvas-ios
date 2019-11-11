@@ -1,5 +1,5 @@
 /* Description for rubric criterion rating object */
-" Rating for %@, Score: %g" = " Betyg för %1$@, Poäng:  %2$g";
+" Rating for %@, Score: %g" = " Betyg för %1$@, Poäng: %2$g";
 
 /* B- (83 out of 100 points */
 "%@ (%g out of %@)" = "%1$@ (%2$g av %3$@)";
@@ -11,7 +11,7 @@
 "%@ out of %@" = "%1$@ av %2$@";
 
 /* {point range max} to > {point range min} pts */
-"%@ to > %@ pts" = "%1$@  till > %2$@ poäng";
+"%@ to > %@ pts" = "%1$@ till > %2$@ poäng";
 
 /* Word and ellipses */
 "%@..." = "%@...";

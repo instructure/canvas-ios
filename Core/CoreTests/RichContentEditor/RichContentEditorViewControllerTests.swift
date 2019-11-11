@@ -164,7 +164,12 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
     }
 
     func testMediaRetry() {
-        let url = Bundle(for: type(of: self)).url(forResource: "instructure", withExtension: "pdf")!
+        let originalUrl = Bundle(for: type(of: self)).url(forResource: "instructure", withExtension: "pdf")!
+        // File will get deleted after upload, so use a copy instead
+        let url = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
+            .appendingPathComponent("instructure.pdf", isDirectory: false)
+        try? FileManager.default.copyItem(at: originalUrl, to: url)
+
         api.mock(GetMediaServiceRequest(), error: NSError.internalError())
         controller.imagePickerController(MockPicker(), didFinishPickingMediaWithInfo: [ .mediaURL: url ])
         XCTAssertTrue((self.databaseClient.fetch() as [File]).isEmpty)

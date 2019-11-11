@@ -34,9 +34,6 @@
 /* option to view results for all grading periods */
 "All Grading Periods" = "すべての採点期間";
 
-/* all pages segmented control title */
-"All Pages" = "すべてのページ";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "試行許可数";
 
@@ -200,9 +197,6 @@
 
 /* State of the flagged question */
 "Flagged" = "フラグ付き";
-
-/* front page segmented control title */
-"Front Page" = "フロントページ";
 
 /* No comment provided by engineer. */
 "Get Grades for" = "（）の成績を取得する";
