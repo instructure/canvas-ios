@@ -293,11 +293,6 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         XCTAssertTrue(presenter.canSubmit(filePicker))
     }
 
-    func xtestPickMediaRecordingType() {
-        presenter.pickMediaRecordingType(button: UIView())
-        XCTAssert(view.presented is UIAlertController)
-    }
-
     func xtestCancelAudioRecording() {
         presenter.cancel(audioRecorder)
         XCTAssert(audioRecorder.dismissed)

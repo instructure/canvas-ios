@@ -43,42 +43,6 @@ enum SubmissionButtonAlertView {
         return alert
     }
 
-    static func chooseMediaTypeAlert(_ presenter: SubmissionButtonPresenter, button: UIView, assignment: Assignment) -> UIAlertController {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Record Audio", bundle: .student, comment: ""), style: .default) { [weak presenter] _ in
-            AudioRecorderViewController.requestPermission { allowed in
-                if allowed {
-                    let controller = AudioRecorderViewController.create()
-                    controller.delegate = presenter
-                    controller.view.backgroundColor = UIColor.named(.backgroundLightest)
-                    controller.modalPresentationStyle = .formSheet
-                    presenter?.view?.present(controller, animated: true, completion: nil)
-                } else {
-                    presenter?.view?.showPermissionError(.microphone)
-                }
-            }
-        })
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Record Video", bundle: .student, comment: ""), style: .default) { [weak presenter] _ in
-            guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
-            let cameraController = UIImagePickerController()
-            cameraController.delegate = presenter
-            cameraController.sourceType = .camera
-            cameraController.mediaTypes = [kUTTypeMovie as String]
-            cameraController.cameraCaptureMode = .video
-            presenter?.view?.present(cameraController, animated: true, completion: nil)
-        })
-
-        alert.addAction(UIAlertAction(title: SubmissionType.online_upload.localizedString, style: .default) { [weak presenter] _ in
-            presenter?.submitType(SubmissionType.online_upload, for: assignment, button: button)
-        })
-
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .student, comment: ""), style: .cancel))
-        alert.popoverPresentationController?.sourceView = button
-        alert.popoverPresentationController?.sourceRect = CGRect(origin: button.center, size: .zero)
-        alert.popoverPresentationController?.permittedArrowDirections = []
-        return alert
-    }
-
     static func uploadingAlert(_ mediaUploader: UploadMedia) -> UIAlertController {
         let uploading = UIAlertController(title: NSLocalizedString("Uploading", bundle: .student, comment: ""), message: nil, preferredStyle: .alert)
         uploading.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .student, comment: ""), style: .destructive) { _ in

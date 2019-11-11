@@ -226,12 +226,6 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
 
 // MARK: - media_recording
 extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func pickMediaRecordingType(button: UIView) {
-        guard let assignment = assignment else { return }
-        let alert = SubmissionButtonAlertView.chooseMediaTypeAlert(self, button: button, assignment: assignment)
-        view?.present(alert, animated: true, completion: nil)
-    }
-
     func cancel(_ controller: AudioRecorderViewController) {
         controller.dismiss(animated: true, completion: nil)
     }
