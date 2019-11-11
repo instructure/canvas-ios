@@ -180,6 +180,20 @@ workflows:
 
   nightly:
     steps:
+    - slack:
+        title: "Send build start message to slack"
+        inputs:
+        - webhook_url: $SLACK_URL
+        - channel: '#ios'
+        - pretext: ""
+        - author_name: ""
+        - message: ""
+        - title: 'Nightly build started... ${BITRISE_BUILD_URL}'
+        - fields: ""
+        - color: warning
+        - footer: ""
+        - buttons: ""
+        - timestamp: "no"
     - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
         title: Canvas iOS Secrets
     - cache-pull: {}
@@ -288,7 +302,6 @@ workflows:
         - title: ''
         - message: ''
         - pretext: "*Nightly Build Succeeded!*"
-
   nightly-cache-gen:
     steps:
     - cache-pull: {}

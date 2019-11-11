@@ -34,9 +34,6 @@
 /* option to view results for all grading periods */
 "All Grading Periods" = "Toutes les périodes de notation";
 
-/* all pages segmented control title */
-"All Pages" = "Toutes les pages";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Tentatives autorisées";
 
@@ -200,9 +197,6 @@
 
 /* State of the flagged question */
 "Flagged" = "Marqué";
-
-/* front page segmented control title */
-"Front Page" = "Première page";
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Obtenir des notes pour";

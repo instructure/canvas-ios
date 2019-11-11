@@ -27,7 +27,7 @@ class DocViewerPointAnnotationTests: XCTestCase {
         point.color = nil // use default
 
         UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
-        point.draw(in: UIGraphicsGetCurrentContext()!)
+        point.draw(context: UIGraphicsGetCurrentContext()!, options: nil)
         let image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 
