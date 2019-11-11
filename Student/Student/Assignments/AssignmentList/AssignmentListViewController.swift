@@ -168,7 +168,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
     }
 
     func selectFirstCellOnIpad() {
-        if let splitView = splitViewController, splitView.viewControllers.count == 2 {
+        if let splitView = splitViewController, !isInSplitViewDetail {
             let ip = IndexPath(row: 0, section: 0)
             tableView.selectRow(at: ip, animated: true, scrollPosition: .none)
             tableView(tableView, didSelectRowAt: ip)
