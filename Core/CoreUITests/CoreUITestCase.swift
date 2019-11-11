@@ -83,10 +83,10 @@ open class CoreUITestCase: XCTestCase {
         }
         // re-install the existing mocks
         for message in dataMocks {
-            try! send(.mockData(message))
+            send(.mockData(message))
         }
         for message in downloadMocks {
-            try! send(.mockDownload(message))
+            send(.mockDownload(message))
         }
     }
 
