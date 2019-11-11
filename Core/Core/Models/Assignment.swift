@@ -193,7 +193,7 @@ extension Assignment {
     }
 
     public var allowedMediaTypes: [String] {
-        var types  = [kUTTypeVideo as String]
+        var types  = [kUTTypeMovie as String]
 
         if submissionTypes.contains(.media_recording) && !submissionTypes.contains(.online_upload) {
             types.append(kUTTypeAudio as String)

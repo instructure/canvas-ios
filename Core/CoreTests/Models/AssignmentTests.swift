@@ -196,11 +196,11 @@ class AssignmentTests: CoreTestCase {
     func testAllowedMediaTypesForMediaRecordings() {
         let a = Assignment.make()
         a.submissionTypes = [.media_recording]
-        XCTAssertEqual(a.allowedMediaTypes, [kUTTypeVideo as String, kUTTypeAudio as String])
+        XCTAssertEqual(a.allowedMediaTypes, [kUTTypeMovie as String, kUTTypeAudio as String])
 
         let b = Assignment.make()
         b.submissionTypes = [.media_recording, .online_upload]
-        XCTAssertEqual(b.allowedMediaTypes, [kUTTypeVideo as String, kUTTypeImage as String])
+        XCTAssertEqual(b.allowedMediaTypes, [kUTTypeMovie as String, kUTTypeImage as String])
     }
 
     func testIsLTIAssignment() {
