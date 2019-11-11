@@ -137,11 +137,9 @@ class ModuleStore: NSObject {
                 ttl.lastRefresh = Clock.now
                 do {
                     try context.save()
-                    for apiModule in response {
-                        if apiModule.items == nil {
-                            let request = GetModuleItemsRequest(courseID: self.courseID, moduleID: apiModule.id.value)
-                            self.getItems(moduleID: apiModule.id.value, request: request)
-                        }
+                    for apiModule in response where apiModule.items == nil {
+                        let request = GetModuleItemsRequest(courseID: self.courseID, moduleID: apiModule.id.value)
+                        self.getItems(moduleID: apiModule.id.value, request: request)
                     }
                     if let next = urlResponse.flatMap({ request.getNext(from: $0) }) {
                         self.getModules(next)
