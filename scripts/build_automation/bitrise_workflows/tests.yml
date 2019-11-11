@@ -194,20 +194,20 @@ workflows:
 
   nightly:
     steps:
-    # - slack:
-    #     title: "Send build start message to slack"
-    #     inputs:
-    #     - webhook_url: $SLACK_URL
-    #     - channel: '#ios'
-    #     - pretext: ""
-    #     - author_name: ""
-    #     - message: ""
-    #     - title: 'Nightly build started... ${BITRISE_BUILD_URL}'
-    #     - fields: ""
-    #     - color: warning
-    #     - footer: ""
-    #     - buttons: ""
-    #     - timestamp: "no"
+    - slack:
+        title: "Send build start message to slack"
+        inputs:
+        - webhook_url: $SLACK_URL
+        - channel: '#ios'
+        - pretext: ""
+        - author_name: ""
+        - message: ""
+        - title: 'Nightly build started... ${BITRISE_BUILD_URL}'
+        - fields: ""
+        - color: warning
+        - footer: ""
+        - buttons: ""
+        - timestamp: "no"
     - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
         title: Canvas iOS Secrets
     - script:
@@ -326,12 +326,12 @@ workflows:
             $BITRISE_SOURCE_DIR/rn/Teacher/node_modules/
             ~/Library/Developer/Xcode/DerivedData
     - deploy-to-bitrise-io: {}
-    # - slack:
-    #     inputs:
-    #     - pretext_on_error: "*Nightly Build Failed!*"
-    #     - webhook_url: "$SLACK_URL"
-    #     - channel: "#ios"
-    #     - author_name: ''
-    #     - title: ''
-    #     - message: ''
-    #     - pretext: "*Nightly Build Succeeded!*"
+    - slack:
+        inputs:
+        - pretext_on_error: "*Nightly Build Failed!*"
+        - webhook_url: "$SLACK_URL"
+        - channel: "#ios"
+        - author_name: ''
+        - title: ''
+        - message: ''
+        - pretext: "*Nightly Build Succeeded!*"
