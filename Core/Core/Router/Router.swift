@@ -54,7 +54,11 @@ public extension RouterProtocol {
         return route(to: .parse(url), from: from, options: options)
     }
 
-    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions? = nil, completion: (() -> Void)? = nil) {
+    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions? = nil) {
+        show(view, from: from, options: options, completion: nil)
+    }
+
+    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions? = nil, completion: (() -> Void)?) {
         if view is UIAlertController { return from.present(view, animated: true) }
 
         if let displayModeButton = from.displayModeButtonItem,

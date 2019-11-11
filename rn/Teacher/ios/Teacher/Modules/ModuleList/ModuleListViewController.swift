@@ -76,6 +76,9 @@ class ModuleListViewController: UIViewController, ErrorViewController, ColoredNa
         colors.refresh()
         store.refresh()
         tableView.reloadData()
+        if !store.shouldRefresh {
+            scrollToModule()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -221,7 +224,7 @@ extension ModuleListViewController: UITableViewDelegate {
         let item = store[indexPath.section].items[indexPath.row]
         switch item.type {
         case .externalTool(let id, _):
-            LTITools(context: ContextModel(.course, id: courseID), id: id).presentToolInSFSafariViewController(from: self, animated: true) { [weak tableView] _ in
+            LTITools(context: ContextModel(.course, id: courseID), id: id, launchType: .module_item, moduleItemID: item.id).presentToolInSFSafariViewController(from: self, animated: true) { [weak tableView] _ in
                 tableView?.deselectRow(at: indexPath, animated: true)
             }
         case .externalURL(let url):

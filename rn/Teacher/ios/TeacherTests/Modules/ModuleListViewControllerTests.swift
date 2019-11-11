@@ -103,16 +103,16 @@ class ModuleListViewControllerTests: TeacherTestCase {
 
     func testDoesNotScrollWithoutModuleID() {
         api.mock(GetModulesRequest(courseID: "1"), value: [
-            .make(id: "1"),
-            .make(id: "2"),
-            .make(id: "3"),
-            .make(id: "4"),
-            .make(id: "5"),
-            .make(id: "6"),
-            .make(id: "7"),
-            .make(id: "8"),
-            .make(id: "9"),
-            .make(id: "10"),
+            .make(id: "1", position: 1),
+            .make(id: "2", position: 2),
+            .make(id: "3", position: 3),
+            .make(id: "4", position: 4),
+            .make(id: "5", position: 5),
+            .make(id: "6", position: 6),
+            .make(id: "7", position: 7),
+            .make(id: "8", position: 8),
+            .make(id: "9", position: 9),
+            .make(id: "10", position: 10),
         ])
         let viewController = ModuleListViewController.create(env: environment, courseID: "1", moduleID: nil)
         viewController.view.layoutIfNeeded()
@@ -120,43 +120,46 @@ class ModuleListViewControllerTests: TeacherTestCase {
         XCTAssertEqual(viewController.tableView.contentOffset.y, 0)
     }
 
-    // TODO: figure out how to test UITableView.scrollToRow
-    func xtestScrollsToModule() {
+    func testScrollsToModule() {
         api.mock(GetModulesRequest(courseID: "1"), value: [
-            .make(id: "1"),
-            .make(id: "2"),
-            .make(id: "3"),
-            .make(id: "4"),
-            .make(id: "5"),
-            .make(id: "6"),
-            .make(id: "7"),
-            .make(id: "8"),
-            .make(id: "9"),
-            .make(id: "10"),
+            .make(id: "1", position: 1),
+            .make(id: "2", position: 2),
+            .make(id: "3", position: 3),
+            .make(id: "4", position: 4),
+            .make(id: "5", position: 5),
+            .make(id: "6", position: 6),
+            .make(id: "7", position: 7),
+            .make(id: "8", position: 8),
+            .make(id: "9", position: 9),
+            .make(id: "10", position: 10),
         ])
         let viewController = ModuleListViewController.create(env: environment, courseID: "1", moduleID: "10")
         viewController.view.layoutIfNeeded()
         XCTAssertEqual(viewController.tableView.numberOfSections, 10)
         XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 9), 1)
         XCTAssertGreaterThan(viewController.tableView.contentOffset.y, 0)
+
+        let cached = ModuleListViewController.create(env: environment, courseID: "1", moduleID: "10")
+        cached.view.layoutIfNeeded()
+        XCTAssertGreaterThan(cached.tableView.contentOffset.y, 0)
     }
 
     func testScrollsToPaginatedModule() {
         let link = "https://canvas.instructure.com/courses/1/modules?page=2"
         let next = HTTPURLResponse(next: link)
         api.mock(GetModulesRequest(courseID: "1"), value: [
-            .make(id: "1"),
-            .make(id: "2"),
-            .make(id: "3"),
-            .make(id: "4"),
-            .make(id: "5"),
+            .make(id: "1", position: 1),
+            .make(id: "2", position: 2),
+            .make(id: "3", position: 3),
+            .make(id: "4", position: 4),
+            .make(id: "5", position: 5),
         ], response: next)
         api.mock(GetNextRequest<[APIModule]>(path: link), value: [
-            .make(id: "6"),
-            .make(id: "7"),
-            .make(id: "8"),
-            .make(id: "9"),
-            .make(id: "10"),
+            .make(id: "6", position: 6),
+            .make(id: "7", position: 7),
+            .make(id: "8", position: 8),
+            .make(id: "9", position: 9),
+            .make(id: "10", position: 10),
         ])
         let viewController = ModuleListViewController.create(env: environment, courseID: "1", moduleID: "10")
         viewController.view.layoutIfNeeded()
@@ -271,7 +274,7 @@ class ModuleListViewControllerTests: TeacherTestCase {
     func testSelectExternalTool() throws {
         api.mock(GetModulesRequest(courseID: "1"), value: [
             .make(items: [
-                .make(content: .externalTool("1", URL(string: "/")!)),
+                .make(id: "1", content: .externalTool("1", URL(string: "/")!)),
             ]),
         ])
         api.mock(
@@ -280,8 +283,8 @@ class ModuleListViewControllerTests: TeacherTestCase {
                 id: "1",
                 url: nil,
                 assignmentID: nil,
-                moduleItemID: nil,
-                launchType: nil),
+                moduleItemID: "1",
+                launchType: .module_item),
             value: APIGetSessionlessLaunchResponse(url: URL(string: "https://canvas.instructure.com")!)
         )
         viewController.view.layoutIfNeeded()
