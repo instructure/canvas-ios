@@ -117,7 +117,7 @@ class SubmissionButtonPresenter: NSObject {
             env.router.route(to: url, from: view)
         case .media_recording:
             Analytics.shared.logEvent("submit_mediarecording_selected")
-            pickMediaRecordingType(button: button)
+            pickFiles(for: assignment)
         case .online_text_entry:
             Analytics.shared.logEvent("submit_textentry_selected")
             env.router.show(TextSubmissionViewController.create(
@@ -157,7 +157,7 @@ class SubmissionButtonPresenter: NSObject {
     private var isMediaRecording: Bool {
         if let assignment = assignment {
             let submissionTypes = assignment.submissionTypes
-            return submissionTypes.contains(.media_recording) && !submissionTypes.contains(.online_upload)
+            return submissionTypes.contains(.media_recording)
         }
         return false
     }
@@ -175,6 +175,7 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
         if assignment.allowedExtensions.isEmpty == true || allowedUTIs.contains(where: { $0.isImage || $0.isVideo }) {
             filePicker.sources.append(contentsOf: [.library, .camera])
         }
+        if isMediaRecording { filePicker.sources.append(.audio) }
         filePicker.utis = allowedUTIs
         filePicker.mediaTypes = mediaTypes
         filePicker.delegate = self

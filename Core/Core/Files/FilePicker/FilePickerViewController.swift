@@ -20,7 +20,9 @@ import UIKit
 import MobileCoreServices
 
 public enum FilePickerSource: Int, CaseIterable {
-    case camera, library, files
+    case audio, camera, library, files
+
+    static var defaults: [FilePickerSource] = [.camera, .library, .files]
 }
 
 public protocol FilePickerControllerDelegate: class {
@@ -43,7 +45,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
     public var cancelButtonTitle = NSLocalizedString("Cancel", bundle: .core, comment: "")
 
     public weak var delegate: FilePickerControllerDelegate?
-    public var sources = FilePickerSource.allCases
+    public var sources = FilePickerSource.defaults
     public var utis: [UTI] = [.any]
     public var mediaTypes: [String] = [kUTTypeMovie as String, kUTTypeImage as String]
     public var batchID: String!
@@ -73,6 +75,15 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
         tableView.tableFooterView = UIView(frame: .zero)
 
         var tabBarItems: [UITabBarItem] = []
+        if sources.contains(.audio) {
+            let item = UITabBarItem(
+                title: NSLocalizedString("Audio", bundle: .core, comment: ""),
+                image: .icon(.addAudioLine),
+                tag: FilePickerSource.audio.rawValue
+            )
+            item.accessibilityIdentifier = "FilePicker.audioButton"
+            tabBarItems.append(item)
+        }
         if sources.contains(.camera) {
             let item = UITabBarItem(
                 title: NSLocalizedString("Camera", bundle: .core, comment: ""),
@@ -256,7 +267,24 @@ extension FilePickerViewController: UITabBarDelegate {
             let documentPicker = UIDocumentPickerViewController(documentTypes: documentTypes, in: .import)
             documentPicker.delegate = self
             present(documentPicker, animated: true, completion: nil)
+        case .audio:
+            let audioRecorder = AudioRecorderViewController.create()
+            audioRecorder.delegate = self
+            audioRecorder.view.backgroundColor = UIColor.named(.backgroundLightest)
+            audioRecorder.modalPresentationStyle = .formSheet
+            present(audioRecorder, animated: true, completion: nil)
         }
+    }
+}
+
+extension FilePickerViewController: AudioRecorderDelegate {
+    public func cancel(_ controller: AudioRecorderViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+
+    public func send(_ controller: AudioRecorderViewController, url: URL) {
+        presenter?.add(url: url)
+        controller.dismiss(animated: true, completion: nil)
     }
 }
 
