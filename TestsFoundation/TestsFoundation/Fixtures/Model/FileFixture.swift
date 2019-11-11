@@ -30,6 +30,7 @@ extension File {
         removeID: Bool = false,
         removeURL: Bool = false,
         taskID: Int? = nil,
+        userID: String? = nil,
         uploadError: String? = nil,
         session: LoginSession? = nil,
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
@@ -50,6 +51,12 @@ extension File {
         }
         model.taskID = taskID
         model.uploadError = uploadError
+
+        if let userID = userID {
+            let u = File.User(id: userID, baseURL: URL(string: "localhost")!, masquerader: nil)
+            model.user = u
+        }
+
         try! context.save()
         return model
     }

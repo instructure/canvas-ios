@@ -34,9 +34,6 @@
 /* option to view results for all grading periods */
 "All Grading Periods" = "所有評分時段";
 
-/* all pages segmented control title */
-"All Pages" = "所有頁面";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "允許的嘗試";
 
@@ -200,9 +197,6 @@
 
 /* State of the flagged question */
 "Flagged" = "已標記";
-
-/* front page segmented control title */
-"Front Page" = "標題版";
 
 /* No comment provided by engineer. */
 "Get Grades for" = "取得成績";

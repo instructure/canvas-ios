@@ -380,7 +380,7 @@
 "Landing Page" = "Landningssida";
 
 /* No comment provided by engineer. */
-"Late" = "Sena";
+"Late" = "Sen";
 
 /* No comment provided by engineer. */
 "Late Grading" = "Försenad bedömning";
@@ -479,7 +479,7 @@
 "Not Graded" = "Ej bedömd";
 
 /* No comment provided by engineer. */
-"Not Submitted" = "Inte inskickad";
+"Not Submitted" = "Inte inskickade";
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Ej brådskande";
@@ -617,10 +617,10 @@
 "Settings" = "Inställningar";
 
 /* No comment provided by engineer. */
-"Show Grades" = "Visa omdömen";
+"Show Grades" = "Visa bedömningar";
 
 /* No comment provided by engineer. */
-"Site Admin Login" = "Inloggning för webbplatsadministratören";
+"Site Admin Login" = "Inloggning för webbplatsadmin";
 
 /* Description for Slack communication channel */
 "Slack Notifications" = "Slack-meddelanden";
@@ -665,16 +665,16 @@
 "Submission Comment" = "Inlämningskommentar";
 
 /* No comment provided by engineer. */
-"Submit" = "Lämna in";
+"Submit" = "Skicka in";
 
 /* No comment provided by engineer. */
-"Submit Assignment" = "Lämna in uppgift";
+"Submit Assignment" = "Skicka in uppgift";
 
 /* No comment provided by engineer. */
-"Submitted" = "Inlämnad";
+"Submitted" = "Inskickad";
 
 /* Submitted date */
-"Submitted %@" = "Inlämnad %@";
+"Submitted %@" = "Inskickat %@";
 
 /* No comment provided by engineer. */
 "Subscribe to Calendar Feed" = "Prenumerera på kalenderflöde";
@@ -710,7 +710,7 @@
 "Thanks, your request was received!" = "Tack, din förfrågan har tagits emot!";
 
 /* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "Appen måste startas om för att börja använda de nya språkinställningarna. Starta om appen.";
+"The app needs to restart to use the new language settings. Please relaunch the app." = "Du måste starta om appen för att använda de nya språkinställningarna. Starta om appen.";
 
 /* No comment provided by engineer. */
 "There are no pages to display." = "Det finns inga sidor att visa.";
