@@ -66,7 +66,7 @@ public class UITestUser: NSObject, XCTestObservation {
         XCTestObservationCenter.shared.addTestObserver(self)
     }
 
-    public func testBundleDidFinish(_ testBundle: Bundle) {
+    public func testSuiteWillStart(_ testSuite: XCTestSuite) {
         session = nil // ensure sessions get cleaned up
     }
 }

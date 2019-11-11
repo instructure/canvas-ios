@@ -423,6 +423,16 @@ private func previewFileViewController(url: URLComponents, params: [String: Stri
 
 private func fileViewController(url: URLComponents, params: [String: String]) -> UIViewController? {
     guard let fileID = url.queryItems?.first(where: { $0.name == "preview" })?.value ?? params["fileID"], let fileIdent = UInt64(fileID) else { return nil }
+
+    if ExperimentalFeature.fileDetails.isEnabled {
+        var context = ContextModel(path: url.path) ?? ContextModel.currentUser
+        if let courseID = url.queryItems?.first(where: { $0.name == "courseID" })?.value {
+            context = ContextModel(.course, id: courseID)
+        }
+        let assignmentID = url.queryItems?.first(where: { $0.name == "assignmentID" })?.value
+        return FileDetailsViewController.create(context: context, fileID: fileID, assignmentID: assignmentID)
+    }
+
     let controller = FileViewController()
     controller.canvasAPI = CKCanvasAPI.current()
     controller.fileIdent = fileIdent

@@ -19,6 +19,12 @@
 
 set -euo pipefail
 
+# needed to run this script:
+# xcbeautify jq
+
+# brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
+# brew install xcbeautify jq
+
 function banner() (
     set +x
     local greenbold=$(export TERM=xterm-color; tput bold; tput setaf 2)
@@ -28,11 +34,13 @@ function banner() (
     TERM=xterm-color tput sgr0
 )
 
+mkdir -p tmp
+
 destination_flag=(-destination 'platform=iOS Simulator,name=iPhone 8')
 
 banner "Building NightlyTests"
 
-NSUnbufferedIO=YES xcodebuild -workspace Canvas.xcworkspace -scheme NightlyTests $destination_flag build-for-testing 2>&1 | xcpretty --color
+NSUnbufferedIO=YES xcodebuild -workspace Canvas.xcworkspace -scheme NightlyTests $destination_flag build-for-testing 2>&1 | xcbeautify
 
 BUILD_DIR=$(xcodebuild -workspace Canvas.xcworkspace -scheme NightlyTests -showBuildSettings build-for-testing -json |
                 jq -r '.[] | select(.target == "CoreTests").buildSettings.BUILD_DIR')
@@ -47,11 +55,11 @@ function setEnv {
     for (( i = 0; ; i++ )); do
         name=$(/usr/libexec/PlistBuddy $1 -c "print :TestConfigurations:0:TestTargets:$i:BlueprintName" 2>/dev/null) || break
         echo "Setting $2=$3 in $1 $name"
-        /usr/libexec/PlistBuddy $1 -c "add :TestConfigurations:0:TestTargets:$i:EnvironmentVariables:$2 string $3"
+        /usr/libexec/PlistBuddy $1 -c "add :TestConfigurations:0:TestTargets:$i:EnvironmentVariables:$2 string $3" || true
     done
     if [[ i -eq 0 ]]; then
         echo "failed to set any environment variables!"
-        exit 1
+        return 1
     fi
 }
 
@@ -65,21 +73,46 @@ rm -rf $results_directory
 mkdir -p $results_directory
 
 function getTestResults {
+    tests_passed_this_run=0
+    tests_failed_this_run=0
+
     local result_path=$results_directory/$try.xcresult
+    if [[ ! -d $result_path ]]; then
+        echo "couldn't find test results!!"
+        exit 1
+    fi
     local test_result_id=($(xcrun xcresulttool get --format json --path $result_path |
                                  jq -r '.actions._values[].actionResult.testsRef.id._value'))
     local all_results_path=$results_directory/$try.json
     xcrun xcresulttool get --format json --path $result_path --id $test_result_id |
         jq '[.summaries._values[].testableSummaries._values[] |
                  .name._value as $bundleName |
-                 .tests._values[] |
+                 .tests?._values[]? |
                  recurse(.subtests?._values[]?) |
                  select(._type._name == "ActionTestMetadata") |
                  ($bundleName + "/" + .identifier._value | rtrimstr("()")) as $testId |
                  {"status": .testStatus._value, "id": $testId}]' \
-                     > $all_results_path
-    tests_passed_this_run=($(jq -r '.[] | select(.status == "Success").id' $all_results_path))
-    tests_failed_this_run=($(jq -r '.[] | select(.status == "Failure").id' $all_results_path))
+                     > $all_results_path || return $?
+    tests_passed_this_run=($(jq -r '.[] | select(.status == "Success").id' $all_results_path)) || return $?
+    tests_failed_this_run=($(jq -r '.[] | select(.status == "Failure").id' $all_results_path)) || return $?
+
+    if (( ${#tests_passed_this_run} + ${#tests_failed_this_run} == 0 )); then
+        echo "Couldn't find any test results... possibly a test class crashed in init somewhere?"
+        crash_logs=($result_path/Staging/**/*.crash)
+        banner "found ${#crash_logs} crash logs"
+        for crash_log in $crash_logs; do
+            banner $crash_log
+            cat $crash_log
+        done
+
+        # Something more than flakiness is going on, fail immediately
+        exit 1
+    fi
+
+    banner "${#tests_passed_this_run} tests passed"
+    banner "${#tests_failed_this_run} tests failed"
+    print ${(F)tests_failed_this_run}
+    (( total_failures += ${#tests_failed_this_run} ))
     all_passing_tests+=($tests_passed_this_run)
 }
 
@@ -91,26 +124,28 @@ function doTest {
     local result_path=$results_directory/$try.xcresult
     local ret=0
 
-    local formatter=(xcpretty --color)
-
     local flags=($destination_flag)
     flags+=(-resultBundlePath $result_path)
     flags+=(-xctestrun $xctestrun)
-    if (( $try < 1 )); then
+
+    if (( false )); then
         flags+=(-parallel-testing-enabled YES -parallel-testing-worker-count 3)
-        formatter=(env NSUnbufferedIO=YES xcbeautify)
     fi
     for skip in $all_passing_tests; do
         flags+=(-skip-testing:$skip)
     done
-    NSUnbufferedIO=YES xcodebuild test-without-building $flags 2>&1 | $formatter ||
-        ret=$?
+
+    # Do this the long way to make sure we get the correct exit code
+    pipe_file=tmp/formatter-fifo
+    rm -rf $pipe_file
+    mkfifo $pipe_file
+
+    < $pipe_file NSUnbufferedIO=YES xcbeautify &
+    NSUnbufferedIO=YES xcodebuild test-without-building $flags > $pipe_file 2> $pipe_file || ret=$?
+    wait
+    rm -rf $pipe_file
 
     getTestResults
-    banner "${#tests_passed_this_run} tests passed"
-    banner "${#tests_failed_this_run} tests failed"
-    print ${(F)tests_failed_this_run}
-    (( total_failures += ${#tests_failed_this_run} ))
     return $ret
 }
 
@@ -123,7 +158,7 @@ function retry {
 }
 
 xcrun simctl boot 'iPhone 8' || true
-open -a /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app
+open -a $(xcode-select -p)/Applications/Simulator.app
 
 ret=0
 doTest $base_xctestrun ||
