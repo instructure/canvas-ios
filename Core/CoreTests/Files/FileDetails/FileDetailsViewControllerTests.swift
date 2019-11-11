@@ -127,7 +127,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         router.viewControllerCalls = []
 
         // Doesn't alert cancellations
-        controller.urlSession(session, task: task, didCompleteWithError: NSError(domain: "", code: -999, userInfo: nil))
+        controller.urlSession(session, task: task, didCompleteWithError: NSError(domain: "", code: NSURLErrorCancelled, userInfo: nil))
         XCTAssertNil(router.presented)
         XCTAssertTrue(session.finishedTasksAndInvalidated)
 

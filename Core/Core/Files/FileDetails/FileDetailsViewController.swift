@@ -200,7 +200,7 @@ extension FileDetailsViewController: URLSessionDownloadDelegate {
     }
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        if let error = error, (error as NSError).code != -999 { showError(error) }
+        if let error = error, (error as NSError).code != NSURLErrorCancelled { showError(error) }
         downloadTask = nil
         performUIUpdate { self.downloadComplete() }
         session.finishTasksAndInvalidate()
