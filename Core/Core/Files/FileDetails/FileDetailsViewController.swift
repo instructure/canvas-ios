@@ -331,6 +331,7 @@ extension FileDetailsViewController: PSPDFViewControllerDelegate {
         let search = controller.searchButtonItem
         search.accessibilityIdentifier = "FileDetails.searchButton"
         navigationItem.rightBarButtonItems = [ share, annotate, search ]
+        NotificationCenter.default.post(name: .init("FileViewControllerBarButtonItemsDidChange"), object: nil)
 
         doneLoading()
     }
