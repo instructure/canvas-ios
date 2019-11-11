@@ -1,3 +1,9 @@
+---
+app:
+  envs:
+  - HOMEBREW_NO_INSTALL_CLEANUP: 1
+    opts:
+      is_expand: false
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 format_version: '4'
 project_type: other
