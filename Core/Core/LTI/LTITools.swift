@@ -66,8 +66,9 @@ public class LTITools {
             }
             let safari = SFSafariViewController(url: url)
             safari.modalPresentationStyle = .overFullScreen
-            AppEnvironment.shared.router.show(safari, from: from, options: [.modal])
-            completionHandler?(true)
+            AppEnvironment.shared.router.show(safari, from: from, options: [.modal]) {
+                completionHandler?(true)
+            }
         }
     }
 

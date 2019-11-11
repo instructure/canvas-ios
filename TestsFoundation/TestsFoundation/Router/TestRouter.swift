@@ -47,9 +47,10 @@ public class TestRouter: RouterProtocol {
     }
 
     public var showExpectation = XCTestExpectation(description: "show")
-    public func show(_ view: UIViewController, from: UIViewController, options: RouteOptions?) {
+    public func show(_ view: UIViewController, from: UIViewController, options: RouteOptions?, completion: (() -> Void)?) {
         viewControllerCalls.append((view, from, options))
         showExpectation.fulfill()
+        completion?()
     }
 
     public func lastRoutedTo(_ route: Route) -> Bool {

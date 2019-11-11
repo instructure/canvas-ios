@@ -38,7 +38,7 @@ public protocol RouterProtocol {
     func route(to url: URL, from: UIViewController, options: RouteOptions?)
     func route(to url: String, from: UIViewController, options: RouteOptions?)
     func route(to url: URLComponents, from: UIViewController, options: RouteOptions?)
-    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions?)
+    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions?, completion: (() -> Void)?)
 }
 
 public extension RouterProtocol {
@@ -54,7 +54,7 @@ public extension RouterProtocol {
         return route(to: .parse(url), from: from, options: options)
     }
 
-    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions? = nil) {
+    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions? = nil, completion: (() -> Void)? = nil) {
         if view is UIAlertController { return from.present(view, animated: true) }
 
         if let displayModeButton = from.displayModeButtonItem,
@@ -75,12 +75,12 @@ public extension RouterProtocol {
                 if options?.contains(.formSheet) == true {
                     nav.modalPresentationStyle = .formSheet
                 }
-                from.present(nav, animated: true)
+                from.present(nav, animated: true, completion: completion)
             } else {
                 if options?.contains(.formSheet) == true {
                     view.modalPresentationStyle = .formSheet
                 }
-                from.present(view, animated: true)
+                from.present(view, animated: true, completion: completion)
             }
         } else if options?.contains(.detail) == true && !from.isInSplitViewDetail {
             if options?.contains(.embedInNav) == true {
