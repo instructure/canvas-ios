@@ -32,6 +32,7 @@ class ModuleListViewControllerTests: TeacherTestCase {
         super.setUp()
         viewController = ModuleListViewController.create(env: environment, courseID: "1")
         api.mock(GetCourseRequest(courseID: "1"), value: .make(id: "1", name: "Course 1"))
+        UIView.setAnimationsEnabled(false)
     }
 
     func waitForSave() {
