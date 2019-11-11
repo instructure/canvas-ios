@@ -24,7 +24,7 @@ public protocol DocumentMenuViewModelInputs {
     func configureWith(fileTypes: [String])
     func showDocumentMenuButtonTapped()
     func tappedDocumentOption(_ documentOption: DocumentOption)
-    func pickedMedia(with info: [String: Any])
+    func pickedMedia(with info: [UIImagePickerController.InfoKey: Any])
     func recorded(audioFile: URL)
     func pickedDocument(at url: URL)
     func tappedDocumentPicker(_ documentPicker: UIDocumentPickerViewController)
@@ -141,8 +141,8 @@ public class DocumentMenuViewModel: DocumentMenuViewModelType, DocumentMenuViewM
         self.tappedDocumentOptionProperty.value = documentOption
     }
 
-    private let pickedMediaProperty = MutableProperty<[String: Any]?>(nil)
-    public func pickedMedia(with info: [String : Any]) {
+    private let pickedMediaProperty = MutableProperty<[UIImagePickerController.InfoKey: Any]?>(nil)
+    public func pickedMedia(with info: [UIImagePickerController.InfoKey: Any]) {
         pickedMediaProperty.value = info
     }
 
@@ -205,9 +205,9 @@ private func mediaTypes(allowsPhotos: Bool, allowsVideos: Bool) -> [String] {
     return (allowsPhotos ? [kUTTypeImage as String] : []) + (allowsVideos ? [kUTTypeMovie as String] : [])
 }
 
-private func uploadable(for info: [String: Any]) -> SignalProducer<Uploadable, NSError> {
+private func uploadable(for info: [UIImagePickerController.InfoKey: Any]) -> SignalProducer<Uploadable, NSError> {
     return SignalProducer { observer, _ in
-        if let asset = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.phAsset)] as? PHAsset {
+        if let asset = info[.phAsset] as? PHAsset {
                 Asset.fromCameraRoll(asset: asset) { result in
                     if let uploadable = result.value {
                         observer.send(value: uploadable)
@@ -216,11 +216,11 @@ private func uploadable(for info: [String: Any]) -> SignalProducer<Uploadable, N
                     }
                     observer.sendCompleted()
                 }
-        } else if let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage, let data = image.pngData() {
+        } else if let image = info[.originalImage] as? UIImage, let data = image.pngData() {
             let uploadable = NewFileUpload(kind: .photo(image), data: data)
             observer.send(value: uploadable)
             observer.sendCompleted()
-        } else if let videoURL = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL, let data = try? Data(contentsOf: videoURL) {
+        } else if let videoURL = info[.mediaURL] as? URL, let data = try? Data(contentsOf: videoURL) {
             let uploadable = NewFileUpload(kind: .videoURL(videoURL), data: data)
             observer.send(value: uploadable)
             observer.sendCompleted()
@@ -242,9 +242,4 @@ private func uploadableFile(from url: URL) -> SignalProducer<Uploadable, NSError
         NewFileUpload(kind: .fileURL(url), data: try Data(contentsOf: url))
     }
     .mapError { _ in dataError }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-	return input.rawValue
 }
