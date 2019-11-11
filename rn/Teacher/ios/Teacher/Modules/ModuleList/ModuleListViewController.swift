@@ -22,15 +22,6 @@ import SafariServices
 
 private var collapsedIDs: [String: Set<String>] = [:] // [courseID: [moduleID]]
 
-protocol ModuleListViewProtocol: ErrorViewController, ColoredNavViewProtocol {
-    func reloadModules()
-    func reloadCourse()
-    func showPending()
-    func hidePending()
-    func scrollToRow(at indexPath: IndexPath)
-    func reloadModuleInSection(_ section: Int)
-}
-
 class ModuleListViewController: UIViewController, ErrorViewController, ColoredNavViewProtocol {
     @IBOutlet weak var tableView: UITableView!
     struct Section {
@@ -59,11 +50,16 @@ class ModuleListViewController: UIViewController, ErrorViewController, ColoredNa
         self?.reloadCourse()
     }
 
+    var store: ModuleStore!
+
     static func create(env: AppEnvironment = .shared, courseID: String, moduleID: String? = nil) -> ModuleListViewController {
         let view = loadFromStoryboard()
         view.env = env
         view.courseID = courseID
         view.moduleID = moduleID
+        let modules = ModuleStore(courseID: courseID)
+        modules.delegate = view
+        view.store = modules
         return view
     }
 
@@ -78,7 +74,8 @@ class ModuleListViewController: UIViewController, ErrorViewController, ColoredNa
         configureFooter()
         courses.refresh()
         colors.refresh()
-        reloadData()
+        store.refresh()
+        tableView.reloadData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -113,33 +110,7 @@ class ModuleListViewController: UIViewController, ErrorViewController, ColoredNa
         footer.textAlignment = .center
         footer.isHidden = true
         tableView.tableFooterView = footer
-        tableView.contentInset.bottom -= footer.frame.height
-    }
-
-    func reloadData() {
-        showPending()
-        let request = GetModulesRequest(courseID: courseID)
-        let callback = { [weak self] (response: [APIModule]?, urlResponse: URLResponse?, error: Error?) -> Void in
-            performUIUpdate {
-                self?.hidePending()
-                guard let response = response else {
-                    self?.showError(error ?? NSError.internalError())
-                    return
-                }
-                self?.data = response.reduce(into: [:]) { result, module in
-                    result[module.id.value] = Section(module: module)
-                }
-                self?.nextPage = urlResponse.flatMap { request.getNext(from: $0) }
-                self?.tableView.reloadData()
-                response.filter { $0.items == nil }.forEach { self?.getItems(for: $0) }
-                self?.scrollToModule()
-            }
-        }
-        if moduleID != nil {
-            env.api.exhaust(request, callback: callback)
-        } else {
-            env.api.makeRequest(request, callback: callback)
-        }
+        tableView.contentInset.bottom = -footer.frame.height
     }
 
     func reloadCourse() {
@@ -149,120 +120,71 @@ class ModuleListViewController: UIViewController, ErrorViewController, ColoredNa
 
     @objc
     func refresh() {
-        reloadData()
-    }
-
-    func showPending() {
-        tableView.refreshControl?.beginRefreshing()
-    }
-
-    func hidePending() {
-        tableView.refreshControl?.endRefreshing()
-    }
-
-    func scrollToModule() {
-        guard let moduleID = moduleID else { return }
-        self.moduleID = nil
-        if let section = modules.enumerated().first(where: { $0.1.id.value == moduleID })?.0 {
-            let indexPath = IndexPath(row: 0, section: section)
-            if tableView.numberOfRows(inSection: section) > 0 {
-                tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-            }
-        }
-    }
-
-    func getItems(for module: APIModule) {
-        let request = GetModuleItemsRequest(courseID: courseID, moduleID: module.id.value)
-        let callback: ([APIModuleItem]?, URLResponse?, Error?) -> Void = { [weak self] response, urlResponse, _ in
-            guard let self = self else { return }
-            performUIUpdate {
-                let next = urlResponse.flatMap { request.getNext(from: $0) }
-                var module = module
-                module.items = (module.items ?? []) + (response ?? [])
-                self.data[module.id.value] = Section(module: module, nextItems: next, nextItemsPending: false)
-                self.tableView.reloadData()
-            }
-        }
-        if let next = data[module.id.value]?.nextItems {
-            self.data[module.id.value]?.nextItemsPending = true
-            env.api.makeRequest(next, callback: callback)
-        } else {
-            env.api.makeRequest(request, callback: callback)
-        }
-    }
-
-    func getNextPage() {
-        guard let nextPage = nextPage else { return }
-        self.nextPage = nil
-        let contentInset = tableView.contentInset
-        tableView.contentInset.bottom = 0
-        tableView.tableFooterView?.isHidden = false
-        env.api.makeRequest(nextPage) { [weak self] response, urlResponse, error in
-            performUIUpdate {
-                self?.tableView.contentInset = contentInset
-                self?.tableView.tableFooterView?.isHidden = true
-                guard let response = response else {
-                    self?.showError(error ?? NSError.internalError())
-                    return
-                }
-                self?.nextPage = urlResponse.flatMap { nextPage.getNext(from: $0) }
-                for module in response {
-                    self?.data[module.id.value] = Section(module: module)
-                    self?.tableView.reloadData()
-                    response.filter { $0.items == nil }.forEach { self?.getItems(for: $0) }
-                    self?.scrollToModule()
-                }
-            }
-        }
+        store.refresh(force: true)
     }
 
     func isSectionExpanded(_ section: Int) -> Bool {
-        return collapsedIDs[courseID]?.contains(modules[section].id.value) == false
+        return collapsedIDs[courseID]?.contains(store[section].id) == false
+    }
+
+    func showLoadingNextPage() {
+        tableView.contentInset.bottom = 0
+        tableView.tableFooterView?.isHidden = false
+    }
+
+    func hideLoadingNextPage() {
+        let footerHeight = tableView.tableFooterView?.frame.height ?? 0
+        tableView.contentInset.bottom = -footerHeight
+        tableView.tableFooterView?.isHidden = true
+    }
+
+    func scrollToModule() {
+        if let moduleID = moduleID, let section = store.sectionForModule(moduleID) {
+            let indexPath = IndexPath(item: 0, section: section)
+            if tableView.numberOfRows(inSection: section) > 0 {
+                self.moduleID = nil
+                tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+            }
+        }
     }
 }
 
 extension ModuleListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return modules.count
+        return store.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let module = modules[section]
+        let module = store[section]
         if isSectionExpanded(section) == true {
-            if let items = module.items {
-                if data[module.id.value]?.nextItems != nil {
-                    return items.count + 1 // load next page of items
-                }
-                return max(items.count, 1) // count or empty cell
+            if store.isLoadingItemsForModule(module.id) {
+                return module.items.count + 1 // loading cell
             }
-            return 1 // loading first page of items
+            if module.items.count == 0 {
+                return 1 // empty cell
+            }
+            return module.items.count
         }
         return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let module = modules[indexPath.section]
-        if module.items == nil {
-            return tableView.dequeue(for: indexPath) as LoadingCell
-        }
-        if module.items?.isEmpty == true {
+        let module = store[indexPath.section]
+        if indexPath.row == module.items.count {
+            if store.isLoadingItemsForModule(module.id) {
+                return tableView.dequeue(for: indexPath) as LoadingCell
+            }
             return tableView.dequeue(for: indexPath) as EmptyCell
         }
-        if let items = module.items, indexPath.row == items.count {
-            if data[module.id.value]?.nextItemsPending == false {
-                getItems(for: module)
-            }
-            return tableView.dequeue(for: indexPath) as LoadingCell
-        }
-        let item = module.items?[indexPath.row]
-        switch item?.content {
+        let item = module.items[indexPath.row]
+        switch item.type {
         case .subHeader:
             let cell: ModuleItemSubHeaderCell = tableView.dequeue(for: indexPath)
-            cell.label.text = item?.title
+            cell.label.text = item.title
             cell.isUserInteractionEnabled = false
             cell.accessoryType = .none
-            cell.publishedIconView.published = item?.published == true
-            cell.indent = item?.indent ?? 0
+            cell.publishedIconView.published = item.published
+            cell.indent = item.indent
             return cell
         default:
             let cell: ModuleItemCell = tableView.dequeue(for: indexPath)
@@ -274,7 +196,7 @@ extension ModuleListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let module = modules[section]
+        let module = store[section]
         let header = tableView.dequeueHeaderFooter(ModuleSectionHeaderView.self)
         header.title = module.name
         header.published = module.published
@@ -282,9 +204,9 @@ extension ModuleListViewController: UITableViewDataSource {
             guard let self = self else { return }
             let expanded = self.isSectionExpanded(section)
             if expanded {
-                collapsedIDs[self.courseID]?.insert(module.id.value)
+                collapsedIDs[self.courseID]?.insert(module.id)
             } else {
-                collapsedIDs[self.courseID]?.remove(module.id.value)
+                collapsedIDs[self.courseID]?.remove(module.id)
             }
             tableView.reloadSections([section], with: .automatic)
         }
@@ -296,8 +218,8 @@ extension ModuleListViewController: UITableViewDataSource {
 
 extension ModuleListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let item = modules[indexPath.section].items?[indexPath.row] else { return }
-        switch item.content {
+        let item = store[indexPath.section].items[indexPath.row]
+        switch item.type {
         case .externalTool(let id, _):
             LTITools(context: ContextModel(.course, id: courseID), id: id).presentToolInSFSafariViewController(from: self, animated: true) { [weak tableView] _ in
                 tableView?.deselectRow(at: indexPath, animated: true)
@@ -311,14 +233,6 @@ extension ModuleListViewController: UITableViewDelegate {
             if let url = item.url {
                 env.router.route(to: url, from: self, options: [.detail])
             }
-        }
-    }
-}
-
-extension ModuleListViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.isBottomReached() {
-            getNextPage()
         }
     }
 }
@@ -366,5 +280,22 @@ extension ModuleListViewController {
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
+    }
+}
+
+extension ModuleListViewController: ModuleStoreDelegate {
+    func moduleStoreDidChange(_ moduleStore: ModuleStore) {
+        if store.isLoading, store.count > 0 {
+            showLoadingNextPage()
+        } else {
+            tableView.refreshControl?.endRefreshing()
+            hideLoadingNextPage()
+        }
+        tableView.reloadData()
+        scrollToModule()
+    }
+
+    func moduleStoreDidEncounterError(_ error: Error) {
+        showError(error)
     }
 }

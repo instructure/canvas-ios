@@ -29,15 +29,15 @@ class ModuleItemCell: UITableViewCell {
     @IBOutlet weak var publishedIconView: PublishedIconView!
     @IBOutlet weak var indentConstraint: NSLayoutConstraint!
 
-    var item: APIModuleItem? {
+    var item: ModuleItem? {
         didSet {
             backgroundColor = .named(.backgroundLightest)
             nameLabel.text = item?.title
-            iconView.image = item?.content.icon
+            iconView.image = item?.type?.icon
             publishedIconView.published = item?.published
             indentConstraint.constant = CGFloat((item?.indent ?? 0)) * ModuleItemCell.IndentMultiplier
-            dueLabel.isHidden = item?.content_details.due_at == nil
-            dueLabel.text = item?.content_details.due_at.flatMap {
+            dueLabel.isHidden = item?.dueAt == nil
+            dueLabel.text = item?.dueAt.flatMap {
                 String.localizedStringWithFormat(
                     "Due %@",
                     DateFormatter.localizedString(from: $0, dateStyle: .long, timeStyle: .short)

@@ -50,27 +50,25 @@ class ModuleStoreTests: TeacherTestCase {
     }
 
     func testRefreshAPIPaginated() {
-        var expectation = XCTestExpectation(description: "loading next page")
+        let expectation = XCTestExpectation(description: "first page")
+        expectation.expectedFulfillmentCount = 3
         onChange = expectation.fulfill
-        let link = "https://canvas.instructure.com/screw/you?page=2"
+        let link = "https://canvas.instructure.com/courses/1/modules?page=2"
         let response = HTTPURLResponse(next: link)
         let request = GetModulesRequest(courseID: "1")
-        api.mock(request, value: [.make(id: "1", position: 1)], response: response)
-        let task = api.mock(request.getNext(from: response)!, value: [.make(id: "2", position: 2)])
+        api.mock(request, value: [.make(id: "1", position: 1, items: [])], response: response)
+        let task = api.mock(request.getNext(from: response)!, value: [.make(id: "2", position: 2, items: [])])
         task.paused = true
         let store = ModuleStore(courseID: "1")
         store.delegate = self
         store.refresh(force: true)
-        wait(for: [expectation], timeout: 1)
-        XCTAssertEqual((store.task as? MockURLSession.MockDataTask)?.paused, true)
-        expectation = XCTestExpectation(description: "finished loading")
-        onChange = expectation.fulfill
+        XCTAssertTrue(store.isLoading)
         task.paused = false
         wait(for: [expectation], timeout: 1)
         XCTAssertEqual(store.count, 2)
         XCTAssertEqual(store[0].id, "1")
         XCTAssertEqual(store[1].id, "2")
-        XCTAssertFalse(store.loading)
+        XCTAssertFalse(store.isLoading)
     }
 
     func testLoadingItemsForModule() {
@@ -83,14 +81,14 @@ class ModuleStoreTests: TeacherTestCase {
         onChange = expectation.fulfill
         store.refresh(force: true)
         wait(for: [expectation], timeout: 1)
-        XCTAssertTrue(store.loadingItemsForModule("1"))
+        XCTAssertTrue(store.isLoadingItemsForModule("1"))
         expectation = XCTestExpectation(description: "finished loading")
         onChange = expectation.fulfill
         task.paused = false
         wait(for: [expectation], timeout: 1)
         XCTAssertEqual(store.count, 1)
-        XCTAssertEqual(store[0].items?.count, 1)
-        XCTAssertFalse(store.loadingItemsForModule("1"))
+        XCTAssertEqual(store[0].items.count, 1)
+        XCTAssertFalse(store.isLoadingItemsForModule("1"))
     }
 
     func testRefreshWhenItemsAreNilPaginated() {
@@ -108,7 +106,7 @@ class ModuleStoreTests: TeacherTestCase {
         store.refresh(force: true)
         wait(for: [expectation], timeout: 1)
         XCTAssertEqual(store.count, 1)
-        XCTAssertEqual(store[0].items?.count, 2)
+        XCTAssertEqual(store[0].items.count, 2)
     }
 
     func testForceRefreshDeletesCache() {
@@ -149,6 +147,27 @@ class ModuleStoreTests: TeacherTestCase {
         store.refresh(force: false)
         wait(for: [expectation], timeout: 0.1)
         XCTAssertEqual(store.count, 0)
+    }
+
+    func testRefreshRenewsTTL() {
+        api.mock(GetModulesRequest(courseID: "1"), value: [.make(items: [])])
+        let expectation = XCTestExpectation(description: "on change")
+        expectation.expectedFulfillmentCount = 3
+        onChange = expectation.fulfill
+        let store = ModuleStore(courseID: "1")
+        store.delegate = self
+        XCTAssertTrue(store.shouldRefresh)
+        store.refresh()
+        wait(for: [expectation], timeout: 1)
+        XCTAssertFalse(store.shouldRefresh)
+    }
+
+    func testSectionForModule() {
+        Module.make(forCourse: "1")
+        let store = ModuleStore(courseID: "1")
+        store.refresh()
+        XCTAssertEqual(store.sectionForModule("1"), 0)
+        XCTAssertNil(store.sectionForModule("2"))
     }
 }
 

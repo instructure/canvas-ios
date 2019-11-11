@@ -22,14 +22,25 @@ import Foundation
 import TestsFoundation
 import XCTest
 import SafariServices
+import CoreData
 
 class ModuleListViewControllerTests: TeacherTestCase {
     var viewController: ModuleListViewController!
+    var save: XCTestExpectation?
 
     override func setUp() {
         super.setUp()
         viewController = ModuleListViewController.create(env: environment, courseID: "1")
         api.mock(GetCourseRequest(courseID: "1"), value: .make(id: "1", name: "Course 1"))
+    }
+
+    func waitForSave() {
+        let expectation = XCTestExpectation(description: "context did save")
+        let token = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: databaseClient, queue: OperationQueue.main) { _ in
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
+        NotificationCenter.default.removeObserver(token)
     }
 
     func moduleItemCell(at indexPath: IndexPath) -> ModuleItemCell {
@@ -147,7 +158,6 @@ class ModuleListViewControllerTests: TeacherTestCase {
         ])
         let viewController = ModuleListViewController.create(env: environment, courseID: "1", moduleID: "10")
         viewController.view.layoutIfNeeded()
-        viewController.scrollViewDidScroll(viewController.tableView)
         XCTAssertEqual(viewController.tableView.numberOfSections, 10)
         XCTAssertGreaterThan(viewController.tableView.contentOffset.y, 0)
     }
@@ -173,24 +183,23 @@ class ModuleListViewControllerTests: TeacherTestCase {
         task.paused = true
         viewController.view.layoutIfNeeded()
         XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 2)
-        XCTAssertNotNil(viewController.tableView(viewController.tableView, cellForRowAt: IndexPath(row: 1, section: 0)))
+        XCTAssertNotNil(viewController.tableView.cellForRow(at: IndexPath(row: 1, section: 0)))
         task.paused = false
         XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 2)
         XCTAssertNotNil(viewController.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? ModuleItemCell)
     }
 
-    func testGetNextPage() {
+    func testLoadingNextPage() {
         api.mock(GetModulesRequest(courseID: "1"), value: [])
-        viewController.view.layoutIfNeeded()
         let link = "https://canvas.instructure.com/courses/1/modules?page=2"
         let next = HTTPURLResponse(next: link)
-        let one = APIModule.make(id: "1")
-        let two = APIModule.make(id: "2")
+        let one = APIModule.make(id: "1", items: [])
+        let two = APIModule.make(id: "2", items: [])
         api.mock(GetModulesRequest(courseID: "1"), value: [one], response: next)
         let task = api.mock(GetNextRequest<[APIModule]>(path: link), value: [two])
         task.paused = true
-        viewController.tableView.refreshControl?.sendActions(for: .valueChanged)
-        viewController.scrollViewDidScroll(viewController.tableView)
+        viewController.view.layoutIfNeeded()
+        XCTAssertEqual(viewController.tableView.numberOfSections, 1)
         XCTAssertEqual(viewController.tableView.tableFooterView?.isHidden, false)
         XCTAssertEqual(viewController.tableView.contentInset.bottom, 0)
         task.paused = false
@@ -210,7 +219,6 @@ class ModuleListViewControllerTests: TeacherTestCase {
         api.mock(GetNextRequest<[APIModule]>(path: link), value: [two])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "2"), value: [.make()])
         viewController.tableView.refreshControl?.sendActions(for: .valueChanged)
-        viewController.scrollViewDidScroll(viewController.tableView)
         XCTAssertEqual(viewController.tableView.numberOfSections, 2)
         XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 1)
     }
@@ -226,7 +234,7 @@ class ModuleListViewControllerTests: TeacherTestCase {
 
         let viewController = ModuleListViewController.create(courseID: "1")
         viewController.view.layoutIfNeeded()
-        let later = header(forSection: 0)
+        let later = viewController.tableView.headerView(forSection: 0) as! ModuleSectionHeaderView
         XCTAssertTrue(later.collapsableIndicator.isCollapsed)
     }
 

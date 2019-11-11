@@ -28,12 +28,30 @@ protocol ModuleStoreDelegate: class {
 class ModuleStore: NSObject {
     let courseID: String
     let cache: NSFetchedResultsController<Module>
-    let database: NSPersistentContainer
-    let api: API
+    let env: AppEnvironment
+    var database: NSPersistentContainer {
+        return env.database
+    }
+    var api: API {
+        return env.api
+    }
     weak var delegate: ModuleStoreDelegate?
 
-    var task: URLSessionTask?
-    var itemsTask: [String: URLSessionTask] = [:]
+    private(set) var isLoading: Bool = false {
+        didSet {
+            performUIUpdate {
+                self.delegate?.moduleStoreDidChange(self)
+            }
+        }
+    }
+
+    private(set) var isLoadingModule: [String: Bool] = [:] {
+        didSet {
+            performUIUpdate {
+                self.delegate?.moduleStoreDidChange(self)
+            }
+        }
+    }
 
     let cacheTTL: TimeInterval = 60 * 60 * 2
 
@@ -53,25 +71,16 @@ class ModuleStore: NSObject {
         return true
     }
 
-    func loadingItemsForModule(_ moduleID: String) -> Bool {
-        return itemsTask[moduleID]?.state == .running
-    }
-
-    var loading: Bool {
-        return task?.state == .running
-    }
-
     init(courseID: String) {
+        let env = AppEnvironment.shared
         self.courseID = courseID
-        let database = AppEnvironment.shared.database
-        self.database = database
-        self.api = AppEnvironment.shared.api
+        self.env = env
         let request = NSFetchRequest<Module>(entityName: String(describing: Module.self))
         request.predicate = NSPredicate(format: "%K == %@", #keyPath(Module.courseID), courseID)
         request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Module.position), ascending: true)]
         self.cache = NSFetchedResultsController(
             fetchRequest: request,
-            managedObjectContext: database.viewContext,
+            managedObjectContext: env.database.viewContext,
             sectionNameKeyPath: nil,
             cacheName: nil
         )
@@ -85,7 +94,7 @@ class ModuleStore: NSObject {
         } catch {
             delegate?.moduleStoreDidEncounterError(error)
         }
-        let request = GetModulesRequest(courseID: "1")
+        let request = GetModulesRequest(courseID: courseID)
         if force || shouldRefresh {
             getModules(request, reset: true)
         }
@@ -95,24 +104,27 @@ class ModuleStore: NSObject {
         return cache.object(at: IndexPath(row: index, section: 0))
     }
 
-    var checker = 0
+    func isLoadingItemsForModule(_ moduleID: String) -> Bool {
+        return isLoadingModule[moduleID] == true
+    }
+
+    func sectionForModule(_ moduleID: String) -> Int? {
+        if let module: Module = database.viewContext.first(where: #keyPath(Module.id), equals: moduleID) {
+            return cache.indexPath(forObject: module)?.row
+        }
+        return nil
+    }
 
     private func getModules<R>(_ request: R, reset: Bool = false) where R: APIRequestable, R.Response == [APIModule] {
-        checker += 1
-        task = api.makeRequest(request) { [weak self] response, urlResponse, error in
+        isLoading = true
+        api.makeRequest(request) { [weak self] response, urlResponse, error in
             guard let self = self else { return }
+            self.isLoading = false
             guard let response = response else {
-                self.delegate?.moduleStoreDidEncounterError(error ?? NSError.internalError())
-                return
-            }
-            for apiModule in response {
-                if apiModule.items == nil {
-                    let request = GetModuleItemsRequest(courseID: self.courseID, moduleID: apiModule.id.value)
-                    self.getItems(moduleID: apiModule.id.value, request: request)
+                performUIUpdate {
+                    self.delegate?.moduleStoreDidEncounterError(error ?? NSError.internalError())
                 }
-            }
-            if let next = urlResponse.flatMap({ request.getNext(from: $0) }) {
-                self.getModules(next)
+                return
             }
             self.database.performBackgroundTask { context in
                 if reset {
@@ -120,8 +132,20 @@ class ModuleStore: NSObject {
                     context.delete(modules)
                 }
                 Module.save(response, forCourse: self.courseID, in: context)
+                let ttl: TTL = context.first(where: #keyPath(TTL.key), equals: self.cacheKey) ?? context.insert()
+                ttl.key = self.cacheKey
+                ttl.lastRefresh = Clock.now
                 do {
                     try context.save()
+                    for apiModule in response {
+                        if apiModule.items == nil {
+                            let request = GetModuleItemsRequest(courseID: self.courseID, moduleID: apiModule.id.value)
+                            self.getItems(moduleID: apiModule.id.value, request: request)
+                        }
+                    }
+                    if let next = urlResponse.flatMap({ request.getNext(from: $0) }) {
+                        self.getModules(next)
+                    }
                 } catch {
                     self.delegate?.moduleStoreDidEncounterError(error)
                 }
@@ -130,10 +154,14 @@ class ModuleStore: NSObject {
     }
 
     func getItems<R>(moduleID: String, request: R) where R: APIRequestable, R.Response == [APIModuleItem] {
-        itemsTask[moduleID] = api.makeRequest(request) { [weak self] response, urlResponse, error in
+        isLoadingModule[moduleID] = true
+        api.makeRequest(request) { [weak self] response, urlResponse, error in
             guard let self = self else { return }
+            self.isLoadingModule[moduleID] = false
             guard let response = response else {
-                self.delegate?.moduleStoreDidEncounterError(error ?? NSError.internalError())
+                performUIUpdate {
+                    self.delegate?.moduleStoreDidEncounterError(error ?? NSError.internalError())
+                }
                 return
             }
             self.database.performBackgroundTask { context in
@@ -141,7 +169,7 @@ class ModuleStore: NSObject {
                 let module = modules.first
                 for apiItem in response {
                     let item = ModuleItem.save(apiItem, forCourse: self.courseID, in: context)
-                    module?.items?.append(item)
+                    module?.items.append(item)
                 }
                 do {
                     try context.save()
