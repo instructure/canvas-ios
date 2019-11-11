@@ -42,6 +42,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
     var sectionHasNext: [Bool] = []
     var fetchedRequests: [String: String] = [:]
     var groupIDsWithAssignments = [String: String]()
+    var loading: Bool  = false
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavbar()
@@ -87,6 +88,8 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
     }
 
     func fetchData() {
+        if loading { return }
+        loading = true
         DispatchQueue.main.async { [weak self] in self?.showSpinner() }
 
         let requestable = AssignmentListRequestable(courseID: courseID, gradingPeriodID: selectedGradingPeriod?.id.value, filter: shouldFilter, cursor: pagingCursor)
@@ -156,6 +159,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
             self?.updateLabels()
             self?.updateFilterButton()
             self?.selectFirstCellOnIpad()
+            self?.loading = false
         }
     }
 
