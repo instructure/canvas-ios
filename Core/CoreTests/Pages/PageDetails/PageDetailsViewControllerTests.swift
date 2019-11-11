@@ -18,15 +18,22 @@
 
 import XCTest
 @testable import Core
+import WebKit
 
 class PageDetailsViewControllerTests: CoreTestCase {
+    class MockWebView: CoreWebView {
+        var html: String = ""
+        open override func loadHTMLString(_ string: String, baseURL: URL? = AppEnvironment.shared.currentSession?.baseURL) -> WKNavigation? {
+            html = string
+            return super.loadHTMLString(string, baseURL: baseURL)
+        }
+    }
+
     let context = ContextModel(.course, id: "1")
     let pageURL = "test-page"
     let htmlURL = URL(string: "/courses/1/pages/test-page")!
 
     var viewController: PageDetailsViewController!
-
-    let loadedExpectation = XCTestExpectation(description: "Web View Loaded")
 
     override func setUp() {
         super.setUp()
@@ -35,7 +42,6 @@ class PageDetailsViewControllerTests: CoreTestCase {
 
     func load() {
         XCTAssertNotNil(viewController.view)
-        viewController.webView?.delegate = self
     }
 
     func testViewDidLoad() {
@@ -62,21 +68,12 @@ class PageDetailsViewControllerTests: CoreTestCase {
             url: pageURL
         ))
         load()
+        let webView = MockWebView()
+        viewController.webView = webView
         viewController.update()
 
         XCTAssertEqual(viewController.titleSubtitleView.title, page.title)
-
-        wait(for: [loadedExpectation], timeout: 5)
-
-        let bodyExpectation = XCTestExpectation(description: "Body")
-        viewController.webView?.evaluateJavaScript("document.body.innerHTML", completionHandler: { (result, error) in
-            if error != nil {
-                XCTFail("Failed to get webview html")
-            }
-            XCTAssertEqual(result as! String, page.body)
-            bodyExpectation.fulfill()
-        })
-        wait(for: [bodyExpectation], timeout: 1)
+        XCTAssertEqual(webView.html, page.body)
     }
 
     func testAddEditButtonOnce() {
@@ -237,11 +234,5 @@ class PageDetailsViewControllerTests: CoreTestCase {
 
         wait(for: [router.popExpectation], timeout: 0.1)
         XCTAssertNil(viewController.presenter.page)
-    }
-}
-
-extension PageDetailsViewControllerTests: CoreWebViewDelegate {
-    func didFinish() {
-        loadedExpectation.fulfill()
     }
 }
