@@ -31,8 +31,8 @@ function setLastChanged {
 }
 
 # try getting timestamp information from the cache
-if [[ -f tmp/cache-commit-hash ]]; then
-    setLastChanged $(cat tmp/cache-commit-hash)
+if [[ -f cache-metadata/cache-commit-hash ]]; then
+    setLastChanged $(cat cache-metadata/cache-commit-hash)
 else
     # fall back to assuming master was the last thing to produce a cache
     setLastChanged master
