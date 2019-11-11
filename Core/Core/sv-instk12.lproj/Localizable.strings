@@ -2,10 +2,10 @@
 "--:--" = "--:--";
 
 /* No comment provided by engineer. */
-"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "Att \"agera som\" loggar i huvudsak in som den här användaren utan lösenord. Du kommer att kunna utföra åtgärder som om du vore den här användaren, och från andra användares perspektiv som om den här användaren utförde dem. I historik-loggar registreras dock att du var den som utförde åtgärderna på den här användarens vägnar.";
+"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "Att ”agera som” är i själva verket som att logga in som den här användaren utan lösenord. Du kommer att kunna utföra åtgärder som om du vore den här användaren, och ur andra användares synvinklar är det som om den här användaren utförde dem. I revisionsloggar registreras dock att du var den som utförde åtgärderna på den här användarens vägnar.";
 
 /* No comment provided by engineer. */
-"%@ GPA" = "%@ Medelbetyg";
+"%@ GPA" = "%@ Genomsnittsbetyg";
 
 /* No comment provided by engineer. */
 "%@ out of %@" = "%1$@ av %2$@";
@@ -14,7 +14,7 @@
 "%@ out of %@ (%@)" = "%1$@ av %2$@ (%3$@)";
 
 /* Embedded in 'enrolled in any courses as %@' */
-"a parent" = "en förälder";
+"a parent" = "en vårdnadshavare";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a student" = "en elev";
@@ -32,28 +32,28 @@
 "Administrative Notifications" = "Administrativa aviseringar";
 
 /* No comment provided by engineer. */
-"Alerts" = "Larm";
+"Alerts" = "Varningar";
 
 /* No comment provided by engineer. */
 "All Submissions" = "Alla inlämningar";
 
 /* No comment provided by engineer. */
-"Announcement" = "Meddelande";
+"Announcement" = "Kursmeddelande";
 
 /* No comment provided by engineer. */
-"Announcement Created By You" = "Meddelanden skapade av dig";
+"Announcement Created By You" = "Kursmeddelanden som du skapat";
 
 /* No comment provided by engineer. */
-"Appointment Availability" = "Tillgängliga tider";
+"Appointment Availability" = "Mötestillgänglighet";
 
 /* No comment provided by engineer. */
-"Appointment Cancellations" = "Inställda bokade möten";
+"Appointment Cancellations" = "Mötesannulleringar";
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Mötesbokningar";
 
 /* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "Är du säker på att du vill radera denna kommentar?";
+"Are you sure you would like to delete this comment?" = "Vill du ta bort den här kommentaren?";
 
 /* No comment provided by engineer. */
 "Assignment" = "Uppgift";
@@ -92,25 +92,25 @@
 "Cancel" = "Avbryt";
 
 /* No comment provided by engineer. */
-"Canvas Guides" = "Canvas Guides";
+"Canvas Guides" = "Canvas-guider";
 
 /* No comment provided by engineer. */
-"Canvas Login" = "Canvas lnloggning";
+"Canvas Login" = "Canvas-inloggning";
 
 /* No comment provided by engineer. */
-"Canvas Network" = "Canvas Network";
+"Canvas Network" = "Canvas-nätverk";
 
 /* No comment provided by engineer. */
 "Canvas on GitHub" = "Canvas på GitHub";
 
 /* No comment provided by engineer. */
-"Canvas Parent" = "Canvas Förälder";
+"Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Canvas Elev";
+"Canvas Student" = "Canvas-elev";
 
 /* No comment provided by engineer. */
-"Canvas Teacher" = "Canvas Lärare";
+"Canvas Teacher" = "Canvas-lärare";
 
 /* No comment provided by engineer. */
 "Casual question or suggestion" = "Informell fråga eller förslag";
@@ -149,25 +149,25 @@
 "Closed" = "Stängda";
 
 /* No comment provided by engineer. */
-"Collapse" = "Minska";
+"Collapse" = "Stäng";
 
 /* No comment provided by engineer. */
-"Color Overlay" = "Färgöverlagring";
+"Color Overlay" = "Färgöverlägg";
 
 /* No comment provided by engineer. */
-"Comment" = "Kommentera";
+"Comment" = "Kommentar";
 
 /* No comment provided by engineer. */
 "Comments" = "Kommentarer";
 
 /* No comment provided by engineer. */
-"Complete" = "Fullgjord";
+"Complete" = "Färdig";
 
 /* No comment provided by engineer. */
 "Conferences" = "Konferenser";
 
 /* No comment provided by engineer. */
-"Content Link Error" = "Felaktig innehållslänk";
+"Content Link Error" = "Fel med innehållslänk";
 
 /* No comment provided by engineer. */
 "Conversation Created By Me" = "Konversation skapad av mig";
@@ -200,7 +200,7 @@
 "d_questions" = "d_questions";
 
 /* No comment provided by engineer. */
-"Daily" = "Daglig";
+"Daily" = "Varje dag";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Översikt";
@@ -209,7 +209,7 @@
 "Delete" = "Ta bort";
 
 /* No comment provided by engineer. */
-"Delete comment" = "Radera kommentar";
+"Delete comment" = "Ta bort kommentar";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Ta bort kommentar";
@@ -224,7 +224,7 @@
 "Designer" = "Designer";
 
 /* No comment provided by engineer. */
-"Developer Menu" = "Utvecklarmeny";
+"Developer Menu" = "Meny för utvecklare";
 
 /* No comment provided by engineer. */
 "Discussion" = "Diskussion";
@@ -236,19 +236,19 @@
 "Discussion Post" = "Diskussionsinlägg";
 
 /* No comment provided by engineer. */
-"Discussions" = "Discussions";
+"Discussions" = "Diskussioner";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Avvisa";
 
 /* No comment provided by engineer. */
-"Do not send me anything" = "Skicka mig ingenting";
+"Do not send me anything" = "Skicka inte mig någonting";
 
 /* No comment provided by engineer. */
 "Domain" = "Domän";
 
 /* No comment provided by engineer. */
-"Done" = "Färdig";
+"Done" = "Klar";
 
 /* No comment provided by engineer. */
 "Due Date" = "Inlämningsdatum";
@@ -260,10 +260,10 @@
 "Emergency" = "Nödläge";
 
 /* No comment provided by engineer. */
-"Enable Push Notifications" = "Aktivera pushmeddelanden";
+"Enable Push Notifications" = "Aktivera push-aviseringar";
 
 /* No comment provided by engineer. */
-"End Act as User" = "Sluta uppträd som användare";
+"End Act as User" = "Sluta agera som användaren";
 
 /* No comment provided by engineer. */
 "Error" = "Fel";
@@ -278,16 +278,16 @@
 "External Tool" = "Externt verktyg";
 
 /* No comment provided by engineer. */
-"Extremely critical emergency" = "Extremt kritiskt nödläge";
+"Extremely critical emergency" = "Extremt kritiskt nödsituation";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "Det gick inte att spara bilden";
 
 /* No comment provided by engineer. */
-"Failed upload" = "Det gick inte att ladda upp";
+"Failed upload" = "Det gick inte att läsa in";
 
 /* No comment provided by engineer. */
-"Failed Upload" = "Det gick inte att ladda upp";
+"Failed Upload" = "Det gick inte att läsa in";
 
 /* No comment provided by engineer. */
 "File Upload" = "Filuppladdning";
@@ -302,7 +302,7 @@
 "Filter by:" = "Filtrerat efter:";
 
 /* No comment provided by engineer. */
-"Final Grade: %@" = "Slutlig bedömning: %@";
+"Final Grade: %@" = "Total bedömning: %@";
 
 /* No comment provided by engineer. */
 "final_grade_g_pts" = "final_grade_g_pts";
@@ -311,7 +311,7 @@
 "Find my school" = "Hitta min skola";
 
 /* No comment provided by engineer. */
-"Find your school or district" = "Hitta din skola eller distrikt";
+"Find your school or district" = "Hitta din skola eller ditt distrikt";
 
 /* No comment provided by engineer. */
 "Forget %@" = "Glöm %@";
@@ -323,10 +323,10 @@
 "g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
-"Grading" = "Bedömningsschema";
+"Grading" = "Bedömning";
 
 /* No comment provided by engineer. */
-"Grading Policies" = "Bedömningspolicyer";
+"Grading Policies" = "Bedömningsregler";
 
 /* No comment provided by engineer. */
 "green" = "grön";
@@ -344,7 +344,7 @@
 "How do I find my school?" = "Hur hittar jag min skola?";
 
 /* No comment provided by engineer. */
-"I can't get things done until I hear back from you" = "Jag kan inte utföra saker innan jag hör från dig";
+"I can't get things done until I hear back from you" = "Jag kan inte få något gjort förrän jag fått ett svar";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "Jag behöver hjälp men det är inte akut";
@@ -359,7 +359,7 @@
 "Impact" = "Påverkan";
 
 /* No comment provided by engineer. */
-"Impact Level" = "Inverkansnivå";
+"Impact Level" = "Effektnivå";
 
 /* No comment provided by engineer. */
 "Inbox" = "Inkorg";
@@ -371,7 +371,7 @@
 "Invitation" = "Inbjudan";
 
 /* No comment provided by engineer. */
-"It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Du tycks inte vara inskriven i några kurser som %@. En av dina andra appar kan passa bättre. Knacka på en för att gå till App Store.";
+"It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Du verkar inte vara registrerad för några kurser som %@. Någon av våra andra appar kan vara bättre lämpade. Tryck på en för att gå till App Store.";
 
 /* No comment provided by engineer. */
 "Italic" = "Kursiv";
@@ -401,10 +401,10 @@
 "Link" = "Länk";
 
 /* No comment provided by engineer. */
-"Link to Website URL" = "Länk till webbplats-URL";
+"Link to Website URL" = "Länk till webbplatsens URL";
 
 /* end of and list pattern */
-"list_and_end" = "%1$@, och %2$@";
+"list_and_end" = "%1$@ och %2$@";
 
 /* middle of and list pattern */
 "list_and_middle" = "%1$@, %2$@";
@@ -416,7 +416,7 @@
 "list_and_two" = "%1$@ och %2$@";
 
 /* end of or list pattern */
-"list_or_end" = "%1$@, eller %2$@";
+"list_or_end" = "%1$@ eller %2$@";
 
 /* middle of or list pattern */
 "list_or_middle" = "%1$@, %2$@";
@@ -437,6 +437,9 @@
 "Log Out" = "Logga ut";
 
 /* No comment provided by engineer. */
+"Login" = "Logga in";
+
+/* No comment provided by engineer. */
 "Manage Children" = "Hantera barn";
 
 /* No comment provided by engineer. */
@@ -452,7 +455,7 @@
 "Missing" = "Saknas";
 
 /* No comment provided by engineer. */
-"N/A" = "Ej tillgängligt";
+"N/A" = "Ej tillämpligt";
 
 /* No comment provided by engineer. */
 "Never" = "Aldrig";
@@ -470,19 +473,19 @@
 "No Submission" = "Ingen inlämning";
 
 /* No comment provided by engineer. */
-"None" = "Ingen";
+"None" = "Inga";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ej bedömd";
 
 /* No comment provided by engineer. */
-"Not Submitted" = "Inte inskickad";
+"Not Submitted" = "Inte inskickade";
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Ej brådskande";
 
 /* No comment provided by engineer. */
-"Notifications" = "Meddelanden";
+"Notifications" = "Aviseringar";
 
 /* No comment provided by engineer. */
 "Notifications are currently disabled in Settings. Tap to enable them again." = "Aviseringar är för närvarande inaktiverade i Inställningar. Tryck för att aktivera dem igen.";
@@ -512,7 +515,10 @@
 "Pages" = "Sidor";
 
 /* No comment provided by engineer. */
-"Pause" = "Paus";
+"Password" = "Lösenord";
+
+/* No comment provided by engineer. */
+"Pause" = "Pausa";
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Tillstånd behövs";
@@ -530,13 +536,13 @@
 "Previous Logins" = "Tidigare inloggningar";
 
 /* No comment provided by engineer. */
-"Privacy Policy" = "Sekretesspolicy";
+"Privacy Policy" = "Integritetspolicy";
 
 /* No comment provided by engineer. */
 "purple" = "lila";
 
 /* Description for Push Notification channel */
-"Push Notifications" = "Pushmeddelanden";
+"Push Notifications" = "Push-aviseringar";
 
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";
@@ -545,13 +551,13 @@
 "red" = "röd";
 
 /* No comment provided by engineer. */
-"Redo" = "Göra om";
+"Redo" = "Gör om";
 
 /* No comment provided by engineer. */
 "Remove" = "Ta bort";
 
 /* No comment provided by engineer. */
-"Removed %1$@" = "Borttagen %1$@";
+"Removed %1$@" = "Tog bort %1$@";
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "Borttagen %1$@ av %2$@";
@@ -614,7 +620,7 @@
 "Show Grades" = "Visa bedömningar";
 
 /* No comment provided by engineer. */
-"Site Admin Login" = "Sidoadministratörs inloggning";
+"Site Admin Login" = "Inloggning för webbplatsadmin";
 
 /* Description for Slack communication channel */
 "Slack Notifications" = "Slack-meddelanden";
@@ -623,7 +629,7 @@
 "SMS Notifications" = "SMS-aviseringar";
 
 /* No comment provided by engineer. */
-"Something is broken but I can work around it" = "Något är trasigt och jag kan inte hitta en alternativ lösning";
+"Something is broken but I can work around it" = "Något är fel men jag kan kringgå problemet för tillfället";
 
 /* No comment provided by engineer. */
 "Something is Missing" = "Något saknas";
@@ -632,13 +638,13 @@
 "Something is Wrong" = "Något stämmer inte";
 
 /* No comment provided by engineer. */
-"Start recording" = "Påbörja inspelning";
+"Start recording" = "Starta inspelning";
 
 /* No comment provided by engineer. */
-"Stop Act as User" = "Sluta uppträda som användare";
+"Stop Act as User" = "Sluta agera som användare";
 
 /* No comment provided by engineer. */
-"Stop acting as..." = "Sluta uppträda som...";
+"Stop acting as..." = "Sluta agera som ...";
 
 /* No comment provided by engineer. */
 "Stop recording" = "Stoppa inspelning";
@@ -659,22 +665,22 @@
 "Submission Comment" = "Inlämningskommentar";
 
 /* No comment provided by engineer. */
-"Submit" = "Lämna in";
+"Submit" = "Skicka in";
 
 /* No comment provided by engineer. */
-"Submit Assignment" = "Lämna in uppgift";
+"Submit Assignment" = "Skicka in uppgift";
 
 /* No comment provided by engineer. */
-"Submitted" = "Inlämnad";
+"Submitted" = "Inskickad";
 
 /* Submitted date */
-"Submitted %@" = "Inlämnad %@";
+"Submitted %@" = "Inskickat %@";
 
 /* No comment provided by engineer. */
 "Subscribe to Calendar Feed" = "Prenumerera på kalenderflöde";
 
 /* No comment provided by engineer. */
-"Success!" = "Lyckades!";
+"Success!" = "Klar!";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Lärarassistent";
@@ -689,7 +695,7 @@
 "Teacher" = "Lärare";
 
 /* No comment provided by engineer. */
-"Terms of Use" = "Användarvillkor";
+"Terms of Use" = "Användningsvillkor";
 
 /* No comment provided by engineer. */
 "Text" = "Text";
@@ -698,25 +704,25 @@
 "Text Color" = "Textfärg";
 
 /* No comment provided by engineer. */
-"Text Entry" = "Textinlägg";
+"Text Entry" = "Textinmatning";
 
 /* No comment provided by engineer. */
 "Thanks, your request was received!" = "Tack, din förfrågan har tagits emot!";
 
 /* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "Appen behöver starta om för att börja använda de nya språkinställningarna. Starta om appen.";
+"The app needs to restart to use the new language settings. Please relaunch the app." = "Appen måste startas om för att börja använda de nya språkinställningarna. Starta om appen.";
 
 /* No comment provided by engineer. */
 "There are no pages to display." = "Det finns inga sidor att visa.";
 
 /* No comment provided by engineer. */
-"There was a problem retrieving the Terms of Use." = "Det gick inte att hämta användarvillkoren.";
+"There was a problem retrieving the Terms of Use." = "Det gick inte att hämta användningsvillkoren.";
 
 /* No comment provided by engineer. */
-"There was an error with Act as User. Please try again later." = "Det uppstod ett fel med att uppträda som en användare. Försök igen senare.";
+"There was an error with Act as User. Please try again later." = "Ett fel uppstod med funktionen Agera som användare. Försök igen senare.";
 
 /* No comment provided by engineer. */
-"There was an unexpected error. Please try again." = "Ett oväntat fel har uppstått. Försök igen.";
+"There was an unexpected error. Please try again." = "Ett oväntat fel uppstod. Försök igen.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Den här uppgiften ska lämnas in %@";
@@ -728,7 +734,7 @@
 "This is a media comment" = "Detta är en mediekommentar";
 
 /* No comment provided by engineer. */
-"Time elapsed" = "Tidsåtgång";
+"Time elapsed" = "Förfluten tid";
 
 /* No comment provided by engineer. */
 "To Do" = "Att göra";
@@ -746,7 +752,7 @@
 "Undo" = "Ångra";
 
 /* No comment provided by engineer. */
-"Unlimited" = "Obegränsat";
+"Unlimited" = "Obegränsad";
 
 /* No comment provided by engineer. */
 "Unordered List" = "Ej ordnad lista";
@@ -758,7 +764,7 @@
 "Uploading %@ of %@" = "Laddar upp %1$@ av %2$@";
 
 /* No comment provided by engineer. */
-"Uploading..." = "Laddar upp...";
+"Uploading..." = "Laddar upp ...";
 
 /* No comment provided by engineer. */
 "URL" = "URL";
@@ -767,13 +773,16 @@
 "User ID" = "Användar-ID";
 
 /* No comment provided by engineer. */
+"Username" = "Användarnamn";
+
+/* No comment provided by engineer. */
 "Video" = "Video";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Vi har gjort några ändringar.";
 
 /* No comment provided by engineer. */
-"Website URL" = "Hemsida URL";
+"Website URL" = "Webbplatsens URL";
 
 /* No comment provided by engineer. */
 "Weekly" = "Veckovis";
@@ -785,7 +794,7 @@
 "white" = "vit";
 
 /* No comment provided by engineer. */
-"Whoops!" = "Oooj!";
+"Whoops!" = "Hoppsan!";
 
 /* No comment provided by engineer. */
 "Workaround" = "Tillfällig lösning";
@@ -797,17 +806,17 @@
 "Yo Notifications" = "Yo-aviseringar";
 
 /* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Du måste aktivera mikrofonbehörigheter i Inställningar.";
+"You must enable Microphone permissions in Settings." = "Du måste aktivera behörigheter för mikrofon i Inställningar.";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Du måste först logga in på minst ett Canvas-konto från elevappen.";
 
 /* No comment provided by engineer. */
-"You will stop acting as %@ and return to your account." = "Du kommer sluta att uppträda som %@, och återvända till ditt konto.";
+"You will stop acting as %@ and return to your account." = "Du kommer att sluta att agera som %@, och gå tillbaka till ditt konto.";
 
 /* No comment provided by engineer. */
-"You will stop acting as this user and return to your account." = "Du kommer sluta att uppträda som den här användaren och återvända till ditt konto.";
+"You will stop acting as this user and return to your account." = "Du kommer att sluta att agera som den här användaren och gå tillbaka till ditt konto.";
 
 /* No comment provided by engineer. */
-"Your Email" = "Din e-post";
+"Your Email" = "Din e-postadress";
 

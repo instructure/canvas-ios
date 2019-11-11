@@ -1,14 +1,14 @@
 /* Error message component with the report id */
-" Error report ID: (reportID)" = " ID felrapport: (reportID)";
+" Error report ID: (reportID)" = "ID för felrapport: (reportID)";
 
 /* Failure reason from the JSON payload from canvas */
-" Failure reason: (reason)." = " Felorsak: (orsak).";
+" Failure reason: (reason)." = "Felorsak: (orsak).";
 
 /* Shows the number of flagged questions */
-"%@ Flagged" = "%@ Markerad";
+"%@ Flagged" = "%@ flaggade";
 
 /* Accessiblity hint for question drawer button */
-"%@ Questions Answered" = "%@ Frågor besvarade";
+"%@ Questions Answered" = "%@ frågor besvarade";
 
 /* Question number in a quiz */
 "%@." = "%@.";
@@ -17,7 +17,7 @@
 "%d questions not answered" = "%d frågor som inte besvarats";
 
 /* web content failed to load */
-"⚠️ Error Loading Content" = "⚠️ Misslyckades att ladda innehåll";
+"⚠️ Error Loading Content" = "⚠️ Det gick inte att läsa in innehållet";
 
 /* Accessiblity hint for question drawer button */
 "0 Questions Answered" = "0 frågor besvarade";
@@ -34,29 +34,26 @@
 /* option to view results for all grading periods */
 "All Grading Periods" = "Alla bedömningsperioder";
 
-/* all pages segmented control title */
-"All Pages" = "Alla sidor";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Tillåtna försök";
 
 /* No comment provided by engineer. */
-"An unexpected error has occurred." = "Ett oväntat fel inträffade.";
+"An unexpected error has occurred." = "Ett oväntat fel har uppstått.";
 
 /* an unknown error's message */
-"An unknown error has occurred." = "Ett okänt fel har inträffat.";
+"An unknown error has occurred." = "Ett okänt fel har uppstått.";
 
 /* No comment provided by engineer. */
-"Answers will not be submitted while offline." = "Svar skickas inte in när du är offline.";
+"Answers will not be submitted while offline." = "Svaren kommer inte att skickas in när du är offline.";
 
 /* Question to confirm user wants to navigate away from a quiz. */
-"Are you sure you want to leave this quiz?" = "Är du säker på att du vill lämna det här testet?";
+"Are you sure you want to leave this quiz?" = "Vill du lämna det här quizzet?";
 
 /* Confirmation before submitting a quiz */
-"Are you sure you want to submit your answers?" = "Är du säker på att du vill skicka in dina svar?";
+"Are you sure you want to submit your answers?" = "Vill du skicka in dina svar?";
 
 /* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "Är du säker på att du vill radera denna kommentar?";
+"Are you sure you would like to delete this comment?" = "Vill du ta bort den här kommentaren?";
 
 /* label to be read for visually impaired users with assignment types */
 "assignment" = "uppgift";
@@ -94,7 +91,7 @@
 "Choose a Video" = "Välj en video";
 
 /* No comment provided by engineer. */
-"Collapse" = "Minska";
+"Collapse" = "Stäng";
 
 /* No comment provided by engineer. */
 "Comments" = "Kommentarer";
@@ -124,7 +121,7 @@
 "DeepPurple" = "DeepPurple";
 
 /* Delete button */
-"Delete" = "Radera";
+"Delete" = "Ta bort";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Ta bort kommentar";
@@ -141,11 +138,11 @@
 /* Dismiss an error dialog
    Dismiss button for error alert
    Dismiss button for error messages */
-"Dismiss" = "Avfärda";
+"Dismiss" = "Avvisa";
 
 /* Done button
    Done recording button */
-"Done" = "Färdiggjord";
+"Done" = "Klar";
 
 /* due date label for quiz due date */
 "Due Date" = "Inlämningsdatum";
@@ -154,43 +151,43 @@
 "Encoding Error" = "Kodningsfel";
 
 /* Default text for essay cell */
-"Enter answer..." = "Fyll i svar...";
+"Enter answer..." = "Ange svar ...";
 
 /* Placeholder for URL */
-"Enter URL..." = "Fyll i URL...";
+"Enter URL..." = "Ange URL ...";
 
 /* No comment provided by engineer. */
 "Error" = "Fel";
 
 /* error message for when the cache management database fails to load */
-"Error loading cache management database." = "Fel vid inläsning av databasen för hantering av cache.";
+"Error loading cache management database." = "Fel vid inläsning av databasen för cachehantering.";
 
 /* Title for quiz loading error */
-"Error Loading Quiz" = "Fel vid laddning av quiz";
+"Error Loading Quiz" = "Fel vid inläsning av quiz";
 
 /* No comment provided by engineer. */
-"Error retrieving tool launch URL" = "Det gick inte att hämta verktyg-start-URL";
+"Error retrieving tool launch URL" = "Det gick inte att hämta URL:en för verktygsstart";
 
 /* Error title for parsing assignment data from server */
-"Error Updating Assignment" = "Fel när uppgiften laddades upp";
+"Error Updating Assignment" = "Det gick inte att uppdatera uppgiften";
 
 /* Exit button to leave the quiz */
-"Exit" = "Gå ur";
+"Exit" = "Avsluta";
 
 /* No comment provided by engineer. */
-"Expand" = "Förstora";
+"Expand" = "Expandera";
 
 /* Error message when the server returns a invalid response */
-"Expected a response in the 200-299 range. Got %@" = "Förväntat ett svar inom 200-299 intervallet. Erhöll %@";
+"Expected a response in the 200-299 range. Got %@" = "Förväntade ett svar inom intervallet 200–299. Fick %@";
 
 /* label to be read for visually impaired users with external tool assignment types */
 "external tool" = "externt verktyg";
 
 /* No comment provided by engineer. */
-"Failed to find image at path" = "Kunde inte hitta bild vid sökväg";
+"Failed to find image at path" = "Det gick inte att hitta bilden på sökvägen";
 
 /* No comment provided by engineer. */
-"Failed to write image" = "Kunde inte rita bild";
+"Failed to write image" = "Det gick inte att skriva bilden";
 
 /* favorite courses or groups */
 "Favorites" = "Favoriter";
@@ -199,16 +196,13 @@
 "File Upload Error" = "Fel vid filuppladdning";
 
 /* State of the flagged question */
-"Flagged" = "Markerad";
-
-/* front page segmented control title */
-"Front Page" = "Framsida";
+"Flagged" = "Flaggade";
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Hämta bedömningar för";
 
 /* navigate */
-"Go" = "Sök";
+"Go" = "Gå";
 
 /* Title for grading periods picker */
 "Grading Periods" = "Bedömningsperioder";
@@ -232,7 +226,7 @@
 "Indigo" = "Indigo";
 
 /* No comment provided by engineer. */
-"Internet Connection Offline" = "Internetuppkoppling offline";
+"Internet Connection Offline" = "Internetanslutning offline";
 
 /* No comment provided by engineer. */
 "Invalid date received from API." = "Ogiltigt datum togs emot från API";
@@ -256,10 +250,10 @@
 "Lock Date Reached\nSubmitting" = "Låsdatum har nåtts\nSkickar in";
 
 /* Detail label for when a tool called Lockdown Browser is required to take the quiz */
-"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Lockdown webbläsare krävs för att se dina resultat. Vänligen öppna frågorna i Lockdown webbläsaren för att fortsätta.";
+"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Webbläsaren Lockdown krävs för att se dina resultat. Öppna frågorna i webbläsaren Lockdown för att fortsätta.";
 
 /* Title for when another tool called Lockdown Browser is required to take a quiz */
-"Lockdown Browser Required" = "Lockdown webbläsare krävs";
+"Lockdown Browser Required" = "Webbläsaren Lockdown krävs";
 
 /* Error alert title for network error
    Title for network errors */
@@ -272,16 +266,16 @@
 "No Due Date" = "Inget inlämningsdatum";
 
 /* Title for alert when a module item doesn't have mastery paths configured */
-"No Mastery Paths" = "Ingen målväg";
+"No Mastery Paths" = "Ingen måluppfyllelseväg";
 
 /* Error when push channel cannot be found in notificaitons */
-"No push channel found" = "Ingen pushkanal hittad";
+"No push channel found" = "Ingen pushkanal hittades";
 
 /* when a quiz has no time limit */
 "No time limit" = "Ingen tidsgräns";
 
 /* Section header for assignments without an assignment group */
-"None" = "Ingen";
+"None" = "Inga";
 
 /* can't record because request for mic access was denied title */
 "Not Permitted" = "Inte tillåten";
@@ -299,7 +293,7 @@
 "Open in Safari" = "Öppna i Safari";
 
 /* No comment provided by engineer. */
-"Open in…" = "Öppna i...";
+"Open in…" = "Öppna i ...";
 
 /* Orange course color button */
 "Orange" = "Orange";
@@ -311,7 +305,7 @@
 "Past" = "Tidigare";
 
 /* Pause recording/playback */
-"Pause" = "Paus";
+"Pause" = "Pausa";
 
 /* record button a11y hint */
 "Pause playback" = "Pausa uppspelning";
@@ -350,7 +344,7 @@
 "Question (number) Flagged" = "Fråga (nummer) flaggad";
 
 /* state for unflagged question */
-"Question (number) Unflagged" = "Fråga (nummer) ej-flaggad";
+"Question (number) Unflagged" = "Fråga (nummer) ej flaggad";
 
 /* Shows question position */
 "Question %@" = "Fråga %@";
@@ -362,13 +356,13 @@
 "quiz" = "quiz";
 
 /* Title for alert that shows when a quiz hits the due date */
-"Quiz Due" = "Förfallodatum för test";
+"Quiz Due" = "Inlämningsdatum för quiz";
 
 /* Title for quiz error */
-"Quiz Error" = "Fel på test";
+"Quiz Error" = "Fel på quiz";
 
 /* Label for indication that the quiz submission was successful */
-"Quiz Submitted" = "Test inskickat";
+"Quiz Submitted" = "Quiz inskickat";
 
 /* Label for indication that the quiz submission failed */
 "QuizSubmission Failure" = "QuizSubmission Fel";
@@ -401,10 +395,10 @@
 "Remove Formatting" = "Ta bort formatering";
 
 /* No comment provided by engineer. */
-"Removed %1$@" = "Borttagen %1$@";
+"Removed %1$@" = "Tog bort %1$@";
 
 /* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "Borttagen %1$@ av %2$@";
+"Removed %1$@ by %2$@" = "Tog bort %1$@ av %2$@";
 
 /* No comment provided by engineer. */
 "Reply" = "Svara";
@@ -416,22 +410,22 @@
 "Request Audio Recording Permission" = "Begär tillstånd för ljudinspelning";
 
 /* stop record button a11y hint */
-"Request Permission to record audio" = "Begär tillstånd för ljudinspelning";
+"Request Permission to record audio" = "Begär tillstånd för att spela in ljud";
 
 /* button for resuming a quiz */
 "Resume Quiz" = "Fortsätt quiz";
 
 /* button for retaking quiz */
-"Retake Quiz" = "Gör om Quiz";
+"Retake Quiz" = "Gör om quiz";
 
 /* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
-"Select all that apply" = "Markera allt som gäller";
+"Select all that apply" = "Markera alla som gäller";
 
 /* Indicates that a matching quiz question needs to have an answer selected */
 "Select Answer" = "Välj svar";
 
 /* when a button is selected */
-"Selected" = "Vald";
+"Selected" = "Markerade";
 
 /* Shapes backdrops */
 "Shapes" = "Former";
@@ -443,10 +437,10 @@
 "Show Timer" = "Visa timer";
 
 /* Error message displayed when the file is unrecognized. */
-"Something went wrong. Check the file format and try again." = "Någonting gick fel. Kontrollera filformatet och försök igen.";
+"Something went wrong. Check the file format and try again." = "Något gick fel. Kontrollera filformatet och försök igen.";
 
 /* Text only quiz question label */
-"Spacer" = "Blanksteg";
+"Spacer" = "Tomt utrymme";
 
 /* Stay on the quiz view */
 "Stay" = "Stanna";
@@ -459,7 +453,7 @@
 
 /* Submit button title
    Turn in this url button */
-"Submit" = "Lämna in";
+"Submit" = "Skicka in";
 
 /* Label for indication of submitting quiz */
 "Submitting Quiz" = "Skickar in quiz";
@@ -480,112 +474,112 @@
 "Teal" = "Teal";
 
 /* Error message for a file missing */
-"The file does not exist." = "Filen existerar inte.";
+"The file does not exist." = "Filen finns inte.";
 
 /* This shouldn't ever happen. */
-"The Pages are gone!? Why are the pages always gone?" = "Sidorna är borta!? Varför är sidorna alltid borta?";
+"The Pages are gone!? Why are the pages always gone?" = "Är sidorna borta!? Varför är alltid sidorna borta?";
 
 /* Description for alert that shows when the quiz hits the due date */
-"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Quiz slutar om 1 minut. Vill du lämna in nu och göra det i tid, eller fortsätta med quiz och eventuellt lämna in för sent?";
+"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Quizzet ska lämnas in om 1 minut. Vill du skicka in det nu och göra det i tid, eller fortsätta med quizzet och kanske lämna in det för sent?";
 
 /* Error message for interrupted requests marking a to do as done */
-"The request to mark a to do as done was interrupted" = "Begäran om att markera en att-göra-uppgift som färdiggjord avbröts";
+"The request to mark a to do as done was interrupted" = "Begäran om att markera ett att-göra-objekt som klart avbröts";
 
 /* bad url message */
-"The text you entered is not a valid URL" = "Texten du matat in är inte en giltigt URL";
+"The text you entered is not a valid URL" = "Texten som du har angett är inte en giltig URL";
 
 /* Data encoding error message */
-"There was a problem encoding UTF8 Data" = "Det uppstod ett problem när UTF8 data kodades";
+"There was a problem encoding UTF8 Data" = "Ett problem uppstod när UTF8-data skulle kodas";
 
 /* JSON Parsing error description */
-"There was a problem interpreting a response from the server." = "Det uppstod ett fel vid tolkning av svaret från servern.";
+"There was a problem interpreting a response from the server." = "Ett problem uppstod när ett svar från servern skulle tolkas.";
 
 /* CalendarKit Database Load Failure Message */
-"There was a problem loading the (kitModelName) database file." = "Ett problem uppstod vid laddning av (kitModelName) databas-filen.";
+"There was a problem loading the (kitModelName) database file." = "Ett problem uppstod vid inläsningen av databasfilen för (kitModelName).";
 
 /* AssignmentKit database load failure message */
-"There was a problem loading the AssignmentKit database file." = "Ett problem uppstod vid laddningen av AssignmentKit databas filen.";
+"There was a problem loading the AssignmentKit database file." = "Ett problem uppstod vid inläsningen av databasfilen för AssignmentKit.";
 
 /* CalendarKit Database Load Failure Message */
-"There was a problem loading the CalendarKit database file." = "Ett problem uppstod vid laddningen av CalendarKit databas filen.";
+"There was a problem loading the CalendarKit database file." = "Ett problem uppstod vid inläsningen av databasfilen för CalendarKit.";
 
 /* EnrollmentKit Database Load Failure Message */
-"There was a problem loading the EnrollmentKit database file." = "Ett problem uppstod vid laddningen av EnrollmentKit databas filen.";
+"There was a problem loading the EnrollmentKit database file." = "Ett problem uppstod vid inläsningen av databasfilen för EnrollmentKit.";
 
 /* FileKit Database Load Failure Message */
-"There was a problem loading the FileKit database file." = "Ett problem uppstod vid laddningen av FileKit databas filen.";
+"There was a problem loading the FileKit database file." = "Ett problem uppstod vid inläsningen av databasfilen för FileKit.";
 
 /* Page list fails */
-"There was a problem loading the Pages database file." = "Det uppstod ett problem när Pages-databasfilen laddades.";
+"There was a problem loading the Pages database file." = "Ett problem uppstod vid inläsningen av databasfilen för Pages.";
 
 /* PeepKit Database Load Failure Message */
-"There was a problem loading the PeepKit database file." = "Ett problem uppstod vid laddningen av PeepKit databas filen.";
+"There was a problem loading the PeepKit database file." = "Ett problem uppstod vid inläsningen av databasfilen för PeepKit.";
 
 /* SoEdventurous database load failure message */
-"There was a problem loading the SoEdventurous database file." = "Ett problem uppstod vid laddningen av SoEdventurous databas filen.";
+"There was a problem loading the SoEdventurous database file." = "Ett problem uppstod vid inläsningen av databasfilen för SoEdventurous.";
 
 /* File upload error message */
-"There was a problem preparing the file for upload" = "Ett fel uppstod när filen förbereddes för uppladdning";
+"There was a problem preparing the file for upload" = "Ett problem uppstod när filen skulle förberedas för uppladdning";
 
 /* Persistence error message */
-"There was a problem reading cached data" = "Ett fel uppstod när cache-datan lästes";
+"There was a problem reading cached data" = "Ett problem uppstod vid inläsningen av cachelagrade data";
 
 /* Error description for Push Notifications registration error. */
-"There was a problem registering your device for push notifications." = "Det gick inte att registrera enheten för push-meddelanden.";
+"There was a problem registering your device for push notifications." = "Ett problem uppstod vid registreringen av din enhet för push-aviseringar.";
 
 /* Error description for failing to compute the URL to a quiz */
-"There was a problem updating the Quiz URL" = "Det uppstod ett fel när Quiz-URL:en uppdaterades";
+"There was a problem updating the Quiz URL" = "Ett problem uppstod vid uppdateringen av URL:en för quizzet.";
 
 /* generic error message */
-"There was a problem with the Canvas request." = "Det uppstod ett problem med Canvas-förfrågan.";
+"There was a problem with the Canvas request." = "Ett problem uppstod med Canvas begäran.";
 
 /* Error message when parsing contextID for a course or group tab */
-"There was an error associating a tab with a course or group." = "Det uppstod ett fel när en flik associerades med en kurs eller grupp.";
+"There was an error associating a tab with a course or group." = " Ett fel uppstod vid kopplingen av en flik till en en kurs eller grupp.";
 
 /* An error message shown when the Users cache file fails to load */
-"There was an error loading the Users cache." = "Det uppstod ett fel vid laddning av användarens cache.";
+"There was an error loading the Users cache." = "Ett fel uppstod vid inläsningen av användarens cache.";
 
 /* Error message for a network fail */
-"There was an error while communicating with the server." = "Det uppstod ett fel vid kommunikation med servern.";
+"There was an error while communicating with the server." = "Ett fel uppstod vid kommunikation med servern.";
 
 /* No comment provided by engineer. */
-"There was no data!" = "Det fanns ingen data!";
+"There was no data!" = "Det fanns inga data!";
 
 /* Warning to users editing an essay question that was edited on the web. */
-"This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser." = "Denna uppsatsfråga har redigerats på webben och kan innehålla formatering, länkar eller bilder. För att redigera detta svar på din mobila enhet måste vi rensa formateringen (inklusive länkar och bilder). Annars kan du fortsätta redigera frågan via en webbläsare.";
+"This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser." = "Denna uppsatsfråga har redigerats på webben och kan innehålla formatering, länkar och bilder. För att redigera detta svar på din mobila enhet kommer vi att behöva rensa formateringen (inklusive länkar och bilder). Annars kan du fortsätta att redigera frågan i en webbläsare.";
 
 /* Body for alert when a module item doesn't have mastery paths configured */
-"This module item does not have mastery paths configured." = "Det här föremålet har inte konfigurerats för målvägen.";
+"This module item does not have mastery paths configured." = "Det här modulobjektet har inte några inställningar för måluppfyllelsevägen.";
 
 /* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
-"This page is currently locked and not viewable." = "Den här sidan är för närvarande låst och kan inte visas";
+"This page is currently locked and not viewable." = "Den här sidan är för närvarande låst och kan inte visas.";
 
 /* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
-"This quiz has an IP address filter set." = "Detta quiz har ett inställt IP-adressfilter.";
+"This quiz has an IP address filter set." = "Detta quiz har ett filter för IP-adresser.";
 
 /* Message when telling the user they can't take the quiz for some weird reason */
-"This quiz is currently unavailable." = "Quiz för närvarande inte tillgängligt.";
+"This quiz is currently unavailable." = "Detta quiz är för närvarande inte tillgängligt.";
 
 /* Message when telling the user they can't take the quiz because the quiz is locked */
-"This quiz is locked." = "Quiz är låst.";
+"This quiz is locked." = "Detta quiz är låst.";
 
 /* No comment provided by engineer. */
-"This quiz is not available offline." = "Det här quizzet finns inte tillgängligt offline.";
+"This quiz is not available offline." = "Detta quiz är inte tillgängligt offline.";
 
 /* label for the time limit */
 "Time Limit" = "Tidsgräns";
 
 /* Toggle flag accessiblity action */
-"Toggle Flag" = "Hantera flaggning";
+"Toggle Flag" = "Växla flaggning";
 
 /* Total grade label */
-"Total Grade" = "Fullständig bedömning";
+"Total Grade" = "Total bedömning";
 
 /* Error message when parsing communication preferences */
-"Unable to parse JSON for communication channels" = "Kan inte analysera JSON för kommunikationskanaler";
+"Unable to parse JSON for communication channels" = "Kan inte tolka JSON för kommunikationskanaler";
 
 /* Error message when parsing notification preferences */
-"Unable to parse JSON for notification preferences" = "Kan inte analysera JSON för meddelandepreferenser";
+"Unable to parse JSON for notification preferences" = "Kan inte tolka JSON för aviseringsinställningar";
 
 /* Assignments with no dates */
 "Undated" = "Odaterade";
@@ -594,19 +588,19 @@
 "Unexpected response type" = "Oväntad svarstyp";
 
 /* Ungraded quiz */
-"Ungraded" = "inte bedömd";
+"Ungraded" = "Ej bedömd";
 
 /* An unknown error title */
 "Unknown Error" = "Okänt fel";
 
 /* When a quiz has no limit on the number of attempts */
-"Unlimited" = "Obegränsat";
+"Unlimited" = "Obegränsad";
 
 /* Upcoming assignments */
 "Upcoming" = "Kommande";
 
 /* Message displayed while a file is being uploaded */
-"Uploading file..." = "Laddar upp fil...";
+"Uploading file..." = "Laddar upp fil ...";
 
 /* permission denied button a11y hint */
 "User has denied record permission" = "Användaren har nekat inspelningstillstånd";
@@ -621,14 +615,14 @@
 "Yellow" = "Gul";
 
 /* Shows time limit on a quiz */
-"You have %d minutes." = "Du har %d 5 minuter.";
+"You have %d minutes." = "Du har %d minuter.";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
-"You have used all your attempts available on this quiz." = "Du har använt alla försök som tillgängliga för det här quizet.";
+"You have used all your attempts available on this quiz." = "Du har använt alla dina tillgängliga försök på det här quizzet.";
 
 /* permission was rejected */
-"You must grant (appName) Microphone access in the Settings app in order to record audio." = "Du måste tillåta (appName) Mikrofonåtkomst i Inställningar-appen för att spela in ljud";
+"You must grant (appName) Microphone access in the Settings app in order to record audio." = "Du måste ge (appName) mikrofonåtkomst i inställningarna för appen för att spela in ljud.";
 
 /* Error description for file out of space */
-"Your device is out of storage space. Please free up space and try again." = "Din enhet har slut på lagringsutrymme. Vänligen frigör utrymme och testa igen.";
+"Your device is out of storage space. Please free up space and try again." = "Din enhet har slut på lagringsutrymme. Frigör utrymme och försök igen.";
 

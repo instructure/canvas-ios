@@ -34,9 +34,6 @@
 /* option to view results for all grading periods */
 "All Grading Periods" = "Ngā Kōeke Katoa o te Wā";
 
-/* all pages segmented control title */
-"All Pages" = "Whārangi Katoa";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Ngā ngana e whakāetia ana";
 
@@ -200,9 +197,6 @@
 
 /* State of the flagged question */
 "Flagged" = "karaina";
-
-/* front page segmented control title */
-"Front Page" = "Whārangi mua";
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Tikina ngā koeke mō";

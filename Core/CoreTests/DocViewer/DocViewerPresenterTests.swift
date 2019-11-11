@@ -26,7 +26,7 @@ class DocViewerPresenterTests: CoreTestCase {
     var error: Error?
     var resetted = false
 
-    let url = Bundle(for: DocViewerPresenterTests.self).url(forResource: "instructure", withExtension: "pdf")!
+    lazy var url = Bundle(for: DocViewerPresenterTests.self).url(forResource: "instructure", withExtension: "pdf")!
 
     class MockSession: DocViewerSession {
         var requested: URL?

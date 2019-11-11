@@ -34,9 +34,6 @@
 /* option to view results for all grading periods */
 "All Grading Periods" = "Vsa ocenjevalna obdobja";
 
-/* all pages segmented control title */
-"All Pages" = "Vse strani";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Dovoljeni poskusi";
 
@@ -200,9 +197,6 @@
 
 /* State of the flagged question */
 "Flagged" = "Označeno";
-
-/* front page segmented control title */
-"Front Page" = "Prva stran";
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Pridobi ocene za";
