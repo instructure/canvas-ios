@@ -207,16 +207,7 @@ private func mediaTypes(allowsPhotos: Bool, allowsVideos: Bool) -> [String] {
 
 private func uploadable(for info: [UIImagePickerController.InfoKey: Any]) -> SignalProducer<Uploadable, NSError> {
     return SignalProducer { observer, _ in
-        if let asset = info[.phAsset] as? PHAsset {
-                Asset.fromCameraRoll(asset: asset) { result in
-                    if let uploadable = result.value {
-                        observer.send(value: uploadable)
-                    } else {
-                        observer.send(error: result.error ?? dataError)
-                    }
-                    observer.sendCompleted()
-                }
-        } else if let image = info[.originalImage] as? UIImage, let data = image.pngData() {
+        if let image = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage, let data = image.pngData() {
             let uploadable = NewFileUpload(kind: .photo(image), data: data)
             observer.send(value: uploadable)
             observer.sendCompleted()
