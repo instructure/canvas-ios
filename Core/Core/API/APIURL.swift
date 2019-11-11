@@ -26,9 +26,14 @@ public struct APIURL: Codable, Equatable {
     }
 
     public init(from decoder: Decoder) throws {
-        let string = try decoder.singleValueContainer().decode(String.self).replacingOccurrences(of: " ", with: "%20")
+        let string = try decoder.singleValueContainer()
+            .decode(String.self)
+            .replacingOccurrences(of: " ", with: "%20")
         guard let url = URL(string: string) else {
-            let context = DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Expected a valid URL")
+            let context = DecodingError.Context(
+                codingPath: decoder.codingPath,
+                debugDescription: "Expected a valid URL"
+            )
             throw DecodingError.typeMismatch(URL.self, context)
         }
         rawValue = url
@@ -42,7 +47,9 @@ public struct APIURL: Codable, Equatable {
 
 #if DEBUG
 extension APIURL {
-    public static func make(rawValue: URL = URL(string: "https://canvas.instructure.com")!) -> APIURL {
+    public static func make(
+        rawValue: URL = URL(string: "https://canvas.instructure.com")!
+    ) -> APIURL {
         return APIURL(rawValue: rawValue)
     }
 }
