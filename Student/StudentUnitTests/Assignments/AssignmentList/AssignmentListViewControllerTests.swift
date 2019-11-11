@@ -260,14 +260,10 @@ class AssignmentListViewControllerTests: PersistenceTestCase {
             APIAssignmentListGroup.make(id: "1", name: "GroupA", assignments: assignmentsGroupA2),
         ]
         let d2 = data(gradingPeriods: gradingPeriods, groups: groups)
-        var cnt = 0
+        var data: [Data] = [d2, d1]
         api.mock(req, data: nil, response: nil, error: nil, dataHandler: { () -> MockURLSession.UrlResponseTuple in
-            if cnt == 0 {
-                cnt += 1
-                return (d1, nil, nil)
-            } else {
-                return (d2, nil, nil)
-            }
+            guard let d = data.popLast() else { XCTFail(); return (nil, nil, nil) }
+            return (d, nil, nil)
         })
 
         loadView()
@@ -283,5 +279,33 @@ class AssignmentListViewControllerTests: PersistenceTestCase {
             let cell = vc.tableView(vc.tableView, cellForRowAt: IndexPath(row: i, section: 0))
             XCTAssertEqual(cell.textLabel?.text, "\(i)")
         }
+    }
+
+    func testAssignmentForIndexPath() {
+        gradingPeriods = [ APIAssignmentListGradingPeriod.make(title: "grading period a") ]
+
+        let assignmentsGroupA = [
+            APIAssignmentListAssignment.make(id: "1", name: "ios 101", dueAt: Date().addDays(1)),
+        ]
+
+        let assignmentsGroupB = [
+            APIAssignmentListAssignment.make(id: "2", name: "how to cook pizza"),
+        ]
+
+        groups = [
+            APIAssignmentListGroup.make(id: "1", name: "GroupA", assignments: assignmentsGroupA),
+            APIAssignmentListGroup.make(id: "2", name: "GroupB", assignments: assignmentsGroupB),
+        ]
+
+        req = AssignmentListRequestable(courseID: courseID, gradingPeriodID: nil, filter: false)
+        mockNetwork()
+
+        loadView()
+
+        var ip = IndexPath(row: 0, section: 0)
+        XCTAssertNotNil( vc.assignment(for: ip) )
+
+        ip = IndexPath(row: 100, section: 100)
+        XCTAssertNil( vc.assignment(for: ip) )
     }
 }

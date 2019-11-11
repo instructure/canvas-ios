@@ -168,8 +168,8 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
     }
 
     func selectFirstCellOnIpad() {
-        if let splitView = splitViewController, !isInSplitViewDetail {
-            let ip = IndexPath(row: 0, section: 0)
+        let ip = IndexPath(row: 0, section: 0)
+        if assignment(for: ip) != nil, splitViewController != nil, !isInSplitViewDetail {
             tableView.selectRow(at: ip, animated: true, scrollPosition: .none)
             tableView(tableView, didSelectRowAt: ip)
         }
@@ -212,7 +212,10 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
 
 extension AssignmentListViewController: UITableViewDataSource, UITableViewDelegate {
     func assignment(for indexPath: IndexPath) -> APIAssignmentListAssignment? {
-        return assignments[ groups[indexPath.section].id.value ]?[indexPath.row]
+        guard indexPath.section < groups.count,
+            let assignmentsForGroup = assignments[ groups[indexPath.section].id.value ],
+            indexPath.row < assignmentsForGroup.count else { return nil }
+        return assignmentsForGroup[indexPath.row]
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -291,7 +294,7 @@ extension AssignmentListViewController {
         if let color = courses.first?.color {
             self.color = color
             filterButton.setTitleColor(color, for: .normal)
-            updateNavBar(subtitle: nil, color: color)
+            updateNavBar(subtitle: courses.first?.name, color: color)
         }
     }
 
