@@ -124,18 +124,18 @@ function doTest {
     local result_path=$results_directory/$try.xcresult
     local ret=0
 
-
     local flags=($destination_flag)
     flags+=(-resultBundlePath $result_path)
     flags+=(-xctestrun $xctestrun)
-    if (( try < 0 )); then
+
+    if (( false )); then
         flags+=(-parallel-testing-enabled YES -parallel-testing-worker-count 3)
     fi
     for skip in $all_passing_tests; do
         flags+=(-skip-testing:$skip)
     done
 
-    # Do this the long way to make sure we notice failures
+    # Do this the long way to make sure we get the correct exit code
     pipe_file=tmp/formatter-fifo
     rm -rf $pipe_file
     mkfifo $pipe_file
