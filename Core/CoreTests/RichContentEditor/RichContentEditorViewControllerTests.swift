@@ -54,7 +54,7 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
     func update(_ block: () -> Void) {
         updated = expectation(description: "updated")
         block()
-        wait(for: [updated!], timeout: 5)
+        wait(for: [updated!], timeout: 10)
         updated = nil
     }
 
