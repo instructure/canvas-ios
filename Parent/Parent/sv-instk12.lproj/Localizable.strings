@@ -11,16 +11,19 @@
 "%@ will begin at %@" = "%1$@ börjar %2$@";
 
 /* Percentage field placeholder */
-"1-100%" = "1-100 %";
+"1-100%" = "1–100 %";
 
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Agera som användare";
 
 /* No comment provided by engineer. */
+"Add" = "Lägg till";
+
+/* No comment provided by engineer. */
 "Add Student" = "Lägg till elev";
 
 /* Label displayed when logged in as an admin */
-"Admin" = "Administratör";
+"Admin" = "Admin";
 
 /* Alert Section Header */
 "Alert me when:" = "Larma mig när:";
@@ -32,19 +35,19 @@
 "An Error Occurred" = "Ett fel uppstod";
 
 /* No comment provided by engineer. */
-"Announcement" = "Meddelande";
+"Announcement" = "Kursmeddelande";
 
 /* No comment provided by engineer. */
 "Assignment" = "Uppgift";
 
 /* Assignment Grade High On Description */
-"Assignment grade above" = "Uppgiftsbedömning över";
+"Assignment grade above" = "Uppgiftsbedömning ovan";
 
 /* Assignment Grade Low On Description */
-"Assignment grade below" = "Uppgiftsbedömning under";
+"Assignment grade below" = "Uppgiftsbedömning nedan";
 
 /* Assignment Missing Description */
-"Assignment missing" = "Uppgiften saknas";
+"Assignment missing" = "Uppgift saknas";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Påminnelse om uppgift";
@@ -62,13 +65,13 @@
 "Cannot use percent that is less than 0" = "Kan inte använda en procentsats som är lägre än 0";
 
 /* Empty Alerts Text */
-"Caught up on Alerts" = "Läst av larmen";
+"Caught up on Alerts" = "Du är uppdaterad när det gäller larmen";
 
 /* No comment provided by engineer. */
 "Choose a student" = "Välj en elev";
 
 /* Course Announcement Description */
-"Course announcements" = "Kursannonseringar";
+"Course announcements" = "Kursmeddelanden";
 
 /* Course Grade High On Description */
 "Course grade above" = "Kursbedömning över";
@@ -80,13 +83,13 @@
 "Courses" = "Kurser";
 
 /* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Aktuell elev: %@, tryck för att växla elev";
+"Current student: %@, tap to switch students" = "Aktuell elev: %@. Tryck för att växla elev";
 
 /* No comment provided by engineer. */
 "Discussion" = "Diskussion";
 
 /* No comment provided by engineer. */
-"Dismiss" = "Avfärda";
+"Dismiss" = "Avvisa";
 
 /* No comment provided by engineer. */
 "Event" = "Händelse";
@@ -95,10 +98,10 @@
 "Event reminder" = "Påminnelse om händelse";
 
 /* No comment provided by engineer. */
-"Excused" = "Slipper göras";
+"Excused" = "Slipper göra";
 
 /* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Misslyckades att ladda (discussionKitModelName) NSManagedObjectModel";
+"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Det gick inte att läsa in (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
 "Grades" = "Bedömningar";
@@ -110,19 +113,19 @@
 "High course grade cannot be lower than low course grade" = "Hög kursbedömning kan inte vara lägre än låg kursbedömning";
 
 /* No comment provided by engineer. */
-"In-Class" = "I klassen";
+"In-Class" = "Närvarande";
 
 /* No comment provided by engineer. */
-"Input the student pairing code provided to you." = "Ange elevkopplingskoden du fått.";
+"Input the student pairing code provided to you." = "Ange kopplingskoden du fått för elever.";
 
 /* Institution Announcement Description */
-"Institution announcements" = "Institutionsannonseringar";
+"Institution announcements" = "Institutionens kursmeddelanden";
 
 /* Title for an alert view */
 "Invalid Input" = "Ogiltig inmatning";
 
 /* Last Week Button Accessibility Label */
-"Last Week" = "Förra veckan";
+"Last Week" = "Senaste veckan";
 
 /* No comment provided by engineer. */
 "Late" = "Sen";
@@ -167,7 +170,7 @@
 "OK" = "OK";
 
 /* No comment provided by engineer. */
-"Pairing Code" = "Parkopplingskod";
+"Pairing Code" = "Kopplingskod";
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Tillstånd behövs";
@@ -179,37 +182,40 @@
 "Settings" = "Inställningar";
 
 /* No comment provided by engineer. */
-"Submitted" = "Inlämnad";
+"Submitted" = "Inskickad";
 
 /* No comment provided by engineer. */
-"Submitted: %@" = "Inlämnad: %@";
+"Submitted: %@" = "Inskickat: %@";
 
 /* No comment provided by engineer. */
-"Submitted: %@ (%@/%@)" = "Inlämnad: %1$@ (%2$@/%3$@)";
+"Submitted: %@ (%@/%@)" = "Inskickat: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Sammanfattning";
 
 /* Syllabus Button Title */
 "Syllabus" = "Kursöversikt";
 
 /* Directions in the admin view */
-"Tap to start viewing Canvas as another person." = "Knacka för att börja titta på Canvas som en annan person.";
+"Tap to start viewing Canvas as another person." = "Tryck för att använda Canvas som någon annan.";
 
 /* AlertKit Database Load Failure Message */
-"There was a problem loading the AlertKit database file." = "Ett problem uppstod vid laddningen av AlertKit databas filen.";
+"There was a problem loading the AlertKit database file." = "Ett problem uppstod vid inläsningen av databasfilen för AlertKit.";
 
 /* Airwolf database error message */
-"There was a problem loading the database." = "Det uppstod ett problem vid laddning av databasen.";
+"There was a problem loading the database." = "Ett problem uppstod vid inläsning av databasen.";
 
 /* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "Ett problem uppstod vid laddningen av DiscussionKit databas filen.";
+"There was a problem loading the DiscussionKit database file." = "Ett problem uppstod vid inläsningen av databasfilen för DiscussionKit.";
 
 /* No comment provided by engineer. */
-"This announcement has expired." = "Detta meddelande har löpt ut.";
+"This announcement has expired." = "Detta kursmeddelande har upphört att gälla.";
 
 /* No comment provided by engineer. */
 "This student's courses may not be published yet." = "Den här elevens kurser får ännu inte publiceras.";
 
 /* No comment provided by engineer. */
-"Trouble logging in" = "Inloggningsproblem";
+"Trouble logging in" = "Problem med inloggning";
 
 /* No comment provided by engineer. */
 "Unread" = "Oläst";
@@ -221,5 +227,5 @@
 "Welcome!" = "Välkommen!";
 
 /* No comment provided by engineer. */
-"You must allow notifications in Settings to set reminders." = "Du måste tillåta notifikationer i Inställningar för att ställa in påminnelser.";
+"You must allow notifications in Settings to set reminders." = "Du måste tillåta aviseringar i Inställningar för att ställa in påminnelser.";
 

@@ -34,9 +34,6 @@
 /* option to view results for all grading periods */
 "All Grading Periods" = "جميع فترات تقييم الدرجات";
 
-/* all pages segmented control title */
-"All Pages" = "جميع الصفحات";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "المحاولات المسموح بها";
 
@@ -200,9 +197,6 @@
 
 /* State of the flagged question */
 "Flagged" = "تم التمييز";
-
-/* front page segmented control title */
-"Front Page" = "الصفحة الأمامية";
 
 /* No comment provided by engineer. */
 "Get Grades for" = "احصل على درجات";
