@@ -30,12 +30,8 @@ class APIURLTests: XCTestCase {
             .make(rawValue: URL(string: "s://a.co")!)
         )
         XCTAssertEqual(
-            try decoder.decode(APIURL.self, from: try encoder.encode("s://a.co/a space")),
-            .make(rawValue: URL(string: "s://a.co/a%20space")!)
-        )
-        XCTAssertEqual(
-            try decoder.decode(APIURL.self, from: try encoder.encode("s://a.co/{}`|\\^")),
-            .make(rawValue: URL(string: "s://a%2Eco/%7B%7D%60%7C%5C%5E")!)
+            try decoder.decode(APIURL.self, from: try encoder.encode("s://a.co/foo{ }`|\\^")),
+            .make(rawValue: URL(string: "s://a.co/foo%7B%20%7D%60%7C%5C%5E")!)
         )
         XCTAssertEqual(
             try decoder.decode(APIURL.self, from: try encoder.encode("s://a.co/~")),

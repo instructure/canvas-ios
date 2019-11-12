@@ -26,9 +26,8 @@ public struct APIURL: Codable, Equatable {
     }
 
     public init(from decoder: Decoder) throws {
-        let string = try decoder.singleValueContainer()
-            .decode(String.self)
-            .replacingOccurrences(of: " ", with: "%20")
+        let container = try decoder.singleValueContainer()
+        let string = try container.decode(String.self)
         if let url = URL(string: string) {
             rawValue = url
             return
