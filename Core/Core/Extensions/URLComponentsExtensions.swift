@@ -40,7 +40,7 @@ public extension URLComponents {
     /// Tries `init(string: String)`, then again with aggressive percent encoding, then falls back to putting the string in a `path` property.
     static func parse(_ string: String) -> URLComponents {
         if let url = URLComponents(string: string) { return url }
-        if let safe = string.addingPercentEncoding(withAllowedCharacters: CharacterSet(charactersIn: ":/?&=#%").union(.alphanumerics)),
+        if let safe = string.addingPercentEncoding(withAllowedCharacters: .urlSafe),
             let url = URLComponents(string: safe) { return url }
         var url = URLComponents()
         url.path = string
@@ -77,4 +77,8 @@ public extension URLComponents {
             }
         }
     }
+}
+
+public extension CharacterSet {
+    static let urlSafe = CharacterSet(charactersIn: ":/?&=#%.").union(.alphanumerics)
 }

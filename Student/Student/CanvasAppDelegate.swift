@@ -113,7 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
             legacyUser?.name = session.userName
             legacyUser?.sortableName = session.userName
             legacyUser?.shortName = session.userName
-            legacyUser?.avatarURL = profile.avatar_url
+            legacyUser?.avatarURL = profile.avatar_url?.rawValue
             legacyUser?.loginID = profile.login_id
             legacyUser?.email = profile.primary_email
             legacyUser?.calendar = profile.calendar?.ics

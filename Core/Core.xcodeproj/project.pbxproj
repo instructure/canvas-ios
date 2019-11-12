@@ -485,6 +485,8 @@
 		B107F6CB234BB847000DAC83 /* ItemPickerElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107F6CA234BB847000DAC83 /* ItemPickerElement.swift */; };
 		B10D777021C2E27200BCE822 /* UITableViewCellExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D776F21C2E27200BCE822 /* UITableViewCellExtensions.swift */; };
 		B119B4BD2307208200A74062 /* GetEnabledFeatureFlagsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B119B4BC2307208200A74062 /* GetEnabledFeatureFlagsTests.swift */; };
+		B11AAC3B237A1EB4002BC41F /* APIURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AAC3A237A1EB4002BC41F /* APIURLTests.swift */; };
+		B11AAC3D237A2428002BC41F /* APIURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AAC3C237A2428002BC41F /* APIURL.swift */; };
 		B11D321721E464AB00F37ABF /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11D321621E464AB00F37ABF /* Store.swift */; };
 		B12A763821914059000693DE /* fileupload.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A763721914059000693DE /* fileupload.txt */; };
 		B12A763A2191459F000693DE /* file-post-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A76392191459F000693DE /* file-post-body.txt */; };
@@ -1339,6 +1341,8 @@
 		B107F6CA234BB847000DAC83 /* ItemPickerElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPickerElement.swift; sourceTree = "<group>"; };
 		B10D776F21C2E27200BCE822 /* UITableViewCellExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtensions.swift; sourceTree = "<group>"; };
 		B119B4BC2307208200A74062 /* GetEnabledFeatureFlagsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEnabledFeatureFlagsTests.swift; sourceTree = "<group>"; };
+		B11AAC3A237A1EB4002BC41F /* APIURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIURLTests.swift; sourceTree = "<group>"; };
+		B11AAC3C237A2428002BC41F /* APIURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIURL.swift; sourceTree = "<group>"; };
 		B11D321621E464AB00F37ABF /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		B12A763721914059000693DE /* fileupload.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = fileupload.txt; sourceTree = "<group>"; };
 		B12A76392191459F000693DE /* file-post-body.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "file-post-body.txt"; sourceTree = "<group>"; };
@@ -2356,6 +2360,7 @@
 				9FCD79D52188DE8B0054293A /* APISubmissionRequestableTests.swift */,
 				7D80AC16212B689E00C40ECE /* APITabRequestableTests.swift */,
 				7D80AC1E212B738500C40ECE /* APITests.swift */,
+				B11AAC3A237A1EB4002BC41F /* APIURLTests.swift */,
 				7D80AC14212B67E100C40ECE /* APIUserRequestableTests.swift */,
 				3B3467D52135B99700F9BC2E /* IDTests.swift */,
 				B1EA5AF4212E66B100DABC5F /* Fixtures */,
@@ -2460,6 +2465,7 @@
 				7D80AC0B212B4C6F00C40ECE /* APITab.swift */,
 				7D8262F0212B28FE00BD268D /* APITabRequestable.swift */,
 				7D6C8C6C22EFA0D400E5ADD8 /* APITodo.swift */,
+				B11AAC3C237A2428002BC41F /* APIURL.swift */,
 				7D80AC02212B445200C40ECE /* APIUser.swift */,
 				7D80AC04212B461F00C40ECE /* APIUserRequestable.swift */,
 				3B604398232AAC4E00757B93 /* AssignmentGroupRequestable.swift */,
@@ -3637,6 +3643,7 @@
 				7D2FADBE225BA50A00BCE19E /* RichContentEditorViewController.swift in Sources */,
 				B1BEB2CB22458B5E00E893A4 /* MDMManager.swift in Sources */,
 				3B3467D821360A7C00F9BC2E /* APILoginWebRequestable.swift in Sources */,
+				B11AAC3D237A2428002BC41F /* APIURL.swift in Sources */,
 				7DBED02323317E0F00392F3C /* ExternalToolLaunchPlacement.swift in Sources */,
 				7D80AC21212B89C500C40ECE /* APIAccountRequestable.swift in Sources */,
 				7D005F772239CCEF0040CBD7 /* AvatarView.swift in Sources */,
@@ -3860,6 +3867,7 @@
 				7D08B1D92372084B0075623A /* GetFileTests.swift in Sources */,
 				7D8B78FB215EC9BE005E08F1 /* BrandTests.swift in Sources */,
 				E8997906234F7E0600CA7D9B /* XCTestCaseTests.swift in Sources */,
+				B11AAC3B237A1EB4002BC41F /* APIURLTests.swift in Sources */,
 				B1A464BD225669B50052F8DF /* DispatchExtensionsTests.swift in Sources */,
 				3B158CAF22E153120039A568 /* PersistencyTests.swift in Sources */,
 				3B35F06F230EEE1700674FF5 /* APIPostPolicyInfoTests.swift in Sources */,

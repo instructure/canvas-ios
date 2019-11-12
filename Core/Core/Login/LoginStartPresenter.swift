@@ -59,7 +59,7 @@ class LoginStartPresenter {
                         locale: response.locale ?? response.effective_locale,
                         masquerader: session.masquerader,
                         refreshToken: session.refreshToken,
-                        userAvatarURL: response.avatar_url,
+                        userAvatarURL: response.avatar_url?.rawValue,
                         userID: session.userID,
                         userName: response.short_name,
                         userEmail: response.email,

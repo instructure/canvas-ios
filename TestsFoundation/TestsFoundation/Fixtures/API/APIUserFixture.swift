@@ -39,7 +39,7 @@ extension APIUser {
             sortable_name: sortable_name,
             short_name: short_name,
             login_id: login_id,
-            avatar_url: avatar_url,
+            avatar_url: avatar_url.flatMap(APIURL.make(rawValue:)),
             enrollments: enrollments,
             email: email,
             locale: locale,
@@ -81,7 +81,7 @@ extension APIProfile {
             name: name,
             primary_email: primary_email,
             login_id: login_id,
-            avatar_url: avatar_url,
+            avatar_url: avatar_url.flatMap(APIURL.make(rawValue:)),
             calendar: calendar
         )
     }
