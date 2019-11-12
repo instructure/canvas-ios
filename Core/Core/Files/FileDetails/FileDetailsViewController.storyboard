@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--File Details View Controller-->
+        <scene sceneID="Ylp-Hc-8Jq">
+            <objects>
+                <viewController storyboardIdentifier="FileDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ETJ-6C-5gn" customClass="FileDetailsViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gmk-7b-oRC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zL8-8t-qkP">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UNl-BQ-NzC">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="2"/>
+                            </progressView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Lgc-OH-96D">
+                                <rect key="frame" x="169" y="268.5" width="37" height="37"/>
+                            </activityIndicatorView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="7rB-rn-nKm">
+                                <rect key="frame" x="0.0" y="66.5" width="375" height="441"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zta-Lt-JLk">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Zta-Lt-JLk" secondAttribute="height" id="ViI-kr-7t3"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sF5-0i-tYn" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="77.5" y="391" width="220" height="50"/>
+                                        <inset key="contentEdgeInsets" minX="54" minY="16" maxX="54" maxY="16"/>
+                                        <state key="normal" title="Augment Reality"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="buttonPrimaryBackground"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="buttonPrimaryText"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="openQLPreview" destination="ETJ-6C-5gn" eventType="primaryActionTriggered" id="std-1N-A5l"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="tJy-aH-HV0">
+                                <rect key="frame" x="16" y="210" width="343" height="154.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lJs-Vl-I7M" customClass="IconView" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="135.5" y="0.0" width="72" height="72"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="72" id="TFg-HI-iPC"/>
+                                            <constraint firstAttribute="height" constant="72" id="gll-Bc-w66"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="lockSolid"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="primary"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="This content is locked." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l1Y-Z0-88i" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="85.5" y="88" width="172" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsZ-Ct-o3R" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="123.5" y="124.5" width="96" height="30"/>
+                                        <state key="normal" title="View Modules"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="linkColor"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="viewModules" destination="ETJ-6C-5gn" eventType="primaryActionTriggered" id="3tz-Wn-2m1"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="UNl-BQ-NzC" firstAttribute="leading" secondItem="ykC-3m-OWR" secondAttribute="leading" id="1Jo-Iz-y51"/>
+                            <constraint firstItem="tJy-aH-HV0" firstAttribute="centerY" secondItem="gmk-7b-oRC" secondAttribute="centerY" id="228-oS-nt0"/>
+                            <constraint firstItem="ykC-3m-OWR" firstAttribute="bottom" secondItem="zL8-8t-qkP" secondAttribute="bottom" id="3mv-3k-3h3"/>
+                            <constraint firstItem="Zta-Lt-JLk" firstAttribute="leading" secondItem="ykC-3m-OWR" secondAttribute="leading" id="4i1-kH-MD1"/>
+                            <constraint firstItem="7rB-rn-nKm" firstAttribute="leading" secondItem="ykC-3m-OWR" secondAttribute="leading" id="7r9-Oa-t4r"/>
+                            <constraint firstItem="Lgc-OH-96D" firstAttribute="centerX" secondItem="ykC-3m-OWR" secondAttribute="centerX" id="Cn7-pN-9bu"/>
+                            <constraint firstItem="zL8-8t-qkP" firstAttribute="top" secondItem="ykC-3m-OWR" secondAttribute="top" id="EES-Bn-ZVK"/>
+                            <constraint firstItem="7rB-rn-nKm" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ykC-3m-OWR" secondAttribute="top" constant="16" id="FNU-kr-FPv"/>
+                            <constraint firstItem="Lgc-OH-96D" firstAttribute="centerY" secondItem="ykC-3m-OWR" secondAttribute="centerY" id="I10-56-416"/>
+                            <constraint firstItem="ykC-3m-OWR" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sF5-0i-tYn" secondAttribute="trailing" constant="16" id="JXz-rD-PLr"/>
+                            <constraint firstItem="ykC-3m-OWR" firstAttribute="trailing" secondItem="tJy-aH-HV0" secondAttribute="trailing" constant="16" id="KK4-wu-0rw"/>
+                            <constraint firstItem="ykC-3m-OWR" firstAttribute="trailing" secondItem="zL8-8t-qkP" secondAttribute="trailing" id="M6Q-KE-kAH"/>
+                            <constraint firstItem="ykC-3m-OWR" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7rB-rn-nKm" secondAttribute="bottom" constant="16" id="MoG-kw-PHO"/>
+                            <constraint firstItem="ykC-3m-OWR" firstAttribute="trailing" secondItem="Zta-Lt-JLk" secondAttribute="trailing" id="P3j-Tn-toC"/>
+                            <constraint firstItem="sF5-0i-tYn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ykC-3m-OWR" secondAttribute="leading" constant="16" id="QIu-gH-aNg"/>
+                            <constraint firstItem="UNl-BQ-NzC" firstAttribute="top" secondItem="ykC-3m-OWR" secondAttribute="top" id="V5j-Eb-xTR"/>
+                            <constraint firstItem="7rB-rn-nKm" firstAttribute="centerY" secondItem="gmk-7b-oRC" secondAttribute="centerY" id="d38-em-2r6"/>
+                            <constraint firstItem="tJy-aH-HV0" firstAttribute="leading" secondItem="ykC-3m-OWR" secondAttribute="leading" constant="16" id="dWz-un-VLR"/>
+                            <constraint firstItem="zL8-8t-qkP" firstAttribute="leading" secondItem="ykC-3m-OWR" secondAttribute="leading" id="ePN-1A-k3i"/>
+                            <constraint firstItem="ykC-3m-OWR" firstAttribute="trailing" secondItem="7rB-rn-nKm" secondAttribute="trailing" id="rJZ-o4-38r"/>
+                            <constraint firstItem="ykC-3m-OWR" firstAttribute="trailing" secondItem="UNl-BQ-NzC" secondAttribute="trailing" id="sBq-Y7-hmE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ykC-3m-OWR"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <connections>
+                        <outlet property="activityView" destination="Lgc-OH-96D" id="yrU-yZ-UPu"/>
+                        <outlet property="arButton" destination="sF5-0i-tYn" id="fOO-8K-jYb"/>
+                        <outlet property="arImageView" destination="Zta-Lt-JLk" id="ThM-rs-Mm2"/>
+                        <outlet property="contentView" destination="zL8-8t-qkP" id="FI6-s4-NAX"/>
+                        <outlet property="lockLabel" destination="l1Y-Z0-88i" id="YJf-Pc-T5z"/>
+                        <outlet property="lockView" destination="tJy-aH-HV0" id="oFj-ey-Ui3"/>
+                        <outlet property="progressView" destination="UNl-BQ-NzC" id="RkV-rW-hjQ"/>
+                        <outlet property="viewModulesButton" destination="bsZ-Ct-o3R" id="vfr-SM-eiq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rrp-hq-5Rz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-248" y="64"/>
+        </scene>
+    </scenes>
+</document>

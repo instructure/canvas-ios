@@ -71,8 +71,6 @@
 		4927060F1CF4B79B00C631C6 /* InsetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706001CF4B79B00C631C6 /* InsetTableViewCell.m */; };
 		492706931CF4B88600C631C6 /* FileViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706841CF4B88600C631C6 /* FileViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492706941CF4B88600C631C6 /* FileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706851CF4B88600C631C6 /* FileViewController.m */; };
-		492706971CF4B88600C631C6 /* NoPreviewAvailableController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706881CF4B88600C631C6 /* NoPreviewAvailableController.h */; };
-		492706981CF4B88600C631C6 /* NoPreviewAvailableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706891CF4B88600C631C6 /* NoPreviewAvailableController.m */; };
 		492706A11CF4B93F00C631C6 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492706A01CF4B93F00C631C6 /* RootViewController.swift */; };
 		492706A91CF4B98900C631C6 /* iCanvasConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706A51CF4B98900C631C6 /* iCanvasConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492706AA1CF4B98900C631C6 /* iCanvasConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706A61CF4B98900C631C6 /* iCanvasConstants.m */; };
@@ -706,8 +704,6 @@
 		492706001CF4B79B00C631C6 /* InsetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsetTableViewCell.m; sourceTree = "<group>"; };
 		492706841CF4B88600C631C6 /* FileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewController.h; sourceTree = "<group>"; };
 		492706851CF4B88600C631C6 /* FileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FileViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		492706881CF4B88600C631C6 /* NoPreviewAvailableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPreviewAvailableController.h; sourceTree = "<group>"; };
-		492706891CF4B88600C631C6 /* NoPreviewAvailableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoPreviewAvailableController.m; sourceTree = "<group>"; };
 		492706A01CF4B93F00C631C6 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		492706A51CF4B98900C631C6 /* iCanvasConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCanvasConstants.h; sourceTree = "<group>"; };
 		492706A61CF4B98900C631C6 /* iCanvasConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCanvasConstants.m; sourceTree = "<group>"; };
@@ -1791,8 +1787,6 @@
 			children = (
 				492706841CF4B88600C631C6 /* FileViewController.h */,
 				492706851CF4B88600C631C6 /* FileViewController.m */,
-				492706881CF4B88600C631C6 /* NoPreviewAvailableController.h */,
-				492706891CF4B88600C631C6 /* NoPreviewAvailableController.m */,
 			);
 			path = "Files and Folders";
 			sourceTree = "<group>";
@@ -3139,7 +3133,6 @@
 				492705B41CF4B73200C631C6 /* NSArray_in_additions.h in Headers */,
 				49CE97781F900B4700121A43 /* NSObject+RACCollectionChanges.h in Headers */,
 				49CE97681F900B4700121A43 /* MLVCViewController.h in Headers */,
-				492706971CF4B88600C631C6 /* NoPreviewAvailableController.h in Headers */,
 				492705F01CF4B76A00C631C6 /* CBIColorfulCell.h in Headers */,
 				2C7041AE203CDDB700745253 /* UIAlertController+TechDebt.h in Headers */,
 				7D91D65C23217FA000C2F585 /* Routing.h in Headers */,
@@ -4013,7 +4006,6 @@
 				492706AA1CF4B98900C631C6 /* iCanvasConstants.m in Sources */,
 				492705CF1CF4B73300C631C6 /* UIView+Circular.m in Sources */,
 				492705BD1CF4B73200C631C6 /* UIFont+Canvas.m in Sources */,
-				492706981CF4B88600C631C6 /* NoPreviewAvailableController.m in Sources */,
 				49CE97761F900B4700121A43 /* MLVCViewController.m in Sources */,
 				7D91D660232180FE00C2F585 /* Routing.m in Sources */,
 				492705D31CF4B73300C631C6 /* UIView+FloatingView.m in Sources */,

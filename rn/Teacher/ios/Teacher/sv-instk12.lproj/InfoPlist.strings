@@ -2,16 +2,16 @@
 "CFBundleDisplayName" = "Lärare";
 
 /* Privacy - Camera Usage Description */
-"NSCameraUsageDescription" = "Bifoga foton och videoklipp till inlämningskommentarer.";
+"NSCameraUsageDescription" = "Bifoga foton och videor till inlämningskommentarer.";
 
 /* Privacy - Location When In Use Usage Description */
 "NSLocationWhenInUseUsageDescription" = "";
 
 /* Privacy - Microphone Usage Description */
-"NSMicrophoneUsageDescription" = "Anslut ljudinspelningar till inlämningskommentarer.";
+"NSMicrophoneUsageDescription" = "Bifoga ljudinspelningar till inlämningskommentarer.";
 
 /* Privacy - Photo Library Additions Usage Description */
-"NSPhotoLibraryAddUsageDescription" = "Bifoga foton och videoklipp till inlämningskommentarer.";
+"NSPhotoLibraryAddUsageDescription" = "Bifoga foton och videor till inlämningskommentarer.";
 
 /* Privacy - Photo Library Usage Description */
 "NSPhotoLibraryUsageDescription" = "Ladda upp innehåll till kurser.";

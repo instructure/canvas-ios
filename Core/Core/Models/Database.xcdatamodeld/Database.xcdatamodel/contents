@@ -512,7 +512,7 @@
         <element name="HelpLink" positionX="-540" positionY="-27" width="128" height="135"/>
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
         <element name="MediaComment" positionX="-369" positionY="-18" width="128" height="135"/>
-        <element name="Module" positionX="-369" positionY="-18" width="128" height="135"/>
+        <element name="Module" positionX="-369" positionY="-18" width="128" height="133"/>
         <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="225"/>
         <element name="NotificationCategory" positionX="-522" positionY="0" width="128" height="103"/>
         <element name="Page" positionX="-549" positionY="-27" width="128" height="193"/>

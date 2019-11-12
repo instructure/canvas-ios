@@ -62,10 +62,11 @@ class CollapsableIndicator: UIControl {
     }
 }
 
-class ModuleSectionHeaderView: UIView {
+class ModuleSectionHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var publishedIconView: PublishedIconView!
     @IBOutlet weak var collapsableIndicator: CollapsableIndicator!
+    @IBOutlet weak var tapGestureRecognizer: UITapGestureRecognizer!
 
     var title: String? {
         get { return titleLabel.text }
@@ -79,8 +80,8 @@ class ModuleSectionHeaderView: UIView {
 
     var onTap: (() -> Void)?
 
-    init() {
-        super.init(frame: .zero)
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         loadFromXib().backgroundColor = .named(.backgroundLightest)
     }
 

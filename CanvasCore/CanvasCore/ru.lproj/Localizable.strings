@@ -34,9 +34,6 @@
 /* option to view results for all grading periods */
 "All Grading Periods" = "Все академические периоды";
 
-/* all pages segmented control title */
-"All Pages" = "Все страницы";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Разрешенные попытки";
 
@@ -200,9 +197,6 @@
 
 /* State of the flagged question */
 "Flagged" = "Помеченный";
-
-/* front page segmented control title */
-"Front Page" = "Первая страница";
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Получить оценки за";

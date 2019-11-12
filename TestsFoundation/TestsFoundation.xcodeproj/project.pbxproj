@@ -71,6 +71,7 @@
 		9F6878B322396A7900E559CE /* APIMediaCommentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6878B222396A7900E559CE /* APIMediaCommentFixture.swift */; };
 		9F6878B52239701F00E559CE /* MediaCommentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6878B42239701F00E559CE /* MediaCommentFixture.swift */; };
 		B119B4BF230720FF00A74062 /* FeatureFlagFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B119B4BE230720FF00A74062 /* FeatureFlagFixture.swift */; };
+		B11AAC372379E6C3002BC41F /* URLResponseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AAC362379E6C3002BC41F /* URLResponseExtensions.swift */; };
 		B141ABE4231EE16F00E73D84 /* APIOAuthTokenFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B141ABE3231EE16F00E73D84 /* APIOAuthTokenFixture.swift */; };
 		B150C6362298D67E0096D58C /* ExternalToolFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B150C6352298D67E0096D58C /* ExternalToolFixture.swift */; };
 		B150C6382298D6F20096D58C /* APIExternalToolFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B150C6372298D6F20096D58C /* APIExternalToolFixture.swift */; };
@@ -167,6 +168,7 @@
 		9F6878B222396A7900E559CE /* APIMediaCommentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMediaCommentFixture.swift; sourceTree = "<group>"; };
 		9F6878B42239701F00E559CE /* MediaCommentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCommentFixture.swift; sourceTree = "<group>"; };
 		B119B4BE230720FF00A74062 /* FeatureFlagFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagFixture.swift; sourceTree = "<group>"; };
+		B11AAC362379E6C3002BC41F /* URLResponseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLResponseExtensions.swift; sourceTree = "<group>"; };
 		B141ABE3231EE16F00E73D84 /* APIOAuthTokenFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOAuthTokenFixture.swift; sourceTree = "<group>"; };
 		B150C6352298D67E0096D58C /* ExternalToolFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalToolFixture.swift; sourceTree = "<group>"; };
 		B150C6372298D6F20096D58C /* APIExternalToolFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIExternalToolFixture.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 				7DAC287F22B1A3F900C0B692 /* XCUIApplicationExtensions.swift */,
 				E8BE4F5B233E73E100DC399A /* XCUIElementQueryExtensions.swift */,
 				E818EF20234652A20035613A /* XCTestCaseExtensions.swift */,
+				B11AAC362379E6C3002BC41F /* URLResponseExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 				B16F0371215BD5F10011E952 /* TestRouter.swift in Sources */,
 				B1E789B821B1B06F0087FE4A /* TestLogger.swift in Sources */,
 				7DAC288622B1AE1700C0B692 /* ElementWrapper.swift in Sources */,
+				B11AAC372379E6C3002BC41F /* URLResponseExtensions.swift in Sources */,
 				B150C6362298D67E0096D58C /* ExternalToolFixture.swift in Sources */,
 				7DBED034233409D900392F3C /* TestLoginDelegate.swift in Sources */,
 				7DAC288022B1A3F900C0B692 /* XCUIApplicationExtensions.swift in Sources */,

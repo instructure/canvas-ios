@@ -34,9 +34,6 @@
 /* option to view results for all grading periods */
 "All Grading Periods" = "Tout Peryòd Klasman";
 
-/* all pages segmented control title */
-"All Pages" = "Tout Paj";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Tantativ Otorize";
 
@@ -200,9 +197,6 @@
 
 /* State of the flagged question */
 "Flagged" = "Siyale";
-
-/* front page segmented control title */
-"Front Page" = "Premye Paj";
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Jwenn Nòt pou";
