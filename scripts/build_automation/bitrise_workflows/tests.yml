@@ -218,7 +218,7 @@ workflows:
         - runner: "/bin/zsh"
         - file_path: scripts/build_automation/set-mtime.sh
     - script:
-        title: brew tap
+        title: Homebrew
         run_if: .IsCI
         inputs:
         - content: |-
@@ -227,12 +227,8 @@ workflows:
 
             brew tap mxcl/made
             brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
-    - brew-install:
-        title: brew install
-        run_if: .IsCI
-        inputs:
-        - upgrade: 'yes'
-        - packages: awscli swiftlint jq xcbeautify mxcl/made/swift-sh
+            brew install awscli swiftlint jq xcbeautify mxcl/made/swift-sh
+            brew install Caskroom/cask/soundflower
     - carthage:
         inputs:
         - carthage_options: "--platform ios"
