@@ -1,29 +1,8 @@
 {
   "ignorePatterns": [
-    "AppDelegate",
-    "Cell.\\w+$",
-    "Controller.\\w+$",
-    "Transitioning.\\w+$",
-    "View.\\w+$",
-    "Window.\\w+$",
-    "TabBar.\\w+$",
-    "\\/Views\\/",
-    "CanvasCore\/",
-    "CanvasKit1\/",
-    "Core\/ShareExtension\/",
-    "Core\/Use Cases\/SubmitFileSubmission",
-    "Frameworks\/",
-    "OperationQueueExtensions.swift",
-    "Parent\/",
-    "Pods\\/",
-    "Student\/Canvas\/",
-    "Student\/Courses\/CourseList\/",
-    "Student\/Dashboard\/",
-    "Student\/GradesWidget\/",
-    "TechDebt\/",
-    "UITestHelpers\/",
-    "rn/Teacher\/src\/modules\/graphql-speed-grader\/",
-    "SubmissionButtonPresenter.swift"
+    "Frameworks/",
+    "Parent/",
+    "Pods/"
   ],
   "fileMinCoverage": 0.5,
   "totalMinCoverage": 0.9
