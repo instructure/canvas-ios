@@ -32,7 +32,7 @@ public class TestEnvironment: AppEnvironment {
         self.router = TestRouter()
         self.logger = TestLogger()
         self.currentSession = LoginSession.make()
-        self.userDefaults = SessionDefaults(sessionID: self.currentSession.uniqueID)
+        self.userDefaults = SessionDefaults(sessionID: self.currentSession! .uniqueID)
     }
 
     override public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler) -> Store<U> where U: UseCase {
