@@ -183,7 +183,11 @@ function untestedFiles () {
 }
 
 commitMessage()
-checkCoverage()
+if (process.env.BITRISE_BUILD_STATUS == "0" /* Not finished */) {
+    checkCoverage()
+} else {
+    warn('Build failed, skipping coverage check')
+}
 packages()
 licenseHeaders()
 untestedFiles()

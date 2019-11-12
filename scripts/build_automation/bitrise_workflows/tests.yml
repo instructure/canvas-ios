@@ -181,6 +181,7 @@ workflows:
     - yarn:
         title: yarn danger ci
         run_if: .IsCI
+        is_always_run: true
         inputs:
         - command: danger ci
     - deploy-to-bitrise-io: {}
@@ -299,11 +300,6 @@ workflows:
                 jq -ac | gzip |
                 curl -q -X POST -H "Content-Type: text/plain" -H "Content-Encoding: gzip" --data-binary @- "$SUMO_ENDPOINT_URL"
         is_always_run: true
-    - yarn:
-        title: yarn danger ci
-        run_if: .IsCI
-        inputs:
-        - command: danger ci
     - deploy-to-bitrise-io: {}
     - slack:
         inputs:
