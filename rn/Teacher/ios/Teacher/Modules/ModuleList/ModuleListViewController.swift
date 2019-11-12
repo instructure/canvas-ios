@@ -143,11 +143,8 @@ class ModuleListViewController: UIViewController, ErrorViewController, ColoredNa
 
     func scrollToModule() {
         if let moduleID = moduleID, let section = store.sectionForModule(moduleID) {
-            let indexPath = IndexPath(item: 0, section: section)
-            if tableView.numberOfRows(inSection: section) > 0 {
-                self.moduleID = nil
-                tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-            }
+            let rect = tableView.rect(forSection: section)
+            tableView.setContentOffset(CGPoint(x: 0, y: rect.minY), animated: true)
         }
     }
 }
@@ -239,6 +236,10 @@ extension ModuleListViewController: UITableViewDelegate {
                 env.router.route(to: url, from: self, options: [.detail])
             }
         }
+    }
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        moduleID = nil // stop auto scrolling
     }
 }
 

@@ -35,15 +35,6 @@ class ModuleListViewControllerTests: TeacherTestCase {
         UIView.setAnimationsEnabled(false)
     }
 
-    func waitForSave() {
-        let expectation = XCTestExpectation(description: "context did save")
-        let token = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: databaseClient, queue: OperationQueue.main) { _ in
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 1)
-        NotificationCenter.default.removeObserver(token)
-    }
-
     func moduleItemCell(at indexPath: IndexPath) -> ModuleItemCell {
         return viewController.tableView.cellForRow(at: indexPath) as! ModuleItemCell
     }
