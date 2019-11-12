@@ -27,11 +27,11 @@ public struct APIURL: Codable, Equatable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        let string = try container.decode(String.self)
-        if let url = URL(string: string) {
+        if let url = try? container.decode(URL.self) {
             rawValue = url
             return
         }
+        let string = try container.decode(String.self)
         if let safe = string.addingPercentEncoding(withAllowedCharacters: .urlSafe), let url = URL(string: safe) {
             rawValue = url
             return
