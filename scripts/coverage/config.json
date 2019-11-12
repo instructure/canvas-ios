@@ -1,8 +1,5 @@
 {
   "ignorePatterns": [
-    "Frameworks/",
-    "Parent/",
-    "Pods/"
   ],
   "fileMinCoverage": 0.5,
   "totalMinCoverage": 0.9
