@@ -45,12 +45,12 @@ struct PostErrorReportRequest: APIRequestable {
     let path = "error_reports"
     let body: Body?
 
-    init(error: NSError? = nil, email: String? = nil, subject: String, impact: Int, comments: String = "", env: AppEnvironment = .shared) {
+    init(error: NSError? = nil, email: String? = nil, subject: String, impact: Int, comments: String = "") {
         var comments = comments + "\n\n\n-----------------------------------"
         var email = email
         var http_env: [String: String] = [:]
         var subject = subject
-        if let session = env.currentSession {
+        if let session = AppEnvironment.shared.currentSession {
             email = email ?? session.userEmail
             subject = "\(subject) [\(session.baseURL.absoluteString)]"
             if Locale.current.regionCode != "CA" {
@@ -92,7 +92,7 @@ struct PostErrorReportRequest: APIRequestable {
             http_env: http_env,
             message: error?.localizedFailureReason ?? error?.localizedDescription,
             subject: subject,
-            url: env.currentSession?.baseURL,
+            url: AppEnvironment.shared.currentSession?.baseURL,
             user_perceived_severity: impact >= 0 && impact < Severity.allCases.count
                 ? Severity.allCases[impact]
                 : .just_a_comment

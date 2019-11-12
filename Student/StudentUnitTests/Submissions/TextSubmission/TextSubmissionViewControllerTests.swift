@@ -21,7 +21,7 @@ import XCTest
 @testable import Student
 import TestsFoundation
 
-class TextSubmissionViewControllerTests: PersistenceTestCase {
+class TextSubmissionViewControllerTests: StudentTestCase {
     var controller: TextSubmissionViewController!
     var navigation: UINavigationController!
 

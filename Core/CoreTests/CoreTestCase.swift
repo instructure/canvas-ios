@@ -30,10 +30,11 @@ class CoreTestCase: XCTestCase {
         return database.viewContext
     }
     var api = MockURLSession.self
-    var router = TestRouter()
-    var logger = TestLogger()
+    var router: TestRouter!
+    var logger: TestLogger!
+
     var environment = TestEnvironment()
-    var currentSession = LoginSession.make()
+    var currentSession: LoginSession!
     var login = TestLoginDelegate()
 
     let notificationCenter = MockUserNotificationCenter()
@@ -48,25 +49,14 @@ class CoreTestCase: XCTestCase {
         super.setUp()
         MockURLSession.reset()
         LoginSession.useTestKeychain()
-        router = TestRouter()
-        logger = TestLogger()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
         environment = TestEnvironment()
-        environment.api = URLSessionAPI(urlSession: MockURLSession())
-        environment.globalDatabase = database
-        environment.database = database
-        environment.router = router
+        router = environment.router as? TestRouter
+        logger = environment.logger as? TestLogger
+        currentSession = environment.currentSession
         environment.loginDelegate = login
-        environment.logger = logger
-        environment.currentSession = currentSession
-        AppEnvironment.shared.api = environment.api
-        AppEnvironment.shared.globalDatabase = environment.globalDatabase
-        AppEnvironment.shared.database = environment.database
-        AppEnvironment.shared.router = environment.router
-        AppEnvironment.shared.loginDelegate = environment.loginDelegate
-        AppEnvironment.shared.logger = environment.logger
-        AppEnvironment.shared.currentSession = environment.currentSession
-        LoginSession.add(currentSession)
+        AppEnvironment.shared = environment
+        LoginSession.add(environment.currentSession!)
         notificationManager = NotificationManager(notificationCenter: notificationCenter, logger: logger)
         UploadManager.shared = MockUploadManager()
         MockUploadManager.reset()

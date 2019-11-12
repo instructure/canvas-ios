@@ -21,7 +21,7 @@ import Core
 @testable import Student
 import TestsFoundation
 
-class GroupNavigationPresenterTests: PersistenceTestCase {
+class GroupNavigationPresenterTests: StudentTestCase {
 
     var resultingColor: UIColor?
     var resultingTitle = ""

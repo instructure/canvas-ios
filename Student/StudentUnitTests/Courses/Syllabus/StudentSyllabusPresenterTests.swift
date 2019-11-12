@@ -21,7 +21,7 @@ import Core
 @testable import Student
 import TestsFoundation
 
-class StudentSyllabusPresenterTests: PersistenceTestCase {
+class StudentSyllabusPresenterTests: StudentTestCase {
 
     var presenter: StudentSyllabusPresenter!
     var resultingError: NSError?

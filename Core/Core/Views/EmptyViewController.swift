@@ -27,8 +27,9 @@ public class EmptyViewController: UIViewController {
     }
 
     func addLogo() {
-        let image = UIImage(named: "EmptyViewControllerLogo", in: .core, compatibleWith: nil)
+        let image = UIImage.icon(.instructure)
         let logoImageView = UIImageView(image: image)
+        logoImageView.tintColor = UIColor.lightGray.ensureContrast(against: UIColor.white)
 
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(logoImageView)

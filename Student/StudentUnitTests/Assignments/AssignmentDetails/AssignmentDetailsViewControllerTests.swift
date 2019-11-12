@@ -22,7 +22,7 @@ import XCTest
 @testable import TestsFoundation
 import Core
 
-class AssignmentDetailsViewControllerTests: PersistenceTestCase {
+class AssignmentDetailsViewControllerTests: StudentTestCase {
     var courseID = "1"
     var assignmentID = "1"
     var viewController: AssignmentDetailsViewController!

@@ -27,16 +27,9 @@ class LoginWebViewController: UIViewController, LoginWebViewProtocol {
     }()
 
     var presenter: LoginWebPresenter?
-    var env: AppEnvironment!
 
-    static func create(env: AppEnvironment = .shared,
-                       authenticationProvider: String? = nil,
-                       host: String,
-                       mdmLogin: MDMLogin? = nil,
-                       loginDelegate: LoginDelegate?,
-                       method: AuthenticationMethod) -> LoginWebViewController {
+    static func create(authenticationProvider: String? = nil, host: String, mdmLogin: MDMLogin? = nil, loginDelegate: LoginDelegate?, method: AuthenticationMethod) -> LoginWebViewController {
         let controller = LoginWebViewController()
-        controller.env = env
         controller.title = host
         controller.presenter = LoginWebPresenter(
             authenticationProvider: authenticationProvider,
@@ -114,7 +107,7 @@ extension LoginWebViewController: WKNavigationDelegate {
                     completionHandler(.useCredential, credential)
                 }
             })
-            self.env.router.show(alert, from: self, options: [.modal])
+            AppEnvironment.shared.router.show(alert, from: self, options: [.modal])
         }
     }
 }

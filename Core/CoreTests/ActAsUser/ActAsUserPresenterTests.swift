@@ -39,7 +39,7 @@ class ActAsUserPresenterTests: CoreTestCase, LoginDelegate {
     }
 
     lazy var presenter: ActAsUserPresenter = {
-        let presenter = ActAsUserPresenter(env: environment, loginDelegate: self)
+        let presenter = ActAsUserPresenter(loginDelegate: self)
         return presenter
     }()
 
@@ -51,7 +51,6 @@ class ActAsUserPresenterTests: CoreTestCase, LoginDelegate {
     }
 
     func testDidSubmitExtra() {
-        environment.mockStore = false
         MockURLSession.mock(GetUserRequest(userID: "1"), value: APIUser.make(), baseURL: URL(string: "http://cgnu.online")!, accessToken: presenter.env.currentSession?.accessToken)
         presenter.didSubmit(domain: "http://cgnu.online/extra", userID: "1") { _ in }
         wait(for: [onLogin], timeout: 1)

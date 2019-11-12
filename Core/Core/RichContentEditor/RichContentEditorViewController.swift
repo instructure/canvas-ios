@@ -31,7 +31,7 @@ public class RichContentEditorViewController: UIViewController {
 
     let batchID = UUID.string
     public weak var delegate: RichContentEditorDelegate?
-    var env: AppEnvironment!
+    var env = AppEnvironment.shared
     public var placeholder: String = "" {
         didSet {
             webView.evaluateJavaScript("content.setAttribute('placeholder', \(CoreWebView.jsString(placeholder)))")
@@ -47,9 +47,8 @@ public class RichContentEditorViewController: UIViewController {
 
     lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: context)) {}
 
-    public static func create(env: AppEnvironment = .shared, context: Context, uploadTo uploadContext: FileUploadContext) -> RichContentEditorViewController {
+    public static func create(context: Context, uploadTo uploadContext: FileUploadContext) -> RichContentEditorViewController {
         let controller = RichContentEditorViewController()
-        controller.env = env
         controller.context = context
         controller.uploadContext = uploadContext
         return controller

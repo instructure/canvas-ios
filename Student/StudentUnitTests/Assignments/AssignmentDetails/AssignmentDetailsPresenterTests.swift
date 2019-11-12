@@ -22,7 +22,7 @@ import XCTest
 import SafariServices
 import TestsFoundation
 
-class AssignmentDetailsPresenterTests: PersistenceTestCase {
+class AssignmentDetailsPresenterTests: StudentTestCase {
     var resultingError: NSError?
     var resultingAssignment: Assignment?
     var resultingQuiz: Quiz?

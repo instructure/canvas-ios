@@ -25,7 +25,7 @@ class LoginWebViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        viewController = LoginWebViewController.create(env: environment, host: "mhowe", loginDelegate: nil, method: .normalLogin)
+        viewController = LoginWebViewController.create(host: "mhowe", loginDelegate: nil, method: .normalLogin)
     }
 
     func load() {

@@ -37,7 +37,7 @@ class SubmissionCommentsView: SubmissionCommentsViewProtocol {
     }
 }
 
-class SubmissionCommentsPresenterTests: PersistenceTestCase {
+class SubmissionCommentsPresenterTests: StudentTestCase {
     var presenter: SubmissionCommentsPresenter!
     var view: SubmissionCommentsView!
 
