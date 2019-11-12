@@ -79,8 +79,8 @@ public class MockURLSession: URLSession {
             if paused {
                 return
             }
-            callback?(mock?.data, mock?.response, mock?.error)
             _state = .completed
+            callback?(mock?.data, mock?.response, mock?.error)
         }
 
         public override func cancel() {
