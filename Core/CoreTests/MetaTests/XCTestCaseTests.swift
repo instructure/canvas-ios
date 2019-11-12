@@ -20,6 +20,10 @@ import XCTest
 
 class XCTestCaseTests: XCTestCase {
 
+    func testThatWillFail() {
+        XCTFail("testing bitrise stuff")
+    }
+
     func testDrainMainQueueDrainsNestedAsyncs() {
         for _ in 0..<10 {
             var allNestsCalled = false
