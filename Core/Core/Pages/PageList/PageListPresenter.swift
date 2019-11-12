@@ -103,24 +103,21 @@ class PageListPresenter: PageViewLoggerPresenterProtocol {
             return
         }
 
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: rawCreateData, options: .prettyPrinted)
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-            let apiPage = try decoder.decode(APIPage.self, from: jsonData)
-
-            // if the new page is the front page, find and turn off the old front page
-            if apiPage.front_page {
-                let scope = GetFrontPage(context: context).scope
-                let currentFrontPage: Page? = env.database.viewContext.fetch(scope.predicate, sortDescriptors: nil).first
-                currentFrontPage?.isFrontPage = false
-            }
-
-            Page.save(apiPage, in: env.database.viewContext)
-            try env.database.viewContext.save()
-        } catch {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: rawCreateData, options: .prettyPrinted), let apiPage = try? decoder.decode(APIPage.self, from: jsonData) else {
             return
         }
+
+        // if the new page is the front page, find and turn off the old front page
+        if apiPage.front_page {
+            let scope = GetFrontPage(context: context).scope
+            let currentFrontPage: Page? = env.database.viewContext.fetch(scope.predicate, sortDescriptors: nil).first
+            currentFrontPage?.isFrontPage = false
+        }
+
+        Page.save(apiPage, in: env.database.viewContext)
+        try? env.database.viewContext.save()
     }
 
 }

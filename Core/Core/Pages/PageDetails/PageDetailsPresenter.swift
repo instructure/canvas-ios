@@ -72,30 +72,27 @@ class PageDetailsPresenter {
             return
         }
 
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: rawEditData, options: .prettyPrinted)
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-            let apiPage = try decoder.decode(APIPage.self, from: jsonData)
-
-            // if the front page was changed, ensure only one page has the front page set
-            let frontPageChanged = apiPage.front_page != page?.isFrontPage
-            if frontPageChanged {
-                let scope = GetFrontPage(context: context).scope
-                let currentFrontPage: Page? = env.database.viewContext.fetch(scope.predicate, sortDescriptors: nil).first
-                currentFrontPage?.isFrontPage = false
-            }
-
-            page?.update(from: apiPage)
-            try env.database.viewContext.save()
-
-            pages = self.env.subscribe(GetPage(context: context, url: apiPage.url)) { [weak self] in
-                self?.viewController?.update()
-            }
-            pages.refresh()
-        } catch {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: rawEditData, options: .prettyPrinted), let apiPage = try? decoder.decode(APIPage.self, from: jsonData) else {
             return
         }
+
+        // if the front page was changed, ensure only one page has the front page set
+        let frontPageChanged = apiPage.front_page != page?.isFrontPage
+        if frontPageChanged {
+            let scope = GetFrontPage(context: context).scope
+            let currentFrontPage: Page? = env.database.viewContext.fetch(scope.predicate, sortDescriptors: nil).first
+            currentFrontPage?.isFrontPage = false
+        }
+
+        page?.update(from: apiPage)
+        try? env.database.viewContext.save()
+
+        pages = self.env.subscribe(GetPage(context: context, url: apiPage.url)) { [weak self] in
+            self?.viewController?.update()
+        }
+        pages.refresh()
     }
 
     func deletePage() {
