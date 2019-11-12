@@ -26,12 +26,20 @@ private let decoder = JSONDecoder()
 class APIURLTests: XCTestCase {
     func testCodableValid() throws {
         XCTAssertEqual(
-            try decoder.decode(APIURL.self, from: try encoder.encode("https://canvas.instructure.com")).rawValue,
-            URL(string: "https://canvas.instructure.com")!
+            try decoder.decode(APIURL.self, from: try encoder.encode("s://a.co")),
+            .make(rawValue: URL(string: "s://a.co")!)
         )
         XCTAssertEqual(
-            try decoder.decode(APIURL.self, from: try encoder.encode("https://canvas.instructure.com/a space")).rawValue,
-            URL(string: "https://canvas.instructure.com/a%20space")!
+            try decoder.decode(APIURL.self, from: try encoder.encode("s://a.co/a space")),
+            .make(rawValue: URL(string: "s://a.co/a%20space")!)
+        )
+        XCTAssertEqual(
+            try decoder.decode(APIURL.self, from: try encoder.encode("s://a.co/{}`|\\^")),
+            .make(rawValue: URL(string: "s://a%2Eco/%7B%7D%60%7C%5C%5E")!)
+        )
+        XCTAssertEqual(
+            try decoder.decode(APIURL.self, from: try encoder.encode("s://a.co/~")),
+            .make(rawValue: URL(string: "s://a.co/~")!)
         )
         XCTAssertThrowsError(try decoder.decode(APIURL.self, from: try encoder.encode("")))
         XCTAssertThrowsError(try decoder.decode(APIURL.self, from: try encoder.encode(1)))

@@ -22,7 +22,7 @@ import Foundation
 struct APIUserDisplay: Codable, Equatable {
     let id: ID
     let short_name: String
-    let avatar_image_url: URL?
+    let avatar_image_url: APIURL?
     let html_url: URL
 }
 
@@ -36,7 +36,7 @@ public struct APIUser: Codable, Equatable {
     // let sis_import_id: String?
     // let integration_id: String?
     let login_id: String?
-    let avatar_url: URL?
+    let avatar_url: APIURL?
     let enrollments: [APIEnrollment]?
     let email: String?
     let locale: String?
@@ -68,13 +68,4 @@ public struct APIProfile: Codable, Equatable {
     public let login_id: String?
     public let avatar_url: APIURL?
     public let calendar: APICalendar?
-
-    public init(id: ID, name: String, primary_email: String?, login_id: String?, avatar_url: APIURL?, calendar: APICalendar?) {
-        self.id = id
-        self.name = name
-        self.primary_email = primary_email
-        self.login_id = login_id
-        self.avatar_url = avatar_url
-        self.calendar = calendar
-    }
 }

@@ -29,14 +29,19 @@ public struct APIURL: Codable, Equatable {
         let string = try decoder.singleValueContainer()
             .decode(String.self)
             .replacingOccurrences(of: " ", with: "%20")
-        guard let url = URL(string: string) else {
-            let context = DecodingError.Context(
-                codingPath: decoder.codingPath,
-                debugDescription: "Expected a valid URL"
-            )
-            throw DecodingError.typeMismatch(URL.self, context)
+        if let url = URL(string: string) {
+            rawValue = url
+            return
         }
-        rawValue = url
+        if let safe = string.addingPercentEncoding(withAllowedCharacters: .urlSafe), let url = URL(string: safe) {
+            rawValue = url
+            return
+        }
+        let context = DecodingError.Context(
+            codingPath: decoder.codingPath,
+            debugDescription: "Expected a valid URL"
+        )
+        throw DecodingError.typeMismatch(URL.self, context)
     }
 
     public func encode(to encoder: Encoder) throws {
