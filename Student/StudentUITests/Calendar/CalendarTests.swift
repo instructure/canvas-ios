@@ -32,7 +32,6 @@ enum CalendarElements {
 
 class CalendarTests: CoreUITestCase {
     func testCalendarTodayButton() {
-
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM yyyy"
         let monthYear = formatter.string(from: Date()).uppercased()

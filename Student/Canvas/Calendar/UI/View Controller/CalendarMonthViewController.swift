@@ -245,7 +245,7 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
         refreshButton.accessibilityLabel = NSLocalizedString("Refresh", comment: "Button to refresh the calendar events")
         navigationButtons.append(refreshButton)
 
-        if let todayView = IconTodayView.instantiateFromNib(Date(), tintColor: self.navigationController?.navigationBar.tintColor, target: self, action: #selector(CalendarMonthViewController.todayButtonPressed(_:))) {
+        if let todayView = IconTodayView.instantiateFromNib(Clock.now, tintColor: self.navigationController?.navigationBar.tintColor, target: self, action: #selector(CalendarMonthViewController.todayButtonPressed(_:))) {
             let todayButton = UIBarButtonItem(customView: todayView)
             navigationButtons.append(todayButton)
         }
@@ -263,8 +263,8 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
     fileprivate var eventsDisposable: Disposable?
     
     @objc func updateCalendarEvents() {
-        let startDate = Date() + -365.daysComponents
-        let endDate = Date() + 365.daysComponents
+        let startDate = Clock.now + -365.daysComponents
+        let endDate = Clock.now + 365.daysComponents
 
         refresher = try? CalendarEvent.refresher(session, startDate: startDate, endDate: endDate, contextCodes: selectedContextCodes())
         refresher?.refresh(false)

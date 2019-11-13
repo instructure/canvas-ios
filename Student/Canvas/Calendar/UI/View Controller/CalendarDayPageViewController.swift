@@ -18,6 +18,7 @@
 
 import UIKit
 import CanvasCore
+import Core
 
 public protocol CalendarDayPageViewControllerDelegate {
     func dayPageViewController(_ calendarDayPageViewController: CalendarDayPageViewController, willTransitionToDay day: Date)
@@ -103,7 +104,7 @@ open class CalendarDayPageViewController: UIViewController, UIPageViewController
     }
     
     @objc func transitionToToday() {
-        transitionToDay(Date())
+        transitionToDay(Clock.now)
     }
     
     fileprivate func transitionToDayOffset(_ daysOffset: Int) {

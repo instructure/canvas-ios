@@ -232,6 +232,10 @@ open class CoreUITestCase: XCTestCase {
         send(.setAnimationsEnabled(enabled))
     }
 
+    open func mockNow(_ date: Date) {
+        send(.mockNow(date))
+    }
+
     // MARK: mock (convenience)
 
     open func mockData<R: APIRequestable>(

@@ -18,6 +18,7 @@
 
 import UIKit
 import CanvasCore
+import Core
 
 open class CalendarDayDetailViewController: UIViewController, CalendarDayPageViewControllerDelegate, CalendarWeekPageViewControllerDelegate {
     
@@ -114,7 +115,7 @@ open class CalendarDayDetailViewController: UIViewController, CalendarDayPageVie
     
     @objc func initNavigationItemButtons() {
         var navigationButtons = [UIBarButtonItem]()
-        if let todayView = IconTodayView.instantiateFromNib(Date(), tintColor: self.navigationController?.navigationBar.tintColor, target: self, action: #selector(CalendarDayDetailViewController.todayButtonPressed(_:))) {
+        if let todayView = IconTodayView.instantiateFromNib(Core.Clock.now, tintColor: self.navigationController?.navigationBar.tintColor, target: self, action: #selector(CalendarDayDetailViewController.todayButtonPressed(_:))) {
             todayView.translatesAutoresizingMaskIntoConstraints = true
             todayView.autoresizingMask = UIView.AutoresizingMask()
             let todayButton = UIBarButtonItem(customView: todayView)
@@ -184,7 +185,7 @@ open class CalendarDayDetailViewController: UIViewController, CalendarDayPageVie
     // MARK: - IBActions
     // ---------------------------------------------
     @IBAction open func todayButtonPressed(_ sender: UIBarButtonItem) {
-        let today = Date().startOfDay(calendar)
+        let today = Clock.now.startOfDay(calendar)
         dayPageViewController.transitionToDay(today)
         date = today
         weekPageViewController.setDay(today, animated: true)
