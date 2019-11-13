@@ -200,7 +200,6 @@ export class PageDetails extends Component<Props> {
 
 export default fetchPropsFor(PageDetails, ({ courseID, url }, api) => {
   let pageApi
-  console.log(url)
   if (!url || url === 'front_page') {
     pageApi = api.getFrontPage(courseID)
   } else {
