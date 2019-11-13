@@ -21,13 +21,13 @@ set -euxo pipefail
 
 function setLastChanged {
     # Set time on all files from commit
-    git fetch origin $1
-    git checkout $1
+    git fetch origin $1 || git fetch origin master
+    git checkout -f $1
     TIMESTAMP=$(date -r $(git log -1 --format="%at") +%Y%m%d%H%M.%S)
     find . -exec touch -t $TIMESTAMP {} +
 
     # Set all changed files to now
-    git checkout -
+    git checkout -f -
 }
 
 # try getting timestamp information from the cache
