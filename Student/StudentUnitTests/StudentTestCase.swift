@@ -22,9 +22,9 @@ import TestsFoundation
 import CoreData
 @testable import Student
 
-class PersistenceTestCase: XCTestCase {
+class StudentTestCase: XCTestCase {
     var database: NSPersistentContainer {
-        return TestsFoundation.singleSharedTestDatabase
+        return singleSharedTestDatabase
     }
     var databaseClient: NSManagedObjectContext {
         return database.viewContext
@@ -32,32 +32,23 @@ class PersistenceTestCase: XCTestCase {
 
     var api = MockURLSession.self
     var queue = OperationQueue()
-    var router = TestRouter()
     var env = TestEnvironment()
-    var logger = TestLogger()
+    var logger: TestLogger!
+    var router: TestRouter!
     var uploadManager = MockUploadManager()
-    var currentSession = LoginSession.make()
+    var currentSession: LoginSession!
 
     override func setUp() {
         super.setUp()
         MockURLSession.reset()
         LoginSession.useTestKeychain()
         queue = OperationQueue()
-        router = TestRouter()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
         env = TestEnvironment()
-        env.api = URLSessionAPI()
-        env.database = database
-        env.globalDatabase = database
-        env.router = router
-        env.logger = logger
-        env.currentSession = currentSession
-        AppEnvironment.shared.api = env.api
-        AppEnvironment.shared.database = env.database
-        AppEnvironment.shared.globalDatabase = env.globalDatabase
-        AppEnvironment.shared.router = env.router
-        AppEnvironment.shared.logger = env.logger
-        AppEnvironment.shared.currentSession = env.currentSession
+        router = env.router as? TestRouter
+        logger = env.logger as? TestLogger
+        currentSession = env.currentSession
+        AppEnvironment.shared = env
         UploadManager.shared = uploadManager
         MockUploadManager.reset()
     }

@@ -22,7 +22,7 @@ import XCTest
 @testable import Student
 import TestsFoundation
 
-class PeopleListPresenterTests: PersistenceTestCase {
+class PeopleListPresenterTests: StudentTestCase {
     var presenter: PeopleListPresenter!
 
     var resultingBackgroundColor: UIColor?

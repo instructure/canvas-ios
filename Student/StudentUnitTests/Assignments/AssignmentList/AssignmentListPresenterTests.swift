@@ -21,7 +21,7 @@ import XCTest
 import Core
 import TestsFoundation
 
-class AssignmentListPresenterTests: PersistenceTestCase {
+class AssignmentListPresenterTests: StudentTestCase {
 
     var resultingError: NSError?
     var resultingBaseURL: URL?

@@ -53,6 +53,11 @@ public class TestRouter: RouterProtocol {
         completion?()
     }
 
+    public var popExpectation = XCTestExpectation(description: "pop")
+    public func pop(from: UIViewController) {
+        popExpectation.fulfill()
+    }
+
     public func lastRoutedTo(_ route: Route) -> Bool {
         return lastRoutedTo(route.url)
     }
@@ -76,5 +81,6 @@ public class TestRouter: RouterProtocol {
     public func resetExpectations() {
         routeExpectation = XCTestExpectation(description: "route")
         showExpectation = XCTestExpectation(description: "show")
+        popExpectation = XCTestExpectation(description: "pop")
     }
 }

@@ -20,7 +20,7 @@
 import XCTest
 @testable import Core
 
-class ArcSubmissionPresenterTests: PersistenceTestCase {
+class ArcSubmissionPresenterTests: StudentTestCase {
     class View: UIViewController, ArcSubmissionView {
         var url: URL?
         func load(_ url: URL) {

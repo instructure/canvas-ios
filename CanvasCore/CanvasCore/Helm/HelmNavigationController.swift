@@ -17,6 +17,7 @@
 //
 
 import UIKit
+import Core
 
 public class HelmNavigationController: UINavigationController {
     public init() {

@@ -41,7 +41,6 @@
 		3BC7CEC620113F5B001DFF8C /* CKIClient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7CEC520113F5B001DFF8C /* CKIClient+Extensions.swift */; };
 		3BD3220E2242E2F60036C764 /* SiriShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3220C2242E2F60036C764 /* SiriShortcutManager.swift */; };
 		3BD3220F2242E2F60036C764 /* SiriShortcutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3220D2242E2F60036C764 /* SiriShortcutManager.m */; };
-		3BD43DE91FD20597001A6B34 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */; };
 		3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */; };
 		4902ADBE1FB26E860004837D /* LTIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902ADBD1FB26E860004837D /* LTIViewController.swift */; };
 		490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */; };
@@ -520,7 +519,6 @@
 		3BC7CEC520113F5B001DFF8C /* CKIClient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKIClient+Extensions.swift"; sourceTree = "<group>"; };
 		3BD3220C2242E2F60036C764 /* SiriShortcutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiriShortcutManager.swift; sourceTree = "<group>"; };
 		3BD3220D2242E2F60036C764 /* SiriShortcutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiriShortcutManager.m; sourceTree = "<group>"; };
-		3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
 		4902ADBD1FB26E860004837D /* LTIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIViewController.swift; sourceTree = "<group>"; };
 		490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWebViewController.swift; sourceTree = "<group>"; };
@@ -2043,7 +2041,6 @@
 				497CA76B1F82D18B00501613 /* UITraitEnvironmentExtensions.swift */,
 				497CA76C1F82D18B00501613 /* UIViewControllerRotationExtensions.swift */,
 				497CA76D1F82D18B00501613 /* UIUserInterfaceSizeClassExtensions.swift */,
-				3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */,
 				3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */,
 			);
 			path = Extensions;
@@ -2895,7 +2892,6 @@
 				4961F63E1F8FB71B0093EC86 /* Tab+Collections.swift in Sources */,
 				4961F5431F8FAD9A0093EC86 /* WhizzyWigViewController.swift in Sources */,
 				49CE967D1F8FF41B00121A43 /* NextOrSubmitView.swift in Sources */,
-				3BD43DE91FD20597001A6B34 /* EmptyViewController.swift in Sources */,
 				7D52D87822FCC73100684932 /* SubmissionAPI.swift in Sources */,
 				493020791F902462006BD777 /* ContextID.swift in Sources */,
 				497CA7721F82D19600501613 /* HelmNavigationController.swift in Sources */,

@@ -36,4 +36,14 @@ class APIPageRequestableTests: XCTestCase {
         XCTAssertEqual(GetFrontPageRequest(context: groupContext).path, "groups/42/front_page")
     }
 
+    func testGetPageRequest() {
+        XCTAssertEqual(GetPageRequest(context: courseContext, url: "course-page").path, "courses/42/pages/course-page")
+        XCTAssertEqual(GetPageRequest(context: groupContext, url: "group-page").path, "groups/42/pages/group-page")
+    }
+
+    func testDeletePageRequest() {
+        XCTAssertEqual(DeletePageRequest(context: courseContext, url: "course-page").path, "courses/42/pages/course-page")
+        XCTAssertEqual(DeletePageRequest(context: groupContext, url: "group-page").path, "groups/42/pages/group-page")
+        XCTAssertEqual(DeletePageRequest(context: courseContext, url: "course-page").method, APIMethod.delete)
+    }
 }

@@ -21,7 +21,7 @@ import XCTest
 @testable import Student
 import TestsFoundation
 
-class TextSubmissionViewControllerTests: PersistenceTestCase {
+class TextSubmissionViewControllerTests: StudentTestCase {
     var controller: TextSubmissionViewController!
     var navigation: UINavigationController!
 
@@ -40,6 +40,7 @@ class TextSubmissionViewControllerTests: PersistenceTestCase {
         super.setUp()
         controller = TextSubmissionViewController.create(courseID: "1", assignmentID: "1", userID: "1")
         controller.editor = MockEditor()
+        controller.editor.env = env
         navigation = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
     }

@@ -16,31 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import XCTest
 @testable import Core
 
-extension APIPage {
-    public static func make(
-        body: String? = nil,
-        editing_roles: String? = nil,
-        front_page: Bool = false,
-        html_url: URL = URL(string: "/courses/42/pages/answers-page")!,
-        page_id: ID = ID("42"),
-        published: Bool = false,
-        title: String = "Answers Page",
-        updated_at: Date = Date(),
-        url: String = "answers-page"
-	) -> APIPage {
-        return APIPage(
-            url: url,
-            updated_at: updated_at,
-            front_page: front_page,
-            page_id: page_id,
-            title: title,
-            html_url: html_url,
-            published: published,
-            body: body,
-            editing_roles: editing_roles
-        )
+class GetPageTests: CoreTestCase {
+    let context = ContextModel(.course, id: "1")
+    let pageURL = "page-test"
+
+    func testCacheKey() {
+        XCTAssertEqual(GetPage(context: context, url: pageURL).cacheKey, "get-course_1-page-page-test")
+    }
+
+    func testRequest() {
+        let request = GetPage(context: context, url: pageURL).request
+        XCTAssertEqual(request.context.canvasContextID, context.canvasContextID)
+        XCTAssertEqual(request.url, pageURL)
+    }
+
+    func testScope() {
+        let scope = GetPage(context: context, url: pageURL).scope
+        XCTAssertEqual(scope.predicate, NSPredicate(format: "%K == %@ && %K == %@", #keyPath(Page.contextID), context.canvasContextID, #keyPath(Page.url), pageURL))
     }
 }

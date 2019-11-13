@@ -17,6 +17,7 @@
 //
 
 import UIKit
+import Core
 
 public class EnrollmentSplitViewController: HelmSplitViewController {
 }

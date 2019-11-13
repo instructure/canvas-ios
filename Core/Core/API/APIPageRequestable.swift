@@ -39,3 +39,29 @@ public struct GetFrontPageRequest: APIRequestable {
         return "\(context.pathComponent)/front_page"
     }
 }
+
+// https://canvas.instructure.com/doc/api/pages.html#method.wiki_pages_api.show
+public struct GetPageRequest: APIRequestable {
+    public typealias Response = APIPage
+
+    let context: Context
+    let url: String
+
+    public var path: String {
+        return "\(context.pathComponent)/pages/\(url)"
+    }
+}
+
+// https://canvas.instructure.com/doc/api/pages.html#method.wiki_pages_api.destroy
+public struct DeletePageRequest: APIRequestable {
+    public typealias Response = APIPage
+
+    let context: Context
+    let url: String
+
+    public let method = APIMethod.delete
+
+    public var path: String {
+        return "\(context.pathComponent)/pages/\(url)"
+    }
+}

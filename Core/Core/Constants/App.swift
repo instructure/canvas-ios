@@ -17,30 +17,9 @@
 //
 
 import Foundation
-@testable import Core
 
-extension APIPage {
-    public static func make(
-        body: String? = nil,
-        editing_roles: String? = nil,
-        front_page: Bool = false,
-        html_url: URL = URL(string: "/courses/42/pages/answers-page")!,
-        page_id: ID = ID("42"),
-        published: Bool = false,
-        title: String = "Answers Page",
-        updated_at: Date = Date(),
-        url: String = "answers-page"
-	) -> APIPage {
-        return APIPage(
-            url: url,
-            updated_at: updated_at,
-            front_page: front_page,
-            page_id: page_id,
-            title: title,
-            html_url: html_url,
-            published: published,
-            body: body,
-            editing_roles: editing_roles
-        )
-    }
+public enum App: String {
+    case student
+    case teacher
+    case parent
 }
