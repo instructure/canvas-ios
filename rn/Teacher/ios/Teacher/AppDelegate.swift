@@ -46,11 +46,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if NSClassFromString("XCTestCase") != nil { return true }
         setupCrashlytics()
+        CacheManager.resetAppIfNecessary()
         #if DEBUG
             UITestHelpers.setup(self)
         #endif
-
-        CacheManager.resetAppIfNecessary()
         if hasFirebase {
             FirebaseApp.configure()
         }

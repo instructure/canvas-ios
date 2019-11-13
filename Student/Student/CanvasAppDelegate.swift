@@ -45,12 +45,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     let hasFirebase = FirebaseOptions.defaultOptions()?.apiKey != nil
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        Logger.shared.log()
         setupCrashlytics()
+        CacheManager.resetAppIfNecessary()
         #if DEBUG
             UITestHelpers.setup(self)
         #endif
-        CacheManager.resetAppIfNecessary()
         if hasFirebase {
             FirebaseApp.configure()
         }
