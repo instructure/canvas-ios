@@ -115,7 +115,7 @@ workflows:
     - slack:
         inputs:
         - is_debug_mode: 'no'
-        - channel: "#ios"
+        - channel: "#ios-bots"
         - text: "$RELEASE_NOTES"
         - from_username: Bob the Bitrise Bot
         - color: "#0480e5"

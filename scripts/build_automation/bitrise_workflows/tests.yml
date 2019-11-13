@@ -198,7 +198,7 @@ workflows:
         title: "Send build start message to slack"
         inputs:
         - webhook_url: $SLACK_URL
-        - channel: '#ios'
+        - channel: '#ios-bots'
         - pretext: ""
         - author_name: ""
         - message: ""
@@ -306,7 +306,7 @@ workflows:
         inputs:
         - pretext_on_error: "*Nightly Build Failed!*"
         - webhook_url: "$SLACK_URL"
-        - channel: "#ios"
+        - channel: "#ios-bots"
         - author_name: ''
         - title: ''
         - message: ''
