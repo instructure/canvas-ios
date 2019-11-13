@@ -390,7 +390,7 @@
     <entity name="RubricAssessment" representedClassName="Core.RubricAssessment" syncable="YES">
         <attribute name="comments" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String" defaultValueString="0"/>
-        <attribute name="points" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="pointsRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="ratingID" attributeType="String"/>
         <attribute name="submissionID" attributeType="String" defaultValueString="0"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="rubricAssesmentRaw" inverseEntity="Submission"/>
@@ -520,7 +520,7 @@
         <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="463"/>
         <element name="QuizSubmission" positionX="-540" positionY="-27" width="128" height="240"/>
         <element name="Rubric" positionX="-540" positionY="-27" width="128" height="180"/>
-        <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="135"/>
+        <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="133"/>
         <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="150"/>
         <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="403"/>

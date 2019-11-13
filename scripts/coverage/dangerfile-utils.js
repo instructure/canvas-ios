@@ -17,6 +17,7 @@
 //
 
 exports.checkCoverage = checkCoverage
+exports.reportFailures = reportFailures
 function checkCoverage () {
   const master = require(`./citests/coverage-summary-master.json`)
   const pr = require(`./citests/coverage-summary.json`)
@@ -51,4 +52,25 @@ function coverageMarkdown (pr, master) {
 function percent(num) {
   if (!isFinite(num)) { return '--' }
   return num.toLocaleString('en', { style: 'percent', maximumFractionDigits: 2 })
+}
+
+function reportFailures () {
+  const summary = require('./test-summary.json')
+  const failures = summary.filter( r => r.testStatus == "Failure")
+  markdown(failures.slice(0, 10).map(resultMarkdown).join('\n').trim())
+}
+
+function escape(html) {
+  return html.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+}
+
+function resultMarkdown(result) {
+  const headline = `:x: ${result.identifier}`
+  if (result.message) {
+      return [`<details><summary>${headline}</summary>`,
+              `<pre>${escape(result.message.trim())}</pre>`,
+              `</details>`].join('\n')
+  } else {
+    return headline
+  }
 }
