@@ -32,7 +32,6 @@ enum CalendarElements {
 
 class CalendarTests: CoreUITestCase {
     func testCalendarTodayButton() {
-
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM yyyy"
         let monthYear = formatter.string(from: Date()).uppercased()
@@ -46,5 +45,19 @@ class CalendarTests: CoreUITestCase {
         CalendarElements.todayButton.tap()
         CalendarElements.text(containing: monthYear).waitToExist()
         CalendarElements.text(containing: day).waitToExist()
+    }
+}
+
+class MockedCalendarTests: StudentUITestCase {
+    func testRefreshCalendarEvents() {
+        let now = DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 11, day: 13).date!
+        mockNow(now)
+        mockBaseRequests()
+        mockEncodableRequest("calendar_events?context_codes[]=course_1&end_date=2020-11-12T07:00:00Z&include[]=submission&per_page=99&start_date=2018-11-13T07:00:00Z&type=event", value: [String]())
+        mockEncodableRequest("calendar_events?context_codes[]=course_1&end_date=2020-11-12T07:00:00Z&include[]=submission&per_page=99&start_date=2018-11-13T07:00:00Z&type=assignment", value: [String]())
+        mockEncodableRequest("calendar_events?end_date=2020-11-12T07:00:00Z&include[]=submission&per_page=99&start_date=2018-11-13T07:00:00Z&type=event", value: [String]())
+        logIn()
+        TabBar.calendarTab.tap()
+        XCTAssertTrue(CalendarElements.text(containing: "November 2019").exists)
     }
 }
