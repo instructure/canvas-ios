@@ -19,6 +19,7 @@
 import XCTest
 import TestsFoundation
 @testable import CoreUITests
+@testable import Core
 
 enum CalendarElements {
     static var todayButton: Element {
@@ -30,13 +31,43 @@ enum CalendarElements {
     }
 }
 
-class CalendarTests: CoreUITestCase {
+class CalendarTests: StudentUITestCase {
+    lazy var today = Date(fromISOString: "2007-06-04T12:00:00Z")!
+    lazy var tomorrow = today.addDays(1)
+
+    lazy var event1: APICalendarEvent = APICalendarEvent.make(start_at: today, end_at: today)
+    lazy var event2: APICalendarEvent = APICalendarEvent.make(id: "2", title: "event 2", start_at: tomorrow, end_at: tomorrow)
+
+    override func setUp() {
+        super.setUp()
+        mockNow(today)
+
+        let mockRanges = [
+            ("2006-06-04T12:00:00Z", "2008-06-03T12:00:00Z"),
+            ("2007-06-03T06:00:00Z", "2007-06-05T06:00:00Z"),
+            ("2007-06-04T06:00:00Z", "2007-06-06T06:00:00Z"),
+            ("2007-06-05T06:00:00Z", "2007-06-07T06:00:00Z"),
+            ("2007-06-06T06:00:00Z", "2007-06-08T06:00:00Z"),
+        ]
+        for (start, end) in mockRanges {
+            mockEncodableRequest("calendar_events?context_codes[]=course_1&end_date=\(end)&include[]=submission" +
+                "&per_page=99&start_date=\(start)&type=event", value: [event1, event2])
+            mockEncodableRequest("calendar_events?context_codes[]=course_1&end_date=\(end)&include[]=submission" +
+                "&per_page=99&start_date=\(start)&type=assignment", value: [String]())
+            mockEncodableRequest("calendar_events?end_date=\(end)&include[]=submission" +
+                "&per_page=99&start_date=\(start)&type=event", value: [String]())
+        }
+        mockEncodableRequest("calendar_events/1?per_page=99", value: event1)
+        mockEncodableRequest("calendar_events/2?per_page=99", value: event2)
+    }
+
     func testCalendarTodayButton() {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM yyyy"
-        let monthYear = formatter.string(from: Date()).uppercased()
-        formatter.dateFormat = "d"
-        let day = formatter.string(from: Date())
+        mockBaseRequests()
+        mockNow(today)
+        logIn()
+
+        let monthYear = "JUNE 2007"
+        let day = "4"
 
         TabBar.calendarTab.tap()
         app.swipeDown()
@@ -45,5 +76,46 @@ class CalendarTests: CoreUITestCase {
         CalendarElements.todayButton.tap()
         CalendarElements.text(containing: monthYear).waitToExist()
         CalendarElements.text(containing: day).waitToExist()
+    }
+
+    func testCalendarDayEvents() {
+        mockBaseRequests()
+        mockNow(today)
+        logIn()
+        TabBar.calendarTab.tap()
+        app.find(label: "4th").tap()
+
+        app.find(labelContaining: event1.title).waitToExist()
+        app.find(labelContaining: "Course One").waitToExist()
+
+        app.find(id: "next_day_button").tap()
+        app.find(labelContaining: event1.title).waitToVanish()
+        app.find(labelContaining: event2.title).waitToExist()
+
+        app.find(id: "prev_day_button").tap()
+        app.find(labelContaining: event2.title).waitToVanish()
+        app.find(labelContaining: event1.title).waitToExist()
+
+        app.find(id: "prev_day_button").tap()
+        app.find(labelContaining: event1.title).waitToVanish()
+        app.find(labelContaining: event2.title).waitToVanish()
+
+        app.find(label: "Tue").tap()
+        app.find(labelContaining: event2.title).waitToExist()
+
+        CalendarElements.todayButton.tap()
+        app.find(labelContaining: event1.title).waitToExist()
+
+        app.swipeLeft()
+        app.find(labelContaining: event2.title).waitToExist()
+
+        app.find(labelContaining: event2.title).tap()
+        app.find(label: "6/5/07, 6:00 AM").waitToExist()
+        app.find(label: "Calendar Event").waitToExist()
+        app.find(labelContaining: event2.title).waitToExist()
+        app.find(labelContaining: "Course One").waitToExist()
+
+        NavBar.backButton.tap()
+        app.find(label: "June 5, 2007").waitToExist()
     }
 }
