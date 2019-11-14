@@ -20,21 +20,6 @@
 
 import Foundation
 
-public struct MockDataMessage: Codable {
-    let data: Data?
-    let error: String?
-    let request: URLRequest
-    let response: MockResponse?
-    let noCallback: Bool
-}
-
-public struct MockDownloadMessage: Codable {
-    let data: Data?
-    let error: String?
-    let response: MockResponse?
-    let url: URL
-}
-
 extension URLRequest: Codable {
     enum CodingKeys: String, CodingKey {
         case allHTTPHeaderFields, cachePolicy, httpBody, httpMethod, url
@@ -59,33 +44,47 @@ extension URLRequest: Codable {
     }
 }
 
-public struct MockResponse: Codable {
-    public let http: HTTPURLResponse
+public struct MockHTTPResponse: Codable {
+    public let data: Data?
+    public let http: HTTPURLResponse?
+    public let errorMessage: String?
+    public let noCallback: Bool
+    public var error: Error? { errorMessage.map { NSError.instructureError($0) } }
 
     enum CodingKeys: String, CodingKey {
-        case allHeaderFields, statusCode, url
+        case data, errorMessage, allHeaderFields, statusCode, url, noCallback
     }
 
-    public init(http: HTTPURLResponse) {
+    public init(data: Data? = nil, http: HTTPURLResponse? = nil, errorMessage: String? = nil, noCallback: Bool = false) {
+        self.data = data
         self.http = http
+        self.errorMessage = errorMessage
+        self.noCallback = noCallback
     }
 
     public init(from decoder: Decoder) throws {
         let root = try decoder.container(keyedBy: CodingKeys.self)
+
+        data = try root.decodeIfPresent(Data.self, forKey: .data)
         let allHeaderFields = try root.decodeIfPresent([String: String].self, forKey: .allHeaderFields)
-        let statusCode = try root.decode(Int.self, forKey: .statusCode)
-        let url = try root.decode(URL.self, forKey: .url)
-        guard let response = HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: allHeaderFields) else {
-            throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: root.codingPath, debugDescription: "Could not instantiate an HTTPURLResponse"))
+        if let statusCode = try root.decodeIfPresent(Int.self, forKey: .statusCode),
+           let url = try root.decodeIfPresent(URL.self, forKey: .url) {
+            http = HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: allHeaderFields)
+        } else {
+            http = nil
         }
-        http = response
+        errorMessage = try root.decodeIfPresent(String.self, forKey: .errorMessage)
+        noCallback = try root.decode(Bool.self, forKey: .noCallback)
     }
 
     public func encode(to encoder: Encoder) throws {
         var root = encoder.container(keyedBy: CodingKeys.self)
-        try root.encode(http.allHeaderFields as? [String: String], forKey: .allHeaderFields)
-        try root.encode(http.statusCode, forKey: .statusCode)
-        try root.encode(http.url, forKey: .url)
+        try root.encode(data, forKey: .data)
+        try root.encode(http?.allHeaderFields as? [String: String], forKey: .allHeaderFields)
+        try root.encode(http?.statusCode, forKey: .statusCode)
+        try root.encode(http?.url, forKey: .url)
+        try root.encode(errorMessage, forKey: .errorMessage)
+        try root.encode(noCallback, forKey: .noCallback)
     }
 }
 

@@ -141,7 +141,7 @@ class SubmissionDetailsTests: StudentUITestCase {
                 preview_url: previewURL
             ), ]
         ))
-        mockDataRequest(URLRequest(url: previewURL), response: HTTPURLResponse(
+        mockURL(previewURL, response: HTTPURLResponse(
             url: previewURL, statusCode: 301, httpVersion: nil, headerFields: [
                 "Location": "\(sessionURL.absoluteString)/view",
             ]
@@ -150,7 +150,7 @@ class SubmissionDetailsTests: StudentUITestCase {
             urls: .make(pdf_download: downloadURL)
         ))
         mockEncodableRequest("https://doc.viewer/2018-04-06/sessions/123/annotations", value: APIDocViewerAnnotations(data: []))
-        mockDownload(downloadURL, data: url)
+        mockURL(downloadURL, data: url.flatMap { try? Data(contentsOf: $0) })
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
@@ -181,7 +181,7 @@ class SubmissionDetailsTests: StudentUITestCase {
                 preview_url: previewURL
             ), ]
         ))
-        mockDataRequest(URLRequest(url: previewURL), response: HTTPURLResponse(
+        mockURL(previewURL, response: HTTPURLResponse(
             url: previewURL, statusCode: 301, httpVersion: nil, headerFields: [
                 "Location": "\(sessionURL.absoluteString)/view",
             ]
@@ -207,7 +207,7 @@ class SubmissionDetailsTests: StudentUITestCase {
                 inreplyto: "1"
             ),
         ]))
-        mockDownload(downloadURL, data: url)
+        mockURL(downloadURL, data: url.flatMap { try? Data(contentsOf: $0) })
 
         // There's a uuid in a request that has no way to be mocked currently
         failTestOnMissingMock = false
