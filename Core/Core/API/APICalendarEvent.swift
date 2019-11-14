@@ -24,6 +24,39 @@ public struct APICalendarEvent: Codable, Equatable {
     let title: String
     let start_at: Date?
     let end_at: Date?
-    let type: String?
+    let type: CalendarEventType
     let context_code: String
+    let created_at: Date
+    let updated_at: Date
+    let workflow_state: CalendarEventWorkflowState
 }
+
+#if DEBUG
+extension APICalendarEvent {
+    public static func make(
+        id: ID = "1",
+        html_url: URL = URL(string: "https://narmstrong.instructure.com/calendar?event_id=10&include_contexts=course_1")!,
+        title: String = "calendar event #1",
+        start_at: Date? = Date(fromISOString: "2018-05-18T06:00:00Z"),
+        end_at: Date? = Date(fromISOString: "2018-05-18T06:00:00Z"),
+        type: CalendarEventType = .event,
+        context_code: String = "course_1",
+        created_at: Date = Clock.now,
+        updated_at: Date = Clock.now,
+        workflow_state: CalendarEventWorkflowState = .active
+    ) -> APICalendarEvent {
+        return APICalendarEvent(
+            id: id,
+            html_url: html_url,
+            title: title,
+            start_at: start_at,
+            end_at: end_at,
+            type: type,
+            context_code: context_code,
+            created_at: created_at,
+            updated_at: updated_at,
+            workflow_state: workflow_state
+        )
+    }
+}
+#endif

@@ -28,7 +28,7 @@ public class GetCalendarEvents: CollectionUseCase {
     }
 
     public var request: GetCalendarEventsRequest {
-        return GetCalendarEventsRequest(context: context)
+        return GetCalendarEventsRequest(contexts: [context])
     }
 
     public var scope: Scope {

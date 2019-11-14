@@ -157,10 +157,10 @@ public struct XCUIElementQueryWrapper: Element {
         }
         return query.element(boundBy: rawIndex)
     }
-    public var id: String { return rawElement.identifier }
-    public var isEnabled: Bool { return exists && rawElement.isEnabled }
-    public var isSelected: Bool { return rawElement.isSelected }
-    public var isVisible: Bool { return exists && rawElement.isHittable }
+    public var id: String { rawElement.identifier }
+    public var isEnabled: Bool { exists && rawElement.isEnabled }
+    public var isSelected: Bool { rawElement.isSelected }
+    public var isVisible: Bool { exists && rawElement.isHittable }
 
     public func frame(file: StaticString = #file, line: UInt = #line) -> CGRect {
         waitToExist(30, file: file, line: line)

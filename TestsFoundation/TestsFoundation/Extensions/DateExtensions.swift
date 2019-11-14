@@ -31,7 +31,7 @@ extension Date {
     }
 
     public func addDays(_ days: Int) -> Date {
-        let endDate = Calendar.current.date(byAdding: .month, value: days, to: self)
+        let endDate = Calendar.current.date(byAdding: .day, value: days, to: self)
         return endDate ?? Date()
     }
 
