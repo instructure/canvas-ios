@@ -22,8 +22,11 @@ public struct APICalendarEvent: Codable, Equatable {
     let id: ID
     let html_url: URL
     let title: String
+    let created_at: Date?
+    let updated_at: Date?
     let start_at: Date?
     let end_at: Date?
     let type: String?
     let context_code: String
+    let workflow_state: String
 }

@@ -119,7 +119,7 @@ class LoginTests: CoreUITestCase {
         launch()
     }
 
-    func xtestMDMHost() {
+    func testMDMHost() {
         let user = UITestUser.readStudent1
         launch { app in
             app.launchArguments.append(contentsOf: [

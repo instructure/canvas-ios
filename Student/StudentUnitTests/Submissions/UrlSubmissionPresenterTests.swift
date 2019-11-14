@@ -21,7 +21,7 @@ import XCTest
 @testable import Student
 import TestsFoundation
 
-class UrlSubmissionPresenterTests: PersistenceTestCase {
+class UrlSubmissionPresenterTests: StudentTestCase {
     var dismissed = false
     var presenter: UrlSubmissionPresenter!
     var resultingUrl: URL?

@@ -135,7 +135,7 @@ class LTIToolsTests: CoreTestCase {
         }
         wait(for: [doneValue], timeout: 1)
         XCTAssertTrue(success)
-        XCTAssert(mockView.presented is SFSafariViewController)
-        XCTAssertEqual(mockView.presented?.modalPresentationStyle, .overFullScreen)
+        XCTAssert(router.presented is SFSafariViewController)
+        XCTAssertEqual(router.presented?.modalPresentationStyle, .overFullScreen)
     }
 }

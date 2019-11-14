@@ -184,12 +184,14 @@ workflows:
             set -euo pipefail
 
             ./scripts/build_automation/summarize-test-results.swift scripts/coverage/citests.xcresult |
-                jq -ac | gzip |
+                tee >(jq -acs . > scripts/coverage/test-summary.json) |
+                jq -ac . | gzip |
                 curl -q -X POST -H "Content-Type: text/plain" -H "Content-Encoding: gzip" --data-binary @- "$SUMO_ENDPOINT_URL"
         is_always_run: true
     - yarn:
         title: yarn danger ci
         run_if: .IsCI
+        is_always_run: true
         inputs:
         - command: danger ci
     - deploy-to-bitrise-io: {}
@@ -205,7 +207,7 @@ workflows:
         title: "Send build start message to slack"
         inputs:
         - webhook_url: $SLACK_URL
-        - channel: '#ios'
+        - channel: '#ios-bots'
         - pretext: ""
         - author_name: ""
         - message: ""
@@ -225,7 +227,7 @@ workflows:
         - runner: "/bin/zsh"
         - file_path: scripts/build_automation/set-mtime.sh
     - script:
-        title: brew tap
+        title: Homebrew
         run_if: .IsCI
         inputs:
         - content: |-
@@ -234,12 +236,8 @@ workflows:
 
             brew tap mxcl/made
             brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
-    - brew-install:
-        title: brew install
-        run_if: .IsCI
-        inputs:
-        - upgrade: 'yes'
-        - packages: awscli swiftlint jq xcbeautify mxcl/made/swift-sh
+            brew install awscli swiftlint jq xcbeautify mxcl/made/swift-sh
+            brew install Caskroom/cask/soundflower
     - carthage:
         inputs:
         - carthage_options: "--platform ios"
@@ -308,17 +306,12 @@ workflows:
                 jq -ac | gzip |
                 curl -q -X POST -H "Content-Type: text/plain" -H "Content-Encoding: gzip" --data-binary @- "$SUMO_ENDPOINT_URL"
         is_always_run: true
-    - yarn:
-        title: yarn danger ci
-        run_if: .IsCI
-        inputs:
-        - command: danger ci
     - deploy-to-bitrise-io: {}
     - slack:
         inputs:
         - pretext_on_error: "*Nightly Build Failed!*"
         - webhook_url: "$SLACK_URL"
-        - channel: "#ios"
+        - channel: "#ios-bots"
         - author_name: ''
         - title: ''
         - message: ''

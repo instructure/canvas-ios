@@ -36,7 +36,7 @@ extension UserProfile: WriteableModel {
         model.name = item.name
         model.email = item.primary_email
         model.loginID = item.login_id
-        model.avatarURL = item.avatar_url
+        model.avatarURL = item.avatar_url?.rawValue
         model.calendarURL = item.calendar?.ics
         return model
     }

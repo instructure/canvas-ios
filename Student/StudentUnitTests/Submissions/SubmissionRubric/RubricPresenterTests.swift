@@ -21,7 +21,7 @@ import XCTest
 import Core
 import TestsFoundation
 
-class RubricPresenterTests: PersistenceTestCase {
+class RubricPresenterTests: StudentTestCase {
     var presenter: RubricPresenter!
     var view: SubmissionCommentsView!
     var courseID = "1"

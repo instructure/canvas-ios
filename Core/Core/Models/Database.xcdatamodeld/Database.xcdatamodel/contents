@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15400" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15400" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AlertThreshold" representedClassName="Core.AlertThreshold" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="observerID" optional="YES" attributeType="String"/>
@@ -249,8 +249,10 @@
         <attribute name="notificationsRaw" attributeType="String" defaultValueString=""/>
     </entity>
     <entity name="Page" representedClassName="Core.Page" syncable="YES">
+        <attribute name="body" optional="YES" attributeType="String"/>
         <attribute name="contextID" attributeType="String"/>
-        <attribute name="htmlURL" attributeType="String"/>
+        <attribute name="editingRoles" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="htmlURL" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="isFrontPage" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="lastUpdated" attributeType="Date" usesScalarValueType="NO"/>
@@ -388,7 +390,7 @@
     <entity name="RubricAssessment" representedClassName="Core.RubricAssessment" syncable="YES">
         <attribute name="comments" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String" defaultValueString="0"/>
-        <attribute name="points" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="pointsRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="ratingID" attributeType="String"/>
         <attribute name="submissionID" attributeType="String" defaultValueString="0"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="rubricAssesmentRaw" inverseEntity="Submission"/>
@@ -510,15 +512,15 @@
         <element name="HelpLink" positionX="-540" positionY="-27" width="128" height="135"/>
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
         <element name="MediaComment" positionX="-369" positionY="-18" width="128" height="135"/>
-        <element name="Module" positionX="-369" positionY="-18" width="128" height="135"/>
+        <element name="Module" positionX="-369" positionY="-18" width="128" height="133"/>
         <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="225"/>
         <element name="NotificationCategory" positionX="-522" positionY="0" width="128" height="103"/>
-        <element name="Page" positionX="-549" positionY="-27" width="128" height="165"/>
+        <element name="Page" positionX="-549" positionY="-27" width="128" height="193"/>
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1080"/>
         <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="463"/>
         <element name="QuizSubmission" positionX="-540" positionY="-27" width="128" height="240"/>
         <element name="Rubric" positionX="-540" positionY="-27" width="128" height="180"/>
-        <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="135"/>
+        <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="133"/>
         <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="150"/>
         <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="403"/>

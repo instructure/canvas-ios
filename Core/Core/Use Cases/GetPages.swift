@@ -53,12 +53,4 @@ public struct GetPages: CollectionUseCase {
             }
         }
     }
-
-    public func write(response: [APIPage]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let response = response else { return }
-        for item in response {
-            let model = Page.save(item, in: client)
-            model.contextID = context.canvasContextID
-        }
-    }
 }

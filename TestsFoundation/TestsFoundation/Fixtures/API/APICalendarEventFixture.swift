@@ -24,19 +24,25 @@ extension APICalendarEvent {
         id: ID = "1",
         html_url: URL = URL(string: "https://narmstrong.instructure.com/calendar?event_id=10&include_contexts=course_1")!,
         title: String = "calendar event #1",
+        created_at: Date? = Date(fromISOString: "2018-05-18T06:00:00Z"),
+        updated_at: Date? = Date(fromISOString: "2018-05-18T06:00:00Z"),
         start_at: Date? = Date(fromISOString: "2018-05-18T06:00:00Z"),
         end_at: Date? = Date(fromISOString: "2018-05-18T06:00:00Z"),
         type: String? = "event",
-        context_code: String = "course_1"
+        context_code: String = "course_1",
+        workflow_state: String = "active"
     ) -> APICalendarEvent {
         return APICalendarEvent(
             id: id,
             html_url: html_url,
             title: title,
+            created_at: created_at,
+            updated_at: updated_at,
             start_at: start_at,
             end_at: end_at,
             type: type,
-            context_code: context_code
+            context_code: context_code,
+            workflow_state: workflow_state
         )
     }
 }

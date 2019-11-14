@@ -45,12 +45,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     let hasFirebase = FirebaseOptions.defaultOptions()?.apiKey != nil
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        Logger.shared.log()
         setupCrashlytics()
+        CacheManager.resetAppIfNecessary()
         #if DEBUG
             UITestHelpers.setup(self)
         #endif
-        CacheManager.resetAppIfNecessary()
         if hasFirebase {
             FirebaseApp.configure()
         }
@@ -113,7 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
             legacyUser?.name = session.userName
             legacyUser?.sortableName = session.userName
             legacyUser?.shortName = session.userName
-            legacyUser?.avatarURL = profile.avatar_url
+            legacyUser?.avatarURL = profile.avatar_url?.rawValue
             legacyUser?.loginID = profile.login_id
             legacyUser?.email = profile.primary_email
             legacyUser?.calendar = profile.calendar?.ics

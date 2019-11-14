@@ -21,7 +21,7 @@ import Core
 @testable import Student
 import TestsFoundation
 
-class CourseNavigationPresenterTests: PersistenceTestCase {
+class CourseNavigationPresenterTests: StudentTestCase {
     let context = ContextModel(.course, id: "1")
     var presenter: CourseNavigationPresenter!
     var resultingError: NSError?

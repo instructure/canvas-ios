@@ -25,34 +25,34 @@ public struct APIModule: Codable, Equatable {
     /// the position of this module in the course (1-based)
     public let position: Int
     public let published: Bool?
-    public let items: [APIModuleItem]?
+    public var items: [APIModuleItem]?
 }
 
 // https://canvas.instructure.com/doc/api/modules.html#ModuleItem
 public struct APIModuleItem: Codable, Equatable {
     public struct ContentDetails: Codable, Equatable {
-        let due_at: Date?
+        public let due_at: Date?
     }
 
-    let id: ID
-    let module_id: ID
+    public let id: ID
+    public let module_id: ID
     /// The position of this item in the module (1-based)
-    let position: Int
-    let title: String
+    public let position: Int
+    public let title: String
     /// 0-based indent level; module items may be indented to show a hierarchy
-    let indent: Int
-    let content: ModuleItemType
+    public let indent: Int
+    public let content: ModuleItemType
     /// link to the item in Canvas
     /// eg: "https://canvas.example.edu/courses/222/modules/items/768"
-    let html_url: URL?
+    public let html_url: URL?
     /// (Optional) link to the Canvas API object, if applicable
     /// eg: "https://canvas.example.edu/api/v1/courses/222/assignments/987"
-    let url: URL?
+    public let url: URL?
     /// Only present if the caller has permission to view unpublished items
-    let published: Bool?
-    let content_details: ContentDetails // include[]=content_details
+    public let published: Bool?
+    public let content_details: ContentDetails // include[]=content_details
 
-    init(
+    public init(
         id: ID,
         module_id: ID,
         position: Int,

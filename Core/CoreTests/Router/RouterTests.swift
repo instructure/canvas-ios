@@ -20,6 +20,11 @@ import XCTest
 @testable import Core
 
 class RouterTests: XCTestCase {
+    class MockNavigationController: UINavigationController {
+        override func popViewController(animated: Bool) -> UIViewController? {
+            return viewControllers.popLast()
+        }
+    }
     class MockViewController: UIViewController {
         var shown: UIViewController?
         override func show(_ vc: UIViewController, sender: Any?) {
@@ -288,5 +293,22 @@ class RouterTests: XCTestCase {
         router.show(UIAlertController(title: nil, message: nil, preferredStyle: .alert), from: mockView, options: nil)
         XCTAssertNil(mockView.shown)
         XCTAssert(mockView.presented is UIAlertController)
+    }
+
+    func testPopViewController() {
+        let router = Router(routes: []) { _, _, _ in }
+        let rootViewController = UIViewController()
+        let navController = MockNavigationController(rootViewController: rootViewController)
+
+        let childViewController = UIViewController()
+        navController.viewControllers.append(childViewController)
+        XCTAssertEqual(navController.viewControllers.count, 2)
+
+        router.pop(from: childViewController)
+        XCTAssertEqual(navController.viewControllers.count, 1)
+
+        router.pop(from: rootViewController)
+        XCTAssertEqual(navController.viewControllers.count, 1)
+        XCTAssert(navController.viewControllers.first is EmptyViewController)
     }
 }

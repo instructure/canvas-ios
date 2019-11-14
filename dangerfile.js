@@ -19,7 +19,7 @@
 const { danger, warn, markdown, fail } = require('danger')
 const fs = require('fs')
 const path = require('path')
-const { checkCoverage } = require('./scripts/coverage/dangerfile-utils')
+const { checkCoverage, reportFailures } = require('./scripts/coverage/dangerfile-utils')
 const { check } = require('./scripts/update-headers')
 
 // Warns if there are changes to package.json without changes to yarn.lock.
@@ -183,7 +183,12 @@ function untestedFiles () {
 }
 
 commitMessage()
-checkCoverage()
+if (process.env.BITRISE_BUILD_STATUS == "0" /* Not finished */) {
+    checkCoverage()
+} else {
+    fail('Build failed, skipping coverage check')
+    reportFailures()
+}
 packages()
 licenseHeaders()
 untestedFiles()

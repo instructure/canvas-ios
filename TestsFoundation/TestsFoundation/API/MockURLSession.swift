@@ -89,6 +89,7 @@ public class MockURLSession: URLSession {
                 callback?(mock?.data, mock?.response, mock?.error)
             }
             _state = .completed
+            callback?(mock?.data, mock?.response, mock?.error)
         }
 
         public override func cancel() {

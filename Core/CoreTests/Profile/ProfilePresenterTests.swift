@@ -33,6 +33,7 @@ class ProfilePresenterTests: CoreTestCase {
     }
 
     lazy var presenter: ProfilePresenter = {
+        environment.mockStore = false
         let presenter = ProfilePresenter(enrollment: enrollment, view: view)
         let ready = expectation(description: "stores ready")
         ready.assertForOverFulfill = false

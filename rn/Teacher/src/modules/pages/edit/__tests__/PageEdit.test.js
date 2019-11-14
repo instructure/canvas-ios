@@ -215,7 +215,7 @@ describe('PageEdit', () => {
 
   it('dismisses on Done', async () => {
     props.navigator = template.navigator({ dismiss: jest.fn() })
-    props.api.createPage = jest.fn()
+    props.api.createPage = () => Promise.resolve({ data: { raw: {} } })
     props.onChange = jest.fn()
     const tree = shallow(<PageEdit {...props} />)
     await tapDone(tree)
