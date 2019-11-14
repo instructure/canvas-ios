@@ -49,24 +49,19 @@ class CalendarTests: StudentUITestCase {
     lazy var today = Date(fromISOString: "2007-06-04T12:00:00Z")!
     lazy var tomorrow = today.addDays(1)
 
-    lazy var jan1 = DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 1, day: 1).date!
-    lazy var jan2 = jan1.addDays(1)
-    lazy var jan3 = jan2.addDays(1)
-    lazy var jan4 = jan3.addDays(1)
-
     lazy var courseEvent = APICalendarEvent.make(
         id: "1",
         title: "Course Event",
-        start_at: jan1,
-        end_at: jan1.addMinutes(30),
+        start_at: jan(1),
+        end_at: jan(1).addMinutes(30),
         type: .event,
         context_code: "course_1"
     )
     lazy var assignment = APICalendarEvent.make(
         id: "2",
         title: "Assignment Event",
-        start_at: jan2,
-        end_at: jan2.addMinutes(30),
+        start_at: jan(2),
+        end_at: jan(2).addMinutes(30),
         type: .assignment,
         context_code: "course_1",
         assignment: .make(id: "22")
@@ -74,8 +69,8 @@ class CalendarTests: StudentUITestCase {
     lazy var userEvent = APICalendarEvent.make(
         id: "3",
         title: "User Event",
-        start_at: jan3,
-        end_at: jan3.addMinutes(30),
+        start_at: jan(3),
+        end_at: jan(3).addMinutes(30),
         type: .event,
         context_code: "user_1"
     )
@@ -128,9 +123,13 @@ class CalendarTests: StudentUITestCase {
         mockRange(date.addDays(-365), date.addDays(365))
     }
 
+    func jan(_ day: Int) -> Date {
+        return DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 1, day: day).date!
+    }
+
     override func setUp() {
         super.setUp()
-        mockNow(jan1)
+        mockNow(jan(1))
         mockBaseRequests()
         mockData(
             GetCoursesRequest(
@@ -144,8 +143,8 @@ class CalendarTests: StudentUITestCase {
             value: .make(id: assignment.assignment!.id, name: assignment.title)
         )
         mockData(GetCalendarEventRequest(id: "1"), value: courseEvent)
-        mockYear(of: jan1)
-        mockDay(jan1, jan2, jan3, jan4, jan4.addDays(1))
+        mockYear(of: jan(1))
+        mockDay(jan(1), jan(2), jan(3), jan(4), jan(5))
     }
 
     func testCalendarTodayButton() {
@@ -163,23 +162,23 @@ class CalendarTests: StudentUITestCase {
         mockData(
             GetCalendarEventsRequest(
                 contexts: [ContextModel(.course, id: "1")],
-                startDate: jan1.addDays(-365),
-                endDate: jan1.addDays(365),
+                startDate: jan(1).addDays(-365),
+                endDate: jan(1).addDays(365),
                 type: .event,
                 perPage: 99,
                 include: [.submission]
             ),
-            value: [.make(id: "1", start_at: jan4, end_at: jan4.addMinutes(30), type: .event, context_code: "course_1")]
+            value: [.make(id: "1", start_at: jan(4), end_at: jan(4).addMinutes(30), type: .event, context_code: "course_1")]
         )
         logIn()
         TabBar.calendarTab.tap()
         XCTAssertTrue(CalendarElements.text(containing: "JANUARY 2019").exists)
-        XCTAssertTrue(CalendarElements.dayEventIndicator(jan4).waitToExist().isVisible)
+        XCTAssertTrue(CalendarElements.dayEventIndicator(jan(4)).waitToExist().isVisible)
         mockData(
             GetCalendarEventsRequest(
                 contexts: [ContextModel(.course, id: "1")],
-                startDate: jan1.addDays(-365),
-                endDate: jan1.addDays(365),
+                startDate: jan(1).addDays(-365),
+                endDate: jan(1).addDays(365),
                 type: .event,
                 perPage: 99,
                 include: [.submission]
@@ -187,11 +186,11 @@ class CalendarTests: StudentUITestCase {
             value: [courseEvent]
         )
         CalendarElements.refreshButton.tap()
-        CalendarElements.dayEventIndicator(jan4).waitToVanish()
-        XCTAssertTrue(CalendarElements.dayEventIndicator(jan1).waitToExist().isVisible)
-        XCTAssertTrue(CalendarElements.dayEventIndicator(jan2).waitToExist().isVisible)
-        XCTAssertTrue(CalendarElements.dayEventIndicator(jan3).waitToExist().isVisible)
-        CalendarElements.dayLabel(jan1).tap()
+        CalendarElements.dayEventIndicator(jan(4)).waitToVanish()
+        XCTAssertTrue(CalendarElements.dayEventIndicator(jan(1)).waitToExist().isVisible)
+        XCTAssertTrue(CalendarElements.dayEventIndicator(jan(2)).waitToExist().isVisible)
+        XCTAssertTrue(CalendarElements.dayEventIndicator(jan(3)).waitToExist().isVisible)
+        CalendarElements.dayLabel(jan(1)).tap()
         app.find(labelContaining: courseEvent.title).waitToExist()
         app.find(id: "next_day_button").tap()
         app.find(labelContaining: courseEvent.title).waitToVanish()
@@ -204,7 +203,7 @@ class CalendarTests: StudentUITestCase {
         app.find(labelContaining: assignment.title).waitToExist()
         app.swipeRight()
         app.find(labelContaining: assignment.title).waitToVanish()
-        app.find(label: "Wed").tap() // jan2
+        app.find(label: "Wed").tap() // jan(2)
         app.find(labelContaining: assignment.title).tap()
         app.find(labelContaining: "Assignment Details").waitToExist()
         app.find(labelContaining: assignment.title).waitToExist()
