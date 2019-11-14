@@ -67,3 +67,17 @@ public struct GetCalendarEventsRequest: APIRequestable {
         return query
     }
 }
+
+public struct GetCalendarEventRequest: APIRequestable {
+    public typealias Response = APICalendarEvent
+
+    public let id: String
+
+    public init(id: String) {
+        self.id = id
+    }
+
+    public var path: String {
+        return "calendar_events/\(id)"
+    }
+}

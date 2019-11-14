@@ -45,7 +45,7 @@ open class CalendarEventAPI {
     }
 
     open class func getCalendarEvent(_ session: Session, calendarEventID: String) throws -> URLRequest {
-        return try session.GET("/api/v1/calendar_events/\(calendarEventID)")
+        return try session.GET("/api/v1/calendar_events/\(calendarEventID)", paginated: false)
     }
     
 }

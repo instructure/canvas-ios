@@ -29,6 +29,7 @@ public struct APICalendarEvent: Codable, Equatable {
     let created_at: Date
     let updated_at: Date
     let workflow_state: CalendarEventWorkflowState
+    let assignment: APIAssignment?
 }
 
 #if DEBUG
@@ -43,7 +44,8 @@ extension APICalendarEvent {
         context_code: String = "course_1",
         created_at: Date = Clock.now,
         updated_at: Date = Clock.now,
-        workflow_state: CalendarEventWorkflowState = .active
+        workflow_state: CalendarEventWorkflowState = .active,
+        assignment: APIAssignment? = nil
     ) -> APICalendarEvent {
         return APICalendarEvent(
             id: id,
@@ -55,7 +57,8 @@ extension APICalendarEvent {
             context_code: context_code,
             created_at: created_at,
             updated_at: updated_at,
-            workflow_state: workflow_state
+            workflow_state: workflow_state,
+            assignment: assignment
         )
     }
 }

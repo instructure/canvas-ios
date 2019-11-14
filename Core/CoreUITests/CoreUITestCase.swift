@@ -301,6 +301,12 @@ open class CoreUITestCase: XCTestCase {
         return assignment
     }
 
+    lazy var baseEnrollment = APIEnrollment.make(
+        type: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
+        role: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
+    )
+    lazy var baseCourse = mock(course: .make(enrollments: [ baseEnrollment ]))
+
     open func mockBaseRequests() {
         mockData(GetUserRequest(userID: "self"), value: APIUser.make())
         mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile?per_page=50")!),
@@ -313,18 +319,13 @@ open class CoreUITestCase: XCTestCase {
         mockData(GetUserSettingsRequest(userID: "self"), value: APIUserSettings.make())
         mockData(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: .make())
         mockData(GetAccountNotificationsRequest(), value: [])
-        let enrollment = APIEnrollment.make(
-            type: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
-            role: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
-        )
         var state: [GetCoursesRequest.State] = [.available, .completed]
         if Bundle.main.isTeacherApp {
             state.append(.unpublished)
         }
-        let course = mock(course: .make(enrollments: [ enrollment ]))
-        mockData(GetCoursesRequest(enrollmentState: nil, state: state), value: [ course ])
+        mockData(GetCoursesRequest(enrollmentState: nil, state: state), value: [ baseCourse ])
         mockEncodableRequest("users/self/custom_data/favorites/groups?ns=com.canvas.canvas-app", value: [String: String]())
-        mockEncodableRequest("users/self/enrollments?include[]=avatar_url", value: [enrollment])
+        mockEncodableRequest("users/self/enrollments?include[]=avatar_url", value: [baseEnrollment])
         mockEncodableRequest("users/self/groups", value: [String]())
         mockEncodableRequest("users/self/todo_item_count", value: ["needs_grading_count": 0])
         mockEncodableRequest("users/self/todo", value: [String]())

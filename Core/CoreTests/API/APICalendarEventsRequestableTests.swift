@@ -48,4 +48,9 @@ class APICalendarEventsRequestableTests: XCTestCase {
             URLQueryItem(name: "context_codes[]", value: "course_1")
         ])
     }
+
+    func testGetCalendarEventRequest() {
+        let request = GetCalendarEventRequest(id: "1")
+        XCTAssertEqual(request.path, "calendar_events/1")
+    }
 }
