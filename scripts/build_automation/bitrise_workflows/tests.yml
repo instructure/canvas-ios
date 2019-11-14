@@ -283,11 +283,12 @@ workflows:
         title: Save xcresult
         inputs:
         - runner_bin: "/bin/zsh"
+        - working_dir: "$BITRISE_SOURCE_DIR/nightly-xcresults"
         - content: |-
             #!/bin/zsh
             set -euxo pipefail
 
-            zip --quiet -r "$BITRISE_DEPLOY_DIR/nightly.xcresult.zip" nightly-xcresults/merged.xcresult
+            zip --quiet -r "$BITRISE_DEPLOY_DIR/nightly.xcresult.zip" merged.xcresult
         is_always_run: true
     - script:
         title: Report Coverage
