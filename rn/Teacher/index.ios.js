@@ -77,7 +77,6 @@ const loginHandler = async ({
   skipHydrate,
   countryCode,
   locale,
-  wasReload,
 }: {
   appId: AppId,
   authToken: string,
@@ -88,7 +87,6 @@ const loginHandler = async ({
   skipHydrate: boolean,
   countryCode: string,
   locale: string,
-  wasReload: boolean,
 }) => {
   setupI18n(locale || NativeModules.SettingsManager.settings.AppleLocale)
   App.setCurrentApp(appId)
@@ -144,12 +142,6 @@ const loginHandler = async ({
   Helm.loginComplete()
   loginVerify()
   beginUpdatingBadgeCounts()
-
-  if (wasReload) {
-    let lastRoute = await getLastRoute()
-    let navigator = new Navigator('')
-    navigator.show(lastRoute.url, lastRoute.options, lastRoute.props)
-  }
 }
 
 const emitter = new NativeEventEmitter(NativeLogin)

@@ -77,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         return true
     }
 
-    func setup(session: LoginSession, wasReload: Bool = false) {
+    func setup(session: LoginSession) {
         environment.userDidLogin(session: session)
         CoreWebView.keepCookieAlive(for: environment)
         if Locale.current.regionCode != "CA" {
@@ -130,7 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
             GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
                 DispatchQueue.main.async {
                     Brand.setCurrent(Brand(core: Core.Brand.shared), applyInWindow: self.window)
-                    NativeLoginManager.login(as: session, wasReload: wasReload)
+                    NativeLoginManager.login(as: session)
                 }
             }
         }
