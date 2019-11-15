@@ -74,7 +74,7 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
 
     func testViewIsReady() {
         Course.make(from: .make(id: "1"))
-        Assignment.make(from: .make(course_id: "1"))
+        Assignment.make(from: .make(course_id: "1", submission_types: [.online_upload]))
         let expectation = XCTestExpectation(description: "got course and assignment")
         expectation.assertForOverFulfill = false
         onUpdate = {

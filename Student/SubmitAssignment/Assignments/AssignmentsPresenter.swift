@@ -29,7 +29,7 @@ class AssignmentsPresenter {
     let callback: (Assignment) -> Void
     weak var view: AssignmentsView?
 
-    lazy var assignments: Store<GetAssignments> = env.subscribe(GetSubmittableAssignments(courseID: courseID)) { [weak self] in
+    lazy var assignments = env.subscribe(GetSubmittableAssignments(courseID: courseID)) { [weak self] in
         self?.view?.update()
     }
 
