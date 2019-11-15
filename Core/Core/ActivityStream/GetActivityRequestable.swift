@@ -19,11 +19,11 @@ import Foundation
 
 public struct GetActivityRequest: APIRequestable {
     public typealias Response = APIActivity
-	
+
 	public var path: String {
 		return "/users/self/activity_stream"
 	}
-	
+
 	public var query: [APIQueryItem] {
         return [
             .value("per_page", "99"),
