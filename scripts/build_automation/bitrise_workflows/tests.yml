@@ -434,12 +434,12 @@ workflows:
         title: rn yarn lint
         inputs:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-        - command: lint
+        - command: lint:ci
     - yarn:
         title: rn yarn test
         inputs:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-        - command: test --silent --coverage --color
+        - command: test:ci
     - script:
         title: Save results
         is_always_run: true
