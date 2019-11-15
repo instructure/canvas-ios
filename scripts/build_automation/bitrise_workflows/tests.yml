@@ -417,6 +417,7 @@ workflows:
             # fail if any commands fails
             set -eo pipefail
 
+            mkdir -p tmp
             ./scripts/runSwiftLint.sh 2>&1 | xcbeautify | tee tmp/swift-lint-results.txt
     - yarn:
         title: yarn install root dependencies
