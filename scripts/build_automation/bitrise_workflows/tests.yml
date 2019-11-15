@@ -468,6 +468,8 @@ workflows:
             sed -n '/Summary of all failing tests/,$ p' < tmp/yarn-tests.txt > tmp/yarn-test-failures.txt || true
             report_file "JS tests" tmp/yarn-failures.txt
 
+            mkdir -p scripts/coverage/react-native
+
             tar -cJf $BITRISE_DEPLOY_DIR/results.tar.xz \
                 scripts/coverage/react-native \
                 tmp/report_to_danger_subbuild.md
