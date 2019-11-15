@@ -18,7 +18,6 @@
 
 import Foundation
 import CoreData
-import MobileCoreServices
 
 public class Assignment: NSManagedObject {
     @NSManaged public var allowedExtensions: [String]
@@ -164,43 +163,6 @@ extension Assignment {
     public var isDiscussion: Bool {
         return submissionTypes.count == 1 &&
             submissionTypes.contains(.discussion_topic)
-    }
-
-    public var allowedUTIs: [UTI] {
-        var utis: [UTI] = []
-
-        if submissionTypes.contains(.online_upload) {
-            if allowedExtensions.isEmpty {
-                utis += [.any]
-            } else {
-                utis += allowedExtensions.compactMap(UTI.init)
-            }
-        }
-
-        if submissionTypes.contains(.media_recording) {
-            utis += [.video, .audio]
-        }
-
-        if submissionTypes.contains(.online_text_entry) {
-            utis += [.text]
-        }
-
-        if submissionTypes.contains(.online_url) {
-            utis += [.url]
-        }
-
-        return utis
-    }
-
-    public var allowedMediaTypes: [String] {
-        var types  = [kUTTypeMovie as String]
-
-        if submissionTypes.contains(.media_recording) && !submissionTypes.contains(.online_upload) {
-            types.append(kUTTypeAudio as String)
-        } else {
-            types.append(kUTTypeImage as String)
-        }
-        return types
     }
 
     public var gradeText: String? {
