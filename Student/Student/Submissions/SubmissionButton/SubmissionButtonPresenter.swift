@@ -196,7 +196,7 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
     }
 
     func submitMediaRecording(_ controller: FilePickerViewController) {
-        guard let file = controller.files?.first, let url = file.localFileURL, let uti = UTI(extension: url.pathExtension) else { return }
+        guard let file = controller.files.first, let url = file.localFileURL, let uti = UTI(extension: url.pathExtension) else { return }
         let mediaType: MediaCommentType = uti.isAudio ? .audio : .video
         let objectID = file.objectID
         controller.dismiss(animated: true) { [weak self] in

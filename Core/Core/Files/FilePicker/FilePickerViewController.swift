@@ -148,7 +148,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
             navigationItem.leftBarButtonItems = []
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(close))
             navigationItem.rightBarButtonItem?.accessibilityIdentifier = "FilePicker.closeButton"
-            let cancelButton = UIBarButtonItem(title: cancelButtonTitle, style: .plain, target: self, action: #selector(cancel))
+            let cancelButton = UIBarButtonItem(title: cancelButtonTitle, style: .plain, target: self, action: #selector(cancelClicked))
             cancelButton.accessibilityIdentifier = "FilePicker.cancelButton"
             toolbarItems = [
                 UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
@@ -160,7 +160,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
             navigationItem.leftBarButtonItems = []
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(close))
             navigationItem.rightBarButtonItem?.accessibilityIdentifier = "FilePicker.closeButton"
-            let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancel))
+            let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancelClicked))
             cancelButton.accessibilityIdentifier = "FilePicker.cancelButton"
             let retryButton = UIBarButtonItem(title: NSLocalizedString("Retry", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(retry))
             retryButton.accessibilityIdentifier = "FilePicker.retryButton"
@@ -171,7 +171,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
             ]
         } else {
             navigationController?.setToolbarHidden(true, animated: true)
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancel))
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancelClicked))
             navigationItem.leftBarButtonItem?.accessibilityIdentifier = "FilePicker.cancelButton"
             let submitButton = UIBarButtonItem(title: submitButtonTitle, style: .plain, target: self, action: #selector(submit))
             submitButton.isEnabled = delegate?.canSubmit(self) == true
@@ -194,7 +194,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     }
 
     @objc
-    func cancel() {
+    func cancelClicked() {
         delegate?.cancel(self)
     }
 
