@@ -309,6 +309,19 @@ const style = createStyleSheet((colors, vars) => ({
   },
 }))
 
-export default fetchPropsFor(PageEdit, ({ context, contextID, url }: HocProps, api) => ({
-  page: !url ? PageModel.newPage : api.getPage(context, contextID, url),
-}))
+export default fetchPropsFor(PageEdit, ({ context, contextID, url }: HocProps, api) => {
+  let isCreate = url == null
+  let page
+
+  if (isCreate && context === 'courses') {
+    page = PageModel.newPage
+  } else if (isCreate && context === 'groups') {
+    page = {
+      ...PageModel.newPage,
+      editingRoles: ['members'],
+    }
+  } else {
+    page = api.getPage(context, contextID, url)
+  }
+  return { page }
+})

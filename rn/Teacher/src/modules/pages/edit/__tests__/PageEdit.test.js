@@ -68,10 +68,20 @@ describe('PageEdit', () => {
     })
   })
 
-  it('gets newPage when url is null', () => {
-    const tree = shallow(<ConnectedPageEdit context='groups' contextID='1' navigator={template.navigator()} url={null} />)
+  it('gets newPage when url is null (courses)', () => {
+    const tree = shallow(<ConnectedPageEdit context='courses' contextID='1' navigator={template.navigator()} url={null} />)
     expect(tree.find(PageEdit).props()).toMatchObject({
       page: PageModel.newPage,
+    })
+  })
+
+  it('gets newPage with correct editing roles when url is null (groups)', () => {
+    const tree = shallow(<ConnectedPageEdit context='groups' contextID='1' navigator={template.navigator()} url={null} />)
+    expect(tree.find(PageEdit).props()).toMatchObject({
+      page: {
+        ...PageModel.newPage,
+        editingRoles: ['members'],
+      },
     })
   })
 
