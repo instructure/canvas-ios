@@ -468,7 +468,7 @@ workflows:
             report_file "Swift lint" tmp/swift-lint-results.txt
             report_file "Yarn lint" tmp/yarn-lint-results.txt
             sed -n '/Summary of all failing tests/,$ p' < tmp/yarn-test-results.txt > tmp/yarn-test-failures.txt || true
-            report_file "JS tests" tmp/yarn-failures.txt
+            report_file "JS tests" tmp/yarn-test-failures.txt
 
             mkdir -p scripts/coverage/react-native
 
