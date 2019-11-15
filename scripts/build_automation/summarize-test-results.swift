@@ -119,7 +119,7 @@ func reportToDanger(_ message: String) {
 let failures = results.filter({ $0.testStatus == "Failure" })
 let maxReportCount = 10
 for result in failures.prefix(10) {
-    let headline = ":x: \(result.identifier)"
+    let headline = ":x: XCTest failed: \(result.identifier)"
     if let message = result.message {
         reportToDanger("""
                          <details><summary>\(escapeHTML(headline))</summary>
@@ -132,5 +132,5 @@ for result in failures.prefix(10) {
 }
 
 if failures.count > maxReportCount {
-    reportToDanger("(and \(failures.count - maxReportCount) other test failures)")
+    reportToDanger(":x: (and \(failures.count - maxReportCount) other test failures)")
 }

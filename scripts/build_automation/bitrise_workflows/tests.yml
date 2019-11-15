@@ -106,7 +106,7 @@ workflows:
                 -configuration Debug \
                 build-for-testing |
                 tee $BITRISE_DEPLOY_DIR/raw-xcodebuild.log |
-                xcpretty --color
+                xcbeautify
     - script:
         title: Run CITests
         inputs:
@@ -122,7 +122,7 @@ workflows:
                 -scheme CITests \
                 -destination 'platform=iOS Simulator,name=iPhone 8' \
                 -resultBundlePath scripts/coverage/citests.xcresult \
-                test-without-building | xcbeautify
+                test-without-building 2>&1 | xcbeautify
     - script:
         title: Save xcresult
         inputs:
@@ -465,7 +465,7 @@ workflows:
 
             report_file "Swift lint" tmp/swift-lint-results.txt
             report_file "Yarn lint" tmp/yarn-lint-results.txt
-            sed -n '/Summary of all failing tests/,$ p' < tmp/yarn-tests.txt > tmp/yarn-test-failures.txt || true
+            sed -n '/Summary of all failing tests/,$ p' < tmp/yarn-test-results.txt > tmp/yarn-test-failures.txt || true
             report_file "JS tests" tmp/yarn-failures.txt
 
             mkdir -p scripts/coverage/react-native
