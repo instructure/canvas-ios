@@ -452,7 +452,10 @@ workflows:
             set -euxo pipefail
 
             function htmlize {
-                sed -e $'s/\x1b\\[[0-9;]*[a-zA-Z]//g; s/&/&amp;/g; s/</&lt;/g; s/>/&gt;/g'
+                sed -e $'s/\x1b\\[[0-9;]*[a-zA-Z]//g' \
+                    -e 's/&/\&amp;/g' \
+                    -e 's/</\&lt;/g' \
+                    -e 's/>/\&gt;/g'
             }
 
             function report_file {
