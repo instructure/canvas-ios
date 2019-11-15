@@ -32,9 +32,9 @@ public protocol FilePickerControllerDelegate: class {
     func canSubmit(_ controller: FilePickerViewController) -> Bool
 }
 
-open class FilePickerViewController: UIViewController, ErrorViewController, FilePickerViewProtocol {
+open class FilePickerViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var emptyView: EmptyView!
-    @IBOutlet weak var sourcesTabBar: UITabBar?
+    @IBOutlet weak var sourcesTabBar: UITabBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var progressView: FilePickerProgressView!
@@ -44,34 +44,27 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
     /// The cancel button that shows while the files are being uploaded
     public var cancelButtonTitle = NSLocalizedString("Cancel", bundle: .core, comment: "")
 
+    let env = AppEnvironment.shared
     public weak var delegate: FilePickerControllerDelegate?
     public var sources = FilePickerSource.defaults
     public var utis: [UTI] = [.any]
     public var mediaTypes: [String] = [kUTTypeMovie as String, kUTTypeImage as String]
     public var batchID: String!
-    public var files: Store<LocalUseCase<File>>? {
-        return presenter?.files
-    }
-    private var presenter: FilePickerPresenter?
-    public var maxFileCount: Int {
-        set { presenter?.maxFileCount = newValue }
-        get { presenter?.maxFileCount ?? Int.max }
+    public var maxFileCount: Int = Int.max
+    public lazy var files = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
+        self?.update()
     }
 
-    public static func create(environment: AppEnvironment = .shared, batchID: String? = nil) -> FilePickerViewController {
-        let batchIDOrUUID = batchID ?? UUID.string
-        let presenter = FilePickerPresenter(environment: environment, batchID: batchIDOrUUID)
+    public static func create(batchID: String = UUID.string) -> FilePickerViewController {
         let controller = loadFromStoryboard()
-        controller.batchID = batchIDOrUUID
-        controller.presenter = presenter
-        presenter.view = controller
+        controller.batchID = batchID
         return controller
     }
 
     open override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
-        sourcesTabBar?.barTintColor = .named(.backgroundLightest)
+        sourcesTabBar.barTintColor = .named(.backgroundLightest)
         tableView.tableFooterView = UIView(frame: .zero)
 
         var tabBarItems: [UITabBarItem] = []
@@ -111,12 +104,12 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
             item.accessibilityIdentifier = "FilePicker.filesButton"
             tabBarItems.append(item)
         }
-        sourcesTabBar?.items = tabBarItems
+        sourcesTabBar.items = tabBarItems
         let linkColor = Brand.shared.linkColor.ensureContrast(against: .named(.backgroundLightest))
-        sourcesTabBar?.tintColor = linkColor
-        sourcesTabBar?.unselectedItemTintColor = linkColor
+        sourcesTabBar.tintColor = linkColor
+        sourcesTabBar.unselectedItemTintColor = linkColor
         update()
-        presenter?.viewIsReady()
+        files.refresh()
     }
 
     open override func viewWillAppear(_ animated: Bool) {
@@ -125,8 +118,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
     }
 
     func update() {
-        guard viewIfLoaded != nil else { return }
-        emptyView.isHidden = files?.isEmpty == false
+        emptyView.isHidden = files.isEmpty == false
         updateProgressBar()
         updateBarButtons()
         updateSourceButtons()
@@ -134,10 +126,6 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
     }
 
     func updateProgressBar() {
-        guard let files = files else {
-            hideProgressBar()
-            return
-        }
         let total: Int = files.reduce(0, { $0 + $1.size })
         let sent = files.reduce(0, { $0 + $1.bytesSent })
         let failed = files.first { $0.uploadError != nil } != nil
@@ -153,7 +141,6 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
     }
 
     func updateBarButtons() {
-        guard let files = files else { return }
         let inProgress = files.first { $0.isUploading } != nil
         let failed = files.first { $0.uploadError != nil } != nil
         if inProgress {
@@ -161,7 +148,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
             navigationItem.leftBarButtonItems = []
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(close))
             navigationItem.rightBarButtonItem?.accessibilityIdentifier = "FilePicker.closeButton"
-            let cancelButton = UIBarButtonItem(title: cancelButtonTitle, style: .plain, target: self, action: #selector(cancel(sender:)))
+            let cancelButton = UIBarButtonItem(title: cancelButtonTitle, style: .plain, target: self, action: #selector(cancel))
             cancelButton.accessibilityIdentifier = "FilePicker.cancelButton"
             toolbarItems = [
                 UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
@@ -173,7 +160,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
             navigationItem.leftBarButtonItems = []
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(close))
             navigationItem.rightBarButtonItem?.accessibilityIdentifier = "FilePicker.closeButton"
-            let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancel(sender:)))
+            let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancel))
             cancelButton.accessibilityIdentifier = "FilePicker.cancelButton"
             let retryButton = UIBarButtonItem(title: NSLocalizedString("Retry", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(retry))
             retryButton.accessibilityIdentifier = "FilePicker.retryButton"
@@ -184,7 +171,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
             ]
         } else {
             navigationController?.setToolbarHidden(true, animated: true)
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancel(sender:)))
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancel))
             navigationItem.leftBarButtonItem?.accessibilityIdentifier = "FilePicker.cancelButton"
             let submitButton = UIBarButtonItem(title: submitButtonTitle, style: .plain, target: self, action: #selector(submit))
             submitButton.isEnabled = delegate?.canSubmit(self) == true
@@ -194,10 +181,10 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
     }
 
     func updateSourceButtons() {
-        let inProgress = files?.first { $0.isUploading } != nil
-        let failed = files?.first { $0.uploadError != nil } != nil
+        let inProgress = files.first { $0.isUploading } != nil
+        let failed = files.first { $0.uploadError != nil } != nil
         let hideSourceButtons = inProgress || failed
-        sourcesTabBar?.isHidden = hideSourceButtons
+        sourcesTabBar.isHidden = hideSourceButtons
         dividerView.isHidden = hideSourceButtons
     }
 
@@ -207,7 +194,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
     }
 
     @objc
-    func cancel(sender: Any) {
+    func cancel() {
         delegate?.cancel(self)
     }
 
@@ -224,7 +211,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
     func showProgressBar() {
         self.view.layoutIfNeeded()
         UIView.animate(withDuration: 0.4) {
-            self.progressView?.isHidden = false
+            self.progressView.isHidden = false
             self.view.layoutIfNeeded()
         }
     }
@@ -232,7 +219,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
     func hideProgressBar() {
         self.view.layoutIfNeeded()
         UIView.animate(withDuration: 0.4) {
-            self.progressView?.isHidden = true
+            self.progressView.isHidden = true
             self.view.layoutIfNeeded()
         }
     }
@@ -253,7 +240,7 @@ extension FilePickerViewController: UITabBarDelegate {
             cameraController.delegate = self
             cameraController.sourceType = .camera
             cameraController.mediaTypes = mediaTypes
-            present(cameraController, animated: true, completion: nil)
+            env.router.show(cameraController, from: self, options: .modal)
         case .library:
             guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
             let libraryController = UIImagePickerController()
@@ -261,18 +248,18 @@ extension FilePickerViewController: UITabBarDelegate {
             libraryController.sourceType = .photoLibrary
             libraryController.mediaTypes = mediaTypes
             libraryController.modalPresentationStyle = .overCurrentContext
-            present(libraryController, animated: true, completion: nil)
+            env.router.show(libraryController, from: self, options: .modal)
         case .files:
             let documentTypes = utis.map { $0.rawValue }
             let documentPicker = UIDocumentPickerViewController(documentTypes: documentTypes, in: .import)
             documentPicker.delegate = self
-            present(documentPicker, animated: true, completion: nil)
+            env.router.show(documentPicker, from: self, options: .modal)
         case .audio:
             let audioRecorder = AudioRecorderViewController.create()
             audioRecorder.delegate = self
             audioRecorder.view.backgroundColor = UIColor.named(.backgroundLightest)
             audioRecorder.modalPresentationStyle = .formSheet
-            present(audioRecorder, animated: true, completion: nil)
+            env.router.show(audioRecorder, from: self, options: .modal)
         }
     }
 }
@@ -283,25 +270,34 @@ extension FilePickerViewController: AudioRecorderDelegate {
     }
 
     public func send(_ controller: AudioRecorderViewController, url: URL) {
-        presenter?.add(url: url)
+        add(url)
         controller.dismiss(animated: true, completion: nil)
     }
 }
 
 extension FilePickerViewController: UIDocumentPickerDelegate {
-    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        for url in urls {
-            presenter?.add(url: url)
+    func add(_ url: URL) {
+        UploadManager.shared.viewContext.performAndWait {
+            do {
+                try UploadManager.shared.add(url: url, batchID: self.batchID)
+                if self.files.count == self.maxFileCount { self.didReachMaxFileCount() }
+            } catch {
+                self.showError(error)
+            }
         }
+    }
+
+    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        for url in urls { add(url) }
     }
 }
 
 extension FilePickerViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        picker.dismiss(animated: true, completion: nil)
+        picker.dismiss(animated: true)
         do {
             if let image = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage {
-                presenter?.add(url: try image.write())
+                add(try image.write())
             } else if let videoURL = info[.mediaURL] as? URL {
                 let destination = URL
                     .temporaryDirectory
@@ -309,7 +305,7 @@ extension FilePickerViewController: UIImagePickerControllerDelegate, UINavigatio
                     .appendingPathComponent(String(Clock.now.timeIntervalSince1970), isDirectory: true)
                     .appendingPathExtension(videoURL.pathExtension)
                 try videoURL.copy(to: destination)
-                presenter?.add(url: destination)
+                add(destination)
             }
         } catch {
             showError(error)
@@ -319,19 +315,18 @@ extension FilePickerViewController: UIImagePickerControllerDelegate, UINavigatio
 
 extension FilePickerViewController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return files?.count ?? 0
+        return files.count
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(FilePickerCell.self, for: indexPath)
-        cell.file = files?[indexPath.row]
+        let cell: FilePickerCell = tableView.dequeue(for: indexPath)
+        cell.file = files[indexPath.row]
         cell.accessibilityIdentifier = "FilePickerListItem.\(indexPath.row)"
-
         return cell
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let error = files?[indexPath.row]?.uploadError {
+        if let error = files[indexPath.row]?.uploadError {
             showError(message: error)
         }
         tableView.deselectRow(at: indexPath, animated: true)

@@ -503,7 +503,7 @@
 		B12A763A2191459F000693DE /* file-post-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A76392191459F000693DE /* file-post-body.txt */; };
 		B133A78A221F59A3000E393E /* ContextColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B133A789221F59A3000E393E /* ContextColorTests.swift */; };
 		B14B704D228F30A100B568D6 /* UploadFileComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B704C228F30A100B568D6 /* UploadFileComment.swift */; };
-		B14B7055229468BC00B568D6 /* FilePickerPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B7054229468BC00B568D6 /* FilePickerPresenterTests.swift */; };
+		B14B7055229468BC00B568D6 /* FilePickerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B7054229468BC00B568D6 /* FilePickerViewControllerTests.swift */; };
 		B14B70572294758600B568D6 /* UploadFileCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B70562294758600B568D6 /* UploadFileCommentTests.swift */; };
 		B14D55612130B6740066D275 /* TestOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14D55602130B6740066D275 /* TestOperationQueue.swift */; };
 		B14FE5D92134F68800328CD7 /* CoreTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14FE5D82134F68800328CD7 /* CoreTestCase.swift */; };
@@ -574,7 +574,6 @@
 		B1A8CD3722375D6400E2242D /* FileUploadTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD3622375D6400E2242D /* FileUploadTarget.swift */; };
 		B1A8CD3A223766FA00E2242D /* UploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD39223766FA00E2242D /* UploadManager.swift */; };
 		B1AAFFFE226988440088BC20 /* UITableViewCellExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AAFFFD226988440088BC20 /* UITableViewCellExtensionsTests.swift */; };
-		B1AC8594228F08CA00D6BD0B /* FilePickerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AC8593228F08CA00D6BD0B /* FilePickerPresenter.swift */; };
 		B1AE17AE21877C37002995E6 /* APIEnrollmentRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AE17AD21877C36002995E6 /* APIEnrollmentRequestable.swift */; };
 		B1B42C1622403AFD0087399A /* UploadManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B42C1522403AFD0087399A /* UploadManagerTests.swift */; };
 		B1B4C1C9219631AC00FA9E0E /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B4C1C8219631AC00FA9E0E /* EmptyView.xib */; };
@@ -1371,7 +1370,7 @@
 		B133A789221F59A3000E393E /* ContextColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextColorTests.swift; sourceTree = "<group>"; };
 		B1445300212E5B6E0009D848 /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
 		B14B704C228F30A100B568D6 /* UploadFileComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFileComment.swift; sourceTree = "<group>"; };
-		B14B7054229468BC00B568D6 /* FilePickerPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerPresenterTests.swift; sourceTree = "<group>"; };
+		B14B7054229468BC00B568D6 /* FilePickerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerViewControllerTests.swift; sourceTree = "<group>"; };
 		B14B70562294758600B568D6 /* UploadFileCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFileCommentTests.swift; sourceTree = "<group>"; };
 		B14D55602130B6740066D275 /* TestOperationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestOperationQueue.swift; sourceTree = "<group>"; };
 		B14FE5D82134F68800328CD7 /* CoreTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTestCase.swift; sourceTree = "<group>"; };
@@ -1440,7 +1439,6 @@
 		B1A8CD3622375D6400E2242D /* FileUploadTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadTarget.swift; sourceTree = "<group>"; };
 		B1A8CD39223766FA00E2242D /* UploadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadManager.swift; sourceTree = "<group>"; };
 		B1AAFFFD226988440088BC20 /* UITableViewCellExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtensionsTests.swift; sourceTree = "<group>"; };
-		B1AC8593228F08CA00D6BD0B /* FilePickerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerPresenter.swift; sourceTree = "<group>"; };
 		B1AE17AD21877C36002995E6 /* APIEnrollmentRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollmentRequestable.swift; sourceTree = "<group>"; };
 		B1B42C1522403AFD0087399A /* UploadManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadManagerTests.swift; sourceTree = "<group>"; };
 		B1B4C1C8219631AC00FA9E0E /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
@@ -2230,7 +2228,6 @@
 			isa = PBXGroup;
 			children = (
 				7D2E827F2270BB7600735854 /* FilePickerCell.swift */,
-				B1AC8593228F08CA00D6BD0B /* FilePickerPresenter.swift */,
 				7D2E827E2270BB7600735854 /* FilePickerProgressView.swift */,
 				7D2E82822270BB7600735854 /* FilePickerViewController.storyboard */,
 				7D2E82812270BB7600735854 /* FilePickerViewController.swift */,
@@ -2808,7 +2805,7 @@
 		B1B42C1422403AE90087399A /* FilePicker */ = {
 			isa = PBXGroup;
 			children = (
-				B14B7054229468BC00B568D6 /* FilePickerPresenterTests.swift */,
+				B14B7054229468BC00B568D6 /* FilePickerViewControllerTests.swift */,
 			);
 			path = FilePicker;
 			sourceTree = "<group>";
@@ -3582,7 +3579,6 @@
 				9FCF1542227B6DB6009D35F6 /* GradeCircleView.swift in Sources */,
 				3B4687B32355109C00F293A5 /* SyllabusActionableItemsPresenter.swift in Sources */,
 				3B158CA722E1343D0039A568 /* PageViewEventViewControllerLoggingProtocol.swift in Sources */,
-				B1AC8594228F08CA00D6BD0B /* FilePickerPresenter.swift in Sources */,
 				7D29D31C218B87050036437C /* DocViewerAnnotationProvider.swift in Sources */,
 				7D819FF7228C7C7E00C61EDD /* APIError.swift in Sources */,
 				B1A890B8224ED64B00CEE000 /* UIScrollViewExtensions.swift in Sources */,
@@ -3947,7 +3943,7 @@
 				7D819FF9228C898100C61EDD /* APIErrorTests.swift in Sources */,
 				3BDB8F3722E6389F003D81C3 /* PresenterPageViewLoggerTests.swift in Sources */,
 				B150C63E2298E6410096D58C /* GetArcTests.swift in Sources */,
-				B14B7055229468BC00B568D6 /* FilePickerPresenterTests.swift in Sources */,
+				B14B7055229468BC00B568D6 /* FilePickerViewControllerTests.swift in Sources */,
 				7DCF203E216D5C4C003AF358 /* LockStatusViewable.swift in Sources */,
 				7D71807B233FCD0A0053FC7A /* UserProfileTests.swift in Sources */,
 				9F10A66B2293191200E3360C /* UserSettingsTests.swift in Sources */,
