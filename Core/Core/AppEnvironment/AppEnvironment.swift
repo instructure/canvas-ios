@@ -51,7 +51,6 @@ open class AppEnvironment {
 
     public func userDidLogout(session: LoginSession) {
         guard session == currentSession else { return }
-        database.destroy()
         database = globalDatabase
         api = URLSessionAPI()
         currentSession = nil

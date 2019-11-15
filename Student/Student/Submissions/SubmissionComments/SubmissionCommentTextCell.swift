@@ -34,6 +34,7 @@ class SubmissionCommentTextCell: UITableViewCell {
     }
 
     func update(comment: SubmissionComment) {
+        guard !comment.isFault else { return }
         self.comment = comment
         accessibilityIdentifier = "SubmissionComments.textCell.\(comment.id)"
         accessibilityLabel = String.localizedStringWithFormat(

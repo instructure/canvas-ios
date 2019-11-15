@@ -81,8 +81,10 @@ extension NSPersistentContainer {
 
     public func destroy() {
         do {
-            for url in persistentStoreCoordinator.persistentStores.compactMap({ $0.url }) {
-                try persistentStoreCoordinator.destroyPersistentStore(at: url, ofType: NSSQLiteStoreType, options: nil)
+            for description in persistentStoreDescriptions {
+                if let url = description.url {
+                    try persistentStoreCoordinator.destroyPersistentStore(at: url, ofType: description.type, options: nil)
+                }
             }
         } catch {
             // It's not the worst thing ever if we can't destroy the db
