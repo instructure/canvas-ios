@@ -342,7 +342,7 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
     "/support/:type": { _, params in
         let type = params["type"].flatMap { ErrorReportType(rawValue: $0) } ?? .problem
         return ErrorReportViewController.create(type: type)
-    }
+    },
 ]
 
 var routes: [RouteHandler] = []

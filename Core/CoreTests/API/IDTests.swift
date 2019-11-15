@@ -38,7 +38,7 @@ class IDTests: XCTestCase {
     func testIntLiteral() {
         let foo: ID = 2
         XCTAssertEqual(foo, "2")
-        XCTAssertEqual(foo, 3)
+        XCTAssertEqual(foo, 2)
     }
 
     func testDecodeFromInt() {
