@@ -128,8 +128,6 @@ class AssignmentTests: CoreTestCase {
         XCTAssertFalse(result)
     }
 
-    
-
     func testIsLTIAssignment() {
         let a = Assignment.make()
         a.submissionTypes = [.external_tool]

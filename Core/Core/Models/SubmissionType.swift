@@ -77,7 +77,7 @@ extension Array where Element == SubmissionType {
         return types
     }
 
-    public func allowedUTIs(allowedExtensions: [String] = [])  -> [UTI] {
+    public func allowedUTIs(allowedExtensions: [String] = []) -> [UTI] {
         var utis: [UTI] = []
 
         if contains(.online_upload) {
