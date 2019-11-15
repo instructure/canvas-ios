@@ -185,7 +185,10 @@ function untestedFiles () {
 // Report any other messages recorded as part of the build
 function buildLog() {
   try {
-    markdown(fs.readFileSync('tmp/report_to_danger.md', 'utf8'))
+    const contents = fs.readFileSync('tmp/report_to_danger.md', 'utf8')
+    if (contents.length > 0) {
+      markdown(contents)
+    }
   } catch (e) {
   }
 }
