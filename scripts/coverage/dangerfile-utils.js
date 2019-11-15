@@ -17,7 +17,6 @@
 //
 
 exports.checkCoverage = checkCoverage
-exports.reportFailures = reportFailures
 function checkCoverage () {
   const master = require(`./citests/coverage-summary-master.json`)
   const pr = require(`./citests/coverage-summary.json`)

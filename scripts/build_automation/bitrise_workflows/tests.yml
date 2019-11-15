@@ -453,24 +453,20 @@ workflows:
                 sed -e $'s/\x1b\\[[0-9;]*[a-zA-Z]//g; s/&/&amp;/g; s/</&lt/g; s/>/&gt/g'
             }
 
-            if [[ -s tmp/swift-lint-results.txt ]]; then
-                echo "<details><summary>:x: Swift lint</summary>"
-                echo "<pre>$(htmlize < tmp/swift-lint-results.txt)</pre>"
-                echo "</details>"
-            fi >> tmp/report_to_danger_subbuild.md
+            function report_file {
+                local name=$1
+                local file=$2
+                if [[ -f $file && -s $file ]]; then
+                    echo "<details><summary>:x: $name</summary>"
+                    echo "<pre>$(htmlize < $file)</pre>"
+                    echo "</details>"
+                fi >> tmp/report_to_danger_subbuild.md
+            }
 
-            if [[ -s tmp/yarn-lint-results.txt ]]; then
-                echo "<details><summary>:x: Yarn lint</summary>"
-                echo "<pre>$(htmlize < tmp/yarn-lint-results.txt)</pre>"
-                echo "</details>"
-            fi >> tmp/report_to_danger_subbuild.md
-
-            sed -n '/Summary of all failing tests/,$ p' < tmp/yarn-tests.txt > tmp/yarn-test-failures.txt
-            if [[ -s tmp/yarn-failures.txt ]]; then
-                echo "<details><summary>:x: JS tests</summary>"
-                echo "<pre>$(htmlize < tmp/yarn-failures.txt)</pre>"
-                echo "</details>"
-            fi >> tmp/report_to_danger_subbuild.md
+            report_file "Swift lint" tmp/swift-lint-results.txt
+            report_file "Yarn lint" tmp/yarn-lint-results.txt
+            sed -n '/Summary of all failing tests/,$ p' < tmp/yarn-tests.txt > tmp/yarn-test-failures.txt || true
+            report_file "JS tests" tmp/yarn-failures.txt
 
             tar -cJf $BITRISE_DEPLOY_DIR/results.tar.xz \
                 scripts/coverage/react-native \
