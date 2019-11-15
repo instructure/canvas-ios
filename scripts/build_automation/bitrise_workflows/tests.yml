@@ -95,6 +95,8 @@ workflows:
             #!/bin/zsh
             set -euxo pipefail
 
+            exit 1
+
             export NSUnbufferedIO=YES
             export CODE_SIGNING_REQUIRED=NO
             export IgnoreFileSystemDeviceInodeChanges=1
