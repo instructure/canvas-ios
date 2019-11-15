@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2018-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -15,29 +15,18 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
-
 import Foundation
 
-public enum ActivityType: String, Codable {
-    case announcement = "Announcement"
-    case assessmentRequest = "AssessmentRequest"
-    case collaboration = "Collaboration"
-    case conference = "WebConference"
-    case conversation = "Conversation"
-    case discussion = "DiscussionTopic"
-    case message = "Message"
-    case submission = "Submission"
-}
-
-public struct APIActivity: Codable {
-    let id: ID
-    let title: String
-    let message: String
-    let html_url: URL
-    let created_at: Date
-    let updated_at: Date
-    let type: ActivityType
-    let context_type: ContextType
-    let course_id: ID?
-    let group_id: ID?
+public struct GetActivityRequest: APIRequestable {
+    public typealias Response = APIActivity
+	
+	public var path: String {
+		return "/users/self/activity_stream"
+	}
+	
+	public var query: [APIQueryItem] {
+        return [
+            .value("per_page", "99"),
+        ]
+    }
 }
