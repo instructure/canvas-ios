@@ -182,13 +182,21 @@ function untestedFiles () {
   }
 }
 
+// Report any other messages recorded as part of the build
+function buildLog() {
+  try {
+    markdown(fs.readFileSync("tmp/report_to_danger.md"))
+  } catch (e) {
+  }
+}
+
 commitMessage()
 if (process.env.BITRISE_BUILD_STATUS == "0" /* Not finished */) {
     checkCoverage()
 } else {
     fail('Build failed, skipping coverage check')
-    reportFailures()
 }
 packages()
 licenseHeaders()
 untestedFiles()
+buildLog()

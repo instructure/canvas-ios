@@ -24,7 +24,7 @@
 //   swift sh edit summarize-test-results.swift
 
 import Foundation
-import XCResultKit // @cobbal == dev
+import XCResultKit // @davidahouse
 
 let env = ProcessInfo.processInfo.environment
 
@@ -52,11 +52,14 @@ func getTests(group: ActionTestSummaryGroup) -> [ActionTestMetadata] {
     group.subtests + group.subtestGroups.flatMap(getTests)
 }
 
-let testIds = resultFile.getInvocationRecord()!.actions.compactMap { $0.actionResult.testsRef?.id }
+let testRunIds = resultFile.getInvocationRecord()!.actions.compactMap { $0.actionResult.testsRef?.id }
 
-for (`try`, id) in testIds.enumerated() {
-    let isFinal = id == testIds.last
-    for bundleSummary in resultFile.getTestPlanRunSummaries(id: id)!.summaries.flatMap({ $0.testableSummaries }) {
+var results = [TestResult]()
+
+for (tryNumber, testRunId) in testRunIds.enumerated() {
+    let isFinal = testRunId == testRunIds.last
+    let bundleSummaries = resultFile.getTestPlanRunSummaries(id: testRunId)!.summaries
+    for bundleSummary in bundleSummaries.flatMap({ $0.testableSummaries }) {
         for group in bundleSummary.tests {
             for test in getTests(group: group) {
                 var message: String? = nil
@@ -72,19 +75,62 @@ for (`try`, id) in testIds.enumerated() {
                     message = titles.joined(separator: "\n")
                 }
 
-                let identifier = (bundleSummary.targetName ?? "") + "/" + test.identifier.trimmingCharacters(in: CharacterSet(charactersIn: "()"))
+                let testId = test.identifier.trimmingCharacters(in: CharacterSet(charactersIn: "()"))
+                let fullTestId = (bundleSummary.targetName ?? "") + "/" + testId
 
-                let result = TestResult(
+                results.append(TestResult(
                     duration: test.duration,
-                    identifier: identifier,
+                    identifier: fullTestId,
                     testStatus: test.testStatus,
-                    try: `try`,
+                    try: tryNumber,
                     finalTry: isFinal,
-                    message: message)
-
-                let json = try! JSONEncoder().encode(result)
-                print(String(data: json, encoding: .utf8)!)
+                    message: message))
             }
         }
     }
+}
+
+for result in results {
+    let json = try! JSONEncoder().encode(result)
+    print(String(data: json, encoding: .utf8)!)
+}
+
+extension String {
+    func replace(_ target: String, _ replacement: String) -> String {
+        (self as NSString).replacingOccurrences(of: target, with: replacement)
+    }
+}
+
+func escapeHTML(_ str: String) -> String {
+    str.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+}
+
+// Report failures to danger
+try! FileManager.default.createDirectory(atPath: "tmp", withIntermediateDirectories: true)
+let dangerOut = OutputStream(toFileAtPath: "tmp/report_to_danger.md", append: true)!
+dangerOut.open()
+defer { dangerOut.close() }
+
+func reportToDanger(_ message: String) {
+    let data = "\(message)\n".data(using: .utf8)!
+    data.withUnsafeBytes { dangerOut.write($0, maxLength: data.count) }
+}
+
+let failures = results.filter({ $0.testStatus == "Failure" })
+let maxReportCount = 10
+for result in failures.prefix(10) {
+    let headline = ":x: \(result.identifier)"
+    if let message = result.message {
+        reportToDanger("""
+                         <details><summary>\(escapeHTML(headline))</summary>
+                         <pre>\(escapeHTML(message))</pre>
+                         </details>
+                         """)
+    } else {
+        reportToDanger(escapeHTML(headline))
+    }
+}
+
+if failures.count > maxReportCount {
+    reportToDanger("(and \(failures.count - maxReportCount) other test failures)")
 }
