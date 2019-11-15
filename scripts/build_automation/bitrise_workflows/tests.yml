@@ -450,7 +450,7 @@ workflows:
             set -euxo pipefail
 
             function htmlize {
-                sed -e $'s/\x1b\\[[0-9;]*[a-zA-Z]//g; 's/&/&amp;/g; s/</&lt/g; s/>/&gt/g'
+                sed -e $'s/\x1b\\[[0-9;]*[a-zA-Z]//g; s/&/&amp;/g; s/</&lt/g; s/>/&gt/g'
             }
 
             if [[ -s tmp/swift-lint-results.txt ]]; then
@@ -470,7 +470,7 @@ workflows:
                 echo "<details><summary>:x: JS tests</summary>"
                 echo "<pre>$(htmlize < tmp/yarn-failures.txt)</pre>"
                 echo "</details>"
-            fi
+            fi >> tmp/report_to_danger_subbuild.md
 
             tar -cJf $BITRISE_DEPLOY_DIR/results.tar.xz \
                 scripts/coverage/react-native \
