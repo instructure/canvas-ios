@@ -43,7 +43,6 @@ import App, { type AppId } from './src/modules/app'
 import Navigator from './src/routing/Navigator'
 import APIBridge from './src/canvas-api/APIBridge'
 import { Crashlytics } from './src/common/CanvasCrashlytics'
-import { getLastRoute } from './src/modules/developer-menu/DeveloperMenu'
 import { clearClient } from './src/canvas-api-v2/client'
 
 global.crashReporter = Crashlytics

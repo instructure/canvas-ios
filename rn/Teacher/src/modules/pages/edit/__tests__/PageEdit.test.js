@@ -64,7 +64,7 @@ describe('PageEdit', () => {
     httpCache.handle('GET', 'groups/2/pages/test', page)
     const tree = shallow(<ConnectedPageEdit context='groups' contextID='2' url='test' navigator={template.navigator()} />)
     expect(tree.find(PageEdit).props()).toMatchObject({
-      page
+      page,
     })
   })
 

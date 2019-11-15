@@ -69,14 +69,14 @@ type State = {
 function editingRoles (context) {
   return context === 'courses'
     ? {
-        'teachers': i18n('Only teachers'),
-        'students,teachers': i18n('Teachers and students'),
-        'public': i18n('Anyone'),
-      }
+      'teachers': i18n('Only teachers'),
+      'students,teachers': i18n('Teachers and students'),
+      'public': i18n('Anyone'),
+    }
     : {
-        'members': i18n('Only members'),
-        'public': i18n('Anyone'),
-      }
+      'members': i18n('Only members'),
+      'public': i18n('Anyone'),
+    }
 }
 
 export class PageEdit extends Component<Props, State> {
@@ -143,7 +143,7 @@ export class PageEdit extends Component<Props, State> {
             <FormLabel>{i18n('Description')}</FormLabel>
             <View
               style={style.description}
-              >
+            >
               <RichTextEditor
                 ref={(r) => { this.editor = r }}
                 defaultValue={this.props.page ? this.props.page.body : null}
@@ -157,7 +157,7 @@ export class PageEdit extends Component<Props, State> {
                 onFocus={this._scrollToRCE}
                 context={this.props.context}
                 contextID={this.props.contextID}
-                />
+              />
             </View>
             {(isTeacher() || this.props.context === 'groups') &&
               <View>
