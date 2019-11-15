@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -15,18 +15,29 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
-import Foundation
 
-public struct GetActivityRequest: APIRequestable {
-    public typealias Response = APIActivity
+import XCTest
+@testable import Core
 
-	public var path: String {
-		return "/users/self/activity_stream"
-	}
+class GetActivitiesRequestTests: XCTestCase {
+    var req: GetActivitiesRequest!
 
-	public var query: [APIQueryItem] {
-        return [
-            .value("per_page", "99"),
-        ]
+    override func setUp() {
+        super.setUp()
+        req = GetActivitiesRequest()
+    }
+
+    func testPath() {
+        XCTAssertEqual(req.path, "/users/self/activity_stream")
+    }
+
+    func testQuery() {
+        let expected: [APIQueryItem] = [.value("per_page", "99")]
+        XCTAssertEqual(req.query, expected)
+    }
+
+    func testModel() {
+        let model = APIActivity.make()
+        XCTAssertNotNil(model)
     }
 }
