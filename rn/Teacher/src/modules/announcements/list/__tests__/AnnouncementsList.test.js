@@ -16,22 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-/* @flow */
-
 import React from 'react'
 import 'react-native'
-import renderer from 'react-test-renderer'
-
-import { Refreshed, AnnouncementsList, type Props, mapStateToProps } from '../AnnouncementsList'
-import explore from '../../../../../test/helpers/explore'
+import { Refreshed, AnnouncementsList, mapStateToProps } from '../AnnouncementsList'
 import app from '../../../app'
-import { shallow } from 'enzyme/build/index'
-
-const template = {
-  ...require('../../../../__templates__/discussion'),
-  ...require('../../../../__templates__/helm'),
-  ...require('../../../../redux/__templates__/app-state'),
-}
+import { shallow } from 'enzyme'
+import * as template from '../../../../__templates__'
 
 jest
   .mock('Button', () => 'Button')
@@ -42,7 +32,7 @@ jest
 describe('AnnouncementsList', () => {
   let props: Props
   beforeEach(() => {
-    jest.resetAllMocks()
+    jest.clearAllMocks()
     app.setCurrentApp('teacher')
     props = {
       context: 'courses',
@@ -81,15 +71,12 @@ describe('AnnouncementsList', () => {
       refreshCourse,
     }
 
-    let tree = shallow(<Refreshed {...refreshProps} />)
-    expect(tree).toMatchSnapshot()
+    shallow(<Refreshed {...refreshProps} />)
     expect(refreshAnnouncements).toHaveBeenCalled()
     expect(refreshCourse).toHaveBeenCalledTimes(0)
 
-    // $FlowFixMe
     refreshProps.context = 'courses'
-    tree = shallow(<Refreshed {...refreshProps} />)
-    expect(tree).toMatchSnapshot()
+    shallow(<Refreshed {...refreshProps} />)
     expect(refreshCourse).toHaveBeenCalledTimes(1)
   })
 
@@ -105,8 +92,7 @@ describe('AnnouncementsList', () => {
       refreshAnnouncements,
     }
 
-    let tree = shallow(<Refreshed {...refreshProps} />)
-    expect(tree).toMatchSnapshot()
+    shallow(<Refreshed {...refreshProps} />)
     expect(refreshAnnouncements).toHaveBeenCalled()
   })
 
@@ -119,43 +105,43 @@ describe('AnnouncementsList', () => {
     }
 
     let tree = shallow(<Refreshed {...refreshProps} />)
-    expect(tree).toMatchSnapshot()
     tree.instance().refresh()
     tree.setProps(refreshProps)
     expect(refreshAnnouncements).toHaveBeenCalledTimes(2)
   })
 
-  it('renders', () => {
-    testRender(props)
-  })
-
   it('renders with no create_announcement permission', () => {
     props.permissions.create_announcement = false
-    testRender(props)
+    let tree = shallow(<AnnouncementsList {...props} />)
+    expect(tree.find('Screen').prop('rightBarButtons')).toBe(false)
   })
 
   it('renders while pending', () => {
     props.announcements = []
     props.pending = 1
-    testRender(props)
+    let tree = shallow(<AnnouncementsList {...props} />)
+    expect(tree.find('ActivityIndicatorView').exists()).toBe(true)
   })
 
   it('renders while refreshing', () => {
     props.pending = 1
     props.refreshing = true
-    testRender(props)
+    let tree = shallow(<AnnouncementsList {...props} />)
+    expect(tree.find('ActivityIndicatorView').exists()).toBe(false)
+    expect(tree.find('FlatList').prop('refreshing')).toBe(true)
   })
 
   it('renders empty list', () => {
     props.announcements = []
-    testRender(props)
+    let tree = shallow(<AnnouncementsList {...props} />)
+    expect(tree.find('FlatList').dive().find('ListEmptyComponent').prop('title'))
+      .toBe('There are no announcements to display.')
   })
 
   it('navigates to new announcement', () => {
-    props.navigator.show = jest.fn()
-
     props.contextID = '2'
-    tapAdd(render(props))
+    let tree = shallow(<AnnouncementsList {...props} />)
+    tree.find('Screen').prop('rightBarButtons')[0].action()
     expect(props.navigator.show).toHaveBeenCalledWith(
       '/courses/2/announcements/new',
       { modal: true },
@@ -166,8 +152,8 @@ describe('AnnouncementsList', () => {
     const announcement = template.discussion({ html_url: 'https://canvas.instructure.com/courses/1/discussions/2' })
     props.navigator.show = jest.fn()
     props.announcements = [announcement]
-    const row: any = explore(render(props).toJSON()).selectByID('announcements.list.announcement.row-0')
-    row.props.onPress()
+    let tree = shallow(<AnnouncementsList {...props} />)
+    tree.find('FlatList').dive().find('Row').simulate('Press')
     expect(props.navigator.show).toHaveBeenCalledWith(announcement.html_url, { modal: false }, {
       isAnnouncement: true,
     })
@@ -179,9 +165,10 @@ describe('AnnouncementsList', () => {
       last_reply_at: '2017-10-27T14:16:00-07:00',
     })
     props.announcements = [announcement]
-    const subtitle: any = explore(render(props).toJSON()).selectByID(`announcements.list.announcement.row-0.subtitle.custom-container`)
-    expect(subtitle.children[0].children).toEqual(['Delayed until: '])
-    expect(subtitle.children[1].children).toEqual(['Oct 28 at 3:16 PM'])
+    let tree = shallow(<AnnouncementsList {...props} />)
+    let subtitle = tree.find('FlatList').dive().find('[testID="announcements.list.announcement.row-0.subtitle.custom-container"]')
+    expect(subtitle.find('[children^="Delayed until:"]').exists()).toBe(true)
+    expect(subtitle.find('[children="Oct 28 at 3:16 PM"]').exists()).toBe(true)
   })
 
   it('displays last reply at date for regular announcements', () => {
@@ -190,8 +177,9 @@ describe('AnnouncementsList', () => {
       last_reply_at: '2017-10-27T14:16:00-07:00',
     })
     props.announcements = [announcement]
-    const subtitle: any = explore(render(props).toJSON()).selectByID(`announcements.list.announcement.row-0.subtitle.custom-container`)
-    expect(subtitle.children[0].children).toEqual(['Last post Oct 27 at 3:16 PM'])
+    let tree = shallow(<AnnouncementsList {...props} />)
+    let subtitle = tree.find('FlatList').dive().find('[testID="announcements.list.announcement.row-0.subtitle.custom-container"]')
+    expect(subtitle.find('[children="Last post Oct 27 at 3:16 PM"]').exists()).toBe(true)
   })
 
   it('displays empty post date for announcements with no dates', () => {
@@ -200,22 +188,10 @@ describe('AnnouncementsList', () => {
       last_reply_at: null,
     })
     props.announcements = [announcement]
-    const subtitle: any = explore(render(props).toJSON()).selectByID(`announcements.list.announcement.row-0.subtitle.custom-container`)
-    expect(subtitle.children[0].children).toEqual([''])
+    let tree = shallow(<AnnouncementsList {...props} />)
+    let subtitle = tree.find('FlatList').dive().find('[testID="announcements.list.announcement.row-0.subtitle.custom-container"]')
+    expect(subtitle.find('[children=""]').exists()).toBe(true)
   })
-
-  function testRender (props: any) {
-    expect(render(props)).toMatchSnapshot()
-  }
-
-  function render (props: any) {
-    return renderer.create(<AnnouncementsList {...props} />)
-  }
-
-  function tapAdd (component: any) {
-    const addBtn: any = explore(component.toJSON()).selectRightBarButton('announcements.list.addButton')
-    addBtn.action()
-  }
 })
 
 describe('mapStateToProps', () => {
@@ -361,8 +337,8 @@ describe('mapStateToProps', () => {
   })
 
   it('puts announcements in order', () => {
-    const one = template.discussion({ id: '1', position: 1 })
-    const two = template.discussion({ id: '2', position: 2 })
+    const one = template.discussion({ id: '1', posted_at: '2019-11-15T00:00:00Z' })
+    const two = template.discussion({ id: '2', posted_at: '2019-11-16T00:00:00Z' })
     const state = template.appState({
       entities: {
         courses: {
