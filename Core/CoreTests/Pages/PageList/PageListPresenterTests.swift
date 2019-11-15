@@ -39,6 +39,7 @@ class PageListPresenterTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
+        environment.mockStore = false
         coursePresenter = PageListPresenter(env: environment, view: self, context: ContextModel(.course, id: "42"))
         groupPresenter = PageListPresenter(env: environment, view: self, context: ContextModel(.group, id: "42"))
     }
@@ -103,6 +104,38 @@ class PageListPresenterTests: CoreTestCase {
 
     func testPageViewEventName() {
         XCTAssertEqual(coursePresenter.pageViewEventName, "courses/42/pages")
+    }
+
+    func testPageCreated() {
+        coursePresenter.viewIsReady()
+
+        Page.make(from: .make(html_url: URL(string: "/courses/42/pages/test-page")!))
+        XCTAssertEqual(coursePresenter.pages.count, 1)
+
+        let newPage = APIPage.make(html_url: URL(string: "/courses/42/pages/new-page")!, page_id: "1234")
+        NotificationCenter.default.post(name: NSNotification.Name("page-created"), object: nil, userInfo: apiPageToDictionary(page: newPage))
+
+        XCTAssertEqual(coursePresenter.pages.count, 2)
+        XCTAssertEqual(coursePresenter.pages.first!.id, newPage.page_id.value)
+    }
+
+    func testPageCreationOnlyHasOneFrontPage() {
+        coursePresenter.viewIsReady()
+
+        Page.make(from: .make(front_page: true, html_url: URL(string: "/courses/42/pages/test-page")!))
+
+        let newPage = APIPage.make(front_page: true, html_url: URL(string: "/courses/42/pages/new-page")!, page_id: "1234")
+        NotificationCenter.default.post(name: NSNotification.Name("page-created"), object: nil, userInfo: apiPageToDictionary(page: newPage))
+        let frontPage: [Page] = databaseClient.fetch(NSPredicate(format: "%K == true", #keyPath(Page.isFrontPage)), sortDescriptors: nil)
+        XCTAssertEqual(frontPage.count, 1)
+        XCTAssertEqual(frontPage.first?.id, "1234")
+    }
+
+    func apiPageToDictionary(page: APIPage) -> [String: Any] {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        let data = try! encoder.encode(page)
+        return try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String: Any]
     }
 }
 

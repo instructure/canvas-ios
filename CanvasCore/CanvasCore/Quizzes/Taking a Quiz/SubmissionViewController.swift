@@ -207,6 +207,10 @@ extension SubmissionViewController: DocumentMenuController, UIDocumentPickerDele
         self.documentMenuViewModel.inputs.showDocumentMenuButtonTapped()
     }
 
+    var menuSourceView: UIView? {
+        return currentFileUploadIndexPath.flatMap { tableView.cellForRow(at: $0) }
+    }
+
     // MARK: DocumentMenuController
     @objc func documentMenuFinished(uploadable: Uploadable) {
         let alertMessage = NSLocalizedString("Uploading file...", tableName: "Localizable", bundle: .core, value: "", comment: "Message displayed while a file is being uploaded")
@@ -263,10 +267,7 @@ extension SubmissionViewController: DocumentMenuController, UIDocumentPickerDele
     }
 
     // MARK: UIImagePickerControllerDelegate
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         picker.dismiss(animated: true) {
             self.documentMenuViewModel.inputs.pickedMedia(with: info)
         }

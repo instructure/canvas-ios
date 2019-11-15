@@ -178,6 +178,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         if let toggle = cell.accessoryView as? UISwitch {
             toggle.setOn(!toggle.isOn, animated: true)
         }
+        Analytics.shared.logEvent("profile_\(item.id)_selected")
         item.block(cell)
     }
 

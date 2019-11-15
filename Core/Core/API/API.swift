@@ -39,6 +39,25 @@ extension API {
     public func makeRequest<R: APIRequestable>(_ requestable: R, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask? {
         return makeRequest(requestable, refreshToken: true, callback: callback)
     }
+
+    public func exhaust<R>(_ requestable: R, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) where R: APIRequestable, R.Response: RangeReplaceableCollection {
+        exhaust(requestable, result: nil, callback: callback)
+    }
+
+    private func exhaust<R>(_ requestable: R, result: R.Response?, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) where R: APIRequestable, R.Response: RangeReplaceableCollection {
+        makeRequest(requestable) { response, urlResponse, error in
+            guard let response = response else {
+                callback(nil, urlResponse, error)
+                return
+            }
+            let result = result == nil ? response : result! + response
+            if let urlResponse = urlResponse, let next = requestable.getNext(from: urlResponse) {
+                self.exhaust(next, result: result, callback: callback)
+                return
+            }
+            callback(result, urlResponse, error)
+        }
+    }
 }
 
 public class URLSessionAPI: API {

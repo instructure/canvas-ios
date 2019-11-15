@@ -29,6 +29,7 @@ public class UITestHelpers {
         case show(String)
         case mockData(MockDataMessage)
         case mockDownload(MockDownloadMessage)
+        case mockNow(Date)
         case tearDown
         case currentSession
         case setAnimationsEnabled(Bool)
@@ -36,7 +37,7 @@ public class UITestHelpers {
         case debug(Any?)
 
         private enum CodingKeys: String, CodingKey {
-            case reset, login, show, mockData, mockDownload, tearDown, currentSession, setAnimationsEnabled, useMocksOnly, debug
+            case reset, login, show, mockData, mockDownload, tearDown, currentSession, setAnimationsEnabled, useMocksOnly, debug, mockNow
         }
 
         public init(from decoder: Decoder) throws {
@@ -61,6 +62,8 @@ public class UITestHelpers {
                 self = .useMocksOnly
             } else if let data = try container.decodeIfPresent(Data.self, forKey: .debug) {
                 self = .debug(try NSKeyedUnarchiver(forReadingFrom: data).decodeObject(forKey: "debug"))
+            } else if let date = try container.decodeIfPresent(Date.self, forKey: .mockNow) {
+                self = .mockNow(date)
             } else {
                 throw DecodingError.typeMismatch(Helper.self, .init(codingPath: container.codingPath, debugDescription: "Couldn't decode \(Helper.self)"))
             }
@@ -90,6 +93,8 @@ public class UITestHelpers {
                 let archiver = NSKeyedArchiver(requiringSecureCoding: false)
                 archiver.encode(payload, forKey: "debug")
                 try container.encode(archiver.encodedData, forKey: .debug)
+            case .mockNow(let date):
+                try container.encode(date, forKey: .mockNow)
             }
         }
     }
@@ -154,6 +159,8 @@ public class UITestHelpers {
         case .debug:
             // insert ad-hoc debug code here
             ()
+        case .mockNow(let date):
+            Clock.mockNow(date)
         }
         return nil
     }

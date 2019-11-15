@@ -66,16 +66,16 @@ public class LTITools {
             }
             let safari = SFSafariViewController(url: url)
             safari.modalPresentationStyle = .overFullScreen
-            from.present(safari, animated: animated, completion: {
+            AppEnvironment.shared.router.show(safari, from: from, options: [.modal]) {
                 completionHandler?(true)
-            })
+            }
         }
     }
 
     public func getSessionlessLaunchURL(completionBlock: @escaping (URL?) -> Void) {
         let request = GetSessionlessLaunchURLRequest(context: context, id: id, url: url, assignmentID: assignmentID, moduleItemID: moduleItemID, launchType: launchType)
         env.api.makeRequest(request) { response, _, _ in
-            DispatchQueue.main.async { completionBlock(response?.url) }
+            performUIUpdate { completionBlock(response?.url) }
         }
     }
 

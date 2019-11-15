@@ -21,13 +21,15 @@ import Foundation
 
 extension APIPage {
     public static func make(
-        url: String = "",
-        updated_at: Date = Date(),
+        body: String? = nil,
+        editing_roles: String? = nil,
         front_page: Bool = false,
+        html_url: URL = URL(string: "/courses/42/pages/answers-page")!,
         page_id: ID = ID("42"),
+        published: Bool = false,
         title: String = "Answers Page",
-        html_url: String = "/courses/42/pages/Answers-Page",
-        published: Bool = false
+        updated_at: Date = Date(),
+        url: String = "answers-page"
 	) -> APIPage {
         return APIPage(
             url: url,
@@ -36,7 +38,9 @@ extension APIPage {
             page_id: page_id,
             title: title,
             html_url: html_url,
-            published: published
+            published: published,
+            body: body,
+            editing_roles: editing_roles
         )
     }
 }

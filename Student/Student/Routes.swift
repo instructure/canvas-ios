@@ -231,33 +231,54 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
         return AppEnvironment.shared.router.match(url)
     },
 
+    "/courses/:courseID/pages/new": nil,
+    "/courses/:courseID/wiki/new": nil,
+
     "/courses/:courseID/pages/:url": { url, params in
         guard let courseID = params["courseID"] else { return nil }
         if let controller = moduleItemController(for: url, courseID: courseID) { return controller }
-        return HelmViewController(moduleName: "/courses/:courseID/pages/:url/rn", props: makeProps(url, params: params))
+        if ExperimentalFeature.newPageDetails.isEnabled {
+            guard let url = params["url"] else { return nil }
+            return PageDetailsViewController.create(context: ContextModel(.course, id: courseID), pageURL: url, app: .student)
+        } else {
+            return HelmViewController(moduleName: "/courses/:courseID/pages/:url", props: makeProps(url, params: params))
+        }
     },
     "/courses/:courseID/wiki/:url": { url, params in
         guard let courseID = params["courseID"] else { return nil }
         if let controller = moduleItemController(for: url, courseID: courseID) { return controller }
-        return HelmViewController(moduleName: "/courses/:courseID/wiki/:url/rn", props: makeProps(url, params: params))
+        if ExperimentalFeature.newPageDetails.isEnabled {
+            guard let url = params["url"] else { return nil }
+            return PageDetailsViewController.create(context: ContextModel(.course, id: courseID), pageURL: url, app: .student)
+        } else {
+            return HelmViewController(moduleName: "/courses/:courseID/wiki/:url", props: makeProps(url, params: params))
+        }
     },
-    "/courses/:courseID/pages/:url/rn": nil,
-    "/courses/:courseID/wiki/:url/rn": nil,
-
     "/groups/:groupID/pages/:url": { url, params in
         guard let groupID = params["groupID"], let purl = params["url"] else { return nil }
         // FIXME: confusing groupIDs for courseIDs (carried over from previoud route handler)
         if let controller = moduleItemController(for: url, courseID: groupID) { return controller }
-        guard let session = Session.current else { return nil }
-        return try? Page.DetailViewController(session: session, contextID: ContextID(id: groupID, context: .group), url: purl, route: route)
+        if ExperimentalFeature.newPageDetails.isEnabled {
+            return PageDetailsViewController.create(context: ContextModel(.group, id: groupID), pageURL: purl, app: .student)
+        } else {
+            guard let session = Session.current else { return nil }
+            return try? Page.DetailViewController(session: session, contextID: ContextID(id: groupID, context: .group), url: purl, route: route)
+        }
     },
     "/groups/:groupID/wiki/:url": { url, params in
         guard let groupID = params["groupID"], let purl = params["url"] else { return nil }
         // FIXME: confusing groupIDs for courseIDs (carried over from previoud route handler)
         if let controller = moduleItemController(for: url, courseID: groupID) { return controller }
-        guard let session = Session.current else { return nil }
-        return try? Page.DetailViewController(session: session, contextID: ContextID(id: groupID, context: .group), url: purl, route: route)
+        if ExperimentalFeature.newPageDetails.isEnabled {
+            return PageDetailsViewController.create(context: ContextModel(.group, id: groupID), pageURL: purl, app: .student)
+        } else {
+            guard let session = Session.current else { return nil }
+            return try? Page.DetailViewController(session: session, contextID: ContextID(id: groupID, context: .group), url: purl, route: route)
+        }
     },
+
+    "/courses/:courseID/pages/:url/edit": nil,
+    "/courses/:courseID/wiki/:url/edit": nil,
 
     "/courses/:courseID/quizzes": { _, params in
         guard let courseID = params["courseID"] else { return nil }

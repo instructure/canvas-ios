@@ -99,6 +99,11 @@ class StoreTests: CoreTestCase {
         self.eventsExpectation.fulfill()
     }
 
+    override func setUp() {
+        super.setUp()
+        environment.mockStore = false
+    }
+
     func testSubscribeWithoutCache() {
         let course = APICourse.make(id: "1")
         let useCase = TestUseCase(courses: [course])

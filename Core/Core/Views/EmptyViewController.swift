@@ -19,22 +19,24 @@
 import UIKit
 
 public class EmptyViewController: UIViewController {
-    @objc var showLogo: Bool = true
+    var showLogo: Bool = true
     override public func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         if(showLogo) { addLogo() }
     }
-    
-    @objc func addLogo() {
-        let image = UIImage(named: "EmptyViewControllerLogo", in: .core, compatibleWith: nil)
-        let logoImageview = UIImageView(image: image)
-        
-        logoImageview.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(logoImageview)
-        logoImageview.centerInSuperview(yMultiplier: 0.9)
-        let width = NSLayoutConstraint(item: logoImageview, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: logoImageview.superview, attribute: NSLayoutConstraint.Attribute.width, multiplier: 0.1, constant: 1.0)
-        let height = NSLayoutConstraint(item: logoImageview, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: logoImageview, attribute: NSLayoutConstraint.Attribute.width, multiplier: 1, constant: 0)
-        logoImageview.superview?.addConstraints([width, height])
+
+    func addLogo() {
+        let image = UIImage.icon(.instructure)
+        let logoImageView = UIImageView(image: image)
+        logoImageView.tintColor = UIColor.lightGray.ensureContrast(against: UIColor.white)
+
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(logoImageView)
+
+        logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        logoImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.1).isActive = true
+        logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor).isActive = true
     }
 }

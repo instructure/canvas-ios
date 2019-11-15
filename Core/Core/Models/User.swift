@@ -40,7 +40,7 @@ extension User: WriteableModel {
         user.shortName = item.short_name
         user.sortableName = item.sortable_name
         user.email = item.email
-        user.avatarURL = item.avatar_url
+        user.avatarURL = item.avatar_url?.rawValue
         if let enrollments = item.enrollments {
             user.enrollments = Set(enrollments.map { item in
                 let enrollment = context.insert() as Enrollment

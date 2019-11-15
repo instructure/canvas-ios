@@ -69,17 +69,17 @@ extension UseCase {
         cache.lastRefresh = Clock.now
     }
 
-    public func fetch(environment: AppEnvironment = .shared, force: Bool = false, _ callback: @escaping RequestCallback) {
+    public func fetch(environment: AppEnvironment = .shared, force: Bool = false, _ callback: RequestCallback? = nil) {
         // Make sure we write to the database that initiated this request
         let database = environment.database
         database.performBackgroundTask { client in
             guard force || self.hasExpired(in: client) else {
-                callback(nil, nil, nil) // FIXME: Return cached data?
+                callback?(nil, nil, nil) // FIXME: Return cached data?
                 return
             }
             self.makeRequest(environment: environment) { response, urlResponse, error in
                 if let error = error {
-                    callback(response, urlResponse, error)
+                    callback?(response, urlResponse, error)
                     return
                 }
                 database.performBackgroundTask { client in
@@ -91,9 +91,9 @@ extension UseCase {
                         self.write(response: response, urlResponse: urlResponse, to: client)
                         self.updateTTL(in: client)
                         try client.save()
-                        callback(response, urlResponse, error)
+                        callback?(response, urlResponse, error)
                     } catch {
-                        callback(response, urlResponse, error)
+                        callback?(response, urlResponse, error)
                     }
                 }
             }

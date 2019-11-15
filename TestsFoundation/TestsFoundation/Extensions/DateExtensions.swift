@@ -25,13 +25,13 @@ extension Date {
         return endDate ?? Date()
     }
 
-    public func addMinutes(_ days: Int) -> Date {
-        let endDate = Calendar.current.date(byAdding: .minute, value: days, to: self)
+    public func addMinutes(_ minutes: Int) -> Date {
+        let endDate = Calendar.current.date(byAdding: .minute, value: minutes, to: self)
         return endDate ?? Date()
     }
 
     public func addDays(_ days: Int) -> Date {
-        let endDate = Calendar.current.date(byAdding: .month, value: days, to: self)
+        let endDate = Calendar.current.date(byAdding: .day, value: days, to: self)
         return endDate ?? Date()
     }
 

@@ -17,6 +17,7 @@
 //
 
 import UIKit
+import Core
 
 public protocol CalendarViewDelegate {
     func calendarViewShouldHighlightDate(_ calendarView: CalendarView, date: Date) -> Bool
@@ -97,10 +98,10 @@ open class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     // Initial time range is 12 months prior and 6 months past the current month
     @objc func initialize () {
         // setup today
-        let todayDateComponents = (calendar as NSCalendar).components([.year, .month, .day], from: Date())
+        let todayDateComponents = (calendar as NSCalendar).components([.year, .month, .day], from: Clock.now)
         self.today = calendar.date(from: todayDateComponents)!
         
-        let nowYearMonthComponents = (calendar as NSCalendar).components([.year, .month], from: Date())
+        let nowYearMonthComponents = (calendar as NSCalendar).components([.year, .month], from: Clock.now)
         let now = calendar.date(from: nowYearMonthComponents)!
         
         resetToDate(now)
@@ -440,7 +441,7 @@ open class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     // MARK: - Date Helpers
     // ---------------------------------------------
     @objc func significantTimeChange(_ note: Notification) {
-        let todayYearMonthDayComponents = (calendar as NSCalendar).components([.year, .month, .day], from: Date())
+        let todayYearMonthDayComponents = (calendar as NSCalendar).components([.year, .month, .day], from: Clock.now)
         today = calendar.date(from: todayYearMonthDayComponents)!
         
         collectionView!.reloadData()

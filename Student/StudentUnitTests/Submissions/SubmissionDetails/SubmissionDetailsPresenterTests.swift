@@ -61,7 +61,7 @@ class SubmissionDetailsView: SubmissionDetailsViewProtocol {
     }
 }
 
-class SubmissionDetailsPresenterTests: PersistenceTestCase {
+class SubmissionDetailsPresenterTests: StudentTestCase {
     var presenter: SubmissionDetailsPresenter!
     var view: SubmissionDetailsView!
     var pageViewLogger: MockPageViewLogger!

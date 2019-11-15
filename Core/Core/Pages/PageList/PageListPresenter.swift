@@ -36,6 +36,7 @@ class PageListPresenter: PageViewLoggerPresenterProtocol {
     lazy var frontPage = env.subscribe(GetFrontPage(context: context)) { [weak self] in
         self?.update()
     }
+
     lazy var pages = env.subscribe(GetPages(context: context)) { [weak self] in
         self?.update()
     }
@@ -76,11 +77,16 @@ class PageListPresenter: PageViewLoggerPresenterProtocol {
     func viewIsReady() {
         colors.refresh()
         pages.refresh()
-        frontPage.refresh()
+        frontPage.refresh(force: true)
         course?.refresh()
         group?.refresh()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshPages), name: Notification.Name("refresh-pages"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(pageCreated), name: Notification.Name("page-created"), object: nil)
+
+        if ExperimentalFeature.newPageDetails.isEnabled == false {
+            NotificationCenter.default.addObserver(self, selector: #selector(refreshPages), name: Notification.Name("refresh-pages"), object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(refreshPages), name: Notification.Name("page-edit"), object: nil)
+        }
     }
 
     func select(_ page: Page, from view: UIViewController) {
@@ -91,9 +97,33 @@ class PageListPresenter: PageViewLoggerPresenterProtocol {
         env.router.route(to: "/courses/\(context.id)/pages/new", from: view, options: [.modal, .embedInNav])
     }
 
-    @objc func refreshPages() {
+    @objc
+    func refreshPages() {
         pages.refresh(force: true)
         frontPage.refresh(force: true)
+    }
+
+    @objc
+    func pageCreated(notification: NSNotification) {
+        guard let rawCreateData = notification.userInfo else {
+            return
+        }
+
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: rawCreateData, options: .prettyPrinted), let apiPage = try? decoder.decode(APIPage.self, from: jsonData) else {
+            return
+        }
+
+        // if the new page is the front page, find and turn off the old front page
+        if apiPage.front_page {
+            let scope = GetFrontPage(context: context).scope
+            let currentFrontPage: Page? = env.database.viewContext.fetch(scope.predicate, sortDescriptors: nil).first
+            currentFrontPage?.isFrontPage = false
+        }
+
+        Page.save(apiPage, in: env.database.viewContext)
+        try? env.database.viewContext.save()
     }
 
 }

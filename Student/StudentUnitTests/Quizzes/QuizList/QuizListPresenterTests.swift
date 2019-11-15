@@ -21,7 +21,7 @@ import XCTest
 import Core
 import TestsFoundation
 
-class QuizListPresenterTests: PersistenceTestCase {
+class QuizListPresenterTests: StudentTestCase {
 
     var resultingError: NSError?
     var resultingSubtitle: String?

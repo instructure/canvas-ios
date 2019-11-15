@@ -31,7 +31,7 @@ import {
 } from 'react-native'
 import store from './src/redux/store'
 import setupI18n from './i18n/setup'
-import { setSession, compareSessions, getSessionUnsafe, httpCache, getUser } from './src/canvas-api'
+import { setSession, compareSessions, getSessionUnsafe, httpCache } from './src/canvas-api'
 import { registerScreens } from './src/routing/register-screens'
 import { setupBranding } from './src/common/stylesheet'
 import logoutAction from './src/redux/logout-action'
@@ -126,13 +126,7 @@ const loginHandler = async ({
   clearClient()
   setSession(session)
 
-  try {
-    await getUser('self')
-  } catch (err) {
-    if (err.response && err.response.status === 401) {
-      return NativeLogin.logout()
-    }
-  }
+  if (await loginVerify()) { return }
 
   if (!skipHydrate) {
     await hydrateStoreFromPersistedState(store)
@@ -142,7 +136,6 @@ const loginHandler = async ({
   }
   registerScreens(store)
   Helm.loginComplete()
-  loginVerify()
   beginUpdatingBadgeCounts()
 
   if (wasReload) {

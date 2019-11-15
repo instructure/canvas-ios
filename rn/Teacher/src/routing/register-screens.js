@@ -156,6 +156,8 @@ export function registerScreens (store: Store): void {
   registerScreen('/act-as-user')
   registerScreen('/act-as-user/:userID')
 
+  registerScreen('/courses/:courseID/pages', null, store, { canBecomeMaster: true, deepLink: true })
+
   if (isTeacher()) {
     // Files
     registerScreen('/files/:fileID', wrap(ViewFile), store, { deepLink: true })
@@ -181,9 +183,6 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/quizzes/:quizID/edit', wrap(QuizEdit), store)
     registerScreen('/courses/:courseID/quizzes/:quizID/submissions', wrap(QuizSubmissions), store, { deepLink: true })
     registerScreen('/courses/:courseID/pages/new', wrap(PageEdit), store)
-    registerScreen('/courses/:courseID/wiki/:url', wrap(PageDetails), store, { deepLink: true })
-    registerScreen('/courses/:courseID/pages/:url', wrap(PageDetails), store, { deepLink: true })
-    registerScreen('/courses/:courseID/pages', null, store, { canBecomeMaster: true, deepLink: true })
     registerScreen('/courses/:courseID/users/:userID', wrap(ContextCard), store, { deepLink: true })
 
     registerScreen('/courses/:courseID/modules', null, null, { canBecomeMaster: true, deepLink: true })
@@ -208,11 +207,6 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/quizzes/:quizID/take', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/quizzes/:quizID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/quizzes', null, store, { deepLink: true })
-    registerScreen('/courses/:courseID/pages/:url', null, store, { deepLink: true })
-    registerScreen('/courses/:courseID/pages', null, store, { canBecomeMaster: true, deepLink: true })
-    registerScreen('/courses/:courseID/wiki/:url', null, store, { deepLink: true })
-    registerScreen('/courses/:courseID/pages/:url/rn', wrap(PageDetails), store)
-    registerScreen('/courses/:courseID/wiki/:url/rn', wrap(PageDetails), store)
     registerScreen('/courses/:courseID/modules', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/modules/:moduleID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/modules/:moduleID/items/:itemID', null, store, { deepLink: true })
@@ -229,5 +223,13 @@ export function registerScreens (store: Store): void {
     registerScreen('/native-route/*route')
     // Calls the old routing method as well, but with the canBecomeMaster option
     registerScreen('/native-route-master/*route', null, null, { canBecomeMaster: true })
+  }
+
+  if (ExperimentalFeature.newPageDetails.isEnabled) {
+    registerScreen('/courses/:courseID/pages/:url', null, store, { deepLink: true })
+    registerScreen('/courses/:courseID/wiki/:url', null, store, { deepLink: true })
+  } else {
+    registerScreen('/courses/:courseID/wiki/:url', wrap(PageDetails), store, { deepLink: true })
+    registerScreen('/courses/:courseID/pages/:url', wrap(PageDetails), store, { deepLink: true })
   }
 }

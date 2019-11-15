@@ -119,9 +119,9 @@ class RubricPresenter {
             }
             var allRatings: [Double] = sorted.map { $0.points }
             var allDescriptions: [String] = sorted.map { $0.desc }
-            if selected == nil, let assessment = assessment {
+            if selected == nil, let assessment = assessment, let points = assessment.points {
                 //  this is a custom assesment
-                allRatings.append(assessment.points)
+                allRatings.append(points)
                 selectedIndex = allRatings.count - 1
                 description = NSLocalizedString("Custom Grade", comment: "")
                 allDescriptions.append(description)

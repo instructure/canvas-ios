@@ -32,7 +32,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-
+        environment.mockStore = false
         controller = FileDetailsViewController.create(context: context, fileID: "1", assignmentID: "3")
         navigation = UINavigationController(rootViewController: controller)
         api.mock(controller.files, value: file)

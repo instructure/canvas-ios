@@ -22,7 +22,7 @@ import XCTest
 import SafariServices
 import TestsFoundation
 
-class SubmissionButtonPresenterTests: PersistenceTestCase {
+class SubmissionButtonPresenterTests: StudentTestCase {
     class View: UIViewController, SubmissionButtonViewProtocol {
         var presented: UIViewController?
         override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?) {

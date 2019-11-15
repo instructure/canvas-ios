@@ -31,7 +31,7 @@ public class RichContentEditorViewController: UIViewController {
 
     let batchID = UUID.string
     public weak var delegate: RichContentEditorDelegate?
-    let env = AppEnvironment.shared
+    var env = AppEnvironment.shared
     public var placeholder: String = "" {
         didSet {
             webView.evaluateJavaScript("content.setAttribute('placeholder', \(CoreWebView.jsString(placeholder)))")

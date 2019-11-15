@@ -31,6 +31,7 @@ class GradesPresenterTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         expectation = XCTestExpectation(description: "presenter updated")
+        environment.mockStore = false
         presenter = GradesPresenter(env: environment, view: self, courseID: courseID, studentID: studentID)
     }
 

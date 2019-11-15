@@ -24,16 +24,17 @@ import CoreData
 
 class CoreTestCase: XCTestCase {
     var database: NSPersistentContainer {
-        return TestsFoundation.singleSharedTestDatabase
+        return singleSharedTestDatabase
     }
     var databaseClient: NSManagedObjectContext {
         return database.viewContext
     }
     var api = MockURLSession.self
-    var router = TestRouter()
-    var logger = TestLogger()
-    var environment: AppEnvironment!
-    var currentSession = LoginSession.make()
+    var router: TestRouter!
+    var logger: TestLogger!
+
+    var environment = TestEnvironment()
+    var currentSession: LoginSession!
     var login = TestLoginDelegate()
 
     let notificationCenter = MockUserNotificationCenter()
@@ -48,19 +49,14 @@ class CoreTestCase: XCTestCase {
         super.setUp()
         MockURLSession.reset()
         LoginSession.useTestKeychain()
-        router = TestRouter()
-        logger = TestLogger()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
-        environment = AppEnvironment.shared
-        environment.api = URLSessionAPI(urlSession: MockURLSession())
-        environment.globalDatabase = database
-        environment.database = database
-        environment.router = router
+        environment = TestEnvironment()
+        router = environment.router as? TestRouter
+        logger = environment.logger as? TestLogger
+        currentSession = environment.currentSession
         environment.loginDelegate = login
-        environment.logger = logger
-        environment.currentSession = currentSession
-        environment.userDefaults = SessionDefaults(sessionID: currentSession.uniqueID)
-        LoginSession.add(currentSession)
+        AppEnvironment.shared = environment
+        LoginSession.add(environment.currentSession!)
         notificationManager = NotificationManager(notificationCenter: notificationCenter, logger: logger)
         UploadManager.shared = MockUploadManager()
         MockUploadManager.reset()

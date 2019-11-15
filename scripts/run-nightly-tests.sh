@@ -40,7 +40,8 @@ destination_flag=(-destination 'platform=iOS Simulator,name=iPhone 8')
 
 banner "Building NightlyTests"
 
-NSUnbufferedIO=YES xcodebuild -workspace Canvas.xcworkspace -scheme NightlyTests $destination_flag build-for-testing 2>&1 | xcbeautify
+export NSUnbufferedIO=YES
+xcodebuild -workspace Canvas.xcworkspace -scheme NightlyTests $destination_flag build-for-testing 2>&1 | xcbeautify
 
 BUILD_DIR=$(xcodebuild -workspace Canvas.xcworkspace -scheme NightlyTests -showBuildSettings build-for-testing -json |
                 jq -r '.[] | select(.target == "CoreTests").buildSettings.BUILD_DIR')
@@ -49,8 +50,8 @@ xctestrun=$base_xctestrun.script_run
 cp $base_xctestrun $xctestrun
 config_name=$(/usr/libexec/PlistBuddy $base_xctestrun -c "print :TestConfigurations:0:Name")
 
-# usage: setEnv testrun.xctestrun VAR value
-function setEnv {
+# usage: setTestRunEnv testrun.xctestrun VAR value
+function setTestRunEnv {
     local i name
     for (( i = 0; ; i++ )); do
         name=$(/usr/libexec/PlistBuddy $1 -c "print :TestConfigurations:0:TestTargets:$i:BlueprintName" 2>/dev/null) || break
@@ -140,8 +141,8 @@ function doTest {
     rm -rf $pipe_file
     mkfifo $pipe_file
 
-    < $pipe_file NSUnbufferedIO=YES xcbeautify &
-    NSUnbufferedIO=YES xcodebuild test-without-building $flags > $pipe_file 2> $pipe_file || ret=$?
+    < $pipe_file xcbeautify &
+    xcodebuild test-without-building $flags > $pipe_file 2> $pipe_file || ret=$?
     wait
     rm -rf $pipe_file
 
@@ -153,7 +154,7 @@ function retry {
     (( try += 1 ))
     banner "Retrying"
 
-    setEnv $xctestrun CANVAS_TEST_IS_RETRY YES
+    setTestRunEnv $xctestrun CANVAS_TEST_IS_RETRY YES
     doTest
 }
 
