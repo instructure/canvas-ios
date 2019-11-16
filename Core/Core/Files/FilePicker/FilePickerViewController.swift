@@ -20,7 +20,7 @@ import UIKit
 import MobileCoreServices
 
 public enum FilePickerSource: Int, CaseIterable {
-    case camera, library, files, audio 
+    case camera, library, files, audio
 
     static var defaults: [FilePickerSource] = [.camera, .library, .files]
 }
