@@ -451,12 +451,11 @@ workflows:
             #!/bin/zsh
             set -euxo pipefail
 
-            function htmlize {
+            function markdown_code {
+                printf '\n\n'
                 sed -e $'s/\x1b\\[[0-9;]*[a-zA-Z]//g' \
-                    -e 's/^ /\&nbsp;/' \
-                    -e 's/&/\&amp;/g' \
-                    -e 's/</\&lt;/g' \
-                    -e 's/>/\&gt;/g'
+                    -e 's/^/    /'
+                printf '\n\n'
             }
 
             function report_file {
@@ -464,7 +463,7 @@ workflows:
                 local file=$2
                 if [[ -f $file && -s $file ]]; then
                     echo "<details><summary>:x: $name</summary>"
-                    echo "<pre>$(htmlize < $file)</pre>"
+                    echo "<pre>$(markdown_code < $file)</pre>"
                     echo "</details>"
                 fi >> tmp/report_to_danger_subbuild.md
             }
