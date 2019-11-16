@@ -19,14 +19,14 @@
 import Foundation
 
 public enum ActivityType: String, Codable {
-    case announcement = "Announcement"
-    case assessmentRequest = "AssessmentRequest"
-    case collaboration = "Collaboration"
-    case conference = "WebConference"
-    case conversation = "Conversation"
     case discussion = "DiscussionTopic"
+    case announcement = "Announcement"
+    case conversation = "Conversation"
     case message = "Message"
     case submission = "Submission"
+    case conference = "WebConference"
+    case collaboration = "Collaboration"
+    case assessmentRequest = "AssessmentRequest"
 }
 
 public struct APIActivity: Codable {
@@ -37,16 +37,16 @@ public struct APIActivity: Codable {
     let created_at: Date
     let updated_at: Date
     let type: ActivityType
-    let context_type: ContextType
+    let context_type: String
     let course_id: ID?
     let group_id: ID?
 }
 
 public struct GetActivitiesRequest: APIRequestable {
-    public typealias Response = APIActivity
+    public typealias Response = [APIActivity]
 
     public var path: String {
-        return "/users/self/activity_stream"
+        return "users/self/activity_stream"
     }
 
     public var query: [APIQueryItem] {

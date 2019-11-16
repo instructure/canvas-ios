@@ -16,28 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
+import CoreData
+import Foundation
 @testable import Core
 
-class GetActivitiesRequestTests: XCTestCase {
-    var req: GetActivitiesRequest!
-
-    override func setUp() {
-        super.setUp()
-        req = GetActivitiesRequest()
-    }
-
-    func testPath() {
-        XCTAssertEqual(req.path, "users/self/activity_stream")
-    }
-
-    func testQuery() {
-        let expected: [APIQueryItem] = [.value("per_page", "99")]
-        XCTAssertEqual(req.query, expected)
-    }
-
-    func testModel() {
-        let model = APIActivity.make()
-        XCTAssertNotNil(model)
+extension Activity {
+    @discardableResult
+    public static func make(
+        from api: APIActivity = .make(),
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> Activity {
+        let model = Activity.save(api, in: context)
+        try! context.save()
+        return model
     }
 }
