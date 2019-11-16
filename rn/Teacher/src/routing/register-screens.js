@@ -144,7 +144,8 @@ export function registerScreens (store: Store): void {
   registerScreen('/filter', wrap(Filter), store)
   registerScreen('/to-do', wrap(ToDoList), store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/wiki', wrap(PageDetails), store, { deepLink: true })
-  registerScreen('/courses/:courseID/pages/:url/edit', wrap(PageEdit), store, { deepLink: true })
+  registerScreen('/:context/:contextID/pages/:url/edit', wrap(PageEdit), store, { deepLink: true })
+  registerScreen('/:context/:contextID/wiki/:url/edit', wrap(PageEdit), store, { deepLink: true })
   registerScreen('/accounts/:accountID/terms_of_service', wrap(TermsOfUse), store)
   registerScreen('/profile/settings')
   registerScreen('/support/:type', undefined, undefined, { deepLink: true })
@@ -157,6 +158,8 @@ export function registerScreens (store: Store): void {
   registerScreen('/act-as-user/:userID')
 
   registerScreen('/courses/:courseID/pages', null, store, { canBecomeMaster: true, deepLink: true })
+  registerScreen('/groups/:groupID/pages', null, store, { canBecomeMaster: true, deepLink: true })
+  registerScreen('/:context/:contextID/pages/new', wrap(PageEdit), store)
 
   if (isTeacher()) {
     // Files
@@ -182,7 +185,6 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/quizzes/:quizID/preview', wrap(QuizPreview), store)
     registerScreen('/courses/:courseID/quizzes/:quizID/edit', wrap(QuizEdit), store)
     registerScreen('/courses/:courseID/quizzes/:quizID/submissions', wrap(QuizSubmissions), store, { deepLink: true })
-    registerScreen('/courses/:courseID/pages/new', wrap(PageEdit), store)
     registerScreen('/courses/:courseID/users/:userID', wrap(ContextCard), store, { deepLink: true })
 
     registerScreen('/courses/:courseID/modules', null, null, { canBecomeMaster: true, deepLink: true })
@@ -228,6 +230,8 @@ export function registerScreens (store: Store): void {
   if (ExperimentalFeature.newPageDetails.isEnabled) {
     registerScreen('/courses/:courseID/pages/:url', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/wiki/:url', null, store, { deepLink: true })
+    registerScreen('/groups/:groupID/pages/:url', null, store, { deepLink: true })
+    registerScreen('/groups/:groupID/wiki/:url', null, store, { deepLink: true })
   } else {
     registerScreen('/courses/:courseID/wiki/:url', wrap(PageDetails), store, { deepLink: true })
     registerScreen('/courses/:courseID/pages/:url', wrap(PageDetails), store, { deepLink: true })

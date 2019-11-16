@@ -35,9 +35,9 @@ public class PageListViewController: UIViewController, PageListViewProtocol {
     var appTraitCollection: UITraitCollection?
     var selectedFirstPage: Bool = false
 
-    public static func create(env: AppEnvironment = .shared, context: Context, appTraitCollection: UITraitCollection?) -> PageListViewController {
+    public static func create(env: AppEnvironment = .shared, context: Context, appTraitCollection: UITraitCollection?, app: App) -> PageListViewController {
         let view = loadFromStoryboard()
-        view.presenter = PageListPresenter(env: env, view: view, context: context)
+        view.presenter = PageListPresenter(env: env, view: view, context: context, app: app)
         view.appTraitCollection = appTraitCollection
         return view
     }
@@ -101,7 +101,7 @@ public class PageListViewController: UIViewController, PageListViewProtocol {
         loadingView?.color = Brand.shared.primary.ensureContrast(against: .named(.white))
         loadingView.isHidden = true
 
-        if Bundle.main.isTeacherApp {
+        if presenter?.canCreatePage() == true {
             let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
             addNavigationButton(button, side: .right)
         }

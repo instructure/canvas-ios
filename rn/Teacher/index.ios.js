@@ -43,7 +43,6 @@ import App, { type AppId } from './src/modules/app'
 import Navigator from './src/routing/Navigator'
 import APIBridge from './src/canvas-api/APIBridge'
 import { Crashlytics } from './src/common/CanvasCrashlytics'
-import { getLastRoute } from './src/modules/developer-menu/DeveloperMenu'
 import { clearClient } from './src/canvas-api-v2/client'
 
 global.crashReporter = Crashlytics
@@ -77,7 +76,6 @@ const loginHandler = async ({
   skipHydrate,
   countryCode,
   locale,
-  wasReload,
 }: {
   appId: AppId,
   authToken: string,
@@ -88,7 +86,6 @@ const loginHandler = async ({
   skipHydrate: boolean,
   countryCode: string,
   locale: string,
-  wasReload: boolean,
 }) => {
   setupI18n(locale || NativeModules.SettingsManager.settings.AppleLocale)
   App.setCurrentApp(appId)
@@ -137,12 +134,6 @@ const loginHandler = async ({
   registerScreens(store)
   Helm.loginComplete()
   beginUpdatingBadgeCounts()
-
-  if (wasReload) {
-    let lastRoute = await getLastRoute()
-    let navigator = new Navigator('')
-    navigator.show(lastRoute.url, lastRoute.options, lastRoute.props)
-  }
 }
 
 const emitter = new NativeEventEmitter(NativeLogin)

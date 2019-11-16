@@ -26,6 +26,7 @@ class PageListPresenter: PageViewLoggerPresenterProtocol {
 
     let context: Context
     let env: AppEnvironment
+    let app: App
     weak var view: PageListViewProtocol?
     var course: Store<GetCourse>?
     var group: Store<GetGroup>?
@@ -41,10 +42,11 @@ class PageListPresenter: PageViewLoggerPresenterProtocol {
         self?.update()
     }
 
-    init(env: AppEnvironment = .shared, view: PageListViewProtocol, context: Context) {
+    init(env: AppEnvironment = .shared, view: PageListViewProtocol, context: Context, app: App) {
         self.context = context
         self.env = env
         self.view = view
+        self.app = app
 
         switch context.contextType {
         case .course:
@@ -94,7 +96,7 @@ class PageListPresenter: PageViewLoggerPresenterProtocol {
     }
 
     func newPage(from view: UIViewController) {
-        env.router.route(to: "/courses/\(context.id)/pages/new", from: view, options: [.modal, .embedInNav])
+        env.router.route(to: "\(context.pathComponent)/pages/new", from: view, options: [.modal, .embedInNav])
     }
 
     @objc
@@ -124,6 +126,10 @@ class PageListPresenter: PageViewLoggerPresenterProtocol {
 
         Page.save(apiPage, in: env.database.viewContext)
         try? env.database.viewContext.save()
+    }
+
+    func canCreatePage() -> Bool {
+        return app == .teacher || context.contextType == .group
     }
 
 }
