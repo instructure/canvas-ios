@@ -453,6 +453,7 @@ workflows:
 
             function htmlize {
                 sed -e $'s/\x1b\\[[0-9;]*[a-zA-Z]//g' \
+                    -e 's/^ /\&nbsp;/' \
                     -e 's/&/\&amp;/g' \
                     -e 's/</\&lt;/g' \
                     -e 's/>/\&gt;/g'
