@@ -270,8 +270,7 @@ extension FilePickerViewController: AudioRecorderDelegate {
     }
 
     public func send(_ controller: AudioRecorderViewController, url: URL) {
-        add(url)
-        controller.dismiss(animated: true, completion: nil)
+        controller.dismiss(animated: true, completion: { [weak self] in self?.add(url) })
     }
 }
 
