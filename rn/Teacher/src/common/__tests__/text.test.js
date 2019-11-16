@@ -58,14 +58,14 @@ test('renders text with fontWeight semibold', () => {
 
 test('renders heading1 correctly', () => {
   let tree = renderer.create(
-    <Heading2 />
+    <Heading1 />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('renders heading2 correctly', () => {
   let tree = renderer.create(
-    <Heading1 />
+    <Heading2 />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })

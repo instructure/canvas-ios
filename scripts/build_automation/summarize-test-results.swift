@@ -101,8 +101,13 @@ extension String {
     }
 }
 
-func escapeHTML(_ str: String) -> String {
-    str.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+// Turn any text into a markdown code block
+func codeBlock(_ str: String) -> String {
+    var lines = ["", ""]
+    str.enumerateLines { line, _ in
+        lines.append("    \(line)")
+    }
+    return lines.joined(separator: "\n")
 }
 
 // Report failures to danger
@@ -123,7 +128,7 @@ for result in failures.prefix(10) {
     if let message = result.message {
         reportToDanger("""
                          <details><summary>\(escapeHTML(headline))</summary>
-                         <pre>\(escapeHTML(message))</pre>
+                         \(codeBlock(message))
                          </details>
                          """)
     } else {
