@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"Absent" = "Отсутствует";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "Все скрытые в настоящее время оценки.";
 
 /* No comment provided by engineer. */
@@ -11,13 +14,43 @@
 "All Posted" = "Все размещенные";
 
 /* No comment provided by engineer. */
+"Attendance" = "Посещаемость";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "Ошибка посещаемости";
+
+/* No comment provided by engineer. */
 "Back" = "Назад";
+
+/* No comment provided by engineer. */
+"Cancel" = "Отменить";
+
+/* No comment provided by engineer. */
+"Change Section" = "Изменить раздел";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Выбрать раздел";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Выбрать дату";
 
 /* No comment provided by engineer. */
 "Courses" = "Курсы";
 
 /* No comment provided by engineer. */
+"Date picker" = "Элемент выбора даты";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Исключить";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Ошибка: Не получены данные от api проверки присутствия.";
+
+/* No comment provided by engineer. */
 "Everyone" = "Все";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "Не удалось запустить инструмент переклички LTI.";
 
 /* No comment provided by engineer. */
 "Graded" = "С оценкой";
@@ -38,6 +71,15 @@
 "Hide Grades" = "Скрыть Оценки";
 
 /* No comment provided by engineer. */
+"Late" = "Поздно";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Отметить всех как присутствующих";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Отметить остальных как присутствующих";
+
+/* No comment provided by engineer. */
 "Modules" = "Модули";
 
 /* No comment provided by engineer. */
@@ -50,8 +92,17 @@
 "Post to..." = "Опубликовать в...";
 
 /* No comment provided by engineer. */
+"Present" = "Настоящий";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Выберите для изменения даты проверки присутствия";
+
+/* No comment provided by engineer. */
 "Specific Sections" = "Специальные разделы";
 
 /* No comment provided by engineer. */
 "To Do" = "Для выполнения";
+
+/* No comment provided by engineer. */
+"Unmark" = "Снять выделение";
 
