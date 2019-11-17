@@ -176,10 +176,11 @@ workflows:
             #!/bin/zsh
             set -euo pipefail
 
-            ./scripts/build_automation/summarize-test-results.swift scripts/coverage/citests.xcresult |
-                tee >(jq -acs . > scripts/coverage/test-summary.json) |
-                jq -ac . | gzip |
-                curl -q -X POST -H "Content-Type: text/plain" -H "Content-Encoding: gzip" --data-binary @- "$SUMO_ENDPOINT_URL"
+            ./scripts/build_automation/summarize-test-results.swift scripts/coverage/citests.xcresult \
+                > /dev/null
+                # until splunk is configured...
+                # jq -ac . | gzip |
+                # curl -q -X POST -H "Content-Type: text/plain" -H "Content-Encoding: gzip" --data-binary @- "$SUMO_ENDPOINT_URL"
         is_always_run: true
     - yarn:
         title: yarn danger ci

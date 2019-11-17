@@ -101,6 +101,10 @@ extension String {
     }
 }
 
+func escapeHTML(_ str: String) -> String {
+    str.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+}
+
 // Turn any text into a markdown code block
 func codeBlock(_ str: String) -> String {
     var lines = ["", ""]
