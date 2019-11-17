@@ -40,8 +40,8 @@ class PageListPresenterTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         environment.mockStore = false
-        coursePresenter = PageListPresenter(env: environment, view: self, context: ContextModel(.course, id: "42"))
-        groupPresenter = PageListPresenter(env: environment, view: self, context: ContextModel(.group, id: "42"))
+        coursePresenter = PageListPresenter(env: environment, view: self, context: ContextModel(.course, id: "42"), app: .student)
+        groupPresenter = PageListPresenter(env: environment, view: self, context: ContextModel(.group, id: "42"), app: .student)
     }
 
     func testLoadGroup() {
@@ -100,6 +100,13 @@ class PageListPresenterTests: CoreTestCase {
         XCTAssertNoThrow(coursePresenter.select(page, from: UIViewController()))
         XCTAssertEqual(router?.calls.last?.0, URLComponents.parse(page.htmlURL))
         XCTAssertEqual(router?.calls.last?.2, [.detail, .embedInNav])
+
+        let groupPage = Page.make(from: .make(
+            html_url: URL(string: "/groups/42/pages/answers-page")!
+        ))
+        XCTAssertNoThrow(groupPresenter.select(groupPage, from: UIViewController()))
+        XCTAssertEqual(router?.calls.last?.0, URLComponents.parse(groupPage.htmlURL))
+        XCTAssertEqual(router?.calls.last?.2, [.detail, .embedInNav])
     }
 
     func testPageViewEventName() {
@@ -136,6 +143,17 @@ class PageListPresenterTests: CoreTestCase {
         encoder.dateEncodingStrategy = .iso8601
         let data = try! encoder.encode(page)
         return try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String: Any]
+    }
+
+    func testCanCreatePage() {
+        var presenter = PageListPresenter(view: self, context: ContextModel(.course, id: "1"), app: .teacher)
+        XCTAssertTrue(presenter.canCreatePage())
+
+        presenter = PageListPresenter(view: self, context: ContextModel(.course, id: "1"), app: .student)
+        XCTAssertFalse(presenter.canCreatePage())
+
+        presenter = PageListPresenter(view: self, context: ContextModel(.group, id: "1"), app: .student)
+        XCTAssertTrue(presenter.canCreatePage())
     }
 }
 

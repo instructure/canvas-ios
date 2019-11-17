@@ -22,7 +22,7 @@ import Core
 import TechDebt
 
 public let router: Router = {
-let routeMap: [String: RouteHandler.ViewFactory?] = [
+let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/act-as-user": { _, _ in
         guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
         return ActAsUserViewController.create(loginDelegate: loginDelegate)
@@ -214,13 +214,13 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
     "/courses/:courseID/pages": { _, params in
         guard let courseID = params["courseID"] else { return nil }
         let context = ContextModel(.course, id: ID.expandTildeID(courseID))
-        return PageListViewController.create(context: context, appTraitCollection: UIApplication.shared.keyWindow?.traitCollection)
+        return PageListViewController.create(context: context, appTraitCollection: UIApplication.shared.keyWindow?.traitCollection, app: .student)
     },
 
     "/groups/:groupID/pages": { _, params in
         guard let groupID = params["groupID"] else { return nil }
         let context = ContextModel(.group, id: ID.expandTildeID(groupID))
-        return PageListViewController.create(context: context, appTraitCollection: UIApplication.shared.keyWindow?.traitCollection)
+        return PageListViewController.create(context: context, appTraitCollection: UIApplication.shared.keyWindow?.traitCollection, app: .student)
     },
 
     "/:context/:contextID/wiki": { url, _ in
@@ -234,8 +234,8 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
         return AppEnvironment.shared.router.match(url)
     },
 
-    "/courses/:courseID/pages/new": nil,
-    "/courses/:courseID/wiki/new": nil,
+    "/:context/:contextID/pages/new": nil,
+    "/:context/:contextID/wiki/new": nil,
 
     "/courses/:courseID/pages/:url": { url, params in
         guard let courseID = params["courseID"] else { return nil }
@@ -280,8 +280,8 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
         }
     },
 
-    "/courses/:courseID/pages/:url/edit": nil,
-    "/courses/:courseID/wiki/:url/edit": nil,
+    "/:context/:contextID/pages/:url/edit": nil,
+    "/:context/:contextID/wiki/:url/edit": nil,
 
     "/courses/:courseID/quizzes": { _, params in
         guard let courseID = params["courseID"] else { return nil }
@@ -349,7 +349,7 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
 ]
 
 var routes: [RouteHandler] = []
-for (template, handler) in routeMap.sorted(by: { $0.key > $1.key }) {
+for (template, handler) in routeMap {
     if let factory = handler {
         let route = RouteHandler(template, factory: factory)
         HelmManager.shared.registerNativeViewController(for: template, factory: { props in

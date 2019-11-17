@@ -279,7 +279,7 @@ extension SubmissionCommentsViewController: FilePickerControllerDelegate {
     }
 
     func canSubmit(_ controller: FilePickerViewController) -> Bool {
-        return controller.files?.isEmpty == false
+        return controller.files.isEmpty == false
     }
 
     func cancel(_ controller: FilePickerViewController) {
