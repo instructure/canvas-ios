@@ -162,9 +162,9 @@ class SubmissionButtonPresenter: NSObject {
 
 extension SubmissionButtonPresenter: FilePickerControllerDelegate {
     func pickFiles(for assignment: Assignment, selectedSubmissionTypes: [SubmissionType]) {
-        let filePicker = FilePickerViewController.create(batchID: isMediaRecording ? UUID.string : batchID)
         self.assignment = assignment
         self.selectedSubmissionTypes = selectedSubmissionTypes
+        let filePicker = FilePickerViewController.create(batchID: isMediaRecording ? UUID.string : batchID)
         filePicker.title = NSLocalizedString("Submission", bundle: .student, comment: "")
         filePicker.cancelButtonTitle = NSLocalizedString("Cancel Submission", bundle: .student, comment: "")
         let allowedUTIs = selectedSubmissionTypes.allowedUTIs( allowedExtensions: assignment.allowedExtensions )
