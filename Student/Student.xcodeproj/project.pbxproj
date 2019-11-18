@@ -123,7 +123,6 @@
 		49A04E4E1CF6420C0051E1E7 /* CanvasKit1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AA29171CF4D1880055862D /* CanvasKit1.framework */; };
 		49A04E541CF64C510051E1E7 /* NotificationsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E531CF64C510051E1E7 /* NotificationsTab.swift */; };
 		49A04E571CF64C7F0051E1E7 /* CanvasTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E561CF64C7F0051E1E7 /* CanvasTabBar.swift */; };
-		49A04E6E1CF64D130051E1E7 /* TabsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E661CF64D130051E1E7 /* TabsTableViewController.swift */; };
 		49A04E741CF64ED90051E1E7 /* CalendarTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E731CF64ED90051E1E7 /* CalendarTabViewController.swift */; };
 		49A04E781CF6504D0051E1E7 /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E761CF6504D0051E1E7 /* ToDoListViewController.swift */; };
 		49A04E7D1CF653050051E1E7 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A04E7C1CF653050051E1E7 /* libc++.tbd */; };
@@ -373,7 +372,6 @@
 		7DCF0F9722F8A860000AACCE /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EBB22F8A001000AACCE /* UIImageExtensions.swift */; };
 		7DCF0F9822F8A860000AACCE /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EBC22F8A001000AACCE /* UIViewControllerExtensions.swift */; };
 		7DCF0F9922F8A868000AACCE /* GroupNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EBE22F8A00D000AACCE /* GroupNavigationViewController.swift */; };
-		7DCF0F9A22F8A868000AACCE /* GroupNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EBF22F8A00D000AACCE /* GroupNavigationPresenter.swift */; };
 		7DCF0F9B22F8A897000AACCE /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EC222F8A01C000AACCE /* AvatarView.swift */; };
 		7DCF0F9C22F8A897000AACCE /* CoreWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EC322F8A01C000AACCE /* CoreWebView.swift */; };
 		7DCF0F9D22F8A897000AACCE /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EC422F8A01C000AACCE /* DividerView.swift */; };
@@ -432,7 +430,7 @@
 		7DE1161222F8AB5C005BFE98 /* AssignmentDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F0D22F8A096000AACCE /* AssignmentDetailsPresenterTests.swift */; };
 		7DE1161422F8AB5C005BFE98 /* StudentSyllabusPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1122F8A096000AACCE /* StudentSyllabusPresenterTests.swift */; };
 		7DE1161522F8AB5C005BFE98 /* CourseNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1322F8A096000AACCE /* CourseNavigationPresenterTests.swift */; };
-		7DE1161622F8AB5C005BFE98 /* GroupNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1622F8A096000AACCE /* GroupNavigationPresenterTests.swift */; };
+		7DE1161622F8AB5C005BFE98 /* GroupNavigationViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1622F8A096000AACCE /* GroupNavigationViewControllerTests.swift */; };
 		7DE1161822F8AB5C005BFE98 /* QuizListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1C22F8A096000AACCE /* QuizListPresenterTests.swift */; };
 		7DE1161922F8AB5C005BFE98 /* UIImageStudentExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2022F8A096000AACCE /* UIImageStudentExtensionTests.swift */; };
 		7DE1161A22F8AB5C005BFE98 /* UIViewControllerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2122F8A096000AACCE /* UIViewControllerExtensionsTests.swift */; };
@@ -754,7 +752,6 @@
 		49A04E261CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKCanvasAPI+CurrentAPI.m"; sourceTree = "<group>"; };
 		49A04E531CF64C510051E1E7 /* NotificationsTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTab.swift; sourceTree = "<group>"; };
 		49A04E561CF64C7F0051E1E7 /* CanvasTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasTabBar.swift; sourceTree = "<group>"; };
-		49A04E661CF64D130051E1E7 /* TabsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TabsTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		49A04E731CF64ED90051E1E7 /* CalendarTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTabViewController.swift; sourceTree = "<group>"; };
 		49A04E761CF6504D0051E1E7 /* ToDoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToDoListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		49A04E7C1CF653050051E1E7 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -1130,7 +1127,6 @@
 		7DCF0EBB22F8A001000AACCE /* UIImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		7DCF0EBC22F8A001000AACCE /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		7DCF0EBE22F8A00D000AACCE /* GroupNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationViewController.swift; sourceTree = "<group>"; };
-		7DCF0EBF22F8A00D000AACCE /* GroupNavigationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationPresenter.swift; sourceTree = "<group>"; };
 		7DCF0EC222F8A01C000AACCE /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		7DCF0EC322F8A01C000AACCE /* CoreWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWebView.swift; sourceTree = "<group>"; };
 		7DCF0EC422F8A01C000AACCE /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
@@ -1189,7 +1185,7 @@
 		7DCF0F0D22F8A096000AACCE /* AssignmentDetailsPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F1122F8A096000AACCE /* StudentSyllabusPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSyllabusPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F1322F8A096000AACCE /* CourseNavigationPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationPresenterTests.swift; sourceTree = "<group>"; };
-		7DCF0F1622F8A096000AACCE /* GroupNavigationPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationPresenterTests.swift; sourceTree = "<group>"; };
+		7DCF0F1622F8A096000AACCE /* GroupNavigationViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationViewControllerTests.swift; sourceTree = "<group>"; };
 		7DCF0F1C22F8A096000AACCE /* QuizListPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F2022F8A096000AACCE /* UIImageStudentExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageStudentExtensionTests.swift; sourceTree = "<group>"; };
 		7DCF0F2122F8A096000AACCE /* UIViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
@@ -1923,22 +1919,6 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
-		49A04E5B1CF64D130051E1E7 /* Enrollments */ = {
-			isa = PBXGroup;
-			children = (
-				49A04E651CF64D130051E1E7 /* Tabs */,
-			);
-			path = Enrollments;
-			sourceTree = "<group>";
-		};
-		49A04E651CF64D130051E1E7 /* Tabs */ = {
-			isa = PBXGroup;
-			children = (
-				49A04E661CF64D130051E1E7 /* TabsTableViewController.swift */,
-			);
-			path = Tabs;
-			sourceTree = "<group>";
-		};
 		49A04E721CF64ED90051E1E7 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -2306,7 +2286,6 @@
 			isa = PBXGroup;
 			children = (
 				49A04E721CF64ED90051E1E7 /* Calendar */,
-				49A04E5B1CF64D130051E1E7 /* Enrollments */,
 				49383CE01F84834A009C8F8E /* Login */,
 				B1E3D6DF1D8305B100B4AC11 /* Modules */,
 				49A04E521CF64C320051E1E7 /* Notifications */,
@@ -2449,7 +2428,6 @@
 			isa = PBXGroup;
 			children = (
 				7DCF0EBE22F8A00D000AACCE /* GroupNavigationViewController.swift */,
-				7DCF0EBF22F8A00D000AACCE /* GroupNavigationPresenter.swift */,
 			);
 			path = GroupNavigation;
 			sourceTree = "<group>";
@@ -2671,7 +2649,7 @@
 		7DCF0F1722F8A096000AACCE /* GroupNavigation */ = {
 			isa = PBXGroup;
 			children = (
-				7DCF0F1622F8A096000AACCE /* GroupNavigationPresenterTests.swift */,
+				7DCF0F1622F8A096000AACCE /* GroupNavigationViewControllerTests.swift */,
 			);
 			path = GroupNavigation;
 			sourceTree = "<group>";
@@ -3869,7 +3847,6 @@
 				7DCF0F9D22F8A897000AACCE /* DividerView.swift in Sources */,
 				492706A11CF4B93F00C631C6 /* RootViewController.swift in Sources */,
 				7DCF0FC022F8A8D7000AACCE /* SubmissionDetailsLockedEmptyView.swift in Sources */,
-				49A04E6E1CF64D130051E1E7 /* TabsTableViewController.swift in Sources */,
 				4976C2001FBB84B900160EE4 /* CalendarEventDetailViewController.swift in Sources */,
 				5EB46DED1D21A75C00C859A4 /* UIView+Nib.swift in Sources */,
 				9F900E7E2321870F00BB44B4 /* PeopleListPresenter.swift in Sources */,
@@ -3921,7 +3898,6 @@
 				7DCF0F9622F8A860000AACCE /* BundleExtensions.swift in Sources */,
 				5EB46DFB1D21A75C00C859A4 /* IconTodayView.swift in Sources */,
 				6181F1311DFF47AF00B94488 /* ActivityStreamTableViewController.swift in Sources */,
-				7DCF0F9A22F8A868000AACCE /* GroupNavigationPresenter.swift in Sources */,
 				7DCF0FB322F8A8D7000AACCE /* SubmissionCommentAudioCell.swift in Sources */,
 				49F9FA6F1CF8FC8500654758 /* AppDelegate+Push.swift in Sources */,
 				7DCF0FC222F8A8D7000AACCE /* SubmissionDetailsPresenter.swift in Sources */,
@@ -4144,7 +4120,7 @@
 				7DE1162222F8AB5C005BFE98 /* TextSubmissionViewControllerTests.swift in Sources */,
 				7DE1161D22F8AB5C005BFE98 /* ArcSubmissionPresenterTests.swift in Sources */,
 				7DE1162422F8AB5C005BFE98 /* RoutesTests.swift in Sources */,
-				7DE1161622F8AB5C005BFE98 /* GroupNavigationPresenterTests.swift in Sources */,
+				7DE1161622F8AB5C005BFE98 /* GroupNavigationViewControllerTests.swift in Sources */,
 				7DE1161122F8AB5C005BFE98 /* AssignmentListPresenterTests.swift in Sources */,
 				7DE1162322F8AB5C005BFE98 /* UrlSubmissionPresenterTests.swift in Sources */,
 				7DE1161922F8AB5C005BFE98 /* UIImageStudentExtensionTests.swift in Sources */,

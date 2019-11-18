@@ -82,7 +82,7 @@ class RoutesTests: XCTestCase {
     }
 
     func testGroup() {
-        XCTAssert(router.match(Route.group("7").url) is TabsTableViewController)
+        XCTAssert(router.match(Route.group("7").url) is GroupNavigationViewController)
         AppEnvironment.shared.currentSession = nil
         XCTAssertNil(router.match(Route.group("7").url))
     }

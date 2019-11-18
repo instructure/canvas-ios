@@ -50,7 +50,7 @@ public class TestStore<U: UseCase>: Store<U> {
     }
 
     public let exhaustExpectation = XCTestExpectation(description: "Exhaust")
-    override public func exhaust(while condition: @escaping (U.Response) -> Bool) {
+    override public func exhaust(while condition: @escaping (U.Response) -> Bool = { _ in true }) {
         exhaustExpectation.fulfill()
     }
 
