@@ -76,6 +76,10 @@ open class CalendarDayCell: UICollectionViewCell {
     
     @objc var cellBackgroundColor = UIColor.white
     @objc let eventCountDot = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 8))
+
+    var a11yIdentifier: String? {
+        return date.flatMap { "\($0.year)-\($0.month)-\($0.day)" }
+    }
     
     // MARK: init
     required public init?(coder aDecoder: NSCoder) {
@@ -124,6 +128,8 @@ open class CalendarDayCell: UICollectionViewCell {
         dateLabel.accessibilityLabel = dateLabel.text
             .flatMap { Int($0) }
             .map(CalendarDayCell.dayOfTheMonthA11yFormatter)
+        dateLabel.accessibilityIdentifier = a11yIdentifier.flatMap { "\($0)-label"}
+        eventCountDot.accessibilityIdentifier = a11yIdentifier.flatMap { "\($0)-eventIndicator" }
     }
     
     @objc func updateCellState() {

@@ -59,7 +59,7 @@
         <attribute name="id" attributeType="String"/>
         <attribute name="startAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="title" attributeType="String"/>
-        <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="typeRaw" attributeType="String"/>
     </entity>
     <entity name="CommunicationChannel" representedClassName="Core.CommunicationChannel" syncable="YES">
         <attribute name="address" attributeType="String"/>
@@ -505,7 +505,7 @@
         <element name="AlertThreshold" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="463"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
-        <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="150"/>
+        <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="148"/>
         <element name="CommunicationChannel" positionX="-531" positionY="-9" width="128" height="133"/>
         <element name="ContextColor" positionX="-177.3046875" positionY="-36" width="128" height="73"/>
         <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="193"/>

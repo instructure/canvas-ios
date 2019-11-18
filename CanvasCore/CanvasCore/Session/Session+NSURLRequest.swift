@@ -53,12 +53,14 @@ extension Session {
         return path
     }
 
-    public func GET(_ path: String, parameters: [String: Any] = [:], encoding: ParameterEncoding = .urlEncodedInURL, authorized: Bool = true, userAgent: String? = nil) throws -> URLRequest {
+    public func GET(_ path: String, parameters: [String: Any] = [:], encoding: ParameterEncoding = .urlEncodedInURL, authorized: Bool = true, userAgent: String? = nil, paginated: Bool = true) throws -> URLRequest {
 
         let url = baseURL.appendingPathComponent(pathByRemovingDuplicateSlash(path))
         
         var paramsPlusPagination = parameters
-        paramsPlusPagination["per_page"] = (parameters["per_page"] as? Int) ?? 99
+        if paginated {
+            paramsPlusPagination["per_page"] = (parameters["per_page"] as? Int) ?? 99
+        }
         
         var request = try URLRequest(method: .GET, URL: url, parameters: paramsPlusPagination, encoding: encoding)
 

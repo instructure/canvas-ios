@@ -243,6 +243,7 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
         let refreshImage = UIImage.icon(.refresh).withRenderingMode(.alwaysTemplate)
         let refreshButton = UIBarButtonItem(image: refreshImage, style: UIBarButtonItem.Style.plain, target: self, action: #selector(CalendarMonthViewController.refreshButtonPressed(_:)))
         refreshButton.accessibilityLabel = NSLocalizedString("Refresh", comment: "Button to refresh the calendar events")
+        refreshButton.accessibilityIdentifier = "CalendarMonthViewController.refreshButton"
         navigationButtons.append(refreshButton)
 
         if let todayView = IconTodayView.instantiateFromNib(Clock.now, tintColor: self.navigationController?.navigationBar.tintColor, target: self, action: #selector(CalendarMonthViewController.todayButtonPressed(_:))) {

@@ -51,7 +51,7 @@ open class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     
     internal var fromDate = CalendarDate()
     internal var toDate = CalendarDate()
-    @objc internal var today: Date = Date()
+    @objc internal var today: Date = Clock.now
     internal var selectedDate: CalendarDate?
     internal var dateToSelectAfterScrollAnimation: Date?
     @objc internal var daysInWeek: Int {

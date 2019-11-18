@@ -37,8 +37,20 @@ class APICalendarEventsRequestableTests: XCTestCase {
     }
 
     func testGetCalendarEvents() {
-        let requestable = GetCalendarEventsRequest(context: ctx)
-        let r = try? requestable.urlRequest(relativeTo: url, accessToken: nil, actAsUserID: nil)
-        XCTAssertEqual(r?.url?.absoluteString, "https://foo.instructure.com/api/v1/calendar_events?context_codes%5B%5D=course_1&type=event&start_date=2017-12-25&end_date=2020-12-25&per_page=100")
+        let requestable = GetCalendarEventsRequest(contexts: [ctx], include: [.submission])
+        XCTAssertEqual(requestable.path, "calendar_events")
+        XCTAssertEqual(requestable.queryItems, [
+            URLQueryItem(name: "type", value: "event"),
+            URLQueryItem(name: "start_date", value: "2017-12-25"),
+            URLQueryItem(name: "end_date", value: "2020-12-25"),
+            URLQueryItem(name: "per_page", value: "100"),
+            URLQueryItem(name: "include[]", value: "submission"),
+            URLQueryItem(name: "context_codes[]", value: "course_1"),
+        ])
+    }
+
+    func testGetCalendarEventRequest() {
+        let request = GetCalendarEventRequest(id: "1")
+        XCTAssertEqual(request.path, "calendar_events/1")
     }
 }

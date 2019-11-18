@@ -137,9 +137,10 @@ class CalendarWeekView : UIView {
     }
     
     @objc func dateForIndex(_ index: Int) -> Date {
-        var weekComponents = (Calendar.current as NSCalendar).components([.year, .month, .weekOfYear, .weekday], from: self.initialDay)
+        var weekComponents = (Calendar.current as NSCalendar).components([.year, .month, .weekOfYear, .weekday, .yearForWeekOfYear], from: self.initialDay)
         weekComponents.weekday = index + 1
-        return Calendar.current.date(from: weekComponents)!
+        let date = Calendar.current.date(from: weekComponents)!
+        return date
     }
     
     @objc func setSelectedWeekdayIndex(_ index: Int, animated: Bool) {
