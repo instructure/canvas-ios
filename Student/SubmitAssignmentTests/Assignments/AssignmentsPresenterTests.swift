@@ -19,6 +19,7 @@
 import Core
 import TestsFoundation
 import XCTest
+@testable import SubmitAssignment
 
 class AssignmentsPresenterTests: SubmitAssignmentTests, AssignmentsView {
     func testViewIsReady() {
@@ -38,7 +39,7 @@ class AssignmentsPresenterTests: SubmitAssignmentTests, AssignmentsView {
     }
 
     func testCallback() {
-        api.mock(GetSubmittableAssignmentsRequest(courseID: "1", orderBy: .position, include: [], querySize: 100), value: [
+        api.mock(GetAssignmentsRequest(courseID: "1", orderBy: .position, include: [], querySize: 100), value: [
             .make(course_id: "1", name: "Selected Assignment", submission_types: [.online_upload]),
         ])
         let expectation = XCTestExpectation(description: "callback was called")
