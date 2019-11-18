@@ -122,7 +122,7 @@ public class UITestHelpers {
 
     @discardableResult
     func send(_ message: IPCDriverServerMessage) -> Data? {
-        return (try? ipcDriverClient?.requestRemote(message))!
+        return try? ipcDriverClient?.requestRemote(message)
     }
 
     func run(_ helper: Helper) -> Data? {

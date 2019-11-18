@@ -112,8 +112,13 @@ open class CoreUITestCase: XCTestCase {
                 guard let mock = testCase.httpMocks[url.withCanonicalQueryParams!] else {
                     print("installed mocks:")
                     testCase.httpMocks.forEach { print("  \($0.key.absoluteString)") }
-                    XCTFail("mock not found for url:\n  \(url.absoluteString)")
-                    return nil
+                    print("mock not found for url:\n  \(url.absoluteString)")
+                    if testCase.failTestOnMissingMock {
+                        XCTFail("missing mock: \(url.absoluteString)")
+                        return nil
+                    } else {
+                        return try? JSONEncoder().encode(MockHTTPResponse(errorMessage: "unmocked"))
+                    }
                 }
                 return try? JSONEncoder().encode(mock)
             }

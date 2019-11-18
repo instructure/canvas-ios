@@ -201,7 +201,7 @@ class SubmissionCommentsTests: StudentUITestCase {
         allowAccessToMicrophone {
             app.find(label: "Record Audio").tap()
         }
-        AudioRecorder.recordButton.tap() // Doesn't start recording on bitrise. :( It works locally.
+        AudioRecorder.recordButton.tap()
         AudioRecorder.stopButton.tap()
         XCTAssertTrue(AudioRecorder.currentTimeLabel.isVisible)
         AudioRecorder.clearButton.tap()
@@ -214,6 +214,6 @@ class SubmissionCommentsTests: StudentUITestCase {
         AudioRecorder.stopButton.tap()
         XCTAssertTrue(AudioRecorder.currentTimeLabel.isVisible)
         AudioRecorder.sendButton.tap()
-        XCTAssertTrue(SubmissionComments.audioCell(commentID: "42").isVisible)
+        XCTAssertTrue(SubmissionComments.audioCell(commentID: "42").waitToExist().isVisible)
     }
 }
