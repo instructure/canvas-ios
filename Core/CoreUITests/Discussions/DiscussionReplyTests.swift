@@ -45,7 +45,7 @@ class DiscussionReplyTests: CoreUITestCase {
         mockData(ListDiscussionEntriesRequest(context: course, topicID: discussId.value), value: fullTopic.view)
         fullTopic.unread_entries.forEach {
             let url = URL(string: "https://canvas.instructure.com/api/v1/courses/\(course.id)/discussion_topics/\(discussId)/entries/\($0)/read")!
-            mockDataRequest(URLRequest(url: url), response: HTTPURLResponse(url: url, statusCode: 204, httpVersion: nil, headerFields: [:]))
+            mockURL(url, response: HTTPURLResponse(url: url, statusCode: 204, httpVersion: nil, headerFields: [:]))
         }
         return discussion
     }

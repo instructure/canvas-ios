@@ -28,7 +28,7 @@ class StudentUITestCase: CoreUITestCase {
 
     override func setUp() {
         super.setUp()
-        send(.useMocksOnly)
+        useMocksOnly()
     }
 
     func navBarColorHex() -> String? {

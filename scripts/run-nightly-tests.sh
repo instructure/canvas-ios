@@ -51,12 +51,14 @@ cp $base_xctestrun $xctestrun
 config_name=$(/usr/libexec/PlistBuddy $base_xctestrun -c "print :TestConfigurations:0:Name")
 
 # usage: setTestRunEnv testrun.xctestrun VAR value
+# Not space-safe
 function setTestRunEnv {
     local i name
     for (( i = 0; ; i++ )); do
         name=$(/usr/libexec/PlistBuddy $1 -c "print :TestConfigurations:0:TestTargets:$i:BlueprintName" 2>/dev/null) || break
         echo "Setting $2=$3 in $1 $name"
-        /usr/libexec/PlistBuddy $1 -c "add :TestConfigurations:0:TestTargets:$i:EnvironmentVariables:$2 string $3" || true
+        /usr/libexec/PlistBuddy $1 -c "add :TestConfigurations:0:TestTargets:$i:EnvironmentVariables:$2 string $3" ||
+        /usr/libexec/PlistBuddy $1 -c "set :TestConfigurations:0:TestTargets:$i:EnvironmentVariables:$2 $3"
     done
     if [[ i -eq 0 ]]; then
         echo "failed to set any environment variables!"

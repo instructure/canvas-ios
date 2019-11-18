@@ -23,10 +23,16 @@ import TestsFoundation
 open class CoreUITestCase: XCTestCase {
     let decoder = JSONDecoder()
     let encoder = JSONEncoder()
-    open var homeScreen: Element { return TabBar.dashboardTab }
+    open var homeScreen: Element { TabBar.dashboardTab }
 
-    open var dataMocks = [MockDataMessage]()
-    open var downloadMocks = [MockDownloadMessage]()
+    open var httpMocks = [URL: MockHTTPResponse]()
+
+    private var usingMocksOnly = false
+    open func useMocksOnly() {
+        if usingMocksOnly { return }
+        usingMocksOnly = true
+        send(.useMocksOnly)
+    }
 
     open var user: UITestUser? {
         if Bundle.main.isStudentApp {
@@ -39,7 +45,7 @@ open class CoreUITestCase: XCTestCase {
     }
 
     // The class in this variable will not have tests run for it, only for subclasses
-    open var abstractTestClass: CoreUITestCase.Type { return CoreUITestCase.self }
+    open var abstractTestClass: CoreUITestCase.Type { CoreUITestCase.self }
 
     open override func perform(_ run: XCTestRun) {
         guard type(of: self) != abstractTestClass else { return }
@@ -60,7 +66,7 @@ open class CoreUITestCase: XCTestCase {
         }
     }
 
-    override open var testRunClass: AnyClass? { return CoreUITestRun.self }
+    override open var testRunClass: AnyClass? { CoreUITestRun.self }
 
     private let isRetry = ProcessInfo.processInfo.environment["CANVAS_TEST_IS_RETRY"] == "YES"
 
@@ -82,11 +88,8 @@ open class CoreUITestCase: XCTestCase {
             homeScreen.waitToExist()
         }
         // re-install the existing mocks
-        for message in dataMocks {
-            send(.mockData(message))
-        }
-        for message in downloadMocks {
-            send(.mockDownload(message))
+        if (usingMocksOnly) {
+            send(.useMocksOnly)
         }
     }
 
@@ -102,15 +105,23 @@ open class CoreUITestCase: XCTestCase {
     class ServerDelegate: IPCDriverServerDelegate {
         public func handler(_ message: IPCDriverServerMessage) -> Data? {
             switch message {
-            case .mockNotFound(let reason):
-                if currentTestCase?.failTestOnMissingMock == true {
-                    XCTFail(reason)
-                } else {
-                    print("missing mock (allowed): \(reason)")
+            case .urlRequest(let url, uploadData: _):
+                guard let testCase = currentTestCase else {
+                    return nil
                 }
+                guard let mock = testCase.httpMocks[url.withCanonicalQueryParams!] else {
+                    print("installed mocks:")
+                    testCase.httpMocks.forEach { print("  \($0.key.absoluteString)") }
+                    print("mock not found for url:\n  \(url.absoluteString)")
+                    if testCase.failTestOnMissingMock {
+                        XCTFail("missing mock: \(url.absoluteString)")
+                        return nil
+                    } else {
+                        return try? JSONEncoder().encode(MockHTTPResponse(errorMessage: "unmocked"))
+                    }
+                }
+                return try? JSONEncoder().encode(mock)
             }
-            // unreachable
-            return nil
         }
     }
     static let delegate = ServerDelegate()
@@ -261,7 +272,7 @@ open class CoreUITestCase: XCTestCase {
     ) {
         let api = URLSessionAPI()
         let request = try! requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.loginSession?.accessToken, actAsUserID: api.loginSession?.actAsUserID)
-        return mockDataRequest(request, data: data, response: response, error: error, noCallback: noCallback)
+        return mockRequest(request, data: data, response: response, error: error, noCallback: noCallback)
     }
 
     open func mockEncodableRequest<D: Codable>(
@@ -276,7 +287,7 @@ open class CoreUITestCase: XCTestCase {
         let data = value.flatMap { try! encoder.encode($0) }
         let api = URLSessionAPI()
         let url = URL(string: path, relativeTo: api.baseURL.appendingPathComponent("api/v1/"))!
-        mockDataRequest(URLRequest(url: url), data: data, response: response, error: error, noCallback: noCallback)
+        mockURL(url, data: data, response: response, error: error, noCallback: noCallback)
     }
 
     @discardableResult
@@ -309,9 +320,9 @@ open class CoreUITestCase: XCTestCase {
 
     open func mockBaseRequests() {
         mockData(GetUserRequest(userID: "self"), value: APIUser.make())
-        mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile?per_page=50")!),
-                        data: #"{"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}"#.data(using: .utf8)) // CKIClient.fetchCurrentUser
-        mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile")!),
+        mockURL(URL(string: "https://canvas.instructure.com/api/v1/users/self/profile?per_page=50")!,
+                data: #"{"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}"#.data(using: .utf8)) // CKIClient.fetchCurrentUser
+        mockRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile")!),
                         data: #"{"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}"#.data(using: .utf8))
         mockData(GetWebSessionRequest(to: URL(string: "https://canvas.instructure.com/users/self"))) // cookie keepalive
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [:]))
@@ -333,43 +344,43 @@ open class CoreUITestCase: XCTestCase {
         mockEncodableRequest("dashboard/dashboard_cards", value: [String]())
 
         let pixel = UIImage(data: Data(base64Encoded: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=")!)!
-        mockDataRequest(URLRequest(url: URL(string: "https://instructure-uploads.s3.amazonaws.com/account_70000000000010/attachments/64473710/canvas_logomark_only2x.png")!),
-                        data: pixel.pngData()!)
+        mockURL(URL(string: "https://instructure-uploads.s3.amazonaws.com/account_70000000000010/attachments/64473710/canvas_logomark_only2x.png")!,
+                data: pixel.pngData()!)
+    }
+
+    open func mockURL(
+        _ url: URL,
+        data: Data? = nil,
+        response: HTTPURLResponse? = nil,
+        error: String? = nil,
+        noCallback: Bool = false
+    ) {
+        mockRequest(URLRequest(url: url), data: data, response: response, error: error, noCallback: noCallback)
     }
 
     // MARK: mock (primitive)
 
-    open func mockDataRequest(
+    open func mockRequest(
         _ request: URLRequest,
         data: Data? = nil,
         response: HTTPURLResponse? = nil,
         error: String? = nil,
         noCallback: Bool = false
     ) {
-        let message = MockDataMessage(
+        useMocksOnly()
+
+        var http = response
+        if response == nil, data != nil {
+            http = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: [
+                HttpHeader.contentType: "application/json",
+            ])
+        }
+
+        httpMocks[request.url!.withCanonicalQueryParams!] = MockHTTPResponse(
             data: data,
-            error: error,
-            request: request,
-            response: response.flatMap { MockResponse(http: $0) },
+            http: http,
+            errorMessage: error,
             noCallback: noCallback
         )
-        dataMocks.append(message)
-        send(.mockData(message))
-    }
-
-    open func mockDownload(
-        _ url: URL,
-        data: URL? = nil,
-        response: HTTPURLResponse? = nil,
-        error: String? = nil
-    ) {
-        let message = MockDownloadMessage(
-            data: data.flatMap { try! Data(contentsOf: $0) },
-            error: error,
-            response: response.flatMap { MockResponse(http: $0) },
-            url: url
-        )
-        downloadMocks.append(message)
-        send(.mockDownload(message))
     }
 }

@@ -50,7 +50,7 @@ class IPCServer {
 
 class IPCAppServer: IPCServer {
     static func portName(id: String) -> String {
-        return "com.instructure.icanvas.ui-test-app-\(id)"
+        "com.instructure.icanvas.ui-test-app-\(id)"
     }
 
     override func handler(msgid: Int32, data: Data?) -> Data? {
@@ -69,27 +69,29 @@ class IPCAppServer: IPCServer {
 }
 
 enum IPCDriverServerMessage {
-    case mockNotFound(reason: String)
+    case urlRequest(_ url: URL, uploadData: Data? = nil)
 }
+
 extension IPCDriverServerMessage: Codable {
     private enum CodingKeys: String, CodingKey {
-        case mockNotFound
+        case urlRequest, uploadData
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        if let reason = try container.decodeIfPresent(String.self, forKey: .mockNotFound) {
-            self = .mockNotFound(reason: reason)
+        if let url = try container.decodeIfPresent(URL.self, forKey: .urlRequest) {
+            let data = try container.decodeIfPresent(Data.self, forKey: .uploadData)
+            self = .urlRequest(url, uploadData: data)
         } else {
-
             throw DecodingError.typeMismatch(type(of: self), .init(codingPath: container.codingPath, debugDescription: "Couldn't decode \(type(of: self))"))
         }
     }
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
-        case .mockNotFound(let reason):
-            try container.encode(reason, forKey: .mockNotFound)
+        case .urlRequest(let url, uploadData: let data):
+            try container.encode(url, forKey: .urlRequest)
+            try container.encode(data, forKey: .uploadData)
         }
     }
 }
@@ -100,7 +102,7 @@ protocol IPCDriverServerDelegate: class {
 
 class IPCDriverServer: IPCServer {
     static func portName(id: String) -> String {
-        return "com.instructure.icanvas.ui-test-driver-\(id)"
+        "com.instructure.icanvas.ui-test-driver-\(id)"
     }
 
     override func handler(msgid: Int32, data: Data?) -> Data? {
