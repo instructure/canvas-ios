@@ -66,12 +66,17 @@ type State = {
   editingRolesPickerShown: boolean,
 }
 
-function editingRoles () {
-  return {
-    'teachers': i18n('Only teachers'),
-    'students,teachers': i18n('Teachers and students'),
-    'public': i18n('Anyone'),
-  }
+function editingRoles (context) {
+  return context === 'courses'
+    ? {
+      'teachers': i18n('Only teachers'),
+      'students,teachers': i18n('Teachers and students'),
+      'public': i18n('Anyone'),
+    }
+    : {
+      'members': i18n('Only members'),
+      'public': i18n('Anyone'),
+    }
 }
 
 export class PageEdit extends Component<Props, State> {
@@ -96,6 +101,8 @@ export class PageEdit extends Component<Props, State> {
     let editingRole = 'public'
     if (this.state.editingRoles.includes('teachers')) editingRole = 'teachers'
     if (this.state.editingRoles.includes('students')) editingRole = 'students,teachers'
+    if (this.state.editingRoles.includes('members')) editingRole = 'members'
+    let possibleRoles = editingRoles(this.props.context)
 
     return (
       <Screen
@@ -119,7 +126,7 @@ export class PageEdit extends Component<Props, State> {
             ref={(r) => { this.scrollView = r }}
             keyboardDismissMode='on-drag'
           >
-            {isTeacher()
+            {(isTeacher() || this.props.context === 'groups')
               ? <View>
                 <FormLabel>{i18n('Title')}</FormLabel>
                 <RowWithTextInput
@@ -146,16 +153,16 @@ export class PageEdit extends Component<Props, State> {
                 contentHeight={150}
                 placeholder={i18n('Add description')}
                 navigator={this.props.navigator}
-                attachmentUploadPath={`/courses/${this.props.courseID}/files`}
+                attachmentUploadPath={`/${this.props.context}/${this.props.contextID}/files`}
                 onFocus={this._scrollToRCE}
-                context='courses'
-                contextID={this.props.courseID}
+                context={this.props.context}
+                contextID={this.props.contextID}
               />
             </View>
-            {isTeacher() &&
+            {(isTeacher() || this.props.context === 'groups') &&
               <View>
                 <FormLabel>{i18n('Details')}</FormLabel>
-                { !this.state.isFrontPage &&
+                { isTeacher() && !this.state.isFrontPage &&
                   <RowWithSwitch
                     title={i18n('Publish')}
                     border='bottom'
@@ -165,7 +172,7 @@ export class PageEdit extends Component<Props, State> {
                     identifier='pages.edit.published.switch'
                   />
                 }
-                { !(page && page.isFrontPage) && this.state.published &&
+                { (isTeacher() || this.props.context === 'groups') && !(page && page.isFrontPage) && this.state.published &&
                   <RowWithSwitch
                     title={i18n('Set as Front Page')}
                     border='both'
@@ -175,26 +182,28 @@ export class PageEdit extends Component<Props, State> {
                     identifier='pages.edit.front_page.switch'
                   />
                 }
-                <RowWithDetail
-                  title={i18n('Can Edit')}
-                  detailSelected={this.state.editingRolesPickerShown}
-                  detail={editingRoles()[editingRole]}
-                  disclosureIndicator
-                  border='bottom'
-                  onPress={this.toggleEditingRoles}
-                  testID='pages.edit.editing_roles.row'
-                />
+                {(isTeacher() || this.props.context === 'groups') &&
+                  <RowWithDetail
+                    title={i18n('Can Edit')}
+                    detailSelected={this.state.editingRolesPickerShown}
+                    detail={possibleRoles[editingRole]}
+                    disclosureIndicator
+                    border='bottom'
+                    onPress={this.toggleEditingRoles}
+                    testID='pages.edit.editing_roles.row'
+                  />
+                }
                 {this.state.editingRolesPickerShown &&
                   <PickerIOS
                     selectedValue={editingRole}
                     onValueChange={this.handleEditingRolesChange}
                     testID='pages.edit.editing_roles.picker'
                   >
-                    {Object.keys(editingRoles()).map(key => (
+                    {Object.keys(possibleRoles).map(key => (
                       <PickerItem
                         key={key}
                         value={key}
-                        label={editingRoles()[key]}
+                        label={possibleRoles[key]}
                       />
                     ))}
                   </PickerIOS>
@@ -217,10 +226,10 @@ export class PageEdit extends Component<Props, State> {
       front_page: this.state.isFrontPage,
     }
     try {
-      const { api, courseID, url } = this.props
+      const { api, context, contextID, url } = this.props
       const request = url
-        ? api.updatePage('courses', courseID, url, parameters)
-        : api.createPage('courses', courseID, parameters)
+        ? api.updatePage(context, contextID, url, parameters)
+        : api.createPage(context, contextID, parameters)
       const response = await request
       if (url) {
         NativeNotificationCenter.postNotification('page-edit', response.data.raw)
@@ -300,6 +309,19 @@ const style = createStyleSheet((colors, vars) => ({
   },
 }))
 
-export default fetchPropsFor(PageEdit, ({ courseID, url }: HocProps, api) => ({
-  page: !url ? PageModel.newPage : api.getPage('courses', courseID, url),
-}))
+export default fetchPropsFor(PageEdit, ({ context, contextID, url }: HocProps, api) => {
+  let isCreate = url == null
+  let page
+
+  if (isCreate && context === 'courses') {
+    page = PageModel.newPage
+  } else if (isCreate && context === 'groups') {
+    page = {
+      ...PageModel.newPage,
+      editingRoles: ['members'],
+    }
+  } else {
+    page = api.getPage(context, contextID, url)
+  }
+  return { page }
+})

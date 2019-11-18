@@ -24,7 +24,7 @@ import { FavoritesList } from '../EditFavorites'
 import setProps from '../../../../../test/helpers/setProps'
 import App from '../../../app'
 import renderer from 'react-test-renderer'
-import { shallow } from 'enzyme/build/index'
+import { shallow } from 'enzyme'
 
 import * as template from '../../../../__templates__'
 

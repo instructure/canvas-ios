@@ -27,7 +27,6 @@ workflows:
             if printf "%s\n" "$BITRISE_GIT_MESSAGE" | grep -iF "[run nightly]"; then
                 envman add --key RUN_NIGHTLY --value YES
             fi
-
     - build-router-start:
         inputs:
         - access_token: "$BITRISE_CI_TOKEN"
@@ -107,7 +106,7 @@ workflows:
                 -configuration Debug \
                 build-for-testing |
                 tee $BITRISE_DEPLOY_DIR/raw-xcodebuild.log |
-                xcpretty --color
+                xcbeautify
     - script:
         title: Run CITests
         inputs:
@@ -123,7 +122,7 @@ workflows:
                 -scheme CITests \
                 -destination 'platform=iOS Simulator,name=iPhone 8' \
                 -resultBundlePath scripts/coverage/citests.xcresult \
-                test-without-building | xcbeautify
+                test-without-building 2>&1 | xcbeautify
     - script:
         title: Save xcresult
         inputs:
@@ -135,11 +134,13 @@ workflows:
             zip --quiet -r "$BITRISE_DEPLOY_DIR/citests.xcresult.zip" scripts/coverage/citests.xcresult
         is_always_run: true
     - build-router-wait:
+        title: Wait for danger-yarn sub-build to succeed
         inputs:
         - access_token: "$BITRISE_CI_TOKEN"
         - buildslugs: "$DANGER_YARN_SLUG"
     - script:
         title: Get danger-yarn results
+        is_always_run: true
         inputs:
         - runner_bin: "/bin/zsh"
         - content: |-
@@ -148,11 +149,12 @@ workflows:
 
             ARTIFACT_SLUG=$(curl -H "Authorization: $BITRISE_CI_TOKEN" \
                 "https://api.bitrise.io/v0.1/apps/${BITRISE_APP_SLUG}/builds/${DANGER_YARN_SLUG}/artifacts" |
-                jq -r '.data[] | select(.title == "yarn-coverage.tar.xz").slug')
+                jq -r '.data[] | select(.title == "results.tar.xz").slug')
             ARTIFACT_URL=$(curl -H "Authorization: $BITRISE_CI_TOKEN" \
                 "https://api.bitrise.io/v0.1/apps/${BITRISE_APP_SLUG}/builds/${DANGER_YARN_SLUG}/artifacts/${ARTIFACT_SLUG}" |
                 jq -r '.data.expiring_download_url')
             curl -L $ARTIFACT_URL | tar xJf -
+            cat tmp/report_to_danger_subbuild.md >> tmp/report_to_danger.md || true
     - script:
         title: Report Coverage
         run_if: .IsCI
@@ -174,10 +176,11 @@ workflows:
             #!/bin/zsh
             set -euo pipefail
 
-            ./scripts/build_automation/summarize-test-results.swift scripts/coverage/citests.xcresult |
-                tee >(jq -acs . > scripts/coverage/test-summary.json) |
-                jq -ac . | gzip |
-                curl -q -X POST -H "Content-Type: text/plain" -H "Content-Encoding: gzip" --data-binary @- "$SUMO_ENDPOINT_URL"
+            ./scripts/build_automation/summarize-test-results.swift scripts/coverage/citests.xcresult \
+                > /dev/null
+                # until splunk is configured...
+                # jq -ac . | gzip |
+                # curl -q -X POST -H "Content-Type: text/plain" -H "Content-Encoding: gzip" --data-binary @- "$SUMO_ENDPOINT_URL"
         is_always_run: true
     - yarn:
         title: yarn danger ci
@@ -415,7 +418,8 @@ workflows:
             # fail if any commands fails
             set -eo pipefail
 
-            ./scripts/runSwiftLint.sh 2>&1 | xcbeautify
+            mkdir -p tmp
+            ./scripts/runSwiftLint.sh 2>&1 | xcbeautify | tee tmp/swift-lint-results.txt
     - yarn:
         title: yarn install root dependencies
     - yarn:
@@ -431,19 +435,45 @@ workflows:
         title: rn yarn lint
         inputs:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-        - command: lint
+        - command: lint:ci
     - yarn:
         title: rn yarn test
         inputs:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-        - command: test --silent --coverage --color
+        - command: test:ci
     - script:
-        title: Save coverage
+        title: Save results
+        is_always_run: true
         inputs:
         - runner_bin: "/bin/zsh"
         - content: |-
             #!/bin/zsh
             set -euxo pipefail
 
-            tar -cJf $BITRISE_DEPLOY_DIR/yarn-coverage.tar.xz scripts/coverage/react-native
+            function markdown_code {
+                printf '\n\n'
+                sed -e $'s/\x1b\\[[0-9;]*[a-zA-Z]//g' \
+                    -e 's/^/    /'
+            }
+
+            function report_file {
+                local name=$1
+                local file=$2
+                if [[ -f $file && -s $file ]]; then
+                    echo "<details><summary>:x: $name</summary>"
+                    markdown_code < $file
+                    echo "</details>"
+                fi >> tmp/report_to_danger_subbuild.md
+            }
+
+            report_file "Swift lint" tmp/swift-lint-results.txt
+            report_file "Yarn lint" tmp/yarn-lint-results.txt
+            sed -n '/Summary of all failing tests/,$ p' < tmp/yarn-test-results.txt > tmp/yarn-test-failures.txt || true
+            report_file "JS tests" tmp/yarn-test-failures.txt
+
+            mkdir -p scripts/coverage/react-native
+
+            tar -cJf $BITRISE_DEPLOY_DIR/results.tar.xz \
+                scripts/coverage/react-native \
+                tmp/report_to_danger_subbuild.md
     - deploy-to-bitrise-io: {}
