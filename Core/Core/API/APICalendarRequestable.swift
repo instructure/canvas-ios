@@ -59,7 +59,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
             .value("start_date", GetCalendarEventsRequest.dateFormatter.string(from: startDate)),
             .value("end_date", GetCalendarEventsRequest.dateFormatter.string(from: endDate)),
             .value("per_page", String(perPage)),
-            .include(include.map { $0.rawValue })
+            .include(include.map { $0.rawValue }),
         ]
         if let contexts = contexts {
             query.append(.array("context_codes", contexts.map { $0.canvasContextID }))
