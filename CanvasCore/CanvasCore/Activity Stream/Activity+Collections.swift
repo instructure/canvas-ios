@@ -18,7 +18,7 @@
 
 import Foundation
 
-
+import Core
 import CoreData
 
 extension Activity {
@@ -36,7 +36,8 @@ extension Activity {
 
 extension Activity {
     public static func predicate(forSupportedActivitiesInContext context: ContextID) -> NSPredicate {
-        let supportedTypePredicate = NSPredicate(format: "%K != %@ && %K != %@ && %K != %@", "type", ActivityType.conference.rawValue, "type", ActivityType.collaboration.rawValue, "type", ActivityType.assessmentRequest.rawValue)
+        let supportedTypePredicate = NSPredicate(format: "%K != %@ && %K != %@ && %K != %@", "type", ActivityType.conference.rawValue, "type",
+                                                 ActivityType.collaboration.rawValue, "type", ActivityType.assessmentRequest.rawValue)
 
         if context != .currentUser {
             let contextPredicate = NSPredicate(format: "%K == %@", "context", context.canvasContextID)

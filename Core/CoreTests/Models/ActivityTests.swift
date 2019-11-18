@@ -16,28 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
+import Foundation
 @testable import Core
+import XCTest
+import TestsFoundation
 
-class GetActivitiesRequestTests: XCTestCase {
-    var req: GetActivitiesRequest!
-
-    override func setUp() {
-        super.setUp()
-        req = GetActivitiesRequest()
-    }
-
-    func testPath() {
-        XCTAssertEqual(req.path, "users/self/activity_stream")
-    }
-
-    func testQuery() {
-        let expected: [APIQueryItem] = [.value("per_page", "99")]
-        XCTAssertEqual(req.query, expected)
-    }
-
+class ActivityTests: CoreTestCase {
     func testModel() {
-        let model = APIActivity.make()
-        XCTAssertNotNil(model)
+        let a = Activity.make(from: .make(course_id: "1"))
+        let all: [Activity] =  databaseClient.fetch()
+        XCTAssertEqual(all.count, 1)
+        let aa = try! XCTUnwrap( all.first )
+
+        XCTAssertEqual(a.id, aa.id)
+        XCTAssertEqual(a.context?.canvasContextID, aa.context?.canvasContextID)
+        XCTAssertEqual(a.htmlURL, aa.htmlURL)
+        XCTAssertEqual(a.message, aa.message)
+        XCTAssertEqual(a.title, aa.title)
     }
 }

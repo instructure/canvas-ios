@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"Absent" = "Nieobecny";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "Wszystkie oceny są obecnie ukryte.";
 
 /* No comment provided by engineer. */
@@ -11,13 +14,43 @@
 "All Posted" = "Wszystkie opublikowane";
 
 /* No comment provided by engineer. */
+"Attendance" = "Uczestnictwo";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "Błąd uczestnictwa";
+
+/* No comment provided by engineer. */
 "Back" = "Wstecz";
+
+/* No comment provided by engineer. */
+"Cancel" = "Anuluj";
+
+/* No comment provided by engineer. */
+"Change Section" = "Zmień sekcję";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Wybierz sekcję";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Wybierz datę";
 
 /* No comment provided by engineer. */
 "Courses" = "Kursy";
 
 /* No comment provided by engineer. */
+"Date picker" = "Wybór daty";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Odrzuć";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Błąd: Brak danych zwróconych z interfejsu API Roll Call.";
+
+/* No comment provided by engineer. */
 "Everyone" = "Każdy";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "Nie udało się uruchomić narzędzia LTI.";
 
 /* No comment provided by engineer. */
 "Graded" = "Oceniono";
@@ -38,6 +71,15 @@
 "Hide Grades" = "Ukryj oceny";
 
 /* No comment provided by engineer. */
+"Late" = "Późno";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Oznacz wszystkich jako obecni";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Oznacz pozostałych jako obecni";
+
+/* No comment provided by engineer. */
 "Modules" = "Moduły";
 
 /* No comment provided by engineer. */
@@ -50,8 +92,17 @@
 "Post to..." = "Opublikuj na...";
 
 /* No comment provided by engineer. */
+"Present" = "Obecny";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Wybierz, aby zmienić datę Roll Call";
+
+/* No comment provided by engineer. */
 "Specific Sections" = "Określone sekcje";
 
 /* No comment provided by engineer. */
 "To Do" = "Do zrobienia";
+
+/* No comment provided by engineer. */
+"Unmark" = "Usuń zaznaczenie";
 

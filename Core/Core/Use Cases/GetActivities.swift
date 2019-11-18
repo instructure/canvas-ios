@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2018-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,28 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-@testable import Core
+import Foundation
+import CoreData
 
-class GetActivitiesRequestTests: XCTestCase {
-    var req: GetActivitiesRequest!
+public class GetActivities: CollectionUseCase {
 
-    override func setUp() {
-        super.setUp()
-        req = GetActivitiesRequest()
+    public typealias Model = Activity
+
+    public init() {}
+
+    public var cacheKey: String? {
+        return "get-activities"
     }
 
-    func testPath() {
-        XCTAssertEqual(req.path, "users/self/activity_stream")
+    public var scope: Scope {
+        return .all(orderBy: #keyPath(Activity.id))
     }
 
-    func testQuery() {
-        let expected: [APIQueryItem] = [.value("per_page", "99")]
-        XCTAssertEqual(req.query, expected)
-    }
-
-    func testModel() {
-        let model = APIActivity.make()
-        XCTAssertNotNil(model)
+    public var request: GetActivitiesRequest {
+        return GetActivitiesRequest()
     }
 }

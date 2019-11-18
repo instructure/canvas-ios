@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"Absent" = "Afwezig";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "Alle cijfers zijn momenteel verborgen.";
 
 /* No comment provided by engineer. */
@@ -11,13 +14,43 @@
 "All Posted" = "Alle geposte cijfers";
 
 /* No comment provided by engineer. */
+"Attendance" = "Aanwezigheid";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "Fout aanwezigheid";
+
+/* No comment provided by engineer. */
 "Back" = "Terug";
+
+/* No comment provided by engineer. */
+"Cancel" = "Annuleren";
+
+/* No comment provided by engineer. */
+"Change Section" = "Sectie wijzigen";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Kies een sectie";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Datum kiezen";
 
 /* No comment provided by engineer. */
 "Courses" = "Cursussen";
 
 /* No comment provided by engineer. */
+"Date picker" = "Datumkiezer";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Afwijzen";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Fout: Geen gegevens geretourneerd door de Roll Call-API.";
+
+/* No comment provided by engineer. */
 "Everyone" = "Iedereen";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "Roll Call LTI Tool kan niet worden gestart.";
 
 /* No comment provided by engineer. */
 "Graded" = "Beoordeeld";
@@ -38,6 +71,15 @@
 "Hide Grades" = "Cijfers verbergen";
 
 /* No comment provided by engineer. */
+"Late" = "Te laat";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Allen markeren als aanwezig";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Rest markeren als aanwezig";
+
+/* No comment provided by engineer. */
 "Modules" = "Modules";
 
 /* No comment provided by engineer. */
@@ -50,8 +92,17 @@
 "Post to..." = "Posten in...";
 
 /* No comment provided by engineer. */
+"Present" = "Aanwezig";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Selecteer om de stemmingsdatum te wijzigen";
+
+/* No comment provided by engineer. */
 "Specific Sections" = "Specifieke secties";
 
 /* No comment provided by engineer. */
 "To Do" = "Te doen";
+
+/* No comment provided by engineer. */
+"Unmark" = "Markering ongedaan maken";
 

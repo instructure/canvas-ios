@@ -28,7 +28,7 @@ extension APIActivity {
         created_at: Date = Date(),
         updated_at: Date = Date(),
         type: ActivityType = .message,
-        context_type: ContextType = .course,
+        context_type: String = ContextType.course.rawValue,
         course_id: ID? = "1",
         group_id: ID? = nil
     ) -> APIActivity {
