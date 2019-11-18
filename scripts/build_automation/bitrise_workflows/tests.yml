@@ -55,6 +55,15 @@ workflows:
         - runner: "/bin/zsh"
         - file_path: scripts/build_automation/set-mtime.sh
     - script:
+        title: Set TimeZone to MST
+        run_if: .IsCI
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -ex
+            sudo systemsetup -settimezone America/Denver
+    - script:
         title: brew tap
         run_if: .IsCI
         inputs:

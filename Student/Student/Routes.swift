@@ -68,7 +68,10 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/:context/:contextID/announcements/:announcementID": nil,
 
-    "/courses/:courseID/assignments": nil,
+    "/courses/:courseID/assignments": ExperimentalFeature.assignmentListGraphQL.isEnabled ? { url, params in
+        guard let courseID = params["courseID"] else { return nil }
+        return AssignmentListViewController.create(courseID: courseID)
+        } : nil,
 
     "/courses/:courseID/assignments-fromHomeTab": { url, params in
         var props = params as [String: Any]

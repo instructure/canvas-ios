@@ -34,7 +34,10 @@ class StudentTestCase: XCTestCase {
     var queue = OperationQueue()
     var env = TestEnvironment()
     var logger: TestLogger!
-    var router: TestRouter!
+    var router: TestRouter! {
+        guard let r = env.router as? TestRouter else { return nil }
+        return r
+    }
     var uploadManager = MockUploadManager()
     var currentSession: LoginSession!
 
@@ -45,7 +48,6 @@ class StudentTestCase: XCTestCase {
         queue = OperationQueue()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
         env = TestEnvironment()
-        router = env.router as? TestRouter
         logger = env.logger as? TestLogger
         currentSession = env.currentSession
         AppEnvironment.shared = env

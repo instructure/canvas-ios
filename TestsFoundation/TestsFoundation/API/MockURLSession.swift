@@ -19,6 +19,7 @@
 import Core
 
 public class MockURLSession: URLSession {
+    public typealias UrlResponseTuple = (Data?, URLResponse?, Error?)
     public static var dataMocks: [String: MockDataTask] = [:]
     public static var downloadMocks: [String: MockDownloadTask] = [:]
 
@@ -39,6 +40,7 @@ public class MockURLSession: URLSession {
 
     public class MockDataTask: URLSessionUploadTask {
         public var callback: ((Data?, URLResponse?, Error?) -> Void)?
+        public var dataHandler: (() -> UrlResponseTuple)?
 
         private var id: Int = 0
         public override var taskIdentifier: Int {
@@ -79,8 +81,14 @@ public class MockURLSession: URLSession {
             if paused {
                 return
             }
+
             _state = .completed
-            callback?(mock?.data, mock?.response, mock?.error)
+            if let dataHandler = dataHandler {
+                let data = dataHandler()
+                callback?(data.0, data.1, data.2)
+            } else {
+                callback?(mock?.data, mock?.response, mock?.error)
+            }
         }
 
         public override func cancel() {
@@ -171,16 +179,23 @@ public class MockURLSession: URLSession {
         error: Error? = nil,
         baseURL: URL = URL(string: "https://canvas.instructure.com")!,
         accessToken: String? = nil,
+        dataHandler: (() -> UrlResponseTuple)? = nil,
         taskID: Int = 0
     ) -> MockDataTask {
         let request = try! requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil)
-        return mock(request, data: data, response: response, error: error, taskID: taskID)
+        return mock(request, data: data, response: response, error: error, dataHandler: dataHandler, taskID: taskID)
     }
 
     @discardableResult
-    public static func mock(_ request: URLRequest, data: Data? = nil, response: URLResponse? = nil, error: Error? = nil, taskID: Int = 0) -> MockDataTask {
+    public static func mock(_ request: URLRequest,
+                            data: Data? = nil,
+                            response: URLResponse? = nil,
+                            error: Error? = nil,
+                            dataHandler: (() -> UrlResponseTuple)? = nil,
+                            taskID: Int = 0) -> MockDataTask {
         let task = MockDataTask()
         task.mock = MockData(data: data, response: response, error: error)
+        task.dataHandler = dataHandler
         task.taskIdentifier = taskID
         MockURLSession.dataMocks[request.url!.absoluteString] = task
         return task

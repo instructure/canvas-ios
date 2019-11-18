@@ -20,7 +20,7 @@ import Foundation
 import UIKit
 
 public class SectionHeaderView: UITableViewHeaderFooterView {
-    @IBOutlet weak var titleLabel: DynamicLabel?
+    @IBOutlet weak public var titleLabel: DynamicLabel?
     @IBOutlet weak var bgView: UIView!
 
     public static func create(title: String, section: Int) -> SectionHeaderView {
