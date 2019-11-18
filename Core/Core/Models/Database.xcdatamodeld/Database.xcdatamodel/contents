@@ -17,7 +17,7 @@
         <attribute name="typeRaw" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Assignment" representedClassName="Core.Assignment" syncable="YES">
-        <attribute name="allowedExtensions" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="allowedExtensionsRaw" attributeType="String" defaultValueString=""/>
         <attribute name="assignmentGroupID" optional="YES" attributeType="String"/>
         <attribute name="assignmentGroupPosition" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="courseID" attributeType="String"/>
@@ -38,7 +38,7 @@
         <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="quizID" optional="YES" attributeType="String"/>
-        <attribute name="submissionTypesRaw" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="submissionTypesRaw" attributeType="String"/>
         <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
         <attribute name="useRubricForGrading" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>

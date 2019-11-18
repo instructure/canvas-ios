@@ -20,7 +20,7 @@ import Foundation
 import CoreData
 
 public class Assignment: NSManagedObject {
-    @NSManaged public var allowedExtensions: [String]
+    @NSManaged var allowedExtensionsRaw: String
     @NSManaged public var courseID: String
     @NSManaged public var quizID: String?
     @NSManaged public var details: String?
@@ -32,7 +32,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var name: String
     @NSManaged var pointsPossibleRaw: NSNumber?
-    @NSManaged var submissionTypesRaw: [String]
+    @NSManaged var submissionTypesRaw: String
     @NSManaged public var position: Int
     @NSManaged public var lockAt: Date?
     @NSManaged public var unlockAt: Date?
@@ -73,6 +73,11 @@ public class Assignment: NSManagedObject {
      */
     @NSManaged public var submissions: Set<Submission>?
 
+    public var allowedExtensions: [String] {
+        get { return allowedExtensionsRaw.split(separator: ",").map { String($0) } }
+        set { allowedExtensionsRaw = newValue.joined(separator: ",") }
+    }
+
     public var gradingType: GradingType {
         get { return GradingType(rawValue: gradingTypeRaw) ?? .points }
         set { gradingTypeRaw = newValue.rawValue }
@@ -84,8 +89,8 @@ public class Assignment: NSManagedObject {
     }
 
     public var submissionTypes: [SubmissionType] {
-        get { return submissionTypesRaw.compactMap { SubmissionType(rawValue: $0) } }
-        set { submissionTypesRaw = newValue.map { $0.rawValue } }
+        get { return submissionTypesRaw.components(separatedBy: ",").compactMap { SubmissionType(rawValue: $0) } }
+        set { submissionTypesRaw = newValue.map { $0.rawValue } .joined(separator: ",") }
     }
 }
 
