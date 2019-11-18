@@ -38,6 +38,7 @@ class SubmissionButtonPresenter: NSObject {
     lazy var files = UploadManager.shared.subscribe(batchID: batchID, eventHandler: {})
     var arcID: ArcID = .pending
     weak var view: SubmissionButtonViewProtocol?
+    var selectedSubmissionTypes: [SubmissionType] = []
 
     init(env: AppEnvironment = .shared, view: SubmissionButtonViewProtocol, assignmentID: String) {
         self.env = env
@@ -117,7 +118,7 @@ class SubmissionButtonPresenter: NSObject {
             env.router.route(to: url, from: view)
         case .media_recording:
             Analytics.shared.logEvent("submit_mediarecording_selected")
-            pickMediaRecordingType(button: button)
+            pickFiles(for: assignment, selectedSubmissionTypes: [type])
         case .online_text_entry:
             Analytics.shared.logEvent("submit_textentry_selected")
             env.router.show(TextSubmissionViewController.create(
@@ -131,7 +132,7 @@ class SubmissionButtonPresenter: NSObject {
             env.router.route(to: .takeQuiz(forCourse: courseID, quizID: quizID), from: view, options: [.modal, .embedInNav])
         case .online_upload:
             Analytics.shared.logEvent("submit_fileupload_selected")
-            pickFiles(for: assignment)
+            pickFiles(for: assignment, selectedSubmissionTypes: [type])
         case .online_url:
             Analytics.shared.logEvent("submit_url_selected")
             env.router.show(UrlSubmissionViewController.create(
@@ -153,21 +154,30 @@ class SubmissionButtonPresenter: NSObject {
         nav.modalPresentationStyle = .formSheet
         view?.present(nav, animated: true, completion: nil)
     }
+
+    private var isMediaRecording: Bool {
+        return selectedSubmissionTypes.contains(.media_recording)
+    }
 }
 
 extension SubmissionButtonPresenter: FilePickerControllerDelegate {
-    func pickFiles(for assignment: Assignment) {
-        let filePicker = FilePickerViewController.create(batchID: batchID)
+    func pickFiles(for assignment: Assignment, selectedSubmissionTypes: [SubmissionType]) {
         self.assignment = assignment
+        self.selectedSubmissionTypes = selectedSubmissionTypes
+        let filePicker = FilePickerViewController.create(batchID: isMediaRecording ? UUID.string : batchID)
         filePicker.title = NSLocalizedString("Submission", bundle: .student, comment: "")
         filePicker.cancelButtonTitle = NSLocalizedString("Cancel Submission", bundle: .student, comment: "")
-        let allowedUTIs = assignment.allowedUTIs
+        let allowedUTIs = selectedSubmissionTypes.allowedUTIs( allowedExtensions: assignment.allowedExtensions )
+        let mediaTypes = selectedSubmissionTypes.allowedMediaTypes
         filePicker.sources = [.files]
         if assignment.allowedExtensions.isEmpty == true || allowedUTIs.contains(where: { $0.isImage || $0.isVideo }) {
             filePicker.sources.append(contentsOf: [.library, .camera])
         }
+        if isMediaRecording { filePicker.sources.append(.audio) }
         filePicker.utis = allowedUTIs
+        filePicker.mediaTypes = mediaTypes
         filePicker.delegate = self
+        filePicker.maxFileCount = isMediaRecording ? 1 : Int.max
         let nav = UINavigationController(rootViewController: filePicker)
         nav.modalPresentationStyle = .formSheet
         view?.present(nav, animated: true, completion: nil)
@@ -175,9 +185,25 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
 
     func submit(_ controller: FilePickerViewController) {
         guard let assignment = assignment else { return }
-        let context = FileUploadContext.submission(courseID: assignment.courseID, assignmentID: assignment.id, comment: nil)
-        controller.dismiss(animated: true) {
-            UploadManager.shared.upload(batch: self.batchID, to: context)
+        if isMediaRecording {
+            submitMediaRecording(controller)
+        } else {
+            let context = FileUploadContext.submission(courseID: assignment.courseID, assignmentID: assignment.id, comment: nil)
+            controller.dismiss(animated: true) {
+                UploadManager.shared.upload(batch: self.batchID, to: context)
+            }
+        }
+    }
+
+    func submitMediaRecording(_ controller: FilePickerViewController) {
+        guard let file = controller.files.first, let url = file.localFileURL, let uti = UTI(extension: url.pathExtension) else { return }
+        let mediaType: MediaCommentType = uti.isAudio ? .audio : .video
+        let objectID = file.objectID
+        controller.dismiss(animated: true) { [weak self] in
+            self?.submitMediaType(mediaType, url: url, callback: { error in
+                guard let file = try? UploadManager.shared.viewContext.existingObject(with: objectID) as? File else { return }
+                UploadManager.shared.complete(file: file, error: error)
+            })
         }
     }
 
@@ -198,11 +224,6 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
 
 // MARK: - media_recording
 extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func pickMediaRecordingType(button: UIView) {
-        let alert = SubmissionButtonAlertView.chooseMediaTypeAlert(self, button: button)
-        view?.present(alert, animated: true, completion: nil)
-    }
-
     func cancel(_ controller: AudioRecorderViewController) {
         controller.dismiss(animated: true, completion: nil)
     }

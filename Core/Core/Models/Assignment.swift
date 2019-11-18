@@ -165,32 +165,6 @@ extension Assignment {
             submissionTypes.contains(.discussion_topic)
     }
 
-    public var allowedUTIs: [UTI] {
-        var utis: [UTI] = []
-
-        if submissionTypes.contains(.online_upload) {
-            if allowedExtensions.isEmpty {
-                utis += [.any]
-            } else {
-                utis += allowedExtensions.compactMap(UTI.init)
-            }
-        }
-
-        if submissionTypes.contains(.media_recording) {
-            utis += [.video, .audio]
-        }
-
-        if submissionTypes.contains(.online_text_entry) {
-            utis += [.text]
-        }
-
-        if submissionTypes.contains(.online_url) {
-            utis += [.url]
-        }
-
-        return utis
-    }
-
     public var gradeText: String? {
         guard let submission = submission else {
             return nil

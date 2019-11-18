@@ -364,7 +364,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         return file
     }
 
-    func complete(file: File, error: Error?) {
+    public func complete(file: File, error: Error?) {
         Logger.shared.log()
         if error != nil {
             Analytics.shared.logEvent("fileupload_failed", parameters: [

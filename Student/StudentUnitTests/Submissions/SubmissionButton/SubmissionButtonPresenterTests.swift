@@ -251,21 +251,21 @@ class SubmissionButtonPresenterTests: StudentTestCase {
 
     func xtestPickFilesEmptyExtensions() {
         let a = Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: []))
-        presenter.pickFiles(for: a)
+        presenter.pickFiles(for: a, selectedSubmissionTypes: [.online_upload])
         let filePicker = (view.presented as? UINavigationController)?.viewControllers.first as? FilePickerViewController
         XCTAssertEqual(filePicker?.sources, [.files, .library, .camera])
     }
 
     func xtestPickFilesFilesOnly() {
         let a = Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: [ "txt" ]))
-        presenter.pickFiles(for: a)
+        presenter.pickFiles(for: a, selectedSubmissionTypes: [ .online_upload ])
         let filePicker = (view.presented as? UINavigationController)?.viewControllers.first as? FilePickerViewController
         XCTAssertEqual(filePicker?.sources, [.files])
     }
 
     func xtestPickFilesImages() {
         let a = Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: [ "jpg" ]))
-        presenter.pickFiles(for: a)
+        presenter.pickFiles(for: a, selectedSubmissionTypes: [ .online_upload ])
         let filePicker = (view.presented as? UINavigationController)?.viewControllers.first as? FilePickerViewController
         XCTAssertEqual(filePicker?.sources, [.files, .library, .camera])
     }
@@ -291,11 +291,6 @@ class SubmissionButtonPresenterTests: StudentTestCase {
         try UploadManager.shared.add(url: url, batchID: presenter.batchID)
         let filePicker = FilePickerViewController.create(batchID: presenter.batchID)
         XCTAssertTrue(presenter.canSubmit(filePicker))
-    }
-
-    func xtestPickMediaRecordingType() {
-        presenter.pickMediaRecordingType(button: UIView())
-        XCTAssert(view.presented is UIAlertController)
     }
 
     func xtestCancelAudioRecording() {

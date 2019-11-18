@@ -20,7 +20,9 @@ import UIKit
 import MobileCoreServices
 
 public enum FilePickerSource: Int, CaseIterable {
-    case camera, library, files
+    case camera, library, files, audio
+
+    static var defaults: [FilePickerSource] = [.camera, .library, .files]
 }
 
 public protocol FilePickerControllerDelegate: class {
@@ -44,9 +46,11 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
 
     let env = AppEnvironment.shared
     public weak var delegate: FilePickerControllerDelegate?
-    public var sources = FilePickerSource.allCases
+    public var sources = FilePickerSource.defaults
     public var utis: [UTI] = [.any]
-    public var batchID: String = UUID.string
+    public var mediaTypes: [String] = [kUTTypeMovie as String, kUTTypeImage as String]
+    public var batchID: String!
+    public var maxFileCount: Int = Int.max
     public lazy var files = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
         self?.update()
     }
@@ -64,6 +68,15 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         tableView.tableFooterView = UIView(frame: .zero)
 
         var tabBarItems: [UITabBarItem] = []
+        if sources.contains(.audio) {
+            let item = UITabBarItem(
+                title: NSLocalizedString("Audio", bundle: .core, comment: ""),
+                image: .icon(.addAudioLine),
+                tag: FilePickerSource.audio.rawValue
+            )
+            item.accessibilityIdentifier = "FilePicker.audioButton"
+            tabBarItems.append(item)
+        }
         if sources.contains(.camera) {
             let item = UITabBarItem(
                 title: NSLocalizedString("Camera", bundle: .core, comment: ""),
@@ -135,7 +148,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
             navigationItem.leftBarButtonItems = []
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(close))
             navigationItem.rightBarButtonItem?.accessibilityIdentifier = "FilePicker.closeButton"
-            let cancelButton = UIBarButtonItem(title: cancelButtonTitle, style: .plain, target: self, action: #selector(cancel))
+            let cancelButton = UIBarButtonItem(title: cancelButtonTitle, style: .plain, target: self, action: #selector(cancelClicked))
             cancelButton.accessibilityIdentifier = "FilePicker.cancelButton"
             toolbarItems = [
                 UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
@@ -147,7 +160,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
             navigationItem.leftBarButtonItems = []
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(close))
             navigationItem.rightBarButtonItem?.accessibilityIdentifier = "FilePicker.closeButton"
-            let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancel))
+            let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancelClicked))
             cancelButton.accessibilityIdentifier = "FilePicker.cancelButton"
             let retryButton = UIBarButtonItem(title: NSLocalizedString("Retry", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(retry))
             retryButton.accessibilityIdentifier = "FilePicker.retryButton"
@@ -158,7 +171,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
             ]
         } else {
             navigationController?.setToolbarHidden(true, animated: true)
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancel))
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancelClicked))
             navigationItem.leftBarButtonItem?.accessibilityIdentifier = "FilePicker.cancelButton"
             let submitButton = UIBarButtonItem(title: submitButtonTitle, style: .plain, target: self, action: #selector(submit))
             submitButton.isEnabled = delegate?.canSubmit(self) == true
@@ -181,7 +194,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     }
 
     @objc
-    func cancel() {
+    func cancelClicked() {
         delegate?.cancel(self)
     }
 
@@ -210,6 +223,10 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
             self.view.layoutIfNeeded()
         }
     }
+
+    func didReachMaxFileCount() {
+        submit()
+    }
 }
 
 extension FilePickerViewController: UITabBarDelegate {
@@ -222,15 +239,14 @@ extension FilePickerViewController: UITabBarDelegate {
             let cameraController = UIImagePickerController()
             cameraController.delegate = self
             cameraController.sourceType = .camera
-            cameraController.mediaTypes = [kUTTypeMovie as String, kUTTypeImage as String]
-            cameraController.cameraCaptureMode = .photo
+            cameraController.mediaTypes = mediaTypes
             env.router.show(cameraController, from: self, options: .modal)
         case .library:
             guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
             let libraryController = UIImagePickerController()
             libraryController.delegate = self
             libraryController.sourceType = .photoLibrary
-            libraryController.mediaTypes = [kUTTypeMovie as String, kUTTypeImage as String]
+            libraryController.mediaTypes = mediaTypes
             libraryController.modalPresentationStyle = .overCurrentContext
             env.router.show(libraryController, from: self, options: .modal)
         case .files:
@@ -238,7 +254,23 @@ extension FilePickerViewController: UITabBarDelegate {
             let documentPicker = UIDocumentPickerViewController(documentTypes: documentTypes, in: .import)
             documentPicker.delegate = self
             env.router.show(documentPicker, from: self, options: .modal)
+        case .audio:
+            let audioRecorder = AudioRecorderViewController.create()
+            audioRecorder.delegate = self
+            audioRecorder.view.backgroundColor = UIColor.named(.backgroundLightest)
+            audioRecorder.modalPresentationStyle = .formSheet
+            env.router.show(audioRecorder, from: self, options: .modal)
         }
+    }
+}
+
+extension FilePickerViewController: AudioRecorderDelegate {
+    public func cancel(_ controller: AudioRecorderViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+
+    public func send(_ controller: AudioRecorderViewController, url: URL) {
+        controller.dismiss(animated: true, completion: { [weak self] in self?.add(url) })
     }
 }
 
@@ -247,6 +279,7 @@ extension FilePickerViewController: UIDocumentPickerDelegate {
         UploadManager.shared.viewContext.performAndWait {
             do {
                 try UploadManager.shared.add(url: url, batchID: self.batchID)
+                if self.files.count == self.maxFileCount { self.didReachMaxFileCount() }
             } catch {
                 self.showError(error)
             }
