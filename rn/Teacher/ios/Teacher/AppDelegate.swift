@@ -114,7 +114,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             CKIClient.current = legacyClient
             GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
                 Brand.setCurrent(Brand(core: Core.Brand.shared), applyInWindow: self.window)
-                NativeLoginManager.login(as: session, wasReload: wasReload)
+                NativeLoginManager.login(as: session)
             }
         }
         Analytics.shared.logSession(session)
@@ -139,7 +139,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 self.changeUser()
                 return
             }
-            self.setup(session: session, wasReload: true)
+            self.setup(session: session)
         }
     }
 

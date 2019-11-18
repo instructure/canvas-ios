@@ -29,7 +29,7 @@ public enum ActivityType: String, Codable {
     case submission = "Submission"
 }
 
-struct APIActivity: Codable {
+public struct APIActivity: Codable {
     let id: ID
     let title: String
     let message: String
@@ -40,4 +40,18 @@ struct APIActivity: Codable {
     let context_type: ContextType
     let course_id: ID?
     let group_id: ID?
+}
+
+public struct GetActivitiesRequest: APIRequestable {
+    public typealias Response = APIActivity
+
+    public var path: String {
+        return "/users/self/activity_stream"
+    }
+
+    public var query: [APIQueryItem] {
+        return [
+            .value("per_page", "99"),
+        ]
+    }
 }

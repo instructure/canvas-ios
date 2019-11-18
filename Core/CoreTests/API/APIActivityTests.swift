@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2017-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,25 +16,28 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-// @flow
+import XCTest
+@testable import Core
 
-import { NativeModules } from 'react-native'
-import canvas from '../canvas-api'
-import { logEvent } from './CanvasAnalytics'
+class GetActivitiesRequestTests: XCTestCase {
+    var req: GetActivitiesRequest!
 
-// if the user has an invalid login, the promise will send `true`. Otherwise it will send `false`
-export default async function loginVerify (): Promise<boolean> {
-  return new Promise((resolve, reject) => {
-    canvas.getUserProfile('self')
-      .then(() => resolve(false))
-      .catch((e) => {
-        if (e.response && e.response.status === 401) {
-          resolve(true)
-          logEvent('auto_logout_401')
-          NativeModules.NativeLogin.logout()
-        } else {
-          resolve(false)
-        }
-      })
-  })
+    override func setUp() {
+        super.setUp()
+        req = GetActivitiesRequest()
+    }
+
+    func testPath() {
+        XCTAssertEqual(req.path, "/users/self/activity_stream")
+    }
+
+    func testQuery() {
+        let expected: [APIQueryItem] = [.value("per_page", "99")]
+        XCTAssertEqual(req.query, expected)
+    }
+
+    func testModel() {
+        let model = APIActivity.make()
+        XCTAssertNotNil(model)
+    }
 }

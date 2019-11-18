@@ -157,7 +157,7 @@ class SubmissionButtonPresenter: NSObject {
 
 extension SubmissionButtonPresenter: FilePickerControllerDelegate {
     func pickFiles(for assignment: Assignment) {
-        let filePicker = FilePickerViewController.create(environment: env, batchID: batchID)
+        let filePicker = FilePickerViewController.create(batchID: batchID)
         self.assignment = assignment
         filePicker.title = NSLocalizedString("Submission", bundle: .student, comment: "")
         filePicker.cancelButtonTitle = NSLocalizedString("Cancel Submission", bundle: .student, comment: "")
@@ -192,7 +192,7 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
     }
 
     func canSubmit(_ controller: FilePickerViewController) -> Bool {
-        return controller.files?.isEmpty == false
+        return controller.files.isEmpty == false
     }
 }
 

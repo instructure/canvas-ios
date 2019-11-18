@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"Absent" = "缺勤";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "全部成績目前已隱藏。";
 
 /* No comment provided by engineer. */
@@ -11,13 +14,43 @@
 "All Posted" = "全部公佈";
 
 /* No comment provided by engineer. */
+"Attendance" = "出席紀錄";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "出席紀錄錯誤";
+
+/* No comment provided by engineer. */
 "Back" = "返回";
+
+/* No comment provided by engineer. */
+"Cancel" = "取消";
+
+/* No comment provided by engineer. */
+"Change Section" = "變更分班";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "選擇分班";
+
+/* No comment provided by engineer. */
+"Choose Date" = "選擇日期";
 
 /* No comment provided by engineer. */
 "Courses" = "課程";
 
 /* No comment provided by engineer. */
+"Date picker" = "日期選擇器";
+
+/* No comment provided by engineer. */
+"Dismiss" = "忽略";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "錯誤：沒有從點名 API 返回的數據。";
+
+/* No comment provided by engineer. */
 "Everyone" = "所有人";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "啟動點名 LTI 工具失敗。";
 
 /* No comment provided by engineer. */
 "Graded" = "已評分";
@@ -38,6 +71,15 @@
 "Hide Grades" = "隱藏成績";
 
 /* No comment provided by engineer. */
+"Late" = "逾期";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "全部標記為出席";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "標記剩餘為出席";
+
+/* No comment provided by engineer. */
 "Modules" = "單元";
 
 /* No comment provided by engineer. */
@@ -50,8 +92,17 @@
 "Post to..." = "公佈到...";
 
 /* No comment provided by engineer. */
+"Present" = "出席";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "選擇變更點名日期";
+
+/* No comment provided by engineer. */
 "Specific Sections" = "特定分班";
 
 /* No comment provided by engineer. */
 "To Do" = "待辦";
+
+/* No comment provided by engineer. */
+"Unmark" = "取消標記";
 

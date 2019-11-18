@@ -200,8 +200,8 @@ export function mapStateToProps ({ entities }: AppState, { context, contextID }:
     announcements = refs
       .map(ref => entities.discussions[ref].data)
       .sort((a1, a2) => {
-        if (a1.position === a2.position) return 0
-        return a1.position > a2.position ? -1 : 1
+        if (a1.posted_at === a2.posted_at) return 0
+        return a1.posted_at > a2.posted_at ? -1 : 1
       })
   }
 

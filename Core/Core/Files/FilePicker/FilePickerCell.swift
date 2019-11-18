@@ -27,7 +27,7 @@ class FilePickerCell: UITableViewCell {
             if file?.uploadError != nil {
                 isUserInteractionEnabled = true
                 errorIcon.isHidden = false
-                subtitleLabel.text = NSLocalizedString("Failed upload", bundle: .core, value: "", comment: "")
+                subtitleLabel.text = NSLocalizedString("Failed upload", bundle: .core, comment: "")
                 subtitleLabel.textColor = .named(.textDanger)
             } else {
                 isUserInteractionEnabled = false
