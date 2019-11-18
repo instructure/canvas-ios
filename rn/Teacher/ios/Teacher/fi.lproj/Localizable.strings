@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"Absent" = "Poissa";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "Kaikki arvosanat on parhaillaan piilotettu.";
 
 /* No comment provided by engineer. */
@@ -11,13 +14,43 @@
 "All Posted" = "Kaikki lähetetty";
 
 /* No comment provided by engineer. */
+"Attendance" = "Osallistuminen";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "Osallistumisen virhe";
+
+/* No comment provided by engineer. */
 "Back" = "Takaisin";
+
+/* No comment provided by engineer. */
+"Cancel" = "Peruuta";
+
+/* No comment provided by engineer. */
+"Change Section" = "Vaihda osa";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Valitse osa";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Valitse päiväys";
 
 /* No comment provided by engineer. */
 "Courses" = "Kurssit";
 
 /* No comment provided by engineer. */
+"Date picker" = "Päivämäärän valitsin";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Ohita";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Virhe: Rollcall apista ei palautettu tietoja.";
+
+/* No comment provided by engineer. */
 "Everyone" = "Kaikki";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "Roll LTI -työkalun lanseeraaminen epäonnistui.";
 
 /* No comment provided by engineer. */
 "Graded" = "Arvosteltu";
@@ -38,6 +71,15 @@
 "Hide Grades" = "Piilota arvosanat";
 
 /* No comment provided by engineer. */
+"Late" = "Myöhään";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Merkitse kaikki läsnä olevina";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Merkitse jäljellä olevat läsnä olevina";
+
+/* No comment provided by engineer. */
 "Modules" = "Moduulit";
 
 /* No comment provided by engineer. */
@@ -50,8 +92,17 @@
 "Post to..." = "Lähetä vastaanottajalle...";
 
 /* No comment provided by engineer. */
+"Present" = "Nykyinen";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Valitse vaihtaaksesi roll call -päivämäärä";
+
+/* No comment provided by engineer. */
 "Specific Sections" = "Määrätyt osat";
 
 /* No comment provided by engineer. */
 "To Do" = "Tehtävä";
+
+/* No comment provided by engineer. */
+"Unmark" = "Poista merkintä";
 

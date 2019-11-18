@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"Absent" = "Absan";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "Tout nòt yo kache kounye a.";
 
 /* No comment provided by engineer. */
@@ -11,13 +14,43 @@
 "All Posted" = "Tout Pibliye";
 
 /* No comment provided by engineer. */
+"Attendance" = "Prezans";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "Erè Prezans";
+
+/* No comment provided by engineer. */
 "Back" = "Retounen";
+
+/* No comment provided by engineer. */
+"Cancel" = "Anile";
+
+/* No comment provided by engineer. */
+"Change Section" = "Chanje Seksyon";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Chwazi yon Seksyon";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Chwazi Dat";
 
 /* No comment provided by engineer. */
 "Courses" = "Kou";
 
 /* No comment provided by engineer. */
+"Date picker" = "Selektè dat";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Rejte";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Erè: Okenn done ranvwaye pa API apèl la.";
+
+/* No comment provided by engineer. */
 "Everyone" = "Tout Moun";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "Echèk lansman zouti apèl nominal LTI.";
 
 /* No comment provided by engineer. */
 "Graded" = "Klase";
@@ -38,6 +71,15 @@
 "Hide Grades" = "Kache Klas";
 
 /* No comment provided by engineer. */
+"Late" = "An reta";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Make Tout kòm Prezan";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Make Rete kòm Prezan";
+
+/* No comment provided by engineer. */
 "Modules" = "Modil";
 
 /* No comment provided by engineer. */
@@ -50,8 +92,17 @@
 "Post to..." = "Pibliye nan...";
 
 /* No comment provided by engineer. */
+"Present" = "Prezan";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Seleksyone pou chanje dat apèl la";
+
+/* No comment provided by engineer. */
 "Specific Sections" = "Seksyon Espesyal";
 
 /* No comment provided by engineer. */
 "To Do" = "Pou Fè";
+
+/* No comment provided by engineer. */
+"Unmark" = "San make";
 

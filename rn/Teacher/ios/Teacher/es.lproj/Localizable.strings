@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"Absent" = "Ausente";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "Todas las calificaciones están ocultas actualmente.";
 
 /* No comment provided by engineer. */
@@ -11,13 +14,43 @@
 "All Posted" = "Todas publicadas";
 
 /* No comment provided by engineer. */
+"Attendance" = "Asistencia";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "Error de asistencia";
+
+/* No comment provided by engineer. */
 "Back" = "Volver";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancelar";
+
+/* No comment provided by engineer. */
+"Change Section" = "Cambiar sección";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Escoger una sección";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Escoger fecha";
 
 /* No comment provided by engineer. */
 "Courses" = "Cursos";
 
 /* No comment provided by engineer. */
+"Date picker" = "Seleccionador de fechas";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Descartar";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Error: No se devolvieron datos de la api de la lista de asistencia.";
+
+/* No comment provided by engineer. */
 "Everyone" = "Todos";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "Error al iniciar la herramienta LTI de la lista de asistencia.";
 
 /* No comment provided by engineer. */
 "Graded" = "Calificado";
@@ -38,6 +71,15 @@
 "Hide Grades" = "Ocultar calificaciones";
 
 /* No comment provided by engineer. */
+"Late" = "Atrasado";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Marcar todos como Presentes";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Marcar los restantes como Presentes";
+
+/* No comment provided by engineer. */
 "Modules" = "Módulos";
 
 /* No comment provided by engineer. */
@@ -50,8 +92,17 @@
 "Post to..." = "Publicar a...";
 
 /* No comment provided by engineer. */
+"Present" = "Presente";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Seleccione para cambiar la fecha de la lista de asistencia";
+
+/* No comment provided by engineer. */
 "Specific Sections" = "Secciones específicas";
 
 /* No comment provided by engineer. */
 "To Do" = "Por hacer";
+
+/* No comment provided by engineer. */
+"Unmark" = "Desmarcar";
 

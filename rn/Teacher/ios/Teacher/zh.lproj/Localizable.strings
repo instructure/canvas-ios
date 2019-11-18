@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"Absent" = "缺席";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "已隐藏所有评分。";
 
 /* No comment provided by engineer. */
@@ -11,13 +14,43 @@
 "All Posted" = "全部发布";
 
 /* No comment provided by engineer. */
+"Attendance" = "出勤";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "出勤错误";
+
+/* No comment provided by engineer. */
 "Back" = "返回";
+
+/* No comment provided by engineer. */
+"Cancel" = "取消";
+
+/* No comment provided by engineer. */
+"Change Section" = "更改部分";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "选择部分";
+
+/* No comment provided by engineer. */
+"Choose Date" = "选择日期";
 
 /* No comment provided by engineer. */
 "Courses" = "课程";
 
 /* No comment provided by engineer. */
+"Date picker" = "日期选取器";
+
+/* No comment provided by engineer. */
+"Dismiss" = "撤销";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "错误：没有数据从点名单 API 中返回。";
+
+/* No comment provided by engineer. */
 "Everyone" = "所有人";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "无法启动点名LTI工具。";
 
 /* No comment provided by engineer. */
 "Graded" = "已评分";
@@ -38,6 +71,15 @@
 "Hide Grades" = "隐藏评分";
 
 /* No comment provided by engineer. */
+"Late" = "延迟";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "将所有标记为出勤";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "将其余的标记为出勤";
+
+/* No comment provided by engineer. */
 "Modules" = "单元";
 
 /* No comment provided by engineer. */
@@ -50,8 +92,17 @@
 "Post to..." = "发布到...";
 
 /* No comment provided by engineer. */
+"Present" = "出席";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "选择以更改点名单日期";
+
+/* No comment provided by engineer. */
 "Specific Sections" = "特定分组";
 
 /* No comment provided by engineer. */
 "To Do" = "待办事项";
+
+/* No comment provided by engineer. */
+"Unmark" = "取消标记";
 
