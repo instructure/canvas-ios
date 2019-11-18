@@ -457,6 +457,7 @@ private func fileViewController(url: URLComponents, params: [String: String]) ->
     let controller = FileViewController()
     controller.canvasAPI = CKCanvasAPI.current()
     controller.fileIdent = fileIdent
+    controller.pageViewEventName = url.path.replacingOccurrences(of: "/api/v1", with: "")
 
     if let courseID = url.queryItems?.first(where: { $0.name == "courseID" })?.value {
         controller.courseID = courseID
