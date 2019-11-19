@@ -130,8 +130,6 @@ function doTest {
     local flags=($destination_flag)
     flags+=(-resultBundlePath $result_path)
     flags+=(-xctestrun $xctestrun)
-    flags+=(-only-testing:StudentUITests/SubmissionButtonTests/testMediaRecording)
-    flags+=(-only-testing:TeacherUITests/AssignmentPostPolicyTests/testPostPolicySettings)
 
     if (( false )); then
         flags+=(-parallel-testing-enabled YES -parallel-testing-worker-count 3)
