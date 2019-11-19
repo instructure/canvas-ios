@@ -35,6 +35,11 @@ public final class Activity: NSManagedObject, WriteableModel {
         set { canvasContextIDRaw = newValue?.canvasContextID }
     }
 
+    public var type: ActivityType {
+        get { return ActivityType(rawValue: typeRaw) ?? ActivityType.submission }
+        set { typeRaw = newValue.rawValue }
+    }
+
     @discardableResult
     public static func save(_ item: APIActivity, in client: NSManagedObjectContext) -> Activity {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(Activity.id), "1")
@@ -63,5 +68,20 @@ public final class Activity: NSManagedObject, WriteableModel {
             model.canvasContextIDRaw = context?.canvasContextID
         }
         return model
+    }
+}
+
+extension Activity {
+    public var icon: UIImage? {
+        switch type {
+        case .discussion:       return .icon(.discussion)
+        case .announcement:     return .icon(.announcement)
+        case .conversation:     return .icon(.email)
+        case .message:          return .icon(.assignment)
+        case .submission:       return .icon(.assignment)
+        case .conference:       return .icon(.conferences)
+        case .collaboration:    return .icon(.collaborations)
+        case .assessmentRequest:return .icon(.quiz)
+        }
     }
 }

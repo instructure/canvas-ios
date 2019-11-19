@@ -35,7 +35,7 @@ class ActivityStreamViewController: UITableViewController {
     lazy var courses = env.subscribe(GetCourses()) { [weak self] in
         self?.cacheCourses()
     }
-    
+
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.cacheCourses()
     }
@@ -64,18 +64,18 @@ class ActivityStreamViewController: UITableViewController {
         refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView?.refreshControl = refresh
     }
-    
+
     @objc func refresh(_ control: UIRefreshControl) {
         control.endRefreshing()
         refreshData(force: true)
      }
-    
+
     func refreshData(force: Bool = false) {
-        courses.exhaust(while: { _ in true } )
+        courses.exhaust(while: { _ in true })
         activities.refresh(force: force)
         colors.refresh(force: force)
     }
-    
+
     func update() {
         tableView.reloadData()
     }
@@ -115,7 +115,7 @@ class ActivityCell: UITableViewCell {
     @IBOutlet weak var typeLabel: DynamicLabel!
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var pill: TokenView!
-    
+
     func update(_ activity: Activity, courseCache: [String: ActivityStreamViewController.Info] ) {
         if activity.type == .conversation {
             titleLabel.text = NSLocalizedString("New Message", comment: "")
