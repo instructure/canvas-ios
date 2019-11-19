@@ -19,60 +19,103 @@
 import UIKit
 import Core
 
-protocol GroupNavigationViewModel: TabViewable {
-    var label: String { get }
-}
+class GroupNavigationViewController: UITableViewController, ColoredNavViewProtocol, ErrorViewController, PageViewEventViewControllerLoggingProtocol {
+    let env = AppEnvironment.shared
+    var context: Context = ContextModel.currentUser
+    var color: UIColor?
+    let titleSubtitleView = TitleSubtitleView.create()
 
-class GroupNavigationViewController: UITableViewController {
-    var presenter: GroupNavigationPresenter!
-    var color: UIColor = .black
+    lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
+        self?.update()
+    }
+    lazy var groups = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
+        self?.update()
+    }
+    lazy var tabs = env.subscribe(GetContextTabs(context: context)) { [weak self] in
+        self?.update()
+    }
 
-    convenience init(env: AppEnvironment = .shared, groupID: String) {
-        self.init(nibName: nil, bundle: nil)
-        presenter = GroupNavigationPresenter(groupID: groupID, view: self)
+    static func create(context: Context) -> GroupNavigationViewController {
+        let controller = GroupNavigationViewController()
+        controller.context = context
+        return controller
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return navigationController?.navigationBar.barStyle == .black ? .lightContent : .default
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTableView()
-        presenter.viewIsReady()
+        setupTitleViewInNavbar(title: groups.first?.name ?? "")
+
+        tableView.backgroundColor = .named(.backgroundLightest)
+        tableView.registerCell(RightDetailTableViewCell.self)
+        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorInset = .zero
+        tableView.tableFooterView = UIView()
+
+        colors.refresh()
+        groups.refresh()
+        tabs.exhaust()
+        update()
     }
 
-    func updateNavBar(title: String, backgroundColor: UIColor) {
-        color = backgroundColor.ensureContrast(against: .named(.white))
-        navigationItem.title = title
-        navigationController?.navigationBar.useContextColor(backgroundColor)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let color = color {
+            navigationController?.navigationBar.useContextColor(color)
+        }
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: animated)
+        }
+        startTrackingTimeOnViewController()
     }
 
-    func configureTableView() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-    }
-}
-
-extension GroupNavigationViewController: GroupNavigationViewProtocol {
-    func showError(_ error: Error) {
-        print(error)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopTrackingTimeOnViewController(eventName: "/\(context.pathComponent)")
     }
 
-    func update(color: UIColor) {
-        self.color = color
+    func update() {
+        if let group = groups.first {
+            titleSubtitleView.title = group.name
+            if !colors.pending {
+                color = group.color
+                navigationController?.navigationBar.useContextColor(group.color)
+            }
+        }
+        if !colors.pending, !groups.pending, !tabs.pending, let error = tabs.error {
+            showError(error)
+        }
         tableView.reloadData()
     }
 }
 
 extension GroupNavigationViewController {
-
-    // MARK: - Table view data source
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.tabs.count
+        return tabs.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = presenter.tabs[indexPath.row]?.label
-        cell.imageView?.image = presenter.tabs[indexPath.row]?.icon
+        let tab = tabs[indexPath]
+        let cell: RightDetailTableViewCell = tableView.dequeue(for: indexPath)
+        cell.textLabel?.text = tab?.label
+        cell.imageView?.image = tab?.icon
         cell.imageView?.tintColor = color
+        cell.accessoryType = .disclosureIndicator
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let tab = tabs[indexPath] else { return }
+        switch tab.id {
+        case "home":
+            env.router.route(to: "\(context.pathComponent)/activity_stream", from: self, options: nil)
+        case "wiki", "pages":
+            env.router.route(to: "\(context.pathComponent)/pages", from: self, options: nil)
+        default:
+            env.router.route(to: tab.htmlURL, from: self, options: nil)
+        }
     }
 }

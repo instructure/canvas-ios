@@ -48,14 +48,12 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/courses/:courseID/tabs": nil,
 
     "/groups/:groupID": { url, _ in
-        guard let context = ContextID(path: url.path) else { return nil }
-        guard let session = Session.current else { return nil }
-        return try? TabsTableViewController(session: session, contextID: context, route: route)
+        guard let context = ContextModel(path: url.path) else { return nil }
+        return GroupNavigationViewController.create(context: context)
     },
     "/groups/:groupID/tabs": { url, _ in
-        guard let context = ContextID(path: url.path) else { return nil }
-        guard let session = Session.current else { return nil }
-        return try? TabsTableViewController(session: session, contextID: context, route: route)
+        guard let context = ContextModel(path: url.path) else { return nil }
+        return GroupNavigationViewController.create(context: context)
     },
 
     "/:context/:contextID/activity_stream": { url, _ in
@@ -179,8 +177,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
         let contextID = ContextID.course(withID: courseID)
         // Restrict access to Modules tab if it's hidden (unless it is the home tab)
         let modulesTab = try? Tab.modulesTab(for: contextID, in: session)
-        let homeTab = try? Tab.homeTab(for: contextID, in: session)
-        let modulesAreHome = homeTab != nil && homeTab!.routingURL(session).flatMap { $0.path.contains("/modules") } ?? false
+        let modulesAreHome = session.enrollmentsDataSource[contextID]?.defaultViewPath.contains("/modules") == true
         if !modulesAreHome, modulesTab?.hidden ?? false {
             let message = NSLocalizedString("That page has been disabled for this course", comment: "")
             let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)

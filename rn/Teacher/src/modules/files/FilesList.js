@@ -584,7 +584,9 @@ export function mapStateToProps (state: Object, props: FileListNavProps) {
   const key = `${props.context}-${props.contextID}`
   const contextFolders = state.folders[key] || {}
   const contextFiles = state.files[key] || {}
-  const courseColor = (state.entities.courses[props.contextID] || {}).color
+  const courseColor = props.context === 'courses'
+    ? (state.entities.courses[props.contextID] || {}).color
+    : (state.entities.groups[props.contextID] || {}).color
   if (!contextFolders['root'] || !contextFolders['root'][0]) {
     return { data: [], courseColor }
   }

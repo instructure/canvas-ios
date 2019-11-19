@@ -34,6 +34,7 @@ class TabViewableTests: XCTestCase {
         XCTAssertEqual(Model(id: "discussions").icon, .icon(.discussion, .line))
         XCTAssertEqual(Model(id: "files").icon, .icon(.folder, .line))
         XCTAssertEqual(Model(id: "grades").icon, .icon(.gradebook, .line))
+        XCTAssertEqual(Model(id: "home").icon, .icon(.home, .line))
         XCTAssertEqual(Model(id: "link").icon, .icon(.link, .line))
         XCTAssertEqual(Model(id: "modules").icon, .icon(.module, .line))
         XCTAssertEqual(Model(id: "outcomes").icon, .icon(.outcomes, .line))
