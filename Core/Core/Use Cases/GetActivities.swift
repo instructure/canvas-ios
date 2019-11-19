@@ -34,7 +34,7 @@ public class GetActivities: CollectionUseCase {
                                #keyPath(Activity.typeRaw), ActivityType.conference.rawValue,
                                #keyPath(Activity.typeRaw), ActivityType.collaboration.rawValue,
                                #keyPath(Activity.typeRaw), ActivityType.assessmentRequest.rawValue)
-        let order = [ NSSortDescriptor(key: #keyPath(Activity.updatedAt), ascending: false),]
+        let order = [ NSSortDescriptor(key: #keyPath(Activity.updatedAt), ascending: false), ]
         return Scope(predicate: pred, order: order, sectionNameKeyPath: nil)
     }
 
