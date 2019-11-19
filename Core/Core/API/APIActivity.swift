@@ -31,8 +31,8 @@ public enum ActivityType: String, Codable {
 
 public struct APIActivity: Codable {
     let id: ID
-    let title: String
-    let message: String
+    let title: String?
+    let message: String?
     let html_url: URL
     let created_at: Date
     let updated_at: Date
