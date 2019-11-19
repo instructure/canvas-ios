@@ -129,9 +129,9 @@ class SubmissionButtonTests: StudentUITestCase {
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.submitAssignmentButton.tap()
         allowAccessToMicrophone {
-            app.find(label: "Record Audio").tap()
+            app.find(id: "FilePicker.audioButton").tap()
         }
-        AudioRecorder.recordButton.tap() // Doesn't start recording on bitrise. :( It works locally.
+        AudioRecorder.recordButton.tap()
         AudioRecorder.stopButton.tap()
         AudioRecorder.sendButton.tap()
         app.find(label: "Successfully submitted!").waitToExist()
