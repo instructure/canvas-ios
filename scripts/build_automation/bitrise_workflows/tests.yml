@@ -258,16 +258,16 @@ workflows:
     - cocoapods-install:
         inputs:
         - verbose: 'false'
-    - yarn:
-        title: rn yarn lint
-        inputs:
-        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-        - command: lint
-    - yarn:
-        title: rn yarn test
-        inputs:
-        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-        - command: test --silent --coverage --color
+    # - yarn:
+    #     title: rn yarn lint
+    #     inputs:
+    #     - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
+    #     - command: lint
+    # - yarn:
+    #     title: rn yarn test
+    #     inputs:
+    #     - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
+    #     - command: test --silent --coverage --color
     - script-runner:
         title: Run Tests
         inputs:
