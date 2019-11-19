@@ -51,7 +51,7 @@ public struct GetActivitiesRequest: APIRequestable {
 
     public var query: [APIQueryItem] {
         return [
-            .value("per_page", "99"),
+            .value("per_page", "10"),
         ]
     }
 }

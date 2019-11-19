@@ -55,7 +55,7 @@ class ActivityStreamViewController: UITableViewController {
 
     override func viewDidLoad() {
         setupTableView()
-        refreshData()    // TODO: - make this page
+        refreshData()
     }
 
     func setupTableView() {
@@ -107,6 +107,14 @@ class ActivityStreamViewController: UITableViewController {
             view.titleLabel?.text = DateFormatter.localizedString(from: dt, dateStyle: .long, timeStyle: .none)
         }
         return view
+    }
+}
+
+extension ActivityStreamViewController {
+    public override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.isBottomReached() {
+            activities.getNextPage()
+        }
     }
 }
 
