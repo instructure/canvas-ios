@@ -126,7 +126,6 @@
 		49A04E541CF64C510051E1E7 /* NotificationsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E531CF64C510051E1E7 /* NotificationsTab.swift */; };
 		49A04E571CF64C7F0051E1E7 /* CanvasTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E561CF64C7F0051E1E7 /* CanvasTabBar.swift */; };
 		49A04E741CF64ED90051E1E7 /* CalendarTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E731CF64ED90051E1E7 /* CalendarTabViewController.swift */; };
-		49A04E781CF6504D0051E1E7 /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E761CF6504D0051E1E7 /* ToDoListViewController.swift */; };
 		49A04E7D1CF653050051E1E7 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A04E7C1CF653050051E1E7 /* libc++.tbd */; };
 		49AA291A1CF4D1880055862D /* CanvasKit1.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA29191CF4D1880055862D /* CanvasKit1.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA291E1CF4D1880055862D /* CanvasKit1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AA29171CF4D1880055862D /* CanvasKit1.framework */; };
@@ -291,7 +290,6 @@
 		61074F051DB7E88100DEEE63 /* MasteryPathSelectOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D7185C1DB7CA070081D56A /* MasteryPathSelectOptionViewController.swift */; };
 		61592F771DA7F0A200552B44 /* ModuleDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61592F761DA7F0A200552B44 /* ModuleDetailDataSource.swift */; };
 		61592F791DA83C4900552B44 /* ModuleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61592F781DA83C4900552B44 /* ModuleDetailsViewController.swift */; };
-		6181F12F1DFF41AD00B94488 /* ToDoTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6181F12E1DFF41AD00B94488 /* ToDoTab.swift */; };
 		6181F1311DFF47AF00B94488 /* ActivityStreamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6181F1301DFF47AF00B94488 /* ActivityStreamTableViewController.swift */; };
 		61A6747D1DB58990008A27FD /* ModuleItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15738061D95AA7600ADBB85 /* ModuleItemViewModel.swift */; };
 		61A6747E1DB589A3008A27FD /* ModuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF7EDE1D8758720069C9BE /* ModuleViewModel.swift */; };
@@ -302,7 +300,6 @@
 		61F438E31DD4E60B00552D14 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F438E21DD4E60B00552D14 /* AVFoundation.framework */; };
 		61F438E61DD667D900552D14 /* MLVCCollectionController+CBIRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = 61F438E41DD667D900552D14 /* MLVCCollectionController+CBIRefresh.h */; };
 		61F438E71DD667D900552D14 /* MLVCCollectionController+CBIRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F438E51DD667D900552D14 /* MLVCCollectionController+CBIRefresh.m */; };
-		78F0DFDE21A311530099D5A8 /* ToDoEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0DFDD21A311530099D5A8 /* ToDoEmptyView.swift */; };
 		7D14864E230EF4AF003944A2 /* TextSubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D14864D230EF4AF003944A2 /* TextSubmissionTests.swift */; };
 		7D148654230F0EAF003944A2 /* SubmissionButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D148653230F0EAF003944A2 /* SubmissionButtonTests.swift */; };
 		7D1D7E05213743D300F7CCFE /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; };
@@ -311,7 +308,6 @@
 		7D903C2122C27907009D9E9E /* GradesWidgetViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D903C2022C27907009D9E9E /* GradesWidgetViewController.storyboard */; };
 		7D91D65C23217FA000C2F585 /* Routing.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D91D65B23217FA000C2F585 /* Routing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7D91D660232180FE00C2F585 /* Routing.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D91D65F232180FE00C2F585 /* Routing.m */; };
-		7DAEE5872111019600BF5C43 /* ToDoEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEE5862111019600BF5C43 /* ToDoEmptyView.xib */; };
 		7DBF920222690E9400710D0F /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; };
 		7DBF920322690E9400710D0F /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7DBF920422690ECF00710D0F /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EE221492040083E660 /* PSPDFKit.framework */; };
@@ -755,7 +751,6 @@
 		49A04E531CF64C510051E1E7 /* NotificationsTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTab.swift; sourceTree = "<group>"; };
 		49A04E561CF64C7F0051E1E7 /* CanvasTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasTabBar.swift; sourceTree = "<group>"; };
 		49A04E731CF64ED90051E1E7 /* CalendarTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTabViewController.swift; sourceTree = "<group>"; };
-		49A04E761CF6504D0051E1E7 /* ToDoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToDoListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		49A04E7C1CF653050051E1E7 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		49AA29171CF4D1880055862D /* CanvasKit1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49AA29191CF4D1880055862D /* CanvasKit1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasKit1.h; sourceTree = "<group>"; };
@@ -1004,7 +999,6 @@
 		61592F761DA7F0A200552B44 /* ModuleDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleDetailDataSource.swift; sourceTree = "<group>"; };
 		61592F781DA83C4900552B44 /* ModuleDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ModuleDetailsViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6181E615D15EF2EA5E2642B7 /* Pods-defaults-common_tests-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-CanvasTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
-		6181F12E1DFF41AD00B94488 /* ToDoTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTab.swift; sourceTree = "<group>"; };
 		6181F1301DFF47AF00B94488 /* ActivityStreamTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ActivityStreamTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		61CF10A61DBFB6C200B68E45 /* MasteryPathAssignmentPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasteryPathAssignmentPreviewViewController.swift; sourceTree = "<group>"; };
 		61CF10AA1DBFF93A00B68E45 /* MasteryPathAssignmentInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MasteryPathAssignmentInfoCell.xib; sourceTree = "<group>"; };
@@ -1019,7 +1013,6 @@
 		6A41FB3501A555E20167FCFB /* Pods-defaults-PreSubmissionAnnotations.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-PreSubmissionAnnotations.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-PreSubmissionAnnotations/Pods-defaults-PreSubmissionAnnotations.release.xcconfig"; sourceTree = "<group>"; };
 		6AD5E4D6FDF453975C625E3B /* Pods-defaults-StudentUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-StudentUnitTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-StudentUnitTests/Pods-defaults-StudentUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		71D54F08318539FDBC0122EE /* Pods-defaults-Student.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Student.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Student/Pods-defaults-Student.release.xcconfig"; sourceTree = "<group>"; };
-		78F0DFDD21A311530099D5A8 /* ToDoEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoEmptyView.swift; sourceTree = "<group>"; };
 		7D0C4EC21FE1CD3100AD3538 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D0C4EC41FE1CD3100AD3538 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D14864D230EF4AF003944A2 /* TextSubmissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubmissionTests.swift; sourceTree = "<group>"; };
@@ -1095,7 +1088,6 @@
 		7D91D65F232180FE00C2F585 /* Routing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Routing.m; sourceTree = "<group>"; };
 		7DABA7451FE1CCFB004E903E /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7DABA7471FE1CCFB004E903E /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		7DAEE5862111019600BF5C43 /* ToDoEmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToDoEmptyView.xib; sourceTree = "<group>"; };
 		7DBF0F101FE1CD0600B7C242 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7DBF0F111FE1CD0600B7C242 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7DC5717022F8B16200F2E9BB /* StudentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1929,17 +1921,6 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
-		49A04E751CF6504D0051E1E7 /* To Do */ = {
-			isa = PBXGroup;
-			children = (
-				6181F12E1DFF41AD00B94488 /* ToDoTab.swift */,
-				49A04E761CF6504D0051E1E7 /* ToDoListViewController.swift */,
-				7DAEE5862111019600BF5C43 /* ToDoEmptyView.xib */,
-				78F0DFDD21A311530099D5A8 /* ToDoEmptyView.swift */,
-			);
-			path = "To Do";
-			sourceTree = "<group>";
-		};
 		49AA29181CF4D1880055862D /* CanvasKit1 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2292,7 +2273,6 @@
 				7DC1140F22F9E32E000B19AE /* Pages */,
 				496D31221CF7528500A3B11E /* Shrug */,
 				49F9FA6D1CF8FC6A00654758 /* SoPushy */,
-				49A04E751CF6504D0051E1E7 /* To Do */,
 			);
 			path = Canvas;
 			sourceTree = "<group>";
@@ -3580,7 +3560,6 @@
 				49F9FA4B1CF7B73100654758 /* Assets.xcassets in Resources */,
 				7DCF0FA922F8A8D7000AACCE /* ArcSubmissionViewController.storyboard in Resources */,
 				7DCF0FC622F8A8D7000AACCE /* UrlSubmissionContentViewController.storyboard in Resources */,
-				7DAEE5872111019600BF5C43 /* ToDoEmptyView.xib in Resources */,
 				7DCF0FBF22F8A8D7000AACCE /* SubmissionDetailsEmptyView.xib in Resources */,
 				7DCF0FCD22F8A8D7000AACCE /* TextSubmissionViewController.storyboard in Resources */,
 			);
@@ -3912,7 +3891,6 @@
 				5EB46E041D21A75C00C859A4 /* CalendarMonthViewController.swift in Sources */,
 				7DCF0FB722F8A8D7000AACCE /* SubmissionCommentsPresenter.swift in Sources */,
 				7DCF0F9F22F8A897000AACCE /* DynamicLabel.swift in Sources */,
-				78F0DFDE21A311530099D5A8 /* ToDoEmptyView.swift in Sources */,
 				5EB46DFD1D21A75C00C859A4 /* NoResultsView.swift in Sources */,
 				9F61B52C205985A5009C0B13 /* CanvasAppDelegate+Helm.swift in Sources */,
 				7DCF0F9C22F8A897000AACCE /* CoreWebView.swift in Sources */,
@@ -3936,7 +3914,6 @@
 				7DCF0F8C22F8A84D000AACCE /* StudentSyllabusViewController.swift in Sources */,
 				7DCF0F7B22F8A81B000AACCE /* DashboardPresenter.swift in Sources */,
 				7DCF0F8122F8A82C000AACCE /* AssignmentListViewController.swift in Sources */,
-				6181F12F1DFF41AD00B94488 /* ToDoTab.swift in Sources */,
 				7DCF0FC422F8A8D7000AACCE /* SubmissionDetailsViewController.swift in Sources */,
 				5EB46DF91D21A75C00C859A4 /* CalendarView.swift in Sources */,
 				5EB46DE91D21A75C00C859A4 /* UIColor+Calendar.swift in Sources */,
@@ -3944,7 +3921,6 @@
 				5EB46DE51D21A75C00C859A4 /* NSDate+DayConvenience.swift in Sources */,
 				7DCF0F9822F8A860000AACCE /* UIViewControllerExtensions.swift in Sources */,
 				7DCF0F9322F8A84D000AACCE /* CourseListPresenter.swift in Sources */,
-				49A04E781CF6504D0051E1E7 /* ToDoListViewController.swift in Sources */,
 				7DCF0F8322F8A831000AACCE /* AssignmentDetailsPresenter.swift in Sources */,
 				7DCF0F8622F8A831000AACCE /* AssignmentDetailsSectionContainerView.swift in Sources */,
 				7DCF0FC922F8A8D7000AACCE /* SubmissionFilesCell.swift in Sources */,
@@ -4121,8 +4097,7 @@
 				7DE1161D22F8AB5C005BFE98 /* ArcSubmissionPresenterTests.swift in Sources */,
 				3B5542482369F9F4007D3CE0 /* AssignmentListViewControllerTests.swift in Sources */,
 				7DE1162422F8AB5C005BFE98 /* RoutesTests.swift in Sources */,
-				7DE1161122F8AB5C005BFE98 /* AssignmentListPresenterTests.swift in Sources */,
-				7DE1161622F8AB5C005BFE98 /* GroupNavigationPresenterTests.swift in Sources */,
+				7DE1161622F8AB5C005BFE98 /* GroupNavigationViewControllerTests.swift in Sources */,
 				7DE1162322F8AB5C005BFE98 /* UrlSubmissionPresenterTests.swift in Sources */,
 				7DE1161922F8AB5C005BFE98 /* UIImageStudentExtensionTests.swift in Sources */,
 				7DE1161522F8AB5C005BFE98 /* CourseNavigationPresenterTests.swift in Sources */,

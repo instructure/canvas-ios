@@ -115,13 +115,6 @@
 		49383CE61F848652009C8F8E /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49383CDE1F846FCB009C8F8E /* CanvasKit.framework */; };
 		49383CF31F8498DA009C8F8E /* CanvasCore.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49383CF21F8498DA009C8F8E /* CanvasCore.xcassets */; };
 		49383CF61F849933009C8F8E /* inboxTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49383CF51F849933009C8F8E /* inboxTab.swift */; };
-		4938ACF21F8FD2340069F43D /* TodoKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4938ACE81F8FD2330069F43D /* TodoKit.xcdatamodeld */; };
-		4938ACF31F8FD2340069F43D /* TodoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938ACEB1F8FD2330069F43D /* TodoAPI.swift */; };
-		4938ACF41F8FD2340069F43D /* Session+Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938ACEC1F8FD2330069F43D /* Session+Todo.swift */; };
-		4938ACF51F8FD2340069F43D /* Todo+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938ACEE1F8FD2340069F43D /* Todo+Collections.swift */; };
-		4938ACF61F8FD2340069F43D /* Todo+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938ACEF1F8FD2340069F43D /* Todo+Network.swift */; };
-		4938ACF71F8FD2340069F43D /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938ACF01F8FD2340069F43D /* Todo.swift */; };
-		4938ACF81F8FD2340069F43D /* Todo+Edits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938ACF11F8FD2340069F43D /* Todo+Edits.swift */; };
 		494AE08A1F8436C1001A8F31 /* NativeLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0881F8436C1001A8F31 /* NativeLoginManager.m */; };
 		494AE08B1F8436E6001A8F31 /* NativeLoginManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0871F8436C0001A8F31 /* NativeLoginManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		494AE0991F843A09001A8F31 /* DrawerHandleViewManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0901F843A01001A8F31 /* DrawerHandleViewManager.h */; };
@@ -593,13 +586,6 @@
 		49383CDE1F846FCB009C8F8E /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49383CF21F8498DA009C8F8E /* CanvasCore.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CanvasCore.xcassets; sourceTree = "<group>"; };
 		49383CF51F849933009C8F8E /* inboxTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inboxTab.swift; sourceTree = "<group>"; };
-		4938ACE91F8FD2330069F43D /* TodoKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TodoKit.xcdatamodel; sourceTree = "<group>"; };
-		4938ACEB1F8FD2330069F43D /* TodoAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoAPI.swift; sourceTree = "<group>"; };
-		4938ACEC1F8FD2330069F43D /* Session+Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Todo.swift"; sourceTree = "<group>"; };
-		4938ACEE1F8FD2340069F43D /* Todo+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Todo+Collections.swift"; sourceTree = "<group>"; };
-		4938ACEF1F8FD2340069F43D /* Todo+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Todo+Network.swift"; sourceTree = "<group>"; };
-		4938ACF01F8FD2340069F43D /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
-		4938ACF11F8FD2340069F43D /* Todo+Edits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Todo+Edits.swift"; sourceTree = "<group>"; };
 		494AE0871F8436C0001A8F31 /* NativeLoginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeLoginManager.h; sourceTree = "<group>"; };
 		494AE0881F8436C1001A8F31 /* NativeLoginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeLoginManager.m; sourceTree = "<group>"; };
 		494AE08D1F843A01001A8F31 /* ScrollViewDisablerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollViewDisablerManager.m; sourceTree = "<group>"; };
@@ -1151,7 +1137,6 @@
 				49CE95EF1F8FF3C800121A43 /* Quizzes */,
 				494AE08C1F8439A8001A8F31 /* React Native Modules */,
 				4930205E1F902413006BD777 /* Session */,
-				4938ACDE1F8FD1D60069F43D /* Todo */,
 				493020261F9022FB006BD777 /* Utilities */,
 				4961F5621F8FB1810093EC86 /* Views */,
 				4961F5211F8FACD50093EC86 /* WhizzyWig */,
@@ -1430,44 +1415,6 @@
 				49383CF51F849933009C8F8E /* inboxTab.swift */,
 			);
 			path = Inbox;
-			sourceTree = "<group>";
-		};
-		4938ACDE1F8FD1D60069F43D /* Todo */ = {
-			isa = PBXGroup;
-			children = (
-				4938ACE71F8FD2330069F43D /* Model */,
-				4938ACEA1F8FD2330069F43D /* Network */,
-				4938ACEC1F8FD2330069F43D /* Session+Todo.swift */,
-				4938ACED1F8FD2340069F43D /* Todo */,
-			);
-			path = Todo;
-			sourceTree = "<group>";
-		};
-		4938ACE71F8FD2330069F43D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				4938ACE81F8FD2330069F43D /* TodoKit.xcdatamodeld */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		4938ACEA1F8FD2330069F43D /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				4938ACEB1F8FD2330069F43D /* TodoAPI.swift */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		4938ACED1F8FD2340069F43D /* Todo */ = {
-			isa = PBXGroup;
-			children = (
-				4938ACEE1F8FD2340069F43D /* Todo+Collections.swift */,
-				4938ACEF1F8FD2340069F43D /* Todo+Network.swift */,
-				4938ACF01F8FD2340069F43D /* Todo.swift */,
-				4938ACF11F8FD2340069F43D /* Todo+Edits.swift */,
-			);
-			path = Todo;
 			sourceTree = "<group>";
 		};
 		493BEFA81FB14560006E8EFC /* LTI */ = {
@@ -2709,7 +2656,6 @@
 				49CE979C1F900D0000121A43 /* UserEnrollment+Collections.swift in Sources */,
 				4961F5591F8FAF2D0093EC86 /* MediaComment.swift in Sources */,
 				4961F5E41F8FB3FC0093EC86 /* RefreshScope.swift in Sources */,
-				4938ACF21F8FD2340069F43D /* TodoKit.xcdatamodeld in Sources */,
 				4961F5A91F8FB2A90093EC86 /* HairlineView.swift in Sources */,
 				496C7D661F8C00250010DC03 /* TabBarBadgeCounts.m in Sources */,
 				B196F79B206AB60400DE640F /* CoreDataSync.m in Sources */,
@@ -2723,7 +2669,6 @@
 				49301FED1F901854006BD777 /* RemoteService.swift in Sources */,
 				4961F5A11F8FB29B0093EC86 /* SplitViewController.swift in Sources */,
 				49CE96DE1F8FFC4400121A43 /* ModuleItem.swift in Sources */,
-				4938ACF61F8FD2340069F43D /* Todo+Network.swift in Sources */,
 				4961F6701F8FB9620093EC86 /* FileUpload+Collections.swift in Sources */,
 				4961F6371F8FB7110093EC86 /* Group+Network.swift in Sources */,
 				49CE96741F8FF41B00121A43 /* TextAnswerCell.swift in Sources */,
@@ -2788,7 +2733,6 @@
 				4961F63C1F8FB7180093EC86 /* GradingPeriodAPI.swift in Sources */,
 				B1CE74412020CE92003F2366 /* ExternalToolManager.swift in Sources */,
 				4961F6261F8FB7010093EC86 /* Enrollment+Colors.swift in Sources */,
-				4938ACF71F8FD2340069F43D /* Todo.swift in Sources */,
 				49CE96871F8FF41B00121A43 /* QuizSubmissionTimerController.swift in Sources */,
 				4961F58E1F8FB21F0093EC86 /* CAShapeLayer+Circle.swift in Sources */,
 				2CE40C9D1F87D37300ECEACB /* PSPDFViewManager.m in Sources */,
@@ -2956,10 +2900,8 @@
 				4961F6321F8FB70D0093EC86 /* GradingPeriod+Details.swift in Sources */,
 				4961F6761F8FB9620093EC86 /* FileUpload+Details.swift in Sources */,
 				4961F62D1F8FB7070093EC86 /* Enrollment.swift in Sources */,
-				4938ACF81F8FD2340069F43D /* Todo+Edits.swift in Sources */,
 				49CE96631F8FF41B00121A43 /* QuizController.swift in Sources */,
 				493020781F902462006BD777 /* SessionUser.swift in Sources */,
-				4938ACF31F8FD2340069F43D /* TodoAPI.swift in Sources */,
 				4961F5581F8FAF280093EC86 /* MeterTable.swift in Sources */,
 				4961F63A1F8FB7140093EC86 /* EnrollmentKit.xcdatamodeld in Sources */,
 				4930204F1F902364006BD777 /* IgnoreValues.swift in Sources */,
@@ -2994,7 +2936,6 @@
 				3B158CAC22E14B900039A568 /* PageViewEventLoggerLegacySupportProtocol.swift in Sources */,
 				4961F58D1F8FB21F0093EC86 /* BrowserViewController.swift in Sources */,
 				4961F51C1F8FAC440093EC86 /* UIImage+SoIconic.swift in Sources */,
-				4938ACF51F8FD2340069F43D /* Todo+Collections.swift in Sources */,
 				49CE97A31F900D0000121A43 /* BackdropFileDownloader.swift in Sources */,
 				49CE96A31F8FF4A700121A43 /* Progress.swift in Sources */,
 				4961F6351F8FB70D0093EC86 /* GradingPeriod+Collections.swift in Sources */,
@@ -3100,7 +3041,6 @@
 				7D52D88F22FCC73100684932 /* Upload+SubmissionDetails.swift in Sources */,
 				7D52D87C22FCC73100684932 /* Assignment+Network.swift in Sources */,
 				49CE96BD1F8FF94B00121A43 /* Page+Collections.swift in Sources */,
-				4938ACF41F8FD2340069F43D /* Session+Todo.swift in Sources */,
 				4961F63D1F8FB7180093EC86 /* Session+Enrollment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3513,16 +3453,6 @@
 			);
 			currentVersion = 49301FCD1F9014C5006BD777 /* CalendarKit.xcdatamodel */;
 			path = CalendarKit.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		4938ACE81F8FD2330069F43D /* TodoKit.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				4938ACE91F8FD2330069F43D /* TodoKit.xcdatamodel */,
-			);
-			currentVersion = 4938ACE91F8FD2330069F43D /* TodoKit.xcdatamodel */;
-			path = TodoKit.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
