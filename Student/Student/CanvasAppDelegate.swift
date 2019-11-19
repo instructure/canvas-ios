@@ -52,6 +52,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         #endif
         if hasFirebase {
             FirebaseApp.configure()
+            let remoteConfig = RemoteConfig.remoteConfig()
+            remoteConfig.activate { error in
+                guard error == nil else {
+                    return
+                }
+                let keys = remoteConfig.allKeys(from: RemoteConfigSource.remote)
+                for key in keys {
+                    UserDefaults.standard.set(remoteConfig.configValue(forKey: key).boolValue, forKey: ExperimentalFeature.settingsKey(forConfigKey: key))
+                }
+            }
+            remoteConfig.fetch(completionHandler: nil)
         }
         DocViewerViewController.setup(.studentPSPDFKitLicense)
         prepareReactNative()

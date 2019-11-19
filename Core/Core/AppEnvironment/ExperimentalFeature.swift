@@ -25,48 +25,54 @@ import Foundation
 /// feature flags in Canvas, which represent optional functionality in
 /// production that should only apply to certain accounts, courses, or people.
 public class ExperimentalFeature {
-    enum State {
-        case disabled, enabled
-        case enabledInBeta
-        case enabledForHosts([String])
-    }
+    let remoteConfigKey: String
+    let settingsKey: String
+    var enabled: Bool
 
-    private let state: State
-
-    init(state: State) {
-        self.state = state
+    init(remoteConfigKey: String) {
+        self.remoteConfigKey = remoteConfigKey
+        self.settingsKey = ExperimentalFeature.settingsKey(forConfigKey: self.remoteConfigKey)
+        self.enabled = UserDefaults.standard.bool(forKey: self.settingsKey)
     }
 
     public var isEnabled: Bool {
-        if ExperimentalFeature.allEnabled { return true }
-        switch state {
-        case .disabled:
-            return false
-        case .enabled:
-            return true
-        case .enabledInBeta:
-            guard let host = AppEnvironment.shared.currentSession?.baseURL.host else { return false }
-            return host.contains(".beta.")
-        case .enabledForHosts(let hosts):
-            guard let host = AppEnvironment.shared.currentSession?.baseURL.host else { return false }
-            return hosts.contains(host)
+        get { return enabled }
+        set {
+            enabled = newValue
+            UserDefaults.standard.set(newValue, forKey: self.settingsKey)
         }
     }
 
-    public static var allEnabled: Bool {
-        get { return UserDefaults.standard.bool(forKey: "ExperimentalFeature.allEnabled") }
-        set { UserDefaults.standard.set(newValue, forKey: "ExperimentalFeature.allEnabled") }
+    public static func settingsKey(forConfigKey key: String) -> String {
+        return "ExperimentalFeature.\(key)"
     }
 }
 
 extension ExperimentalFeature {
-    public static let assignmentListGraphQL = ExperimentalFeature(state: .disabled)
-    public static let parent3 = ExperimentalFeature(state: .disabled)
-    public static let conferences = ExperimentalFeature(state: .disabled)
-    public static let favoriteGroups = ExperimentalFeature(state: .disabled)
-    public static let simpleDiscussionRenderer = ExperimentalFeature(state: .disabled)
-    public static let graphqlSpeedGrader = ExperimentalFeature(state: .disabled)
-    public static let refreshTokens = ExperimentalFeature(state: .disabled)
-    public static let newPageDetails = ExperimentalFeature(state: .disabled)
-    public static let fileDetails = ExperimentalFeature(state: .disabled)
+    public static var allEnabled: Bool {
+        get { allFeatures.filter({ $0.isEnabled == false }).count == 0 }
+        set {
+            for feature in allFeatures {
+                feature.isEnabled = newValue
+            }
+        }
+    }
+
+    public static let allFeatures: [ExperimentalFeature] = [
+        .parent3, .conferences, .favoriteGroups, .simpleDiscussionRenderer, .graphqlSpeedGrader, .refreshTokens, .newPageDetails,
+        .fileDetails, .testing,
+    ]
+
+    // Be sure to add your feature to the `allFeatures` array as well or it will not get picked up
+    // in ExperimentalFeaturesViewController.swift
+    public static let parent3 = ExperimentalFeature(remoteConfigKey: "parent3")
+    public static let conferences = ExperimentalFeature(remoteConfigKey: "conferences")
+    public static let favoriteGroups = ExperimentalFeature(remoteConfigKey: "favorite_groups")
+    public static let simpleDiscussionRenderer = ExperimentalFeature(remoteConfigKey: "simple_discussion_renderer")
+    public static let graphqlSpeedGrader = ExperimentalFeature(remoteConfigKey: "graphql_speed_grader")
+    public static let refreshTokens = ExperimentalFeature(remoteConfigKey: "refresh_tokens")
+    public static let newPageDetails = ExperimentalFeature(remoteConfigKey: "new_page_details")
+    public static let fileDetails = ExperimentalFeature(remoteConfigKey: "file_details")
+    public static let assignmentListGraphQL = ExperimentalFeature(remoteConfigKey: "assignment_list_graphql")
+    public static let testing = ExperimentalFeature(remoteConfigKey: "testing")
 }
