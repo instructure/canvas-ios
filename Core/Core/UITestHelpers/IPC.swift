@@ -132,7 +132,7 @@ class IPCClient {
         self.openTimeout = timeout
     }
 
-    func openMessagePort() {
+    func openMessagePort() throws {
         let deadline = Date().addingTimeInterval(openTimeout)
         repeat {
             if let port = CFMessagePortCreateRemote(kCFAllocatorDefault, serverPortName as CFString) {
@@ -141,12 +141,12 @@ class IPCClient {
             }
             sleep(1)
         } while Date() < deadline
-        fatalError("client couldn't connect to server port \(serverPortName)")
+        throw IPCError(message: "client couldn't connect to server port \(serverPortName)")
     }
 
     func requestRemote<R: Codable>(_ request: R) throws -> Data? {
         if messagePort == nil || !CFMessagePortIsValid(messagePort) {
-            openMessagePort()
+            try openMessagePort()
         }
 
         var responseData: Unmanaged<CFData>?

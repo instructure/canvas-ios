@@ -67,6 +67,7 @@ const whitelist = [
   'group',
   'hamburger',
   'highlighter',
+  'home',
   'image',
   'instructure',
   'italic',
