@@ -40,12 +40,6 @@ class ActivityStreamViewController: UITableViewController {
         self?.cacheCourses()
     }
 
-    static let dateFormatter: DateFormatter = {
-        var d = DateFormatter()
-        d.dateFormat  = "yyyy-MM-dd HH:mm:ss ZZ"
-        return d
-    }()
-
     var courseCache: [String: Info] = [:]
 
     static func create() -> ActivityStreamViewController {
