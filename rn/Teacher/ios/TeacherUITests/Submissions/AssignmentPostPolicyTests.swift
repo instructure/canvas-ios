@@ -65,7 +65,7 @@ class AssignmentPostPolicyTests: TeacherUITestCase {
                 SubmissionsList.postpolicy.tap()
                 checkPost()
                 return
-            } else if PostPolicy.postTo.isVisible {
+            } else if PostPolicy.postTo.exists {
                 checkPost()
                 sleep(waitForAPI)
                 SubmissionsList.postpolicy.tap()
