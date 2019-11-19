@@ -79,7 +79,7 @@ class GroupNavigationViewController: UITableViewController, ColoredNavViewProtoc
 
     func update() {
         if let group = groups.first {
-            navigationItem.title = group.name
+            titleSubtitleView.title = group.name
             if !colors.pending {
                 color = group.color
                 navigationController?.navigationBar.useContextColor(group.color)

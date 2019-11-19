@@ -43,6 +43,7 @@ class GroupNavigationViewControllerTests: StudentTestCase {
         controller.viewWillAppear(false)
         XCTAssertEqual(navigation.navigationBar.barTintColor, UIColor(hexString: "#f00"))
         XCTAssertEqual(controller.tableView.backgroundColor, .named(.backgroundLightest))
+        XCTAssertEqual(controller.titleSubtitleView.title, "Tests")
 
         XCTAssertEqual(controller.preferredStatusBarStyle, .lightContent)
         navigation.navigationBar.barStyle = .default
