@@ -128,7 +128,7 @@ class ActivityCell: UITableViewCell {
             subTitleLabel.text = DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .none)
         }
 
-        icon.image = activity.icon?.withRenderingMode(.alwaysTemplate)
+        icon.image = activity.icon
         if let id = activity.context?.id {
             icon.tintColor = courseCache[id]?.color
             courseCode.textColor = courseCache[id]?.color
