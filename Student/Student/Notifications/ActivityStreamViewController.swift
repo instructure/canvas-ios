@@ -117,7 +117,7 @@ class ActivityCell: UITableViewCell {
         } else {
             courseCode.text = nil
         }
-        
+
         if let date = activity.updatedAt {
             subTitleLabel.text = DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .none)
         }

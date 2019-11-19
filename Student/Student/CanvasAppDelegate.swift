@@ -424,7 +424,7 @@ extension AppDelegate {
     }
 }
 
-//  MARK: - Tabs
+// MARK: - Tabs
 extension AppDelegate {
     func refreshNotificationTab() {
         if let tabs = window?.rootViewController as? UITabBarController,
