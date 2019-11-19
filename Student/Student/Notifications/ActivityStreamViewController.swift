@@ -86,27 +86,14 @@ class ActivityStreamViewController: UITableViewController {
         update()
     }
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        activities.sections?.count ?? 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        activities.sectionInfo(inSection: section)?.numberOfObjects ?? 0
+        activities.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ActivityCell = tableView.dequeue(for: indexPath)
         if let a = activities[indexPath] { cell.update(a, courseCache: courseCache) }
         return cell
-    }
-
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let info = activities.sectionInfo(inSection: section) else { return nil }
-        let view = tableView.dequeueHeaderFooter(SectionHeaderView.self)
-        if let dt: Date = ActivityStreamViewController.dateFormatter.date(from: info.name) {
-            view.titleLabel?.text = DateFormatter.localizedString(from: dt, dateStyle: .long, timeStyle: .none)
-        }
-        return view
     }
 }
 
@@ -120,9 +107,9 @@ extension ActivityStreamViewController {
 
 class ActivityCell: UITableViewCell {
     @IBOutlet weak var titleLabel: DynamicLabel!
-    @IBOutlet weak var typeLabel: DynamicLabel!
+    @IBOutlet weak var subTitleLabel: DynamicLabel!
     @IBOutlet weak var icon: UIImageView!
-    @IBOutlet weak var pill: TokenView!
+    @IBOutlet weak var courseCode: DynamicLabel!
 
     func update(_ activity: Activity, courseCache: [String: ActivityStreamViewController.Info] ) {
         if activity.type == .conversation {
@@ -132,17 +119,19 @@ class ActivityCell: UITableViewCell {
         }
 
         if activity.context?.contextType == .course || activity.type == .discussion, let id = activity.context?.id {
-            typeLabel.text = courseCache[id]?.name
-            pill.text = courseCache[id]?.courseCode
+            courseCode.text = courseCache[id]?.courseCode
         } else {
-            typeLabel.text = nil
-            pill.text = nil
+            courseCode.text = nil
+        }
+        
+        if let date = activity.updatedAt {
+            subTitleLabel.text = DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .none)
         }
 
         icon.image = activity.icon?.withRenderingMode(.alwaysTemplate)
         if let id = activity.context?.id {
             icon.tintColor = courseCache[id]?.color
-            pill.backgroundColor = courseCache[id]?.color
+            courseCode.textColor = courseCache[id]?.color
         }
     }
 }
