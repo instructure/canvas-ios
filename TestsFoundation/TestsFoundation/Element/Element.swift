@@ -131,6 +131,11 @@ public struct XCUIElementQueryWrapper: Element {
         self.index = index
     }
 
+    // a nap is a small sleep
+    func nap() {
+        usleep(100000)
+    }
+
     public var exists: Bool {
         let timeout: TimeInterval = 30
 
@@ -140,7 +145,7 @@ public struct XCUIElementQueryWrapper: Element {
             do {
                 return try query.allMatchingSnapshots().count > 0
             } catch {
-                usleep(100000)
+                nap()
             }
         }
         XCTFail("Failed to get snapshot within \(timeout) seconds")
@@ -224,7 +229,7 @@ public struct XCUIElementQueryWrapper: Element {
         let deadline = Date().addingTimeInterval(timeout)
         while !exists {
             XCTAssertTrue(Date() < deadline, "Element \(id) still doesn't exists", file: file, line: line)
-            usleep(100000)
+            nap()
         }
         return self
     }
@@ -234,7 +239,7 @@ public struct XCUIElementQueryWrapper: Element {
         let deadline = Date().addingTimeInterval(timeout)
         while exists {
             XCTAssertTrue(Date() < deadline, "Element \(id) still exists", file: file, line: line)
-            usleep(100000)
+            nap()
         }
         return self
     }
