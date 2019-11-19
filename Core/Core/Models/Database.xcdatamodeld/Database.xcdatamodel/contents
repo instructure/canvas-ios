@@ -6,7 +6,6 @@
         <attribute name="htmlURL" optional="YES" attributeType="URI"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="message" optional="YES" attributeType="String"/>
-        <attribute name="sortDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="typeRaw" optional="YES" attributeType="String"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -503,7 +502,7 @@
         <attribute name="manualMarkAsRead" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="Activity" positionX="-540" positionY="-18" width="128" height="178"/>
+        <element name="Activity" positionX="-540" positionY="-18" width="128" height="163"/>
         <element name="AlertThreshold" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="463"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>

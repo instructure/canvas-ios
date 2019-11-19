@@ -25,7 +25,6 @@ public final class Activity: NSManagedObject, WriteableModel {
     @NSManaged public var id: String
     @NSManaged public var createdAt: Date?
     @NSManaged public var updatedAt: Date?
-    @NSManaged public var sortDate: Date?
     @NSManaged public var message: String?
     @NSManaged public var title: String?
     @NSManaged public var typeRaw: String
@@ -53,7 +52,6 @@ public final class Activity: NSManagedObject, WriteableModel {
         model.htmlURL = item.html_url
         model.typeRaw = item.type.rawValue
         model.updatedAt = item.updated_at
-        model.sortDate = item.updated_at.removeTime()
 
         if let contextType = ContextType(rawValue: item.context_type.lowercased()) {
             var context: ContextModel?
