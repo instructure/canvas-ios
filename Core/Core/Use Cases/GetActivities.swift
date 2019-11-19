@@ -30,7 +30,15 @@ public class GetActivities: CollectionUseCase {
     }
 
     public var scope: Scope {
-        return .all(orderBy: #keyPath(Activity.id))
+        let pred = NSPredicate(format: "%K != %@ && %K != %@ && %K != %@",
+                               #keyPath(Activity.typeRaw), ActivityType.conference.rawValue,
+                               #keyPath(Activity.typeRaw), ActivityType.collaboration.rawValue,
+                               #keyPath(Activity.typeRaw), ActivityType.assessmentRequest.rawValue)
+
+        return Scope(predicate: pred, order: [
+            NSSortDescriptor(key: #keyPath(Activity.sortDate), ascending: false),
+            NSSortDescriptor(key: #keyPath(Activity.updatedAt), ascending: false)],
+                     sectionNameKeyPath: #keyPath(Activity.sortDate))
     }
 
     public var request: GetActivitiesRequest {

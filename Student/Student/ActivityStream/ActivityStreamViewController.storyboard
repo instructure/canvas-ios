@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Activity Stream View Controller-->
+        <scene sceneID="i3Z-e3-aAK">
+            <objects>
+                <tableViewController storyboardIdentifier="ActivityStreamViewController" id="ecL-16-114" customClass="ActivityStreamViewController" customModule="Student" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="LaJ-fe-ueQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActivityCell" rowHeight="84" id="ZED-OC-sgx" customClass="ActivityCell" customModule="Student" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="84"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZED-OC-sgx" id="gT3-JZ-L8G">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4E-YT-iVI" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                            <rect key="frame" x="44" y="19" width="334" height="19.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAO-0p-mHa" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                            <rect key="frame" x="44" y="42.5" width="334" height="4.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular12"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dvx-D9-Zdi">
+                                            <rect key="frame" x="16" y="19" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="SxD-Vh-yeM"/>
+                                                <constraint firstAttribute="height" constant="20" id="bis-Df-D5r"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AjC-CO-Qcl" customClass="TokenView" customModule="Core">
+                                            <rect key="frame" x="44" y="55" width="42" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="zz4-Eb-eqA"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="V4E-YT-iVI" firstAttribute="leading" secondItem="dvx-D9-Zdi" secondAttribute="trailing" constant="8" id="5TT-R0-sn7"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="V4E-YT-iVI" secondAttribute="trailing" constant="16" id="7iO-hq-dlu"/>
+                                        <constraint firstItem="dvx-D9-Zdi" firstAttribute="top" secondItem="gT3-JZ-L8G" secondAttribute="top" priority="200" constant="20" id="BHU-LG-ElU"/>
+                                        <constraint firstItem="qAO-0p-mHa" firstAttribute="leading" secondItem="V4E-YT-iVI" secondAttribute="leading" id="E0T-Xn-xi6"/>
+                                        <constraint firstItem="AjC-CO-Qcl" firstAttribute="leading" secondItem="qAO-0p-mHa" secondAttribute="leading" id="Gc2-2t-HnR"/>
+                                        <constraint firstItem="dvx-D9-Zdi" firstAttribute="leading" secondItem="gT3-JZ-L8G" secondAttribute="leading" constant="16" id="Iyv-4m-Gqd"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="qAO-0p-mHa" secondAttribute="trailing" constant="16" id="Mke-OU-ZS6"/>
+                                        <constraint firstItem="qAO-0p-mHa" firstAttribute="top" secondItem="V4E-YT-iVI" secondAttribute="bottom" constant="4" id="YVx-Du-eSe"/>
+                                        <constraint firstItem="AjC-CO-Qcl" firstAttribute="top" secondItem="qAO-0p-mHa" secondAttribute="bottom" constant="8" id="Z2M-gN-tdM"/>
+                                        <constraint firstItem="V4E-YT-iVI" firstAttribute="top" secondItem="gT3-JZ-L8G" secondAttribute="topMargin" constant="8" id="wgJ-oo-SFt"/>
+                                        <constraint firstItem="V4E-YT-iVI" firstAttribute="centerY" secondItem="dvx-D9-Zdi" secondAttribute="centerY" id="woc-P8-bhf"/>
+                                        <constraint firstAttribute="bottom" secondItem="AjC-CO-Qcl" secondAttribute="bottom" constant="8" id="zGT-3t-qCx"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="icon" destination="dvx-D9-Zdi" id="ndk-QV-Wht"/>
+                                    <outlet property="pill" destination="AjC-CO-Qcl" id="BBY-Nd-ood"/>
+                                    <outlet property="titleLabel" destination="V4E-YT-iVI" id="J6f-NC-OuA"/>
+                                    <outlet property="typeLabel" destination="qAO-0p-mHa" id="mUr-Ba-DlE"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="ecL-16-114" id="hMK-ed-eda"/>
+                            <outlet property="delegate" destination="ecL-16-114" id="9Vz-Le-YPg"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jaQ-5c-yID" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="3"/>
+        </scene>
+    </scenes>
+</document>
