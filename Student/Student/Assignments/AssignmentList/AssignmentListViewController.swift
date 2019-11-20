@@ -173,7 +173,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
 
     func selectFirstCellOnIpad() {
         let ip = IndexPath(row: 0, section: 0)
-        if assignment(for: ip) != nil, splitViewController != nil, !isInSplitViewDetail {
+        if assignment(for: ip) != nil, UIDevice.current.userInterfaceIdiom == .pad, !isInSplitViewDetail {
             tableView.selectRow(at: ip, animated: true, scrollPosition: .none)
             tableView(tableView, didSelectRowAt: ip)
         }
