@@ -37,7 +37,7 @@ public struct APIActivity: Codable {
     let created_at: Date
     let updated_at: Date
     let type: ActivityType
-    let context_type: String
+    let context_type: String?
     let course_id: ID?
     let group_id: ID?
 }

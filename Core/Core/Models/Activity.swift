@@ -53,7 +53,7 @@ public final class Activity: NSManagedObject, WriteableModel {
         model.typeRaw = item.type.rawValue
         model.updatedAt = item.updated_at
 
-        if let contextType = ContextType(rawValue: item.context_type.lowercased()) {
+        if let rawValue = item.context_type, let contextType = ContextType(rawValue: rawValue.lowercased()) {
             var context: ContextModel?
             switch contextType {
             case .course:
