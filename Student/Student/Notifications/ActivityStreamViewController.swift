@@ -52,11 +52,17 @@ class ActivityStreamViewController: UITableViewController {
         refreshData()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let indexPath = tableView.indexPathForSelectedRow { tableView.deselectRow(at: indexPath, animated: true) }
+    }
+
     func setupTableView() {
         tableView.registerHeaderFooterView(SectionHeaderView.self)
         let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView?.refreshControl = refresh
+        tableView.tableFooterView = UIView()
     }
 
     @objc func refresh(_ control: UIRefreshControl) {
@@ -88,6 +94,11 @@ class ActivityStreamViewController: UITableViewController {
         let cell: ActivityCell = tableView.dequeue(for: indexPath)
         if let a = activities[indexPath] { cell.update(a, courseCache: courseCache) }
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let a = activities[indexPath], let url = a.htmlURL else { return }
+        env.router.route(to: url, from: self, options: nil)
     }
 }
 
