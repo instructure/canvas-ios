@@ -21,7 +21,7 @@ import Foundation
 import TestsFoundation
 
 class GradesViewControllerTests: CoreTestCase {
-    func testViewDidLoadNoGradingPeriods() {
+    func testViewDidLoadNoGradingPeriods() throws {
         api.mock(
             GetCourseRequest(courseID: "1"),
             value: .make(id: "1", enrollments: [
@@ -64,8 +64,21 @@ class GradesViewControllerTests: CoreTestCase {
         api.mock(
             GetAssignmentsRequest(courseID: "1", orderBy: .position, include: [.observed_users, .submission], perPage: 99),
             value: [
-                .make(id: "1", course_id: "1", assignment_group_id: "1"),
-                .make(id: "2", course_id: "1", assignment_group_id: "2"),
+                .make(
+                    id: "1",
+                    course_id: "1",
+                    name: "Assignment One",
+                    points_possible: 10,
+                    due_at: nil,
+                    submission: .make(assignment_id: "1", user_id: "1", score: 9, late: true),
+                    assignment_group_id: "1"
+                ),
+                .make(
+                    id: "2",
+                    course_id: "1",
+                    submission: .make(assignment_id: "2", user_id: "1"),
+                    assignment_group_id: "2"
+                ),
             ]
         )
         let viewController = GradesViewController.create(courseID: "1", userID: "1")
@@ -76,6 +89,14 @@ class GradesViewControllerTests: CoreTestCase {
         XCTAssertTrue(viewController.loadingView.isHidden)
         XCTAssertTrue(viewController.gradingPeriodView.isHidden)
         XCTAssertEqual(viewController.totalGradeLabel.text, "100%")
+        let cell = try XCTUnwrap(viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? GradesCell)
+        XCTAssertEqual(cell.nameLabel.text, "Assignment One")
+        XCTAssertEqual(cell.dueLabel.text, "No Due Date")
+        XCTAssertEqual(cell.statusLabel.text, SubmissionStatus.late.text)
+        XCTAssertEqual(cell.statusLabel.textColor, SubmissionStatus.late.color)
+        XCTAssertEqual(cell.gradeLabel.text, "9 / 10")
+        viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        XCTAssertTrue(router.lastRoutedTo(.course("1", assignment: "1")))
     }
 
     func testViewDidLoadMultipleGradingPeriods() {

@@ -149,6 +149,12 @@ extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
 
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let assignment = grades.assignments[indexPath] else { return }
+        env.router.route(to: .course(courseID, assignment: assignment.id), from: self, options: nil)
+    }
+
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueHeaderFooter(SectionHeaderView.self)
         view.titleLabel?.text = grades.assignments.sections?[section].name
