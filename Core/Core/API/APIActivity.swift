@@ -31,13 +31,13 @@ public enum ActivityType: String, Codable {
 
 public struct APIActivity: Codable {
     let id: ID
-    let title: String
-    let message: String
+    let title: String?
+    let message: String?
     let html_url: URL
     let created_at: Date
     let updated_at: Date
     let type: ActivityType
-    let context_type: String
+    let context_type: String?
     let course_id: ID?
     let group_id: ID?
 }
@@ -51,7 +51,7 @@ public struct GetActivitiesRequest: APIRequestable {
 
     public var query: [APIQueryItem] {
         return [
-            .value("per_page", "99"),
+            .value("per_page", "10"),
         ]
     }
 }
