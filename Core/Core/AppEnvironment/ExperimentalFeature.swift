@@ -24,50 +24,30 @@ import Foundation
 /// that is not ready for all users to exercise. This is different from
 /// feature flags in Canvas, which represent optional functionality in
 /// production that should only apply to certain accounts, courses, or people.
-public class ExperimentalFeature {
-    enum State {
-        case disabled, enabled
-        case enabledInBeta
-        case enabledForHosts([String])
-    }
-
-    private let state: State
-
-    init(state: State) {
-        self.state = state
-    }
+public enum ExperimentalFeature: String, CaseIterable {
+    case parent3
+    case conferences
+    case favoriteGroups = "favorite_groups"
+    case simpleDiscussionRenderer = "simple_discussion_renderer"
+    case graphqlSpeedGrader = "graphql_speed_grader"
+    case refreshTokens = "refresh_tokens"
+    case newPageDetails = "new_page_details"
+    case fileDetails = "file_details"
+    case assignmentListGraphQL = "assignment_list_graphql"
+    case notifications2
+    case testing = "testing"
 
     public var isEnabled: Bool {
-        if ExperimentalFeature.allEnabled { return true }
-        switch state {
-        case .disabled:
-            return false
-        case .enabled:
-            return true
-        case .enabledInBeta:
-            guard let host = AppEnvironment.shared.currentSession?.baseURL.host else { return false }
-            return host.contains(".beta.")
-        case .enabledForHosts(let hosts):
-            guard let host = AppEnvironment.shared.currentSession?.baseURL.host else { return false }
-            return hosts.contains(host)
-        }
+        get { UserDefaults.standard.bool(forKey: userDefaultsKey) }
+        nonmutating set { UserDefaults.standard.set(newValue, forKey: userDefaultsKey) }
+    }
+
+    public var userDefaultsKey: String {
+        return "ExperimentalFeature.\(self.rawValue)"
     }
 
     public static var allEnabled: Bool {
-        get { return UserDefaults.standard.bool(forKey: "ExperimentalFeature.allEnabled") }
-        set { UserDefaults.standard.set(newValue, forKey: "ExperimentalFeature.allEnabled") }
+        get { ExperimentalFeature.allCases.allSatisfy({ $0.isEnabled }) }
+        set { ExperimentalFeature.allCases.forEach({ $0.isEnabled = newValue }) }
     }
-}
-
-extension ExperimentalFeature {
-    public static let assignmentListGraphQL = ExperimentalFeature(state: .disabled)
-    public static let notifications2 = ExperimentalFeature(state: .disabled)
-    public static let parent3 = ExperimentalFeature(state: .disabled)
-    public static let conferences = ExperimentalFeature(state: .disabled)
-    public static let favoriteGroups = ExperimentalFeature(state: .disabled)
-    public static let simpleDiscussionRenderer = ExperimentalFeature(state: .disabled)
-    public static let graphqlSpeedGrader = ExperimentalFeature(state: .disabled)
-    public static let refreshTokens = ExperimentalFeature(state: .disabled)
-    public static let newPageDetails = ExperimentalFeature(state: .disabled)
-    public static let fileDetails = ExperimentalFeature(state: .disabled)
 }

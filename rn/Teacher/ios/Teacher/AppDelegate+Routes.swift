@@ -89,6 +89,14 @@ extension AppDelegate {
             return ProfileSettingsViewController.create()
         })
 
+        HelmManager.shared.registerNativeViewController(for: "/dev-menu/experimental-features", factory: { _ in
+            let vc = ExperimentalFeaturesViewController()
+            vc.afterToggle = {
+                HelmManager.shared.reload()
+            }
+            return vc
+        })
+
         CanvasCore.registerSharedNativeViewControllers()
     }
 }

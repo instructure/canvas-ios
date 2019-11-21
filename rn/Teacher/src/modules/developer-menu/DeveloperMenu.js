@@ -34,8 +34,6 @@ import Screen from '../../routing/Screen'
 import Row from '../../common/components/rows/Row'
 import SectionHeader from '../../common/components/rows/SectionHeader'
 import RowSeparator from '../../common/components/rows/RowSeparator'
-import RowWithSwitch from '../../common/components/rows/RowWithSwitch'
-import ExperimentalFeature from '../../common/ExperimentalFeature'
 import { formattedDueDate } from '../../common/formatters'
 import { createStyleSheet } from '../../common/stylesheet'
 const { NativeNotificationCenter, Helm } = NativeModules
@@ -161,7 +159,9 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
   }
 
   viewExperimentalFeatures = () => {
-    this.props.navigator.show('/dev-menu/experimental-features')
+    this.props.navigator.show('/dev-menu/experimental-features', undefined, {
+      restartApp: this.restartApp,
+    })
   }
 
   viewRouteHistory = () => {
@@ -170,23 +170,6 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
 
   manageRatingRequest = () => {
     this.props.navigator.show('/rating-request')
-  }
-
-  toggleExperimentalFeatures = async () => {
-    if (ExperimentalFeature.allEnabled) {
-      ExperimentalFeature.allEnabled = false
-      this.restartApp()
-    } else {
-      ExperimentalFeature.allEnabled = true
-      Alert.alert(
-        '',
-        'The app will now restart. If you do not see the features enabled that you expected, you may need to force close the app and open it again.',
-        [
-          { text: 'OK', onPress: this.restartApp },
-        ],
-        { cancelable: false },
-      )
-    }
   }
 
   restartApp = async () => {
@@ -238,8 +221,6 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
             />
           </View>
           <View style={{ flex: 1, flexDirection: 'column' }}>
-            <RowSeparator />
-            <RowWithSwitch title='Enable Experimental Features' onValueChange={this.toggleExperimentalFeatures} value={ExperimentalFeature.allEnabled} />
             <RowSeparator />
             <Row title='View Experimental Features' disclosureIndicator onPress={this.viewExperimentalFeatures} />
             <RowSeparator />

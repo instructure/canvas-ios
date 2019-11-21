@@ -73,7 +73,6 @@ import Dashboard from '../modules/dashboard/Dashboard'
 import TermsOfUse from '../modules/tos/TermsOfUse'
 import PushNotifications from '../modules/developer-menu/PushNotifications'
 import SectionSelector from '../modules/announcements/edit/SectionSelector'
-import ExperimentalFeatures from '../modules/developer-menu/ExperimentalFeatures'
 import ExperimentalFeature from '../common/ExperimentalFeature'
 import RatingRequest from '../modules/developer-menu/RatingRequest'
 import GradesList from '../modules/grades/GradesList'
@@ -151,7 +150,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/support/:type', undefined, undefined, { deepLink: true })
   registerScreen('/push-notifications', wrap(PushNotifications), store)
   registerScreen('/page-view-events', wrap(PageViewEvents), store)
-  registerScreen('/dev-menu/experimental-features', wrap(ExperimentalFeatures), store)
+  registerScreen('/dev-menu/experimental-features', null, store)
   registerScreen('/rating-request', wrap(RatingRequest), store)
   registerScreen('/logs')
   registerScreen('/act-as-user')

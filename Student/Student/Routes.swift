@@ -325,6 +325,14 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/dev-menu": nil,
 
+    "/dev-menu/experimental-features": { _, _ in
+        let vc = ExperimentalFeaturesViewController()
+        vc.afterToggle = {
+            HelmManager.shared.reload()
+        }
+        return vc
+    },
+
     "/accounts/:accountID/terms_of_service": nil,
 
     "/logs": { _, _ in

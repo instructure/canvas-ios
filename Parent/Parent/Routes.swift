@@ -102,6 +102,10 @@ let router = Router(routes: [
         return DeveloperMenuViewController.create()
     },
 
+    RouteHandler(.experimentalFeatures) { _, _ in
+        return ExperimentalFeaturesViewController()
+    },
+
     RouteHandler(.wrongApp) { _, _ in
         guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
         return WrongAppViewController.create(delegate: loginDelegate)

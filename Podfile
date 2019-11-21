@@ -56,25 +56,33 @@ abstract_target 'defaults' do
   target 'Parent' do
     project 'Parent/Parent.xcodeproj'
     pod 'Fabric', '~> 1.7.7'
-    pod 'Firebase/Core', '~> 5.20'
+    pod 'Firebase/Core', '~> 6.13'
+    pod 'Firebase/RemoteConfig', '~> 6.13'
+    pod 'Firebase/Analytics', '~> 6.13'
   end
-  
+
   target 'ParentUnitTests' do
     project 'Parent/Parent.xcodeproj'
     pod 'Fabric', '~> 1.7.7'
-    pod 'Firebase/Core', '~> 5.20'
+    pod 'Firebase/Core', '~> 6.13'
+    pod 'Firebase/RemoteConfig', '~> 6.13'
+    pod 'Firebase/Analytics', '~> 6.13'
   end
 
   target 'Teacher' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
     pod 'Fabric', '~> 1.7.7'
-    pod 'Firebase/Core', '~> 5.20'
+    pod 'Firebase/Core', '~> 6.13'
+    pod 'Firebase/RemoteConfig', '~> 6.13'
+    pod 'Firebase/Analytics', '~> 6.13'
   end
 
   target 'TeacherTests' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
     pod 'Fabric', '~> 1.7.7'
-    pod 'Firebase/Core', '~> 5.20'
+    pod 'Firebase/Core', '~> 6.13'
+    pod 'Firebase/RemoteConfig', '~> 6.13'
+    pod 'Firebase/Analytics', '~> 6.13'
   end
 
   target 'TechDebt' do
@@ -84,13 +92,17 @@ abstract_target 'defaults' do
   target 'Student' do
     project 'Student/Student.xcodeproj'
     pod 'Fabric', '~> 1.7.7'
-    pod 'Firebase/Core', '~> 5.20'
+    pod 'Firebase/Core', '~> 6.13'
+    pod 'Firebase/RemoteConfig', '~> 6.13'
+    pod 'Firebase/Analytics', '~> 6.13'
   end
 
   target 'StudentUnitTests' do
     project 'Student/Student.xcodeproj'
     pod 'Fabric', '~> 1.7.7'
-    pod 'Firebase/Core', '~> 5.20'
+    pod 'Firebase/Core', '~> 6.13'
+    pod 'Firebase/RemoteConfig', '~> 6.13'
+    pod 'Firebase/Analytics', '~> 6.13'
   end
 
   target 'CanvasCore' do

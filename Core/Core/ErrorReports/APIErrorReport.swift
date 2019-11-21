@@ -55,7 +55,7 @@ struct PostErrorReportRequest: APIRequestable {
             subject = "\(subject) [\(session.baseURL.absoluteString)]"
             if Locale.current.regionCode != "CA" {
                 comments += "\nUser: \(session.userID)"
-                comments += "\nEmail: \(session.userEmail ?? "")"
+                comments += "\nEmail: \(email ?? "")"
                 http_env["User"] = session.userID
                 http_env["Email"] = session.userEmail
             }
@@ -81,6 +81,13 @@ struct PostErrorReportRequest: APIRequestable {
                 }
             }
         }
+
+        let enabledFeatures = ExperimentalFeature.allCases.filter({ $0.isEnabled })
+        if enabledFeatures.count > 0 {
+            comments += "\nEnabled Features: "
+            comments += enabledFeatures.map({ $0.rawValue }).joined(separator: ", ")
+        }
+
         comments += "\n-----------------------------------"
 
         body = Body(error: Error(
