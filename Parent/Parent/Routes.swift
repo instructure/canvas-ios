@@ -48,7 +48,7 @@ let router = Router(routes: [
             guard let session = legacySession else { return nil }
             return CalendarEventWeekPageViewController.create(session: session, studentID: studentID, courseID: courseID)
         }
-        return GradesViewController.create(courseID: courseID, userID: studentID)
+        return CourseDetailsViewController.create(courseID: courseID, studentID: studentID)
     },
 
     RouteHandler(.courseCalendar(courseID: ":courseID")) { _, params in
