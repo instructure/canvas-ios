@@ -44,7 +44,7 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
     @IBOutlet weak var emptyStateContainer: UIView!
     @IBOutlet weak var emptyStateHeader: DynamicLabel!
     @IBOutlet weak var emptyStateSubHeader: DynamicLabel!
-    
+
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMd", options: 0, locale: NSLocale.current)
@@ -70,12 +70,12 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
         super.viewWillAppear(animated)
         startTrackingTimeOnViewController()
     }
-    
+
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         stopTrackingTimeOnViewController(eventName: "/notifications", attributes: ["customPageViewPath": "/"])
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if let indexPath = tableView.indexPathForSelectedRow { tableView.deselectRow(at: indexPath, animated: true) }
