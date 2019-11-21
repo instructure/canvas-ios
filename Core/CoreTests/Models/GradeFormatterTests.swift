@@ -49,7 +49,7 @@ class GradeFormatterTests: BaseGradeFormatterTests {
             grading_type: .pass_fail
         ))
         XCTAssertEqual(GradeFormatter.string(from: assignment, userID: "2", style: .medium), "Incomplete / 10")
-        XCTAssertEqual(GradeFormatter.string(from: assignment, style: .short), "Incomplete")
+        XCTAssertEqual(GradeFormatter.string(from: assignment, userID: "2", style: .short), "Incomplete")
     }
 
     func testDecimals() {
