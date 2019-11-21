@@ -43,7 +43,7 @@ public enum ExperimentalFeature: String, CaseIterable {
     }
 
     public var userDefaultsKey: String {
-        get { "ExperimentalFeature.\(self.rawValue)" }
+        return "ExperimentalFeature.\(self.rawValue)"
     }
 
     public static var allEnabled: Bool {
