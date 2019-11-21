@@ -53,7 +53,10 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
         self?.updateNavbar()
     }
 
-    static func create(env: AppEnvironment = .shared, courseID: String, sort: GetAssignments.Sort = .position, appTraitCollection: UITraitCollection? = UIApplication.shared.keyWindow?.traitCollection) -> AssignmentListViewController {
+    static func create(env: AppEnvironment = .shared,
+                       courseID: String,
+                       sort: GetAssignments.Sort = .position,
+                       appTraitCollection: UITraitCollection? = UIApplication.shared.keyWindow?.traitCollection) -> AssignmentListViewController {
 
         let vc = loadFromStoryboard()
         vc.courseID = courseID
