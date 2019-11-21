@@ -62,7 +62,7 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
         view.backgroundColor = .named(.backgroundLightest)
         setupTableView()
         emptyStateHeader.text = NSLocalizedString("No Notifications", comment: "")
-        emptyStateSubHeader.text = NSLocalizedString("There's nothing to be notifiied of yet.", comment: "")
+        emptyStateSubHeader.text = NSLocalizedString("There's nothing to be notified of yet.", comment: "")
         refreshData()
     }
 
