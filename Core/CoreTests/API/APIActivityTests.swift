@@ -32,7 +32,7 @@ class GetActivitiesRequestTests: XCTestCase {
     }
 
     func testQuery() {
-        let expected: [APIQueryItem] = [.value("per_page", "99")]
+        let expected: [APIQueryItem] = [.value("per_page", "10")]
         XCTAssertEqual(req.query, expected)
     }
 

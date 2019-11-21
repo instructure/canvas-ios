@@ -32,7 +32,7 @@ public class DeveloperMenuViewController: UIViewController {
     }
 
     enum SettingsRow: Int, CaseIterable {
-        case enableAllExperimentalFeatures
+        case experimentalFeatures
         case crash
         case clearStorage
 //        case logs
@@ -45,8 +45,8 @@ public class DeveloperMenuViewController: UIViewController {
                 return "Clear local cache"
 //            case .logs:
 //                return "Logs"
-            case .enableAllExperimentalFeatures:
-                return "Enable all experimental features"
+            case .experimentalFeatures:
+                return "View experimental features"
             }
         }
     }
@@ -146,20 +146,9 @@ extension DeveloperMenuViewController: UITableViewDataSource, UITableViewDelegat
         guard let section = Section(rawValue: indexPath.section) else { fatalError("invalid section") }
 
         if section == .settings {
-            var cell: UITableViewCell
-
             guard let menuItem = SettingsRow(rawValue: indexPath.row) else { fatalError("invalid menu item") }
-            switch menuItem {
-            case .enableAllExperimentalFeatures:
-                let toggleCell = tableView.dequeue(for: indexPath) as SwitchTableViewCell
-                toggleCell.toggle.addTarget(self, action: #selector(actionToggleExperimentalFeatures(_:)), for: .valueChanged)
-                toggleCell.toggle.isOn = ExperimentalFeature.allEnabled
-                cell = toggleCell
-            case .clearStorage, .crash:
-                cell = tableView.dequeue(for: indexPath) as UITableViewCell
-            }
-
-            cell.textLabel?.text = SettingsRow.allCases[indexPath.row].title()
+            let cell = tableView.dequeue(for: indexPath) as UITableViewCell
+            cell.textLabel?.text = menuItem.title()
             return cell
         } else {
             let cell = tableView.dequeue(for: indexPath)
@@ -189,16 +178,12 @@ extension DeveloperMenuViewController: UITableViewDataSource, UITableViewDelegat
                 UserDefaults.standard.synchronize()
                 //        case .logs:
             //            shareLogs()
-            case .enableAllExperimentalFeatures: break
+            case .experimentalFeatures:
+                env?.router.route(to: "/dev-menu/experimental-features", from: self, options: nil)
             }
         } else {
             showRoute(routeHistory[indexPath.row])
         }
-    }
-
-    @objc
-    func actionToggleExperimentalFeatures(_ sender: UISwitch) {
-        ExperimentalFeature.allEnabled = sender.isOn
     }
 }
 

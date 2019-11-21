@@ -131,6 +131,11 @@ public struct XCUIElementQueryWrapper: Element {
         self.index = index
     }
 
+    // a nap is a small sleep
+    func nap() {
+        usleep(100000)
+    }
+
     public var exists: Bool {
         let timeout: TimeInterval = 30
 
@@ -140,7 +145,7 @@ public struct XCUIElementQueryWrapper: Element {
             do {
                 return try query.allMatchingSnapshots().count > 0
             } catch {
-                usleep(200)
+                nap()
             }
         }
         XCTFail("Failed to get snapshot within \(timeout) seconds")
@@ -157,10 +162,10 @@ public struct XCUIElementQueryWrapper: Element {
         }
         return query.element(boundBy: rawIndex)
     }
-    public var id: String { return rawElement.identifier }
-    public var isEnabled: Bool { return exists && rawElement.isEnabled }
-    public var isSelected: Bool { return rawElement.isSelected }
-    public var isVisible: Bool { return exists && rawElement.isHittable }
+    public var id: String { rawElement.identifier }
+    public var isEnabled: Bool { exists && rawElement.isEnabled }
+    public var isSelected: Bool { rawElement.isSelected }
+    public var isVisible: Bool { exists && rawElement.isHittable }
 
     public func frame(file: StaticString = #file, line: UInt = #line) -> CGRect {
         waitToExist(30, file: file, line: line)
@@ -222,20 +227,20 @@ public struct XCUIElementQueryWrapper: Element {
     @discardableResult
     public func waitToExist(_ timeout: TimeInterval, file: StaticString, line: UInt) -> Element {
         let deadline = Date().addingTimeInterval(timeout)
-        while !exists, Date() < deadline {
-            sleep(1)
+        while !exists {
+            XCTAssertTrue(Date() < deadline, "Element \(id) still doesn't exists", file: file, line: line)
+            nap()
         }
-        XCTAssertTrue(exists, "Element \(id) still doesn't exists", file: file, line: line)
         return self
     }
 
     @discardableResult
     public func waitToVanish(_ timeout: TimeInterval, file: StaticString, line: UInt) -> Element {
         let deadline = Date().addingTimeInterval(timeout)
-        while exists, Date() < deadline {
-            sleep(1)
+        while exists {
+            XCTAssertTrue(Date() < deadline, "Element \(id) still exists", file: file, line: line)
+            nap()
         }
-        XCTAssertFalse(exists, "Element \(id) still exists", file: file, line: line)
         return self
     }
 }

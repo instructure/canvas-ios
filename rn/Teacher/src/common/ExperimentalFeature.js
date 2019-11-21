@@ -17,43 +17,44 @@
 //
 
 /* eslint-disable flowtype/require-valid-file-annotation */
-
-import { getSession } from '../canvas-api/session'
 import { Settings } from 'react-native'
 
 export default class ExperimentalFeature {
-  constructor (state) {
-    this.state = state // true | false | 'beta' | string[]
+  constructor (remoteConfigKey) {
+    this.remoteConfigKey = remoteConfigKey
+    this.settingsKey = `ExperimentalFeature.${remoteConfigKey}`
+    this.enabled = Boolean(Settings.get(this.settingsKey))
   }
 
   get isEnabled () {
-    if (ExperimentalFeature.allEnabled) { return true }
-    const host = (getSession().baseURL || '').split('/')[2] || ''
-    if (this.state === false) {
-      return false
-    } else if (this.state === true) {
-      return true
-    } else if (this.state === 'beta') {
-      return host.includes('.beta.')
-    } else if (Array.isArray(this.state)) {
-      return this.state.includes(host)
-    }
-    return false
+    return this.enabled
+  }
+
+  set isEnabled (value) {
+    this.enabled = value
+    Settings.set({ [this.settingsKey]: value })
   }
 
   static get allEnabled () {
-    return Boolean(Settings.get('ExperimentalFeature.allEnabled'))
+    return Object.values(ExperimentalFeature).every(f => f.isEnabled)
   }
-  static set allEnabled (value) {
-    Settings.set({ 'ExperimentalFeature.allEnabled': value })
+
+  static set allEnabled (newValue) {
+    Object.values(ExperimentalFeature)
+      .forEach(f => { f.isEnabled = newValue })
   }
 }
 
 // *** Please stay in sync with Core/AppEnvironment/ExperimentalFlags.swift ***
 // There is no automatic syncing of individual flags, since they can't be async
 // and should be static.
-ExperimentalFeature.conferences = new ExperimentalFeature(false)
-ExperimentalFeature.favoriteGroups = new ExperimentalFeature(false)
-ExperimentalFeature.simpleDiscussionRenderer = new ExperimentalFeature(false)
-ExperimentalFeature.graphqlSpeedGrader = new ExperimentalFeature(false)
-ExperimentalFeature.newPageDetails = new ExperimentalFeature(false)
+ExperimentalFeature.parent3 = new ExperimentalFeature('parent3')
+ExperimentalFeature.conferences = new ExperimentalFeature('conferences')
+ExperimentalFeature.favoriteGroups = new ExperimentalFeature('favorite_groups')
+ExperimentalFeature.simpleDiscussionRenderer = new ExperimentalFeature('simple_discussion_renderer')
+ExperimentalFeature.graphqlSpeedGrader = new ExperimentalFeature('graphql_speed_grader')
+ExperimentalFeature.refreshTokens = new ExperimentalFeature('refresh_tokens')
+ExperimentalFeature.newPageDetails = new ExperimentalFeature('new_page_details')
+ExperimentalFeature.fileDetails = new ExperimentalFeature('file_details')
+ExperimentalFeature.assignmentListGraphQL = new ExperimentalFeature('assignment_list_graphql')
+ExperimentalFeature.testing = new ExperimentalFeature('testing')

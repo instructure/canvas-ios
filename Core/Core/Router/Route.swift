@@ -142,6 +142,7 @@ public struct Route: Equatable {
     }
 
     public static let developerMenu = Route("/dev-menu")
+    public static let experimentalFeatures = Route("/dev-menu/experimental-features")
 
     public static func termsOfService(forAccount accountID: String = "self") -> Route {
         return Route("/accounts/\(accountID)/terms_of_service")

@@ -43,7 +43,7 @@ class SubmissionCommentsTests: StudentUITestCase {
             attachments: attachments,
             user: APISubmissionUser.make(id: "1", short_name: "Student")
         ))
-        attachments.forEach { mockDownload($0.url, data: nil) }
+        attachments.forEach { mockURL($0.url, data: nil) }
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
         SubmissionDetails.drawerGripper.tap()
@@ -157,7 +157,7 @@ class SubmissionCommentsTests: StudentUITestCase {
                 ),
             ]
         ))
-        mockDataRequest(URLRequest(url: testm4a), data: try! Data(contentsOf: testm4a))
+        mockURL(testm4a, data: try! Data(contentsOf: testm4a))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
         SubmissionDetails.drawerGripper.tap()
@@ -201,7 +201,7 @@ class SubmissionCommentsTests: StudentUITestCase {
         allowAccessToMicrophone {
             app.find(label: "Record Audio").tap()
         }
-        AudioRecorder.recordButton.tap() // Doesn't start recording on bitrise. :( It works locally.
+        AudioRecorder.recordButton.tap()
         AudioRecorder.stopButton.tap()
         XCTAssertTrue(AudioRecorder.currentTimeLabel.isVisible)
         AudioRecorder.clearButton.tap()
@@ -214,6 +214,6 @@ class SubmissionCommentsTests: StudentUITestCase {
         AudioRecorder.stopButton.tap()
         XCTAssertTrue(AudioRecorder.currentTimeLabel.isVisible)
         AudioRecorder.sendButton.tap()
-        XCTAssertTrue(SubmissionComments.audioCell(commentID: "42").isVisible)
+        XCTAssertTrue(SubmissionComments.audioCell(commentID: "42").waitToExist().isVisible)
     }
 }

@@ -23,12 +23,18 @@ open class CalendarEventAPI {
         case assignment = "assignment"
     }
 
+    private static let dateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateFormat = "YYYY-MM-dd"
+        return df
+    }()
+
     open class func getCalendarEvents(_ session: Session, type: RequestType, startDate: Date, endDate: Date, contextCodes: [String]?, userID: String?) throws -> URLRequest {
         let path = userID.flatMap { "/api/v1/users/\($0)/calendar_events" } ?? "/api/v1/calendar_events"
         let nillableParams: [String: Any?] = [
             "type": type.rawValue,
-            "start_date": ISO8601DateFormatter.string(from: startDate, timeZone: TimeZone(abbreviation: "UTC")!, formatOptions: .withInternetDateTime),
-            "end_date": ISO8601DateFormatter.string(from: endDate, timeZone: TimeZone(abbreviation: "UTC")!, formatOptions: .withInternetDateTime),
+            "start_date": dateFormatter.string(from: startDate),
+            "end_date": dateFormatter.string(from: endDate),
             "context_codes": contextCodes,
             "include": ["submission"]
         ]
@@ -39,7 +45,7 @@ open class CalendarEventAPI {
     }
 
     open class func getCalendarEvent(_ session: Session, calendarEventID: String) throws -> URLRequest {
-        return try session.GET("/api/v1/calendar_events/\(calendarEventID)")
+        return try session.GET("/api/v1/calendar_events/\(calendarEventID)", paginated: false)
     }
     
 }

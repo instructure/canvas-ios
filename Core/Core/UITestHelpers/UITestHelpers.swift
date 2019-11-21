@@ -27,8 +27,6 @@ public class UITestHelpers {
         case reset
         case login(LoginSession)
         case show(String)
-        case mockData(MockDataMessage)
-        case mockDownload(MockDownloadMessage)
         case mockNow(Date)
         case tearDown
         case currentSession
@@ -37,7 +35,7 @@ public class UITestHelpers {
         case debug(Any?)
 
         private enum CodingKeys: String, CodingKey {
-            case reset, login, show, mockData, mockDownload, tearDown, currentSession, setAnimationsEnabled, useMocksOnly, debug, mockNow
+            case reset, login, show, tearDown, currentSession, setAnimationsEnabled, useMocksOnly, debug, mockNow
         }
 
         public init(from decoder: Decoder) throws {
@@ -48,10 +46,6 @@ public class UITestHelpers {
                 self = .login(session)
             } else if let route = try container.decodeIfPresent(String.self, forKey: .show) {
                 self = .show(route)
-            } else if let message = try container.decodeIfPresent(MockDataMessage.self, forKey: .mockData) {
-                self = .mockData(message)
-            } else if let message = try container.decodeIfPresent(MockDownloadMessage.self, forKey: .mockDownload) {
-                self = .mockDownload(message)
             } else if container.contains(.tearDown) {
                 self = .tearDown
             } else if container.contains(.currentSession) {
@@ -77,10 +71,6 @@ public class UITestHelpers {
                 try container.encode(session, forKey: .login)
             case .show(let route):
                 try container.encode(route, forKey: .show)
-            case .mockData(let message):
-                try container.encode(message, forKey: .mockData)
-            case .mockDownload(let message):
-                try container.encode(message, forKey: .mockDownload)
             case .tearDown:
                 try container.encode(nil as Int?, forKey: .tearDown)
             case .currentSession:
@@ -132,7 +122,7 @@ public class UITestHelpers {
 
     @discardableResult
     func send(_ message: IPCDriverServerMessage) -> Data? {
-        return (try? ipcDriverClient?.requestRemote(message))!
+        return try? ipcDriverClient?.requestRemote(message)
     }
 
     func run(_ helper: Helper) -> Data? {
@@ -144,10 +134,6 @@ public class UITestHelpers {
             logIn(entry)
         case .show(let route):
             show(route)
-        case .mockData(let message):
-            MockDistantURLSession.mockData(message)
-        case .mockDownload(let message):
-            MockDistantURLSession.mockDownload(message)
         case .tearDown:
             tearDown()
         case .currentSession:

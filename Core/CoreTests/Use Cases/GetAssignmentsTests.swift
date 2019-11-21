@@ -205,18 +205,19 @@ class GetAssignmentsTests: CoreTestCase {
 
     func testGetSubmittableAssignments() {
         let apiAssignments = [
-            APIAssignment.make(id: "1"),
-            APIAssignment.make(id: "2", lock_at: Date.distantFuture),
-            APIAssignment.make(id: "3", unlock_at: Date.distantPast),
+            APIAssignment.make(id: "1", submission_types: [.online_url, .online_upload, .online_text_entry]),
+            APIAssignment.make(id: "2", submission_types: [.online_upload], lock_at: Date.distantFuture),
+            APIAssignment.make(id: "3", submission_types: [.online_upload], unlock_at: Date.distantPast),
 
-            APIAssignment.make(id: "4", lock_at: Date.distantPast),
-            APIAssignment.make(id: "5", unlock_at: Date.distantFuture),
-            APIAssignment.make(id: "6", locked_for_user: true),
+            APIAssignment.make(id: "4", submission_types: [.online_upload], lock_at: Date.distantPast),
+            APIAssignment.make(id: "5", submission_types: [.online_upload], unlock_at: Date.distantFuture),
+            APIAssignment.make(id: "6", submission_types: [.online_upload], locked_for_user: true),
+            APIAssignment.make(id: "7", submission_types: [.none]),
         ]
         let getAssignments = GetSubmittableAssignments(courseID: "1")
         getAssignments.write(response: apiAssignments, urlResponse: nil, to: databaseClient)
 
-        let assignments: [Assignment] = databaseClient.fetch(getAssignments.scope.predicate, sortDescriptors: getAssignments.scope.order)
+        let assignments: [Assignment] = databaseClient.fetch(scope: getAssignments.scope)
         XCTAssertEqual(assignments.count, 3)
     }
 

@@ -50,6 +50,20 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         CacheManager.resetAppIfNecessary()
         if hasFirebase {
             FirebaseApp.configure()
+            let remoteConfig = RemoteConfig.remoteConfig()
+            remoteConfig.activate { error in
+                guard error == nil else {
+                    return
+                }
+                let keys = remoteConfig.allKeys(from: RemoteConfigSource.remote)
+                for key in keys {
+                    guard let feature = ExperimentalFeature(rawValue: key) else { continue }
+                    let value = remoteConfig.configValue(forKey: key).boolValue
+                    feature.isEnabled = value
+                    Crashlytics.sharedInstance().setBoolValue(value, forKey: feature.userDefaultsKey)
+                }
+            }
+            remoteConfig.fetch(completionHandler: nil)
         }
         setupDefaultErrorHandling()
         Analytics.shared.handler = self

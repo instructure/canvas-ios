@@ -24,9 +24,10 @@ public final class Activity: NSManagedObject, WriteableModel {
 
     @NSManaged public var id: String
     @NSManaged public var createdAt: Date?
-    @NSManaged public var message: String
-    @NSManaged public var title: String
-    @NSManaged public var type: String
+    @NSManaged public var updatedAt: Date?
+    @NSManaged public var message: String?
+    @NSManaged public var title: String?
+    @NSManaged public var typeRaw: String
     @NSManaged public var htmlURL: URL?
     @NSManaged public var canvasContextIDRaw: String?
 
@@ -35,18 +36,24 @@ public final class Activity: NSManagedObject, WriteableModel {
         set { canvasContextIDRaw = newValue?.canvasContextID }
     }
 
+    public var type: ActivityType {
+        get { return ActivityType(rawValue: typeRaw) ?? ActivityType.submission }
+        set { typeRaw = newValue.rawValue }
+    }
+
     @discardableResult
     public static func save(_ item: APIActivity, in client: NSManagedObjectContext) -> Activity {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(Activity.id), "1")
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(Activity.id), item.id.value)
         let model: Activity = client.fetch(predicate).first ?? client.insert()
         model.id = item.id.value
         model.createdAt = item.created_at
         model.message = item.message
         model.title = item.title
         model.htmlURL = item.html_url
-        model.type = item.type.rawValue
+        model.typeRaw = item.type.rawValue
+        model.updatedAt = item.updated_at
 
-        if let contextType = ContextType(rawValue: item.context_type.lowercased()) {
+        if let rawValue = item.context_type, let contextType = ContextType(rawValue: rawValue.lowercased()) {
             var context: ContextModel?
             switch contextType {
             case .course:
@@ -63,5 +70,20 @@ public final class Activity: NSManagedObject, WriteableModel {
             model.canvasContextIDRaw = context?.canvasContextID
         }
         return model
+    }
+}
+
+extension Activity {
+    public var icon: UIImage? {
+        switch type {
+        case .discussion:       return .icon(.discussion)
+        case .announcement:     return .icon(.announcement)
+        case .conversation:     return .icon(.email)
+        case .message:          return .icon(.assignment)
+        case .submission:       return .icon(.assignment)
+        case .conference:       return .icon(.conferences)
+        case .collaboration:    return .icon(.collaborations)
+        case .assessmentRequest:return .icon(.quiz)
+        }
     }
 }

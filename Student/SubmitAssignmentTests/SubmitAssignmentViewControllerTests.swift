@@ -45,7 +45,7 @@ class SubmitAssignmentViewControllerTests: SubmitAssignmentTests {
     func testSelectsFirstCourseAndAssignmentByDefault() throws {
         let presenter = try XCTUnwrap(viewController.presenter)
         api.mock(presenter.courses, value: [.make(name: "Course 1")])
-        api.mock(GetSubmittableAssignments(courseID: "1"), value: [.make(name: "Assignment 1")])
+        api.mock(GetSubmittableAssignments(courseID: "1"), value: [.make(name: "Assignment 1", submission_types: [.online_upload])])
         viewController.presentationAnimationDidFinish()
         drainMainQueue()
         XCTAssertEqual(configurationItems?.count, 2)

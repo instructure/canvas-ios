@@ -125,7 +125,6 @@
 		49A04E4E1CF6420C0051E1E7 /* CanvasKit1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AA29171CF4D1880055862D /* CanvasKit1.framework */; };
 		49A04E541CF64C510051E1E7 /* NotificationsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E531CF64C510051E1E7 /* NotificationsTab.swift */; };
 		49A04E571CF64C7F0051E1E7 /* CanvasTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E561CF64C7F0051E1E7 /* CanvasTabBar.swift */; };
-		49A04E6E1CF64D130051E1E7 /* TabsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E661CF64D130051E1E7 /* TabsTableViewController.swift */; };
 		49A04E741CF64ED90051E1E7 /* CalendarTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E731CF64ED90051E1E7 /* CalendarTabViewController.swift */; };
 		49A04E781CF6504D0051E1E7 /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E761CF6504D0051E1E7 /* ToDoListViewController.swift */; };
 		49A04E7D1CF653050051E1E7 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A04E7C1CF653050051E1E7 /* libc++.tbd */; };
@@ -374,7 +373,6 @@
 		7DCF0F9722F8A860000AACCE /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EBB22F8A001000AACCE /* UIImageExtensions.swift */; };
 		7DCF0F9822F8A860000AACCE /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EBC22F8A001000AACCE /* UIViewControllerExtensions.swift */; };
 		7DCF0F9922F8A868000AACCE /* GroupNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EBE22F8A00D000AACCE /* GroupNavigationViewController.swift */; };
-		7DCF0F9A22F8A868000AACCE /* GroupNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EBF22F8A00D000AACCE /* GroupNavigationPresenter.swift */; };
 		7DCF0F9B22F8A897000AACCE /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EC222F8A01C000AACCE /* AvatarView.swift */; };
 		7DCF0F9C22F8A897000AACCE /* CoreWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EC322F8A01C000AACCE /* CoreWebView.swift */; };
 		7DCF0F9D22F8A897000AACCE /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EC422F8A01C000AACCE /* DividerView.swift */; };
@@ -432,7 +430,7 @@
 		7DE1161222F8AB5C005BFE98 /* AssignmentDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F0D22F8A096000AACCE /* AssignmentDetailsPresenterTests.swift */; };
 		7DE1161422F8AB5C005BFE98 /* StudentSyllabusPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1122F8A096000AACCE /* StudentSyllabusPresenterTests.swift */; };
 		7DE1161522F8AB5C005BFE98 /* CourseNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1322F8A096000AACCE /* CourseNavigationPresenterTests.swift */; };
-		7DE1161622F8AB5C005BFE98 /* GroupNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1622F8A096000AACCE /* GroupNavigationPresenterTests.swift */; };
+		7DE1161622F8AB5C005BFE98 /* GroupNavigationViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1622F8A096000AACCE /* GroupNavigationViewControllerTests.swift */; };
 		7DE1161822F8AB5C005BFE98 /* QuizListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1C22F8A096000AACCE /* QuizListPresenterTests.swift */; };
 		7DE1161922F8AB5C005BFE98 /* UIImageStudentExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2022F8A096000AACCE /* UIImageStudentExtensionTests.swift */; };
 		7DE1161A22F8AB5C005BFE98 /* UIViewControllerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2122F8A096000AACCE /* UIViewControllerExtensionsTests.swift */; };
@@ -445,6 +443,9 @@
 		7DE1162322F8AB5C005BFE98 /* UrlSubmissionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F3222F8A096000AACCE /* UrlSubmissionPresenterTests.swift */; };
 		7DE1162422F8AB5C005BFE98 /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F3722F8A096000AACCE /* RoutesTests.swift */; };
 		7DE1162522F8AB5C005BFE98 /* StudentTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F3822F8A096000AACCE /* StudentTestCase.swift */; };
+		9734351523866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9734351423866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift */; };
+		9767F2A32383C741006633CA /* ActivityStreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9767F2A12383C741006633CA /* ActivityStreamViewController.swift */; };
+		9767F2A42383C741006633CA /* ActivityStreamViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9767F2A22383C741006633CA /* ActivityStreamViewController.storyboard */; };
 		9C50D612DA6414266300170B /* Pods_defaults_CanvasKit1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AB6A9FA96CE49682022ACB /* Pods_defaults_CanvasKit1.framework */; };
 		9F00A5692245593200C0CC32 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; };
 		9F00A56B2245599800C0CC32 /* GradesWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F00A56A2245599800C0CC32 /* GradesWidgetViewController.swift */; };
@@ -756,7 +757,6 @@
 		49A04E261CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKCanvasAPI+CurrentAPI.m"; sourceTree = "<group>"; };
 		49A04E531CF64C510051E1E7 /* NotificationsTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTab.swift; sourceTree = "<group>"; };
 		49A04E561CF64C7F0051E1E7 /* CanvasTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasTabBar.swift; sourceTree = "<group>"; };
-		49A04E661CF64D130051E1E7 /* TabsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TabsTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		49A04E731CF64ED90051E1E7 /* CalendarTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTabViewController.swift; sourceTree = "<group>"; };
 		49A04E761CF6504D0051E1E7 /* ToDoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToDoListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		49A04E7C1CF653050051E1E7 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -1131,7 +1131,6 @@
 		7DCF0EBB22F8A001000AACCE /* UIImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		7DCF0EBC22F8A001000AACCE /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		7DCF0EBE22F8A00D000AACCE /* GroupNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationViewController.swift; sourceTree = "<group>"; };
-		7DCF0EBF22F8A00D000AACCE /* GroupNavigationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationPresenter.swift; sourceTree = "<group>"; };
 		7DCF0EC222F8A01C000AACCE /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		7DCF0EC322F8A01C000AACCE /* CoreWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWebView.swift; sourceTree = "<group>"; };
 		7DCF0EC422F8A01C000AACCE /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
@@ -1189,7 +1188,7 @@
 		7DCF0F0D22F8A096000AACCE /* AssignmentDetailsPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F1122F8A096000AACCE /* StudentSyllabusPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSyllabusPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F1322F8A096000AACCE /* CourseNavigationPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationPresenterTests.swift; sourceTree = "<group>"; };
-		7DCF0F1622F8A096000AACCE /* GroupNavigationPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationPresenterTests.swift; sourceTree = "<group>"; };
+		7DCF0F1622F8A096000AACCE /* GroupNavigationViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationViewControllerTests.swift; sourceTree = "<group>"; };
 		7DCF0F1C22F8A096000AACCE /* QuizListPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F2022F8A096000AACCE /* UIImageStudentExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageStudentExtensionTests.swift; sourceTree = "<group>"; };
 		7DCF0F2122F8A096000AACCE /* UIViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
@@ -1264,6 +1263,9 @@
 		84BE025DDD28359B14D38BA4 /* Pods-TechDebt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechDebt.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TechDebt/Pods-TechDebt.debug.xcconfig"; sourceTree = "<group>"; };
 		873A063BCDC8884CD0C89EAD /* Pods-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-CanvasTests/Pods-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 		962C895A87C658B3F80897FF /* Pods-TechDebt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechDebt.release.xcconfig"; path = "../Pods/Target Support Files/Pods-TechDebt/Pods-TechDebt.release.xcconfig"; sourceTree = "<group>"; };
+		9734351423866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStreamViewControllerTests.swift; sourceTree = "<group>"; };
+		9767F2A12383C741006633CA /* ActivityStreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityStreamViewController.swift; sourceTree = "<group>"; };
+		9767F2A22383C741006633CA /* ActivityStreamViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ActivityStreamViewController.storyboard; sourceTree = "<group>"; };
 		98F5AEA722584DFE82613E6B /* Pods-defaults-Student.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Student.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Student/Pods-defaults-Student.debug.xcconfig"; sourceTree = "<group>"; };
 		99747510483FA8853301B9F5 /* Pods-defaults-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasTests/Pods-defaults-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 		9F00A56A2245599800C0CC32 /* GradesWidgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesWidgetViewController.swift; sourceTree = "<group>"; };
@@ -1641,6 +1643,7 @@
 		492704751CF4AF7100C631C6 /* Student */ = {
 			isa = PBXGroup;
 			children = (
+				9767F2A02383C741006633CA /* Notifications */,
 				49642BCA1CF4C66200238B3F /* Student.entitlements */,
 				2CE205B720EBF68F002A6A64 /* GoogleService-Info.plist */,
 				492704821CF4AF7100C631C6 /* Info.plist */,
@@ -1921,22 +1924,6 @@
 				6181F1301DFF47AF00B94488 /* ActivityStreamTableViewController.swift */,
 			);
 			path = Notifications;
-			sourceTree = "<group>";
-		};
-		49A04E5B1CF64D130051E1E7 /* Enrollments */ = {
-			isa = PBXGroup;
-			children = (
-				49A04E651CF64D130051E1E7 /* Tabs */,
-			);
-			path = Enrollments;
-			sourceTree = "<group>";
-		};
-		49A04E651CF64D130051E1E7 /* Tabs */ = {
-			isa = PBXGroup;
-			children = (
-				49A04E661CF64D130051E1E7 /* TabsTableViewController.swift */,
-			);
-			path = Tabs;
 			sourceTree = "<group>";
 		};
 		49A04E721CF64ED90051E1E7 /* Calendar */ = {
@@ -2306,7 +2293,6 @@
 			isa = PBXGroup;
 			children = (
 				49A04E721CF64ED90051E1E7 /* Calendar */,
-				49A04E5B1CF64D130051E1E7 /* Enrollments */,
 				49383CE01F84834A009C8F8E /* Login */,
 				B1E3D6DF1D8305B100B4AC11 /* Modules */,
 				49A04E521CF64C320051E1E7 /* Notifications */,
@@ -2449,7 +2435,6 @@
 			isa = PBXGroup;
 			children = (
 				7DCF0EBE22F8A00D000AACCE /* GroupNavigationViewController.swift */,
-				7DCF0EBF22F8A00D000AACCE /* GroupNavigationPresenter.swift */,
 			);
 			path = GroupNavigation;
 			sourceTree = "<group>";
@@ -2671,7 +2656,7 @@
 		7DCF0F1722F8A096000AACCE /* GroupNavigation */ = {
 			isa = PBXGroup;
 			children = (
-				7DCF0F1622F8A096000AACCE /* GroupNavigationPresenterTests.swift */,
+				7DCF0F1622F8A096000AACCE /* GroupNavigationViewControllerTests.swift */,
 			);
 			path = GroupNavigation;
 			sourceTree = "<group>";
@@ -2789,6 +2774,7 @@
 		7DCF0F3922F8A096000AACCE /* StudentUnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				9734351323866A59002E9CE5 /* Notifications */,
 				7DCF0F0F22F8A096000AACCE /* Assignments */,
 				7DCF0F1522F8A096000AACCE /* Courses */,
 				7DCF0F1822F8A096000AACCE /* Groups */,
@@ -2949,6 +2935,23 @@
 				E879CF29230386CD00988DAB /* TestsFromCore.swift */,
 			);
 			path = StudentUITests;
+			sourceTree = "<group>";
+		};
+		9734351323866A59002E9CE5 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				9734351423866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		9767F2A02383C741006633CA /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				9767F2A12383C741006633CA /* ActivityStreamViewController.swift */,
+				9767F2A22383C741006633CA /* ActivityStreamViewController.storyboard */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		9F62EDD92326E03600EA9F79 /* People */ = {
@@ -3576,6 +3579,7 @@
 				7DCF0F8722F8A831000AACCE /* AssignmentDetailsSectionContainerView.xib in Resources */,
 				7DCF0F8422F8A831000AACCE /* AssignmentDetailsViewController.storyboard in Resources */,
 				3B8404502360F36B00D39060 /* AssignmentListViewController.storyboard in Resources */,
+				9767F2A42383C741006633CA /* ActivityStreamViewController.storyboard in Resources */,
 				7DCF0FBD22F8A8D7000AACCE /* Drawer.xib in Resources */,
 				5EB46E001D21A75C00C859A4 /* CalendarDayListViewController.storyboard in Resources */,
 				5EB46DFC1D21A75C00C859A4 /* IconTodayView.xib in Resources */,
@@ -3870,7 +3874,6 @@
 				7DCF0F9D22F8A897000AACCE /* DividerView.swift in Sources */,
 				492706A11CF4B93F00C631C6 /* RootViewController.swift in Sources */,
 				7DCF0FC022F8A8D7000AACCE /* SubmissionDetailsLockedEmptyView.swift in Sources */,
-				49A04E6E1CF64D130051E1E7 /* TabsTableViewController.swift in Sources */,
 				4976C2001FBB84B900160EE4 /* CalendarEventDetailViewController.swift in Sources */,
 				5EB46DED1D21A75C00C859A4 /* UIView+Nib.swift in Sources */,
 				9F900E7E2321870F00BB44B4 /* PeopleListPresenter.swift in Sources */,
@@ -3921,7 +3924,6 @@
 				7DCF0F9622F8A860000AACCE /* BundleExtensions.swift in Sources */,
 				5EB46DFB1D21A75C00C859A4 /* IconTodayView.swift in Sources */,
 				6181F1311DFF47AF00B94488 /* ActivityStreamTableViewController.swift in Sources */,
-				7DCF0F9A22F8A868000AACCE /* GroupNavigationPresenter.swift in Sources */,
 				7DCF0FB322F8A8D7000AACCE /* SubmissionCommentAudioCell.swift in Sources */,
 				49F9FA6F1CF8FC8500654758 /* AppDelegate+Push.swift in Sources */,
 				7DCF0FC222F8A8D7000AACCE /* SubmissionDetailsPresenter.swift in Sources */,
@@ -3932,6 +3934,7 @@
 				7DCF0FAA22F8A8D7000AACCE /* SubmissionButtonAlertView.swift in Sources */,
 				7DCF0F9722F8A860000AACCE /* UIImageExtensions.swift in Sources */,
 				61CF10A71DBFB6C200B68E45 /* MasteryPathAssignmentPreviewViewController.swift in Sources */,
+				9767F2A32383C741006633CA /* ActivityStreamViewController.swift in Sources */,
 				5E95954A1D36CA2D00C86F93 /* CalendarEvent+Display.swift in Sources */,
 				5EB46E041D21A75C00C859A4 /* CalendarMonthViewController.swift in Sources */,
 				7DCF0FB722F8A8D7000AACCE /* SubmissionCommentsPresenter.swift in Sources */,
@@ -4135,6 +4138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DE1162522F8AB5C005BFE98 /* StudentTestCase.swift in Sources */,
+				9734351523866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift in Sources */,
 				9F62EDDB2326E0FD00EA9F79 /* PeopleListPresenterTests.swift in Sources */,
 				7DE1161A22F8AB5C005BFE98 /* UIViewControllerExtensionsTests.swift in Sources */,
 				7DE1161E22F8AB5C005BFE98 /* SubmissionButtonPresenterTests.swift in Sources */,
@@ -4145,7 +4149,7 @@
 				7DE1161D22F8AB5C005BFE98 /* ArcSubmissionPresenterTests.swift in Sources */,
 				3B5542482369F9F4007D3CE0 /* AssignmentListViewControllerTests.swift in Sources */,
 				7DE1162422F8AB5C005BFE98 /* RoutesTests.swift in Sources */,
-				7DE1161622F8AB5C005BFE98 /* GroupNavigationPresenterTests.swift in Sources */,
+				7DE1161622F8AB5C005BFE98 /* GroupNavigationViewControllerTests.swift in Sources */,
 				7DE1162322F8AB5C005BFE98 /* UrlSubmissionPresenterTests.swift in Sources */,
 				7DE1161922F8AB5C005BFE98 /* UIImageStudentExtensionTests.swift in Sources */,
 				7DE1161522F8AB5C005BFE98 /* CourseNavigationPresenterTests.swift in Sources */,

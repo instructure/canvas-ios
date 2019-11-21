@@ -19,14 +19,15 @@
 import Core
 import TestsFoundation
 import XCTest
+@testable import SubmitAssignment
 
 class AssignmentsPresenterTests: SubmitAssignmentTests, AssignmentsView {
     func testViewIsReady() {
         let presenter = AssignmentsPresenter(environment: env, courseID: "1", selectedAssignmentID: nil, callback: { _ in })
         presenter.view = self
         let expectation = XCTestExpectation(description: "update was called")
-        Assignment.make(from: .make(course_id: "1", name: "A", position: 2))
-        Assignment.make(from: .make(course_id: "1", name: "B", position: 1))
+        Assignment.make(from: .make(course_id: "1", name: "A", submission_types: [.online_upload], position: 2))
+        Assignment.make(from: .make(course_id: "1", name: "B", submission_types: [.online_upload], position: 1))
         Course.make(from: .make(id: ID(stringLiteral: "1")))
         onUpdate = {
             if presenter.assignments.count == 2, presenter.assignments[0]?.name == "A", presenter.assignments[1]?.name == "B" {
@@ -45,7 +46,7 @@ class AssignmentsPresenterTests: SubmitAssignmentTests, AssignmentsView {
             expectation.fulfill()
         }
         api.mock(presenter.assignments, value: [
-            .make(course_id: "1", name: "Selected Assignment"),
+            .make(course_id: "1", name: "Selected Assignment", submission_types: [.online_upload]),
         ])
         presenter.view = self
         presenter.viewIsReady()
