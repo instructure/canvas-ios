@@ -117,7 +117,7 @@ public class GradesViewController: UIViewController {
 
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
+        updateHeaderViewHeight()
     }
 
     func updateHeaderViewHeight() {
