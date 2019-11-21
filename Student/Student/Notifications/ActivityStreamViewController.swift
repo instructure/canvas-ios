@@ -39,6 +39,12 @@ class ActivityStreamViewController: UITableViewController {
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.cacheCourses()
     }
+    
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMd", options: 0, locale: NSLocale.current)
+        return dateFormatter
+    }()
 
     var courseCache: [String: Info] = [:]
 
@@ -125,12 +131,14 @@ class ActivityCell: UITableViewCell {
 
         if activity.context?.contextType == .course || activity.type == .discussion, let id = activity.context?.id {
             courseCode.text = courseCache[id]?.courseCode
+            courseCode.isHidden = false
         } else {
             courseCode.text = nil
+            courseCode.isHidden = true
         }
 
         if let date = activity.updatedAt {
-            subTitleLabel.text = DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .none)
+            subTitleLabel.text = ActivityStreamViewController.dateFormatter.string(from: date) 
         }
 
         icon.image = activity.icon

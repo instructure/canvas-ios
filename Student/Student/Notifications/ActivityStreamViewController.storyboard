@@ -23,58 +23,56 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4E-YT-iVI" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                            <rect key="frame" x="52" y="37" width="326" height="19.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAO-0p-mHa" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                            <rect key="frame" x="52" y="60.5" width="326" height="17"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dvx-D9-Zdi">
-                                            <rect key="frame" x="16" y="14.5" width="20" height="20"/>
+                                            <rect key="frame" x="18" y="16" width="20" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="20" id="SxD-Vh-yeM"/>
                                                 <constraint firstAttribute="height" constant="20" id="bis-Df-D5r"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6K-4f-8T0" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                            <rect key="frame" x="52" y="16" width="326" height="17"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="DRp-nT-Xeo">
+                                            <rect key="frame" x="56" y="16" width="342" height="61.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6K-4f-8T0" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="342" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4E-YT-iVI" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="21" width="342" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAO-0p-mHa" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="44.5" width="342" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="V4E-YT-iVI" secondAttribute="trailing" constant="16" id="7iO-hq-dlu"/>
-                                        <constraint firstItem="dvx-D9-Zdi" firstAttribute="top" secondItem="gT3-JZ-L8G" secondAttribute="top" priority="200" constant="20" id="BHU-LG-ElU"/>
-                                        <constraint firstItem="k6K-4f-8T0" firstAttribute="top" secondItem="gT3-JZ-L8G" secondAttribute="top" constant="16" id="D7F-9l-QyM"/>
-                                        <constraint firstItem="dvx-D9-Zdi" firstAttribute="leading" secondItem="gT3-JZ-L8G" secondAttribute="leading" constant="16" id="Iyv-4m-Gqd"/>
-                                        <constraint firstItem="qAO-0p-mHa" firstAttribute="top" secondItem="V4E-YT-iVI" secondAttribute="bottom" constant="4" id="J6F-Is-4pe"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="qAO-0p-mHa" secondAttribute="trailing" constant="16" id="Mke-OU-ZS6"/>
-                                        <constraint firstItem="V4E-YT-iVI" firstAttribute="top" secondItem="k6K-4f-8T0" secondAttribute="bottom" constant="4" id="U8m-E9-T6w"/>
-                                        <constraint firstItem="k6K-4f-8T0" firstAttribute="centerY" secondItem="dvx-D9-Zdi" secondAttribute="centerY" id="ZH2-S9-BM7"/>
-                                        <constraint firstItem="qAO-0p-mHa" firstAttribute="leading" secondItem="k6K-4f-8T0" secondAttribute="leading" id="lFA-Vh-BU0"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="k6K-4f-8T0" secondAttribute="trailing" constant="16" id="lOp-bJ-vho"/>
-                                        <constraint firstItem="k6K-4f-8T0" firstAttribute="leading" secondItem="dvx-D9-Zdi" secondAttribute="trailing" constant="16" id="nW4-Yg-QVc"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="qAO-0p-mHa" secondAttribute="bottom" priority="250" constant="4" id="tAD-hw-bxz"/>
-                                        <constraint firstItem="V4E-YT-iVI" firstAttribute="leading" secondItem="k6K-4f-8T0" secondAttribute="leading" id="xzB-ZT-6ry"/>
+                                        <constraint firstAttribute="trailing" secondItem="DRp-nT-Xeo" secondAttribute="trailing" constant="16" id="Fqy-Tk-LDA"/>
+                                        <constraint firstItem="dvx-D9-Zdi" firstAttribute="leading" secondItem="gT3-JZ-L8G" secondAttribute="leading" constant="18" id="Iyv-4m-Gqd"/>
+                                        <constraint firstItem="DRp-nT-Xeo" firstAttribute="top" secondItem="dvx-D9-Zdi" secondAttribute="top" id="YYo-hQ-QRo"/>
+                                        <constraint firstAttribute="bottom" secondItem="DRp-nT-Xeo" secondAttribute="bottom" constant="6.5" id="qK9-CN-p3c"/>
+                                        <constraint firstItem="DRp-nT-Xeo" firstAttribute="leading" secondItem="dvx-D9-Zdi" secondAttribute="trailing" constant="18" id="vZ4-dD-zjG"/>
+                                        <constraint firstItem="DRp-nT-Xeo" firstAttribute="top" secondItem="gT3-JZ-L8G" secondAttribute="top" constant="16" id="wqc-0N-Y40"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
