@@ -154,6 +154,14 @@ extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
         view.titleLabel?.text = grades.assignments.sections?[section].name
         return view
     }
+
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
+    public func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return 22
+    }
 }
 
 public class GradesCell: UITableViewCell {
