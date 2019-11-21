@@ -43,6 +43,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
     var fetchedRequests: [String: String] = [:]
     var groupIDsWithAssignments = [String: String]()
     var loading: Bool  = false
+    var appTraitCollection: UITraitCollection?
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavbar()
@@ -52,11 +53,12 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
         self?.updateNavbar()
     }
 
-    static func create(env: AppEnvironment = .shared, courseID: String, sort: GetAssignments.Sort = .position) -> AssignmentListViewController {
+    static func create(env: AppEnvironment = .shared, courseID: String, sort: GetAssignments.Sort = .position, appTraitCollection: UITraitCollection? = UIApplication.shared.keyWindow?.traitCollection) -> AssignmentListViewController {
 
         let vc = loadFromStoryboard()
         vc.courseID = courseID
         vc.env = env
+        vc.appTraitCollection = appTraitCollection
         return vc
     }
 
@@ -173,7 +175,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
 
     func selectFirstCellOnIpad() {
         let ip = IndexPath(row: 0, section: 0)
-        if assignment(for: ip) != nil, UIDevice.current.userInterfaceIdiom == .pad, !isInSplitViewDetail {
+        if assignment(for: ip) != nil, appTraitCollection?.horizontalSizeClass == .regular && !isInSplitViewDetail {
             tableView.selectRow(at: ip, animated: true, scrollPosition: .none)
             tableView(tableView, didSelectRowAt: ip)
         }

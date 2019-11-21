@@ -120,8 +120,8 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pandaNoAlerts" translatesAutoresizingMaskIntoConstraints="NO" id="omR-IT-KtW">
                                         <rect key="frame" x="115" y="274" width="184" height="170"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="184" id="Aum-ZL-4oY"/>
-                                            <constraint firstAttribute="height" constant="170" id="cNr-tb-EKq"/>
+                                            <constraint firstAttribute="width" constant="196" id="Aum-ZL-4oY"/>
+                                            <constraint firstAttribute="height" constant="224" id="cNr-tb-EKq"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -129,7 +129,7 @@
                                 <constraints>
                                     <constraint firstItem="8E6-bh-FSp" firstAttribute="top" secondItem="DlE-al-GEJ" secondAttribute="bottom" constant="8" id="GAd-Ov-iCD"/>
                                     <constraint firstItem="8E6-bh-FSp" firstAttribute="leading" secondItem="gd5-vQ-RGd" secondAttribute="leading" constant="16" id="Tht-XR-xzy"/>
-                                    <constraint firstItem="DlE-al-GEJ" firstAttribute="top" secondItem="omR-IT-KtW" secondAttribute="bottom" constant="64" id="att-Lc-evM"/>
+                                    <constraint firstItem="DlE-al-GEJ" firstAttribute="top" secondItem="omR-IT-KtW" secondAttribute="bottom" constant="56" id="att-Lc-evM"/>
                                     <constraint firstAttribute="trailing" secondItem="DlE-al-GEJ" secondAttribute="trailing" constant="16" id="e89-mO-FX5"/>
                                     <constraint firstItem="omR-IT-KtW" firstAttribute="centerY" secondItem="gd5-vQ-RGd" secondAttribute="centerY" multiplier="0.875" constant="1" id="iCl-xa-8sc"/>
                                     <constraint firstAttribute="trailing" secondItem="8E6-bh-FSp" secondAttribute="trailing" constant="16" id="jzC-Uz-h9P"/>
