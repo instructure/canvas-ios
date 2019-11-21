@@ -20,8 +20,7 @@ import XCTest
 @testable import Core
 
 class ExperimentalFeatureTests: CoreTestCase {
-    let testFeature = ExperimentalFeature(remoteConfigKey: "test")
-    let settingsKey = ExperimentalFeature.settingsKey(forConfigKey: "test")
+    let testFeature = ExperimentalFeature(rawValue: "testing")!
 
     override func setUp() {
         super.setUp()
@@ -29,20 +28,17 @@ class ExperimentalFeatureTests: CoreTestCase {
     }
 
     func testSettingsKey() {
-        XCTAssertEqual(settingsKey, "ExperimentalFeature.test")
+        XCTAssertEqual(testFeature.userDefaultsKey, "ExperimentalFeature.testing")
     }
 
-    func testUsesRemoteConfigKeyInSettingsKey() {
-        XCTAssertEqual(testFeature.settingsKey, settingsKey)
-    }
-
-    func testUsesUserDefaultsByDefault() {
-        UserDefaults.standard.set(true, forKey: "ExperimentalFeature.default")
-        XCTAssertTrue(ExperimentalFeature(remoteConfigKey: "default").isEnabled)
+    func testUsesUserDefaults() {
+        UserDefaults.standard.set(true, forKey: testFeature.userDefaultsKey)
+        XCTAssertTrue(testFeature.isEnabled)
+        UserDefaults.standard.set(false, forKey: testFeature.userDefaultsKey)
     }
 
     func testSetsUserDefaults() {
         testFeature.isEnabled = true
-        XCTAssertTrue(UserDefaults.standard.bool(forKey: ExperimentalFeature.settingsKey(forConfigKey: "test")))
+        XCTAssertTrue(UserDefaults.standard.bool(forKey: testFeature.userDefaultsKey))
     }
 }

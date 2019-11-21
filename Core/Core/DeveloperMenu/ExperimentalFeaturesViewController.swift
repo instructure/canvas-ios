@@ -28,17 +28,17 @@ public class ExperimentalFeaturesViewController: UITableViewController {
         navigationItem.rightBarButtonItem = barButtonItem
 
         title = "Experimental Features"
-        tableView?.register(SwitchTableViewCell.self, forCellReuseIdentifier: String(describing: SwitchTableViewCell.self))
+        tableView?.registerCell(SwitchTableViewCell.self)
     }
 
     override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ExperimentalFeature.allFeatures.count
+        return ExperimentalFeature.allCases.count
     }
 
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let feature = ExperimentalFeature.allFeatures[indexPath.row]
+        let feature = ExperimentalFeature.allCases[indexPath.row]
         let cell = tableView.dequeue(for: indexPath) as SwitchTableViewCell
-        cell.textLabel?.text = feature.remoteConfigKey
+        cell.textLabel?.text = feature.rawValue
         cell.toggle.tag = indexPath.row
         cell.toggle.isOn = feature.isEnabled
         cell.toggle.addTarget(self, action: #selector(toggleFeature(_:)), for: .valueChanged)
@@ -47,10 +47,8 @@ public class ExperimentalFeaturesViewController: UITableViewController {
 
     @objc
     func toggleFeature(_ sender: UISwitch) {
-        ExperimentalFeature.allFeatures[sender.tag].isEnabled = sender.isOn
-        if sender.isOn == true {
-            afterToggle?()
-        }
+        ExperimentalFeature.allCases[sender.tag].isEnabled = sender.isOn
+        afterToggle?()
     }
 
     @objc

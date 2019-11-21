@@ -57,7 +57,10 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
                 }
                 let keys = remoteConfig.allKeys(from: RemoteConfigSource.remote)
                 for key in keys {
-                    UserDefaults.standard.set(remoteConfig.configValue(forKey: key).boolValue, forKey: ExperimentalFeature.settingsKey(forConfigKey: key))
+                    guard let feature = ExperimentalFeature(rawValue: key) else { continue }
+                    let value = remoteConfig.configValue(forKey: key).boolValue
+                    feature.isEnabled = value
+                    Crashlytics.sharedInstance().setBoolValue(value, forKey: feature.userDefaultsKey)
                 }
             }
             remoteConfig.fetch(completionHandler: nil)

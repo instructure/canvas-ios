@@ -24,55 +24,29 @@ import Foundation
 /// that is not ready for all users to exercise. This is different from
 /// feature flags in Canvas, which represent optional functionality in
 /// production that should only apply to certain accounts, courses, or people.
-public class ExperimentalFeature {
-    let remoteConfigKey: String
-    let settingsKey: String
-    var enabled: Bool
-
-    init(remoteConfigKey: String) {
-        self.remoteConfigKey = remoteConfigKey
-        self.settingsKey = ExperimentalFeature.settingsKey(forConfigKey: self.remoteConfigKey)
-        self.enabled = UserDefaults.standard.bool(forKey: self.settingsKey)
-    }
+public enum ExperimentalFeature: String, CaseIterable {
+    case parent3
+    case conferences
+    case favoriteGroups = "favorite_groups"
+    case simpleDiscussionRenderer = "simple_discussion_renderer"
+    case graphqlSpeedGrader = "graphql_speed_grader"
+    case refreshTokens = "refresh_tokens"
+    case newPageDetails = "new_page_details"
+    case fileDetails = "file_details"
+    case assignmentListGraphQL = "assignment_list_graphql"
+    case testing = "testing"
 
     public var isEnabled: Bool {
-        get { return enabled }
-        set {
-            enabled = newValue
-            UserDefaults.standard.set(newValue, forKey: self.settingsKey)
-        }
+        get { UserDefaults.standard.bool(forKey: userDefaultsKey) }
+        nonmutating set { UserDefaults.standard.set(newValue, forKey: userDefaultsKey) }
     }
 
-    public static func settingsKey(forConfigKey key: String) -> String {
-        return "ExperimentalFeature.\(key)"
+    public var userDefaultsKey: String {
+        get { "ExperimentalFeature.\(self.rawValue)" }
     }
-}
 
-extension ExperimentalFeature {
     public static var allEnabled: Bool {
-        get { allFeatures.filter({ $0.isEnabled == false }).count == 0 }
-        set {
-            for feature in allFeatures {
-                feature.isEnabled = newValue
-            }
-        }
+        get { ExperimentalFeature.allCases.allSatisfy({ $0.isEnabled }) }
+        set { ExperimentalFeature.allCases.forEach({ $0.isEnabled = newValue }) }
     }
-
-    public static let allFeatures: [ExperimentalFeature] = [
-        .parent3, .conferences, .favoriteGroups, .simpleDiscussionRenderer, .graphqlSpeedGrader, .refreshTokens, .newPageDetails,
-        .fileDetails, .testing,
-    ]
-
-    // Be sure to add your feature to the `allFeatures` array as well or it will not get picked up
-    // in ExperimentalFeaturesViewController.swift
-    public static let parent3 = ExperimentalFeature(remoteConfigKey: "parent3")
-    public static let conferences = ExperimentalFeature(remoteConfigKey: "conferences")
-    public static let favoriteGroups = ExperimentalFeature(remoteConfigKey: "favorite_groups")
-    public static let simpleDiscussionRenderer = ExperimentalFeature(remoteConfigKey: "simple_discussion_renderer")
-    public static let graphqlSpeedGrader = ExperimentalFeature(remoteConfigKey: "graphql_speed_grader")
-    public static let refreshTokens = ExperimentalFeature(remoteConfigKey: "refresh_tokens")
-    public static let newPageDetails = ExperimentalFeature(remoteConfigKey: "new_page_details")
-    public static let fileDetails = ExperimentalFeature(remoteConfigKey: "file_details")
-    public static let assignmentListGraphQL = ExperimentalFeature(remoteConfigKey: "assignment_list_graphql")
-    public static let testing = ExperimentalFeature(remoteConfigKey: "testing")
 }

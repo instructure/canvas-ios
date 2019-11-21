@@ -179,7 +179,7 @@ extension DeveloperMenuViewController: UITableViewDataSource, UITableViewDelegat
                 //        case .logs:
             //            shareLogs()
             case .experimentalFeatures:
-                env?.router.show(ExperimentalFeaturesViewController(), from: self)
+                env?.router.route(to: "/dev-menu/experimental-features", from: self, options: nil)
             }
         } else {
             showRoute(routeHistory[indexPath.row])
