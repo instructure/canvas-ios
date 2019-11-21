@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class ActivityStreamViewController: UITableViewController {
+class ActivityStreamViewController: UIViewController {
 
     struct Info {
         let name: String?
@@ -39,7 +39,10 @@ class ActivityStreamViewController: UITableViewController {
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.cacheCourses()
     }
-    
+
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var emptyStateContainer: UIView!
+
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMd", options: 0, locale: NSLocale.current)
@@ -83,7 +86,11 @@ class ActivityStreamViewController: UITableViewController {
     }
 
     func update() {
-        tableView.reloadData()
+        if !activities.pending && activities.count == 0 {
+            emptyStateContainer.alpha = 1.0
+        } else {
+            tableView.reloadData()
+        }
     }
 
     func cacheCourses() {
@@ -91,25 +98,28 @@ class ActivityStreamViewController: UITableViewController {
         courses.forEach { [weak self] in self?.courseCache[ $0.id ] = Info(name: $0.name, courseCode: $0.courseCode, color: $0.color) }
         update()
     }
+}
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension ActivityStreamViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         activities.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ActivityCell = tableView.dequeue(for: indexPath)
         if let a = activities[indexPath] { cell.update(a, courseCache: courseCache) }
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let a = activities[indexPath], let url = a.htmlURL else { return }
         env.router.route(to: url, from: self, options: nil)
     }
 }
 
 extension ActivityStreamViewController {
-    public override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.isBottomReached() {
             activities.getNextPage()
         }
@@ -138,7 +148,7 @@ class ActivityCell: UITableViewCell {
         }
 
         if let date = activity.updatedAt {
-            subTitleLabel.text = ActivityStreamViewController.dateFormatter.string(from: date) 
+            subTitleLabel.text = ActivityStreamViewController.dateFormatter.string(from: date)
         }
 
         icon.image = activity.icon
