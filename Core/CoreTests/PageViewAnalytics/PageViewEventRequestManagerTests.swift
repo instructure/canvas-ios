@@ -65,7 +65,7 @@ class PageViewEventRequestManagerTests: CoreTestCase {
         addEvents.expectedFulfillmentCount = 2
         p.addToQueue(a, completionHandler: addEvents.fulfill)
         p.addToQueue(b, completionHandler: addEvents.fulfill)
-        wait(for: [addEvents], timeout: 1)
+        wait(for: [addEvents], timeout: 5)
 
         let pandataEvents = p.batchOfEvents(2)?.map { $0.apiEvent(tokenResponse) } ?? []
 
