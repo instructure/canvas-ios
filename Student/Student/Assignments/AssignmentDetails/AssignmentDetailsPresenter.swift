@@ -213,7 +213,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
 
     func viewFileSubmission() {
         guard let assignment = assignment else { return }
-        submissionButtonPresenter.pickFiles(for: assignment, selectedSubmissionTypes: assignment.submissionTypes )
+        submissionButtonPresenter.pickFiles(for: assignment, selectedSubmissionTypes: [.online_upload])
     }
 
     // MARK: - viewIsHidden methods

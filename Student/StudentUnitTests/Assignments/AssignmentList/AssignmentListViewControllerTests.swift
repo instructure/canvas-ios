@@ -201,6 +201,7 @@ class AssignmentListViewControllerTests: StudentTestCase {
     }
 
     func testSelectFirstOnIpad() {
+        vc = AssignmentListViewController.create(env: env, courseID: courseID, appTraitCollection: UITraitCollection(horizontalSizeClass: .regular))
         let svc = UISplitViewController(nibName: nil, bundle: nil)
         let nav = UINavigationController(rootViewController: vc)
         svc.viewControllers = [nav, UIViewController()]

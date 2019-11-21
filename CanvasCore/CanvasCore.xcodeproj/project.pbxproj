@@ -167,7 +167,6 @@
 		4961F5A11F8FB29B0093EC86 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F58B1F8FB2140093EC86 /* SplitViewController.swift */; };
 		4961F5A21F8FB2A10093EC86 /* UIColor+Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5891F8FB2130093EC86 /* UIColor+Toast.swift */; };
 		4961F5A31F8FB2A10093EC86 /* ToastNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F58A1F8FB2130093EC86 /* ToastNotification.swift */; };
-		4961F5A41F8FB2A10093EC86 /* TokenLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5661F8FB2100093EC86 /* TokenLabelView.swift */; };
 		4961F5A71F8FB2A90093EC86 /* UIImage+URLSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F57E1F8FB2120093EC86 /* UIImage+URLSource.swift */; };
 		4961F5A81F8FB2A90093EC86 /* SmallModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F57F1F8FB2120093EC86 /* SmallModalNavigationController.swift */; };
 		4961F5A91F8FB2A90093EC86 /* HairlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5801F8FB2120093EC86 /* HairlineView.swift */; };
@@ -630,7 +629,6 @@
 		4961F5511F8FAF250093EC86 /* PlaybackScrubber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackScrubber.swift; sourceTree = "<group>"; };
 		4961F5641F8FB20F0093EC86 /* PrettyCardsLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyCardsLayout.swift; sourceTree = "<group>"; };
 		4961F5651F8FB20F0093EC86 /* PrettyImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PrettyImages.xcassets; sourceTree = "<group>"; };
-		4961F5661F8FB2100093EC86 /* TokenLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenLabelView.swift; sourceTree = "<group>"; };
 		4961F5681F8FB2100093EC86 /* CAShapeLayer+Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAShapeLayer+Circle.swift"; sourceTree = "<group>"; };
 		4961F5771F8FB2110093EC86 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		4961F5781F8FB2110093EC86 /* UIColor+LightenUpOkay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+LightenUpOkay.swift"; sourceTree = "<group>"; };
@@ -1577,7 +1575,6 @@
 				4961F5761F8FB2110093EC86 /* So Colorful */,
 				4961F58B1F8FB2140093EC86 /* SplitViewController.swift */,
 				4961F5881F8FB2130093EC86 /* Toast */,
-				4961F5661F8FB2100093EC86 /* TokenLabelView.swift */,
 				4961F57D1F8FB2120093EC86 /* UIKit+SoPretty */,
 			);
 			path = Views;
@@ -2913,7 +2910,6 @@
 				49CE966A1F8FF41B00121A43 /* QuizPresentingViewController.swift in Sources */,
 				49CE965C1F8FF41B00121A43 /* QuizIntroViewController.swift in Sources */,
 				49CE968C1F8FF41B00121A43 /* CanvasQuizSubmissionService.swift in Sources */,
-				4961F5A41F8FB2A10093EC86 /* TokenLabelView.swift in Sources */,
 				497CA7781F82D19A00501613 /* HelmSplitViewControllerExtensions.swift in Sources */,
 				4961F5E31F8FB3F20093EC86 /* Marshal+SoPersistent.swift in Sources */,
 				4961F5D11F8FB3E80093EC86 /* CollectionViewDataSource.swift in Sources */,
