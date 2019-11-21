@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class ActivityStreamViewController: UIViewController {
+class ActivityStreamViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {
 
     struct Info {
         let name: String?
@@ -40,9 +40,11 @@ class ActivityStreamViewController: UIViewController {
         self?.cacheCourses()
     }
 
-    @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var emptyStateContainer: UIView!
-
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var emptyStateContainer: UIView!
+    @IBOutlet weak var emptyStateHeader: DynamicLabel!
+    @IBOutlet weak var emptyStateSubHeader: DynamicLabel!
+    
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMd", options: 0, locale: NSLocale.current)
@@ -57,10 +59,23 @@ class ActivityStreamViewController: UIViewController {
     }
 
     override func viewDidLoad() {
+        view.backgroundColor = .named(.backgroundLightest)
         setupTableView()
+        emptyStateHeader.text = NSLocalizedString("No Notifications", comment: "")
+        emptyStateSubHeader.text = NSLocalizedString("There's nothing to be notifiied of yet.", comment: "")
         refreshData()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startTrackingTimeOnViewController()
+    }
+    
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopTrackingTimeOnViewController(eventName: "/notifications", attributes: ["customPageViewPath": "/"])
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if let indexPath = tableView.indexPathForSelectedRow { tableView.deselectRow(at: indexPath, animated: true) }
@@ -72,6 +87,7 @@ class ActivityStreamViewController: UIViewController {
         refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView?.refreshControl = refresh
         tableView.tableFooterView = UIView()
+        tableView.backgroundColor = .named(.backgroundLightest)
     }
 
     @objc func refresh(_ control: UIRefreshControl) {
@@ -86,8 +102,8 @@ class ActivityStreamViewController: UIViewController {
     }
 
     func update() {
-        if !activities.pending && activities.count == 0 {
-            emptyStateContainer.alpha = 1.0
+        if !activities.pending && activities.isEmpty {
+            emptyStateContainer.isHidden = false
         } else {
             tableView.reloadData()
         }

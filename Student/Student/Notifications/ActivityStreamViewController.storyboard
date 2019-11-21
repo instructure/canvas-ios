@@ -38,8 +38,8 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="DRp-nT-Xeo">
                                                     <rect key="frame" x="56" y="16" width="342" height="61.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6K-4f-8T0" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="342" height="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6K-4f-8T0" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="342" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -48,8 +48,8 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4E-YT-iVI" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="21" width="342" height="19.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4E-YT-iVI" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="24.5" width="342" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -58,8 +58,8 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAO-0p-mHa" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="44.5" width="342" height="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAO-0p-mHa" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="49" width="342" height="12.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -94,11 +94,11 @@
                                     <outlet property="delegate" destination="bti-zh-LfF" id="KtX-X7-BOA"/>
                                 </connections>
                             </tableView>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gd5-vQ-RGd">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gd5-vQ-RGd">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Notifications" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DlE-al-GEJ" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="508" width="382" height="24"/>
+                                        <rect key="frame" x="16" y="508" width="382" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -108,7 +108,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There's nothing to be notifiied of yet." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8E6-bh-FSp" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="540" width="382" height="19.5"/>
+                                        <rect key="frame" x="16" y="536.5" width="382" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -150,6 +150,8 @@
                     </view>
                     <connections>
                         <outlet property="emptyStateContainer" destination="gd5-vQ-RGd" id="8th-qs-rjM"/>
+                        <outlet property="emptyStateHeader" destination="DlE-al-GEJ" id="AWV-4R-QYj"/>
+                        <outlet property="emptyStateSubHeader" destination="8E6-bh-FSp" id="hJd-xd-vFO"/>
                         <outlet property="tableView" destination="LaJ-fe-ueQ" id="O0s-OJ-J6X"/>
                         <outlet property="view" destination="E9a-Ma-Q50" id="Dgu-OL-Pyz"/>
                     </connections>

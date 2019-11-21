@@ -43,7 +43,7 @@ public final class Activity: NSManagedObject, WriteableModel {
 
     @discardableResult
     public static func save(_ item: APIActivity, in client: NSManagedObjectContext) -> Activity {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(Activity.id), "1")
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(Activity.id), item.id.value)
         let model: Activity = client.fetch(predicate).first ?? client.insert()
         model.id = item.id.value
         model.createdAt = item.created_at
