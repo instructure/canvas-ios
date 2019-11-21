@@ -34,6 +34,7 @@ public enum ExperimentalFeature: String, CaseIterable {
     case newPageDetails = "new_page_details"
     case fileDetails = "file_details"
     case assignmentListGraphQL = "assignment_list_graphql"
+    case notifications2
     case testing = "testing"
 
     public var isEnabled: Bool {

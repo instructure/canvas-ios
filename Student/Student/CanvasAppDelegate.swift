@@ -139,6 +139,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
                 ModuleItem.beginObservingProgress(legacySession)
             }
             PageViewEventController.instance.userDidChange()
+            DispatchQueue.main.async { self.refreshNotificationTab() }
             CKCanvasAPI.updateCurrentAPI()
             GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
                 DispatchQueue.main.async {
@@ -434,5 +435,17 @@ extension AppDelegate {
             return true
         }
         return false
+    }
+}
+
+// MARK: - Tabs
+extension AppDelegate {
+    func refreshNotificationTab() {
+        if let tabs = window?.rootViewController as? UITabBarController,
+            tabs.viewControllers?.count ?? 0 > 3,
+            let nav = tabs.viewControllers?[3] as? UINavigationController,
+            let activities = nav.viewControllers.first as? ActivityStreamViewController {
+            activities.refreshData(force: true)
+        }
     }
 }
