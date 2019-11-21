@@ -255,4 +255,42 @@ extension Submission {
     public var isGraded: Bool {
         return excused == true || (score != nil && workflowState == .graded)
     }
+
+    public var status: SubmissionStatus {
+        if late { return .late }
+        if missing { return .missing }
+        if submittedAt != nil { return .submitted}
+        return .notSubmitted
+    }
+}
+
+public enum SubmissionStatus {
+    case late
+    case missing
+    case submitted
+    case notSubmitted
+
+    var text: String {
+        switch self {
+        case .late:
+            return NSLocalizedString("Late", bundle: .core, comment: "")
+        case .missing:
+            return NSLocalizedString("Missing", bundle: .core, comment: "")
+        case .submitted:
+            return NSLocalizedString("Submitted", bundle: .core, comment: "")
+        case .notSubmitted:
+            return NSLocalizedString("Not Submitted", bundle: .core, comment: "")
+        }
+    }
+
+    var color: UIColor {
+        switch self {
+        case .late:
+            return .named(.fire)
+        case .missing:
+            return .named(.crimson)
+        case .submitted, .notSubmitted:
+            return .named(.textDark)
+        }
+    }
 }

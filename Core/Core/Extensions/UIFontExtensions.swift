@@ -83,7 +83,7 @@ public extension UIFont {
             return UIFontMetrics(forTextStyle: .title3).scaledFont(for: .systemFont(ofSize: 20, weight: .bold))
 
         case .bold24:
-            return scaledFont(.headline, for: .systemFont(ofSize: 24, weight: .bold))
+            return scaledFont(.largeTitle, for: .systemFont(ofSize: 24, weight: .bold))
 
         case .heavy24:
             return scaledFont(.title1, for: .systemFont(ofSize: 24, weight: .heavy))

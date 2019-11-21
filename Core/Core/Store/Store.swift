@@ -218,7 +218,7 @@ public struct FetchedResultsControllerGenerator<T: NSManagedObject>: IteratorPro
     }
 
     public mutating func next() -> T? {
-        guard let count = fetchedResultsController.fetchedObjects?.count else { return nil}
+        guard let count = fetchedResultsController.fetchedObjects?.count else { return nil }
         guard index < count else { return nil }
         defer { index += 1 }
         return fetchedResultsController.fetchedObjects?[index]

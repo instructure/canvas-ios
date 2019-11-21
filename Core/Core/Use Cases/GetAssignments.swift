@@ -28,15 +28,13 @@ public class GetAssignments: CollectionUseCase {
     public let courseID: String
     public let sort: Sort
     let include: [GetAssignmentsRequest.Include]
-    let updateSubmission: Bool
-    let requestQuerySize: Int
+    let perPage: Int?
 
-    public init(courseID: String, sort: Sort = .position, include: [GetAssignmentsRequest.Include] = [], requestQuerySize: Int = 100) {
+    public init(courseID: String, sort: Sort = .position, include: [GetAssignmentsRequest.Include] = [], perPage: Int? = nil) {
         self.courseID = courseID
         self.sort = sort
         self.include = include
-        self.updateSubmission = include.contains(.submission)
-        self.requestQuerySize = requestQuerySize
+        self.perPage = perPage
     }
 
     public var cacheKey: String? {
@@ -51,7 +49,7 @@ public class GetAssignments: CollectionUseCase {
         case .name:
             orderBy = .name
         }
-        return GetAssignmentsRequest(courseID: courseID, orderBy: orderBy, include: include, querySize: requestQuerySize)
+        return GetAssignmentsRequest(courseID: courseID, orderBy: orderBy, include: include, perPage: perPage)
     }
 
     public var scope: Scope {
@@ -77,7 +75,7 @@ public class GetAssignments: CollectionUseCase {
         for item in response {
             let predicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.id), item.id.value)
             let model: Assignment = client.fetch(predicate).first ?? client.insert()
-            model.update(fromApiModel: item, in: client, updateSubmission: updateSubmission)
+            model.update(fromApiModel: item, in: client, updateSubmission: include.contains(.submission))
         }
     }
 }
@@ -110,10 +108,10 @@ public class GetAssignmentsForGrades: GetAssignments {
         case assignmentGroup, dueAt
     }
 
-    public init(courseID: String, gradingPeriodID: String? = nil, groupBy: GroupBy = .dueAt, requestQuerySize: Int = 10) {
+    public init(courseID: String, gradingPeriodID: String? = nil, groupBy: GroupBy = .dueAt, perPage: Int? = nil) {
         self.groupBy = groupBy
         self.gradingPeriodID = gradingPeriodID
-        super.init(courseID: courseID, sort: .dueAt, include: [.observed_users, .submission], requestQuerySize: requestQuerySize)
+        super.init(courseID: courseID, sort: .dueAt, include: [.observed_users, .submission], perPage: perPage)
     }
 
     public override var scope: Scope {
@@ -124,7 +122,7 @@ public class GetAssignmentsForGrades: GetAssignments {
             let s1 = NSSortDescriptor(key: #keyPath(Assignment.dueAt), ascending: true, selector: nil)
             let s2 = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))
 
-            return Scope(predicate: predicate, order: [s0, s1, s2], sectionNameKeyPath: #keyPath(Assignment.assignmentGroupPosition))
+            return Scope(predicate: predicate, order: [s0, s1, s2], sectionNameKeyPath: #keyPath(Assignment.assignmentGroupSectionName))
         case .dueAt:
             let a = NSSortDescriptor(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true)
             let b = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare))

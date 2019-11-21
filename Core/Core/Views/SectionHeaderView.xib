@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,7 +29,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section Header" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfo-l2-elR" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                    <rect key="frame" x="16" y="4" width="390" height="17"/>
+                    <rect key="frame" x="16" y="4" width="382" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -54,7 +52,7 @@
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Zfo-l2-elR" secondAttribute="bottom" constant="4" id="05I-vS-LV4"/>
                 <constraint firstItem="Zfo-l2-elR" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="4" id="87h-8l-9Zh"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Zfo-l2-elR" secondAttribute="trailing" constant="8" id="9j0-pb-iLs"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Zfo-l2-elR" secondAttribute="trailing" constant="16" id="9j0-pb-iLs"/>
                 <constraint firstItem="lzF-jU-snW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Cqp-aZ-tSN"/>
                 <constraint firstAttribute="bottom" secondItem="NUM-gA-Y6U" secondAttribute="bottom" id="Evs-Qy-TNH"/>
                 <constraint firstItem="lzF-jU-snW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="GgD-XO-gaW"/>
@@ -73,6 +71,7 @@
                 <outlet property="bgView" destination="NUM-gA-Y6U" id="O9U-Dy-c5w"/>
                 <outlet property="titleLabel" destination="Zfo-l2-elR" id="29R-1H-CeD"/>
             </connections>
+            <point key="canvasLocation" x="139" y="153"/>
         </view>
     </objects>
 </document>

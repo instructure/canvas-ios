@@ -248,4 +248,18 @@ class SubmissionTests: CoreTestCase {
         let gradedWithScore = Submission.make(from: .make(score: 10, workflow_state: .graded))
         XCTAssertTrue(gradedWithScore.isGraded)
     }
+
+    func testSubmissionStatus() {
+        let late = Submission.make(from: .make(late: true))
+        XCTAssertEqual(late.status, .late)
+
+        let missing = Submission.make(from: .make(missing: true))
+        XCTAssertEqual(missing.status, .missing)
+
+        let submitted = Submission.make(from: .make(submitted_at: Date()))
+        XCTAssertEqual(submitted.status, .submitted)
+
+        let notSubmitted = Submission.make(from: .make(submitted_at: nil, late: false, missing: false))
+        XCTAssertEqual(notSubmitted.status, .notSubmitted)
+    }
 }

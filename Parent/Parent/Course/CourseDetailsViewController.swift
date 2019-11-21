@@ -65,7 +65,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     }
 
     func configureGrades() {
-        gradesViewController = GradesViewController.create(courseID: courseID, studentID: studentID, colorDelegate: self)
+        gradesViewController = GradesViewController.create(courseID: courseID, userID: studentID, colorDelegate: self)
         viewControllers.append(gradesViewController)
     }
 

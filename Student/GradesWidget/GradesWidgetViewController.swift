@@ -241,7 +241,7 @@ extension GradesWidgetViewController: UITableViewDataSource {
         let cell = tableView.dequeue(for: indexPath) as GradesWidgetAssignmentCell
         cell.courseNameLabel?.text = course?.name
         cell.assignmentNameLabel?.text = assignment?.name
-        cell.gradeLabel?.text = assignment?.gradeText
+        cell.gradeLabel?.text = assignment.flatMap { GradeFormatter.string(from: $0, style: .medium) }
         cell.dotView?.backgroundColor = course?.color
         return cell
     }

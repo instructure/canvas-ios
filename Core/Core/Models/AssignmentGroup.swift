@@ -42,6 +42,7 @@ public final class AssignmentGroup: NSManagedObject {
             assignment.update(fromApiModel: a, in: context, updateSubmission: false)
             assignment.assignmentGroupPosition = item.position
             assignment.gradingPeriodID = gradingPeriodID
+            assignment.assignmentGroup = model
         }
 
         return model

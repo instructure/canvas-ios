@@ -52,24 +52,6 @@ extension GradeViewable {
         return String.localizedStringWithFormat(format, score, points)
     }
 
-    public var gradeText: String? {
-        switch gradingType {
-        case .gpa_scale:
-            guard let grade = viewableGrade else { return nil }
-            let format = NSLocalizedString("%@ GPA", bundle: .core, comment: "")
-            return String.localizedStringWithFormat(format, grade)
-
-        case .pass_fail:
-            guard let score = viewableScore else { return nil }
-            return score == 0
-                ? NSLocalizedString("Incomplete", bundle: .core, comment: "")
-                : NSLocalizedString("Complete", bundle: .core, comment: "")
-
-        case .letter_grade, .percent, .points, .not_graded:
-            return viewableGrade
-        }
-    }
-
     public var finalGradeText: String? {
         if gradingType == .points, let score = viewableScore {
             let format = NSLocalizedString("final_grade_g_pts", bundle: .core, comment: "")
