@@ -81,15 +81,16 @@ public struct GetCourseRequest: APIRequestable {
     }
 
     let courseID: String
-    public static let defaultIncludes = [
-        Include.courseImage,
-        Include.currentGradingPeriodScores,
-        Include.favorites,
-        Include.permissions,
-        Include.sections,
-        Include.syllabusBody,
-        Include.term,
-        Include.totalScores,
+    public static let defaultIncludes: [Include] = [
+        .courseImage,
+        .currentGradingPeriodScores,
+        .favorites,
+        .permissions,
+        .sections,
+        .syllabusBody,
+        .term,
+        .totalScores,
+        .observedUsers,
     ]
 
     var include: [Include] = defaultIncludes

@@ -35,7 +35,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         case grades, syllabus, summary
     }
 
-    lazy var courses = env.subscribe(GetCourse(courseID: courseID, include: GetCourseRequest.defaultIncludes + [.observedUsers])) { [weak self] in
+    lazy var courses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.courseReady()
     }
 

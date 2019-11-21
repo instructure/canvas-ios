@@ -90,7 +90,7 @@ public class Grades {
 
     func getCurrentGrades() {
         self.pending += 1
-        let request = GetCourseRequest(courseID: courseID, include: [.observedUsers, .currentGradingPeriodScores, .totalScores])
+        let request = GetCourseRequest(courseID: courseID)
         env.api.makeRequest(request) { [weak self] response, _, error in
             guard let self = self else {
                 return

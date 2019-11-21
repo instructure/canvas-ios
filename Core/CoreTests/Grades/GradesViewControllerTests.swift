@@ -23,7 +23,7 @@ import TestsFoundation
 class GradesViewControllerTests: CoreTestCase {
     func testViewDidLoadNoGradingPeriods() {
         api.mock(
-            GetCourseRequest(courseID: "1", include: [.observedUsers, .currentGradingPeriodScores, .totalScores]),
+            GetCourseRequest(courseID: "1"),
             value: .make(id: "1", enrollments: [
                 .make(
                     enrollment_state: .active,
@@ -80,7 +80,7 @@ class GradesViewControllerTests: CoreTestCase {
 
     func testViewDidLoadMultipleGradingPeriods() {
         api.mock(
-            GetCourseRequest(courseID: "1", include: [.observedUsers, .currentGradingPeriodScores, .totalScores]),
+            GetCourseRequest(courseID: "1"),
             value: .make(id: "1", enrollments: [
                 .make(
                     enrollment_state: .active,

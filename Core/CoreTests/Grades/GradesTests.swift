@@ -27,7 +27,7 @@ class GradesTests: CoreTestCase {
 
     func testGradesInCurrentGradingPeriod() {
         api.mock(
-            GetCourseRequest(courseID: courseID, include: [.observedUsers, .currentGradingPeriodScores, .totalScores]),
+            GetCourseRequest(courseID: courseID),
             value: .make(
                 id: ID(courseID),
                 enrollments: [
@@ -87,7 +87,7 @@ class GradesTests: CoreTestCase {
 
     func testNoGradingPeriods() throws {
         api.mock(
-            GetCourseRequest(courseID: courseID, include: [.observedUsers, .currentGradingPeriodScores, .totalScores]),
+            GetCourseRequest(courseID: courseID),
             value: .make(id: ID(courseID), enrollments: [
                 .make(
                     id: nil,
@@ -140,7 +140,7 @@ class GradesTests: CoreTestCase {
 
     func testChangeGradingPeriod() {
         api.mock(
-            GetCourseRequest(courseID: courseID, include: [.observedUsers, .currentGradingPeriodScores, .totalScores]),
+            GetCourseRequest(courseID: courseID),
             value: .make(id: ID(courseID), enrollments: [
                 .make(
                     id: nil,
