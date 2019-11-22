@@ -23,7 +23,8 @@ import XCTest
 
 class ActivityStreamViewControllerTests: StudentTestCase {
     lazy var controller = ActivityStreamViewController.create()
-
+    let mockNow = Date(fromISOString: "2019-11-20T06:00:00Z")!
+    
     override func setUp() {
         super.setUp()
         env.mockStore = false
@@ -34,11 +35,11 @@ class ActivityStreamViewControllerTests: StudentTestCase {
         api.mock(controller.courses, value: [.make(course_code: "Code"), .make(id: "2", course_code: "Code2")])
 
         api.mock(controller.activities, value: [
-            APIActivity.make(id: "1", updated_at: Clock.now.addDays(-2)),
-            APIActivity.make(id: "2", title: "grouptitle", message: "groupMessage", updated_at: Clock.now.addDays(-3), context_type: ContextType.group.rawValue, course_id: nil, group_id: "2"),
-            APIActivity.make(id: "3", title: "title2", updated_at: Clock.now.addDays(-4), course_id: "2"),
+            APIActivity.make(id: "1", updated_at: mockNow.addDays(-2)),
+            APIActivity.make(id: "2", title: "grouptitle", message: "groupMessage", updated_at: mockNow.addDays(-3), context_type: ContextType.group.rawValue, course_id: nil, group_id: "2"),
+            APIActivity.make(id: "3", title: "title2", updated_at: mockNow.addDays(-4), course_id: "2"),
         ])
-        Clock.mockNow( Date(fromISOString: "2019-11-20T06:00:00Z")! )
+        Clock.mockNow( mockNow )
     }
 
     override func tearDown() {
@@ -54,23 +55,27 @@ class ActivityStreamViewControllerTests: StudentTestCase {
         XCTAssertEqual(controller.tableView.backgroundColor, .named(.backgroundLightest))
         XCTAssertNoThrow(controller.viewWillDisappear(false))
 
+        let expectedDateCell0 = ActivityStreamViewController.dateFormatter.string(from: mockNow.addDays(-2))
+        let expectedDateCell1 = ActivityStreamViewController.dateFormatter.string(from: mockNow.addDays(-3))
+        let expectedDateCell2 = ActivityStreamViewController.dateFormatter.string(from: mockNow.addDays(-4))
+
         var cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ActivityCell
         XCTAssertEqual(cell?.courseCode.textColor, UIColor(hexString: "#f00"))
         XCTAssertEqual(cell?.courseCode.text, "Code")
         XCTAssertEqual(cell?.titleLabel.text, "title")
-        XCTAssertEqual(cell?.subTitleLabel.text, "Nov 19")
+        XCTAssertEqual(cell?.subTitleLabel.text, expectedDateCell0)
         XCTAssertEqual(cell?.icon.image, UIImage.icon(.assignment))
 
         cell = controller.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? ActivityCell
         XCTAssertNil(cell?.courseCode.text)
         XCTAssertEqual(cell?.titleLabel.text, "grouptitle")
-        XCTAssertEqual(cell?.subTitleLabel.text, "Nov 18")
+        XCTAssertEqual(cell?.subTitleLabel.text, expectedDateCell1)
 
         cell = controller.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? ActivityCell
         XCTAssertEqual(cell?.courseCode.textColor, UIColor(hexString: "#0f0"))
         XCTAssertEqual(cell?.courseCode.text, "Code2")
         XCTAssertEqual(cell?.titleLabel.text, "title2")
-        XCTAssertEqual(cell?.subTitleLabel.text, "Nov 17")
+        XCTAssertEqual(cell?.subTitleLabel.text, expectedDateCell2)
         XCTAssertEqual(cell?.icon.image, UIImage.icon(.assignment))
     }
 
