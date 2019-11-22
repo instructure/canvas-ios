@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina5_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,14 +13,14 @@
             <objects>
                 <viewController storyboardIdentifier="PageListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JGx-7A-Apd" customClass="PageListViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xd4-nP-FkO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="643"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ufY-Pw-cGA">
-                                <rect key="frame" x="197" y="301.66666666666669" width="20" height="20"/>
+                                <rect key="frame" x="197" y="311.66666666666669" width="20" height="20"/>
                             </activityIndicatorView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="There are no pages to display." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="34v-0e-P8N" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="92.333333333333329" y="301.66666666666669" width="229.33333333333337" height="20"/>
+                                <rect key="frame" x="92.333333333333329" y="311.33333333333331" width="229.33333333333337" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -32,7 +30,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="f1i-hN-714">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="643"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="Xqk-ck-Ze3">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
@@ -96,31 +94,31 @@
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="jsp-ue-Nlr" userLabel="Footer">
-                                    <rect key="frame" x="0.0" y="190" width="414" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="218" width="414" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="PageListCell" rowHeight="62" id="bvq-Al-4Yo" customClass="PageListCell" customModule="Core" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="PageListCell" id="bvq-Al-4Yo" customClass="PageListCell" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="128" width="414" height="62"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bvq-Al-4Yo" id="fSH-Ma-RNS">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="61.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="62"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYX-kk-GxH" customClass="AccessIconView" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="15.999999999999998" y="11.999999999999998" width="28.333333333333329" height="28.333333333333329"/>
+                                                    <rect key="frame" x="18" y="14" width="20" height="20"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="28.329999999999998" id="Syx-AB-VyP"/>
-                                                        <constraint firstAttribute="width" constant="28.329999999999998" id="gDj-pK-ho0"/>
+                                                        <constraint firstAttribute="height" constant="20" id="Syx-AB-VyP"/>
+                                                        <constraint firstAttribute="width" constant="20" id="gDj-pK-ho0"/>
                                                     </constraints>
                                                 </view>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="jbt-qX-1vo">
-                                                    <rect key="frame" x="54" y="12" width="314" height="37.666666666666664"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="jbt-qX-1vo">
+                                                    <rect key="frame" x="56" y="16" width="319" height="30"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Page Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hi2-wZ-pJg" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="72" height="19.333333333333332"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="72.333333333333329" height="19.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -130,24 +128,26 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jul 19, 2019 at 7:33 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7MS-II-pe0" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="21.333333333333336" width="151.33333333333334" height="16.333333333333336"/>
+                                                            <rect key="frame" x="0.0" y="23.333333333333336" width="151.33333333333334" height="6.6666666666666679"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="hYX-kk-GxH" firstAttribute="top" secondItem="fSH-Ma-RNS" secondAttribute="top" constant="12" id="0qS-n2-yuX"/>
+                                                <constraint firstItem="hYX-kk-GxH" firstAttribute="top" secondItem="fSH-Ma-RNS" secondAttribute="top" constant="14" id="0qS-n2-yuX"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hYX-kk-GxH" secondAttribute="bottom" constant="14" id="1kR-XW-qUh"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="jbt-qX-1vo" secondAttribute="trailing" id="2V8-QC-8qC"/>
-                                                <constraint firstAttribute="bottom" secondItem="jbt-qX-1vo" secondAttribute="bottom" constant="12" id="3cA-42-Coh"/>
-                                                <constraint firstItem="jbt-qX-1vo" firstAttribute="leading" secondItem="fSH-Ma-RNS" secondAttribute="leading" constant="54" id="Vd3-OB-Cfs"/>
-                                                <constraint firstItem="hYX-kk-GxH" firstAttribute="leading" secondItem="fSH-Ma-RNS" secondAttribute="leading" constant="16" id="bG2-Q0-9ag"/>
-                                                <constraint firstItem="jbt-qX-1vo" firstAttribute="top" secondItem="fSH-Ma-RNS" secondAttribute="top" constant="12" id="yvk-gQ-JzQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="jbt-qX-1vo" secondAttribute="bottom" constant="16" id="3cA-42-Coh"/>
+                                                <constraint firstItem="jbt-qX-1vo" firstAttribute="leading" secondItem="hYX-kk-GxH" secondAttribute="trailing" constant="18" id="Vd3-OB-Cfs"/>
+                                                <constraint firstItem="hYX-kk-GxH" firstAttribute="leading" secondItem="fSH-Ma-RNS" secondAttribute="leading" constant="18" id="bG2-Q0-9ag"/>
+                                                <constraint firstItem="jbt-qX-1vo" firstAttribute="top" secondItem="fSH-Ma-RNS" secondAttribute="top" constant="16" id="yvk-gQ-JzQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>

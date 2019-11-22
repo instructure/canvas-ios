@@ -40,7 +40,6 @@
 		7D64A97D23676402004EAEDF /* APICourseSectionFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A97C23676402004EAEDF /* APICourseSectionFixture.swift */; };
 		7D64A97F23676434004EAEDF /* CourseSectionFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A97E23676434004EAEDF /* CourseSectionFixture.swift */; };
 		7D6C8C6B22EA0C5900E5ADD8 /* APIActivityFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C6A22EA0C5900E5ADD8 /* APIActivityFixture.swift */; };
-		7D6C8C6F22EFA29F00E5ADD8 /* APITodoFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C6E22EFA29F00E5ADD8 /* APITodoFixture.swift */; };
 		7D6C8C7A22F351F400E5ADD8 /* ActAsUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C7922F351F400E5ADD8 /* ActAsUser.swift */; };
 		7D70DE9C233EAB3500F5C3D4 /* APICommunicationChannelFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D70DE9B233EAB3500F5C3D4 /* APICommunicationChannelFixture.swift */; };
 		7D70DE9E233EAB5500F5C3D4 /* APINotificationPreferencesFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D70DE9D233EAB5500F5C3D4 /* APINotificationPreferencesFixture.swift */; };
@@ -50,6 +49,8 @@
 		7D903C0E22BC133B009D9E9E /* LoginFindSchool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C0D22BC133B009D9E9E /* LoginFindSchool.swift */; };
 		7D903C1922C1513D009D9E9E /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C1822C1513C009D9E9E /* NavBar.swift */; };
 		7D903C1E22C17128009D9E9E /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C1D22C17128009D9E9E /* TabBar.swift */; };
+		7DA667F223835F220062F7B9 /* TodoFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA667F123835F220062F7B9 /* TodoFixture.swift */; };
+		7DA667F923845A720062F7B9 /* APITodoFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA667F823845A720062F7B9 /* APITodoFixture.swift */; };
 		7DAC287A22B199D100C0B692 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAC287522B199D100C0B692 /* Element.swift */; };
 		7DAC288022B1A3F900C0B692 /* XCUIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAC287F22B1A3F900C0B692 /* XCUIApplicationExtensions.swift */; };
 		7DAC288622B1AE1700C0B692 /* ElementWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAC288522B1AE1700C0B692 /* ElementWrapper.swift */; };
@@ -137,7 +138,6 @@
 		7D64A97C23676402004EAEDF /* APICourseSectionFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICourseSectionFixture.swift; sourceTree = "<group>"; };
 		7D64A97E23676434004EAEDF /* CourseSectionFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSectionFixture.swift; sourceTree = "<group>"; };
 		7D6C8C6A22EA0C5900E5ADD8 /* APIActivityFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIActivityFixture.swift; sourceTree = "<group>"; };
-		7D6C8C6E22EFA29F00E5ADD8 /* APITodoFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITodoFixture.swift; sourceTree = "<group>"; };
 		7D6C8C7922F351F400E5ADD8 /* ActAsUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActAsUser.swift; sourceTree = "<group>"; };
 		7D70DE9B233EAB3500F5C3D4 /* APICommunicationChannelFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommunicationChannelFixture.swift; sourceTree = "<group>"; };
 		7D70DE9D233EAB5500F5C3D4 /* APINotificationPreferencesFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APINotificationPreferencesFixture.swift; sourceTree = "<group>"; };
@@ -147,6 +147,8 @@
 		7D903C0D22BC133B009D9E9E /* LoginFindSchool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchool.swift; sourceTree = "<group>"; };
 		7D903C1822C1513C009D9E9E /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		7D903C1D22C17128009D9E9E /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		7DA667F123835F220062F7B9 /* TodoFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoFixture.swift; sourceTree = "<group>"; };
+		7DA667F823845A720062F7B9 /* APITodoFixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APITodoFixture.swift; sourceTree = "<group>"; };
 		7DAC287522B199D100C0B692 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		7DAC287D22B19D5C00C0B692 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		7DAC287F22B1A3F900C0B692 /* XCUIApplicationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIApplicationExtensions.swift; sourceTree = "<group>"; };
@@ -308,7 +310,7 @@
 				9F62EDD52326C9E800EA9F79 /* APISearchRecipientFixture.swift */,
 				B1A32BDF2159A28D0071B41E /* APISubmissionFixture.swift */,
 				3B0CEBA021504C2500D07CFA /* APITabFixture.swift */,
-				7D6C8C6E22EFA29F00E5ADD8 /* APITodoFixture.swift */,
+				7DA667F823845A720062F7B9 /* APITodoFixture.swift */,
 				7DB0A1C821C07F39009ABB40 /* APIUserFixture.swift */,
 				3B362D1A236A2BC200B16E1A /* AssignmentListFixtures.swift */,
 			);
@@ -318,11 +320,12 @@
 		3B0CEB9221504B7700D07CFA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3B3FCA2E238027470011F11A /* ActivityFixture.swift */,
 				B16F0374215C2B340011E952 /* AssignmentFixture.swift */,
 				3B6043A9232AB93900757B93 /* AssignmentGroupsFixture.swift */,
 				3B635B34225CDFB1001F353D /* CalendarEventFixture.swift */,
-				B19792F421767B830000369C /* ContextColorFixture.swift */,
 				7D70DE9F233EACF200F5C3D4 /* CommunicationChannelFixture.swift */,
+				B19792F421767B830000369C /* ContextColorFixture.swift */,
 				3B032D18215037CA00B570F7 /* CourseFixture.swift */,
 				7D64A97E23676434004EAEDF /* CourseSectionFixture.swift */,
 				7D37BE8E21C8398D0063FAAC /* DiscussionEntryFixture.swift */,
@@ -345,10 +348,10 @@
 				7D5C87222239A9EE00D99651 /* SubmissionCommentFixture.swift */,
 				B16F0376215C2CEF0011E952 /* SubmissionFixture.swift */,
 				3B0CEB7D2150445100D07CFA /* TabFixture.swift */,
+				7DA667F123835F220062F7B9 /* TodoFixture.swift */,
 				3B032D17215037C900B570F7 /* TTLFixture.swift */,
 				B1CA334323393FEC0015CBB4 /* UserFixture.swift */,
 				9F10A66C22931C5B00E3360C /* UserSettingsFixture.swift */,
-				3B3FCA2E238027470011F11A /* ActivityFixture.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				3BDB8F3C22E663A2003D81C3 /* MockPageViewLogger.swift in Sources */,
 				3B362D1B236A2BC200B16E1A /* AssignmentListFixtures.swift in Sources */,
 				7D5C87232239A9EE00D99651 /* SubmissionCommentFixture.swift in Sources */,
+				7DA667F223835F220062F7B9 /* TodoFixture.swift in Sources */,
 				3B519EFF2332D74D00C8DEB8 /* GradingPeriodFixture.swift in Sources */,
 				7D903C0A22BC1329009D9E9E /* LoginStart.swift in Sources */,
 				3B6043AA232AB93900757B93 /* AssignmentGroupsFixture.swift in Sources */,
@@ -634,10 +638,10 @@
 				7D63F794215D8FC100151E49 /* APIBrandVariablesFixture.swift in Sources */,
 				3B635B35225CDFB1001F353D /* CalendarEventFixture.swift in Sources */,
 				B15DCD57224121FA0044A8A2 /* MockUploadManager.swift in Sources */,
+				7DA667F923845A720062F7B9 /* APITodoFixture.swift in Sources */,
 				7DBED019232FE3B400392F3C /* APIHelpLinks.swift in Sources */,
 				9F4B53AE218100BC0056A557 /* APIFileFixture.swift in Sources */,
 				3B0CEB752150406400D07CFA /* TTLFixture.swift in Sources */,
-				7D6C8C6F22EFA29F00E5ADD8 /* APITodoFixture.swift in Sources */,
 				9F1CEA5D22400CE0000BB98F /* PermissionsFixture.swift in Sources */,
 				7DCF204A216D6668003AF358 /* QuizFixture.swift in Sources */,
 				7D37BE8F21C8398D0063FAAC /* DiscussionEntryFixture.swift in Sources */,

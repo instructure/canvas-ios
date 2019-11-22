@@ -48,6 +48,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var assignmentGroupPosition: Int
     @NSManaged public var gradingPeriodID: String?
     @NSManaged public var assignmentGroup: AssignmentGroup?
+    @NSManaged public var todo: Todo?
 
     /**
      Use this property (vs. submissions) when you want the most recent submission

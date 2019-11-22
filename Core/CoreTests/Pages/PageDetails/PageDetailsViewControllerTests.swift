@@ -131,7 +131,7 @@ class PageDetailsViewControllerTests: CoreTestCase {
         let barButtonItem = UIBarButtonItem()
         viewController.kabobPressed(barButtonItem)
 
-        wait(for: [router.showExpectation], timeout: 0.1)
+        wait(for: [router.showExpectation], timeout: 1)
 
         let (shown, vc, _) = router.viewControllerCalls.last!
         XCTAssertEqual(vc, viewController)
@@ -151,7 +151,7 @@ class PageDetailsViewControllerTests: CoreTestCase {
         load()
 
         viewController.kabobPressed(UIBarButtonItem())
-        wait(for: [router.showExpectation], timeout: 0.1)
+        wait(for: [router.showExpectation], timeout: 1)
 
         let (shown, _, _) = router.viewControllerCalls.last!
         let alert = shown as! UIAlertController
@@ -167,7 +167,7 @@ class PageDetailsViewControllerTests: CoreTestCase {
         load()
 
         viewController.kabobPressed(UIBarButtonItem())
-        wait(for: [router.showExpectation], timeout: 0.1)
+        wait(for: [router.showExpectation], timeout: 1)
 
         let (shown, _, _) = router.viewControllerCalls.last!
         let alert = shown as! UIAlertController
@@ -177,7 +177,7 @@ class PageDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(action.style, .default)
 
         action.handler?(action)
-        wait(for: [router.routeExpectation], timeout: 0.1)
+        wait(for: [router.routeExpectation], timeout: 1)
         XCTAssertNotNil(router.lastRoutedTo(htmlURL.appendingPathComponent("edit")))
     }
 
@@ -190,7 +190,7 @@ class PageDetailsViewControllerTests: CoreTestCase {
         load()
 
         viewController.kabobPressed(UIBarButtonItem())
-        wait(for: [router.showExpectation], timeout: 0.1)
+        wait(for: [router.showExpectation], timeout: 1)
 
         let (shown, _, _) = router.viewControllerCalls.last!
         let alert = shown as! UIAlertController
@@ -201,7 +201,7 @@ class PageDetailsViewControllerTests: CoreTestCase {
 
         router.resetExpectations()
         action.handler?(action)
-        wait(for: [router.showExpectation], timeout: 0.1)
+        wait(for: [router.showExpectation], timeout: 1)
 
         let (confirm, _, _) = router.viewControllerCalls.last!
         XCTAssertNotEqual(confirm, shown)
@@ -218,7 +218,7 @@ class PageDetailsViewControllerTests: CoreTestCase {
         load()
 
         viewController.showDeleteConfirmation()
-        wait(for: [router.showExpectation], timeout: 0.1)
+        wait(for: [router.showExpectation], timeout: 1)
 
         let (shown, _, _) = router.viewControllerCalls.last!
         let alert = shown as! UIAlertController
@@ -232,7 +232,7 @@ class PageDetailsViewControllerTests: CoreTestCase {
         let action = alert.actions.last as! AlertAction
         action.handler?(action)
 
-        wait(for: [router.popExpectation], timeout: 0.1)
+        wait(for: [router.popExpectation], timeout: 1)
         XCTAssertNil(viewController.presenter.page)
     }
 }

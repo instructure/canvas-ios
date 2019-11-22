@@ -38,3 +38,9 @@ public class GetGroup: APIUseCase {
         self.groupID = groupID
     }
 }
+
+class GetGroups: CollectionUseCase {
+    typealias Model = Group
+    var cacheKey: String? = "get-users-self-groups"
+    let request = GetGroupsRequest(context: ContextModel.currentUser)
+}

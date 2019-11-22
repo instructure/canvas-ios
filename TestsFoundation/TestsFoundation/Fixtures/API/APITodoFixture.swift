@@ -27,7 +27,7 @@ extension APITodo {
         html_url: URL = URL(string: "https://canvas.instructure.com/api/v1/courses/1/assignments/1")!,
         needs_grading_count: UInt? = nil,
         assignment: APIAssignment = .make(),
-        context_type: ContextType = .course,
+        context_type: String = "Course",
         course_id: ID? = "1",
         group_id: ID? = nil
     ) -> APITodo {

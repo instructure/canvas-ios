@@ -122,7 +122,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         let index = IndexPath(row: 0, section: 0)
         let row = controller.tableView.cellForRow(at: index) as? FilePickerCell
         XCTAssertEqual(row?.accessibilityIdentifier, "FilePickerListItem.0")
-        XCTAssertEqual(row?.subtitleLabel.text, "7 KB")
+        XCTAssertEqual(row?.subtitleLabel.text?.contains(" KB"), true)
 
         picker.delegate?.imagePickerController?(MockImagePicker(), didFinishPickingMediaWithInfo: [
             .mediaURL: URL.temporaryDirectory.appendingPathComponent("bogus"),
