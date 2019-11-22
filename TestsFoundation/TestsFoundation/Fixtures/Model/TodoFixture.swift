@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,18 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import UIKit
-import Core
+import Foundation
+import CoreData
+@testable import Core
 
-class ToDoEmptyView: UIView {
-    @IBOutlet var emptyImageView: UIImageView?
-    @IBOutlet var mainLabel: UILabel?
-    @IBOutlet var descriptionLabel: UILabel?
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        backgroundColor = .named(.backgroundLightest)
-        mainLabel?.text = NSLocalizedString("No To-Do Items", comment: "")
-        descriptionLabel?.text = NSLocalizedString("It looks like there’s nothing to do today. Enjoy your day!", comment: "")
+extension Todo {
+    @discardableResult
+    public static func make(
+        from api: APITodo = .make(),
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> Todo {
+        let model = Todo.save(api, in: context)
+        try! context.save()
+        return model
     }
 }
