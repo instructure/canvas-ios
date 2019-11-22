@@ -70,8 +70,6 @@
 		3B604393232A975A00757B93 /* Grades.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B604392232A975A00757B93 /* Grades.swift */; };
 		3B60439A232AAC4E00757B93 /* AssignmentGroupRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B604398232AAC4E00757B93 /* AssignmentGroupRequestable.swift */; };
 		3B60439B232AAC4E00757B93 /* APIAssignmentGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B604399232AAC4E00757B93 /* APIAssignmentGroup.swift */; };
-		3B60439D232AAC9600757B93 /* GetAssignmentGroupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B60439C232AAC9600757B93 /* GetAssignmentGroupUseCase.swift */; };
-		3B60439F232AACEA00757B93 /* GetAssignmentGroupUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B60439E232AACEA00757B93 /* GetAssignmentGroupUseCaseTests.swift */; };
 		3B6043A3232AADB600757B93 /* AssignmentGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6043A2232AADB600757B93 /* AssignmentGroup.swift */; };
 		3B6043A5232AB00700757B93 /* AssignmentGroupRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6043A4232AB00700757B93 /* AssignmentGroupRequestableTests.swift */; };
 		3B6043A8232AB81900757B93 /* GradesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6043A7232AB81900757B93 /* GradesTests.swift */; };
@@ -802,8 +800,6 @@
 		3B604392232A975A00757B93 /* Grades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grades.swift; sourceTree = "<group>"; };
 		3B604398232AAC4E00757B93 /* AssignmentGroupRequestable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentGroupRequestable.swift; sourceTree = "<group>"; };
 		3B604399232AAC4E00757B93 /* APIAssignmentGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAssignmentGroup.swift; sourceTree = "<group>"; };
-		3B60439C232AAC9600757B93 /* GetAssignmentGroupUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAssignmentGroupUseCase.swift; sourceTree = "<group>"; };
-		3B60439E232AACEA00757B93 /* GetAssignmentGroupUseCaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAssignmentGroupUseCaseTests.swift; sourceTree = "<group>"; };
 		3B6043A2232AADB600757B93 /* AssignmentGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentGroup.swift; sourceTree = "<group>"; };
 		3B6043A4232AB00700757B93 /* AssignmentGroupRequestableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentGroupRequestableTests.swift; sourceTree = "<group>"; };
 		3B6043A7232AB81900757B93 /* GradesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesTests.swift; sourceTree = "<group>"; };
@@ -2771,7 +2767,6 @@
 			children = (
 				3B3FCA3023802B800011F11A /* GetActivities.swift */,
 				3BA9FF7A2332B3BA00196A06 /* GradingPeriodUseCase.swift */,
-				3B60439C232AAC9600757B93 /* GetAssignmentGroupUseCase.swift */,
 				3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */,
 				7DEB5C39224EB02A00F28404 /* CreateTextComment.swift */,
 				B150C623229733C50096D58C /* GetArc.swift */,
@@ -2894,7 +2889,6 @@
 				3B67BCB721B5E72000055324 /* CreateSubmissionTests.swift */,
 				7DEB5C3B224EBF2D00F28404 /* CreateTextCommentTests.swift */,
 				B150C63D2298E6410096D58C /* GetArcTests.swift */,
-				3B60439E232AACEA00757B93 /* GetAssignmentGroupUseCaseTests.swift */,
 				3BF5C55221879A430081A858 /* GetAssignmentsTests.swift */,
 				7D63F791215D8EEC00151E49 /* GetBrandVariablesTests.swift */,
 				3B635B36225CE59D001F353D /* GetCalendarEventsTests.swift */,
@@ -3535,7 +3529,6 @@
 				DFE1FF1D212F5E1A003F27AA /* LoginSession.swift in Sources */,
 				7D80AC2B212C77C600C40ECE /* APIOAuth.swift in Sources */,
 				7D20F61921C3166800B77E5E /* UICollectionViewExtensions.swift in Sources */,
-				3B60439D232AAC9600757B93 /* GetAssignmentGroupUseCase.swift in Sources */,
 				B1E789B121B199E40087FE4A /* LogEventListPresenter.swift in Sources */,
 				3B339B6A226FA9AF00D3283D /* ChatBubbleView.swift in Sources */,
 				3B5425FC21B074500009D069 /* UIViewControllerExtensions.swift in Sources */,
@@ -4018,7 +4011,6 @@
 				7DCF2040216D5EF1003AF358 /* APIQuizTests.swift in Sources */,
 				3B158CBA22E25E3B0039A568 /* PageViewEventViewControllerLoggingProtocolTests.swift in Sources */,
 				B1E789BD21B1D3D50087FE4A /* LogEventListPresenterTests.swift in Sources */,
-				3B60439F232AACEA00757B93 /* GetAssignmentGroupUseCaseTests.swift in Sources */,
 				9F5C93012375A613005105BB /* PageDetailsViewControllerTests.swift in Sources */,
 				B133A78A221F59A3000E393E /* ContextColorTests.swift in Sources */,
 				7D7110CC2139AB310085C2E5 /* URLComponentsExtensionsTests.swift in Sources */,

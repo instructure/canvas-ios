@@ -63,4 +63,16 @@ extension NSManagedObjectContext {
             delete(o)
         }
     }
+
+    public func isObjectDeleted(_ object: NSManagedObject) -> Bool {
+        if object.isDeleted || object.managedObjectContext == nil {
+            return true
+        }
+        do {
+            _ = try existingObject(with: object.objectID)
+            return false
+        } catch {
+            return (error as NSError).code == NSManagedObjectReferentialIntegrityError
+        }
+    }
 }

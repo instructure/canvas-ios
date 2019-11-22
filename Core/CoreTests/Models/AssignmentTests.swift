@@ -28,6 +28,14 @@ class AssignmentTests: CoreTestCase {
         Clock.reset()
     }
 
+    func testSaveMultipleCaches() {
+        let summary = Assignment.make(from: .make(id: "1"), cacheKey: "summary")
+        let apiAssignment = APIAssignment.make(id: "1")
+        let grades = Assignment.save(apiAssignment, in: databaseClient, updateSubmission: false, cacheKey: "grades")
+        XCTAssertEqual(summary.cacheKey, "summary")
+        XCTAssertEqual(grades.cacheKey, "grades")
+    }
+
     func testUpdateFromAPIItemWithAPISubmission() {
         let client = databaseClient
         let a = Assignment.make(from: .make(name: "a", submission: nil))

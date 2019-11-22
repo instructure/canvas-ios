@@ -70,7 +70,7 @@ class SyllabusActionableItemsPresenterTests: CoreTestCase {
     }
 
     func testLoadAssignments() {
-        let assignment = Assignment.make()
+        let assignment = Assignment.make(cacheKey: "syllabus")
         // the update method on the view is only called if both events fire twice
         presenter.assignments.eventHandler()
         presenter.assignments.eventHandler()
@@ -109,9 +109,9 @@ class SyllabusActionableItemsPresenterTests: CoreTestCase {
     }
 
     func testSortOrder() {
-        Assignment.make(from: .make(id: "1", name: "a", due_at: Date(fromISOString: "2017-05-15T20:00:00Z")))
-        Assignment.make(from: .make(id: "2", name: "b", due_at: Date(fromISOString: "2018-05-15T20:00:00Z")))
-        Assignment.make(from: .make(id: "3", name: "c", due_at: nil))
+        Assignment.make(from: .make(id: "1", name: "a", due_at: Date(fromISOString: "2017-05-15T20:00:00Z")), cacheKey: "syllabus")
+        Assignment.make(from: .make(id: "2", name: "b", due_at: Date(fromISOString: "2018-05-15T20:00:00Z")), cacheKey: "syllabus")
+        Assignment.make(from: .make(id: "3", name: "c", due_at: nil), cacheKey: "syllabus")
 
         CalendarEventItem.make(from: .make(id: "1", title: "cA", end_at: Date(fromISOString: "2016-05-15T20:00:00Z")))
         CalendarEventItem.make(from: .make(id: "2", title: "cB", end_at: Date(fromISOString: "2017-06-15T20:00:00Z")))

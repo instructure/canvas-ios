@@ -29,6 +29,6 @@ class RoutesTests: ParentTestCase {
 
     func testCourseGradesParent3() {
         ExperimentalFeature.allEnabled = true
-        XCTAssert(Parent.router.match(.parse("/courses/1/grades")) is GradesViewController)
+        XCTAssert(Parent.router.match(.parse("/courses/1/grades")) is CourseDetailsViewController)
     }
 }

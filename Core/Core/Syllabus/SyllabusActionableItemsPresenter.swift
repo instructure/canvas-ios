@@ -33,6 +33,7 @@ class SyllabusActionableItemsPresenter {
     var calendarEventUpdateCount = 0
     var assignmentViewModels: [SyllabusActionableItemsViewController.ViewModel] = []
     var calendarViewModels: [SyllabusActionableItemsViewController.ViewModel] = []
+    var context: Context { ContextModel(.course, id: courseID) }
 
     lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.update()
@@ -42,7 +43,7 @@ class SyllabusActionableItemsPresenter {
         self?.update()
     }
 
-    public lazy var assignments = env.subscribe(GetAssignments(courseID: self.courseID, sort: sort)) { [weak self] in
+    public lazy var assignments = env.subscribe(GetAssignments(courseID: self.courseID, sort: sort, cacheKey: "syllabus")) { [weak self] in
         self?.updateAssignments()
     }
 

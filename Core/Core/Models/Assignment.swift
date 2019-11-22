@@ -48,6 +48,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var assignmentGroupPosition: Int
     @NSManaged public var gradingPeriodID: String?
     @NSManaged public var assignmentGroup: AssignmentGroup?
+    @NSManaged public var cacheKey: String?
 
     /**
      Use this property (vs. submissions) when you want the most recent submission
@@ -100,15 +101,18 @@ public class Assignment: NSManagedObject {
     }
 
     @discardableResult
-    public static func save(_ item: APIAssignment, in context: NSManagedObjectContext, updateSubmission: Bool) -> Assignment {
-        let assignment: Assignment = context.first(where: #keyPath(Assignment.id), equals: item.id.value) ?? context.insert()
-        assignment.update(fromApiModel: item, in: context, updateSubmission: updateSubmission)
+    public static func save(_ item: APIAssignment, in context: NSManagedObjectContext, updateSubmission: Bool, cacheKey: String? = nil) -> Assignment {
+        let id = NSPredicate(format: "%K == %@", #keyPath(Assignment.id), item.id.value)
+        let key = cacheKey.flatMap { NSPredicate(format: "%K == %@", #keyPath(Assignment.cacheKey), $0) }
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [id, key].compactMap { $0 })
+        let assignment: Assignment = context.fetch(predicate).first ?? context.insert()
+        assignment.update(fromApiModel: item, in: context, updateSubmission: updateSubmission, cacheKey: cacheKey)
         return assignment
     }
 }
 
 extension Assignment {
-    func update(fromApiModel item: APIAssignment, in client: NSManagedObjectContext, updateSubmission: Bool) {
+    func update(fromApiModel item: APIAssignment, in client: NSManagedObjectContext, updateSubmission: Bool, cacheKey: String? = nil) {
         id = item.id.value
         name = item.name
         courseID = item.course_id.value
@@ -131,6 +135,7 @@ extension Assignment {
         useRubricForGrading = item.use_rubric_for_grading ?? false
         lastUpdatedAt = Date()
         assignmentGroupID = item.assignment_group_id?.value
+        self.cacheKey = cacheKey
 
         if let topic = item.discussion_topic {
             discussionTopic = DiscussionTopic.save(topic, in: client)

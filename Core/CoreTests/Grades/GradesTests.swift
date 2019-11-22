@@ -219,4 +219,17 @@ class GradesTests: CoreTestCase {
         XCTAssertNotNil(assignment?.submission)
         XCTAssertEqual(grades.enrollment?.currentScore(gradingPeriodID: "2"), 20)
     }
+
+    func testDoesNotDeleteAssignmentsInOtherCaches() {
+        let thisCache = Assignment.make(from: .make(id: "1", course_id: ID(courseID)), cacheKey: "grades")
+        let otherCache = Assignment.make(from: .make(id: "1", course_id: ID(courseID)), cacheKey: "other")
+        api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), enrollments: [.make(user_id: userID, current_grading_period_id: nil)]))
+        api.mock(GetEnrollmentsRequest(context: ContextModel(.course, id: courseID), userID: userID, gradingPeriodID: nil), value: [.make()])
+        api.mock(GetAssignmentGroupsRequest(courseID: courseID, gradingPeriodID: nil, include: [.assignments]), value: [])
+        api.mock(GetAssignmentsRequest(courseID: courseID, orderBy: .position, include: [.observed_users, .submission], perPage: 99), value: [])
+        let grades = Grades(courseID: courseID, userID: userID)
+        grades.refresh()
+        XCTAssertTrue(databaseClient.isObjectDeleted(thisCache))
+        XCTAssertFalse(databaseClient.isObjectDeleted(otherCache))
+    }
 }

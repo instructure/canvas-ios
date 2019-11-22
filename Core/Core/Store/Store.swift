@@ -105,7 +105,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
 
     public subscript(indexPath: IndexPath) -> U.Model? {
         let object = frc.object(at: indexPath)
-        if object.isDeleted {
+        if frc.managedObjectContext.isObjectDeleted(object) {
             return nil
         }
         return object

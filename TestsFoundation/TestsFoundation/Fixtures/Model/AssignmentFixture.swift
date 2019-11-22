@@ -24,10 +24,12 @@ extension Assignment {
     @discardableResult
     public static func make(
         from api: APIAssignment = .make(),
+        cacheKey: String? = nil,
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> Assignment {
         let model: Assignment = context.insert()
         model.update(fromApiModel: api, in: context, updateSubmission: true)
+        model.cacheKey = cacheKey
         try! context.save()
         return model
     }

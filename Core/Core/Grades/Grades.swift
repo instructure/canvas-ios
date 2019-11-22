@@ -192,7 +192,7 @@ public class Grades {
                     context.delete(assignmentGroups)
                 }
                 for apiAssignmentGroup in response {
-                    AssignmentGroup.save(apiAssignmentGroup, courseID: self.courseID, gradingPeriodID: gradingPeriodID, in: context)
+                    AssignmentGroup.save(apiAssignmentGroup, courseID: self.courseID, gradingPeriodID: gradingPeriodID, cacheKey: "grades", in: context)
                 }
                 do {
                     try context.save()
@@ -226,18 +226,11 @@ public class Grades {
                     return
                 }
                 if isFirstPage {
-                    var predicates = [
-                        NSPredicate(format: "%K == %@", #keyPath(Assignment.courseID), self.courseID),
-                    ]
-                    if let gradingPeriodID = gradingPeriodID {
-                        predicates.append(NSPredicate(format: "%K == %@", #keyPath(Assignment.gradingPeriodID), gradingPeriodID))
-                    }
-                    let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-                    let assignments: [Assignment] = context.fetch(predicate)
+                    let assignments: [Assignment] = context.fetch(scope: .grades(courseID: self.courseID, gradingPeriodID: gradingPeriodID))
                     context.delete(assignments)
                 }
                 for apiAssignment in response where assignmentIDs.contains(apiAssignment.id.value) {
-                    let assignment = Assignment.save(apiAssignment, in: context, updateSubmission: true)
+                    let assignment = Assignment.save(apiAssignment, in: context, updateSubmission: true, cacheKey: "grades")
                     assignment.gradingPeriodID = gradingPeriodID
                 }
                 do {
@@ -259,7 +252,10 @@ public class Grades {
 
 extension Scope {
     static func grades(courseID: String, gradingPeriodID: String? = nil) -> Scope {
-        var predicates = [NSPredicate(format: "%K == %@", #keyPath(Assignment.courseID), courseID)]
+        var predicates = [
+            NSPredicate(format: "%K == %@", #keyPath(Assignment.courseID), courseID),
+            NSPredicate(format: "%K == %@", #keyPath(Assignment.cacheKey), "grades"),
+        ]
         if let gradingPeriodID = gradingPeriodID {
             predicates.append(NSPredicate(format: "%K == %@", #keyPath(Assignment.gradingPeriodID), gradingPeriodID))
         }
