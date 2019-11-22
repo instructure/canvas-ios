@@ -40,7 +40,9 @@ workflows:
     - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
         title: Canvas iOS Secrets
     - cache-pull@2.0.1: {}
-    - carthage: {}
+    - carthage:
+        inputs:
+        - carthage_options: "--platform ios"
     - yarn:
         inputs:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
