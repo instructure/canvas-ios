@@ -44,6 +44,11 @@ class ActAsUserPresenterTests: CoreTestCase, LoginDelegate {
     }()
 
     func testDidSubmit() {
+        let lintFailure = [
+            "Lint",
+            "Failure"
+        ]
+        XCTAssertEqual("Test failure", "\(lintFailure)")
         MockURLSession.mock(GetUserRequest(userID: "1"), value: APIUser.make(), baseURL: URL(string: "https://cgnu.instructure.com")!, accessToken: presenter.env.currentSession?.accessToken)
         presenter.didSubmit(domain: "cgnu", userID: "1") { _ in }
         wait(for: [onLogin], timeout: 1)
