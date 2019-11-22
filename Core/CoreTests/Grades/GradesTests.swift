@@ -71,7 +71,7 @@ class GradesTests: CoreTestCase {
             GetAssignmentsRequest(courseID: courseID, orderBy: .position, include: [.observed_users, .submission], perPage: 99),
             value: [.make(id: "1", submission: .make(), assignment_group_id: "1")]
         )
-        api.mock(GetGradingPeriodsRequest(courseID: courseID), value: [.make(id: "1")])
+        api.mock(GetGradingPeriodsRequest(courseID: courseID), value: [.make(id: "1", title: "Period 2"), .make(id: "2", title: "Period 1")])
         let grades = Grades(courseID: courseID, userID: userID)
         grades.refresh()
         XCTAssertEqual(grades.assignments.count, 1)
@@ -82,7 +82,9 @@ class GradesTests: CoreTestCase {
         XCTAssertNotNil(assignment?.submission)
         XCTAssertEqual(grades.enrollment?.currentScore, 50)
         XCTAssertEqual(grades.enrollment?.multipleGradingPeriodsEnabled, true)
-        XCTAssertEqual(grades.gradingPeriods.count, 1)
+        XCTAssertEqual(grades.gradingPeriods.count, 2)
+        XCTAssertEqual(grades.gradingPeriods[0]?.title, "Period 1")
+        XCTAssertEqual(grades.gradingPeriods[1]?.title, "Period 2")
     }
 
     func testNoGradingPeriods() throws {

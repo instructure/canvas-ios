@@ -288,6 +288,6 @@ extension Scope {
     }
 
     static func gradingPeriods(courseID: String) -> Scope {
-        return .where(#keyPath(GradingPeriod.courseID), equals: courseID)
+        return .where(#keyPath(GradingPeriod.courseID), equals: courseID, orderBy: #keyPath(GradingPeriod.title), naturally: true)
     }
 }
