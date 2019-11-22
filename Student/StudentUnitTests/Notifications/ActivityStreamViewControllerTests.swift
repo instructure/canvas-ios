@@ -24,7 +24,7 @@ import XCTest
 class ActivityStreamViewControllerTests: StudentTestCase {
     lazy var controller = ActivityStreamViewController.create()
     let mockNow = Date(fromISOString: "2019-11-20T06:00:00Z")!
-    
+
     override func setUp() {
         super.setUp()
         env.mockStore = false
