@@ -21,12 +21,11 @@ import Foundation
 @IBDesignable
 open class AccessIconView: UIView {
     public enum State {
-        case published, unpublished
+        case published, restricted, unpublished
     }
 
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var statusIconView: UIImageView!
-    @IBOutlet weak var statusIconContainer: UIView!
 
     public var icon: UIImage? {
         didSet {
@@ -36,15 +35,20 @@ open class AccessIconView: UIView {
 
     public var state: State? {
         didSet {
+            statusIconView.isHidden = false
+            statusIconView.backgroundColor = .named(.backgroundLightest)
             switch state {
-            case .published?:
+            case .published:
                 statusIconView.image = .icon(.publish, .solid)
-                statusIconView.tintColor = UIColor.named(.backgroundSuccess).ensureContrast(against: .white)
-            case .unpublished?:
+                statusIconView.tintColor = UIColor.named(.textSuccess)
+            case .restricted:
+                statusIconView.image = .icon(.cloudLock, .line)
+                statusIconView.tintColor = UIColor.named(.textDark)
+            case .unpublished:
                 statusIconView.image = .icon(.no, .solid)
-                statusIconView.tintColor = UIColor.named(.ash)
-            case nil:
-                statusIconContainer.isHidden = true
+                statusIconView.tintColor = UIColor.named(.textDark)
+            case .none:
+                statusIconView.isHidden = true
             }
         }
     }
@@ -52,13 +56,6 @@ open class AccessIconView: UIView {
     public var published: Bool {
         get { return state == .published }
         set { state = newValue ? .published : .unpublished }
-    }
-
-    open override func awakeFromNib() {
-        super.awakeFromNib()
-
-        statusIconContainer.layer.cornerRadius = 8
-        statusIconContainer.clipsToBounds = true
     }
 
     public required init?(coder aDecoder: NSCoder) {

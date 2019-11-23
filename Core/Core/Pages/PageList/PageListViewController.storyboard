@@ -94,30 +94,30 @@
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="jsp-ue-Nlr" userLabel="Footer">
-                                    <rect key="frame" x="0.0" y="218" width="414" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="228.66666412353516" width="414" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="PageListCell" id="bvq-Al-4Yo" customClass="PageListCell" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="128" width="414" height="62"/>
+                                        <rect key="frame" x="0.0" y="128" width="414" height="72.666664123535156"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bvq-Al-4Yo" id="fSH-Ma-RNS">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="62"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="72.666664123535156"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYX-kk-GxH" customClass="AccessIconView" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="18" y="14" width="20" height="20"/>
+                                                    <rect key="frame" x="18" y="14" width="24" height="24"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="Syx-AB-VyP"/>
-                                                        <constraint firstAttribute="width" constant="20" id="gDj-pK-ho0"/>
+                                                        <constraint firstAttribute="height" constant="24" id="Syx-AB-VyP"/>
+                                                        <constraint firstAttribute="width" constant="24" id="gDj-pK-ho0"/>
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="jbt-qX-1vo">
-                                                    <rect key="frame" x="56" y="16" width="319" height="30"/>
+                                                    <rect key="frame" x="60" y="15.999999999999996" width="315" height="40.666666666666657"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Page Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hi2-wZ-pJg" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" ambiguous="YES" text="Page Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hi2-wZ-pJg" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="72.333333333333329" height="19.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <nil key="textColor"/>
@@ -127,8 +127,8 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jul 19, 2019 at 7:33 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7MS-II-pe0" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="23.333333333333336" width="151.33333333333334" height="6.6666666666666679"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Jul 19, 2019 at 7:33 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7MS-II-pe0" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="23.333333333333336" width="151.33333333333334" height="17.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -141,12 +141,12 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="hYX-kk-GxH" firstAttribute="top" secondItem="fSH-Ma-RNS" secondAttribute="top" constant="14" id="0qS-n2-yuX"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hYX-kk-GxH" secondAttribute="bottom" constant="14" id="1kR-XW-qUh"/>
+                                                <constraint firstItem="hYX-kk-GxH" firstAttribute="top" secondItem="fSH-Ma-RNS" secondAttribute="top" constant="12" id="0qS-n2-yuX"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hYX-kk-GxH" secondAttribute="bottom" constant="12" id="1kR-XW-qUh"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="jbt-qX-1vo" secondAttribute="trailing" id="2V8-QC-8qC"/>
                                                 <constraint firstAttribute="bottom" secondItem="jbt-qX-1vo" secondAttribute="bottom" constant="16" id="3cA-42-Coh"/>
-                                                <constraint firstItem="jbt-qX-1vo" firstAttribute="leading" secondItem="hYX-kk-GxH" secondAttribute="trailing" constant="18" id="Vd3-OB-Cfs"/>
-                                                <constraint firstItem="hYX-kk-GxH" firstAttribute="leading" secondItem="fSH-Ma-RNS" secondAttribute="leading" constant="18" id="bG2-Q0-9ag"/>
+                                                <constraint firstItem="jbt-qX-1vo" firstAttribute="leading" secondItem="hYX-kk-GxH" secondAttribute="trailing" constant="16" id="Vd3-OB-Cfs"/>
+                                                <constraint firstItem="hYX-kk-GxH" firstAttribute="leading" secondItem="fSH-Ma-RNS" secondAttribute="leading" constant="16" id="bG2-Q0-9ag"/>
                                                 <constraint firstItem="jbt-qX-1vo" firstAttribute="top" secondItem="fSH-Ma-RNS" secondAttribute="top" constant="16" id="yvk-gQ-JzQ"/>
                                             </constraints>
                                         </tableViewCellContentView>

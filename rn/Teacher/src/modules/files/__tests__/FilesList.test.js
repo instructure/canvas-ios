@@ -16,14 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-/* eslint-disable flowtype/require-valid-file-annotation */
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { ActionSheetIOS, Alert } from 'react-native'
 import { shallow } from 'enzyme'
 import { FilesList, mapStateToProps } from '../FilesList'
-import images from '../../../images'
-
+import instIcon from '../../../images/inst-icons'
 import * as template from '../../../__templates__'
 
 const data = [
@@ -390,7 +388,7 @@ describe('FilesList', () => {
     const row = item.find('Row')
     const image = shallow(row.prop('renderImage')())
     const icon = image.find('AccessIcon')
-    expect(icon.prop('image')).toEqual(images.document)
+    expect(icon.prop('image')).toEqual(instIcon('document', 'line'))
   })
 
   it('uses correct icon for videos', () => {

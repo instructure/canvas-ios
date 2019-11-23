@@ -60,9 +60,11 @@ const whitelist = [
   'document',
   'email',
   'empty',
+  'exit-full-screen',
   'eye',
   'folder',
   'forward',
+  'full-screen',
   'gradebook',
   'group',
   'hamburger',
@@ -128,8 +130,8 @@ for (const icon of whitelist) {
     const folder = `${assetsFolder}/${name}${type}.imageset`
     run(`curl -sSL https://raw.githubusercontent.com/instructure/instructure-ui/master/packages/ui-icons/svg/${type}/${slug}.svg > ${filepath}`)
     run(`mkdir -p ${folder}`)
-    // Icons in tab & nav bar need intrinsic size of 24x24
-    convert(filepath, `${folder}/${name}.pdf`, [ 24, 24 ])
+    // Icons in tab & nav bar need intrinsic size of 24x24 with 2px internal padding
+    convert(filepath, `${folder}/${name}.pdf`, [ 24, 24 ], 2)
     fs.writeFileSync(`${folder}/Contents.json`, `{
   "images" : [
     {

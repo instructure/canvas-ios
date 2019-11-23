@@ -1635,7 +1635,6 @@
 		492704751CF4AF7100C631C6 /* Student */ = {
 			isa = PBXGroup;
 			children = (
-				9767F2A02383C741006633CA /* Notifications */,
 				49642BCA1CF4C66200238B3F /* Student.entitlements */,
 				2CE205B720EBF68F002A6A64 /* GoogleService-Info.plist */,
 				492704821CF4AF7100C631C6 /* Info.plist */,
@@ -1655,6 +1654,7 @@
 				7DCF0EBD22F8A001000AACCE /* Extensions */,
 				7DCF0EC122F8A00D000AACCE /* Groups */,
 				7DCF0ECA22F8A01C000AACCE /* IBDesignables */,
+				9767F2A02383C741006633CA /* Notifications */,
 				9F900E7A232186F400BB44B4 /* People */,
 				7DCF0ED522F8A03D000AACCE /* Quizzes */,
 				7DCF0F0A22F8A050000AACCE /* Submissions */,

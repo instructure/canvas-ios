@@ -45,12 +45,6 @@ const images = {
     warning: require('./Warning.png'),
     invite: require('./dashboard/invite.png'),
   },
-  tabbar: {
-    courses: require('./tabbar/courses.png'),
-    inbox: require('./tabbar/inbox.png'),
-    profile: require('./tabbar/profile.png'),
-    staging: require('./tabbar/link.png'),
-  },
   assignments: {
     calendar: require('./assignments/Calendar.png'),
   },
@@ -82,16 +76,10 @@ const images = {
     trash: require('./media-comments/Trash.png'),
     send: require('./media-comments/Send.png'),
   },
-  files: {
-    folder: require('./files/folder.png'),
-    media: require('./files/media-icon.png'),
-  },
   discussions: {
     rate: require('./discussions/Like.png'),
     rated: require('./discussions/Liked.png'),
   },
-  canvasLogo: require('./canvas-logo.png'),
-  feedback: require('./feedback.png'),
   kabob: require('./kabob.png'),
   chevronUp: require('./chevron-up.png'),
   backIcon: require('./Back-icon.png'),
@@ -100,7 +88,6 @@ const images = {
   x: require('./x-icon.png'),
   clear: require('./Clear.png'),
   edit: require('./edit.png'),
-  pencilBG: require('./Pencil-BG.jpg'),
   pickerArrow: require('./picker-arrow.png'),
   profile: require('./profile.png'),
   published: require('./publish.png'),

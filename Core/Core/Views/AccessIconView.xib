@@ -11,42 +11,36 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AccessIconView" customModule="Core" customModuleProvider="target">
             <connections>
                 <outlet property="iconView" destination="MM5-n9-0HT" id="U6F-Fe-zva"/>
-                <outlet property="statusIconContainer" destination="zyS-lC-nxw" id="Bd4-30-6J6"/>
                 <outlet property="statusIconView" destination="2iM-Tb-xFX" id="K2q-0e-3Kg"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view opaque="NO" contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="MM5-n9-0HT">
-                    <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                    <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zyS-lC-nxw">
-                    <rect key="frame" x="10" y="10.5" width="16" height="16"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2iM-Tb-xFX">
-                            <rect key="frame" x="2" y="2" width="12" height="12"/>
-                        </imageView>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2iM-Tb-xFX">
+                    <rect key="frame" x="12" y="12" width="16" height="16"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="16" id="T3T-ns-1Du"/>
-                        <constraint firstAttribute="bottom" secondItem="2iM-Tb-xFX" secondAttribute="bottom" constant="2" id="Uu9-Tr-w1l"/>
-                        <constraint firstItem="2iM-Tb-xFX" firstAttribute="leading" secondItem="zyS-lC-nxw" secondAttribute="leading" constant="2" id="cHw-6l-rYV"/>
-                        <constraint firstAttribute="width" constant="16" id="ifE-oc-86E"/>
-                        <constraint firstItem="2iM-Tb-xFX" firstAttribute="top" secondItem="zyS-lC-nxw" secondAttribute="top" constant="2" id="o9c-ue-F77"/>
-                        <constraint firstAttribute="trailing" secondItem="2iM-Tb-xFX" secondAttribute="trailing" constant="2" id="vwX-HV-Pnw"/>
+                        <constraint firstAttribute="height" constant="16" id="6vt-LT-rcE"/>
+                        <constraint firstAttribute="width" constant="16" id="A3j-RA-HfF"/>
                     </constraints>
-                </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
             </subviews>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="MM5-n9-0HT" secondAttribute="trailing" id="DQi-n6-EOL"/>
-                <constraint firstItem="zyS-lC-nxw" firstAttribute="centerX" secondItem="MM5-n9-0HT" secondAttribute="trailing" constant="-2" id="Ews-bf-B5R"/>
-                <constraint firstItem="MM5-n9-0HT" firstAttribute="bottom" secondItem="zyS-lC-nxw" secondAttribute="centerY" constant="1.5" id="Jup-uP-K7t"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="MM5-n9-0HT" secondAttribute="bottom" id="PWG-QE-f8h"/>
                 <constraint firstItem="MM5-n9-0HT" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Zdy-Ai-yQH"/>
+                <constraint firstAttribute="trailing" secondItem="2iM-Tb-xFX" secondAttribute="trailing" constant="-4" id="btK-lK-MRK"/>
+                <constraint firstAttribute="bottom" secondItem="2iM-Tb-xFX" secondAttribute="bottom" constant="-4" id="h1R-qe-6zn"/>
                 <constraint firstItem="MM5-n9-0HT" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="p06-Uz-wjJ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

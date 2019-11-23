@@ -71,19 +71,17 @@ export default class AccessIcon extends React.Component<Props> {
       accessibilityLabel = i18n('Not Published')
     }
     if (!isTeacher()) { accessibilityLabel = '' }
-    let isIcon = typeof this.props.image === 'number'
+    let isIcon = !this.props.image.uri?.includes('/')
     return (
       <View style={styles.container} accessibilityLabel={accessibilityLabel}>
         <Image
           source={this.props.image}
-          style={[isIcon && { tintColor: this.props.tintColor }, { minWidth: 24, minHeight: 24 }]}
+          style={[styles.image, isIcon ? { tintColor: this.props.tintColor } : styles.thumbnail]}
           testID='access-icon-image'
           resizeMode='cover'
         />
         { showAccessIcon &&
-          <View style={styles.publishedIconContainer}>
-            <Image source={icon} style={iconStyle} testID='access-icon-icon' />
-          </View>
+          <Image source={icon} style={[styles.accessIcon, iconStyle]} testID='access-icon-icon' />
         }
       </View>
     )
@@ -93,32 +91,30 @@ export default class AccessIcon extends React.Component<Props> {
 const styles = createStyleSheet(colors => ({
   container: {
     flex: 0,
-    alignItems: 'center',
   },
-  publishedIconContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
+  image: {
+    height: 24,
+    width: 24,
+  },
+  thumbnail: {
+    borderRadius: 4,
+  },
+  accessIcon: {
     position: 'absolute',
-    bottom: -6,
-    right: -5,
+    bottom: -4,
+    right: -4,
     backgroundColor: colors.backgroundLightest,
     height: 16,
     width: 16,
     borderRadius: 8,
   },
   publishedIcon: {
-    height: 12,
-    width: 12,
     tintColor: colors.textSuccess,
   },
   unpublishedIcon: {
-    height: 12,
-    width: 12,
     tintColor: colors.textDark,
   },
   restrictedIcon: {
-    height: 14,
-    width: 14,
     tintColor: colors.textWarning,
   },
 }))

@@ -56,7 +56,6 @@ exports[`renders correctly 1`] = `
             accessibilityLabel="Published"
             style={
               Object {
-                "alignItems": "center",
                 "flex": 0,
               }
             }
@@ -70,46 +69,41 @@ exports[`renders correctly 1`] = `
               }
               style={
                 Array [
-                  false,
                   Object {
-                    "minHeight": 24,
-                    "minWidth": 24,
+                    "height": 24,
+                    "width": 24,
+                  },
+                  Object {
+                    "tintColor": "#fff",
                   },
                 ]
               }
               testID="access-icon-image"
             />
-            <View
-              style={
+            <Image
+              source={
                 Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 8,
-                  "bottom": -6,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "position": "absolute",
-                  "right": -5,
-                  "width": 16,
+                  "uri": "publishSolid",
                 }
               }
-            >
-              <Image
-                source={
+              style={
+                Array [
                   Object {
-                    "uri": "publishSolid",
-                  }
-                }
-                style={
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 8,
+                    "bottom": -4,
+                    "height": 16,
+                    "position": "absolute",
+                    "right": -4,
+                    "width": 16,
+                  },
                   Object {
-                    "height": 12,
                     "tintColor": "#00AC18",
-                    "width": 12,
-                  }
-                }
-                testID="access-icon-icon"
-              />
-            </View>
+                  },
+                ]
+              }
+              testID="access-icon-icon"
+            />
           </View>
         </View>
         <View
@@ -272,7 +266,6 @@ exports[`renders correctly assignment icon 1`] = `
             accessibilityLabel="Published"
             style={
               Object {
-                "alignItems": "center",
                 "flex": 0,
               }
             }
@@ -286,46 +279,41 @@ exports[`renders correctly assignment icon 1`] = `
               }
               style={
                 Array [
-                  false,
                   Object {
-                    "minHeight": 24,
-                    "minWidth": 24,
+                    "height": 24,
+                    "width": 24,
+                  },
+                  Object {
+                    "tintColor": undefined,
                   },
                 ]
               }
               testID="access-icon-image"
             />
-            <View
-              style={
+            <Image
+              source={
                 Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 8,
-                  "bottom": -6,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "position": "absolute",
-                  "right": -5,
-                  "width": 16,
+                  "uri": "publishSolid",
                 }
               }
-            >
-              <Image
-                source={
+              style={
+                Array [
                   Object {
-                    "uri": "publishSolid",
-                  }
-                }
-                style={
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 8,
+                    "bottom": -4,
+                    "height": 16,
+                    "position": "absolute",
+                    "right": -4,
+                    "width": 16,
+                  },
                   Object {
-                    "height": 12,
                     "tintColor": "#00AC18",
-                    "width": 12,
-                  }
-                }
-                testID="access-icon-icon"
-              />
-            </View>
+                  },
+                ]
+              }
+              testID="access-icon-icon"
+            />
           </View>
         </View>
         <View
@@ -488,7 +476,6 @@ exports[`renders correctly discussion icon 1`] = `
             accessibilityLabel="Published"
             style={
               Object {
-                "alignItems": "center",
                 "flex": 0,
               }
             }
@@ -502,46 +489,41 @@ exports[`renders correctly discussion icon 1`] = `
               }
               style={
                 Array [
-                  false,
                   Object {
-                    "minHeight": 24,
-                    "minWidth": 24,
+                    "height": 24,
+                    "width": 24,
+                  },
+                  Object {
+                    "tintColor": undefined,
                   },
                 ]
               }
               testID="access-icon-image"
             />
-            <View
-              style={
+            <Image
+              source={
                 Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 8,
-                  "bottom": -6,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "position": "absolute",
-                  "right": -5,
-                  "width": 16,
+                  "uri": "publishSolid",
                 }
               }
-            >
-              <Image
-                source={
+              style={
+                Array [
                   Object {
-                    "uri": "publishSolid",
-                  }
-                }
-                style={
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 8,
+                    "bottom": -4,
+                    "height": 16,
+                    "position": "absolute",
+                    "right": -4,
+                    "width": 16,
+                  },
                   Object {
-                    "height": 12,
                     "tintColor": "#00AC18",
-                    "width": 12,
-                  }
-                }
-                testID="access-icon-icon"
-              />
-            </View>
+                  },
+                ]
+              }
+              testID="access-icon-icon"
+            />
           </View>
         </View>
         <View
@@ -704,7 +686,6 @@ exports[`renders correctly not published icon 1`] = `
             accessibilityLabel="Not Published"
             style={
               Object {
-                "alignItems": "center",
                 "flex": 0,
               }
             }
@@ -718,46 +699,41 @@ exports[`renders correctly not published icon 1`] = `
               }
               style={
                 Array [
-                  false,
                   Object {
-                    "minHeight": 24,
-                    "minWidth": 24,
+                    "height": 24,
+                    "width": 24,
+                  },
+                  Object {
+                    "tintColor": undefined,
                   },
                 ]
               }
               testID="access-icon-image"
             />
-            <View
-              style={
+            <Image
+              source={
                 Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 8,
-                  "bottom": -6,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "position": "absolute",
-                  "right": -5,
-                  "width": 16,
+                  "uri": "noSolid",
                 }
               }
-            >
-              <Image
-                source={
+              style={
+                Array [
                   Object {
-                    "uri": "noSolid",
-                  }
-                }
-                style={
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 8,
+                    "bottom": -4,
+                    "height": 16,
+                    "position": "absolute",
+                    "right": -4,
+                    "width": 16,
+                  },
                   Object {
-                    "height": 12,
                     "tintColor": "#8B969E",
-                    "width": 12,
-                  }
-                }
-                testID="access-icon-icon"
-              />
-            </View>
+                  },
+                ]
+              }
+              testID="access-icon-icon"
+            />
           </View>
         </View>
         <View
@@ -920,7 +896,6 @@ exports[`renders correctly published icon 1`] = `
             accessibilityLabel="Published"
             style={
               Object {
-                "alignItems": "center",
                 "flex": 0,
               }
             }
@@ -934,46 +909,41 @@ exports[`renders correctly published icon 1`] = `
               }
               style={
                 Array [
-                  false,
                   Object {
-                    "minHeight": 24,
-                    "minWidth": 24,
+                    "height": 24,
+                    "width": 24,
+                  },
+                  Object {
+                    "tintColor": undefined,
                   },
                 ]
               }
               testID="access-icon-image"
             />
-            <View
-              style={
+            <Image
+              source={
                 Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 8,
-                  "bottom": -6,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "position": "absolute",
-                  "right": -5,
-                  "width": 16,
+                  "uri": "publishSolid",
                 }
               }
-            >
-              <Image
-                source={
+              style={
+                Array [
                   Object {
-                    "uri": "publishSolid",
-                  }
-                }
-                style={
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 8,
+                    "bottom": -4,
+                    "height": 16,
+                    "position": "absolute",
+                    "right": -4,
+                    "width": 16,
+                  },
                   Object {
-                    "height": 12,
                     "tintColor": "#00AC18",
-                    "width": 12,
-                  }
-                }
-                testID="access-icon-icon"
-              />
-            </View>
+                  },
+                ]
+              }
+              testID="access-icon-icon"
+            />
           </View>
         </View>
         <View
@@ -1136,7 +1106,6 @@ exports[`renders correctly quiz icon 1`] = `
             accessibilityLabel="Published"
             style={
               Object {
-                "alignItems": "center",
                 "flex": 0,
               }
             }
@@ -1150,46 +1119,41 @@ exports[`renders correctly quiz icon 1`] = `
               }
               style={
                 Array [
-                  false,
                   Object {
-                    "minHeight": 24,
-                    "minWidth": 24,
+                    "height": 24,
+                    "width": 24,
+                  },
+                  Object {
+                    "tintColor": undefined,
                   },
                 ]
               }
               testID="access-icon-image"
             />
-            <View
-              style={
+            <Image
+              source={
                 Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 8,
-                  "bottom": -6,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "position": "absolute",
-                  "right": -5,
-                  "width": 16,
+                  "uri": "publishSolid",
                 }
               }
-            >
-              <Image
-                source={
+              style={
+                Array [
                   Object {
-                    "uri": "publishSolid",
-                  }
-                }
-                style={
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 8,
+                    "bottom": -4,
+                    "height": 16,
+                    "position": "absolute",
+                    "right": -4,
+                    "width": 16,
+                  },
                   Object {
-                    "height": 12,
                     "tintColor": "#00AC18",
-                    "width": 12,
-                  }
-                }
-                testID="access-icon-icon"
-              />
-            </View>
+                  },
+                ]
+              }
+              testID="access-icon-icon"
+            />
           </View>
         </View>
         <View
@@ -1352,7 +1316,6 @@ exports[`renders correctly with closed due dates 1`] = `
             accessibilityLabel="Published"
             style={
               Object {
-                "alignItems": "center",
                 "flex": 0,
               }
             }
@@ -1366,46 +1329,41 @@ exports[`renders correctly with closed due dates 1`] = `
               }
               style={
                 Array [
-                  false,
                   Object {
-                    "minHeight": 24,
-                    "minWidth": 24,
+                    "height": 24,
+                    "width": 24,
+                  },
+                  Object {
+                    "tintColor": "#fff",
                   },
                 ]
               }
               testID="access-icon-image"
             />
-            <View
-              style={
+            <Image
+              source={
                 Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 8,
-                  "bottom": -6,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "position": "absolute",
-                  "right": -5,
-                  "width": 16,
+                  "uri": "publishSolid",
                 }
               }
-            >
-              <Image
-                source={
+              style={
+                Array [
                   Object {
-                    "uri": "publishSolid",
-                  }
-                }
-                style={
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 8,
+                    "bottom": -4,
+                    "height": 16,
+                    "position": "absolute",
+                    "right": -4,
+                    "width": 16,
+                  },
                   Object {
-                    "height": 12,
                     "tintColor": "#00AC18",
-                    "width": 12,
-                  }
-                }
-                testID="access-icon-icon"
-              />
-            </View>
+                  },
+                ]
+              }
+              testID="access-icon-icon"
+            />
           </View>
         </View>
         <View
@@ -1568,7 +1526,6 @@ exports[`renders correctly with needs_grading_count 1`] = `
             accessibilityLabel="Published"
             style={
               Object {
-                "alignItems": "center",
                 "flex": 0,
               }
             }
@@ -1582,46 +1539,41 @@ exports[`renders correctly with needs_grading_count 1`] = `
               }
               style={
                 Array [
-                  false,
                   Object {
-                    "minHeight": 24,
-                    "minWidth": 24,
+                    "height": 24,
+                    "width": 24,
+                  },
+                  Object {
+                    "tintColor": "#fff",
                   },
                 ]
               }
               testID="access-icon-image"
             />
-            <View
-              style={
+            <Image
+              source={
                 Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 8,
-                  "bottom": -6,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "position": "absolute",
-                  "right": -5,
-                  "width": 16,
+                  "uri": "publishSolid",
                 }
               }
-            >
-              <Image
-                source={
+              style={
+                Array [
                   Object {
-                    "uri": "publishSolid",
-                  }
-                }
-                style={
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 8,
+                    "bottom": -4,
+                    "height": 16,
+                    "position": "absolute",
+                    "right": -4,
+                    "width": 16,
+                  },
                   Object {
-                    "height": 12,
                     "tintColor": "#00AC18",
-                    "width": 12,
-                  }
-                }
-                testID="access-icon-icon"
-              />
-            </View>
+                  },
+                ]
+              }
+              testID="access-icon-icon"
+            />
           </View>
         </View>
         <View
@@ -1812,7 +1764,6 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
             accessibilityLabel="Published"
             style={
               Object {
-                "alignItems": "center",
                 "flex": 0,
               }
             }
@@ -1826,46 +1777,41 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
               }
               style={
                 Array [
-                  false,
                   Object {
-                    "minHeight": 24,
-                    "minWidth": 24,
+                    "height": 24,
+                    "width": 24,
+                  },
+                  Object {
+                    "tintColor": "#fff",
                   },
                 ]
               }
               testID="access-icon-image"
             />
-            <View
-              style={
+            <Image
+              source={
                 Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 8,
-                  "bottom": -6,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "position": "absolute",
-                  "right": -5,
-                  "width": 16,
+                  "uri": "publishSolid",
                 }
               }
-            >
-              <Image
-                source={
+              style={
+                Array [
                   Object {
-                    "uri": "publishSolid",
-                  }
-                }
-                style={
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 8,
+                    "bottom": -4,
+                    "height": 16,
+                    "position": "absolute",
+                    "right": -4,
+                    "width": 16,
+                  },
                   Object {
-                    "height": 12,
                     "tintColor": "#00AC18",
-                    "width": 12,
-                  }
-                }
-                testID="access-icon-icon"
-              />
-            </View>
+                  },
+                ]
+              }
+              testID="access-icon-icon"
+            />
           </View>
         </View>
         <View
@@ -2028,7 +1974,6 @@ exports[`renders correctly with open due dates 1`] = `
             accessibilityLabel="Published"
             style={
               Object {
-                "alignItems": "center",
                 "flex": 0,
               }
             }
@@ -2042,46 +1987,41 @@ exports[`renders correctly with open due dates 1`] = `
               }
               style={
                 Array [
-                  false,
                   Object {
-                    "minHeight": 24,
-                    "minWidth": 24,
+                    "height": 24,
+                    "width": 24,
+                  },
+                  Object {
+                    "tintColor": "#fff",
                   },
                 ]
               }
               testID="access-icon-image"
             />
-            <View
-              style={
+            <Image
+              source={
                 Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 8,
-                  "bottom": -6,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "position": "absolute",
-                  "right": -5,
-                  "width": 16,
+                  "uri": "publishSolid",
                 }
               }
-            >
-              <Image
-                source={
+              style={
+                Array [
                   Object {
-                    "uri": "publishSolid",
-                  }
-                }
-                style={
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 8,
+                    "bottom": -4,
+                    "height": 16,
+                    "position": "absolute",
+                    "right": -4,
+                    "width": 16,
+                  },
                   Object {
-                    "height": 12,
                     "tintColor": "#00AC18",
-                    "width": 12,
-                  }
-                }
-                testID="access-icon-icon"
-              />
-            </View>
+                  },
+                ]
+              }
+              testID="access-icon-icon"
+            />
           </View>
         </View>
         <View
@@ -2244,7 +2184,6 @@ exports[`renders correctly with selected props 1`] = `
             accessibilityLabel="Published"
             style={
               Object {
-                "alignItems": "center",
                 "flex": 0,
               }
             }
@@ -2258,46 +2197,41 @@ exports[`renders correctly with selected props 1`] = `
               }
               style={
                 Array [
-                  false,
                   Object {
-                    "minHeight": 24,
-                    "minWidth": 24,
+                    "height": 24,
+                    "width": 24,
+                  },
+                  Object {
+                    "tintColor": "#fff",
                   },
                 ]
               }
               testID="access-icon-image"
             />
-            <View
-              style={
+            <Image
+              source={
                 Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 8,
-                  "bottom": -6,
-                  "height": 16,
-                  "justifyContent": "center",
-                  "position": "absolute",
-                  "right": -5,
-                  "width": 16,
+                  "uri": "publishSolid",
                 }
               }
-            >
-              <Image
-                source={
+              style={
+                Array [
                   Object {
-                    "uri": "publishSolid",
-                  }
-                }
-                style={
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 8,
+                    "bottom": -4,
+                    "height": 16,
+                    "position": "absolute",
+                    "right": -4,
+                    "width": 16,
+                  },
                   Object {
-                    "height": 12,
                     "tintColor": "#00AC18",
-                    "width": 12,
-                  }
-                }
-                testID="access-icon-icon"
-              />
-            </View>
+                  },
+                ]
+              }
+              testID="access-icon-icon"
+            />
           </View>
         </View>
         <View

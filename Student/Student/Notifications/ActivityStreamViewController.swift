@@ -86,7 +86,7 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
         let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView?.refreshControl = refresh
-        tableView.tableFooterView = UIView()
+        tableView.separatorColor = .named(.borderMedium)
         tableView.backgroundColor = .named(.backgroundLightest)
     }
 

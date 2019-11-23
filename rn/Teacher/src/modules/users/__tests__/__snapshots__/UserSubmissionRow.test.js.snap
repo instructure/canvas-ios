@@ -51,7 +51,6 @@ exports[`UserSubmissionRow renders 1`] = `
         accessibilityLabel="Published"
         style={
           Object {
-            "alignItems": "center",
             "flex": 0,
           }
         }
@@ -65,46 +64,41 @@ exports[`UserSubmissionRow renders 1`] = `
           }
           style={
             Array [
-              false,
               Object {
-                "minHeight": 24,
-                "minWidth": 24,
+                "height": 24,
+                "width": 24,
+              },
+              Object {
+                "tintColor": "#fff",
               },
             ]
           }
           testID="access-icon-image"
         />
-        <View
-          style={
+        <Image
+          source={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 8,
-              "bottom": -6,
-              "height": 16,
-              "justifyContent": "center",
-              "position": "absolute",
-              "right": -5,
-              "width": 16,
+              "uri": "publishSolid",
             }
           }
-        >
-          <Image
-            source={
+          style={
+            Array [
               Object {
-                "uri": "publishSolid",
-              }
-            }
-            style={
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 8,
+                "bottom": -4,
+                "height": 16,
+                "position": "absolute",
+                "right": -4,
+                "width": 16,
+              },
               Object {
-                "height": 12,
                 "tintColor": "#00AC18",
-                "width": 12,
-              }
-            }
-            testID="access-icon-icon"
-          />
-        </View>
+              },
+            ]
+          }
+          testID="access-icon-icon"
+        />
       </View>
     </View>
     <View
@@ -305,7 +299,6 @@ exports[`UserSubmissionRow renders complete 1`] = `
         accessibilityLabel="Published"
         style={
           Object {
-            "alignItems": "center",
             "flex": 0,
           }
         }
@@ -319,46 +312,41 @@ exports[`UserSubmissionRow renders complete 1`] = `
           }
           style={
             Array [
-              false,
               Object {
-                "minHeight": 24,
-                "minWidth": 24,
+                "height": 24,
+                "width": 24,
+              },
+              Object {
+                "tintColor": "#fff",
               },
             ]
           }
           testID="access-icon-image"
         />
-        <View
-          style={
+        <Image
+          source={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 8,
-              "bottom": -6,
-              "height": 16,
-              "justifyContent": "center",
-              "position": "absolute",
-              "right": -5,
-              "width": 16,
+              "uri": "publishSolid",
             }
           }
-        >
-          <Image
-            source={
+          style={
+            Array [
               Object {
-                "uri": "publishSolid",
-              }
-            }
-            style={
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 8,
+                "bottom": -4,
+                "height": 16,
+                "position": "absolute",
+                "right": -4,
+                "width": 16,
+              },
               Object {
-                "height": 12,
                 "tintColor": "#00AC18",
-                "width": 12,
-              }
-            }
-            testID="access-icon-icon"
-          />
-        </View>
+              },
+            ]
+          }
+          testID="access-icon-icon"
+        />
       </View>
     </View>
     <View
@@ -559,7 +547,6 @@ exports[`UserSubmissionRow renders discussion 1`] = `
         accessibilityLabel="Published"
         style={
           Object {
-            "alignItems": "center",
             "flex": 0,
           }
         }
@@ -573,46 +560,41 @@ exports[`UserSubmissionRow renders discussion 1`] = `
           }
           style={
             Array [
-              false,
               Object {
-                "minHeight": 24,
-                "minWidth": 24,
+                "height": 24,
+                "width": 24,
+              },
+              Object {
+                "tintColor": "#fff",
               },
             ]
           }
           testID="access-icon-image"
         />
-        <View
-          style={
+        <Image
+          source={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 8,
-              "bottom": -6,
-              "height": 16,
-              "justifyContent": "center",
-              "position": "absolute",
-              "right": -5,
-              "width": 16,
+              "uri": "publishSolid",
             }
           }
-        >
-          <Image
-            source={
+          style={
+            Array [
               Object {
-                "uri": "publishSolid",
-              }
-            }
-            style={
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 8,
+                "bottom": -4,
+                "height": 16,
+                "position": "absolute",
+                "right": -4,
+                "width": 16,
+              },
               Object {
-                "height": 12,
                 "tintColor": "#00AC18",
-                "width": 12,
-              }
-            }
-            testID="access-icon-icon"
-          />
-        </View>
+              },
+            ]
+          }
+          testID="access-icon-icon"
+        />
       </View>
     </View>
     <View
@@ -813,7 +795,6 @@ exports[`UserSubmissionRow renders excused 1`] = `
         accessibilityLabel="Published"
         style={
           Object {
-            "alignItems": "center",
             "flex": 0,
           }
         }
@@ -827,46 +808,41 @@ exports[`UserSubmissionRow renders excused 1`] = `
           }
           style={
             Array [
-              false,
               Object {
-                "minHeight": 24,
-                "minWidth": 24,
+                "height": 24,
+                "width": 24,
+              },
+              Object {
+                "tintColor": "#fff",
               },
             ]
           }
           testID="access-icon-image"
         />
-        <View
-          style={
+        <Image
+          source={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 8,
-              "bottom": -6,
-              "height": 16,
-              "justifyContent": "center",
-              "position": "absolute",
-              "right": -5,
-              "width": 16,
+              "uri": "publishSolid",
             }
           }
-        >
-          <Image
-            source={
+          style={
+            Array [
               Object {
-                "uri": "publishSolid",
-              }
-            }
-            style={
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 8,
+                "bottom": -4,
+                "height": 16,
+                "position": "absolute",
+                "right": -4,
+                "width": 16,
+              },
               Object {
-                "height": 12,
                 "tintColor": "#00AC18",
-                "width": 12,
-              }
-            }
-            testID="access-icon-icon"
-          />
-        </View>
+              },
+            ]
+          }
+          testID="access-icon-icon"
+        />
       </View>
     </View>
     <View
@@ -983,7 +959,6 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
         accessibilityLabel="Published"
         style={
           Object {
-            "alignItems": "center",
             "flex": 0,
           }
         }
@@ -997,46 +972,41 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
           }
           style={
             Array [
-              false,
               Object {
-                "minHeight": 24,
-                "minWidth": 24,
+                "height": 24,
+                "width": 24,
+              },
+              Object {
+                "tintColor": "#fff",
               },
             ]
           }
           testID="access-icon-image"
         />
-        <View
-          style={
+        <Image
+          source={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 8,
-              "bottom": -6,
-              "height": 16,
-              "justifyContent": "center",
-              "position": "absolute",
-              "right": -5,
-              "width": 16,
+              "uri": "publishSolid",
             }
           }
-        >
-          <Image
-            source={
+          style={
+            Array [
               Object {
-                "uri": "publishSolid",
-              }
-            }
-            style={
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 8,
+                "bottom": -4,
+                "height": 16,
+                "position": "absolute",
+                "right": -4,
+                "width": 16,
+              },
               Object {
-                "height": 12,
                 "tintColor": "#00AC18",
-                "width": 12,
-              }
-            }
-            testID="access-icon-icon"
-          />
-        </View>
+              },
+            ]
+          }
+          testID="access-icon-icon"
+        />
       </View>
     </View>
     <View
@@ -1237,7 +1207,6 @@ exports[`UserSubmissionRow renders missing submittion types 1`] = `
         accessibilityLabel="Published"
         style={
           Object {
-            "alignItems": "center",
             "flex": 0,
           }
         }
@@ -1251,46 +1220,41 @@ exports[`UserSubmissionRow renders missing submittion types 1`] = `
           }
           style={
             Array [
-              false,
               Object {
-                "minHeight": 24,
-                "minWidth": 24,
+                "height": 24,
+                "width": 24,
+              },
+              Object {
+                "tintColor": "#fff",
               },
             ]
           }
           testID="access-icon-image"
         />
-        <View
-          style={
+        <Image
+          source={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 8,
-              "bottom": -6,
-              "height": 16,
-              "justifyContent": "center",
-              "position": "absolute",
-              "right": -5,
-              "width": 16,
+              "uri": "publishSolid",
             }
           }
-        >
-          <Image
-            source={
+          style={
+            Array [
               Object {
-                "uri": "publishSolid",
-              }
-            }
-            style={
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 8,
+                "bottom": -4,
+                "height": 16,
+                "position": "absolute",
+                "right": -4,
+                "width": 16,
+              },
               Object {
-                "height": 12,
                 "tintColor": "#00AC18",
-                "width": 12,
-              }
-            }
-            testID="access-icon-icon"
-          />
-        </View>
+              },
+            ]
+          }
+          testID="access-icon-icon"
+        />
       </View>
     </View>
     <View
@@ -1491,7 +1455,6 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
         accessibilityLabel="Published"
         style={
           Object {
-            "alignItems": "center",
             "flex": 0,
           }
         }
@@ -1505,46 +1468,41 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
           }
           style={
             Array [
-              false,
               Object {
-                "minHeight": 24,
-                "minWidth": 24,
+                "height": 24,
+                "width": 24,
+              },
+              Object {
+                "tintColor": "#fff",
               },
             ]
           }
           testID="access-icon-image"
         />
-        <View
-          style={
+        <Image
+          source={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 8,
-              "bottom": -6,
-              "height": 16,
-              "justifyContent": "center",
-              "position": "absolute",
-              "right": -5,
-              "width": 16,
+              "uri": "publishSolid",
             }
           }
-        >
-          <Image
-            source={
+          style={
+            Array [
               Object {
-                "uri": "publishSolid",
-              }
-            }
-            style={
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 8,
+                "bottom": -4,
+                "height": 16,
+                "position": "absolute",
+                "right": -4,
+                "width": 16,
+              },
               Object {
-                "height": 12,
                 "tintColor": "#00AC18",
-                "width": 12,
-              }
-            }
-            testID="access-icon-icon"
-          />
-        </View>
+              },
+            ]
+          }
+          testID="access-icon-icon"
+        />
       </View>
     </View>
     <View
@@ -1702,7 +1660,6 @@ exports[`UserSubmissionRow renders online quiz 1`] = `
         accessibilityLabel="Published"
         style={
           Object {
-            "alignItems": "center",
             "flex": 0,
           }
         }
@@ -1716,46 +1673,41 @@ exports[`UserSubmissionRow renders online quiz 1`] = `
           }
           style={
             Array [
-              false,
               Object {
-                "minHeight": 24,
-                "minWidth": 24,
+                "height": 24,
+                "width": 24,
+              },
+              Object {
+                "tintColor": "#fff",
               },
             ]
           }
           testID="access-icon-image"
         />
-        <View
-          style={
+        <Image
+          source={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 8,
-              "bottom": -6,
-              "height": 16,
-              "justifyContent": "center",
-              "position": "absolute",
-              "right": -5,
-              "width": 16,
+              "uri": "publishSolid",
             }
           }
-        >
-          <Image
-            source={
+          style={
+            Array [
               Object {
-                "uri": "publishSolid",
-              }
-            }
-            style={
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 8,
+                "bottom": -4,
+                "height": 16,
+                "position": "absolute",
+                "right": -4,
+                "width": 16,
+              },
               Object {
-                "height": 12,
                 "tintColor": "#00AC18",
-                "width": 12,
-              }
-            }
-            testID="access-icon-icon"
-          />
-        </View>
+              },
+            ]
+          }
+          testID="access-icon-icon"
+        />
       </View>
     </View>
     <View
@@ -1956,7 +1908,6 @@ exports[`UserSubmissionRow renders published 1`] = `
         accessibilityLabel="Published"
         style={
           Object {
-            "alignItems": "center",
             "flex": 0,
           }
         }
@@ -1970,46 +1921,41 @@ exports[`UserSubmissionRow renders published 1`] = `
           }
           style={
             Array [
-              false,
               Object {
-                "minHeight": 24,
-                "minWidth": 24,
+                "height": 24,
+                "width": 24,
+              },
+              Object {
+                "tintColor": "#fff",
               },
             ]
           }
           testID="access-icon-image"
         />
-        <View
-          style={
+        <Image
+          source={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 8,
-              "bottom": -6,
-              "height": 16,
-              "justifyContent": "center",
-              "position": "absolute",
-              "right": -5,
-              "width": 16,
+              "uri": "publishSolid",
             }
           }
-        >
-          <Image
-            source={
+          style={
+            Array [
               Object {
-                "uri": "publishSolid",
-              }
-            }
-            style={
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 8,
+                "bottom": -4,
+                "height": 16,
+                "position": "absolute",
+                "right": -4,
+                "width": 16,
+              },
               Object {
-                "height": 12,
                 "tintColor": "#00AC18",
-                "width": 12,
-              }
-            }
-            testID="access-icon-icon"
-          />
-        </View>
+              },
+            ]
+          }
+          testID="access-icon-icon"
+        />
       </View>
     </View>
     <View
