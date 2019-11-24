@@ -486,7 +486,11 @@
    Title for Discussions view controller */
 "Discussions" = "Discussies";
 
-/* Dismiss an alert dialog */
+/* Dismiss an error button
+   dismiss button
+   Dismiss button for an error dialoue
+   Dismiss error alert button
+   dismiss the alert button */
 "Dismiss" = "Afwijzen";
 
 /* Alert title asking if you want to masquerade */
@@ -501,7 +505,7 @@
 /* Button to cancel deleting folders */
 "Don't delete" = "Niet verwijderen";
 
-/* Button title to mark a to do item as done */
+/* No comment provided by engineer. */
 "Done" = "Gereed";
 
 /* Shown when we cancel a file download */
@@ -530,9 +534,6 @@
 
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Inleverdatum:";
-
-/* Due date label for to do items, first placeholder is date, second is time */
-"Due: %@ at %@" = "Inleverdatum: %1$@ om %2$@";
 
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "Inleverdatum: %1$@ om %2$@";
@@ -737,9 +738,6 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "Er zijn problemen";
-
-/* No comment provided by engineer. */
-"It looks like there’s nothing to do today. Enjoy your day!" = "Het ziet ernaar uit dat er vandaag niks te doen is. Een fijne dag gewenst!";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Het is leeg, wat doe je hier nog .";
@@ -949,9 +947,6 @@
 
 /* No comment provided by engineer. */
 "No Thanks" = "Nee, bedankt";
-
-/* No comment provided by engineer. */
-"No To-Do Items" = "Geen to-do-items";
 
 /* error message for a 401 response. */
 "Not Authorized" = "Geen toestemming";

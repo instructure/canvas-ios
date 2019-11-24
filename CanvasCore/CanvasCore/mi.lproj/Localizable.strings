@@ -99,9 +99,6 @@
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Haere tonu Quiz";
 
-/* Failure reason for why it couldn't associate a tab with a context */
-"Could not parse context id from URL" = "Kāore i taea te poroporo horopaki id i URL";
-
 /* Header label for a screen that customizes a course */
 "Customize" = "Whakaritea";
 
@@ -482,9 +479,6 @@
 /* Description for alert that shows when the quiz hits the due date */
 "The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Kei te tika te quiz i roto i te 1 meneti.. E hiahia ana koe ki te tuku ināianei ki a mau ai koe ki te taima tika, ara haere tonu ki te mahi i te quiz me te tūreiti pea koe?";
 
-/* Error message for interrupted requests marking a to do as done */
-"The request to mark a to do as done was interrupted" = "Te tono ki te tohu i te ki te mahi anō nei i haukotia";
-
 /* bad url message */
 "The text you entered is not a valid URL" = "Kaore te kuputuhiti whakaurutia e koe ki te URLi whaimana";
 
@@ -493,9 +487,6 @@
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "He  raruraru i te wā e whakamāori i te whakautu mai i te tūmau.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the (kitModelName) database file." = "He raruraru i te wā e uta ana i te (kitModelName) kōnaeōnae pātengi raraunga.";
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "He raruraru i te wā e uta ana i te AssignmentKit kōnae pātengi rarunga.";
