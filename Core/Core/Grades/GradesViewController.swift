@@ -108,7 +108,7 @@ public class GradesViewController: UIViewController {
     func updateGradingPeriods() {
         gradingPeriodView.isHidden = grades.enrollment?.multipleGradingPeriodsEnabled != true
         gradingPeriodLabel.text = grades.gradingPeriod?.title ?? NSLocalizedString("All Grading Periods", bundle: .core, comment: "")
-        if grades.gradingPeriod == nil {
+        if grades.gradingPeriod?.id == nil {
             filterButton.setTitle(NSLocalizedString("Filter", bundle: .core, comment: ""), for: .normal)
         } else {
             filterButton.setTitle(NSLocalizedString("Clear filter", bundle: .core, comment: ""), for: .normal)

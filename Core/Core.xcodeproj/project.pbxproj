@@ -537,6 +537,7 @@
 		B15CA279221DE9660014FB02 /* APIModuleRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA278221DE9660014FB02 /* APIModuleRequestable.swift */; };
 		B15CA27E221DFA450014FB02 /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA27D221DFA450014FB02 /* Module.swift */; };
 		B15CA284221E00870014FB02 /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA283221E00870014FB02 /* ModuleTests.swift */; };
+		B15E4B87238C4DC2002119CF /* Syllabus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15E4B86238C4DC2002119CF /* Syllabus.swift */; };
 		B164DC1F22DE2AB30037FA86 /* APIAccountResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164DC1E22DE2AB30037FA86 /* APIAccountResultTests.swift */; };
 		B16F036E215AE6210011E952 /* GetAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BE5215A81350071B41E /* GetAssignment.swift */; };
 		B17855B1226ABDB100B30C80 /* UploadMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17855B0226ABDB100B30C80 /* UploadMedia.swift */; };
@@ -1422,6 +1423,7 @@
 		B15CA278221DE9660014FB02 /* APIModuleRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModuleRequestable.swift; sourceTree = "<group>"; };
 		B15CA27D221DFA450014FB02 /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		B15CA283221E00870014FB02 /* ModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTests.swift; sourceTree = "<group>"; };
+		B15E4B86238C4DC2002119CF /* Syllabus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syllabus.swift; sourceTree = "<group>"; };
 		B164DC1E22DE2AB30037FA86 /* APIAccountResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountResultTests.swift; sourceTree = "<group>"; };
 		B17855B0226ABDB100B30C80 /* UploadMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMedia.swift; sourceTree = "<group>"; };
 		B17855B2226ABDDD00B30C80 /* UploadMediaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMediaTests.swift; sourceTree = "<group>"; };
@@ -2019,6 +2021,7 @@
 				7DA5C48722385435003CDB4C /* SubmissionComment.swift */,
 				7DCF1E9F216BB731003AF358 /* SubmissionType.swift */,
 				7DCF1EB5216BC861003AF358 /* SubmissionWorkflowState.swift */,
+				B15E4B86238C4DC2002119CF /* Syllabus.swift */,
 				7DF4FFD62171347B007E5F81 /* Tab.swift */,
 				7DF4FFD4217133AF007E5F81 /* TabType.swift */,
 				7DCF1EB9216BC8C5003AF358 /* TabVisibility.swift */,
@@ -3521,6 +3524,7 @@
 				9FAE410121B6C56D00FE7F58 /* APIExternalTool.swift in Sources */,
 				78151DCB21AE75D400692862 /* APIDiscussion.swift in Sources */,
 				7D92D653224A8D9B0015B368 /* APIMediaCommentRequestable.swift in Sources */,
+				B15E4B87238C4DC2002119CF /* Syllabus.swift in Sources */,
 				3BE2ADCB21B704F1008D91AB /* DynamicTextField.swift in Sources */,
 				7DE6A7062319973700A5B796 /* APIErrorReport.swift in Sources */,
 				B1C783ED2241E39B00DD89A9 /* UUID.swift in Sources */,

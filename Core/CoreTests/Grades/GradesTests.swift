@@ -77,7 +77,6 @@ class GradesTests: CoreTestCase {
         XCTAssertEqual(grades.assignments.count, 1)
         let assignment = grades.assignments.first
         XCTAssertEqual(assignment?.id, "1")
-        XCTAssertEqual(assignment?.gradingPeriodID, "1")
         XCTAssertEqual(assignment?.assignmentGroup?.id, "1")
         XCTAssertNotNil(assignment?.submission)
         XCTAssertEqual(grades.enrollment?.currentScore, 50)
@@ -135,7 +134,6 @@ class GradesTests: CoreTestCase {
         XCTAssertEqual(grades.assignments.count, 1)
         let assignment = grades.assignments.first
         XCTAssertEqual(assignment?.id, "1")
-        XCTAssertEqual(assignment?.gradingPeriodID, nil)
         XCTAssertEqual(assignment?.assignmentGroup?.id, "1")
         XCTAssertEqual(grades.enrollment?.currentScore, 100)
     }
@@ -214,22 +212,8 @@ class GradesTests: CoreTestCase {
         XCTAssertEqual(grades.assignments.count, 1)
         let assignment = grades.assignments.first
         XCTAssertEqual(assignment?.id, "2")
-        XCTAssertEqual(assignment?.gradingPeriodID, "2")
         XCTAssertEqual(assignment?.assignmentGroup?.id, "2")
         XCTAssertNotNil(assignment?.submission)
         XCTAssertEqual(grades.enrollment?.currentScore(gradingPeriodID: "2"), 20)
-    }
-
-    func testDoesNotDeleteAssignmentsInOtherCaches() {
-        let thisCache = Assignment.make(from: .make(id: "1", course_id: ID(courseID)), cacheKey: "grades")
-        let otherCache = Assignment.make(from: .make(id: "1", course_id: ID(courseID)), cacheKey: "other")
-        api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), enrollments: [.make(user_id: userID, current_grading_period_id: nil)]))
-        api.mock(GetEnrollmentsRequest(context: ContextModel(.course, id: courseID), userID: userID, gradingPeriodID: nil), value: [.make()])
-        api.mock(GetAssignmentGroupsRequest(courseID: courseID, gradingPeriodID: nil, include: [.assignments]), value: [])
-        api.mock(GetAssignmentsRequest(courseID: courseID, orderBy: .position, include: [.observed_users, .submission], perPage: 99), value: [])
-        let grades = Grades(courseID: courseID, userID: userID)
-        grades.refresh()
-        XCTAssertTrue(databaseClient.isObjectDeleted(thisCache))
-        XCTAssertFalse(databaseClient.isObjectDeleted(otherCache))
     }
 }

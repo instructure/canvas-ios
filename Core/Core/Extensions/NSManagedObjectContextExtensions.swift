@@ -29,12 +29,12 @@ extension NSManagedObjectContext {
         }
     }
 
-    public func first<T>(where key: String, equals value: CVarArg) -> T? {
+    public func first<T>(where key: String, equals value: CVarArg?) -> T? {
         return all(where: key, equals: value).first
     }
 
-    public func all<T>(where key: String, equals value: CVarArg) -> [T] {
-        let predicate = NSPredicate(format: "%K == %@", key, value)
+    public func all<T>(where key: String, equals value: CVarArg?) -> [T] {
+        let predicate = NSPredicate(key: key, equals: value)
         return fetch(predicate)
     }
 

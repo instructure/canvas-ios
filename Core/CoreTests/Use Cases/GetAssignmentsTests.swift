@@ -171,21 +171,6 @@ class GetAssignmentsTests: CoreTestCase {
         XCTAssertEqual(submissions.count, 1)
     }
 
-    func testScopesToCacheKey() {
-        let apiAssignment = APIAssignment.make(id: "33", course_id: "1")
-        let getAssignments = GetAssignments(courseID: "1")
-        getAssignments.write(response: [apiAssignment], urlResponse: nil, to: databaseClient)
-        let thisCourse = Assignment.make(from: .make(id: "1", course_id: "1"), cacheKey: getAssignments.cacheKey)
-        let otherCourse = Assignment.make(from: .make(id: "2", course_id: "2"))
-        let otherCache = Assignment.make(from: .make(id: "1", course_id: "1"), cacheKey: "other")
-        let predicate = getAssignments.scope.predicate
-        XCTAssertTrue(predicate.evaluate(with: thisCourse))
-        XCTAssertFalse(predicate.evaluate(with: otherCourse))
-        XCTAssertFalse(predicate.evaluate(with: otherCache))
-        let newAssignment: Assignment = databaseClient.first(where: #keyPath(Assignment.id), equals: "33")!
-        XCTAssertEqual(newAssignment.cacheKey, getAssignments.key)
-    }
-
     func testGetAssignmentsList() {
         let apiAssignment = APIAssignment.make(
             id: "2",
@@ -392,10 +377,5 @@ class GetAssignmentsTests: CoreTestCase {
         XCTAssertEqual(assignment?.rubric?.first?.ratings?.first?.id, "2")
         XCTAssertEqual(assignment?.rubric?.first?.ratings?.first?.assignmentID, "2")
         XCTAssertEqual(assignment?.rubric?.first?.ratings?.count, 1)
-    }
-
-    func testCacheKey() {
-        XCTAssertEqual(GetAssignments(courseID: "1").cacheKey, "courses/1/assignments")
-        XCTAssertEqual(GetAssignments(courseID: "1", cacheKey: "foo").cacheKey, "foo")
     }
 }

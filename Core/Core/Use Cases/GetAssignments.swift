@@ -29,15 +29,17 @@ public class GetAssignments: CollectionUseCase {
     public let sort: Sort
     let include: [GetAssignmentsRequest.Include]
     let perPage: Int?
-    let key: String
-    public var cacheKey: String? { key }
+    public var cacheKey: String? {
+        return "\(ContextModel(.course, id: courseID).pathComponent)/assignments"
+    }
 
-    public init(courseID: String, sort: Sort = .position, include: [GetAssignmentsRequest.Include] = [], perPage: Int? = nil, cacheKey: String? = nil) {
+    public var clearsBeforeWrite: Bool { true }
+
+    public init(courseID: String, sort: Sort = .position, include: [GetAssignmentsRequest.Include] = [], perPage: Int? = nil) {
         self.courseID = courseID
         self.sort = sort
         self.include = include
         self.perPage = perPage
-        self.key = cacheKey ?? "\(ContextModel(.course, id: courseID).pathComponent)/assignments"
     }
 
     public var request: GetAssignmentsRequest {
@@ -64,9 +66,7 @@ public class GetAssignments: CollectionUseCase {
         case .name:
             order = [NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true)]
         }
-        let course = NSPredicate(format: "%K == %@", #keyPath(Assignment.courseID), courseID)
-        let cacheKey = NSPredicate(format: "%K == %@", #keyPath(Assignment.cacheKey), key)
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [course, cacheKey])
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.courseID), courseID)
         return Scope(predicate: predicate, order: order)
     }
 
@@ -76,7 +76,7 @@ public class GetAssignments: CollectionUseCase {
         }
 
         for item in response {
-            Assignment.save(item, in: client, updateSubmission: include.contains(.submission), cacheKey: key)
+            Assignment.save(item, in: client, updateSubmission: include.contains(.submission))
         }
     }
 }
@@ -98,5 +98,37 @@ public class GetSubmittableAssignments: GetAssignments {
         let a = NSSortDescriptor(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true)
         let b = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare))
         return Scope(predicate: predicate, order: [ a, b ])
+    }
+}
+
+public class GetSyllabusAssignments: GetAssignments {
+    public override var clearsBeforeWrite: Bool { false }
+
+    public override var scope: Scope {
+        let course = NSPredicate(key: #keyPath(Assignment.courseID), equals: courseID)
+        let syllabus = NSPredicate(key: #keyPath(Assignment.syllabus.courseID), equals: courseID)
+        let dueAt = NSSortDescriptor(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true)
+        let name = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare))
+        return Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [course, syllabus]), order: [dueAt, name])
+    }
+
+    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping (Array<APIAssignment>?, URLResponse?, Error?) -> Void) {
+        environment.database.performBackgroundTask { context in
+            let syllabus: Syllabus = context.first(where: #keyPath(Syllabus.courseID), equals: self.courseID) ?? context.insert()
+            syllabus.courseID = self.courseID
+            syllabus.assignments = []
+            try? context.save()
+            super.makeRequest(environment: environment, completionHandler: completionHandler)
+        }
+    }
+
+    public override func write(response: [APIAssignment]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let response = response else { return }
+        let syllabus: Syllabus = client.first(where: #keyPath(Syllabus.courseID), equals: courseID) ?? client.insert()
+        syllabus.courseID = courseID
+        for item in response {
+            let assignment = Assignment.save(item, in: client, updateSubmission: include.contains(.submission))
+            assignment.syllabus = syllabus
+        }
     }
 }

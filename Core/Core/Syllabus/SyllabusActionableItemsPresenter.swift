@@ -43,7 +43,7 @@ class SyllabusActionableItemsPresenter {
         self?.update()
     }
 
-    public lazy var assignments = env.subscribe(GetAssignments(courseID: self.courseID, sort: sort, cacheKey: "syllabus")) { [weak self] in
+    public lazy var assignments = env.subscribe(GetSyllabusAssignments(courseID: self.courseID, sort: sort)) { [weak self] in
         self?.updateAssignments()
     }
 

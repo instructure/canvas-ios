@@ -192,7 +192,7 @@ public class Grades {
                     context.delete(assignmentGroups)
                 }
                 for apiAssignmentGroup in response {
-                    AssignmentGroup.save(apiAssignmentGroup, courseID: self.courseID, gradingPeriodID: gradingPeriodID, cacheKey: "grades", in: context)
+                    AssignmentGroup.save(apiAssignmentGroup, courseID: self.courseID, in: context)
                 }
                 do {
                     try context.save()
@@ -225,13 +225,15 @@ public class Grades {
                     self.error = error ?? NSError.internalError()
                     return
                 }
+                let gradingPeriod: GradingPeriod = context.first(where: #keyPath(GradingPeriod.id), equals: gradingPeriodID) ?? context.insert()
+                gradingPeriod.id = gradingPeriodID
+                gradingPeriod.courseID = self.courseID
                 if isFirstPage {
-                    let assignments: [Assignment] = context.fetch(scope: .grades(courseID: self.courseID, gradingPeriodID: gradingPeriodID))
-                    context.delete(assignments)
+                    gradingPeriod.assignments = []
                 }
                 for apiAssignment in response where assignmentIDs.contains(apiAssignment.id.value) {
-                    let assignment = Assignment.save(apiAssignment, in: context, updateSubmission: true, cacheKey: "grades")
-                    assignment.gradingPeriodID = gradingPeriodID
+                    let assignment = Assignment.save(apiAssignment, in: context, updateSubmission: true)
+                    assignment.gradingPeriod = gradingPeriod
                 }
                 do {
                     try context.save()
@@ -246,21 +248,16 @@ public class Grades {
         assignments = env.subscribe(scope: .grades(courseID: courseID, gradingPeriodID: gradingPeriodID)) { [weak self] in
             self?.notify()
         }
-        refresh()
+        getGrades(gradingPeriodID: gradingPeriodID)
     }
 }
 
 extension Scope {
     static func grades(courseID: String, gradingPeriodID: String? = nil) -> Scope {
-        var predicates = [
-            NSPredicate(format: "%K == %@", #keyPath(Assignment.courseID), courseID),
-            NSPredicate(format: "%K == %@", #keyPath(Assignment.cacheKey), "grades"),
-        ]
-        if let gradingPeriodID = gradingPeriodID {
-            predicates.append(NSPredicate(format: "%K == %@", #keyPath(Assignment.gradingPeriodID), gradingPeriodID))
-        }
+        let course = NSPredicate(key: #keyPath(Assignment.courseID), equals: courseID)
+        let gradingPeriod = NSPredicate(key: #keyPath(Assignment.gradingPeriod.id), equals: gradingPeriodID)
         return Scope(
-            predicate: NSCompoundPredicate(andPredicateWithSubpredicates: predicates),
+            predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [course, gradingPeriod]),
             order: [
                 NSSortDescriptor(key: #keyPath(Assignment.assignmentGroup.position), ascending: true),
                 NSSortDescriptor(key: #keyPath(Assignment.position), ascending: true),

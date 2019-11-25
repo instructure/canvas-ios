@@ -25,11 +25,9 @@ extension AssignmentGroup {
     public static func make(
         from api: APIAssignmentGroup = .make(),
         courseID: String = "1",
-        gradingPeriodID: String? = nil,
-        cacheKey: String? = nil,
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> AssignmentGroup {
-        let model = AssignmentGroup.save(api, courseID: courseID, gradingPeriodID: gradingPeriodID, cacheKey: cacheKey, in: context)
+        let model = AssignmentGroup.save(api, courseID: courseID, in: context)
         try! context.save()
         return model
     }

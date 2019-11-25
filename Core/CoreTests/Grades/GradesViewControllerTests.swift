@@ -146,6 +146,13 @@ class GradesViewControllerTests: CoreTestCase {
                 .make(id: "2", course_id: "1", assignment_group_id: "2"),
             ]
         )
+        api.mock(
+            GetAssignmentGroupsRequest(courseID: "1", gradingPeriodID: nil, include: [.assignments]),
+            value: [
+                .make(id: "1", name: "One", position: 1, assignments: [.make(id: "1")]),
+                .make(id: "2", name: "Two", position: 2, assignments: [.make(id: "2")]),
+            ]
+        )
         api.mock(GetGradingPeriodsRequest(courseID: "1"), value: [.make(id: "1", title: "The One")])
 
         let viewController = GradesViewController.create(courseID: "1", userID: "1")
