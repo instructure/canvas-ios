@@ -41,12 +41,4 @@ class DateExtensionsTests: XCTestCase {
         XCTAssertEqual(a.addYears(1), b)
         XCTAssertEqual(a.addYears(-1), c)
     }
-
-    func testRemoveTime() {
-        let a = Date(fromISOString: "2019-12-25T14:24:37Z")!
-        let expected = Date(fromISOString: "2019-12-25T07:00:00Z")!
-        let result = a.removeTime()
-
-        XCTAssertEqual(result, expected)
-    }
 }

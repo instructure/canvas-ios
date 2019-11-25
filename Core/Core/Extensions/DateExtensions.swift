@@ -35,9 +35,4 @@ public extension Date {
     func addYears(_ years: Int) -> Date {
         return Calendar.current.date(byAdding: .year, value: years, to: self) ?? Date()
     }
-
-    func removeTime() -> Date {
-        guard let noTime = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: self)) else { return self }
-        return noTime
-    }
 }
