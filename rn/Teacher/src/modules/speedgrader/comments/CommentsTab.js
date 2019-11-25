@@ -167,6 +167,10 @@ export class CommentsTab extends Component<CommentsTabProps, any> {
     )
   }
 
+  showAttachment = (attachment) => {
+    this.props.navigator.show('/attachment', { modal: true }, { attachment })
+  }
+
   renderComment = ({ item }: { item: CommentRowProps }) =>
     <CommentRow
       {...item}
@@ -177,6 +181,7 @@ export class CommentsTab extends Component<CommentsTabProps, any> {
       switchFile={this.switchFile}
       localID={item.key}
       onAvatarPress={this.navigateToContextCard}
+      onAttachmentPress={this.showAttachment}
     />
 
   statusComplete = () => {
@@ -293,7 +298,7 @@ function extractComments (submissionComments: SubmissionComment[]): Array<Commen
       avatarURL: comment.author.avatar_image_url,
       userID: comment.author.id,
       from: comment.author.id === myUserID ? 'me' : 'them',
-      contents: comment.media_comment ? contentForMediaComment(comment.media_comment) : { type: 'text', message: comment.comment },
+      contents: comment.media_comment ? contentForMediaComment(comment.media_comment) : { type: 'text', comment },
       pending: 0,
     }))
 }
