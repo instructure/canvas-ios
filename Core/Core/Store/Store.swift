@@ -67,6 +67,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     private var next: GetNextRequest<U.Response>?
 
     public private(set) var pending: Bool = false
+    public private(set) var requested: Bool = false
     public private(set) var error: Error?
 
     public init(env: AppEnvironment, database: NSPersistentContainer? = nil, useCase: U, eventHandler: @escaping EventHandler) {
@@ -156,6 +157,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     }
 
     private func request<UC: UseCase>(_ useCase: UC, force: Bool, callback: ((UC.Response?) -> Void)? = nil) {
+        requested = true
         pending = true
         notify()
         useCase.fetch(environment: env, force: force) { [weak self] response, urlResponse, error in

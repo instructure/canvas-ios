@@ -49,6 +49,7 @@
         <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="assignment" inverseEntity="DiscussionTopic"/>
         <relationship name="rubric" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Rubric" inverseName="assignment" inverseEntity="Rubric"/>
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Submission" inverseName="assignment" inverseEntity="Submission"/>
+        <relationship name="todo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Todo" inverseName="assignment" inverseEntity="Todo"/>
     </entity>
     <entity name="AssignmentGroup" representedClassName="Core.AssignmentGroup" syncable="YES">
         <attribute name="courseID" optional="YES" attributeType="String"/>
@@ -486,6 +487,15 @@
         <attribute name="typeRaw" attributeType="String"/>
         <attribute name="visibilityRaw" attributeType="String"/>
     </entity>
+    <entity name="Todo" representedClassName="Core.Todo" syncable="YES">
+        <attribute name="contextRaw" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="ignorePermanentlyURL" attributeType="URI"/>
+        <attribute name="ignoreURL" attributeType="URI"/>
+        <attribute name="needsGradingCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="typeRaw" attributeType="String"/>
+        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="todo" inverseEntity="Assignment"/>
+    </entity>
     <entity name="TTL" representedClassName="Core.TTL" syncable="YES">
         <attribute name="key" attributeType="String"/>
         <attribute name="lastRefresh" attributeType="Date" usesScalarValueType="NO"/>
@@ -520,6 +530,9 @@
         <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="508"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="118"/>
         <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="150"/>
+        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="478"/>
+        <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
+        <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="148"/>
         <element name="CommunicationChannel" positionX="-531" positionY="-9" width="128" height="133"/>
         <element name="ContextColor" positionX="-177.3046875" positionY="-36" width="128" height="73"/>
         <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="223"/>
@@ -551,6 +564,7 @@
         <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="403"/>
         <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="253"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
+        <element name="Todo" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
         <element name="User" positionX="-540" positionY="-27" width="128" height="180"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="133"/>

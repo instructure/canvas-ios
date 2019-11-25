@@ -16,20 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import XCTest
+@testable import Core
+import TestsFoundation
 
-public enum TodoType: String, Codable {
-    case grading, submitting
-}
+class APITodoTests: CoreTestCase {
+    func testGetTodosRequest() {
+        let request = GetTodosRequest()
+        XCTAssertEqual(request.path, "users/self/todo")
+        XCTAssertEqual(request.query, [ APIQueryItem.value("per_page", "100") ])
+    }
 
-struct APITodo: Codable {
-    let type: TodoType
-    let ignore: URL
-    let ignore_permanently: URL
-    let html_url: URL
-    let needs_grading_count: UInt?
-    let assignment: APIAssignment
-    let context_type: ContextType
-    let course_id: ID?
-    let group_id: ID?
+    func testDeleteTodoRequest() {
+        let request = DeleteTodoRequest(ignoreURL: URL(string: "https://canvas.instructure.com/deleteme")!)
+        XCTAssertEqual(request.path, "https://canvas.instructure.com/deleteme")
+    }
 }

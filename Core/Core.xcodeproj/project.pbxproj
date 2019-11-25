@@ -205,6 +205,7 @@
 		7D52D8AB2301BA5100684932 /* ExperimentalFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52D8AA2301BA5100684932 /* ExperimentalFeature.swift */; };
 		7D52D8AD2301C0A400684932 /* ExperimentalFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52D8AC2301C0A400684932 /* ExperimentalFeatureTests.swift */; };
 		7D54501121BDFB5C0008E75D /* LoginFindSchoolPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D54501021BDFB5C0008E75D /* LoginFindSchoolPresenter.swift */; };
+		7D5762A023849D46001F980D /* APITodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D57629F23849D46001F980D /* APITodoTests.swift */; };
 		7D58FBCA2141B43400705CDF /* APIAccountResults.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D58FBC92141B43300705CDF /* APIAccountResults.json */; };
 		7D5A2BC222CD062E0029B6AC /* APIList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5A2BC122CD062E0029B6AC /* APIList.swift */; };
 		7D5A2BC422CD0D8C0029B6AC /* APIListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5A2BC322CD0D8C0029B6AC /* APIListTests.swift */; };
@@ -320,6 +321,9 @@
 		7DA20E932168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA20E922168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift */; };
 		7DA5C48822385435003CDB4C /* SubmissionComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA5C48722385435003CDB4C /* SubmissionComment.swift */; };
 		7DA5C48C22385F95003CDB4C /* GetSubmissionComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA5C48B22385F95003CDB4C /* GetSubmissionComments.swift */; };
+		7DA667EF23834D150062F7B9 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA667EE23834D150062F7B9 /* Todo.swift */; };
+		7DA667F523835FF60062F7B9 /* TodoListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DA667F423835FF60062F7B9 /* TodoListViewController.storyboard */; };
+		7DA667F7238360930062F7B9 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA667F6238360930062F7B9 /* TodoListViewController.swift */; };
 		7DAC286B22B1701B00C0B692 /* QuizHideResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAC286A22B1701B00C0B692 /* QuizHideResults.swift */; };
 		7DAFB46321A361C400311275 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFB46221A361C400311275 /* LocalizationManager.swift */; };
 		7DAFB46521A4693B00311275 /* LocalizationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFB46421A4693B00311275 /* LocalizationManagerTests.swift */; };
@@ -410,6 +414,8 @@
 		7DE3D121225E7074000CAE7C /* RichContentToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE3D120225E7074000CAE7C /* RichContentToolbarView.swift */; };
 		7DE6A7062319973700A5B796 /* APIErrorReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE6A7052319973700A5B796 /* APIErrorReport.swift */; };
 		7DE6A7092319B05700A5B796 /* APIErrorReportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE6A7082319B05700A5B796 /* APIErrorReportTests.swift */; };
+		7DE949802385E08000B27F93 /* TodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE9497F2385E08000B27F93 /* TodoTests.swift */; };
+		7DE949822385E68100B27F93 /* TodoListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE949812385E68100B27F93 /* TodoListViewControllerTests.swift */; };
 		7DEAD09822789E8A0030C28A /* RichContentEditor.css in Resources */ = {isa = PBXBuildFile; fileRef = 7DEAD09722789E8A0030C28A /* RichContentEditor.css */; };
 		7DEAD09E22790B720030C28A /* RichContentEditorViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEAD09D22790B720030C28A /* RichContentEditorViewControllerTests.swift */; };
 		7DEB5C3A224EB02B00F28404 /* CreateTextComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB5C39224EB02A00F28404 /* CreateTextComment.swift */; };
@@ -1082,6 +1088,7 @@
 		7D52D8AA2301BA5100684932 /* ExperimentalFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalFeature.swift; sourceTree = "<group>"; };
 		7D52D8AC2301C0A400684932 /* ExperimentalFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalFeatureTests.swift; sourceTree = "<group>"; };
 		7D54501021BDFB5C0008E75D /* LoginFindSchoolPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchoolPresenter.swift; sourceTree = "<group>"; };
+		7D57629F23849D46001F980D /* APITodoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITodoTests.swift; sourceTree = "<group>"; };
 		7D58FBC92141B43300705CDF /* APIAccountResults.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = APIAccountResults.json; sourceTree = "<group>"; };
 		7D5A2BC122CD062E0029B6AC /* APIList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIList.swift; sourceTree = "<group>"; };
 		7D5A2BC322CD0D8C0029B6AC /* APIListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIListTests.swift; sourceTree = "<group>"; };
@@ -1200,6 +1207,9 @@
 		7DA20E922168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageInstIconsExtensionsTests.swift; sourceTree = "<group>"; };
 		7DA5C48722385435003CDB4C /* SubmissionComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionComment.swift; sourceTree = "<group>"; };
 		7DA5C48B22385F95003CDB4C /* GetSubmissionComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionComments.swift; sourceTree = "<group>"; };
+		7DA667EE23834D150062F7B9 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		7DA667F423835FF60062F7B9 /* TodoListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TodoListViewController.storyboard; sourceTree = "<group>"; };
+		7DA667F6238360930062F7B9 /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		7DAC286A22B1701B00C0B692 /* QuizHideResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizHideResults.swift; sourceTree = "<group>"; };
 		7DAFB46221A361C400311275 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 		7DAFB46421A4693B00311275 /* LocalizationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManagerTests.swift; sourceTree = "<group>"; };
@@ -1288,6 +1298,8 @@
 		7DE3D120225E7074000CAE7C /* RichContentToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentToolbarView.swift; sourceTree = "<group>"; };
 		7DE6A7052319973700A5B796 /* APIErrorReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorReport.swift; sourceTree = "<group>"; };
 		7DE6A7082319B05700A5B796 /* APIErrorReportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorReportTests.swift; sourceTree = "<group>"; };
+		7DE9497F2385E08000B27F93 /* TodoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTests.swift; sourceTree = "<group>"; };
+		7DE949812385E68100B27F93 /* TodoListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TodoListViewControllerTests.swift; path = CoreTests/Todos/TodoListViewControllerTests.swift; sourceTree = SOURCE_ROOT; };
 		7DEAD09722789E8A0030C28A /* RichContentEditor.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = RichContentEditor.css; sourceTree = "<group>"; };
 		7DEAD09D22790B720030C28A /* RichContentEditorViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentEditorViewControllerTests.swift; sourceTree = "<group>"; };
 		7DEB5C39224EB02A00F28404 /* CreateTextComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTextComment.swift; sourceTree = "<group>"; };
@@ -1662,6 +1674,7 @@
 				7836B0CD219901B800FA25AE /* ShareExtension */,
 				B11D321521E4649B00F37ABF /* Store */,
 				9FBE5359223ADA4D001EC40C /* TermsOfService */,
+				7DA667F023835C500062F7B9 /* Todos */,
 				7D13C52822B9566F00345253 /* UITestHelpers */,
 				B1445309212E5B8E0009D848 /* Use Cases */,
 				7D1758B12159894C00F88613 /* Views */,
@@ -1701,6 +1714,7 @@
 				7DEAD09C22790B1E0030C28A /* RichContentEditor */,
 				2C964859211E30A0002C3255 /* Router */,
 				B1EF7AB521E7E40400D653D7 /* Store */,
+				7D57629D23849CF7001F980D /* Todos */,
 				B1EA5AEC212E652C00DABC5F /* Use Cases */,
 				B14D555F2130B6630066D275 /* Utils */,
 				7D1758C2215A993100F88613 /* Views */,
@@ -2312,6 +2326,24 @@
 			path = Fixtures;
 			sourceTree = "<group>";
 		};
+		7D57629D23849CF7001F980D /* Todos */ = {
+			isa = PBXGroup;
+			children = (
+				7D57629E23849D0D001F980D /* TodoList */,
+				7D57629F23849D46001F980D /* APITodoTests.swift */,
+				7DE9497F2385E08000B27F93 /* TodoTests.swift */,
+			);
+			path = Todos;
+			sourceTree = "<group>";
+		};
+		7D57629E23849D0D001F980D /* TodoList */ = {
+			isa = PBXGroup;
+			children = (
+				7DE949812385E68100B27F93 /* TodoListViewControllerTests.swift */,
+			);
+			path = TodoList;
+			sourceTree = "<group>";
+		};
 		7D7472D7218CD73D00CE1430 /* DocViewer */ = {
 			isa = PBXGroup;
 			children = (
@@ -2521,7 +2553,6 @@
 				9FCD79D32188DC4E0054293A /* APISubmissionRequestable.swift */,
 				7D80AC0B212B4C6F00C40ECE /* APITab.swift */,
 				7D8262F0212B28FE00BD268D /* APITabRequestable.swift */,
-				7D6C8C6C22EFA0D400E5ADD8 /* APITodo.swift */,
 				B11AAC3C237A2428002BC41F /* APIURL.swift */,
 				7D80AC02212B445200C40ECE /* APIUser.swift */,
 				7D80AC04212B461F00C40ECE /* APIUserRequestable.swift */,
@@ -2573,6 +2604,25 @@
 				7D9E80C5233C6A65003C608B /* ProfileSettingsViewController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		7DA667F023835C500062F7B9 /* Todos */ = {
+			isa = PBXGroup;
+			children = (
+				7DA667F323835F860062F7B9 /* TodoList */,
+				7D6C8C6C22EFA0D400E5ADD8 /* APITodo.swift */,
+				7DA667EE23834D150062F7B9 /* Todo.swift */,
+			);
+			path = Todos;
+			sourceTree = "<group>";
+		};
+		7DA667F323835F860062F7B9 /* TodoList */ = {
+			isa = PBXGroup;
+			children = (
+				7DA667F423835FF60062F7B9 /* TodoListViewController.storyboard */,
+				7DA667F6238360930062F7B9 /* TodoListViewController.swift */,
+			);
+			path = TodoList;
 			sourceTree = "<group>";
 		};
 		7DAFBE6E2318567300E9A37D /* ErrorReports */ = {
@@ -3380,6 +3430,7 @@
 				EE584C7E22F2048D00D1E201 /* PageListViewController.storyboard in Resources */,
 				3B339B6C226FAA1000D3283D /* ChatBubbleView.xib in Resources */,
 				7D86286B224D493C003A37DC /* AudioPlayerViewController.storyboard in Resources */,
+				7DA667F523835FF60062F7B9 /* TodoListViewController.storyboard in Resources */,
 				7D64A968236219B3004EAEDF /* CalendarDayIconView.xib in Resources */,
 				7D2E82882270BB9B00735854 /* FilePickerViewController.storyboard in Resources */,
 				7D08B1D42371F5510075623A /* FileDetailsViewController.storyboard in Resources */,
@@ -3520,6 +3571,7 @@
 				B1A32BD821599C610071B41E /* APIAssignment.swift in Sources */,
 				B195DC45213201DE00797FE4 /* GetUserGroups.swift in Sources */,
 				9FBE5358223AD1AB001EC40C /* DeveloperMenuViewController.swift in Sources */,
+				7DA667EF23834D150062F7B9 /* Todo.swift in Sources */,
 				7D5A2BC222CD062E0029B6AC /* APIList.swift in Sources */,
 				B11D321721E464AB00F37ABF /* Store.swift in Sources */,
 				3B6043A3232AADB600757B93 /* AssignmentGroup.swift in Sources */,
@@ -3652,6 +3704,7 @@
 				7D862869224D4907003A37DC /* AudioPlayerViewController.swift in Sources */,
 				9F7C8B0923858DAB00E383BF /* ExperimentalFeaturesViewController.swift in Sources */,
 				3BF3428C233D2CC00095D0D3 /* SyllabusViewController.swift in Sources */,
+				7DA667F7238360930062F7B9 /* TodoListViewController.swift in Sources */,
 				EEC3EF6522E25FDC00799FE2 /* APIPageRequestable.swift in Sources */,
 				9FAE40FF21B6C54700FE7F58 /* APIExternalToolRequestable.swift in Sources */,
 				7DF4FFC6217113DA007E5F81 /* ContextColor.swift in Sources */,
@@ -3826,6 +3879,7 @@
 				3BDB8F3522E63676003D81C3 /* StringExtensionTests.swift in Sources */,
 				7D80AC19212B697600C40ECE /* APIGroupRequestableTests.swift in Sources */,
 				7D2DC31B219CE469008FE29A /* DocViewerSessionTests.swift in Sources */,
+				7D5762A023849D46001F980D /* APITodoTests.swift in Sources */,
 				B1571E69230756D2009CAA58 /* APIFeatureFlagsRequestableTests.swift in Sources */,
 				B195DC622133326900797FE4 /* GetCourseTest.swift in Sources */,
 				7D4C3D59222D9E41001B1198 /* LTIToolsTests.swift in Sources */,
@@ -3839,6 +3893,7 @@
 				3B67BCB821B5E72000055324 /* CreateSubmissionTests.swift in Sources */,
 				B19792F7217697E30000369C /* AssignmentTests.swift in Sources */,
 				3B158CBC22E267FF0039A568 /* PageViewSessionTests.swift in Sources */,
+				7DE949822385E68100B27F93 /* TodoListViewControllerTests.swift in Sources */,
 				7DF9BF082152AEF10099026B /* UIColorExtensionsTests.swift in Sources */,
 				B191D5E8226E2CBA00D02948 /* CacheManagerTests.swift in Sources */,
 				B1CA3348233948870015CBB4 /* UserTests.swift in Sources */,
@@ -3899,6 +3954,7 @@
 				B1C783F32241ECEB00DD89A9 /* NSManagedObjectContextExtensionsTests.swift in Sources */,
 				7D5AA3C822959D5D00438667 /* GetSSOLoginTests.swift in Sources */,
 				7DCF2046216D652C003AF358 /* GetQuizzesTests.swift in Sources */,
+				7DE949802385E08000B27F93 /* TodoTests.swift in Sources */,
 				7DCE0C8E22B015DC00BA549F /* QuizSubmissionTests.swift in Sources */,
 				7DDC4511215BF7AA003F3209 /* BundleExtensionsTests.swift in Sources */,
 				B18E19BB2386216B00B03C73 /* GradeFormatterTests.swift in Sources */,
