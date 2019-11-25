@@ -99,7 +99,7 @@ extension APIRequestable {
         guard var components = URLComponents(string: path) else { throw APIRequestableError.invalidPath(path) }
 
         if !path.hasPrefix("/") && components.host == nil {
-            components.path = "/api/v1/" + components.path.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+            components.path = "/api/v1/" + components.path
         }
 
         var queryItems = self.queryItems

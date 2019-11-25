@@ -25,7 +25,7 @@ open class CoreUITestCase: XCTestCase {
     let encoder = JSONEncoder()
     open var homeScreen: Element { TabBar.dashboardTab }
 
-    open var httpMocks = [URL: MockHTTPResponse]()
+    open var httpMocks = [URL: () -> MockHTTPResponse]()
 
     private var usingMocksOnly = false
     open func useMocksOnly() {
@@ -111,7 +111,16 @@ open class CoreUITestCase: XCTestCase {
                 }
                 guard let mock = testCase.httpMocks[url.withCanonicalQueryParams!] else {
                     print("installed mocks:")
-                    testCase.httpMocks.forEach { print("  \($0.key.absoluteString)") }
+                    var mockKeys = testCase.httpMocks.map { $0.key.absoluteString }
+                    let targetKey = url.absoluteString
+                    var similarity = [String: Int]()
+                    for key in mockKeys {
+                        similarity[key] = targetKey.commonPrefix(with: key).count
+                    }
+                    mockKeys.sort { (similarity[$0]!, $0) < (similarity[$1]!, $1) }
+                    for key in mockKeys {
+                        print("  \(key)")
+                    }
                     print("mock not found for url:\n  \(url.absoluteString)")
                     if testCase.failTestOnMissingMock {
                         XCTFail("missing mock: \(url.absoluteString)")
@@ -120,7 +129,7 @@ open class CoreUITestCase: XCTestCase {
                         return try? JSONEncoder().encode(MockHTTPResponse(errorMessage: "unmocked"))
                     }
                 }
-                return try? JSONEncoder().encode(mock)
+                return try? JSONEncoder().encode(mock())
             }
         }
     }
@@ -358,7 +367,18 @@ open class CoreUITestCase: XCTestCase {
         mockRequest(URLRequest(url: url), data: data, response: response, error: error, noCallback: noCallback)
     }
 
-    // MARK: mock (primitive)
+    open func mockURL(
+        _ url: URL,
+        dynamicData: @escaping () -> Data
+    ) {
+        mockResponse(URLRequest(url: url)) {
+            let data = dynamicData()
+            let http = HTTPURLResponse(url: url, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: [
+                HttpHeader.contentType: "application/json",
+            ])
+            return MockHTTPResponse(data: data, http: http)
+        }
+    }
 
     open func mockRequest(
         _ request: URLRequest,
@@ -367,8 +387,6 @@ open class CoreUITestCase: XCTestCase {
         error: String? = nil,
         noCallback: Bool = false
     ) {
-        useMocksOnly()
-
         var http = response
         if response == nil, data != nil {
             http = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: [
@@ -376,11 +394,22 @@ open class CoreUITestCase: XCTestCase {
             ])
         }
 
-        httpMocks[request.url!.withCanonicalQueryParams!] = MockHTTPResponse(
+        let mockHTTPResponse = MockHTTPResponse(
             data: data,
             http: http,
             errorMessage: error,
             noCallback: noCallback
         )
+        mockResponse(request, response: { mockHTTPResponse })
+    }
+
+    // MARK: mock (primitive)
+
+    open func mockResponse(
+        _ request: URLRequest,
+        response: @escaping () -> MockHTTPResponse
+    ) {
+        useMocksOnly()
+        httpMocks[request.url!.withCanonicalQueryParams!] = response
     }
 }

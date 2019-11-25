@@ -18,14 +18,14 @@
 
 import Foundation
 import XCTest
-@testable import Core
+import TestsFoundation
 
-class GetFileTest: CoreTestCase {
-    let context = ContextModel(.course, id: "1")
+public enum FilesList {
+    public static func file(id: String) -> Element {
+        return app.find(id: "file-list.file-list-row.cell-file-\(id)")
+    }
 
-    func testProperties() {
-        XCTAssertEqual(GetFile(context: context, fileID: "72").cacheKey, "get-file-72")
-        XCTAssertEqual(GetFile(context: context, fileID: "5").scope, Scope.where(#keyPath(File.id), equals: "5"))
-        XCTAssertEqual(GetFile(context: context, fileID: "1").request.context?.canvasContextID, context.canvasContextID)
+    public static var addButton: Element {
+        app.find(id: "files.add.button")
     }
 }

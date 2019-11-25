@@ -19,12 +19,6 @@
 import XCTest
 import TestsFoundation
 
-enum FilesList {
-    static func file(id: String) -> Element {
-        return app.find(id: "file-list.file-list-row.cell-file-\(id)")
-    }
-}
-
 class CourseFileTests: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { return CourseFileTests.self }
 
