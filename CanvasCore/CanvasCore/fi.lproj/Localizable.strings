@@ -99,9 +99,6 @@
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Jatka tietovisaa";
 
-/* Failure reason for why it couldn't associate a tab with a context */
-"Could not parse context id from URL" = "Ei voitu jäsentää kontekstin tunnusta URL:stä";
-
 /* Header label for a screen that customizes a course */
 "Customize" = "Mukauttaa";
 
@@ -482,9 +479,6 @@
 /* Description for alert that shows when the quiz hits the due date */
 "The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Tietovisan määräaika on 1 minuutin päästä. Haluatko lähettää nyt ja olla ajoissa ja jatka osallistumista kyselyyn ja ole mahdollisesti myöhässä?";
 
-/* Error message for interrupted requests marking a to do as done */
-"The request to mark a to do as done was interrupted" = "Pyyntö merkitä tehtävä valmiiksi keskeytettiin";
-
 /* bad url message */
 "The text you entered is not a valid URL" = "Teksti, jonka syötit, ei ole voimassa oleva URL";
 
@@ -493,9 +487,6 @@
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Ilmeni ongelma tulkittaessa vastausta palvelimelta:";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the (kitModelName) database file." = "Tietokantatiedoston (kitModelName) latauksessa tapahtui virhe.";
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "Tietokantatiedoston AssignmentKit latauksessa tapahtui virhe.";

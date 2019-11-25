@@ -99,9 +99,6 @@
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "متابعة الاختبار";
 
-/* Failure reason for why it couldn't associate a tab with a context */
-"Could not parse context id from URL" = "تعذر تحليل معرف السياق من عنوان URL";
-
 /* Header label for a screen that customizes a course */
 "Customize" = "تخصيص";
 
@@ -482,9 +479,6 @@
 /* Description for alert that shows when the quiz hits the due date */
 "The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "الاختبار الموجز مستحق خلال 1 دقيقة. هل تريد الإرسال الآن والتسليم في الموعد أم تريد الاستمرار في تلقي الاختبار الموجز مع احتمالية التأخير؟";
 
-/* Error message for interrupted requests marking a to do as done */
-"The request to mark a to do as done was interrupted" = "انقطع طلب وضع علامة \"تم\" على مهمة يجب القيام بها";
-
 /* bad url message */
 "The text you entered is not a valid URL" = "النص الذي أدخلته ليس عنوان URL صالح";
 
@@ -493,9 +487,6 @@
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "حدثت مشكلة أثناء تفسير إستجابة من الخادم.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the (kitModelName) database file." = "حدثت مشكلة أثناء تحميل ملف قاعدة البيانات (kitModelName).";
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "حدثت مشكلة أثناء تحميل ملف قاعدة البيانات AssignmentKit.";

@@ -486,7 +486,11 @@
    Title for Discussions view controller */
 "Discussions" = "Discussions";
 
-/* Dismiss an alert dialog */
+/* Dismiss an error button
+   dismiss button
+   Dismiss button for an error dialoue
+   Dismiss error alert button
+   dismiss the alert button */
 "Dismiss" = "Dismiss";
 
 /* Alert title asking if you want to masquerade */
@@ -501,7 +505,7 @@
 /* Button to cancel deleting folders */
 "Don't delete" = "Don't delete";
 
-/* Button title to mark a to do item as done */
+/* No comment provided by engineer. */
 "Done" = "Done";
 
 /* Shown when we cancel a file download */
@@ -530,9 +534,6 @@
 
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Due:";
-
-/* Due date label for to do items, first placeholder is date, second is time */
-"Due: %@ at %@" = "Due: %1$@ at %2$@";
 
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "Due: %1$@ at %2$@";
@@ -737,9 +738,6 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "It has problems";
-
-/* No comment provided by engineer. */
-"It looks like there’s nothing to do today. Enjoy your day!" = "It looks like there’s nothing to do today. Enjoy your day!";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "It’s empty; what are you still doing here?";
@@ -949,9 +947,6 @@
 
 /* No comment provided by engineer. */
 "No Thanks" = "No Thanks";
-
-/* No comment provided by engineer. */
-"No To-Do Items" = "No To-Do Items";
 
 /* error message for a 401 response. */
 "Not Authorized" = "Not Authorised";
