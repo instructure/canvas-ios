@@ -71,7 +71,8 @@ public class MockDistantURLSession: URLSession {
             print("MOCK requesting \(url.absoluteString)")
             guard let responseData = UITestHelpers.shared!.send(.urlRequest(url, uploadData: uploadData)),
                 let mock = try? JSONDecoder().decode(MockHTTPResponse.self, from: responseData) else {
-                    fatalError("Expected a MockURLRequestResponse from test driver app")
+                    print("MOCK no mock")
+                    return MockHTTPResponse()
             }
             print("MOCK got \(mock)")
             return mock
