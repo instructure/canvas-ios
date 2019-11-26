@@ -13,7 +13,11 @@ export default class CommentAttachment extends Component {
     let { attachment, from } = this.props
     let fromStyle = from === 'me' ? styles.mine : styles.theirs
     return (
-      <TouchableOpacity key={attachment.id} style={[styles.wrapper, fromStyle]} onPress={this.props.onPress}>
+      <TouchableOpacity
+        testID={`CommentAttachment-${attachment.id}`}
+        key={attachment.id} style={[styles.wrapper, fromStyle]}
+        onPress={this.props.onPress}
+      >
         <View style={styles.container}>
           <Image
             source={icon('paperclip')}
