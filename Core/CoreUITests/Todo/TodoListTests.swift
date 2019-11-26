@@ -26,7 +26,9 @@ class TodoListTests: CoreUITestCase {
 
     func testTodoItemsDisplayed() {
         mockBaseRequests()
-        mockEncodableRequest("users/self/todo?per_page=99", value: [
+        mockData(GetCoursesRequest(enrollmentState: .active), value: [ baseCourse ])
+        mockData(GetGroupsRequest(context: ContextModel.currentUser), value: [])
+        mockData(GetTodosRequest(), value: [
             APITodo.make(assignment: .make(name: "One", due_at: Date().add(.day, number: 1))),
             APITodo.make(assignment: .make(id: "2", name: "Two")),
         ])
