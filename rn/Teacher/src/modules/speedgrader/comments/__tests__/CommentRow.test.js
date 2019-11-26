@@ -37,7 +37,7 @@ const testComment: CommentRowProps = {
   date: new Date('2017-03-17T19:15:25Z'),
   avatarURL: 'http://fillmurray.com/200/300',
   from: 'them',
-  contents: { 
+  contents: {
     type: 'text',
     comment: template.submissionComment({ comment: 'I just need more time!?' }),
   },
@@ -99,7 +99,6 @@ test('my comment attachments', () => {
 })
 
 test('multiple comment attachments', () => {
-  let attachment = template.attachment()
   testComment.contents.comment.attachments = [
     template.attachment({ id: '1' }),
     template.attachment({ id: '2' }),

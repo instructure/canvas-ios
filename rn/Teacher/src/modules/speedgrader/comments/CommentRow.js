@@ -21,11 +21,8 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   Image,
   ActionSheetIOS,
-  TouchableOpacity,
-  Text,
 } from 'react-native'
 import Avatar from '../../../common/components/Avatar'
 import { formattedDueDate } from '../../../common/formatters'
@@ -41,7 +38,7 @@ import Images from '../../../images'
 import Button from 'react-native-button'
 import i18n from 'format-message'
 import Video from '../../../common/components/Video'
-import { createStyleSheet, vars, colors } from '../../../common/stylesheet'
+import { createStyleSheet } from '../../../common/stylesheet'
 
 export default class CommentRow extends Component<CommentRowProps, any> {
   showFailedOptions = () => {

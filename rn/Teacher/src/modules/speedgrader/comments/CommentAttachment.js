@@ -5,18 +5,18 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native'
-import { colors, createStyleSheet } from '../../../common/stylesheet'
+import { createStyleSheet } from '../../../common/stylesheet'
 import icon from '../../../images/inst-icons'
 
 export default class CommentAttachment extends Component {
-  render() {
+  render () {
     let { attachment, from } = this.props
-    let fromStyle = from == 'me' ? styles.mine : styles.theirs
+    let fromStyle = from === 'me' ? styles.mine : styles.theirs
     return (
       <TouchableOpacity key={attachment.id} style={[styles.wrapper, fromStyle]} onPress={this.props.onPress}>
         <View style={styles.container}>
-          <Image 
-            source={icon('paperclip')} 
+          <Image
+            source={icon('paperclip')}
             resizeMode='contain'
             style={styles.icon}
           />

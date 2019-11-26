@@ -59,8 +59,8 @@ const comments = [
     date: new Date('2017-03-17T19:23:25Z'),
     avatarURL: 'http://fillmurray.com/220/400',
     from: 'them',
-    contents: { 
-      type: 'text', 
+    contents: {
+      type: 'text',
       comment: templates.submissionComment({ message: '…' }),
     },
   },
