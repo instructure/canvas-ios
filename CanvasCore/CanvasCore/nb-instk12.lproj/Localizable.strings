@@ -99,9 +99,6 @@
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Fortsett test";
 
-/* Failure reason for why it couldn't associate a tab with a context */
-"Could not parse context id from URL" = "Kan ikke tyde kontekst-ID fra URL";
-
 /* Header label for a screen that customizes a course */
 "Customize" = "Tilpass";
 
@@ -482,9 +479,6 @@
 /* Description for alert that shows when the quiz hits the due date */
 "The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Testen skal være ferdig om 1 minutt. Vil du sende inn nå og være i tide, eller fortsette å ta testen og muligens levere sent?";
 
-/* Error message for interrupted requests marking a to do as done */
-"The request to mark a to do as done was interrupted" = "Forespørselen for å markere et gjøremål som fullført ble avbrutt";
-
 /* bad url message */
 "The text you entered is not a valid URL" = "Teksten du skrev inn er ikke en gyldig URL";
 
@@ -493,9 +487,6 @@
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Det var et problem med tolkningen av svaret fra serveren.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the (kitModelName) database file." = "Det oppstod et problem under lasting av (kitModelName) databasefilen.";
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "Det oppstod et problem under lasting av AssignmentKit databasefilen.";

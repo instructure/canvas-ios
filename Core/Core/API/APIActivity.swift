@@ -44,14 +44,22 @@ public struct APIActivity: Codable {
 
 public struct GetActivitiesRequest: APIRequestable {
     public typealias Response = [APIActivity]
+    let perPage: Int?
+
+    public init(perPage: Int? = nil) {
+        self.perPage = perPage
+    }
 
     public var path: String {
-        return "users/self/activity_stream"
+        let context = ContextModel(.user, id: "self")
+        return "\(context.pathComponent)/activity_stream"
     }
 
     public var query: [APIQueryItem] {
-        return [
-            .value("per_page", "10"),
-        ]
+        var query: [APIQueryItem] = []
+        if let perPage = perPage {
+            query.append(.value("per_page", String(perPage)))
+        }
+        return query
     }
 }

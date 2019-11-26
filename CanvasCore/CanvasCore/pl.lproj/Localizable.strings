@@ -99,9 +99,6 @@
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Kontynuuj test";
 
-/* Failure reason for why it couldn't associate a tab with a context */
-"Could not parse context id from URL" = "Nie można przeanalizować kontekstowego identyfikatora z adresu URL";
-
 /* Header label for a screen that customizes a course */
 "Customize" = "Dostosuj";
 
@@ -482,9 +479,6 @@
 /* Description for alert that shows when the quiz hits the due date */
 "The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Quiz rozpocznie się za 1 minutę. Czy chcesz przesłać teraz i być na czas czy wolisz dalej rozmawiać o quizie i być może się spóźnić?";
 
-/* Error message for interrupted requests marking a to do as done */
-"The request to mark a to do as done was interrupted" = "Żądanie zmiany pozycji do zrobienia jako już zrobionej zostało przerwane";
-
 /* bad url message */
 "The text you entered is not a valid URL" = "Wpisany tekst nie jest odpowiednim adresem URL";
 
@@ -493,9 +487,6 @@
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Wystąpił błąd podczas interpretacji odpowiedzi z serwera.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the (kitModelName) database file." = "Wystąpił problem z wczytaniem pliku bazy danych (kitModelName).";
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "Wystąpił problem z wczytaniem pliku bazy danych AssignmentKit.";

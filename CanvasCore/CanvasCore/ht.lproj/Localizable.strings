@@ -99,9 +99,6 @@
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Kontinye Quiz";
 
-/* Failure reason for why it couldn't associate a tab with a context */
-"Could not parse context id from URL" = "Enposib pou analize kontèks id apati de URL";
-
 /* Header label for a screen that customizes a course */
 "Customize" = "Pèsonalize";
 
@@ -482,9 +479,6 @@
 /* Description for alert that shows when the quiz hits the due date */
 "The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Delè quiz la se nan 1 minit Èske w ta renmen soumèt kounye a epi pou w a lè oswa ou vle kontinye ak quiz la men li posib pou w an reta?";
 
-/* Error message for interrupted requests marking a to do as done */
-"The request to mark a to do as done was interrupted" = "Demand pou make yon aktivite kòm aktivite ki fèt deja a te sispann";
-
 /* bad url message */
 "The text you entered is not a valid URL" = "Tèks ou antre a pa yon URL valid";
 
@@ -493,9 +487,6 @@
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Te gen yon pwoblèm nan entèpretasyon repons de sèvè a.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the (kitModelName) database file." = "Te gen yon pwoblèm nan chajman fichye baz de done (kitModelName) a.";
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "Te gen yon pwoblèm nan chajman fichye baz de done AssignmentKit a.";

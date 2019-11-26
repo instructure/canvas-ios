@@ -486,7 +486,11 @@
    Title for Discussions view controller */
 "Discussions" = "Diskussioner";
 
-/* Dismiss an alert dialog */
+/* Dismiss an error button
+   dismiss button
+   Dismiss button for an error dialoue
+   Dismiss error alert button
+   dismiss the alert button */
 "Dismiss" = "Avvisa";
 
 /* Alert title asking if you want to masquerade */
@@ -501,7 +505,7 @@
 /* Button to cancel deleting folders */
 "Don't delete" = "Ta inte bort";
 
-/* Button title to mark a to do item as done */
+/* No comment provided by engineer. */
 "Done" = "Klar";
 
 /* Shown when we cancel a file download */
@@ -530,9 +534,6 @@
 
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Inlämningsdatum:";
-
-/* Due date label for to do items, first placeholder is date, second is time */
-"Due: %@ at %@" = "Inlämningsdatum: %1$@ vid %2$@";
 
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "Inlämningsdatum: %1$@ vid %2$@";
@@ -737,9 +738,6 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "Den har problem";
-
-/* No comment provided by engineer. */
-"It looks like there’s nothing to do today. Enjoy your day!" = "Det ser ut som om det inte finns något att göra i dag. Ha en bra dag!";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Det är tomt, så vad gör du här?";
@@ -949,9 +947,6 @@
 
 /* No comment provided by engineer. */
 "No Thanks" = "Nej tack";
-
-/* No comment provided by engineer. */
-"No To-Do Items" = "Inga att-göra-objekt";
 
 /* error message for a 401 response. */
 "Not Authorized" = "Du har inte behörighet";

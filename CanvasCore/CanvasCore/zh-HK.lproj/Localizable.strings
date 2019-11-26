@@ -99,9 +99,6 @@
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "繼續考試";
 
-/* Failure reason for why it couldn't associate a tab with a context */
-"Could not parse context id from URL" = "無法從 URL 中解析語境 id";
-
 /* Header label for a screen that customizes a course */
 "Customize" = "自定義";
 
@@ -482,9 +479,6 @@
 /* Description for alert that shows when the quiz hits the due date */
 "The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "測驗還剩 1 分鐘。您希望現在按時提交，還是繼續答題並推遲提交？";
 
-/* Error message for interrupted requests marking a to do as done */
-"The request to mark a to do as done was interrupted" = "將待辦事項標註為已辦事項的請求被中止";
-
 /* bad url message */
 "The text you entered is not a valid URL" = "您輸入的文字不是有效的 URL";
 
@@ -493,9 +487,6 @@
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "對伺服器應答內容解讀時出現問題。";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the (kitModelName) database file." = "載入 (kitModelName) 資料庫檔案時出現問題。";
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "載入 AssignmentKit 資料庫檔案時出現問題。";

@@ -99,9 +99,6 @@
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Nadaljuj s kvizom";
 
-/* Failure reason for why it couldn't associate a tab with a context */
-"Could not parse context id from URL" = "ID-ja konteksta iz naslova URL ni bilo mogoče razčleniti.";
-
 /* Header label for a screen that customizes a course */
 "Customize" = "Prilagodi po meri";
 
@@ -482,9 +479,6 @@
 /* Description for alert that shows when the quiz hits the due date */
 "The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Rok kviza se izteče čez 1 minuto. Ali želite poslati zdaj in biti pravočasni ali pa želite nadaljevati kviz in morda zamuditi rok?";
 
-/* Error message for interrupted requests marking a to do as done */
-"The request to mark a to do as done was interrupted" = "Zahteva za oznako opravila kot dokončanega je bila prekinjena.";
-
 /* bad url message */
 "The text you entered is not a valid URL" = "Besedilo, ki ste ga vnesli, ni veljavni naslov URL.";
 
@@ -493,9 +487,6 @@
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Prišlo je do težav pri tolmačenju odziva strežnika.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the (kitModelName) database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov (kitModelName).";
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov AssignmentKit.";

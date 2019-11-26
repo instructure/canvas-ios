@@ -19,25 +19,11 @@
 import XCTest
 @testable import Core
 
-class GetActivitiesRequestTests: XCTestCase {
-    var req: GetActivitiesRequest!
-
-    override func setUp() {
-        super.setUp()
-        req = GetActivitiesRequest()
-    }
-
-    func testPath() {
-        XCTAssertEqual(req.path, "users/self/activity_stream")
-    }
-
-    func testQuery() {
-        let expected: [APIQueryItem] = [.value("per_page", "10")]
-        XCTAssertEqual(req.query, expected)
-    }
-
-    func testModel() {
-        let model = APIActivity.make()
-        XCTAssertNotNil(model)
+class APIActivityTests: XCTestCase {
+    func testGetActivitiesRequest() {
+        let request = GetActivitiesRequest()
+        XCTAssertEqual(request.path, "users/self/activity_stream")
+        XCTAssertEqual(request.queryItems, [])
+        XCTAssertEqual(GetActivitiesRequest(perPage: 99).queryItems, [URLQueryItem(name: "per_page", value: "99")])
     }
 }

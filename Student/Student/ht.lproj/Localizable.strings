@@ -486,7 +486,11 @@
    Title for Discussions view controller */
 "Discussions" = "Diskisyon";
 
-/* Dismiss an alert dialog */
+/* Dismiss an error button
+   dismiss button
+   Dismiss button for an error dialoue
+   Dismiss error alert button
+   dismiss the alert button */
 "Dismiss" = "Rejte";
 
 /* Alert title asking if you want to masquerade */
@@ -501,7 +505,7 @@
 /* Button to cancel deleting folders */
 "Don't delete" = "Pa efase";
 
-/* Button title to mark a to do item as done */
+/* No comment provided by engineer. */
 "Done" = "Fini";
 
 /* Shown when we cancel a file download */
@@ -530,9 +534,6 @@
 
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Delè:";
-
-/* Due date label for to do items, first placeholder is date, second is time */
-"Due: %@ at %@" = "Delè: %1$@ nan %2$@";
 
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "Delè: %1$@ nan %2$@";
@@ -737,9 +738,6 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "Li gen pwoblèm";
-
-/* No comment provided by engineer. */
-"It looks like there’s nothing to do today. Enjoy your day!" = "Sanble pa gen anyen pou fè jodi a. Pwofite jounen an!";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Li vid, sa w ap fè la a toujou.";
@@ -949,9 +947,6 @@
 
 /* No comment provided by engineer. */
 "No Thanks" = "Non Mèsi";
-
-/* No comment provided by engineer. */
-"No To-Do Items" = "Pa gen Eleman nan Lis Tach la";
 
 /* error message for a 401 response. */
 "Not Authorized" = "Pa Otorize";
