@@ -24,7 +24,7 @@ import Foundation
 /// that is not ready for all users to exercise. This is different from
 /// feature flags in Canvas, which represent optional functionality in
 /// production that should only apply to certain accounts, courses, or people.
-public enum ExperimentalFeature: String, CaseIterable {
+public enum ExperimentalFeature: String, CaseIterable, Codable {
     case parent3
     case conferences
     case favoriteGroups = "favorite_groups"

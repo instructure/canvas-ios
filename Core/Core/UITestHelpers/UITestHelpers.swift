@@ -33,7 +33,7 @@ public class UITestHelpers {
         case setAnimationsEnabled(Bool)
         case useMocksOnly
         case debug(Any?)
-        case enableExperimentalFeatures([String])
+        case enableExperimentalFeatures([ExperimentalFeature])
 
         private enum CodingKeys: String, CodingKey {
             case reset, login, show, tearDown, currentSession, setAnimationsEnabled, useMocksOnly, debug, mockNow, experimentalFeatures
@@ -59,7 +59,7 @@ public class UITestHelpers {
                 self = .debug(try NSKeyedUnarchiver(forReadingFrom: data).decodeObject(forKey: "debug"))
             } else if let date = try container.decodeIfPresent(Date.self, forKey: .mockNow) {
                 self = .mockNow(date)
-            } else if let features = try container.decodeIfPresent([String].self, forKey: .experimentalFeatures) {
+            } else if let features = try container.decodeIfPresent([ExperimentalFeature].self, forKey: .experimentalFeatures) {
                 self = .enableExperimentalFeatures(features)
             } else {
                 throw DecodingError.typeMismatch(Helper.self, .init(codingPath: container.codingPath, debugDescription: "Couldn't decode \(Helper.self)"))
@@ -153,9 +153,8 @@ public class UITestHelpers {
         case .mockNow(let date):
             Clock.mockNow(date)
         case .enableExperimentalFeatures(let features):
-            for feature in features {
-                ExperimentalFeature(rawValue: feature)!.isEnabled = true
-            }
+            ExperimentalFeature.allEnabled = false
+            features.forEach { $0.isEnabled = true }
         }
         return nil
     }

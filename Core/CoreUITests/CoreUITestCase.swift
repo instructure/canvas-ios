@@ -85,7 +85,7 @@ open class CoreUITestCase: XCTestCase {
             }
         }
         reset()
-        send(.enableExperimentalFeatures(experimentalFeatures.map { $0.rawValue }))
+        send(.enableExperimentalFeatures(experimentalFeatures))
         if let user = user {
             logInUser(user)
             homeScreen.waitToExist()
