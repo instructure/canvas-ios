@@ -44,6 +44,8 @@ open class CoreUITestCase: XCTestCase {
         }
     }
 
+    open var experimentalFeatures: [ExperimentalFeature] { [] }
+
     // The class in this variable will not have tests run for it, only for subclasses
     open var abstractTestClass: CoreUITestCase.Type { CoreUITestCase.self }
 
@@ -83,6 +85,7 @@ open class CoreUITestCase: XCTestCase {
             }
         }
         reset()
+        send(.enableExperimentalFeatures(experimentalFeatures.map { $0.rawValue }))
         if let user = user {
             logInUser(user)
             homeScreen.waitToExist()
