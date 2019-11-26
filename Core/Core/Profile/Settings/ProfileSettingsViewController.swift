@@ -101,6 +101,12 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
                         delegate: self
                     ), sender: self)
                 },
+                Row(NSLocalizedString("Experimental Features", comment: "")) { [weak self] in
+                    guard let self = self else { return }
+                    let vc = ExperimentalFeaturesViewController()
+                    vc.readOnly = true
+                    self.env.router.show(vc, from: self)
+                },
             ] + channelTypes.values.map({ channels -> Row in
                 Row(channels[0].type.name) { [weak self] in
                     guard let self = self else { return }

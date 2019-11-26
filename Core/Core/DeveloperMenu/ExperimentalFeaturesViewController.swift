@@ -19,13 +19,16 @@
 import UIKit
 
 public class ExperimentalFeaturesViewController: UITableViewController {
+    public var readOnly: Bool = false
     public var afterToggle: (() -> Void)?
 
     override public func viewDidLoad() {
         super.viewDidLoad()
 
         let barButtonItem = UIBarButtonItem(title: "Toggle All", style: .plain, target: self, action: #selector(toggleAll(_:)))
-        navigationItem.rightBarButtonItem = barButtonItem
+        if !readOnly {
+            navigationItem.rightBarButtonItem = barButtonItem
+        }
 
         title = "Experimental Features"
         tableView?.registerCell(SwitchTableViewCell.self)
@@ -42,6 +45,7 @@ public class ExperimentalFeaturesViewController: UITableViewController {
         cell.toggle.tag = indexPath.row
         cell.toggle.isOn = feature.isEnabled
         cell.toggle.addTarget(self, action: #selector(toggleFeature(_:)), for: .valueChanged)
+        cell.toggle.isEnabled = !readOnly
         return cell
     }
 
