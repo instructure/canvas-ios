@@ -112,7 +112,7 @@ public class GetSyllabusAssignments: GetAssignments {
         return Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [course, syllabus]), order: [dueAt, name])
     }
 
-    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping (Array<APIAssignment>?, URLResponse?, Error?) -> Void) {
+    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping ([APIAssignment]?, URLResponse?, Error?) -> Void) {
         environment.database.performBackgroundTask { context in
             let syllabus: Syllabus = context.first(where: #keyPath(Syllabus.courseID), equals: self.courseID) ?? context.insert()
             syllabus.courseID = self.courseID

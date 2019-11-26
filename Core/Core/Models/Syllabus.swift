@@ -29,6 +29,7 @@ extension Syllabus {
     public static func make(courseID: String = "1", in context: NSManagedObjectContext) -> Syllabus {
         let syllabus: Syllabus = context.insert()
         syllabus.courseID = courseID
+        // swiftlint:disable:next force_try
         try! context.save()
         return syllabus
     }
