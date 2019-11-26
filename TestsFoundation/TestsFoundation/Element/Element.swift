@@ -205,7 +205,14 @@ public struct XCUIElementQueryWrapper: Element {
 
     @discardableResult
     public func typeText(_ text: String, file: StaticString, line: UInt) -> Element {
-        rawElement.tap()
+        var taps = 0
+        while rawElement.value(forKey: "hasKeyboardFocus") as? Bool != true, taps < 5 {
+            taps += 1
+            tap(file: file, line: line)
+            if taps > 2 {
+                sleep(1)
+            }
+        }
         rawElement.typeText(text)
         return self
     }
