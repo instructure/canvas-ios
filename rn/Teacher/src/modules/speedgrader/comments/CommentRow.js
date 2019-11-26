@@ -117,8 +117,8 @@ export default class CommentRow extends Component<CommentRowProps, any> {
         return (
           <View>
             <ChatBubble from={from} message={comment.comment} />
-            {comment.attachments.map((attachment) => {
-              return  <CommentAttachment attachment={attachment} from={from} onPress={this.showAttachment(attachment)} />
+            {Boolean(comment.attachments) && comment.attachments.map((attachment) => {
+              return <CommentAttachment attachment={attachment} from={from} onPress={this.showAttachment(attachment)} />
             })}
           </View>
         )

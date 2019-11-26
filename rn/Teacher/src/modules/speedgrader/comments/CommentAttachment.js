@@ -8,7 +8,7 @@ import {
 import { colors, createStyleSheet } from '../../../common/stylesheet'
 import icon from '../../../images/inst-icons'
 
-export default class ChatBubble extends Component {
+export default class CommentAttachment extends Component {
   render() {
     let { attachment, from } = this.props
     let fromStyle = from == 'me' ? styles.mine : styles.theirs

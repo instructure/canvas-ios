@@ -61,7 +61,7 @@ const comments = [
     from: 'them',
     contents: { 
       type: 'text', 
-      comment: templates.submissionComment({ message: '…' }),
+      comment: templates.submissionCommment({ message: '...' }),
     },
   },
   {
@@ -121,10 +121,10 @@ beforeEach(() => {
 })
 
 test('comments render properly', () => {
-  const tree = shallow(
+  const tree = renderer.create(
     <CommentsTab commentRows={comments} drawerState={new DrawerState()}/>
-  )
-  expect(tree.find('FlatList').prop('data')).toHaveLength(comments.length)
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
 })
 
 test('empty state renders properly', () => {
@@ -345,11 +345,7 @@ test('mapStateToProps returns no comments for no submissionID', () => {
 })
 
 test('mapStateToProps returns comment and submission rows', () => {
-  let teacherComment = templates.submissionComment({
-    author_id: '1111',
-    author: templates.submissionCommentAuthor({ id: '1111' }),
-    attachments: [templates.attachment({ id: '1' })],
-  })
+  const teacherComment = templates.submissionComment({})
   const student = templates.submissionCommentAuthor({
     id: '6682',
     display_name: 'Harry Potter',
@@ -398,7 +394,6 @@ test('mapStateToProps returns comment and submission rows', () => {
   const text = templates.submission({
     attempt: 4,
     submitted_at: '2017-03-17T19:13:25Z',
-    attachments: [templates.attachment({ id: '4' })],
   })
 
   const url = templates.submission({
@@ -464,12 +459,11 @@ test('mapStateToProps returns comment and submission rows', () => {
   setSession(session)
 
   let props = mapStateToProps(appState, ownProps)
+  expect(props).toMatchSnapshot()
   let contents = props.commentRows.map(({ contents }) => contents)
   let quizAttempt = contents.filter(({ attemptIndex }) => attemptIndex === 6)[0]
   expect(quizAttempt.submissionID).toEqual(submission.id)
   expect(quizAttempt.submissionID).not.toEqual(quizAttempt.id)
-  teacherComment = props.commentRows.filter(({ userID }) => userID === '1111')[0]
-  expect(teacherComment.contents.comment.attachments).toHaveLength(1)
 })
 
 test('mapStateToProps returns true when the assignment is a quiz that is an anonymous survey', () => {
