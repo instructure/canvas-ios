@@ -233,7 +233,6 @@ extension AssignmentListViewController: UITableViewDataSourcePrefetching {
         indexPaths.forEach {
             let fetchMore = sectionHasNext[$0.section]
             if fetchMore {
-                print("\($0) fetching more...")
                 DispatchQueue.global().async { [weak self] in
                     self?.fetchData()
                 }

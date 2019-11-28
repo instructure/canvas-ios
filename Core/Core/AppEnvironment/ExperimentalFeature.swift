@@ -33,7 +33,6 @@ public enum ExperimentalFeature: String, CaseIterable {
     case refreshTokens = "refresh_tokens"
     case newPageDetails = "new_page_details"
     case fileDetails = "file_details"
-    case assignmentListGraphQL = "assignment_list_graphql"
     case notifications2
     case testing = "testing"
 
