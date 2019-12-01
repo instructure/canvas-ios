@@ -35,16 +35,16 @@
 "An Error Occurred" = "Ett fel uppstod";
 
 /* No comment provided by engineer. */
-"Announcement" = "Kursmeddelande";
+"Announcement" = "Anslag";
 
 /* No comment provided by engineer. */
 "Assignment" = "Uppgift";
 
 /* Assignment Grade High On Description */
-"Assignment grade above" = "Uppgiftsbedömning ovan";
+"Assignment grade above" = "Uppgiftsomdöme över";
 
 /* Assignment Grade Low On Description */
-"Assignment grade below" = "Uppgiftsbedömning nedan";
+"Assignment grade below" = "Uppgiftsomdöme under";
 
 /* Assignment Missing Description */
 "Assignment missing" = "Uppgift saknas";
@@ -65,19 +65,19 @@
 "Cannot use percent that is less than 0" = "Kan inte använda en procentsats som är lägre än 0";
 
 /* Empty Alerts Text */
-"Caught up on Alerts" = "Du är uppdaterad när det gäller larmen";
+"Caught up on Alerts" = "Du är uppdaterad när det gäller notiserna";
 
 /* No comment provided by engineer. */
 "Choose a student" = "Välj en student";
 
 /* Course Announcement Description */
-"Course announcements" = "Kursmeddelanden";
+"Course announcements" = "Anslag";
 
 /* Course Grade High On Description */
-"Course grade above" = "Kursbedömning över";
+"Course grade above" = "Kursomdöme över";
 
 /* Course Grade Low On Description */
-"Course grade below" = "Kursbedömning under";
+"Course grade below" = "Kursomdöme under";
 
 /* Courses Tab */
 "Courses" = "Kurser";
@@ -98,19 +98,19 @@
 "Event reminder" = "Påminnelse om händelse";
 
 /* No comment provided by engineer. */
-"Excused" = "Slipper göra";
+"Excused" = "Ursäktad";
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Det gick inte att läsa in (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
-"Grades" = "Bedömningar";
+"Grades" = "Omdömen";
 
 /* High Assignment Grade too Low */
-"High assignment grade cannot be lower than low assignment grade" = "Hög uppgiftsbedömning kan inte vara lägre än låg uppgiftsbedömning";
+"High assignment grade cannot be lower than low assignment grade" = "Hög uppgiftsomdöme kan inte vara lägre än låg uppgiftsomdöme";
 
 /* High Course Grade too Low */
-"High course grade cannot be lower than low course grade" = "Hög kursbedömning kan inte vara lägre än låg kursbedömning";
+"High course grade cannot be lower than low course grade" = "Hög kursomdöme kan inte vara lägre än låg kursomdöme";
 
 /* No comment provided by engineer. */
 "In-Class" = "Närvarande";
@@ -119,7 +119,7 @@
 "Input the student pairing code provided to you." = "Ange kopplingskoden du fått för studenter.";
 
 /* Institution Announcement Description */
-"Institution announcements" = "Institutionens kursmeddelanden";
+"Institution announcements" = "Institutionens anslag";
 
 /* Title for an alert view */
 "Invalid Input" = "Ogiltig inmatning";
@@ -137,10 +137,10 @@
 "Late: %@ (%@/%@)" = "Sen: %1$@ (%2$@/%3$@)";
 
 /* Low Assignment Grade too High */
-"Low assignment grade cannot be higher than high assignment grade" = "Låg uppgiftsbedömning kan inte vara högre än hög uppgiftsbedömning";
+"Low assignment grade cannot be higher than high assignment grade" = "Låg uppgiftsomdöme kan inte vara högre än hög uppgiftsomdöme";
 
 /* Low Course Grade too High */
-"Low course grade cannot be higher than high course grade" = "Låg kursbedömning kan inte vara högre än hög kursbedömning";
+"Low course grade cannot be higher than high course grade" = "Låg kursomdöme kan inte vara högre än hög kursomdöme";
 
 /* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
 "Manage Children" = "Hantera barn";
@@ -158,7 +158,7 @@
 "No Courses" = "Inga kurser";
 
 /* Title for label when no grade has been assigned to the course */
-"No Grade" = "Ingen bedömning";
+"No Grade" = "Ingen omdöme";
 
 /* Empty Students Text */
 "No Students" = "Inga studenter";
@@ -209,7 +209,7 @@
 "There was a problem loading the DiscussionKit database file." = "Ett problem uppstod vid inläsningen av databasfilen för DiscussionKit.";
 
 /* No comment provided by engineer. */
-"This announcement has expired." = "Detta kursmeddelande har upphört att gälla.";
+"This announcement has expired." = "Detta anslag har upphört att gälla.";
 
 /* No comment provided by engineer. */
 "This student's courses may not be published yet." = "Den här studentens kurser får ännu inte publiceras.";
