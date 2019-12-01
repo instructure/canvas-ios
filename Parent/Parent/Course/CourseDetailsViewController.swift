@@ -38,7 +38,11 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     lazy var courses = env.subscribe(GetCourse(courseID: courseID, include: GetCourseRequest.defaultIncludes + [.observedUsers])) { [weak self] in
         self?.courseReady()
     }
-
+    
+    lazy var frontPages = env.subscribe(GetFrontPage(context: ContextModel(.course, id: courseID))) { [weak self] in
+        self?.courseReady()
+    }
+    
     static func create(courseID: String, studentID: String, env: AppEnvironment = .shared) -> CourseDetailsViewController {
         let controller = CourseDetailsViewController(nibName: nil, bundle: nil)
         controller.env = env
@@ -56,6 +60,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
 
         delegate = self
         courses.refresh()
+        frontPages.refresh()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -78,15 +83,32 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         summaryViewController = Core.SyllabusActionableItemsViewController(courseID: courseID, sort: GetAssignments.Sort.dueAt, colorDelegate: self)
         viewControllers.append(summaryViewController)
     }
+    
+    func configureFrontPage() {
+        let vc = CoreWebViewController()
+        vc.webView.loadHTMLString(frontPages.first?.body ?? "", baseURL: nil)
+        viewControllers.append(vc)
+    }
 
     func courseReady() {
-        if !courses.pending && readyToLayoutTabs, !didLayoutTabs, let course = courses.first {
+        if !courses.pending && !frontPages.pending && readyToLayoutTabs, !didLayoutTabs, let course = courses.first {
             didLayoutTabs = true
             configureGrades()
-            if let body = course.syllabusBody, !body.isEmpty {
-                configureSyllabus()
-                configureSummary()
+
+            switch course.defaultView {
+            case .syllabus:
+                if let body = course.syllabusBody, !body.isEmpty {
+                    configureSyllabus()
+                    configureSummary()
+                }
+            case .wiki:
+                if let page = frontPages.first, !page.body.isEmpty {
+                    configureFrontPage()
+                    configureSummary()
+                }
+            default: break
             }
+
             layoutViewControllers()
         }
     }
