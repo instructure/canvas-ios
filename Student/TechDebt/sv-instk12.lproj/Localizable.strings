@@ -216,11 +216,11 @@
 "An unknown error occurred" = "Ett okänt fel uppstod.";
 
 /* Title of the new announcement view */
-"Announcement" = "Kursmeddelande";
+"Announcement" = "Anslag";
 
 /* Announcements title
    Title for the announcements view controller */
-"Announcements" = "Kursmeddelanden";
+"Announcements" = "Anslag";
 
 /* Archive selected messages button
    mark a message as archived */
@@ -399,7 +399,7 @@
 "Currently there is limited quiz support on mobile" = "För närvarande är stödet för quiz begränsat på mobiler";
 
 /* A custom grade not specified by the rubric. */
-"Custom Grade" = "Anpassad bedömning";
+"Custom Grade" = "Anpassad omdöme";
 
 /* label for customizing a course */
 "Customize" = "Anpassa";
@@ -586,19 +586,19 @@
 "Go to Quiz" = "Gå till quiz";
 
 /* No comment provided by engineer. */
-"Grade" = "Bedömning";
+"Grade" = "Omdöme";
 
 /* Tells the user to grade an assignment called something like 'Biology Assignment' */
-"Grade %@" = "Bedömning %@";
+"Grade %@" = "Omdöme %@";
 
 /* Launch the SpeedGrader app */
 "Grade in SpeedGrader" = "Bedöm i SpeedGrader";
 
 /* No comment provided by engineer. */
-"Grade: %@" = "Bedömning: %@";
+"Grade: %@" = "Omdöme: %@";
 
 /* No comment provided by engineer. */
-"Grade: %1$i / %2$g" = "Bedömning: %1$i / %2$g";
+"Grade: %1$i / %2$g" = "Omdöme: %1$i / %2$g";
 
 /* Label for a discussion */
 "Graded Discussion" = "Bedömd diskussion";
@@ -610,7 +610,7 @@
 "Graded discussion. %g points possible." = "Bedömd diskussion. %g möjliga poäng.";
 
 /* Title for Grades view controller */
-"Grades" = "Bedömningar";
+"Grades" = "Omdömen";
 
 /* Button title for starting a group conversation */
 "Group conversation" = "Gruppkonversation";
@@ -622,7 +622,7 @@
 "Help" = "Hjälp";
 
 /* Accessibility label for toggling grades to hidden */
-"Hide Grades" = "Dölj bedömningar";
+"Hide Grades" = "Dölj omdömen";
 
 /* No comment provided by engineer. */
 "How do you like Canvas?" = "Vad tycker du om Canvas?";
@@ -964,7 +964,7 @@
 "Quiz" = "Quiz";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
-"Quiz Alert" = "Quizlarm";
+"Quiz Alert" = "Quiz-notis";
 
 /* The title for the list of quizzes for a course */
 "Quizzes" = "Quiz";
@@ -1061,7 +1061,7 @@
 "Show file" = "Visa fil";
 
 /* Accessibility label for toggling grades to visible */
-"Show Grades" = "Visa bedömningar";
+"Show Grades" = "Visa omdömen";
 
 /* title for quiz assignment submission button */
 "Show Quiz" = "Visa quiz";

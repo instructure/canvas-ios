@@ -32,16 +32,16 @@
 "Administrative Notifications" = "Administrativa aviseringar";
 
 /* No comment provided by engineer. */
-"Alerts" = "Varningar";
+"Alerts" = "Notiser";
 
 /* No comment provided by engineer. */
 "All Submissions" = "Alla inlämningar";
 
 /* No comment provided by engineer. */
-"Announcement" = "Kursmeddelande";
+"Announcement" = "Anslag";
 
 /* No comment provided by engineer. */
-"Announcement Created By You" = "Kursmeddelanden som du skapat";
+"Announcement Created By You" = "Anslag som du skapat";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "Mötestillgänglighet";
@@ -269,7 +269,7 @@
 "Error" = "Fel";
 
 /* No comment provided by engineer. */
-"Excused" = "Slipper göra";
+"Excused" = "Ursäktad";
 
 /* No comment provided by engineer. */
 "Expand" = "Expandera";
@@ -302,7 +302,7 @@
 "Filter by:" = "Filtrerat efter:";
 
 /* No comment provided by engineer. */
-"Final Grade: %@" = "Total bedömning: %@";
+"Final Grade: %@" = "Totalt omdöme: %@";
 
 /* No comment provided by engineer. */
 "final_grade_g_pts" = "final_grade_g_pts";
@@ -617,7 +617,7 @@
 "Settings" = "Inställningar";
 
 /* No comment provided by engineer. */
-"Show Grades" = "Visa bedömningar";
+"Show Grades" = "Visa omdömen";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Inloggning för webbplatsadmin";
@@ -740,7 +740,7 @@
 "To Do" = "Att göra";
 
 /* No comment provided by engineer. */
-"Total Grade" = "Total bedömning";
+"Total Grade" = "Totalt omdöme";
 
 /* No comment provided by engineer. */
 "Total time" = "Total tid";
