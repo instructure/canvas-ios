@@ -26,11 +26,16 @@ class EnrollmentTests: CoreTestCase {
         XCTAssertEqual(EnrollmentState.invited.rawValue, "invited")
     }
 
-    func testUpdateFromAPI() {
-        let apiEnrollment = APIEnrollment.make()
+    func testUpdateFromCourseAPI() {
+        let apiEnrollment = APIEnrollment.make(
+            computed_current_score: 10,
+            current_grading_period_id: "1",
+            current_period_computed_current_score: 20
+        )
 
+        let course = Course.make(from: .make(id: "1", enrollments: [apiEnrollment]))
         let model: Enrollment = databaseClient.insert()
-        model.update(fromApiModel: apiEnrollment, course: nil, in: databaseClient)
+        model.update(fromApiModel: apiEnrollment, course: course, in: databaseClient)
 
         XCTAssertEqual(model.role, "StudentEnrollment")
         XCTAssertEqual(model.roleID, apiEnrollment.role_id)
@@ -41,6 +46,47 @@ class EnrollmentTests: CoreTestCase {
         XCTAssertEqual(model.computedFinalScore, apiEnrollment.computed_final_score)
         XCTAssertEqual(model.currentPeriodComputedCurrentScore, apiEnrollment.current_period_computed_current_score)
         XCTAssertEqual(model.currentPeriodComputedFinalScore, apiEnrollment.current_period_computed_final_score)
+        XCTAssertEqual(model.canvasContextID, "course_1")
+        XCTAssertEqual(model.grades.count, 2)
+        let allGrades = model.grades.first { $0.gradingPeriodID == nil }
+        XCTAssertNotNil(allGrades)
+        XCTAssertEqual(allGrades?.currentScore, 10)
+        let current = model.grades.first { $0.gradingPeriodID == "1" }
+        XCTAssertNotNil(current)
+        XCTAssertEqual(current?.currentScore, 20)
+    }
+
+    func testUpdateFromEnrollmentsAPI() {
+        let apiEnrollment = APIEnrollment.make(
+            id: "1",
+            course_id: "4",
+            enrollment_state: .active,
+            type: "StudentEnrollment",
+            user_id: "3",
+            role: "StudentEnrollment",
+            role_id: "2",
+            grades: APIEnrollment.Grades(
+                html_url: "/grades",
+                current_grade: "A",
+                final_grade: "F",
+                current_score: 100,
+                final_score: 50
+            )
+        )
+        let enrollment: Enrollment = databaseClient.insert()
+        enrollment.update(fromApiModel: apiEnrollment, course: nil, gradingPeriodID: nil, in: databaseClient)
+        XCTAssertEqual(enrollment.id, "1")
+        XCTAssertEqual(enrollment.role, "StudentEnrollment")
+        XCTAssertEqual(enrollment.roleID, "2")
+        XCTAssertEqual(enrollment.state, .active)
+        XCTAssertEqual(enrollment.type, "StudentEnrollment")
+        XCTAssertEqual(enrollment.userID, "3")
+        XCTAssertEqual(enrollment.canvasContextID, "course_4")
+        XCTAssertEqual(enrollment.grades.count, 1)
+        let grade = enrollment.grades.first
+        XCTAssertNil(grade?.gradingPeriodID)
+        XCTAssertEqual(grade?.currentScore, 100)
+
     }
 
     func isStudent() {

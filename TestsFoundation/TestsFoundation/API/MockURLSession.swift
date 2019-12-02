@@ -152,9 +152,7 @@ public class MockURLSession: URLSession {
     ) -> MockDataTask {
         var data: Data?
         if let value = value {
-            let encoder = JSONEncoder()
-            encoder.dateEncodingStrategy = .iso8601
-            data = try! encoder.encode(value)
+            data = try! requestable.encode(response: value)
         }
         return mock(requestable, data: data, response: response, error: error, baseURL: baseURL, accessToken: accessToken, taskID: taskID)
     }

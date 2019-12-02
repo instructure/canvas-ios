@@ -40,3 +40,32 @@ struct PostEnrollmentRequest: APIRequestable {
         return "\(context.pathComponent)/enrollments"
     }
 }
+
+// https://canvas.instructure.com/doc/api/enrollments.html#method.enrollments_api.index
+struct GetEnrollmentsRequest: APIRequestable {
+    typealias Response = [APIEnrollment]
+    enum Include: String {
+        case observed_users
+    }
+
+    let context: Context
+    let userID: String?
+    let gradingPeriodID: String?
+    let includes: [Include] = []
+
+    var path: String {
+        return "\(context.pathComponent)/enrollments"
+    }
+    var query: [APIQueryItem] {
+        var query: [APIQueryItem] = [
+            .include(includes.map { $0.rawValue }),
+        ]
+        if let userID = userID {
+            query.append(.value("user_id", userID))
+        }
+        if let gradingPeriodID = gradingPeriodID {
+            query.append(.value("grading_period_id", gradingPeriodID))
+        }
+        return query
+    }
+}

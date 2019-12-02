@@ -21,7 +21,7 @@ import Foundation
 
 extension APIEnrollment {
     public static func make(
-        id: String? = nil,
+        id: ID? = "1",
         course_id: String? = nil,
         course_section_id: String? = nil,
         enrollment_state: EnrollmentState = .active,

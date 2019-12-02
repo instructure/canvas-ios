@@ -22,9 +22,10 @@ import CoreData
 public final class GradingPeriod: NSManagedObject {
     public typealias JSON = APIGradingPeriod
 
-    @NSManaged public var id: String
-    @NSManaged public var title: String
+    @NSManaged public var id: String?
+    @NSManaged public var title: String?
     @NSManaged public var courseID: String
+    @NSManaged public var assignments: Set<Assignment>
 
     @discardableResult
     public static func save(_ item: APIGradingPeriod, courseID: String, in context: NSManagedObjectContext) -> GradingPeriod {

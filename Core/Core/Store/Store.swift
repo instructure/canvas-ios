@@ -106,7 +106,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
 
     public subscript(indexPath: IndexPath) -> U.Model? {
         let object = frc.object(at: indexPath)
-        if object.isDeleted {
+        if frc.managedObjectContext.isObjectDeleted(object) {
             return nil
         }
         return object
@@ -220,7 +220,7 @@ public struct FetchedResultsControllerGenerator<T: NSManagedObject>: IteratorPro
     }
 
     public mutating func next() -> T? {
-        guard let count = fetchedResultsController.fetchedObjects?.count else { return nil}
+        guard let count = fetchedResultsController.fetchedObjects?.count else { return nil }
         guard index < count else { return nil }
         defer { index += 1 }
         return fetchedResultsController.fetchedObjects?[index]

@@ -42,6 +42,20 @@ public enum APIQueryItem: Equatable {
     }
 }
 
+public class APIJSONDecoder: JSONDecoder {
+    public override init() {
+        super.init()
+        dateDecodingStrategy = .iso8601
+    }
+}
+
+public class APIJSONEncoder: JSONEncoder {
+    public override init() {
+        super.init()
+        dateEncodingStrategy = .iso8601
+    }
+}
+
 public typealias APIFormData = [String: APIFormDatum]
 
 public enum APIFormDatum: Equatable {
@@ -71,6 +85,7 @@ public protocol APIRequestable {
     func urlRequest(relativeTo: URL, accessToken: String?, actAsUserID: String?) throws -> URLRequest
     func decode(_ data: Data) throws -> Response
     func encode(_ body: Body) throws -> Data
+    func encode(response: Response) throws -> Data
 }
 
 extension APIRequestable {
@@ -145,15 +160,15 @@ extension APIRequestable {
     }
 
     public func decode(_ data: Data) throws -> Response {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        return try decoder.decode(Response.self, from: data)
+        try APIJSONDecoder().decode(Response.self, from: data)
     }
 
     public func encode(_ body: Body) throws -> Data {
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-        return try encoder.encode(body)
+        try APIJSONEncoder().encode(body)
+    }
+
+    public func encode(response: Response) throws -> Data {
+        try APIJSONEncoder().encode(response)
     }
 
     public func encodeFormData(boundary: String, form: APIFormData) throws -> Data {

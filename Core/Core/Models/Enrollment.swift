@@ -20,6 +20,7 @@ import Foundation
 import CoreData
 
 final public class Enrollment: NSManagedObject {
+    @NSManaged public var id: String?
     @NSManaged public var canvasContextID: String?
     @NSManaged public var role: String?
     @NSManaged public var roleID: String?
@@ -30,6 +31,7 @@ final public class Enrollment: NSManagedObject {
     @NSManaged public var totalsForAllGradingPeriodsOption: Bool
     @NSManaged public var type: String
     @NSManaged public var course: Course?
+    @NSManaged public var grades: Set<Grade>
 
     @NSManaged public var computedCurrentScoreRaw: NSNumber?
     @NSManaged public var computedCurrentGrade: String?
@@ -43,7 +45,6 @@ final public class Enrollment: NSManagedObject {
 }
 
 extension Enrollment {
-
     public var state: EnrollmentState {
         get { return EnrollmentState(rawValue: stateRaw ?? "") ?? .inactive }
         set { stateRaw = newValue.rawValue }
@@ -91,32 +92,68 @@ extension Enrollment {
             return role // custom role
         }
     }
+
+    public var currentScore: Double? {
+        grades.first { $0.gradingPeriodID == currentGradingPeriodID }?.currentScore
+    }
+
+    public func currentScore(gradingPeriodID: String?) -> Double? {
+        return grades.first { $0.gradingPeriodID == gradingPeriodID }?.currentScore
+    }
+
+    public func formattedCurrentScore(gradingPeriodID: String?) -> String {
+        let notAvailable = NSLocalizedString("N/A", bundle: .core, comment: "")
+        if let score = currentScore(gradingPeriodID: gradingPeriodID) {
+            return Course.scoreFormatter.string(from: NSNumber(value: score)) ?? notAvailable
+        }
+        return notAvailable
+    }
 }
 
 extension Enrollment {
-    func update(fromApiModel item: APIEnrollment, course: Course?, in client: NSManagedObjectContext) {
+    func update(fromApiModel item: APIEnrollment, course: Course?, gradingPeriodID: String? = nil, in client: NSManagedObjectContext) {
+        id = item.id?.value
         role = item.role
         roleID = item.role_id
         state = item.enrollment_state
         type = item.type
         userID = item.user_id
-        multipleGradingPeriodsEnabled = item.multiple_grading_periods_enabled ?? false
-        currentGradingPeriodID = item.current_grading_period_id
-        totalsForAllGradingPeriodsOption = item.totals_for_all_grading_periods_option ?? false
 
-        computedCurrentScore = item.computed_current_score
-        computedCurrentGrade = item.computed_current_grade
-        computedFinalScore = item.computed_final_score
-        computedFinalGrade = item.computed_final_grade
-
-        currentPeriodComputedCurrentScore = item.current_period_computed_current_score
-        currentPeriodComputedCurrentGrade = item.current_period_computed_current_grade
-        currentPeriodComputedFinalScore = item.current_period_computed_final_score
-        currentPeriodComputedFinalGrade = item.current_period_computed_final_grade
+        if let courseID = item.course_id ?? course?.id {
+            canvasContextID = "course_\(courseID)"
+        }
 
         self.course = course
-        if let course = course {
-            canvasContextID = "course_\(course.id)"
+        if course != nil {
+            // these only come back in the course endpoint
+            multipleGradingPeriodsEnabled = item.multiple_grading_periods_enabled ?? false
+            currentGradingPeriodID = item.current_grading_period_id
+            totalsForAllGradingPeriodsOption = item.totals_for_all_grading_periods_option ?? false
+            computedCurrentScore = item.computed_current_score
+            computedCurrentGrade = item.computed_current_grade
+            computedFinalScore = item.computed_final_score
+            computedFinalGrade = item.computed_final_grade
+            currentPeriodComputedCurrentScore = item.current_period_computed_current_score
+            currentPeriodComputedCurrentGrade = item.current_period_computed_current_grade
+            currentPeriodComputedFinalScore = item.current_period_computed_final_score
+            currentPeriodComputedFinalGrade = item.current_period_computed_final_grade
+            let grade = grades.first { $0.gradingPeriodID == nil } ?? client.insert()
+            grade.gradingPeriodID = nil
+            grade.currentScore = item.computed_current_score
+            grades.insert(grade)
+            if let currentGradingPeriodID = item.current_grading_period_id {
+                let currentPeriodGrade = grades.first { $0.gradingPeriodID == currentGradingPeriodID } ?? client.insert()
+                currentPeriodGrade.gradingPeriodID = currentGradingPeriodID
+                currentPeriodGrade.currentScore = item.current_period_computed_current_score
+                grades.insert(currentPeriodGrade)
+            }
+        }
+
+        if let apiGrades = item.grades {
+            let grade = grades.first { $0.gradingPeriodID == gradingPeriodID } ?? client.insert()
+            grade.currentScore = apiGrades.current_score
+            grade.gradingPeriodID = gradingPeriodID
+            grades.insert(grade)
         }
     }
 }

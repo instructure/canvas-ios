@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,23 +17,21 @@
 //
 
 import Foundation
+import CoreData
 
-public struct GetGradingPeriodsRequest: APIRequestable {
-    public typealias Response = [APIGradingPeriod]
+public class Syllabus: NSManagedObject {
+    @NSManaged public var courseID: String
+    @NSManaged public var assignments: Set<Assignment>
+}
 
-    let courseID: String
-
-    public var path: String {
-        return "courses/\(courseID)/grading_periods"
-    }
-
-    public func decode(_ data: Data) throws -> [APIGradingPeriod] {
-        let decoder = APIJSONDecoder()
-        let response = try decoder.decode(APIGradingPeriodResponse.self, from: data)
-        return response.grading_periods
-    }
-
-    public func encode(response: [APIGradingPeriod]) throws -> Data {
-        try APIJSONEncoder().encode(APIGradingPeriodResponse(grading_periods: response))
+#if DEBUG
+extension Syllabus {
+    public static func make(courseID: String = "1", in context: NSManagedObjectContext) -> Syllabus {
+        let syllabus: Syllabus = context.insert()
+        syllabus.courseID = courseID
+        // swiftlint:disable:next force_try
+        try! context.save()
+        return syllabus
     }
 }
+#endif
