@@ -25,9 +25,17 @@ public struct GetAssignmentRequest: APIRequestable {
     let courseID: String
     let assignmentID: String
     let include: [GetAssignmentInclude]
+    let allDates: Bool?
+
+    init(courseID: String, assignmentID: String, allDates: Bool? = nil, include: [GetAssignmentInclude]) {
+        self.courseID = courseID
+        self.assignmentID = assignmentID
+        self.include = include
+        self.allDates = allDates
+    }
 
     public enum GetAssignmentInclude: String {
-        case submission
+        case submission, overrides
     }
 
     public var path: String {
@@ -36,9 +44,14 @@ public struct GetAssignmentRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
+        var query: [APIQueryItem] = []
         var include = self.include.map { $0.rawValue }
         include.append("observed_users")
-        return [ .array("include", include) ]
+        query.append(.array("include", include))
+        if let allDates = allDates {
+            query.append(.value("all_dates", String(allDates)))
+        }
+        return query
     }
 }
 

@@ -28,15 +28,11 @@ import DrawerState from '../../utils/drawer-state'
 import explore from '@test/helpers/explore'
 import setProps from '@test/helpers/setProps'
 import Permissions from '@common/permissions'
+import * as template from '../../../../__templates__'
 
 const templates = {
+  ...template,
   ...require('@redux/__templates__/app-state'),
-  ...require('@templates/submissions'),
-  ...require('@templates/session'),
-  ...require('@templates/attachment'),
-  ...require('@templates/mediaComment'),
-  ...require('@templates/assignments'),
-  ...require('@templates/quiz'),
 }
 
 jest
@@ -52,7 +48,10 @@ const comments = [
     date: new Date('2017-03-17T19:15:25Z'),
     avatarURL: 'http://fillmurray.com/332/555',
     from: 'me',
-    contents: { type: 'text', message: 'Well?!' },
+    contents: {
+      type: 'text',
+      comment: templates.submissionComment({ comment: 'Well?!' }),
+    },
   },
   {
     key: 'comment-2',
@@ -60,7 +59,10 @@ const comments = [
     date: new Date('2017-03-17T19:23:25Z'),
     avatarURL: 'http://fillmurray.com/220/400',
     from: 'them',
-    contents: { type: 'text', message: '…' },
+    contents: {
+      type: 'text',
+      comment: templates.submissionComment({ message: '…' }),
+    },
   },
   {
     key: 'comment-3',
@@ -119,10 +121,10 @@ beforeEach(() => {
 })
 
 test('comments render properly', () => {
-  const tree = renderer.create(
+  const tree = shallow(
     <CommentsTab commentRows={comments} drawerState={new DrawerState()}/>
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
+  )
+  expect(tree.find('FlatList').prop('data')).toHaveLength(comments.length)
 })
 
 test('empty state renders properly', () => {
@@ -343,7 +345,11 @@ test('mapStateToProps returns no comments for no submissionID', () => {
 })
 
 test('mapStateToProps returns comment and submission rows', () => {
-  const teacherComment = templates.submissionComment({})
+  let teacherComment = templates.submissionComment({
+    author_id: '1111',
+    author: templates.submissionCommentAuthor({ id: '1111' }),
+    attachments: [templates.attachment({ id: '1' })],
+  })
   const student = templates.submissionCommentAuthor({
     id: '6682',
     display_name: 'Harry Potter',
@@ -392,6 +398,7 @@ test('mapStateToProps returns comment and submission rows', () => {
   const text = templates.submission({
     attempt: 4,
     submitted_at: '2017-03-17T19:13:25Z',
+    attachments: [templates.attachment({ id: '4' })],
   })
 
   const url = templates.submission({
@@ -457,11 +464,12 @@ test('mapStateToProps returns comment and submission rows', () => {
   setSession(session)
 
   let props = mapStateToProps(appState, ownProps)
-  expect(props).toMatchSnapshot()
   let contents = props.commentRows.map(({ contents }) => contents)
   let quizAttempt = contents.filter(({ attemptIndex }) => attemptIndex === 6)[0]
   expect(quizAttempt.submissionID).toEqual(submission.id)
   expect(quizAttempt.submissionID).not.toEqual(quizAttempt.id)
+  teacherComment = props.commentRows.filter(({ userID }) => userID === '1111')[0]
+  expect(teacherComment.contents.comment.attachments).toHaveLength(1)
 })
 
 test('mapStateToProps returns true when the assignment is a quiz that is an anonymous survey', () => {

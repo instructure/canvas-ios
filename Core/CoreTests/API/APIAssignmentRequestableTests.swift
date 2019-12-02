@@ -26,6 +26,16 @@ class APIAssignmentRequestableTests: XCTestCase {
         XCTAssertEqual(request.queryItems, [
             URLQueryItem(name: "include[]", value: "observed_users"),
         ])
+        let allDates = GetAssignmentRequest(courseID: "1", assignmentID: "2", allDates: true, include: [])
+        XCTAssertEqual(allDates.queryItems, [
+            URLQueryItem(name: "include[]", value: "observed_users"),
+            URLQueryItem(name: "all_dates", value: "true"),
+        ])
+        let notAllDates = GetAssignmentRequest(courseID: "1", assignmentID: "2", allDates: false, include: [])
+        XCTAssertEqual(notAllDates.queryItems, [
+            URLQueryItem(name: "include[]", value: "observed_users"),
+            URLQueryItem(name: "all_dates", value: "false"),
+        ])
     }
 
     func testGetAssignmentRequestWithSubmission() {
