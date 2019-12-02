@@ -219,13 +219,6 @@
 		49AA2C4D1CF4D51B0055862D /* CKUploadProgressToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2B821CF4D51B0055862D /* CKUploadProgressToolbar.m */; };
 		49AA2C541CF4D51B0055862D /* CKSafeDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2B8A1CF4D51B0055862D /* CKSafeDictionary.h */; };
 		49AA2C551CF4D51B0055862D /* CKSafeDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2B8B1CF4D51B0055862D /* CKSafeDictionary.m */; };
-		49AA2D271CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D151CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.h */; };
-		49AA2D281CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D161CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.m */; };
-		49AA2D2A1CF4DC540055862D /* CBIPeopleDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49AA2D181CF4DC540055862D /* CBIPeopleDetail.storyboard */; };
-		49AA2D2B1CF4DC540055862D /* CBIPeopleDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D191CF4DC540055862D /* CBIPeopleDetailViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49AA2D2C1CF4DC540055862D /* CBIPeopleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D1A1CF4DC540055862D /* CBIPeopleDetailViewController.m */; };
-		49AA2D2F1CF4DC540055862D /* CBIPeopleViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D1D1CF4DC540055862D /* CBIPeopleViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49AA2D301CF4DC540055862D /* CBIPeopleViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D1E1CF4DC540055862D /* CBIPeopleViewModel.m */; };
 		49CE97661F900B4700121A43 /* UICollectionView+MyLittleViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49CE97521F900B4100121A43 /* UICollectionView+MyLittleViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49CE97671F900B4700121A43 /* MLVCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CE97531F900B4100121A43 /* MLVCTableViewController.m */; };
 		49CE97681F900B4700121A43 /* MLVCViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49CE97541F900B4100121A43 /* MLVCViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -452,6 +445,8 @@
 		9F900E7C2321870600BB44B4 /* PeopleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F900E7B2321870600BB44B4 /* PeopleListViewController.swift */; };
 		9F900E7E2321870F00BB44B4 /* PeopleListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F900E7D2321870F00BB44B4 /* PeopleListPresenter.swift */; };
 		9F900E80232187D900BB44B4 /* PeopleListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F900E7F232187D900BB44B4 /* PeopleListViewController.storyboard */; };
+		9FB246CC2396CD4F0040AA9E /* AFHTTPAvatarImageResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB246C52396CD4F0040AA9E /* AFHTTPAvatarImageResponseSerializer.m */; };
+		9FB246D02396CD4F0040AA9E /* AFHTTPAvatarImageResponseSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FB246C92396CD4F0040AA9E /* AFHTTPAvatarImageResponseSerializer.h */; };
 		ACC968801D245768006AEAB1 /* Page+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */; };
 		B12A076622C67BE400A45427 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EE221492040083E660 /* PSPDFKit.framework */; };
 		B12A076722C67BE800A45427 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EF221492040083E660 /* PSPDFKitUI.framework */; };
@@ -847,13 +842,6 @@
 		49AA2B821CF4D51B0055862D /* CKUploadProgressToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKUploadProgressToolbar.m; sourceTree = "<group>"; };
 		49AA2B8A1CF4D51B0055862D /* CKSafeDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKSafeDictionary.h; sourceTree = "<group>"; };
 		49AA2B8B1CF4D51B0055862D /* CKSafeDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKSafeDictionary.m; sourceTree = "<group>"; };
-		49AA2D151CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPAvatarImageResponseSerializer.h; sourceTree = "<group>"; };
-		49AA2D161CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPAvatarImageResponseSerializer.m; sourceTree = "<group>"; };
-		49AA2D181CF4DC540055862D /* CBIPeopleDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CBIPeopleDetail.storyboard; sourceTree = "<group>"; };
-		49AA2D191CF4DC540055862D /* CBIPeopleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIPeopleDetailViewController.h; sourceTree = "<group>"; };
-		49AA2D1A1CF4DC540055862D /* CBIPeopleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CBIPeopleDetailViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		49AA2D1D1CF4DC540055862D /* CBIPeopleViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIPeopleViewModel.h; sourceTree = "<group>"; };
-		49AA2D1E1CF4DC540055862D /* CBIPeopleViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIPeopleViewModel.m; sourceTree = "<group>"; };
 		49CE97521F900B4100121A43 /* UICollectionView+MyLittleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+MyLittleViewController.h"; sourceTree = "<group>"; };
 		49CE97531F900B4100121A43 /* MLVCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLVCTableViewController.m; sourceTree = "<group>"; };
 		49CE97541F900B4100121A43 /* MLVCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLVCViewController.h; sourceTree = "<group>"; };
@@ -1268,6 +1256,8 @@
 		9F900E7B2321870600BB44B4 /* PeopleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListViewController.swift; sourceTree = "<group>"; };
 		9F900E7D2321870F00BB44B4 /* PeopleListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListPresenter.swift; sourceTree = "<group>"; };
 		9F900E7F232187D900BB44B4 /* PeopleListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PeopleListViewController.storyboard; sourceTree = "<group>"; };
+		9FB246C52396CD4F0040AA9E /* AFHTTPAvatarImageResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPAvatarImageResponseSerializer.m; sourceTree = "<group>"; };
+		9FB246C92396CD4F0040AA9E /* AFHTTPAvatarImageResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPAvatarImageResponseSerializer.h; sourceTree = "<group>"; };
 		A025F6634B44F7120D41717E /* Pods_defaults_common_tests_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_tests_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A13903D63AE70A2926A48F10 /* Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_ui_tests-StudentUITests/Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig"; sourceTree = "<group>"; };
 		ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Page+ViewModel.swift"; sourceTree = "<group>"; };
@@ -1665,6 +1655,7 @@
 		492704AC1CF4B6D700C631C6 /* TechDebt */ = {
 			isa = PBXGroup;
 			children = (
+				9FB246C22396CD4F0040AA9E /* People */,
 				49DE1DA01F8808B80055D74A /* Messages */,
 				49CE97511F900AD500121A43 /* MyLittleViewController */,
 				2C0CAD6C1DEF6C30008D90FA /* InfoPlist.strings */,
@@ -1684,7 +1675,6 @@
 				492706A41CF4B97A00C631C6 /* iCanvas */,
 				492706C71CF4BA7B00C631C6 /* Locked */,
 				4927075D1CF4BB2100C631C6 /* Modules */,
-				49AA2D121CF4DC3F0055862D /* People */,
 			);
 			path = TechDebt;
 			sourceTree = "<group>";
@@ -2068,20 +2058,6 @@
 				49AA2B8B1CF4D51B0055862D /* CKSafeDictionary.m */,
 			);
 			path = Utilities;
-			sourceTree = "<group>";
-		};
-		49AA2D121CF4DC3F0055862D /* People */ = {
-			isa = PBXGroup;
-			children = (
-				49AA2D151CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.h */,
-				49AA2D161CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.m */,
-				49AA2D181CF4DC540055862D /* CBIPeopleDetail.storyboard */,
-				49AA2D191CF4DC540055862D /* CBIPeopleDetailViewController.h */,
-				49AA2D1A1CF4DC540055862D /* CBIPeopleDetailViewController.m */,
-				49AA2D1D1CF4DC540055862D /* CBIPeopleViewModel.h */,
-				49AA2D1E1CF4DC540055862D /* CBIPeopleViewModel.m */,
-			);
-			path = People;
 			sourceTree = "<group>";
 		};
 		49CE97511F900AD500121A43 /* MyLittleViewController */ = {
@@ -2953,6 +2929,15 @@
 			path = People;
 			sourceTree = "<group>";
 		};
+		9FB246C22396CD4F0040AA9E /* People */ = {
+			isa = PBXGroup;
+			children = (
+				9FB246C52396CD4F0040AA9E /* AFHTTPAvatarImageResponseSerializer.m */,
+				9FB246C92396CD4F0040AA9E /* AFHTTPAvatarImageResponseSerializer.h */,
+			);
+			path = People;
+			sourceTree = "<group>";
+		};
 		B157A60D22BD782300963E56 /* Assignments */ = {
 			isa = PBXGroup;
 			children = (
@@ -3102,7 +3087,6 @@
 				492706D31CF4BA7B00C631C6 /* ContentLockViewController.h in Headers */,
 				4927077C1CF4BB2100C631C6 /* CBIModuleProgressNotifications.h in Headers */,
 				492705CA1CF4B73200C631C6 /* UITableView+in_updateInBlocks.h in Headers */,
-				49AA2D2B1CF4DC540055862D /* CBIPeopleDetailViewController.h in Headers */,
 				492705CE1CF4B73300C631C6 /* UIView+Circular.h in Headers */,
 				492705A61CF4B73200C631C6 /* CKIClient+CBIClient.h in Headers */,
 				492705BC1CF4B73200C631C6 /* UIFont+Canvas.h in Headers */,
@@ -3121,13 +3105,12 @@
 				7D91D65C23217FA000C2F585 /* Routing.h in Headers */,
 				49CE976D1F900B4700121A43 /* metamacros.h in Headers */,
 				492705B21CF4B73200C631C6 /* NSURL+TechDebt.h in Headers */,
-				49AA2D2F1CF4DC540055862D /* CBIPeopleViewModel.h in Headers */,
 				49CE97711F900B4700121A43 /* MLVCCollectionViewCellViewModel.h in Headers */,
 				49CE97731F900B4700121A43 /* MLVCTableViewCellViewModel.h in Headers */,
-				49AA2D271CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.h in Headers */,
 				492706A91CF4B98900C631C6 /* iCanvasConstants.h in Headers */,
 				49CE97661F900B4700121A43 /* UICollectionView+MyLittleViewController.h in Headers */,
 				49F9FA5A1CF8CDC400654758 /* UIImage+TechDebt.h in Headers */,
+				9FB246D02396CD4F0040AA9E /* AFHTTPAvatarImageResponseSerializer.h in Headers */,
 				49642BC01CF4C44A00238B3F /* EXTScope.h in Headers */,
 				492705D21CF4B73300C631C6 /* UIView+FloatingView.h in Headers */,
 				49A04E271CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.h in Headers */,
@@ -3600,7 +3583,6 @@
 				49F9FA471CF7B6F600654758 /* TechDebt.xcassets in Resources */,
 				492705F31CF4B76A00C631C6 /* CBIColorfulRightDetailCell.xib in Resources */,
 				2C0CAD6A1DEF6C30008D90FA /* InfoPlist.strings in Resources */,
-				49AA2D2A1CF4DC540055862D /* CBIPeopleDetail.storyboard in Resources */,
 				492705F21CF4B76A00C631C6 /* CBIColorfulCell.xib in Resources */,
 				492705F41CF4B76A00C631C6 /* CBIColorfulSubtitleCell.xib in Resources */,
 			);
@@ -3970,16 +3952,14 @@
 				492705C91CF4B73200C631C6 /* UITableView+in_backgroundImage.m in Sources */,
 				492705A31CF4B73200C631C6 /* CKIUser+SwiftCompatibility.m in Sources */,
 				4927077D1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m in Sources */,
-				49AA2D281CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.m in Sources */,
 				492705F61CF4B76A00C631C6 /* CBIColorfulViewModel.m in Sources */,
 				49DE1DA41F8808F30055D74A /* CBIConversationStarter.m in Sources */,
 				49F9FA5B1CF8CDC400654758 /* UIImage+TechDebt.m in Sources */,
-				49AA2D301CF4DC540055862D /* CBIPeopleViewModel.m in Sources */,
 				492705F11CF4B76A00C631C6 /* CBIColorfulCell.m in Sources */,
 				49CE976F1F900B4700121A43 /* MLVCCollectionViewController.m in Sources */,
 				492705CB1CF4B73200C631C6 /* UITableView+in_updateInBlocks.m in Sources */,
+				9FB246CC2396CD4F0040AA9E /* AFHTTPAvatarImageResponseSerializer.m in Sources */,
 				49CE97771F900B4700121A43 /* NSObject+RACCollectionChanges.m in Sources */,
-				49AA2D2C1CF4DC540055862D /* CBIPeopleDetailViewController.m in Sources */,
 				61F438E71DD667D900552D14 /* MLVCCollectionController+CBIRefresh.m in Sources */,
 				4927060F1CF4B79B00C631C6 /* InsetTableViewCell.m in Sources */,
 				492706AA1CF4B98900C631C6 /* iCanvasConstants.m in Sources */,

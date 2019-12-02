@@ -19,7 +19,7 @@
 // @flow
 import gql from 'graphql-tag'
 
-export default gql`query StudentContextCard($courseID: ID!, $userID: ID!) {
+export const courseQuery = gql`query StudentContextCardCourse($courseID: ID!, $userID: ID!) {
   course: legacyNode(type: Course, _id: $courseID) {
     ... on Course {
       id: _id
@@ -103,6 +103,24 @@ export default gql`query StudentContextCard($courseID: ID!, $userID: ID!) {
         }
         pageInfo {
           hasNextPage
+        }
+      }
+    }
+  }
+}`
+
+export const groupQuery = gql`query StudentContextCardGroup($groupID: ID!, $userID: ID!) {
+  group: legacyNode(type: Group, _id: $groupID) {
+    ... on Group {
+      id: _id
+      name
+      member(userId: $userID) {
+        user {
+          id: _id
+          name
+          short_name: shortName
+          avatar_url: avatarUrl
+          primary_email: email
         }
       }
     }

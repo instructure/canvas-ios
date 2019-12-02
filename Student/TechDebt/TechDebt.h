@@ -30,8 +30,6 @@ FOUNDATION_EXPORT const unsigned char TechDebtVersionString[];
 #import <TechDebt/iCanvasConstants.h>
 #import <TechDebt/CBIModuleProgressNotifications.h>
 #import <TechDebt/CBIConversationStarter.h>
-#import <TechDebt/CBIPeopleViewModel.h>
-#import <TechDebt/CBIPeopleDetailViewController.h>
 #import <TechDebt/CBIColorfulViewModel.h>
 #import <TechDebt/CKIClient+CBIClient.h>
 #import <TechDebt/UIImage+TechDebt.h>

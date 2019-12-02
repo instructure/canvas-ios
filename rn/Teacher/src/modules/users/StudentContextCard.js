@@ -34,8 +34,7 @@ import Images from '../../images'
 import UserSubmissionRow from './UserSubmissionRow'
 import RowSeparator from '../../common/components/rows/RowSeparator'
 import { graphql } from 'react-apollo'
-import query from '../../canvas-api-v2/queries/ContextCard.js'
-import _ from 'lodash'
+import { courseQuery, groupQuery } from '../../canvas-api-v2/queries/ContextCard'
 import * as app from '../app'
 
 type ContextCardOwnProps = {
@@ -62,7 +61,7 @@ type ContextCardProps = ContextCardOwnProps & ContextCardDataProps
 
 export class ContextCard extends Component<ContextCardProps> {
   renderHeader () {
-    const { course, user, enrollment, isStudent, permissions = {} } = this.props
+    const { context, user, enrollment, isStudent, permissions = {} } = this.props
     let sectionName
     if (enrollment) {
       const section = enrollment.section
@@ -91,14 +90,14 @@ export class ContextCard extends Component<ContextCardProps> {
               height={80}
             />
             <View style={styles.userText}>
-              <Text style={styles.userName}>{user.short_name}</Text>
+              <Text testID='context-card.short-name' style={styles.userName}>{user.short_name}</Text>
               { user.primary_email &&
                 <SubTitle>{user.primary_email}</SubTitle>
               }
             </View>
           </View>
           <View>
-            <Text style={styles.heading}>{course.name}</Text>
+            <Text testID='context-card.context-name' style={styles.heading}>{context.name}</Text>
             { sectionName && <Text testID='context-card.section-name' style={{ marginVertical: 4, fontSize: 14 }}>{i18n('Section: {sectionName}', { sectionName })}</Text> }
             {enrollment && enrollment.last_activity_at && !app.isStudent() &&
               <SubTitle testID='context-card.last-activity'>
@@ -110,17 +109,19 @@ export class ContextCard extends Component<ContextCardProps> {
           </View>
         </View>
         {isStudent && ((permissions.viewAnalytics && user.analytics) || (enrollment && enrollment.grades)) &&
-          <View style={styles.headerSection}>
+          <View testID='context-card.analytics' style={styles.headerSection}>
             <Text style={[styles.heading, { marginBottom: 16 }]}>{i18n('Submissions')}</Text>
             <View style={styles.line}>
-              <View
-                accessible={true}
-                style={styles.analyticsGroup}
-                accessibilityLabel={i18n('Grade {grade}', { grade })}
-              >
-                <Text testID='context-card.grade' style={styles.largeText}>{grade}</Text>
-                <Text style={styles.label}>{i18n('Grade')}</Text>
-              </View>
+              {grade &&
+                <View
+                  accessible={true}
+                  style={styles.analyticsGroup}
+                  accessibilityLabel={i18n('Grade {grade}', { grade })}
+                >
+                  <Text testID='context-card.grade' style={styles.largeText}>{grade}</Text>
+                  <Text style={styles.label}>{i18n('Grade')}</Text>
+                </View>
+              }
               { overrideGrade &&
                 <View
                   accessible={true}
@@ -175,7 +176,7 @@ export class ContextCard extends Component<ContextCardProps> {
   }
 
   render () {
-    const { course, user, submissions, isStudent, permissions = {} } = this.props
+    const { context, user, submissions, isStudent, permissions = {} } = this.props
 
     const screenProps = {
       rightBarButtons: permissions.sendMessages || isStudent === false ? [{
@@ -187,7 +188,7 @@ export class ContextCard extends Component<ContextCardProps> {
       navBarStyle: this.props.navigator.isModal ? undefined : 'dark',
     }
 
-    if (this.props.loading && !this.props.course) {
+    if (this.props.loading && !this.props.context) {
       return <Screen {...screenProps }><ActivityIndicatorView /></Screen>
     }
 
@@ -198,7 +199,7 @@ export class ContextCard extends Component<ContextCardProps> {
     return (
       <Screen
         title={user.short_name}
-        subtitle={course.name}
+        subtitle={context.name}
         {...screenProps }
       >
         <FlatList
@@ -215,11 +216,13 @@ export class ContextCard extends Component<ContextCardProps> {
   _keyExtractor = (item: Object, index: number) => `${index}`
 
   _emailContact = () => {
-    const { course, user } = this.props
-    if (course && user) {
+    const { context, contextType, user } = this.props
+    if (context && user) {
       let recipients = [user]
-      const contextName = course.name
-      const contextCode = `course_${course.id}`
+      const contextName = context.name
+      const contextCode = contextType === 'courses'
+        ? `course_${context.id}`
+        : `group_${context.id}`
       this.props.navigator.show('/conversations/compose', { modal: true }, { contextName, contextCode, recipients, canSelectCourse: false })
     }
   }
@@ -296,10 +299,10 @@ export function props (props: any) {
     return { error: data.error }
   }
 
-  const course = data.course
-  const user = _.get(course, 'users.edges[0].user')
+  const context = data.course ?? data.group
+  const user = context?.users?.edges[0]?.user ?? context?.member?.user
 
-  if (!course || !user) {
+  if (!context || !user) {
     if (data.loading) {
       return { loading: true }
     } else {
@@ -307,16 +310,31 @@ export function props (props: any) {
     }
   }
 
-  const enrollment = _.get(user, 'enrollments[0]') || {}
-  const submissions = (_.get(course, 'submissions.edges') || []).map(e => e.submission).filter(Boolean)
+  const enrollment = user.enrollments?.[0] ?? {}
+  const submissions = context.submissions?.edges.map(e => e.submission).filter(Boolean)
   const isStudent = enrollment.type === 'StudentEnrollment'
-  const permissions = course.permissions || {}
+  const permissions = context.permissions ?? {}
 
-  return { course, user, enrollment, submissions, isStudent, permissions, loading: data.loading }
+  return {
+    context,
+    contextType: data.course != null ? 'courses' : 'groups',
+    user,
+    enrollment,
+    submissions,
+    isStudent,
+    permissions,
+    loading: data.loading,
+  }
 }
 
-export default graphql(query, {
+export const StudentContextCardCourse = graphql(courseQuery, {
   options: ({ courseID, userID }) => ({ variables: { courseID, userID, limit: 20 } }),
+  fetchPolicy: 'cache-and-network',
+  props,
+})(ContextCard)
+
+export const StudentContextCardGroup = graphql(groupQuery, {
+  options: ({ groupID, userID }) => ({ variables: { groupID, userID } }),
   fetchPolicy: 'cache-and-network',
   props,
 })(ContextCard)

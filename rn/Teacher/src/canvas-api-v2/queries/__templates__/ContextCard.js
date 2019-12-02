@@ -39,3 +39,12 @@ export const ContextCardResult: Template<any> = template({
     },
   }),
 })
+
+export const ContextCardGroupResult = template({
+  group: templates.group({
+    users: null,
+    member: {
+      user: templates.user(),
+    },
+  }),
+})
