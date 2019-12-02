@@ -769,7 +769,7 @@ describe('DiscussionDetails', () => {
     props.context = 'courses'
     props.contextID = '1'
     props.discussionID = '2'
-    let view = shallow(<DiscussionDetails {...props} />)
+    shallow(<DiscussionDetails {...props} />)
     expect(props.markTopicAsRead).toHaveBeenCalledWith('courses', '1', '2')
   })
 
