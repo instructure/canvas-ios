@@ -65,7 +65,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/:context/:contextID/announcements": nil,
 
     "/:context/:contextID/announcements/:announcementID": nil,
-    
+
     "/courses/:courseID/assignments": { url, params in
         guard let courseID = params["courseID"] else { return nil }
         return AssignmentListViewController.create(courseID: courseID)

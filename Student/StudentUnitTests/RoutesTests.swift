@@ -90,7 +90,7 @@ class RoutesTests: XCTestCase {
     }
 
     func testAssignmentList() {
-        XCTAssertEqual((router.match(Route.assignments(forCourse: "1").url) as? HelmViewController)?.moduleName, "/courses/:courseID/assignments")
+        XCTAssert((router.match(Route.assignments(forCourse: "1").url) is AssignmentListViewController))
     }
 
     func testCourseNavTab() {
