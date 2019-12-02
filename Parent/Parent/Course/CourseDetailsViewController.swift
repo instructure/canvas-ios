@@ -38,11 +38,11 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     lazy var courses = env.subscribe(GetCourse(courseID: courseID, include: GetCourseRequest.defaultIncludes + [.observedUsers])) { [weak self] in
         self?.courseReady()
     }
-    
+
     lazy var frontPages = env.subscribe(GetFrontPage(context: ContextModel(.course, id: courseID))) { [weak self] in
         self?.courseReady()
     }
-    
+
     static func create(courseID: String, studentID: String, env: AppEnvironment = .shared) -> CourseDetailsViewController {
         let controller = CourseDetailsViewController(nibName: nil, bundle: nil)
         controller.env = env
@@ -83,7 +83,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         summaryViewController = Core.SyllabusActionableItemsViewController(courseID: courseID, sort: GetAssignments.Sort.dueAt, colorDelegate: self)
         viewControllers.append(summaryViewController)
     }
-    
+
     func configureFrontPage() {
         let vc = CoreWebViewController()
         vc.webView.loadHTMLString(frontPages.first?.body ?? "", baseURL: nil)
