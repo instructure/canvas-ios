@@ -71,6 +71,8 @@
 		B183F99B2252925F000A6930 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B183F99A2252925F000A6930 /* IconView.swift */; };
 		B18B275F236C76B10043EB2B /* ModuleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18B275E236C76B10043EB2B /* ModuleListViewControllerTests.swift */; };
 		B1992AAB2264D51200396A1F /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1992AAA2264D51200396A1F /* RoutesTests.swift */; };
+		B1A5CDE5239581E100BEA196 /* CanvadocsConstantsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A5CDE4239581E100BEA196 /* CanvadocsConstantsTests.swift */; };
+		B1A5CDE62395836600BEA196 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; };
 		B1A890AA224D272D00CEE000 /* ModuleItemSubHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A890A9224D272D00CEE000 /* ModuleItemSubHeaderCell.swift */; };
 		B1A890BC224F161100CEE000 /* ModuleSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A890BB224F161100CEE000 /* ModuleSectionHeaderView.swift */; };
 		B1A890BE224F16F900CEE000 /* ModuleSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1A890BD224F16F900CEE000 /* ModuleSectionHeaderView.xib */; };
@@ -313,6 +315,7 @@
 		B183F99A2252925F000A6930 /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		B18B275E236C76B10043EB2B /* ModuleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleListViewControllerTests.swift; sourceTree = "<group>"; };
 		B1992AAA2264D51200396A1F /* RoutesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTests.swift; sourceTree = "<group>"; };
+		B1A5CDE4239581E100BEA196 /* CanvadocsConstantsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvadocsConstantsTests.swift; sourceTree = "<group>"; };
 		B1A890A9224D272D00CEE000 /* ModuleItemSubHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemSubHeaderCell.swift; sourceTree = "<group>"; };
 		B1A890BB224F161100CEE000 /* ModuleSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleSectionHeaderView.swift; sourceTree = "<group>"; };
 		B1A890BD224F16F900CEE000 /* ModuleSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModuleSectionHeaderView.xib; sourceTree = "<group>"; };
@@ -375,6 +378,7 @@
 			files = (
 				840CABA038B02116B1BDA3E0 /* Pods_defaults_TeacherTests.framework in Frameworks */,
 				B15CA26D221DDEB40014FB02 /* TestsFoundation.framework in Frameworks */,
+				B1A5CDE62395836600BEA196 /* CanvasCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +545,7 @@
 		B15CA25E221DDB820014FB02 /* TeacherTests */ = {
 			isa = PBXGroup;
 			children = (
+				B1A5CDE3239581C900BEA196 /* Annotations */,
 				7D64A96B23626C0B004EAEDF /* Attendance */,
 				3B1D37C72310855E0017CCA2 /* Submissions */,
 				B15CA267221DDB8D0014FB02 /* Modules */,
@@ -592,6 +597,14 @@
 				B1C0257623722054001C87A2 /* ModuleStore.swift */,
 			);
 			path = ModuleList;
+			sourceTree = "<group>";
+		};
+		B1A5CDE3239581C900BEA196 /* Annotations */ = {
+			isa = PBXGroup;
+			children = (
+				B1A5CDE4239581E100BEA196 /* CanvadocsConstantsTests.swift */,
+			);
+			path = Annotations;
 			sourceTree = "<group>";
 		};
 		E3598DCFB2D0E7A9019957B2 /* Pods */ = {
@@ -997,6 +1010,7 @@
 				B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */,
 				B1992AAB2264D51200396A1F /* RoutesTests.swift in Sources */,
 				B18B275F236C76B10043EB2B /* ModuleListViewControllerTests.swift in Sources */,
+				B1A5CDE5239581E100BEA196 /* CanvadocsConstantsTests.swift in Sources */,
 				7D64A9872368C6C0004EAEDF /* AttendanceViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
