@@ -23,10 +23,11 @@ import Foundation
 extension AssignmentGroup {
     @discardableResult
     public static func make(
-        from api: APIAssignmentGroup = .make(), courseID: String = "1", gradingPeriodID: String? = nil,
+        from api: APIAssignmentGroup = .make(),
+        courseID: String = "1",
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
-        ) -> AssignmentGroup {
-        let model = AssignmentGroup.save(api, courseID: courseID, gradingPeriodID: gradingPeriodID, in: context)
+    ) -> AssignmentGroup {
+        let model = AssignmentGroup.save(api, courseID: courseID, in: context)
         try! context.save()
         return model
     }

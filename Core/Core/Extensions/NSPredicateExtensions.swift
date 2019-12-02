@@ -26,4 +26,12 @@ extension NSPredicate {
     public static func id(_ id: String) -> NSPredicate {
         return NSPredicate(format: "%K == %@", "id", id)
     }
+
+    public convenience init(key: String, equals value: CVarArg?) {
+        if let value = value {
+            self.init(format: "%K == %@", key, value)
+        } else {
+            self.init(format: "%K == nil", key)
+        }
+    }
 }

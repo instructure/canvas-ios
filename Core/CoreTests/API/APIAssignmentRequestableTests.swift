@@ -26,6 +26,16 @@ class APIAssignmentRequestableTests: XCTestCase {
         XCTAssertEqual(request.queryItems, [
             URLQueryItem(name: "include[]", value: "observed_users"),
         ])
+        let allDates = GetAssignmentRequest(courseID: "1", assignmentID: "2", allDates: true, include: [])
+        XCTAssertEqual(allDates.queryItems, [
+            URLQueryItem(name: "include[]", value: "observed_users"),
+            URLQueryItem(name: "all_dates", value: "true"),
+        ])
+        let notAllDates = GetAssignmentRequest(courseID: "1", assignmentID: "2", allDates: false, include: [])
+        XCTAssertEqual(notAllDates.queryItems, [
+            URLQueryItem(name: "include[]", value: "observed_users"),
+            URLQueryItem(name: "all_dates", value: "false"),
+        ])
     }
 
     func testGetAssignmentRequestWithSubmission() {
@@ -40,9 +50,9 @@ class APIAssignmentRequestableTests: XCTestCase {
     func testGetAssignmentsRequest() {
         var request = GetAssignmentsRequest(courseID: "1")
         XCTAssertEqual(request.path, "courses/1/assignments")
-        XCTAssertEqual(request.queryItems, [URLQueryItem(name: "order_by", value: "position"), URLQueryItem(name: "per_page", value: "100")])
+        XCTAssertEqual(request.queryItems, [URLQueryItem(name: "order_by", value: "position")])
 
-        request = GetAssignmentsRequest(courseID: "1", orderBy: .name)
+        request = GetAssignmentsRequest(courseID: "1", orderBy: .name, perPage: 100)
         XCTAssertEqual(request.queryItems, [URLQueryItem(name: "order_by", value: "name"), URLQueryItem(name: "per_page", value: "100")])
     }
 

@@ -35,7 +35,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         case grades, syllabus, summary
     }
 
-    lazy var courses = env.subscribe(GetCourse(courseID: courseID, include: GetCourseRequest.defaultIncludes + [.observedUsers])) { [weak self] in
+    lazy var courses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.courseReady()
     }
 
@@ -65,7 +65,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     }
 
     func configureGrades() {
-        gradesViewController = GradesViewController.create(courseID: courseID, studentID: studentID, colorDelegate: self)
+        gradesViewController = GradesViewController.create(courseID: courseID, userID: studentID, colorDelegate: self)
         viewControllers.append(gradesViewController)
     }
 

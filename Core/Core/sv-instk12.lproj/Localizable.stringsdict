@@ -2,6 +2,30 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>d_needs_grading</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@needs_grading@</string>
+		<key>needs_grading</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>one</key>
+			<string>%d needs grading</string>
+			<key>other</key>
+			<string>%d need grading</string>
+			<key>two</key>
+			<string></string>
+			<key>zero</key>
+			<string>%d need grading</string>
+		</dict>
+	</dict>
 	<key>d_questions</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -29,7 +53,7 @@
 	<key>final_grade_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Total bedömning: %#@points@</string>
+		<string>Totalt omdöme: %#@points@</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>

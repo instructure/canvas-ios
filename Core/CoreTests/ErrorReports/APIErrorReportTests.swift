@@ -102,8 +102,8 @@ class APIErroReportTests: CoreTestCase {
         Email: test@test.com
         Hostname: https://canvas.instructure.com
         App Version: 1.0 (1)
-        Platform: iPhone
-        OS Version: 13.1
+        Platform: \(UIDevice.current.model)
+        OS Version: \(UIDevice.current.systemVersion)
         Enabled Features: testing
         -----------------------------------
         """)

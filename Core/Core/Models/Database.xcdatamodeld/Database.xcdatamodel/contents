@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15400" systemVersion="18G103" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15400" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Activity" representedClassName=".Activity" syncable="YES">
         <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -21,6 +21,8 @@
         <attribute name="allowedExtensionsRaw" attributeType="String" defaultValueString=""/>
         <attribute name="assignmentGroupID" optional="YES" attributeType="String"/>
         <attribute name="assignmentGroupPosition" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="assignmentGroupSectionName" optional="YES" transient="YES" attributeType="String"/>
+        <attribute name="cacheKey" optional="YES" attributeType="String"/>
         <attribute name="courseID" attributeType="String"/>
         <attribute name="details" optional="YES" attributeType="String"/>
         <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -43,9 +45,12 @@
         <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
         <attribute name="useRubricForGrading" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="assignmentGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AssignmentGroup" inverseName="assignments" inverseEntity="AssignmentGroup"/>
         <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="assignment" inverseEntity="DiscussionTopic"/>
+        <relationship name="gradingPeriod" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GradingPeriod" inverseName="assignments" inverseEntity="GradingPeriod"/>
         <relationship name="rubric" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Rubric" inverseName="assignment" inverseEntity="Rubric"/>
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Submission" inverseName="assignment" inverseEntity="Submission"/>
+        <relationship name="syllabus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Syllabus" inverseName="assignments" inverseEntity="Syllabus"/>
         <relationship name="todo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Todo" inverseName="assignment" inverseEntity="Todo"/>
     </entity>
     <entity name="AssignmentGroup" representedClassName="Core.AssignmentGroup" syncable="YES">
@@ -53,6 +58,7 @@
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignment" inverseName="assignmentGroup" inverseEntity="Assignment"/>
     </entity>
     <entity name="CalendarEventItem" representedClassName="Core.CalendarEventItem" syncable="YES">
         <attribute name="contextRaw" attributeType="String"/>
@@ -79,10 +85,12 @@
         <attribute name="arcEnabledRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="arcID" optional="YES" attributeType="String"/>
         <attribute name="courseCode" optional="YES" attributeType="String"/>
+        <attribute name="currentGradingPeriodID" optional="YES" attributeType="String"/>
         <attribute name="defaultViewRaw" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="imageDownloadURL" optional="YES" attributeType="URI"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="multipleGradingPeriodsEnabled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="syllabusBody" optional="YES" attributeType="String"/>
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="course" inverseEntity="Enrollment"/>
@@ -131,14 +139,16 @@
         <attribute name="currentPeriodComputedCurrentScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="currentPeriodComputedFinalGrade" optional="YES" attributeType="String"/>
         <attribute name="currentPeriodComputedFinalScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="multipleGradingPeriodsEnabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="role" attributeType="String"/>
+        <attribute name="role" optional="YES" attributeType="String"/>
         <attribute name="roleID" optional="YES" attributeType="String"/>
         <attribute name="stateRaw" optional="YES" attributeType="String"/>
         <attribute name="totalsForAllGradingPeriodsOption" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="type" attributeType="String"/>
         <attribute name="userID" optional="YES" attributeType="String"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="enrollments" inverseEntity="Course"/>
+        <relationship name="grades" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Grade" inverseName="enrollment" inverseEntity="Grade"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="enrollments" inverseEntity="User"/>
     </entity>
     <entity name="ExternalTool" representedClassName="Core.ExternalTool" syncable="YES">
@@ -197,10 +207,16 @@
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="attachments" inverseEntity="Submission"/>
         <relationship name="submissionComment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubmissionComment" inverseName="attachments" inverseEntity="SubmissionComment"/>
     </entity>
+    <entity name="Grade" representedClassName="Core.Grade" syncable="YES">
+        <attribute name="currentScoreRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="gradingPeriodID" optional="YES" attributeType="String"/>
+        <relationship name="enrollment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="grades" inverseEntity="Enrollment"/>
+    </entity>
     <entity name="GradingPeriod" representedClassName="Core.GradingPeriod" syncable="YES">
         <attribute name="courseID" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignment" inverseName="gradingPeriod" inverseEntity="Assignment"/>
     </entity>
     <entity name="Group" representedClassName="Core.Group" syncable="YES">
         <attribute name="avatarURL" optional="YES" attributeType="URI"/>
@@ -464,6 +480,10 @@
         <attribute name="userID" optional="YES" attributeType="String"/>
         <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="submissionComment" inverseEntity="File"/>
     </entity>
+    <entity name="Syllabus" representedClassName="Core.Syllabus" syncable="YES">
+        <attribute name="courseID" attributeType="String"/>
+        <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignment" inverseName="syllabus" inverseEntity="Assignment"/>
+    </entity>
     <entity name="Tab" representedClassName="Core.Tab" syncable="YES">
         <attribute name="contextRaw" attributeType="String"/>
         <attribute name="hiddenRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -514,21 +534,22 @@
     <elements>
         <element name="Activity" positionX="-540" positionY="-18" width="128" height="163"/>
         <element name="AlertThreshold" positionX="-540" positionY="-27" width="128" height="120"/>
-        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="478"/>
+        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="553"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="148"/>
         <element name="CommunicationChannel" positionX="-531" positionY="-9" width="128" height="133"/>
         <element name="ContextColor" positionX="-177.3046875" positionY="-36" width="128" height="73"/>
-        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="193"/>
+        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="223"/>
         <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="150"/>
         <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="255"/>
-        <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="330"/>
+        <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="358"/>
         <element name="ExternalTool" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="ExternalToolLaunchPlacement" positionX="-513" positionY="0" width="128" height="120"/>
         <element name="FeatureFlag" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="660"/>
-        <element name="GradingPeriod" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="Grade" positionX="-540" positionY="-18" width="128" height="88"/>
+        <element name="GradingPeriod" positionX="-540" positionY="-27" width="128" height="103"/>
         <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="135"/>
         <element name="HelpLink" positionX="-540" positionY="-27" width="128" height="135"/>
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
@@ -552,5 +573,6 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="180"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="Syllabus" positionX="-540" positionY="-18" width="128" height="73"/>
     </elements>
 </model>

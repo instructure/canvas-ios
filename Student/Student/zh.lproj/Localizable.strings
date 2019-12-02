@@ -486,7 +486,11 @@
    Title for Discussions view controller */
 "Discussions" = "讨论";
 
-/* Dismiss an alert dialog */
+/* Dismiss an error button
+   dismiss button
+   Dismiss button for an error dialoue
+   Dismiss error alert button
+   dismiss the alert button */
 "Dismiss" = "撤销";
 
 /* Alert title asking if you want to masquerade */
@@ -501,7 +505,7 @@
 /* Button to cancel deleting folders */
 "Don't delete" = "不要删除";
 
-/* Button title to mark a to do item as done */
+/* No comment provided by engineer. */
 "Done" = "完成";
 
 /* Shown when we cancel a file download */
@@ -530,9 +534,6 @@
 
 /* This string is prepended to the due date for an assignment */
 "Due:" = "到期：";
-
-/* Due date label for to do items, first placeholder is date, second is time */
-"Due: %@ at %@" = "到期：%1$@时间%2$@";
 
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "到期：%1$@时间%2$@";
@@ -737,9 +738,6 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "它有问题";
-
-/* No comment provided by engineer. */
-"It looks like there’s nothing to do today. Enjoy your day!" = "今天似乎没有事情做。享受您的一天！";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "是空的，您还在这里干什么。";
@@ -949,9 +947,6 @@
 
 /* No comment provided by engineer. */
 "No Thanks" = "不用了，谢谢";
-
-/* No comment provided by engineer. */
-"No To-Do Items" = "没有待办事项";
 
 /* error message for a 401 response. */
 "Not Authorized" = "未获授权";

@@ -221,63 +221,6 @@ class GetAssignmentsTests: CoreTestCase {
         XCTAssertEqual(assignments.count, 3)
     }
 
-    func testGetAssignmentsForGradesByAssignmentGroup() {
-        let apiAssignments = [
-            APIAssignment.make(id: "1", name: "1", due_at: Date().addDays(+5), assignment_group_id: "5"),
-            APIAssignment.make(id: "2", name: "2", due_at: nil, assignment_group_id: "6"),
-            APIAssignment.make(id: "3", name: "3", due_at: Date().addDays(+1), assignment_group_id: "6"),
-            APIAssignment.make(id: "4", name: "4", due_at: Date().addDays(-2), assignment_group_id: "5"),
-            APIAssignment.make(id: "5", name: "5", assignment_group_id: "7"),
-            APIAssignment.make(id: "6", name: "6", due_at: Date().addDays(-1), assignment_group_id: "5"),
-        ]
-        let u = GetAssignmentsForGrades(courseID: "1", groupBy: .assignmentGroup, requestQuerySize: 99)
-        u.write(response: apiAssignments, urlResponse: nil, to: databaseClient)
-
-        let groups: [APIAssignmentGroup] = [
-            APIAssignmentGroup.make(id: 5, name: "5", position: 2, assignments: [apiAssignments[0], apiAssignments[3], apiAssignments[5]]),
-            APIAssignmentGroup.make(id: 6, name: "6", position: 1, assignments: [apiAssignments[1], apiAssignments[2]]),
-            APIAssignmentGroup.make(id: 7, name: "7", position: 3, assignments: [apiAssignments[4]]),
-        ]
-        let agUseCase = GetAssignmentGroups(courseID: "1", gradingPeriodID: nil)
-        agUseCase.write(response: groups, urlResponse: nil, to: databaseClient)
-
-        let assignmentGroups: [AssignmentGroup] = databaseClient.fetch(agUseCase.scope.predicate, sortDescriptors: agUseCase.scope.order)
-        XCTAssertEqual(assignmentGroups.count, 3)
-
-        let assignments: [Assignment] = databaseClient.fetch(u.scope.predicate, sortDescriptors: u.scope.order)
-        XCTAssertEqual(assignments.count, 6)
-
-        XCTAssertEqual(assignments[0].assignmentGroupPosition, 1)
-        XCTAssertEqual(assignments[1].assignmentGroupPosition, 1)
-        XCTAssertEqual(assignments[2].assignmentGroupPosition, 2)
-        XCTAssertEqual(assignments[3].assignmentGroupPosition, 2)
-        XCTAssertEqual(assignments[4].assignmentGroupPosition, 2)
-        XCTAssertEqual(assignments[5].assignmentGroupPosition, 3)
-    }
-
-    func testGetAssignmentsForGradesByDueDate() {
-        let apiAssignments = [
-            APIAssignment.make(id: "1", name: "1", due_at: Date().addDays(+5), assignment_group_id: "5"),
-            APIAssignment.make(id: "2", name: "2", due_at: nil, assignment_group_id: "6"),
-            APIAssignment.make(id: "3", name: "3", due_at: Date().addDays(+1), assignment_group_id: "6"),
-            APIAssignment.make(id: "4", name: "4", due_at: Date().addDays(-2), assignment_group_id: "5"),
-            APIAssignment.make(id: "5", name: "5", assignment_group_id: "7"),
-            APIAssignment.make(id: "6", name: "6", due_at: Date().addDays(-1), assignment_group_id: "5"),
-        ]
-        let u = GetAssignmentsForGrades(courseID: "1", groupBy: .dueAt, requestQuerySize: 99)
-        u.write(response: apiAssignments, urlResponse: nil, to: databaseClient)
-
-        let assignments: [Assignment] = databaseClient.fetch(u.scope.predicate, sortDescriptors: u.scope.order)
-        XCTAssertEqual(assignments.count, 6)
-
-        XCTAssertEqual(assignments[0].id, "4")
-        XCTAssertEqual(assignments[1].id, "6")
-        XCTAssertEqual(assignments[2].id, "3")
-        XCTAssertEqual(assignments[3].id, "1")
-        XCTAssertEqual(assignments[4].id, "2")
-        XCTAssertEqual(assignments[5].id, "5")
-    }
-
     func testSortOrderByDueDate2() {
         let dateC = Date().addDays(2)
         let dateD = Date().addDays(3)

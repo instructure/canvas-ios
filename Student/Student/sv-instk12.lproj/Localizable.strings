@@ -222,11 +222,11 @@
 "An unknown error occurred" = "Ett okänt fel uppstod.";
 
 /* Title of the new announcement view */
-"Announcement" = "Kursmeddelande";
+"Announcement" = "Anslag";
 
 /* Announcements title
    Title for the announcements view controller */
-"Announcements" = "Kursmeddelanden";
+"Announcements" = "Anslag";
 
 /* Archive selected messages button
    mark a message as archived */
@@ -436,7 +436,7 @@
 "Currently there is limited quiz support on mobile" = "För närvarande är stödet för quiz begränsat på mobiler";
 
 /* A custom grade not specified by the rubric. */
-"Custom Grade" = "Anpassad bedömning";
+"Custom Grade" = "Anpassad omdöme";
 
 /* label for customizing a course */
 "Customize" = "Anpassa";
@@ -486,7 +486,11 @@
    Title for Discussions view controller */
 "Discussions" = "Diskussioner";
 
-/* Dismiss an alert dialog */
+/* Dismiss an error button
+   dismiss button
+   Dismiss button for an error dialoue
+   Dismiss error alert button
+   dismiss the alert button */
 "Dismiss" = "Avvisa";
 
 /* Alert title asking if you want to masquerade */
@@ -501,7 +505,7 @@
 /* Button to cancel deleting folders */
 "Don't delete" = "Ta inte bort";
 
-/* Button title to mark a to do item as done */
+/* No comment provided by engineer. */
 "Done" = "Klar";
 
 /* Shown when we cancel a file download */
@@ -530,9 +534,6 @@
 
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Inlämningsdatum:";
-
-/* Due date label for to do items, first placeholder is date, second is time */
-"Due: %@ at %@" = "Inlämningsdatum: %1$@ vid %2$@";
 
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "Inlämningsdatum: %1$@ vid %2$@";
@@ -657,19 +658,19 @@
 "Go to Quiz" = "Gå till quiz";
 
 /* No comment provided by engineer. */
-"Grade" = "Bedömning";
+"Grade" = "Omdöme";
 
 /* Tells the user to grade an assignment called something like 'Biology Assignment' */
-"Grade %@" = "Bedömning %@";
+"Grade %@" = "Omdöme %@";
 
 /* Launch the SpeedGrader app */
 "Grade in SpeedGrader" = "Bedöm i SpeedGrader";
 
 /* No comment provided by engineer. */
-"Grade: %@" = "Bedömning: %@";
+"Grade: %@" = "Omdöme: %@";
 
 /* No comment provided by engineer. */
-"Grade: %1$i / %2$g" = "Bedömning: %1$i / %2$g";
+"Grade: %1$i / %2$g" = "Omdöme: %1$i / %2$g";
 
 /* Label for a discussion */
 "Graded Discussion" = "Bedömd diskussion";
@@ -684,7 +685,7 @@
 "Graded Surveys" = "Bedömda enkäter";
 
 /* Title for Grades view controller */
-"Grades" = "Bedömningar";
+"Grades" = "Omdömen";
 
 /* Button title for starting a group conversation */
 "Group conversation" = "Gruppkonversation";
@@ -699,7 +700,7 @@
 "Help" = "Hjälp";
 
 /* Accessibility label for toggling grades to hidden */
-"Hide Grades" = "Dölj bedömningar";
+"Hide Grades" = "Dölj omdömen";
 
 /* No comment provided by engineer. */
 "How do you like Canvas?" = "Vad tycker du om Canvas?";
@@ -737,9 +738,6 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "Det finns problem med den";
-
-/* No comment provided by engineer. */
-"It looks like there’s nothing to do today. Enjoy your day!" = "Det ser ut som om det inte finns något att göra i dag. Ha en bra dag!";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Det är tomt, så vad gör du här?";
@@ -950,9 +948,6 @@
 /* No comment provided by engineer. */
 "No Thanks" = "Nej tack";
 
-/* No comment provided by engineer. */
-"No To-Do Items" = "Inga att-göra-objekt";
-
 /* error message for a 401 response. */
 "Not Authorized" = "Du har inte behörighet";
 
@@ -1116,7 +1111,7 @@
 "Quiz" = "Quiz";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
-"Quiz Alert" = "Quizlarm";
+"Quiz Alert" = "Quiz-notis";
 
 /* No comment provided by engineer. */
 "Quiz Locked" = "Quiz är låst";
@@ -1246,7 +1241,7 @@
 "Show file" = "Visa fil";
 
 /* Accessibility label for toggling grades to visible */
-"Show Grades" = "Visa bedömningar";
+"Show Grades" = "Visa omdömen";
 
 /* title for quiz assignment submission button */
 "Show Quiz" = "Visa quiz";

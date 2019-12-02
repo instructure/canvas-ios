@@ -99,9 +99,6 @@
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Parhau â'r Cwis";
 
-/* Failure reason for why it couldn't associate a tab with a context */
-"Could not parse context id from URL" = "Doedd dim modd dosrannu’r ID cynnwys o'r URL";
-
 /* Header label for a screen that customizes a course */
 "Customize" = "Addasu";
 
@@ -482,9 +479,6 @@
 /* Description for alert that shows when the quiz hits the due date */
 "The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Mae angen cyflwyno'r cwis mewn 1 munud. Hoffech chi gyflwyno nawr a bod ar amser neu fwrw ymlaen â'r cwis a mentro bod yn hwyr?";
 
-/* Error message for interrupted requests marking a to do as done */
-"The request to mark a to do as done was interrupted" = "Fe wnaeth rhywbeth amharu ar y cais i farcio bod eitem wedi'i chwblhau ar y rhestr 'pethau i'w gwneud'.";
-
 /* bad url message */
 "The text you entered is not a valid URL" = "Dydy’r URL y gwnaethoch ei roi ddim yn ddilys";
 
@@ -493,9 +487,6 @@
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Problem wrth ddehongli ymateb gan y gweinydd.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the (kitModelName) database file." = "Problem wrth lwytho’r ffeil cronfa ddata (kitModelName).";
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "Problem wrth lwytho’r ffeil cronfa ddata AssignmentKit.";

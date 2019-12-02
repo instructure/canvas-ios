@@ -486,7 +486,11 @@
    Title for Discussions view controller */
 "Discussions" = "Ngā Kōrerorero";
 
-/* Dismiss an alert dialog */
+/* Dismiss an error button
+   dismiss button
+   Dismiss button for an error dialoue
+   Dismiss error alert button
+   dismiss the alert button */
 "Dismiss" = "Pana";
 
 /* Alert title asking if you want to masquerade */
@@ -501,7 +505,7 @@
 /* Button to cancel deleting folders */
 "Don't delete" = "Kaua e muku";
 
-/* Button title to mark a to do item as done */
+/* No comment provided by engineer. */
 "Done" = "Kua mahia";
 
 /* Shown when we cancel a file download */
@@ -530,9 +534,6 @@
 
 /* This string is prepended to the due date for an assignment */
 "Due:" = "E tika ana:";
-
-/* Due date label for to do items, first placeholder is date, second is time */
-"Due: %@ at %@" = "E tika ana: %1$@ ī %2$@";
 
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "E tika ana: %1$@ ī %2$@";
@@ -737,9 +738,6 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "He raruraru";
-
-/* No comment provided by engineer. */
-"It looks like there’s nothing to do today. Enjoy your day!" = "Ko te āhua kaore he mahi mo tēnei rā. Kia pai tō rā!";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Kei te kore, he aha tō mahi tonu i konei.";
@@ -949,9 +947,6 @@
 
 /* No comment provided by engineer. */
 "No Thanks" = "Kāore he Mihi";
-
-/* No comment provided by engineer. */
-"No To-Do Items" = "Kaore Hei-Mahi ngā tūemi";
 
 /* error message for a 401 response. */
 "Not Authorized" = "Manakore";

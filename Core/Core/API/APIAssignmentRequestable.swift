@@ -25,9 +25,17 @@ public struct GetAssignmentRequest: APIRequestable {
     let courseID: String
     let assignmentID: String
     let include: [GetAssignmentInclude]
+    let allDates: Bool?
+
+    init(courseID: String, assignmentID: String, allDates: Bool? = nil, include: [GetAssignmentInclude]) {
+        self.courseID = courseID
+        self.assignmentID = assignmentID
+        self.include = include
+        self.allDates = allDates
+    }
 
     public enum GetAssignmentInclude: String {
-        case submission
+        case submission, overrides
     }
 
     public var path: String {
@@ -36,9 +44,14 @@ public struct GetAssignmentRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
+        var query: [APIQueryItem] = []
         var include = self.include.map { $0.rawValue }
         include.append("observed_users")
-        return [ .array("include", include) ]
+        query.append(.array("include", include))
+        if let allDates = allDates {
+            query.append(.value("all_dates", String(allDates)))
+        }
+        return query
     }
 }
 
@@ -88,28 +101,47 @@ public struct GetAssignmentsRequest: APIRequestable {
     public typealias Response = [APIAssignment]
 
     let courseID: String
+    let assignmentGroupID: String?
     let orderBy: OrderBy
+    let assignmentIDs: [String]?
     let include: [Include]
-    let querySize: Int
+    let perPage: Int?
 
-    public init(courseID: String, orderBy: OrderBy = .position, include: [Include] = [], querySize: Int = 100) {
+    public init(
+        courseID: String,
+        assignmentGroupID: String? = nil,
+        orderBy: OrderBy = .position,
+        assignmentIDs: [String]? = nil,
+        include: [Include] = [],
+        perPage: Int? = nil
+    ) {
         self.courseID = courseID
+        self.assignmentGroupID = assignmentGroupID
         self.orderBy = orderBy
+        self.assignmentIDs = assignmentIDs
         self.include = include
-        self.querySize = querySize
+        self.perPage = perPage
     }
 
     public var path: String {
         let context = ContextModel(.course, id: courseID)
+        if let assignmentGroupID = assignmentGroupID {
+            return "\(context.pathComponent)/assignment_groups/\(assignmentGroupID)/assignments"
+        }
         return "\(context.pathComponent)/assignments"
     }
 
     public var query: [APIQueryItem] {
-        var q: [APIQueryItem] = [ .value("order_by", orderBy.rawValue), .value("per_page", String(querySize)) ]
-
-        if !include.isEmpty {
-            q.append( .array("include", include.map { $0.rawValue }) )
+        var query: [APIQueryItem] = [
+            .value("order_by", orderBy.rawValue),
+            .array("include", include.map { $0.rawValue }),
+        ]
+        if let assignmentIDs = assignmentIDs {
+            query.append(.array("assignment_ids", assignmentIDs))
         }
-        return q
+        if let perPage = perPage {
+            query.append(.value("per_page", String(perPage)))
+        }
+        return query
     }
 }
