@@ -152,7 +152,7 @@ struct ListDiscussionTopicsRequest: APIRequestable {
     }
 
     public var path: String {
-        return "\(context.pathComponent)/discussion_topics/"
+        return "\(context.pathComponent)/discussion_topics"
     }
 
     public var query: [APIQueryItem] {

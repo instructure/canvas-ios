@@ -34,7 +34,7 @@ class IPCServer {
 
     static var knownIPCServers = [CFMessagePort: IPCServer]()
 
-    init(machPortName: String, queue: DispatchQueue) {
+    init(machPortName: String, runOnMainQueue: Bool) {
         self.machPortName = machPortName
         let handlerWrapper: CFMessagePortCallBack = { port, msgid, data, _ in
             IPCServer.knownIPCServers[port!]!.handler(msgid: msgid, data: data as Data?).map { Unmanaged.passRetained($0 as CFData) }
@@ -44,7 +44,19 @@ class IPCServer {
         }
         messagePort = port
         IPCServer.knownIPCServers[port] = self
-        CFMessagePortSetDispatchQueue(port, queue)
+        if runOnMainQueue {
+            CFMessagePortSetDispatchQueue(port, DispatchQueue.main)
+        } else {
+            let thread = Thread {
+                let loop = CFRunLoopGetCurrent()
+                let source = CFMessagePortCreateRunLoopSource(kCFAllocatorDefault, port, 0)
+                CFRunLoopAddSource(loop, source, .defaultMode)
+                CFRunLoopRun()
+                print("run loop exited!")
+            }
+            thread.name = "ipc-server"
+            thread.start()
+        }
     }
 }
 
@@ -64,7 +76,7 @@ class IPCAppServer: IPCServer {
     }
 
     init(machPortName: String) {
-        super.init(machPortName: machPortName, queue: .main)
+        super.init(machPortName: machPortName, runOnMainQueue: true)
     }
 }
 
@@ -117,7 +129,7 @@ class IPCDriverServer: IPCServer {
 
     weak var delegate: IPCDriverServerDelegate?
     init (machPortName: String, delegate: IPCDriverServerDelegate?) {
-        super.init(machPortName: machPortName, queue: .global())
+        super.init(machPortName: machPortName, runOnMainQueue: false)
         self.delegate = delegate
     }
 }

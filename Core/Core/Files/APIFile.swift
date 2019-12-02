@@ -82,6 +82,30 @@ public struct APIFileToken: Codable, Equatable {
     let token: String
 }
 
+// https://canvas.instructure.com/doc/api/files.html#Folder
+public struct APIFileFolder: Codable, Equatable {
+    let context_type: String
+    let context_id: ID
+    let files_count: Int
+    let position: Int?
+    let updated_at: Date
+    let folders_url: URL
+    let files_url: URL
+    let full_name: String
+    let lock_at: Date?
+    let id: ID
+    let folders_count: Int
+    let name: String
+    let parent_folder_id: ID?
+    let created_at: Date
+    let unlock_at: Date?
+    let hidden: Bool?
+    let hidden_for_user: Bool
+    let locked: Bool
+    let locked_for_user: Bool
+    let for_submissions: Bool
+}
+
 // https://canvas.instructure.com/doc/api/files.html#method.files.api_show
 public struct GetFileRequest: APIRequestable {
     public typealias Response = APIFile
@@ -90,16 +114,19 @@ public struct GetFileRequest: APIRequestable {
         case avatar, usage_rights, user
     }
 
-    let context: Context
+    let context: Context?
     let fileID: String
     let include: [Include]
 
     public var path: String {
-        return "\(context.pathComponent)/files/\(fileID)"
+        if let context = context {
+            return "\(context.pathComponent)/files/\(fileID)"
+        } else {
+            return "files/\(fileID)"
+        }
     }
 
     public var query: [APIQueryItem] {
-        guard !include.isEmpty else { return [] }
         return [ .include(include.map { $0.rawValue }) ]
     }
 }
@@ -187,5 +214,101 @@ public struct PostFileUploadRequest: APIRequestable {
             at: fileURL
         )
         return form
+    }
+}
+
+// https://canvas.instructure.com/doc/api/files.html#method.folders.resolve_path
+public class GetContextFolderHierarchyRequest: APIRequestable {
+    public typealias Response = [APIFileFolder]
+
+    let context: Context
+    let fullPath: String
+
+    init(context: Context, fullPath: String = "") {
+        self.context = context
+        self.fullPath = fullPath
+    }
+
+    public var path: String {
+        "\(context.pathComponent)/folders/by_path/\(fullPath)"
+    }
+
+    public var query: [APIQueryItem] {
+        [ .include([ "usage_rights" ]) ]
+    }
+}
+
+// https://canvas.instructure.com/doc/api/files.html#method.folders.api_index
+public class ListFoldersRequest: APIRequestable {
+    public typealias Response = [APIFileFolder]
+
+    let context: Context
+    let perPage: Int?
+
+    init(context: Context, perPage: Int? = 99) {
+        self.context = context
+        self.perPage = perPage
+    }
+
+    public var path: String {
+        "\(context.pathComponent)/folders"
+    }
+
+    public var query: [APIQueryItem] {
+        var query = [ APIQueryItem.include([ "usage_rights" ]) ]
+        if let perPage = perPage {
+            query.append(.value("per_page", "\(perPage)"))
+        }
+        return query
+    }
+}
+
+// https://canvas.instructure.com/doc/api/files.html#method.files.api_index
+public class ListFilesRequest: APIRequestable {
+    public typealias Response = [APIFile]
+
+    let context: Context
+    let perPage: Int?
+
+    init(context: Context, perPage: Int? = 99) {
+        self.context = context
+        self.perPage = perPage
+    }
+
+    public var path: String {
+        "\(context.pathComponent)/files"
+    }
+
+    public var query: [APIQueryItem] {
+        var query = [ APIQueryItem.include([ "usage_rights" ]) ]
+        if let perPage = perPage {
+            query.append(.value("per_page", "\(perPage)"))
+        }
+        return query
+    }
+}
+
+// https://canvas.instructure.com/doc/api/files.html#method.folders.show
+public class GetFolderRequest: APIRequestable {
+    public typealias Response = APIFileFolder
+
+    let context: Context?
+    let id: ID
+
+    init(context: Context?, id: ID) {
+        self.context = context
+        self.id = id
+    }
+
+    public var path: String {
+        if let context = context {
+            return "\(context.pathComponent)/folders/\(id)"
+        } else {
+            return "folders/\(id)"
+        }
+    }
+
+    public var query: [APIQueryItem] {
+        [ .include([ "usage_rights" ]) ]
     }
 }
