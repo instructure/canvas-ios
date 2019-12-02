@@ -127,7 +127,6 @@ public struct GetFileRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        guard !include.isEmpty else { return [] }
         return [ .include(include.map { $0.rawValue }) ]
     }
 }
