@@ -76,7 +76,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                 resizeMode="cover"
                 source={
                   Object {
-                    "testUri": "../../../src/images/course/Assignment.png",
+                    "uri": "assignmentLine",
                   }
                 }
                 style={
@@ -260,7 +260,7 @@ exports[`ContextCard renders 1`] = `
                 resizeMode="cover"
                 source={
                   Object {
-                    "testUri": "../../../src/images/course/Assignment.png",
+                    "uri": "assignmentLine",
                   }
                 }
                 style={
@@ -499,7 +499,7 @@ exports[`ContextCard renders for a user that cannot send messages 2`] = `
                 resizeMode="cover"
                 source={
                   Object {
-                    "testUri": "../../../src/images/course/Assignment.png",
+                    "uri": "assignmentLine",
                   }
                 }
                 style={
@@ -705,7 +705,7 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
                 resizeMode="cover"
                 source={
                   Object {
-                    "testUri": "../../../src/images/course/Assignment.png",
+                    "uri": "assignmentLine",
                   }
                 }
                 style={
@@ -889,7 +889,7 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
                 resizeMode="cover"
                 source={
                   Object {
-                    "testUri": "../../../src/images/course/Assignment.png",
+                    "uri": "assignmentLine",
                   }
                 }
                 style={
@@ -1073,7 +1073,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                 resizeMode="cover"
                 source={
                   Object {
-                    "testUri": "../../../src/images/course/Assignment.png",
+                    "uri": "assignmentLine",
                   }
                 }
                 style={

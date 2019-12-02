@@ -59,7 +59,7 @@ exports[`QuizRow renders 1`] = `
           resizeMode="cover"
           source={
             Object {
-              "testUri": "../../../src/images/course/Quiz.png",
+              "uri": "quizLine",
             }
           }
           style={
@@ -356,7 +356,7 @@ exports[`QuizRow renders multiple question count 1`] = `
           resizeMode="cover"
           source={
             Object {
-              "testUri": "../../../src/images/course/Quiz.png",
+              "uri": "quizLine",
             }
           }
           style={
@@ -653,7 +653,7 @@ exports[`QuizRow renders published 1`] = `
           resizeMode="cover"
           source={
             Object {
-              "testUri": "../../../src/images/course/Quiz.png",
+              "uri": "quizLine",
             }
           }
           style={
@@ -951,7 +951,7 @@ exports[`QuizRow renders selected 1`] = `
           resizeMode="cover"
           source={
             Object {
-              "testUri": "../../../src/images/course/Quiz.png",
+              "uri": "quizLine",
             }
           }
           style={
@@ -1248,7 +1248,7 @@ exports[`QuizRow renders single question count 1`] = `
           resizeMode="cover"
           source={
             Object {
-              "testUri": "../../../src/images/course/Quiz.png",
+              "uri": "quizLine",
             }
           }
           style={
@@ -1545,7 +1545,7 @@ exports[`QuizRow renders unpublished 1`] = `
           resizeMode="cover"
           source={
             Object {
-              "testUri": "../../../src/images/course/Quiz.png",
+              "uri": "quizLine",
             }
           }
           style={
@@ -1842,7 +1842,7 @@ exports[`QuizRow renders without points possible 1`] = `
           resizeMode="cover"
           source={
             Object {
-              "testUri": "../../../src/images/course/Quiz.png",
+              "uri": "quizLine",
             }
           }
           style={

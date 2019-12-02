@@ -97,6 +97,7 @@ export default gql`query StudentContextCard($courseID: ID!, $userID: ID!) {
               html_url: htmlUrl
               points_possible: pointsPossible
               grading_type: gradingType
+              submission_types: submissionTypes
               state
             }
           }

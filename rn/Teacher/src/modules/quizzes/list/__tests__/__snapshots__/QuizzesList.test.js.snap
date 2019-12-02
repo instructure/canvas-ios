@@ -168,7 +168,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                     resizeMode="cover"
                     source={
                       Object {
-                        "testUri": "../../../src/images/course/Quiz.png",
+                        "uri": "quizLine",
                       }
                     }
                     style={
@@ -464,7 +464,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                     resizeMode="cover"
                     source={
                       Object {
-                        "testUri": "../../../src/images/course/Quiz.png",
+                        "uri": "quizLine",
                       }
                     }
                     style={
@@ -828,7 +828,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                     resizeMode="cover"
                     source={
                       Object {
-                        "testUri": "../../../src/images/course/Quiz.png",
+                        "uri": "quizLine",
                       }
                     }
                     style={
@@ -1124,7 +1124,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                     resizeMode="cover"
                     source={
                       Object {
-                        "testUri": "../../../src/images/course/Quiz.png",
+                        "uri": "quizLine",
                       }
                     }
                     style={

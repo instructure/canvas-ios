@@ -31,7 +31,7 @@ import AccessIcon from '../../../common/components/AccessIcon'
 import AssignmentDates from '../../../common/AssignmentDates'
 import { Text } from '../../../common/text'
 import Row from '../../../common/components/rows/Row'
-import Images from '../../../images'
+import instIcon from '../../../images/inst-icons'
 import { createStyleSheet } from '../../../common/stylesheet'
 
 type Props = {
@@ -102,14 +102,14 @@ export default class AssignmentListRow extends PureComponent<Props> {
 
   _renderIcon = () => {
     const assignment = this.props.assignment
-    let image = Images.course.assignments
+    let image = instIcon('assignment')
     let testIDSuffix = `-icon-${assignment.published ? 'published' : 'not-published'}-${assignment.id}.icon-img`
     let testID = `assignment-list-row-assignment${testIDSuffix}`
     if (assignment.submission_types.includes('online_quiz')) {
-      image = Images.course.quizzes
+      image = instIcon('quiz')
       testID = `assignment-list-row-quiz${testIDSuffix}`
     } else if (assignment.submission_types.includes('discussion_topic')) {
-      image = Images.course.discussions
+      image = instIcon('discussion')
       testID = `assignment-list-row-discussion${testIDSuffix}`
     }
     return (

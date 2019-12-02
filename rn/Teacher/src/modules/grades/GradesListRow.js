@@ -25,7 +25,7 @@ import {
 
 import AccessIcon from '../../common/components/AccessIcon'
 import Row from '../../common/components/rows/Row'
-import Images from '../../images'
+import instIcon from '../../images/inst-icons'
 import SubmissionStatusLabel from '../submissions/list/SubmissionStatusLabel'
 import { submissionTypeIsOnline } from '@common/submissionTypes'
 import { Text } from '@common/text'
@@ -75,14 +75,14 @@ export default class GradesListRow extends PureComponent<Props> {
 
   _renderIcon = () => {
     const assignment = this.props.assignment
-    let image = Images.course.assignments
+    let image = instIcon('assignment')
     let testIDSuffix = `-icon-${assignment.published ? 'published' : 'not-published'}-${assignment.id}.icon-img`
     let testID = `grades-list-row-assignment${testIDSuffix}`
     if (assignment.submission_types.includes('online_quiz')) {
-      image = Images.course.quizzes
+      image = instIcon('quiz')
       testID = `grades-list-row-quiz${testIDSuffix}`
     } else if (assignment.submission_types.includes('discussion_topic')) {
-      image = Images.course.discussions
+      image = instIcon('discussion')
       testID = `grades-list-row-discussion${testIDSuffix}`
     }
     return (

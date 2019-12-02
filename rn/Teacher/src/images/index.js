@@ -20,23 +20,7 @@
 
 const images = {
   course: {
-    announcements: require('./course/Announcement.png'),
-    assignments: require('./course/Assignment.png'),
-    discussions: require('./course/Discussions.png'),
-    collaborations: require('./course/Collaboration.png'),
-    conferences: require('./course/Conferences.png'),
-    grades: require('./course/Grades.png'),
-    pages: require('./course/Pages.png'),
-    people: require('./course/People.png'),
-    modules: require('./course/Modules.png'),
-    quizzes: require('./course/Quiz.png'),
-    home: require('./course/Home.png'),
-    syllabus: require('./course/Syllabus.png'),
-    files: require('./course/Files.png'),
-    lti: require('./course/LTI.png'),
     settings: require('./course/Settings.png'),
-    placeholder: require('./course/Placeholder.png'),
-    attendance: require('./course/attendance-icon.png'),
   },
   dashboard: {
     calendar: require('./dashboard/calendar.png'),

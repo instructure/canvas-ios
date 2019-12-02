@@ -263,7 +263,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                         resizeMode="cover"
                         source={
                           Object {
-                            "testUri": "../../../src/images/course/Assignment.png",
+                            "uri": "assignmentLine",
                           }
                         }
                         style={
@@ -522,7 +522,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/kabob.png",
+                              "uri": "moreLine",
                             }
                           }
                           style={
@@ -624,7 +624,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                         resizeMode="cover"
                         source={
                           Object {
-                            "testUri": "../../../src/images/course/Assignment.png",
+                            "uri": "assignmentLine",
                           }
                         }
                         style={
@@ -883,7 +883,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/kabob.png",
+                              "uri": "moreLine",
                             }
                           }
                           style={
@@ -1061,7 +1061,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                         resizeMode="cover"
                         source={
                           Object {
-                            "testUri": "../../../src/images/course/Discussions.png",
+                            "uri": "discussionLine",
                           }
                         }
                         style={
@@ -1296,7 +1296,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/kabob.png",
+                              "uri": "moreLine",
                             }
                           }
                           style={
@@ -1398,7 +1398,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                         resizeMode="cover"
                         source={
                           Object {
-                            "testUri": "../../../src/images/course/Discussions.png",
+                            "uri": "discussionLine",
                           }
                         }
                         style={
@@ -1633,7 +1633,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/kabob.png",
+                              "uri": "moreLine",
                             }
                           }
                           style={
@@ -1811,7 +1811,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                         resizeMode="cover"
                         source={
                           Object {
-                            "testUri": "../../../src/images/course/Assignment.png",
+                            "uri": "assignmentLine",
                           }
                         }
                         style={
@@ -2070,7 +2070,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/kabob.png",
+                              "uri": "moreLine",
                             }
                           }
                           style={
@@ -2172,7 +2172,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                         resizeMode="cover"
                         source={
                           Object {
-                            "testUri": "../../../src/images/course/Assignment.png",
+                            "uri": "assignmentLine",
                           }
                         }
                         style={
@@ -2431,7 +2431,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/kabob.png",
+                              "uri": "moreLine",
                             }
                           }
                           style={
@@ -2609,7 +2609,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                         resizeMode="cover"
                         source={
                           Object {
-                            "testUri": "../../../src/images/course/Assignment.png",
+                            "uri": "assignmentLine",
                           }
                         }
                         style={
@@ -2868,7 +2868,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/kabob.png",
+                              "uri": "moreLine",
                             }
                           }
                           style={
@@ -2970,7 +2970,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                         resizeMode="cover"
                         source={
                           Object {
-                            "testUri": "../../../src/images/course/Assignment.png",
+                            "uri": "assignmentLine",
                           }
                         }
                         style={
@@ -3229,7 +3229,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/kabob.png",
+                              "uri": "moreLine",
                             }
                           }
                           style={
@@ -3374,7 +3374,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                         resizeMode="cover"
                         source={
                           Object {
-                            "testUri": "../../../src/images/course/Assignment.png",
+                            "uri": "assignmentLine",
                           }
                         }
                         style={
@@ -3633,7 +3633,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                         <Image
                           source={
                             Object {
-                              "testUri": "../../../src/images/kabob.png",
+                              "uri": "moreLine",
                             }
                           }
                           style={

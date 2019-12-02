@@ -31,7 +31,7 @@ test('Render the base row', () => {
     <Row
       title='Title of the row'
       subtitle='Subtitle'
-      image={Images.course.assignments}
+      image={Images.invisible}
       imageTint='#fff'
       imageSize={{ height: 10, width: 10 }}
       disclosureIndicator={true}

@@ -31,7 +31,6 @@ import Screen from '../../../routing/Screen'
 import ListEmptyComponent from '@common/components/ListEmptyComponent'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
 import Row from '../../../common/components/rows/Row'
-import images from '../../../images'
 import { fetchPropsFor, ConferenceModel } from '../../../canvas-api/model-api'
 import { getSession } from '../../../canvas-api/index'
 import { alertError } from '../../../redux/middleware/error-handler'
@@ -82,7 +81,7 @@ export class ConferenceList extends Component<Props, State> {
       <Row
         title={item.title}
         subtitle={item.description}
-        image={images.course.conferences}
+        image={{ uri: 'conferences' }}
         imageTint={this.props.color}
         disclosureIndicator
         border='bottom'

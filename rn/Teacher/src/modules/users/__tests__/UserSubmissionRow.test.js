@@ -16,18 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-/* eslint-disable flowtype/require-valid-file-annotation */
-
+import { shallow } from 'enzyme'
 import React from 'react'
 import UserSubmissionRow from '../UserSubmissionRow'
-
-import renderer from 'react-test-renderer'
-import { shallow } from 'enzyme'
-
-let templates = {
-  ...require('../../../__templates__/assignments'),
-  ...require('../../../__templates__/submissions'),
-}
+import * as templates from '../../../__templates__'
 
 const assignment = templates.assignment({ id: '1', points_possible: 10 })
 
@@ -44,24 +36,14 @@ let defaultProps = {
 }
 
 describe('UserSubmissionRow', () => {
-  it('renders', () => {
-    let view = renderer.create(
-      <UserSubmissionRow {...defaultProps} />
-    )
-
-    expect(view.toJSON()).toMatchSnapshot()
-  })
-
   it('renders published', () => {
     let props = {
       ...defaultProps,
     }
     props.submission.assignment = templates.assignment({ id: '1', points_possible: 10, published: true })
-    let view = renderer.create(
-      <UserSubmissionRow {...props} />
-    )
-
-    expect(view.toJSON()).toMatchSnapshot()
+    let tree = shallow(<UserSubmissionRow {...props} />)
+    let image = shallow(tree.find('Row').prop('renderImage')())
+    expect(image.find('AccessIcon').prop('entry')).toBe(props.submission.assignment)
   })
 
   it('renders online quiz', () => {
@@ -69,11 +51,9 @@ describe('UserSubmissionRow', () => {
       ...defaultProps,
     }
     props.submission.assignment = templates.assignment({ id: '1', points_possible: 10, submission_types: ['online_quiz'] })
-    let view = renderer.create(
-      <UserSubmissionRow {...props} />
-    )
-
-    expect(view.toJSON()).toMatchSnapshot()
+    let tree = shallow(<UserSubmissionRow {...props} />)
+    let image = shallow(tree.find('Row').prop('renderImage')())
+    expect(image.find('AccessIcon').prop('image')).toEqual({ uri: 'quizLine' })
   })
 
   it('renders discussion', () => {
@@ -81,65 +61,47 @@ describe('UserSubmissionRow', () => {
       ...defaultProps,
     }
     props.submission.assignment = templates.assignment({ id: '1', points_possible: 10, submission_types: ['discussion_topic'] })
-    let view = renderer.create(
-      <UserSubmissionRow {...props} />
-    )
-
-    expect(view.toJSON()).toMatchSnapshot()
+    let tree = shallow(<UserSubmissionRow {...props} />)
+    let image = shallow(tree.find('Row').prop('renderImage')())
+    expect(image.find('AccessIcon').prop('image')).toEqual({ uri: 'discussionLine' })
   })
 
-  it('renders missing submittion types', () => {
+  it('renders missing submission types', () => {
     let props = {
       ...defaultProps,
     }
     props.submission.assignment = templates.assignment({ id: '1', points_possible: 10, submission_types: null })
-    let view = renderer.create(
-      <UserSubmissionRow {...props} />
-    )
-
-    expect(view.toJSON()).toMatchSnapshot()
+    let tree = shallow(<UserSubmissionRow {...props} />)
+    let image = shallow(tree.find('Row').prop('renderImage')())
+    expect(image.find('AccessIcon').prop('image')).toEqual({ uri: 'assignmentLine' })
   })
 
   it('renders complete', () => {
     let submission = templates.submission({ id: '1', assignment_id: '1', score: 10, grade: 'complete', submission_status: 'submitted', grading_status: 'graded' })
     submission.assignment = templates.assignment({ id: '1', points_possible: 10, grading_type: 'complete_incomplete' })
-
-    let view = renderer.create(
-      <UserSubmissionRow {...defaultProps} submission={submission} />
-    )
-
-    expect(view.toJSON()).toMatchSnapshot()
+    let tree = shallow(<UserSubmissionRow {...defaultProps} submission={submission} />)
+    expect(tree.find('OldSubmissionStatusLabel').prop('status')).toBe('submitted')
+    expect(tree.find('Text').prop('children')).toBe('Complete')
   })
 
   it('renders incomplete', () => {
     let submission = templates.submission({ id: '1', assignment_id: '1', score: 0, grade: 'incomplete', submission_status: 'submitted', grading_status: 'graded' })
     submission.assignment = templates.assignment({ id: '1', points_possible: 10, grading_type: 'complete_incomplete' })
-
-    let view = renderer.create(
-      <UserSubmissionRow {...defaultProps} submission={submission} />
-    )
-
-    expect(view.toJSON()).toMatchSnapshot()
+    let tree = shallow(<UserSubmissionRow {...defaultProps} submission={submission} />)
+    expect(tree.find('OldSubmissionStatusLabel').prop('status')).toBe('submitted')
+    expect(tree.find('Text').prop('children')).toBe('Incomplete')
   })
 
   it('renders excused', () => {
     let submission = templates.submission({ id: '1', assignment_id: '1', excused: true, assignment })
-
-    let view = renderer.create(
-      <UserSubmissionRow {...defaultProps} submission={submission} />
-    )
-
-    expect(view.toJSON()).toMatchSnapshot()
+    let tree = shallow(<UserSubmissionRow {...defaultProps} submission={submission} />)
+    expect(tree.find('OldSubmissionStatusLabel').prop('status')).toBe('excused')
   })
 
   it('renders needs grading', () => {
     let submission = templates.submission({ id: '1', assignment_id: '1', grade: null, submission_status: 'submitted', grading_status: 'needs_grading', assignment })
-
-    let view = renderer.create(
-      <UserSubmissionRow {...defaultProps} submission={submission} />
-    )
-
-    expect(view.toJSON()).toMatchSnapshot()
+    let tree = shallow(<UserSubmissionRow {...defaultProps} submission={submission} />)
+    expect(tree.find('Token').prop('children')).toBe('Needs Grading')
   })
 
   it('doesnt accidently send NaN through the bridge', () => {
