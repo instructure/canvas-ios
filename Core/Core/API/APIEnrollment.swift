@@ -47,7 +47,7 @@ struct APIEnrollment: Codable, Equatable {
     // let total_activity_time: TimeInterval
     // let html_url: String
     let grades: Grades?
-    let user: APIUser
+    let user: APIUser?
     let computed_current_score: Double?
     let computed_final_score: Double?
     let computed_current_grade: String?
