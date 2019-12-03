@@ -58,8 +58,10 @@ import { isRegularDisplayMode } from '../../../routing/utils'
 import { isTeacher, isStudent } from '../../app'
 import { alertError } from '../../../redux/middleware/error-handler'
 import { logEvent } from '../../../common/CanvasAnalytics'
+import * as canvas from '../../../canvas-api'
 
 const { NativeAccessibility, ModuleItemsProgress } = NativeModules
+const { markTopicAsRead } = canvas
 
 type EntryRatings = { [string]: number }
 
@@ -129,6 +131,10 @@ export type Props
 export class DiscussionDetails extends Component<Props, any> {
   hasReplaced: boolean = false
 
+  static defaultProps = {
+    markTopicAsRead,
+  }
+
   constructor (props: Props) {
     super(props)
     this.state = {
@@ -149,6 +155,7 @@ export class DiscussionDetails extends Component<Props, any> {
       if (isStudent) {
         ModuleItemsProgress.viewedDiscussion(props.contextID, props.discussionID)
       }
+      props.markTopicAsRead(props.context, props.contextID, props.discussionID)
     }
   }
 
