@@ -83,6 +83,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
     }
 
     private func configureTableView() {
+        tableView.tableFooterView = UIView()
         tableRefresher.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView.refreshControl = tableRefresher
 
