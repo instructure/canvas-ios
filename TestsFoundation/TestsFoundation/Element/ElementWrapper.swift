@@ -64,6 +64,12 @@ public extension ElementWrapper {
     var isVisible: Bool {
         return element.isVisible
     }
+    var center: XCUICoordinate {
+        return element.center
+    }
+    func relativeCoordinate(x: CGFloat, y: CGFloat) -> XCUICoordinate {
+        return element.relativeCoordinate(x: x, y: y)
+    }
     func frame(file: StaticString = #file, line: UInt = #line) -> CGRect {
         return element.frame(file: file, line: line)
     }

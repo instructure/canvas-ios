@@ -27,9 +27,11 @@ public protocol Element {
     var isEnabled: Bool { get }
     var isSelected: Bool { get }
     var isVisible: Bool { get }
+    var center: XCUICoordinate { get }
     func frame(file: StaticString, line: UInt) -> CGRect
     func label(file: StaticString, line: UInt) -> String
     func value(file: StaticString, line: UInt) -> String?
+    func relativeCoordinate(x: CGFloat, y: CGFloat) -> XCUICoordinate
 
     @discardableResult
     func pick(column: Int, value: String, file: StaticString, line: UInt) -> Element
@@ -136,20 +138,24 @@ public struct XCUIElementQueryWrapper: Element {
         usleep(100000)
     }
 
-    public var exists: Bool {
+    public var snapshot: XCUIElementSnapshot? {
         let timeout: TimeInterval = 30
 
         let deadline = Date().addingTimeInterval(timeout)
 
         while Date() < deadline {
             do {
-                return try query.allMatchingSnapshots().count > 0
+                return try query.allMatchingSnapshots().first as? XCUIElementSnapshot
             } catch {
                 nap()
             }
         }
         XCTFail("Failed to get snapshot within \(timeout) seconds")
-        return false
+        return nil
+    }
+
+    public var exists: Bool {
+        return snapshot != nil
     }
 
     public var elementType: XCUIElement.ElementType { return rawElement.elementType }
@@ -166,6 +172,13 @@ public struct XCUIElementQueryWrapper: Element {
     public var isEnabled: Bool { exists && rawElement.isEnabled }
     public var isSelected: Bool { rawElement.isSelected }
     public var isVisible: Bool { exists && rawElement.isHittable }
+    public var center: XCUICoordinate {
+        rawElement.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+    }
+
+    public func relativeCoordinate(x: CGFloat, y: CGFloat) -> XCUICoordinate {
+        rawElement.coordinate(withNormalizedOffset: CGVector(dx: x, dy: y))
+    }
 
     public func frame(file: StaticString = #file, line: UInt = #line) -> CGRect {
         waitToExist(30, file: file, line: line)
@@ -203,10 +216,29 @@ public struct XCUIElementQueryWrapper: Element {
         return self
     }
 
+    /// returns true if this element, or any of its children have keyboard focus
+    public func containsKeyboardFocusedElement(file: StaticString = #file, line: UInt = #line) -> Bool {
+        // For some reason, if we don't ask for a specific element type, then snapshots get confused...
+        let q2 = query.matching(NSPredicate(format: "%K == %i", #keyPath(XCUIElement.elementType), elementType.rawValue))
+        guard let snapshot = XCUIElementQueryWrapper(q2).snapshot else {
+            // element doesn't exist
+            return false
+        }
+        var children = [snapshot]
+        while let element = children.popLast() {
+            children.append(contentsOf: element.children)
+            // Unfortunately, apple doesn't reliably expose focus
+            if "\(element)".contains("Keyboard Focused") {
+                return true
+            }
+        }
+        return false
+    }
+
     @discardableResult
     public func typeText(_ text: String, file: StaticString, line: UInt) -> Element {
         var taps = 0
-        while rawElement.value(forKey: "hasKeyboardFocus") as? Bool != true, taps < 5 {
+        while !containsKeyboardFocusedElement(file: file, line: line), taps < 5 {
             taps += 1
             tap(file: file, line: line)
             if taps > 2 {

@@ -25,7 +25,14 @@
    <FileRef
       location = "group:TestsFoundation/TestsFoundation.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:NightlyTests.xctestplan">
-   </FileRef>
+   <Group
+      location = "container:TestPlans"
+      name = "TestPlans">
+      <FileRef
+         location = "group:NightlyTests.xctestplan">
+      </FileRef>
+      <FileRef
+         location = "group:StudentIPadUITests.xctestplan">
+      </FileRef>
+   </Group>
 </Workspace>

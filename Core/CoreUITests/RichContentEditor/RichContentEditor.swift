@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,28 +17,8 @@
 //
 
 import Foundation
+import TestsFoundation
 
-// https://canvas.instructure.com/doc/api/tabs.html#method.tabs.index
-public struct GetTabsRequest: APIRequestable {
-    public typealias Response = [APITab]
-
-    let context: Context
-    let perPage: Int?
-
-    public init (context: Context, perPage: Int? = 100) {
-        self.context = context
-        self.perPage = perPage
-    }
-
-    public var query: [APIQueryItem] {
-        var queryItems = [APIQueryItem]()
-        if let perPage = perPage {
-            queryItems.append(.value("per_page", "\(perPage)"))
-        }
-        return queryItems
-    }
-
-    public var path: String {
-        return "\(context.pathComponent)/tabs"
-    }
+enum RichContentEditor: String, CaseIterable, ElementWrapper {
+    case webView
 }

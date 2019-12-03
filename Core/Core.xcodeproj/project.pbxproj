@@ -113,6 +113,7 @@
 		585950DFC43265EFA38B179A /* DiscussionReplyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595AE20204429F69CD665D /* DiscussionReplyTests.swift */; };
 		5859512C0C1C81AC185D27D0 /* IPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595E38E685A009AA510843 /* IPC.swift */; };
 		58595B6A6EAAE22DA53C92C0 /* DiscussionEditReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595EA114F4E468801AFEBE /* DiscussionEditReply.swift */; };
+		58595D8BA3B212597F950648 /* APIDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585953AAEF21149B549C801C /* APIDashboard.swift */; };
 		58595ECB6194A295709A98F7 /* Attachments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585959ACAB816578B2B2ECC0 /* Attachments.swift */; };
 		5BF786A6218599B600471A5F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BF786A8218599B600471A5F /* InfoPlist.strings */; };
 		5BF786AE218599B700471A5F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BF786B0218599B700471A5F /* InfoPlist.strings */; };
@@ -667,6 +668,10 @@
 		E8AD06712303713300D498ED /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AD066F2303713300D498ED /* Dashboard.swift */; };
 		E8AD06722303713300D498ED /* DashboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AD06702303713300D498ED /* DashboardTests.swift */; };
 		E8AD06752303718800D498ED /* CourseNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AD06742303718700D498ED /* CourseNavigation.swift */; };
+		E8BB310523A0372700B3B3B2 /* Assignments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB310423A0372700B3B3B2 /* Assignments.swift */; };
+		E8BB310823A038AA00B3B3B2 /* TextSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB310723A038AA00B3B3B2 /* TextSubmission.swift */; };
+		E8BB310A23A05A4000B3B3B2 /* SubmissionComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB310923A05A4000B3B3B2 /* SubmissionComments.swift */; };
+		E8BB310C23A06B3B00B3B3B2 /* RichContentEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB310B23A06B3B00B3B3B2 /* RichContentEditor.swift */; };
 		EE424B3222E8BBEF00D083EE /* GetFrontPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3122E8BBEF00D083EE /* GetFrontPage.swift */; };
 		EE424B3422E8DE2E00D083EE /* APIPageRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3322E8DE2E00D083EE /* APIPageRequestableTests.swift */; };
 		EE424B3622E8E16D00D083EE /* GetPagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3522E8E16D00D083EE /* GetPagesTests.swift */; };
@@ -848,6 +853,7 @@
 		3BF5C54E2187800B0081A858 /* GetAssignments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAssignments.swift; sourceTree = "<group>"; };
 		3BF5C55221879A430081A858 /* GetAssignmentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAssignmentsTests.swift; sourceTree = "<group>"; };
 		5859511C5D2888D3B3E01A30 /* DiscussionReply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscussionReply.swift; sourceTree = "<group>"; };
+		585953AAEF21149B549C801C /* APIDashboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIDashboard.swift; sourceTree = "<group>"; };
 		585959ACAB816578B2B2ECC0 /* Attachments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachments.swift; sourceTree = "<group>"; };
 		58595AE20204429F69CD665D /* DiscussionReplyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscussionReplyTests.swift; sourceTree = "<group>"; };
 		58595E38E685A009AA510843 /* IPC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPC.swift; sourceTree = "<group>"; };
@@ -1557,6 +1563,10 @@
 		E8AD066F2303713300D498ED /* Dashboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		E8AD06702303713300D498ED /* DashboardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTests.swift; sourceTree = "<group>"; };
 		E8AD06742303718700D498ED /* CourseNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigation.swift; sourceTree = "<group>"; };
+		E8BB310423A0372700B3B3B2 /* Assignments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assignments.swift; sourceTree = "<group>"; };
+		E8BB310723A038AA00B3B3B2 /* TextSubmission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSubmission.swift; sourceTree = "<group>"; };
+		E8BB310923A05A4000B3B3B2 /* SubmissionComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionComments.swift; sourceTree = "<group>"; };
+		E8BB310B23A06B3B00B3B3B2 /* RichContentEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentEditor.swift; sourceTree = "<group>"; };
 		EE424B3122E8BBEF00D083EE /* GetFrontPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFrontPage.swift; sourceTree = "<group>"; };
 		EE424B3322E8DE2E00D083EE /* APIPageRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPageRequestableTests.swift; sourceTree = "<group>"; };
 		EE424B3522E8E16D00D083EE /* GetPagesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPagesTests.swift; sourceTree = "<group>"; };
@@ -2163,6 +2173,7 @@
 			isa = PBXGroup;
 			children = (
 				7D148650230EF6BA003944A2 /* RichContentToolbar.swift */,
+				E8BB310B23A06B3B00B3B3B2 /* RichContentEditor.swift */,
 			);
 			path = RichContentEditor;
 			sourceTree = "<group>";
@@ -2553,6 +2564,7 @@
 				3B604398232AAC4E00757B93 /* AssignmentGroupRequestable.swift */,
 				3BA9FF712332B04400196A06 /* GradingPeriodRequestables.swift */,
 				3B3467D32135B7B700F9BC2E /* ID.swift */,
+				585953AAEF21149B549C801C /* APIDashboard.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -3024,6 +3036,7 @@
 			children = (
 				E819193123034C2D0039616A /* ActAsUser */,
 				E819191C23034C2C0039616A /* Announcements */,
+				E8BB310323A0370A00B3B3B2 /* Assignments */,
 				E8AD06732303718700D498ED /* Courses */,
 				E819192623034C2C0039616A /* Course Files */,
 				E819192823034C2C0039616A /* Course Groups */,
@@ -3037,6 +3050,7 @@
 				E819192A23034C2C0039616A /* Pages */,
 				E819193D23034C2D0039616A /* Profile */,
 				7D14864F230EF691003944A2 /* RichContentEditor */,
+				E8BB310623A0389800B3B3B2 /* Submissions */,
 				E819192D23034C2C0039616A /* Todo */,
 				7D5C08982305F25B0022E0DB /* CoreUITestCase.swift */,
 				E81918E6230348440039616A /* CoreUITests.h */,
@@ -3182,6 +3196,23 @@
 			name = Courses;
 			path = CoreUITests/Courses;
 			sourceTree = SOURCE_ROOT;
+		};
+		E8BB310323A0370A00B3B3B2 /* Assignments */ = {
+			isa = PBXGroup;
+			children = (
+				E8BB310423A0372700B3B3B2 /* Assignments.swift */,
+			);
+			path = Assignments;
+			sourceTree = "<group>";
+		};
+		E8BB310623A0389800B3B3B2 /* Submissions */ = {
+			isa = PBXGroup;
+			children = (
+				E8BB310723A038AA00B3B3B2 /* TextSubmission.swift */,
+				E8BB310923A05A4000B3B3B2 /* SubmissionComments.swift */,
+			);
+			path = Submissions;
+			sourceTree = "<group>";
 		};
 		EE584C7822F2043300D1E201 /* Pages */ = {
 			isa = PBXGroup;
@@ -3862,6 +3893,7 @@
 				B192833821C07A4E008D1B9B /* LoggerExtensions.swift in Sources */,
 				3B3FCA2A237F56210011F11A /* Activity.swift in Sources */,
 				5859512C0C1C81AC185D27D0 /* IPC.swift in Sources */,
+				58595D8BA3B212597F950648 /* APIDashboard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4121,21 +4153,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				E819194D23034C2D0039616A /* ExternalTool.swift in Sources */,
+				E8BB310C23A06B3B00B3B3B2 /* RichContentEditor.swift in Sources */,
 				E819194723034C2D0039616A /* DeepLinkTests.swift in Sources */,
 				E819194C23034C2D0039616A /* TodoListTests.swift in Sources */,
 				E819194923034C2D0039616A /* CourseGroupTests.swift in Sources */,
 				E85B4918238875A0003E28DC /* UserFilesTests.swift in Sources */,
 				E81918F9230348860039616A /* DiscussionDetailsTests.swift in Sources */,
 				7D5C08992305F25C0022E0DB /* CoreUITestCase.swift in Sources */,
+				E8BB310823A038AA00B3B3B2 /* TextSubmission.swift in Sources */,
 				E85E7F83238C45C300BE61B3 /* FilesList.swift in Sources */,
 				E819194E23034C2D0039616A /* ActAsUserTests.swift in Sources */,
 				E8AD06722303713300D498ED /* DashboardTests.swift in Sources */,
 				E819195123034C2D0039616A /* InboxTests.swift in Sources */,
 				7D14864C230B4CEC003944A2 /* AccountNotificationsTests.swift in Sources */,
+				E8BB310A23A05A4000B3B3B2 /* SubmissionComments.swift in Sources */,
 				E819194823034C2D0039616A /* CourseFileTests.swift in Sources */,
 				E819194223034C2D0039616A /* AnnouncementTests.swift in Sources */,
 				E819195023034C2D0039616A /* Inbox.swift in Sources */,
 				E81918F8230348860039616A /* DiscussionListTests.swift in Sources */,
+				E8BB310523A0372700B3B3B2 /* Assignments.swift in Sources */,
 				E8AD06752303718800D498ED /* CourseNavigation.swift in Sources */,
 				7D148651230EF6BA003944A2 /* RichContentToolbar.swift in Sources */,
 				E819194F23034C2D0039616A /* LoginTests.swift in Sources */,

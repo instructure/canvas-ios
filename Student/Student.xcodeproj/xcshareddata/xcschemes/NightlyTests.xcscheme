@@ -168,7 +168,7 @@
       </CodeCoverageTargets>
       <TestPlans>
          <TestPlanReference
-            reference = "container:../NightlyTests.xctestplan"
+            reference = "container:../TestPlans/NightlyTests.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>
