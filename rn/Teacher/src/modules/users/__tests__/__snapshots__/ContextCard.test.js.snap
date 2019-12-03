@@ -69,7 +69,6 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
               accessibilityLabel="Published"
               style={
                 Object {
-                  "alignItems": "center",
                   "flex": 0,
                 }
               }
@@ -78,51 +77,46 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                 resizeMode="cover"
                 source={
                   Object {
-                    "testUri": "../../../src/images/course/Assignment.png",
+                    "uri": "assignmentLine",
                   }
                 }
                 style={
                   Array [
-                    false,
                     Object {
-                      "minHeight": 24,
-                      "minWidth": 24,
+                      "height": 24,
+                      "width": 24,
+                    },
+                    Object {
+                      "tintColor": "#fff",
                     },
                   ]
                 }
                 testID="access-icon-image"
               />
-              <View
-                style={
+              <Image
+                source={
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#FFFFFF",
-                    "borderRadius": 8,
-                    "bottom": -6,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "position": "absolute",
-                    "right": -5,
-                    "width": 16,
+                    "uri": "publishSolid",
                   }
                 }
-              >
-                <Image
-                  source={
+                style={
+                  Array [
                     Object {
-                      "uri": "publishSolid",
-                    }
-                  }
-                  style={
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 8,
+                      "bottom": -4,
+                      "height": 16,
+                      "position": "absolute",
+                      "right": -4,
+                      "width": 16,
+                    },
                     Object {
-                      "height": 12,
                       "tintColor": "#00AC18",
-                      "width": 12,
-                    }
-                  }
-                  testID="access-icon-icon"
-                />
-              </View>
+                    },
+                  ]
+                }
+                testID="access-icon-icon"
+              />
             </View>
           </View>
           <View
@@ -260,7 +254,6 @@ exports[`ContextCard renders 1`] = `
               accessibilityLabel="Published"
               style={
                 Object {
-                  "alignItems": "center",
                   "flex": 0,
                 }
               }
@@ -269,51 +262,46 @@ exports[`ContextCard renders 1`] = `
                 resizeMode="cover"
                 source={
                   Object {
-                    "testUri": "../../../src/images/course/Assignment.png",
+                    "uri": "assignmentLine",
                   }
                 }
                 style={
                   Array [
-                    false,
                     Object {
-                      "minHeight": 24,
-                      "minWidth": 24,
+                      "height": 24,
+                      "width": 24,
+                    },
+                    Object {
+                      "tintColor": "#fff",
                     },
                   ]
                 }
                 testID="access-icon-image"
               />
-              <View
-                style={
+              <Image
+                source={
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#FFFFFF",
-                    "borderRadius": 8,
-                    "bottom": -6,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "position": "absolute",
-                    "right": -5,
-                    "width": 16,
+                    "uri": "publishSolid",
                   }
                 }
-              >
-                <Image
-                  source={
+                style={
+                  Array [
                     Object {
-                      "uri": "publishSolid",
-                    }
-                  }
-                  style={
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 8,
+                      "bottom": -4,
+                      "height": 16,
+                      "position": "absolute",
+                      "right": -4,
+                      "width": 16,
+                    },
                     Object {
-                      "height": 12,
                       "tintColor": "#00AC18",
-                      "width": 12,
-                    }
-                  }
-                  testID="access-icon-icon"
-                />
-              </View>
+                    },
+                  ]
+                }
+                testID="access-icon-icon"
+              />
             </View>
           </View>
           <View
@@ -509,7 +497,6 @@ exports[`ContextCard renders for a user that cannot send messages 2`] = `
               accessibilityLabel="Published"
               style={
                 Object {
-                  "alignItems": "center",
                   "flex": 0,
                 }
               }
@@ -518,51 +505,46 @@ exports[`ContextCard renders for a user that cannot send messages 2`] = `
                 resizeMode="cover"
                 source={
                   Object {
-                    "testUri": "../../../src/images/course/Assignment.png",
+                    "uri": "assignmentLine",
                   }
                 }
                 style={
                   Array [
-                    false,
                     Object {
-                      "minHeight": 24,
-                      "minWidth": 24,
+                      "height": 24,
+                      "width": 24,
+                    },
+                    Object {
+                      "tintColor": "#fff",
                     },
                   ]
                 }
                 testID="access-icon-image"
               />
-              <View
-                style={
+              <Image
+                source={
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#FFFFFF",
-                    "borderRadius": 8,
-                    "bottom": -6,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "position": "absolute",
-                    "right": -5,
-                    "width": 16,
+                    "uri": "publishSolid",
                   }
                 }
-              >
-                <Image
-                  source={
+                style={
+                  Array [
                     Object {
-                      "uri": "publishSolid",
-                    }
-                  }
-                  style={
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 8,
+                      "bottom": -4,
+                      "height": 16,
+                      "position": "absolute",
+                      "right": -4,
+                      "width": 16,
+                    },
                     Object {
-                      "height": 12,
                       "tintColor": "#00AC18",
-                      "width": 12,
-                    }
-                  }
-                  testID="access-icon-icon"
-                />
-              </View>
+                    },
+                  ]
+                }
+                testID="access-icon-icon"
+              />
             </View>
           </View>
           <View
@@ -723,7 +705,6 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
               accessibilityLabel="Published"
               style={
                 Object {
-                  "alignItems": "center",
                   "flex": 0,
                 }
               }
@@ -732,51 +713,46 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
                 resizeMode="cover"
                 source={
                   Object {
-                    "testUri": "../../../src/images/course/Assignment.png",
+                    "uri": "assignmentLine",
                   }
                 }
                 style={
                   Array [
-                    false,
                     Object {
-                      "minHeight": 24,
-                      "minWidth": 24,
+                      "height": 24,
+                      "width": 24,
+                    },
+                    Object {
+                      "tintColor": "#fff",
                     },
                   ]
                 }
                 testID="access-icon-image"
               />
-              <View
-                style={
+              <Image
+                source={
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#FFFFFF",
-                    "borderRadius": 8,
-                    "bottom": -6,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "position": "absolute",
-                    "right": -5,
-                    "width": 16,
+                    "uri": "publishSolid",
                   }
                 }
-              >
-                <Image
-                  source={
+                style={
+                  Array [
                     Object {
-                      "uri": "publishSolid",
-                    }
-                  }
-                  style={
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 8,
+                      "bottom": -4,
+                      "height": 16,
+                      "position": "absolute",
+                      "right": -4,
+                      "width": 16,
+                    },
                     Object {
-                      "height": 12,
                       "tintColor": "#00AC18",
-                      "width": 12,
-                    }
-                  }
-                  testID="access-icon-icon"
-                />
-              </View>
+                    },
+                  ]
+                }
+                testID="access-icon-icon"
+              />
             </View>
           </View>
           <View
@@ -914,7 +890,6 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
               accessibilityLabel="Published"
               style={
                 Object {
-                  "alignItems": "center",
                   "flex": 0,
                 }
               }
@@ -923,51 +898,46 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
                 resizeMode="cover"
                 source={
                   Object {
-                    "testUri": "../../../src/images/course/Assignment.png",
+                    "uri": "assignmentLine",
                   }
                 }
                 style={
                   Array [
-                    false,
                     Object {
-                      "minHeight": 24,
-                      "minWidth": 24,
+                      "height": 24,
+                      "width": 24,
+                    },
+                    Object {
+                      "tintColor": "#fff",
                     },
                   ]
                 }
                 testID="access-icon-image"
               />
-              <View
-                style={
+              <Image
+                source={
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#FFFFFF",
-                    "borderRadius": 8,
-                    "bottom": -6,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "position": "absolute",
-                    "right": -5,
-                    "width": 16,
+                    "uri": "publishSolid",
                   }
                 }
-              >
-                <Image
-                  source={
+                style={
+                  Array [
                     Object {
-                      "uri": "publishSolid",
-                    }
-                  }
-                  style={
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 8,
+                      "bottom": -4,
+                      "height": 16,
+                      "position": "absolute",
+                      "right": -4,
+                      "width": 16,
+                    },
                     Object {
-                      "height": 12,
                       "tintColor": "#00AC18",
-                      "width": 12,
-                    }
-                  }
-                  testID="access-icon-icon"
-                />
-              </View>
+                    },
+                  ]
+                }
+                testID="access-icon-icon"
+              />
             </View>
           </View>
           <View
@@ -1105,7 +1075,6 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
               accessibilityLabel="Published"
               style={
                 Object {
-                  "alignItems": "center",
                   "flex": 0,
                 }
               }
@@ -1114,51 +1083,46 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                 resizeMode="cover"
                 source={
                   Object {
-                    "testUri": "../../../src/images/course/Assignment.png",
+                    "uri": "assignmentLine",
                   }
                 }
                 style={
                   Array [
-                    false,
                     Object {
-                      "minHeight": 24,
-                      "minWidth": 24,
+                      "height": 24,
+                      "width": 24,
+                    },
+                    Object {
+                      "tintColor": "#fff",
                     },
                   ]
                 }
                 testID="access-icon-image"
               />
-              <View
-                style={
+              <Image
+                source={
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#FFFFFF",
-                    "borderRadius": 8,
-                    "bottom": -6,
-                    "height": 16,
-                    "justifyContent": "center",
-                    "position": "absolute",
-                    "right": -5,
-                    "width": 16,
+                    "uri": "publishSolid",
                   }
                 }
-              >
-                <Image
-                  source={
+                style={
+                  Array [
                     Object {
-                      "uri": "publishSolid",
-                    }
-                  }
-                  style={
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 8,
+                      "bottom": -4,
+                      "height": 16,
+                      "position": "absolute",
+                      "right": -4,
+                      "width": 16,
+                    },
                     Object {
-                      "height": 12,
                       "tintColor": "#00AC18",
-                      "width": 12,
-                    }
-                  }
-                  testID="access-icon-icon"
-                />
-              </View>
+                    },
+                  ]
+                }
+                testID="access-icon-icon"
+              />
             </View>
           </View>
           <View

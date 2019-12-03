@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -243,7 +243,7 @@
                                                 <constraint firstAttribute="height" constant="44" id="7DG-Jt-gsc"/>
                                                 <constraint firstAttribute="width" constant="50" id="pDs-hI-a7k"/>
                                             </constraints>
-                                            <inset key="contentEdgeInsets" minX="16" minY="13" maxX="16" maxY="13"/>
+                                            <inset key="contentEdgeInsets" minX="13" minY="10" maxX="13" maxY="10"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="replySolid"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
@@ -259,7 +259,7 @@
                                                 <constraint firstAttribute="width" constant="50" id="hM3-WQ-K7s"/>
                                                 <constraint firstAttribute="height" constant="44" id="sEb-cu-0ho"/>
                                             </constraints>
-                                            <inset key="contentEdgeInsets" minX="16" minY="13" maxX="16" maxY="13"/>
+                                            <inset key="contentEdgeInsets" minX="13" minY="10" maxX="13" maxY="10"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="forwardSolid"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
@@ -275,7 +275,7 @@
                                                 <constraint firstAttribute="width" constant="50" id="eHz-xp-5Ad"/>
                                                 <constraint firstAttribute="height" constant="44" id="sOU-XZ-sfv"/>
                                             </constraints>
-                                            <inset key="contentEdgeInsets" minX="16" minY="13" maxX="16" maxY="13"/>
+                                            <inset key="contentEdgeInsets" minX="13" minY="10" maxX="13" maxY="10"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="boldSolid"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
@@ -291,7 +291,7 @@
                                                 <constraint firstAttribute="height" constant="44" id="ac9-WJ-4uD"/>
                                                 <constraint firstAttribute="width" constant="50" id="jjm-Pf-ifa"/>
                                             </constraints>
-                                            <inset key="contentEdgeInsets" minX="16" minY="13" maxX="16" maxY="13"/>
+                                            <inset key="contentEdgeInsets" minX="13" minY="10" maxX="13" maxY="10"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="italicSolid"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
@@ -307,7 +307,7 @@
                                                 <constraint firstAttribute="height" constant="44" id="edX-rA-iuL"/>
                                                 <constraint firstAttribute="width" constant="50" id="s2I-CR-MUh"/>
                                             </constraints>
-                                            <inset key="contentEdgeInsets" minX="16" minY="13" maxX="16" maxY="13"/>
+                                            <inset key="contentEdgeInsets" minX="13" minY="10" maxX="13" maxY="10"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="textColorSolid"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
@@ -323,7 +323,7 @@
                                                 <constraint firstAttribute="height" constant="44" id="dWH-38-NQI"/>
                                                 <constraint firstAttribute="width" constant="50" id="w88-42-S8Q"/>
                                             </constraints>
-                                            <inset key="contentEdgeInsets" minX="16" minY="13" maxX="16" maxY="13"/>
+                                            <inset key="contentEdgeInsets" minX="13" minY="10" maxX="13" maxY="10"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="bulletListSolid"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
@@ -339,7 +339,7 @@
                                                 <constraint firstAttribute="width" constant="50" id="27N-3g-egU"/>
                                                 <constraint firstAttribute="height" constant="44" id="tCr-4N-isz"/>
                                             </constraints>
-                                            <inset key="contentEdgeInsets" minX="16" minY="13" maxX="16" maxY="13"/>
+                                            <inset key="contentEdgeInsets" minX="13" minY="10" maxX="13" maxY="10"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="numberedListSolid"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
@@ -355,7 +355,7 @@
                                                 <constraint firstAttribute="width" constant="50" id="3vA-Jy-H5H"/>
                                                 <constraint firstAttribute="height" constant="44" id="w5f-42-UOF"/>
                                             </constraints>
-                                            <inset key="contentEdgeInsets" minX="16" minY="13" maxX="16" maxY="13"/>
+                                            <inset key="contentEdgeInsets" minX="13" minY="10" maxX="13" maxY="10"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="linkSolid"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
@@ -371,7 +371,7 @@
                                                 <constraint firstAttribute="width" constant="50" id="3p9-jL-niu"/>
                                                 <constraint firstAttribute="height" constant="44" id="OmH-cS-fvS"/>
                                             </constraints>
-                                            <inset key="contentEdgeInsets" minX="16" minY="13" maxX="16" maxY="13"/>
+                                            <inset key="contentEdgeInsets" minX="13" minY="10" maxX="13" maxY="10"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="cameraSolid"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
@@ -387,7 +387,7 @@
                                                 <constraint firstAttribute="height" constant="44" id="Pf8-SH-Jpl"/>
                                                 <constraint firstAttribute="width" constant="50" id="fb0-IO-EeS"/>
                                             </constraints>
-                                            <inset key="contentEdgeInsets" minX="16" minY="13" maxX="16" maxY="13"/>
+                                            <inset key="contentEdgeInsets" minX="13" minY="10" maxX="13" maxY="10"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="imageSolid"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>

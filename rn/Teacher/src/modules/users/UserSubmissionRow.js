@@ -29,7 +29,7 @@ import {
 import AccessIcon from '../../common/components/AccessIcon'
 import { Text } from '../../common/text'
 import Row from '../../common/components/rows/Row'
-import Images from '../../images'
+import instIcon from '../../images/inst-icons'
 import OldSubmissionStatusLabel from '../submissions/list/OldSubmissionStatusLabel'
 import LinearGradient from 'react-native-linear-gradient'
 import Token from '../../common/components/Token'
@@ -125,15 +125,16 @@ export default class UserSubmissionRow extends Component<Props, any> {
     const assignment = this.props.submission.assignment
     const testIDSuffix = `-icon-${assignment.published ? 'published' : 'not-published'}-${assignment.id}.icon-img`
     const submissionTypes = assignment.submission_types || []
-    let image = Images.course.assignments
+    let image = instIcon('assignment')
     let testID = `user-submission-row${testIDSuffix}`
     if (submissionTypes.includes('online_quiz')) {
-      image = Images.course.quizzes
+      image = instIcon('quiz')
       testID = `user-submission-row${testIDSuffix}`
     } else if (submissionTypes.includes('discussion_topic')) {
-      image = Images.course.discussions
+      image = instIcon('discussion')
       testID = `user-submission-row${testIDSuffix}`
     }
+    console.log(image, assignment)
     return (
       <View style={styles.icon} testID={testID}>
         <AccessIcon entry={assignment} tintColor={this.props.tintColor} style={styles.icon} image={image} />

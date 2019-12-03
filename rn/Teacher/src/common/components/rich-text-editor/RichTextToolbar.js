@@ -213,18 +213,18 @@ const styles = createStyleSheet((colors) => ({
   },
   icon: {
     tintColor: colors.textDarkest,
-    height: 18,
-    width: 18,
+    height: 24,
+    width: 24,
   },
   textColor: {
-    width: 18,
-    height: 18,
+    width: 24,
+    height: 24,
   },
   textColorSwatch: {
     position: 'absolute',
-    top: 13,
-    left: 0,
+    bottom: 2,
     height: 5,
-    width: 18,
+    left: 2.5,
+    right: 2.5,
   },
 }))

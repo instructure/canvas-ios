@@ -40,6 +40,7 @@ import localeSort from '../../utils/locale-sort'
 import AccessIcon from '../../common/components/AccessIcon'
 import ListEmptyComponent from '../../common/components/ListEmptyComponent'
 import images from '../../images'
+import instIcon from '../../images/inst-icons'
 import bytes, { unitFor } from '../../utils/locale-bytes'
 import DropView from '../../common/components/DropView'
 import SavingBanner from '../../common/components/SavingBanner'
@@ -375,7 +376,7 @@ export class FilesList extends Component<Props, State> {
     let name
     let icon
     let subtitle
-    let tintColor = colors.textDark
+    let tintColor = this.props.courseColor || colors.textDark
     let statusOffset = {}
     let selected = false
     if (item.type === 'file') {
@@ -384,22 +385,19 @@ export class FilesList extends Component<Props, State> {
       if (item.mime_class === 'image' && item.thumbnail_url) {
         icon = { uri: item.thumbnail_url }
       } else if (item.mime_class === 'video') {
-        icon = images.files.media
+        icon = instIcon('video', 'line')
       } else {
-        icon = images.document
+        icon = instIcon('document', 'line')
       }
       subtitle = bytes(item.size)
     } else {
       name = item.name
-      icon = images.files.folder
+      icon = instIcon('folder', 'solid')
       subtitle = i18n(`{
         item_count, plural,
           one {# item}
           other {# items}
       }`, { item_count: item.files_count + item.folders_count })
-      if (this.props.courseColor) {
-        tintColor = this.props.courseColor
-      }
     }
     const renderImage = () => {
       return <View style={styles.icon}>

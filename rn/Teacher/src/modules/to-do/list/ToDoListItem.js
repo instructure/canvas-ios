@@ -27,7 +27,7 @@ import Row from '../../../common/components/rows/Row'
 import { Text } from '../../../common/text'
 import AccessIcon from '../../../common/components/AccessIcon'
 import { colors, createStyleSheet } from '../../../common/stylesheet'
-import images from '../../../images/'
+import instIcon from '../../../images/inst-icons'
 import {
   fetchPropsFor,
   type FetchProps,
@@ -59,9 +59,9 @@ export class ToDoListItem extends Component<Props> {
   }
 
   renderAssignment (assignment: Assignment, needsGradingCount: number) {
-    let image = images.course.assignments
+    let image = instIcon('assignment')
     if (assignment.submission_types.includes('discussion_topic')) {
-      image = images.course.discussions
+      image = instIcon('discussion')
     }
     return this.renderNeedsGrading(
       assignment.name,
@@ -78,7 +78,7 @@ export class ToDoListItem extends Component<Props> {
       quiz.due_at,
       needsGradingCount,
       quiz,
-      images.course.quizzes
+      instIcon('quiz')
     )
   }
 

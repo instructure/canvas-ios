@@ -41,14 +41,12 @@ describe('AccessIcon', () => {
     props.entry.published = true
     const tree = shallow(<AccessIcon {...props} />)
     expect(tree.find('Image').at(1).prop('source')).toEqual(icon('publish', 'solid'))
-    expect(tree).toMatchSnapshot()
   })
 
   it('shows unpublished when published is false', () => {
     props.entry.published = false
     const tree = shallow(<AccessIcon {...props} />)
     expect(tree.find('Image').at(1).prop('source')).toEqual(icon('no', 'solid'))
-    expect(tree).toMatchSnapshot()
   })
 
   it('published takes precedence over other properties', () => {
@@ -58,35 +56,30 @@ describe('AccessIcon', () => {
     props.entry.unlock_at = '2018-01-01T12:00:00.000Z'
     const tree = shallow(<AccessIcon {...props} />)
     expect(tree.find('Image').at(1).prop('source')).toEqual(icon('publish', 'solid'))
-    expect(tree).toMatchSnapshot()
   })
 
   it('shows unpublished when locked', () => {
     props.entry.locked = true
     const tree = shallow(<AccessIcon {...props} />)
     expect(tree.find('Image').at(1).prop('source')).toEqual(icon('no', 'solid'))
-    expect(tree).toMatchSnapshot()
   })
 
   it('shows resticted when hidden', () => {
     props.entry.hidden = true
     const tree = shallow(<AccessIcon {...props} />)
     expect(tree.find('Image').at(1).prop('source')).toEqual(icon('cloudLock', 'line'))
-    expect(tree).toMatchSnapshot()
   })
 
   it('shows resticted when unlock_at is specified', () => {
     props.entry.unlock_at = '2018-01-01T12:00:00.000Z'
     const tree = shallow(<AccessIcon {...props} />)
     expect(tree.find('Image').at(1).prop('source')).toEqual(icon('cloudLock', 'line'))
-    expect(tree).toMatchSnapshot()
   })
 
   it('shows resticted when lock_at is specified', () => {
     props.entry.lock_at = '2018-01-01T12:00:00.000Z'
     const tree = shallow(<AccessIcon {...props} />)
     expect(tree.find('Image').at(1).prop('source')).toEqual(icon('cloudLock', 'line'))
-    expect(tree).toMatchSnapshot()
   })
 
   it('has option to hide access icon', () => {

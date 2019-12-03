@@ -26,6 +26,7 @@ import { SafeAreaView, Image } from 'react-native'
 import i18n from 'format-message'
 
 import Images from '../../images'
+import instIcon from '../../images/inst-icons'
 import Row from '../../common/components/rows/Row'
 
 type Props = {
@@ -43,20 +44,35 @@ export default class TabRow extends React.Component<Props> {
   }
 
   image = () => {
-    const tab = this.props.tab
-    let image = Images.course[tab.id]
+    const { tab } = this.props
     if (tab.id === this.props.attendanceTabID) {
-      return Images.course.attendance
+      return { uri: 'attendance' }
     }
-    if (tab.id.match(/external_tool/)) {
-      return Images.course.lti
+    if (tab.id.includes('external_tool')) {
+      return instIcon('lti')
     }
-
-    if (!image) {
-      image = Images.course.placeholder
+    switch (tab.id) { /* eslint-disable no-multi-spaces */
+      case 'announcements':  return instIcon('announcement')
+      case 'application':    return instIcon('lti')
+      case 'assignments':    return instIcon('assignment')
+      case 'collaborations': return { uri: 'collaborations' }
+      case 'conferences':    return { uri: 'conferences' }
+      case 'discussions':    return instIcon('discussion')
+      case 'files':          return instIcon('folder')
+      case 'grades':         return instIcon('gradebook')
+      case 'home':           return instIcon('home')
+      case 'link':           return instIcon('link')
+      case 'modules':        return instIcon('module')
+      case 'outcomes':       return instIcon('outcomes')
+      case 'pages':          return instIcon('document')
+      case 'people':         return instIcon('group')
+      case 'quizzes':        return instIcon('quiz')
+      case 'settings':       return instIcon('settings')
+      case 'syllabus':       return instIcon('rubric')
+      case 'tools':          return instIcon('lti')
+      case 'user':           return instIcon('user')
+      default:               return instIcon('courses')
     }
-
-    return image
   }
 
   render () {

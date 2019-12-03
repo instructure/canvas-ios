@@ -25,7 +25,7 @@ import {
 } from 'react-native'
 import { Text } from '../../../../common/text'
 import Screen from '../../../../routing/Screen'
-import Images from '../../../../images/'
+import instIcon from '../../../../images/inst-icons'
 import { createStyleSheet } from '../../../../common/stylesheet'
 
 export default class CourseDetailsSplitViewPlaceholder extends Component<*> {
@@ -41,7 +41,7 @@ export default class CourseDetailsSplitViewPlaceholder extends Component<*> {
       >
         <View style={style.container}>
           <View style={style.subContainer}>
-            <Image source={Images.course.placeholder} style={style.icon} resizeMode='contain' />
+            <Image source={instIcon('courses')} style={style.icon} resizeMode='contain' />
             <Text style={style.courseName}>{course.name}</Text>
             <Text style={style.term}>{courseCode}</Text>
           </View>

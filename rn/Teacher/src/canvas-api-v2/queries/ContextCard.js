@@ -97,6 +97,7 @@ export const courseQuery = gql`query StudentContextCardCourse($courseID: ID!, $u
               html_url: htmlUrl
               points_possible: pointsPossible
               grading_type: gradingType
+              submission_types: submissionTypes
               state
             }
           }
