@@ -73,7 +73,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
 
         setupTitleViewInNavbar(title: NSLocalizedString("Assignments", comment: ""))
         configureTableView()
-        fetchData()
+        fetchData(showActivityIndicator: true)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -86,16 +86,20 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
         tableRefresher.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView.refreshControl = tableRefresher
 
+        tableView.prefetchDataSource = self
         tableView.registerCell(ListCell.self)
         tableView.registerHeaderFooterView(SectionHeaderView.self)
         tableViewDefaultOffset = tableView.contentOffset
         showSpinner()
     }
 
-    func fetchData() {
+    func fetchData(showActivityIndicator: Bool = false) {
         if loading { return }
         loading = true
-        DispatchQueue.main.async { [weak self] in self?.showSpinner() }
+
+        if showActivityIndicator {
+            DispatchQueue.main.async { [weak self] in self?.showSpinner() }
+        }
 
         let requestable = AssignmentListRequestable(courseID: courseID, gradingPeriodID: selectedGradingPeriod?.id.value, filter: shouldFilter, cursor: pagingCursor)
 
@@ -116,25 +120,11 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
 
     func processAPIResponse( _ response: APIAssignmentListResponse? ) {
         guard let response = response else { return }
-        //  if this is the first time we have a count of the groups,
-        //  setup flags for which sections have more pages
-        if sectionHasNext.count == 0 {
-            //  since this is the first pass, get indexes of groups
-            //  that we care about (i.e. assignment.count > 0).  Groups
-            //  w/ 0 assignments should not be shown.  All groups are returned
-            //  with paging, so we need to keep indexes of groups we care about
-            response.groups.forEach {
-                if $0.assignments.count > 0 {
-                    groupIDsWithAssignments[$0.id.value] = $0.id.value
-                }
-            }
-            sectionHasNext = Array(repeating: false, count: groupIDsWithAssignments.count)
-        }
 
-        groups = response.groups.filter { groupIDsWithAssignments[ $0.id.value ] != nil }
+        filterEmptyAssignmentGroups( response )
+
         gradingPeriods = response.gradingPeriods
 
-        //  append new assignments to existing arrays
         for ( index, g ) in groups.enumerated() {
             let groupID = g.id.value
             var existing = assignments[groupID] ?? []
@@ -159,13 +149,32 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
         }
 
         performUIUpdate { [weak self] in
-            self?.tableView.reloadData()
             self?.showSpinner(show: false)
+            self?.tableView.reloadData()
             self?.updateLabels()
             self?.updateFilterButton()
             self?.selectFirstCellOnIpad()
             self?.loading = false
         }
+    }
+
+    func filterEmptyAssignmentGroups( _ response: APIAssignmentListResponse ) {
+        //  if this is the first time we have a count of the groups,
+        //  setup flags for which sections have more pages
+        if sectionHasNext.count == 0 {
+            //  since this is the first pass, get indexes of groups
+            //  that we care about (i.e. assignment.count > 0).  Groups
+            //  w/ 0 assignments should not be shown.  All groups are returned
+            //  with paging, so we need to keep indexes of groups we care about
+            response.groups.forEach {
+                if $0.assignments.count > 0 {
+                    groupIDsWithAssignments[$0.id.value] = $0.id.value
+                }
+            }
+            sectionHasNext = Array(repeating: false, count: groupIDsWithAssignments.count)
+        }
+
+        groups = response.groups.filter { groupIDsWithAssignments[ $0.id.value ] != nil }
     }
 
     func resetAPIRequestState() {
@@ -207,14 +216,28 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
     }
 
     @objc func refresh(_ control: UIRefreshControl) {
-        fetchData()
+        fetchData(showActivityIndicator: true)
     }
 
     func showSpinner(show: Bool = true) {
         if show {
             tableRefresher.beginRefreshing()
-        } else {
+        } else if tableRefresher.isRefreshing {
             tableRefresher.endRefreshing()
+        }
+    }
+}
+
+extension AssignmentListViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        indexPaths.forEach {
+            let fetchMore = sectionHasNext[$0.section]
+            if fetchMore {
+                DispatchQueue.global().async { [weak self] in
+                    self?.fetchData()
+                }
+                return
+            }
         }
     }
 }
@@ -244,11 +267,6 @@ extension AssignmentListViewController: UITableViewDataSource, UITableViewDelega
             cell.textLabel?.text = NSLocalizedString("Loading...", comment: "")
             cell.detailTextLabel?.text = nil
             cell.imageView?.image = nil
-
-            DispatchQueue.global().async { [weak self] in
-                self?.fetchData()
-            }
-
         } else {
             let a = assignment(for: indexPath)
             cell.textLabel?.text = a?.name

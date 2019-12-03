@@ -274,9 +274,9 @@ class AssignmentListViewControllerTests: StudentTestCase {
         XCTAssertEqual( vc.filterButton.title(for: .normal), "Clear filter" )
 
         let rows =  vc.tableView(vc.tableView, numberOfRowsInSection: 0)
-        XCTAssertEqual(rows, 11)
+        XCTAssertEqual(rows, 6)
 
-        for i in 0..<rows {
+        for i in 0..<rows - 1 {
             let cell = vc.tableView(vc.tableView, cellForRowAt: IndexPath(row: i, section: 0))
             XCTAssertEqual(cell.textLabel?.text, "\(i)")
         }
