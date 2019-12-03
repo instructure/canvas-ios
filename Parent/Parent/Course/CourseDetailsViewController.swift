@@ -104,7 +104,6 @@ class CourseDetailsViewController: HorizontalMenuViewController {
             case .wiki:
                 if let page = frontPages.first, !page.body.isEmpty {
                     configureFrontPage()
-                    configureSummary()
                 }
             default: break
             }
@@ -142,7 +141,13 @@ extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
         case .grades:
             return NSLocalizedString("Grades", comment: "")
         case .syllabus:
-            return NSLocalizedString("Syllabus", comment: "")
+            switch courses.first?.defaultView {
+            case .wiki:
+                return NSLocalizedString("Homepage", comment: "")
+            case .syllabus: fallthrough
+            default:
+                return NSLocalizedString("Syllabus", comment: "")
+            }
         case .summary:
             return NSLocalizedString("Summary", comment: "")
         }
