@@ -818,6 +818,7 @@ describe('getDashboardCards', () => {
         dashboardPosition: 0,
       },
     })
+    expect(newState[1] === state[1]).toEqual(false)
   })
 
   it('still works when there are no courses yet', () => {

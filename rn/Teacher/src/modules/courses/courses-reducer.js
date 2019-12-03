@@ -369,7 +369,10 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
     resolved: (state, { result }) => {
       let clearedState = Object.keys(state)
         .reduce((newState, id) => {
-          newState[id].dashboardPosition = undefined
+          newState[id] = {
+            ...newState[id],
+            dashboardPosition: undefined
+          }
           return newState
         }, { ...state })
 
