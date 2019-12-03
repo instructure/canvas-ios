@@ -144,7 +144,8 @@ extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
             switch courses.first?.defaultView {
             case .wiki:
                 return NSLocalizedString("Homepage", comment: "")
-            case .syllabus: fallthrough
+            case .syllabus:
+                return NSLocalizedString("Syllabus", comment: "")
             default:
                 return NSLocalizedString("Syllabus", comment: "")
             }
