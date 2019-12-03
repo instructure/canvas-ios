@@ -371,7 +371,7 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
         .reduce((newState, id) => {
           newState[id] = {
             ...newState[id],
-            dashboardPosition: undefined
+            dashboardPosition: undefined,
           }
           return newState
         }, { ...state })
