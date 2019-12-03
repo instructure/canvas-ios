@@ -47,7 +47,7 @@ exports[`Render the base row 1`] = `
     <Image
       source={
         Object {
-          "testUri": "../../../src/images/course/Assignment.png",
+          "testUri": "../../../src/images/invisible.png",
         }
       }
       style={

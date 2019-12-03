@@ -47,7 +47,7 @@ describe('routing utils', () => {
         testID,
         func: (id, value) => { return 'func' },
         someColor: '#fff',
-        someImage: Images.canvasLogo,
+        someImage: Images.add,
         stuff: [
           {
             trump: 'fired comey this week',
@@ -62,7 +62,7 @@ describe('routing utils', () => {
         testID,
         func: '',
         someColor: processColor('#fff'),
-        someImage: Image.resolveAssetSource(Images.canvasLogo),
+        someImage: Image.resolveAssetSource(Images.add),
         stuff: [
           {
             trump: 'fired comey this week',

@@ -104,7 +104,7 @@ public class RichContentToolbarView: UIView {
         whiteColorBorder.isUserInteractionEnabled = false
         whiteColorButton.addSubview(whiteColorBorder)
 
-        let textColorView = UIView(frame: CGRect(x: 16.5, y: 26, width: 17, height: 5))
+        let textColorView = UIView(frame: CGRect(x: 15.5, y: 27, width: 19, height: 5))
         textColorView.layer.borderColor = UIColor.named(.textDarkest).cgColor
         textColorView.layer.borderWidth = 1
         textColorView.isUserInteractionEnabled = false

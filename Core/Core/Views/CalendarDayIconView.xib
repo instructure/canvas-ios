@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,7 +24,7 @@
                     </userDefinedRuntimeAttributes>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="31" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhm-PF-ssy" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                    <rect key="frame" x="1" y="5" width="22" height="19"/>
+                    <rect key="frame" x="3" y="6" width="18" height="16"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                         <bool key="isElement" value="NO"/>
@@ -42,13 +42,13 @@
             </accessibility>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="vJm-yM-rlS" secondAttribute="bottom" id="6OM-30-m5n"/>
-                <constraint firstItem="lhm-PF-ssy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="1" id="8UP-NX-sWf"/>
+                <constraint firstItem="lhm-PF-ssy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="3" id="8UP-NX-sWf"/>
                 <constraint firstItem="vJm-yM-rlS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="UDR-iY-iMI"/>
                 <constraint firstAttribute="trailing" secondItem="vJm-yM-rlS" secondAttribute="trailing" id="W4v-kc-9hj"/>
                 <constraint firstItem="vJm-yM-rlS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fPs-ku-DFb"/>
-                <constraint firstItem="lhm-PF-ssy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="jmj-CP-KQn"/>
-                <constraint firstAttribute="trailing" secondItem="lhm-PF-ssy" secondAttribute="trailing" constant="1" id="ubl-Tf-5Xt"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="lhm-PF-ssy" secondAttribute="bottom" id="xHz-zU-7OV"/>
+                <constraint firstItem="lhm-PF-ssy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="6" id="jmj-CP-KQn"/>
+                <constraint firstAttribute="trailing" secondItem="lhm-PF-ssy" secondAttribute="trailing" constant="3" id="ubl-Tf-5Xt"/>
+                <constraint firstAttribute="bottom" secondItem="lhm-PF-ssy" secondAttribute="bottom" constant="2" id="xHz-zU-7OV"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

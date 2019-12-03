@@ -16,16 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import { shallow } from 'enzyme'
 import React from 'react'
 import TabRow from '../TabRow'
 import Images from '../../../images'
-
-const template = {
-  ...require('../../../__templates__/tab'),
-}
+import instIcon from '../../../images/inst-icons'
+import * as template from '../../../__templates__'
 
 const defaultProps = {
   tab: template.tab(),
@@ -34,23 +30,18 @@ const defaultProps = {
 }
 
 describe('TabRow', () => {
-  it('renders correctly', () => {
-    const tree = shallow(<TabRow {...defaultProps} />)
-    expect(tree).toMatchSnapshot()
-  })
-
   it('shows a default icon', () => {
     const props = {
       ...defaultProps,
       tab: template.tab({ id: 'test default icon' }),
     }
     const tree = shallow(<TabRow {...props} />)
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('Row').prop('image')).toEqual(instIcon('courses'))
   })
 
   it('can be selected', () => {
     const tree = shallow(<TabRow {...defaultProps} selected />)
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('Row').prop('selected')).toBe(true)
   })
 
   it('can be pressed', () => {
@@ -61,7 +52,6 @@ describe('TabRow', () => {
     }
 
     const tree = shallow(<TabRow {...props} />)
-    expect(tree).toMatchSnapshot()
     tree.find('Row').simulate('press')
     expect(onPressed).toHaveBeenCalledTimes(1)
   })
@@ -72,7 +62,7 @@ describe('TabRow', () => {
       attendanceTabID: defaultProps.tab.id,
     }
     const tree = shallow(<TabRow {...props} />)
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('Row').prop('image')).toEqual({ uri: 'attendance' })
   })
 
   it('uses attendance lti image', () => {
@@ -81,7 +71,7 @@ describe('TabRow', () => {
       tab: template.tab({ id: '/external_tool/' }),
     }
     const tree = shallow(<TabRow {...props} />)
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('Row').prop('image')).toEqual(instIcon('lti'))
   })
 
   it('renders hidden if hidden', () => {
@@ -101,5 +91,30 @@ describe('TabRow', () => {
     }
     const tree = shallow(<TabRow {...props} />)
     expect(tree.find('Row').prop('accessories')).toBeFalsy()
+  })
+
+  it('renders the right icon', () => {
+    const iconFor = id =>
+      shallow(<TabRow {...defaultProps} tab={template.tab({ id })} />)
+        .find('Row').prop('image')
+    expect(iconFor('announcements')).toEqual(instIcon('announcement'))
+    expect(iconFor('application')).toEqual(instIcon('lti'))
+    expect(iconFor('assignments')).toEqual(instIcon('assignment'))
+    expect(iconFor('collaborations')).toEqual({ uri: 'collaborations' })
+    expect(iconFor('conferences')).toEqual({ uri: 'conferences' })
+    expect(iconFor('discussions')).toEqual(instIcon('discussion'))
+    expect(iconFor('files')).toEqual(instIcon('folder'))
+    expect(iconFor('grades')).toEqual(instIcon('gradebook'))
+    expect(iconFor('home')).toEqual(instIcon('home'))
+    expect(iconFor('link')).toEqual(instIcon('link'))
+    expect(iconFor('modules')).toEqual(instIcon('module'))
+    expect(iconFor('outcomes')).toEqual(instIcon('outcomes'))
+    expect(iconFor('pages')).toEqual(instIcon('document'))
+    expect(iconFor('people')).toEqual(instIcon('group'))
+    expect(iconFor('quizzes')).toEqual(instIcon('quiz'))
+    expect(iconFor('settings')).toEqual(instIcon('settings'))
+    expect(iconFor('syllabus')).toEqual(instIcon('rubric'))
+    expect(iconFor('tools')).toEqual(instIcon('lti'))
+    expect(iconFor('user')).toEqual(instIcon('user'))
   })
 })

@@ -31,7 +31,7 @@ import Row from '@common/components/rows/Row'
 import AccessIcon from '@common/components/AccessIcon'
 import { formattedDueDateWithStatus, formattedDueDate } from '@common/formatters'
 import { extractDateFromString } from '@utils/dateUtils'
-import Images from '@images'
+import instIcon from '@images/inst-icons'
 import { DotSeparated, Text } from '@common/text'
 import { isTeacher } from '@modules/app'
 
@@ -102,7 +102,7 @@ export default class DiscussionsRow extends PureComponent<Props> {
         underlayColor='#ffffff00'
         testID={`discussion.kabob-${this.props.discussion.id}`}
       >
-        <Image style={style.kabob} source={Images.kabob}/>
+        <Image style={style.kabob} source={instIcon('more')}/>
       </TouchableHighlight>
     )
   }
@@ -147,7 +147,7 @@ export default class DiscussionsRow extends PureComponent<Props> {
         <AccessIcon
           entry={discussion}
           tintColor={this.props.tintColor}
-          image={discussion.assignment ? Images.course.assignments : Images.course.discussions}
+          image={instIcon(discussion.assignment ? 'assignment' : 'discussion')}
         />
       </View>
     )

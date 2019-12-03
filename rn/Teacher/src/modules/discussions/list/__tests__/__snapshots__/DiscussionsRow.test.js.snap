@@ -121,7 +121,7 @@ exports[`DiscussionsRow renders 1`] = `
           <Image
             source={
               Object {
-                "testUri": "../../../src/images/kabob.png",
+                "uri": "moreLine",
               }
             }
             style={
@@ -279,7 +279,7 @@ exports[`DiscussionsRow renders published 1`] = `
           <Image
             source={
               Object {
-                "testUri": "../../../src/images/kabob.png",
+                "uri": "moreLine",
               }
             }
             style={
@@ -437,7 +437,7 @@ exports[`DiscussionsRow renders unpublished 1`] = `
           <Image
             source={
               Object {
-                "testUri": "../../../src/images/kabob.png",
+                "uri": "moreLine",
               }
             }
             style={
@@ -577,7 +577,7 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
           <Image
             source={
               Object {
-                "testUri": "../../../src/images/kabob.png",
+                "uri": "moreLine",
               }
             }
             style={
@@ -735,7 +735,7 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
           <Image
             source={
               Object {
-                "testUri": "../../../src/images/kabob.png",
+                "uri": "moreLine",
               }
             }
             style={
@@ -881,7 +881,7 @@ exports[`DiscussionsRow renders with points possible 1`] = `
           <Image
             source={
               Object {
-                "testUri": "../../../src/images/kabob.png",
+                "uri": "moreLine",
               }
             }
             style={
@@ -1021,7 +1021,7 @@ exports[`DiscussionsRow renders without points possible 1`] = `
           <Image
             source={
               Object {
-                "testUri": "../../../src/images/kabob.png",
+                "uri": "moreLine",
               }
             }
             style={

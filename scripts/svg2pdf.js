@@ -32,11 +32,11 @@ const jsdom = require('jsdom').JSDOM
 const PDFDocument = require('pdfkit')
 
 if (require.main == module) {
-  const [ , , svg, pdf, size ] = process.argv
-  convert(svg, pdf, size ? size.split(/\D+/).map(n => +n) : null)
+  const [ , , svg, pdf, size, pad ] = process.argv
+  convert(svg, pdf, size ? size.split(/\D+/).map(n => +n) : null, +pad || 0)
 }
 
-function convert(svgPath, pdfPath, size) {
+function convert(svgPath, pdfPath, size, pad = 0) {
   const svg = new jsdom(fs.readFileSync(svgPath, 'utf8')).window.document.querySelector('svg')
   const pdf = new PDFDocument({ autoFirstPage: false })
   pdf._id = Buffer.from([ 0 ]) // consistent, small id
@@ -46,9 +46,12 @@ function convert(svgPath, pdfPath, size) {
     svg.getAttribute('viewBox')
     || `0 0 ${+svg.getAttribute('width')} ${+svg.getAttribute('height')}`
   ).split(/\s+/).map(n => +n)
-  pdf.addPage({ size: size || viewBox.slice(2) })
+  pdf.addPage({ size: size || viewBox.slice(2).map(n => n + pad * 2) })
+  if (pad) {
+    pdf.translate(pad, pad)
+  }
   if (size) {
-    pdf.scale(Math.min(size[0] / viewBox[2], size[1] / viewBox[3]))
+    pdf.scale(Math.min((size[0] - pad * 2) / viewBox[2], (size[1] - pad * 2) / viewBox[3]))
   }
   for (const path of svg.querySelectorAll('path')) {
     pdf

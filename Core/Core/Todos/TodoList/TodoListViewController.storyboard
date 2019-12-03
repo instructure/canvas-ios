@@ -33,10 +33,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MW1-Eb-WpI" customClass="AccessIconView" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="18" y="14" width="20" height="20"/>
+                                                    <rect key="frame" x="16" y="14" width="24" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="fBd-Jv-Mqp"/>
-                                                        <constraint firstAttribute="height" constant="20" id="qst-gN-BGz"/>
+                                                        <constraint firstAttribute="width" constant="24" id="fBd-Jv-Mqp"/>
+                                                        <constraint firstAttribute="height" constant="24" id="qst-gN-BGz"/>
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="U2n-c2-O8j">
@@ -75,13 +75,13 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="U2n-c2-O8j" firstAttribute="leading" secondItem="MW1-Eb-WpI" secondAttribute="trailing" constant="18" id="4NY-nb-s7E"/>
+                                                <constraint firstItem="U2n-c2-O8j" firstAttribute="leading" secondItem="MW1-Eb-WpI" secondAttribute="trailing" constant="16" id="4NY-nb-s7E"/>
                                                 <constraint firstItem="U2n-c2-O8j" firstAttribute="top" secondItem="7eq-ZE-t86" secondAttribute="top" constant="16" id="O0c-sc-EpU"/>
-                                                <constraint firstItem="MW1-Eb-WpI" firstAttribute="top" secondItem="7eq-ZE-t86" secondAttribute="top" constant="14" id="SYx-K5-xag"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="MW1-Eb-WpI" secondAttribute="bottom" constant="14" id="T3l-QF-yyh"/>
+                                                <constraint firstItem="MW1-Eb-WpI" firstAttribute="top" secondItem="7eq-ZE-t86" secondAttribute="top" constant="12" id="SYx-K5-xag"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="MW1-Eb-WpI" secondAttribute="bottom" constant="12" id="T3l-QF-yyh"/>
                                                 <constraint firstAttribute="bottom" secondItem="U2n-c2-O8j" secondAttribute="bottom" constant="16" id="aMB-5j-yfq"/>
                                                 <constraint firstAttribute="trailing" secondItem="U2n-c2-O8j" secondAttribute="trailing" id="apj-9l-rUU"/>
-                                                <constraint firstItem="MW1-Eb-WpI" firstAttribute="leading" secondItem="7eq-ZE-t86" secondAttribute="leading" constant="18" id="xWA-8P-c0r"/>
+                                                <constraint firstItem="MW1-Eb-WpI" firstAttribute="leading" secondItem="7eq-ZE-t86" secondAttribute="leading" constant="16" id="xWA-8P-c0r"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
