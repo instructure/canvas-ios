@@ -26,6 +26,6 @@ class GetFileTest: CoreTestCase {
     func testProperties() {
         XCTAssertEqual(GetFile(context: context, fileID: "72").cacheKey, "get-file-72")
         XCTAssertEqual(GetFile(context: context, fileID: "5").scope, Scope.where(#keyPath(File.id), equals: "5"))
-        XCTAssertEqual(GetFile(context: context, fileID: "1").request.context.canvasContextID, context.canvasContextID)
+        XCTAssertEqual(GetFile(context: context, fileID: "1").request.context?.canvasContextID, context.canvasContextID)
     }
 }

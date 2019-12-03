@@ -18,7 +18,5 @@
 
 carthage bootstrap --platform ios
 
-pushd
 cd rn/Teacher
 yarn build
-popd

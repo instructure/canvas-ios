@@ -86,6 +86,11 @@ export function subscribeDiscussion (context: CanvasContext, contextID: string, 
   return httpClient[subscribed ? 'put' : 'delete'](url)
 }
 
+export function markTopicAsRead (context, contextID, discussionID) {
+  const url = `${context}/${contextID}/discussion_topics/${discussionID}/read`
+  return httpClient.put(url)
+}
+
 export function markEntryAsRead (context: CanvasContext, contextID: string, discussionID: string, entryID: string): ApiPromise<null> {
   const url = `${context}/${contextID}/discussion_topics/${discussionID}/entries/${entryID}/read`
   return httpClient.put(url)

@@ -156,7 +156,7 @@ export function mapStateToProps (state: AppState, ownProps: RouterProps): Submis
   }
 
   return {
-    selectedIndex: state.entities.submissions[ownProps.submissionID].selectedIndex,
+    selectedIndex: state.entities.submissions[ownProps.submissionID]?.selectedIndex,
   }
 }
 

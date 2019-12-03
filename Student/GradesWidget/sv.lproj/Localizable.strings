@@ -1,8 +1,8 @@
 /* No comment provided by engineer. */
-"Course Grades" = "Kursens bedömningar";
+"Course Grades" = "Kursens omdömen";
 
 /* No comment provided by engineer. */
-"Failed to load grades" = "Det gick inte att läsa in bedömningar";
+"Failed to load grades" = "Det gick inte att läsa in omdömen";
 
 /* No comment provided by engineer. */
 "Log in with Canvas" = "Logga in med Canvas";
@@ -11,7 +11,7 @@
 "Recently Graded Assignments" = "Nyligen bedömda uppgifter";
 
 /* No comment provided by engineer. */
-"Unlock your device to view your grades." = "Lås upp din enhet för att visa dina bedömningar.";
+"Unlock your device to view your grades." = "Lås upp din enhet för att visa dina omdömen.";
 
 /* No comment provided by engineer. */
 "View more" = "Visa mer";

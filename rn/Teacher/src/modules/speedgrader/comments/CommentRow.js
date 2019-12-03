@@ -21,7 +21,6 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   Image,
   ActionSheetIOS,
 } from 'react-native'
@@ -33,12 +32,13 @@ import {
 } from '../../../common/text'
 import ChatBubble from './ChatBubble'
 import AudioComment from './AudioComment'
+import CommentAttachment from './CommentAttachment'
 import SubmittedContent, { type SubmittedContentDataProps } from './SubmittedContent'
 import Images from '../../../images'
 import Button from 'react-native-button'
 import i18n from 'format-message'
 import Video from '../../../common/components/Video'
-import { vars } from '../../../common/stylesheet'
+import { createStyleSheet } from '../../../common/stylesheet'
 
 export default class CommentRow extends Component<CommentRowProps, any> {
   showFailedOptions = () => {
@@ -110,7 +110,15 @@ export default class CommentRow extends Component<CommentRowProps, any> {
     const { contents, from } = this.props
     switch (contents.type) {
       case 'text':
-        return <ChatBubble from={from} message={contents.message} />
+        let { comment } = contents
+        return (
+          <View>
+            <ChatBubble from={from} message={comment.comment} />
+            {Boolean(comment.attachments) && comment.attachments.map((attachment) => {
+              return <CommentAttachment attachment={attachment} from={from} onPress={this.showAttachment(attachment)} />
+            })}
+          </View>
+        )
       case 'submission':
         return contents.items.map((content, i) => (
           <SubmittedContent
@@ -147,6 +155,12 @@ export default class CommentRow extends Component<CommentRowProps, any> {
     }
   }
 
+  showAttachment = (attachment) => {
+    return () => {
+      this.props.onAttachmentPress(attachment)
+    }
+  }
+
   renderRetry = () => {
     if (this.props.from !== 'me') return
 
@@ -177,7 +191,7 @@ export default class CommentRow extends Component<CommentRowProps, any> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   row: {
     paddingHorizontal: vars.padding,
     paddingVertical: 8,
@@ -217,7 +231,7 @@ const styles = StyleSheet.create({
     paddingTop: 6,
     flexDirection: 'row',
   },
-})
+}))
 
 export type CommentContent = { type: 'text', message: string }
   | {

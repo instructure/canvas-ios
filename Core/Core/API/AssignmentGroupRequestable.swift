@@ -38,16 +38,12 @@ public struct GetAssignmentGroupsRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        var q: [APIQueryItem] = [ .value("per_page", "99") ]
-
-        if !include.isEmpty {
-            q.append( .array("include", include.map { $0.rawValue }) )
-        }
-
+        var query: [APIQueryItem] = [
+            .include(include.map { $0.rawValue }),
+        ]
         if let gradingPeriodID = gradingPeriodID {
-            q.append( .value("grading_period_id", gradingPeriodID))
+            query.append(.value("grading_period_id", gradingPeriodID))
         }
-
-        return q
+        return query
     }
 }

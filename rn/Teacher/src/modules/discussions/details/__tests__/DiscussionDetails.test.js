@@ -88,6 +88,7 @@ describe('DiscussionDetails', () => {
       refreshSingleDiscussion: jest.fn(),
       markAllAsRead: jest.fn(),
       markEntryAsRead: jest.fn(),
+      markTopicAsRead: jest.fn(),
       unreadEntries: [],
       permissions: { post_to_forum: true },
     }
@@ -761,6 +762,15 @@ describe('DiscussionDetails', () => {
       ...props,
       permissions: { post_to_forum: false },
     })
+  })
+
+  it('marks topic as read', () => {
+    props.markTopicAsRead = jest.fn()
+    props.context = 'courses'
+    props.contextID = '1'
+    props.discussionID = '2'
+    shallow(<DiscussionDetails {...props} />)
+    expect(props.markTopicAsRead).toHaveBeenCalledWith('courses', '1', '2')
   })
 
   describe('GroupTopicChildren', () => {

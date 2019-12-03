@@ -67,14 +67,12 @@
 		3B5542442369F3EF007D3CE0 /* AssignmentListRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5542432369F3EE007D3CE0 /* AssignmentListRequestable.swift */; };
 		3B5542462369F401007D3CE0 /* AssignmentListRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5542452369F401007D3CE0 /* AssignmentListRequestableTests.swift */; };
 		3B60439123299B6C00757B93 /* GradesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B60439023299B6C00757B93 /* GradesCell.xib */; };
-		3B604393232A975A00757B93 /* GradesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B604392232A975A00757B93 /* GradesPresenter.swift */; };
+		3B604393232A975A00757B93 /* Grades.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B604392232A975A00757B93 /* Grades.swift */; };
 		3B60439A232AAC4E00757B93 /* AssignmentGroupRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B604398232AAC4E00757B93 /* AssignmentGroupRequestable.swift */; };
 		3B60439B232AAC4E00757B93 /* APIAssignmentGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B604399232AAC4E00757B93 /* APIAssignmentGroup.swift */; };
-		3B60439D232AAC9600757B93 /* GetAssignmentGroupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B60439C232AAC9600757B93 /* GetAssignmentGroupUseCase.swift */; };
-		3B60439F232AACEA00757B93 /* GetAssignmentGroupUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B60439E232AACEA00757B93 /* GetAssignmentGroupUseCaseTests.swift */; };
-		3B6043A3232AADB600757B93 /* AssigmentGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6043A2232AADB600757B93 /* AssigmentGroup.swift */; };
+		3B6043A3232AADB600757B93 /* AssignmentGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6043A2232AADB600757B93 /* AssignmentGroup.swift */; };
 		3B6043A5232AB00700757B93 /* AssignmentGroupRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6043A4232AB00700757B93 /* AssignmentGroupRequestableTests.swift */; };
-		3B6043A8232AB81900757B93 /* GradesPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6043A7232AB81900757B93 /* GradesPresenterTests.swift */; };
+		3B6043A8232AB81900757B93 /* GradesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6043A7232AB81900757B93 /* GradesTests.swift */; };
 		3B635B29225C13DD001F353D /* DiscussionTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B28225C13DD001F353D /* DiscussionTopic.swift */; };
 		3B635B2B225CD298001F353D /* APICalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B2A225CD298001F353D /* APICalendarEvent.swift */; };
 		3B635B2D225CD377001F353D /* APICalendarRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B2C225CD377001F353D /* APICalendarRequestable.swift */; };
@@ -511,6 +509,8 @@
 		9FE84DE2215037A000B95A68 /* GetContextTabsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */; };
 		B107F6CB234BB847000DAC83 /* ItemPickerElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107F6CA234BB847000DAC83 /* ItemPickerElement.swift */; };
 		B10D777021C2E27200BCE822 /* UITableViewCellExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D776F21C2E27200BCE822 /* UITableViewCellExtensions.swift */; };
+		B10E8905238447A700E7684E /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10E8904238447A700E7684E /* Grade.swift */; };
+		B10E89072384807B00E7684E /* GradesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10E89062384807B00E7684E /* GradesViewControllerTests.swift */; };
 		B119B4BD2307208200A74062 /* GetEnabledFeatureFlagsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B119B4BC2307208200A74062 /* GetEnabledFeatureFlagsTests.swift */; };
 		B11AAC3B237A1EB4002BC41F /* APIURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AAC3A237A1EB4002BC41F /* APIURLTests.swift */; };
 		B11AAC3D237A2428002BC41F /* APIURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AAC3C237A2428002BC41F /* APIURL.swift */; };
@@ -537,6 +537,7 @@
 		B15CA279221DE9660014FB02 /* APIModuleRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA278221DE9660014FB02 /* APIModuleRequestable.swift */; };
 		B15CA27E221DFA450014FB02 /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA27D221DFA450014FB02 /* Module.swift */; };
 		B15CA284221E00870014FB02 /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA283221E00870014FB02 /* ModuleTests.swift */; };
+		B15E4B87238C4DC2002119CF /* Syllabus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15E4B86238C4DC2002119CF /* Syllabus.swift */; };
 		B164DC1F22DE2AB30037FA86 /* APIAccountResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164DC1E22DE2AB30037FA86 /* APIAccountResultTests.swift */; };
 		B16F036E215AE6210011E952 /* GetAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BE5215A81350071B41E /* GetAssignment.swift */; };
 		B17855B1226ABDB100B30C80 /* UploadMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17855B0226ABDB100B30C80 /* UploadMedia.swift */; };
@@ -548,6 +549,8 @@
 		B1846D0F22E8FBC000BC4C4A /* NotificationCenterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1846D0E22E8FBC000BC4C4A /* NotificationCenterExtensions.swift */; };
 		B1846D1122E8FEBD00BC4C4A /* ModuleItemCompletionRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1846D1022E8FEBD00BC4C4A /* ModuleItemCompletionRequirement.swift */; };
 		B1846D1322EA32F000BC4C4A /* NotificationCenterExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1846D1222EA32F000BC4C4A /* NotificationCenterExtensionsTests.swift */; };
+		B18E19B92386212900B03C73 /* GradeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18E19B82386212900B03C73 /* GradeFormatter.swift */; };
+		B18E19BB2386216B00B03C73 /* GradeFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18E19BA2386216B00B03C73 /* GradeFormatterTests.swift */; };
 		B1911CE921C8460000F42F91 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CE821C8460000F42F91 /* NotificationManager.swift */; };
 		B1911CEC21C849BE00F42F91 /* NotificationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CEB21C849BE00F42F91 /* NotificationManagerTests.swift */; };
 		B1911CF121C851AD00F42F91 /* ProcessInfoExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CF021C851AD00F42F91 /* ProcessInfoExtensions.swift */; };
@@ -659,6 +662,8 @@
 		E819195123034C2D0039616A /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E819193723034C2D0039616A /* InboxTests.swift */; };
 		E819195523034C2D0039616A /* ProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E819193E23034C2D0039616A /* ProfileTests.swift */; };
 		E819195623034C2D0039616A /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E819193F23034C2D0039616A /* Profile.swift */; };
+		E85B4918238875A0003E28DC /* UserFilesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85B4917238875A0003E28DC /* UserFilesTests.swift */; };
+		E85E7F83238C45C300BE61B3 /* FilesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E7F82238C45C300BE61B3 /* FilesList.swift */; };
 		E8997906234F7E0600CA7D9B /* XCTestCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8997905234F7E0600CA7D9B /* XCTestCaseTests.swift */; };
 		E8AD06712303713300D498ED /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AD066F2303713300D498ED /* Dashboard.swift */; };
 		E8AD06722303713300D498ED /* DashboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AD06702303713300D498ED /* DashboardTests.swift */; };
@@ -801,14 +806,12 @@
 		3B5542432369F3EE007D3CE0 /* AssignmentListRequestable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentListRequestable.swift; sourceTree = "<group>"; };
 		3B5542452369F401007D3CE0 /* AssignmentListRequestableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentListRequestableTests.swift; sourceTree = "<group>"; };
 		3B60439023299B6C00757B93 /* GradesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GradesCell.xib; sourceTree = "<group>"; };
-		3B604392232A975A00757B93 /* GradesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesPresenter.swift; sourceTree = "<group>"; };
+		3B604392232A975A00757B93 /* Grades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grades.swift; sourceTree = "<group>"; };
 		3B604398232AAC4E00757B93 /* AssignmentGroupRequestable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentGroupRequestable.swift; sourceTree = "<group>"; };
 		3B604399232AAC4E00757B93 /* APIAssignmentGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAssignmentGroup.swift; sourceTree = "<group>"; };
-		3B60439C232AAC9600757B93 /* GetAssignmentGroupUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAssignmentGroupUseCase.swift; sourceTree = "<group>"; };
-		3B60439E232AACEA00757B93 /* GetAssignmentGroupUseCaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAssignmentGroupUseCaseTests.swift; sourceTree = "<group>"; };
-		3B6043A2232AADB600757B93 /* AssigmentGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssigmentGroup.swift; sourceTree = "<group>"; };
+		3B6043A2232AADB600757B93 /* AssignmentGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentGroup.swift; sourceTree = "<group>"; };
 		3B6043A4232AB00700757B93 /* AssignmentGroupRequestableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentGroupRequestableTests.swift; sourceTree = "<group>"; };
-		3B6043A7232AB81900757B93 /* GradesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesPresenterTests.swift; sourceTree = "<group>"; };
+		3B6043A7232AB81900757B93 /* GradesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesTests.swift; sourceTree = "<group>"; };
 		3B635B28225C13DD001F353D /* DiscussionTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTopic.swift; sourceTree = "<group>"; };
 		3B635B2A225CD298001F353D /* APICalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalendarEvent.swift; sourceTree = "<group>"; };
 		3B635B2C225CD377001F353D /* APICalendarRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalendarRequestable.swift; sourceTree = "<group>"; };
@@ -1393,6 +1396,8 @@
 		9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextTabsTest.swift; sourceTree = "<group>"; };
 		B107F6CA234BB847000DAC83 /* ItemPickerElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPickerElement.swift; sourceTree = "<group>"; };
 		B10D776F21C2E27200BCE822 /* UITableViewCellExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtensions.swift; sourceTree = "<group>"; };
+		B10E8904238447A700E7684E /* Grade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grade.swift; sourceTree = "<group>"; };
+		B10E89062384807B00E7684E /* GradesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesViewControllerTests.swift; sourceTree = "<group>"; };
 		B119B4BC2307208200A74062 /* GetEnabledFeatureFlagsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEnabledFeatureFlagsTests.swift; sourceTree = "<group>"; };
 		B11AAC3A237A1EB4002BC41F /* APIURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIURLTests.swift; sourceTree = "<group>"; };
 		B11AAC3C237A2428002BC41F /* APIURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIURL.swift; sourceTree = "<group>"; };
@@ -1420,6 +1425,7 @@
 		B15CA278221DE9660014FB02 /* APIModuleRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModuleRequestable.swift; sourceTree = "<group>"; };
 		B15CA27D221DFA450014FB02 /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		B15CA283221E00870014FB02 /* ModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTests.swift; sourceTree = "<group>"; };
+		B15E4B86238C4DC2002119CF /* Syllabus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syllabus.swift; sourceTree = "<group>"; };
 		B164DC1E22DE2AB30037FA86 /* APIAccountResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountResultTests.swift; sourceTree = "<group>"; };
 		B17855B0226ABDB100B30C80 /* UploadMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMedia.swift; sourceTree = "<group>"; };
 		B17855B2226ABDDD00B30C80 /* UploadMediaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMediaTests.swift; sourceTree = "<group>"; };
@@ -1430,6 +1436,8 @@
 		B1846D0E22E8FBC000BC4C4A /* NotificationCenterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterExtensions.swift; sourceTree = "<group>"; };
 		B1846D1022E8FEBD00BC4C4A /* ModuleItemCompletionRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemCompletionRequirement.swift; sourceTree = "<group>"; };
 		B1846D1222EA32F000BC4C4A /* NotificationCenterExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterExtensionsTests.swift; sourceTree = "<group>"; };
+		B18E19B82386212900B03C73 /* GradeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeFormatter.swift; sourceTree = "<group>"; };
+		B18E19BA2386216B00B03C73 /* GradeFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeFormatterTests.swift; sourceTree = "<group>"; };
 		B1911CE821C8460000F42F91 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		B1911CEB21C849BE00F42F91 /* NotificationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManagerTests.swift; sourceTree = "<group>"; };
 		B1911CF021C851AD00F42F91 /* ProcessInfoExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessInfoExtensions.swift; sourceTree = "<group>"; };
@@ -1545,6 +1553,8 @@
 		E819193723034C2D0039616A /* InboxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTests.swift; sourceTree = "<group>"; };
 		E819193E23034C2D0039616A /* ProfileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
 		E819193F23034C2D0039616A /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		E85B4917238875A0003E28DC /* UserFilesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFilesTests.swift; sourceTree = "<group>"; };
+		E85E7F82238C45C300BE61B3 /* FilesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesList.swift; sourceTree = "<group>"; };
 		E8997905234F7E0600CA7D9B /* XCTestCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseTests.swift; sourceTree = "<group>"; };
 		E8AD066F2303713300D498ED /* Dashboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		E8AD06702303713300D498ED /* DashboardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTests.swift; sourceTree = "<group>"; };
@@ -1898,7 +1908,7 @@
 				3B4D861223295239005126A5 /* GradesViewController.swift */,
 				3B4D861423295263005126A5 /* GradesViewController.storyboard */,
 				3B60439023299B6C00757B93 /* GradesCell.xib */,
-				3B604392232A975A00757B93 /* GradesPresenter.swift */,
+				3B604392232A975A00757B93 /* Grades.swift */,
 			);
 			path = Grades;
 			sourceTree = "<group>";
@@ -1906,7 +1916,8 @@
 		3B6043A6232AB80500757B93 /* Grades */ = {
 			isa = PBXGroup;
 			children = (
-				3B6043A7232AB81900757B93 /* GradesPresenterTests.swift */,
+				3B6043A7232AB81900757B93 /* GradesTests.swift */,
+				B10E89062384807B00E7684E /* GradesViewControllerTests.swift */,
 			);
 			path = Grades;
 			sourceTree = "<group>";
@@ -1969,7 +1980,7 @@
 			children = (
 				7DCF1EC3216BE0C3003AF358 /* Viewable */,
 				3B801BF92322F64900D143F0 /* AlertThreshold.swift */,
-				3B6043A2232AADB600757B93 /* AssigmentGroup.swift */,
+				3B6043A2232AADB600757B93 /* AssignmentGroup.swift */,
 				7DF4FFDA21713636007E5F81 /* Assignment.swift */,
 				3B635B32225CDC95001F353D /* CalendarEvent.swift */,
 				7D062AF3212496E600677F66 /* Context.swift */,
@@ -1986,6 +1997,8 @@
 				7DCF1EAD216BC48F003AF358 /* EnrollmentState.swift */,
 				B150C62C2297814E0096D58C /* ExternalTool.swift */,
 				B1999AB02305AE3300DA97A4 /* FeatureFlag.swift */,
+				B10E8904238447A700E7684E /* Grade.swift */,
+				B18E19B82386212900B03C73 /* GradeFormatter.swift */,
 				3BA9FF7C2332B43C00196A06 /* GradingPeriod.swift */,
 				7DCF1E9D216BB6B6003AF358 /* GradingType.swift */,
 				7DF4FFCC21711EB3007E5F81 /* Group.swift */,
@@ -2012,6 +2025,7 @@
 				7DA5C48722385435003CDB4C /* SubmissionComment.swift */,
 				7DCF1E9F216BB731003AF358 /* SubmissionType.swift */,
 				7DCF1EB5216BC861003AF358 /* SubmissionWorkflowState.swift */,
+				B15E4B86238C4DC2002119CF /* Syllabus.swift */,
 				7DF4FFD62171347B007E5F81 /* Tab.swift */,
 				7DF4FFD4217133AF007E5F81 /* TabType.swift */,
 				7DCF1EB9216BC8C5003AF358 /* TabVisibility.swift */,
@@ -2043,6 +2057,7 @@
 				3BD364AA225D3C02006CEBD8 /* DiscussionTopicTests.swift */,
 				9F88ED00224A742F00DCCA09 /* EnrollmentTests.swift */,
 				7D4C3A762236FFD2007D6792 /* FileTests.swift */,
+				B18E19BA2386216B00B03C73 /* GradeFormatterTests.swift */,
 				7DCF1EA3216BBCFB003AF358 /* GradingTypeTests.swift */,
 				B19792FC21769E280000369C /* GroupTests.swift */,
 				7DCF1EBB216BC94E003AF358 /* LatePolicyStatusTests.swift */,
@@ -2809,7 +2824,6 @@
 			children = (
 				3B3FCA3023802B800011F11A /* GetActivities.swift */,
 				3BA9FF7A2332B3BA00196A06 /* GradingPeriodUseCase.swift */,
-				3B60439C232AAC9600757B93 /* GetAssignmentGroupUseCase.swift */,
 				3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */,
 				7DEB5C39224EB02A00F28404 /* CreateTextComment.swift */,
 				B150C623229733C50096D58C /* GetArc.swift */,
@@ -2932,7 +2946,6 @@
 				3B67BCB721B5E72000055324 /* CreateSubmissionTests.swift */,
 				7DEB5C3B224EBF2D00F28404 /* CreateTextCommentTests.swift */,
 				B150C63D2298E6410096D58C /* GetArcTests.swift */,
-				3B60439E232AACEA00757B93 /* GetAssignmentGroupUseCaseTests.swift */,
 				3BF5C55221879A430081A858 /* GetAssignmentsTests.swift */,
 				7D63F791215D8EEC00151E49 /* GetBrandVariablesTests.swift */,
 				3B635B36225CE59D001F353D /* GetCalendarEventsTests.swift */,
@@ -3138,6 +3151,8 @@
 		E819193D23034C2D0039616A /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E85B4917238875A0003E28DC /* UserFilesTests.swift */,
+				E85E7F82238C45C300BE61B3 /* FilesList.swift */,
 				E819193E23034C2D0039616A /* ProfileTests.swift */,
 				E819193F23034C2D0039616A /* Profile.swift */,
 			);
@@ -3515,6 +3530,7 @@
 				9FAE410121B6C56D00FE7F58 /* APIExternalTool.swift in Sources */,
 				78151DCB21AE75D400692862 /* APIDiscussion.swift in Sources */,
 				7D92D653224A8D9B0015B368 /* APIMediaCommentRequestable.swift in Sources */,
+				B15E4B87238C4DC2002119CF /* Syllabus.swift in Sources */,
 				3BE2ADCB21B704F1008D91AB /* DynamicTextField.swift in Sources */,
 				7DE6A7062319973700A5B796 /* APIErrorReport.swift in Sources */,
 				B1C783ED2241E39B00DD89A9 /* UUID.swift in Sources */,
@@ -3528,6 +3544,7 @@
 				3B4687B42355109C00F293A5 /* SyllabusActionableItemsViewController.swift in Sources */,
 				7DD6CC6321BB6BF7004C4BB6 /* LoginStartPresenter.swift in Sources */,
 				9FBE5369223C2522001EC40C /* PermissionName.swift in Sources */,
+				B10E8905238447A700E7684E /* Grade.swift in Sources */,
 				EE584C8122F2048D00D1E201 /* PageListViewController.swift in Sources */,
 				B1911CE921C8460000F42F91 /* NotificationManager.swift in Sources */,
 				9FBE536D223C32E7001EC40C /* Permissions.swift in Sources */,
@@ -3567,14 +3584,13 @@
 				7DA667EF23834D150062F7B9 /* Todo.swift in Sources */,
 				7D5A2BC222CD062E0029B6AC /* APIList.swift in Sources */,
 				B11D321721E464AB00F37ABF /* Store.swift in Sources */,
-				3B6043A3232AADB600757B93 /* AssigmentGroup.swift in Sources */,
+				3B6043A3232AADB600757B93 /* AssignmentGroup.swift in Sources */,
 				7DF4FFCA217116BC007E5F81 /* Course.swift in Sources */,
 				3B158CA822E1343D0039A568 /* PageViewSession.swift in Sources */,
 				7D70DE94233E8DA800F5C3D4 /* NotificationChannelsViewController.swift in Sources */,
 				DFE1FF1D212F5E1A003F27AA /* LoginSession.swift in Sources */,
 				7D80AC2B212C77C600C40ECE /* APIOAuth.swift in Sources */,
 				7D20F61921C3166800B77E5E /* UICollectionViewExtensions.swift in Sources */,
-				3B60439D232AAC9600757B93 /* GetAssignmentGroupUseCase.swift in Sources */,
 				B1E789B121B199E40087FE4A /* LogEventListPresenter.swift in Sources */,
 				3B339B6A226FA9AF00D3283D /* ChatBubbleView.swift in Sources */,
 				3B5425FC21B074500009D069 /* UIViewControllerExtensions.swift in Sources */,
@@ -3678,6 +3694,7 @@
 				B1999AAF2305AAC300DA97A4 /* APIFeatureFlagsRequestable.swift in Sources */,
 				B195DC49213215A300797FE4 /* NSPredicateExtensions.swift in Sources */,
 				7DD371BF22E7B20900C2D0F7 /* GetQuizSubmission.swift in Sources */,
+				B18E19B92386212900B03C73 /* GradeFormatter.swift in Sources */,
 				7D9E80C4233C64E4003C608B /* CommunicationChannel.swift in Sources */,
 				B1E789A421B0EC1A0087FE4A /* LogEvent.swift in Sources */,
 				7DCF1EBA216BC8C6003AF358 /* TabVisibility.swift in Sources */,
@@ -3746,7 +3763,7 @@
 				7D8262F9212B3B2000BD268D /* APICourseSection.swift in Sources */,
 				3B4B75C7222F09C7002CCBEC /* CreateSubmission.swift in Sources */,
 				7D52D8AB2301BA5100684932 /* ExperimentalFeature.swift in Sources */,
-				3B604393232A975A00757B93 /* GradesPresenter.swift in Sources */,
+				3B604393232A975A00757B93 /* Grades.swift in Sources */,
 				3BA9FF732332B04400196A06 /* GradingPeriodRequestables.swift in Sources */,
 				B195DC512132257500797FE4 /* GetCourse.swift in Sources */,
 				7D29D2FF218A4FEA0036437C /* PSPDFAnnotationExtension.swift in Sources */,
@@ -3950,6 +3967,7 @@
 				7DE949802385E08000B27F93 /* TodoTests.swift in Sources */,
 				7DCE0C8E22B015DC00BA549F /* QuizSubmissionTests.swift in Sources */,
 				7DDC4511215BF7AA003F3209 /* BundleExtensionsTests.swift in Sources */,
+				B18E19BB2386216B00B03C73 /* GradeFormatterTests.swift in Sources */,
 				EE6CB48622F8C8890013D9A5 /* PageListPresenterTests.swift in Sources */,
 				3BA9FF792332B39700196A06 /* GradingPeriodUseCaseTests.swift in Sources */,
 				7DB0A1BA21BF1904009ABB40 /* LoginStartPresenterTests.swift in Sources */,
@@ -3967,7 +3985,7 @@
 				DFE1FF20212F5E41003F27AA /* LoginSessionTests.swift in Sources */,
 				B15CA22D221CA2EE0014FB02 /* UseCaseTests.swift in Sources */,
 				B164DC1F22DE2AB30037FA86 /* APIAccountResultTests.swift in Sources */,
-				3B6043A8232AB81900757B93 /* GradesPresenterTests.swift in Sources */,
+				3B6043A8232AB81900757B93 /* GradesTests.swift in Sources */,
 				7D52D8AD2301C0A400684932 /* ExperimentalFeatureTests.swift in Sources */,
 				9F3107FD2371EA4400502428 /* PageDetailsPresenterTests.swift in Sources */,
 				B15CA284221E00870014FB02 /* ModuleTests.swift in Sources */,
@@ -4059,7 +4077,6 @@
 				7DCF2040216D5EF1003AF358 /* APIQuizTests.swift in Sources */,
 				3B158CBA22E25E3B0039A568 /* PageViewEventViewControllerLoggingProtocolTests.swift in Sources */,
 				B1E789BD21B1D3D50087FE4A /* LogEventListPresenterTests.swift in Sources */,
-				3B60439F232AACEA00757B93 /* GetAssignmentGroupUseCaseTests.swift in Sources */,
 				9F5C93012375A613005105BB /* PageDetailsViewControllerTests.swift in Sources */,
 				B133A78A221F59A3000E393E /* ContextColorTests.swift in Sources */,
 				7D7110CC2139AB310085C2E5 /* URLComponentsExtensionsTests.swift in Sources */,
@@ -4077,6 +4094,7 @@
 				7D81A001228DC1F000C61EDD /* GetQuizTests.swift in Sources */,
 				7D0215A121B88BDC009A8E69 /* UITabBarExtensionsTests.swift in Sources */,
 				7DC4A559222EFC9900FA03DC /* Int64ExtensionsTests.swift in Sources */,
+				B10E89072384807B00E7684E /* GradesViewControllerTests.swift in Sources */,
 				7D20F61B21C31CE900B77E5E /* UICollectionViewExtensionsTests.swift in Sources */,
 				7DCF1EC0216BC97F003AF358 /* TabVisibilityTests.swift in Sources */,
 				7DC4A55B222EFE0E00FA03DC /* NSErrorExtensionsTests.swift in Sources */,
@@ -4110,8 +4128,10 @@
 				E819194723034C2D0039616A /* DeepLinkTests.swift in Sources */,
 				E819194C23034C2D0039616A /* TodoListTests.swift in Sources */,
 				E819194923034C2D0039616A /* CourseGroupTests.swift in Sources */,
+				E85B4918238875A0003E28DC /* UserFilesTests.swift in Sources */,
 				E81918F9230348860039616A /* DiscussionDetailsTests.swift in Sources */,
 				7D5C08992305F25C0022E0DB /* CoreUITestCase.swift in Sources */,
+				E85E7F83238C45C300BE61B3 /* FilesList.swift in Sources */,
 				E819194E23034C2D0039616A /* ActAsUserTests.swift in Sources */,
 				E8AD06722303713300D498ED /* DashboardTests.swift in Sources */,
 				E819195123034C2D0039616A /* InboxTests.swift in Sources */,

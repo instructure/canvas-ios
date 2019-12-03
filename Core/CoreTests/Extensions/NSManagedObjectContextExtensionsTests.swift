@@ -42,4 +42,14 @@ class NSManagedObjectContextExtensionsTests: CoreTestCase {
         XCTAssertTrue(result == yes || result == yess)
         XCTAssertFalse(result == no)
     }
+
+    func testIsObjectDeleted() throws {
+        let object = Course.make()
+        databaseClient.delete(object)
+        XCTAssertTrue(databaseClient.isObjectDeleted(object))
+        XCTAssertTrue(object.isDeleted)
+        try databaseClient.save()
+        XCTAssertFalse(object.isDeleted)
+        XCTAssertTrue(databaseClient.isObjectDeleted(object))
+    }
 }

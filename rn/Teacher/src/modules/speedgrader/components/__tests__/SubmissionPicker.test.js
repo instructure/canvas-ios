@@ -179,7 +179,7 @@ describe('SubmissionPicker', () => {
 })
 
 describe('mapStateToProps', () => {
-  it('returns the correct data when there is no submission', () => {
+  it('returns the correct data when there is no submission ID', () => {
     let state = templates.appState({
       entities: {
         assignments: {
@@ -196,10 +196,25 @@ describe('mapStateToProps', () => {
       },
     })
 
-    let dataProps = mapStateToProps(state, noSubProps)
+    let props = { ...subProps, submissionID: null }
+    let dataProps = mapStateToProps(state, props)
     expect(dataProps).toMatchObject({
       selectedIndex: null,
     })
+  })
+
+  it('returns the correct data when there is no submission', () => {
+    let state = templates.appState({
+      entities: {
+        assignments: {
+          '2': {},
+        },
+        submissions: {},
+      },
+    })
+
+    let dataProps = mapStateToProps(state, subProps)
+    expect(dataProps.selectedIndex).toBeUndefined()
   })
 
   it('returns the correct data when there is a submission', () => {

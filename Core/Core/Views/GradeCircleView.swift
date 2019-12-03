@@ -96,7 +96,8 @@ public class GradeCircleView: UIView {
 
         // Update the display grade
         displayGrade.isHidden = assignment.gradingType == .points || submission.late == true
-        displayGrade.attributedText = NSAttributedString(string: assignment.gradeText ?? "", attributes: [NSAttributedString.Key.accessibilitySpeechPunctuation: true])
+        let gradeText = GradeFormatter.string(from: assignment, style: .short) ?? ""
+        displayGrade.attributedText = NSAttributedString(string: gradeText, attributes: [NSAttributedString.Key.accessibilitySpeechPunctuation: true])
 
         // Update the outOf label
         outOfLabel.text = assignment.outOfText

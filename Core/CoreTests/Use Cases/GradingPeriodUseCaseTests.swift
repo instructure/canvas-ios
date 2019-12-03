@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class GetGradingPeriosdUseCaseTests: CoreTestCase {
+class GetGradingPeriodsUseCaseTests: CoreTestCase {
 
     var useCase: GetGradingPeriods!
     let courseID: String = "1"
@@ -45,9 +45,8 @@ class GetGradingPeriosdUseCaseTests: CoreTestCase {
     func testWrite() {
         let a = APIGradingPeriod.make(id: "1", title: "1")
         let b = APIGradingPeriod.make(id: "2", title: "2")
-        let response = APIGradingPeriodResponse(grading_periods: [a, b])
 
-        useCase.write(response: response, urlResponse: nil, to: databaseClient)
+        useCase.write(response: [a, b], urlResponse: nil, to: databaseClient)
         let sort = NSSortDescriptor(key: #keyPath(GradingPeriod.id), ascending: true)
         let gradingPeriods: [GradingPeriod] = databaseClient.fetch(useCase.scope.predicate, sortDescriptors: [sort])
 

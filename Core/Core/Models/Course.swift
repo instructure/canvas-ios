@@ -31,6 +31,9 @@ final public class Course: NSManagedObject, Context, WriteableModel {
     @NSManaged public var name: String?
     @NSManaged public var enrollments: Set<Enrollment>?
     @NSManaged public var syllabusBody: String?
+    @NSManaged public var multipleGradingPeriodsEnabled: Bool
+    @NSManaged public var currentGradingPeriodID: String?
+    @NSManaged public var grades: Set<Grade>?
 
     public var defaultView: CourseDefaultView? {
         get { return CourseDefaultView(rawValue: defaultViewRaw ?? "") }
@@ -102,7 +105,7 @@ extension Course {
         }
 
         guard let scoreNotNil = score, let scoreString = Course.scoreFormatter.string(from: NSNumber(value: scoreNotNil)) else {
-                return grade ?? NSLocalizedString("N/A", bundle: .core, comment: "")
+            return grade ?? NSLocalizedString("N/A", bundle: .core, comment: "")
         }
 
         if let grade = grade {

@@ -25,6 +25,48 @@ class APIFileTests: XCTestCase {
         XCTAssertEqual(request.path, "courses/1/files/2")
         XCTAssertEqual(request.queryItems, [ URLQueryItem(name: "include[]", value: "avatar") ])
     }
+
+    func testGetFileRequestWithRootContext() {
+        let request = GetFileRequest(context: nil, fileID: "2", include: [.avatar])
+        XCTAssertEqual(request.path, "files/2")
+        XCTAssertEqual(request.queryItems, [ URLQueryItem(name: "include[]", value: "avatar") ])
+    }
+
+    func testGetContextFolderHierarchyRequest() {
+        let request = GetContextFolderHierarchyRequest(context: ContextModel(.course, id: "1"), fullPath: "a/b")
+        XCTAssertEqual(request.path, "courses/1/folders/by_path/a/b")
+        XCTAssertEqual(request.queryItems, [ URLQueryItem(name: "include[]", value: "usage_rights") ])
+    }
+
+    func testListFoldersRequest() {
+        let request = ListFoldersRequest(context: ContextModel(.course, id: "1"))
+        XCTAssertEqual(request.path, "courses/1/folders")
+        XCTAssertEqual(request.queryItems, [
+            URLQueryItem(name: "include[]", value: "usage_rights"),
+            URLQueryItem(name: "per_page", value: "99"),
+        ])
+    }
+
+    func testListFilesRequest() {
+        let request = ListFilesRequest(context: ContextModel(.course, id: "1"))
+        XCTAssertEqual(request.path, "courses/1/files")
+        XCTAssertEqual(request.queryItems, [
+            URLQueryItem(name: "include[]", value: "usage_rights"),
+            URLQueryItem(name: "per_page", value: "99"),
+        ])
+    }
+
+    func testGetFolderRequest() {
+        let request = GetFolderRequest(context: ContextModel(.course, id: "1"), id: 2)
+        XCTAssertEqual(request.path, "courses/1/folders/2")
+        XCTAssertEqual(request.queryItems, [ URLQueryItem(name: "include[]", value: "usage_rights") ])
+    }
+
+    func testListFilesRequestWithRootContext() {
+        let request = GetFolderRequest(context: nil, id: 2)
+        XCTAssertEqual(request.path, "folders/2")
+        XCTAssertEqual(request.queryItems, [ URLQueryItem(name: "include[]", value: "usage_rights") ])
+    }
 }
 
 class PostFileUploadTargetRequestTests: XCTestCase {

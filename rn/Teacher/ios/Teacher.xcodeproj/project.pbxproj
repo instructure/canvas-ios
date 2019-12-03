@@ -66,6 +66,7 @@
 		B15CA297221E103B0014FB02 /* DynamicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA296221E103B0014FB02 /* DynamicLabel.swift */; };
 		B15CA299221E10900014FB02 /* ModuleItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA298221E10900014FB02 /* ModuleItemCell.swift */; };
 		B15CA29D221F16C90014FB02 /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA29C221F16C90014FB02 /* BundleExtensions.swift */; };
+		B17E1DB5238DA8550022EE0E /* SpeedGraderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E1DB4238DA8550022EE0E /* SpeedGraderTests.swift */; };
 		B18359B2222485E60005A918 /* AccessIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18359B1222485E60005A918 /* AccessIconView.swift */; };
 		B183F99B2252925F000A6930 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B183F99A2252925F000A6930 /* IconView.swift */; };
 		B18B275F236C76B10043EB2B /* ModuleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18B275E236C76B10043EB2B /* ModuleListViewControllerTests.swift */; };
@@ -307,6 +308,7 @@
 		B15CA296221E103B0014FB02 /* DynamicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabel.swift; sourceTree = "<group>"; };
 		B15CA298221E10900014FB02 /* ModuleItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemCell.swift; sourceTree = "<group>"; };
 		B15CA29C221F16C90014FB02 /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
+		B17E1DB4238DA8550022EE0E /* SpeedGraderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderTests.swift; sourceTree = "<group>"; };
 		B18359B1222485E60005A918 /* AccessIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessIconView.swift; sourceTree = "<group>"; };
 		B183F99A2252925F000A6930 /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		B18B275E236C76B10043EB2B /* ModuleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleListViewControllerTests.swift; sourceTree = "<group>"; };
@@ -570,6 +572,14 @@
 			path = Teacher/IBDesignables;
 			sourceTree = "<group>";
 		};
+		B17E1DB3238DA8290022EE0E /* SpeedGrader */ = {
+			isa = PBXGroup;
+			children = (
+				B17E1DB4238DA8550022EE0E /* SpeedGraderTests.swift */,
+			);
+			path = SpeedGrader;
+			sourceTree = "<group>";
+		};
 		B18359A1222447200005A918 /* ModuleList */ = {
 			isa = PBXGroup;
 			children = (
@@ -600,8 +610,9 @@
 		E8315D3722FC9E60003CD27C /* TeacherUITests */ = {
 			isa = PBXGroup;
 			children = (
-				3BFD1D422311E209003AE3AB /* TeacherUITestCase.swift */,
+				B17E1DB3238DA8290022EE0E /* SpeedGrader */,
 				3BFD1D3F2311DEAB003AE3AB /* Submissions */,
+				3BFD1D422311E209003AE3AB /* TeacherUITestCase.swift */,
 				E8315D3A22FC9E60003CD27C /* Info.plist */,
 				E8A2FCAA23048AF80070B732 /* TestsFromCore.swift */,
 			);
@@ -996,6 +1007,7 @@
 			files = (
 				3BFD1D412311DED8003AE3AB /* AssignmentPostPolicyTests.swift in Sources */,
 				E8A2FCAB23048AF80070B732 /* TestsFromCore.swift in Sources */,
+				B17E1DB5238DA8550022EE0E /* SpeedGraderTests.swift in Sources */,
 				3BFD1D432311E209003AE3AB /* TeacherUITestCase.swift in Sources */,
 				3BFD1D4723121FEE003AE3AB /* PostPolicy.swift in Sources */,
 				3BFD1D4523121ED9003AE3AB /* SubmissionsList.swift in Sources */,

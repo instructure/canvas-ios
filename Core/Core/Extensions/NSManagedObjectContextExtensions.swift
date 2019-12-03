@@ -29,12 +29,12 @@ extension NSManagedObjectContext {
         }
     }
 
-    public func first<T>(where key: String, equals value: CVarArg) -> T? {
+    public func first<T>(where key: String, equals value: CVarArg?) -> T? {
         return all(where: key, equals: value).first
     }
 
-    public func all<T>(where key: String, equals value: CVarArg) -> [T] {
-        let predicate = NSPredicate(format: "%K == %@", key, value)
+    public func all<T>(where key: String, equals value: CVarArg?) -> [T] {
+        let predicate = NSPredicate(key: key, equals: value)
         return fetch(predicate)
     }
 
@@ -61,6 +61,18 @@ extension NSManagedObjectContext {
     public func delete<T: NSManagedObject>(_ objects: [T]) {
         for o in objects {
             delete(o)
+        }
+    }
+
+    public func isObjectDeleted(_ object: NSManagedObject) -> Bool {
+        if object.isDeleted || object.managedObjectContext == nil {
+            return true
+        }
+        do {
+            _ = try existingObject(with: object.objectID)
+            return false
+        } catch {
+            return (error as NSError).code == NSManagedObjectReferentialIntegrityError
         }
     }
 }

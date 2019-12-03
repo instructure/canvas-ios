@@ -19,7 +19,7 @@
 import Foundation
 
 public enum ContextType: String, Codable {
-    case account, course, group, user, section
+    case account, course, group, user, section, folder
 
     public init?(pathComponent: String) {
         guard pathComponent.last == "s" else { return nil }

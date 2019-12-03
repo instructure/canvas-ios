@@ -196,7 +196,7 @@
 "Flagged" = "Flaggade";
 
 /* No comment provided by engineer. */
-"Get Grades for" = "Hämta bedömningar för";
+"Get Grades for" = "Hämta omdömen för";
 
 /* navigate */
 "Go" = "Gå";
@@ -564,7 +564,7 @@
 "Toggle Flag" = "Växla flaggning";
 
 /* Total grade label */
-"Total Grade" = "Total bedömning";
+"Total Grade" = "Totalt omdöme";
 
 /* Error message when parsing communication preferences */
 "Unable to parse JSON for communication channels" = "Kan inte tolka JSON för kommunikationskanaler";

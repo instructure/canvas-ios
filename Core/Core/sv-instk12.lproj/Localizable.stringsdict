@@ -53,7 +53,7 @@
 	<key>final_grade_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Total bedömning: %#@points@</string>
+		<string>Totalt omdöme: %#@points@</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
