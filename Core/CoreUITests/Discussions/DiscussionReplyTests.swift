@@ -43,6 +43,8 @@ class DiscussionReplyTests: CoreUITestCase {
         let fullTopic = APIDiscussionFullTopic.make()
         mockData(GetFullTopicRequests(context: course, topicID: discussId.value), value: fullTopic)
         mockData(ListDiscussionEntriesRequest(context: course, topicID: discussId.value), value: fullTopic.view)
+        let readDiscussionUrl = URL(string: "https://canvas.instructure.com/api/v1/courses/\(course.id)/discussion_topics/\(discussId)/read")!
+        mockURL(readDiscussionUrl, response: HTTPURLResponse(url: readDiscussionUrl, statusCode: 204, httpVersion: nil, headerFields: [:]))
         fullTopic.unread_entries.forEach {
             let url = URL(string: "https://canvas.instructure.com/api/v1/courses/\(course.id)/discussion_topics/\(discussId)/entries/\($0)/read")!
             mockURL(url, response: HTTPURLResponse(url: url, statusCode: 204, httpVersion: nil, headerFields: [:]))

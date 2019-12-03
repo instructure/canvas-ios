@@ -40,7 +40,7 @@ class SubmissionButtonTests: StudentUITestCase {
         AssignmentDetails.submitAssignmentButton.tap()
         FilePicker.libraryButton.tap()
         app.find(label: "All Photos").tap()
-        app.find(labelContaining: "Photo, HDR").tap()
+        app.find(labelContaining: "Photo, HDR").tapUntil { FilePicker.submitButton.isVisible }
         FilePicker.submitButton.tap()
         FilePicker.submitButton.waitToVanish()
     }
@@ -100,6 +100,7 @@ class SubmissionButtonTests: StudentUITestCase {
         let topic = APIDiscussionTopic.make(html_url: URL(string: "/courses/\(course.id)/discussion_topics/1"))
         let assignment = mock(assignment: .make(submission_types: [ .discussion_topic ], discussion_topic: topic))
         mockData(GetContextPermissionsRequest(context: course), value: .make())
+        mockEncodableRequest("courses/\(course.id)/discussion_topics/1/read", value: "")
         mockEncodableRequest("courses/\(course.id)/discussion_topics/1?include[]=sections", value: topic)
         mockEncodableRequest("courses/\(course.id)/discussion_topics/1/view?include_new_entries=1", value: [
             "unread_entries": [String](),
