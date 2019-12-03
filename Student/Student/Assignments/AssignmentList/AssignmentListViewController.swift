@@ -268,6 +268,7 @@ extension AssignmentListViewController: UITableViewDataSource, UITableViewDelega
             cell.textLabel?.text = NSLocalizedString("Loading...", comment: "")
             cell.detailTextLabel?.text = nil
             cell.imageView?.image = nil
+            cell.accessibilityIdentifier = nil
         } else {
             let a = assignment(for: indexPath)
             cell.textLabel?.text = a?.name
@@ -276,6 +277,11 @@ extension AssignmentListViewController: UITableViewDataSource, UITableViewDelega
             cell.detailTextLabel?.text = a?.formattedDueDate
             cell.imageView?.image = a?.icon
             cell.imageView?.tintColor = color
+            if let id = a?.id {
+                cell.accessibilityIdentifier = "assignment-list.assignment-list-row.cell-\(id)"
+            } else {
+                cell.accessibilityIdentifier = nil
+            }
         }
         return cell
     }
