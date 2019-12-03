@@ -46,6 +46,7 @@ public class ExperimentalFeaturesViewController: UITableViewController {
         cell.toggle.isOn = feature.isEnabled
         cell.toggle.addTarget(self, action: #selector(toggleFeature(_:)), for: .valueChanged)
         cell.toggle.isEnabled = !readOnly
+        cell.isUserInteractionEnabled = !readOnly
         return cell
     }
 
