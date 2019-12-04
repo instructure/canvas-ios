@@ -91,6 +91,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     }
 
     func courseReady() {
+        title = courses.first?.name
         if !courses.pending && !frontPages.pending && readyToLayoutTabs, !didLayoutTabs, let course = courses.first {
             didLayoutTabs = true
             configureGrades()
