@@ -30,6 +30,7 @@ extension LoginSession {
         userAvatarURL: URL? = nil,
         userID: String = "1",
         userName: String = "Eve",
+        userEmail: String? = nil,
         clientID: String? = nil,
         clientSecret: String? = nil
     ) -> LoginSession {
@@ -44,6 +45,7 @@ extension LoginSession {
             userAvatarURL: userAvatarURL,
             userID: userID,
             userName: userName,
+            userEmail: userEmail,
             clientID: clientID,
             clientSecret: clientSecret
         )
