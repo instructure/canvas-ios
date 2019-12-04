@@ -50,7 +50,7 @@ final public class Course: NSManagedObject, Context, WriteableModel {
         model.courseCode = item.course_code
         model.imageDownloadURL = URL(string: item.image_download_url ?? "")
         model.syllabusBody = item.syllabus_body
-
+        model.defaultViewRaw = item.default_view?.rawValue
         model.enrollments?.forEach { context.delete($0) }
         model.enrollments = nil
 
