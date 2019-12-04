@@ -26,9 +26,6 @@ import {
 } from '../StudentContextCard'
 import app from '../../app'
 
-import renderer from 'react-test-renderer'
-import explore from '../../../../test/helpers/explore'
-
 jest.mock('../../../routing/Screen')
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('TouchableOpacity', () => 'TouchableOpacity')
@@ -36,6 +33,7 @@ jest.mock('../../../routing/Screen')
 
 const templates = {
   ...require('../../../__templates__/course'),
+  ...require('../../../__templates__/group'),
   ...require('../../../__templates__/enrollments'),
   ...require('../../../__templates__/users'),
   ...require('../../../__templates__/section'),
@@ -50,7 +48,8 @@ const defaultProps = {
   courseID: '1',
   userID: '1',
   user,
-  course: templates.course({ id: '1' }),
+  context: templates.course({ id: '1' }),
+  contextType: 'courses',
   enrollment: templates.enrollment({ id: '1', course_id: '1', user_id: '1', course_section_id: '32', grades: { current_grade: 'A', current_score: 50 }, section: templates.section() }),
   submissions: [templates.submission({ id: '1', assignment_id: '1', grade: 50, assignment: templates.assignment({ id: '1', points_possible: 100 }) })],
   courseColor: '#fff',
@@ -72,11 +71,39 @@ beforeEach(() => {
 })
 
 describe('ContextCard', () => {
-  it('renders', () => {
-    let view = renderer.create(
+  it('renders course', () => {
+    let tree = shallow(
       <ContextCard {...defaultProps} />
     )
-    expect(view.toJSON()).toMatchSnapshot()
+    let list = tree.find('FlatList')
+    expect(list.exists()).toEqual(true)
+    expect(list.props().data).toEqual(defaultProps.submissions)
+
+    let header = shallow(tree.instance().renderHeader())
+    expect(header.find('[testID="context-card.context-name"]').props().children).toEqual(defaultProps.context.name)
+    expect(header.find('[testID="context-card.section-name"]').props().children).toContain(defaultProps.enrollment.section.name)
+    expect(header.find('[testID="context-card.analytics"]').exists()).toEqual(true)
+  })
+
+  it('renders group', () => {
+    let props = {
+      ...defaultProps,
+      context: templates.group({ id: '1' }),
+      enrollment: {},
+      submissions: [],
+      permissions: {},
+    }
+    let tree = shallow(
+      <ContextCard {...props} />
+    )
+    let list = tree.find('FlatList')
+    expect(list.exists()).toEqual(true)
+    expect(list.props().data).toEqual(props.submissions)
+
+    let header = shallow(tree.instance().renderHeader())
+    expect(header.find('[testID="context-card.context-name"]').props().children).toEqual(props.context.name)
+    expect(header.find('[testID="context-card.section-name"]').exists()).toEqual(false)
+    expect(header.find('[testID="context-card.analytics"]').exists()).toEqual(false)
   })
 
   it('renders last activity in teacher', () => {
@@ -94,29 +121,29 @@ describe('ContextCard', () => {
   })
 
   it('renders for a user that cannot view analytics', () => {
-    let view = renderer.create(
+    let tree = shallow(
       <ContextCard {...defaultProps} permissions={{ ...defaultProps.permissions, viewAnalytics: false }} isStudent={false} />
     )
-    expect(view.toJSON()).toMatchSnapshot()
+    expect(tree.find('FlatList').props().data).toEqual([])
   })
 
   it('renders for a user that cannot send messages', () => {
-    var view = renderer.create(
+    let tree = shallow(
       <ContextCard {...defaultProps} permissions={{ ...defaultProps.permissions, sendMessages: false }} isStudent={false} />
     )
-    expect(view.toJSON()).toMatchSnapshot()
-    view = renderer.create(
+    expect(tree.find('Screen').props().rightBarButtons[0].accessibilityLabel).toEqual('Send message')
+
+    tree = shallow(
       <ContextCard {...defaultProps} permissions={{ ...defaultProps.permissions, sendMessages: false }} />
     )
-    expect(view.toJSON()).toMatchSnapshot()
+    expect(tree.find('Screen').props().rightBarButtons.length).toEqual(0)
   })
 
   it('shows the activity indicator when pending', () => {
-    let view = renderer.create(
-      <ContextCard {...defaultProps} loading={true} course={null} />
+    let tree = shallow(
+      <ContextCard {...defaultProps} loading={true} context={null} />
     )
-
-    expect(view.toJSON()).toMatchSnapshot()
+    expect(tree.find('ActivityIndicatorView').exists()).toEqual(true)
   })
 
   it('formats the last_activity_at properly', () => {
@@ -131,11 +158,11 @@ describe('ContextCard', () => {
       },
       section: templates.section(),
     })
-    let view = renderer.create(
-      <ContextCard {...defaultProps} enrollment={enrollment} />
+    let tree = shallow(
+      new ContextCard({ ...defaultProps, enrollment }).renderHeader()
     )
-
-    expect(view.toJSON()).toMatchSnapshot()
+    let lastActivity = tree.find('[testID="context-card.last-activity"]')
+    expect(lastActivity.props().children).toContain('April 5 at 9:12 AM')
   })
 
   it('shows points values when there is no grade', () => {
@@ -151,11 +178,10 @@ describe('ContextCard', () => {
       section: templates.section(),
     })
 
-    let view = renderer.create(
-      <ContextCard {...defaultProps} enrollment={enrollment} />
+    let tree = shallow(
+      new ContextCard({ ...defaultProps, enrollment }).renderHeader()
     )
-
-    expect(view.toJSON()).toMatchSnapshot()
+    expect(tree.find('[testID="context-card.grade"]').props().children).toEqual('100%')
   })
 
   it('renders for a non student', () => {
@@ -168,60 +194,59 @@ describe('ContextCard', () => {
       section: templates.section(),
     })
 
-    let view = renderer.create(
+    let tree = shallow(
       <ContextCard {...defaultProps} enrollment={enrollment} isStudent={false} />
     )
+    expect(tree.find('FlatList').props().data).toEqual([])
 
-    expect(view.toJSON()).toMatchSnapshot()
+    let header = shallow(tree.instance().renderHeader())
+    expect(header.find('Avatar').exists()).toEqual(true)
+    expect(header.find('[testID="context-card.short-name"]').exists()).toEqual(true)
+    expect(header.find('[testID="context-card.analytics"]').exists()).toEqual(false)
   })
 
   it('renders error if an error occured', () => {
-    let view = renderer.create(
+    let tree = shallow(
       <ContextCard {...defaultProps} error={Error('oh no an error happened')} />
     )
-
-    expect(view.toJSON()).toMatchSnapshot()
+    expect(tree.find('ErrorView').exists()).toEqual(true)
   })
 
   it('renders if there is no enrollment', () => {
-    let view = renderer.create(
-      <ContextCard {...defaultProps} enrollment={null} />
+    let tree = shallow(
+      new ContextCard({ ...defaultProps, enrollment: null }).renderHeader()
     )
-
-    expect(view.toJSON()).toMatchSnapshot()
+    expect(tree.find('Avatar').exists()).toEqual(true)
+    expect(tree.find('[testID="context-card.last-activity"]').exists()).toEqual(false)
+    expect(tree.find('[testID="context-card.grade"]').exists()).toEqual(false)
   })
 
   it('renders if there is no section in the enrollment', () => {
     let enrollment = templates.enrollment({ id: '1', course_id: '1', user_id: '1', course_section_id: '32' })
-    let view = renderer.create(
-      <ContextCard {...defaultProps} enrollment={enrollment} />
+    let tree = shallow(
+      new ContextCard({ ...defaultProps, enrollment }).renderHeader()
     )
-
-    expect(view.toJSON()).toMatchSnapshot()
+    expect(tree.find('[testID="context-card.section-name"]').exists()).toEqual(false)
+    expect(tree.find('[testID="context-card.context-name"]').exists()).toEqual(true)
   })
 
   it('navigate to speedgrader', () => {
-    let view = renderer.create(
-      <ContextCard {...defaultProps} />
+    let row = shallow(
+      new ContextCard({ ...defaultProps }).renderItem({ item: defaultProps.submissions[0], index: 0 })
     )
-    let assignmentID = defaultProps.submissions[0].assignment.id
-    let row = explore(view.toJSON()).selectByID(`user-submission-row.cell-${assignmentID}`)
-    expect(row).not.toBeNull()
-    row && row.props.onPress()
-
+    row.props().onPress()
     expect(defaultProps.navigator.show).toHaveBeenCalled()
   })
 
   it('navigates to composer', () => {
     defaultProps.navigator.show = jest.fn()
-    let view = renderer.create(
+    let tree = shallow(
       <ContextCard {...defaultProps} />
     )
-    const tree = view.toJSON()
-    const mailButton: any = explore(tree).selectRightBarButton('context-card.email-contact')
+    const mailButton = tree.find('Screen').props().rightBarButtons[0]
     expect(mailButton).not.toBeNull()
     mailButton.action()
-    let expectedProps = { 'canSelectCourse': false, 'contextCode': `course_${defaultProps.course.id}`, 'contextName': `${defaultProps.course.name}`, 'recipients': [user] }
+    let expectedProps = { 'canSelectCourse': false, 'contextCode': `course_${defaultProps.context.id}`, 'contextName': `${defaultProps.context.name}`, 'recipients': [user] }
     expect(defaultProps.navigator.show).toHaveBeenCalledWith(`/conversations/compose`, { 'modal': true }, expectedProps)
   })
 })
@@ -230,8 +255,17 @@ describe('props', () => {
   it('should parse the props correctly from graphql data', () => {
     const data = templates.ContextCardResult()
     const result = props({ data })
-    expect(result.course).toMatchObject(data.course)
+    expect(result.context).toMatchObject(data.course)
+    expect(result.contextType).toEqual('courses')
     expect(result.user).toMatchObject(data.course.users.edges[0].user)
+  })
+
+  it('should parse the props correctly for groups from graphql data', () => {
+    const data = templates.ContextCardGroupResult()
+    const result = props({ data })
+    expect(result.context).toMatchObject(data.group)
+    expect(result.contextType).toEqual('groups')
+    expect(result.user).toMatchObject(data.group.member.user)
   })
 
   it('should parse the props correctly in an error case', () => {

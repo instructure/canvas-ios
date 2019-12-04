@@ -32,7 +32,7 @@ import i18n from 'format-message'
 import Images from '../../images'
 import UserSubmissionRow from './UserSubmissionRow'
 import { graphql } from 'react-apollo'
-import query from '../../canvas-api-v2/queries/ContextCard'
+import { courseQuery } from '../../canvas-api-v2/queries/ContextCard'
 import * as app from '../app'
 
 export class ContextCard extends Component {
@@ -416,7 +416,7 @@ export function mapStateToProps (state, { courseID }) {
   return { courseColor: state.entities.courses[courseID]?.color || '#00BCD5' }
 }
 
-export default graphql(query, {
+export default graphql(courseQuery, {
   options: ({ courseID, userID }) => ({ variables: { courseID, userID } }),
   fetchPolicy: 'cache-and-network',
   props,

@@ -58,7 +58,7 @@ import AttachmentView from '../common/components/AttachmentView'
 import GroupList from '../modules/groups/GroupList'
 import Attachments from '../modules/attachments/Attachments'
 import ContextCard from '../modules/users/ContextCard'
-import StudentContextCard from '../modules/users/StudentContextCard'
+import { StudentContextCardCourse, StudentContextCardGroup } from '../modules/users/StudentContextCard'
 import PeopleList from '../modules/people/PeopleList'
 import Filter from '../modules/filter/Filter'
 import ToDoList from '../modules/to-do/list/ToDoList'
@@ -216,7 +216,8 @@ export function registerScreens (store: Store): void {
     registerScreen('/groups/:groupID/tabs', null, store, { canBecomeMaster: true, deepLink: true })
     registerScreen('/groups/:groupID/users', wrap(GroupList), store)
     registerScreen('/courses/:courseID/grades', wrap(GradesList), store, { canBecomeMaster: true, deepLink: true })
-    registerScreen('/courses/:courseID/users/:userID', wrap(StudentContextCard), store, { deepLink: true })
+    registerScreen('/courses/:courseID/users/:userID', wrap(StudentContextCardCourse), store, { deepLink: true })
+    registerScreen('/groups/:groupID/users/:userID', wrap(StudentContextCardGroup), store, { deepLink: true })
     registerScreen('/courses/:courseID/users', null, store)
     registerScreen('/groups/:groupID/users', null, store)
 

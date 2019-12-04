@@ -311,17 +311,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     },
 
     "/courses/:courseID/users/:userID": nil,
-
-    "/groups/:groupID/users/:userID": { _, params in
-        guard let groupID = params["groupID"], let userID = params["userID"] else { return nil }
-        let context = CKIGroup(id: groupID)
-        let user = CKIUser(id: userID, context: context)
-        let viewModel = CBIPeopleViewModel(for: user)
-        viewModel?.tintColor = Session.current?.colorForGroup(groupID)
-        let detailViewController = CBIPeopleDetailViewController()
-        detailViewController.viewModel = viewModel
-        return detailViewController
-    },
+    "/groups/:groupID/users/:userID": nil,
 
     "/dev-menu": nil,
 

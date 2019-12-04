@@ -48,6 +48,7 @@ class PeopleListViewController: UIViewController, PeopleListViewProtocol {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.refreshControl = refreshControl
+        tableView.tableFooterView = UIView()
 
         presenter?.viewIsReady()
     }
