@@ -131,7 +131,7 @@ function doTest {
     flags+=(-resultBundlePath $result_path)
     flags+=(-xctestrun $xctestrun)
 
-    if (( false )); then
+    if false; then
         flags+=(-parallel-testing-enabled YES -parallel-testing-worker-count 3)
     fi
     for skip in $all_passing_tests; do
@@ -144,8 +144,9 @@ function doTest {
     mkfifo $pipe_file
 
     < $pipe_file xcbeautify &
+    local formatter_pid=$!
     xcodebuild test-without-building $flags > $pipe_file 2> $pipe_file || ret=$?
-    wait
+    wait $formatter_pid
     rm -rf $pipe_file
 
     getTestResults
@@ -157,7 +158,20 @@ function retry {
     banner "Retrying"
 
     setTestRunEnv $xctestrun CANVAS_TEST_IS_RETRY YES
-    doTest
+
+    local video_pid
+    if [[ ${record_video:-NO} = YES ]]; then
+        video_file=${BITRISE_DEPLOY_DIR-$results_directory}/$try.mp4
+        echo "recording video to $video_file"
+        xcrun simctl io booted recordVideo $video_file &
+        video_pid=$!
+    fi
+    doTest || ret=$?
+    if [[ -n $video_pid ]]; then
+        kill -INT $video_pid
+        wait $video_pid
+    fi
+    return $ret
 }
 
 xcrun simctl boot 'iPhone 8' || true
@@ -168,7 +182,7 @@ doTest $base_xctestrun ||
     retry ||
     retry ||
     retry ||
-    retry ||
+    record_video=YES retry ||
     ret=$?
 
 if [[ $ret -eq 0 ]]; then
