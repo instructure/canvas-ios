@@ -43,7 +43,7 @@ class ProfileViewControllerTests: CoreTestCase {
 
     func testRender() {
         //  given
-        AppEnvironment.shared.currentSession = LoginSession.make(userAvatarURL: URL(string: "https://localhost/avatar.png")!)
+        AppEnvironment.shared.currentSession = LoginSession.make(userAvatarURL: URL(string: "https://localhost/avatar.png")!, userEmail: "automated-test-Eve@instructure.com")
         //  when
         loadView()
 

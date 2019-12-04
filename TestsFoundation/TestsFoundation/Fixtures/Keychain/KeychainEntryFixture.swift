@@ -30,7 +30,7 @@ extension LoginSession {
         userAvatarURL: URL? = nil,
         userID: String = "1",
         userName: String = "Eve",
-        userEmail: String = "automated-test-Eve@instructure.com",
+        userEmail: String? = nil,
         clientID: String? = nil,
         clientSecret: String? = nil
     ) -> LoginSession {
