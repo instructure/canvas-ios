@@ -72,7 +72,7 @@ class SpeedGraderTests: TeacherUITestCase {
     func dismissTutorial() {
         let button = app.find(id: "tutorial.button-swipe-tutorial")
         let exists = button.rawElement.waitForExistence(timeout: 3)
-        if (exists) {
+        if exists {
             button.tap()
             button.waitToVanish()
         }
