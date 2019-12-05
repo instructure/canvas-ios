@@ -97,16 +97,15 @@ class CourseDetailsViewController: HorizontalMenuViewController {
             configureGrades()
 
             switch course.defaultView {
-            case .syllabus:
-                if let body = course.syllabusBody, !body.isEmpty {
-                    configureSyllabus()
-                    configureSummary()
-                }
             case .wiki:
                 if let page = frontPages.first, !page.body.isEmpty {
                     configureFrontPage()
                 }
-            default: break
+            default:    // syllabus is default
+                if let body = course.syllabusBody, !body.isEmpty {
+                    configureSyllabus()
+                    configureSummary()
+                }
             }
 
             layoutViewControllers()
