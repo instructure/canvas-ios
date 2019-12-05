@@ -24,7 +24,7 @@ class LoginFindSchoolViewControllerTests: CoreTestCase {
     var helpURL = URL(string: "https://canvas.instructure.com/help")
     var opened: URL?
     let first = IndexPath(row: 0, section: 0)
-    
+
     lazy var controller = LoginFindSchoolViewController.create(loginDelegate: self, method: .normalLogin)
 
     func testResults() {
