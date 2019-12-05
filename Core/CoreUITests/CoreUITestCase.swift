@@ -305,6 +305,16 @@ open class CoreUITestCase: XCTestCase {
     @discardableResult
     open func mock(course: APICourse) -> APICourse {
         mockData(GetCourseRequest(courseID: course.id), value: course)
+        mockData(GetCourseRequest(courseID: course.id, include: [
+            .courseImage,
+            .currentGradingPeriodScores,
+            .favorites,
+            .permissions,
+            .sections,
+            .syllabusBody,
+            .term,
+            .totalScores,
+        ]), value: course)
         mockData(GetEnabledFeatureFlagsRequest(context: ContextModel(.course, id: course.id)), value: ["rce_enhancements"])
         mockEncodableRequest("courses/\(course.id)/external_tools?per_page=99&include_parents=true", value: [String]())
         return course
