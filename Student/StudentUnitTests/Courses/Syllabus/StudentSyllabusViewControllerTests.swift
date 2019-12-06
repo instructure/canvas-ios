@@ -65,6 +65,59 @@ class StudentSyllabusViewControllerTests: StudentTestCase {
 
         cell = vc.collectionView(vc.menu!, cellForItemAt: IndexPath(item: 1, section: 0)) as? HorizontalMenuViewController.MenuCell
         XCTAssertEqual(cell?.title?.text, "Summary")
+    }
+}
 
+class SyllabusActionableItemsViewControllerTests: StudentTestCase {
+
+    var vc: SyllabusActionableItemsViewController!
+    var courseID: String = "1"
+
+    override func setUp() {
+        super.setUp()
+        vc = SyllabusActionableItemsViewController(courseID: courseID, sort: GetAssignments.Sort.dueAt)
+    }
+
+    func loadView() {
+        vc.view.frame = CGRect(x: 0, y: 0, width: 300, height: 800)
+        vc.view.layoutIfNeeded()
+    }
+
+    func testRender() {
+        //  given
+        env.mockStore = false
+        api.mock(vc.presenter!.course, value: APICourse.make())
+        api.mock(vc.presenter!.color, value: APICustomColors(custom_colors: [
+            "course_1": "#f00",
+        ]))
+
+        let assignments = GetSyllabusAssignments(courseID: courseID, sort: .dueAt)
+        api.mock(assignments, value: [APIAssignment.make()])
+
+        let calendarEvents = GetCalendarEvents(context: ContextModel(.course, id: courseID))
+        let calEvent = APICalendarEvent.make()
+        api.mock(calendarEvents, value: [calEvent])
+
+        //  when
+        loadView()
+        vc.viewDidLoad()
+
+        //  then
+        var cell: SyllabusActionableItemsCell? = vc.tableView(vc.tableView, cellForRowAt: IndexPath(row: 0, section: 0)) as? SyllabusActionableItemsCell
+        let expectedDate = DateFormatter.localizedString(from: calEvent.start_at!, dateStyle: .medium, timeStyle: .short)
+        XCTAssertEqual(cell?.detailTextLabel?.text, expectedDate)
+        XCTAssertEqual(cell?.imageView?.image, UIImage.icon(.calendarMonth, .line))
+
+        cell = vc.tableView(vc.tableView, cellForRowAt: IndexPath(row: 1, section: 0)) as? SyllabusActionableItemsCell
+        XCTAssertEqual(cell?.textLabel?.text, "some assignment")
+        XCTAssertEqual(cell?.detailTextLabel?.text, "No Due Date")
+        XCTAssertEqual(cell?.imageView?.image, UIImage.icon(.assignment, .line))
+        XCTAssertEqual(cell?.imageView?.tintColor, UIColor(hexString: "#f00"))
+
+        vc.tableView(vc.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        XCTAssert(router.lastRoutedTo(.parse("calendar_events/1")))
+
+        vc.tableView(vc.tableView, didSelectRowAt: IndexPath(row: 1, section: 0))
+        XCTAssert(router.lastRoutedTo(.parse("https://canvas.instructure.com/courses/1/assignments/1")))
     }
 }
