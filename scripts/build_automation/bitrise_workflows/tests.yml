@@ -10,6 +10,9 @@ app:
   - BITRISE_SCHEME: NightlyTests
     opts:
       is_expand: false
+  - SPLUNK_ENDPOINT_URL: https://http-inputs-inst.splunkcloud.com:443/services/collector
+    opts:
+      is_expand: false
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 format_version: '4'
 project_type: other
@@ -176,11 +179,14 @@ workflows:
             #!/bin/zsh
             set -euo pipefail
 
-            ./scripts/build_automation/summarize-test-results.swift scripts/coverage/citests.xcresult \
-                > /dev/null
-                # until splunk is configured...
-                # jq -ac . | gzip |
-                # curl -q -X POST -H "Content-Type: text/plain" -H "Content-Encoding: gzip" --data-binary @- "$SUMO_ENDPOINT_URL"
+            ./scripts/build_automation/summarize-test-results.swift scripts/coverage/citests.xcresult |
+                jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' | gzip |
+                curl -q -X POST \
+                    -H "Authorization: $SPLUNK_SECRET" \
+                    -H "Content-Type: application/json" \
+                    -H "Content-Encoding: gzip" \
+                    --data-binary @- \
+                    "$SPLUNK_ENDPOINT_URL"
         is_always_run: true
     - yarn:
         title: yarn danger ci
@@ -306,8 +312,13 @@ workflows:
             set -euo pipefail
 
             ./scripts/build_automation/summarize-test-results.swift nightly-xcresults/merged.xcresult |
-                jq -ac | gzip |
-                curl -q -X POST -H "Content-Type: text/plain" -H "Content-Encoding: gzip" --data-binary @- "$SUMO_ENDPOINT_URL"
+                jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' | gzip |
+                curl -q -X POST \
+                    -H "Authorization: $SPLUNK_SECRET" \
+                    -H "Content-Type: application/json" \
+                    -H "Content-Encoding: gzip" \
+                    --data-binary @- \
+                    "$SPLUNK_ENDPOINT_URL"
         is_always_run: true
     - deploy-to-bitrise-io: {}
     - slack:
