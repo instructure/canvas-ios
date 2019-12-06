@@ -44,10 +44,6 @@ let router = Router(routes: [
     RouteHandler(.courseGrades(":courseID")) { _, params in
         guard let courseID = params["courseID"] else { return nil }
         guard let studentID = currentStudentID else { return nil }
-        guard ExperimentalFeature.parent3.isEnabled else {
-            guard let session = legacySession else { return nil }
-            return CalendarEventWeekPageViewController.create(session: session, studentID: studentID, courseID: courseID)
-        }
         return CourseDetailsViewController.create(courseID: courseID, studentID: studentID)
     },
 

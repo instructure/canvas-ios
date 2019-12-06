@@ -22,13 +22,7 @@ import XCTest
 @testable import Core
 
 class RoutesTests: ParentTestCase {
-    func testCourseGrades() {
-        ExperimentalFeature.allEnabled = false
-        XCTAssert(Parent.router.match(.parse("/courses/1/grades")) is CalendarEventWeekPageViewController)
-    }
-
     func testCourseGradesParent3() {
-        ExperimentalFeature.allEnabled = true
         XCTAssert(Parent.router.match(.parse("/courses/1/grades")) is CourseDetailsViewController)
     }
 }
