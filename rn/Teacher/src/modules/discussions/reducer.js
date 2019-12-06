@@ -403,18 +403,21 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
         error: null,
       },
     }),
-    resolved: (state, { params, result: { data } }) => ({
-      ...state,
-      [params.id]: {
-        ...state[params.id],
-        data: {
-          ...data,
-          sections: params.sections,
+    resolved: (state, { params, result: { data } }) => {
+      return ({
+        ...state,
+        [params.id]: {
+          ...state[params.id],
+          data: {
+            ...data,
+            replies: data.replies ?? state[params.id]?.data?.replies,
+            sections: params.sections,
+          },
+          pending: (state[params.id] && state[params.id].pending || 1) - 1,
+          error: null,
         },
-        pending: (state[params.id] && state[params.id].pending || 1) - 1,
-        error: null,
-      },
-    }),
+      })
+    },
     rejected: (state, { params, error }) => ({
       ...state,
       [params.id]: {
