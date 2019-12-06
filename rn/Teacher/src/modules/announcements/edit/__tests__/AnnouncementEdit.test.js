@@ -23,18 +23,15 @@ import {
   Alert,
   NativeModules,
 } from 'react-native'
-import renderer from 'react-test-renderer'
 import { shallow } from 'enzyme'
 
 import { AnnouncementEdit, mapStateToProps, type Props } from '../AnnouncementEdit'
-import explore from '../../../../../test/helpers/explore'
 
 jest
   .mock('Button', () => 'Button')
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('TouchableOpacity', () => 'TouchableOpacity')
   .mock('../../../../routing/Screen')
-  .mock('DatePickerIOS', () => 'DatePickerIOS')
   .mock('LayoutAnimation', () => ({
     easeInEaseOut: jest.fn(),
     Types: {
@@ -45,13 +42,9 @@ jest
       opacity: 1,
     },
   }))
-  .mock('../../../../common/components/rich-text-editor/RichTextEditor', () => 'RichTextEditor')
   .mock('Alert', () => ({
     alert: jest.fn(),
   }))
-  .mock('../../../../common/components/UnmetRequirementBanner', () => 'UnmetRequirementBanner')
-  .mock('../../../../common/components/RequiredFieldSubscript', () => 'RequiredFieldSubscript')
-  .mock('Switch', () => 'Switch')
 
 import * as template from '../../../../__templates__'
 
@@ -66,6 +59,7 @@ describe('AnnouncementEdit', () => {
       require_initial_post: false,
       delayed_post_at: null,
       attachment: null,
+      locked: true,
     }
 
     props = {
@@ -84,10 +78,6 @@ describe('AnnouncementEdit', () => {
       sections: [],
       selectedSections: [],
     }
-  })
-
-  it('renders', () => {
-    testRender(props)
   })
 
   it('renders new form', () => {
@@ -140,7 +130,7 @@ describe('AnnouncementEdit', () => {
 
   it('provides defaults for new announcement', async () => {
     props.announcementID = null
-    props.title = ''
+    props.title = null
     props.message = 'required'
     props.require_initial_post = null
     props.delayed_post_at = null
@@ -150,39 +140,51 @@ describe('AnnouncementEdit', () => {
       getHTML: jest.fn(() => Promise.resolve('required')),
     })
     await view.prop('rightBarButtons')[0].action()
-    expect(props.createDiscussion.mock.calls).toMatchSnapshot()
+    expect(props.createDiscussion).toHaveBeenCalledWith(
+      'courses',
+      '1',
+      {
+        attachment: null,
+        delayed_post_at: null,
+        is_announcement: true,
+        locked: true,
+        message: 'required',
+        require_initial_post: false,
+        title: 'No Title',
+      }
+    )
   })
 
   it('renders delayed post at row if it exists', () => {
     props.delayed_post_at = null
-    expect(explore(render(props).toJSON()).selectByID('announcements.edit.delayed-post-at-row')).toBeNull()
+    expect(render(props).find('[testID="announcements.edit.delayed-post-at-row"]').exists()).toEqual(false)
     props.delayed_post_at = (new Date()).toISOString()
-    expect(explore(render(props).toJSON()).selectByID('announcements.edit.delayed-post-at-row')).not.toBeNull()
+    expect(render(props).find('[testID="announcements.edit.delayed-post-at-row"]').exists()).toEqual(true)
   })
 
   it('toggles delayed post at row options', () => {
     props.delayed_post_at = null
     const component = render(props)
     toggleDelayPosting(component, true)
-    expect(explore(component.toJSON()).selectByID('announcements.edit.delayed-post-at-row')).not.toBeNull()
+    expect(component.find('[testID="announcements.edit.delayed-post-at-row"]').exists()).toEqual(true)
     toggleDelayPosting(component, false)
-    expect(explore(component.toJSON()).selectByID('announcements.edit.delayed-post-at-row')).toBeNull()
+    expect(component.find('[testID="announcements.edit.delayed-post-at-row"]').exists()).toEqual(false)
   })
 
   it('toggles delayed post at date picker', () => {
     props.delayed_post_at = (new Date()).toISOString()
     const component = render(props)
     tapDelayedPostAtRow(component)
-    expect(explore(component.toJSON()).selectByID('announcements.edit.delayed-post-at-date-picker')).not.toBeNull()
+    expect(component.find('[testID="announcements.edit.delayed-post-at-date-picker"]').exists()).toEqual(true)
   })
 
   it('converts delayed post at date to iso string', () => {
     props.delayed_post_at = (new Date()).toISOString()
     const component = render(props)
     tapDelayedPostAtRow(component)
-    const datePicker: any = explore(component.toJSON()).selectByID('announcements.edit.delayed-post-at-date-picker')
-    datePicker.props.onDateChange(new Date(0))
-    expect(getDelayPostAtValueFromLabel(component)).toEqual('Dec 31 5:00 PM')
+    const datePicker = component.find('[testID="announcements.edit.delayed-post-at-date-picker"]')
+    datePicker.simulate('dateChange', new Date(0))
+    expect(getDelayPostAtValueFromLabel(component)).toEqual('1970-01-01T00:00:00.000Z')
   })
 
   it('shows modal when saving', async () => {
@@ -219,58 +221,45 @@ describe('AnnouncementEdit', () => {
     props.announcementID = null
     props.navigator.dismissAllModals = jest.fn(() => dismiss)
     const component = render(props)
-    component.update(<AnnouncementEdit {...props} pending={1} />)
-    component.update(<AnnouncementEdit {...props} pending={0} />)
+    component.setProps({ ...props, pending: 1 })
+    component.setProps({ ...props, pending: 0 })
     expect(props.navigator.dismissAllModals).toHaveBeenCalled()
     await dismiss
     expect(NativeModules.AppStoreReview.handleSuccessfulSubmit).toHaveBeenCalled()
-  })
-
-  it('updates with new props', async () => {
-    const component = shallow(<AnnouncementEdit {...props} />)
-    const updateDiscussion = jest.fn(() => {
-      component.setProps({ title: 'component will receive this title prop' })
-    })
-    component.setProps({ updateDiscussion })
-    component.find('RichTextEditor').getElement().ref({
-      getHTML: jest.fn(() => Promise.resolve('message here')),
-    })
-    await component.prop('rightBarButtons')[0].action()
-    expect(component).toMatchSnapshot()
   })
 
   it('clears delay post at date', () => {
     props.delayed_post_at = (new Date(0)).toISOString()
     const component = render(props)
     clearDelayPostAt(component)
-    expect(getDelayPostAtPicker(component)).toBeNull()
+    expect(getDelayPostAtPicker(component).exists()).toEqual(false)
   })
 
   it('deletes pending new discussion on unmount', () => {
     props.deletePendingNewDiscussion = jest.fn()
-    render(props).getInstance().componentWillUnmount()
+    render(props).instance().componentWillUnmount()
     expect(props.deletePendingNewDiscussion).toHaveBeenCalledWith(props.context, props.contextID)
   })
 
   it('sets message placeholder', () => {
-    expect(getMessageEditor(render(props)).props.placeholder).toEqual('Add description (required)')
+    expect(getMessageEditor(render(props)).props().placeholder).toEqual('Add description (required)')
   })
 
   it('shows banner on done press if message is blank', () => {
     props.message = null
     const component = render(props)
-    expect(getUnmetRequirementBanner(component).props.visible).toBeFalsy()
+    expect(getUnmetRequirementBanner(component).props().visible).toBeFalsy()
     tapDone(component)
-    expect(getUnmetRequirementBanner(component).props.visible).toBeTruthy()
+    expect(getUnmetRequirementBanner(component).props().visible).toBeTruthy()
   })
 
   it('focuses unmetRequirementBanner when it shows', () => {
     jest.useFakeTimers()
     props.message = null
     const component = render(props)
-    expect(getUnmetRequirementBanner(component).props.visible).toBeFalsy()
+    expect(getUnmetRequirementBanner(component).props().visible).toBeFalsy()
     tapDone(component)
-    expect(getUnmetRequirementBanner(component).props.visible).toBeTruthy()
+    expect(getUnmetRequirementBanner(component).props().visible).toBeTruthy()
     jest.runAllTimers()
     expect(NativeModules.NativeAccessibility.focusElement).toHaveBeenCalledWith(`announcement.edit.unmet-requirement-banner`)
   })
@@ -297,7 +286,12 @@ describe('AnnouncementEdit', () => {
     const spy = jest.fn()
     props.navigator.show = spy
     props.attachment = template.attachment()
-    const btn: any = explore(render(props).toJSON()).selectRightBarButton('announcements.edit.attachment-btn')
+    const btn: any = render(props)
+      .find('Screen')
+      .props()
+      .rightBarButtons
+      .find(btn => btn.testID === 'announcements.edit.attachment-btn')
+
     btn.action()
     expect(spy).toHaveBeenCalledWith(
       '/attachments',
@@ -354,12 +348,34 @@ describe('AnnouncementEdit', () => {
     expect(spy).toHaveBeenCalled()
   })
 
-  function testRender (props: Props) {
-    expect(render(props)).toMatchSnapshot()
-  }
+  it('allows user to edit ability for students to comment', () => {
+    let tree = shallow(<AnnouncementEdit {...props} />)
+
+    let toggle = tree.find('[testID="announcement.edit.locked"]')
+    expect(toggle.prop('value')).toEqual(false)
+    expect(tree.find('[testID="announcement.edit.initial-post"]').exists()).toEqual(false)
+
+    toggle.simulate('valueChange', true)
+    let initialPostToggle = tree.find('[testID="announcement.edit.initial-post"]')
+    expect(initialPostToggle.prop('value')).toEqual(false)
+
+    initialPostToggle.simulate('valueChange', true)
+    expect(tree.state()).toMatchObject({
+      locked: false,
+      require_initial_post: true,
+    })
+
+    toggle.simulate('valueChange', false)
+    expect(tree.state()).toMatchObject({
+      locked: true,
+      require_initial_post: false,
+    })
+    expect(tree.find('[testID="announcement.edit.initial-post"]').exists()).toEqual(false)
+    expect(tree.find('[testID="announcement.edit.locked"]').prop('value')).toEqual(false)
+  })
 
   function render (props: Props) {
-    return renderer.create(<AnnouncementEdit {...props} />)
+    return shallow(<AnnouncementEdit {...props} />)
   }
 
   function tapDone (component: any): any {
@@ -367,44 +383,45 @@ describe('AnnouncementEdit', () => {
   }
 
   function getTitle (component: any): string {
-    return explore(component.toJSON()).query(({ type }) => type === 'Screen')[0].props.title
+    return component.find('Screen').props().title
   }
 
   function getMessageEditor (component: any): any {
-    return explore(component.toJSON()).query(({ type }) => type === 'RichTextEditor')[0]
+    return component.find('RichTextEditor')
   }
 
   function getDoneButton (component: any): any {
-    return explore(component.toJSON()).selectRightBarButton('announcements.edit.doneButton')
+    return component.find('Screen')
+      .props()
+      .rightBarButtons
+      .find(button => button.testID === 'announcements.edit.doneButton')
   }
 
   function toggleDelayPosting (component: any, enabled: boolean) {
-    const toggle: any = explore(component.toJSON()).selectByID('announcements.edit.delay-posting-toggle')
-    toggle.props.onValueChange(enabled)
+    component.find('[identifier="announcements.edit.delay-posting-toggle"]')
+      .simulate('valueChange', enabled)
   }
 
   function tapDelayedPostAtRow (component: any) {
-    const row: any = explore(component.toJSON()).selectByID('announcements.edit.delayed-post-at-row')
-    row.props.onPress()
+    const row = component.find('[testID="announcements.edit.delayed-post-at-row"]')
+    row.simulate('press')
   }
 
   function getDelayPostAtPicker (component: any): any {
-    const label: any = explore(component.toJSON()).selectByID('announcements.edit.delayed-post-at-date-picker')
-    return label
+    return component.find('[testID="announcements.edit.delayed-post-at-date-picker"]')
   }
 
   function getDelayPostAtValueFromLabel (component: any): string {
-    const label: any = explore(component.toJSON()).selectByID('announcements.edit.delayed-post-at-value-label')
-    return label.children[0]
+    return component.find('[testID="announcements.edit.delayed-post-at-row"]').prop('date')
   }
 
   function clearDelayPostAt (component: any) {
-    const clearButton: any = explore(component.toJSON()).selectByID('announcements.edit.clear-delayed-post-at-button')
-    clearButton.props.onPress()
+    const clearButton = component.find('[testID="announcements.edit.delayed-post-at-row"]')
+    clearButton.simulate('removeDatePress')
   }
 
   function getUnmetRequirementBanner (component: any): any {
-    return explore(component.toJSON()).selectByID('announcement.edit.unmet-requirement-banner')
+    return component.find('[testID="announcement.edit.unmet-requirement-banner"]')
   }
 })
 
@@ -515,6 +532,7 @@ describe('map state to props', () => {
       message: 'THE ENEMY IS ATTACKING YOUR CORE!',
       require_initial_post: true,
       delayed_post_at: null,
+      locked: true,
     })
     const state: AppState = template.appState({
       entities: {
@@ -537,6 +555,7 @@ describe('map state to props', () => {
       delayed_post_at: null,
       pending: 45,
       error: 'YOUR CORE IS UNDER ATTACK',
+      locked: true,
     })
   })
 
