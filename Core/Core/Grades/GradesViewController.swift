@@ -158,7 +158,7 @@ extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueHeaderFooter(SectionHeaderView.self)
-        view.titleLabel?.text = grades.assignments.sections?[section].name
+        view.titleLabel?.text = grades.assignments[IndexPath(row: 0, section: section)]?.assignmentGroup?.name
         return view
     }
 
