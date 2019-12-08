@@ -1070,6 +1070,9 @@
   "only_available_to_students_with_link_not_available_c12278d2": {
     "message": "Nur verfügbar für Studenten mit Link. In Studentendateien nicht verfügbar."
   },
+  "only_members_232519d6": {
+    "message": "Nur Mitglieder"
+  },
   "only_once_after_each_attempt_cc842738": {
     "message": "Nur einmal nach jedem Versuch"
   },

@@ -74,6 +74,9 @@
 "Late" = "متأخر";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "تحميل المزيد من الوحدات النمطية...";
+
+/* No comment provided by engineer. */
 "Mark All as Present" = "وضع علامة موجود للجميع";
 
 /* No comment provided by engineer. */
@@ -99,6 +102,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "أقسام محددة";
+
+/* No comment provided by engineer. */
+"This module is empty." = "هذه الوحدة النمطية فارغة.";
 
 /* No comment provided by engineer. */
 "To Do" = "ما يجب القيام به";

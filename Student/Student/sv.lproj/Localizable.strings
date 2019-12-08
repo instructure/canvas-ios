@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "Alla kurser";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "Alla bedömningsperioder";
+
 /* Button to select all members of a group */
 "All members" = "Alla medlemmar";
 
@@ -364,6 +367,9 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Välj video";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Rensa filter";
 
 /* No comment provided by engineer. */
 "Close" = "Stäng";
@@ -632,6 +638,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Filer (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Filtrera";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Filtrerat efter:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Nedladdning slutförd";
@@ -929,6 +941,9 @@
 
 /* Title for alert when a module item hasn't been set up with mastery paths */
 "No Mastery Paths" = "Ingen måluppfyllelseväg";
+
+/* No comment provided by engineer. */
+"No Notifications" = "Inga aviseringar";
 
 /* No comment provided by engineer. */
 "No recipients" = "Inga mottagare";
@@ -1473,6 +1488,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Det gick inte att läsa in ditt innehåll. Om det är en ljud- eller video-fil kanske den fortfarande bearbetas.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Det finns inget att avisera om än.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "Den här appen har inte auktoriserats för användning.";

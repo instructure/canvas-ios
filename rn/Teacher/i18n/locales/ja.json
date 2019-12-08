@@ -1070,6 +1070,9 @@
   "only_available_to_students_with_link_not_available_c12278d2": {
     "message": "リンク付きの受講生のみ利用可能です。受講生ファイルでは使用できません。"
   },
+  "only_members_232519d6": {
+    "message": "メンバーのみ"
+  },
   "only_once_after_each_attempt_cc842738": {
     "message": "各試行の後一度のみ"
   },

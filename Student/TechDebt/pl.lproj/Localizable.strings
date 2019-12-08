@@ -289,7 +289,19 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Nie można złożyć mediów";
 
-/* Cancel button title */
+/* Button title for canceling download of a file
+   Button title for cancelling the selection of a quiz. This will appear in the alert view notifying the user of the mobile quiz limitations.
+   Cancel
+   cancel add file/folder
+   Cancel add option
+   Cancel button for removing a file
+   Cancel deletion of discussion entry
+   cancel folder creation
+   Cancel folder name change
+   cancel masquerade
+   cancel message creation
+   cancel reminder notification
+   cancel view help options */
 "Cancel" = "Anuluj";
 
 /* Cancel adding a comment button */
@@ -708,7 +720,8 @@
 /* Button title for mark as done */
 "Mark as Done" = "Oznacz jako gotowe";
 
-/* Button title for beginning masquerading */
+/* Button title for beginning masquerading
+   try masquerading */
 "Masquerade" = "Maskowanie";
 
 /* No comment provided by engineer. */
@@ -920,9 +933,6 @@
    Title for People view controller */
 "People" = "Ludzie";
 
-/* No comment provided by engineer. */
-"Permission Denied" = "Odmowa zezwolenia";
-
 /* Name for a photo file, i.e. photo.png */
 "photo" = "zdjęcie";
 
@@ -1074,9 +1084,6 @@
 
 /* Message for a warning popup */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Niektóre z wybranych folderów nie są puste. Czy na pewno chcesz je usunąć?";
-
-/* No comment provided by engineer. */
-"Something went wrong. Please try again." = "Coś poszło nie tak. Spróbuj ponownie.";
 
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Niestety, nie udało się odnaleźć zadania. To zadanie mogło zostać usunięte.";
@@ -1391,9 +1398,6 @@
 
 /* No comment provided by engineer. */
 "Yes" = "Tak";
-
-/* No comment provided by engineer. */
-"You are not allowed to send messages at this time." = "Nie możesz wysłać wiadomości tym razem.";
 
 /* Masquerade title telling who you are masquerading as */
 "You are now masquerading as %@" = "Obecnie podszywasz się pod %@";

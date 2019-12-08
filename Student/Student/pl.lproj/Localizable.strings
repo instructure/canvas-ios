@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "Wszystkie kursy";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "Wszystkie okresy oceniania";
+
 /* Button to select all members of a group */
 "All members" = "Wszyscy czlonkowie";
 
@@ -364,6 +367,9 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Wybierz wideo";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Wyczyść filtr";
 
 /* No comment provided by engineer. */
 "Close" = "Zamknij";
@@ -632,6 +638,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Pliki (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Filtruj";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Filtruj wg:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Pobieranie ukończone";
@@ -929,6 +941,9 @@
 
 /* Title for alert when a module item hasn't been set up with mastery paths */
 "No Mastery Paths" = "Brak ścieżek nauki";
+
+/* No comment provided by engineer. */
+"No Notifications" = "Brak powiadomień";
 
 /* No comment provided by engineer. */
 "No recipients" = "Brak odbiorców";
@@ -1473,6 +1488,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Wystąpił błąd podczas wczytywania zawartości. Jeśli to jest przesyłka audio lub wideo, przetwarzanie może nadal trwać.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Brak powiadomień do przekazania.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "Ta aplikacja nie jest dopuszczona do użytku.";

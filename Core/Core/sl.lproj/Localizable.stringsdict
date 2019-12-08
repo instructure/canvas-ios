@@ -15,9 +15,9 @@
 			<key>few</key>
 			<string></string>
 			<key>one</key>
-			<string>%d needs grading</string>
+			<string>%d treba je oceniti</string>
 			<key>other</key>
-			<string>%d need grading</string>
+			<string>%d je treba oceniti.</string>
 			<key>two</key>
 			<string></string>
 		</dict>

@@ -74,6 +74,9 @@
 "Late" = "Zamuda";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "Nalagam več modulov ...";
+
+/* No comment provided by engineer. */
 "Mark All as Present" = "Označi vse kot prisotne";
 
 /* No comment provided by engineer. */
@@ -99,6 +102,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Določene sekcije";
+
+/* No comment provided by engineer. */
+"This module is empty." = "Ta modul je prazen.";
 
 /* No comment provided by engineer. */
 "To Do" = "Seznam opravil";

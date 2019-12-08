@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "Vsi predmeti";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "Vsa ocenjevalna obdobja";
+
 /* Button to select all members of a group */
 "All members" = "Dodaj člane";
 
@@ -364,6 +367,9 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Izberi videoposnetek";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Počisti filter";
 
 /* No comment provided by engineer. */
 "Close" = "Zapri";
@@ -632,6 +638,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Datoteke (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Filter";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Filtriraj glede na:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Prenos je dokončan.";
@@ -929,6 +941,9 @@
 
 /* Title for alert when a module item hasn't been set up with mastery paths */
 "No Mastery Paths" = "Ni napredovanj v odličnosti.";
+
+/* No comment provided by engineer. */
+"No Notifications" = "Ni sporočil.";
 
 /* No comment provided by engineer. */
 "No recipients" = "Ni prejemnikov.";
@@ -1473,6 +1488,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Pri nalaganju vsebine je prišlo do napake. Če gre za nalaganje zvočnega posnetka ali videoposnetka, obdelava morda še poteka.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Ni ničesar, o čemer bi bilo treba sporočati.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "Te aplikacije ni dovoljeno uporabljati.";

@@ -289,7 +289,19 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Kan inte skicka in media";
 
-/* Cancel button title */
+/* Button title for canceling download of a file
+   Button title for cancelling the selection of a quiz. This will appear in the alert view notifying the user of the mobile quiz limitations.
+   Cancel
+   cancel add file/folder
+   Cancel add option
+   Cancel button for removing a file
+   Cancel deletion of discussion entry
+   cancel folder creation
+   Cancel folder name change
+   cancel masquerade
+   cancel message creation
+   cancel reminder notification
+   cancel view help options */
 "Cancel" = "Avbryt";
 
 /* Cancel adding a comment button */
@@ -708,7 +720,8 @@
 /* Button title for mark as done */
 "Mark as Done" = "Markera som klar";
 
-/* Button title for beginning masquerading */
+/* Button title for beginning masquerading
+   try masquerading */
 "Masquerade" = "Agera";
 
 /* No comment provided by engineer. */
@@ -920,9 +933,6 @@
    Title for People view controller */
 "People" = "Personer";
 
-/* No comment provided by engineer. */
-"Permission Denied" = "Behörighet nekades";
-
 /* Name for a photo file, i.e. photo.png */
 "photo" = "foto";
 
@@ -1074,9 +1084,6 @@
 
 /* Message for a warning popup */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Vissa valda mappar är inte tomma. Är du säker på att du vill ta bort dem?";
-
-/* No comment provided by engineer. */
-"Something went wrong. Please try again." = "Något gick fel. Försök igen.";
 
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Vi hittade inte uppgiften. Den här uppgiften kan ha tagits bort.";
@@ -1391,9 +1398,6 @@
 
 /* No comment provided by engineer. */
 "Yes" = "Ja";
-
-/* No comment provided by engineer. */
-"You are not allowed to send messages at this time." = "Du får inte skicka meddelanden för tillfället.";
 
 /* Masquerade title telling who you are masquerading as */
 "You are now masquerading as %@" = "Du uppträder nu som %@";

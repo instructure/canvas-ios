@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "جميع المساقات";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "جميع فترات تقييم الدرجات";
+
 /* Button to select all members of a group */
 "All members" = "كل الأعضاء";
 
@@ -364,6 +367,9 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "اختيار فيديو";
+
+/* No comment provided by engineer. */
+"Clear filter" = "مسح عامل التصفية";
 
 /* No comment provided by engineer. */
 "Close" = "إغلاق";
@@ -632,6 +638,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "الملفات (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "عامل تصفية";
+
+/* No comment provided by engineer. */
+"Filter by:" = "التصفية حسب:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "انتهى التنزيل";
@@ -929,6 +941,9 @@
 
 /* Title for alert when a module item hasn't been set up with mastery paths */
 "No Mastery Paths" = "لا توجد مسارات إجادة";
+
+/* No comment provided by engineer. */
+"No Notifications" = "لا توجد إعلامات";
 
 /* No comment provided by engineer. */
 "No recipients" = "لا يوجد أي مستلم";
@@ -1473,6 +1488,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "حدث خطأ أثناء تحميل المحتوى الخاص بك. إذا كان ملف صوت أو فيديو فقد يزال قيد المعالجة.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "لا يوجد شيء للإعلام عنه حتى الآن.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "هذا التطبيق غير مخول للاستخدام.";

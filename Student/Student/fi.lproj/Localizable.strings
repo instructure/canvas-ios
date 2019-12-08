@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "Kaikki kurssit";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "Kaikki arvosanojen antojaksot";
+
 /* Button to select all members of a group */
 "All members" = "Kaikki jäsenet";
 
@@ -364,6 +367,9 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Valitse video";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Tyhjennä suodatin";
 
 /* No comment provided by engineer. */
 "Close" = "Sulje";
@@ -632,6 +638,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Tiedostot (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Suodatin";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Suodatustapa:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Lataus valmis";
@@ -929,6 +941,9 @@
 
 /* Title for alert when a module item hasn't been set up with mastery paths */
 "No Mastery Paths" = "Ei hallintapolkuja";
+
+/* No comment provided by engineer. */
+"No Notifications" = "Ei ilmoituksia";
 
 /* No comment provided by engineer. */
 "No recipients" = "Ei vastaanottajia";
@@ -1473,6 +1488,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Sisältösi latauksessa ilmeni virhe. Jos se on äänen tai videon lataus, sitä saatetaan yhä käsitellä.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Ei ole vielä mitään ilmoitettavaa.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "Tätä sovellusta ei ole valtuutettu käyttöön.";

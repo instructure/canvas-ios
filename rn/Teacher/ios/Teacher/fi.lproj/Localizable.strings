@@ -74,6 +74,9 @@
 "Late" = "Myöhään";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "Ladataan lisää moduuleita...";
+
+/* No comment provided by engineer. */
 "Mark All as Present" = "Merkitse kaikki läsnä olevina";
 
 /* No comment provided by engineer. */
@@ -99,6 +102,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Määrätyt osat";
+
+/* No comment provided by engineer. */
+"This module is empty." = "Tämä moduuli on tyhjä.";
 
 /* No comment provided by engineer. */
 "To Do" = "Tehtävä";

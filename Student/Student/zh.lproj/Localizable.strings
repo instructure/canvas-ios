@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "所有课程";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "所有评分周期";
+
 /* Button to select all members of a group */
 "All members" = "全体成员";
 
@@ -364,6 +367,9 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "选择视频";
+
+/* No comment provided by engineer. */
+"Clear filter" = "清除筛选条件";
 
 /* No comment provided by engineer. */
 "Close" = "关闭";
@@ -632,6 +638,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "文件(%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "筛选器";
+
+/* No comment provided by engineer. */
+"Filter by:" = "筛选条件：";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "完成下载";
@@ -929,6 +941,9 @@
 
 /* Title for alert when a module item hasn't been set up with mastery paths */
 "No Mastery Paths" = "无掌握途径";
+
+/* No comment provided by engineer. */
+"No Notifications" = "无通知";
 
 /* No comment provided by engineer. */
 "No recipients" = "没有收件人";
@@ -1473,6 +1488,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "加载内容时出错。如果是上传音频或视频，可能仍在处理中。";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "目前没有通知。";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "此程序没有被授权使用。";

@@ -74,6 +74,9 @@
 "Late" = "Late";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "Loading more modules...";
+
+/* No comment provided by engineer. */
 "Mark All as Present" = "Mark all as present";
 
 /* No comment provided by engineer. */
@@ -99,6 +102,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Specific Sections";
+
+/* No comment provided by engineer. */
+"This module is empty." = "This module is empty.";
 
 /* No comment provided by engineer. */
 "To Do" = "To do";

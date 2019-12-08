@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "すべてのコース";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "すべての採点期間";
+
 /* Button to select all members of a group */
 "All members" = "すべてのメンバー";
 
@@ -364,6 +367,9 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "動画を選択する";
+
+/* No comment provided by engineer. */
+"Clear filter" = "フィルターをクリア";
 
 /* No comment provided by engineer. */
 "Close" = "閉じる";
@@ -632,6 +638,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "ファイル (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "フィルター";
+
+/* No comment provided by engineer. */
+"Filter by:" = "フィルター要素：";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "ダウンロードが終了しました";
@@ -929,6 +941,9 @@
 
 /* Title for alert when a module item hasn't been set up with mastery paths */
 "No Mastery Paths" = "達成パスなし";
+
+/* No comment provided by engineer. */
+"No Notifications" = "通知なし";
 
 /* No comment provided by engineer. */
 "No recipients" = "受信者がいません";
@@ -1473,6 +1488,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "コンテンツの読込時にエラーが発生しました。オーディオまたはビデオの場合、まだ処理中の可能性があります。";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "まだ通知される事項がありません。";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "このアプリは使用を許可されていません。";

@@ -74,6 +74,9 @@
 "Late" = "延迟";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "正在加载更多单元……";
+
+/* No comment provided by engineer. */
 "Mark All as Present" = "将所有标记为出勤";
 
 /* No comment provided by engineer. */
@@ -99,6 +102,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "特定分组";
+
+/* No comment provided by engineer. */
+"This module is empty." = "该单元为空。";
 
 /* No comment provided by engineer. */
 "To Do" = "待办事项";

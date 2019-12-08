@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "Все курсы";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "Все академические периоды";
+
 /* Button to select all members of a group */
 "All members" = "Все члены";
 
@@ -364,6 +367,9 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Выбрать видео";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Очистить фильтр";
 
 /* No comment provided by engineer. */
 "Close" = "Закрыть";
@@ -632,6 +638,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Файлы (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Фильтровать";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Фильтровать по:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Загрузка завершена";
@@ -929,6 +941,9 @@
 
 /* Title for alert when a module item hasn't been set up with mastery paths */
 "No Mastery Paths" = "Пути достижения владения отсутствуют";
+
+/* No comment provided by engineer. */
+"No Notifications" = "Уведомления отсутствуют";
 
 /* No comment provided by engineer. */
 "No recipients" = "Нет получателей";
@@ -1473,6 +1488,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Произошла ошибка при загрузке вашего контента. Если это загрузка аудио или видео, она все еще может быть в обработке.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "На данный момент оповещать не о чем.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "Это приложение не авторизовано для использования.";
