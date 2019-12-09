@@ -74,6 +74,9 @@
 "Late" = "Tūreiti";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "Uta nui atu ngā kōwae ...";
+
+/* No comment provided by engineer. */
 "Mark All as Present" = "Tohua katoa kei nāianei";
 
 /* No comment provided by engineer. */
@@ -99,6 +102,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Ngā Wāhanga Motuhake";
+
+/* No comment provided by engineer. */
+"This module is empty." = "Kei te kore tēnei kōwae.";
 
 /* No comment provided by engineer. */
 "To Do" = "Hei mahi";

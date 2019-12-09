@@ -74,6 +74,9 @@
 "Late" = "An reta";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "Chajman plis modil...";
+
+/* No comment provided by engineer. */
 "Mark All as Present" = "Make Tout kòm Prezan";
 
 /* No comment provided by engineer. */
@@ -99,6 +102,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Seksyon Espesyal";
+
+/* No comment provided by engineer. */
+"This module is empty." = "Modil sa a vid.";
 
 /* No comment provided by engineer. */
 "To Do" = "Pou Fè";

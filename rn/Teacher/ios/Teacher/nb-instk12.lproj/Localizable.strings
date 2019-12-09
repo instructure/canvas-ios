@@ -74,6 +74,9 @@
 "Late" = "Sent";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "Laster inn flere moduler...";
+
+/* No comment provided by engineer. */
 "Mark All as Present" = "Merk alle som nåværende";
 
 /* No comment provided by engineer. */
@@ -99,6 +102,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Utvalgte seksjoner";
+
+/* No comment provided by engineer. */
+"This module is empty." = "Modulen er tom.";
 
 /* No comment provided by engineer. */
 "To Do" = "Å gjøre";

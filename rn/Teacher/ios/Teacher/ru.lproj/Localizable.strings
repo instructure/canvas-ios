@@ -74,6 +74,9 @@
 "Late" = "Поздно";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "Загрузка других модулей...";
+
+/* No comment provided by engineer. */
 "Mark All as Present" = "Отметить всех как присутствующих";
 
 /* No comment provided by engineer. */
@@ -99,6 +102,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Специальные разделы";
+
+/* No comment provided by engineer. */
+"This module is empty." = "Этот модуль пуст.";
 
 /* No comment provided by engineer. */
 "To Do" = "Для выполнения";

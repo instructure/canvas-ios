@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "Ngā akoranga katoa";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "Takiwā kōeke katoa";
+
 /* Button to select all members of a group */
 "All members" = "Ngā mema katoa";
 
@@ -364,6 +367,9 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Kōwhiri Ataata";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Tātari mārama";
 
 /* No comment provided by engineer. */
 "Close" = "Katia";
@@ -632,6 +638,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Ngā kōnae (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Tātari";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Tātari ī:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Kua oti te tikiake";
@@ -929,6 +941,9 @@
 
 /* Title for alert when a module item hasn't been set up with mastery paths */
 "No Mastery Paths" = "Kaore he ara hinganga";
+
+/* No comment provided by engineer. */
+"No Notifications" = "Kaore he whakamōhiotanga";
 
 /* No comment provided by engineer. */
 "No recipients" = "Kāore ngā kaiwhiwhi";
@@ -1473,6 +1488,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "He hapa i te wā e uta ana i tō ihirangi. Mehemea he ororongo ataata rānei tukuake ai tonu te tukatuka.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Kaore he mea hei whakamōhio i tēnei wā.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "Kaore e mana tēnei taupānga ki te whakamahi.";

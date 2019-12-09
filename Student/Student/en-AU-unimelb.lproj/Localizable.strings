@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "All Subjects";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "All Grading Periods";
+
 /* Button to select all members of a group */
 "All members" = "All members";
 
@@ -364,6 +367,9 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Choose Video";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Clear filter";
 
 /* No comment provided by engineer. */
 "Close" = "Close";
@@ -632,6 +638,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Files (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Filter";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Filter by:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Finished downloading";
@@ -929,6 +941,9 @@
 
 /* Title for alert when a module item hasn't been set up with mastery paths */
 "No Mastery Paths" = "No Mastery Paths";
+
+/* No comment provided by engineer. */
+"No Notifications" = "No Notifications";
 
 /* No comment provided by engineer. */
 "No recipients" = "No recipients";
@@ -1473,6 +1488,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "There was an error loading your content. If it is an audio or video upload it may still be processing.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "There's nothing to be notified of yet.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "This app is not authorised for use.";

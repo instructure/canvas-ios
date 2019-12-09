@@ -1070,6 +1070,9 @@
   "only_available_to_students_with_link_not_available_c12278d2": {
     "message": "Kun tilgjengelig for elever med lenken. Ikke tilgjengelig i elevfilene."
   },
+  "only_members_232519d6": {
+    "message": "Kun medlemmer"
+  },
   "only_once_after_each_attempt_cc842738": {
     "message": "Kun én gang etter hvert forsøk"
   },

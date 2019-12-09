@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "Pob Cwrs";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "Pob Cyfnod Graddio";
+
 /* Button to select all members of a group */
 "All members" = "Pob aelod";
 
@@ -364,6 +367,9 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Dewiswch Fideo";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Clirio’r hidlydd";
 
 /* No comment provided by engineer. */
 "Close" = "Cau";
@@ -632,6 +638,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Ffeiliau (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Hidlo";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Hidlo yn ôl:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Wedi gorffen llwytho i lawr";
@@ -929,6 +941,9 @@
 
 /* Title for alert when a module item hasn't been set up with mastery paths */
 "No Mastery Paths" = "Dim Llwybrau Meistroli";
+
+/* No comment provided by engineer. */
+"No Notifications" = "Dim Hysbysiadau";
 
 /* No comment provided by engineer. */
 "No recipients" = "Dim derbynwyr";
@@ -1473,6 +1488,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Gwall wrth lwytho’ch cynnwys. Os ydych chi'n llwytho sain neu fideo i fyny, gall fod yn prosesu o hyd.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Does dim byd i’w hysbysu eto.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "Dydi’r ap hwn ddim wedi’i awdurdodi i’w ddefnyddio.";

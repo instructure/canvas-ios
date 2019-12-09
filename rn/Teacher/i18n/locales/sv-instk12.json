@@ -1070,6 +1070,9 @@
   "only_available_to_students_with_link_not_available_c12278d2": {
     "message": "Endast tillgänglig för elever med länk. Ej tillgänglig i elevfiler."
   },
+  "only_members_232519d6": {
+    "message": "Endast medlemmar"
+  },
   "only_once_after_each_attempt_cc842738": {
     "message": "Endast efter varje försök"
   },

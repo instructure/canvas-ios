@@ -1070,6 +1070,9 @@
   "only_available_to_students_with_link_not_available_c12278d2": {
     "message": "仅链接对学生可用。在学生文件中不可用。"
   },
+  "only_members_232519d6": {
+    "message": "仅成员"
+  },
   "only_once_after_each_attempt_cc842738": {
     "message": "仅当每次尝试之后"
   },

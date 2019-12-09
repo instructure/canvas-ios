@@ -1070,6 +1070,9 @@
   "only_available_to_students_with_link_not_available_c12278d2": {
     "message": "Dim ond ar gael i fyfyrwyr sydd â dolen. Ddim ar gael mewn ffeiliau myfyrwyr."
   },
+  "only_members_232519d6": {
+    "message": "Dim ond aelodau"
+  },
   "only_once_after_each_attempt_cc842738": {
     "message": "Dim ond Unwaith ar ôl pob Ymgais"
   },

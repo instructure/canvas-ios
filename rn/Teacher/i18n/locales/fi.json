@@ -1070,6 +1070,9 @@
   "only_available_to_students_with_link_not_available_c12278d2": {
     "message": "Saatavissa vain opiskelijoille linkin kanssa. Ei saatavilla opiskelijan tiedostoissa."
   },
+  "only_members_232519d6": {
+    "message": "Vain jäsenet"
+  },
   "only_once_after_each_attempt_cc842738": {
     "message": "Vain yksi jokaisen yrityksen jälkeen"
   },

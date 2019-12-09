@@ -13,7 +13,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d need grading</string>
+			<string>%d需要等級評分</string>
 		</dict>
 	</dict>
 	<key>d_questions</key>

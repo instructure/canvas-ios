@@ -74,6 +74,9 @@
 "Late" = "Te laat";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "Meer modules laden...";
+
+/* No comment provided by engineer. */
 "Mark All as Present" = "Allen markeren als aanwezig";
 
 /* No comment provided by engineer. */
@@ -99,6 +102,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Specifieke secties";
+
+/* No comment provided by engineer. */
+"This module is empty." = "Deze module is leeg.";
 
 /* No comment provided by engineer. */
 "To Do" = "Te doen";

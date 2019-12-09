@@ -74,6 +74,9 @@
 "Late" = "Późno";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "Trwa ładowanie kolejnych modułów...";
+
+/* No comment provided by engineer. */
 "Mark All as Present" = "Oznacz wszystkich jako obecni";
 
 /* No comment provided by engineer. */
@@ -99,6 +102,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Określone sekcje";
+
+/* No comment provided by engineer. */
+"This module is empty." = "Ten moduł jest pusty.";
 
 /* No comment provided by engineer. */
 "To Do" = "Do zrobienia";

@@ -7,12 +7,6 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
-/* No comment provided by engineer. */
-"%@ out of %@" = "%1$@ ut av %2$@";
-
-/* No comment provided by engineer. */
-"%@ out of %@ (%@)" = "%1$@ ut av %2$@ (%3$@)";
-
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "en foresatt";
 
@@ -53,10 +47,10 @@
 "Appointment Signups" = "Avtalepåmeldinger";
 
 /* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "Er du sikker du ønsker å slette denne kommentaren?";
+"Are you sure you want to delete this page?" = "Er du sikker på at du vil slette denne siden?";
 
 /* No comment provided by engineer. */
-"Assignment" = "Oppgave";
+"Are you sure you would like to delete this comment?" = "Er du sikker du ønsker å slette denne kommentaren?";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Forsøk %d";
@@ -65,7 +59,13 @@
 "Audio" = "Lyd";
 
 /* No comment provided by engineer. */
+"Augment Reality" = "Utvide virkelighet";
+
+/* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Autentisering mislyktes. Mest sannsynlig nektet bruker forespørselen om tilgang.";
+
+/* No comment provided by engineer. */
+"Availability: Closed" = "Tilgjengelighet: Lukket";
 
 /* No comment provided by engineer. */
 "black" = "svart";
@@ -182,9 +182,6 @@
 "Could not save notification preference" = "Kan ikke lagre foretrukne varslinger";
 
 /* No comment provided by engineer. */
-"Course" = "Emne";
-
-/* No comment provided by engineer. */
 "Course Activities" = "Aktiviteter for emne";
 
 /* No comment provided by engineer. */
@@ -195,6 +192,9 @@
 
 /* No comment provided by engineer. */
 "Current position" = "Nåværende posisjon";
+
+/* No comment provided by engineer. */
+"d_needs_grading" = "d_needs_grading";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
@@ -250,8 +250,17 @@
 /* No comment provided by engineer. */
 "Done" = "Ferdig";
 
+/* i.e. Due <Jan 10, 2020 at 9:00 PM> */
+"Due %@" = "Forfall %@";
+
 /* No comment provided by engineer. */
 "Due Date" = "Forfallsdato";
+
+/* No comment provided by engineer. */
+"Due: %@" = "Frist: %@";
+
+/* No comment provided by engineer. */
+"Edit" = "Rediger";
 
 /* Description for email communication channel */
 "Email Notifications" = "E-post varslinger";
@@ -288,6 +297,9 @@
 
 /* No comment provided by engineer. */
 "Failed Upload" = "Opplasting mislyktes";
+
+/* No comment provided by engineer. */
+"File" = "Fil";
 
 /* No comment provided by engineer. */
 "File Upload" = "Filopplasting";
@@ -512,6 +524,9 @@
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
+"Page" = "Side";
+
+/* No comment provided by engineer. */
 "Pages" = "Sider";
 
 /* No comment provided by engineer. */
@@ -587,15 +602,6 @@
 "See what's new." = "Se hva som er nytt.";
 
 /* No comment provided by engineer. */
-"Select Account" = "Velg konto";
-
-/* No comment provided by engineer. */
-"Select Assignment" = "Velg oppgave";
-
-/* No comment provided by engineer. */
-"Select Course" = "Velg emne";
-
-/* No comment provided by engineer. */
 "Select One" = "Velg én";
 
 /* No comment provided by engineer. */
@@ -668,9 +674,6 @@
 "Submit" = "Send inn";
 
 /* No comment provided by engineer. */
-"Submit Assignment" = "Lever oppgave";
-
-/* No comment provided by engineer. */
 "Submitted" = "Sendt inn";
 
 /* Submitted date */
@@ -740,9 +743,6 @@
 "To Do" = "Å gjøre";
 
 /* No comment provided by engineer. */
-"Total Grade" = "Samlet karakter";
-
-/* No comment provided by engineer. */
 "Total time" = "Total tid";
 
 /* Description for Twitter communication channel */
@@ -779,6 +779,9 @@
 "Video" = "Video";
 
 /* No comment provided by engineer. */
+"View Modules" = "Vis moduler";
+
+/* No comment provided by engineer. */
 "We've made a few changes." = "Vi har gjort noen endringer.";
 
 /* No comment provided by engineer. */
@@ -786,6 +789,9 @@
 
 /* No comment provided by engineer. */
 "Weekly" = "Ukentlig";
+
+/* No comment provided by engineer. */
+"Well Done!" = "Bra gjort!";
 
 /* No comment provided by engineer. */
 "What’s your school’s name?" = "Hva heter skolen din?";
@@ -809,9 +815,6 @@
 "You must enable Microphone permissions in Settings." = "Du må aktivere mikrofontillatelse fra innstillinger.";
 
 /* No comment provided by engineer. */
-"You will need to log into at least one Canvas account from the Student app first." = "Du må først logge på med minst én Canvas-konto fra Student-appen.";
-
-/* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Du vil slutte å opptre som %@ og gå tilbake til din egen konto.";
 
 /* No comment provided by engineer. */
@@ -819,4 +822,7 @@
 
 /* No comment provided by engineer. */
 "Your Email" = "Din e-post";
+
+/* No comment provided by engineer. */
+"Your to do list is empty. Time to recharge." = "Din gjøremålsliste er tom. På tide å lade opp på nytt.";
 

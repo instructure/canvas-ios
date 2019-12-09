@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "Tout Kou";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "Tout Peryòd Klasman";
+
 /* Button to select all members of a group */
 "All members" = "Tout manm";
 
@@ -364,6 +367,9 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Chwazi Videyo";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Efase Filtè";
 
 /* No comment provided by engineer. */
 "Close" = "Fèmen";
@@ -632,6 +638,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Fichye (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Filtè";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Filtre pa:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Fen Telechajman";
@@ -929,6 +941,9 @@
 
 /* Title for alert when a module item hasn't been set up with mastery paths */
 "No Mastery Paths" = "Pa gen Metriz Pakou";
+
+/* No comment provided by engineer. */
+"No Notifications" = "Okenn Notifikasyon";
 
 /* No comment provided by engineer. */
 "No recipients" = "Pa gen destinat";
@@ -1473,6 +1488,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Te gen yon erè pandan chajman kontni ou yo. Si se yon odyo oswa videyo li kapab ap chaje toujou.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Poko gen anyen pou yo siyale.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "Pa gen otorizasyon pou itilize app sa a.";

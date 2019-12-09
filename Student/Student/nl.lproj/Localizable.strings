@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "Alle cursussen";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "Alle beoordelingsperioden";
+
 /* Button to select all members of a group */
 "All members" = "Alle leden";
 
@@ -364,6 +367,9 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Video kiezen";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Filter wissen";
 
 /* No comment provided by engineer. */
 "Close" = "Sluiten";
@@ -632,6 +638,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Bestanden (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Filter";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Filteren op:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Downloaden voltooid";
@@ -929,6 +941,9 @@
 
 /* Title for alert when a module item hasn't been set up with mastery paths */
 "No Mastery Paths" = "Geen leertrajecten";
+
+/* No comment provided by engineer. */
+"No Notifications" = "Geen meldingen";
 
 /* No comment provided by engineer. */
 "No recipients" = "Geen geadresseerden";
@@ -1473,6 +1488,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Er was een probleem bij het laden van je inhoud. Als het een audio- of video-upload is, wordt het misschien nog verwerkt.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Er is nog niets om te melden.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "Deze app mag niet gebruikt worden.";
