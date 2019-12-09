@@ -19,10 +19,12 @@
 import UIKit
 
 class LoginManualOAuthViewController: UIViewController {
-    @IBOutlet weak var clientIDField: DynamicTextField?
-    @IBOutlet weak var clientSecretField: DynamicTextField?
+    @IBOutlet weak var clientIDField: UITextField!
+    @IBOutlet weak var clientSecretField: UITextField!
+    @IBOutlet weak var continueButton: UIButton!
 
     var authenticationProvider: String?
+    let env = AppEnvironment.shared
     var host = ""
     weak var loginDelegate: LoginDelegate?
 
@@ -45,8 +47,8 @@ class LoginManualOAuthViewController: UIViewController {
     }
 
     @IBAction func submit(_ sender: UIButton) {
-        guard let id = clientIDField?.text?.trimmingCharacters(in: .whitespacesAndNewlines), !id.isEmpty,
-            let secret = clientSecretField?.text?.trimmingCharacters(in: .whitespacesAndNewlines), !secret.isEmpty else {
+        guard let id = clientIDField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !id.isEmpty,
+            let secret = clientSecretField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !secret.isEmpty else {
             return
         }
 
@@ -63,6 +65,6 @@ class LoginManualOAuthViewController: UIViewController {
             client_id: id,
             client_secret: secret
         )
-        show(controller, sender: nil)
+        env.router.show(controller, from: self)
     }
 }
