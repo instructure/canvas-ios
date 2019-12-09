@@ -321,6 +321,8 @@
 		7DA667EF23834D150062F7B9 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA667EE23834D150062F7B9 /* Todo.swift */; };
 		7DA667F523835FF60062F7B9 /* TodoListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DA667F423835FF60062F7B9 /* TodoListViewController.storyboard */; };
 		7DA667F7238360930062F7B9 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA667F6238360930062F7B9 /* TodoListViewController.swift */; };
+		7DA8C37D239EAE0F004762DD /* LoginManualOAuthViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA8C37C239EAE0F004762DD /* LoginManualOAuthViewControllerTests.swift */; };
+		7DA8C37F239EB535004762DD /* LoginNavigationControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA8C37E239EB535004762DD /* LoginNavigationControllerTests.swift */; };
 		7DAC286B22B1701B00C0B692 /* QuizHideResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAC286A22B1701B00C0B692 /* QuizHideResults.swift */; };
 		7DAFB46321A361C400311275 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFB46221A361C400311275 /* LocalizationManager.swift */; };
 		7DAFB46521A4693B00311275 /* LocalizationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFB46421A4693B00311275 /* LocalizationManagerTests.swift */; };
@@ -1210,6 +1212,8 @@
 		7DA667EE23834D150062F7B9 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		7DA667F423835FF60062F7B9 /* TodoListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TodoListViewController.storyboard; sourceTree = "<group>"; };
 		7DA667F6238360930062F7B9 /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
+		7DA8C37C239EAE0F004762DD /* LoginManualOAuthViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManualOAuthViewControllerTests.swift; sourceTree = "<group>"; };
+		7DA8C37E239EB535004762DD /* LoginNavigationControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigationControllerTests.swift; sourceTree = "<group>"; };
 		7DAC286A22B1701B00C0B692 /* QuizHideResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizHideResults.swift; sourceTree = "<group>"; };
 		7DAFB46221A361C400311275 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 		7DAFB46421A4693B00311275 /* LocalizationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManagerTests.swift; sourceTree = "<group>"; };
@@ -1845,6 +1849,8 @@
 			children = (
 				7DB0A1B521BF168A009ABB40 /* LoginDelegateTests.swift */,
 				7DB0A1B721BF175E009ABB40 /* LoginFindSchoolViewControllerTests.swift */,
+				7DA8C37C239EAE0F004762DD /* LoginManualOAuthViewControllerTests.swift */,
+				7DA8C37E239EB535004762DD /* LoginNavigationControllerTests.swift */,
 				DFE1FF1F212F5E41003F27AA /* LoginSessionTests.swift */,
 				7DB0A1B921BF1904009ABB40 /* LoginStartPresenterTests.swift */,
 				3B3467C821349EC000F9BC2E /* LoginWebPresenterTests.swift */,
@@ -3877,6 +3883,7 @@
 				7DBED0312333EC3B00392F3C /* ProfilePresenterTests.swift in Sources */,
 				7D5C87212239A99E00D99651 /* SubmissionCommentTests.swift in Sources */,
 				B1A6BC8A218A977D000515E3 /* APIEnrollmentRequestableTests.swift in Sources */,
+				7DA8C37F239EB535004762DD /* LoginNavigationControllerTests.swift in Sources */,
 				7D80AC5B212DB0B500C40ECE /* URLResponseExtensionsTests.swift in Sources */,
 				9FE21AAA226A0AC600A1D9AD /* APIRecentlyGradedRequestableTests.swift in Sources */,
 				3B3467DA2136FFBA00F9BC2E /* APILoginWebRequestableTests.swift in Sources */,
@@ -4103,6 +4110,7 @@
 				7D2DC301219A16EC008FE29A /* DocViewerConstantsTests.swift in Sources */,
 				7D5A2BC422CD0D8C0029B6AC /* APIListTests.swift in Sources */,
 				7DD371C122E7B39800C2D0F7 /* GetQuizSubmissionTests.swift in Sources */,
+				7DA8C37D239EAE0F004762DD /* LoginManualOAuthViewControllerTests.swift in Sources */,
 				7D2DC2F42199EC93008FE29A /* SecretTests.swift in Sources */,
 				7DCF1EA8216BC126003AF358 /* CourseWorkflowStateTests.swift in Sources */,
 				B1E789B521B1AD890087FE4A /* LoggerTests.swift in Sources */,
