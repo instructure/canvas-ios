@@ -64,19 +64,15 @@ public class MockDistantURLSession: URLSession {
         mockConfiguration ?? super.configuration
     }
 
-    static let mockRequestQueue = DispatchQueue(label: "mockRequestQueue")
-
+    static let mockRequestLock = NSLock()
     static func requestMock(_ url: URL, uploadData: Data? = nil) -> MockHTTPResponse {
-        mockRequestQueue.sync {
-            print("MOCK requesting \(url.absoluteString)")
-            guard let responseData = UITestHelpers.shared!.send(.urlRequest(url, uploadData: uploadData)),
-                let mock = try? JSONDecoder().decode(MockHTTPResponse.self, from: responseData) else {
-                    print("MOCK no mock")
-                    return MockHTTPResponse()
-            }
-            print("MOCK got \(mock)")
-            return mock
+        mockRequestLock.lock()
+        defer { mockRequestLock.unlock() }
+        guard let responseData = UITestHelpers.shared!.send(.urlRequest(url, uploadData: uploadData)),
+            let mock = try? JSONDecoder().decode(MockHTTPResponse.self, from: responseData) else {
+                return MockHTTPResponse()
         }
+        return mock
     }
 
     // MARK: data
