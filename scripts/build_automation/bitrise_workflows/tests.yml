@@ -27,7 +27,7 @@ workflows:
             #!/bin/zsh
             set -ex
 
-            if printf "%s\n" "$BITRISE_GIT_MESSAGE" | grep -iF "[run nightly]"; then
+            if printf "%s\n" "$BITRISE_GIT_MESSAGE" | grep -iE "\[run.nightly\]"; then
                 envman add --key RUN_NIGHTLY --value YES
             fi
     - build-router-start:
