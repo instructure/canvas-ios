@@ -202,7 +202,6 @@
 		7D4D5EB921402CAA0080AC14 /* TestImage.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7D4D5EB621402CA90080AC14 /* TestImage.gif */; };
 		7D52D8AB2301BA5100684932 /* ExperimentalFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52D8AA2301BA5100684932 /* ExperimentalFeature.swift */; };
 		7D52D8AD2301C0A400684932 /* ExperimentalFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52D8AC2301C0A400684932 /* ExperimentalFeatureTests.swift */; };
-		7D54501121BDFB5C0008E75D /* LoginFindSchoolPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D54501021BDFB5C0008E75D /* LoginFindSchoolPresenter.swift */; };
 		7D5762A023849D46001F980D /* APITodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D57629F23849D46001F980D /* APITodoTests.swift */; };
 		7D58FBCA2141B43400705CDF /* APIAccountResults.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D58FBC92141B43300705CDF /* APIAccountResults.json */; };
 		7D5A2BC222CD062E0029B6AC /* APIList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5A2BC122CD062E0029B6AC /* APIList.swift */; };
@@ -329,7 +328,7 @@
 		7DAFBE72231858E300E9A37D /* ErrorReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFBE71231858E300E9A37D /* ErrorReportViewController.swift */; };
 		7DAFBE74231871F500E9A37D /* ItemPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFBE73231871F500E9A37D /* ItemPickerViewController.swift */; };
 		7DB0A1B621BF168A009ABB40 /* LoginDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B521BF168A009ABB40 /* LoginDelegateTests.swift */; };
-		7DB0A1B821BF175E009ABB40 /* LoginFindSchoolPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B721BF175E009ABB40 /* LoginFindSchoolPresenterTests.swift */; };
+		7DB0A1B821BF175E009ABB40 /* LoginFindSchoolViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B721BF175E009ABB40 /* LoginFindSchoolViewControllerTests.swift */; };
 		7DB0A1BA21BF1904009ABB40 /* LoginStartPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B921BF1904009ABB40 /* LoginStartPresenterTests.swift */; };
 		7DB3C6592285F0C700325B72 /* LoginStartMDMLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3C6582285F0C700325B72 /* LoginStartMDMLoginCell.swift */; };
 		7DBED00C232C031C00392F3C /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DBED00B232C031C00392F3C /* ProfileViewController.storyboard */; };
@@ -1089,7 +1088,6 @@
 		7D4D5EB621402CA90080AC14 /* TestImage.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TestImage.gif; sourceTree = "<group>"; };
 		7D52D8AA2301BA5100684932 /* ExperimentalFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalFeature.swift; sourceTree = "<group>"; };
 		7D52D8AC2301C0A400684932 /* ExperimentalFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalFeatureTests.swift; sourceTree = "<group>"; };
-		7D54501021BDFB5C0008E75D /* LoginFindSchoolPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchoolPresenter.swift; sourceTree = "<group>"; };
 		7D57629F23849D46001F980D /* APITodoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITodoTests.swift; sourceTree = "<group>"; };
 		7D58FBC92141B43300705CDF /* APIAccountResults.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = APIAccountResults.json; sourceTree = "<group>"; };
 		7D5A2BC122CD062E0029B6AC /* APIList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIList.swift; sourceTree = "<group>"; };
@@ -1219,7 +1217,7 @@
 		7DAFBE71231858E300E9A37D /* ErrorReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorReportViewController.swift; sourceTree = "<group>"; };
 		7DAFBE73231871F500E9A37D /* ItemPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPickerViewController.swift; sourceTree = "<group>"; };
 		7DB0A1B521BF168A009ABB40 /* LoginDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDelegateTests.swift; sourceTree = "<group>"; };
-		7DB0A1B721BF175E009ABB40 /* LoginFindSchoolPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchoolPresenterTests.swift; sourceTree = "<group>"; };
+		7DB0A1B721BF175E009ABB40 /* LoginFindSchoolViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchoolViewControllerTests.swift; sourceTree = "<group>"; };
 		7DB0A1B921BF1904009ABB40 /* LoginStartPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartPresenterTests.swift; sourceTree = "<group>"; };
 		7DB3C6582285F0C700325B72 /* LoginStartMDMLoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartMDMLoginCell.swift; sourceTree = "<group>"; };
 		7DBED00B232C031C00392F3C /* ProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileViewController.storyboard; sourceTree = "<group>"; };
@@ -1825,7 +1823,6 @@
 			isa = PBXGroup;
 			children = (
 				7D0215AA21BB18C6009A8E69 /* LoginDelegate.swift */,
-				7D54501021BDFB5C0008E75D /* LoginFindSchoolPresenter.swift */,
 				7DD6CC6821BCCE20004C4BB6 /* LoginFindSchoolViewController.storyboard */,
 				7DD6CC6621BCC597004C4BB6 /* LoginFindSchoolViewController.swift */,
 				7DD752A221BEFA8F00E26260 /* LoginManualOAuthViewController.storyboard */,
@@ -1847,7 +1844,7 @@
 			isa = PBXGroup;
 			children = (
 				7DB0A1B521BF168A009ABB40 /* LoginDelegateTests.swift */,
-				7DB0A1B721BF175E009ABB40 /* LoginFindSchoolPresenterTests.swift */,
+				7DB0A1B721BF175E009ABB40 /* LoginFindSchoolViewControllerTests.swift */,
 				DFE1FF1F212F5E41003F27AA /* LoginSessionTests.swift */,
 				7DB0A1B921BF1904009ABB40 /* LoginStartPresenterTests.swift */,
 				3B3467C821349EC000F9BC2E /* LoginWebPresenterTests.swift */,
@@ -3860,7 +3857,6 @@
 				7DCF1EA0216BB731003AF358 /* SubmissionType.swift in Sources */,
 				B1F1328E224BBBC7002C0555 /* ModuleItem.swift in Sources */,
 				3B158CAA22E1343D0039A568 /* PageViewEventRequestManager.swift in Sources */,
-				7D54501121BDFB5C0008E75D /* LoginFindSchoolPresenter.swift in Sources */,
 				7D062AF92124A0F400677F66 /* ContextModel.swift in Sources */,
 				3B635B31225CDC2C001F353D /* GetCalendarEvents.swift in Sources */,
 				7DF2F5FB2347DAEA00C1802C /* UIColorInstColorsExtensions.swift in Sources */,
@@ -4074,7 +4070,7 @@
 				B1B42C1622403AFD0087399A /* UploadManagerTests.swift in Sources */,
 				7D80AC1D212B6B6200C40ECE /* APICourseRequestableTests.swift in Sources */,
 				9F1CEA6322401AF1000BB98F /* GetContextPermissionsTests.swift in Sources */,
-				7DB0A1B821BF175E009ABB40 /* LoginFindSchoolPresenterTests.swift in Sources */,
+				7DB0A1B821BF175E009ABB40 /* LoginFindSchoolViewControllerTests.swift in Sources */,
 				7D63F792215D8EEC00151E49 /* GetBrandVariablesTests.swift in Sources */,
 				EE424B3622E8E16D00D083EE /* GetPagesTests.swift in Sources */,
 				3B35F071230EF1B100674FF5 /* APIPostPolicyRequestableTests.swift in Sources */,
