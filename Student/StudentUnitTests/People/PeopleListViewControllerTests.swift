@@ -24,12 +24,12 @@ import XCTest
 class PeopleListViewControllerTests: StudentTestCase {
     lazy var vc = PeopleListViewController.create(context: ContextModel(.course, id: courseID))
     let courseID = "1"
-    
+
     override func setUp() {
         super.setUp()
         vc = PeopleListViewController.create(context: ContextModel(.course, id: courseID))
     }
-    
+
     func loadView() {
         vc.view.frame = CGRect(x: 0, y: 0, width: 300, height: 800)
         vc.view.layoutIfNeeded()
@@ -41,8 +41,8 @@ class PeopleListViewControllerTests: StudentTestCase {
         api.mock(vc.presenter!.colors, value: APICustomColors(custom_colors: [ "course_1": "#f00" ]))
         api.mock(vc.presenter!.course, value: .make())
         api.mock(vc.presenter!.users, value: [.make(),
-                                              .make(id: "2", name: "Jane", sortable_name: "jane doe", short_name: "jane", email: "jane@doe.com")])
-        
+                                              .make(id: "2", name: "Jane", sortable_name: "jane doe", short_name: "jane", email: "jane@doe.com"), ])
+
         //  when
         loadView()
 
@@ -54,11 +54,10 @@ class PeopleListViewControllerTests: StudentTestCase {
 
         var cell = vc.tableView?.cellForRow(at: IndexPath(row: 0, section: 0)) as? PeopleListCell
         XCTAssertEqual(cell?.name?.text, "Bob")
-        
+
         cell = vc.tableView?.cellForRow(at: IndexPath(row: 1, section: 0)) as? PeopleListCell
         XCTAssertEqual(cell?.name?.text, "Jane")
-        
-        
+
         vc.tableView(vc.tableView!, didSelectRowAt: IndexPath(row: 0, section: 0))
         XCTAssert(router.lastRoutedTo(.parse("/courses/1/users/1")))
     }
