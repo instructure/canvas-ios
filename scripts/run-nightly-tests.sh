@@ -118,7 +118,16 @@ function getTestResults {
             cat $crash_log
         done
 
-        # Something more than flakiness is going on, fail immediately
+        # Something more than flakiness is going on. List what tests haven't run and then fail
+        setTestRunEnv $xctestrun LIST_TESTS_ONLY YES
+        local flags=($destination_flag)
+        flags+=(-xctestrun $xctestrun)
+        for skip in $all_passing_tests; do
+            flags+=(-skip-testing:$skip)
+        done
+        banner "UI Tests that didn't show up"
+        { xcodebuild test-without-building $flags 2>/dev/null | grep '^UI_TEST: ' } || true
+
         mergeResults
         exit 1
     fi
