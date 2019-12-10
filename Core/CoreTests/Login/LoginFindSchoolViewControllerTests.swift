@@ -54,7 +54,7 @@ class LoginFindSchoolViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.resultsTableView.cellForRow(at: first)?.textLabel?.text, "Crazy Go Nuts University")
         controller.resultsTableView.delegate?.tableView?(controller.resultsTableView, didSelectRowAt: first)
         let shown = router.viewControllerCalls.first?.0 as? LoginWebViewController
-        XCTAssertEqual(shown?.presenter?.host, "cgnuonline-eniversity.edu")
+        XCTAssertEqual(shown?.host, "cgnuonline-eniversity.edu")
     }
 
     func testManualOAuth() {

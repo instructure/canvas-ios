@@ -19,41 +19,68 @@
 import UIKit
 import WebKit
 
-class LoginWebViewController: UIViewController, LoginWebViewProtocol {
+enum AuthenticationMethod {
+    case normalLogin
+    case canvasLogin
+    case siteAdminLogin
+    case manualOAuthLogin
+}
+
+class LoginWebViewController: UIViewController, ErrorViewController {
     lazy var webView: WKWebView = {
         let configuration = WKWebViewConfiguration()
         configuration.websiteDataStore = .nonPersistent()
         return WKWebView(frame: UIScreen.main.bounds, configuration: configuration)
     }()
 
-    var presenter: LoginWebPresenter?
+    var mobileVerifyModel: APIVerifyClient?
+    var authenticationProvider: String?
+    let env = AppEnvironment.shared
+    var host = ""
+    weak var loginDelegate: LoginDelegate?
+    var method = AuthenticationMethod.normalLogin
+    var task: URLSessionTask?
+    var mdmLogin: MDMLogin?
+
+    deinit {
+        task?.cancel()
+    }
 
     static func create(authenticationProvider: String? = nil, host: String, mdmLogin: MDMLogin? = nil, loginDelegate: LoginDelegate?, method: AuthenticationMethod) -> LoginWebViewController {
         let controller = LoginWebViewController()
         controller.title = host
-        controller.presenter = LoginWebPresenter(
-            authenticationProvider: authenticationProvider,
-            host: host,
-            mdmLogin: mdmLogin,
-            loginDelegate: loginDelegate,
-            method: method,
-            view: controller
-        )
+        controller.authenticationProvider = authenticationProvider
+        controller.host = host
+        controller.mdmLogin = mdmLogin
+        controller.loginDelegate = loginDelegate
+        controller.method = method
         return controller
     }
 
     override func loadView() {
-        webView.accessibilityIdentifier = "LoginWeb.webView"
-        webView.backgroundColor = .named(.backgroundLightest)
-        webView.customUserAgent = UserAgent.safari.description
-        webView.navigationDelegate = self
-        webView.uiDelegate = self
         view = webView
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.viewIsReady()
+        webView.accessibilityIdentifier = "LoginWeb.webView"
+        webView.backgroundColor = .named(.backgroundLightest)
+        webView.customUserAgent = UserAgent.safari.description
+        webView.navigationDelegate = self
+        webView.uiDelegate = self
+
+        // Manual OAuth provided mobileVerifyModel
+        if mobileVerifyModel != nil {
+            return loadLoginWebRequest()
+        }
+
+        // Lookup OAuth from mobile verify
+        task?.cancel()
+        task = URLSessionAPI().makeRequest(GetMobileVerifyRequest(domain: host)) { [weak self] (response, _, _) in performUIUpdate {
+            self?.mobileVerifyModel = response
+            self?.task = nil
+            self?.loadLoginWebRequest()
+        } }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -61,27 +88,74 @@ class LoginWebViewController: UIViewController, LoginWebViewProtocol {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
-    func loadRequest(_ request: URLRequest) {
-        webView.load(request)
-    }
-
-    func evaluateJavaScript(_ script: String) {
-        webView.evaluateJavaScript(script, completionHandler: nil)
+    func loadLoginWebRequest() {
+        if let verify = mobileVerifyModel, let url = verify.base_url, let clientID = verify.client_id {
+            let requestable = LoginWebRequest(authMethod: method, clientID: clientID, provider: authenticationProvider)
+            if let request = try? requestable.urlRequest(relativeTo: url, accessToken: nil, actAsUserID: nil) {
+                webView.load(request)
+            }
+        }
     }
 }
 
 extension LoginWebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        guard let url = navigationAction.request.url else {
+        guard let url = navigationAction.request.url, let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
             return decisionHandler(.allow)
         }
 
-        let action = presenter?.navigationActionPolicyForURL(url: url) ?? .cancel
-        decisionHandler(action)
+        if components.host?.contains("community.canvaslms.com") == true {
+            loginDelegate?.openExternalURL(url)
+            return decisionHandler(.cancel)
+        }
+
+        if components.scheme == "about" && components.path == "blank" {
+            return decisionHandler(.cancel)
+        }
+
+        let queryItems = components.queryItems
+        if // wait for "https://canvas/login?code="
+            url.absoluteString.hasPrefix("https://canvas/login"),
+            let code = queryItems?.first(where: { $0.name == "code" })?.value, !code.isEmpty,
+            let mobileVerify = mobileVerifyModel, let baseURL = mobileVerify.base_url {
+            task?.cancel()
+            task = URLSessionAPI().makeRequest(PostLoginOAuthRequest(client: mobileVerify, code: code)) { [weak self] (response, _, error) in performUIUpdate {
+                guard let self = self else { return }
+                guard let token = response, error == nil else {
+                    self.showError(error ?? NSError.internalError())
+                    return
+                }
+                let session = LoginSession(
+                    accessToken: token.access_token,
+                    baseURL: baseURL,
+                    expiresAt: token.expires_in.flatMap { Clock.now + $0 },
+                    refreshToken: token.refresh_token,
+                    userID: token.user.id.value,
+                    userName: token.user.name,
+                    clientID: mobileVerify.client_id,
+                    clientSecret: mobileVerify.client_secret
+                )
+                self.env.router.show(LoadingViewController.create(), from: self)
+                self.loginDelegate?.userDidLogin(session: session)
+            } }
+            return decisionHandler(.cancel)
+        } else if queryItems?.first(where: { $0.name == "error" }) != nil {
+            let error = NSError.instructureError(NSLocalizedString("Authentication failed. Most likely the user denied the request for access.", comment: ""))
+            self.showError(error)
+            return decisionHandler(.cancel)
+        }
+        decisionHandler(.allow)
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        presenter?.webViewFinishedLoading()
+        guard let login = mdmLogin else { return }
+        mdmLogin = nil
+        webView.evaluateJavaScript("""
+        const form = document.querySelector('#login_form')
+        form.querySelector('[type=email],[type=text]').value = \(CoreWebView.jsString(login.username))
+        form.querySelector('[type=password]').value = \(CoreWebView.jsString(login.password))
+        form.submit()
+        """)
     }
 
     func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
@@ -89,7 +163,7 @@ extension LoginWebViewController: WKNavigationDelegate {
             completionHandler(.performDefaultHandling, nil)
             return
         }
-        DispatchQueue.main.async {
+        performUIUpdate {
             let alert = UIAlertController(title: NSLocalizedString("Login", comment: ""), message: nil, preferredStyle: .alert)
             alert.addTextField { textField in
                 textField.placeholder = NSLocalizedString("Username", comment: "")
@@ -107,7 +181,7 @@ extension LoginWebViewController: WKNavigationDelegate {
                     completionHandler(.useCredential, credential)
                 }
             })
-            AppEnvironment.shared.router.show(alert, from: self, options: [.modal])
+            self.env.router.show(alert, from: self, options: [.modal])
         }
     }
 }

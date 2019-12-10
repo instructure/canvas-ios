@@ -59,7 +59,7 @@ class LoginManualOAuthViewController: UIViewController {
             method: .manualOAuthLogin
         )
         let baseURL = URL(string: host.hasPrefix("http") ? host : "https://\(host)")
-        controller.presenter?.mobileVerifyModel = APIVerifyClient(
+        controller.mobileVerifyModel = APIVerifyClient(
             authorized: true,
             base_url: baseURL,
             client_id: id,
