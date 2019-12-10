@@ -75,6 +75,16 @@ results_directory=nightly-xcresults
 rm -rf $results_directory
 mkdir -p $results_directory
 
+function mergeResults {
+    results=($results_directory/*.xcresult)
+    merged_result_path=$results_directory/merged.xcresult
+    if [[ ${#results} -gt 1 ]]; then
+        xcrun xcresulttool merge $results --output-path $merged_result_path
+    else
+        cp -r $results $merged_result_path
+    fi
+}
+
 function getTestResults {
     tests_passed_this_run=0
     tests_failed_this_run=0
@@ -101,14 +111,24 @@ function getTestResults {
 
     if (( ${#tests_passed_this_run} + ${#tests_failed_this_run} == 0 )); then
         echo "Couldn't find any test results... possibly a test class crashed in init somewhere?"
-        crash_logs=($result_path/Staging/**/*.crash)
+        crash_logs=($result_path/Staging/**/*.crash(N))
         banner "found ${#crash_logs} crash logs"
         for crash_log in $crash_logs; do
             banner $crash_log
             cat $crash_log
         done
 
-        # Something more than flakiness is going on, fail immediately
+        # Something more than flakiness is going on. List what tests haven't run and then fail
+        setTestRunEnv $xctestrun LIST_TESTS_ONLY YES
+        local flags=($destination_flag)
+        flags+=(-xctestrun $xctestrun)
+        for skip in $all_passing_tests; do
+            flags+=(-skip-testing:$skip)
+        done
+        banner "UI Tests that didn't show up"
+        { xcodebuild test-without-building $flags 2>/dev/null | grep '^UI_TEST: ' } || true
+
+        mergeResults
         exit 1
     fi
 
@@ -143,7 +163,7 @@ function doTest {
     rm -rf $pipe_file
     mkfifo $pipe_file
 
-    < $pipe_file xcbeautify &
+    < $pipe_file tee ${BITRISE_DEPLOY_DIR-$results_directory}/test-run-$try-xcodebuild.log | xcbeautify &
     local formatter_pid=$!
     xcodebuild test-without-building $flags > $pipe_file 2> $pipe_file || ret=$?
     wait $formatter_pid
@@ -197,12 +217,5 @@ else
     print ${(F)tests_failed_this_run}
 fi
 
-results=($results_directory/*.xcresult)
-merged_result_path=$results_directory/merged.xcresult
-if [[ ${#results} -gt 1 ]]; then
-    xcrun xcresulttool merge $results --output-path $merged_result_path
-else
-    cp -r $results $merged_result_path
-fi
-
+mergeResults
 exit $ret
