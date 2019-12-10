@@ -34,12 +34,10 @@
 		3B300C852277981100743C59 /* RubricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B300C842277981100743C59 /* RubricTests.swift */; };
 		3B339B6A226FA9AF00D3283D /* ChatBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B339B69226FA9AF00D3283D /* ChatBubbleView.swift */; };
 		3B339B6C226FAA1000D3283D /* ChatBubbleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B339B6B226FAA1000D3283D /* ChatBubbleView.xib */; };
-		3B34674A213051FD00F9BC2E /* LoginWebPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B346748213051FD00F9BC2E /* LoginWebPresenter.swift */; };
 		3B34674B213051FD00F9BC2E /* LoginWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B346749213051FD00F9BC2E /* LoginWebViewController.swift */; };
 		3B346755213052C700F9BC2E /* NSErrorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B346754213052C700F9BC2E /* NSErrorExtensions.swift */; };
 		3B3467612130556000F9BC2E /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467602130556000F9BC2E /* MockURLSession.swift */; };
 		3B3467C72134954A00F9BC2E /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467C62134954A00F9BC2E /* UserAgent.swift */; };
-		3B3467C921349EC100F9BC2E /* LoginWebPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467C821349EC000F9BC2E /* LoginWebPresenterTests.swift */; };
 		3B3467D02135024800F9BC2E /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467CF2135024800F9BC2E /* ErrorViewController.swift */; };
 		3B3467D42135B7B700F9BC2E /* ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467D32135B7B700F9BC2E /* ID.swift */; };
 		3B3467D62135B99700F9BC2E /* IDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467D52135B99700F9BC2E /* IDTests.swift */; };
@@ -331,7 +329,7 @@
 		7DAFBE74231871F500E9A37D /* ItemPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFBE73231871F500E9A37D /* ItemPickerViewController.swift */; };
 		7DB0A1B621BF168A009ABB40 /* LoginDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B521BF168A009ABB40 /* LoginDelegateTests.swift */; };
 		7DB0A1B821BF175E009ABB40 /* LoginFindSchoolViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B721BF175E009ABB40 /* LoginFindSchoolViewControllerTests.swift */; };
-		7DB0A1BA21BF1904009ABB40 /* LoginStartPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B921BF1904009ABB40 /* LoginStartPresenterTests.swift */; };
+		7DB0A1BA21BF1904009ABB40 /* LoginStartViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B921BF1904009ABB40 /* LoginStartViewControllerTests.swift */; };
 		7DB3C6592285F0C700325B72 /* LoginStartMDMLoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3C6582285F0C700325B72 /* LoginStartMDMLoginCell.swift */; };
 		7DBED00C232C031C00392F3C /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DBED00B232C031C00392F3C /* ProfileViewController.storyboard */; };
 		7DBED00E232C252200392F3C /* APIHelpLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED00D232C252200392F3C /* APIHelpLinks.swift */; };
@@ -395,7 +393,6 @@
 		7DD694892195F7A200BA4984 /* DocViewerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DD694882195F7A200BA4984 /* DocViewerViewController.storyboard */; };
 		7DD6948B21960EBD00BA4984 /* DocViewerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6948A21960EBD00BA4984 /* DocViewerPresenter.swift */; };
 		7DD6948F2196891200BA4984 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6948E2196891200BA4984 /* Secret.swift */; };
-		7DD6CC6321BB6BF7004C4BB6 /* LoginStartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC6221BB6BF7004C4BB6 /* LoginStartPresenter.swift */; };
 		7DD6CC6521BCC101004C4BB6 /* LoginNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC6421BCC101004C4BB6 /* LoginNavigationController.swift */; };
 		7DD6CC6721BCC597004C4BB6 /* LoginFindSchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6CC6621BCC597004C4BB6 /* LoginFindSchoolViewController.swift */; };
 		7DD6CC6921BCCE20004C4BB6 /* LoginFindSchoolViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DD6CC6821BCCE20004C4BB6 /* LoginFindSchoolViewController.storyboard */; };
@@ -775,12 +772,10 @@
 		3B300C842277981100743C59 /* RubricTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricTests.swift; sourceTree = "<group>"; };
 		3B339B69226FA9AF00D3283D /* ChatBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleView.swift; sourceTree = "<group>"; };
 		3B339B6B226FAA1000D3283D /* ChatBubbleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatBubbleView.xib; sourceTree = "<group>"; };
-		3B346748213051FD00F9BC2E /* LoginWebPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWebPresenter.swift; sourceTree = "<group>"; };
 		3B346749213051FD00F9BC2E /* LoginWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWebViewController.swift; sourceTree = "<group>"; };
 		3B346754213052C700F9BC2E /* NSErrorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSErrorExtensions.swift; sourceTree = "<group>"; };
 		3B3467602130556000F9BC2E /* MockURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		3B3467C62134954A00F9BC2E /* UserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgent.swift; sourceTree = "<group>"; };
-		3B3467C821349EC000F9BC2E /* LoginWebPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginWebPresenterTests.swift; path = CoreTests/Login/LoginWebPresenterTests.swift; sourceTree = SOURCE_ROOT; };
 		3B3467CF2135024800F9BC2E /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
 		3B3467D32135B7B700F9BC2E /* ID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ID.swift; sourceTree = "<group>"; };
 		3B3467D52135B99700F9BC2E /* IDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDTests.swift; sourceTree = "<group>"; };
@@ -1222,7 +1217,7 @@
 		7DAFBE73231871F500E9A37D /* ItemPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPickerViewController.swift; sourceTree = "<group>"; };
 		7DB0A1B521BF168A009ABB40 /* LoginDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDelegateTests.swift; sourceTree = "<group>"; };
 		7DB0A1B721BF175E009ABB40 /* LoginFindSchoolViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchoolViewControllerTests.swift; sourceTree = "<group>"; };
-		7DB0A1B921BF1904009ABB40 /* LoginStartPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartPresenterTests.swift; sourceTree = "<group>"; };
+		7DB0A1B921BF1904009ABB40 /* LoginStartViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartViewControllerTests.swift; sourceTree = "<group>"; };
 		7DB3C6582285F0C700325B72 /* LoginStartMDMLoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartMDMLoginCell.swift; sourceTree = "<group>"; };
 		7DBED00B232C031C00392F3C /* ProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileViewController.storyboard; sourceTree = "<group>"; };
 		7DBED00D232C252200392F3C /* APIHelpLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelpLinks.swift; sourceTree = "<group>"; };
@@ -1284,7 +1279,6 @@
 		7DD694882195F7A200BA4984 /* DocViewerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DocViewerViewController.storyboard; sourceTree = "<group>"; };
 		7DD6948A21960EBD00BA4984 /* DocViewerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerPresenter.swift; sourceTree = "<group>"; };
 		7DD6948E2196891200BA4984 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
-		7DD6CC6221BB6BF7004C4BB6 /* LoginStartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartPresenter.swift; sourceTree = "<group>"; };
 		7DD6CC6421BCC101004C4BB6 /* LoginNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigationController.swift; sourceTree = "<group>"; };
 		7DD6CC6621BCC597004C4BB6 /* LoginFindSchoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchoolViewController.swift; sourceTree = "<group>"; };
 		7DD6CC6821BCCE20004C4BB6 /* LoginFindSchoolViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginFindSchoolViewController.storyboard; sourceTree = "<group>"; };
@@ -1835,10 +1829,8 @@
 				DFE1FF1C212F5E1A003F27AA /* LoginSession.swift */,
 				7D0215AD21BB2D68009A8E69 /* LoginStartSessionCell.swift */,
 				7DB3C6582285F0C700325B72 /* LoginStartMDMLoginCell.swift */,
-				7DD6CC6221BB6BF7004C4BB6 /* LoginStartPresenter.swift */,
 				7D0215A621BB1750009A8E69 /* LoginStartViewController.storyboard */,
 				7D0215A821BB1762009A8E69 /* LoginStartViewController.swift */,
-				3B346748213051FD00F9BC2E /* LoginWebPresenter.swift */,
 				3B346749213051FD00F9BC2E /* LoginWebViewController.swift */,
 			);
 			path = Login;
@@ -1852,8 +1844,7 @@
 				7DA8C37C239EAE0F004762DD /* LoginManualOAuthViewControllerTests.swift */,
 				7DA8C37E239EB535004762DD /* LoginNavigationControllerTests.swift */,
 				DFE1FF1F212F5E41003F27AA /* LoginSessionTests.swift */,
-				7DB0A1B921BF1904009ABB40 /* LoginStartPresenterTests.swift */,
-				3B3467C821349EC000F9BC2E /* LoginWebPresenterTests.swift */,
+				7DB0A1B921BF1904009ABB40 /* LoginStartViewControllerTests.swift */,
 				B1D5EF5F2358D93100B3ACD3 /* LoginWebViewControllerTests.swift */,
 			);
 			path = Login;
@@ -3548,7 +3539,6 @@
 				7D9E80C6233C6A65003C608B /* ProfileSettingsViewController.swift in Sources */,
 				3B158C8D22E12DC50039A568 /* StringExtensions.swift in Sources */,
 				3B4687B42355109C00F293A5 /* SyllabusActionableItemsViewController.swift in Sources */,
-				7DD6CC6321BB6BF7004C4BB6 /* LoginStartPresenter.swift in Sources */,
 				9FBE5369223C2522001EC40C /* PermissionName.swift in Sources */,
 				B10E8905238447A700E7684E /* Grade.swift in Sources */,
 				EE584C8122F2048D00D1E201 /* PageListViewController.swift in Sources */,
@@ -3633,7 +3623,6 @@
 				3B3467D42135B7B700F9BC2E /* ID.swift in Sources */,
 				7D08B1D7237207460075623A /* GetFile.swift in Sources */,
 				7DCF2044216D622B003AF358 /* GetQuizzes.swift in Sources */,
-				3B34674A213051FD00F9BC2E /* LoginWebPresenter.swift in Sources */,
 				7D8262F7212B34F800BD268D /* APICourse.swift in Sources */,
 				9FBE5365223C1D7F001EC40C /* APIPermissions.swift in Sources */,
 				7D8FDFB62187B62A0067557E /* UINavigationBarExtensions.swift in Sources */,
@@ -3941,7 +3930,6 @@
 				7DCF1EAC216BC360003AF358 /* CourseDefaultViewTests.swift in Sources */,
 				B1846D1322EA32F000BC4C4A /* NotificationCenterExtensionsTests.swift in Sources */,
 				78151DCF21AE7E0500692862 /* APIDiscussionRequestableTests.swift in Sources */,
-				3B3467C921349EC100F9BC2E /* LoginWebPresenterTests.swift in Sources */,
 				7DF4001B2174FA24007E5F81 /* UITableViewExtensionsTests.swift in Sources */,
 				7DCF1EBE216BC969003AF358 /* SubmissionWorkflowStateTests.swift in Sources */,
 				7D0970EF22DFB6F200E8A551 /* APIPandataTests.swift in Sources */,
@@ -3976,7 +3964,7 @@
 				B18E19BB2386216B00B03C73 /* GradeFormatterTests.swift in Sources */,
 				EE6CB48622F8C8890013D9A5 /* PageListPresenterTests.swift in Sources */,
 				3BA9FF792332B39700196A06 /* GradingPeriodUseCaseTests.swift in Sources */,
-				7DB0A1BA21BF1904009ABB40 /* LoginStartPresenterTests.swift in Sources */,
+				7DB0A1BA21BF1904009ABB40 /* LoginStartViewControllerTests.swift in Sources */,
 				7D7472D9218CD77C00CE1430 /* PSPDFAnnotationExtensionTests.swift in Sources */,
 				3B35F073230F01F600674FF5 /* APIGraphQLRequestableTests.swift in Sources */,
 				B1A6BC8C218A9843000515E3 /* APILatePolicyRequestableTests.swift in Sources */,

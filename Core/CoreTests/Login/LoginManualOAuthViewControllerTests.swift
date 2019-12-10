@@ -35,17 +35,17 @@ class LoginManualOAuthViewControllerTests: CoreTestCase {
         controller.clientSecretField.text = "   secret\r"
         controller.continueButton.sendActions(for: .primaryActionTriggered)
         let shown = router.viewControllerCalls.first?.0 as? LoginWebViewController
-        XCTAssertEqual(shown?.presenter?.authenticationProvider, "provider")
-        XCTAssertEqual(shown?.presenter?.host, "canvas.local")
-        XCTAssertEqual(shown?.presenter?.method, .manualOAuthLogin)
-        XCTAssertEqual(shown?.presenter?.mobileVerifyModel?.base_url, URL(string: "https://canvas.local"))
-        XCTAssertEqual(shown?.presenter?.mobileVerifyModel?.client_id, "13")
-        XCTAssertEqual(shown?.presenter?.mobileVerifyModel?.client_secret, "secret")
+        XCTAssertEqual(shown?.authenticationProvider, "provider")
+        XCTAssertEqual(shown?.host, "canvas.local")
+        XCTAssertEqual(shown?.method, .manualOAuthLogin)
+        XCTAssertEqual(shown?.mobileVerifyModel?.base_url, URL(string: "https://canvas.local"))
+        XCTAssertEqual(shown?.mobileVerifyModel?.client_id, "13")
+        XCTAssertEqual(shown?.mobileVerifyModel?.client_secret, "secret")
 
         controller.host = "http://inst.co"
         controller.continueButton.sendActions(for: .primaryActionTriggered)
         let shown2 = router.viewControllerCalls.last?.0 as? LoginWebViewController
-        XCTAssertEqual(shown2?.presenter?.mobileVerifyModel?.base_url, URL(string: "http://inst.co"))
+        XCTAssertEqual(shown2?.mobileVerifyModel?.base_url, URL(string: "http://inst.co"))
     }
 }
 
