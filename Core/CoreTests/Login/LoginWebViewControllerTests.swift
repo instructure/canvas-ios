@@ -58,7 +58,7 @@ class LoginWebViewControllerTests: CoreTestCase {
         <input type="submit" />
         </form>
         """, baseURL: url)
-        wait(for: [done], timeout: 5)
+        wait(for: [done], timeout: 9)
         XCTAssertEqual(controller.webView.url, URL(string: "https://localhost:1/?username=u&password=p"))
     }
 
@@ -158,10 +158,11 @@ class LoginWebViewControllerTests: CoreTestCase {
             self.observation = nil
             done.fulfill()
         }
+        controller.webView.loadHTMLString("", baseURL: url)
         controller.webView.evaluateJavaScript("window.open('data:text/plain,')") { (_, error) in
             XCTAssertNil(error)
         }
-        wait(for: [done], timeout: 5)
+        wait(for: [done], timeout: 9)
         XCTAssertEqual(controller.webView.url, URL(string: "data:text/plain,"))
     }
 
