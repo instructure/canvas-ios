@@ -81,10 +81,10 @@ private struct Submission {
 
             if status.contains(.Late) {
                 return String(format: NSLocalizedString("Late: %@", comment: ""), grade ?? "")
-            } else if status.contains(.Submitted) {
-                return String(format: NSLocalizedString("Submitted: %@", comment: ""), grade ?? "")
-            } else {
+            } else if missing {
                 return String(format: NSLocalizedString("Missing: %@", comment: ""), grade ?? "")
+            } else {
+                return String(format: NSLocalizedString("Submitted: %@", comment: ""), grade ?? "")
             }
         } else if status.contains(.Submitted) {
             if status.contains(.Late) {
@@ -110,10 +110,10 @@ private struct Submission {
 
             if status.contains(.Late) {
                 return String(format: NSLocalizedString("Late: %@ (%@/%@)", comment: ""), percentage ?? "", score, pointsPossible)
-            } else if status.contains(.Submitted) {
-                return String(format: NSLocalizedString("Submitted: %@ (%@/%@)", comment: ""), percentage ?? "", score, pointsPossible)
-            } else {
+            } else if missing {
                 return String(format: NSLocalizedString("Missing: %@ (%@/%@)", comment: ""), percentage ?? "", score, pointsPossible)
+            } else {
+                return String(format: NSLocalizedString("Submitted: %@ (%@/%@)", comment: ""), percentage ?? "", score, pointsPossible)
             }
         } else if status.contains(.Submitted) {
             return displayText
@@ -134,7 +134,7 @@ private struct Submission {
             return UIImage(named: "icon_alert_fill")
         }
 
-        if status.contains(.Submitted) || status.contains(.Excused) {
+        if (status.contains(.Graded) && !missing) || status.contains(.Submitted) || status.contains(.Excused) {
             return UIImage(named: "icon_checkmark_fill")
         }
 
@@ -150,7 +150,7 @@ private struct Submission {
             return UIColor.parentYellowColor()
         }
 
-        if status.contains(.Submitted) || status.contains(.Excused) {
+        if (status.contains(.Graded) && !missing) || status.contains(.Submitted) || status.contains(.Excused) {
             return UIColor.parentBlueColor()
         }
 
