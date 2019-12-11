@@ -18,6 +18,7 @@
 
 import XCTest
 import TestsFoundation
+@testable import Core
 
 class InboxTests: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { return InboxTests.self }
@@ -68,5 +69,58 @@ class InboxTests: CoreUITestCase {
         Inbox.filterOption("Assignment").tap()
         Inbox.message(id: "47").waitToVanish()
         XCTAssert(Inbox.message(id: "48").isVisible)
+    }
+}
+
+class MockedInboxTests: CoreUITestCase {
+    override var user: UITestUser? { nil }
+    let avatarURL = URL(string: "https://canvas.instructure.com/avatar/1")!
+
+    override func setUp() {
+        super.setUp()
+        useMocksOnly()
+        mockBaseRequests()
+        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50), value: [
+            .make(id: "1", subject: "Subject One", avatar_url: avatarURL),
+        ])
+        mockURL(avatarURL)
+    }
+
+    func testReply() {
+        let before = APIConversation.make(
+            id: "1",
+            subject: "Subject One",
+            avatar_url: avatarURL,
+            messages: [.make(body: "Message Body")]
+        )
+        let after = APIConversation.make(
+            id: "1",
+            subject: "Subject One",
+            avatar_url: avatarURL,
+            messages: [.make(body: "Message Body"), .make(body: "This is a reply")]
+        )
+
+        mockData(GetConversationRequest(id: "1", include: [.participant_avatars]), value: before)
+        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent), value: [after])
+        mockData(PutConversationRequest(id: "1", workflowState: .read), value: before)
+        mockData(PostAddMessageRequest(id: "1", message: .init(
+            recipients: ["1"],
+            body: "This is a reply",
+            subject: "Subject One",
+            attachment_ids: nil,
+            media_comment_id: nil,
+            media_comment_type: nil,
+            context_code: nil,
+            bulk_message: nil)
+        ), value: after)
+        logIn()
+        TabBar.inboxTab.tap()
+        app.find(id: "inbox.conversation-1").tap()
+        NewMessage.replyButton.tap()
+        NewMessage.bodyTextView.typeText("This is a reply")
+        mockData(GetConversationRequest(id: "1", include: [.participant_avatars]), value: after)
+        NewMessage.sendButton.tap()
+        TabBar.inboxTab.waitToExist()
+        app.find(labelContaining: "This is a reply").waitToExist()
     }
 }

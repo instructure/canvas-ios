@@ -45,6 +45,18 @@ enum NewMessage {
     static var addRecipientButton: Element {
         return app.find(id: "compose.add-recipient")
     }
+
+    static var replyButton: Element {
+        return app.find(id: "inbox.conversation-message-row.reply-button")
+    }
+
+    static var bodyTextView: Element {
+        return app.find(id: "compose-message.body-text-input")
+    }
+
+    static var sendButton: Element {
+        return app.find(id: "compose-message.send")
+    }
 }
 
 enum MessageCourseSelection {
