@@ -218,6 +218,7 @@ public struct XCUIElementQueryWrapper: Element {
 
     /// returns true if this element, or any of its children have keyboard focus
     public func containsKeyboardFocusedElement(file: StaticString = #file, line: UInt = #line) -> Bool {
+        waitToExist(file: file, line: line)
         // For some reason, if we don't ask for a specific element type, then snapshots get confused...
         let q2 = query.matching(NSPredicate(format: "%K == %i", #keyPath(XCUIElement.elementType), elementType.rawValue))
         guard let snapshot = XCUIElementQueryWrapper(q2).snapshot else {
@@ -237,13 +238,12 @@ public struct XCUIElementQueryWrapper: Element {
 
     @discardableResult
     public func typeText(_ text: String, file: StaticString, line: UInt) -> Element {
-        var taps = 0
+        tap(file: file, line: line)
+        var taps = 1
         while !containsKeyboardFocusedElement(file: file, line: line), taps < 5 {
-            taps += 1
             tap(file: file, line: line)
-            if taps > 2 {
-                sleep(1)
-            }
+            taps += 1
+            sleep(1)
         }
         rawElement.typeText(text)
         return self

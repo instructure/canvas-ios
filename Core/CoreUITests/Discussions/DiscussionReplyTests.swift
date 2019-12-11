@@ -165,7 +165,7 @@ class DiscussionReplyTests: CoreUITestCase {
 
         Attachments.dismissButton.tap()
 
-        app.webViews.firstElement.typeText("Here's a nice picture I took")
+        RichContentEditor.editor.typeText("Here's a nice picture I took")
         DiscussionEditReply.doneButton.tapUntil {
             !DiscussionEditReply.doneButton.isVisible
         }

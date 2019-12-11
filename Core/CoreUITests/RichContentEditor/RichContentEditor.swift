@@ -21,4 +21,8 @@ import TestsFoundation
 
 enum RichContentEditor: String, CaseIterable, ElementWrapper {
     case webView
+
+    static var editor: Element {
+        app.find(label: "ZSSRichTextEditor")
+    }
 }
