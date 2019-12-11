@@ -293,6 +293,7 @@
 		61F438E31DD4E60B00552D14 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F438E21DD4E60B00552D14 /* AVFoundation.framework */; };
 		61F438E61DD667D900552D14 /* MLVCCollectionController+CBIRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = 61F438E41DD667D900552D14 /* MLVCCollectionController+CBIRefresh.h */; };
 		61F438E71DD667D900552D14 /* MLVCCollectionController+CBIRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F438E51DD667D900552D14 /* MLVCCollectionController+CBIRefresh.m */; };
+		7D0E22B923A19E430075E879 /* SubmissionDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0E22B823A19E430075E879 /* SubmissionDetailsViewControllerTests.swift */; };
 		7D14864E230EF4AF003944A2 /* TextSubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D14864D230EF4AF003944A2 /* TextSubmissionTests.swift */; };
 		7D148654230F0EAF003944A2 /* SubmissionButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D148653230F0EAF003944A2 /* SubmissionButtonTests.swift */; };
 		7D1D7E05213743D300F7CCFE /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; };
@@ -1008,6 +1009,7 @@
 		71D54F08318539FDBC0122EE /* Pods-defaults-Student.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Student.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Student/Pods-defaults-Student.release.xcconfig"; sourceTree = "<group>"; };
 		7D0C4EC21FE1CD3100AD3538 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D0C4EC41FE1CD3100AD3538 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D0E22B823A19E430075E879 /* SubmissionDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		7D14864D230EF4AF003944A2 /* TextSubmissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubmissionTests.swift; sourceTree = "<group>"; };
 		7D148653230F0EAF003944A2 /* SubmissionButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionButtonTests.swift; sourceTree = "<group>"; };
 		7D1669791FE1CCB10081482E /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -2698,6 +2700,7 @@
 			isa = PBXGroup;
 			children = (
 				7DCF0F2E22F8A096000AACCE /* SubmissionDetailsPresenterTests.swift */,
+				7D0E22B823A19E430075E879 /* SubmissionDetailsViewControllerTests.swift */,
 			);
 			path = SubmissionDetails;
 			sourceTree = "<group>";
@@ -4121,6 +4124,7 @@
 				97EF506E23A025E6008136F5 /* PeopleListViewControllerTests.swift in Sources */,
 				7DE1162122F8AB5C005BFE98 /* SubmissionDetailsPresenterTests.swift in Sources */,
 				7DE1161822F8AB5C005BFE98 /* QuizListPresenterTests.swift in Sources */,
+				7D0E22B923A19E430075E879 /* SubmissionDetailsViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
