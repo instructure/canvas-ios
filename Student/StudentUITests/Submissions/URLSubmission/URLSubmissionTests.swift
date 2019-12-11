@@ -18,6 +18,7 @@
 
 import Foundation
 @testable import Core
+@testable import CoreUITests
 import TestsFoundation
 import XCTest
 

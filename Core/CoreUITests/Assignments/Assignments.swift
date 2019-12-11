@@ -52,6 +52,14 @@ enum AssignmentsList {
     static func assignment(id: String) -> Element {
         return app.find(id: "assignment-list.assignment-list-row.cell-\(id)")
     }
+
+    static func assignmentName(id: String) -> Element {
+        return app.find(id: "assignment-list.assignment-list-row.cell-\(id).name")
+    }
+
+    static func assignmentDue(id: String) -> Element {
+        return app.find(id: "assignment-list.assignment-list-row.cell-\(id).due")
+    }
 }
 
 enum GradesList {

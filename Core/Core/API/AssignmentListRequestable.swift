@@ -221,3 +221,15 @@ extension APIAssignmentListAssignment {
         return image
     }
 }
+
+#if DEBUG
+extension APIAssignmentListResponse {
+    static func make(
+        gradingPeriods: [APIAssignmentListGradingPeriod],
+        groups: [APIAssignmentListGroup]
+    ) -> APIAssignmentListResponse {
+        .init(data: .init(course: .init(gradingPeriods: .init(nodes: gradingPeriods),
+                                        groups: .init(nodes: groups))))
+    }
+}
+#endif

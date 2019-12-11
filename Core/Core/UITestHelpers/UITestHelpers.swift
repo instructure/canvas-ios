@@ -148,7 +148,7 @@ public class UITestHelpers {
         case .useMocksOnly:
             MockDistantURLSession.setup()
         case .debug:
-            // insert ad-hoc debug code her
+            // insert ad-hoc debug code here
             ()
         case .mockNow(let date):
             Clock.mockNow(date)

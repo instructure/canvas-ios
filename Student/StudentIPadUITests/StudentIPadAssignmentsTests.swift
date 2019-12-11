@@ -23,15 +23,13 @@ import TestsFoundation
 
 class StudentIPadAssignmentsTest: CoreUITestCase {
     func assertHas(assignment: APIAssignment) {
-        let cell = AssignmentsList.assignment(id: assignment.id.value)
-        XCTAssertTrue(cell.label().contains(assignment.name))
-
+        let id = assignment.id.value
+        XCTAssertEqual(AssignmentsList.assignmentName(id: id).label(), assignment.name)
         if assignment.due_at != nil {
-            XCTAssertTrue(cell.label().contains("Due"))
+            XCTAssertTrue(AssignmentsList.assignmentDue(id: id).label().hasPrefix("Due"))
         } else {
-            XCTAssertTrue(cell.label().contains("No Due Date"))
+            XCTAssertTrue(AssignmentsList.assignmentDue(id: id).label().contains("No Due Date"))
         }
-        XCTAssertTrue(cell.isVisible)
     }
 
     func makeTextSubmission(score: Int? = nil, comments: [APISubmissionComment]? = nil) -> APISubmission {
@@ -107,16 +105,15 @@ class StudentIPadAssignmentsTest: CoreUITestCase {
                 label: "Assignments"
             ),
         ])
-        mockData(GetGradingPeriodsRequest(courseID: course.id), value: [])
-        mockData(GetAssignmentsRequest(courseID: course.id, orderBy: nil, include: [.all_dates, .discussion_topic, .observed_users, .overrides], perPage: nil), value: [
-            pointsTextAssignment,
-            letterGradeTextAssignment,
-            percentFileAssignment,
-        ])
-        let assignmentGroup = APIAssignmentGroup.make(assignments: [pointsTextAssignment, letterGradeTextAssignment, percentFileAssignment])
-        mockData(GetAssignmentGroupsRequest(courseID: course.id,
-                                            gradingPeriodID: "undefined",
-                                            include: [.assignments]), value: [assignmentGroup])
+        let group = APIAssignmentListGroup.make(
+            id: course.id,
+            name: "a group",
+            assignments: [pointsTextAssignment, letterGradeTextAssignment, percentFileAssignment].map {
+                APIAssignmentListAssignment(apiAssignment: $0)
+            }
+        )
+        mockData(AssignmentListRequestable(courseID: course.id.value, gradingPeriodID: nil),
+                 value: APIAssignmentListResponse.make(gradingPeriods: [], groups: [group]))
         logIn()
         Dashboard.courseCard(id: course.id).tap()
         CourseNavigation.assignments.tap()
@@ -125,7 +122,6 @@ class StudentIPadAssignmentsTest: CoreUITestCase {
         assertHas(assignment: percentFileAssignment)
 
         // Let's submit a text assignment
-        XCTAssertEqual(NavBar.title.label(), "Assignment Details")
         XCTAssertEqual(AssignmentDetails.name.label(), "Points Text Assignment")
 
         XCTAssertFalse(AssignmentDetails.submittedText.isVisible)
