@@ -60,7 +60,7 @@ private struct Submission {
             return NSLocalizedString("Excused", comment: "")
         }
 
-        if status.contains(.Graded), let postedAt = gradePostedAt, postedAt < Date() {
+        if status.contains(.Submitted), status.contains(.Graded), let postedAt = gradePostedAt, postedAt < Date() {
             guard let currentScore = currentScore else {
                 if status.contains(.Late) {
                     return NSLocalizedString("Late", comment: "")
@@ -100,7 +100,7 @@ private struct Submission {
     }
 
     var displayVerboseText: String {
-        if status.contains(.Graded), let postedAt = gradePostedAt, postedAt < Date() {
+        if status.contains(.Submitted), status.contains(.Graded), let postedAt = gradePostedAt, postedAt < Date() {
             guard let pointsPossible = pointsPossible, let score = currentScore else { return self.displayText }
             let percentage = pointsPossible != 0 ? Submission.percentFormatter.string(from: NSNumber(value: score.doubleValue/pointsPossible.doubleValue)) : ""
 
@@ -128,7 +128,7 @@ private struct Submission {
             return UIImage(named: "icon_alert_fill")
         }
 
-        if status.contains(.Graded) || status.contains(.Submitted) || status.contains(.Excused) {
+        if status.contains(.Submitted) || status.contains(.Excused) {
             return UIImage(named: "icon_checkmark_fill")
         }
 
@@ -144,7 +144,7 @@ private struct Submission {
             return UIColor.parentYellowColor()
         }
 
-        if status.contains(.Graded) || status.contains(.Submitted) || status.contains(.Excused) {
+        if status.contains(.Submitted) || status.contains(.Excused) {
             return UIColor.parentBlueColor()
         }
 
