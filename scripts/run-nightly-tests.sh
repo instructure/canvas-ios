@@ -110,7 +110,7 @@ function getTestResults {
     tests_failed_this_run=($(jq -r '.[] | select(.status == "Failure").id' $all_results_path)) || return $?
 
     if (( ${#tests_passed_this_run} + ${#tests_failed_this_run} == 0 )); then
-        echo "Couldn't find any test results... possibly a test class crashed in init somewhere?"
+        echo "Couldn't find any test results"
         crash_logs=($result_path/Staging/**/*.crash(N))
         banner "found ${#crash_logs} crash logs"
         for crash_log in $crash_logs; do
@@ -118,7 +118,6 @@ function getTestResults {
             cat $crash_log
         done
 
-        # Something more than flakiness is going on. List what tests haven't run and then fail
         setTestRunEnv $xctestrun LIST_TESTS_ONLY YES
         local flags=($destination_flag)
         flags+=(-xctestrun $xctestrun)
@@ -127,9 +126,6 @@ function getTestResults {
         done
         banner "UI Tests that didn't show up"
         { xcodebuild test-without-building $flags 2>/dev/null | grep '^UI_TEST: ' } || true
-
-        mergeResults
-        exit 1
     fi
 
     banner "${#tests_passed_this_run} tests passed"
