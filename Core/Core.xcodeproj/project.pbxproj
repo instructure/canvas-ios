@@ -597,6 +597,8 @@
 		B1AAFFFE226988440088BC20 /* UITableViewCellExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AAFFFD226988440088BC20 /* UITableViewCellExtensionsTests.swift */; };
 		B1AE17AE21877C37002995E6 /* APIEnrollmentRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AE17AD21877C36002995E6 /* APIEnrollmentRequestable.swift */; };
 		B1B140D823A04D1900EBF687 /* APIConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B140D723A04D1900EBF687 /* APIConversation.swift */; };
+		B1B140DA23A141A300EBF687 /* APIConversationRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B140D923A141A300EBF687 /* APIConversationRequestable.swift */; };
+		B1B140DC23A141D100EBF687 /* APIConversationRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B140DB23A141D100EBF687 /* APIConversationRequestableTests.swift */; };
 		B1B42C1622403AFD0087399A /* UploadManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B42C1522403AFD0087399A /* UploadManagerTests.swift */; };
 		B1B4C1C9219631AC00FA9E0E /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B4C1C8219631AC00FA9E0E /* EmptyView.xib */; };
 		B1B4C1CB219631B700FA9E0E /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B4C1CA219631B700FA9E0E /* EmptyView.swift */; };
@@ -1486,6 +1488,8 @@
 		B1AAFFFD226988440088BC20 /* UITableViewCellExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtensionsTests.swift; sourceTree = "<group>"; };
 		B1AE17AD21877C36002995E6 /* APIEnrollmentRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollmentRequestable.swift; sourceTree = "<group>"; };
 		B1B140D723A04D1900EBF687 /* APIConversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConversation.swift; sourceTree = "<group>"; };
+		B1B140D923A141A300EBF687 /* APIConversationRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConversationRequestable.swift; sourceTree = "<group>"; };
+		B1B140DB23A141D100EBF687 /* APIConversationRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConversationRequestableTests.swift; sourceTree = "<group>"; };
 		B1B42C1522403AFD0087399A /* UploadManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadManagerTests.swift; sourceTree = "<group>"; };
 		B1B4C1C8219631AC00FA9E0E /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
 		B1B4C1CA219631B700FA9E0E /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
@@ -2422,6 +2426,7 @@
 				B1A32BE12159A3100071B41E /* APIAssignmentRequestableTests.swift */,
 				7D63F787215D44A600151E49 /* APIBrandVariablesRequestableTests.swift */,
 				3B635B2E225CD7B3001F353D /* APICalendarEventsRequestableTests.swift */,
+				B1B140DB23A141D100EBF687 /* APIConversationRequestableTests.swift */,
 				7D80AC1C212B6B6200C40ECE /* APICourseRequestableTests.swift */,
 				7D64A97623676025004EAEDF /* APICourseSectionTests.swift */,
 				78151DCE21AE7E0500692862 /* APIDiscussionRequestableTests.swift */,
@@ -2513,6 +2518,7 @@
 				3B635B2A225CD298001F353D /* APICalendarEvent.swift */,
 				3B635B2C225CD377001F353D /* APICalendarRequestable.swift */,
 				B1B140D723A04D1900EBF687 /* APIConversation.swift */,
+				B1B140D923A141A300EBF687 /* APIConversationRequestable.swift */,
 				7D8262F6212B34F800BD268D /* APICourse.swift */,
 				7D8262EE212B228F00BD268D /* APICourseRequestable.swift */,
 				7D8262F8212B3B2000BD268D /* APICourseSection.swift */,
@@ -3874,6 +3880,7 @@
 				7DCF1EAA216BC1A5003AF358 /* CourseDefaultView.swift in Sources */,
 				7D63F77D215D31A600151E49 /* DynamicButton.swift in Sources */,
 				3B166A572343CEAF00B2EFAB /* HorizontalMenuViewController.swift in Sources */,
+				B1B140DA23A141A300EBF687 /* APIConversationRequestable.swift in Sources */,
 				B192833821C07A4E008D1B9B /* LoggerExtensions.swift in Sources */,
 				3B3FCA2A237F56210011F11A /* Activity.swift in Sources */,
 				5859512C0C1C81AC185D27D0 /* IPC.swift in Sources */,
@@ -4012,6 +4019,7 @@
 				B14D55612130B6740066D275 /* TestOperationQueue.swift in Sources */,
 				7D37BE9121C849D10063FAAC /* DocViewerPresenterTests.swift in Sources */,
 				7DC23092213D710000318ED0 /* UIImageViewExtensionsTests.swift in Sources */,
+				B1B140DC23A141D100EBF687 /* APIConversationRequestableTests.swift in Sources */,
 				7DB0A1B621BF168A009ABB40 /* LoginDelegateTests.swift in Sources */,
 				3B158CB322E16D0E0039A568 /* PageViewEventRequestManagerTests.swift in Sources */,
 				7DD694812194CE8C00BA4984 /* DateExtensionsTests.swift in Sources */,

@@ -111,7 +111,7 @@ class MockedInboxTests: CoreUITestCase {
             media_comment_id: nil,
             media_comment_type: nil,
             context_code: nil,
-            sendIndividually: false)
+            bulk_message: nil)
         ), value: after)
         logIn()
         TabBar.inboxTab.tap()
