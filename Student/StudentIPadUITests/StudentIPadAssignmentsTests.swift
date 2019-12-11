@@ -107,8 +107,8 @@ class StudentIPadAssignmentsTest: CoreUITestCase {
                 label: "Assignments"
             ),
         ])
-        mockData(GetGradingPeriodsRequest(courseID: course.id), value: APIGradingPeriodResponse(grading_periods: []))
-        mockData(GetAssignmentsRequest(courseID: course.id, orderBy: nil, include: [.all_dates, .discussion_topic, .observed_users, .overrides], querySize: nil), value: [
+        mockData(GetGradingPeriodsRequest(courseID: course.id), value: [])
+        mockData(GetAssignmentsRequest(courseID: course.id, orderBy: nil, include: [.all_dates, .discussion_topic, .observed_users, .overrides], perPage: nil), value: [
             pointsTextAssignment,
             letterGradeTextAssignment,
             percentFileAssignment,
