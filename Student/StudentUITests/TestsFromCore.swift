@@ -22,6 +22,7 @@ import Foundation
 class StudentAccountNotificationsTests: AccountNotificationsTests {}
 class StudentCourseGroupTests: CourseGroupTests {}
 class StudentInboxTests: InboxTests {}
+class StudentMockedInboxTests: MockedInboxTests {}
 class StudentDiscussionDetailsTests: DiscussionDetailsTests {}
 class StudentDiscussionEditTests: DiscussionEditTests {}
 class StudentDiscussionListTests: DiscussionListTests {}

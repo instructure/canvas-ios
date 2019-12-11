@@ -596,6 +596,7 @@
 		B1A8CD3A223766FA00E2242D /* UploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8CD39223766FA00E2242D /* UploadManager.swift */; };
 		B1AAFFFE226988440088BC20 /* UITableViewCellExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AAFFFD226988440088BC20 /* UITableViewCellExtensionsTests.swift */; };
 		B1AE17AE21877C37002995E6 /* APIEnrollmentRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AE17AD21877C36002995E6 /* APIEnrollmentRequestable.swift */; };
+		B1B140D823A04D1900EBF687 /* APIConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B140D723A04D1900EBF687 /* APIConversation.swift */; };
 		B1B42C1622403AFD0087399A /* UploadManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B42C1522403AFD0087399A /* UploadManagerTests.swift */; };
 		B1B4C1C9219631AC00FA9E0E /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B4C1C8219631AC00FA9E0E /* EmptyView.xib */; };
 		B1B4C1CB219631B700FA9E0E /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B4C1CA219631B700FA9E0E /* EmptyView.swift */; };
@@ -1484,6 +1485,7 @@
 		B1A8CD39223766FA00E2242D /* UploadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadManager.swift; sourceTree = "<group>"; };
 		B1AAFFFD226988440088BC20 /* UITableViewCellExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtensionsTests.swift; sourceTree = "<group>"; };
 		B1AE17AD21877C36002995E6 /* APIEnrollmentRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollmentRequestable.swift; sourceTree = "<group>"; };
+		B1B140D723A04D1900EBF687 /* APIConversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConversation.swift; sourceTree = "<group>"; };
 		B1B42C1522403AFD0087399A /* UploadManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadManagerTests.swift; sourceTree = "<group>"; };
 		B1B4C1C8219631AC00FA9E0E /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
 		B1B4C1CA219631B700FA9E0E /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
@@ -2510,6 +2512,7 @@
 				7D63F785215D3CE300151E49 /* APIBrandVariablesRequestable.swift */,
 				3B635B2A225CD298001F353D /* APICalendarEvent.swift */,
 				3B635B2C225CD377001F353D /* APICalendarRequestable.swift */,
+				B1B140D723A04D1900EBF687 /* APIConversation.swift */,
 				7D8262F6212B34F800BD268D /* APICourse.swift */,
 				7D8262EE212B228F00BD268D /* APICourseRequestable.swift */,
 				7D8262F8212B3B2000BD268D /* APICourseSection.swift */,
@@ -3839,6 +3842,7 @@
 				2C96485E211E3723002C3255 /* AppEnvironment.swift in Sources */,
 				B1AE17AE21877C37002995E6 /* APIEnrollmentRequestable.swift in Sources */,
 				7D08B1D22371E9EA0075623A /* FileDetailsViewController.swift in Sources */,
+				B1B140D823A04D1900EBF687 /* APIConversation.swift in Sources */,
 				3B35F06B230EEAA800674FF5 /* APIGraphQLRequestable.swift in Sources */,
 				7DAFBE74231871F500E9A37D /* ItemPickerViewController.swift in Sources */,
 				EE584C8022F2048D00D1E201 /* PageListCell.swift in Sources */,
