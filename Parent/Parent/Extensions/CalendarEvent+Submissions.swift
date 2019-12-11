@@ -60,12 +60,14 @@ private struct Submission {
             return NSLocalizedString("Excused", comment: "")
         }
 
-        if status.contains(.Submitted), status.contains(.Graded), let postedAt = gradePostedAt, postedAt < Date() {
+        if status.contains(.Graded), let postedAt = gradePostedAt, postedAt < Date() {
             guard let currentScore = currentScore else {
                 if status.contains(.Late) {
                     return NSLocalizedString("Late", comment: "")
-                } else {
+                } else if status.contains(.Submitted) {
                     return NSLocalizedString("Submitted", comment: "")
+                } else {
+                    return NSLocalizedString("Missing", comment: "")
                 }
             }
             let score = currentScore.doubleValue
@@ -79,8 +81,10 @@ private struct Submission {
 
             if status.contains(.Late) {
                 return String(format: NSLocalizedString("Late: %@", comment: ""), grade ?? "")
-            } else {
+            } else if status.contains(.Submitted) {
                 return String(format: NSLocalizedString("Submitted: %@", comment: ""), grade ?? "")
+            } else {
+                return String(format: NSLocalizedString("Missing: %@", comment: ""), grade ?? "")
             }
         } else if status.contains(.Submitted) {
             if status.contains(.Late) {
@@ -100,14 +104,16 @@ private struct Submission {
     }
 
     var displayVerboseText: String {
-        if status.contains(.Submitted), status.contains(.Graded), let postedAt = gradePostedAt, postedAt < Date() {
+        if status.contains(.Graded), let postedAt = gradePostedAt, postedAt < Date() {
             guard let pointsPossible = pointsPossible, let score = currentScore else { return self.displayText }
             let percentage = pointsPossible != 0 ? Submission.percentFormatter.string(from: NSNumber(value: score.doubleValue/pointsPossible.doubleValue)) : ""
 
             if status.contains(.Late) {
                 return String(format: NSLocalizedString("Late: %@ (%@/%@)", comment: ""), percentage ?? "", score, pointsPossible)
-            } else {
+            } else if status.contains(.Submitted) {
                 return String(format: NSLocalizedString("Submitted: %@ (%@/%@)", comment: ""), percentage ?? "", score, pointsPossible)
+            } else {
+                return String(format: NSLocalizedString("Missing: %@ (%@/%@)", comment: ""), percentage ?? "", score, pointsPossible)
             }
         } else if status.contains(.Submitted) {
             return displayText
