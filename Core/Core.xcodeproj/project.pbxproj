@@ -439,6 +439,7 @@
 		9767F2982383B846006633CA /* TokenLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9767F2972383B846006633CA /* TokenLabelView.swift */; };
 		97A486C42397826300084499 /* ProfileViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A486C32397826300084499 /* ProfileViewControllerTests.swift */; };
 		97A486CB239AB2ED00084499 /* SyllabusViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A486CA239AB2ED00084499 /* SyllabusViewControllerTests.swift */; };
+		97EF507623A2F4FA008136F5 /* SyllabusActionableItemsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97EF507523A2F4FA008136F5 /* SyllabusActionableItemsCell.xib */; };
 		9F0282392367526700700B41 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0282382367526700700B41 /* App.swift */; };
 		9F09A4CF22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F09A4CE22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift */; };
 		9F10A66B2293191200E3360C /* UserSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F10A66A2293191200E3360C /* UserSettingsTests.swift */; };
@@ -1334,6 +1335,7 @@
 		9767F2972383B846006633CA /* TokenLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenLabelView.swift; sourceTree = "<group>"; };
 		97A486C32397826300084499 /* ProfileViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerTests.swift; sourceTree = "<group>"; };
 		97A486CA239AB2ED00084499 /* SyllabusViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusViewControllerTests.swift; sourceTree = "<group>"; };
+		97EF507523A2F4FA008136F5 /* SyllabusActionableItemsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SyllabusActionableItemsCell.xib; sourceTree = "<group>"; };
 		9F0282382367526700700B41 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		9F09A4CE22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessInfoExtensionsTests.swift; sourceTree = "<group>"; };
 		9F10A66A2293191200E3360C /* UserSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsTests.swift; sourceTree = "<group>"; };
@@ -1968,6 +1970,7 @@
 				3BF34289233D2CA10095D0D3 /* SyllabusPresenter.swift */,
 				3BF3428B233D2CC00095D0D3 /* SyllabusViewController.swift */,
 				3BF3428D233D2D010095D0D3 /* SyllabusViewController.storyboard */,
+				97EF507523A2F4FA008136F5 /* SyllabusActionableItemsCell.xib */,
 			);
 			path = Syllabus;
 			sourceTree = "<group>";
@@ -3490,6 +3493,7 @@
 				7DD752A321BEFA8F00E26260 /* LoginManualOAuthViewController.storyboard in Resources */,
 				7DAFBE702318588000E9A37D /* ErrorReportViewController.storyboard in Resources */,
 				9FBE5356223AD1A4001EC40C /* DeveloperMenuViewController.storyboard in Resources */,
+				97EF507623A2F4FA008136F5 /* SyllabusActionableItemsCell.xib in Resources */,
 				7D101949215E8E5F0058FDD1 /* Assets.xcassets in Resources */,
 				7DD6CC6D21BD6DCD004C4BB6 /* LoadingViewController.storyboard in Resources */,
 				3BF3428E233D2D010095D0D3 /* SyllabusViewController.storyboard in Resources */,
