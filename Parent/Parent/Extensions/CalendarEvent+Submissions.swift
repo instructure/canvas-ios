@@ -64,8 +64,10 @@ private struct Submission {
             guard let currentScore = currentScore else {
                 if status.contains(.Late) {
                     return NSLocalizedString("Late", comment: "")
-                } else {
+                } else if status.contains(.Submitted) {
                     return NSLocalizedString("Submitted", comment: "")
+                } else {
+                    return NSLocalizedString("Missing", comment: "")
                 }
             }
             let score = currentScore.doubleValue
@@ -79,6 +81,8 @@ private struct Submission {
 
             if status.contains(.Late) {
                 return String(format: NSLocalizedString("Late: %@", comment: ""), grade ?? "")
+            } else if missing {
+                return String(format: NSLocalizedString("Missing: %@", comment: ""), grade ?? "")
             } else {
                 return String(format: NSLocalizedString("Submitted: %@", comment: ""), grade ?? "")
             }
@@ -89,10 +93,10 @@ private struct Submission {
                 return NSLocalizedString("Submitted", comment: "")
             }
         } else {
-            if onPaper {
-                return NSLocalizedString("In-Class", comment: "")
-            } else if missing {
+            if missing {
                 return NSLocalizedString("Missing", comment: "")
+            } else if onPaper {
+                return NSLocalizedString("In-Class", comment: "")
             } else {
                 return ""
             }
@@ -106,17 +110,19 @@ private struct Submission {
 
             if status.contains(.Late) {
                 return String(format: NSLocalizedString("Late: %@ (%@/%@)", comment: ""), percentage ?? "", score, pointsPossible)
+            } else if missing {
+                return String(format: NSLocalizedString("Missing: %@ (%@/%@)", comment: ""), percentage ?? "", score, pointsPossible)
             } else {
                 return String(format: NSLocalizedString("Submitted: %@ (%@/%@)", comment: ""), percentage ?? "", score, pointsPossible)
             }
         } else if status.contains(.Submitted) {
             return displayText
         } else {
-            if onPaper {
-                return NSLocalizedString("In-Class", comment: "")
-            } else if missing {
+            if missing {
                 guard let pointsPossible = pointsPossible else { return self.displayText }
                 return String(format: NSLocalizedString("Missing: (-/%@)", comment: ""), pointsPossible)
+            } else if onPaper {
+                return NSLocalizedString("In-Class", comment: "")
             } else {
                 return ""
             }
@@ -128,7 +134,7 @@ private struct Submission {
             return UIImage(named: "icon_alert_fill")
         }
 
-        if status.contains(.Graded) || status.contains(.Submitted) || status.contains(.Excused) {
+        if (status.contains(.Graded) && !missing) || status.contains(.Submitted) || status.contains(.Excused) {
             return UIImage(named: "icon_checkmark_fill")
         }
 
@@ -144,16 +150,16 @@ private struct Submission {
             return UIColor.parentYellowColor()
         }
 
-        if status.contains(.Graded) || status.contains(.Submitted) || status.contains(.Excused) {
+        if (status.contains(.Graded) && !missing) || status.contains(.Submitted) || status.contains(.Excused) {
             return UIColor.parentBlueColor()
-        }
-
-        if onPaper {
-            return UIColor.parentGreenColor()
         }
 
         if missing {
             return UIColor.parentRedColor()
+        }
+
+        if onPaper {
+            return UIColor.parentGreenColor()
         }
 
         return UIColor.parentLightGreyColor()
