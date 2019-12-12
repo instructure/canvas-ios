@@ -47,6 +47,19 @@ extension APIAssignmentListAssignment {
                                            submissionTypes: submissionTypes,
                                            quiz: quizID != nil ? APIAssignmentListAssignment.Quiz(id: quizID!) : nil)
     }
+
+    public init(apiAssignment assignment: APIAssignment) {
+        self = APIAssignmentListAssignment.make(
+            id: assignment.id,
+            name: assignment.name,
+            dueAt: assignment.due_at,
+            lockAt: assignment.lock_at,
+            unlockAt: assignment.unlock_at,
+            htmlUrl: assignment.html_url.absoluteString,
+            submissionTypes: assignment.submission_types,
+            quizID: assignment.quiz_id
+        )
+    }
 }
 
 extension APIAssignmentListGradingPeriod {

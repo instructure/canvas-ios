@@ -23,12 +23,22 @@ public struct GetTabsRequest: APIRequestable {
     public typealias Response = [APITab]
 
     let context: Context
+    let perPage: Int?
 
-    public init (context: Context) {
+    public init (context: Context, perPage: Int? = 100) {
         self.context = context
+        self.perPage = perPage
+    }
+
+    public var query: [APIQueryItem] {
+        var queryItems = [APIQueryItem]()
+        if let perPage = perPage {
+            queryItems.append(.value("per_page", "\(perPage)"))
+        }
+        return queryItems
     }
 
     public var path: String {
-        return "\(context.pathComponent)/tabs?per_page=100"
+        return "\(context.pathComponent)/tabs"
     }
 }

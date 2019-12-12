@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+// https://canvas.instructure.com/doc/api/assignment_groups.html#method.assignment_groups.index
 public struct GetAssignmentGroupsRequest: APIRequestable {
     public typealias Response = [APIAssignmentGroup]
 

@@ -315,7 +315,6 @@
 		7DC5718122F8B1CB00F2E9BB /* LoginStartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F4722F8A0A0000AACCE /* LoginStartTests.swift */; };
 		7DC5718222F8B1CB00F2E9BB /* test.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0F4922F8A0A0000AACCE /* test.m4a */; };
 		7DC5718322F8B1CB00F2E9BB /* empty.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0F4A22F8A0A0000AACCE /* empty.pdf */; };
-		7DC5718422F8B1CB00F2E9BB /* SubmissionComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F4C22F8A0A0000AACCE /* SubmissionComments.swift */; };
 		7DC5718522F8B1CB00F2E9BB /* SubmissionCommentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F4D22F8A0A0000AACCE /* SubmissionCommentsTests.swift */; };
 		7DC5718622F8B1CB00F2E9BB /* CommentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F4F22F8A0A0000AACCE /* CommentList.swift */; };
 		7DC5718722F8B1CB00F2E9BB /* DocViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F5022F8A0A0000AACCE /* DocViewer.swift */; };
@@ -324,7 +323,6 @@
 		7DC5718A22F8B1CB00F2E9BB /* SubmissionDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F5322F8A0A0000AACCE /* SubmissionDetailsTests.swift */; };
 		7DC5718B22F8B1CB00F2E9BB /* SubmissionFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F5522F8A0A0000AACCE /* SubmissionFiles.swift */; };
 		7DC5718C22F8B1CB00F2E9BB /* SubmissionFilesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F5622F8A0A0000AACCE /* SubmissionFilesTests.swift */; };
-		7DC5718D22F8B1CB00F2E9BB /* TextSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F5822F8A0A0000AACCE /* TextSubmission.swift */; };
 		7DC5718E22F8B1CB00F2E9BB /* URLSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F5A22F8A0A0000AACCE /* URLSubmission.swift */; };
 		7DC5718F22F8B1CB00F2E9BB /* URLSubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F5B22F8A0A0000AACCE /* URLSubmissionTests.swift */; };
 		7DC5719022F8B1CB00F2E9BB /* StudentUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F7522F8A0A0000AACCE /* StudentUITestCase.swift */; };
@@ -493,7 +491,8 @@
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
 		B5F122C91D8C4D6C0045063A /* Student.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 49642BCA1CF4C66200238B3F /* Student.entitlements */; };
 		DA5C72BF38BB22F39F7FB893 /* Pods_defaults_StudentUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DEFAEF2C9B9DFE5512CC77 /* Pods_defaults_StudentUnitTests.framework */; };
-		E8EA85FF2304959200E4FD76 /* Assignments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA85FD2304959200E4FD76 /* Assignments.swift */; };
+		E842BD4E23986440005ABC91 /* SpringBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E842BD4D23986440005ABC91 /* SpringBoard.swift */; };
+		E8BB310E23A17CF000B3B3B2 /* SpringBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB310D23A17CF000B3B3B2 /* SpringBoardTests.swift */; };
 		E8EA86002304959200E4FD76 /* AssignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA85FE2304959200E4FD76 /* AssignmentsTests.swift */; };
 		E8EA8603230495AC00E4FD76 /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA8602230495AB00E4FD76 /* CalendarTests.swift */; };
 		E8EA86072304960800E4FD76 /* Modules.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA86052304960800E4FD76 /* Modules.swift */; };
@@ -503,6 +502,12 @@
 		E8EA86142304980000E4FD76 /* QuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA86122304980000E4FD76 /* QuizTests.swift */; };
 		E8EA86152304980000E4FD76 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA86132304980000E4FD76 /* Quiz.swift */; };
 		E8EA86182304A39500E4FD76 /* DashboardEmptyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA86172304A39500E4FD76 /* DashboardEmptyTests.swift */; };
+		E8F68835239582B900A3F1CA /* StudentIPadAssignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F68834239582B900A3F1CA /* StudentIPadAssignmentsTests.swift */; };
+		E8F6883D2395850500A3F1CA /* CoreUITests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8AD066723035B0900D498ED /* CoreUITests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E8F6883E2395851000A3F1CA /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1BB7A9022BADAC1006CA068 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E8F6883F2395851E00A3F1CA /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EE221492040083E660 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E8F688402395851E00A3F1CA /* PSPDFKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EF221492040083E660 /* PSPDFKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E8F688412395852500A3F1CA /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D864FFF22B2A432006B0127 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8F6D0032304838C004347D9 /* TestsFromCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E879CF29230386CD00988DAB /* TestsFromCore.swift */; };
 		E8F6D00423048506004347D9 /* CoreUITests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8AD066723035B0900D498ED /* CoreUITests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F1FDF738C22DCB5A94323B15 /* Pods_defaults_Student.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CB0F553F9954BEE58A730D /* Pods_defaults_Student.framework */; };
@@ -560,6 +565,13 @@
 			remoteGlobalIDString = 492704721CF4AF7100C631C6;
 			remoteInfo = Canvas;
 		};
+		E8F68837239582B900A3F1CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4927046B1CF4AF7100C631C6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 492704721CF4AF7100C631C6;
+			remoteInfo = Student;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -601,6 +613,21 @@
 				7DC5719322F8B42900F2E9BB /* PSPDFKit.framework in Embed Frameworks */,
 				7DC5719422F8B42F00F2E9BB /* PSPDFKitUI.framework in Embed Frameworks */,
 				7DC5719522F8B43800F2E9BB /* TestsFoundation.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8F6883C239584CA00A3F1CA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E8F6883D2395850500A3F1CA /* CoreUITests.framework in Embed Frameworks */,
+				E8F6883E2395851000A3F1CA /* Core.framework in Embed Frameworks */,
+				E8F6883F2395851E00A3F1CA /* PSPDFKit.framework in Embed Frameworks */,
+				E8F688402395851E00A3F1CA /* PSPDFKitUI.framework in Embed Frameworks */,
+				E8F688412395852500A3F1CA /* TestsFoundation.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1196,7 +1223,6 @@
 		7DCF0F4722F8A0A0000AACCE /* LoginStartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartTests.swift; sourceTree = "<group>"; };
 		7DCF0F4922F8A0A0000AACCE /* test.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.m4a; sourceTree = "<group>"; };
 		7DCF0F4A22F8A0A0000AACCE /* empty.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = empty.pdf; sourceTree = "<group>"; };
-		7DCF0F4C22F8A0A0000AACCE /* SubmissionComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionComments.swift; sourceTree = "<group>"; };
 		7DCF0F4D22F8A0A0000AACCE /* SubmissionCommentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentsTests.swift; sourceTree = "<group>"; };
 		7DCF0F4F22F8A0A0000AACCE /* CommentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentList.swift; sourceTree = "<group>"; };
 		7DCF0F5022F8A0A0000AACCE /* DocViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewer.swift; sourceTree = "<group>"; };
@@ -1205,7 +1231,6 @@
 		7DCF0F5322F8A0A0000AACCE /* SubmissionDetailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsTests.swift; sourceTree = "<group>"; };
 		7DCF0F5522F8A0A0000AACCE /* SubmissionFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFiles.swift; sourceTree = "<group>"; };
 		7DCF0F5622F8A0A0000AACCE /* SubmissionFilesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFilesTests.swift; sourceTree = "<group>"; };
-		7DCF0F5822F8A0A0000AACCE /* TextSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubmission.swift; sourceTree = "<group>"; };
 		7DCF0F5A22F8A0A0000AACCE /* URLSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSubmission.swift; sourceTree = "<group>"; };
 		7DCF0F5B22F8A0A0000AACCE /* URLSubmissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSubmissionTests.swift; sourceTree = "<group>"; };
 		7DCF0F5E22F8A0A0000AACCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1426,11 +1451,12 @@
 		BEDDBB798D4D4EA95C1F9796 /* Pods-defaults-StudentUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-StudentUnitTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-StudentUnitTests/Pods-defaults-StudentUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C2AB6A9FA96CE49682022ACB /* Pods_defaults_CanvasKit1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasKit1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8523687029A98FE14374D90 /* Pods-defaults-CanvasKit1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKit1.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasKit1/Pods-defaults-CanvasKit1.release.xcconfig"; sourceTree = "<group>"; };
+		E842BD4D23986440005ABC91 /* SpringBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringBoard.swift; sourceTree = "<group>"; };
 		E879CF29230386CD00988DAB /* TestsFromCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsFromCore.swift; sourceTree = "<group>"; };
 		E8AD06612303545300D498ED /* CoreUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8AD066523035AD700D498ED /* CoreUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8AD066723035B0900D498ED /* CoreUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E8EA85FD2304959200E4FD76 /* Assignments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assignments.swift; sourceTree = "<group>"; };
+		E8BB310D23A17CF000B3B3B2 /* SpringBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringBoardTests.swift; sourceTree = "<group>"; };
 		E8EA85FE2304959200E4FD76 /* AssignmentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentsTests.swift; sourceTree = "<group>"; };
 		E8EA8602230495AB00E4FD76 /* CalendarTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTests.swift; sourceTree = "<group>"; };
 		E8EA86052304960800E4FD76 /* Modules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modules.swift; sourceTree = "<group>"; };
@@ -1440,6 +1466,9 @@
 		E8EA86122304980000E4FD76 /* QuizTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizTests.swift; sourceTree = "<group>"; };
 		E8EA86132304980000E4FD76 /* Quiz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		E8EA86172304A39500E4FD76 /* DashboardEmptyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardEmptyTests.swift; sourceTree = "<group>"; };
+		E8F68832239582B900A3F1CA /* StudentIPadUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudentIPadUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8F68834239582B900A3F1CA /* StudentIPadAssignmentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentIPadAssignmentsTests.swift; sourceTree = "<group>"; };
+		E8F68836239582B900A3F1CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E95379D1460BDF2C6A9F2EEE /* Pods-defaults-TechDebt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TechDebt.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-TechDebt/Pods-defaults-TechDebt.release.xcconfig"; sourceTree = "<group>"; };
 		F9A705E826B362C3490B4183 /* Pods-defaults-common_tests-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 		F9B946EE221492040083E660 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../Carthage/Build/iOS/PSPDFKit.framework; sourceTree = "<group>"; };
@@ -1547,6 +1576,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E8F6882F239582B900A3F1CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -1600,6 +1636,7 @@
 				492704751CF4AF7100C631C6 /* Student */,
 				7DCF0F3922F8A096000AACCE /* StudentUnitTests */,
 				7DCF0F7622F8A0A0000AACCE /* StudentUITests */,
+				E8F68833239582B900A3F1CA /* StudentIPadUITests */,
 				7DC1140E22F9E276000B19AE /* Canvas */,
 				492704AC1CF4B6D700C631C6 /* TechDebt */,
 				49AA29181CF4D1880055862D /* CanvasKit1 */,
@@ -1624,6 +1661,7 @@
 				B1CA092E22C4237C008AA352 /* SubmitAssignmentTests.xctest */,
 				7DE1160722F8AAB1005BFE98 /* StudentUnitTests.xctest */,
 				7DC5717022F8B16200F2E9BB /* StudentUITests.xctest */,
+				E8F68832239582B900A3F1CA /* StudentIPadUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2758,7 +2796,6 @@
 		7DCF0F3D22F8A0A0000AACCE /* Assignments */ = {
 			isa = PBXGroup;
 			children = (
-				E8EA85FD2304959200E4FD76 /* Assignments.swift */,
 				E8EA85FE2304959200E4FD76 /* AssignmentsTests.swift */,
 				7DCF0F3B22F8A0A0000AACCE /* AssignmentDetailsTests.swift */,
 			);
@@ -2819,7 +2856,6 @@
 		7DCF0F4E22F8A0A0000AACCE /* SubmissionComments */ = {
 			isa = PBXGroup;
 			children = (
-				7DCF0F4C22F8A0A0000AACCE /* SubmissionComments.swift */,
 				7DCF0F4D22F8A0A0000AACCE /* SubmissionCommentsTests.swift */,
 			);
 			path = SubmissionComments;
@@ -2849,7 +2885,6 @@
 		7DCF0F5922F8A0A0000AACCE /* TextSubmission */ = {
 			isa = PBXGroup;
 			children = (
-				7DCF0F5822F8A0A0000AACCE /* TextSubmission.swift */,
 				7D14864D230EF4AF003944A2 /* TextSubmissionTests.swift */,
 			);
 			path = TextSubmission;
@@ -3034,6 +3069,15 @@
 			path = "Module Items";
 			sourceTree = "<group>";
 		};
+		E842BD4C23986426005ABC91 /* SpringBoard */ = {
+			isa = PBXGroup;
+			children = (
+				E842BD4D23986440005ABC91 /* SpringBoard.swift */,
+				E8BB310D23A17CF000B3B3B2 /* SpringBoardTests.swift */,
+			);
+			path = SpringBoard;
+			sourceTree = "<group>";
+		};
 		E8EA8601230495AB00E4FD76 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -3082,6 +3126,16 @@
 				E8EA86172304A39500E4FD76 /* DashboardEmptyTests.swift */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		E8F68833239582B900A3F1CA /* StudentIPadUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E842BD4C23986426005ABC91 /* SpringBoard */,
+				E8F68834239582B900A3F1CA /* StudentIPadAssignmentsTests.swift */,
+				E8F68836239582B900A3F1CA /* Info.plist */,
+			);
+			path = StudentIPadUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3369,13 +3423,32 @@
 			productReference = B1CA092E22C4237C008AA352 /* SubmitAssignmentTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		E8F68831239582B900A3F1CA /* StudentIPadUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8F6883B239582B900A3F1CA /* Build configuration list for PBXNativeTarget "StudentIPadUITests" */;
+			buildPhases = (
+				E8F6882E239582B900A3F1CA /* Sources */,
+				E8F6882F239582B900A3F1CA /* Frameworks */,
+				E8F68830239582B900A3F1CA /* Resources */,
+				E8F6883C239584CA00A3F1CA /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E8F68838239582B900A3F1CA /* PBXTargetDependency */,
+			);
+			name = StudentIPadUITests;
+			productName = StudentIPadUITests;
+			productReference = E8F68832239582B900A3F1CA /* StudentIPadUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		4927046B1CF4AF7100C631C6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
@@ -3455,6 +3528,10 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 492704721CF4AF7100C631C6;
 					};
+					E8F68831239582B900A3F1CA = {
+						CreatedOnToolsVersion = 11.2.1;
+						TestTargetID = 492704721CF4AF7100C631C6;
+					};
 				};
 			};
 			buildConfigurationList = 4927046E1CF4AF7100C631C6 /* Build configuration list for PBXProject "Student" */;
@@ -3525,6 +3602,7 @@
 				B1CA092D22C4237C008AA352 /* SubmitAssignmentTests */,
 				7DE1160622F8AAB1005BFE98 /* StudentUnitTests */,
 				7DC5716F22F8B16200F2E9BB /* StudentUITests */,
+				E8F68831239582B900A3F1CA /* StudentIPadUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -3636,6 +3714,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B1CA092C22C4237C008AA352 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8F68830239582B900A3F1CA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -4071,7 +4156,6 @@
 				7DC5718A22F8B1CB00F2E9BB /* SubmissionDetailsTests.swift in Sources */,
 				7DC5718022F8B1CB00F2E9BB /* LoginFindSchoolTests.swift in Sources */,
 				7DC5719022F8B1CB00F2E9BB /* StudentUITestCase.swift in Sources */,
-				7DC5718422F8B1CB00F2E9BB /* SubmissionComments.swift in Sources */,
 				7DC5717C22F8B1CB00F2E9BB /* AudioRecorder.swift in Sources */,
 				7DC5718C22F8B1CB00F2E9BB /* SubmissionFilesTests.swift in Sources */,
 				E8F6D0032304838C004347D9 /* TestsFromCore.swift in Sources */,
@@ -4088,9 +4172,7 @@
 				E8EA86082304960800E4FD76 /* ModulesTests.swift in Sources */,
 				7DC5717B22F8B1CB00F2E9BB /* AssignmentDetailsTests.swift in Sources */,
 				7D14864E230EF4AF003944A2 /* TextSubmissionTests.swift in Sources */,
-				7DC5718D22F8B1CB00F2E9BB /* TextSubmission.swift in Sources */,
 				7DC5718822F8B1CB00F2E9BB /* PSPDFDoc.swift in Sources */,
-				E8EA85FF2304959200E4FD76 /* Assignments.swift in Sources */,
 				7DC5718622F8B1CB00F2E9BB /* CommentList.swift in Sources */,
 				E8EA86152304980000E4FD76 /* Quiz.swift in Sources */,
 				E8EA86182304A39500E4FD76 /* DashboardEmptyTests.swift in Sources */,
@@ -4159,6 +4241,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E8F6882E239582B900A3F1CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E842BD4E23986440005ABC91 /* SpringBoard.swift in Sources */,
+				E8F68835239582B900A3F1CA /* StudentIPadAssignmentsTests.swift in Sources */,
+				E8BB310E23A17CF000B3B3B2 /* SpringBoardTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -4196,6 +4288,11 @@
 			isa = PBXTargetDependency;
 			target = 492704721CF4AF7100C631C6 /* Student */;
 			targetProxy = B1CA093322C4237C008AA352 /* PBXContainerItemProxy */;
+		};
+		E8F68838239582B900A3F1CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 492704721CF4AF7100C631C6 /* Student */;
+			targetProxy = E8F68837239582B900A3F1CA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -5219,6 +5316,62 @@
 			};
 			name = Release;
 		};
+		E8F68839239582B900A3F1CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = StudentIPadUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.StudentIPadUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Student;
+			};
+			name = Debug;
+		};
+		E8F6883A239582B900A3F1CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = StudentIPadUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.StudentIPadUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Student;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -5299,6 +5452,15 @@
 			buildConfigurations = (
 				B1CA093522C4237D008AA352 /* Debug */,
 				B1CA093622C4237D008AA352 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8F6883B239582B900A3F1CA /* Build configuration list for PBXNativeTarget "StudentIPadUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8F68839239582B900A3F1CA /* Debug */,
+				E8F6883A239582B900A3F1CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

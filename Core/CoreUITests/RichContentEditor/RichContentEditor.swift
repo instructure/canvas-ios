@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2016-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,15 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-@testable import Core
+import Foundation
+import TestsFoundation
 
-class APITabRequestableTests: XCTestCase {
-    func testGetTabsRequest() {
-        XCTAssertEqual(GetTabsRequest(context: ContextModel(.course, id: "2")).path, "courses/2/tabs")
-    }
+enum RichContentEditor: String, CaseIterable, ElementWrapper {
+    case webView
 
-    func testGetGroupTabsRequest() {
-        XCTAssertEqual(GetTabsRequest(context: ContextModel(.group, id: "3")).path, "groups/3/tabs")
+    static var editor: Element {
+        app.find(label: "ZSSRichTextEditor")
     }
 }

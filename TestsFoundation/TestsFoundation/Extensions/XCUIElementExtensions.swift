@@ -19,26 +19,24 @@
 import Foundation
 import XCTest
 
-// warning: These functions will actually use `app` for finding elements,
-// so will only function properly on the test target app.
-public extension XCUIApplication {
+public extension XCUIElement {
     func find(label: String, type: XCUIElement.ElementType = .any) -> Element {
-        return app.descendants(matching: type).matching(label: label).firstElement
+        return descendants(matching: type).matching(label: label).firstElement
     }
 
     func find(labelContaining needle: String, type: XCUIElement.ElementType = .any) -> Element {
-        return app.descendants(matching: type).matching(labelContaining: needle).firstElement
+        return descendants(matching: type).matching(labelContaining: needle).firstElement
     }
 
     func find(id: String, type: XCUIElement.ElementType = .any) -> Element {
-        return app.descendants(matching: type).matching(id: id).firstElement
+        return descendants(matching: type).matching(id: id).firstElement
     }
 
     func find(value: String, type: XCUIElement.ElementType = .any) -> Element {
-        return app.descendants(matching: type).matching(value: value).firstElement
+        return descendants(matching: type).matching(value: value).firstElement
     }
 
     func find(type: XCUIElement.ElementType, index: Int = 0) -> Element {
-        return XCUIElementQueryWrapper(app.descendants(matching: type), index: index)
+        return XCUIElementQueryWrapper(descendants(matching: type), index: index)
     }
 }

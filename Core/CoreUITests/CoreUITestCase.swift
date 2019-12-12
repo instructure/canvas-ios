@@ -152,7 +152,7 @@ open class CoreUITestCase: XCTestCase {
         app.find(labelContaining: "Loading").waitToVanish(120)
     }
 
-    func send(_ helper: UITestHelpers.Helper, ignoreErrors: Bool = false) {
+    open func send(_ helper: UITestHelpers.Helper, ignoreErrors: Bool = false) {
         do {
             if let response = try ipcAppClient.requestRemote(helper),
                 !response.isEmpty {
@@ -225,8 +225,9 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open func pullToRefresh() {
-        app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
-            .press(forDuration: 0.05, thenDragTo: app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.9)))
+        let window = app.find(type: .window)
+        window.relativeCoordinate(x: 0.5, y: 0.5)
+            .press(forDuration: 0.05, thenDragTo: window.relativeCoordinate(x: 0.5, y: 1.0))
     }
 
     open func allowAccessToPhotos(block: () -> Void) {
@@ -316,7 +317,8 @@ open class CoreUITestCase: XCTestCase {
             .totalScores,
         ]), value: course)
         mockData(GetEnabledFeatureFlagsRequest(context: ContextModel(.course, id: course.id)), value: ["rce_enhancements"])
-        mockEncodableRequest("courses/\(course.id)/external_tools?per_page=99&include_parents=true", value: [String]())
+        mockEncodableRequest("courses/\(course.id)/external_tools?include_parents=true&per_page=99", value: [String]())
+        mockEncodableRequest("courses/\(course.id)/external_tools?include_parents=true", value: [String]())
         return course
     }
 
@@ -334,7 +336,18 @@ open class CoreUITestCase: XCTestCase {
         return assignment
     }
 
-    lazy var baseEnrollment = APIEnrollment.make(
+    @discardableResult
+    open func mock(courses: [APICourse]) -> [APICourse] {
+        courses.forEach { mock(course: $0) }
+        var state: [GetCoursesRequest.State] = [.available, .completed]
+        if Bundle.main.isTeacherApp {
+            state.append(.unpublished)
+        }
+        mockData(GetCoursesRequest(enrollmentState: nil, state: state), value: courses)
+        return courses
+    }
+
+    open lazy var baseEnrollment = APIEnrollment.make(
         type: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
         role: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
     )
@@ -342,32 +355,22 @@ open class CoreUITestCase: XCTestCase {
 
     open func mockBaseRequests() {
         mockData(GetUserRequest(userID: "self"), value: APIUser.make())
-        mockURL(URL(string: "https://canvas.instructure.com/api/v1/users/self/profile?per_page=50")!,
-                data: #"{"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}"#.data(using: .utf8)) // CKIClient.fetchCurrentUser
-        mockRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile")!),
-                        data: #"{"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}"#.data(using: .utf8))
+        mockEncodableRequest("users/self/profile?per_page=50", value: APIUser.make()) // CKIClient.fetchCurrentUser
+        mockEncodableRequest("users/self/profile", value: APIUser.make())
         mockData(GetWebSessionRequest(to: URL(string: "https://canvas.instructure.com/users/self"))) // cookie keepalive
-        mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [:]))
+        mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: ["course_1": "#5F4DCE"]))
         mockData(GetBrandVariablesRequest(), value: APIBrandVariables.make())
         mockData(GetUserSettingsRequest(userID: "self"), value: APIUserSettings.make())
         mockData(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: .make())
         mockData(GetAccountNotificationsRequest(), value: [])
-        var state: [GetCoursesRequest.State] = [.available, .completed]
-        if Bundle.main.isTeacherApp {
-            state.append(.unpublished)
-        }
-        mockData(GetCoursesRequest(enrollmentState: nil, state: state), value: [ baseCourse ])
+        mock(courses: [ baseCourse ])
+        mockData(GetDashboardCardsRequest(), value: [APIDashboardCard.make()])
         mockEncodableRequest("users/self/custom_data/favorites/groups?ns=com.canvas.canvas-app", value: [String: String]())
         mockEncodableRequest("users/self/enrollments?include[]=avatar_url", value: [baseEnrollment])
         mockEncodableRequest("users/self/groups", value: [String]())
         mockEncodableRequest("users/self/todo_item_count", value: ["needs_grading_count": 0])
         mockEncodableRequest("users/self/todo", value: [String]())
         mockEncodableRequest("conversations/unread_count", value: ["unread_count": 0])
-        mockEncodableRequest("dashboard/dashboard_cards", value: [String]())
-
-        let pixel = UIImage(data: Data(base64Encoded: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=")!)!
-        mockURL(URL(string: "https://instructure-uploads.s3.amazonaws.com/account_70000000000010/attachments/64473710/canvas_logomark_only2x.png")!,
-                data: pixel.pngData()!)
     }
 
     open func mockURL(

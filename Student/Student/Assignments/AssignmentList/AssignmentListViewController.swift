@@ -278,9 +278,14 @@ extension AssignmentListViewController: UITableViewDataSource, UITableViewDelega
             cell.imageView?.image = a?.icon
             cell.imageView?.tintColor = color
             if let id = a?.id {
-                cell.accessibilityIdentifier = "assignment-list.assignment-list-row.cell-\(id)"
+                let cellId = "assignment-list.assignment-list-row.cell-\(id)"
+                cell.accessibilityIdentifier = cellId
+                cell.textLabel?.accessibilityIdentifier = "\(cellId).name"
+                cell.detailTextLabel?.accessibilityIdentifier = "\(cellId).due"
             } else {
                 cell.accessibilityIdentifier = nil
+                cell.textLabel?.accessibilityIdentifier = nil
+                cell.detailTextLabel?.accessibilityIdentifier = nil
             }
         }
         return cell

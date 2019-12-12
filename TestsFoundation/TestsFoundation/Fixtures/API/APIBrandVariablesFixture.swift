@@ -27,7 +27,7 @@ extension APIBrandVariables {
         button_secondary_text: String? = "#ffffff",
         font_color_dark: String? = "#2D3B45",
         header_image_bgd: String? = "#394B58",
-        header_image: URL? = URL(string: "https://instructure-uploads.s3.amazonaws.com/account_70000000000010/attachments/64473710/canvas_logomark_only2x.png"),
+        header_image: URL? = nil,
         link_color: String? = "#008EE2",
         nav_badge_bgd: String? = "#008EE2",
         nav_badge_text: String? = "#ffffff",

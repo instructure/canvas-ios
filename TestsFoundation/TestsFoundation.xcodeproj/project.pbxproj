@@ -52,7 +52,7 @@
 		7DA667F223835F220062F7B9 /* TodoFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA667F123835F220062F7B9 /* TodoFixture.swift */; };
 		7DA667F923845A720062F7B9 /* APITodoFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA667F823845A720062F7B9 /* APITodoFixture.swift */; };
 		7DAC287A22B199D100C0B692 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAC287522B199D100C0B692 /* Element.swift */; };
-		7DAC288022B1A3F900C0B692 /* XCUIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAC287F22B1A3F900C0B692 /* XCUIApplicationExtensions.swift */; };
+		7DAC288022B1A3F900C0B692 /* XCUIElementExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAC287F22B1A3F900C0B692 /* XCUIElementExtensions.swift */; };
 		7DAC288622B1AE1700C0B692 /* ElementWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAC288522B1AE1700C0B692 /* ElementWrapper.swift */; };
 		7DB0A1C921C07F39009ABB40 /* APIUserFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1C821C07F39009ABB40 /* APIUserFixture.swift */; };
 		7DB0A1CE21C16D5A009ABB40 /* KeychainEntryFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1CD21C16D5A009ABB40 /* KeychainEntryFixture.swift */; };
@@ -151,7 +151,7 @@
 		7DA667F823845A720062F7B9 /* APITodoFixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APITodoFixture.swift; sourceTree = "<group>"; };
 		7DAC287522B199D100C0B692 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		7DAC287D22B19D5C00C0B692 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		7DAC287F22B1A3F900C0B692 /* XCUIApplicationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIApplicationExtensions.swift; sourceTree = "<group>"; };
+		7DAC287F22B1A3F900C0B692 /* XCUIElementExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIElementExtensions.swift; sourceTree = "<group>"; };
 		7DAC288522B1AE1700C0B692 /* ElementWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementWrapper.swift; sourceTree = "<group>"; };
 		7DB0A1C821C07F39009ABB40 /* APIUserFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUserFixture.swift; sourceTree = "<group>"; };
 		7DB0A1CD21C16D5A009ABB40 /* KeychainEntryFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainEntryFixture.swift; sourceTree = "<group>"; };
@@ -361,7 +361,7 @@
 			children = (
 				3B84C391218BB102005946BA /* DateExtensions.swift */,
 				B1D5EF612358E01200B3ACD3 /* URLAuthenticationChallengeExtensions.swift */,
-				7DAC287F22B1A3F900C0B692 /* XCUIApplicationExtensions.swift */,
+				7DAC287F22B1A3F900C0B692 /* XCUIElementExtensions.swift */,
 				E8BE4F5B233E73E100DC399A /* XCUIElementQueryExtensions.swift */,
 				E818EF20234652A20035613A /* XCTestCaseExtensions.swift */,
 				B11AAC362379E6C3002BC41F /* URLResponseExtensions.swift */,
@@ -605,7 +605,7 @@
 				B11AAC372379E6C3002BC41F /* URLResponseExtensions.swift in Sources */,
 				B150C6362298D67E0096D58C /* ExternalToolFixture.swift in Sources */,
 				7DBED034233409D900392F3C /* TestLoginDelegate.swift in Sources */,
-				7DAC288022B1A3F900C0B692 /* XCUIApplicationExtensions.swift in Sources */,
+				7DAC288022B1A3F900C0B692 /* XCUIElementExtensions.swift in Sources */,
 				EE424B3822E8E72D00D083EE /* APIPageFixture.swift in Sources */,
 				7DC4A557222EF9A800FA03DC /* APIDiscussionEntryFixture.swift in Sources */,
 				B1A32BDE2159A1D70071B41E /* APIAssignmentFixture.swift in Sources */,
