@@ -65,6 +65,12 @@ let router = Router(routes: [
         return try? AnnouncementDetailsViewController(session: session, studentID: studentID, courseID: courseID, announcementID: topicID)
     },
 
+    RouteHandler(.actionableItemCalendarEvent(eventID: ":eventID")) { _, params in
+        guard  let eventID = params["eventID"] else { return nil }
+        guard let session = legacySession, let studentID = currentStudentID else { return nil }
+        return try? CalendarEventDetailsViewController(session: session, studentID: studentID, calendarEventID: eventID)
+    },
+
     RouteHandler(.profile) { _, _ in
         return ProfileViewController.create(enrollment: .observer)
     },

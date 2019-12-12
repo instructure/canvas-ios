@@ -58,6 +58,10 @@ public struct Route: Equatable {
         return Route("/courses/\(courseID)/calendar_events/\(eventID)")
     }
 
+    public static func actionableItemCalendarEvent(eventID: String) -> Route {
+        return Route("/calendar_events/\(eventID)")
+    }
+
     public static func courseDiscussion(courseID: String, topicID: String) -> Route {
         return Route("/courses/\(courseID)/discussion_topics/\(topicID)")
     }
