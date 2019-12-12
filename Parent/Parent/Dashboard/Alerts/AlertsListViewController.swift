@@ -82,7 +82,9 @@ class AlertsListViewController: FetchedTableViewController<Alert> {
         alert.markAsRead(session)
         self.tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
 
-        if let assetPath = alert.assetPath {
+        if [.courseGradeLow, .courseGradeHigh].contains(alert.type) {
+            AppEnvironment.shared.router.route(to: .courseGrades(alert.courseID ?? alert.contextID ?? ""), from: self, options: [.modal, .embedInNav, .addDoneButton])
+        } else if let assetPath = alert.assetPath {
             AppEnvironment.shared.router.route(to: assetPath, from: self, options: [.modal, .embedInNav, .addDoneButton])
         } else if alert.type == .institutionAnnouncement, let announcementID = alert.contextID {
             AppEnvironment.shared.router.route(to: .accountNotification(announcementID), from: self, options: [.modal, .embedInNav, .addDoneButton])
