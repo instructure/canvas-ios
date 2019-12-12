@@ -93,10 +93,10 @@ private struct Submission {
                 return NSLocalizedString("Submitted", comment: "")
             }
         } else {
-            if onPaper {
-                return NSLocalizedString("In-Class", comment: "")
-            } else if missing {
+            if missing {
                 return NSLocalizedString("Missing", comment: "")
+            } else if onPaper {
+                return NSLocalizedString("In-Class", comment: "")
             } else {
                 return ""
             }
@@ -118,11 +118,11 @@ private struct Submission {
         } else if status.contains(.Submitted) {
             return displayText
         } else {
-            if onPaper {
-                return NSLocalizedString("In-Class", comment: "")
-            } else if missing {
+            if missing {
                 guard let pointsPossible = pointsPossible else { return self.displayText }
                 return String(format: NSLocalizedString("Missing: (-/%@)", comment: ""), pointsPossible)
+            } else if onPaper {
+                return NSLocalizedString("In-Class", comment: "")
             } else {
                 return ""
             }
@@ -154,12 +154,12 @@ private struct Submission {
             return UIColor.parentBlueColor()
         }
 
-        if onPaper {
-            return UIColor.parentGreenColor()
-        }
-
         if missing {
             return UIColor.parentRedColor()
+        }
+
+        if onPaper {
+            return UIColor.parentGreenColor()
         }
 
         return UIColor.parentLightGreyColor()
