@@ -60,7 +60,7 @@ public class Grades {
         assignments = env.subscribe(scope: .grades(courseID: courseID)) { [weak self] in
             self?.notify()
         }
-        enrollments = env.subscribe(scope: .activeStudentEnrollment(userID: userID)) { [weak self] in
+        enrollments = env.subscribe(scope: .activeStudentEnrollment(courseID: courseID, userID: userID)) { [weak self] in
             self?.notify()
         }
         gradingPeriods = env.subscribe(scope: .gradingPeriods(courseID: courseID)) { [weak self] in
@@ -164,9 +164,11 @@ public class Grades {
                         NSPredicate(format: "%K == %@", #keyPath(Enrollment.userID), item.user_id),
                         NSPredicate(format: "%K == %@", #keyPath(Enrollment.roleID), item.role_id),
                         NSPredicate(format: "%K == %@", #keyPath(Enrollment.role), item.role),
+                        NSPredicate(format: "%K == %@", #keyPath(Enrollment.course.id), self.courseID),
                     ])
                     let enrollment: Enrollment = context.fetch(predicate).first ?? context.insert()
-                    enrollment.update(fromApiModel: item, course: nil, gradingPeriodID: gradingPeriodID, in: context)
+                    let course = (context.all(where: #keyPath(Course.id), equals: self.courseID) as [Course]).first
+                    enrollment.update(fromApiModel: item, course: course, gradingPeriodID: gradingPeriodID, in: context)
                 }
                 do {
                     try context.save()
@@ -266,8 +268,9 @@ extension Scope {
         )
     }
 
-    static func activeStudentEnrollment(userID: String?) -> Scope {
+    static func activeStudentEnrollment(courseID: String, userID: String?) -> Scope {
         var predicates = [
+            NSPredicate(format: "%K == %@", #keyPath(Enrollment.course.id), courseID),
             NSPredicate(format: "%K CONTAINS[c] %@", #keyPath(Enrollment.type), "student"),
             NSPredicate(format: "%K == %@", #keyPath(Enrollment.stateRaw), EnrollmentState.active.rawValue),
         ]

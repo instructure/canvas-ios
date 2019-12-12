@@ -84,6 +84,42 @@ class GradesTests: CoreTestCase {
         XCTAssertEqual(grades.gradingPeriods.count, 2)
         XCTAssertEqual(grades.gradingPeriods[0]?.title, "Period 1")
         XCTAssertEqual(grades.gradingPeriods[1]?.title, "Period 2")
+
+        // refresh total score
+        Course.save([ // guard against saving courses outside of grades list
+            APICourse.make(id: ID(courseID), enrollments: [
+                .make(
+                    id: nil,
+                    enrollment_state: .active,
+                    type: "student",
+                    user_id: userID,
+                    computed_current_score: 100,
+                    multiple_grading_periods_enabled: true,
+                    current_grading_period_id: "1",
+                    current_period_computed_current_score: 50
+                ),
+            ]),
+        ], in: databaseClient)
+        api.mock(
+            GetEnrollmentsRequest(context: ContextModel(.course, id: courseID), userID: userID, gradingPeriodID: "1"),
+            value: [
+                .make(
+                    id: "1",
+                    enrollment_state: .active,
+                    type: "StudentEnrollment",
+                    user_id: userID,
+                    grades: APIEnrollment.Grades(
+                        html_url: "/grades",
+                        current_grade: nil,
+                        final_grade: nil,
+                        current_score: 30,
+                        final_score: nil
+                    )
+                ),
+            ]
+        )
+        grades.refresh()
+        XCTAssertEqual(grades.enrollment?.currentScore(gradingPeriodID: "1"), 30)
     }
 
     func testNoGradingPeriods() throws {
