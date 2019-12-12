@@ -117,15 +117,6 @@ function getTestResults {
             banner $crash_log
             cat $crash_log
         done
-
-        setTestRunEnv $xctestrun LIST_TESTS_ONLY YES
-        local flags=($destination_flag)
-        flags+=(-xctestrun $xctestrun)
-        for skip in $all_passing_tests; do
-            flags+=(-skip-testing:$skip)
-        done
-        banner "UI Tests that didn't show up"
-        { xcodebuild test-without-building $flags 2>/dev/null | grep '^UI_TEST: ' } || true
     fi
 
     banner "${#tests_passed_this_run} tests passed"
@@ -141,7 +132,6 @@ function doTest {
 
     banner "Running $(basename $xctestrun) (retry $try)"
     local result_path=$results_directory/$try.xcresult
-    local ret=0
 
     local flags=($destination_flag)
     flags+=(-resultBundlePath $result_path)
@@ -161,6 +151,7 @@ function doTest {
 
     < $pipe_file tee ${BITRISE_DEPLOY_DIR-$results_directory}/test-run-$try-xcodebuild.log | xcbeautify &
     local formatter_pid=$!
+    local ret=0
     xcodebuild test-without-building $flags > $pipe_file 2> $pipe_file || ret=$?
     wait $formatter_pid
     rm -rf $pipe_file
@@ -182,6 +173,7 @@ function retry {
         xcrun simctl io booted recordVideo $video_file &
         video_pid=$!
     fi
+    local ret=0
     doTest || ret=$?
     if [[ -n $video_pid ]]; then
         kill -INT $video_pid
