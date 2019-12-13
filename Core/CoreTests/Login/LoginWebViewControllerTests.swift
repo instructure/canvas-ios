@@ -154,7 +154,7 @@ class LoginWebViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         controller.webView.loadHTMLString("", baseURL: url)
         let loading = expectation(description: "loading")
-        observation = controller.webView.observe(\.isLoading) { (webView, _) in
+        observation = controller.webView.observe(\.isLoading, options: .initial) { (webView, _) in
             guard !webView.isLoading else { return }
             self.observation = nil
             loading.fulfill()
