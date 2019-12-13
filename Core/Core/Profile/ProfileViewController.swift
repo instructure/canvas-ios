@@ -30,6 +30,7 @@ public typealias ProfileViewCellBlock = (UITableViewCell) -> Void
 
 public enum ProfileViewCellAccessoryType {
     case toggle(Bool)
+    case badge(UInt)
 }
 
 public struct ProfileViewCell {
@@ -47,7 +48,9 @@ public struct ProfileViewCell {
 }
 
 class ProfileTableViewCell: UITableViewCell {
-    @IBOutlet weak var nameLabel: UILabel?
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var badgeView: UIView!
+    @IBOutlet weak var badgeLabel: UILabel!
 }
 
 public class ProfileViewController: UIViewController, ProfileViewProtocol {
@@ -148,22 +151,27 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ProfileTableViewCell = tableView.dequeue(for: indexPath)
-        if let item = presenter?.cells[indexPath.row] {
-            cell.accessibilityIdentifier = "Profile.\(item.id)Button"
-            cell.backgroundColor = .named(.backgroundLightest)
-            cell.nameLabel?.text = item.name
-            switch item.type {
-            case .toggle(let isOn)?:
-                let toggle = UISwitch(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
-                toggle.isOn = isOn
-                toggle.tag = indexPath.row
-                toggle.onTintColor = Brand.shared.primary
-                toggle.addTarget(self, action: #selector(toggleChanged), for: .valueChanged)
-                cell.accessoryView = toggle
-                cell.accessibilityIdentifier = "Profile.\(item.id)Toggle"
-            case .none:
-                cell.accessoryView = nil
-            }
+        guard let item = presenter?.cells[indexPath.row] else { return cell }
+        cell.accessibilityIdentifier = "Profile.\(item.id)Button"
+        cell.backgroundColor = .named(.backgroundLightest)
+        cell.nameLabel.text = item.name
+        switch item.type {
+        case .toggle(let isOn):
+            let toggle = UISwitch(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+            toggle.isOn = isOn
+            toggle.tag = indexPath.row
+            toggle.onTintColor = Brand.shared.primary
+            toggle.addTarget(self, action: #selector(toggleChanged), for: .valueChanged)
+            cell.accessoryView = toggle
+            cell.accessibilityIdentifier = "Profile.\(item.id)Toggle"
+            cell.badgeView.isHidden = true
+        case .badge(let count):
+            cell.accessoryView = nil
+            cell.badgeLabel.text = NumberFormatter.localizedString(from: NSNumber(value: count), number: .none)
+            cell.badgeView.isHidden = count == 0
+        case .none:
+            cell.accessoryView = nil
+            cell.badgeView.isHidden = true
         }
         return cell
     }

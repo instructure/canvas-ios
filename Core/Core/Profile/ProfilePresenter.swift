@@ -20,6 +20,7 @@ import Foundation
 import UIKit
 
 public class ProfilePresenter {
+    var unreadCount: UInt = 0
     let env: AppEnvironment
     weak var view: ProfileViewProtocol?
 
@@ -58,6 +59,11 @@ public class ProfilePresenter {
         var cells: [ProfileViewCell] = []
 
         if enrollment == .observer {
+            if ExperimentalFeature.parentInbox.isEnabled {
+                cells.append(ProfileViewCell("inbox", type: .badge(unreadCount), name: NSLocalizedString("Inbox", comment: "")) { [weak self] _ in
+                    self?.view?.route(to: .conversations, options: nil)
+                })
+            }
             cells.append(ProfileViewCell("manageChildren", name: NSLocalizedString("Manage Children", comment: "")) { [weak self] _ in
                 self?.view?.route(to: .profileObservees, options: nil)
             })
@@ -159,6 +165,12 @@ public class ProfilePresenter {
         permissions.refresh()
         settings.refresh()
         tools.refresh()
+        if ExperimentalFeature.parentInbox.isEnabled {
+            env.api.makeRequest(GetConversationsUnreadCountRequest()) { [weak self] (response, _, _) in performUIUpdate {
+                self?.unreadCount = response?.unread_count ?? 0
+                self?.view?.reload()
+            } }
+        }
     }
 
     public func didTapVersion() {

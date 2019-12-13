@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Yx-NO-9to">
-                    <rect key="frame" x="0.0" y="386.5" width="768" height="251.5"/>
+                    <rect key="frame" x="0.0" y="390.5" width="768" height="243.5"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6wZ-yh-hXm">
                             <rect key="frame" x="264" y="0.0" width="240" height="128"/>
@@ -33,22 +33,23 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMP-yj-5UO" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="8" y="200" width="752" height="24"/>
+                            <rect key="frame" x="8" y="192" width="752" height="24"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold20"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYE-ah-Ii5" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="8" y="232" width="752" height="19.5"/>
+                            <rect key="frame" x="8" y="224" width="752" height="19.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
@@ -59,7 +60,7 @@
                         <constraint firstAttribute="bottom" secondItem="UYE-ah-Ii5" secondAttribute="bottom" id="alx-pz-s7Q"/>
                         <constraint firstItem="UYE-ah-Ii5" firstAttribute="leading" secondItem="6Yx-NO-9to" secondAttribute="leadingMargin" id="ge2-Jr-rBk"/>
                         <constraint firstAttribute="trailingMargin" secondItem="UYE-ah-Ii5" secondAttribute="trailing" id="h6G-0S-PRY"/>
-                        <constraint firstItem="wMP-yj-5UO" firstAttribute="top" secondItem="6wZ-yh-hXm" secondAttribute="bottom" constant="72" id="nZN-74-7ss"/>
+                        <constraint firstItem="wMP-yj-5UO" firstAttribute="top" secondItem="6wZ-yh-hXm" secondAttribute="bottom" constant="64" id="nZN-74-7ss"/>
                         <constraint firstAttribute="trailingMargin" secondItem="wMP-yj-5UO" secondAttribute="trailing" id="oKX-K3-6YK"/>
                         <constraint firstItem="6wZ-yh-hXm" firstAttribute="top" secondItem="6Yx-NO-9to" secondAttribute="top" id="uPN-4F-bAF"/>
                     </constraints>

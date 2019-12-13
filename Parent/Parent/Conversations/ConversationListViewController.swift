@@ -16,17 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-@testable import Parent
-import XCTest
-@testable import Core
+import UIKit
+import Core
 
-class RoutesTests: ParentTestCase {
-    func testRoutes() {
-        XCTAssert(Parent.router.match(.parse("/courses/1/grades")) is CourseDetailsViewController)
+class ConversationListViewController: UIViewController {
+    @IBOutlet weak var emptyView: EmptyView!
+    @IBOutlet weak var tableView: UITableView!
 
-        XCTAssertNil(Parent.router.match(Route.conversations.url))
-        ExperimentalFeature.parentInbox.isEnabled = true
-        XCTAssert(Parent.router.match(Route.conversations.url) is ConversationListViewController)
+    static func create() -> ConversationListViewController {
+        return loadFromStoryboard()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .named(.backgroundLightest)
+
+        emptyView.titleText = NSLocalizedString("Inbox Zero", comment: "")
+        emptyView.bodyText = NSLocalizedString("You’re all caught up", comment: "")
+        // emptyView.isHidden = true
     }
 }
