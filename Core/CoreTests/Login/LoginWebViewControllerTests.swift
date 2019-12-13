@@ -152,17 +152,24 @@ class LoginWebViewControllerTests: CoreTestCase {
 
     func testOpenTab() {
         controller.view.layoutIfNeeded()
+        controller.webView.loadHTMLString("", baseURL: url)
+        let loading = expectation(description: "loading")
+        observation = controller.webView.observe(\.isLoading) { (webView, _) in
+            guard !webView.isLoading else { return }
+            self.observation = nil
+            loading.fulfill()
+        }
+        wait(for: [loading], timeout: 5)
         let done = expectation(description: "credentials get posted")
         observation = controller.webView.observe(\.url) { (webView, _) in
             guard webView.url?.scheme == "data" else { return }
             self.observation = nil
             done.fulfill()
         }
-        controller.webView.loadHTMLString("", baseURL: url)
         controller.webView.evaluateJavaScript("window.open('data:text/plain,')") { (_, error) in
             XCTAssertNil(error)
         }
-        wait(for: [done], timeout: 9)
+        wait(for: [done], timeout: 5)
         XCTAssertEqual(controller.webView.url, URL(string: "data:text/plain,"))
     }
 
