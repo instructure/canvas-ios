@@ -20,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="EaW-6y-Jo2">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="EaW-6y-Jo2">
                     <rect key="frame" x="56" y="12" width="342" height="76"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T12-iA-cYO" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
@@ -34,7 +34,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBO-lg-S52" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="24.5" width="342" height="51.5"/>
+                            <rect key="frame" x="0.0" y="22.5" width="342" height="53.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
