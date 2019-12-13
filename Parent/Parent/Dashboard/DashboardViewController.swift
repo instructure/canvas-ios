@@ -34,6 +34,7 @@ class DashboardViewController: UIViewController {
     var studentSyncProducer: Student.ModelPageSignalProducer!
 
     // Views created from storyboard
+    @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var badgeView: UIView!
     @IBOutlet weak var badgeLabel: UILabel!
     @IBOutlet weak var headerContainerView: UIView!
@@ -67,6 +68,7 @@ class DashboardViewController: UIViewController {
                     let colorScheme = ColorCoordinator.colorSchemeForStudentID(student.id)
                     headerContainerView.backgroundColor = colorScheme.mainColor
                     badgeLabel.textColor = colorScheme.mainColor
+                    badgeView.layer.borderColor = colorScheme.mainColor.cgColor
                     tabBar.tintColor = colorScheme.mainColor
                     navigationController?.view.backgroundColor = colorScheme.mainColor
                 }
@@ -105,6 +107,8 @@ class DashboardViewController: UIViewController {
         super.viewDidLoad()
 
         badgeView.isHidden = true
+        badgeView.isUserInteractionEnabled = false
+        menuButton.addSubview(badgeView)
 
         // Remove the testing background colors
         studentInfoContainer.backgroundColor = .clear

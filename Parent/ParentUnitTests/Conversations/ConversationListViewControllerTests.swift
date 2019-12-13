@@ -25,7 +25,12 @@ class ConversationListViewControllerTests: ParentTestCase {
     lazy var controller = ConversationListViewController.create()
 
     func testLayout() {
+        let navigation = UINavigationController(rootViewController: controller)
+        navigation.isNavigationBarHidden = true
         controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
         XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
+        XCTAssertFalse(navigation.isNavigationBarHidden)
+        XCTAssertEqual(navigation.navigationBar.barStyle, .default)
     }
 }

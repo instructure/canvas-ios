@@ -88,10 +88,10 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SAO-8I-F8u">
-                                                    <rect key="frame" x="339" y="22.5" width="20" height="20.5"/>
+                                                    <rect key="frame" x="338.5" y="22.5" width="20.5" height="20.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCJ-f1-3Hw" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="6" y="3" width="8" height="14.5"/>
+                                                            <rect key="frame" x="6" y="3" width="8.5" height="14.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -103,11 +103,11 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.0" green="0.55686274509803924" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="3bN-jB-qeL"/>
                                                         <constraint firstAttribute="trailing" secondItem="eCJ-f1-3Hw" secondAttribute="trailing" constant="6" id="IY6-Ci-7Da"/>
                                                         <constraint firstAttribute="bottom" secondItem="eCJ-f1-3Hw" secondAttribute="bottom" constant="3" id="M0E-zI-yrP"/>
                                                         <constraint firstItem="eCJ-f1-3Hw" firstAttribute="leading" secondItem="SAO-8I-F8u" secondAttribute="leading" constant="6" id="XEG-dB-O7k"/>
                                                         <constraint firstItem="eCJ-f1-3Hw" firstAttribute="top" secondItem="SAO-8I-F8u" secondAttribute="top" constant="3" id="uU7-UN-mex"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" secondItem="SAO-8I-F8u" secondAttribute="height" multiplier="1:1" id="w5T-0n-sYV"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">

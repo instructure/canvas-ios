@@ -56,14 +56,14 @@
                                         </constraints>
                                         <state key="normal" image="hamburger"/>
                                         <connections>
-                                            <action selector="drawerDashboardButtonPressed:" destination="RfP-iM-Wap" eventType="touchUpInside" id="dL6-FI-rm6"/>
+                                            <action selector="drawerDashboardButtonPressed:" destination="RfP-iM-Wap" eventType="primaryActionTriggered" id="S7i-95-8Hk"/>
                                         </connections>
                                     </button>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qqL-hf-iTU">
-                                        <rect key="frame" x="32" y="43.5" width="20" height="21"/>
+                                        <rect key="frame" x="28" y="43.5" width="28" height="21"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnf-XG-aJX" customClass="DynamicLabel" customModule="Core">
-                                                <rect key="frame" x="6" y="3.5" width="8" height="14.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="55" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnf-XG-aJX" customClass="DynamicLabel" customModule="Core">
+                                                <rect key="frame" x="6" y="3.5" width="16" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -74,17 +74,24 @@
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                        </accessibility>
                                         <constraints>
                                             <constraint firstItem="bnf-XG-aJX" firstAttribute="top" secondItem="qqL-hf-iTU" secondAttribute="top" constant="3" id="B9n-nB-8WV"/>
                                             <constraint firstItem="bnf-XG-aJX" firstAttribute="leading" secondItem="qqL-hf-iTU" secondAttribute="leading" constant="6" id="K2w-e3-5GZ"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="Sw2-yZ-Jpk"/>
                                             <constraint firstAttribute="trailing" secondItem="bnf-XG-aJX" secondAttribute="trailing" constant="6" id="a2v-KO-ql2"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" secondItem="qqL-hf-iTU" secondAttribute="height" multiplier="1:1" id="iYH-tV-y8m"/>
                                             <constraint firstAttribute="bottom" secondItem="bnf-XG-aJX" secondAttribute="bottom" constant="3" id="l23-pr-C9M"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k8J-bS-THt">
@@ -175,6 +182,7 @@
                         <outlet property="calendarTabItem" destination="W2P-Wd-gLR" id="1mr-Yk-KbW"/>
                         <outlet property="coursesTabItem" destination="BPk-vK-62u" id="tuH-KS-Hkq"/>
                         <outlet property="headerContainerView" destination="yv8-k3-kWU" id="KUq-PZ-Xyv"/>
+                        <outlet property="menuButton" destination="LhY-UH-BvJ" id="icf-fU-1Vx"/>
                         <outlet property="studentInfoAvatar" destination="2GL-Gy-LZL" id="rkO-wh-caq"/>
                         <outlet property="studentInfoContainer" destination="k8J-bS-THt" id="5o8-tX-WPL"/>
                         <outlet property="studentInfoDownArrow" destination="duK-LJ-Xy2" id="2NG-uy-ACK"/>

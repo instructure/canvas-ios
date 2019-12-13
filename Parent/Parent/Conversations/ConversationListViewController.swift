@@ -30,9 +30,16 @@ class ConversationListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
+        title = NSLocalizedString("Inbox", comment: "")
 
         emptyView.titleText = NSLocalizedString("Inbox Zero", comment: "")
         emptyView.bodyText = NSLocalizedString("You’re all caught up", comment: "")
         // emptyView.isHidden = true
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.useModalStyle()
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 }
