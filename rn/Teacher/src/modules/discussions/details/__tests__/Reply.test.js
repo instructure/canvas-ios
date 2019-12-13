@@ -80,7 +80,7 @@ describe('DiscussionReplies', () => {
     props.reply.deleted = true
     props.reply.attachment = {}
     let tree = shallow(<Reply {...props} />)
-    expect(tree.find(`[testID="discussion-reply.${props.reply.id}.attachment"]`).length).toEqual(0)
+    expect(tree.find(`[testID="discussion.reply.${props.reply.id}.attachment"]`).length).toEqual(0)
   })
 
   it('renders with no user', () => {
@@ -94,9 +94,9 @@ describe('DiscussionReplies', () => {
     props.discussionLockedForUser = true
     let tree = shallow(<Reply {...props} />)
 
-    expect(tree.find(`[testID="discussions.reply-btn.${props.reply.id}"]`).length).toEqual(0)
-    expect(tree.find('[testID="discussions.edit-btn"]').length).toEqual(0)
-    expect(tree.find('[testID="discussion.reply.rate-btn"]').length).toEqual(0)
+    expect(tree.find(`[testID="discussion.reply.${props.reply.id}.reply-btn"]`).length).toEqual(0)
+    expect(tree.find(`[testID="discussion.reply.${props.reply.id}.edit-btn"]`).length).toEqual(0)
+    expect(tree.find(`[testID="discussion.reply.${props.reply.id}.rate-btn"]`).length).toEqual(0)
   })
 
   it('renders likes even if closed as student', () => {
@@ -105,12 +105,12 @@ describe('DiscussionReplies', () => {
     props.canRate = true
     let tree = shallow(<Reply {...props} />)
 
-    expect(tree.find('[testID="discussion.reply.rate-btn"]').length).toEqual(1)
+    expect(tree.find(`[testID="discussion.reply.${props.reply.id}.rate-btn"]`).length).toEqual(1)
   })
 
   it('navigates to the context card when an avatar is pressed', () => {
     let tree = shallow(<Reply {...props} />)
-    let avatar = tree.find('[testID="reply.avatar"]')
+    let avatar = tree.find(`[testID="discussion.reply.${props.reply.id}.avatar"]`)
     avatar.simulate('press')
     expect(props.navigator.show).toHaveBeenCalledWith(
       `/courses/1/users/1`,
@@ -122,7 +122,7 @@ describe('DiscussionReplies', () => {
     props.depth = 2
     props.reply.replies = [template.discussionReply({ id: 2 }), template.discussionReply({ id: 3 }), template.discussionReply({ id: 4 })]
     let tree = shallow(<Reply {...props} />)
-    let replyButton = tree.find('[testID="discussion.more-replies"]')
+    let replyButton = tree.find(`[testID="discussion.reply.${props.reply.id}.more-replies"]`)
     replyButton.simulate('press')
     expect(props.onPressMoreReplies).toHaveBeenCalledWith([0])
   })
@@ -136,13 +136,13 @@ describe('DiscussionReplies', () => {
     props.reply = reply
     props.depth = 2
     let tree = shallow(<Reply {...props} />)
-    expect(tree.find('[testID="discussion.more-replies"]').length).toEqual(1)
+    expect(tree.find(`[testID="discussion.reply.${props.reply.id}.more-replies"]`).length).toEqual(1)
   })
 
   it('edit action sheet calls delete', () => {
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((_, cb) => cb(1))
     let tree = shallow(<Reply {...props} />)
-    let edit = tree.find('[testID="discussion.edit-btn"]')
+    let edit = tree.find(`[testID="discussion.reply.${props.reply.id}.edit-btn"]`)
     edit.simulate('press')
 
     expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
@@ -152,7 +152,7 @@ describe('DiscussionReplies', () => {
   it('edit action sheet calls cancel', () => {
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((_, cb) => cb(2))
     let tree = shallow(<Reply {...props} />)
-    let edit = tree.find('[testID="discussion.edit-btn"]')
+    let edit = tree.find(`[testID="discussion.reply.${props.reply.id}.edit-btn"]`)
     edit.simulate('press')
 
     expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
@@ -163,7 +163,7 @@ describe('DiscussionReplies', () => {
   it('edit action sheet calls edit', () => {
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((_, cb) => cb(0))
     let tree = shallow(<Reply {...props} />)
-    let edit = tree.find('[testID="discussion.edit-btn"]')
+    let edit = tree.find(`[testID="discussion.reply.${props.reply.id}.edit-btn"]`)
     edit.simulate('press')
 
     expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
@@ -172,7 +172,7 @@ describe('DiscussionReplies', () => {
 
   it('reply to entry', () => {
     let tree = shallow(<Reply {...props} />)
-    let reply = tree.find(`[testID="discussion.reply-btn.${props.reply.id}"]`)
+    let reply = tree.find(`[testID="discussion.reply.${props.reply.id}.reply-btn"]`)
     reply.simulate('press')
 
     expect(props.replyToEntry).toHaveBeenCalledWith('1', [0])
@@ -181,7 +181,7 @@ describe('DiscussionReplies', () => {
   it('shows attachment', () => {
     props.reply = Object.assign(props.reply, { attachment: { } })
     let tree = shallow(<Reply {...props}/>)
-    let showAttachment = tree.find(`[testID="discussion-reply.${props.reply.id}.attachment"]`)
+    let showAttachment = tree.find(`[testID="discussion.reply.${props.reply.id}.attachment"]`)
     showAttachment.simulate('press')
 
     expect(props.navigator.show).toHaveBeenCalledWith(
@@ -200,7 +200,7 @@ describe('DiscussionReplies', () => {
       props.showRating = true
       props.canRate = true
       let tree = shallow(<Reply {...props} />)
-      expect(tree.find('[testID="discussion.reply.rating-count"]').length).toEqual(1)
+      expect(tree.find(`[testID="discussion.reply.${props.reply.id}.rating-count"]`).length).toEqual(1)
     })
 
     it('renders user rating', () => {
@@ -208,7 +208,7 @@ describe('DiscussionReplies', () => {
       props.canRate = true
       props.rating = 1
       let tree = shallow(<Reply {...props} />)
-      let rating = tree.find('[testID="discussion.reply.rating-count"]')
+      let rating = tree.find(`[testID="discussion.reply.${props.reply.id}.rating-count"]`)
       expect(rating.props().children).toEqual(['(', '2', ')'])
     })
 
@@ -216,7 +216,7 @@ describe('DiscussionReplies', () => {
       props.showRating = true
       props.canRate = false
       let tree = shallow(<Reply {...props} />)
-      let rating = tree.find('[testID="discussion.reply.rating-count"]')
+      let rating = tree.find(`[testID="discussion.reply.${props.reply.id}.rating-count"]`)
       expect(rating.props().children).toEqual(['(', '2 likes', ')'])
     })
 
@@ -225,7 +225,7 @@ describe('DiscussionReplies', () => {
       props.canRate = true
       props.rating = null
       const view = shallow(<Reply {...props }/>)
-      const rateBtn = view.find('[testID="discussion.reply.rate-btn"]')
+      const rateBtn = view.find(`[testID="discussion.reply.${props.reply.id}.rate-btn"]`)
       rateBtn.simulate('Press')
       expect(props.rateEntry).toHaveBeenCalledWith(props.context, props.contextID, props.discussionID, props.reply.id, 1, [0])
     })

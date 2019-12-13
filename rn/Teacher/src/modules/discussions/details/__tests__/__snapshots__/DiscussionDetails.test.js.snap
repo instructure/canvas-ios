@@ -13,7 +13,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
         "image": Object {
           "testUri": "../../../src/images/kabob.png",
         },
-        "testID": "discussions.details.edit.button",
+        "testID": "DiscussionDetails.editButton",
       },
     ]
   }
@@ -126,7 +126,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
           <AssignmentSection
             onPress={[Function]}
             showDisclosureIndicator={true}
-            testID="discussions.submission-graphs"
+            testID="DiscussionDetails.submissionGraphs"
             title="Submissions"
           >
             <SubmissionBreakdownGraphSection
@@ -173,7 +173,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                     "marginTop": 16,
                   }
                 }
-                testID="discussion.details.avatar"
+                testID="DiscussionDetails.avatar"
                 userName="The Donald"
               />
               <View
@@ -208,7 +208,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                       "fontSize": 12,
                     }
                   }
-                  testID="discussion.details.post-date-lbl"
+                  testID="DiscussionDetails.postDateLabel"
                 >
                   Nov 10 at 9:03 PM
                 </Text>
@@ -748,7 +748,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
             </TouchableHighlight>
             <TouchableHighlight
               onPress={[Function]}
-              testID="discussions.submission-graphs"
+              testID="DiscussionDetails.submissionGraphs"
             >
               <View
                 style={
@@ -814,7 +814,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                             },
                           ]
                         }
-                        testID="discussions.submission-graphs-title-lbl"
+                        testID="DiscussionDetails.submissionGraphs-title-lbl"
                       >
                         Submissions
                       </Text>
@@ -902,7 +902,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                       "marginTop": 16,
                     }
                   }
-                  testID="discussion.details.avatar"
+                  testID="DiscussionDetails.avatar"
                   userName="The Donald"
                 />
                 <View
@@ -949,7 +949,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                         },
                       ]
                     }
-                    testID="discussion.details.post-date-lbl"
+                    testID="DiscussionDetails.postDateLabel"
                   >
                     Nov 10 at 9:03 PM
                   </Text>
@@ -1123,7 +1123,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                       "width": 24,
                     }
                   }
-                  testID="reply.avatar"
+                  testID="discussion.reply.25472827.avatar"
                   userName="The Donald"
                 />
                 <View
@@ -1247,7 +1247,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
         "image": Object {
           "testUri": "../../../src/images/kabob.png",
         },
-        "testID": "discussions.details.edit.button",
+        "testID": "DiscussionDetails.editButton",
       },
     ]
   }
@@ -1349,7 +1349,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
           <AssignmentSection
             onPress={[Function]}
             showDisclosureIndicator={true}
-            testID="discussions.submission-graphs"
+            testID="DiscussionDetails.submissionGraphs"
             title="Submissions"
           >
             <SubmissionBreakdownGraphSection
@@ -1396,7 +1396,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     "marginTop": 16,
                   }
                 }
-                testID="discussion.details.avatar"
+                testID="DiscussionDetails.avatar"
                 userName="The Donald"
               />
               <View
@@ -1431,7 +1431,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       "fontSize": 12,
                     }
                   }
-                  testID="discussion.details.post-date-lbl"
+                  testID="DiscussionDetails.postDateLabel"
                 >
                   Nov 10 at 9:03 PM
                 </Text>
@@ -1473,7 +1473,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
               <TouchableHighlight
                 accessibilityTraits="button"
                 onPress={[Function]}
-                testID="discussion-reply"
+                testID="DiscussionDetails.replyButton"
                 underlayColor="#FFFFFF"
               >
                 <View
@@ -2013,7 +2013,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
             </TouchableHighlight>
             <TouchableHighlight
               onPress={[Function]}
-              testID="discussions.submission-graphs"
+              testID="DiscussionDetails.submissionGraphs"
             >
               <View
                 style={
@@ -2079,7 +2079,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                             },
                           ]
                         }
-                        testID="discussions.submission-graphs-title-lbl"
+                        testID="DiscussionDetails.submissionGraphs-title-lbl"
                       >
                         Submissions
                       </Text>
@@ -2167,7 +2167,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       "marginTop": 16,
                     }
                   }
-                  testID="discussion.details.avatar"
+                  testID="DiscussionDetails.avatar"
                   userName="The Donald"
                 />
                 <View
@@ -2214,7 +2214,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                         },
                       ]
                     }
-                    testID="discussion.details.post-date-lbl"
+                    testID="DiscussionDetails.postDateLabel"
                   >
                     Nov 10 at 9:03 PM
                   </Text>
@@ -2277,7 +2277,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 <TouchableHighlight
                   accessibilityTraits="button"
                   onPress={[Function]}
-                  testID="discussion-reply"
+                  testID="DiscussionDetails.replyButton"
                   underlayColor="#FFFFFF"
                 >
                   <View
@@ -2453,7 +2453,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       "width": 24,
                     }
                   }
-                  testID="reply.avatar"
+                  testID="discussion.reply.25472827.avatar"
                   userName="The Donald"
                 />
                 <View
@@ -2580,7 +2580,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                             "paddingTop": 2,
                           }
                         }
-                        testID="discussion.reply-btn.25472827"
+                        testID="discussion.reply.25472827.reply-btn"
                       >
                         <View>
                           <Text
@@ -2656,7 +2656,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                             "paddingTop": 2,
                           }
                         }
-                        testID="discussion.edit-btn"
+                        testID="discussion.reply.25472827.edit-btn"
                       >
                         <View>
                           <Text
@@ -2789,7 +2789,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                     "marginTop": 16,
                   }
                 }
-                testID="discussion.details.avatar"
+                testID="DiscussionDetails.avatar"
                 userName="The Donald"
               />
               <View
@@ -2824,7 +2824,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                       "fontSize": 12,
                     }
                   }
-                  testID="discussion.details.post-date-lbl"
+                  testID="DiscussionDetails.postDateLabel"
                 >
                   Nov 10 at 9:03 PM
                 </Text>
@@ -3069,7 +3069,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                       "marginTop": 16,
                     }
                   }
-                  testID="discussion.details.avatar"
+                  testID="DiscussionDetails.avatar"
                   userName="The Donald"
                 />
                 <View
@@ -3116,7 +3116,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                         },
                       ]
                     }
-                    testID="discussion.details.post-date-lbl"
+                    testID="DiscussionDetails.postDateLabel"
                   >
                     Nov 10 at 9:03 PM
                   </Text>
@@ -3290,7 +3290,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                       "width": 24,
                     }
                   }
-                  testID="reply.avatar"
+                  testID="discussion.reply.25472827.avatar"
                   userName="The Donald"
                 />
                 <View
@@ -3476,7 +3476,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                     "marginTop": 16,
                   }
                 }
-                testID="discussion.details.avatar"
+                testID="DiscussionDetails.avatar"
                 userName="The Donald"
               />
               <View
@@ -3511,7 +3511,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                       "fontSize": 12,
                     }
                   }
-                  testID="discussion.details.post-date-lbl"
+                  testID="DiscussionDetails.postDateLabel"
                 >
                   Nov 10 at 9:03 PM
                 </Text>
@@ -3553,7 +3553,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
               <TouchableHighlight
                 accessibilityTraits="button"
                 onPress={[Function]}
-                testID="discussion-reply"
+                testID="DiscussionDetails.replyButton"
                 underlayColor="#FFFFFF"
               >
                 <View
@@ -3815,7 +3815,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                       "marginTop": 16,
                     }
                   }
-                  testID="discussion.details.avatar"
+                  testID="DiscussionDetails.avatar"
                   userName="The Donald"
                 />
                 <View
@@ -3862,7 +3862,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                         },
                       ]
                     }
-                    testID="discussion.details.post-date-lbl"
+                    testID="DiscussionDetails.postDateLabel"
                   >
                     Nov 10 at 9:03 PM
                   </Text>
@@ -3925,7 +3925,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                 <TouchableHighlight
                   accessibilityTraits="button"
                   onPress={[Function]}
-                  testID="discussion-reply"
+                  testID="DiscussionDetails.replyButton"
                   underlayColor="#FFFFFF"
                 >
                   <View
@@ -4101,7 +4101,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                       "width": 24,
                     }
                   }
-                  testID="reply.avatar"
+                  testID="discussion.reply.25472827.avatar"
                   userName="The Donald"
                 />
                 <View
@@ -4228,7 +4228,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                             "paddingTop": 2,
                           }
                         }
-                        testID="discussion.reply-btn.25472827"
+                        testID="discussion.reply.25472827.reply-btn"
                       >
                         <View>
                           <Text
@@ -4284,7 +4284,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
         "image": Object {
           "testUri": "../../../src/images/kabob.png",
         },
-        "testID": "discussions.details.edit.button",
+        "testID": "DiscussionDetails.editButton",
       },
     ]
   }
@@ -4397,7 +4397,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
           <AssignmentSection
             onPress={[Function]}
             showDisclosureIndicator={true}
-            testID="discussions.submission-graphs"
+            testID="DiscussionDetails.submissionGraphs"
             title="Submissions"
           >
             <SubmissionBreakdownGraphSection
@@ -4444,7 +4444,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                     "marginTop": 16,
                   }
                 }
-                testID="discussion.details.avatar"
+                testID="DiscussionDetails.avatar"
                 userName="The Donald"
               />
               <View
@@ -4479,7 +4479,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                       "fontSize": 12,
                     }
                   }
-                  testID="discussion.details.post-date-lbl"
+                  testID="DiscussionDetails.postDateLabel"
                 >
                   Nov 10 at 9:03 PM
                 </Text>
@@ -4521,7 +4521,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
               <TouchableHighlight
                 accessibilityTraits="button"
                 onPress={[Function]}
-                testID="discussion-reply"
+                testID="DiscussionDetails.replyButton"
                 underlayColor="#FFFFFF"
               >
                 <View
@@ -5046,7 +5046,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
             </TouchableHighlight>
             <TouchableHighlight
               onPress={[Function]}
-              testID="discussions.submission-graphs"
+              testID="DiscussionDetails.submissionGraphs"
             >
               <View
                 style={
@@ -5112,7 +5112,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                             },
                           ]
                         }
-                        testID="discussions.submission-graphs-title-lbl"
+                        testID="DiscussionDetails.submissionGraphs-title-lbl"
                       >
                         Submissions
                       </Text>
@@ -5200,7 +5200,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                       "marginTop": 16,
                     }
                   }
-                  testID="discussion.details.avatar"
+                  testID="DiscussionDetails.avatar"
                   userName="The Donald"
                 />
                 <View
@@ -5247,7 +5247,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                         },
                       ]
                     }
-                    testID="discussion.details.post-date-lbl"
+                    testID="DiscussionDetails.postDateLabel"
                   >
                     Nov 10 at 9:03 PM
                   </Text>
@@ -5310,7 +5310,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                 <TouchableHighlight
                   accessibilityTraits="button"
                   onPress={[Function]}
-                  testID="discussion-reply"
+                  testID="DiscussionDetails.replyButton"
                   underlayColor="#FFFFFF"
                 >
                   <View
@@ -5385,7 +5385,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
         "image": Object {
           "testUri": "../../../src/images/kabob.png",
         },
-        "testID": "discussions.details.edit.button",
+        "testID": "DiscussionDetails.editButton",
       },
     ]
   }
@@ -5498,7 +5498,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
           <AssignmentSection
             onPress={[Function]}
             showDisclosureIndicator={true}
-            testID="discussions.submission-graphs"
+            testID="DiscussionDetails.submissionGraphs"
             title="Submissions"
           >
             <SubmissionBreakdownGraphSection
@@ -5545,7 +5545,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                     "marginTop": 16,
                   }
                 }
-                testID="discussion.details.avatar"
+                testID="DiscussionDetails.avatar"
                 userName="The Donald"
               />
               <View
@@ -5580,7 +5580,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                       "fontSize": 12,
                     }
                   }
-                  testID="discussion.details.post-date-lbl"
+                  testID="DiscussionDetails.postDateLabel"
                 >
                   Nov 10 at 9:03 PM
                 </Text>
@@ -5622,7 +5622,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
               <TouchableHighlight
                 accessibilityTraits="button"
                 onPress={[Function]}
-                testID="discussion-reply"
+                testID="DiscussionDetails.replyButton"
                 underlayColor="#FFFFFF"
               >
                 <View
@@ -6179,7 +6179,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
             </TouchableHighlight>
             <TouchableHighlight
               onPress={[Function]}
-              testID="discussions.submission-graphs"
+              testID="DiscussionDetails.submissionGraphs"
             >
               <View
                 style={
@@ -6245,7 +6245,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                             },
                           ]
                         }
-                        testID="discussions.submission-graphs-title-lbl"
+                        testID="DiscussionDetails.submissionGraphs-title-lbl"
                       >
                         Submissions
                       </Text>
@@ -6333,7 +6333,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                       "marginTop": 16,
                     }
                   }
-                  testID="discussion.details.avatar"
+                  testID="DiscussionDetails.avatar"
                   userName="The Donald"
                 />
                 <View
@@ -6380,7 +6380,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                         },
                       ]
                     }
-                    testID="discussion.details.post-date-lbl"
+                    testID="DiscussionDetails.postDateLabel"
                   >
                     Nov 10 at 9:03 PM
                   </Text>
@@ -6443,7 +6443,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                 <TouchableHighlight
                   accessibilityTraits="button"
                   onPress={[Function]}
-                  testID="discussion-reply"
+                  testID="DiscussionDetails.replyButton"
                   underlayColor="#FFFFFF"
                 >
                   <View
@@ -6619,7 +6619,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                       "width": 24,
                     }
                   }
-                  testID="reply.avatar"
+                  testID="discussion.reply.25472827.avatar"
                   userName="The Donald"
                 />
                 <View
@@ -6746,7 +6746,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                             "paddingTop": 2,
                           }
                         }
-                        testID="discussion.reply-btn.25472827"
+                        testID="discussion.reply.25472827.reply-btn"
                       >
                         <View>
                           <Text
@@ -6822,7 +6822,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                             "paddingTop": 2,
                           }
                         }
-                        testID="discussion.edit-btn"
+                        testID="discussion.reply.25472827.edit-btn"
                       >
                         <View>
                           <Text
@@ -6878,7 +6878,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
         "image": Object {
           "testUri": "../../../src/images/kabob.png",
         },
-        "testID": "discussions.details.edit.button",
+        "testID": "DiscussionDetails.editButton",
       },
     ]
   }
@@ -6991,7 +6991,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
           <AssignmentSection
             onPress={[Function]}
             showDisclosureIndicator={true}
-            testID="discussions.submission-graphs"
+            testID="DiscussionDetails.submissionGraphs"
             title="Submissions"
           >
             <SubmissionBreakdownGraphSection
@@ -7038,7 +7038,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     "marginTop": 16,
                   }
                 }
-                testID="discussion.details.avatar"
+                testID="DiscussionDetails.avatar"
                 userName="The Donald"
               />
               <View
@@ -7073,7 +7073,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       "fontSize": 12,
                     }
                   }
-                  testID="discussion.details.post-date-lbl"
+                  testID="DiscussionDetails.postDateLabel"
                 >
                   Nov 10 at 9:03 PM
                 </Text>
@@ -7115,7 +7115,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
               <TouchableHighlight
                 accessibilityTraits="button"
                 onPress={[Function]}
-                testID="discussion-reply"
+                testID="DiscussionDetails.replyButton"
                 underlayColor="#FFFFFF"
               >
                 <View
@@ -7744,7 +7744,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
             </TouchableHighlight>
             <TouchableHighlight
               onPress={[Function]}
-              testID="discussions.submission-graphs"
+              testID="DiscussionDetails.submissionGraphs"
             >
               <View
                 style={
@@ -7810,7 +7810,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             },
                           ]
                         }
-                        testID="discussions.submission-graphs-title-lbl"
+                        testID="DiscussionDetails.submissionGraphs-title-lbl"
                       >
                         Submissions
                       </Text>
@@ -7898,7 +7898,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       "marginTop": 16,
                     }
                   }
-                  testID="discussion.details.avatar"
+                  testID="DiscussionDetails.avatar"
                   userName="The Donald"
                 />
                 <View
@@ -7945,7 +7945,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                         },
                       ]
                     }
-                    testID="discussion.details.post-date-lbl"
+                    testID="DiscussionDetails.postDateLabel"
                   >
                     Nov 10 at 9:03 PM
                   </Text>
@@ -8008,7 +8008,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 <TouchableHighlight
                   accessibilityTraits="button"
                   onPress={[Function]}
-                  testID="discussion-reply"
+                  testID="DiscussionDetails.replyButton"
                   underlayColor="#FFFFFF"
                 >
                   <View
@@ -8220,7 +8220,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       "width": 24,
                     }
                   }
-                  testID="reply.avatar"
+                  testID="discussion.reply.4.avatar"
                   userName="The Donald"
                 />
                 <View
@@ -8344,7 +8344,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             "paddingTop": 2,
                           }
                         }
-                        testID="discussion.reply-btn.4"
+                        testID="discussion.reply.4.reply-btn"
                       >
                         <View>
                           <Text
@@ -8420,7 +8420,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             "paddingTop": 2,
                           }
                         }
-                        testID="discussion.edit-btn"
+                        testID="discussion.reply.4.edit-btn"
                       >
                         <View>
                           <Text
@@ -8525,7 +8525,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       "width": 24,
                     }
                   }
-                  testID="reply.avatar"
+                  testID="discussion.reply.5.avatar"
                   userName="The Donald"
                 />
                 <View
@@ -8652,7 +8652,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             "paddingTop": 2,
                           }
                         }
-                        testID="discussion.reply-btn.5"
+                        testID="discussion.reply.5.reply-btn"
                       >
                         <View>
                           <Text
@@ -8728,7 +8728,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             "paddingTop": 2,
                           }
                         }
-                        testID="discussion.edit-btn"
+                        testID="discussion.reply.5.edit-btn"
                       >
                         <View>
                           <Text
@@ -8784,7 +8784,7 @@ exports[`DiscussionDetails renders with no discussion 1`] = `
         "image": Object {
           "testUri": "../../../src/images/kabob.png",
         },
-        "testID": "discussions.details.edit.button",
+        "testID": "DiscussionDetails.editButton",
       },
     ]
   }
@@ -8865,7 +8865,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
         "image": Object {
           "testUri": "../../../src/images/kabob.png",
         },
-        "testID": "discussions.details.edit.button",
+        "testID": "DiscussionDetails.editButton",
       },
     ]
   }
@@ -8978,7 +8978,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
           <AssignmentSection
             onPress={[Function]}
             showDisclosureIndicator={true}
-            testID="discussions.submission-graphs"
+            testID="DiscussionDetails.submissionGraphs"
             title="Submissions"
           >
             <SubmissionBreakdownGraphSection
@@ -9025,7 +9025,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     "marginTop": 16,
                   }
                 }
-                testID="discussion.details.avatar"
+                testID="DiscussionDetails.avatar"
                 userName="The Donald"
               />
               <View
@@ -9060,7 +9060,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       "fontSize": 12,
                     }
                   }
-                  testID="discussion.details.post-date-lbl"
+                  testID="DiscussionDetails.postDateLabel"
                 >
                   Nov 10 at 9:03 PM
                 </Text>
@@ -9102,7 +9102,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
               <TouchableHighlight
                 accessibilityTraits="button"
                 onPress={[Function]}
-                testID="discussion-reply"
+                testID="DiscussionDetails.replyButton"
                 underlayColor="#FFFFFF"
               >
                 <View
@@ -9659,7 +9659,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
             </TouchableHighlight>
             <TouchableHighlight
               onPress={[Function]}
-              testID="discussions.submission-graphs"
+              testID="DiscussionDetails.submissionGraphs"
             >
               <View
                 style={
@@ -9725,7 +9725,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                             },
                           ]
                         }
-                        testID="discussions.submission-graphs-title-lbl"
+                        testID="DiscussionDetails.submissionGraphs-title-lbl"
                       >
                         Submissions
                       </Text>
@@ -9813,7 +9813,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       "marginTop": 16,
                     }
                   }
-                  testID="discussion.details.avatar"
+                  testID="DiscussionDetails.avatar"
                   userName="The Donald"
                 />
                 <View
@@ -9860,7 +9860,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                         },
                       ]
                     }
-                    testID="discussion.details.post-date-lbl"
+                    testID="DiscussionDetails.postDateLabel"
                   >
                     Nov 10 at 9:03 PM
                   </Text>
@@ -9923,7 +9923,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 <TouchableHighlight
                   accessibilityTraits="button"
                   onPress={[Function]}
-                  testID="discussion-reply"
+                  testID="DiscussionDetails.replyButton"
                   underlayColor="#FFFFFF"
                 >
                   <View
@@ -10099,7 +10099,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       "width": 24,
                     }
                   }
-                  testID="reply.avatar"
+                  testID="discussion.reply.25472827.avatar"
                   userName="The Donald"
                 />
                 <View
@@ -10226,7 +10226,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                             "paddingTop": 2,
                           }
                         }
-                        testID="discussion.reply-btn.25472827"
+                        testID="discussion.reply.25472827.reply-btn"
                       >
                         <View>
                           <Text
@@ -10302,7 +10302,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                             "paddingTop": 2,
                           }
                         }
-                        testID="discussion.edit-btn"
+                        testID="discussion.reply.25472827.edit-btn"
                       >
                         <View>
                           <Text
@@ -10358,7 +10358,7 @@ exports[`DiscussionDetails renders without a discussion 1`] = `
         "image": Object {
           "testUri": "../../../src/images/kabob.png",
         },
-        "testID": "discussions.details.edit.button",
+        "testID": "DiscussionDetails.editButton",
       },
     ]
   }

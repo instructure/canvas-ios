@@ -27,6 +27,8 @@ extension APIDiscussionEntry {
         created_at: Date? = nil,
         updated_at: Date? = nil,
         message: String = "message",
+        rating_count: Int = 0,
+        rating_sum: Int? = nil,
         replies: [APIDiscussionEntry]? = nil
     ) -> APIDiscussionEntry {
         return APIDiscussionEntry(
@@ -36,6 +38,8 @@ extension APIDiscussionEntry {
             created_at: created_at,
             updated_at: updated_at,
             message: message,
+            rating_count: rating_count,
+            rating_sum: rating_sum ?? rating_count,
             replies: replies
         )
     }
