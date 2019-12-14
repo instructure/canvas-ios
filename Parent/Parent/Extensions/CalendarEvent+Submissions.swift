@@ -26,7 +26,7 @@ private struct Submission {
         formatter.numberStyle = .percent
         return formatter
     }()
-    
+
     static let gradeNumberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 1
