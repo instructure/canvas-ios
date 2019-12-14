@@ -89,19 +89,6 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
         vc.tableView(vc.tableView, didSelectRowAt: IndexPath(row: 2, section: 1))
         XCTAssert(router.lastRoutedTo(.parse("https://github.com/instructure/canvas-ios")))
     }
-
-    func testCanNavigateToExperimentalFeatures() {
-        vc.view.layoutIfNeeded()
-        vc.viewDidLoad()
-        vc.reloadData()
-        let cell = vc.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? RightDetailTableViewCell
-        XCTAssertEqual(cell?.textLabel?.text, "Experimental Features")
-
-        vc.tableView.delegate?.tableView?(vc.tableView, didSelectRowAt: IndexPath(row: 1, section: 0))
-        wait(for: [router.showExpectation], timeout: 1)
-        let (routedVC, _, _) = router.viewControllerCalls.last!
-        XCTAssert(routedVC is ExperimentalFeaturesViewController)
-    }
 }
 
 extension ProfileSettingsViewControllerTests: LoginDelegate {
