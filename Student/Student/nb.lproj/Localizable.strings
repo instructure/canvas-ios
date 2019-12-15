@@ -394,7 +394,7 @@
 
 /* Assignment grade: Complete
    Pass/fail assignment is complete */
-"Complete" = "Fullført";
+"Complete" = "Godkjent";
 
 /* No comment provided by engineer. */
 "Completed" = "Godkjent";
@@ -970,7 +970,7 @@
 "Not available" = "Ikke tilgjengelig";
 
 /* Pass/fail assignment is not complete */
-"Not Complete" = "Ikke fullført";
+"Not Complete" = "Ikke godkjent";
 
 /* not graded string. */
 "Not graded" = "Ikke karaktersatt";
