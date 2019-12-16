@@ -150,3 +150,109 @@ extension APIConversationMessage {
     }
 }
 #endif
+
+public struct GetConversationsUnreadCountRequest: APIRequestable {
+    public struct Response: Codable {
+        public let unread_count: UInt
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            unread_count = try UInt(container.decode(String.self, forKey: .unread_count)) ?? 0
+        }
+    }
+
+    public let path = "conversations/unread_count"
+
+    public init() {}
+}
+
+struct GetConversationsRequest: APIRequestable {
+    typealias Response = [APIConversation]
+    enum Include: String {
+        case participant_avatars
+    }
+    enum Scope: String {
+        case unread, starred, archived, sent
+    }
+
+    let path = "conversations"
+
+    let perPage: Int?
+    let include: [Include]
+    let scope: Scope?
+
+    var query: [APIQueryItem] {
+        var query: [APIQueryItem] = [
+            .include(include.map { $0.rawValue }),
+        ]
+        if let perPage = perPage {
+            query.append(.value("per_page", String(perPage)))
+        }
+        if let scope = scope {
+            query.append(.value("scope", scope.rawValue))
+        }
+        return query
+    }
+
+    init(include: [Include] = [], perPage: Int? = nil, scope: Scope? = nil) {
+        self.include = include
+        self.perPage = perPage
+        self.scope = scope
+    }
+}
+
+struct GetConversationRequest: APIRequestable {
+    typealias Response = APIConversation
+    enum Include: String {
+        case participant_avatars
+    }
+
+    let id: String
+    let include: [Include]
+    var path: String { "conversations/\(id)" }
+    var query: [APIQueryItem] {
+        return [
+            .include(include.map { $0.rawValue }),
+        ]
+    }
+
+    init(id: String, include: [Include] = []) {
+        self.id = id
+        self.include = include
+    }
+}
+
+struct PutConversationRequest: APIRequestable {
+    typealias Response = APIConversation
+    struct Body: Encodable {
+        let id: String
+        let workflow_state: ConversationWorkflowState
+    }
+
+    let id: String
+    let workflowState: ConversationWorkflowState
+    var path: String { "conversations/\(id)" }
+    let method = APIMethod.put
+    var body: Body? {
+        return Body(id: id, workflow_state: workflowState)
+    }
+}
+
+struct PostAddMessageRequest: APIRequestable {
+    typealias Response = APIConversation
+    struct Body: Encodable {
+        let recipients: [String]
+        let body: String
+        let subject: String?
+        let attachment_ids: [String]?
+        let media_comment_id: String?
+        let media_comment_type: MediaCommentType?
+        let context_code: String?
+        let bulk_message: Int? // nil for group, 1 for send individually
+    }
+
+    let id: String
+    let message: Body
+    var path: String { "conversations/\(id)/add_message" }
+    let method = APIMethod.post
+}

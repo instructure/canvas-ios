@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Conversation List View Controller-->
+        <scene sceneID="nfR-Tr-ANl">
+            <objects>
+                <viewController storyboardIdentifier="ConversationListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oF4-8s-qeo" customClass="ConversationListViewController" customModule="Parent" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="A3S-9c-SHq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BsH-rP-fBq" customClass="EmptyView" customModule="Core">
+                                <rect key="frame" x="67" y="269" width="240" height="128"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="imageWidth">
+                                        <real key="value" value="201"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="imageHeight">
+                                        <real key="value" value="210"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="imageName" value="PandaInboxZero"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Inbox Zero"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="bodyText" value="You're all caught up!"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="BsH-rP-fBq" firstAttribute="centerX" secondItem="A3S-9c-SHq" secondAttribute="centerX" id="V9j-Gf-Kop"/>
+                            <constraint firstItem="BsH-rP-fBq" firstAttribute="centerY" secondItem="A3S-9c-SHq" secondAttribute="centerY" id="szc-eh-Y9O"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="NtH-5o-63L"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="emptyView" destination="BsH-rP-fBq" id="uDS-ia-xwf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nub-Zi-c2T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="142" y="30"/>
+        </scene>
+    </scenes>
+</document>

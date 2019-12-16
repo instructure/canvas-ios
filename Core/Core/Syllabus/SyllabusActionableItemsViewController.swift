@@ -59,14 +59,10 @@ public class SyllabusActionableItemsViewController: UITableViewController {
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(SyllabusActionableItemsCell.self, for: indexPath)
         cell.backgroundColor = .named(.backgroundLightest)
-        cell.textLabel?.text = models[indexPath.row].title
-        cell.textLabel?.font = UIFont.scaledNamedFont(.regular16)
-        cell.textLabel?.textColor = UIColor.named(.textDarkest)
-        cell.imageView?.image = models[indexPath.row].image
-        cell.imageView?.tintColor = colorDelegate?.iconColor ?? color
-        cell.detailTextLabel?.text = models[indexPath.row].formattedDate
-        cell.detailTextLabel?.textColor = UIColor.named(.textDark)
-        cell.detailTextLabel?.font = UIFont.scaledNamedFont(.regular14)
+        cell.itemNameLabel?.text = models[indexPath.row].title
+        cell.iconImageView?.image = models[indexPath.row].image
+        cell.iconImageView?.tintColor = colorDelegate?.iconColor ?? color
+        cell.dateLabel?.text = models[indexPath.row].formattedDate
         return cell
     }
 
@@ -89,11 +85,18 @@ extension SyllabusActionableItemsViewController: SyllabusActionableItemsViewProt
 
 class SyllabusActionableItemsCell: UITableViewCell {
 
+    @IBOutlet weak var dateLabel: DynamicLabel!
+    @IBOutlet weak var itemNameLabel: DynamicLabel!
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var iconImageView: UIImageView!
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: .subtitle, reuseIdentifier: nil)
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+        loadFromXib()
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        loadFromXib()
     }
 }

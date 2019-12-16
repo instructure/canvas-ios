@@ -20,6 +20,5 @@ import XCTest
 import TestsFoundation
 
 enum DiscussionDetails: String, ElementWrapper {
-    case attachmentButton
-    case titleLabel
+    case attachmentButton, avatar, titleLabel, submissionGraphs, postDateLabel, replyButton
 }

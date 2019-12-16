@@ -207,7 +207,7 @@ describe('DiscussionDetails', () => {
       show: jest.fn(),
     })
     const tree = renderer.create(<DiscussionDetails {...props} navigator={navigator} />).toJSON()
-    const discussionReply: any = explore(tree).selectByID('discussion-reply')
+    const discussionReply: any = explore(tree).selectByID('DiscussionDetails.replyButton')
     discussionReply.props.onPress()
     expect(navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/reply', { modal: true, disableSwipeDownToDismissModal: true }, {
       indexPath: [],
@@ -253,7 +253,7 @@ describe('DiscussionDetails', () => {
     props.courseID = '1'
     props.discussion = template.discussion({ id: '2' })
     props.discussionID = '2'
-    const editButton: any = explore(render(props).toJSON()).selectRightBarButton('discussions.details.edit.button')
+    const editButton: any = explore(render(props).toJSON()).selectRightBarButton('DiscussionDetails.editButton')
     editButton.action()
     expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/announcements/2/edit', { modal: true, modalPresentationStyle: 'formsheet' })
   })
@@ -262,7 +262,7 @@ describe('DiscussionDetails', () => {
     const mock = jest.fn()
     // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = mock
-    const kabob: any = explore(render(props).toJSON()).selectRightBarButton('discussions.details.edit.button')
+    const kabob: any = explore(render(props).toJSON()).selectRightBarButton('DiscussionDetails.editButton')
     kabob.action()
     expect(mock).toHaveBeenCalledWith(
       {
@@ -278,7 +278,7 @@ describe('DiscussionDetails', () => {
     // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(1))
 
-    const kabob: any = explore(render(props).toJSON()).selectRightBarButton('discussions.details.edit.button')
+    const kabob: any = explore(render(props).toJSON()).selectRightBarButton('DiscussionDetails.editButton')
     kabob.action()
     expect(props.markAllAsRead).toHaveBeenCalledWith('courses', '1', '1', 1)
   })
@@ -288,7 +288,7 @@ describe('DiscussionDetails', () => {
     Alert.alert = jest.fn()
     // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(2))
-    const kabob: any = explore(render(props).toJSON()).selectRightBarButton('discussions.details.edit.button')
+    const kabob: any = explore(render(props).toJSON()).selectRightBarButton('DiscussionDetails.editButton')
     kabob.action()
     expect(Alert.alert).toHaveBeenCalledWith(
       'Are you sure you want to delete this discussion?',
@@ -472,7 +472,7 @@ describe('DiscussionDetails', () => {
     Alert.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
     props.courseID = '1'
     props.discussionID = '2'
-    const kabob: any = explore(render(props).toJSON()).selectRightBarButton('discussions.details.edit.button')
+    const kabob: any = explore(render(props).toJSON()).selectRightBarButton('DiscussionDetails.editButton')
     kabob.action()
     expect(props.deleteDiscussion).toHaveBeenCalledWith('courses', '1', '2')
   })
@@ -485,7 +485,7 @@ describe('DiscussionDetails', () => {
     props.courseID = '1'
     props.discussion = template.discussion({ id: '2' })
     props.discussionID = '2'
-    const editButton: any = explore(render(props).toJSON()).selectRightBarButton('discussions.details.edit.button')
+    const editButton: any = explore(render(props).toJSON()).selectRightBarButton('DiscussionDetails.editButton')
     editButton.action()
     expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/2/edit', { modal: true, modalPresentationStyle: 'formsheet' })
   })
@@ -544,7 +544,7 @@ describe('DiscussionDetails', () => {
       push: jest.fn(),
     })
     let tree = render({ ...props, navigator }).toJSON()
-    const doneButton = explore(tree).selectByID('discussions.submission-graphs') || {}
+    const doneButton = explore(tree).selectByID('DiscussionDetails.submissionGraphs') || {}
     doneButton.props.onPress()
 
     expect(navigator.show).toHaveBeenCalledWith(
@@ -602,7 +602,7 @@ describe('DiscussionDetails', () => {
       setProps(screen, { pending: 0, discussion: null })
     })
     screen.update(<DiscussionDetails {...props} deleteDiscussion={deleteDiscussion} />)
-    const kabob: any = explore(screen.toJSON()).selectRightBarButton('discussions.details.edit.button')
+    const kabob: any = explore(screen.toJSON()).selectRightBarButton('DiscussionDetails.editButton')
     kabob.action()
     expect(props.navigator.pop).toHaveBeenCalled()
     expect(props.refreshSingleDiscussion).not.toHaveBeenCalled()
@@ -613,7 +613,7 @@ describe('DiscussionDetails', () => {
       delayed_post_at: '3019-10-28T14:16:00-07:00',
       posted_at: '2017-10-27T14:16:00-07:00',
     })
-    const label: any = explore(render(props).toJSON()).selectByID('discussion.details.post-date-lbl')
+    const label: any = explore(render(props).toJSON()).selectByID('DiscussionDetails.postDateLabel')
     expect(label.children).toEqual(['Oct 28 at 3:16 PM'])
   })
 
@@ -622,7 +622,7 @@ describe('DiscussionDetails', () => {
       delayed_post_at: null,
       posted_at: '2017-10-27T14:16:00-07:00',
     })
-    const label: any = explore(render(props).toJSON()).selectByID('discussion.details.post-date-lbl')
+    const label: any = explore(render(props).toJSON()).selectByID('DiscussionDetails.postDateLabel')
     expect(label.children).toEqual(['Oct 27 at 3:16 PM'])
   })
 
@@ -631,12 +631,12 @@ describe('DiscussionDetails', () => {
       delayed_post_at: null,
       posted_at: null,
     })
-    const label: any = explore(render(props).toJSON()).selectByID('discussion.details.post-date-lbl')
+    const label: any = explore(render(props).toJSON()).selectByID('DiscussionDetails.postDateLabel')
     expect(label).toEqual(null)
   })
 
   it('navigates to context card when pressing the avatar', () => {
-    let avatar = explore(render(props).toJSON()).selectByID('discussion.details.avatar') || {}
+    let avatar = explore(render(props).toJSON()).selectByID('DiscussionDetails.avatar') || {}
     avatar.props.onPress()
     expect(props.navigator.show).toHaveBeenCalledWith(
       `/courses/1/users/1`,

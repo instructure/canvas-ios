@@ -32,7 +32,9 @@ extension APIDiscussionTopic {
         published: Bool = true,
         attachments: [APIFile]? = nil,
         author: APIDiscussionParticipant = .make(),
-        permissions: APIDiscussionPermissions? = nil
+        permissions: APIDiscussionPermissions? = nil,
+        allow_rating: Bool = false,
+        sort_by_rating: Bool = false
     ) -> APIDiscussionTopic {
         return APIDiscussionTopic(
             id: id,
@@ -46,7 +48,9 @@ extension APIDiscussionTopic {
             published: published,
             attachments: attachments,
             author: author,
-            permissions: permissions
+            permissions: permissions,
+            allow_rating: allow_rating,
+            sort_by_rating: sort_by_rating
         )
     }
 }
@@ -81,17 +85,17 @@ extension APIDiscussionFullTopic {
             .make(id: 2, display_name: "Alice", html_url: URL(string: "/users/2")),
         ],
         unread_entries: [ID] = [1, 3, 5],
-        entry_ratings: [ID: Int] = [3: 1],
+        entry_ratings: [String: Int] = ["3": 1, "5": 1],
         forced_entries: [ID] = [1],
         view: [APIDiscussionEntry] = [
-            .make(id: 1, updated_at: date1, message: "m1", replies: [
+            .make(id: 1, updated_at: date1, message: "m1", rating_count: 1, replies: [
                 .make(id: 2, user_id: 2, updated_at: date1, message: "m2", replies: [
-                    .make(id: 3, updated_at: date1, message: "m3", replies: [
+                    .make(id: 3, updated_at: date1, message: "m3", rating_count: 3, replies: [
                         .make(id: 4, updated_at: date1, message: "m4 (deep)"),
                     ]),
                 ]),
             ]),
-            .make(id: 4, updated_at: date1, message: "m5"),
+            .make(id: 5, updated_at: date1, message: "m5", rating_count: 1),
         ]
     ) -> APIDiscussionFullTopic {
         return APIDiscussionFullTopic(

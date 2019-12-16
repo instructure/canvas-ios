@@ -16,17 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-@testable import Parent
-import XCTest
-@testable import Core
+#import <Foundation/Foundation.h>
+#import <React/RCTBridgeModule.h>
 
-class RoutesTests: ParentTestCase {
-    func testRoutes() {
-        XCTAssert(Parent.router.match(.parse("/courses/1/grades")) is CourseDetailsViewController)
+@interface NativeUtils: NSObject<RCTBridgeModule>
+@end
 
-        XCTAssertNil(Parent.router.match(Route.conversations.url))
-        ExperimentalFeature.parentInbox.isEnabled = true
-        XCTAssert(Parent.router.match(Route.conversations.url) is ConversationListViewController)
-    }
+@implementation NativeUtils
+
+RCT_EXPORT_MODULE();
+
+RCT_EXPORT_METHOD(log:(NSString*)message) {
+    NSLog(@"%@", message);
 }
+
+@end

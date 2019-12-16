@@ -26,6 +26,7 @@ class ProfilePresenterTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
+        ExperimentalFeature.parentInbox.isEnabled = true
         api.mock(GetAccountHelpLinksRequest(), value: nil)
         api.mock(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: .make(become_user: false))
         api.mock(GetGlobalNavExternalToolsRequest(), value: [])
@@ -121,6 +122,9 @@ class ProfilePresenterTests: CoreTestCase {
 
     func testObserver() {
         enrollment = .observer
+        view.expect(route: Route.conversations) {
+            presenter.cells.first(where: { $0.id == "inbox" })?.block(UITableViewCell())
+        }
         view.expect(route: Route.profileObservees) {
             presenter.cells.first(where: { $0.id == "manageChildren" })?.block(UITableViewCell())
         }

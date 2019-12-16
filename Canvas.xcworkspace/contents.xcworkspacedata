@@ -17,6 +17,9 @@
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:rn">
+   </FileRef>
+   <FileRef
       location = "group:Student/Student.xcodeproj">
    </FileRef>
    <FileRef
