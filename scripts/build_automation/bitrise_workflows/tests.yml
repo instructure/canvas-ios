@@ -179,7 +179,7 @@ workflows:
             #!/bin/zsh
             set -euo pipefail
 
-            ./scripts/build_automation/summarize-test-results.swift scripts/coverage/citests.xcresult |
+            ./scripts/build_automation/summarize-test-results.swift scripts/coverage/citests.xcresult 2>/dev/null |
                 jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' | gzip |
                 curl -q -X POST \
                     -H "Authorization: $SPLUNK_SECRET" \
@@ -311,7 +311,7 @@ workflows:
             #!/bin/zsh
             set -euo pipefail
 
-            ./scripts/build_automation/summarize-test-results.swift nightly-xcresults/merged.xcresult |
+            ./scripts/build_automation/summarize-test-results.swift nightly-xcresults/merged.xcresult 2>/dev/null |
                 jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' | gzip |
                 curl -q -X POST \
                     -H "Authorization: $SPLUNK_SECRET" \

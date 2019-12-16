@@ -50,7 +50,7 @@ class ModulesTests: CoreUITestCase {
         ModulesDetail.moduleItem(index: 0).tap()
 
         app.find(labelContaining: "Teacher One").waitToExist()
-        app.find(id: "discussion-reply").waitToExist()
+        DiscussionDetails.replyButton.waitToExist()
     }
 
     func testLaunchIntoPageModuleItem() {
