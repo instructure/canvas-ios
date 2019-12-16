@@ -23,7 +23,7 @@
 "%g out of %@" = "%1$g ut av %2$@";
 
 /* Assignment grade: Complete */
-"Complete" = "Fullført";
+"Complete" = "Godkjent";
 
 /* No comment provided by engineer. */
 "Excused" = "Fritatt";
@@ -44,7 +44,7 @@
 "Media comment" = "Mediekommentar";
 
 /* Pass/fail assignment is not complete */
-"Not Complete" = "Ikke fullført";
+"Not Complete" = "Ikke godkjent";
 
 /* not graded string. */
 "Not graded" = "Ikke karaktersatt";
