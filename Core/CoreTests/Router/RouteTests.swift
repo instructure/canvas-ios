@@ -20,6 +20,10 @@ import XCTest
 @testable import Core
 
 class RouteTests: XCTestCase {
+    func testConversations() {
+        XCTAssertEqual(Route.conversations.url.path, "/conversations")
+    }
+
     func testCourse() {
         XCTAssertEqual(Route.course("7").url.path, "/courses/7")
     }

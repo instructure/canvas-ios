@@ -16,17 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-@testable import Parent
 import XCTest
 @testable import Core
+@testable import Parent
+import TestsFoundation
 
-class RoutesTests: ParentTestCase {
-    func testRoutes() {
-        XCTAssert(Parent.router.match(.parse("/courses/1/grades")) is CourseDetailsViewController)
+class ConversationListViewControllerTests: ParentTestCase {
+    lazy var controller = ConversationListViewController.create()
 
-        XCTAssertNil(Parent.router.match(Route.conversations.url))
-        ExperimentalFeature.parentInbox.isEnabled = true
-        XCTAssert(Parent.router.match(Route.conversations.url) is ConversationListViewController)
+    func testLayout() {
+        let navigation = UINavigationController(rootViewController: controller)
+        navigation.isNavigationBarHidden = true
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+        XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
+        XCTAssertFalse(navigation.isNavigationBarHidden)
+        XCTAssertEqual(navigation.navigationBar.barStyle, .default)
     }
 }

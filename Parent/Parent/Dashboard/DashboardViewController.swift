@@ -34,6 +34,9 @@ class DashboardViewController: UIViewController {
     var studentSyncProducer: Student.ModelPageSignalProducer!
 
     // Views created from storyboard
+    @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var badgeView: UIView!
+    @IBOutlet weak var badgeLabel: UILabel!
     @IBOutlet weak var headerContainerView: UIView!
     @IBOutlet weak var studentInfoContainer: UIView!
     @IBOutlet weak var studentInfoStackView: UIStackView!
@@ -64,6 +67,8 @@ class DashboardViewController: UIViewController {
                 if !UIAccessibility.isReduceTransparencyEnabled {
                     let colorScheme = ColorCoordinator.colorSchemeForStudentID(student.id)
                     headerContainerView.backgroundColor = colorScheme.mainColor
+                    badgeLabel.textColor = colorScheme.mainColor
+                    badgeView.layer.borderColor = colorScheme.mainColor.cgColor
                     tabBar.tintColor = colorScheme.mainColor
                     navigationController?.view.backgroundColor = colorScheme.mainColor
                 }
@@ -101,6 +106,10 @@ class DashboardViewController: UIViewController {
 
         super.viewDidLoad()
 
+        badgeView.isHidden = true
+        badgeView.isUserInteractionEnabled = false
+        menuButton.addSubview(badgeView)
+
         // Remove the testing background colors
         studentInfoContainer.backgroundColor = .clear
         studentInfoName.backgroundColor = .clear
@@ -129,6 +138,13 @@ class DashboardViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
+        if ExperimentalFeature.parentInbox.isEnabled {
+            env.api.makeRequest(GetConversationsUnreadCountRequest()) { [weak self] (response, _, _) in performUIUpdate {
+                let unreadCount = response?.unread_count ?? 0
+                self?.badgeView.isHidden = unreadCount == 0
+                self?.badgeLabel.text = NumberFormatter.localizedString(from: NSNumber(value: unreadCount), number: .none)
+            } }
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {

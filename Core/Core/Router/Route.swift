@@ -30,6 +30,8 @@ public struct Route: Equatable {
         return Route("/accounts/self/users/self/account_notifications/\(id)")
     }
 
+    public static let conversations = Route("/conversations")
+
     public static let courses = Route("/courses")
 
     public static func course(_ courseID: String) -> Route {

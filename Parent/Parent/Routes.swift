@@ -27,6 +27,11 @@ let router = Router(routes: [
         return try? AccountNotificationViewController(session: session, announcementID: id)
     },
 
+    RouteHandler(.conversations) { _, _ in
+        guard ExperimentalFeature.parentInbox.isEnabled else { return nil }
+        return ConversationListViewController.create()
+    },
+
     RouteHandler(.courses) { _, _ in
         guard let session = legacySession else { return nil }
         return DashboardViewController.create(session: session)
