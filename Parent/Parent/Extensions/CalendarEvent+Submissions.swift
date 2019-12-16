@@ -27,6 +27,13 @@ private struct Submission {
         return formatter
     }()
 
+    static let gradeNumberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 1
+        formatter.minimumFractionDigits = 0
+        return formatter
+    }()
+
     struct Status: OptionSet {
         let rawValue: Int64
         init(rawValue: Int64) { self.rawValue = rawValue}
@@ -113,7 +120,7 @@ private struct Submission {
             } else if missing {
                 return String(format: NSLocalizedString("Missing: %@ (%@/%@)", comment: ""), percentage ?? "", score, pointsPossible)
             } else {
-                return String(format: NSLocalizedString("Submitted: %@ (%@/%@)", comment: ""), percentage ?? "", score, pointsPossible)
+                return String(format: NSLocalizedString("Submitted: %@ (%@/%@)", comment: ""), percentage ?? "", Submission.gradeNumberFormatter.string(from: score) ?? score, pointsPossible)
             }
         } else if status.contains(.Submitted) {
             return displayText
