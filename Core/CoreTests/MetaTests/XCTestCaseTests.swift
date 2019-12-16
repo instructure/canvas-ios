@@ -43,6 +43,6 @@ class XCTestCaseTests: XCTestCase {
     }
 
     func testFail2() {
-        XCTAssert(true)
+        XCTAssert(false)
     }
 }
