@@ -37,4 +37,12 @@ class XCTestCaseTests: XCTestCase {
             XCTAssertTrue(allNestsCalled)
         }
     }
+
+    func testFail1() {
+        XCTAssert(false)
+    }
+
+    func testFail2() {
+        XCTAssert(true)
+    }
 }
