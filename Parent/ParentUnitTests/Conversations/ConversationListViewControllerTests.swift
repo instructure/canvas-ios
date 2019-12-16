@@ -29,7 +29,7 @@ class ConversationListViewControllerTests: ParentTestCase {
         Clock.mockNow(DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 12, day: 25).date!)
         api.mock(controller.conversations, value: [
             .make(),
-            .make(id: "2", subject: "", workflow_state: .read, last_message: "last", last_message_at: Clock.now.add(.year, number: -1), context_name: "CTX")
+            .make(id: "2", subject: "", workflow_state: .read, last_message: "last", last_message_at: Clock.now.add(.year, number: -1), context_name: "CTX"),
         ])
     }
 
