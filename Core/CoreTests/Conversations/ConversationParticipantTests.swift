@@ -16,11 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+import XCTest
+@testable import Core
+import TestsFoundation
 
-@IBDesignable
-class AvatarView: Core.AvatarView {}
-class DividerView: Core.DividerView {}
-class DynamicButton: Core.DynamicButton {}
-class DynamicLabel: Core.DynamicLabel {}
-class IconView: Core.IconView {}
+class ConversationParticipantTests: CoreTestCase {
+    func testProperties() {
+        let conversation = Conversation.make(from: .make(messages: [.make()]))
+        XCTAssertEqual(conversation.messages.count, 1)
+        XCTAssertEqual(Conversation.make().messages.count, 0)
+
+        XCTAssertEqual(conversation.participants.count, 1)
+        conversation.participants = []
+        XCTAssertEqual(conversation.participants.count, 0)
+
+        conversation.workflowState = .archived
+        XCTAssertEqual(conversation.workflowStateRaw, ConversationWorkflowState.archived.rawValue)
+        conversation.workflowStateRaw = "bogus"
+        XCTAssertEqual(conversation.workflowState, .read)
+    }
+}

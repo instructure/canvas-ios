@@ -41,4 +41,10 @@ class DateExtensionsTests: XCTestCase {
         XCTAssertEqual(a.addYears(1), b)
         XCTAssertEqual(a.addYears(-1), c)
     }
+
+    func testDateMediumString() {
+        Clock.mockNow(DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 12, day: 25).date!)
+        XCTAssertEqual(DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 1, day: 1).date?.dateMediumString, "Jan 1")
+        XCTAssertEqual(DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 12, day: 25).date?.dateMediumString, "Dec 25, 2020")
+    }
 }

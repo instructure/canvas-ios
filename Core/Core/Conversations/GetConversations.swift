@@ -16,11 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+import Foundation
 
-@IBDesignable
-class AvatarView: Core.AvatarView {}
-class DividerView: Core.DividerView {}
-class DynamicButton: Core.DynamicButton {}
-class DynamicLabel: Core.DynamicLabel {}
-class IconView: Core.IconView {}
+public class GetConversations: CollectionUseCase {
+    public typealias Model = Conversation
+    let include: [GetConversationsRequest.Include] = [.participant_avatars]
+    let perPage: Int = 100
+
+    public var cacheKey: String? = "conversations"
+
+    public var request: GetConversationsRequest {
+        return GetConversationsRequest(include: include, perPage: perPage, scope: nil)
+    }
+
+    public var scope = Scope.all(orderBy: #keyPath(Conversation.lastMessageAt), ascending: false)
+
+    public init() {}
+}

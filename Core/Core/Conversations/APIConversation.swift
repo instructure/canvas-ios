@@ -18,22 +18,23 @@
 
 import Foundation
 
-enum ConversationWorkflowState: String, Codable {
+public enum ConversationWorkflowState: String, Codable {
     case read, unread, archived
 }
 
-enum ConversationProperties: String, Codable {
+public enum ConversationProperties: String, Codable {
     case last_author, attachments, media_objects
 }
 
-struct APIConversation: Codable, Equatable {
+// https://canvas.instructure.com/doc/api/conversations.html#Conversation
+public struct APIConversation: Codable, Equatable {
     let id: ID
     let subject: String
     let workflow_state: ConversationWorkflowState
     let last_message: String
     let last_message_at: Date
-    let last_authored_message: String
-    let last_authored_message_at: Date
+    let last_authored_message: String?
+    let last_authored_message_at: Date?
     let participants: [APIConversationParticipant]
     let message_count: Int
     let subscribed: Bool
@@ -48,13 +49,14 @@ struct APIConversation: Codable, Equatable {
     let messages: [APIConversationMessage]?
 }
 
-struct APIConversationParticipant: Codable, Equatable {
+// https://canvas.instructure.com/doc/api/conversations.html#ConversationParticipant
+public struct APIConversationParticipant: Codable, Equatable {
     let id: ID
     let name: String
     let avatar_url: APIURL?
 }
 
-struct APIConversationMessage: Codable, Equatable {
+public struct APIConversationMessage: Codable, Equatable {
     let id: ID
     let created_at: Date
     let body: String
@@ -67,14 +69,14 @@ struct APIConversationMessage: Codable, Equatable {
 
 #if DEBUG
 extension APIConversation {
-    static func make(
+    public static func make(
         id: String = "1",
         subject: String = "Subject One",
         workflow_state: ConversationWorkflowState = .unread,
         last_message: String = "Last Message One",
         last_message_at: Date = Clock.now,
-        last_authored_message: String = "Last Authored Message One",
-        last_authored_message_at: Date = Clock.now,
+        last_authored_message: String? = "Last Authored Message One",
+        last_authored_message_at: Date? = Clock.now,
         participants: [APIConversationParticipant] = [.make()],
         message_count: Int = 1,
         subscribed: Bool = false,
@@ -113,7 +115,7 @@ extension APIConversation {
 }
 
 extension APIConversationParticipant {
-    static func make(
+    public static func make(
         id: String = "1",
         name: String = "Participant One",
         avatar_url: URL? = nil
@@ -127,7 +129,7 @@ extension APIConversationParticipant {
 }
 
 extension APIConversationMessage {
-    static func make(
+    public static func make(
         id: String = "1",
         created_at: Date = Clock.now,
         body: String = "Body One",
@@ -166,8 +168,8 @@ public struct GetConversationsUnreadCountRequest: APIRequestable {
     public init() {}
 }
 
-struct GetConversationsRequest: APIRequestable {
-    typealias Response = [APIConversation]
+public struct GetConversationsRequest: APIRequestable {
+    public typealias Response = [APIConversation]
     enum Include: String {
         case participant_avatars
     }
@@ -175,13 +177,13 @@ struct GetConversationsRequest: APIRequestable {
         case unread, starred, archived, sent
     }
 
-    let path = "conversations"
+    public let path = "conversations"
 
-    let perPage: Int?
     let include: [Include]
+    let perPage: Int?
     let scope: Scope?
 
-    var query: [APIQueryItem] {
+    public var query: [APIQueryItem] {
         var query: [APIQueryItem] = [
             .include(include.map { $0.rawValue }),
         ]
@@ -193,32 +195,19 @@ struct GetConversationsRequest: APIRequestable {
         }
         return query
     }
-
-    init(include: [Include] = [], perPage: Int? = nil, scope: Scope? = nil) {
-        self.include = include
-        self.perPage = perPage
-        self.scope = scope
-    }
 }
 
-struct GetConversationRequest: APIRequestable {
-    typealias Response = APIConversation
+public struct GetConversationRequest: APIRequestable {
+    public typealias Response = APIConversation
     enum Include: String {
         case participant_avatars
     }
 
     let id: String
     let include: [Include]
-    var path: String { "conversations/\(id)" }
-    var query: [APIQueryItem] {
-        return [
-            .include(include.map { $0.rawValue }),
-        ]
-    }
-
-    init(id: String, include: [Include] = []) {
-        self.id = id
-        self.include = include
+    public var path: String { "conversations/\(id)" }
+    public var query: [APIQueryItem] {
+        return [ .include(include.map { $0.rawValue }) ]
     }
 }
 

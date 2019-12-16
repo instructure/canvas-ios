@@ -16,11 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+import XCTest
+@testable import Core
+import TestsFoundation
 
-@IBDesignable
-class AvatarView: Core.AvatarView {}
-class DividerView: Core.DividerView {}
-class DynamicButton: Core.DynamicButton {}
-class DynamicLabel: Core.DynamicLabel {}
-class IconView: Core.IconView {}
+class ConversationMessageTests: CoreTestCase {
+    func testProperties() {
+        let message = ConversationMessage.make(from: .make(
+            media_comment: .make(),
+            attachments: [.make()],
+            forwarded_messages: [ .make(
+                id: "2"
+            ), ]
+        ))
+        XCTAssertEqual(message.mediaComment?.mediaID, "m-1234567890")
+        XCTAssertEqual(message.attachments.first?.id, "1")
+        XCTAssertEqual(message.forwarded.first?.id, "2")
+
+        XCTAssertNil(ConversationMessage.make().mediaComment)
+        XCTAssert(ConversationMessage.make().attachments.isEmpty)
+        XCTAssert(ConversationMessage.make().forwarded.isEmpty)
+    }
+}

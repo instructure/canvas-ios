@@ -20,8 +20,17 @@ import UIKit
 import Core
 
 class ConversationListViewController: UIViewController {
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var emptyView: EmptyView!
+    @IBOutlet weak var errorView: UIView!
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var retryButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+
+    let env = AppEnvironment.shared
+    lazy var conversations = env.subscribe(GetConversations()) { [weak self] in
+        self?.update()
+    }
 
     static func create() -> ConversationListViewController {
         return loadFromStoryboard()
@@ -32,14 +41,75 @@ class ConversationListViewController: UIViewController {
         view.backgroundColor = .named(.backgroundLightest)
         title = NSLocalizedString("Inbox", comment: "")
 
+        activityIndicatorView.color = Brand.shared.primary
+
         emptyView.titleText = NSLocalizedString("Inbox Zero", comment: "")
         emptyView.bodyText = NSLocalizedString("You’re all caught up", comment: "")
-        // emptyView.isHidden = true
+        emptyView.isHidden = true
+
+        errorView.isHidden = true
+        retryButton.setTitle(NSLocalizedString("Retry", comment: ""), for: .normal)
+        retryButton.layer.borderColor = UIColor.named(.borderDark).cgColor
+
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView.refreshControl?.tintColor = Brand.shared.primary
+        tableView.separatorColor = .named(.borderMedium)
+
+        conversations.refresh()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useModalStyle()
         navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+
+    @IBAction func refresh() {
+        emptyView.isHidden = true
+        errorView.isHidden = true
+        tableView.refreshControl?.beginRefreshing()
+        conversations.refresh(force: true)
+    }
+
+    func showError(_ error: Error) {
+        errorLabel.text = error.localizedDescription
+        errorView.isHidden = false
+    }
+
+    func update() {
+        activityIndicatorView.stopAnimating()
+        tableView.reloadData()
+        tableView.refreshControl?.endRefreshing()
+        if let error = conversations.error {
+            showError(error)
+        } else if conversations.isEmpty, !conversations.pending {
+            emptyView.isHidden = false
+        }
+    }
+}
+
+extension ConversationListViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return conversations.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: ConversationListCell = tableView.dequeue(for: indexPath)
+        if let conversation = conversations[indexPath] {
+            cell.update(conversation)
+        }
+        return cell
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.isBottomReached() {
+            conversations.getNextPage()
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let conversation = conversations[indexPath] else { return }
+        env.router.route(to: .conversation(conversation.id), from: self)
     }
 }
