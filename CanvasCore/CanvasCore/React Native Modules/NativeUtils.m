@@ -16,9 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-import TestsFoundation
+#import <Foundation/Foundation.h>
+#import <React/RCTBridgeModule.h>
 
-enum DiscussionDetails: String, ElementWrapper {
-    case attachmentButton, avatar, titleLabel, submissionGraphs, postDateLabel, replyButton
+@interface NativeUtils: NSObject<RCTBridgeModule>
+@end
+
+@implementation NativeUtils
+
+RCT_EXPORT_MODULE();
+
+RCT_EXPORT_METHOD(log:(NSString*)message) {
+    NSLog(@"%@", message);
 }
+
+@end

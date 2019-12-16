@@ -32,6 +32,8 @@ public struct APIDiscussionTopic: Codable, Equatable {
     let attachments: [APIFile]?
     let author: APIDiscussionParticipant
     let permissions: APIDiscussionPermissions?
+    let allow_rating: Bool
+    let sort_by_rating: Bool
 }
 
 public struct APIDiscussionParticipant: Codable, Equatable {
@@ -48,6 +50,8 @@ public struct APIDiscussionEntry: Codable, Equatable {
     let created_at: Date?
     let updated_at: Date?
     let message: String
+    let rating_count: Int
+    let rating_sum: Int
     let replies: [APIDiscussionEntry]?
 }
 
@@ -59,7 +63,7 @@ public struct APIDiscussionPermissions: Codable, Equatable {
 public struct APIDiscussionFullTopic: Codable, Equatable {
     let participants: [APIDiscussionParticipant]
     let unread_entries: [ID]
-    let entry_ratings: [ID: Int]
+    let entry_ratings: [String: Int]
     let forced_entries: [ID]
     let view: [APIDiscussionEntry]
 }

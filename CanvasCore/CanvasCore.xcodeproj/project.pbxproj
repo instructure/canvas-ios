@@ -385,6 +385,7 @@
 		49CE97A81F900D0000121A43 /* BackdropCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE97901F900CFE00121A43 /* BackdropCell.swift */; };
 		49CE97A91F900D0000121A43 /* Peeps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49CE97921F900CFF00121A43 /* Peeps.xcdatamodeld */; };
 		49CE97AB1F900D0000121A43 /* PandaImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49CE97951F900D0000121A43 /* PandaImages.xcassets */; };
+		585959D0165156B27BB92716 /* NativeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 58595B2045EC1806A88292D9 /* NativeUtils.m */; };
 		630085E9F4EBC97E435FFE64 /* Pods_defaults_CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 801BC15BB71585F55A4CD6C8 /* Pods_defaults_CanvasCore.framework */; };
 		78C610CD21CA022400913B93 /* CanvasCrashlytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C610CC21CA022400913B93 /* CanvasCrashlytics.m */; };
 		78C610CE21CA022C00913B93 /* CanvasCrashlytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 78C610CB21C9FFFC00913B93 /* CanvasCrashlytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -878,6 +879,7 @@
 		49CE97901F900CFE00121A43 /* BackdropCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackdropCell.swift; sourceTree = "<group>"; };
 		49CE97931F900CFF00121A43 /* Peeps.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Peeps.xcdatamodel; sourceTree = "<group>"; };
 		49CE97951F900D0000121A43 /* PandaImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PandaImages.xcassets; sourceTree = "<group>"; };
+		58595B2045EC1806A88292D9 /* NativeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeUtils.m; sourceTree = "<group>"; };
 		5B1FFAA722BD70940019BAC8 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B1FFAA822BD70940019BAC8 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
 		5B1FFAA922BD70940019BAC8 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
@@ -1474,6 +1476,7 @@
 				496C7D631F8BEF690010DC03 /* TabBarBadgeCounts.swift */,
 				494AE0AC1F843AAC001A8F31 /* VideoContainerManager.m */,
 				494AE0AB1F843AAB001A8F31 /* VideoContainerView.swift */,
+				58595B2045EC1806A88292D9 /* NativeUtils.m */,
 			);
 			path = "React Native Modules";
 			sourceTree = "<group>";
@@ -3038,6 +3041,7 @@
 				7D52D87C22FCC73100684932 /* Assignment+Network.swift in Sources */,
 				49CE96BD1F8FF94B00121A43 /* Page+Collections.swift in Sources */,
 				4961F63D1F8FB7180093EC86 /* Session+Enrollment.swift in Sources */,
+				585959D0165156B27BB92716 /* NativeUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

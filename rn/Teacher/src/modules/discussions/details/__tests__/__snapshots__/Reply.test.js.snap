@@ -66,7 +66,7 @@ exports[`DiscussionReplies renders 1`] = `
           "width": 24,
         }
       }
-      testID="reply.avatar"
+      testID="discussion.reply.1.avatar"
       userName="The Donald"
     />
     <View
@@ -162,7 +162,7 @@ exports[`DiscussionReplies renders 1`] = `
                 "paddingTop": 2,
               }
             }
-            testID="discussion.reply-btn.1"
+            testID="discussion.reply.1.reply-btn"
             textStyle={
               Object {
                 "color": "#8B969E",
@@ -205,7 +205,7 @@ exports[`DiscussionReplies renders 1`] = `
                 "paddingTop": 2,
               }
             }
-            testID="discussion.edit-btn"
+            testID="discussion.reply.1.edit-btn"
             textStyle={
               Object {
                 "color": "#8B969E",
@@ -290,7 +290,7 @@ exports[`DiscussionReplies renders without the reply button when the user cant r
           "width": 24,
         }
       }
-      testID="reply.avatar"
+      testID="discussion.reply.1.avatar"
       userName="The Donald"
     />
     <View
