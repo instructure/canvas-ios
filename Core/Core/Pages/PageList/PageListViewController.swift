@@ -28,6 +28,7 @@ public class PageListViewController: UIViewController, PageListViewProtocol {
     @IBOutlet weak var frontPageTitleLabel: DynamicLabel!
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var frontPageViewButton: UIButton!
 
     public var color: UIColor?
     public var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
@@ -106,8 +107,6 @@ public class PageListViewController: UIViewController, PageListViewProtocol {
             addNavigationButton(button, side: .right)
         }
 
-        let gestureRecogizer = UITapGestureRecognizer(target: self, action: #selector(frontPageTapped))
-        frontPageView.addGestureRecognizer(gestureRecogizer)
         let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
 
@@ -139,7 +138,7 @@ public class PageListViewController: UIViewController, PageListViewProtocol {
         presenter?.viewDidDisappear()
     }
 
-    @objc func frontPageTapped() {
+    @IBAction func frontPageTapped(_ sender: Any) {
         guard let page = presenter?.frontPage.first else { return }
         presenter?.select(page, from: self)
     }
@@ -155,11 +154,6 @@ public class PageListViewController: UIViewController, PageListViewProtocol {
 }
 
 extension PageListViewController: UITableViewDataSource, UITableViewDelegate {
-
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter?.pages.count ?? 0
     }

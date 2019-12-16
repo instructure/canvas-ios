@@ -45,4 +45,43 @@ class PageListViewControllerTests: CoreTestCase {
         viewController.update(isLoading: false)
         XCTAssertEqual(viewController.navigationItem.rightBarButtonItems?.count, 1)
     }
+
+    func load() {
+        viewController.view.frame = CGRect(x: 0, y: 0, width: 300, height: 800)
+        viewController.view.layoutIfNeeded()
+        viewController.viewDidLoad()
+        viewController.viewWillAppear(false)
+        viewController.viewDidAppear(false)
+    }
+
+    func testRender() {
+        viewController = PageListViewController.create(env: environment, context: context, appTraitCollection: nil, app: .student)
+        ExperimentalFeature.newPageDetails.isEnabled = true
+        environment.mockStore = false
+
+        api.mock(viewController.presenter!.course!, value: APICourse.make())
+        api.mock(viewController.presenter!.colors, value: APICustomColors(custom_colors: [ "course_1": "#f00" ]))
+        let a = APIPage.make(html_url: URL(string: "/courses/1/pages/one")!, page_id: ID(1), title: "A")
+        api.mock(viewController.presenter!.pages, value: [a])
+        let frontPage = APIPage.make(body: "hello front page", front_page: true, html_url: URL(string: "/courses/3/pages/three")!, page_id: ID(3), title: "frontpage")
+        api.mock(viewController.presenter!.frontPage, value: frontPage)
+
+        load()
+
+        XCTAssertEqual(viewController.presenter!.pages.count, 1)
+
+        let cell = viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? PageListCell
+        XCTAssertEqual(cell?.titleLabel?.text, "A")
+        let expectedDate = PageListCell.dateFormatter.string(from: a.updated_at)
+        XCTAssertEqual(cell?.dateLabel?.text, expectedDate)
+        XCTAssertEqual(cell?.accessIconView?.icon, UIImage.icon(.document, .line))
+        viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        XCTAssert(router.lastRoutedTo(.parse("/courses/1/pages/one")))
+
+        XCTAssertEqual(viewController.frontPageTitleLabel.text, frontPage.title)
+        XCTAssertEqual(viewController.frontPageTitleLabel.isHidden, false)
+
+        viewController.frontPageViewButton.sendActions(for: .touchUpInside)
+        XCTAssert(router.lastRoutedTo(.parse("/courses/3/pages/three")))
+    }
 }

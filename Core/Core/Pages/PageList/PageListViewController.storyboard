@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -73,15 +73,25 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="arrowOpenRightSolid"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bY-hM-aJf">
+                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="76"/>
+                                                    <connections>
+                                                        <action selector="frontPageTapped:" destination="JGx-7A-Apd" eventType="touchUpInside" id="ajK-L4-YhU"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="MRG-6a-5mX" firstAttribute="centerY" secondItem="GGb-WI-PsZ" secondAttribute="centerY" id="0u4-Bq-Tiz"/>
                                                 <constraint firstItem="MRG-6a-5mX" firstAttribute="leading" secondItem="YcV-8y-KJ0" secondAttribute="trailing" constant="16" id="470-TG-ZH5"/>
+                                                <constraint firstAttribute="trailing" secondItem="7bY-hM-aJf" secondAttribute="trailing" id="6Jo-Rv-4Td"/>
+                                                <constraint firstItem="7bY-hM-aJf" firstAttribute="leading" secondItem="GGb-WI-PsZ" secondAttribute="leading" id="9Nm-Ig-Hcz"/>
                                                 <constraint firstAttribute="trailing" secondItem="MRG-6a-5mX" secondAttribute="trailing" constant="16" id="CHz-vr-4fZ"/>
                                                 <constraint firstAttribute="bottom" secondItem="YcV-8y-KJ0" secondAttribute="bottom" constant="16" id="Fth-hv-Ypl"/>
                                                 <constraint firstItem="YcV-8y-KJ0" firstAttribute="leading" secondItem="GGb-WI-PsZ" secondAttribute="leading" constant="16" id="fEO-PU-3cK"/>
                                                 <constraint firstItem="YcV-8y-KJ0" firstAttribute="top" secondItem="GGb-WI-PsZ" secondAttribute="top" constant="16" id="gvl-3o-Ta7"/>
+                                                <constraint firstItem="7bY-hM-aJf" firstAttribute="top" secondItem="GGb-WI-PsZ" secondAttribute="top" id="lFd-Bu-Njh"/>
+                                                <constraint firstAttribute="bottom" secondItem="7bY-hM-aJf" secondAttribute="bottom" id="q2b-XA-BV4"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -107,7 +117,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYX-kk-GxH" customClass="AccessIconView" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="18" y="14" width="24" height="24"/>
+                                                    <rect key="frame" x="16" y="12" width="24" height="24"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="Syx-AB-VyP"/>
@@ -115,7 +125,7 @@
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="jbt-qX-1vo">
-                                                    <rect key="frame" x="60" y="15.999999999999996" width="315" height="40.666666666666657"/>
+                                                    <rect key="frame" x="56" y="15.999999999999996" width="319" height="40.666666666666657"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" ambiguous="YES" text="Page Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hi2-wZ-pJg" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="72.333333333333329" height="19.333333333333332"/>
@@ -186,6 +196,7 @@
                         <outlet property="emptyLabel" destination="34v-0e-P8N" id="R8e-hX-awF"/>
                         <outlet property="frontPageTitleLabel" destination="paN-70-GrB" id="POr-4F-jtz"/>
                         <outlet property="frontPageView" destination="GGb-WI-PsZ" id="52X-XR-tJF"/>
+                        <outlet property="frontPageViewButton" destination="7bY-hM-aJf" id="bqz-a5-LJn"/>
                         <outlet property="loadingView" destination="ufY-Pw-cGA" id="cYi-BU-Wlj"/>
                         <outlet property="tableView" destination="f1i-hN-714" id="Fyk-Pg-olo"/>
                     </connections>
