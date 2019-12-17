@@ -297,6 +297,8 @@
 		7D86285D224C15BA003A37DC /* UploadMediaCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D86285C224C15BA003A37DC /* UploadMediaCommentTests.swift */; };
 		7D862869224D4907003A37DC /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D862868224D4907003A37DC /* AudioPlayerViewController.swift */; };
 		7D86286B224D493C003A37DC /* AudioPlayerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D86286A224D493C003A37DC /* AudioPlayerViewController.storyboard */; };
+		7D88EA2823A9326200D5F8FD /* AvatarGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D88EA2723A9326200D5F8FD /* AvatarGroupView.swift */; };
+		7D88EA2A23A96EA600D5F8FD /* AvatarGroupViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D88EA2923A96EA600D5F8FD /* AvatarGroupViewTests.swift */; };
 		7D8B78F8215EC74A005E08F1 /* UIImageExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B78F7215EC74A005E08F1 /* UIImageExtensionsTests.swift */; };
 		7D8B78FB215EC9BE005E08F1 /* BrandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B78FA215EC9BE005E08F1 /* BrandTests.swift */; };
 		7D8B78FD21627887005E08F1 /* CoreWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B78FC21627887005E08F1 /* CoreWebView.swift */; };
@@ -1202,6 +1204,8 @@
 		7D86285C224C15BA003A37DC /* UploadMediaCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMediaCommentTests.swift; sourceTree = "<group>"; };
 		7D862868224D4907003A37DC /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
 		7D86286A224D493C003A37DC /* AudioPlayerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AudioPlayerViewController.storyboard; sourceTree = "<group>"; };
+		7D88EA2723A9326200D5F8FD /* AvatarGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarGroupView.swift; sourceTree = "<group>"; };
+		7D88EA2923A96EA600D5F8FD /* AvatarGroupViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarGroupViewTests.swift; sourceTree = "<group>"; };
 		7D8B78F7215EC74A005E08F1 /* UIImageExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensionsTests.swift; sourceTree = "<group>"; };
 		7D8B78FA215EC9BE005E08F1 /* BrandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandTests.swift; sourceTree = "<group>"; };
 		7D8B78FC21627887005E08F1 /* CoreWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWebView.swift; sourceTree = "<group>"; };
@@ -2212,6 +2216,7 @@
 				B18359A722244E230005A918 /* AccessIconView.swift */,
 				B18359A9222450DE0005A918 /* AccessIconView.xib */,
 				B1D5EF5D2357907F00B3ACD3 /* AlertAction.swift */,
+				7D88EA2723A9326200D5F8FD /* AvatarGroupView.swift */,
 				7D005F762239CCEF0040CBD7 /* AvatarView.swift */,
 				7D64A96523621690004EAEDF /* CalendarDayIconView.swift */,
 				7D64A967236219B3004EAEDF /* CalendarDayIconView.xib */,
@@ -2253,6 +2258,7 @@
 			isa = PBXGroup;
 			children = (
 				7D85D8E4226A8CFB002DBF63 /* AvatarViewTests.swift */,
+				7D88EA2923A96EA600D5F8FD /* AvatarGroupViewTests.swift */,
 				7D64A96923622D3A004EAEDF /* CalendarDayIconViewTests.swift */,
 				7D8B79022162B9E2005E08F1 /* CoreWebViewTests.swift */,
 				7D979CC9215BDFD500567627 /* DividerViewTests.swift */,
@@ -3945,6 +3951,7 @@
 				3B635B31225CDC2C001F353D /* GetCalendarEvents.swift in Sources */,
 				7DF2F5FB2347DAEA00C1802C /* UIColorInstColorsExtensions.swift in Sources */,
 				9F4D24732331648B00EDFCFE /* GetPage.swift in Sources */,
+				7D88EA2823A9326200D5F8FD /* AvatarGroupView.swift in Sources */,
 				7DCF1EAA216BC1A5003AF358 /* CourseDefaultView.swift in Sources */,
 				7D63F77D215D31A600151E49 /* DynamicButton.swift in Sources */,
 				3B166A572343CEAF00B2EFAB /* HorizontalMenuViewController.swift in Sources */,
@@ -3977,6 +3984,7 @@
 				7D5762A023849D46001F980D /* APITodoTests.swift in Sources */,
 				B1571E69230756D2009CAA58 /* APIFeatureFlagsRequestableTests.swift in Sources */,
 				B195DC622133326900797FE4 /* GetCourseTest.swift in Sources */,
+				7D88EA2A23A96EA600D5F8FD /* AvatarGroupViewTests.swift in Sources */,
 				7D4C3D59222D9E41001B1198 /* LTIToolsTests.swift in Sources */,
 				3BE2C76F219335FA004B8E5E /* ColoredNavViewProtocol.swift in Sources */,
 				7DFB2CF921C978D40077DEEE /* GetCustomColorsTests.swift in Sources */,
