@@ -80,7 +80,7 @@ class MockedInboxTests: CoreUITestCase {
         super.setUp()
         useMocksOnly()
         mockBaseRequests()
-        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50), value: [
+        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: nil), value: [
             .make(id: "1", subject: "Subject One", avatar_url: avatarURL),
         ])
         mockURL(avatarURL)
