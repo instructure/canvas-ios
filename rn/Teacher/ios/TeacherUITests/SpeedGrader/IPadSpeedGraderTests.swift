@@ -32,8 +32,8 @@ class IPadSpeedGraderTests: CoreUITestCase {
         let enrollment3 = APIEnrollment.make(id: "3", user_id: "3", user: .make(id: "3", name: "User 3", sortable_name: "User 3", short_name: "User 3"))
         let submissions = [
             APISubmission.make(id: "1", user_id: "1", user: .make(id: "1", name: "User 1", short_name: "User 1")),
-            APISubmission.make(id: "2", user_id: "2", user: .make(id: "2", name: "User 2", short_name: "User 1")),
-            APISubmission.make(id: "3", user_id: "3", user: .make(id: "3", name: "User 3", short_name: "User 1")),
+            APISubmission.make(id: "2", user_id: "2", user: .make(id: "2", name: "User 2", short_name: "User 2")),
+            APISubmission.make(id: "3", user_id: "3", user: .make(id: "3", name: "User 3", short_name: "User 3")),
         ]
         mockBaseRequests()
         mockEncodableRequest("https://canvas.instructure.com/api/v1/courses/1/lti_apps/launch_definitions?per_page=99&placements%5B%5D=course_navigation", value: [String]())
