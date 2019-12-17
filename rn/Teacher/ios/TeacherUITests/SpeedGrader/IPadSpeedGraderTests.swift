@@ -32,7 +32,7 @@ class IPadSpeedGraderTests: CoreUITestCase {
         let enrollment3 = APIEnrollment.make(id: "3", user_id: "3", user: .make(id: "3", name: "User 3", sortable_name: "User 3", short_name: "User 3"))
         let submissions = [
             APISubmission.make(id: "1", user_id: "1", user: .make(id: "1", name: "User 1", short_name: "User 1")),
-            APISubmission.make(id: "2", user_id: "2", user: .make(id: "2", name: "User 2", short_name: "User 1")),
+            APISubmission.make(id: "2", user_id: "2", user: .make(id: "2", name: "User 2", short_name: "User 2")),
             APISubmission.make(id: "3", user_id: "3", user: .make(id: "3", name: "User 3", short_name: "User 1")),
         ]
         mockBaseRequests()
