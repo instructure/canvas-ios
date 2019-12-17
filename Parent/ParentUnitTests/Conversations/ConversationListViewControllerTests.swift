@@ -24,6 +24,15 @@ import TestsFoundation
 class ConversationListViewControllerTests: ParentTestCase {
     lazy var controller = ConversationListViewController.create()
 
+    override func setUp() {
+        super.setUp()
+        Clock.mockNow(DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 12, day: 25).date!)
+        api.mock(controller.conversations, value: [
+            .make(),
+            .make(id: "2", subject: "", workflow_state: .read, last_message: "last", last_message_at: Clock.now.add(.year, number: -1), context_name: "CTX"),
+        ])
+    }
+
     func testLayout() {
         let navigation = UINavigationController(rootViewController: controller)
         navigation.isNavigationBarHidden = true
@@ -32,5 +41,34 @@ class ConversationListViewControllerTests: ParentTestCase {
         XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
         XCTAssertFalse(navigation.isNavigationBarHidden)
         XCTAssertEqual(navigation.navigationBar.barStyle, .default)
+
+        XCTAssertTrue(controller.emptyView.isHidden)
+        XCTAssertTrue(controller.errorView.isHidden)
+
+        let first = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ConversationListCell
+        XCTAssertEqual(first?.dateLabel.text, "Dec 25")
+        XCTAssertEqual(first?.contextLabel.text, "Canvas 101")
+        XCTAssertEqual(first?.subjectLabel.text, "Subject One")
+        XCTAssertEqual(first?.unreadView.isHidden, false)
+        XCTAssertEqual(first?.accessibilityLabel, "Canvas 101, Subject One, last message Dec 25 Last Message One, unread")
+
+        let last = controller.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? ConversationListCell
+        XCTAssertEqual(last?.unreadView.isHidden, true)
+        XCTAssertEqual(last?.accessibilityLabel, "CTX, (No subject), last message Dec 25, 2018 last")
+
+        controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        XCTAssert(router.lastRoutedTo(.conversation("1")))
+    }
+
+    func testErrorEmpty() {
+        api.mock(controller.conversations, error: NSError.instructureError("Doh!"))
+        controller.view.layoutIfNeeded()
+
+        XCTAssertTrue(controller.emptyView.isHidden)
+        XCTAssertFalse(controller.errorView.isHidden)
+        XCTAssertEqual(controller.errorLabel.text, "Doh!")
+
+        api.mock(controller.conversations, value: [])
+        controller.retryButton.sendActions(for: .primaryActionTriggered)
     }
 }

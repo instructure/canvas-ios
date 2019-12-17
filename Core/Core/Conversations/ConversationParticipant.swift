@@ -16,11 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+import Foundation
+import CoreData
 
-@IBDesignable
-class AvatarView: Core.AvatarView {}
-class DividerView: Core.DividerView {}
-class DynamicButton: Core.DynamicButton {}
-class DynamicLabel: Core.DynamicLabel {}
-class IconView: Core.IconView {}
+public final class ConversationParticipant: NSManagedObject, WriteableModel {
+    @NSManaged public var avatarURL: URL?
+    @NSManaged public var id: String
+    @NSManaged public var name: String
+
+    public static func save(_ item: APIConversationParticipant, in context: NSManagedObjectContext) -> ConversationParticipant {
+        let model: ConversationParticipant = context.first(where: #keyPath(ConversationParticipant.id), equals: item.id.value) ?? context.insert()
+        model.avatarURL = item.avatar_url?.rawValue
+        model.id = item.id.value
+        model.name = item.name
+        return model
+    }
+}

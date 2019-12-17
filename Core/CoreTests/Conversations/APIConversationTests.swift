@@ -34,8 +34,8 @@ class APIConversationTests: CoreTestCase {
     }
 
     func testGetConversationsRequest() {
-        XCTAssertEqual(GetConversationsRequest().path, "conversations")
-        XCTAssertEqual(GetConversationsRequest().queryItems, [])
+        XCTAssertEqual(GetConversationsRequest(include: [], perPage: nil, scope: nil).path, "conversations")
+        XCTAssertEqual(GetConversationsRequest(include: [], perPage: nil, scope: nil).queryItems, [])
         XCTAssertEqual(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent).queryItems, [
             URLQueryItem(name: "include[]", value: "participant_avatars"),
             URLQueryItem(name: "per_page", value: "50"),
@@ -44,8 +44,8 @@ class APIConversationTests: CoreTestCase {
     }
 
     func testGetConversationRequest() {
-        XCTAssertEqual(GetConversationRequest(id: "1").path, "conversations/1")
-        XCTAssertEqual(GetConversationRequest(id: "1").queryItems, [])
+        XCTAssertEqual(GetConversationRequest(id: "1", include: []).path, "conversations/1")
+        XCTAssertEqual(GetConversationRequest(id: "1", include: []).queryItems, [])
         XCTAssertEqual(GetConversationRequest(id: "2", include: [.participant_avatars]).queryItems, [
             URLQueryItem(name: "include[]", value: "participant_avatars"),
         ])
