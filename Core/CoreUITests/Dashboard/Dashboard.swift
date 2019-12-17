@@ -21,15 +21,15 @@ import TestsFoundation
 
 public enum CourseInvitation {
     public static func acted(id: String) -> Element {
-        return app.find(id: "CourseInvitation.\(id).acted")
+        app.find(id: "CourseInvitation.\(id).acted")
     }
 
     public static func acceptButton(id: String) -> Element {
-        return app.find(id: "CourseInvitation.\(id).acceptButton")
+        app.find(id: "CourseInvitation.\(id).acceptButton")
     }
 
     public static func rejectButton(id: String) -> Element {
-        return app.find(id: "CourseInvitation.\(id).rejectButton")
+        app.find(id: "CourseInvitation.\(id).rejectButton")
     }
 }
 
@@ -37,26 +37,36 @@ public enum Dashboard: String, ElementWrapper {
     case addCoursesButton, emptyBodyLabel, emptyTitleLabel
 
     public static var coursesLabel: Element {
-        return app.find(id: "dashboard.courses.heading-lbl")
+        app.find(id: "dashboard.courses.heading-lbl")
     }
 
     public static var seeAllButton: Element {
-        return app.find(id: "dashboard.courses.see-all-btn")
+        app.find(id: "dashboard.courses.see-all-btn")
+    }
+
+    public static var editButton: Element {
+        app.find(id: "dashboard.edit-btn")
     }
 
     public static func courseCard(id: String) -> Element {
-        return app.find(id: "course-\(id)")
+        app.find(id: "course-\(id)")
     }
 
     public static func courseGrade(percent: String) -> Element {
-        return app.find(labelContaining: "\(percent)%")
+        app.find(labelContaining: "\(percent)%")
     }
 
     public static func groupCard(id: String) -> Element {
-        return app.find(id: "group-row-\(id)")
+        app.find(id: "group-row-\(id)")
     }
 
     public static var profileButton: Element {
-        return app.find(id: "favorited-course-list.profile-btn")
+        app.find(id: "favorited-course-list.profile-btn")
+    }
+}
+
+public struct DashboardEdit {
+    public static func courseFavorite(id: String, favorited: Bool) -> Element {
+        app.find(id: "edit-favorites.course-favorite.\(id)-\(favorited ? "" : "not-")favorited")
     }
 }
