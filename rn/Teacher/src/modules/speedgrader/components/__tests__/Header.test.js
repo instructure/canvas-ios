@@ -132,7 +132,7 @@ describe('SpeedGraderHeader', () => {
 
   it('navigates to the context card when name is pressed', () => {
     let tree = shallow(<Header {...subProps} />)
-    tree.find('[testID="header.context.button"]').simulate('Press')
+    tree.find('[testID="header.context.button.4"]').simulate('Press')
     expect(subProps.navigator.show).toHaveBeenCalledWith(
       `/courses/3/users/4`,
       { modal: true },
@@ -146,7 +146,7 @@ describe('SpeedGraderHeader', () => {
 
   it('opens student list when group is tapped', () => {
     let tree = shallow(<Header {...groupProps} />)
-    tree.find('[testID="header.groupList.button"]').simulate('Press')
+    tree.find('[testID="header.groupList.button.1"]').simulate('Press')
     expect(groupProps.navigator.show).toHaveBeenCalledWith(
       `/groups/1/users`,
       { modal: true },

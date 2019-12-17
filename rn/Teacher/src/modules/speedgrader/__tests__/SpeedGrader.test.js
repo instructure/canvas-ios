@@ -212,7 +212,7 @@ describe('SpeedGrader', () => {
     const submissions = [templates.submissionProps()]
     const props = { ...defaultProps, submissions }
     let instance = new SpeedGrader(props)
-    instance.scrollView = { setNativeProps: jest.fn() }
+    instance._flatList = { setNativeProps: jest.fn() }
     let tree = shallow(instance.renderItem({
       item: {
         kehy: submissions[0].userID,
@@ -223,10 +223,10 @@ describe('SpeedGrader', () => {
     let submissionGrader = tree.find('SubmissionGrader')
 
     submissionGrader.props().setScrollEnabled(false)
-    expect(instance.scrollView.setNativeProps).toHaveBeenCalledWith({ scrollEnabled: false })
+    expect(instance._flatList.setNativeProps).toHaveBeenCalledWith({ scrollEnabled: false })
 
     submissionGrader.props().setScrollEnabled(true)
-    expect(instance.scrollView.setNativeProps).toHaveBeenCalledWith({ scrollEnabled: true })
+    expect(instance._flatList.setNativeProps).toHaveBeenCalledWith({ scrollEnabled: true })
   })
 
   it('supplies getItemLayout', () => {
