@@ -88,7 +88,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   constructor (props: SpeedGraderProps) {
     super(props)
 
-    const { height, width } = Dimensions.get('window')
+    const { height, width } = Dimensions.get('screen')
     const position = SpeedGrader.drawerState.currentSnap
     this.state = {
       size: {

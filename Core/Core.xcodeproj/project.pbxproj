@@ -540,6 +540,8 @@
 		B15E4B87238C4DC2002119CF /* Syllabus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15E4B86238C4DC2002119CF /* Syllabus.swift */; };
 		B164DC1F22DE2AB30037FA86 /* APIAccountResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164DC1E22DE2AB30037FA86 /* APIAccountResultTests.swift */; };
 		B16F036E215AE6210011E952 /* GetAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BE5215A81350071B41E /* GetAssignment.swift */; };
+		B175D61E23A9694E00F8E696 /* SpringBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B175D61D23A9694E00F8E696 /* SpringBoard.swift */; };
+		B175D62023A9696200F8E696 /* SpringBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B175D61F23A9696200F8E696 /* SpringBoardTests.swift */; };
 		B17855B1226ABDB100B30C80 /* UploadMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17855B0226ABDB100B30C80 /* UploadMedia.swift */; };
 		B17855B3226ABDDD00B30C80 /* UploadMediaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17855B2226ABDDD00B30C80 /* UploadMediaTests.swift */; };
 		B17F23B12137981B00771F86 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F23B02137981B00771F86 /* Clock.swift */; };
@@ -1435,6 +1437,8 @@
 		B15CA283221E00870014FB02 /* ModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTests.swift; sourceTree = "<group>"; };
 		B15E4B86238C4DC2002119CF /* Syllabus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syllabus.swift; sourceTree = "<group>"; };
 		B164DC1E22DE2AB30037FA86 /* APIAccountResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountResultTests.swift; sourceTree = "<group>"; };
+		B175D61D23A9694E00F8E696 /* SpringBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringBoard.swift; sourceTree = "<group>"; };
+		B175D61F23A9696200F8E696 /* SpringBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringBoardTests.swift; sourceTree = "<group>"; };
 		B17855B0226ABDB100B30C80 /* UploadMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMedia.swift; sourceTree = "<group>"; };
 		B17855B2226ABDDD00B30C80 /* UploadMediaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMediaTests.swift; sourceTree = "<group>"; };
 		B17F23B02137981B00771F86 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
@@ -2891,6 +2895,15 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		B175D61C23A9692C00F8E696 /* SpringBoard */ = {
+			isa = PBXGroup;
+			children = (
+				B175D61D23A9694E00F8E696 /* SpringBoard.swift */,
+				B175D61F23A9696200F8E696 /* SpringBoardTests.swift */,
+			);
+			path = SpringBoard;
+			sourceTree = "<group>";
+		};
 		B1911CE721C845E700F42F91 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
@@ -3046,6 +3059,7 @@
 		E81918E5230348440039616A /* CoreUITests */ = {
 			isa = PBXGroup;
 			children = (
+				B175D61C23A9692C00F8E696 /* SpringBoard */,
 				E819193123034C2D0039616A /* ActAsUser */,
 				E819191C23034C2C0039616A /* Announcements */,
 				E8BB310323A0370A00B3B3B2 /* Assignments */,
@@ -4171,6 +4185,7 @@
 				E819194D23034C2D0039616A /* ExternalTool.swift in Sources */,
 				E8BB310C23A06B3B00B3B3B2 /* RichContentEditor.swift in Sources */,
 				E819194723034C2D0039616A /* DeepLinkTests.swift in Sources */,
+				B175D62023A9696200F8E696 /* SpringBoardTests.swift in Sources */,
 				E819194C23034C2D0039616A /* TodoListTests.swift in Sources */,
 				E819194923034C2D0039616A /* CourseGroupTests.swift in Sources */,
 				E85B4918238875A0003E28DC /* UserFilesTests.swift in Sources */,
@@ -4183,6 +4198,7 @@
 				E819195123034C2D0039616A /* InboxTests.swift in Sources */,
 				7D14864C230B4CEC003944A2 /* AccountNotificationsTests.swift in Sources */,
 				E8BB310A23A05A4000B3B3B2 /* SubmissionComments.swift in Sources */,
+				B175D61E23A9694E00F8E696 /* SpringBoard.swift in Sources */,
 				E819194823034C2D0039616A /* CourseFileTests.swift in Sources */,
 				E819194223034C2D0039616A /* AnnouncementTests.swift in Sources */,
 				E819195023034C2D0039616A /* Inbox.swift in Sources */,

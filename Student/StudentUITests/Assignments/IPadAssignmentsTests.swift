@@ -21,7 +21,9 @@ import TestsFoundation
 @testable import CoreUITests
 @testable import Core
 
-class StudentIPadAssignmentsTest: CoreUITestCase {
+class IPadAssignmentsTest: CoreUITestCase {
+    override var user: UITestUser? { nil }
+
     func assertHas(assignment: APIAssignment) {
         let id = assignment.id.value
         XCTAssertEqual(AssignmentsList.assignmentName(id: id).label(), assignment.name)
