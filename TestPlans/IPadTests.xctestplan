@@ -67,6 +67,7 @@
     {
       "skippedTests" : [
         "AssignmentPostPolicyTests",
+        "MockedInboxTests",
         "SpeedGraderTests",
         "TeacherAccountNotificationsTests",
         "TeacherDiscussionDetailsTests",
