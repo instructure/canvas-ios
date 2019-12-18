@@ -40,7 +40,6 @@ case ${1-} in
         if [[ $# -ne 1 ]]; then
             usage 1
         fi
-        only_testing+=(CoreTests)
         ;;
     --only-testing)
         shift

@@ -9,8 +9,7 @@ if [[ ${1-} = --relocate-before-execute ]]; then
     exec $CANVAS_SCRIPTS/nightly-blame-bot.sh
 fi
 
-# TODO: change this to master before merge
-if [[ $(git rev-parse --abbrev-ref HEAD) != MBL-13651-nightly-blame-bot ]]; then
+if [[ $(git rev-parse --abbrev-ref HEAD) != master ]]; then
     echo "Blame should only be run on master!"
     exit 1
 fi
@@ -66,9 +65,8 @@ function blame_slack {
     message_lines+='```'"${(F)broken}"'```'
 
     export MSG=${(F)message_lines}
-    #TODO: bottest -> ios-bots
     blames+=$(jq -nac '{
-        "channel": "#bottest",
+        "channel": "#ios-bots",
         "text": env.MSG,
         "icon_emoji": ":bitrise:",
         "username": "nightly-blame-bot.sh"
@@ -112,7 +110,7 @@ done
 
 if [[ $SHAME = GREAT ]]; then
     jq -nac '{
-        "channel": "#bottest",
+        "channel": "#ios-bots",
         "icon_emoji": ":bitrise:",
         "username": "nightly-blame-bot.sh",
         "blocks": [{

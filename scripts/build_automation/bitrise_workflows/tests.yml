@@ -360,8 +360,7 @@ workflows:
             envman add --key BUILD_LINK --value "$BITRISE_BUILD_URL"
     - build-router-start:
         title: Release the blame bot
-        # TODO: change this to master before merge
-        run_if: and (enveq "BITRISE_GIT_BRANCH" "MBL-13651-nightly-blame-bot") (enveq "TESTS_FAILED" "yes")
+        run_if: and (enveq "BITRISE_GIT_BRANCH" "master") (enveq "TESTS_FAILED" "yes")
         is_always_run: true
         inputs:
         - access_token: "$BITRISE_CI_TOKEN"
@@ -446,4 +445,3 @@ workflows:
         title: blame
         inputs:
         - content: ./scripts/nightly-blame-bot.sh --relocate-before-execute
-    - deploy-to-bitrise-io: {}
