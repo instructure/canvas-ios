@@ -22,9 +22,15 @@ import TestsFoundation
 
 class ConversationTests: CoreTestCase {
     func testProperties() {
-        XCTAssertEqual(Conversation.make().messages.count, 0)
-        let conversation = Conversation.make(from: .make(audience: [ "1" ], messages: [.make()]))
+//<<<<<<< HEAD
+//        XCTAssertEqual(Conversation.make().messages.count, 0)
+//        let conversation = Conversation.make(from: .make(audience: [ "1" ], messages: [.make()]))
+//        XCTAssertEqual(conversation.messages.count, 1)
+//=======
+        let conversation = Conversation.make(from: .make(messages: [.make()]))
         XCTAssertEqual(conversation.messages.count, 1)
+        XCTAssertEqual(Conversation.make(from: .make(id: "2", participants: []) ).messages.count, 0)
+//>>>>>>> inbox message detail
 
         XCTAssertEqual(conversation.audience.first?.id, conversation.participants.first?.id)
         conversation.audienceIDs = []

@@ -37,4 +37,61 @@ class ConversationMessageTests: CoreTestCase {
         XCTAssert(ConversationMessage.make().attachments.isEmpty)
         XCTAssert(ConversationMessage.make().forwarded.isEmpty)
     }
+
+    func testLocalizedAudienceWithWithMeAnd1Recipient() {
+        let userMap = [
+            "1": ConversationParticipant.make( from: .make(id: "1", name: "User One") ),
+            "2": ConversationParticipant.make( from: .make(id: "2", name: "User Two") ),
+        ]
+        let observerID = "1"
+
+        let message = ConversationMessage.make(from: .make( author_id: "2", participating_user_ids: ["1", "2"] ) )
+
+        let text = message.localizedAudience(observerID: observerID, userMap: userMap)
+        XCTAssertEqual(text, "to me")
+    }
+
+    func testLocalizedAudienceWithWithMeAnd2Recipients() {
+        let userMap = [
+            "1": ConversationParticipant.make( from: .make(id: "1", name: "User 1") ),
+            "2": ConversationParticipant.make( from: .make(id: "2", name: "User 2") ),
+            "3": ConversationParticipant.make( from: .make(id: "3", name: "User 3") ),
+        ]
+        let observerID = "1"
+
+        let message = ConversationMessage.make(from: .make( author_id: "2", participating_user_ids: ["1", "2", "3"] ) )
+
+        let text = message.localizedAudience(observerID: observerID, userMap: userMap)
+        XCTAssertEqual(text, "to me & 1 other")
+    }
+
+    func testLocalizedAudienceWithWithMeAnd3Recipients() {
+        let userMap = [
+            "1": ConversationParticipant.make( from: .make(id: "1", name: "User 1") ),
+            "2": ConversationParticipant.make( from: .make(id: "2", name: "User 2") ),
+            "3": ConversationParticipant.make( from: .make(id: "3", name: "User 3") ),
+            "4": ConversationParticipant.make( from: .make(id: "4", name: "User 4") ),
+        ]
+        let observerID = "1"
+
+        let message = ConversationMessage.make(from: .make( author_id: "2", participating_user_ids: ["1", "2", "3", "4"] ) )
+
+        let text = message.localizedAudience(observerID: observerID, userMap: userMap)
+        XCTAssertEqual(text, "to me & 2 others")
+    }
+
+    func testLocalizedAudienceWithWith3Recipients() {
+        let userMap = [
+            "1": ConversationParticipant.make( from: .make(id: "1", name: "User 1") ),
+            "2": ConversationParticipant.make( from: .make(id: "2", name: "User 2") ),
+            "3": ConversationParticipant.make( from: .make(id: "3", name: "User 3") ),
+            "4": ConversationParticipant.make( from: .make(id: "4", name: "User 4") ),
+        ]
+        let observerID = "1"
+
+        let message = ConversationMessage.make(from: .make( author_id: "1", participating_user_ids: ["1", "2", "3", "4"] ) )
+
+        let text = message.localizedAudience(observerID: observerID, userMap: userMap)
+        XCTAssertEqual(text, "to 3 others")
+    }
 }
