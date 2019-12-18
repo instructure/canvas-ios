@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -60,10 +61,10 @@
                                         </connections>
                                     </button>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qqL-hf-iTU">
-                                        <rect key="frame" x="28" y="43.5" width="28" height="21"/>
+                                        <rect key="frame" x="26" y="40.5" width="32.5" height="27"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="55" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnf-XG-aJX" customClass="DynamicLabel" customModule="Core">
-                                                <rect key="frame" x="6" y="3.5" width="16" height="14.5"/>
+                                                <rect key="frame" x="6" y="3" width="20.5" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -146,7 +147,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.27890285725982999" green="1" blue="0.70971178099419863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="observeeBlue"/>
                                 <constraints>
                                     <constraint firstItem="LhY-UH-BvJ" firstAttribute="height" secondItem="k8J-bS-THt" secondAttribute="height" id="97B-R3-1gU"/>
                                     <constraint firstAttribute="height" constant="88" id="FgR-qC-FR0"/>
@@ -209,5 +210,8 @@
         <image name="icon_calendar" width="34" height="34"/>
         <image name="icon_courses" width="34" height="34"/>
         <image name="icon_notification" width="34" height="34"/>
+        <namedColor name="observeeBlue">
+            <color red="0.0" green="0.55686274509803924" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

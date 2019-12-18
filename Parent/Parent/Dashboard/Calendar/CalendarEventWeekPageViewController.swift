@@ -100,15 +100,13 @@ class CalendarEventWeekPageViewController: UIViewController {
         prevWeekButton.accessibilityLabel = NSLocalizedString("Last Week", comment: "Last Week Button Accessibility Label")
 
         updateHeaderTitle()
-
-        let colorScheme = ColorCoordinator.colorSchemeForStudentID(studentID)
-        view.backgroundColor = colorScheme.secondaryColor
+        view.backgroundColor = .named(.backgroundDark)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
-        navigationController?.navigationBar.useContextColor(scheme.mainColor)
+        let color = ColorScheme.observee(studentID).color
+        navigationController?.navigationBar.useContextColor(color)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

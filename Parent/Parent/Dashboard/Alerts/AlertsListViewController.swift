@@ -43,9 +43,9 @@ class AlertsListViewController: FetchedTableViewController<Alert> {
         let collection = try Alert.collectionOfObserveeAlerts(session, observeeID: observeeID)
         let refresher = try Alert.refresher(session, observeeID: observeeID)
 
-        let scheme = ColorCoordinator.colorSchemeForStudentID(observeeID)
+        let scheme = ColorScheme.observee(observeeID)
         prepare(collection, refresher: refresher, viewModelFactory: { alert in
-            AlertCellViewModel(alert: alert, highlightColor: scheme.highlightCellColor, session: session)
+            AlertCellViewModel(alert: alert, highlightColor: .named(.backgroundLight), session: session)
         })
     }
 
@@ -57,13 +57,13 @@ class AlertsListViewController: FetchedTableViewController<Alert> {
         super.viewDidLoad()
 
         tableView.tableFooterView = UIView()
-        tableView.backgroundColor = UIColor.defaultTableViewBackgroundColor()
+        tableView.backgroundColor = UIColor.named(.backgroundGrouped)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let scheme = ColorCoordinator.colorSchemeForStudentID(observeeID)
-        navigationController?.navigationBar.useContextColor(scheme.mainColor)
+        let scheme = ColorScheme.observee(observeeID)
+        navigationController?.navigationBar.useContextColor(scheme.color)
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {

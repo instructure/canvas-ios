@@ -93,7 +93,7 @@ class CalendarEventDetailsViewController: CalendarEventDetailViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
-        navigationController?.navigationBar.useContextColor(scheme.mainColor)
+        let scheme = ColorScheme.observee(studentID)
+        navigationController?.navigationBar.useContextColor(scheme.color)
     }
 }

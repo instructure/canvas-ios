@@ -105,7 +105,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         CoreWebView.keepCookieAlive(for: environment)
         // UX requires that students are given color schemes in a specific order.
         // The method call below ensures that we always start with the first color scheme.
-        ColorCoordinator.clearColorSchemeDictionary()
+        ColorScheme.clear()
         if Locale.current.regionCode != "CA" {
             let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
             Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)
