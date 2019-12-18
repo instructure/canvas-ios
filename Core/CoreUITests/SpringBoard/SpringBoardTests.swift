@@ -21,6 +21,7 @@ import XCTest
 @testable import TestsFoundation
 
 class SpringBoardTests: CoreUITestCase {
+    override var abstractTestClass: CoreUITestCase.Type { SpringBoardTests.self }
     override var user: UITestUser? { nil }
 
     func testMultitaskingSetup() {
