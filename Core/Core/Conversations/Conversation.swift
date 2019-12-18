@@ -63,12 +63,17 @@ final public class Conversation: NSManagedObject, WriteableModel {
         model.lastMessage = item.last_message
         model.lastMessageAt = item.last_message_at
         model.messageCount = item.message_count
-        model.messages = item.messages?.map {
-            ConversationMessage.save($0, in: context)
-        } ?? []
+
         model.participants = Set(item.participants.map {
             ConversationParticipant.save($0, in: context)
         })
+
+        if let messages = item.messages, !messages.isEmpty {
+            model.messages = messages.map {
+                ConversationMessage.save($0, in: context)
+            }
+        }
+
         model.starred = item.starred
         model.subject = item.subject
         model.workflowState = item.workflow_state

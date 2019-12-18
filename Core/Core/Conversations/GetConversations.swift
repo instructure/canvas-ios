@@ -33,3 +33,21 @@ public class GetConversations: CollectionUseCase {
 
     public init() {}
 }
+
+public class GetConversation: APIUseCase {
+    public typealias Model = Conversation
+    public let id: String
+    let include: [GetConversationRequest.Include]
+    public var cacheKey: String? { "conversation-\(id)" }
+
+    public var request: GetConversationRequest {
+        return GetConversationRequest(id: id, include: include)
+    }
+
+    public var scope: Scope { Scope(predicate: NSPredicate(format: "%K == %@", "id", id), order: []) }
+
+    public init(id: String, include: [GetConversationRequest.Include] = [.participant_avatars]) {
+        self.id = id
+        self.include = include
+    }
+}

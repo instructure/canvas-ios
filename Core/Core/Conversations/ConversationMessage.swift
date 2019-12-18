@@ -28,6 +28,12 @@ public final class ConversationMessage: NSManagedObject, WriteableModel {
     @NSManaged public var generated: Bool
     @NSManaged public var id: String
     @NSManaged public var mediaComment: MediaComment?
+    @NSManaged public var participantIDsRaw: String?
+
+    public var participantIDs: [String] {
+        get { participantIDsRaw?.components(separatedBy: ",") ?? [] }
+        set { participantIDsRaw = newValue.joined(separator: ",") }
+    }
 
     public var attachments: [File] {
         get { attachmentsRaw?.array as? [File] ?? [] }
@@ -55,6 +61,29 @@ public final class ConversationMessage: NSManagedObject, WriteableModel {
         model.mediaComment = item.media_comment.flatMap {
             MediaComment.save($0, in: context)
         }
+
+        model.participantIDs = item.participating_user_ids?.map { $0.value } ?? []
+
         return model
+    }
+}
+
+extension ConversationMessage {
+    public func localizedAudience( myID: String, userMap: [String: ConversationParticipant] ) -> String {
+        var user: String? = ""
+        let audience = participantIDs.filter { $0 != authorID }
+        let containsMe = audience.contains(myID)
+
+        if audience.count == 1 {
+            user =  containsMe ? NSLocalizedString("me", comment: "") : userMap[ audience[0] ]?.name
+        } else if audience.count > 1 {
+            let cnt = containsMe ? audience.count - 1 : audience.count
+            let pluralFormat = NSLocalizedString("conversation_recipients_to", bundle: .core, comment: "")
+            let othersText = String.localizedStringWithFormat(pluralFormat, cnt)
+            user = containsMe ? String.localizedStringWithFormat( NSLocalizedString("me & %@", comment: ""), othersText) : othersText
+        }
+
+        let template = NSLocalizedString("to %@", comment: "")
+        return String.localizedStringWithFormat(template, user ?? "")
     }
 }

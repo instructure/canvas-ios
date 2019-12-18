@@ -24,7 +24,7 @@ class ConversationParticipantTests: CoreTestCase {
     func testProperties() {
         let conversation = Conversation.make(from: .make(messages: [.make()]))
         XCTAssertEqual(conversation.messages.count, 1)
-        XCTAssertEqual(Conversation.make().messages.count, 0)
+        XCTAssertEqual(Conversation.make(from: .make(id: "2", participants: []) ).messages.count, 0)
 
         XCTAssertEqual(conversation.participants.count, 1)
         conversation.participants = []
