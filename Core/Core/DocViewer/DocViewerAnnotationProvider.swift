@@ -142,9 +142,9 @@ class DocViewerAnnotationProvider: PSPDFContainerAnnotationProvider {
 }
 
 // Needed for setRotationOffset(_:forPageAt:)
-extension DocViewerAnnotationProvider: PSPDFAnnotationProviderRefreshing {
-    func prepareForRefresh() {
+extension DocViewerAnnotationProvider {
+    override func prepareForRefresh() {
     }
-    func refreshAnnotationsForPages(at pageIndexes: IndexSet) {
+    override func refreshAnnotationsForPages(at pageIndexes: IndexSet) {
     }
 }
