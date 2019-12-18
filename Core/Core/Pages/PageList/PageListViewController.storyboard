@@ -76,7 +76,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bY-hM-aJf">
                                                     <rect key="frame" x="0.0" y="0.0" width="382" height="76"/>
                                                     <connections>
-                                                        <action selector="frontPageTapped:" destination="JGx-7A-Apd" eventType="touchUpInside" id="ajK-L4-YhU"/>
+                                                        <action selector="frontPageTapped:" destination="JGx-7A-Apd" eventType="primaryActionTriggered" id="NN5-Tw-8gp"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
