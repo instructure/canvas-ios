@@ -55,6 +55,7 @@ class StudentTestCase: XCTestCase {
         UploadManager.shared = uploadManager
         MockUploadManager.reset()
         Session.current!.refreshScope.invalidateAllCaches()
+        SyncContextConcurrencyType = NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType
     }
 
     override func tearDown() {
