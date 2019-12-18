@@ -63,9 +63,7 @@ open class CalendarDayCell: UICollectionViewCell {
     @objc var eventCount: Int = 0 {
         didSet {
             self.eventCountDot.isHidden = eventCount < 1
-            if eventCount > 0 {
-                dateLabel.accessibilityTraits.insert(.button)
-            }
+            updateA11y()
         }
     }
     var cellState: CalendarDayCellState = .normal {
@@ -128,6 +126,10 @@ open class CalendarDayCell: UICollectionViewCell {
         dateLabel.accessibilityLabel = dateLabel.text
             .flatMap { Int($0) }
             .map(CalendarDayCell.dayOfTheMonthA11yFormatter)
+        if eventCount > 0 {
+            let format = NSLocalizedString("d_events", bundle: .core, comment: "")
+            dateLabel.accessibilityValue = String.localizedStringWithFormat(format, eventCount)
+        }
         dateLabel.accessibilityIdentifier = a11yIdentifier.flatMap { "\($0)-label"}
         eventCountDot.accessibilityIdentifier = a11yIdentifier.flatMap { "\($0)-eventIndicator" }
     }
