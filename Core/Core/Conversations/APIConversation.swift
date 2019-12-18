@@ -65,6 +65,7 @@ public struct APIConversationMessage: Codable, Equatable {
     let media_comment: APIMediaComment?
     let attachments: [APIFile]?
     let forwarded_messages: [APIConversationMessage]?
+    let participating_user_ids: [ID]?
 }
 
 #if DEBUG
@@ -137,7 +138,8 @@ extension APIConversationMessage {
         generated: Bool = false,
         media_comment: APIMediaComment? = nil,
         attachments: [APIFile]? = nil,
-        forwarded_messages: [APIConversationMessage]? = nil
+        forwarded_messages: [APIConversationMessage]? = nil,
+        participating_user_ids: [ID]? = ["1", "2"]
     ) -> APIConversationMessage {
         return APIConversationMessage(
             id: ID(id),
@@ -147,7 +149,8 @@ extension APIConversationMessage {
             generated: generated,
             media_comment: media_comment,
             attachments: attachments,
-            forwarded_messages: forwarded_messages
+            forwarded_messages: forwarded_messages,
+            participating_user_ids: participating_user_ids
         )
     }
 }
@@ -199,7 +202,7 @@ public struct GetConversationsRequest: APIRequestable {
 
 public struct GetConversationRequest: APIRequestable {
     public typealias Response = APIConversation
-    enum Include: String {
+    public enum Include: String {
         case participant_avatars
     }
 

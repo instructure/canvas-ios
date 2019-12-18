@@ -135,6 +135,9 @@
 		7DEE3E3D2335790A0009D8DC /* IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE3E3C2335790A0009D8DC /* IBDesignables.swift */; };
 		7DFDB43223A3EDFB00B28DED /* ConversationListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFDB43123A3EDFB00B28DED /* ConversationListViewControllerTests.swift */; };
 		7DFDB43423A4393D00B28DED /* ConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFDB43323A4393D00B28DED /* ConversationListCell.swift */; };
+		974BA7F723A89BE200E09D5A /* ConversationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974BA7F623A89BE200E09D5A /* ConversationDetailViewController.swift */; };
+		974BA7F923A89C5C00E09D5A /* ConversationDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 974BA7F823A89C5C00E09D5A /* ConversationDetailViewController.storyboard */; };
+		97D477C923AA738300A6BC78 /* ConversationDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D477C823AA738300A6BC78 /* ConversationDetailViewControllerTests.swift */; };
 		9F6B43E42243ECD9003C758B /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6B43E32243ECD9003C758B /* DashboardPresenter.swift */; };
 		B11A2CF720E42D9500A2DBDD /* AccountNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11A2CF620E42D9500A2DBDD /* AccountNotificationViewController.swift */; };
 		B18F80E423463A060001A666 /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F80E323463A060001A666 /* RoutesTests.swift */; };
@@ -855,6 +858,9 @@
 		837B3D69221692A813A08E1E /* Pods-defaults-ParentUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-ParentUnitTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-ParentUnitTests/Pods-defaults-ParentUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		90AFEB4A273EE752196BC769 /* Pods-Parent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parent.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Parent/Pods-Parent.debug.xcconfig"; sourceTree = "<group>"; };
 		90C9F9DE9C41E49B6739CC26 /* Pods_defaults_common_tests_ParentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_tests_ParentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		974BA7F623A89BE200E09D5A /* ConversationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationDetailViewController.swift; sourceTree = "<group>"; };
+		974BA7F823A89C5C00E09D5A /* ConversationDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConversationDetailViewController.storyboard; sourceTree = "<group>"; };
+		97D477C823AA738300A6BC78 /* ConversationDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		98A80F881229764105018888 /* Pods-defaults-Parent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Parent.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Parent/Pods-defaults-Parent.release.xcconfig"; sourceTree = "<group>"; };
 		9F5A3D322048745B00F6EDCE /* DiscussionTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTopic.swift; sourceTree = "<group>"; };
 		9F5A3D332048745B00F6EDCE /* DiscussionTopic+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscussionTopic+Network.swift"; sourceTree = "<group>"; };
@@ -1297,6 +1303,8 @@
 				7DFDB43323A4393D00B28DED /* ConversationListCell.swift */,
 				7D111D0023A2DDDF00C912C0 /* ConversationListViewController.storyboard */,
 				7D111CFE23A2DDD100C912C0 /* ConversationListViewController.swift */,
+				974BA7F623A89BE200E09D5A /* ConversationDetailViewController.swift */,
+				974BA7F823A89C5C00E09D5A /* ConversationDetailViewController.storyboard */,
 			);
 			path = Conversations;
 			sourceTree = "<group>";
@@ -1321,6 +1329,7 @@
 			isa = PBXGroup;
 			children = (
 				7DFDB43123A3EDFB00B28DED /* ConversationListViewControllerTests.swift */,
+				97D477C823AA738300A6BC78 /* ConversationDetailViewControllerTests.swift */,
 			);
 			path = Conversations;
 			sourceTree = "<group>";
@@ -1523,6 +1532,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				974BA7F923A89C5C00E09D5A /* ConversationDetailViewController.storyboard in Resources */,
 				2CB69BC91D91CE1D0059C5A5 /* TableEmptyView.xib in Resources */,
 				2CB69BB71D91CDF30059C5A5 /* DetailsReminderCell.xib in Resources */,
 				2CB69BCF1D91CE4A0059C5A5 /* DashboardViewController.storyboard in Resources */,
@@ -1679,6 +1689,7 @@
 				3B54E3592326F9B000D8D1D2 /* ParentTestCase.swift in Sources */,
 				3B36A2F12322C56F00599A1E /* APIAlertThresholdFixture.swift in Sources */,
 				3B8F23CB2327050F00788730 /* StudentSettingsPresenterTests.swift in Sources */,
+				97D477C923AA738300A6BC78 /* ConversationDetailViewControllerTests.swift in Sources */,
 				B18F80E423463A060001A666 /* RoutesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1740,6 +1751,7 @@
 				497C48C21F912BD100A3BC06 /* Alert+Network.swift in Sources */,
 				9F6B43E42243ECD9003C758B /* DashboardPresenter.swift in Sources */,
 				4948BE691F915D330035BAFD /* BundleExtensions.swift in Sources */,
+				974BA7F723A89BE200E09D5A /* ConversationDetailViewController.swift in Sources */,
 				497C48E21F9153D100A3BC06 /* Airwolf.xcdatamodeld in Sources */,
 				497C48ED1F9153D100A3BC06 /* Courses.swift in Sources */,
 				49DB0AE61E4E27030036D96E /* Student+AccessRemoved.swift in Sources */,

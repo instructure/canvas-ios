@@ -32,6 +32,12 @@ let router = Router(routes: [
         return ConversationListViewController.create()
     },
 
+    RouteHandler(.conversation(":conversationID")) { _, params in
+        guard ExperimentalFeature.parentInbox.isEnabled else { return nil }
+        guard let conversationID = params["conversationID"] else { return nil }
+        return ConversationDetailViewController.create(conversationID: conversationID)
+    },
+
     RouteHandler(.courses) { _, _ in
         guard let session = legacySession else { return nil }
         return DashboardViewController.create(session: session)
