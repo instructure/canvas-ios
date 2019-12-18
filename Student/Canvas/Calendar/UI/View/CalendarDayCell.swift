@@ -129,6 +129,8 @@ open class CalendarDayCell: UICollectionViewCell {
         if eventCount > 0 {
             let format = NSLocalizedString("d_events", bundle: .core, comment: "")
             dateLabel.accessibilityValue = String.localizedStringWithFormat(format, eventCount)
+        } else {
+            dateLabel.accessibilityValue = nil
         }
         dateLabel.accessibilityIdentifier = a11yIdentifier.flatMap { "\($0)-label"}
         eventCountDot.accessibilityIdentifier = a11yIdentifier.flatMap { "\($0)-eventIndicator" }

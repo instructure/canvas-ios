@@ -65,10 +65,13 @@ class CalendarMonthViewControllerTests: StudentTestCase {
         calendar.view.layoutIfNeeded()
         let jan1 = dayCell(at: IndexPath(item: 1, section: 0))
         let jan2 = dayCell(at: IndexPath(item: 2, section: 0))
+        let jan3 = dayCell(at: IndexPath(item: 3, section: 0))
         XCTAssertEqual(jan1.dateLabel.accessibilityLabel, "1st")
         XCTAssertEqual(jan1.dateLabel.accessibilityValue, "2 events")
         XCTAssertEqual(jan2.dateLabel.accessibilityLabel, "2nd")
         XCTAssertEqual(jan2.dateLabel.accessibilityValue, "1 event")
+        XCTAssertEqual(jan3.dateLabel.accessibilityLabel, "3rd")
+        XCTAssertNil(jan3.dateLabel.accessibilityValue)
     }
 
     // MARK: - Helpers
