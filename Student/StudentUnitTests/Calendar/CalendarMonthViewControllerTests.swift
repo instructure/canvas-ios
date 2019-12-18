@@ -27,7 +27,7 @@ class CalendarMonthViewControllerTests: StudentTestCase {
     lazy var calendar: CalendarMonthViewController = CalendarMonthViewController.new(Session.current!)
     lazy var collectionView: UICollectionView = calendar.calendarView.collectionView!
 
-    var contexts: [Context]? = nil
+    var contexts: [Context]?
     var courseEvents: [APICalendarEvent] = []
     var assignments: [APICalendarEvent] = []
     var userEvents: [APICalendarEvent] = []
@@ -61,7 +61,7 @@ class CalendarMonthViewControllerTests: StudentTestCase {
             ),
         ]
         Clock.mockNow(now)
-        mockRange(now.addDays(-365),now.addDays(365))
+        mockRange(now.addDays(-365), now.addDays(365))
         calendar.view.layoutIfNeeded()
         let jan1 = dayCell(at: IndexPath(item: 1, section: 0))
         let jan2 = dayCell(at: IndexPath(item: 2, section: 0))
