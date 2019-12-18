@@ -82,6 +82,8 @@
         <attribute name="colorRaw" attributeType="Integer 32" valueTransformerName="" defaultValueString="0" usesScalarValueType="YES" customClassName="UIKit.UIColor"/>
     </entity>
     <entity name="Conversation" representedClassName="Core.Conversation" syncable="YES">
+        <attribute name="audienceIDsRaw" attributeType="String"/>
+        <attribute name="avatarURL" attributeType="URI"/>
         <attribute name="contextCode" attributeType="String"/>
         <attribute name="contextName" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
@@ -91,8 +93,8 @@
         <attribute name="starred" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="subject" attributeType="String"/>
         <attribute name="workflowStateRaw" attributeType="String"/>
-        <relationship name="messagesRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ConversationMessage" inverseName="conversation" inverseEntity="ConversationMessage"/>
-        <relationship name="participantsRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ConversationParticipant" inverseName="conversation" inverseEntity="ConversationParticipant"/>
+        <relationship name="messagesRaw" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="ConversationMessage" inverseName="conversation" inverseEntity="ConversationMessage"/>
+        <relationship name="participants" toMany="YES" deletionRule="Nullify" destinationEntity="ConversationParticipant" inverseName="conversations" inverseEntity="ConversationParticipant"/>
     </entity>
     <entity name="ConversationMessage" representedClassName="Core.ConversationMessage" syncable="YES">
         <attribute name="authorID" attributeType="String"/>
@@ -109,7 +111,7 @@
         <attribute name="avatarURL" optional="YES" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
-        <relationship name="conversation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="participantsRaw" inverseEntity="Conversation"/>
+        <relationship name="conversations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Conversation" inverseName="participants" inverseEntity="Conversation"/>
     </entity>
     <entity name="Course" representedClassName="Core.Course" syncable="YES">
         <attribute name="arcEnabledRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -571,6 +573,9 @@
         <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="148"/>
         <element name="CommunicationChannel" positionX="-531" positionY="-9" width="128" height="133"/>
         <element name="ContextColor" positionX="-177.3046875" positionY="-36" width="128" height="73"/>
+        <element name="Conversation" positionX="-540" positionY="-18" width="128" height="238"/>
+        <element name="ConversationMessage" positionX="-522" positionY="0" width="128" height="178"/>
+        <element name="ConversationParticipant" positionX="-531" positionY="-9" width="128" height="103"/>
         <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="223"/>
         <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="150"/>
@@ -606,8 +611,5 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="180"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="Conversation" positionX="-540" positionY="-18" width="128" height="208"/>
-        <element name="ConversationParticipant" positionX="-531" positionY="-9" width="128" height="103"/>
-        <element name="ConversationMessage" positionX="-522" positionY="0" width="128" height="178"/>
     </elements>
 </model>

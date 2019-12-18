@@ -20,6 +20,8 @@ import Foundation
 import CoreData
 
 final public class Conversation: NSManagedObject, WriteableModel {
+    @NSManaged var audienceIDsRaw: String
+    @NSManaged public var avatarURL: URL?
     @NSManaged public var contextCode: String
     @NSManaged public var contextName: String
     @NSManaged public var id: String
@@ -27,19 +29,23 @@ final public class Conversation: NSManagedObject, WriteableModel {
     @NSManaged public var lastMessageAt: Date
     @NSManaged public var messageCount: Int
     @NSManaged var messagesRaw: NSOrderedSet?
-    @NSManaged var participantsRaw: NSOrderedSet?
+    @NSManaged public var participants: Set<ConversationParticipant>
     @NSManaged public var starred: Bool
     @NSManaged public var subject: String
     @NSManaged var workflowStateRaw: String
 
+    public var audience: [ConversationParticipant] {
+        return audienceIDs.compactMap { id in participants.first(where: { $0.id == id }) }
+    }
+
+    public var audienceIDs: [String] {
+        get { audienceIDsRaw.split(separator: ",").map { String($0) } }
+        set { audienceIDsRaw = newValue.joined(separator: ",") }
+    }
+
     public var messages: [ConversationMessage] {
         get { messagesRaw?.array as? [ConversationMessage] ?? [] }
         set { messagesRaw = NSOrderedSet(array: newValue) }
-    }
-
-    public var participants: [ConversationParticipant] {
-        get { participantsRaw?.array as? [ConversationParticipant] ?? [] }
-        set { participantsRaw = NSOrderedSet(array: newValue) }
     }
 
     public var workflowState: ConversationWorkflowState {
@@ -49,6 +55,8 @@ final public class Conversation: NSManagedObject, WriteableModel {
 
     public static func save(_ item: APIConversation, in context: NSManagedObjectContext) -> Conversation {
         let model: Conversation = context.first(where: #keyPath(Conversation.id), equals: item.id.value) ?? context.insert()
+        model.audienceIDs = item.audience?.map { $0.value } ?? []
+        model.avatarURL = item.avatar_url.rawValue
         model.contextCode = item.context_code
         model.contextName = item.context_name
         model.id = item.id.value
@@ -58,9 +66,9 @@ final public class Conversation: NSManagedObject, WriteableModel {
         model.messages = item.messages?.map {
             ConversationMessage.save($0, in: context)
         } ?? []
-        model.participants = item.participants.map {
+        model.participants = Set(item.participants.map {
             ConversationParticipant.save($0, in: context)
-        }
+        })
         model.starred = item.starred
         model.subject = item.subject
         model.workflowState = item.workflow_state

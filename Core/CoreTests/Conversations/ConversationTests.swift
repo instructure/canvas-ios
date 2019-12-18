@@ -22,13 +22,15 @@ import TestsFoundation
 
 class ConversationTests: CoreTestCase {
     func testProperties() {
-        let conversation = Conversation.make(from: .make(messages: [.make()]))
-        XCTAssertEqual(conversation.messages.count, 1)
         XCTAssertEqual(Conversation.make().messages.count, 0)
+        let conversation = Conversation.make(from: .make(audience: [ "1" ], messages: [.make()]))
+        XCTAssertEqual(conversation.messages.count, 1)
 
-        XCTAssertEqual(conversation.participants.count, 1)
-        conversation.participants = []
-        XCTAssertEqual(conversation.participants.count, 0)
+        XCTAssertEqual(conversation.audience.first?.id, conversation.participants.first?.id)
+        conversation.audienceIDs = []
+        XCTAssertEqual(conversation.audienceIDsRaw, "")
+        conversation.audienceIDsRaw = "1,2,3"
+        XCTAssertEqual(conversation.audienceIDs, [ "1", "2", "3" ])
 
         conversation.workflowState = .archived
         XCTAssertEqual(conversation.workflowStateRaw, ConversationWorkflowState.archived.rawValue)

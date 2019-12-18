@@ -20,6 +20,7 @@ import UIKit
 import Core
 
 class ConversationListCell: UITableViewCell {
+    @IBOutlet weak var avatarGroupView: AvatarGroupView!
     @IBOutlet weak var contextLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var lastMessageLabel: UILabel!
@@ -27,6 +28,9 @@ class ConversationListCell: UITableViewCell {
     @IBOutlet weak var unreadView: UIView!
 
     func update(_ conversation: Conversation) {
+        avatarGroupView.loadUsers(conversation.audience.compactMap {
+            (name: $0.name, url: $0.avatarURL)
+        })
         unreadView.isHidden = conversation.workflowState != .unread
         let subject = !conversation.subject.isEmpty
             ? conversation.subject

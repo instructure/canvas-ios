@@ -83,7 +83,7 @@ extension APIConversation {
         private: Bool = false,
         starred: Bool = false,
         properties: [ConversationProperties]? = nil,
-        audience: [String]? = nil,
+        audience: [String]? = [ "1" ],
         avatar_url: URL = APIURL.make().rawValue,
         visible: Bool = true,
         context_name: String = "Canvas 101",

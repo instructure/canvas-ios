@@ -45,7 +45,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lug-Z6-QQ8">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lug-Z6-QQ8" customClass="AvatarGroupView" customModule="Parent" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="12" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="Zdi-Ny-Xl7"/>
@@ -53,12 +53,12 @@
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="F74-H1-52q">
-                                                    <rect key="frame" x="68" y="12" width="295" height="178"/>
+                                                    <rect key="frame" x="68" y="12" width="291" height="178"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fSO-0T-jdW">
-                                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="291" height="128.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" misplaced="YES" text="Subject" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ysD-1M-wU5" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Subject" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ysD-1M-wU5" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
                                                                     <rect key="frame" x="99" y="53" width="42" height="21"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
@@ -83,14 +83,13 @@
                                                                 <constraint firstItem="ysD-1M-wU5" firstAttribute="top" secondItem="fSO-0T-jdW" secondAttribute="top" id="7pv-7Z-GWr"/>
                                                                 <constraint firstItem="i2u-ym-OqW" firstAttribute="firstBaseline" secondItem="ysD-1M-wU5" secondAttribute="firstBaseline" id="A1M-ns-eil"/>
                                                                 <constraint firstAttribute="trailing" secondItem="i2u-ym-OqW" secondAttribute="trailing" id="D0o-OD-sLa"/>
-                                                                <constraint firstAttribute="bottom" secondItem="ysD-1M-wU5" secondAttribute="bottom" id="M8r-qX-U5q"/>
+                                                                <constraint firstAttribute="bottom" secondItem="ysD-1M-wU5" secondAttribute="bottom" constant="-2" id="M8r-qX-U5q"/>
                                                                 <constraint firstItem="i2u-ym-OqW" firstAttribute="leading" secondItem="ysD-1M-wU5" secondAttribute="trailing" constant="6" id="Uis-3u-Bli"/>
                                                                 <constraint firstItem="ysD-1M-wU5" firstAttribute="leading" secondItem="fSO-0T-jdW" secondAttribute="leading" id="Vr9-Hm-BNt"/>
-                                                                <constraint firstAttribute="bottom" secondItem="i2u-ym-OqW" secondAttribute="bottom" id="ddX-Kz-AzV"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Context Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pr8-mk-hKx" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="132.5" width="105.5" height="21"/>
+                                                            <rect key="frame" x="0.0" y="132.5" width="291" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -100,7 +99,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Last message body" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GuT-Oi-9ZB" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="157.5" width="149" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="157.5" width="291" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -125,6 +124,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="avatarGroupView" destination="Lug-Z6-QQ8" id="y0M-KH-VE7"/>
                                             <outlet property="contextLabel" destination="Pr8-mk-hKx" id="Zlo-vS-7Y7"/>
                                             <outlet property="dateLabel" destination="i2u-ym-OqW" id="VYQ-rf-era"/>
                                             <outlet property="lastMessageLabel" destination="GuT-Oi-9ZB" id="7wD-HK-N32"/>
