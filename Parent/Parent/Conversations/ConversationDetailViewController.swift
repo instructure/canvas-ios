@@ -26,7 +26,7 @@ class ConversationDetailViewController: UIViewController {
     let env = AppEnvironment.shared
     let refreshControl = UIRefreshControl()
     var userMap = [String: ConversationParticipant]()
-    var observerID: String = ""
+    var myID: String = ""
 
     lazy var conversations = env.subscribe(GetConversation(id: conversationID)) { [weak self] in
         self?.update()
@@ -35,7 +35,7 @@ class ConversationDetailViewController: UIViewController {
     static func create(conversationID: String) -> ConversationDetailViewController {
         let vc = loadFromStoryboard()
         vc.conversationID = conversationID
-        vc.observerID = vc.env.currentSession?.userID ?? ""
+        vc.myID = vc.env.currentSession?.userID ?? ""
         return vc
     }
 
@@ -80,8 +80,8 @@ extension ConversationDetailViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ConversationDetailCell = tableView.dequeue(for: indexPath)
-        let msg =  conversations.first?.messages[indexPath.row]
-        cell.update(msg, observerID: observerID, userMap: userMap)
+        let msg = conversations.first?.messages[indexPath.row]
+        cell.update(msg, myID: myID, userMap: userMap)
         return cell
     }
 }
@@ -93,10 +93,10 @@ class ConversationDetailCell: UITableViewCell {
     @IBOutlet weak var dateLabel: DynamicLabel!
     @IBOutlet weak var avatar: AvatarView!
 
-    func update(_ message: ConversationMessage?, observerID: String, userMap: [String: ConversationParticipant]) {
+    func update(_ message: ConversationMessage?, myID: String, userMap: [String: ConversationParticipant]) {
         guard let m = message else { return }
         messageLabel.text = m.body
-        toLabel.text = m.localizedAudience(observerID: observerID, userMap: userMap)
+        toLabel.text = m.localizedAudience(myID: myID, userMap: userMap)
         fromLabel.text = userMap[ m.authorID ]?.name
         dateLabel.text = DateFormatter.localizedString(from: m.createdAt, dateStyle: .medium, timeStyle: .short)
         avatar.url = userMap[ m.authorID ]?.avatarURL

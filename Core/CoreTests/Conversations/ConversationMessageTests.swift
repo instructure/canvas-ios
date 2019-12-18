@@ -43,11 +43,11 @@ class ConversationMessageTests: CoreTestCase {
             "1": ConversationParticipant.make( from: .make(id: "1", name: "User One") ),
             "2": ConversationParticipant.make( from: .make(id: "2", name: "User Two") ),
         ]
-        let observerID = "1"
+        let myID = "1"
 
         let message = ConversationMessage.make(from: .make( author_id: "2", participating_user_ids: ["1", "2"] ) )
 
-        let text = message.localizedAudience(observerID: observerID, userMap: userMap)
+        let text = message.localizedAudience(myID: myID, userMap: userMap)
         XCTAssertEqual(text, "to me")
     }
 
@@ -57,11 +57,11 @@ class ConversationMessageTests: CoreTestCase {
             "2": ConversationParticipant.make( from: .make(id: "2", name: "User 2") ),
             "3": ConversationParticipant.make( from: .make(id: "3", name: "User 3") ),
         ]
-        let observerID = "1"
+        let myID = "1"
 
         let message = ConversationMessage.make(from: .make( author_id: "2", participating_user_ids: ["1", "2", "3"] ) )
 
-        let text = message.localizedAudience(observerID: observerID, userMap: userMap)
+        let text = message.localizedAudience(myID: myID, userMap: userMap)
         XCTAssertEqual(text, "to me & 1 other")
     }
 
@@ -72,11 +72,11 @@ class ConversationMessageTests: CoreTestCase {
             "3": ConversationParticipant.make( from: .make(id: "3", name: "User 3") ),
             "4": ConversationParticipant.make( from: .make(id: "4", name: "User 4") ),
         ]
-        let observerID = "1"
+        let myID = "1"
 
         let message = ConversationMessage.make(from: .make( author_id: "2", participating_user_ids: ["1", "2", "3", "4"] ) )
 
-        let text = message.localizedAudience(observerID: observerID, userMap: userMap)
+        let text = message.localizedAudience(myID: myID, userMap: userMap)
         XCTAssertEqual(text, "to me & 2 others")
     }
 
@@ -87,11 +87,11 @@ class ConversationMessageTests: CoreTestCase {
             "3": ConversationParticipant.make( from: .make(id: "3", name: "User 3") ),
             "4": ConversationParticipant.make( from: .make(id: "4", name: "User 4") ),
         ]
-        let observerID = "1"
+        let myID = "1"
 
         let message = ConversationMessage.make(from: .make( author_id: "1", participating_user_ids: ["1", "2", "3", "4"] ) )
 
-        let text = message.localizedAudience(observerID: observerID, userMap: userMap)
+        let text = message.localizedAudience(myID: myID, userMap: userMap)
         XCTAssertEqual(text, "to 3 others")
     }
 }

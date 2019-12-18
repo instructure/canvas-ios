@@ -69,10 +69,10 @@ public final class ConversationMessage: NSManagedObject, WriteableModel {
 }
 
 extension ConversationMessage {
-    public func localizedAudience( observerID: String, userMap: [String: ConversationParticipant] ) -> String {
+    public func localizedAudience( myID: String, userMap: [String: ConversationParticipant] ) -> String {
         var user: String? = ""
         let audience = participantIDs.filter { $0 != authorID }
-        let containsMe = audience.contains(observerID)
+        let containsMe = audience.contains(myID)
 
         if audience.count == 1 {
             user =  containsMe ? NSLocalizedString("me", comment: "") : userMap[ audience[0] ]?.name

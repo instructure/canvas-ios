@@ -113,7 +113,6 @@
         <attribute name="id" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="conversations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Conversation" inverseName="participants" inverseEntity="Conversation"/>
-        <relationship name="conversationMessages" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ConversationMessage"/>
     </entity>
     <entity name="Course" representedClassName="Core.Course" syncable="YES">
         <attribute name="arcEnabledRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>

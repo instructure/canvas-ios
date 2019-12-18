@@ -28,14 +28,12 @@ class ConversationDetailViewControllerTests: ParentTestCase {
         super.setUp()
         Clock.mockNow(DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 12, day: 25).date!)
 
-        let c = APIConversation.make(participants: [.make(id: "1", name: "user 1"), .make(id: "2", name: "user 2")],
-                                     messages: [
-                                        APIConversationMessage.make(id: "1",
-                                                                    created_at: Clock.now.addDays(-1),
-                                                                    body: "hello world",
-                                                                    author_id: "1",
-                                                                    participating_user_ids: ["1", "2"]),
-        ])
+        let message = APIConversationMessage.make(id: "1",
+                                                  created_at: Clock.now.addDays(-1),
+                                                  body: "hello world",
+                                                  author_id: "1",
+                                                  participating_user_ids: ["1", "2"])
+        let c = APIConversation.make(participants: [.make(id: "1", name: "user 1"), .make(id: "2", name: "user 2")], messages: [ message, ])
         api.mock(controller.conversations, value: c)
     }
 
