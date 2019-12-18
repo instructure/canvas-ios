@@ -54,7 +54,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
-        colorScheme = ColorCoordinator.colorSchemeForStudentID(studentID)
+        colorScheme = ColorScheme.observee(studentID)
         navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: nil, action: nil)
 
@@ -115,7 +115,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
 
 extension CourseDetailsViewController: ColorDelegate {
     var iconColor: UIColor? {
-        return colorScheme?.mainColor
+        return colorScheme?.color
     }
 }
 
@@ -132,7 +132,7 @@ extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
     }
 
     var menuItemSelectedColor: UIColor? {
-        return colorScheme?.mainColor
+        return colorScheme?.color
     }
 
     func menuItemTitle(at: IndexPath) -> String {

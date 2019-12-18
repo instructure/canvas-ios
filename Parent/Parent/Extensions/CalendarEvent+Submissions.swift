@@ -154,22 +154,22 @@ private struct Submission {
 
     var displayColor: UIColor {
         if status.contains(.Late) {
-            return UIColor.parentYellowColor()
+            return UIColor.named(.textWarning)
         }
 
         if (status.contains(.Graded) && !missing) || status.contains(.Submitted) || status.contains(.Excused) {
-            return UIColor.parentBlueColor()
+            return UIColor.named(.textInfo)
         }
 
         if missing {
-            return UIColor.parentRedColor()
+            return UIColor.named(.textDanger)
         }
 
         if onPaper {
-            return UIColor.parentGreenColor()
+            return UIColor.named(.textSuccess)
         }
 
-        return UIColor.parentLightGreyColor()
+        return UIColor.named(.textDark)
     }
 }
 
@@ -199,7 +199,7 @@ extension CalendarEvent {
     }
 
     @objc var submittedColor: UIColor {
-        return submission?.displayColor ?? UIColor.parentLightGreyColor()
+        return submission?.displayColor ?? UIColor.named(.textDark)
     }
 }
 

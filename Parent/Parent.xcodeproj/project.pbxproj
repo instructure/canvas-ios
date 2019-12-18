@@ -81,7 +81,6 @@
 		5E0F9A6C1C739E6A00BB7707 /* CalendarEventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A561C739E6A00BB7707 /* CalendarEventCellViewModel.swift */; };
 		5E0F9A6D1C739E6A00BB7707 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A581C739E6A00BB7707 /* CourseCell.swift */; };
 		5E0F9A6F1C739E6A00BB7707 /* CourseCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A5A1C739E6A00BB7707 /* CourseCellViewModel.swift */; };
-		5E0F9A701C739E6A00BB7707 /* DashboardTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A5C1C739E6A00BB7707 /* DashboardTabView.swift */; };
 		5E0F9A731C739E6A00BB7707 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A5F1C739E6A00BB7707 /* DashboardViewController.swift */; };
 		5E0F9A741C739E6A00BB7707 /* SettingsObserveeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A611C739E6A00BB7707 /* SettingsObserveeCell.swift */; };
 		5E0F9A761C739E6A00BB7707 /* SettingsObserveeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A631C739E6A00BB7707 /* SettingsObserveeCellViewModel.swift */; };
@@ -90,10 +89,9 @@
 		5E0F9A7B1C739F2700BB7707 /* StudentsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A7A1C739F2700BB7707 /* StudentsListViewController.swift */; };
 		5E1B51231C8FDD590019D764 /* CalendarEventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B51221C8FDD590019D764 /* CalendarEventListViewController.swift */; };
 		5E23FE4E1C991FF3005CC5A6 /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E23FE4D1C991FF3005CC5A6 /* CourseListViewController.swift */; };
-		5E4104891C99E06D0021567C /* UIColor+Parent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4104881C99E06D0021567C /* UIColor+Parent.swift */; };
 		5E41048B1C99E08B0021567C /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E41048A1C99E08B0021567C /* UIImage+Resize.swift */; };
 		5E41048D1C9B1F3E0021567C /* CalendarEvent+Submissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E41048C1C9B1F3E0021567C /* CalendarEvent+Submissions.swift */; };
-		5E4E20511C927EB100E7D709 /* ColorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E20501C927EB100E7D709 /* ColorCoordinator.swift */; };
+		5E4E20511C927EB100E7D709 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E20501C927EB100E7D709 /* ColorScheme.swift */; };
 		5E6441921C3EE2E0003D7397 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6441911C3EE2E0003D7397 /* Assets.xcassets */; };
 		5E6441951C3EE2E0003D7397 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E6441931C3EE2E0003D7397 /* LaunchScreen.storyboard */; };
 		5E75B6001C4D4A8E00A44160 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EEB551C1C483E7200953B20 /* CoreData.framework */; };
@@ -103,7 +101,6 @@
 		5EF946251CACD83500D10247 /* TableSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF946241CACD83500D10247 /* TableSectionHeaderView.swift */; };
 		5EF946271CACD91B00D10247 /* TokenLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF946261CACD91B00D10247 /* TokenLabelView.swift */; };
 		5EF946291CAD76C400D10247 /* TableEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF946281CAD76C400D10247 /* TableEmptyView.swift */; };
-		6127F6691C7F570D00AF1ECC /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6127F6681C7F570D00AF1ECC /* BadgeView.swift */; };
 		612D64431C8794480045E03B /* DetailsInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612D64411C8794470045E03B /* DetailsInfoCell.swift */; };
 		6132D74F1D81FB9C0001FADA /* DetailsLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6132D74E1D81FB9C0001FADA /* DetailsLocationCell.swift */; };
 		613E90E61D088DA600416EBE /* UITextField+ReturnKeyUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613E90E51D088DA600416EBE /* UITextField+ReturnKeyUpdate.swift */; };
@@ -133,6 +130,7 @@
 		7D52D8A422FCC8A200684932 /* DiscussionTopicAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D392048745B00F6EDCE /* DiscussionTopicAPI.swift */; };
 		7D52D8A522FCC8A500684932 /* Session+DiscussionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D3B2048745B00F6EDCE /* Session+DiscussionKit.swift */; };
 		7D52D8A622FCC8C200684932 /* DiscussionKit.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 9F5A3D372048745B00F6EDCE /* DiscussionKit.xcdatamodeld */; };
+		7D88EA2E23A9A1CB00D5F8FD /* ColorSchemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D88EA2D23A9A1CB00D5F8FD /* ColorSchemeTests.swift */; };
 		7DBED00A2328282200392F3C /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED0092328282200392F3C /* Routes.swift */; };
 		7DEE3E3D2335790A0009D8DC /* IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE3E3C2335790A0009D8DC /* IBDesignables.swift */; };
 		7DFDB43223A3EDFB00B28DED /* ConversationListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFDB43123A3EDFB00B28DED /* ConversationListViewControllerTests.swift */; };
@@ -684,7 +682,6 @@
 		5E0F9A561C739E6A00BB7707 /* CalendarEventCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventCellViewModel.swift; sourceTree = "<group>"; };
 		5E0F9A581C739E6A00BB7707 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 		5E0F9A5A1C739E6A00BB7707 /* CourseCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCellViewModel.swift; sourceTree = "<group>"; };
-		5E0F9A5C1C739E6A00BB7707 /* DashboardTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTabView.swift; sourceTree = "<group>"; };
 		5E0F9A5F1C739E6A00BB7707 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		5E0F9A611C739E6A00BB7707 /* SettingsObserveeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsObserveeCell.swift; sourceTree = "<group>"; };
 		5E0F9A631C739E6A00BB7707 /* SettingsObserveeCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsObserveeCellViewModel.swift; sourceTree = "<group>"; };
@@ -693,10 +690,9 @@
 		5E0F9A7A1C739F2700BB7707 /* StudentsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StudentsListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5E1B51221C8FDD590019D764 /* CalendarEventListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventListViewController.swift; sourceTree = "<group>"; };
 		5E23FE4D1C991FF3005CC5A6 /* CourseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CourseListViewController.swift; path = Parent/Dashboard/Calendar/CourseListViewController.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		5E4104881C99E06D0021567C /* UIColor+Parent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Parent.swift"; sourceTree = "<group>"; };
 		5E41048A1C99E08B0021567C /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		5E41048C1C9B1F3E0021567C /* CalendarEvent+Submissions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CalendarEvent+Submissions.swift"; sourceTree = "<group>"; };
-		5E4E20501C927EB100E7D709 /* ColorCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCoordinator.swift; sourceTree = "<group>"; };
+		5E4E20501C927EB100E7D709 /* ColorScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
 		5E6441871C3EE2E0003D7397 /* Parent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E6441911C3EE2E0003D7397 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5E6441941C3EE2E0003D7397 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -709,7 +705,6 @@
 		5EF946241CACD83500D10247 /* TableSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableSectionHeaderView.swift; sourceTree = "<group>"; };
 		5EF946261CACD91B00D10247 /* TokenLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenLabelView.swift; sourceTree = "<group>"; };
 		5EF946281CAD76C400D10247 /* TableEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableEmptyView.swift; sourceTree = "<group>"; };
-		6127F6681C7F570D00AF1ECC /* BadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		612D64411C8794470045E03B /* DetailsInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsInfoCell.swift; sourceTree = "<group>"; };
 		6132D74E1D81FB9C0001FADA /* DetailsLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsLocationCell.swift; sourceTree = "<group>"; };
 		613E90E51D088DA600416EBE /* UITextField+ReturnKeyUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+ReturnKeyUpdate.swift"; sourceTree = "<group>"; };
@@ -835,6 +830,7 @@
 		7D349CD621430E65004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "sv-instk12"; path = "sv-instk12.lproj/TableEmptyView.xib"; sourceTree = "<group>"; };
 		7D349CD721430E66004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349CD921430E67004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D88EA2D23A9A1CB00D5F8FD /* ColorSchemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeTests.swift; sourceTree = "<group>"; };
 		7DBED0092328282200392F3C /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		7DE74EFD22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7DE74EFE22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -930,6 +926,7 @@
 				3B36A2EE2322C54900599A1E /* Fixtures */,
 				B1AA55CE2357857E00DFD184 /* Settings */,
 				3B36A2E92322C27600599A1E /* StudentSettings */,
+				7D88EA2C23A9A1A000D5F8FD /* UserDefaults */,
 				3B36A2E32322C26B00599A1E /* Info.plist */,
 				3B54E3582326F9B000D8D1D2 /* ParentTestCase.swift */,
 				B18F80E323463A060001A666 /* RoutesTests.swift */,
@@ -1059,7 +1056,6 @@
 				5E0F9A571C739E6A00BB7707 /* Courses */,
 				5E0F9A531C739E6A00BB7707 /* Calendar */,
 				5E0F9A4F1C739E6A00BB7707 /* Alerts */,
-				5E0F9A5B1C739E6A00BB7707 /* DashboardTabView */,
 				2CB69BD11D91CE4A0059C5A5 /* DashboardViewController.storyboard */,
 				5E0F9A5F1C739E6A00BB7707 /* DashboardViewController.swift */,
 				9F6B43E32243ECD9003C758B /* DashboardPresenter.swift */,
@@ -1104,15 +1100,6 @@
 			path = Courses;
 			sourceTree = "<group>";
 		};
-		5E0F9A5B1C739E6A00BB7707 /* DashboardTabView */ = {
-			isa = PBXGroup;
-			children = (
-				5E0F9A5C1C739E6A00BB7707 /* DashboardTabView.swift */,
-				6127F6681C7F570D00AF1ECC /* BadgeView.swift */,
-			);
-			path = DashboardTabView;
-			sourceTree = "<group>";
-		};
 		5E0F9A601C739E6A00BB7707 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1134,7 +1121,6 @@
 			isa = PBXGroup;
 			children = (
 				5E41048C1C9B1F3E0021567C /* CalendarEvent+Submissions.swift */,
-				5E4104881C99E06D0021567C /* UIColor+Parent.swift */,
 				5E41048A1C99E08B0021567C /* UIImage+Resize.swift */,
 				613E90E51D088DA600416EBE /* UITextField+ReturnKeyUpdate.swift */,
 				4948BE681F915D330035BAFD /* BundleExtensions.swift */,
@@ -1146,7 +1132,7 @@
 		5E4E204F1C927EB100E7D709 /* UserDefaults */ = {
 			isa = PBXGroup;
 			children = (
-				5E4E20501C927EB100E7D709 /* ColorCoordinator.swift */,
+				5E4E20501C927EB100E7D709 /* ColorScheme.swift */,
 			);
 			path = UserDefaults;
 			sourceTree = "<group>";
@@ -1313,6 +1299,14 @@
 				7D111CFE23A2DDD100C912C0 /* ConversationListViewController.swift */,
 			);
 			path = Conversations;
+			sourceTree = "<group>";
+		};
+		7D88EA2C23A9A1A000D5F8FD /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				7D88EA2D23A9A1CB00D5F8FD /* ColorSchemeTests.swift */,
+			);
+			path = UserDefaults;
 			sourceTree = "<group>";
 		};
 		7DEE3E3E2335793B0009D8DC /* IBDesignables */ = {
@@ -1678,6 +1672,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D88EA2E23A9A1CB00D5F8FD /* ColorSchemeTests.swift in Sources */,
 				3B36A2ED2322C2A000599A1E /* GetAlertThresholdRequestableTests.swift in Sources */,
 				7DFDB43223A3EDFB00B28DED /* ConversationListViewControllerTests.swift in Sources */,
 				B1AA55D0235785A200DFD184 /* SettingsViewControllerTests.swift in Sources */,
@@ -1702,7 +1697,6 @@
 				5E0F9A6F1C739E6A00BB7707 /* CourseCellViewModel.swift in Sources */,
 				6153FFFE1C80AAC4002529CF /* AssignmentDetailsViewController.swift in Sources */,
 				5E23FE4E1C991FF3005CC5A6 /* CourseListViewController.swift in Sources */,
-				5E4104891C99E06D0021567C /* UIColor+Parent.swift in Sources */,
 				6132D74F1D81FB9C0001FADA /* DetailsLocationCell.swift in Sources */,
 				7DFDB43423A4393D00B28DED /* ConversationListCell.swift in Sources */,
 				61E94C611C873C1A00777B95 /* DetailsDescriptionCell.swift in Sources */,
@@ -1729,7 +1723,7 @@
 				7D52D8A522FCC8A500684932 /* Session+DiscussionKit.swift in Sources */,
 				3B801BFD2322FFB400D143F0 /* Alert.swift in Sources */,
 				5E41048D1C9B1F3E0021567C /* CalendarEvent+Submissions.swift in Sources */,
-				5E4E20511C927EB100E7D709 /* ColorCoordinator.swift in Sources */,
+				5E4E20511C927EB100E7D709 /* ColorScheme.swift in Sources */,
 				613E90E61D088DA600416EBE /* UITextField+ReturnKeyUpdate.swift in Sources */,
 				497C48E91F9153D100A3BC06 /* AirwolfAPI.swift in Sources */,
 				6153000E1C863F0F002529CF /* DetailsReminderCell.swift in Sources */,
@@ -1747,7 +1741,6 @@
 				9F6B43E42243ECD9003C758B /* DashboardPresenter.swift in Sources */,
 				4948BE691F915D330035BAFD /* BundleExtensions.swift in Sources */,
 				497C48E21F9153D100A3BC06 /* Airwolf.xcdatamodeld in Sources */,
-				5E0F9A701C739E6A00BB7707 /* DashboardTabView.swift in Sources */,
 				497C48ED1F9153D100A3BC06 /* Courses.swift in Sources */,
 				49DB0AE61E4E27030036D96E /* Student+AccessRemoved.swift in Sources */,
 				5E0F9A761C739E6A00BB7707 /* SettingsObserveeCellViewModel.swift in Sources */,
@@ -1755,7 +1748,6 @@
 				3B86FA3622DD24FA0018C012 /* SettingsAPIClient.swift in Sources */,
 				497C48E61F9153D100A3BC06 /* Student+Network.swift in Sources */,
 				497C48E31F9153D100A3BC06 /* Student+Collections.swift in Sources */,
-				6127F6691C7F570D00AF1ECC /* BadgeView.swift in Sources */,
 				5EB4B5BB1C9749CD00CD8885 /* CalendarEventWeekPageViewController.swift in Sources */,
 				3B36A2D82322C15200599A1E /* APIAlertThreshold.swift in Sources */,
 				5E0F9A731C739E6A00BB7707 /* DashboardViewController.swift in Sources */,

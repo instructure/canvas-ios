@@ -189,8 +189,8 @@ class StudentSettingsViewController: UIViewController {
     @objc func setupNavigationBar() {
         guard let navBar = self.navigationController?.navigationBar else { return }
 
-        let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
-        navBar.backgroundColor = scheme.mainColor
+        let scheme = ColorScheme.observee(studentID)
+        navBar.backgroundColor = scheme.color
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         activityIndicator.hidesWhenStopped = true
     }
