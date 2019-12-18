@@ -101,9 +101,35 @@ while (( ${#failures} > 0 )); do
     failures=($new_failures)
 done
 
+SHAME=NONE
 for blame in $blames; do
     curl -X POST \
         -H "Content-Type: application/json; charset=utf-8" \
         --data-raw $blame \
         $SLACK_URL
+    SHAME=GREAT
 done
+
+if [[ $SHAME = GREAT ]]; then
+    jq -nac '{
+        "channel": "#bottest",
+        "icon_emoji": ":bitrise:",
+        "username": "nightly-blame-bot.sh",
+        "blocks": [{
+            "type": "image",
+            "title": {
+                "type": "plain_text",
+                "text": "shame",
+                "emoji": true
+            },
+            "image_url": ("https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fmedia3.giphy.com" +
+                "%2Fmedia%2FvX9WcCiWwUF7G%2Fgiphy-downsized.gif%3Fcid%3D6104955ef69b1126ce0cbe3" +
+                "c52d75481324b04c9c77ded5c%26rid%3Dgiphy-downsized.gif"),
+            "alt_text": "Shame. Shame. Shame."
+	}]
+    }' |
+    curl -X POST \
+        -H "Content-Type: application/json; charset=utf-8" \
+        --data-binary @- \
+        $SLACK_URL
+fi
