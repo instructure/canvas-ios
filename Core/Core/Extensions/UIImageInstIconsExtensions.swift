@@ -33,8 +33,8 @@ extension UIImage {
             gradebook, group, hamburger, highlighter, home, image, instructure, italic, link, lock,
             lti, marker, miniArrowDown, miniArrowUp, module, more, no, numberedList, outcomes,
             paint, paperclip, pause, pdf, play, prerequisite, publish, question, quiz, refresh,
-            reply, rubric, settings, star, strikethrough, text, textColor, trash, trouble, unlock,
-            user, video, warning, x
+            reply, replyAll, rubric, settings, star, strikethrough, text, textColor, trash, trouble,
+            unlock, user, video, warning, x
     }
 
     public static func icon(_ name: InstIconName, _ type: InstIconType = .line) -> UIImage {
