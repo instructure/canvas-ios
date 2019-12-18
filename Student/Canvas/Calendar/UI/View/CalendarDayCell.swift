@@ -45,7 +45,7 @@ open class CalendarDayCell: UICollectionViewCell {
             updateA11y()
         }
     }
-    private var dateLabel = UILabel()
+    var dateLabel = UILabel()
     @objc var dateCircleImageView = UIImageView()
     @objc var notThisMonth = true
     

@@ -21,6 +21,7 @@ import XCTest
 import TestsFoundation
 import CoreData
 @testable import Student
+@testable import CanvasCore
 
 class StudentTestCase: XCTestCase {
     var database: NSPersistentContainer {
@@ -53,6 +54,7 @@ class StudentTestCase: XCTestCase {
         AppEnvironment.shared = env
         UploadManager.shared = uploadManager
         MockUploadManager.reset()
+        Session.current!.refreshScope.invalidateAllCaches()
     }
 
     override func tearDown() {
