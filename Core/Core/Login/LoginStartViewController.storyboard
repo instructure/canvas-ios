@@ -43,21 +43,21 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instructureLine" translatesAutoresizingMaskIntoConstraints="NO" id="YBX-Gr-kI6">
-                                <rect key="frame" x="175" y="246" width="64" height="64"/>
+                                <rect key="frame" x="169" y="240" width="76" height="76"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="TGN-lb-CPg"/>
-                                    <constraint firstAttribute="width" constant="64" id="wxc-X2-xtt"/>
+                                    <constraint firstAttribute="height" constant="76" id="TGN-lb-CPg"/>
+                                    <constraint firstAttribute="width" constant="76" id="wxc-X2-xtt"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wordmark" translatesAutoresizingMaskIntoConstraints="NO" id="shp-bR-v4y" customClass="IconView" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="125" y="334" width="164" height="40"/>
+                                <rect key="frame" x="125" y="328" width="164" height="40"/>
                                 <color key="tintColor" red="0.7803921568627451" green="0.80392156862745101" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="tiara"/>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STUDENT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qr-uo-RMu">
-                                <rect key="frame" x="179" y="382" width="56" height="16.5"/>
+                                <rect key="frame" x="179" y="376" width="56" height="16.5"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <bool key="isElement" value="NO"/>
                                 </accessibility>
@@ -66,7 +66,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3D-iK-gpK" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="101.5" y="430.5" width="211" height="50"/>
+                                <rect key="frame" x="101.5" y="424.5" width="211" height="50"/>
                                 <accessibility key="accessibilityConfiguration" identifier="LoginStart.findSchoolButton"/>
                                 <inset key="contentEdgeInsets" minX="54" minY="16" maxX="54" maxY="16"/>
                                 <state key="normal" title="Find my school"/>
@@ -83,7 +83,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="g3X-Rb-xXO">
-                                <rect key="frame" x="37.5" y="496.5" width="339" height="66"/>
+                                <rect key="frame" x="37.5" y="490.5" width="339" height="66"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EW-4z-2Mo" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="339" height="33"/>
@@ -321,7 +321,7 @@
                             <constraint firstItem="xBc-5O-QU6" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="Duc-2p-Av2"/>
                             <constraint firstItem="K3D-iK-gpK" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="FpS-ol-ufb"/>
                             <constraint firstItem="xBc-5O-QU6" firstAttribute="trailing" secondItem="NxW-YV-uVK" secondAttribute="trailing" priority="750" id="MgA-PG-fka"/>
-                            <constraint firstItem="shp-bR-v4y" firstAttribute="top" secondItem="YBX-Gr-kI6" secondAttribute="bottom" constant="24" id="MsO-mB-XoA"/>
+                            <constraint firstItem="shp-bR-v4y" firstAttribute="top" secondItem="YBX-Gr-kI6" secondAttribute="bottom" constant="18" id="MsO-mB-XoA"/>
                             <constraint firstItem="1qr-uo-RMu" firstAttribute="top" secondItem="shp-bR-v4y" secondAttribute="bottom" constant="8" id="ciQ-rd-BGA"/>
                             <constraint firstItem="1qr-uo-RMu" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="d9A-OW-6So"/>
                             <constraint firstItem="Al6-ev-ond" firstAttribute="top" secondItem="soV-nE-xVI" secondAttribute="topMargin" constant="20" id="ghQ-Pe-ZZE"/>
