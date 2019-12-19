@@ -53,6 +53,7 @@ const whitelist = [
   'check',
   'clock',
   'cloud-lock',
+  'comment',
   'complete',
   'courses',
   'dashboard',

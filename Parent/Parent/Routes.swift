@@ -32,6 +32,19 @@ let router = Router(routes: [
         return ConversationListViewController.create()
     },
 
+    RouteHandler(.compose()) { url, _ in
+        guard ExperimentalFeature.parentInbox.isEnabled else { return nil }
+        return ComposeViewController.create(
+            body: url.queryItems?.first { $0.name == "body" }?.value,
+            context: url.queryItems?.first { $0.name == "context" }?.value
+                .flatMap { ContextModel(canvasContextID: $0) },
+            observeeID: url.queryItems?.first { $0.name == "observeeID" }?.value,
+            recipientIDs: url.queryItems?.first { $0.name == "recipientIDs" }?.value?
+                .split(separator: ",").map { String($0) } ?? [],
+            subject: url.queryItems?.first { $0.name == "subject" }?.value
+        )
+    },
+
     RouteHandler(.conversation(":conversationID")) { _, params in
         guard ExperimentalFeature.parentInbox.isEnabled else { return nil }
         guard let conversationID = params["conversationID"] else { return nil }

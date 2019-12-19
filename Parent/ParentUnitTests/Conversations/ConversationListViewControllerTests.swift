@@ -58,6 +58,9 @@ class ConversationListViewControllerTests: ParentTestCase {
 
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         XCTAssert(router.lastRoutedTo(.conversation("1")))
+
+        controller.composeButton.sendActions(for: .primaryActionTriggered)
+        XCTAssert(router.lastRoutedTo(.compose()))
     }
 
     func testErrorEmpty() {
