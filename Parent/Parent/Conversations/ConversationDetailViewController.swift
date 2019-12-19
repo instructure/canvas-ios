@@ -21,6 +21,7 @@ import Core
 
 class ConversationDetailViewController: UIViewController {
 
+    @IBOutlet weak var replyButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     var conversationID: String!
     let env = AppEnvironment.shared
@@ -52,6 +53,7 @@ class ConversationDetailViewController: UIViewController {
     private func configureTableView() {
         tableView?.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
+        tableView.registerHeaderFooterView(UITableViewHeaderFooterView.self, fromNib: false)
     }
 
     @objc func refresh(force: Bool = false) {
@@ -71,18 +73,61 @@ class ConversationDetailViewController: UIViewController {
         guard let c = conversation else { return }
         c.participants.forEach { userMap[ $0.id ] = $0 }
     }
+
+    @IBAction func actionReplyClicked(_ sender: Any) {
+        print(#function)
+    }
 }
 
-extension ConversationDetailViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension ConversationDetailViewController: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
         conversations.first?.messages.count ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ConversationDetailCell = tableView.dequeue(for: indexPath)
-        let msg = conversations.first?.messages[indexPath.row]
+        let msg = conversations.first?.messages[indexPath.section]
         cell.update(msg, myID: myID, userMap: userMap)
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        section == 0 ? 0 : 16
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header: UITableViewHeaderFooterView = tableView.dequeueHeaderFooter(UITableViewHeaderFooterView.self)
+        header.backgroundView = UIView()
+        header.backgroundView?.backgroundColor = .named(.porcelain)
+        return header
+    }
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        var actions: [UIContextualAction] = []
+        let reply = UIContextualAction(style: .normal, title: NSLocalizedString("Reply", comment: ""), handler: { (_: UIContextualAction, _: UIView, success: (Bool) -> Void) in
+            print("reply")
+            success(true)
+        })
+        reply.backgroundColor = .named(.electric)
+        reply.image = .icon(.reply, .solid)
+        actions.append(reply)
+
+        let replyAll = UIContextualAction(style: .normal, title: NSLocalizedString("Reply All", comment: ""), handler: { (_: UIContextualAction, _: UIView, success: (Bool) -> Void) in
+            print("replyAll")
+            success(true)
+        })
+        replyAll.backgroundColor = .named(.oxford)
+        replyAll.image = .icon(.replyAll, .solid)
+
+        if userMap.count > 2 {
+            actions.append(replyAll)
+        }
+
+        return UISwipeActionsConfiguration(actions: actions)
     }
 }
 
