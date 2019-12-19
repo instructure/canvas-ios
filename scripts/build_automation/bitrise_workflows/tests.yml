@@ -149,11 +149,11 @@ workflows:
             #!/bin/zsh
             set -euxo pipefail
 
-            ARTIFACT_SLUG=$(curl -H "Authorization: $BITRISE_CI_TOKEN" \
-                "https://api.bitrise.io/v0.1/apps/${BITRISE_APP_SLUG}/builds/${DANGER_YARN_SLUG}/artifacts" |
+            API="https://api.bitrise.io/v0.1/apps/${BITRISE_APP_SLUG}/builds/${ROUTER_STARTED_BUILD_SLUGS}"
+
+            ARTIFACT_SLUG=$(curl -H "Authorization: $BITRISE_CI_TOKEN" "$API/artifacts" |
                 jq -r '.data[] | select(.title == "results.tar.xz").slug')
-            ARTIFACT_URL=$(curl -H "Authorization: $BITRISE_CI_TOKEN" \
-                "https://api.bitrise.io/v0.1/apps/${BITRISE_APP_SLUG}/builds/${DANGER_YARN_SLUG}/artifacts/${ARTIFACT_SLUG}" |
+            ARTIFACT_URL=$(curl -H "Authorization: $BITRISE_CI_TOKEN" "$API/artifacts/${ARTIFACT_SLUG}" |
                 jq -r '.data.expiring_download_url')
             curl -L $ARTIFACT_URL | tar xJf -
             cat tmp/report_to_danger_subbuild.md >> tmp/report_to_danger.md || true
