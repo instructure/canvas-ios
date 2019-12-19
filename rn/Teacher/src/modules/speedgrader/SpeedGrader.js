@@ -75,7 +75,6 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   props: SpeedGraderProps
   state: State
   _flatList: ?FlatList
-  scrollView: ?{ setNativeProps: (Object) => void }
   hasRenderedBody = false
 
   static drawerState = new DrawerState()
@@ -88,7 +87,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   constructor (props: SpeedGraderProps) {
     super(props)
 
-    const { height, width } = Dimensions.get('window')
+    const { height, width } = Dimensions.get('screen')
     const position = SpeedGrader.drawerState.currentSnap
     this.state = {
       size: {
@@ -228,7 +227,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
         gradeSubmissionWithRubric={this.props.gradeSubmissionWithRubric}
         selectedTabIndex={this.getInitialTabIndex()}
         setScrollEnabled={(value) => {
-          this.scrollView.setNativeProps({ scrollEnabled: value })
+          this._flatList.setNativeProps({ scrollEnabled: value })
         }}
         newGradebookEnabled={this.state.flags.includes('new_gradebook')}
       />
@@ -320,7 +319,6 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
         onMomentumScrollEnd={this.scrollEnded}
         initialScrollIndex={this.state.currentPageIndex}
         style={{ marginLeft: -PAGE_GUTTER_HALF_WIDTH, marginRight: -PAGE_GUTTER_HALF_WIDTH }}
-        ref={(e) => { this.scrollView = e }}
       />
     )
   }

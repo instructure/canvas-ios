@@ -45,13 +45,20 @@ struct PostEnrollmentRequest: APIRequestable {
 struct GetEnrollmentsRequest: APIRequestable {
     typealias Response = [APIEnrollment]
     enum Include: String {
-        case observed_users
+        case observed_users, avatar_url
     }
 
     let context: Context
     let userID: String?
     let gradingPeriodID: String?
-    let includes: [Include] = []
+    let includes: [Include]
+
+    init(context: Context, userID: String?, gradingPeriodID: String?, includes: [Include] = []) {
+        self.context = context
+        self.userID = userID
+        self.gradingPeriodID = gradingPeriodID
+        self.includes = includes
+    }
 
     var path: String {
         return "\(context.pathComponent)/enrollments"

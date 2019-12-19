@@ -17,28 +17,25 @@
 //
 
 import Foundation
+import TestsFoundation
 import XCTest
-@testable import TestsFoundation
 @testable import CoreUITests
 
-class SpringBoardTests: CoreUITestCase {
-    func testMultitaskingSetup() {
-        XCUIDevice.shared.orientation = .landscapeLeft
-        SpringBoard.shared.setupSplitScreenWithSafariOnRight()
+enum SpeedGrader {
+    static var doneButton: Element {
+        return app.find(id: "header.navigation-done")
+    }
 
-        sleep(1)
-        XCTAssertEqual(app.find(type: .window).frame().width, 507)
+    static func userName(userID: String) -> Element {
+        return app.find(id: "header.context.button.\(userID)")
+    }
 
-        SpringBoard.shared.moveSplit(toFraction: 0.25)
-        sleep(1)
-        XCTAssertEqual(app.find(type: .window).frame().width, 320)
-
-        SpringBoard.shared.moveSplit(toFraction: 0.75)
-        sleep(1)
-        XCTAssertEqual(app.find(type: .window).frame().width, 694)
-
-        SpringBoard.shared.moveSplit(toFraction: 0.5)
-        sleep(1)
-        XCTAssertEqual(app.find(type: .window).frame().width, 507)
+    static func dismissTutorial() {
+        let button = app.find(id: "tutorial.button-swipe-tutorial")
+        let exists = button.rawElement.waitForExistence(timeout: 3)
+        if exists {
+            button.tap()
+            button.waitToVanish()
+        }
     }
 }

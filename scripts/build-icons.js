@@ -96,6 +96,7 @@ const whitelist = [
   'quiz',
   'refresh',
   'reply',
+  'reply-all',
   'rubric',
   'settings',
   'star',
@@ -113,6 +114,7 @@ const whitelist = [
 
 const overrides = {
   star: { Line: 'star-light' },
+  'reply-all': { Line: 'reply-all-2', Solid: 'reply-all-2' },
 }
 
 const assetsFolder = './Core/Core/Assets.xcassets/InstIcons'

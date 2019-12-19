@@ -141,6 +141,7 @@
 		974BA7F723A89BE200E09D5A /* ConversationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974BA7F623A89BE200E09D5A /* ConversationDetailViewController.swift */; };
 		974BA7F923A89C5C00E09D5A /* ConversationDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 974BA7F823A89C5C00E09D5A /* ConversationDetailViewController.storyboard */; };
 		97D477C923AA738300A6BC78 /* ConversationDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D477C823AA738300A6BC78 /* ConversationDetailViewControllerTests.swift */; };
+		97D477CB23ABEEBE00A6BC78 /* CircularReplyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D477CA23ABEEBE00A6BC78 /* CircularReplyButton.swift */; };
 		9F6B43E42243ECD9003C758B /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6B43E32243ECD9003C758B /* DashboardPresenter.swift */; };
 		B11A2CF720E42D9500A2DBDD /* AccountNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11A2CF620E42D9500A2DBDD /* AccountNotificationViewController.swift */; };
 		B18F80E423463A060001A666 /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F80E323463A060001A666 /* RoutesTests.swift */; };
@@ -867,6 +868,7 @@
 		974BA7F623A89BE200E09D5A /* ConversationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationDetailViewController.swift; sourceTree = "<group>"; };
 		974BA7F823A89C5C00E09D5A /* ConversationDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConversationDetailViewController.storyboard; sourceTree = "<group>"; };
 		97D477C823AA738300A6BC78 /* ConversationDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationDetailViewControllerTests.swift; sourceTree = "<group>"; };
+		97D477CA23ABEEBE00A6BC78 /* CircularReplyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularReplyButton.swift; sourceTree = "<group>"; };
 		98A80F881229764105018888 /* Pods-defaults-Parent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Parent.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Parent/Pods-defaults-Parent.release.xcconfig"; sourceTree = "<group>"; };
 		9F5A3D322048745B00F6EDCE /* DiscussionTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTopic.swift; sourceTree = "<group>"; };
 		9F5A3D332048745B00F6EDCE /* DiscussionTopic+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscussionTopic+Network.swift"; sourceTree = "<group>"; };
@@ -1313,6 +1315,7 @@
 				7DFDB43323A4393D00B28DED /* ConversationListCell.swift */,
 				7D111D0023A2DDDF00C912C0 /* ConversationListViewController.storyboard */,
 				7D111CFE23A2DDD100C912C0 /* ConversationListViewController.swift */,
+				97D477CA23ABEEBE00A6BC78 /* CircularReplyButton.swift */,
 			);
 			path = Conversations;
 			sourceTree = "<group>";
@@ -1736,6 +1739,7 @@
 				61B536F51C99E58B0052B8CB /* DatePickerViewController.swift in Sources */,
 				5E0F9A671C739E6A00BB7707 /* AlertCell.swift in Sources */,
 				5E0F9A6D1C739E6A00BB7707 /* CourseCell.swift in Sources */,
+				97D477CB23ABEEBE00A6BC78 /* CircularReplyButton.swift in Sources */,
 				497C48EC1F9153D100A3BC06 /* Discussions.swift in Sources */,
 				497C48C11F912BD100A3BC06 /* Alert+Collections.swift in Sources */,
 				7DEE3E3D2335790A0009D8DC /* IBDesignables.swift in Sources */,

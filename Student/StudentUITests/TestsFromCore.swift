@@ -37,3 +37,4 @@ class StudentProfileTests: ProfileTests {}
 class StudentPageTests: PageTests {}
 class StudentLoginTests: LoginTests {}
 class StudentUserFilesTests: UserFilesTests {}
+class StudentSpringBoardTests: SpringBoardTests {}
