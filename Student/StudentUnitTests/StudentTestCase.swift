@@ -54,7 +54,7 @@ class StudentTestCase: XCTestCase {
         AppEnvironment.shared = env
         UploadManager.shared = uploadManager
         MockUploadManager.reset()
-        Session.current!.refreshScope.invalidateAllCaches()
+        Session.reset()
         SyncContextConcurrencyType = .mainQueueConcurrencyType
     }
 
