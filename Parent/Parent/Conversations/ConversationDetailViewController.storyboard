@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -128,13 +128,17 @@
                                     <outlet property="delegate" destination="Yiv-Hz-cgf" id="Zn6-nb-5bE"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAw-lF-SAM" customClass="CircularReplyButton" customModule="Parent" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAw-lF-SAM" customClass="FloatingButton" customModule="Parent" customModuleProvider="target">
                                 <rect key="frame" x="342" y="790" width="56" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="GWW-b8-mwx"/>
                                     <constraint firstAttribute="width" constant="56" id="e9j-vX-RiZ"/>
                                 </constraints>
-                                <state key="normal" image="replySolid"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="backgroundInfo"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="replySolid"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="white"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="actionReplyClicked:" destination="Yiv-Hz-cgf" eventType="primaryActionTriggered" id="CyK-Vb-ex7"/>
                                 </connections>
@@ -161,7 +165,4 @@
             <point key="canvasLocation" x="137.68115942028987" y="95.758928571428569"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="replySolid" width="24" height="24"/>
-    </resources>
 </document>
