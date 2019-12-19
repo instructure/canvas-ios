@@ -46,6 +46,10 @@ enum AssignmentDetails: String, ElementWrapper {
     static func link(_ description: String) -> Element {
         return app.webViews.staticTexts.matching(label: description).firstElement
     }
+
+    static var viewAllSubmissionsButton: Element {
+        return app.find(id: "assignment-details.assignment-section.submissions")
+    }
 }
 
 enum AssignmentsList {

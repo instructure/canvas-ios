@@ -71,6 +71,7 @@ public class SpringBoard {
         let dock = sbApp.find(id: "user icon list view")
         let safari = dock.rawElement.find(id: "Safari")
         let dest = relativeCoordinate(x: 1.0, y: 0.5)
-        safari.center.press(forDuration: 1, thenDragTo: dest)
+        safari.center.press(forDuration: 0.5, thenDragTo: dest)
+        sleep(2)
     }
 }

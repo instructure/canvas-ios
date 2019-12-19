@@ -70,6 +70,8 @@ enum APIRequestableError: Error, Equatable {
     case cannotResolve(URLComponents, URL) // our components can't be resolved against baseURL
 }
 
+public typealias APICodable = Codable & Equatable
+
 public protocol APIRequestable {
     associatedtype Response: Codable
     associatedtype Body: Encodable = String
