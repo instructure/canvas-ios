@@ -414,7 +414,7 @@ return Router(routes: routes) { url, _, _ in
     guard let url = components.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL) else { return }
     let request = GetWebSessionRequest(to: url)
     AppEnvironment.shared.api.makeRequest(request) { response, _, _ in
-        DispatchQueue.main.async {
+        performUIUpdate {
             AppEnvironment.shared.loginDelegate?.openExternalURL(response?.session_url ?? url)
         }
     }
