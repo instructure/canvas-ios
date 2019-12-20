@@ -21,7 +21,7 @@ import TestsFoundation
 @testable import Core
 
 class InboxTests: CoreUITestCase {
-    override var abstractTestClass: CoreUITestCase.Type { return InboxTests.self }
+    override var abstractTestClass: CoreUITestCase.Type { InboxTests.self }
 
     func testCannotMessageEntireClassWhenDisabled() {
         TabBar.inboxTab.tap()
@@ -73,16 +73,17 @@ class InboxTests: CoreUITestCase {
 }
 
 class MockedInboxTests: CoreUITestCase {
+    override var abstractTestClass: CoreUITestCase.Type { MockedInboxTests.self }
     override var user: UITestUser? { nil }
-    let avatarURL = URL(string: "https://canvas.instructure.com/avatar/1")!
+
+    let conversation1 = APIConversation.make()
+    var avatarURL: URL { conversation1.avatar_url.rawValue }
 
     override func setUp() {
         super.setUp()
         useMocksOnly()
         mockBaseRequests()
-        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: nil), value: [
-            .make(id: "1", subject: "Subject One", avatar_url: avatarURL),
-        ])
+        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: nil), value: [conversation1])
         mockURL(avatarURL)
     }
 
@@ -122,5 +123,40 @@ class MockedInboxTests: CoreUITestCase {
         NewMessage.sendButton.tap()
         TabBar.inboxTab.waitToExist()
         app.find(labelContaining: "This is a reply").waitToExist()
+    }
+
+    func testCanMessageEntireClass() {
+        mockData(APISearchRecipientsRequestable(context: baseCourse, perPage: 10, skipVisibilityChecks: 1, syntheticContexts: 1), value: [])
+        mockData(GetContextPermissionsRequest(context: baseCourse),
+                 value: APIPermissions.make(send_messages: true, send_messages_all: true))
+
+        logIn()
+        TabBar.inboxTab.tap()
+        Inbox.newMessageButton.tap()
+        NewMessage.selectCourseButton.tap()
+        MessageCourseSelection.course(id: "1").tap()
+        NewMessage.addRecipientButton.tap()
+        MessageRecipientsSelection.messageAllInCourse(courseID: "1").tap()
+
+        XCTAssertEqual(NewMessage.recipientLabel(id: "course_1").label(), "Course One")
+        XCTAssertEqual(NewMessage.recipientDeleteButton(id: "course_1").label(),
+                       "Delete recipient Course One")
+
+        NewMessage.bodyTextView.typeText("hello")
+
+        let conversation = APIConversation.make(id: "2", subject: "Subject Two", properties: [.last_author])
+        mockEncodableRequest("conversations", value: conversation)
+        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent),
+                 value: [conversation])
+
+        NewMessage.sendButton.tap()
+
+        TabBar.inboxTab.waitToExist()
+        app.find(labelContaining: "Subject One").waitToExist()
+        XCTAssertFalse(app.find(labelContaining: "Subject Two").exists)
+
+        Inbox.sentButton.tap()
+        app.find(labelContaining: "Subject One").waitToVanish()
+        app.find(labelContaining: "Subject Two").waitToExist()
     }
 }

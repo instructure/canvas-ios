@@ -23,19 +23,34 @@ public struct APISearchRecipientsRequestable: APIRequestable {
 
     let context: Context
     let search: String
+    let perPage: Int?
+    let skipVisibilityChecks: Int?
+    let syntheticContexts: Int?
 
-    public init(context: Context, search: String = "") {
+    public init(context: Context, search: String = "", perPage: Int? = 50, skipVisibilityChecks: Int? = nil, syntheticContexts: Int? = nil) {
         self.context = context
         self.search = search
+        self.perPage = perPage
+        self.skipVisibilityChecks = skipVisibilityChecks
+        self.syntheticContexts = syntheticContexts
     }
 
     public var path = "search/recipients"
 
     public var query: [APIQueryItem] {
-        return [
-            .value("context", context.canvasContextID),
-            .value("search", search),
-            .value("per_page", "50"),
+        var queryItems = [
+            APIQueryItem.value("context", context.canvasContextID),
+            APIQueryItem.value("search", search),
         ]
+        if let perPage = perPage {
+            queryItems.append(.value("per_page", "\(perPage)"))
+        }
+        if let skip = skipVisibilityChecks {
+            queryItems.append(.value("skip_visibility_checks", "\(skip)"))
+        }
+        if let synthetic = syntheticContexts {
+            queryItems.append(.value("synthetic_contexts", "\(synthetic)"))
+        }
+        return queryItems
     }
 }

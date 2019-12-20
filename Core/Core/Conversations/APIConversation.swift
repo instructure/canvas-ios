@@ -85,7 +85,7 @@ extension APIConversation {
         starred: Bool = false,
         properties: [ConversationProperties]? = nil,
         audience: [String]? = [ "1" ],
-        avatar_url: URL = APIURL.make().rawValue,
+        avatar_url: URL = URL(string: "https://canvas.instructure.com/avatar/1")!,
         visible: Bool = true,
         context_name: String = "Canvas 101",
         context_code: String = "course_1",
