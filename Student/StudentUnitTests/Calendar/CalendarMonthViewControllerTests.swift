@@ -79,6 +79,7 @@ class CalendarMonthViewControllerTests: StudentTestCase {
         calendar.view.layoutIfNeeded()
         let header = monthHeader(at: IndexPath(item: 0, section: 0))
         XCTAssertEqual(header.dateLabel.text, "JANUARY 2018")
+        XCTAssertEqual(header.dateLabel.accessibilityLabel, "January (2018)")
         XCTAssertTrue(header.dateLabel.accessibilityTraits.contains(.header))
     }
 
