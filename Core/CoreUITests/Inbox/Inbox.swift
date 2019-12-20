@@ -37,8 +37,11 @@ enum NewMessage: String, RawElementWrapper {
     case selectCourseButton = "compose.course-select"
     case addRecipientButton = "compose.add-recipient"
     case replyButton = "inbox.conversation-message-row.reply-button"
+    case subjectTextView = "compose-message.subject-text-input"
     case bodyTextView = "compose-message.body-text-input"
     case sendButton = "compose-message.send"
+    case attachButton = "compose-message.attach"
+    case cancelButton = "compose-message.cancel"
 
     static func recipientLabel(id: String) -> Element {
         return app.find(id: "message-recipient.\(id).label")

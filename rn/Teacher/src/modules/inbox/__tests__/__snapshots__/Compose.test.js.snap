@@ -141,6 +141,7 @@ exports[`Compose renders 1`] = `
               },
             ]
           }
+          testID="compose-message.subject-text-input"
           underlineColorAndroid="transparent"
           value={null}
         />
@@ -415,6 +416,7 @@ exports[`Compose renders after picking a course 1`] = `
               },
             ]
           }
+          testID="compose-message.subject-text-input"
           underlineColorAndroid="transparent"
           value={null}
         />
@@ -687,6 +689,7 @@ exports[`Compose renders reply 1`] = `
               },
             ]
           }
+          testID="compose-message.subject-text-input"
           underlineColorAndroid="transparent"
           value="(no subject)"
         />
@@ -879,6 +882,7 @@ exports[`Compose renders with passed in recipients 1`] = `
               },
             ]
           }
+          testID="compose-message.subject-text-input"
           underlineColorAndroid="transparent"
           value={null}
         />

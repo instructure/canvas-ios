@@ -84,6 +84,7 @@ class MockedInboxTests: CoreUITestCase {
         useMocksOnly()
         mockBaseRequests()
         mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: nil), value: [conversation1])
+        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent), value: [])
         mockURL(avatarURL)
     }
 
@@ -120,8 +121,7 @@ class MockedInboxTests: CoreUITestCase {
         NewMessage.replyButton.tap()
         NewMessage.bodyTextView.typeText("This is a reply")
         mockData(GetConversationRequest(id: "1", include: [.participant_avatars]), value: after)
-        NewMessage.sendButton.tap()
-        TabBar.inboxTab.waitToExist()
+        NewMessage.sendButton.tap().waitToVanish()
         app.find(labelContaining: "This is a reply").waitToExist()
     }
 
@@ -149,14 +149,94 @@ class MockedInboxTests: CoreUITestCase {
         mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent),
                  value: [conversation])
 
-        NewMessage.sendButton.tap()
+        NewMessage.sendButton.tap().waitToVanish()
 
-        TabBar.inboxTab.waitToExist()
         app.find(labelContaining: "Subject One").waitToExist()
         XCTAssertFalse(app.find(labelContaining: "Subject Two").exists)
 
         Inbox.sentButton.tap()
         app.find(labelContaining: "Subject One").waitToVanish()
         app.find(labelContaining: "Subject Two").waitToExist()
+    }
+
+    func testCanMessageMultiple() {
+        mockData(APISearchRecipientsRequestable(context: baseCourse, perPage: 10, skipVisibilityChecks: 1, syntheticContexts: 1), value: [
+            .make(id: 1, name: "Recepient One"),
+            .make(id: 2, name: "Recepient Two"),
+            .make(id: 3, name: "Recepient Three"),
+        ])
+        mockData(GetContextPermissionsRequest(context: baseCourse),
+                 value: APIPermissions.make(send_messages: true))
+
+        logIn()
+        TabBar.inboxTab.tap()
+        Inbox.newMessageButton.tap()
+        NewMessage.selectCourseButton.tap()
+        MessageCourseSelection.course(id: "1").tap()
+
+        NewMessage.addRecipientButton.tap()
+        MessageRecipientsSelection.student(studentID: "1").tap()
+        NewMessage.addRecipientButton.tap()
+        MessageRecipientsSelection.student(studentID: "3").tap().waitToVanish()
+
+        app.find(labelContaining: "Recepient One").waitToExist()
+        app.find(labelContaining: "Recepient Three").waitToExist()
+
+        NewMessage.subjectTextView.typeText("Subjective\n")
+        NewMessage.recipientDeleteButton(id: "1").tap()
+        app.find(labelContaining: "Recepient One").waitToVanish()
+
+        NewMessage.addRecipientButton.tap()
+        MessageRecipientsSelection.student(studentID: "2").tap().waitToVanish()
+
+        app.find(labelContaining: "Recepient One").waitToVanish()
+        app.find(labelContaining: "Recepient Two").waitToExist()
+        app.find(labelContaining: "Recepient Three").waitToExist()
+
+        NewMessage.cancelButton.tap().waitToVanish()
+    }
+
+    func testCanMessageAttachment() {
+        mockData(APISearchRecipientsRequestable(context: baseCourse, perPage: 10, skipVisibilityChecks: 1, syntheticContexts: 1), value: [.make()])
+        mockData(GetContextPermissionsRequest(context: baseCourse),
+                 value: APIPermissions.make(send_messages: true))
+
+        let targetUrl = "https://canvas.s3.bucket.com/bucket/1"
+        mockEncodableRequest("users/self/files", value: FileUploadTarget.make(upload_url: URL(string: targetUrl)!))
+        mockEncodableRequest(targetUrl, value: ["id": "1"])
+        mockEncodableRequest("files/1", value: APIFile.make())
+
+        logIn()
+        TabBar.inboxTab.tap()
+        Inbox.newMessageButton.tap()
+        NewMessage.selectCourseButton.tap()
+        MessageCourseSelection.course(id: "1").tap()
+
+        NewMessage.addRecipientButton.tap()
+        MessageRecipientsSelection.student(studentID: "1").tap()
+
+        NewMessage.attachButton.tap()
+        Attachments.addButton.tap()
+
+        allowAccessToPhotos {
+            app.find(label: "Choose From Library").tap()
+        }
+
+        let photo = app.find(labelContaining: "Photo, ")
+        app.find(label: "All Photos").tapUntil { photo.exists }
+        photo.tap()
+
+        app.find(label: "Upload complete").waitToExist()
+        let img = app.images["AttachmentView.image"]
+        app.find(label: "Upload complete").tapUntil { img.exists == true }
+        NavBar.dismissButton.tap()
+
+        Attachments.dismissButton.tap()
+
+        NewMessage.bodyTextView.typeText("message\n")
+
+        mockEncodableRequest("conversations", value: APIConversation.make())
+
+        NewMessage.sendButton.tap().waitToVanish()
     }
 }
