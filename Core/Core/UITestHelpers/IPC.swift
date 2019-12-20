@@ -81,19 +81,18 @@ class IPCAppServer: IPCServer {
 }
 
 enum IPCDriverServerMessage {
-    case urlRequest(_ url: URL, uploadData: Data? = nil)
+    case urlRequest(_ request: URLRequest)
 }
 
 extension IPCDriverServerMessage: Codable {
     private enum CodingKeys: String, CodingKey {
-        case urlRequest, uploadData
+        case request
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        if let url = try container.decodeIfPresent(URL.self, forKey: .urlRequest) {
-            let data = try container.decodeIfPresent(Data.self, forKey: .uploadData)
-            self = .urlRequest(url, uploadData: data)
+        if let request = try container.decodeIfPresent(URLRequest.self, forKey: .request) {
+            self = .urlRequest(request)
         } else {
             throw DecodingError.typeMismatch(type(of: self), .init(codingPath: container.codingPath, debugDescription: "Couldn't decode \(type(of: self))"))
         }
@@ -101,9 +100,8 @@ extension IPCDriverServerMessage: Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
-        case .urlRequest(let url, uploadData: let data):
-            try container.encode(url, forKey: .urlRequest)
-            try container.encode(data, forKey: .uploadData)
+        case .urlRequest(let request):
+            try container.encode(request, forKey: .request)
         }
     }
 }

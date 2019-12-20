@@ -107,8 +107,9 @@ open class CoreUITestCase: XCTestCase {
     class ServerDelegate: IPCDriverServerDelegate {
         public func handler(_ message: IPCDriverServerMessage) -> Data? {
             switch message {
-            case .urlRequest(let url, uploadData: _):
-                guard let testCase = currentTestCase else {
+            case .urlRequest(let request):
+                guard let url = request.url,
+                    let testCase = currentTestCase else {
                     return nil
                 }
                 guard let mock = testCase.httpMocks[url.withCanonicalQueryParams!] else {
