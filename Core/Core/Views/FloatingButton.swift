@@ -18,33 +18,47 @@
 
 import UIKit
 
-class CircularReplyButton: UIButton {
-    override init(frame: CGRect) {
+@IBDesignable
+open class FloatingButton: UIButton {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
     }
 
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         super.init(coder: coder)
         commonInit()
     }
 
     func commonInit() {
         layer.cornerRadius = ceil( bounds.size.width / 2 )
-        backgroundColor = .named(.electric)
-        setImage(.icon(.reply, .solid), for: .normal)
-        tintColor = .white
-
-        addShadow()
-    }
-
-    func addShadow() {
-        layer.shadowOffset = CGSize(width: 0, height: 1.0)
-        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 4.0)
+        layer.shadowColor = UIColor.named(.licorice).cgColor
         layer.shadowOpacity = 0.2
-        layer.shadowRadius = 2
+        layer.shadowRadius = 12
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: layer.cornerRadius).cgPath
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale
+    }
+
+    @IBInspectable
+    public var backgroundColorName: String = "backgroundInfo" {
+        didSet {
+            backgroundColor = Brand.shared.color(backgroundColorName) ?? .named(.backgroundInfo)
+        }
+    }
+
+    @IBInspectable
+    public var iconColorName: String = "white" {
+        didSet {
+            tintColor = Brand.shared.color(iconColorName) ?? .named(.white)
+        }
+    }
+
+    @IBInspectable
+    public var iconName: String = "" {
+        didSet {
+            setImage(UIImage(named: iconName, in: .core, compatibleWith: nil), for: .normal)
+        }
     }
 }

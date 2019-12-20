@@ -21,6 +21,7 @@ import Core
 
 class ConversationListViewController: UIViewController {
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var composeButton: UIButton!
     @IBOutlet weak var emptyView: EmptyView!
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
@@ -42,6 +43,9 @@ class ConversationListViewController: UIViewController {
         title = NSLocalizedString("Inbox", comment: "")
 
         activityIndicatorView.color = Brand.shared.primary
+
+        composeButton.accessibilityLabel = NSLocalizedString("Compose new message", comment: "")
+        composeButton.layer.shadowColor = UIColor.named(.backgroundDarkest).cgColor
 
         emptyView.titleText = NSLocalizedString("Inbox Zero", comment: "")
         emptyView.bodyText = NSLocalizedString("You’re all caught up", comment: "")
@@ -86,6 +90,10 @@ class ConversationListViewController: UIViewController {
         } else if conversations.isEmpty, !conversations.pending {
             emptyView.isHidden = false
         }
+    }
+
+    @IBAction func createNewConversation() {
+        env.router.route(to: .compose(), from: self, options: [.modal, .embedInNav])
     }
 }
 
