@@ -23,15 +23,15 @@ extension APISearchRecipient {
     public static func make(
         id: ID = "1",
         name: String = "John Doe",
-        full_name: String = "John Doe",
+        full_name: String? = nil,
         avatar_url: URL? = nil,
-        type: APISearchRecipientContext = .course,
+        type: APISearchRecipientContext? = .course,
         common_courses: [String: [String]] = [:]
     ) -> APISearchRecipient {
         return APISearchRecipient(
             id: id,
             name: name,
-            full_name: full_name,
+            full_name: full_name ?? name,
             avatar_url: avatar_url,
             type: type,
             common_courses: common_courses

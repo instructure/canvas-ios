@@ -329,6 +329,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
                 placeholderTextColor={colors.textDark}
                 onChangeText={this._subjectChanged}
                 editable={this.props.canEditSubject}
+                testID='compose-message.subject-text-input'
               />
             </View>
             { !this.props.onlySendIndividualMessages && !this.props.conversationID && !this.props.instructorQuestion &&

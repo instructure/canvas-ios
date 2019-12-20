@@ -19,14 +19,10 @@
 import XCTest
 import TestsFoundation
 
-enum Inbox {
-    static var filterButton: Element {
-        return app.find(id: "inbox.filterByCourse")
-    }
-
-    static var newMessageButton: Element {
-        return app.find(id: "inbox.new-message")
-    }
+enum Inbox: String, RawElementWrapper {
+    case filterButton = "inbox.filterByCourse"
+    case newMessageButton = "inbox.new-message"
+    case sentButton = "inbox.filter-btn-sent"
 
     static func filterOption(_ text: String) -> Element {
         return app.find(labelContaining: "Assignments")
@@ -37,25 +33,22 @@ enum Inbox {
     }
 }
 
-enum NewMessage {
-    static var selectCourseButton: Element {
-        return app.find(id: "compose.course-select")
+enum NewMessage: String, RawElementWrapper {
+    case selectCourseButton = "compose.course-select"
+    case addRecipientButton = "compose.add-recipient"
+    case replyButton = "inbox.conversation-message-row.reply-button"
+    case subjectTextView = "compose-message.subject-text-input"
+    case bodyTextView = "compose-message.body-text-input"
+    case sendButton = "compose-message.send"
+    case attachButton = "compose-message.attach"
+    case cancelButton = "compose-message.cancel"
+
+    static func recipientLabel(id: String) -> Element {
+        return app.find(id: "message-recipient.\(id).label")
     }
 
-    static var addRecipientButton: Element {
-        return app.find(id: "compose.add-recipient")
-    }
-
-    static var replyButton: Element {
-        return app.find(id: "inbox.conversation-message-row.reply-button")
-    }
-
-    static var bodyTextView: Element {
-        return app.find(id: "compose-message.body-text-input")
-    }
-
-    static var sendButton: Element {
-        return app.find(id: "compose-message.send")
+    static func recipientDeleteButton(id: String) -> Element {
+        return app.find(id: "message-recipient.\(id).delete-btn")
     }
 }
 

@@ -34,9 +34,10 @@ public class UITestHelpers {
         case useMocksOnly
         case debug(Any?)
         case enableExperimentalFeatures([ExperimentalFeature])
+        case showKeyboard
 
         private enum CodingKeys: String, CodingKey {
-            case reset, login, show, tearDown, currentSession, setAnimationsEnabled, useMocksOnly, debug, mockNow, experimentalFeatures
+            case reset, login, show, tearDown, currentSession, setAnimationsEnabled, useMocksOnly, debug, mockNow, experimentalFeatures, showKeyboard
         }
 
         public init(from decoder: Decoder) throws {
@@ -61,6 +62,8 @@ public class UITestHelpers {
                 self = .mockNow(date)
             } else if let features = try container.decodeIfPresent([ExperimentalFeature].self, forKey: .experimentalFeatures) {
                 self = .enableExperimentalFeatures(features)
+            } else if container.contains(.showKeyboard) {
+                self = .showKeyboard
             } else {
                 throw DecodingError.typeMismatch(Helper.self, .init(codingPath: container.codingPath, debugDescription: "Couldn't decode \(Helper.self)"))
             }
@@ -90,6 +93,8 @@ public class UITestHelpers {
                 try container.encode(date, forKey: .mockNow)
             case .enableExperimentalFeatures(let features):
                 try container.encode(features, forKey: .experimentalFeatures)
+            case .showKeyboard:
+                try container.encode(nil as Int?, forKey: .showKeyboard)
             }
         }
     }
@@ -155,6 +160,8 @@ public class UITestHelpers {
         case .enableExperimentalFeatures(let features):
             ExperimentalFeature.allEnabled = false
             features.forEach { $0.isEnabled = true }
+        case .showKeyboard:
+            showKeyboard()
         }
         return nil
     }
@@ -214,6 +221,15 @@ public class UITestHelpers {
         window?.layer.speed = enabled ? 1 : 100
         UIView.setAnimationsEnabled(enabled)
     }
+
+    func showKeyboard() {
+        let shared = NSClassFromString("UIKeyboardImpl")!.value(forKey: "sharedInstance") as AnyObject
+        shared.perform(#selector(UIKeyboardImplLike.showKeyboard), with: nil, afterDelay: 0)
+    }
+}
+
+@objc protocol UIKeyboardImplLike {
+    @objc func showKeyboard()
 }
 
 #endif
