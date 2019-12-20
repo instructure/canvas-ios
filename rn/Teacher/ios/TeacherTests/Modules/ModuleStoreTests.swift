@@ -41,7 +41,7 @@ class ModuleStoreTests: TeacherTestCase {
     func testRefreshAPI() {
         let expectation = XCTestExpectation(description: "on change")
         onChange = expectation.fulfill
-        api.mock(GetModulesRequest(courseID: "1"), value: [.make()])
+        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [.make()])
         let store = ModuleStore(courseID: "1")
         store.delegate = self
         store.refresh(force: true)
@@ -55,7 +55,7 @@ class ModuleStoreTests: TeacherTestCase {
         onChange = expectation.fulfill
         let link = "https://canvas.instructure.com/courses/1/modules?page=2"
         let response = HTTPURLResponse(next: link)
-        let request = GetModulesRequest(courseID: "1")
+        let request = GetModulesRequest(courseID: "1", include: [.items, .content_details])
         api.mock(request, value: [.make(id: "1", position: 1, items: [])], response: response)
         let task = api.mock(request.getNext(from: response)!, value: [.make(id: "2", position: 2, items: [])])
         task.paused = true
@@ -72,8 +72,8 @@ class ModuleStoreTests: TeacherTestCase {
     }
 
     func testLoadingItemsForModule() {
-        api.mock(GetModulesRequest(courseID: "1"), value: [.make(id: "1", items: nil)])
-        let task = api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1"), value: [.make()])
+        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [.make(id: "1", items: nil)])
+        let task = api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details]), value: [.make()])
         task.paused = true
         let store = ModuleStore(courseID: "1")
         store.delegate = self
@@ -95,10 +95,10 @@ class ModuleStoreTests: TeacherTestCase {
         let expectation = XCTestExpectation(description: "on change")
         expectation.expectedFulfillmentCount = 3
         onChange = expectation.fulfill
-        api.mock(GetModulesRequest(courseID: "1"), value: [.make(id: "1", items: nil)])
+        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [.make(id: "1", items: nil)])
         let link = "https://canvas.instructure.com/api/v1/courses/1/modules/1/items?page=2"
         let response = HTTPURLResponse(next: link)
-        let request = GetModuleItemsRequest(courseID: "1", moduleID: "1")
+        let request = GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details])
         api.mock(request, value: [.make(id: "1")], response: response)
         api.mock(request.getNext(from: response)!, value: [.make(id: "2")])
         let store = ModuleStore(courseID: "1")
@@ -113,7 +113,7 @@ class ModuleStoreTests: TeacherTestCase {
         Module.make(from: .make(id: "1"), forCourse: "1")
         let expectation = XCTestExpectation(description: "on change")
         onChange = expectation.fulfill
-        api.mock(GetModulesRequest(courseID: "1"), value: [.make(id: "2")])
+        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [.make(id: "2")])
         let store = ModuleStore(courseID: "1")
         store.delegate = self
         store.refresh(force: true)
@@ -126,7 +126,7 @@ class ModuleStoreTests: TeacherTestCase {
         let expectation = XCTestExpectation(description: "on change")
         onChange = expectation.fulfill
         let store = ModuleStore(courseID: "1")
-        api.mock(GetModulesRequest(courseID: "1"), value: [.make()])
+        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [.make()])
         TTL.make(key: store.cacheKey, lastRefresh: Clock.now.addDays(-1))
         store.delegate = self
         store.refresh(force: false)
@@ -141,7 +141,7 @@ class ModuleStoreTests: TeacherTestCase {
         expectation.isInverted = true
         onChange = expectation.fulfill
         let store = ModuleStore(courseID: "1")
-        api.mock(GetModulesRequest(courseID: "1"), value: [.make()])
+        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [.make()])
         TTL.make(key: store.cacheKey, lastRefresh: now)
         store.delegate = self
         store.refresh(force: false)
@@ -150,7 +150,7 @@ class ModuleStoreTests: TeacherTestCase {
     }
 
     func testRefreshRenewsTTL() {
-        api.mock(GetModulesRequest(courseID: "1"), value: [.make(items: [])])
+        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [.make(items: [])])
         let expectation = XCTestExpectation(description: "on change")
         expectation.expectedFulfillmentCount = 3
         onChange = expectation.fulfill

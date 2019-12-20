@@ -119,6 +119,8 @@ class RouterTests: XCTestCase {
 
     func testRouteDetail() {
         let mockView = MockViewController()
+        let split = UISplitViewController()
+        split.viewControllers = [UINavigationController(rootViewController: mockView)]
         let router = Router(routes: [
             RouteHandler("/detail") { _, _ in
                 return UIViewController()
@@ -131,6 +133,8 @@ class RouterTests: XCTestCase {
 
     func testRouteDetailEmbedInNav() {
         let mockView = MockViewController()
+        let split = UISplitViewController()
+        split.viewControllers = [UINavigationController(rootViewController: mockView)]
         let router = Router(routes: [
             RouteHandler("/detail") { _, _ in
                 return UIViewController()
@@ -139,6 +143,18 @@ class RouterTests: XCTestCase {
         router.route(to: URLComponents(string: "/detail")!, from: mockView, options: [.detail, .embedInNav])
         XCTAssertNotNil(mockView.detail)
         XCTAssert(mockView.detail?.isKind(of: UINavigationController.self) == true)
+    }
+
+    func testRouteDetailNotInSplitViewDoesAShow() {
+        let mockView = MockViewController()
+        let router = Router(routes: [
+            RouteHandler("/detail") { _, _ in
+                return UIViewController()
+            },
+        ]) { _, _, _ in }
+        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: [.detail, .embedInNav])
+        XCTAssertNotNil(mockView.shown)
+        XCTAssert(mockView.shown?.isKind(of: UIViewController.self) == true)
     }
 
     func testRouteDetailFromDetailDoesAShow() {

@@ -21,14 +21,44 @@ import Foundation
 import XCTest
 
 class APIModuleRequestableTests: XCTestCase {
-    func testGetModulesRequestPath() {
+    func testGetModulesRequest() {
         XCTAssertEqual(GetModulesRequest(courseID: "1").path, "courses/1/modules")
-    }
-
-    func testGetModulesRequestQuery() {
-        XCTAssertEqual(GetModulesRequest(courseID: "1").queryItems, [
+        XCTAssertEqual(GetModulesRequest(courseID: "1", include: [.items, .content_details], perPage: 10).queryItems, [
             URLQueryItem(name: "include[]", value: "items"),
             URLQueryItem(name: "include[]", value: "content_details"),
+            URLQueryItem(name: "per_page", value: "10"),
         ])
+    }
+
+    func testGetModuleItemsRequest() {
+        XCTAssertEqual(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: []).path, "courses/1/modules/2/items")
+        XCTAssertEqual(
+            GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths], perPage: 10).queryItems,
+            [
+                URLQueryItem(name: "include[]", value: "content_details"),
+                URLQueryItem(name: "include[]", value: "mastery_paths"),
+                URLQueryItem(name: "per_page", value: "10"),
+            ]
+        )
+    }
+
+    func testGetModuleItemSequenceRequest() {
+        XCTAssertEqual(
+            GetModuleItemSequenceRequest(courseID: "1", assetType: .moduleItem, assetID: "1").path,
+            "courses/1/module_item_sequence"
+        )
+        XCTAssertEqual(
+            GetModuleItemSequenceRequest(courseID: "1", assetType: .moduleItem, assetID: "1").queryItems,
+            [
+                URLQueryItem(name: "asset_type", value: GetModuleItemSequenceRequest.AssetType.moduleItem.rawValue),
+                URLQueryItem(name: "asset_id", value: "1"),
+            ]
+        )
+    }
+
+    func testPostMarkModuleItemRead() {
+        let request = PostMarkModuleItemRead(courseID: "1", moduleID: "2", moduleItemID: "3")
+        XCTAssertEqual(request.path, "courses/1/modules/2/items/3/mark_read")
+        XCTAssertEqual(request.method, .post)
     }
 }

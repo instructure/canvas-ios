@@ -87,7 +87,7 @@ public extension RouterProtocol {
                 }
                 from.present(view, animated: true, completion: completion)
             }
-        } else if options?.contains(.detail) == true && !from.isInSplitViewDetail {
+        } else if from.splitViewController != nil, options?.contains(.detail) == true, !from.isInSplitViewDetail {
             if options?.contains(.embedInNav) == true {
                 from.showDetailViewController(UINavigationController(rootViewController: view), sender: from)
             } else {

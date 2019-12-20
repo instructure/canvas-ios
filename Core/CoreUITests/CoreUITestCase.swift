@@ -323,6 +323,13 @@ open class CoreUITestCase: XCTestCase {
             .term,
             .totalScores,
         ]), value: course)
+        mockData(GetCourseRequest(courseID: course.id, include: [
+            .courseImage,
+            .favorites,
+            .permissions,
+            .sections,
+            .term,
+        ]), value: course)
         mockData(GetEnabledFeatureFlagsRequest(context: ContextModel(.course, id: course.id)), value: ["rce_enhancements"])
         mockEncodableRequest("courses/\(course.id)/external_tools?include_parents=true&per_page=99", value: [String]())
         mockEncodableRequest("courses/\(course.id)/external_tools?include_parents=true", value: [String]())
