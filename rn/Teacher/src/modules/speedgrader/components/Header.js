@@ -90,10 +90,10 @@ export class Header extends Component<HeaderProps, State> {
       : sub.avatarURL
 
     let action = this.navigateToContextCard
-    let testID = 'header.context.button'
+    let testID = `header.context.button.${this.props.userID}`
     if (sub.groupID && !this.props.anonymous) {
       action = this.showGroup
-      testID = 'header.groupList.button'
+      testID = `header.groupList.button.${sub.groupID}`
     }
     const onlineSubmissionType = this.props.assignmentSubmissionTypes?.every(submissionTypeIsOnline)
 

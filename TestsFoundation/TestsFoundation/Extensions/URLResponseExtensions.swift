@@ -17,6 +17,15 @@
 //
 
 import Foundation
+@testable import Core
+
+extension URLResponse {
+    public static var httpSuccess: URLResponse {
+        return HTTPURLResponse(url: URL(string: "/")!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: [
+            HttpHeader.contentType: "application/json",
+        ])!
+    }
+}
 
 extension HTTPURLResponse {
     public convenience init(next: String) {

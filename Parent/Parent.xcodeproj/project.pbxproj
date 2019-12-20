@@ -124,12 +124,15 @@
 		78AD913321C8184F0075FBCF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AD913221C8184F0075FBCF /* GoogleService-Info.plist */; };
 		7D111CFF23A2DDD100C912C0 /* ConversationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D111CFE23A2DDD100C912C0 /* ConversationListViewController.swift */; };
 		7D111D0123A2DDDF00C912C0 /* ConversationListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D111D0023A2DDDF00C912C0 /* ConversationListViewController.storyboard */; };
+		7D231BE123AC1E0A005BA31D /* ComposeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D231BE023AC1E0A005BA31D /* ComposeViewControllerTests.swift */; };
 		7D52D8A122FCC89F00684932 /* DiscussionTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D322048745B00F6EDCE /* DiscussionTopic.swift */; };
 		7D52D8A222FCC89F00684932 /* DiscussionTopic+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D332048745B00F6EDCE /* DiscussionTopic+Network.swift */; };
 		7D52D8A322FCC89F00684932 /* DiscussionTopic+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D342048745B00F6EDCE /* DiscussionTopic+Details.swift */; };
 		7D52D8A422FCC8A200684932 /* DiscussionTopicAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D392048745B00F6EDCE /* DiscussionTopicAPI.swift */; };
 		7D52D8A522FCC8A500684932 /* Session+DiscussionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D3B2048745B00F6EDCE /* Session+DiscussionKit.swift */; };
 		7D52D8A622FCC8C200684932 /* DiscussionKit.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 9F5A3D372048745B00F6EDCE /* DiscussionKit.xcdatamodeld */; };
+		7D57D3CC23AADA0F00EB2CC5 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D57D3CB23AADA0F00EB2CC5 /* ComposeViewController.swift */; };
+		7D57D3CE23AADAAC00EB2CC5 /* ComposeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D57D3CD23AADAAC00EB2CC5 /* ComposeViewController.storyboard */; };
 		7D88EA2E23A9A1CB00D5F8FD /* ColorSchemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D88EA2D23A9A1CB00D5F8FD /* ColorSchemeTests.swift */; };
 		7DBED00A2328282200392F3C /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED0092328282200392F3C /* Routes.swift */; };
 		7DEE3E3D2335790A0009D8DC /* IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE3E3C2335790A0009D8DC /* IBDesignables.swift */; };
@@ -753,6 +756,7 @@
 		7D0215A421BAE863009A8E69 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D111CFE23A2DDD100C912C0 /* ConversationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListViewController.swift; sourceTree = "<group>"; };
 		7D111D0023A2DDDF00C912C0 /* ConversationListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConversationListViewController.storyboard; sourceTree = "<group>"; };
+		7D231BE023AC1E0A005BA31D /* ComposeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewControllerTests.swift; sourceTree = "<group>"; };
 		7D349C7D21430D98004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349C7E21430D98004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
 		7D349C7F21430D99004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/CourseCell.strings"; sourceTree = "<group>"; };
@@ -833,6 +837,8 @@
 		7D349CD621430E65004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "sv-instk12"; path = "sv-instk12.lproj/TableEmptyView.xib"; sourceTree = "<group>"; };
 		7D349CD721430E66004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349CD921430E67004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D57D3CB23AADA0F00EB2CC5 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		7D57D3CD23AADAAC00EB2CC5 /* ComposeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ComposeViewController.storyboard; sourceTree = "<group>"; };
 		7D88EA2D23A9A1CB00D5F8FD /* ColorSchemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeTests.swift; sourceTree = "<group>"; };
 		7DBED0092328282200392F3C /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		7DE74EFD22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -1300,11 +1306,13 @@
 		7D111CFD23A2DDAD00C912C0 /* Conversations */ = {
 			isa = PBXGroup;
 			children = (
+				7D57D3CD23AADAAC00EB2CC5 /* ComposeViewController.storyboard */,
+				7D57D3CB23AADA0F00EB2CC5 /* ComposeViewController.swift */,
+				974BA7F823A89C5C00E09D5A /* ConversationDetailViewController.storyboard */,
+				974BA7F623A89BE200E09D5A /* ConversationDetailViewController.swift */,
 				7DFDB43323A4393D00B28DED /* ConversationListCell.swift */,
 				7D111D0023A2DDDF00C912C0 /* ConversationListViewController.storyboard */,
 				7D111CFE23A2DDD100C912C0 /* ConversationListViewController.swift */,
-				974BA7F623A89BE200E09D5A /* ConversationDetailViewController.swift */,
-				974BA7F823A89C5C00E09D5A /* ConversationDetailViewController.storyboard */,
 			);
 			path = Conversations;
 			sourceTree = "<group>";
@@ -1328,8 +1336,9 @@
 		7DFDB43023A3EDE200B28DED /* Conversations */ = {
 			isa = PBXGroup;
 			children = (
-				7DFDB43123A3EDFB00B28DED /* ConversationListViewControllerTests.swift */,
+				7D231BE023AC1E0A005BA31D /* ComposeViewControllerTests.swift */,
 				97D477C823AA738300A6BC78 /* ConversationDetailViewControllerTests.swift */,
+				7DFDB43123A3EDFB00B28DED /* ConversationListViewControllerTests.swift */,
 			);
 			path = Conversations;
 			sourceTree = "<group>";
@@ -1534,6 +1543,7 @@
 			files = (
 				974BA7F923A89C5C00E09D5A /* ConversationDetailViewController.storyboard in Resources */,
 				2CB69BC91D91CE1D0059C5A5 /* TableEmptyView.xib in Resources */,
+				7D57D3CE23AADAAC00EB2CC5 /* ComposeViewController.storyboard in Resources */,
 				2CB69BB71D91CDF30059C5A5 /* DetailsReminderCell.xib in Resources */,
 				2CB69BCF1D91CE4A0059C5A5 /* DashboardViewController.storyboard in Resources */,
 				2CB69BC31D91CE140059C5A5 /* UserCell.xib in Resources */,
@@ -1686,6 +1696,7 @@
 				3B36A2ED2322C2A000599A1E /* GetAlertThresholdRequestableTests.swift in Sources */,
 				7DFDB43223A3EDFB00B28DED /* ConversationListViewControllerTests.swift in Sources */,
 				B1AA55D0235785A200DFD184 /* SettingsViewControllerTests.swift in Sources */,
+				7D231BE123AC1E0A005BA31D /* ComposeViewControllerTests.swift in Sources */,
 				3B54E3592326F9B000D8D1D2 /* ParentTestCase.swift in Sources */,
 				3B36A2F12322C56F00599A1E /* APIAlertThresholdFixture.swift in Sources */,
 				3B8F23CB2327050F00788730 /* StudentSettingsPresenterTests.swift in Sources */,
@@ -1713,6 +1724,7 @@
 				61E94C611C873C1A00777B95 /* DetailsDescriptionCell.swift in Sources */,
 				78A84A0E209BB7A000921C9B /* ParentAppDelegate.swift in Sources */,
 				7D52D8A322FCC89F00684932 /* DiscussionTopic+Details.swift in Sources */,
+				7D57D3CC23AADA0F00EB2CC5 /* ComposeViewController.swift in Sources */,
 				497C48E41F9153D100A3BC06 /* Student+Details.swift in Sources */,
 				61B536E11C97C25A0052B8CB /* CalendarEventDetailsViewController.swift in Sources */,
 				3B36A2D92322C15200599A1E /* AlertThresholdRequestables.swift in Sources */,

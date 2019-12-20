@@ -1,0 +1,86 @@
+{
+  "configurations" : [
+    {
+      "id" : "F222A9EC-9C71-4E01-9FC5-A202C673E0E5",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Student.xcodeproj",
+      "identifier" : "492704721CF4AF7100C631C6",
+      "name" : "Student"
+    }
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : [
+        "AssignmentDetailsTests",
+        "AssignmentsTests",
+        "CalendarTests",
+        "DashboardEmptyTests",
+        "LoginFindSchoolTests",
+        "LoginStartTests",
+        "MockedInboxTests",
+        "ModulesTests",
+        "Notifications2ListTests",
+        "NotificationsListTests",
+        "PeopleTests",
+        "QuizTests",
+        "StudentAccountNotificationsTests",
+        "StudentActAsUserTests",
+        "StudentAnnouncementTests",
+        "StudentCourseFileTests",
+        "StudentCourseGroupTests",
+        "StudentDashboardTests",
+        "StudentDeepLinkTests",
+        "StudentDiscussionDetailsTests",
+        "StudentDiscussionEditTests",
+        "StudentDiscussionListTests",
+        "StudentDiscussionReplyTests",
+        "StudentInboxTests",
+        "StudentLoginTests",
+        "StudentMockedInboxTests",
+        "StudentPageTests",
+        "StudentProfileTests",
+        "StudentTodoListTests",
+        "StudentUITestCase",
+        "StudentUserFilesTests",
+        "SubmissionButtonTests",
+        "SubmissionCommentsTests",
+        "SubmissionDetailsTests",
+        "SubmissionFilesTests",
+        "SyllabusTests",
+        "TextSubmissionTests",
+        "URLSubmissionTests"
+      ],
+      "target" : {
+        "containerPath" : "container:Student.xcodeproj",
+        "identifier" : "7DC5716F22F8B16200F2E9BB",
+        "name" : "StudentUITests"
+      }
+    },
+    {
+      "skippedTests" : [
+        "AssignmentPostPolicyTests",
+        "MockedInboxTests",
+        "SpeedGraderTests",
+        "TeacherAccountNotificationsTests",
+        "TeacherDiscussionDetailsTests",
+        "TeacherDiscussionEditTests",
+        "TeacherDiscussionReplyTests",
+        "TeacherUITestCase"
+      ],
+      "target" : {
+        "containerPath" : "container:..\/rn\/Teacher\/ios\/Teacher.xcodeproj",
+        "identifier" : "E8315D3522FC9E60003CD27C",
+        "name" : "TeacherUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

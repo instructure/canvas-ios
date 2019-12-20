@@ -35,7 +35,7 @@
          location = "group:NightlyTests.xctestplan">
       </FileRef>
       <FileRef
-         location = "group:StudentIPadUITests.xctestplan">
+         location = "group:IPadTests.xctestplan">
       </FileRef>
    </Group>
 </Workspace>

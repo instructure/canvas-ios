@@ -302,6 +302,13 @@ open class CoreUITestCase: XCTestCase {
         mockURL(url, data: data, response: response, error: error, noCallback: noCallback)
     }
 
+    open func mockGraphQL(_ json: Any) {
+        let data = try! JSONSerialization.data(withJSONObject: json, options: [])
+        let api = URLSessionAPI()
+        let url = URL(string: "/api/graphql", relativeTo: api.baseURL)!
+        mockURL(url, data: data, response: nil, error: nil, noCallback: false)
+    }
+
     @discardableResult
     open func mock(course: APICourse) -> APICourse {
         mockData(GetCourseRequest(courseID: course.id), value: course)

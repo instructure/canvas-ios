@@ -21,6 +21,10 @@ import Foundation
 public struct Route: Equatable {
     public let url: URLComponents
 
+    private init(url: URLComponents) {
+        self.url = url
+    }
+
     init(_ path: String) {
         url = .parse(path)
     }
@@ -34,6 +38,35 @@ public struct Route: Equatable {
 
     public static func conversation(_ conversationID: String) -> Route {
         return Route("/conversations/\(conversationID)")
+    }
+
+    public static func compose(
+        body: String? = nil,
+        context: Context? = nil,
+        observeeID: String? = nil,
+        recipientIDs: [String] = [],
+        subject: String? = nil
+    ) -> Route {
+        var compose = URLComponents()
+        compose.path = "/conversations/compose"
+        var queryItems: [URLQueryItem] = []
+        if let body = body {
+            queryItems.append(URLQueryItem(name: "body", value: body))
+        }
+        if let context = context {
+            queryItems.append(URLQueryItem(name: "context", value: context.canvasContextID))
+        }
+        if let observeeID = observeeID {
+            queryItems.append(URLQueryItem(name: "observeeID", value: observeeID))
+        }
+        if !recipientIDs.isEmpty {
+            queryItems.append(URLQueryItem(name: "recipientIDs", value: recipientIDs.joined(separator: ",")))
+        }
+        if let subject = subject {
+            queryItems.append(URLQueryItem(name: "subject", value: subject))
+        }
+        if !queryItems.isEmpty { compose.queryItems = queryItems }
+        return Route(url: compose)
     }
 
     public static let courses = Route("/courses")
