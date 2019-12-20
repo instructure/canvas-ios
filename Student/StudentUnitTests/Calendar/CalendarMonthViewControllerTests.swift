@@ -74,6 +74,32 @@ class CalendarMonthViewControllerTests: StudentTestCase {
         XCTAssertNil(jan3.dateLabel.accessibilityValue)
     }
 
+    func testMonthHeaders() {
+        Clock.mockNow(jan(1, 2019))
+        calendar.view.layoutIfNeeded()
+        let header = monthHeader(at: IndexPath(item: 0, section: 0))
+        XCTAssertEqual(header.dateLabel.text, "JANUARY 2018")
+        XCTAssertTrue(header.dateLabel.accessibilityTraits.contains(.header))
+    }
+
+    func testDaysOfWeek() {
+        calendar.view.layoutIfNeeded()
+        let labels = calendar.calendarView.daysOfWeekView.stack.arrangedSubviews as! [UILabel]
+        let values = [
+            ("Sun", "Sunday"),
+            ("Mon", "Monday"),
+            ("Tue", "Tuesday"),
+            ("Wed", "Wednesday"),
+            ("Thu", "Thursday"),
+            ("Fri", "Friday"),
+            ("Sat", "Saturday"),
+        ]
+        for (index, value) in values.enumerated() {
+            XCTAssertEqual(labels[index].text, value.0)
+            XCTAssertEqual(labels[index].accessibilityLabel, value.1)
+        }
+    }
+
     // MARK: - Helpers
 
     func jan(_ day: Int, _ year: Int) -> Date {
@@ -82,6 +108,10 @@ class CalendarMonthViewControllerTests: StudentTestCase {
 
     func dayCell(at indexPath: IndexPath) -> CalendarDayCell {
         return collectionView.dataSource!.collectionView(collectionView, cellForItemAt: indexPath) as! CalendarDayCell
+    }
+
+    func monthHeader(at indexPath: IndexPath) -> CalendarMonthHeaderView {
+        return collectionView.dataSource!.collectionView?(collectionView, viewForSupplementaryElementOfKind: UICollectionView.elementKindSectionHeader, at: indexPath) as! CalendarMonthHeaderView
     }
 
     func mockRange(_ startDate: Date, _ endDate: Date) {

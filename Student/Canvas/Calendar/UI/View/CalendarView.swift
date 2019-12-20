@@ -68,7 +68,7 @@ open class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataS
 
     private static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMM YYYY", options: 0, locale: Locale.current)
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMM yyyy", options: 0, locale: Locale.current)
         return dateFormatter
     }()
     
@@ -219,7 +219,9 @@ open class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataS
                 date.populate(formattedDate, calendar: calendar)
                 
                 monthHeader.date = date
+
                 monthHeader.dateLabel.text = CalendarView.dateFormatter.string(from: formattedDate).uppercased()
+                monthHeader.dateLabel.accessibilityTraits = [.header]
                 
                 var todayCalDate = CalendarDate()
                 todayCalDate.populate(today, calendar: calendar)
