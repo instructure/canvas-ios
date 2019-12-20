@@ -17,7 +17,6 @@
 //
 
 import XCTest
-import TestsFoundation
 @testable import Core
 
 open class CoreUITestCase: XCTestCase {
