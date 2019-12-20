@@ -66,7 +66,7 @@ extension SynchronizedModel where Self: NSManagedObject {
             
             let syncContext = context.syncContext
             
-            syncContext.perform() {
+            syncContext.performAndWait {
                 do {
                     let fetchLocal: NSFetchRequest<Self> = syncContext.fetch(localPredicate, sortDescriptors: nil)
                     fetchLocal.includesPropertyValues = false
@@ -80,7 +80,7 @@ extension SynchronizedModel where Self: NSManagedObject {
                         compositeDisposable += signalDisposable
                         
                         signal.observe { event in
-                            syncContext.perform {
+                            syncContext.performAndWait {
                                 switch event {
                                 case .interrupted:
                                     print("What?! why??!")
@@ -126,11 +126,15 @@ extension SynchronizedModel where Self: NSManagedObject {
             }
         })
 
-        let scheduler = QueueScheduler(qos: .userInitiated, name: "com.instructure.SoPersistent")
+        let scheduler: Scheduler
+        if context.syncContext.concurrencyType == .privateQueueConcurrencyType {
+            scheduler = QueueScheduler(qos: .userInitiated, name: "com.instructure.SoPersistent")
+        } else {
+            scheduler = UIScheduler()
+        }
         return syncContextModelsSignal
             .start(on: scheduler)
             .flatMap(.merge) { _ in return ModelPageSignalProducer.empty }
             .observe(on: UIScheduler())
     }
-    
 }

@@ -39,7 +39,7 @@ open class Session: NSObject {
     public let URLSession: Foundation.URLSession
     public let localStoreDirectory: LocalStoreDirectory
 
-    private static var _current: Session?
+    fileprivate static var _current: Session?
     @objc public static var current: Session? {
         if let current = _current, let loginSession = AppEnvironment.shared.currentSession {
             current.env = AppEnvironment.shared
@@ -125,3 +125,12 @@ extension SessionUser {
         )
     }
 }
+
+#if DEBUG
+extension Session {
+    static func reset() {
+        current?.refreshScope.invalidateAllCaches()
+        _current = nil
+    }
+}
+#endif

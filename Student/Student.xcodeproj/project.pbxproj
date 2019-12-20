@@ -469,6 +469,7 @@
 		B1CA093822C424E6008AA352 /* SubmitAssignmentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157A61422BD8ADA00963E56 /* SubmitAssignmentPresenter.swift */; };
 		B1CA093922C42520008AA352 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BB7A9022BADAC1006CA068 /* Core.framework */; };
 		B1CA093A22C425C8008AA352 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D864FFF22B2A432006B0127 /* TestsFoundation.framework */; };
+		B1CA3C6323AAA1C3006DCC48 /* CalendarMonthViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA3C6223AAA1C3006DCC48 /* CalendarMonthViewControllerTests.swift */; };
 		B1D40D382368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D40D372368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift */; };
 		B1D5EF6423590A0400B3ACD3 /* SubmitAssignmentViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D5EF6323590A0400B3ACD3 /* SubmitAssignmentViewControllerTests.swift */; };
 		B1D5EF652359182B00B3ACD3 /* SubmitAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB7A8422BAC820006CA068 /* SubmitAssignmentViewController.swift */; };
@@ -1370,6 +1371,7 @@
 		B1CA092E22C4237C008AA352 /* SubmitAssignmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SubmitAssignmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1CA093022C4237C008AA352 /* SubmitAssignmentPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAssignmentPresenterTests.swift; sourceTree = "<group>"; };
 		B1CA093222C4237C008AA352 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1CA3C6223AAA1C3006DCC48 /* CalendarMonthViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMonthViewControllerTests.swift; sourceTree = "<group>"; };
 		B1D40D372368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		B1D5EF6323590A0400B3ACD3 /* SubmitAssignmentViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAssignmentViewControllerTests.swift; sourceTree = "<group>"; };
 		B1D766A022C5049A0097561E /* SubmitAssignmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAssignmentTests.swift; sourceTree = "<group>"; };
@@ -2736,14 +2738,15 @@
 		7DCF0F3922F8A096000AACCE /* StudentUnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				9734351323866A59002E9CE5 /* Notifications */,
 				7DCF0F0F22F8A096000AACCE /* Assignments */,
+				B1CA3C6123AAA170006DCC48 /* Calendar */,
 				7DCF0F1522F8A096000AACCE /* Courses */,
-				7DCF0F1822F8A096000AACCE /* Groups */,
-				7DCF0F1E22F8A096000AACCE /* Quizzes */,
 				7DCF0F1F22F8A096000AACCE /* Dashboard */,
 				7DCF0F2222F8A096000AACCE /* Extensions */,
+				7DCF0F1822F8A096000AACCE /* Groups */,
+				9734351323866A59002E9CE5 /* Notifications */,
 				9F62EDD92326E03600EA9F79 /* People */,
+				7DCF0F1E22F8A096000AACCE /* Quizzes */,
 				7DCF0F3322F8A096000AACCE /* Submissions */,
 				7DCF0F3522F8A096000AACCE /* Views */,
 				7DCF0F3622F8A096000AACCE /* Info.plist */,
@@ -2990,6 +2993,14 @@
 				B1CA093222C4237C008AA352 /* Info.plist */,
 			);
 			path = SubmitAssignmentTests;
+			sourceTree = "<group>";
+		};
+		B1CA3C6123AAA170006DCC48 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				B1CA3C6223AAA1C3006DCC48 /* CalendarMonthViewControllerTests.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		B1D766A222C5055E0097561E /* Courses */ = {
@@ -4109,6 +4120,7 @@
 				7DE1161422F8AB5C005BFE98 /* StudentSyllabusPresenterTests.swift in Sources */,
 				7DE1162222F8AB5C005BFE98 /* TextSubmissionViewControllerTests.swift in Sources */,
 				7DE1161D22F8AB5C005BFE98 /* ArcSubmissionPresenterTests.swift in Sources */,
+				B1CA3C6323AAA1C3006DCC48 /* CalendarMonthViewControllerTests.swift in Sources */,
 				3B5542482369F9F4007D3CE0 /* AssignmentListViewControllerTests.swift in Sources */,
 				7DE1162422F8AB5C005BFE98 /* RoutesTests.swift in Sources */,
 				7DE1161622F8AB5C005BFE98 /* GroupNavigationViewControllerTests.swift in Sources */,
