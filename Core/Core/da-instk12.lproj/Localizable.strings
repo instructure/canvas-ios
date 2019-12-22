@@ -29,6 +29,9 @@
 "Alerts" = "Varslinger";
 
 /* No comment provided by engineer. */
+"All Grading Periods" = "Alle vurderingsperioder";
+
+/* No comment provided by engineer. */
 "All Submissions" = "Alle afleveringer";
 
 /* No comment provided by engineer. */
@@ -275,6 +278,9 @@
 "End Act as User" = "Afslut \\'funger som bruger\\'";
 
 /* No comment provided by engineer. */
+"Enrollment not found." = "Tilmelding ikke fundet.";
+
+/* No comment provided by engineer. */
 "Error" = "Fejl";
 
 /* No comment provided by engineer. */
@@ -282,6 +288,9 @@
 
 /* No comment provided by engineer. */
 "Expand" = "Udvid";
+
+/* No comment provided by engineer. */
+"Experimental Features" = "Eksperimentelle funktioner";
 
 /* No comment provided by engineer. */
 "External Tool" = "Eksternt værktøj";

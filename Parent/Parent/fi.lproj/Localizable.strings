@@ -104,6 +104,9 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "(discussionKitModelName) NS:n lataus epäonnistuiManagedObjectModel";
 
 /* No comment provided by engineer. */
+"Front Page" = "Etusivu";
+
+/* No comment provided by engineer. */
 "Grades" = "Arvosanat";
 
 /* High Assignment Grade too Low */

@@ -104,6 +104,9 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Kunne ikke indlæse (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
+"Front Page" = "Forside";
+
+/* No comment provided by engineer. */
 "Grades" = "Karakterer";
 
 /* High Assignment Grade too Low */

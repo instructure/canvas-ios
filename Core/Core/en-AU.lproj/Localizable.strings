@@ -29,6 +29,9 @@
 "Alerts" = "Alerts";
 
 /* No comment provided by engineer. */
+"All Grading Periods" = "All Grading Periods";
+
+/* No comment provided by engineer. */
 "All Submissions" = "All Submissions";
 
 /* No comment provided by engineer. */
@@ -275,6 +278,9 @@
 "End Act as User" = "End Act as User";
 
 /* No comment provided by engineer. */
+"Enrollment not found." = "Enrolment not found.";
+
+/* No comment provided by engineer. */
 "Error" = "Error";
 
 /* No comment provided by engineer. */
@@ -282,6 +288,9 @@
 
 /* No comment provided by engineer. */
 "Expand" = "Expand";
+
+/* No comment provided by engineer. */
+"Experimental Features" = "Experimental Features";
 
 /* No comment provided by engineer. */
 "External Tool" = "External Tool";

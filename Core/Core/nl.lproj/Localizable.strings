@@ -29,6 +29,9 @@
 "Alerts" = "Waarschuwingen";
 
 /* No comment provided by engineer. */
+"All Grading Periods" = "Alle beoordelingsperioden";
+
+/* No comment provided by engineer. */
 "All Submissions" = "Alle inzendingen";
 
 /* No comment provided by engineer. */
@@ -275,6 +278,9 @@
 "End Act as User" = "Stop met optreden als gebruiker";
 
 /* No comment provided by engineer. */
+"Enrollment not found." = "Inschrijving niet gevonden.";
+
+/* No comment provided by engineer. */
 "Error" = "Fout";
 
 /* No comment provided by engineer. */
@@ -282,6 +288,9 @@
 
 /* No comment provided by engineer. */
 "Expand" = "Uitvouwen";
+
+/* No comment provided by engineer. */
+"Experimental Features" = "Experimentele functies";
 
 /* No comment provided by engineer. */
 "External Tool" = "Externe tool";

@@ -104,6 +104,9 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Wedi methu llwytho (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
+"Front Page" = "Tudalen Flaen";
+
+/* No comment provided by engineer. */
 "Grades" = "Graddau";
 
 /* High Assignment Grade too Low */
