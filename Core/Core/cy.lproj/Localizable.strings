@@ -29,6 +29,9 @@
 "Alerts" = "Negeseuon Hysbysu";
 
 /* No comment provided by engineer. */
+"All Grading Periods" = "Pob Cyfnod Graddio";
+
+/* No comment provided by engineer. */
 "All Submissions" = "Pob Cyflwyniad";
 
 /* No comment provided by engineer. */
@@ -275,6 +278,9 @@
 "End Act as User" = "Gorffen Gweithredu fel Defnyddiwr";
 
 /* No comment provided by engineer. */
+"Enrollment not found." = "Heb ddod o hyd i ymrestru.";
+
+/* No comment provided by engineer. */
 "Error" = "Gwall";
 
 /* No comment provided by engineer. */
@@ -282,6 +288,9 @@
 
 /* No comment provided by engineer. */
 "Expand" = "Ehangu";
+
+/* No comment provided by engineer. */
+"Experimental Features" = "Nodweddion Arbrofol";
 
 /* No comment provided by engineer. */
 "External Tool" = "Adnodd Allanol";

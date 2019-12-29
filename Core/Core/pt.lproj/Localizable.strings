@@ -29,6 +29,9 @@
 "Alerts" = "Alertas";
 
 /* No comment provided by engineer. */
+"All Grading Periods" = "Todos os períodos de classificação";
+
+/* No comment provided by engineer. */
 "All Submissions" = "Todas as submissões";
 
 /* No comment provided by engineer. */
@@ -275,6 +278,9 @@
 "End Act as User" = "Finalizar Ato como Utilizador";
 
 /* No comment provided by engineer. */
+"Enrollment not found." = "Inscrição não encontrada.";
+
+/* No comment provided by engineer. */
 "Error" = "Erro";
 
 /* No comment provided by engineer. */
@@ -282,6 +288,9 @@
 
 /* No comment provided by engineer. */
 "Expand" = "Expandir";
+
+/* No comment provided by engineer. */
+"Experimental Features" = "Recursos experimentais";
 
 /* No comment provided by engineer. */
 "External Tool" = "Ferramenta Externa";

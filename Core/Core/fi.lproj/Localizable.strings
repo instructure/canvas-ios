@@ -29,6 +29,9 @@
 "Alerts" = "Hälytykset";
 
 /* No comment provided by engineer. */
+"All Grading Periods" = "Kaikki arvosanojen antojaksot";
+
+/* No comment provided by engineer. */
 "All Submissions" = "Kaikki lähetykset";
 
 /* No comment provided by engineer. */
@@ -275,6 +278,9 @@
 "End Act as User" = "Päätä toimi käyttäjänä";
 
 /* No comment provided by engineer. */
+"Enrollment not found." = "Rekisteröitymistä ei löytynyt";
+
+/* No comment provided by engineer. */
 "Error" = "Virhe";
 
 /* No comment provided by engineer. */
@@ -282,6 +288,9 @@
 
 /* No comment provided by engineer. */
 "Expand" = "Laajenna";
+
+/* No comment provided by engineer. */
+"Experimental Features" = "Kokeelliset omaisuudet";
 
 /* No comment provided by engineer. */
 "External Tool" = "Ulkoinen työkalu";

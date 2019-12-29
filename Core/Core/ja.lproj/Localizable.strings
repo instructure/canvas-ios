@@ -29,6 +29,9 @@
 "Alerts" = "アラート";
 
 /* No comment provided by engineer. */
+"All Grading Periods" = "すべての採点期間";
+
+/* No comment provided by engineer. */
 "All Submissions" = "すべての提出物";
 
 /* No comment provided by engineer. */
@@ -275,6 +278,9 @@
 "End Act as User" = "ユーザーとして行動することを止める";
 
 /* No comment provided by engineer. */
+"Enrollment not found." = "登録が見つかりません";
+
+/* No comment provided by engineer. */
 "Error" = "エラー";
 
 /* No comment provided by engineer. */
@@ -282,6 +288,9 @@
 
 /* No comment provided by engineer. */
 "Expand" = "展開";
+
+/* No comment provided by engineer. */
+"Experimental Features" = "実験機能";
 
 /* No comment provided by engineer. */
 "External Tool" = "外部ツール";

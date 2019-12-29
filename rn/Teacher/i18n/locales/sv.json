@@ -107,6 +107,9 @@
   "allow_threaded_replies_43b2311e": {
     "message": "Tillåt trådade svar"
   },
+  "allow_users_to_comment_45b8f753": {
+    "message": "Tillåt användare att kommentera"
+  },
   "allowed_attempts_4e229caa": {
     "message": "Tillåtna försök"
   },
@@ -747,7 +750,7 @@
     "message": "Har inte blivit bedömd"
   },
   "haven_t_submitted_yet_3a127a27": {
-    "message": "Har inte skickats in ännu"
+    "message": "Inte har skickat in ännu"
   },
   "help_4c4968b1": {
     "message": "Hjälp"
@@ -771,7 +774,7 @@
     "message": "Högsta"
   },
   "highest_possible_score_pointspossible_number_c03ce29a": {
-    "message": "Högsta möjliga poäng, { pointsPossible, number }"
+    "message": "Högsta möjliga resultat, { pointsPossible, number }"
   },
   "i_have_permission_to_use_file_d19a1a29": {
     "message": "Jag har behörighet att använda filen"
@@ -867,7 +870,7 @@
     "message": "Lång beskrivning"
   },
   "lowest_possible_score_0_c2338db6": {
-    "message": "Lägsta möjliga poäng, 0"
+    "message": "Lägsta möjliga resultat, 0"
   },
   "magenta_4a65993c": {
     "message": "Magenta"
@@ -1209,7 +1212,7 @@
     "message": "Förhandsvisning av quiz"
   },
   "quiz_score_to_keep_d1f7c4b1": {
-    "message": "Quizpoäng att behålla"
+    "message": "Quizresultat att behålla"
   },
   "quiz_submission_dca0c013": {
     "message": "Quizinlämning"
@@ -1320,16 +1323,16 @@
     "message": "Resultat att behålla"
   },
   "scored_less_than_93cde0d2": {
-    "message": "Fick lägre poäng än ..."
+    "message": "Fick sämre resultat än ..."
   },
   "scored_less_than_promptvalue_7e5f2b5d": {
-    "message": "Fick lägre poäng än { promptValue }"
+    "message": "Fick sämre resultat än { promptValue }"
   },
   "scored_more_than_2185a818": {
-    "message": "Fick högre poängän ..."
+    "message": "Fick bättre resultat än ..."
   },
   "scored_more_than_promptvalue_9097b1f7": {
-    "message": "Fick högre poäng än { promptValue }"
+    "message": "Fick bättre resultat än { promptValue }"
   },
   "search_280d00bd": {
     "message": "Sök"
@@ -1410,7 +1413,7 @@
     "message": "Blanda svar"
   },
   "similarity_score_f4b5c343": {
-    "message": "Likhetspoäng"
+    "message": "Likhetsresultat"
   },
   "since_this_is_a_group_discussion_each_group_has_it_b25db5cd": {
     "message": "Eftersom det här är en gruppdiskussion har varje grupp sin egen konversation för det här ämnet. Här är de diskussioner som du har åtkomst till."
@@ -1611,7 +1614,7 @@
     "message": "Den här uppgiften tillåter endast inlämningar på papper."
   },
   "this_criterion_will_not_impact_the_score_94adf77b": {
-    "message": "Detta kriterium påverkar inte poängen."
+    "message": "Detta kriterium påverkar inte resultatet."
   },
   "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
     "message": "Den här filen måste ha användningsrättigheter inställda innan den kan publiceras."

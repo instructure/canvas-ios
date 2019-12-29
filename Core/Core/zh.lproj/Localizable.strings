@@ -29,6 +29,9 @@
 "Alerts" = "警告";
 
 /* No comment provided by engineer. */
+"All Grading Periods" = "所有评分周期";
+
+/* No comment provided by engineer. */
 "All Submissions" = "所有提交项";
 
 /* No comment provided by engineer. */
@@ -275,6 +278,9 @@
 "End Act as User" = "结束担当用户";
 
 /* No comment provided by engineer. */
+"Enrollment not found." = "未找到注册学生。";
+
+/* No comment provided by engineer. */
 "Error" = "错误";
 
 /* No comment provided by engineer. */
@@ -282,6 +288,9 @@
 
 /* No comment provided by engineer. */
 "Expand" = "展开";
+
+/* No comment provided by engineer. */
+"Experimental Features" = "试验功能";
 
 /* No comment provided by engineer. */
 "External Tool" = "外部工具";
