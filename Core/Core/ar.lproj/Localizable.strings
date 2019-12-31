@@ -29,6 +29,9 @@
 "Alerts" = "التنبيهات";
 
 /* No comment provided by engineer. */
+"All Grading Periods" = "جميع فترات تقييم الدرجات";
+
+/* No comment provided by engineer. */
 "All Submissions" = "كل الإرسالات";
 
 /* No comment provided by engineer. */
@@ -275,6 +278,9 @@
 "End Act as User" = "إنهاء التصرف كمستخدم";
 
 /* No comment provided by engineer. */
+"Enrollment not found." = "لم يتم العثور على التسجيل.";
+
+/* No comment provided by engineer. */
 "Error" = "خطأ";
 
 /* No comment provided by engineer. */
@@ -282,6 +288,9 @@
 
 /* No comment provided by engineer. */
 "Expand" = "توسيع";
+
+/* No comment provided by engineer. */
+"Experimental Features" = "ميزات تجريبية";
 
 /* No comment provided by engineer. */
 "External Tool" = "أداة خارجية";

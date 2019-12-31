@@ -29,6 +29,9 @@
 "Alerts" = "Alèt";
 
 /* No comment provided by engineer. */
+"All Grading Periods" = "Tout Peryòd Klasman";
+
+/* No comment provided by engineer. */
 "All Submissions" = "Tout Soumisyon";
 
 /* No comment provided by engineer. */
@@ -275,6 +278,9 @@
 "End Act as User" = "Fini Aksyon kòm yon Itilizatè";
 
 /* No comment provided by engineer. */
+"Enrollment not found." = "Enskripsyon entwouvab.";
+
+/* No comment provided by engineer. */
 "Error" = "Erè";
 
 /* No comment provided by engineer. */
@@ -282,6 +288,9 @@
 
 /* No comment provided by engineer. */
 "Expand" = "Elaji";
+
+/* No comment provided by engineer. */
+"Experimental Features" = "Fonksyon Eksperimantal";
 
 /* No comment provided by engineer. */
 "External Tool" = "Zouti Ekstèn";

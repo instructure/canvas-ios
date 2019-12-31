@@ -104,6 +104,9 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Falha ao carregar (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
+"Front Page" = "Primeira página";
+
+/* No comment provided by engineer. */
 "Grades" = "Classificações";
 
 /* High Assignment Grade too Low */

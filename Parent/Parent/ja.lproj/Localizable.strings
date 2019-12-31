@@ -104,6 +104,9 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "(discussionKitModelName) NSManagedObjectModelの読込に失敗しました";
 
 /* No comment provided by engineer. */
+"Front Page" = "フロントページ";
+
+/* No comment provided by engineer. */
 "Grades" = "成績";
 
 /* High Assignment Grade too Low */

@@ -107,6 +107,9 @@
   "allow_threaded_replies_43b2311e": {
     "message": "Kaikki ketjutetut vastaukset"
   },
+  "allow_users_to_comment_45b8f753": {
+    "message": "Salli käyttäjien kommentoida"
+  },
   "allowed_attempts_4e229caa": {
     "message": "Sallitut yritykset"
   },

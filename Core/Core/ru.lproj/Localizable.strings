@@ -29,6 +29,9 @@
 "Alerts" = "Предупреждения";
 
 /* No comment provided by engineer. */
+"All Grading Periods" = "Все академические периоды";
+
+/* No comment provided by engineer. */
 "All Submissions" = "Все отправки";
 
 /* No comment provided by engineer. */
@@ -275,6 +278,9 @@
 "End Act as User" = "Завершить функцию «Действовать как пользователь»";
 
 /* No comment provided by engineer. */
+"Enrollment not found." = "Зачисление не найдено.";
+
+/* No comment provided by engineer. */
 "Error" = "Ошибка";
 
 /* No comment provided by engineer. */
@@ -282,6 +288,9 @@
 
 /* No comment provided by engineer. */
 "Expand" = "Развернуть";
+
+/* No comment provided by engineer. */
+"Experimental Features" = "Экспериментальные функции";
 
 /* No comment provided by engineer. */
 "External Tool" = "Внешний инструмент";

@@ -29,6 +29,9 @@
 "Alerts" = "Varsler";
 
 /* No comment provided by engineer. */
+"All Grading Periods" = "Alle vurderingsperioder";
+
+/* No comment provided by engineer. */
 "All Submissions" = "Alle innleveringer";
 
 /* No comment provided by engineer. */
@@ -275,6 +278,9 @@
 "End Act as User" = "Avslutt opptre som bruker";
 
 /* No comment provided by engineer. */
+"Enrollment not found." = "Påmelding ikke funnet";
+
+/* No comment provided by engineer. */
 "Error" = "Avvik";
 
 /* No comment provided by engineer. */
@@ -282,6 +288,9 @@
 
 /* No comment provided by engineer. */
 "Expand" = "Utvid";
+
+/* No comment provided by engineer. */
+"Experimental Features" = "Eksperimentelle funksjoner";
 
 /* No comment provided by engineer. */
 "External Tool" = "Eksternt verktøy";
