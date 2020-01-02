@@ -154,7 +154,7 @@ class CalendarTests: StudentUITestCase {
         app.swipeDown()
         XCTAssertFalse(CalendarElements.text(containing: "JANUARY 2019").exists)
         CalendarElements.todayButton.tap()
-        CalendarElements.text(containing: "JANUARY 2019").waitToExist()
+        CalendarElements.text(containing: "January (2019)").waitToExist()
         CalendarElements.text(containing: "1").waitToExist()
     }
 
@@ -172,7 +172,7 @@ class CalendarTests: StudentUITestCase {
         )
         logIn()
         TabBar.calendarTab.tap()
-        XCTAssertTrue(CalendarElements.text(containing: "JANUARY 2019").exists)
+        CalendarElements.text(containing: "January (2019)").waitToExist()
         XCTAssertTrue(CalendarElements.dayEventIndicator(jan(4)).waitToExist().isVisible)
         mockData(
             GetCalendarEventsRequest(
