@@ -44,6 +44,10 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         return controller
     }
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
@@ -57,6 +61,9 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         picker?.delegate = self
         picker?.backgroundColor = .named(.backgroundLightest)
         pickerButton?.setTitleColor(.named(.textDark), for: .disabled)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+
         presenter?.viewIsReady()
     }
 
@@ -135,6 +142,11 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         guard let contentView = drawer?.contentView, let controller = drawerContentViewController else { return }
 
         embed(controller, in: contentView)
+    }
+
+    @objc func keyboardWillShow(_ notification: Notification) {
+        guard let drawer = drawer else { return }
+        drawer.moveTo(height: drawer.maxDrawerHeight, velocity: 1)
     }
 
     @IBAction func drawerTabChanged(_ sender: UISegmentedControl) {

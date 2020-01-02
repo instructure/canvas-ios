@@ -19,6 +19,39 @@
 
 set -euo pipefail
 
+function usage {
+    echo "Runs the nightly test, retrying failed ones."
+    echo "usage:"
+    echo "  ./scripts/run-nightly-tests.sh --all"
+    echo "  ./scripts/run-nightly-tests.sh --only-testing testId ..."
+    echo "  ./scripts/run-nightly-tests.sh --help"
+    exit $1
+}
+
+only_testing=()
+needs_build=yes
+celebration=yes
+
+case ${1-} in
+    --help|-h)
+        usage 0
+        ;;
+    --all)
+        if [[ $# -ne 1 ]]; then
+            usage 1
+        fi
+        ;;
+    --only-testing)
+        shift
+        only_testing+=($@)
+        needs_build=no
+        celebration=no
+        ;;
+    *)
+        usage 1
+        ;;
+esac
+
 # needed to run this script:
 # xcbeautify jq
 
@@ -35,13 +68,14 @@ function banner() (
 )
 
 mkdir -p tmp
+export NSUnbufferedIO=YES
 
 destination_flag=(-destination 'platform=iOS Simulator,name=iPhone 8')
 
-banner "Building NightlyTests"
-
-export NSUnbufferedIO=YES
-xcodebuild -workspace Canvas.xcworkspace -scheme NightlyTests $destination_flag build-for-testing 2>&1 | xcbeautify
+if [[ $needs_build = yes ]]; then
+    banner "Building NightlyTests"
+    xcodebuild -workspace Canvas.xcworkspace -scheme NightlyTests $destination_flag build-for-testing 2>&1 | xcbeautify --quiet
+fi
 
 BUILD_DIR=$(xcodebuild -workspace Canvas.xcworkspace -scheme NightlyTests -showBuildSettings build-for-testing -json |
                 jq -r '.[] | select(.target == "CoreTests").buildSettings.BUILD_DIR')
@@ -75,13 +109,25 @@ results_directory=nightly-xcresults
 rm -rf $results_directory
 mkdir -p $results_directory
 
+function mergeResults {
+    results=($results_directory/*.xcresult)
+    merged_result_path=$results_directory/merged.xcresult
+    if [[ ${#results} -gt 1 ]]; then
+        xcrun xcresulttool merge $results --output-path $merged_result_path
+    else
+        cp -r $results $merged_result_path
+    fi
+}
+
 function getTestResults {
     tests_passed_this_run=0
     tests_failed_this_run=0
 
     local result_path=$results_directory/$try.xcresult
     if [[ ! -d $result_path ]]; then
-        echo "couldn't find test results!!"
+        echo "Couldn't find test results!"
+        echo > $results_directory/final-failed.txt
+        envman add --key TESTS_FAILED --value yes
         exit 1
     fi
     local test_result_id=($(xcrun xcresulttool get --format json --path $result_path |
@@ -100,16 +146,13 @@ function getTestResults {
     tests_failed_this_run=($(jq -r '.[] | select(.status == "Failure").id' $all_results_path)) || return $?
 
     if (( ${#tests_passed_this_run} + ${#tests_failed_this_run} == 0 )); then
-        echo "Couldn't find any test results... possibly a test class crashed in init somewhere?"
-        crash_logs=($result_path/Staging/**/*.crash)
+        echo "Couldn't find any test results"
+        crash_logs=($result_path/Staging/**/*.crash(N))
         banner "found ${#crash_logs} crash logs"
         for crash_log in $crash_logs; do
             banner $crash_log
             cat $crash_log
         done
-
-        # Something more than flakiness is going on, fail immediately
-        exit 1
     fi
 
     banner "${#tests_passed_this_run} tests passed"
@@ -125,7 +168,6 @@ function doTest {
 
     banner "Running $(basename $xctestrun) (retry $try)"
     local result_path=$results_directory/$try.xcresult
-    local ret=0
 
     local flags=($destination_flag)
     flags+=(-resultBundlePath $result_path)
@@ -137,14 +179,18 @@ function doTest {
     for skip in $all_passing_tests; do
         flags+=(-skip-testing:$skip)
     done
+    for test in $only_testing; do
+        flags+=(-only-testing:$test)
+    done
 
     # Do this the long way to make sure we get the correct exit code
     pipe_file=tmp/formatter-fifo
     rm -rf $pipe_file
     mkfifo $pipe_file
 
-    < $pipe_file xcbeautify &
+    < $pipe_file tee ${BITRISE_DEPLOY_DIR-$results_directory}/test-run-$try-xcodebuild.log | xcbeautify --quiet &
     local formatter_pid=$!
+    local ret=0
     xcodebuild test-without-building $flags > $pipe_file 2> $pipe_file || ret=$?
     wait $formatter_pid
     rm -rf $pipe_file
@@ -166,9 +212,10 @@ function retry {
         xcrun simctl io booted recordVideo $video_file &
         video_pid=$!
     fi
+    local ret=0
     doTest || ret=$?
     if [[ -n $video_pid ]]; then
-        kill -INT $video_pid
+        kill -INT $video_pid || true
         wait $video_pid
     fi
     return $ret
@@ -186,7 +233,7 @@ doTest $base_xctestrun ||
     ret=$?
 
 if [[ $ret -eq 0 ]]; then
-    if [[ $try -eq 0 ]]; then
+    if [[ $try -eq 0 ]] && [[ $celebration = yes ]]; then
         banner "\U1F389 All tests passed ON THE FIRST TRY! \U1F389"
     else
         banner "All tests passed after $try retries! ($total_failures flaky failures)"
@@ -195,14 +242,10 @@ else
     banner "${#tests_failed_this_run} Tests still failing after $try retries"
     echo "failing tests:"
     print ${(F)tests_failed_this_run}
+    envman add --key TESTS_FAILED --value yes || true
 fi
 
-results=($results_directory/*.xcresult)
-merged_result_path=$results_directory/merged.xcresult
-if [[ ${#results} -gt 1 ]]; then
-    xcrun xcresulttool merge $results --output-path $merged_result_path
-else
-    cp -r $results $merged_result_path
-fi
+print ${(F)tests_failed_this_run} > $results_directory/final-failed.txt
 
+mergeResults
 exit $ret

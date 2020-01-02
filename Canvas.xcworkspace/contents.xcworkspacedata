@@ -17,6 +17,9 @@
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:rn">
+   </FileRef>
+   <FileRef
       location = "group:Student/Student.xcodeproj">
    </FileRef>
    <FileRef
@@ -25,7 +28,14 @@
    <FileRef
       location = "group:TestsFoundation/TestsFoundation.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:NightlyTests.xctestplan">
-   </FileRef>
+   <Group
+      location = "container:TestPlans"
+      name = "TestPlans">
+      <FileRef
+         location = "group:NightlyTests.xctestplan">
+      </FileRef>
+      <FileRef
+         location = "group:IPadTests.xctestplan">
+      </FileRef>
+   </Group>
 </Workspace>

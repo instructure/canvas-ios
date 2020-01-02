@@ -22,6 +22,7 @@ import Foundation
 class StudentAccountNotificationsTests: AccountNotificationsTests {}
 class StudentCourseGroupTests: CourseGroupTests {}
 class StudentInboxTests: InboxTests {}
+class StudentMockedInboxTests: MockedInboxTests {}
 class StudentDiscussionDetailsTests: DiscussionDetailsTests {}
 class StudentDiscussionEditTests: DiscussionEditTests {}
 class StudentDiscussionListTests: DiscussionListTests {}
@@ -31,8 +32,8 @@ class StudentCourseFileTests: CourseFileTests {}
 class StudentActAsUserTests: ActAsUserTests {}
 class StudentAnnouncementTests: AnnouncementTests {}
 class StudentTodoListTests: TodoListTests {}
-class StudentDashboardTests: DashboardTests {}
 class StudentProfileTests: ProfileTests {}
 class StudentPageTests: PageTests {}
 class StudentLoginTests: LoginTests {}
 class StudentUserFilesTests: UserFilesTests {}
+class StudentSpringBoardTests: SpringBoardTests {}

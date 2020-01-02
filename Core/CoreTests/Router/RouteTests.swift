@@ -20,6 +20,20 @@ import XCTest
 @testable import Core
 
 class RouteTests: XCTestCase {
+    func testConversations() {
+        XCTAssertEqual(Route.conversations.url.path, "/conversations")
+        XCTAssertEqual(Route.conversation("5").url.path, "/conversations/5")
+        XCTAssertEqual(Route.compose().url.path, "/conversations/compose")
+        XCTAssertNil(Route.compose().url.queryItems)
+        XCTAssertEqual(Route.compose(body: "b", context: ContextModel(.course, id: "1"), observeeID: "2", recipientIDs: [ "3", "4" ], subject: "s").url.queryItems, [
+            URLQueryItem(name: "body", value: "b"),
+            URLQueryItem(name: "context", value: "course_1"),
+            URLQueryItem(name: "observeeID", value: "2"),
+            URLQueryItem(name: "recipientIDs", value: "3,4"),
+            URLQueryItem(name: "subject", value: "s"),
+        ])
+    }
+
     func testCourse() {
         XCTAssertEqual(Route.course("7").url.path, "/courses/7")
     }

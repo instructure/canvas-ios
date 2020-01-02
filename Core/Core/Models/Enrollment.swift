@@ -124,8 +124,13 @@ extension Enrollment {
         }
 
         self.course = course
-        if course != nil {
-            // these only come back in the course endpoint
+
+        if let apiGrades = item.grades {
+            let grade = grades.first { $0.gradingPeriodID == gradingPeriodID } ?? client.insert()
+            grade.currentScore = apiGrades.current_score
+            grade.gradingPeriodID = gradingPeriodID
+            grades.insert(grade)
+        } else {
             multipleGradingPeriodsEnabled = item.multiple_grading_periods_enabled ?? false
             currentGradingPeriodID = item.current_grading_period_id
             totalsForAllGradingPeriodsOption = item.totals_for_all_grading_periods_option ?? false
@@ -147,13 +152,6 @@ extension Enrollment {
                 currentPeriodGrade.currentScore = item.current_period_computed_current_score
                 grades.insert(currentPeriodGrade)
             }
-        }
-
-        if let apiGrades = item.grades {
-            let grade = grades.first { $0.gradingPeriodID == gradingPeriodID } ?? client.insert()
-            grade.currentScore = apiGrades.current_score
-            grade.gradingPeriodID = gradingPeriodID
-            grades.insert(grade)
         }
     }
 }

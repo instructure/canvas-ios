@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -97,7 +97,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wu5-SA-4Ne" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="99" y="269" width="177" height="52"/>
+                                <rect key="frame" x="102.5" y="269" width="170" height="50"/>
                                 <inset key="contentEdgeInsets" minX="54" minY="16" maxX="54" maxY="16"/>
                                 <state key="normal" title="Continue"/>
                                 <userDefinedRuntimeAttributes>
@@ -109,7 +109,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="submit:" destination="Sui-8Q-gDf" eventType="touchUpInside" id="dBd-4U-SEI"/>
+                                    <action selector="submit:" destination="Sui-8Q-gDf" eventType="primaryActionTriggered" id="FYj-E6-6HC"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -149,6 +149,7 @@
                     <connections>
                         <outlet property="clientIDField" destination="OIC-Dy-yeC" id="hwO-Yk-Fsd"/>
                         <outlet property="clientSecretField" destination="dyr-GQ-FtL" id="buv-1w-TRk"/>
+                        <outlet property="continueButton" destination="Wu5-SA-4Ne" id="hfQ-d3-dDE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qQR-JK-n1f" userLabel="First Responder" sceneMemberID="firstResponder"/>

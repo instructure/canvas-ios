@@ -45,11 +45,11 @@ class CourseListViewController: FetchedTableViewController<CanvasCore.Course> {
 
         self.emptyView = emptyView
 
-        let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
+        let scheme = ColorScheme.observee(studentID)
         let collection = try Course.collectionByStudent(session, studentID: studentID)
         let refresher = try Course.airwolfCollectionRefresher(session, studentID: studentID)
         prepare(collection, refresher: refresher, viewModelFactory: { course in
-            CourseCellViewModel(course: course, highlightColor: scheme.highlightCellColor)
+            CourseCellViewModel(course: course, highlightColor: .named(.backgroundLight))
         })
     }
 
@@ -66,8 +66,8 @@ class CourseListViewController: FetchedTableViewController<CanvasCore.Course> {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let scheme = ColorCoordinator.colorSchemeForStudentID(observeeID)
-        navigationController?.navigationBar.useContextColor(scheme.mainColor)
+        let scheme = ColorScheme.observee(observeeID)
+        navigationController?.navigationBar.useContextColor(scheme.color)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -29,6 +29,9 @@
 "Alerts" = "Opozorila";
 
 /* No comment provided by engineer. */
+"All Grading Periods" = "Vsa ocenjevalna obdobja";
+
+/* No comment provided by engineer. */
 "All Submissions" = "Vse oddaje";
 
 /* No comment provided by engineer. */
@@ -275,6 +278,9 @@
 "End Act as User" = "Opustite vlogo uporabnika";
 
 /* No comment provided by engineer. */
+"Enrollment not found." = "Vpisa ni mogoče najti.";
+
+/* No comment provided by engineer. */
 "Error" = "Napaka";
 
 /* No comment provided by engineer. */
@@ -282,6 +288,9 @@
 
 /* No comment provided by engineer. */
 "Expand" = "Razširi";
+
+/* No comment provided by engineer. */
+"Experimental Features" = "Eksperimentalne funkcionalnosti";
 
 /* No comment provided by engineer. */
 "External Tool" = "Zunanje orodje";

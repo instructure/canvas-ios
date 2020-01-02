@@ -22,7 +22,15 @@ import XCTest
 @testable import Core
 
 class RoutesTests: ParentTestCase {
-    func testCourseGradesParent3() {
+    func testRoutes() {
         XCTAssert(Parent.router.match(.parse("/courses/1/grades")) is CourseDetailsViewController)
+
+        XCTAssertNil(Parent.router.match(Route.conversations.url))
+        XCTAssertNil(Parent.router.match(Route.compose().url))
+        XCTAssertNil(Parent.router.match(Route.conversation("1").url))
+        ExperimentalFeature.parentInbox.isEnabled = true
+        XCTAssert(Parent.router.match(Route.conversations.url) is ConversationListViewController)
+        XCTAssertEqual((Parent.router.match(Route.compose(observeeID: "2").url) as? ComposeViewController)?.observeeID, "2")
+        XCTAssert(Parent.router.match(Route.conversation("1").url) is ConversationDetailViewController)
     }
 }

@@ -33,6 +33,19 @@ public extension Date {
     }
 
     func addYears(_ years: Int) -> Date {
-        return Calendar.current.date(byAdding: .year, value: years, to: self) ?? Date()
+        return Calendar.current.date(byAdding: .year, value: years, to: self) ?? self
+    }
+
+    static var dateOnlyFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("MMMd")
+        return formatter
+    }()
+
+    var dateMediumString: String {
+        if Calendar.current.component(.year, from: self) == Calendar.current.component(.year, from: Clock.now) {
+            return Date.dateOnlyFormatter.string(from: self)
+        }
+        return DateFormatter.localizedString(from: self, dateStyle: .medium, timeStyle: .none)
     }
 }

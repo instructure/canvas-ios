@@ -280,7 +280,7 @@ export class DiscussionDetails extends Component<Props, any> {
         { isTeacher() && this.props.assignment && !showGroupTopicChildren &&
           <AssignmentSection
             title={i18n('Submissions')}
-            testID='discussions.submission-graphs'
+            testID='DiscussionDetails.submissionGraphs'
             onPress={() => this.viewSubmissions()}
             showDisclosureIndicator
           >
@@ -297,7 +297,7 @@ export class DiscussionDetails extends Component<Props, any> {
           <View style={style.authorContainer}>
             { user?.display_name &&
               <Avatar
-                testID='discussion.details.avatar'
+                testID='DiscussionDetails.avatar'
                 height={32}
                 key={user.id}
                 avatarURL={user.avatar_image_url}
@@ -308,7 +308,7 @@ export class DiscussionDetails extends Component<Props, any> {
             }
             <View style={[style.authorInfoContainer, { marginLeft: (user && user.display_name) ? vars.padding : 0 }]}>
               { user?.display_name && <Text style={style.authorName}>{user.display_name}</Text> }
-              { hasValidDate && <Text style={style.authorDate} testID='discussion.details.post-date-lbl'>{i18n("{ date, date, 'MMM d'} at { date, time, short }", { date })}</Text> }
+              { hasValidDate && <Text style={style.authorDate} testID='DiscussionDetails.postDateLabel'>{i18n("{ date, date, 'MMM d'} at { date, time, short }", { date })}</Text> }
             </View>
           </View>
 
@@ -339,7 +339,7 @@ export class DiscussionDetails extends Component<Props, any> {
               <TouchableHighlight
                 underlayColor={colors.backgroundLightest}
                 onPress={this._onPressReply}
-                testID='discussion-reply'
+                testID='DiscussionDetails.replyButton'
                 accessibilityTraits='button'
               >
                 <View style={style.replyButtonWrapper}>
@@ -483,7 +483,7 @@ export class DiscussionDetails extends Component<Props, any> {
         rightBarButtons={ isTeacher() && [
           {
             image: Images.kabob,
-            testID: 'discussions.details.edit.button',
+            testID: 'DiscussionDetails.editButton',
             accessibilityLabel: i18n('Options'),
             action: this.showEditActionSheet,
           },

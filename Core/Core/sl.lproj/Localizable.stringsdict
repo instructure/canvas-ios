@@ -2,6 +2,46 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>conversation_recipients_to</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@audience_size@</string>
+		<key>audience_size</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string></string>
+			<key>one</key>
+			<string>%d other</string>
+			<key>other</key>
+			<string>%d others</string>
+			<key>two</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>d_events</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@events@</string>
+		<key>events</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>%d events</string>
+			<key>one</key>
+			<string>%d event</string>
+			<key>other</key>
+			<string>%d events</string>
+			<key>two</key>
+			<string>%d events</string>
+		</dict>
+	</dict>
 	<key>d_needs_grading</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

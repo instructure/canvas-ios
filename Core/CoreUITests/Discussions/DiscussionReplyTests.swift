@@ -21,8 +21,8 @@ import TestsFoundation
 @testable import Core
 
 class DiscussionReplyTests: CoreUITestCase {
-    override var abstractTestClass: CoreUITestCase.Type { return DiscussionReplyTests.self }
-    override var user: UITestUser? { return nil }
+    override var abstractTestClass: CoreUITestCase.Type { DiscussionReplyTests.self }
+    override var user: UITestUser? { nil }
 
     lazy var course = mock(course: .make(
         permissions: .init(
@@ -30,13 +30,14 @@ class DiscussionReplyTests: CoreUITestCase {
             create_discussion_topic: true
     )))
 
-    func mockDiscussion(allowAttachment: Bool? = true) -> APIDiscussionTopic {
+    func mockDiscussion(allowAttachment: Bool? = true, allowRating: Bool = false) -> APIDiscussionTopic {
         let discussId: ID = "1"
         let discussion = APIDiscussionTopic.make(
             id: discussId,
             message: "top message",
             html_url: URL(string: "/courses/\(course.id)/discussion_topics/\(discussId)"),
-            permissions: .make(attach: allowAttachment)
+            permissions: .make(attach: allowAttachment),
+            allow_rating: allowRating
         )
         mockData(ListDiscussionTopicsRequest(context: course), value: [discussion])
         mockData(GetTopicRequests(context: course, topicID: discussId.value), value: discussion)
@@ -62,10 +63,10 @@ class DiscussionReplyTests: CoreUITestCase {
         let discussion = mockDiscussion()
         show("/courses/\(course.id)/discussion_topics/\(discussion.id)")
 
-        XCTAssertTrue(DiscussionReply.replyUnread(id: "1").waitToExist(3).exists)
-        XCTAssertFalse(DiscussionReply.replyUnread(id: "2").exists)
-        XCTAssertTrue(DiscussionReply.replyUnread(id: "3").exists)
-        XCTAssertTrue(DiscussionReply.replyUnread(id: "5").exists)
+        XCTAssertTrue(DiscussionReply.unread(id: "1").waitToExist(3).exists)
+        XCTAssertFalse(DiscussionReply.unread(id: "2").exists)
+        XCTAssertTrue(DiscussionReply.unread(id: "3").exists)
+        XCTAssertTrue(DiscussionReply.unread(id: "5").exists)
     }
 
     func helpTestViewReplies(expectReplyButtons: Bool) {
@@ -84,12 +85,12 @@ class DiscussionReplyTests: CoreUITestCase {
         XCTAssertEqual(xs["m1"]!, xs["m5"]!)
 
         XCTAssertFalse(app.find(label: "m4 (deep)").exists)
-        DiscussionReply.moreReplies.tap()
+        DiscussionReply.moreReplies(id: "3").tap()
         app.find(label: "m4 (deep)").waitToExist()
         app.find(label: "Back to replies").tap()
         app.find(label: "m4 (deep)").waitToVanish()
 
-        XCTAssertEqual(DiscussionReply.topReplyButton.exists, expectReplyButtons)
+        XCTAssertEqual(DiscussionDetails.replyButton.exists, expectReplyButtons)
         XCTAssertEqual(DiscussionReply.replyButton(id: "1").exists, expectReplyButtons)
         XCTAssertEqual(DiscussionReply.replyButton(id: "2").exists, expectReplyButtons)
     }
@@ -119,13 +120,13 @@ class DiscussionReplyTests: CoreUITestCase {
 
         let undoButton = app.find(id: "rich-text-toolbar-item-undo")
 
-        DiscussionReply.topReplyButton.tap()
+        DiscussionDetails.replyButton.tap()
         undoButton.waitToExist()
         XCTAssertFalse(DiscussionEdit.attachmentButton.exists)
         NavBar.dismissButton.tap()
         undoButton.waitToVanish()
 
-        DiscussionReply.topReplyButton.tap()
+        DiscussionDetails.replyButton.tap()
         DiscussionEditReply.doneButton.tapUntil {
             !DiscussionEditReply.doneButton.isVisible
         }
@@ -146,7 +147,7 @@ class DiscussionReplyTests: CoreUITestCase {
         app.find(label: discussion.message!).waitToExist()
 
         mockData(PostDiscussionEntryRequest(context: course, topicID: "1", body: nil), value: .make())
-        DiscussionReply.topReplyButton.tap()
+        DiscussionDetails.replyButton.tap()
         DiscussionEditReply.attachmentButton.tap()
 
         Attachments.addButton.tap()
@@ -165,9 +166,35 @@ class DiscussionReplyTests: CoreUITestCase {
 
         Attachments.dismissButton.tap()
 
-        app.webViews.firstElement.typeText("Here's a nice picture I took")
+        RichContentEditor.editor.typeText("Here's a nice picture I took")
         DiscussionEditReply.doneButton.tapUntil {
             !DiscussionEditReply.doneButton.isVisible
         }
+    }
+
+    func testLikeReply() {
+        mockBaseRequests()
+        mockCoursePermission()
+        let discussion = mockDiscussion(allowRating: true)
+        show("/courses/\(course.id)/discussion_topics/\(discussion.id)")
+
+        for entry in 1...5 {
+            mockEncodableRequest("courses/\(course.id)/discussion_topics/\(discussion.id)/entries/\(entry)/rating", value: "")
+        }
+
+        XCTAssertEqual(DiscussionReply.ratingCount(id: "1").label(), "Number of likes: 1")
+        DiscussionReply.ratingCount(id: "2").waitToVanish()
+        XCTAssertEqual(DiscussionReply.ratingCount(id: "3").label(), "Number of likes: 3")
+        XCTAssertEqual(DiscussionReply.ratingCount(id: "5").label(), "Number of likes: 1")
+
+        DiscussionReply.rateButton(id: "1").tap()
+        DiscussionReply.rateButton(id: "2").tap()
+        DiscussionReply.rateButton(id: "3").tap()
+        DiscussionReply.rateButton(id: "5").tap()
+
+        XCTAssertEqual(DiscussionReply.ratingCount(id: "1").label(), "Number of likes: 2")
+        XCTAssertEqual(DiscussionReply.ratingCount(id: "2").label(), "Number of likes: 1")
+        XCTAssertEqual(DiscussionReply.ratingCount(id: "3").label(), "Number of likes: 2")
+        DiscussionReply.ratingCount(id: "5").waitToVanish()
     }
 }

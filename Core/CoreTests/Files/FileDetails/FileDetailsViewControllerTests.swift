@@ -204,9 +204,15 @@ class FileDetailsViewControllerTests: CoreTestCase {
 
     func testSVG() {
         mock(APIFile.make(filename: "File.svg", contentType: "image/svg+xml", mime_class: "file"))
+        let done = expectation(description: "done")
+        var token: NSObjectProtocol?
+        token = NotificationCenter.default.addObserver(forName: .init("CBIModuleItemProgressUpdatedNotification"), object: nil, queue: nil) { _ in
+            NotificationCenter.default.removeObserver(token!)
+            done.fulfill()
+        }
         controller.view.layoutIfNeeded()
-        let webView = controller.contentView.subviews.first as! CoreWebView
-        wait(for: [keyValueObservingExpectation(for: webView, keyPath: #keyPath(CoreWebView.estimatedProgress), expectedValue: Double(1.0))], timeout: 5)
+        wait(for: [done], timeout: 5)
+        XCTAssert(controller.contentView.subviews.first is CoreWebView)
         XCTAssertFalse(controller.activityView.isAnimating)
         XCTAssertTrue(controller.progressView.isHidden)
     }

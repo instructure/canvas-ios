@@ -32,6 +32,10 @@ class CalendarDaysOfWeekView : UIView {
     fileprivate lazy var symbols: [String] = {
         return dateFormatter.shortStandaloneWeekdaySymbols
     }()
+
+    lazy var a11ySymbols: [String] = {
+        return dateFormatter.standaloneWeekdaySymbols
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -78,6 +82,7 @@ class CalendarDaysOfWeekView : UIView {
             weekdayLabel.backgroundColor = UIColor.clear
             weekdayLabel.font = UIFont.preferredFont(forTextStyle: .title3).noLargerThan(32.0)
             weekdayLabel.text = weekdaySymbol
+            weekdayLabel.accessibilityLabel = a11ySymbols[index]
             weekdayLabel.adjustsFontSizeToFitWidth = true
             if index != 0 && index != 6 {
                 weekdayLabel.textColor = UIColor.black

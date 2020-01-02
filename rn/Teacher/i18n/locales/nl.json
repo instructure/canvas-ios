@@ -107,6 +107,9 @@
   "allow_threaded_replies_43b2311e": {
     "message": "Antwoorden op antwoorden toestaan"
   },
+  "allow_users_to_comment_45b8f753": {
+    "message": "Geef gebruikers de mogelijkheid om opmerkingen te geven"
+  },
   "allowed_attempts_4e229caa": {
     "message": "Toegestane pogingen"
   },

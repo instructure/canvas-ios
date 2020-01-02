@@ -19,6 +19,7 @@
 import Foundation
 import XCTest
 @testable import Core
+@testable import CoreUITests
 import TestsFoundation
 
 class SubmissionCommentsTests: StudentUITestCase {

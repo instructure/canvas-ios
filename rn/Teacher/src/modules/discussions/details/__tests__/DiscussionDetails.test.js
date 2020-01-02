@@ -399,7 +399,6 @@ describe('DiscussionDetails', () => {
         isAnnouncement: false,
       })
       expect(tree.find('PublishedIcon').exists()).toEqual(false)
-
       app.setCurrentApp('teacher')
       tree = renderDetails({
         ...props,
@@ -456,21 +455,21 @@ describe('DiscussionDetails', () => {
     test('submission graphs', () => {
       app.setCurrentApp('student')
       let tree = renderDetails(props)
-      expect(tree.find('[testID="discussions.submission-graphs"]').exists()).toEqual(false)
+      expect(tree.find('[testID="DiscussionDetails.submissionGraphs"]').exists()).toEqual(false)
 
       app.setCurrentApp('teacher')
       tree = renderDetails({
         ...props,
         assignment: null,
       })
-      expect(tree.find('[testID="discussions.submission-graphs"]').exists()).toEqual(false)
+      expect(tree.find('[testID="DiscussionDetails.submissionGraphs"]').exists()).toEqual(false)
 
       tree = renderDetails({
         ...props,
         assignment: template.assignment(),
         discussion: template.discussion({ group_topic_children: 0 }),
       })
-      expect(tree.find('[testID="discussions.submission-graphs"]').exists()).toEqual(true)
+      expect(tree.find('[testID="DiscussionDetails.submissionGraphs"]').exists()).toEqual(true)
     })
 
     it('routes to the right place when submissions is tapped (via onPress)', () => {
@@ -478,7 +477,7 @@ describe('DiscussionDetails', () => {
         ...props,
         assignment: template.assignment({ id: '1', course_id: '22' }),
       })
-      tree.find('[testID="discussions.submission-graphs"]').simulate('press')
+      tree.find('[testID="DiscussionDetails.submissionGraphs"]').simulate('press')
 
       expect(props.navigator.show).toHaveBeenCalledWith(
         `/courses/22/assignments/1/submissions`
@@ -528,7 +527,7 @@ describe('DiscussionDetails', () => {
 
     it('navigates to context card when pressing the avatar', () => {
       let tree = renderDetails(props)
-      let avatar = tree.find('[testID="discussion.details.avatar"]')
+      let avatar = tree.find('[testID="DiscussionDetails.avatar"]')
       avatar.simulate('press')
       expect(props.navigator.show).toHaveBeenCalledWith(
         `/courses/1/users/1`,
@@ -541,7 +540,7 @@ describe('DiscussionDetails', () => {
         delayed_post_at: '3019-10-28T14:16:00-07:00',
         posted_at: '2017-10-27T14:16:00-07:00',
       })
-      const label = renderDetails(props).find('[testID="discussion.details.post-date-lbl"]')
+      const label = renderDetails(props).find('[testID="DiscussionDetails.postDateLabel"]')
       expect(label.prop('children')).toEqual('Oct 28 at 3:16 PM')
     })
 
@@ -550,7 +549,7 @@ describe('DiscussionDetails', () => {
         delayed_post_at: null,
         posted_at: '2017-10-27T14:16:00-07:00',
       })
-      const label = renderDetails(props).find('[testID="discussion.details.post-date-lbl"]')
+      const label = renderDetails(props).find('[testID="DiscussionDetails.postDateLabel"]')
       expect(label.prop('children')).toEqual('Oct 27 at 3:16 PM')
     })
 
@@ -559,7 +558,7 @@ describe('DiscussionDetails', () => {
         delayed_post_at: null,
         posted_at: null,
       })
-      const label = renderDetails(props).find('[testID="discussion.details.post-date-lbl"]')
+      const label = renderDetails(props).find('[testID="DiscussionDetails.postDateLabel"]')
       expect(label.exists()).toEqual(false)
     })
 
@@ -608,26 +607,26 @@ describe('DiscussionDetails', () => {
         discussion: template.discussion({ locked_for_user: true }),
         permissions: { post_to_forum: false },
       })
-      expect(tree.find('[testID="discussion-reply"]').exists()).toEqual(false)
+      expect(tree.find('[testID="DiscussionDetails.replyButton"]').exists()).toEqual(false)
 
       tree = renderDetails({
         ...props,
         discussion: template.discussion({ locked_for_user: false }),
         permissions: { post_to_forum: false },
       })
-      expect(tree.find('[testID="discussion-reply"]').exists()).toEqual(false)
+      expect(tree.find('[testID="DiscussionDetails.replyButton"]').exists()).toEqual(false)
 
       tree = renderDetails({
         ...props,
         discussion: template.discussion({ locked_for_user: false }),
         permissions: { post_to_forum: true },
       })
-      expect(tree.find('[testID="discussion-reply"]').exists()).toEqual(true)
+      expect(tree.find('[testID="DiscussionDetails.replyButton"]').exists()).toEqual(true)
     })
 
     it('touches the reply button', () => {
       const tree = renderDetails(props)
-      const discussionReply = tree.find('[testID="discussion-reply"]')
+      const discussionReply = tree.find('[testID="DiscussionDetails.replyButton"]')
       discussionReply.simulate('press')
       expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/reply', { modal: true, disableSwipeDownToDismissModal: true }, {
         indexPath: [],

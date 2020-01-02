@@ -124,7 +124,7 @@ extension NSManagedObjectContext {
         performAndWait {
             if let context = self.userInfo[SyncContextKey] as? NSManagedObjectContext { sync = context; return }
             
-            let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+            let context = NSManagedObjectContext(concurrencyType: SyncContextConcurrencyType)
             context.persistentStoreCoordinator = self.persistentStoreCoordinatorFRD
             context.mergePolicy = NSMergePolicy(merge: .mergeByPropertyObjectTrumpMergePolicyType)
             
@@ -143,6 +143,7 @@ extension NSManagedObjectContext {
 
 private let SyncContextKey = "YeOldeSyncContext"
 private let MainContextObserverKey = "YeOldeMainContextObserver"
+var SyncContextConcurrencyType = NSManagedObjectContextConcurrencyType.privateQueueConcurrencyType
 
 extension NSManagedObjectContext {
     @objc public func saveOrRollback() -> Bool {

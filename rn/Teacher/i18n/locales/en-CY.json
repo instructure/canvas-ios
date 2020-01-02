@@ -107,6 +107,9 @@
   "allow_threaded_replies_43b2311e": {
     "message": "Allow threaded replies"
   },
+  "allow_users_to_comment_45b8f753": {
+    "message": "Allow users to comment"
+  },
   "allowed_attempts_4e229caa": {
     "message": "Allowed attempts"
   },

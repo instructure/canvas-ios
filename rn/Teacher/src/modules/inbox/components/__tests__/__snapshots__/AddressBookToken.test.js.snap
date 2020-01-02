@@ -30,6 +30,7 @@ exports[`AddressBookToken renders 1`] = `
         },
       ]
     }
+    testID="message-recipient.1.label"
   >
     Donald Trump
   </Text>
@@ -123,6 +124,7 @@ exports[`AddressBookToken renders with avatar url 1`] = `
         },
       ]
     }
+    testID="message-recipient.1.label"
   >
     Donald Trump
   </Text>

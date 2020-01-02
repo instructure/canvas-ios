@@ -33,6 +33,7 @@ public enum ExperimentalFeature: String, CaseIterable, Codable {
     case newPageDetails = "new_page_details"
     case fileDetails = "file_details"
     case notifications2
+    case parentInbox = "parent_inbox"
     case testing = "testing"
 
     public var isEnabled: Bool {

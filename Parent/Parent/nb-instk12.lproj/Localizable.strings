@@ -17,6 +17,9 @@
 "Act as User" = "Opptre som bruker";
 
 /* No comment provided by engineer. */
+"Add" = "Legg til";
+
+/* No comment provided by engineer. */
 "Add Student" = "Legg til elev";
 
 /* Label displayed when logged in as an admin */
@@ -99,6 +102,9 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Kunne ikke laste inn (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"Front Page" = "Forside";
 
 /* No comment provided by engineer. */
 "Grades" = "Vurderinger";
@@ -186,6 +192,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "Levert: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Sammendrag";
 
 /* Syllabus Button Title */
 "Syllabus" = "Fagoversikt";

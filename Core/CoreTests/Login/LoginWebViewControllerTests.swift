@@ -17,91 +17,161 @@
 //
 
 import Foundation
+import WebKit
 @testable import Core
 import TestsFoundation
 
 class LoginWebViewControllerTests: CoreTestCase {
-    var viewController: LoginWebViewController!
+    var opened: URL?
+    var loggedIn: LoginSession?
+    var observation: NSKeyValueObservation?
+    let url = URL(string: "https://localhost:1")!
+    lazy var controller = LoginWebViewController.create(host: url.host!, loginDelegate: self, method: .normalLogin)
 
     override func setUp() {
         super.setUp()
-        viewController = LoginWebViewController.create(host: "mhowe", loginDelegate: nil, method: .normalLogin)
+        api.mock(GetMobileVerifyRequest(domain: url.host!), value: APIVerifyClient(authorized: true, base_url: url, client_id: "1", client_secret: "s"))
     }
 
-    func load() {
-        XCTAssertNotNil(viewController.view)
+    func testLayout() {
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+        XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
+        XCTAssertEqual(controller.webView.url, URL(string: "https://localhost:1/login/oauth2/auth?client_id=1&response_type=code&redirect_uri=https://canvas/login&mobile=1"))
     }
 
-    func testWebViewDidReceiveChallengeNTLM() throws {
-        load()
-        try handleUsernameAndPasswordChallenge(NSURLAuthenticationMethodNTLM)
+    func testPreloaded() {
+        controller.mdmLogin = MDMLogin(host: "localhost:1", username: "u", password: "p")
+        controller.mobileVerifyModel = APIVerifyClient(authorized: true, base_url: url, client_id: "1", client_secret: "s")
+        controller.view.layoutIfNeeded()
+        let done = expectation(description: "credentials get posted")
+        observation = controller.webView.observe(\.url) { (webView, _) in
+            guard webView.url?.query?.contains("username=") == true else { return }
+            self.observation = nil
+            done.fulfill()
+        }
+        controller.webView.loadHTMLString("""
+        <!doctype html>
+        <form action="/" method="GET" id="login_form">
+        <input type="text" name="username" />
+        <input type="password" name="password" />
+        <input type="submit" />
+        </form>
+        """, baseURL: url)
+        wait(for: [done], timeout: 9)
+        XCTAssertEqual(controller.webView.url, URL(string: "https://localhost:1/?username=u&password=p"))
     }
 
-    func testWebViewDidReceiveChallengeHTTPBasic() throws {
-        load()
-        try handleUsernameAndPasswordChallenge(NSURLAuthenticationMethodHTTPBasic)
+    func testRedirectFlow() {
+        controller.view.layoutIfNeeded()
+        let action = MockAction()
+        action.mockRequest = URLRequest(url: URL(string: "data:text/plain,")!)
+        controller.webView(controller.webView, decidePolicyFor: action) { policy in
+            XCTAssertEqual(policy, .allow)
+        }
+
+        action.mockRequest = URLRequest(url: URL(string: "https://community.canvaslms.com")!)
+        controller.webView(controller.webView, decidePolicyFor: action) { policy in
+            XCTAssertEqual(policy, .cancel)
+        }
+        XCTAssertEqual(opened, URL(string: "https://community.canvaslms.com"))
+
+        action.mockRequest = URLRequest(url: URL(string: "about:blank")!)
+        controller.webView(controller.webView, decidePolicyFor: action) { policy in
+            XCTAssertEqual(policy, .cancel)
+        }
+
+        api.mock(PostLoginOAuthRequest(client: controller.mobileVerifyModel!, code: "c"))
+        action.mockRequest = URLRequest(url: URL(string: "https://canvas/login?code=c")!)
+        controller.webView(controller.webView, decidePolicyFor: action) { policy in
+            XCTAssertEqual(policy, .cancel)
+        }
+        XCTAssertNotNil(router.presented)
+
+        api.mock(PostLoginOAuthRequest(client: controller.mobileVerifyModel!, code: "c"), value: .make())
+        action.mockRequest = URLRequest(url: URL(string: "https://canvas/login?code=c")!)
+        controller.webView(controller.webView, decidePolicyFor: action) { policy in
+            XCTAssertEqual(policy, .cancel)
+        }
+        XCTAssertNotNil(loggedIn)
+        XCTAssert(router.viewControllerCalls.last?.0 is LoadingViewController)
+
+        action.mockRequest = URLRequest(url: URL(string: "https://canvas/login?error=e")!)
+        controller.webView(controller.webView, decidePolicyFor: action) { policy in
+            XCTAssertEqual(policy, .cancel)
+        }
+        XCTAssertEqual((router.presented as? UIAlertController)?.message, "Authentication failed. Most likely the user denied the request for access.")
     }
 
-    func testWebViewDidReceiveUsernameAndPasswordChallengeCancel() throws {
-        load()
-        let challenge = URLAuthenticationChallenge.make(authenticationMethod: NSURLAuthenticationMethodHTTPBasic)
-        let expectation = XCTestExpectation(description: "challenge completion handler")
+    func testAuthChallenge() {
         var disposition: URLSession.AuthChallengeDisposition?
         var credential: URLCredential?
-        viewController.webView(viewController.webView, didReceive: challenge) {
+        controller.view.layoutIfNeeded()
+        controller.webView(controller.webView, didReceive: .make(authenticationMethod: NSURLAuthenticationMethodHTTPBasic)) {
             disposition = $0
             credential = $1
-            expectation.fulfill()
         }
-        drainMainQueue()
-        let alert = try XCTUnwrap(router.presented as? UIAlertController)
-        XCTAssertEqual(alert.title, "Login")
-        let cancel = try XCTUnwrap(alert.actions.first { $0.title == "Cancel" } as? AlertAction)
-        XCTAssertNotNil(cancel.handler)
-        cancel.handler?(cancel)
-        wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(disposition, .performDefaultHandling)
-        XCTAssertNil(credential)
-    }
-
-    func testWebViewDidReceiveChallengeServerTrust() throws {
-        load()
-        let challenge = URLAuthenticationChallenge.make(authenticationMethod: NSURLAuthenticationMethodServerTrust)
-        let expectation = XCTestExpectation(description: "challenge completion handler")
-        var disposition: URLSession.AuthChallengeDisposition?
-        var credential: URLCredential?
-        viewController.webView(viewController.webView, didReceive: challenge) {
-            disposition = $0
-            credential = $1
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(disposition, .performDefaultHandling)
-        XCTAssertNil(credential)
-    }
-
-    func handleUsernameAndPasswordChallenge(_ authenticationMethod: String) throws {
-        let challenge = URLAuthenticationChallenge.make(authenticationMethod: authenticationMethod)
-        let expectation = XCTestExpectation(description: "challenge completion handler")
-        var disposition: URLSession.AuthChallengeDisposition?
-        var credential: URLCredential?
-        viewController.webView(viewController.webView, didReceive: challenge) {
-            disposition = $0
-            credential = $1
-            expectation.fulfill()
-        }
-        drainMainQueue()
-        let alert = try XCTUnwrap(router.presented as? UIAlertController)
-        XCTAssertEqual(alert.title, "Login")
-        XCTAssertEqual(alert.textFields?.count, 2)
-        alert.textFields?.first?.text = "user1"
-        alert.textFields?.last?.text = "password123"
-        let submit = try XCTUnwrap(alert.actions.first { $0.title == "OK" } as? AlertAction)
-        XCTAssertNotNil(submit.handler)
-        submit.handler?(submit)
-        wait(for: [expectation], timeout: 1)
+        let alert = router.presented as? UIAlertController
+        XCTAssertEqual(alert?.title, "Login")
+        XCTAssertEqual(alert?.textFields?.count, 2)
+        alert?.textFields?.first?.text = "user1"
+        alert?.textFields?.last?.text = "password123"
+        let submit = alert?.actions.first { $0.title == "OK" } as? AlertAction
+        submit?.handler?(submit!)
         XCTAssertEqual(disposition, .useCredential)
         XCTAssertEqual(credential?.user, "user1")
         XCTAssertEqual(credential?.password, "password123")
     }
+
+    func testAuthChallengeCancel() {
+        controller.view.layoutIfNeeded()
+        var disposition: URLSession.AuthChallengeDisposition?
+        var credential: URLCredential?
+        controller.webView(controller.webView, didReceive: .make(authenticationMethod: NSURLAuthenticationMethodHTTPBasic)) {
+            disposition = $0
+            credential = $1
+        }
+        let alert = router.presented as? UIAlertController
+        XCTAssertEqual(alert?.title, "Login")
+        let cancel = alert?.actions.first { $0.title == "Cancel" } as? AlertAction
+        cancel?.handler?(cancel!)
+        XCTAssertEqual(disposition, .performDefaultHandling)
+        XCTAssertNil(credential)
+    }
+
+    func testAuthChallengeUnsupported() {
+        var disposition: URLSession.AuthChallengeDisposition?
+        var credential: URLCredential?
+        controller.webView(controller.webView, didReceive: .make(authenticationMethod: NSURLAuthenticationMethodServerTrust)) {
+            disposition = $0
+            credential = $1
+        }
+        XCTAssertEqual(disposition, .performDefaultHandling)
+        XCTAssertNil(credential)
+    }
+
+    func testOpenTab() {
+        controller.view.layoutIfNeeded()
+        let mockAction = MockAction()
+        mockAction.mockRequest = URLRequest(url: URL(string: "data:text/plain,")!)
+        XCTAssertNil(controller.webView(controller.webView, createWebViewWith: WKWebViewConfiguration(), for: mockAction, windowFeatures: WKWindowFeatures()))
+        XCTAssertEqual(controller.webView.url, URL(string: "data:text/plain,"))
+    }
+
+    class MockAction: WKNavigationAction {
+        var mockRequest: URLRequest!
+        override var request: URLRequest { return mockRequest }
+    }
+}
+
+extension LoginWebViewControllerTests: LoginDelegate {
+    func openExternalURL(_ url: URL) {
+        opened = url
+    }
+
+    func userDidLogin(session: LoginSession) {
+        loggedIn = session
+    }
+
+    func userDidLogout(session: LoginSession) {}
 }

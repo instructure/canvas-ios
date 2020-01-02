@@ -19,7 +19,7 @@
 import XCTest
 import TestsFoundation
 @testable import Core
-import CoreUITests
+@testable import CoreUITests
 
 class SpeedGraderTests: TeacherUITestCase {
     override var user: UITestUser? { nil }
@@ -58,7 +58,7 @@ class SpeedGraderTests: TeacherUITestCase {
         ])
         mockEncodableRequest("courses/1/assignments/1/submission_summary", value: APISubmission.make())
         show("/courses/1/assignments/1/submissions/1")
-        dismissTutorial()
+        SpeedGrader.dismissTutorial()
         app.find(id: "speedgrader.segment-control").waitToExist()
         app.segmentedControls.buttons["Comments"].tap()
         app.find(id: "CommentAttachment-1").tap()
@@ -67,14 +67,5 @@ class SpeedGraderTests: TeacherUITestCase {
         app.find(label: "Attachment").waitToExist()
         NavBar.dismissButton.tap()
         app.find(id: "AttachmentView.image").waitToVanish()
-    }
-
-    func dismissTutorial() {
-        let button = app.find(id: "tutorial.button-swipe-tutorial")
-        let exists = button.rawElement.waitForExistence(timeout: 3)
-        if exists {
-            button.tap()
-            button.waitToVanish()
-        }
     }
 }

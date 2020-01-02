@@ -285,7 +285,10 @@ extension AppDelegate {
 extension AppDelegate {
 
     @objc func setupCrashlytics() {
-        guard !uiTesting else { return }
+        guard !uiTesting else {
+            setupDebugCrashLogging()
+            return
+        }
         guard hasFabric else {
             NSLog("WARNING: Crashlytics was not properly initialized.")
             return
@@ -293,6 +296,16 @@ extension AppDelegate {
 
         Fabric.with([Crashlytics.self])
         CanvasCrashlytics.setupForReactNative()
+    }
+
+    func setupDebugCrashLogging() {
+        NSSetUncaughtExceptionHandler { exception in
+            print("CRASH: \(exception)")
+            print("Stack Trace:")
+            for symbol in exception.callStackSymbols {
+                print("  \(symbol)")
+            }
+        }
     }
 }
 

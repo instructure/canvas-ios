@@ -96,13 +96,14 @@ public struct GetAssignmentsRequest: APIRequestable {
         case discussion_topic
         case observed_users
         case submission
+        case all_dates
     }
 
     public typealias Response = [APIAssignment]
 
     let courseID: String
     let assignmentGroupID: String?
-    let orderBy: OrderBy
+    let orderBy: OrderBy?
     let assignmentIDs: [String]?
     let include: [Include]
     let perPage: Int?
@@ -110,7 +111,7 @@ public struct GetAssignmentsRequest: APIRequestable {
     public init(
         courseID: String,
         assignmentGroupID: String? = nil,
-        orderBy: OrderBy = .position,
+        orderBy: OrderBy? = .position,
         assignmentIDs: [String]? = nil,
         include: [Include] = [],
         perPage: Int? = nil
@@ -132,10 +133,10 @@ public struct GetAssignmentsRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        var query: [APIQueryItem] = [
-            .value("order_by", orderBy.rawValue),
-            .array("include", include.map { $0.rawValue }),
-        ]
+        var query: [APIQueryItem] = [.include(include.map { $0.rawValue })]
+        if let orderBy = orderBy {
+            query.append(.value("order_by", orderBy.rawValue))
+        }
         if let assignmentIDs = assignmentIDs {
             query.append(.array("assignment_ids", assignmentIDs))
         }

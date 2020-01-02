@@ -23,6 +23,8 @@ import TestsFoundation
 class UserFilesTests: CoreUITestCase {
     override var user: UITestUser? { nil }
 
+    override var abstractTestClass: CoreUITestCase.Type { UserFilesTests.self }
+
     lazy var root = APIFileFolder.make()
 
     override func setUp() {

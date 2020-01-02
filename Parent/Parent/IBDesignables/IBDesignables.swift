@@ -19,5 +19,11 @@
 import Core
 
 @IBDesignable
+class AvatarGroupView: Core.AvatarGroupView {}
 class AvatarView: Core.AvatarView {}
 class DividerView: Core.DividerView {}
+class DynamicButton: Core.DynamicButton {}
+class DynamicLabel: Core.DynamicLabel {}
+class DynamicTextField: Core.DynamicTextField {}
+class FloatingButton: Core.FloatingButton {}
+class IconView: Core.IconView {}

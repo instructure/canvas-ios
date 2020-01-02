@@ -107,6 +107,9 @@
   "allow_threaded_replies_43b2311e": {
     "message": "Permitir respuestas agrupadas"
   },
+  "allow_users_to_comment_45b8f753": {
+    "message": "Permitir que los usuarios comenten"
+  },
   "allowed_attempts_4e229caa": {
     "message": "Intentos permitidos"
   },

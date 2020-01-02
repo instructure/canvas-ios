@@ -34,6 +34,9 @@ class DashboardViewController: UIViewController {
     var studentSyncProducer: Student.ModelPageSignalProducer!
 
     // Views created from storyboard
+    @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var badgeView: UIView!
+    @IBOutlet weak var badgeLabel: UILabel!
     @IBOutlet weak var headerContainerView: UIView!
     @IBOutlet weak var studentInfoContainer: UIView!
     @IBOutlet weak var studentInfoStackView: UIStackView!
@@ -61,12 +64,12 @@ class DashboardViewController: UIViewController {
         didSet {
             if let student = currentStudent {
                 currentStudentID = student.id
-                if !UIAccessibility.isReduceTransparencyEnabled {
-                    let colorScheme = ColorCoordinator.colorSchemeForStudentID(student.id)
-                    headerContainerView.backgroundColor = colorScheme.mainColor
-                    tabBar.tintColor = colorScheme.mainColor
-                    navigationController?.view.backgroundColor = colorScheme.mainColor
-                }
+                let color = ColorScheme.observee(student.id).color
+                headerContainerView.backgroundColor = color
+                badgeLabel.textColor = color
+                badgeView.layer.borderColor = color.cgColor
+                tabBar.tintColor = color
+                navigationController?.view.backgroundColor = color
             }
 
             if currentStudent == nil || oldValue?.id != currentStudent?.id {
@@ -101,6 +104,10 @@ class DashboardViewController: UIViewController {
 
         super.viewDidLoad()
 
+        badgeView.isHidden = true
+        badgeView.isUserInteractionEnabled = false
+        menuButton.addSubview(badgeView)
+
         // Remove the testing background colors
         studentInfoContainer.backgroundColor = .clear
         studentInfoName.backgroundColor = .clear
@@ -116,11 +123,9 @@ class DashboardViewController: UIViewController {
         tabBar.barTintColor = UIColor.init(r: 254, g: 254, b: 254)
         view.backgroundColor = tabBar.barTintColor
 
-        if !UIAccessibility.isReduceTransparencyEnabled {
-            let colorScheme = ColorCoordinator.colorSchemeForParent()
-            headerContainerView.backgroundColor = colorScheme.mainColor
-            tabBar.tintColor = colorScheme.mainColor
-        }
+        let color = ColorScheme.observer.color
+        headerContainerView.backgroundColor = color
+        tabBar.tintColor = color
 
         self.studentInfoContainer.isHidden = true
         presenter?.viewIsReady()
@@ -129,6 +134,13 @@ class DashboardViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
+        if ExperimentalFeature.parentInbox.isEnabled {
+            env.api.makeRequest(GetConversationsUnreadCountRequest()) { [weak self] (response, _, _) in performUIUpdate {
+                let unreadCount = response?.unread_count ?? 0
+                self?.badgeView.isHidden = unreadCount == 0
+                self?.badgeLabel.text = NumberFormatter.localizedString(from: NSNumber(value: unreadCount), number: .none)
+            } }
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -162,11 +174,7 @@ class DashboardViewController: UIViewController {
     // MARK: - View Setup
     // ---------------------------------------------
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if UIAccessibility.isReduceTransparencyEnabled {
-            return .default
-        } else {
-            return .lightContent
-        }
+        return .lightContent
     }
 
     @objc func setup() throws {

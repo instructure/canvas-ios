@@ -29,6 +29,9 @@
 "Alerts" = "Notiser";
 
 /* No comment provided by engineer. */
+"All Grading Periods" = "Alla bedömningsperioder";
+
+/* No comment provided by engineer. */
 "All Submissions" = "Alla inlämningar";
 
 /* No comment provided by engineer. */
@@ -275,6 +278,9 @@
 "End Act as User" = "Sluta agera som användaren";
 
 /* No comment provided by engineer. */
+"Enrollment not found." = "Registreringen hittades inte";
+
+/* No comment provided by engineer. */
 "Error" = "Fel";
 
 /* No comment provided by engineer. */
@@ -282,6 +288,9 @@
 
 /* No comment provided by engineer. */
 "Expand" = "Expandera";
+
+/* No comment provided by engineer. */
+"Experimental Features" = "Experimentella funktioner";
 
 /* No comment provided by engineer. */
 "External Tool" = "Externt verktyg";

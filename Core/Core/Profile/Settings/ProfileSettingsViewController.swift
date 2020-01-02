@@ -111,13 +111,15 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
                 Row(channels[0].type.name) { [weak self] in
                     guard let self = self else { return }
                     if channels.count == 1, let channel = channels.first {
-                        self.show(NotificationCategoriesViewController.create(
+                        let vc = NotificationCategoriesViewController.create(
                             title: channel.type.name,
                             channelID: channel.id,
                             type: channel.type
-                        ), sender: self)
+                        )
+                        self.env.router.show(vc, from: self)
                     } else {
-                        self.show(NotificationChannelsViewController.create(type: channels[0].type), sender: self)
+                        let vc = NotificationChannelsViewController.create(type: channels[0].type)
+                        self.env.router.show(vc, from: self)
                     }
                 }
             }).sorted(by: { $0.title < $1.title }) + [

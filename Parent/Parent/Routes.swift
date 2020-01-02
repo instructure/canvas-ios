@@ -27,6 +27,30 @@ let router = Router(routes: [
         return try? AccountNotificationViewController(session: session, announcementID: id)
     },
 
+    RouteHandler(.conversations) { _, _ in
+        guard ExperimentalFeature.parentInbox.isEnabled else { return nil }
+        return ConversationListViewController.create()
+    },
+
+    RouteHandler(.compose()) { url, _ in
+        guard ExperimentalFeature.parentInbox.isEnabled else { return nil }
+        return ComposeViewController.create(
+            body: url.queryItems?.first { $0.name == "body" }?.value,
+            context: url.queryItems?.first { $0.name == "context" }?.value
+                .flatMap { ContextModel(canvasContextID: $0) },
+            observeeID: url.queryItems?.first { $0.name == "observeeID" }?.value,
+            recipientIDs: url.queryItems?.first { $0.name == "recipientIDs" }?.value?
+                .split(separator: ",").map { String($0) } ?? [],
+            subject: url.queryItems?.first { $0.name == "subject" }?.value
+        )
+    },
+
+    RouteHandler(.conversation(":conversationID")) { _, params in
+        guard ExperimentalFeature.parentInbox.isEnabled else { return nil }
+        guard let conversationID = params["conversationID"] else { return nil }
+        return ConversationDetailViewController.create(conversationID: conversationID)
+    },
+
     RouteHandler(.courses) { _, _ in
         guard let session = legacySession else { return nil }
         return DashboardViewController.create(session: session)
@@ -63,6 +87,12 @@ let router = Router(routes: [
         guard let courseID = params["courseID"], let topicID = params["topicID"] else { return nil }
         guard let session = legacySession, let studentID = currentStudentID else { return nil }
         return try? AnnouncementDetailsViewController(session: session, studentID: studentID, courseID: courseID, announcementID: topicID)
+    },
+
+    RouteHandler(.actionableItemCalendarEvent(eventID: ":eventID")) { _, params in
+        guard  let eventID = params["eventID"] else { return nil }
+        guard let session = legacySession, let studentID = currentStudentID else { return nil }
+        return try? CalendarEventDetailsViewController(session: session, studentID: studentID, calendarEventID: eventID)
     },
 
     RouteHandler(.profile) { _, _ in
@@ -115,7 +145,7 @@ let router = Router(routes: [
     guard let url = components.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL) else { return }
     let request = GetWebSessionRequest(to: url)
     AppEnvironment.shared.api.makeRequest(request) { response, _, _ in
-        DispatchQueue.main.async {
+        performUIUpdate {
             AppEnvironment.shared.loginDelegate?.openExternalURL(response?.session_url ?? url)
         }
     }

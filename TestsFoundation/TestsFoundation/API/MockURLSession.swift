@@ -195,7 +195,7 @@ public class MockURLSession: URLSession {
         task.mock = MockData(data: data, response: response, error: error)
         task.dataHandler = dataHandler
         task.taskIdentifier = taskID
-        MockURLSession.dataMocks[request.url!.absoluteString] = task
+        MockURLSession.dataMocks[request.url!.withCanonicalQueryParams!.absoluteString] = task
         return task
     }
 
@@ -225,7 +225,7 @@ public class MockURLSession: URLSession {
         accessToken: String? = nil
     ) -> MockDataTask? {
         let request = try! requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil)
-        return dataMocks[request.url!.absoluteString]
+        return dataMocks[request.url!.withCanonicalQueryParams!.absoluteString]
     }
 
     @discardableResult
@@ -233,12 +233,12 @@ public class MockURLSession: URLSession {
         let request = URLRequest(url: url)
         let task = MockDownloadTask()
         task.mock = MockDownload(data: value, response: response, error: error)
-        MockURLSession.downloadMocks[request.url!.absoluteString] = task
+        MockURLSession.downloadMocks[request.url!.withCanonicalQueryParams!.absoluteString] = task
         return task
     }
 
     public override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        let task = MockURLSession.dataMocks[request.url!.absoluteString] ?? MockDataTask()
+        let task = MockURLSession.dataMocks[request.url!.withCanonicalQueryParams!.absoluteString] ?? MockDataTask()
         if task.mock == nil {
             print("⚠️ mock not found for url: \(request.url?.absoluteString ?? "<n/a>")")
         }
@@ -247,11 +247,11 @@ public class MockURLSession: URLSession {
     }
 
     public override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        return dataTask(with: URLRequest(url: url), completionHandler: completionHandler)
+        return dataTask(with: URLRequest(url: url.withCanonicalQueryParams!), completionHandler: completionHandler)
     }
 
     public override func dataTask(with request: URLRequest) -> URLSessionDataTask {
-        let task = MockURLSession.dataMocks[request.url!.absoluteString] ?? MockDataTask()
+        let task = MockURLSession.dataMocks[request.url!.withCanonicalQueryParams!.absoluteString] ?? MockDataTask()
         if task.mock == nil {
             print("⚠️ mock not found for url: \(request.url?.absoluteString ?? "<n/a>")")
         }
@@ -259,11 +259,11 @@ public class MockURLSession: URLSession {
     }
 
     public override func dataTask(with url: URL) -> URLSessionDataTask {
-        return dataTask(with: URLRequest(url: url))
+        return dataTask(with: URLRequest(url: url.withCanonicalQueryParams!))
     }
 
     public override func uploadTask(with request: URLRequest, fromFile fileURL: URL) -> URLSessionUploadTask {
-        let task = MockURLSession.dataMocks[request.url!.absoluteString] ?? MockDataTask()
+        let task = MockURLSession.dataMocks[request.url!.withCanonicalQueryParams!.absoluteString] ?? MockDataTask()
         if task.mock == nil {
             print("⚠️ mock not found for url: \(request.url?.absoluteString ?? "<n/a>")")
         }
@@ -271,7 +271,7 @@ public class MockURLSession: URLSession {
     }
 
     public override func downloadTask(with request: URLRequest, completionHandler: @escaping (URL?, URLResponse?, Error?) -> Void) -> URLSessionDownloadTask {
-        let task = MockURLSession.downloadMocks[request.url!.absoluteString] ?? MockDownloadTask()
+        let task = MockURLSession.downloadMocks[request.url!.withCanonicalQueryParams!.absoluteString] ?? MockDownloadTask()
         if task.mock == nil {
             print("⚠️ download mock not found for url: \(request.url?.absoluteString ?? "<n/a>")")
         }
@@ -284,7 +284,7 @@ public class MockURLSession: URLSession {
     }
 
     public override func downloadTask(with request: URLRequest) -> URLSessionDownloadTask {
-        let task = MockURLSession.downloadMocks[request.url!.absoluteString] ?? MockDownloadTask()
+        let task = MockURLSession.downloadMocks[request.url!.withCanonicalQueryParams!.absoluteString] ?? MockDownloadTask()
         if task.mock == nil {
             print("⚠️ download mock not found for url: \(request.url?.absoluteString ?? "<n/a>")")
         }

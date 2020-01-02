@@ -82,9 +82,9 @@ class CalendarEventListViewController: UITableViewController {
 
         super.init(nibName: nil, bundle: nil)
 
-        let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
+        let scheme = ColorScheme.observee(studentID)
         self.viewModelFactory = { [unowned self] calendarEvent in
-            CalendarEventCellViewModel.init(calendarEvent: calendarEvent, courseName: self.courseNamesDictionary[calendarEvent.contextCode], highlightColor: scheme.highlightCellColor)
+            CalendarEventCellViewModel.init(calendarEvent: calendarEvent, courseName: self.courseNamesDictionary[calendarEvent.contextCode], highlightColor: .named(.backgroundLight))
         }
         self.courseCollection = try Course.collectionByStudent(session, studentID: studentID)
     }
@@ -98,7 +98,7 @@ class CalendarEventListViewController: UITableViewController {
 
         tableView.backgroundView = emptyView
         tableView.tableFooterView = UIView()
-        tableView.backgroundColor = UIColor.defaultTableViewBackgroundColor()
+        tableView.backgroundColor = UIColor.named(.backgroundGrouped)
         tableView.estimatedRowHeight = 90
 
         CalendarEventCellViewModel.tableViewDidLoad(tableView)
@@ -110,8 +110,8 @@ class CalendarEventListViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
-        navigationController?.navigationBar.useContextColor(scheme.mainColor)
+        let scheme = ColorScheme.observee(studentID)
+        navigationController?.navigationBar.useContextColor(scheme.color)
 
         courseUpdatesDisposable = courseCollection?.collectionUpdates
             .observe(on: UIScheduler())

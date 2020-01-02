@@ -154,7 +154,7 @@ export default class Reply extends Component<Props, State> {
         <View style={style.colA}>
           { unreadDot }
           <Avatar
-            testID='reply.avatar'
+            testID={`discussion.reply.${reply.id}.avatar`}
             height={AVATAR_SIZE}
             key={user.id}
             avatarURL={user.avatar_image_url}
@@ -185,7 +185,7 @@ export default class Reply extends Component<Props, State> {
               />
             }
             {!reply.deleted && reply.attachment &&
-              <TouchableOpacity testID={`discussion-reply.${reply.id}.attachment`} onPress={this.showAttachment}>
+              <TouchableOpacity testID={`discussion.reply.${reply.id}.attachment`} onPress={this.showAttachment}>
                 <View style={style.attachment}>
                   <Image source={Images.paperclip} style={style.attachmentIcon} />
                   <Text style={style.attachmentText}>
@@ -212,7 +212,13 @@ export default class Reply extends Component<Props, State> {
     let repliesText = i18n('View more replies')
     return (
       <View style={style.moreContainer}>
-        <Button containerStyle={style.moreButtonContainer} style={style.moreButton} onPress={this._actionMore} accessibilityLabel={repliesText} testID='discussion.more-replies'>
+        <Button
+          containerStyle={style.moreButtonContainer}
+          style={style.moreButton}
+          onPress={this._actionMore}
+          accessibilityLabel={repliesText}
+          testID={`discussion.reply.${this.props.reply.id}.more-replies`}
+        >
           {repliesText}
         </Button>
       </View>
@@ -237,14 +243,24 @@ export default class Reply extends Component<Props, State> {
       <View style={containerStyles}>
         { !discussionLockedForUser && userCanReply &&
           <View style={style.footerActionsContainer}>
-            <LinkButton style={style.footer} textStyle={buttonTextStyle} onPress={this._actionReply} testID={`discussion.reply-btn.${this.props.reply.id}`}>
+            <LinkButton
+              style={style.footer}
+              textStyle={buttonTextStyle}
+              onPress={this._actionReply}
+              testID={`discussion.reply.${this.props.reply.id}.reply-btn`}
+            >
               {i18n('Reply')}
             </LinkButton>
             { this._canEdit() &&
               <Text style={[style.footer, { color: colors.borderMedium, textAlign: 'center', alignSelf: 'center', paddingLeft: 10, paddingRight: 10 }]} accessible={false}>|</Text>
             }
             { this._canEdit() &&
-              <LinkButton style={style.footer} textStyle={buttonTextStyle} onPress={this._actionEdit} testID='discussion.edit-btn'>
+              <LinkButton
+                style={style.footer}
+                textStyle={buttonTextStyle}
+                onPress={this._actionEdit}
+                testID={`discussion.reply.${this.props.reply.id}.edit-btn`}
+              >
                 {i18n('Edit')}
               </LinkButton>
             }
@@ -261,7 +277,7 @@ export default class Reply extends Component<Props, State> {
                     color: this.hasRated() ? colors.primary : buttonTextStyle.color,
                   },
                 ]}
-                testID='discussion.reply.rating-count'
+                testID={`discussion.reply.${this.props.reply.id}.rating-count`}
                 accessibilityLabel={i18n(`Number of likes: {count}`, { count: ratingCount })}
               >
                 ({ratingCount})
@@ -269,7 +285,7 @@ export default class Reply extends Component<Props, State> {
             }
             { canRate &&
               <TouchableOpacity
-                testID='discussion.reply.rate-btn'
+                testID={`discussion.reply.${this.props.reply.id}.rate-btn`}
                 onPress={this._actionRate}
                 accessibilityLabel={i18n('Like')}
                 accessibilityTraits={this.hasRated() ? ['button', 'selected'] : ['button']}
@@ -310,7 +326,7 @@ export default class Reply extends Component<Props, State> {
 
   _renderUnreadDot (reply: DiscussionReply, state: ReadState) {
     return state === 'unread' && !reply.deleted ? (
-      <View style={style.unreadDot} accessible={true} accessibilityLabel={i18n('Unread')} testID={`reply.${this.props.reply.id}.unread`} />
+      <View style={style.unreadDot} accessible={true} accessibilityLabel={i18n('Unread')} testID={`discussion.reply.${this.props.reply.id}.unread`} />
     ) : <View />
   }
 

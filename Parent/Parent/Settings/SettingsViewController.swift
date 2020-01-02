@@ -78,7 +78,7 @@ class SettingsViewController: UIViewController {
     // ---------------------------------------------
     @objc func setupNavigationBar() {
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationController?.navigationBar.useContextColor(ColorCoordinator.colorSchemeForParent().mainColor)
+        self.navigationController?.navigationBar.useContextColor(ColorScheme.observer.color)
 
         let addStudentButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(actionAddStudent))
         navigationItem.rightBarButtonItem = addStudentButton

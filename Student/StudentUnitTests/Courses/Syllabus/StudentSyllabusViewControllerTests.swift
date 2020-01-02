@@ -105,14 +105,14 @@ class SyllabusActionableItemsViewControllerTests: StudentTestCase {
         //  then
         var cell: SyllabusActionableItemsCell? = vc.tableView(vc.tableView, cellForRowAt: IndexPath(row: 0, section: 0)) as? SyllabusActionableItemsCell
         let expectedDate = DateFormatter.localizedString(from: calEvent.start_at!, dateStyle: .medium, timeStyle: .short)
-        XCTAssertEqual(cell?.detailTextLabel?.text, expectedDate)
-        XCTAssertEqual(cell?.imageView?.image, UIImage.icon(.calendarMonth, .line))
+        XCTAssertEqual(cell?.dateLabel?.text, expectedDate)
+        XCTAssertEqual(cell?.iconImageView?.image, UIImage.icon(.calendarMonth, .line))
 
         cell = vc.tableView(vc.tableView, cellForRowAt: IndexPath(row: 1, section: 0)) as? SyllabusActionableItemsCell
-        XCTAssertEqual(cell?.textLabel?.text, "some assignment")
-        XCTAssertEqual(cell?.detailTextLabel?.text, "No Due Date")
-        XCTAssertEqual(cell?.imageView?.image, UIImage.icon(.assignment, .line))
-        XCTAssertEqual(cell?.imageView?.tintColor, UIColor(hexString: "#f00"))
+        XCTAssertEqual(cell?.itemNameLabel?.text, "some assignment")
+        XCTAssertEqual(cell?.dateLabel?.text, "No Due Date")
+        XCTAssertEqual(cell?.iconImageView?.image, UIImage.icon(.assignment, .line))
+        XCTAssertEqual(cell?.iconImageView?.tintColor, UIColor(hexString: "#f00"))
 
         vc.tableView(vc.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         XCTAssert(router.lastRoutedTo(.parse("calendar_events/1")))

@@ -58,7 +58,7 @@ class CalendarEventDetailsViewController: CalendarEventDetailViewController {
     var disposable: Disposable?
     @objc let studentID: String
 
-    @objc init(session: Session, studentID: String, courseID: String, calendarEventID: String) throws {
+    @objc init(session: Session, studentID: String, courseID: String? = nil, calendarEventID: String) throws {
         self.studentID = studentID
         super.init()
         let observer = try CalendarEvent.observer(session, studentID: studentID, calendarEventID: calendarEventID)
@@ -74,12 +74,16 @@ class CalendarEventDetailsViewController: CalendarEventDetailViewController {
             .observeValues { _ in
         }
 
-        session.enrollmentsDataSource(withScope: studentID)
-            .producer(ContextID(id: courseID, context: .course))
-            .observe(on: UIScheduler())
-            .startWithValues { next in
-            guard let course = next as? CanvasCore.Course else { return }
-            self.title = course.name
+        if let courseID = courseID {
+            session.enrollmentsDataSource(withScope: studentID)
+                .producer(ContextID(id: courseID, context: .course))
+                .observe(on: UIScheduler())
+                .startWithValues { next in
+                    guard let course = next as? CanvasCore.Course else { return }
+                    self.title = course.name
+            }
+        } else {
+            title = NSLocalizedString("Calendar Event", comment: "")
         }
     }
 
@@ -89,7 +93,7 @@ class CalendarEventDetailsViewController: CalendarEventDetailViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
-        navigationController?.navigationBar.useContextColor(scheme.mainColor)
+        let scheme = ColorScheme.observee(studentID)
+        navigationController?.navigationBar.useContextColor(scheme.color)
     }
 }

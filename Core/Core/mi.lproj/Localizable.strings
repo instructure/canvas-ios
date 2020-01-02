@@ -29,6 +29,9 @@
 "Alerts" = "He whakamataara";
 
 /* No comment provided by engineer. */
+"All Grading Periods" = "Takiwā kōeke katoa";
+
+/* No comment provided by engineer. */
 "All Submissions" = "Ngā tāpaetanga katoa";
 
 /* No comment provided by engineer. */
@@ -275,6 +278,9 @@
 "End Act as User" = "Whakamutu mahi hei Kaiwhakamahi";
 
 /* No comment provided by engineer. */
+"Enrollment not found." = "Whakauru kore i kitea";
+
+/* No comment provided by engineer. */
 "Error" = "Hapa";
 
 /* No comment provided by engineer. */
@@ -282,6 +288,9 @@
 
 /* No comment provided by engineer. */
 "Expand" = "Whakawhānui";
+
+/* No comment provided by engineer. */
+"Experimental Features" = "Ngā Ahuatanga Whakamātautau";
 
 /* No comment provided by engineer. */
 "External Tool" = "Taputapu waho";

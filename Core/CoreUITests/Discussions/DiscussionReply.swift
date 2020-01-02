@@ -19,18 +19,28 @@
 import XCTest
 import TestsFoundation
 
-enum DiscussionReply: String, ElementWrapper {
-    case topReplyButton = "discussion-reply"
-    case moreReplies = "discussion.more-replies"
-    var id: String { return self.rawValue }
-}
+enum DiscussionReply {
+    static func avatar(id: String) -> Element {
+        app.find(id: "discussion.reply.\(id).avatar")
+    }
 
-extension DiscussionReply {
-    static func replyUnread(id: String) -> Element {
-        return app.find(id: "reply.\(id).unread")
+    static func moreReplies(id: String) -> Element {
+        app.find(id: "discussion.reply.\(id).more-replies")
+    }
+
+    static func unread(id: String) -> Element {
+        app.find(id: "discussion.reply.\(id).unread")
     }
 
     static func replyButton(id: String) -> Element {
-        return app.find(id: "discussion.reply-btn.\(id)")
+        app.find(id: "discussion.reply.\(id).reply-btn")
+    }
+
+    static func ratingCount(id: String) -> Element {
+        app.find(id: "discussion.reply.\(id).rating-count")
+    }
+
+    static func rateButton(id: String) -> Element {
+        app.find(id: "discussion.reply.\(id).rate-btn")
     }
 }

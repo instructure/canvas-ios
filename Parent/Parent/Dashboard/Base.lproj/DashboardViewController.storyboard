@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RfP-iM-Wap">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RfP-iM-Wap">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,11 +14,11 @@
             <objects>
                 <viewController storyboardIdentifier="DashboardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RfP-iM-Wap" customClass="DashboardViewController" customModule="Parent" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="utC-55-lT3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdc-P3-RTh">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                                 <connections>
                                     <segue destination="mwO-C7-kK6" kind="embed" identifier="embed_page_view_controller" id="7BX-NE-W3g"/>
                                 </connections>
@@ -47,7 +47,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yv8-k3-kWU">
-                                <rect key="frame" x="0.0" y="-24" width="375" height="88"/>
+                                <rect key="frame" x="0.0" y="-44" width="375" height="88"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LhY-UH-BvJ" userLabel="Hamburger Button">
                                         <rect key="frame" x="8" y="38" width="44" height="50"/>
@@ -57,9 +57,44 @@
                                         </constraints>
                                         <state key="normal" image="hamburger"/>
                                         <connections>
-                                            <action selector="drawerDashboardButtonPressed:" destination="RfP-iM-Wap" eventType="touchUpInside" id="dL6-FI-rm6"/>
+                                            <action selector="drawerDashboardButtonPressed:" destination="RfP-iM-Wap" eventType="primaryActionTriggered" id="S7i-95-8Hk"/>
                                         </connections>
                                     </button>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qqL-hf-iTU">
+                                        <rect key="frame" x="26" y="40.5" width="32.5" height="27"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="55" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnf-XG-aJX" customClass="DynamicLabel" customModule="Core">
+                                                <rect key="frame" x="6" y="3" width="20.5" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="primary"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold12"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                        </accessibility>
+                                        <constraints>
+                                            <constraint firstItem="bnf-XG-aJX" firstAttribute="top" secondItem="qqL-hf-iTU" secondAttribute="top" constant="3" id="B9n-nB-8WV"/>
+                                            <constraint firstItem="bnf-XG-aJX" firstAttribute="leading" secondItem="qqL-hf-iTU" secondAttribute="leading" constant="6" id="K2w-e3-5GZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="bnf-XG-aJX" secondAttribute="trailing" constant="6" id="a2v-KO-ql2"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" secondItem="qqL-hf-iTU" secondAttribute="height" multiplier="1:1" id="iYH-tV-y8m"/>
+                                            <constraint firstAttribute="bottom" secondItem="bnf-XG-aJX" secondAttribute="bottom" constant="3" id="l23-pr-C9M"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k8J-bS-THt">
                                         <rect key="frame" x="60" y="38" width="255" height="50"/>
                                         <subviews>
@@ -112,11 +147,13 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.27890285725982999" green="1" blue="0.70971178099419863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="observeeBlue"/>
                                 <constraints>
                                     <constraint firstItem="LhY-UH-BvJ" firstAttribute="height" secondItem="k8J-bS-THt" secondAttribute="height" id="97B-R3-1gU"/>
                                     <constraint firstAttribute="height" constant="88" id="FgR-qC-FR0"/>
                                     <constraint firstItem="LhY-UH-BvJ" firstAttribute="centerY" secondItem="k8J-bS-THt" secondAttribute="centerY" id="GX7-Bm-nPX"/>
+                                    <constraint firstItem="qqL-hf-iTU" firstAttribute="centerX" secondItem="LhY-UH-BvJ" secondAttribute="trailing" constant="-10" id="KLj-1O-8Sl"/>
+                                    <constraint firstItem="qqL-hf-iTU" firstAttribute="centerY" secondItem="LhY-UH-BvJ" secondAttribute="top" constant="16" id="QG1-ar-Eh7"/>
                                     <constraint firstItem="LhY-UH-BvJ" firstAttribute="leading" secondItem="yv8-k3-kWU" secondAttribute="leading" constant="8" id="SQB-il-QLQ"/>
                                     <constraint firstItem="k8J-bS-THt" firstAttribute="leading" secondItem="yv8-k3-kWU" secondAttribute="leading" constant="60" id="YFr-Ke-5yl"/>
                                     <constraint firstAttribute="bottom" secondItem="k8J-bS-THt" secondAttribute="bottom" id="nxb-o1-WGA"/>
@@ -141,9 +178,12 @@
                     </view>
                     <connections>
                         <outlet property="alertsTabItem" destination="nta-AM-F42" id="w8m-qN-CpN"/>
+                        <outlet property="badgeLabel" destination="bnf-XG-aJX" id="pkE-Cn-QHd"/>
+                        <outlet property="badgeView" destination="qqL-hf-iTU" id="rea-iY-lAL"/>
                         <outlet property="calendarTabItem" destination="W2P-Wd-gLR" id="1mr-Yk-KbW"/>
                         <outlet property="coursesTabItem" destination="BPk-vK-62u" id="tuH-KS-Hkq"/>
                         <outlet property="headerContainerView" destination="yv8-k3-kWU" id="KUq-PZ-Xyv"/>
+                        <outlet property="menuButton" destination="LhY-UH-BvJ" id="icf-fU-1Vx"/>
                         <outlet property="studentInfoAvatar" destination="2GL-Gy-LZL" id="rkO-wh-caq"/>
                         <outlet property="studentInfoContainer" destination="k8J-bS-THt" id="5o8-tX-WPL"/>
                         <outlet property="studentInfoDownArrow" destination="duK-LJ-Xy2" id="2NG-uy-ACK"/>
@@ -170,5 +210,8 @@
         <image name="icon_calendar" width="34" height="34"/>
         <image name="icon_courses" width="34" height="34"/>
         <image name="icon_notification" width="34" height="34"/>
+        <namedColor name="observeeBlue">
+            <color red="0.0" green="0.55686274509803924" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
