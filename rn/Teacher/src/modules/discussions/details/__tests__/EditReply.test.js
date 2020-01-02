@@ -21,16 +21,11 @@
 import { shallow } from 'enzyme'
 import React from 'react'
 import { EditReply, mapStateToProps } from '../EditReply'
-import explore from '../../../../../test/helpers/explore'
 import { NativeModules } from 'react-native'
-import renderer from 'react-test-renderer'
 import app from '../../../app'
 import * as template from '../../../../__templates__'
 
 jest
-  .mock('../../../../routing')
-  .mock('../../../../routing/Screen')
-  .mock('../../../../common/components/rich-text-editor/RichTextEditor', () => 'RichTextEditor')
   .mock('LayoutAnimation', () => ({
     easeInEaseOut: jest.fn(),
     Types: {
@@ -67,50 +62,50 @@ describe('EditReply', () => {
     app.setCurrentApp('teacher')
   })
 
-  it('renders', () => {
-    let tree = renderer.create(
-      <EditReply {...defaultProps} />
-    ).toJSON()
+  it('renders title correctly', () => {
+    let tree = shallow(<EditReply {...defaultProps} />)
+    expect(tree.find('Screen').prop('title')).toEqual('Reply')
 
-    expect(tree).toMatchSnapshot()
-  })
-
-  it('renders title correctly when editing', () => {
-    defaultProps.isEdit = true
-    let tree = renderer.create(
-      <EditReply {...defaultProps} />
-    ).toJSON()
-
-    expect(tree).toMatchSnapshot()
+    tree = shallow(<EditReply {...defaultProps} isEdit />)
+    expect(tree.find('Screen').prop('title')).toEqual('Edit')
   })
 
   it('deletes pending replies on unmount', () => {
-    let component = renderer.create(
+    let tree = shallow(
       <EditReply {...defaultProps} />
     )
-    component.getInstance().componentWillUnmount()
+    tree.unmount()
     expect(defaultProps.deletePendingReplies).toHaveBeenCalledWith(defaultProps.discussionID)
   })
 
-  it('dismisses modal activity upon save error', () => {
-    let component = renderer.create(
-      <EditReply {...defaultProps} />
+  it('dismisses modal activity upon save error', async () => {
+    let promise = Promise.reject('error')
+    let postReply = jest.fn(() => ({ payload: { promise } }))
+    let tree = shallow(
+      <EditReply
+        {...defaultProps}
+        createEntry={postReply}
+      />
     )
-    let postReply = jest.fn(() => ({ payload: { promise: Promise.reject('error') } }))
-    component.update(<EditReply {...defaultProps} createEntry={postReply} />)
-    const doneButton: any = explore(component.toJSON()).selectRightBarButton('DiscussionEditReply.doneButton')
+
+    const doneButton = tree.find('Screen').prop('rightBarButtons')[0]
     doneButton.action()
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(tree.find('ActivityIndicator').exists()).toEqual(true)
+    try { await promise } catch (_) {}
+    expect(tree.find('ActivityIndicator').exists()).toEqual(false)
   })
 
   it('dismisses modal after reply updates', async () => {
-    let component = renderer.create(
-      <EditReply {...defaultProps} />
-    )
     let postReply = jest.fn(() => ({ payload: { promise: Promise.resolve() } }))
     let refresh = jest.fn(() => ({ payload: { promise: Promise.resolve() } }))
-    component.update(<EditReply {...defaultProps} createEntry={postReply} refreshDiscussionEntries={refresh} />)
-    const doneButton: any = explore(component.toJSON()).selectRightBarButton('DiscussionEditReply.doneButton')
+    let tree = shallow(
+      <EditReply
+        {...defaultProps}
+        createEntry={postReply}
+        refreshDiscussionEntries={refresh}
+      />
+    )
+    const doneButton = tree.find('Screen').prop('rightBarButtons')[0]
     await doneButton.action()
     expect(postReply).toHaveBeenCalled()
     expect(defaultProps.navigator.dismiss).toHaveBeenCalled()
@@ -119,12 +114,9 @@ describe('EditReply', () => {
   })
 
   it('sets message placeholder', () => {
-    let component = renderer.create(
-      <EditReply {...defaultProps} />
-    )
-    let textEditor = explore(component.toJSON()).query(({ type }) => type === 'RichTextEditor')[0]
-
-    expect(textEditor.props.placeholder).toEqual('Message')
+    let tree = shallow(<EditReply {...defaultProps} />)
+    let textEditor = tree.find('RichTextEditor')
+    expect(textEditor.prop('placeholder')).toEqual('Message')
   })
 
   it('enters text and posts reply', async () => {
