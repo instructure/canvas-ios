@@ -50,9 +50,9 @@ workflows:
         inputs:
         - runner: "/bin/zsh"
         - file_path: scripts/build_automation/set-mtime.sh
-    - &brew-tap
+    - &install-tools
       script:
-        title: brew tap
+        title: Install build tools
         inputs:
         - runner_bin: "/bin/zsh"
         - content: |-
@@ -61,12 +61,8 @@ workflows:
 
             brew tap mxcl/made
             brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
-    - &brew-install
-      brew-install:
-        title: brew install
-        inputs:
-        - upgrade: 'yes'
-        - packages: awscli swiftlint jq xcbeautify mxcl/made/swift-sh
+            brew reinstall swiftlint jq xcbeautify mxcl/made/swift-sh
+            pip install awscli
     - &carthage
       carthage:
         inputs:
@@ -197,8 +193,7 @@ workflows:
     steps:
     - cache-pull: {}
     - *set-mtime
-    - *brew-tap
-    - *brew-install
+    - *install-tools
     - script:
         title: Swift Lint
         inputs:
@@ -264,8 +259,7 @@ workflows:
   nightly-cache-gen:
     steps:
     - cache-pull: {}
-    - *brew-tap
-    - *brew-install
+    - *install-tools
     - *carthage
     - *yarn-install-root
     - *yarn-install
@@ -322,8 +316,7 @@ workflows:
         title: Canvas iOS Secrets
     - cache-pull: {}
     - *set-mtime
-    - *brew-tap
-    - *brew-install
+    - *install-tools
     - &fix-microphone
       script:
         title: Grant simulator microphone permissions
@@ -434,8 +427,7 @@ workflows:
     - *secrets
     - cache-pull: {}
     - *set-mtime
-    - *brew-tap
-    - *brew-install
+    - *install-tools
     - *fix-microphone
     - *carthage
     - *yarn-install-root
