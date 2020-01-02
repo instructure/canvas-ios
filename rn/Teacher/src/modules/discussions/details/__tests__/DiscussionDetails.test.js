@@ -23,13 +23,9 @@ import {
   ActionSheetIOS,
   Alert,
   NativeModules,
-  I18nManager,
 } from 'react-native'
-import renderer from 'react-test-renderer'
 
 import { DiscussionDetails, mapStateToProps, shouldRefresh, type Props } from '../DiscussionDetails'
-import explore from '../../../../../test/helpers/explore'
-import setProps from '../../../../../test/helpers/setProps'
 import app from '../../../app'
 import { shallow } from 'enzyme'
 import { alertError } from '../../../../redux/middleware/error-handler'
@@ -83,7 +79,6 @@ describe('DiscussionDetails', () => {
       markTopicAsRead: jest.fn(),
       unreadEntries: [],
       permissions: { post_to_forum: true },
-      refresh: jest.fn(),
       isAnnouncement: false,
     }
   })
@@ -110,7 +105,7 @@ describe('DiscussionDetails', () => {
 
     tree.setProps({
       ...props,
-      isAnnouncement: true
+      isAnnouncement: true,
     })
     expect(tree.find('Screen').prop('title')).toEqual('Announcement Details')
   })
@@ -125,12 +120,12 @@ describe('DiscussionDetails', () => {
     )
     expect(tree.find('Screen').props()).toMatchObject({
       navBarColor: '#fff',
-      subtitle: 'Course name'
+      subtitle: 'Course name',
     })
   })
 
   describe('kabob', () => {
-    function getKabob(tree) {
+    function getKabob (tree) {
       return tree.find('Screen').prop('rightBarButtons')[0]
     }
     it('does not show in student app', () => {
@@ -242,13 +237,13 @@ describe('DiscussionDetails', () => {
     let tree = shallow(<DiscussionDetails {...props} discussion={discussion} />)
     expect(tree.find('FlatList').prop('data')).toMatchObject([{
       id: '1',
-      myPath: [0]
+      myPath: [0],
     }, {
       id: '2',
       myPath: [0, 0],
     }, {
       id: '3',
-      myPath: [0, 0, 0]
+      myPath: [0, 0, 0],
     }])
   })
 
@@ -258,7 +253,7 @@ describe('DiscussionDetails', () => {
 
     tree.setProps({
       ...props,
-      discussion: template.discussion()
+      discussion: template.discussion(),
     })
     expect(tree.find('FlatList').prop('ListHeaderComponent')).not.toBeFalsy()
   })
@@ -336,7 +331,7 @@ describe('DiscussionDetails', () => {
     it('catches the discussion details section when on screen so it doesnt try to mark as read', () => {
       let a = template.discussionReply({ id: '1', readState: 'unread' })
       let discussion = { ...props.discussion, replies: [a] }
-      let tree = shallow(<DiscussionDetails { ...props } discussion />)
+      let tree = shallow(<DiscussionDetails { ...props } discussion={discussion} />)
       tree.setState({ unread_entries: ['0'] })
 
       let info = {
@@ -358,14 +353,14 @@ describe('DiscussionDetails', () => {
   })
 
   describe('details', () => {
-    function renderDetails(props) {
+    function renderDetails (props) {
       return shallow(new DiscussionDetails(props).renderDetails(props.discussion))
     }
 
     test('title', () => {
       let tree = renderDetails({
         ...props,
-        discussion: template.discussion({ title: null })
+        discussion: template.discussion({ title: null }),
       })
       expect(tree.find('[testID="DiscussionDetails.titleLabel"]').prop('children')).toEqual('No Title')
 
@@ -380,7 +375,7 @@ describe('DiscussionDetails', () => {
       tree = renderDetails({
         ...props,
         isAnnouncement: false,
-        discussion: template.discussion({ assignment: null })
+        discussion: template.discussion({ assignment: null }),
       })
       expect(tree.find('[testID="DiscussionDetails.pointsLabel"]').exists()).toEqual(false)
 
@@ -388,8 +383,8 @@ describe('DiscussionDetails', () => {
         ...props,
         isAnnouncement: false,
         discussion: template.discussion({
-          assignment: template.assignment({ points_possible: 50 })
-        })
+          assignment: template.assignment({ points_possible: 50 }),
+        }),
       })
       expect(tree.find('[testID="DiscussionDetails.pointsLabel"]').prop('children')).toEqual('50 pts')
     })
@@ -408,7 +403,7 @@ describe('DiscussionDetails', () => {
       app.setCurrentApp('teacher')
       tree = renderDetails({
         ...props,
-        isAnnouncement: false
+        isAnnouncement: false,
       })
       expect(tree.find('PublishedIcon').prop('published')).toEqual(props.discussion.published)
     })
@@ -466,14 +461,14 @@ describe('DiscussionDetails', () => {
       app.setCurrentApp('teacher')
       tree = renderDetails({
         ...props,
-        assignment: null
+        assignment: null,
       })
       expect(tree.find('[testID="discussions.submission-graphs"]').exists()).toEqual(false)
 
       tree = renderDetails({
         ...props,
         assignment: template.assignment(),
-        discussion: template.discussion({ group_topic_children: 0 })
+        discussion: template.discussion({ group_topic_children: 0 }),
       })
       expect(tree.find('[testID="discussions.submission-graphs"]').exists()).toEqual(true)
     })
@@ -481,7 +476,7 @@ describe('DiscussionDetails', () => {
     it('routes to the right place when submissions is tapped (via onPress)', () => {
       let tree = renderDetails({
         ...props,
-        assignment: template.assignment({ id: '1', course_id: '22' })
+        assignment: template.assignment({ id: '1', course_id: '22' }),
       })
       tree.find('[testID="discussions.submission-graphs"]').simulate('press')
 
@@ -493,7 +488,7 @@ describe('DiscussionDetails', () => {
     it('routes to the right place when submissions dial is tapped', () => {
       let tree = renderDetails({
         ...props,
-        assignment: template.assignment({ id: '1', course_id: '85' })
+        assignment: template.assignment({ id: '1', course_id: '85' }),
       })
 
       tree.find('SubmissionBreakdownGraphSection').simulate('press', 'graded')
@@ -507,13 +502,13 @@ describe('DiscussionDetails', () => {
     test('avatar', () => {
       let tree = renderDetails({
         ...props,
-        discussion: template.discussion({ author: null })
+        discussion: template.discussion({ author: null }),
       })
       expect(tree.find('Avatar').exists()).toEqual(false)
 
       tree = renderDetails({
         ...props,
-        discussion: template.discussion({ author: template.user({ display_name: null }) })
+        discussion: template.discussion({ author: template.user({ display_name: null }) }),
       })
       expect(tree.find('Avatar').exists()).toEqual(false)
 
@@ -521,8 +516,8 @@ describe('DiscussionDetails', () => {
       tree = renderDetails({
         ...props,
         discussion: template.discussion({
-          author: user
-        })
+          author: user,
+        }),
       })
       let avatar = tree.find('Avatar')
       expect(avatar.props()).toMatchObject({
@@ -576,19 +571,19 @@ describe('DiscussionDetails', () => {
     test('attachment', () => {
       let tree = renderDetails({
         ...props,
-        discussion: template.discussion({ attachments: null })
+        discussion: template.discussion({ attachments: null }),
       })
       expect(tree.find('[testID="DiscussionDetails.attachmentButton"]').exists()).toEqual(false)
 
       tree = renderDetails({
         ...props,
-        discussion: template.discussion({ attachments: [] })
+        discussion: template.discussion({ attachments: [] }),
       })
       expect(tree.find('[testID="DiscussionDetails.attachmentButton"]').exists()).toEqual(false)
 
       tree = renderDetails({
         ...props,
-        discussion: template.discussion({ attachments: [template.attachment()] })
+        discussion: template.discussion({ attachments: [template.attachment()] }),
       })
       expect(tree.find('[testID="DiscussionDetails.attachmentButton"]').exists()).toEqual(true)
     })
@@ -597,7 +592,7 @@ describe('DiscussionDetails', () => {
       let attachment = template.attachment()
       let tree = renderDetails({
         ...props,
-        discussion: template.discussion({ attachments: [attachment] })
+        discussion: template.discussion({ attachments: [attachment] }),
       })
       tree.find('[testID="DiscussionDetails.attachmentButton"]').simulate('press')
       expect(props.navigator.show).toHaveBeenCalledWith(
@@ -611,21 +606,21 @@ describe('DiscussionDetails', () => {
       let tree = renderDetails({
         ...props,
         discussion: template.discussion({ locked_for_user: true }),
-        permissions: { post_to_forum: false }
+        permissions: { post_to_forum: false },
       })
       expect(tree.find('[testID="discussion-reply"]').exists()).toEqual(false)
 
       tree = renderDetails({
         ...props,
         discussion: template.discussion({ locked_for_user: false }),
-        permissions: { post_to_forum: false }
+        permissions: { post_to_forum: false },
       })
       expect(tree.find('[testID="discussion-reply"]').exists()).toEqual(false)
 
       tree = renderDetails({
         ...props,
         discussion: template.discussion({ locked_for_user: false }),
-        permissions: { post_to_forum: true }
+        permissions: { post_to_forum: true },
       })
       expect(tree.find('[testID="discussion-reply"]').exists()).toEqual(true)
     })
@@ -676,19 +671,19 @@ describe('DiscussionDetails', () => {
     test('replies heading', () => {
       let tree = renderDetails({
         ...props,
-        discussion: template.discussion({ replies: null })
+        discussion: template.discussion({ replies: null }),
       })
       expect(tree.find('[testID="DiscussionDetails.repliesHeading"]').exists()).toEqual(false)
 
       tree = renderDetails({
         ...props,
-        discussion: template.discussion({ replies: [] })
+        discussion: template.discussion({ replies: [] }),
       })
       expect(tree.find('[testID="DiscussionDetails.repliesHeading"]').exists()).toEqual(false)
 
       tree = renderDetails({
         ...props,
-        discussion: template.discussion({ replies: [template.discussionReply()] })
+        discussion: template.discussion({ replies: [template.discussionReply()] }),
       })
       expect(tree.find('[testID="DiscussionDetails.repliesHeading"]').exists()).toEqual(true)
     })
@@ -732,7 +727,7 @@ describe('DiscussionDetails', () => {
     it('does not show require_initial_post message on render', () => {
       const details = renderDetails({
         ...props,
-        requireInitialPost: false
+        requireInitialPost: false,
       })
       expect(details.find('[testID="discussions.details.require_initial_post.message"]')).toHaveLength(0)
     })
@@ -740,7 +735,7 @@ describe('DiscussionDetails', () => {
     it('shows require_initial_post message', () => {
       const details = renderDetails({
         ...props,
-        initialPostRequired: true
+        initialPostRequired: true,
       })
       expect(details.find('[testID="discussions.details.require_initial_post.message"]')).toHaveLength(1)
     })
@@ -753,13 +748,13 @@ describe('DiscussionDetails', () => {
         discussion: template.discussion({
           participants: [template.userDisplay()],
           replies: [template.discussionReply({
-            myPath: [0]
-          })]
-        })
+            myPath: [0],
+          })],
+        }),
       }
     })
 
-    function renderReply(props) {
+    function renderReply (props) {
       return shallow(new DiscussionDetails(props).renderReply({ item: props.discussion.replies[0], index: 0 }))
     }
 
@@ -816,9 +811,9 @@ describe('DiscussionDetails', () => {
         discussion: template.discussion({
           id: '2',
           replies: [template.discussionReply({
-            myPath: [0]
-          })]
-        })
+            myPath: [0],
+          })],
+        }),
       })
       let reply = tree.find('Reply')
       reply.prop('replyToEntry')('3', [1, 0])
@@ -882,7 +877,7 @@ describe('DiscussionDetails', () => {
     tree.setProps({
       ...props,
       pending: false,
-      discussion: null
+      discussion: null,
     })
     expect(props.navigator.pop).toHaveBeenCalled()
     expect(props.refreshSingleDiscussion).not.toHaveBeenCalled()

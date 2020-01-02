@@ -16,9 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-/* @flow */
-
-import { shallow, type ShallowWrapper } from 'enzyme'
+import { shallow } from 'enzyme'
 import React from 'react'
 import {
   Alert,
@@ -27,7 +25,7 @@ import {
 
 import * as template from '../../../../__templates__'
 import { DiscussionEdit, mapStateToProps, type Props } from '../DiscussionEdit'
-import app, { isTeacher } from '../../../app'
+import app from '../../../app'
 
 jest.useFakeTimers()
 
@@ -101,7 +99,7 @@ describe('DiscussionEdit', () => {
   })
 
   it('refreshes groups when the context is a group', () => {
-    let tree = shallow(<DiscussionEdit {...props} context='groups' />)
+    shallow(<DiscussionEdit {...props} context='groups' />)
     expect(props.refreshGroup).toHaveBeenCalledWith(props.contextID)
   })
 
@@ -275,7 +273,7 @@ describe('DiscussionEdit', () => {
 
       tree.setProps({
         ...props,
-        can_unpublish: true
+        can_unpublish: true,
       })
       expect(tree.find('[testID="DiscussionEdit.publishSwitch"]').exists()).toEqual(false)
 
@@ -285,7 +283,7 @@ describe('DiscussionEdit', () => {
 
       tree.setProps({
         ...props,
-        can_unpublish: null
+        can_unpublish: null,
       })
       expect(tree.find('[testID="DiscussionEdit.publishSwitch"]').exists()).toEqual(true)
     })
@@ -419,7 +417,7 @@ describe('DiscussionEdit', () => {
 
     it('submits', async () => {
       let assignment = template.assignment({
-        points_possible: null
+        points_possible: null,
       })
       let tree = shallow(
         <DiscussionEdit {...props} assignment={assignment} />
@@ -499,7 +497,7 @@ describe('DiscussionEdit', () => {
           updateAssignment: (assignment) => {
             assignment.due_at = '2036-06-01T05:59:00Z'
             return assignment
-          }
+          },
         })
       await tapDone(tree)
       expect(props.updateAssignment).toHaveBeenCalledWith(

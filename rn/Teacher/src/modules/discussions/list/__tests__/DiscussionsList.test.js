@@ -20,11 +20,9 @@
 
 import React from 'react'
 import { ActionSheetIOS, Alert } from 'react-native'
-import renderer from 'react-test-renderer'
 import { shallow } from 'enzyme'
 
 import { DiscussionsList, mapStateToProps, type Props } from '../DiscussionsList'
-import explore from '@test/helpers/explore'
 import app from '@modules/app'
 
 jest
@@ -94,7 +92,7 @@ describe('DiscussionsList', () => {
     let horizontal = 'wide'
     props.navigator.traitCollection = jest.fn((cb) => {
       cb({
-        window: { horizontal }
+        window: { horizontal },
       })
     })
     let tree = shallow(<DiscussionsList {...props} />)
@@ -120,16 +118,16 @@ describe('DiscussionsList', () => {
     expect(tree.find('SectionList').prop('sections')).toEqual([
       {
         key: 'C_pinned',
-        data: [discussions[4], discussions[6]]
+        data: [discussions[4], discussions[6]],
       },
       {
         key: 'B_discussion',
-        data: discussions.slice(0, 4)
+        data: discussions.slice(0, 4),
       },
       {
         key: 'A_locked',
-        data: [discussions[5]]
-      }
+        data: [discussions[5]],
+      },
     ])
   })
 
@@ -149,7 +147,7 @@ describe('DiscussionsList', () => {
     expect(tree.find('Screen').prop('rightBarButtons')).toEqual(false)
   })
 
-  it('navigates to discussion creation', ()=> {
+  it('navigates to discussion creation', () => {
     props.navigator.show = jest.fn()
     props.contextID = '1'
     let tree = shallow(<DiscussionsList {...props} />)
@@ -243,7 +241,7 @@ describe('DiscussionsList', () => {
     // $FlowFixMe
     Alert.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
     props.contextID = '1'
-    let tree = shallow(new DiscussionsList({...props}).renderRow({ item: one, index: 0 }))
+    let tree = shallow(new DiscussionsList({ ...props }).renderRow({ item: one, index: 0 }))
     const kabob = tree.find(`[testID="discussion.kabob-${props.discussions[0].id}"]`)
     kabob.simulate('press')
     expect(props.deleteDiscussion).toHaveBeenCalledWith(props.context, props.contextID, '1')
