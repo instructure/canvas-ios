@@ -108,6 +108,11 @@ public extension Element {
     func waitToVanish(_ timeout: TimeInterval = 10, file: StaticString = #file, line: UInt = #line) -> Element {
         return waitToVanish(timeout, file: file, line: line)
     }
+
+    func isOffscreen(_ timeout: TimeInterval = 10, file: StaticString = #file, line: UInt = #line) -> Bool {
+        waitToExist(timeout, file: file, line: line)
+        return !app.windows.element(boundBy: 0).frame.contains(rawElement.frame)
+    }
 }
 
 public extension Element {
