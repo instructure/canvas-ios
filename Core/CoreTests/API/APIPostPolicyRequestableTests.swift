@@ -86,7 +86,7 @@ class GetAssignmentPostPolicyInfoRequestTests: XCTestCase {
     func testQuery() {
         // swiftlint:disable line_length
         let expected = """
-        {\n    course(id: \"1\") {\n        sections: sectionsConnection {\n          nodes {\n            id\n            name\n          }\n        }\n      }\n      assignment(id: \"1\") {\n        submissions: submissionsConnection {\n          nodes {\n            score\n            excused\n            state\n            postedAt\n          }\n        }\n      }\n}
+        query GetAssignmentPostPolicyInfo {\n    course(id: \"1\") {\n        sections: sectionsConnection {\n          nodes {\n            id\n            name\n          }\n        }\n      }\n      assignment(id: \"1\") {\n        submissions: submissionsConnection {\n          nodes {\n            score\n            excused\n            state\n            postedAt\n          }\n        }\n      }\n}
         """
         // swiftlint:enable line_length
         XCTAssertEqual(req.query, expected)
