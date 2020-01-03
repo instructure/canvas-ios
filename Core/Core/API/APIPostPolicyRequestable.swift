@@ -35,12 +35,13 @@ public struct PostAssignmentGradesPostPolicyRequest: APIGraphQLRequestable {
         self.sections = sections
     }
 
+    public let operationName = "PostAssignmentGrades"
     public var query: String? {
         let mutation = sections.count > 0 ? "postAssignmentGradesForSections" : "postAssignmentGrades"
         let sectionsAsString = "[ \( sections.map { "\"\($0)\"" }.joined(separator: ",") ) ]"
         let sectionIDs = sections.count > 0 ? ", sectionIds: \(sectionsAsString)" : ""
         return """
-        mutation PostAssignmentGrades
+        mutation \(operationName)
             {
                 \(mutation)(input: {assignmentId: "\(assignmentID)", gradedOnly: \(postPolicy == .graded)\(sectionIDs)})
                 {
@@ -62,12 +63,13 @@ public struct HideAssignmentGradesPostPolicyRequest: APIGraphQLRequestable {
         self.sections = sections
     }
 
+    public let operationName = "HideAssignmentGrades"
     public var query: String? {
         let mutation = sections.count > 0 ? "hideAssignmentGradesForSections" : "hideAssignmentGrades"
         let sectionsAsString = "[ \( sections.map { "\"\($0)\"" }.joined(separator: ",") ) ]"
         let sectionIDs = sections.count > 0 ? ", sectionIds: \(sectionsAsString)" : ""
         return """
-        mutation HideAssignmentGrades
+        mutation \(operationName)
         {
             \(mutation)(input: {assignmentId: "\(assignmentID)"\(sectionIDs)})
             {
@@ -89,9 +91,10 @@ public struct GetAssignmentPostPolicyInfoRequest: APIGraphQLRequestable {
         self.assignmentID = assignmentID
     }
 
+    public let operationName = "GetAssignmentPostPolicyInfo"
     public var query: String? {
         return """
-        {
+        query \(operationName) {
             course(id: "\(courseID)") {
                 sections: sectionsConnection {
                   nodes {

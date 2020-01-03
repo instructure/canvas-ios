@@ -130,7 +130,7 @@ class IPadSpeedGraderTests: CoreUITestCase {
         )
         mockData(GetGroupsRequest(context: ContextModel(.course, id: "1")), value: [])
         mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: nil), value: [])
-        mockSubmissionsList()
+        mockGraphQL(operationName: "SubmissionList", SubmissionListFixture.submissionList)
         logIn()
         SpringBoard.shared.setupSplitScreenWithSafariOnRight()
         SpringBoard.shared.moveSplit(toFraction: 0.5)
@@ -150,91 +150,4 @@ class IPadSpeedGraderTests: CoreUITestCase {
         XCTAssertFalse(SpeedGrader.userName(userID: "3").isVisible)
     }
 
-    func mockSubmissionsList() {
-        mockGraphQL([
-            "data": [
-                "assignment": [
-                    "id": "1",
-                    "name": "Assignment 1",
-                    "pointsPossible": 10,
-                    "gradeGroupStudentsIndividually": false,
-                    "anonymousGrading": false,
-                    "muted": true,
-                    "gradingType": "points",
-                    "groupSet": nil,
-                    "course": [
-                        "name": "Course 1",
-                        "sections": [
-                            "edges": [
-                                [
-                                    "section": ["id": "1", "name": "Section 1", "__typename": "Section"],
-                                    "__typename": "SectionEdge",
-                                ],
-                            ],
-                            "__typename": "SectionConnection",
-                        ],
-                        "__typename": "Course",
-                    ],
-                    "submissions": [
-                        "edges": [
-                            [
-                                "submission": [
-                                    "grade": nil,
-                                    "score": nil,
-                                    "late": false,
-                                    "missing": false,
-                                    "excused": false,
-                                    "submittedAt": "2019-08-10T16:37:58-06:00",
-                                    "gradingStatus": "needs_grading",
-                                    "gradeMatchesCurrentSubmission": true,
-                                    "state": "submitted",
-                                    "postedAt": nil,
-                                    "user": ["id": "1", "avatarUrl": nil, "name": "User 1", "__typename": "User"],
-                                    "__typename": "Submission",
-                                ],
-                                "__typename": "SubmissionEdge",
-                            ],
-                            [
-                                "submission": [
-                                    "grade": nil,
-                                    "score": nil,
-                                    "late": false,
-                                    "missing": false,
-                                    "excused": false,
-                                    "submittedAt": "2019-08-10T16:37:58-06:00",
-                                    "gradingStatus": "needs_grading",
-                                    "gradeMatchesCurrentSubmission": true,
-                                    "state": "submitted",
-                                    "postedAt": nil,
-                                    "user": ["id": "2", "avatarUrl": nil, "name": "User 2", "__typename": "User"],
-                                    "__typename": "Submission",
-                                ],
-                                "__typename": "SubmissionEdge",
-                            ],
-                            [
-                                "submission": [
-                                    "grade": nil,
-                                    "score": nil,
-                                    "late": false,
-                                    "missing": false,
-                                    "excused": false,
-                                    "submittedAt": "2019-08-10T16:37:58-06:00",
-                                    "gradingStatus": "needs_grading",
-                                    "gradeMatchesCurrentSubmission": true,
-                                    "state": "submitted",
-                                    "postedAt": nil,
-                                    "user": ["id": "3", "avatarUrl": nil, "name": "User 3", "__typename": "User"],
-                                    "__typename": "Submission",
-                                ],
-                                "__typename": "SubmissionEdge",
-                            ],
-                        ],
-                        "__typename": "SubmissionConnection",
-                    ],
-                    "groupedSubmissions": nil,
-                    "__typename": "Assignment",
-                ],
-            ],
-        ])
-    }
 }

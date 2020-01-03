@@ -64,7 +64,7 @@ public class MockDistantURLSession: URLSession {
         mockConfiguration ?? super.configuration
     }
 
-    static let mockRequestLock = NSLock()
+    static let mockRequestLock = NSRecursiveLock()
     static func requestMock(_ request: URLRequest) -> MockHTTPResponse {
         mockRequestLock.lock()
         defer { mockRequestLock.unlock() }

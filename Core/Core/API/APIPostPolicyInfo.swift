@@ -25,7 +25,7 @@ public struct APIPostPolicyInfo: Codable {
     public var submissions: [SubmissionNode] {
         return data.assignment.submissions.nodes
     }
-    private var data: PostPolicyData
+    internal var data: PostPolicyData
 
     public struct SectionNode: Codable, Equatable {
         public let id: String

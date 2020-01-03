@@ -210,7 +210,7 @@ class SubmissionDetailsTests: StudentUITestCase {
         mockURL(downloadURL, data: url.flatMap { try? Data(contentsOf: $0) })
 
         // There's a uuid in a request that has no way to be mocked currently
-        failTestOnMissingMock = false
+        missingMockBehavior = .allow
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
         // 😱 PSPDFAnnotations are not in the accessibility tree
