@@ -307,7 +307,7 @@ workflows:
         - timestamp: "no"
     - github-status:
         inputs:
-        - auth_token: $GITHUB_ACCESS_TOKEN
+        - auth_token: $DANGER_GITHUB_API_TOKEN
         - status_identifier: ci/bitrise/${BITRISE_APP_SLUG}/nightly
         - commit_hash: $GIT_CLONE_COMMIT_HASH
         - set_specific_status: pending
@@ -408,7 +408,7 @@ workflows:
     - deploy-to-bitrise-io: {}
     - github-status:
         inputs:
-        - auth_token: $GITHUB_ACCESS_TOKEN
+        - auth_token: $DANGER_GITHUB_API_TOKEN
         - status_identifier: ci/bitrise/${BITRISE_APP_SLUG}/nightly
         - commit_hash: $GIT_CLONE_COMMIT_HASH
         - description: "Nightly Tests"
