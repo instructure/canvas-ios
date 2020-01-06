@@ -45,6 +45,7 @@ class ComposeRecipientsView: UIView {
     }
 
     override func layoutSubviews() {
+        super.layoutSubviews()
         let xPad: CGFloat = 16
         let xMax = bounds.maxX - xPad
         let yPad: CGFloat = 12
@@ -68,13 +69,6 @@ class ComposeRecipientsView: UIView {
 class ComposeRecipientView: UIView {
     let avatarView = AvatarView()
     let nameLabel = UILabel()
-
-    override var frame: CGRect {
-        didSet {
-            print(oldValue)
-            print(frame)
-        }
-    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)

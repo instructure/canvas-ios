@@ -20,6 +20,20 @@ import XCTest
 @testable import Core
 
 class APIErroReportTests: CoreTestCase {
+    let features = ExperimentalFeature.allCases.map { $0.isEnabled }
+
+    override func setUp() {
+        super.setUp()
+        ExperimentalFeature.allEnabled = false
+    }
+
+    override func tearDown() {
+        for (i, feature) in ExperimentalFeature.allCases.enumerated() {
+            feature.isEnabled = features[i]
+        }
+        super.tearDown()
+    }
+
     func testMinimalPostErrorReportRequest() {
         let min = PostErrorReportRequest(subject: "s", impact: 0).body!.error
         XCTAssertNil(min.category)
