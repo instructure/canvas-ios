@@ -372,7 +372,8 @@ workflows:
         - environment_key_list: |-
             FINAL_FAILED_TESTS
             BUILD_LINK
-    - script:
+    - &save-xcresult
+      script:
         title: Save xcresult
         inputs:
         - runner_bin: "/bin/zsh"
@@ -381,7 +382,7 @@ workflows:
             #!/bin/zsh
             set -euxo pipefail
 
-            zip --quiet -r "$BITRISE_DEPLOY_DIR/nightly.xcresult.zip" merged.xcresult
+            zip --quiet -r "$BITRISE_DEPLOY_DIR/tests.xcresult.zip" merged.xcresult
         is_always_run: true
     - script:
         title: Report Coverage
@@ -476,6 +477,8 @@ workflows:
             SCHEME=IPadTests \
             DEVICE_NAME='iPad Air 2' \
             ./scripts/run-ui-tests.sh --all
+    - *save-xcresult
+    - deploy-to-bitrise-io: {}
     - github-status:
         inputs:
         - auth_token: $DANGER_GITHUB_API_TOKEN
