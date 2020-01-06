@@ -14,38 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "492704AA1CF4B6D700C631C6"
-               BuildableName = "TechDebt.framework"
-               BlueprintName = "TechDebt"
-               ReferencedContainer = "container:Student.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "492704721CF4AF7100C631C6"
                BuildableName = "Student.app"
                BlueprintName = "Student"
                ReferencedContainer = "container:Student.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2C96482D211E2F1A002C3255"
-               BuildableName = "Core.framework"
-               BlueprintName = "Core"
-               ReferencedContainer = "container:../Core/Core.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
