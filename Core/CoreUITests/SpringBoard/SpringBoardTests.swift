@@ -28,19 +28,23 @@ class SpringBoardTests: CoreUITestCase {
         XCUIDevice.shared.orientation = .landscapeLeft
         SpringBoard.shared.setupSplitScreenWithSafariOnRight()
 
+        func appToSpringBoardRatio() -> CGFloat {
+            app.frame.height / SpringBoard.shared.sbApp.frame.height
+        }
+
         sleep(2)
-        XCTAssertEqual(app.find(type: .window).frame().width, 507)
+        XCTAssertEqual(appToSpringBoardRatio(), 0.5, accuracy: 0.05)
 
         SpringBoard.shared.moveSplit(toFraction: 0.25)
         sleep(2)
-        XCTAssertEqual(app.find(type: .window).frame().width, 320)
+        XCTAssertEqual(appToSpringBoardRatio(), 0.25, accuracy: 0.05)
 
         SpringBoard.shared.moveSplit(toFraction: 0.75)
         sleep(2)
-        XCTAssertEqual(app.find(type: .window).frame().width, 694)
+        XCTAssertEqual(appToSpringBoardRatio(), 0.75, accuracy: 0.05)
 
         SpringBoard.shared.moveSplit(toFraction: 0.5)
         sleep(2)
-        XCTAssertEqual(app.find(type: .window).frame().width, 507)
+        XCTAssertEqual(appToSpringBoardRatio(), 0.5, accuracy: 0.05)
     }
 }

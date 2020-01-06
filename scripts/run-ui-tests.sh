@@ -80,6 +80,10 @@ export NSUnbufferedIO=YES
 
 destination_flag=(-destination "platform=iOS Simulator,name=$DEVICE_NAME")
 
+results_directory=ui-test-results
+rm -rf $results_directory
+mkdir -p $results_directory
+
 if [[ $needs_build = yes ]]; then
     banner "Building $SCHEME"
     xcodebuild -workspace Canvas.xcworkspace -scheme $SCHEME $destination_flag build-for-testing 2>&1 |
@@ -115,9 +119,6 @@ all_passing_tests=()
 tests_passed_this_run=()
 tests_failed_this_run=()
 total_failures=0
-results_directory=ui-test-results
-rm -rf $results_directory
-mkdir -p $results_directory
 
 function mergeResults {
     results=($results_directory/*.xcresult)
