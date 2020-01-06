@@ -30,6 +30,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     var didLayoutTabs: Bool = false
     var env: AppEnvironment!
     var colorScheme: ColorScheme?
+    var replyButton: FloatingButton?
 
     enum MenuItem: Int {
         case grades, syllabus, summary
@@ -90,6 +91,24 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         viewControllers.append(vc)
     }
 
+    func configureComposeMessageButton() {
+        guard ExperimentalFeature.parentInbox.isEnabled else { return }
+        let buttonSize: CGFloat = 56
+        let margin: CGFloat = 16
+        let bottomMargin: CGFloat = 50
+
+        replyButton = FloatingButton(frame: CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize))
+        replyButton?.iconName = "replySolid"
+        replyButton?.iconColorName = "white"
+        replyButton?.backgroundColor = colorScheme?.color
+        if let replyButton = replyButton { view.addSubview(replyButton) }
+
+        let metrics: [String: CGFloat] = ["buttonSize": buttonSize, "margin": margin, "bottomMargin": bottomMargin]
+        replyButton?.addConstraintsWithVFL("H:[view(buttonSize)]-(margin)-|", metrics: metrics)
+        replyButton?.addConstraintsWithVFL("V:[view(buttonSize)]-(bottomMargin)-|", metrics: metrics)
+        replyButton?.addTarget(self, action: #selector(actionReplyButtonClicked(_:)), for: .primaryActionTriggered)
+    }
+
     func courseReady() {
         title = courses.first?.name
         if !courses.pending && !frontPages.pending && readyToLayoutTabs, !didLayoutTabs, let course = courses.first {
@@ -109,7 +128,12 @@ class CourseDetailsViewController: HorizontalMenuViewController {
             }
 
             layoutViewControllers()
+            configureComposeMessageButton()
         }
+    }
+
+    @IBAction func actionReplyButtonClicked(_ sender: Any) {
+        env.router.route(to: .compose(), from: self, options: [.modal, .embedInNav])
     }
 }
 
