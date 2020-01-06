@@ -475,7 +475,7 @@ workflows:
         - content: |-
             set -euo pipefail
             SCHEME=IPadTests \
-            DEVICE_NAME='iPad Air 2' \
+            DEVICE_NAME='iPad Air (3rd generation)' \
             ./scripts/run-ui-tests.sh --all
     - *save-xcresult
     - deploy-to-bitrise-io: {}
