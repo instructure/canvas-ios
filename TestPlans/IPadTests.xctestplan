@@ -19,7 +19,8 @@
   "testTargets" : [
     {
       "selectedTests" : [
-        "IPadAssignmentsTest\/testAssignments()"
+        "IPadAssignmentsTest\/testAssignments()",
+        "StudentSpringBoardTests\/testMultitaskingSetup()"
       ],
       "target" : {
         "containerPath" : "container:Student.xcodeproj",
