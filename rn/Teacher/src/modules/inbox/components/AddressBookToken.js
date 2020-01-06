@@ -53,16 +53,19 @@ export default class AddressBookToken extends Component<Props, any> {
     const deleteButtonAccessibilityLabel = i18n('Delete recipient { recipient }', {
       recipient: this.props.item.name,
     })
-    let leftTextPadding = this.props.item.avatar_url ? TOKEN_SUBVIEW_SPACING : 8
     return (
       <View style={styles.token} accessibilityLabel={recipientAccessibilityLabel}>
         { this.props.item.avatar_url &&
-          <Avatar avatarURL={this.props.item.avatar_url} userName={this.props.item.name} height={TOKEN_HEIGHT - 6}/>
+          <Avatar
+            avatarURL={this.props.item.avatar_url}
+            userName={this.props.item.name}
+            height={TOKEN_HEIGHT - 6}
+          />
         }
         <Text
           key={this.props.item.id}
+          style={{ marginLeft: TOKEN_SUBVIEW_SPACING }}
           testID={`message-recipient.${this.props.item.id}.label`}
-          style={{ marginLeft: leftTextPadding }}
         >
           {this.props.item.name}
         </Text>
@@ -72,6 +75,7 @@ export default class AddressBookToken extends Component<Props, any> {
             accessible={true}
             accessibilityLabel={deleteButtonAccessibilityLabel}
             accessibilityTraits={['button']}
+            style={styles.deleteButton}
             testID={`message-recipient.${this.props.item.id}.delete-btn`}
           >
             <Image source={icon('x', 'line')} style={styles.deleteIcon} />
@@ -97,8 +101,11 @@ const styles = createStyleSheet(colors => ({
     borderRadius: TOKEN_HEIGHT / 2,
     backgroundColor: colors.backgroundLight,
   },
+  deleteButton: {
+    padding: TOKEN_SUBVIEW_SPACING,
+    marginRight: -TOKEN_SUBVIEW_SPACING,
+  },
   deleteIcon: {
-    marginLeft: TOKEN_SUBVIEW_SPACING,
     tintColor: colors.textDarkest,
     width: 12,
     height: 12,
