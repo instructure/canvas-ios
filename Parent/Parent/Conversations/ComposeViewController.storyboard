@@ -22,10 +22,10 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ucz-Xk-VcY">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="141.5"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="du7-pc-adf">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BVF-r0-wRL" customClass="ComposeRecipientsView" customModule="Parent" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="56" id="Ao6-5V-vif"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="zMo-r5-fqc"/>
                                                 </constraints>
                                             </view>
                                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="noy-Us-iAN" customClass="DividerView" customModule="Parent" customModuleProvider="target">
@@ -79,17 +79,17 @@
                                             <constraint firstItem="noy-Us-iAN" firstAttribute="leading" secondItem="Ucz-Xk-VcY" secondAttribute="leading" id="1Yf-QD-ld9"/>
                                             <constraint firstAttribute="trailing" secondItem="dz1-0x-wXN" secondAttribute="trailing" constant="16" id="AQS-26-FY9"/>
                                             <constraint firstAttribute="bottom" secondItem="oQx-YB-DID" secondAttribute="bottom" id="D4h-eO-WfQ"/>
-                                            <constraint firstItem="du7-pc-adf" firstAttribute="top" secondItem="Ucz-Xk-VcY" secondAttribute="top" id="P8V-rs-Lqh"/>
+                                            <constraint firstItem="BVF-r0-wRL" firstAttribute="leading" secondItem="Ucz-Xk-VcY" secondAttribute="leading" id="Iej-Ng-ZSm"/>
+                                            <constraint firstAttribute="trailing" secondItem="BVF-r0-wRL" secondAttribute="trailing" id="Rv2-fq-0sL"/>
                                             <constraint firstItem="oQx-YB-DID" firstAttribute="top" secondItem="rhy-5d-51p" secondAttribute="bottom" id="SYL-TY-o4E"/>
                                             <constraint firstItem="dz1-0x-wXN" firstAttribute="leading" secondItem="Ucz-Xk-VcY" secondAttribute="leading" constant="16" id="SfZ-Yf-5ra"/>
-                                            <constraint firstItem="du7-pc-adf" firstAttribute="leading" secondItem="Ucz-Xk-VcY" secondAttribute="leading" id="gP9-mH-NqT"/>
                                             <constraint firstAttribute="trailing" secondItem="oQx-YB-DID" secondAttribute="trailing" id="gQa-Et-Zkj"/>
+                                            <constraint firstItem="noy-Us-iAN" firstAttribute="top" secondItem="BVF-r0-wRL" secondAttribute="bottom" id="gTR-NL-E6M"/>
                                             <constraint firstAttribute="trailing" secondItem="noy-Us-iAN" secondAttribute="trailing" id="hN3-G4-G8x"/>
+                                            <constraint firstItem="BVF-r0-wRL" firstAttribute="top" secondItem="Ucz-Xk-VcY" secondAttribute="top" id="iIj-SE-kUo"/>
                                             <constraint firstItem="oQx-YB-DID" firstAttribute="leading" secondItem="Ucz-Xk-VcY" secondAttribute="leading" id="iw9-v4-Yth"/>
                                             <constraint firstItem="rhy-5d-51p" firstAttribute="top" secondItem="dz1-0x-wXN" secondAttribute="bottom" id="k43-j2-fOW"/>
-                                            <constraint firstAttribute="trailing" secondItem="du7-pc-adf" secondAttribute="trailing" id="kh2-GQ-U1V"/>
                                             <constraint firstItem="rhy-5d-51p" firstAttribute="leading" secondItem="Ucz-Xk-VcY" secondAttribute="leading" id="nh6-Rj-c3b"/>
-                                            <constraint firstItem="noy-Us-iAN" firstAttribute="top" secondItem="du7-pc-adf" secondAttribute="bottom" id="oHD-kD-ScW"/>
                                             <constraint firstItem="dz1-0x-wXN" firstAttribute="top" secondItem="noy-Us-iAN" secondAttribute="bottom" id="qSc-U9-XLs"/>
                                             <constraint firstAttribute="trailing" secondItem="rhy-5d-51p" secondAttribute="trailing" id="yaV-Df-GLj"/>
                                         </constraints>
@@ -121,6 +121,7 @@
                     <connections>
                         <outlet property="bodyView" destination="oQx-YB-DID" id="Eaz-7M-1OR"/>
                         <outlet property="keyboardSpace" destination="PAF-cT-hpl" id="yQV-Rt-BFj"/>
+                        <outlet property="recipientsView" destination="BVF-r0-wRL" id="M1K-5O-BuU"/>
                         <outlet property="scrollView" destination="Mok-pg-KkL" id="684-2P-Xfv"/>
                         <outlet property="subjectField" destination="dz1-0x-wXN" id="2y9-Ln-yGT"/>
                     </connections>

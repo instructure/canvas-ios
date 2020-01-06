@@ -154,6 +154,8 @@
 		7D14864A230B4CD5003944A2 /* AccountNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D148649230B4CD5003944A2 /* AccountNotifications.swift */; };
 		7D14864C230B4CEC003944A2 /* AccountNotificationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D14864B230B4CEC003944A2 /* AccountNotificationsTests.swift */; };
 		7D148651230EF6BA003944A2 /* RichContentToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D148650230EF6BA003944A2 /* RichContentToolbar.swift */; };
+		7D1591B823AD545D00ED0106 /* APIConversationRecipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1591B723AD545D00ED0106 /* APIConversationRecipient.swift */; };
+		7D1591BA23AD5C6000ED0106 /* APIConversationRecipientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1591B923AD5C6000ED0106 /* APIConversationRecipientTests.swift */; };
 		7D1758B42159898D00F88613 /* TitleSubtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1758B32159898C00F88613 /* TitleSubtitleView.swift */; };
 		7D1758B621598CA400F88613 /* TitleSubtitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D1758B521598CA400F88613 /* TitleSubtitleView.xib */; };
 		7D1758C1215A8F5600F88613 /* ListFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1758C0215A8F5600F88613 /* ListFormatter.swift */; };
@@ -1052,6 +1054,8 @@
 		7D148649230B4CD5003944A2 /* AccountNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotifications.swift; sourceTree = "<group>"; };
 		7D14864B230B4CEC003944A2 /* AccountNotificationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotificationsTests.swift; sourceTree = "<group>"; };
 		7D148650230EF6BA003944A2 /* RichContentToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentToolbar.swift; sourceTree = "<group>"; };
+		7D1591B723AD545D00ED0106 /* APIConversationRecipient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConversationRecipient.swift; sourceTree = "<group>"; };
+		7D1591B923AD5C6000ED0106 /* APIConversationRecipientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConversationRecipientTests.swift; sourceTree = "<group>"; };
 		7D1758B32159898C00F88613 /* TitleSubtitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubtitleView.swift; sourceTree = "<group>"; };
 		7D1758B521598CA400F88613 /* TitleSubtitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TitleSubtitleView.xib; sourceTree = "<group>"; };
 		7D1758C0215A8F5600F88613 /* ListFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFormatter.swift; sourceTree = "<group>"; };
@@ -2291,6 +2295,7 @@
 			isa = PBXGroup;
 			children = (
 				B1B140D723A04D1900EBF687 /* APIConversation.swift */,
+				7D1591B723AD545D00ED0106 /* APIConversationRecipient.swift */,
 				7DFDB43523A4587B00B28DED /* Conversation.swift */,
 				7DFDB43723A45A4A00B28DED /* ConversationMessage.swift */,
 				7DFDB43923A45A5A00B28DED /* ConversationParticipant.swift */,
@@ -2303,6 +2308,7 @@
 			isa = PBXGroup;
 			children = (
 				B1BF4AB123A17BD800F61ACD /* APIConversationTests.swift */,
+				7D1591B923AD5C6000ED0106 /* APIConversationRecipientTests.swift */,
 				7D26B84823A81E5700262380 /* ConversationTests.swift */,
 				7D26B84A23A8266800262380 /* ConversationMessageTests.swift */,
 				7D26B84C23A8267600262380 /* ConversationParticipantTests.swift */,
@@ -3756,6 +3762,7 @@
 				7DCE0C8A22AF040200BA549F /* QuizSubmission.swift in Sources */,
 				7DD752A121BEFA7C00E26260 /* LoginManualOAuthViewController.swift in Sources */,
 				3BA9FF7B2332B3BB00196A06 /* GradingPeriodUseCase.swift in Sources */,
+				7D1591B823AD545D00ED0106 /* APIConversationRecipient.swift in Sources */,
 				EE424B3222E8BBEF00D083EE /* GetFrontPage.swift in Sources */,
 				B1A6BC86218A5D07000515E3 /* LatePolicyInterval.swift in Sources */,
 				7D0215A921BB1762009A8E69 /* LoginStartViewController.swift in Sources */,
@@ -4188,6 +4195,7 @@
 				7DB0A1B821BF175E009ABB40 /* LoginFindSchoolViewControllerTests.swift in Sources */,
 				7D63F792215D8EEC00151E49 /* GetBrandVariablesTests.swift in Sources */,
 				EE424B3622E8E16D00D083EE /* GetPagesTests.swift in Sources */,
+				7D1591BA23AD5C6000ED0106 /* APIConversationRecipientTests.swift in Sources */,
 				3B35F071230EF1B100674FF5 /* APIPostPolicyRequestableTests.swift in Sources */,
 				7DCF2040216D5EF1003AF358 /* APIQuizTests.swift in Sources */,
 				3B158CBA22E25E3B0039A568 /* PageViewEventViewControllerLoggingProtocolTests.swift in Sources */,

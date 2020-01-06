@@ -44,7 +44,7 @@ public struct Route: Equatable {
         body: String? = nil,
         context: Context? = nil,
         observeeID: String? = nil,
-        recipientIDs: [String] = [],
+        recipients: [APIConversationRecipient] = [],
         subject: String? = nil
     ) -> Route {
         var compose = URLComponents()
@@ -59,8 +59,8 @@ public struct Route: Equatable {
         if let observeeID = observeeID {
             queryItems.append(URLQueryItem(name: "observeeID", value: observeeID))
         }
-        if !recipientIDs.isEmpty {
-            queryItems.append(URLQueryItem(name: "recipientIDs", value: recipientIDs.joined(separator: ",")))
+        if !recipients.isEmpty, let json = try? JSONEncoder().encode(recipients).base64EncodedString() {
+            queryItems.append(URLQueryItem(name: "recipients", value: json))
         }
         if let subject = subject {
             queryItems.append(URLQueryItem(name: "subject", value: subject))

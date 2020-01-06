@@ -93,7 +93,11 @@ class ConversationListViewController: UIViewController {
     }
 
     @IBAction func createNewConversation() {
+        #if DEBUG
+        env.router.route(to: .compose(recipients: [.make(), .make(name: "s")]), from: self, options: [.modal, .embedInNav])
+        #else
         env.router.route(to: .compose(), from: self, options: [.modal, .embedInNav])
+        #endif
     }
 }
 

@@ -23,6 +23,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
     weak var bodyMinHeight: NSLayoutConstraint!
     @IBOutlet weak var bodyView: UITextView!
     @IBOutlet weak var keyboardSpace: NSLayoutConstraint!
+    @IBOutlet weak var recipientsView: ComposeRecipientsView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var subjectField: UITextField!
 
@@ -35,7 +36,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
         body: String?,
         context: Context?,
         observeeID: String?,
-        recipientIDs: [String],
+        recipients: [APIConversationRecipient],
         subject: String?
     ) -> ComposeViewController {
         let controller = loadFromStoryboard()
@@ -43,7 +44,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
         controller.bodyView.text = body
         controller.context = context
         controller.observeeID = observeeID
-        // TODO: recipients
+        controller.recipientsView.recipients = recipients
         controller.subjectField.text = subject
         controller.textViewDidChange(controller.bodyView)
         return controller
