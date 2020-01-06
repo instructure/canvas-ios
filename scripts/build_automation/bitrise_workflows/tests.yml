@@ -26,10 +26,13 @@ workflows:
         - runner_bin: "/bin/zsh"
         - content: |-
             #!/bin/zsh
-            set -ex
+            set -exo pipefail
 
             if printf "%s\n" "$BITRISE_GIT_MESSAGE" | grep -iE "\[run.nightly\]"; then
                 envman add --key RUN_NIGHTLY --value YES
+            fi
+            if printf "%s\n" "$BITRISE_GIT_MESSAGE" | grep -iE "\[run.ipad.tests\]"; then
+                envman add --key RUN_IPAD_TESTS --value YES
             fi
     - build-router-start:
         title: Start nightly if requested
@@ -37,6 +40,12 @@ workflows:
         inputs:
         - access_token: "$BITRISE_CI_TOKEN"
         - workflows: nightly
+    - build-router-start:
+        title: Start iPad tests if requested
+        run_if: enveq "RUN_IPAD_TESTS" "YES"
+        inputs:
+        - access_token: "$BITRISE_CI_TOKEN"
+        - workflows: ipad-tests
     - build-router-start:
         title: Start sub-build
         inputs:
@@ -341,7 +350,9 @@ workflows:
         title: Run Nightly Tests
         inputs:
         - runner_bin: "/bin/zsh"
-        - content: ./scripts/run-nightly-tests.sh --all
+        - content: |-
+            set -euo pipefail
+            ./scripts/run-ui-tests.sh --all
     - script:
         title: Export failed tests for blame bot
         is_always_run: true
@@ -350,7 +361,7 @@ workflows:
         - runner_bin: "/bin/zsh"
         - content: |-
             set -euxo pipefail
-            envman add --key FINAL_FAILED_TESTS --value "$(cat nightly-xcresults/final-failed.txt)"
+            envman add --key FINAL_FAILED_TESTS --value "$(cat ui-test-results/final-failed.txt)"
             envman add --key BUILD_LINK --value "$BITRISE_BUILD_URL"
     - build-router-start:
         title: Release the blame bot
@@ -362,16 +373,17 @@ workflows:
         - environment_key_list: |-
             FINAL_FAILED_TESTS
             BUILD_LINK
-    - script:
+    - &save-xcresult
+      script:
         title: Save xcresult
         inputs:
         - runner_bin: "/bin/zsh"
-        - working_dir: "$BITRISE_SOURCE_DIR/nightly-xcresults"
+        - working_dir: "$BITRISE_SOURCE_DIR/ui-test-results"
         - content: |-
             #!/bin/zsh
             set -euxo pipefail
 
-            zip --quiet -r "$BITRISE_DEPLOY_DIR/nightly.xcresult.zip" merged.xcresult
+            zip --quiet -r "$BITRISE_DEPLOY_DIR/tests.xcresult.zip" merged.xcresult
         is_always_run: true
     - script:
         title: Report Coverage
@@ -384,7 +396,7 @@ workflows:
             set -ex
 
             rm -rf scripts/coverage/citests.xcresult
-            cp -r nightly-xcresults/merged.xcresult scripts/coverage/citests.xcresult
+            cp -r ui-test-results/merged.xcresult scripts/coverage/citests.xcresult
             yarn coverage
             zip --quiet -r "$BITRISE_DEPLOY_DIR/coverage.zip" scripts/coverage/citests
     - script:
@@ -396,7 +408,7 @@ workflows:
             #!/bin/zsh
             set -euo pipefail
 
-            ./scripts/build_automation/summarize-test-results.swift nightly-xcresults/merged.xcresult 2>/dev/null |
+            ./scripts/build_automation/summarize-test-results.swift ui-test-results/merged.xcresult 2>/dev/null |
                 jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' | gzip |
                 curl -q -X POST \
                     -H "Authorization: $SPLUNK_SECRET" \
@@ -440,3 +452,48 @@ workflows:
         title: blame
         inputs:
         - content: ./scripts/nightly-blame-bot.sh --relocate-before-execute
+
+  ipad-tests:
+    steps:
+    - github-status:
+        inputs:
+        - auth_token: $DANGER_GITHUB_API_TOKEN
+        - status_identifier: bitrise-ipad-tests
+        - commit_hash: $GIT_CLONE_COMMIT_HASH
+        - set_specific_status: pending
+    - *secrets
+    - cache-pull: {}
+    - *set-mtime
+    - *install-tools
+    - *fix-microphone
+    - *carthage
+    - *yarn-install-root
+    - *yarn-install
+    - *yarn-global-add-react-native-cli
+    - *cocoapods
+    - script:
+        title: iPad tests
+        inputs:
+        - content: |-
+            set -euo pipefail
+            SCHEME=IPadTests \
+            DEVICE_NAME='iPad Air (3rd generation)' \
+            ./scripts/run-ui-tests.sh --all
+    - *save-xcresult
+    - deploy-to-bitrise-io: {}
+    - github-status:
+        inputs:
+        - auth_token: $DANGER_GITHUB_API_TOKEN
+        - status_identifier: bitrise-ipad-tests
+        - commit_hash: $GIT_CLONE_COMMIT_HASH
+    - slack:
+        title: Send build result message to slack
+        run_if: enveq "BITRISE_GIT_BRANCH" "master"
+        inputs:
+        - pretext_on_error: "*iPad Tests Failed!*"
+        - webhook_url: "$SLACK_URL"
+        - channel: "#ios-bots"
+        - author_name: ''
+        - title: ''
+        - message: ''
+        - pretext: "*iPad Tests Succeeded!*"
