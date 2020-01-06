@@ -52,6 +52,7 @@ video.mp4
 fastlane/1
 bluepill/
 nightly-xcresults/
+ui-test-xcresults/
 cache-metadata/
 
 # rn

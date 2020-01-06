@@ -17,16 +17,30 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+# needed to run this script:
+# xcbeautify jq
+
+# brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
+# brew install xcbeautify jq
+
 set -euo pipefail
 
+
 function usage {
-    echo "Runs the nightly test, retrying failed ones."
+    echo "Runs a UI test suite, retrying failed ones."
     echo "usage:"
-    echo "  ./scripts/run-nightly-tests.sh --all"
-    echo "  ./scripts/run-nightly-tests.sh --only-testing testId ..."
-    echo "  ./scripts/run-nightly-tests.sh --help"
+    echo "  ./scripts/run-ui-tests.sh --all"
+    echo "  ./scripts/run-ui-tests.sh --only-testing testId ..."
+    echo "  ./scripts/run-ui-tests.sh --help"
+    echo
+    echo "optional env variables:"
+    echo '  SCHEME (default: "NightlyTests")'
+    echo '  DEVICE_NAME (default: "iPhone 8")'
     exit $1
 }
+
+SCHEME=${SCHEME:-NightlyTests}
+DEVICE_NAME=${DEVICE_NAME:-iPhone 8}
 
 only_testing=()
 needs_build=yes
@@ -52,12 +66,6 @@ case ${1-} in
         ;;
 esac
 
-# needed to run this script:
-# xcbeautify jq
-
-# brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
-# brew install xcbeautify jq
-
 function banner() (
     set +x
     local greenbold=$(export TERM=xterm-color; tput bold; tput setaf 2)
@@ -70,16 +78,16 @@ function banner() (
 mkdir -p tmp
 export NSUnbufferedIO=YES
 
-destination_flag=(-destination 'platform=iOS Simulator,name=iPhone 8')
+destination_flag=(-destination "platform=iOS Simulator,name=$DEVICE_NAME")
 
 if [[ $needs_build = yes ]]; then
-    banner "Building NightlyTests"
-    xcodebuild -workspace Canvas.xcworkspace -scheme NightlyTests $destination_flag build-for-testing 2>&1 | xcbeautify --quiet
+    banner "Building $SCHEME"
+    xcodebuild -workspace Canvas.xcworkspace -scheme $SCHEME $destination_flag build-for-testing 2>&1 | xcbeautify --quiet
 fi
 
-BUILD_DIR=$(xcodebuild -workspace Canvas.xcworkspace -scheme NightlyTests -showBuildSettings build-for-testing -json |
-                jq -r '.[] | select(.target == "CoreTests").buildSettings.BUILD_DIR')
-base_xctestrun=($BUILD_DIR/NightlyTests_NightlyTests_*.xctestrun)
+BUILD_DIR=$(xcodebuild -workspace Canvas.xcworkspace -scheme $SCHEME -showBuildSettings build-for-testing -json |
+                jq -r '.[] | select(.target == "StudentUITests").buildSettings.BUILD_DIR')
+base_xctestrun=(${BUILD_DIR}/${SCHEME}_${SCHEME}_*.xctestrun)
 xctestrun=$base_xctestrun.script_run
 cp $base_xctestrun $xctestrun
 config_name=$(/usr/libexec/PlistBuddy $base_xctestrun -c "print :TestConfigurations:0:Name")
@@ -105,7 +113,7 @@ all_passing_tests=()
 tests_passed_this_run=()
 tests_failed_this_run=()
 total_failures=0
-results_directory=nightly-xcresults
+results_directory=ui-test-results
 rm -rf $results_directory
 mkdir -p $results_directory
 
@@ -221,7 +229,7 @@ function retry {
     return $ret
 }
 
-xcrun simctl boot 'iPhone 8' || true
+xcrun simctl boot $DEVICE_NAME || true
 open -a $(xcode-select -p)/Applications/Simulator.app
 
 ret=0
