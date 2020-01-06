@@ -308,9 +308,10 @@ workflows:
     - github-status:
         inputs:
         - auth_token: $DANGER_GITHUB_API_TOKEN
-        - status_identifier: bitrise-nightly
+        - status_identifier: ci/bitrise/${BITRISE_APP_SLUG}/nightly
         - commit_hash: $GIT_CLONE_COMMIT_HASH
         - set_specific_status: pending
+        - description: "In progress - Nightly Tests"
     - &secrets
       git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
         title: Canvas iOS Secrets
@@ -408,8 +409,9 @@ workflows:
     - github-status:
         inputs:
         - auth_token: $DANGER_GITHUB_API_TOKEN
-        - status_identifier: bitrise-nightly
+        - status_identifier: ci/bitrise/${BITRISE_APP_SLUG}/nightly
         - commit_hash: $GIT_CLONE_COMMIT_HASH
+        - description: "Nightly Tests"
     - slack:
         title: Send build result message to slack
         run_if: enveq "BITRISE_GIT_BRANCH" "master"
