@@ -55,7 +55,7 @@ class DashboardTests: StudentUITestCase {
         }
     }
 
-    func testEditFavorites() {
+    func xtestEditFavorites() {
         mockBaseRequests()
 
         mockData(GetDashboardCardsRequest(), value: [card(2)])
