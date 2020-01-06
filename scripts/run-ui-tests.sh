@@ -82,7 +82,9 @@ destination_flag=(-destination "platform=iOS Simulator,name=$DEVICE_NAME")
 
 if [[ $needs_build = yes ]]; then
     banner "Building $SCHEME"
-    xcodebuild -workspace Canvas.xcworkspace -scheme $SCHEME $destination_flag build-for-testing 2>&1 | xcbeautify --quiet
+    xcodebuild -workspace Canvas.xcworkspace -scheme $SCHEME $destination_flag build-for-testing 2>&1 |
+        tee ${BITRISE_DEPLOY_DIR-$results_directory}/build.log |
+        xcbeautify --quiet
 fi
 
 BUILD_DIR=$(xcodebuild -workspace Canvas.xcworkspace -scheme $SCHEME -showBuildSettings build-for-testing -json |
