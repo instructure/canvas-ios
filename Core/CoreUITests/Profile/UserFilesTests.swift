@@ -47,7 +47,7 @@ class UserFilesTests: CoreUITestCase {
         let uploadExpectation = XCTestExpectation(description: "file was uploaded")
         let uploadTarget = FileUploadTarget.make()
 
-        mockURL(root.files_url) {
+        mockURL(root.files_url) { _ in
             app.find(label: "Uploading").waitToExist()
             uploadExpectation.fulfill()
             return (try? JSONEncoder().encode(uploadTarget))!

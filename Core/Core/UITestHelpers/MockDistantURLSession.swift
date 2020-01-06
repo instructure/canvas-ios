@@ -64,231 +64,178 @@ public class MockDistantURLSession: URLSession {
         mockConfiguration ?? super.configuration
     }
 
-    static let mockRequestLock = NSLock()
-    static func requestMock(_ url: URL, uploadData: Data? = nil) -> MockHTTPResponse {
+    static let mockRequestLock = NSRecursiveLock()
+    static func requestMock(_ request: URLRequest) -> MockHTTPResponse {
         mockRequestLock.lock()
         defer { mockRequestLock.unlock() }
-        guard let responseData = UITestHelpers.shared!.send(.urlRequest(url, uploadData: uploadData)),
+        guard let responseData = UITestHelpers.shared!.send(.urlRequest(request)),
             let mock = try? JSONDecoder().decode(MockHTTPResponse.self, from: responseData) else {
                 return MockHTTPResponse()
         }
         return mock
     }
 
+    func resume(task: MockSessionTask) {
+        var mock = MockDistantURLSession.requestMock(task.request)
+
+        task.taskData.response = mock.http
+        task.taskData.session = nil
+
+        if mock.noCallback { return }
+        switch task.completionHandler {
+        case .dataHandler(let dataHandler):
+            return dataHandler(mock.data, mock.http, mock.error)
+        case .urlHandler(let urlHandler):
+            return urlHandler(mock.dataSavedToTemporaryFileURL, mock.http, mock.error)
+        default: ()
+        }
+        if let dataSelf = task as? URLSessionDataTask,
+            let delegate = mockDelegate as? URLSessionDataDelegate,
+            let data = mock.data {
+            delegate.urlSession?(self, dataTask: dataSelf, didReceive: data)
+        }
+        if let delegate = mockDelegate as? URLSessionTaskDelegate {
+            delegate.urlSession?(self, task: task, didCompleteWithError: mock.error)
+        }
+        if let downloadSelf = task as? URLSessionDownloadTask,
+            let delegate = mockDelegate as? URLSessionDownloadDelegate,
+            let url = mock.dataSavedToTemporaryFileURL {
+            delegate.urlSession(self, downloadTask: downloadSelf, didFinishDownloadingTo: url)
+        }
+        mockDelegate?.urlSessionDidFinishEvents?(forBackgroundURLSession: self)
+    }
+
     // MARK: data
-    class MockDataTask: URLSessionDataTask {
-        let completionHandler: DataHandler?
-        weak var session: MockDistantURLSession?
-        let url: URL
+    private typealias MockDataTask = MockUploadTask
 
-        init(url: URL, session: MockDistantURLSession?, completionHandler: DataHandler?) {
-            self.completionHandler = completionHandler
-            self.session = session
-            self.url = url.withCanonicalQueryParams!
-        }
-
-        var _taskDescription: String?
-        override var taskDescription: String? {
-            get { _taskDescription }
-            set { _taskDescription = newValue }
-        }
-
-        var _taskIdentifier: Int = Int.random(in: Int.min...Int.max)
-        override var taskIdentifier: Int {
-            get { _taskIdentifier }
-            set { _taskIdentifier = newValue }
-        }
-
-        var _response: URLResponse?
-        public override var response: URLResponse? {
-            get { _response }
-            set { _response = newValue }
-        }
-
-        override func resume() {
-            let mock = requestMock(url)
-            _response = mock.http
-            guard let session = session else { return }
-            self.session = nil
-
-            if mock.noCallback { return }
-            if let completionHandler = completionHandler {
-                return completionHandler(mock.data, mock.http, mock.error)
-            }
-            if let delegate = session.mockDelegate as? URLSessionDataDelegate, let data = mock.data {
-                delegate.urlSession?(session, dataTask: self, didReceive: data)
-            }
-            if let delegate = session.mockDelegate as? URLSessionTaskDelegate {
-                delegate.urlSession?(session, task: self, didCompleteWithError: mock.error)
-            }
-            session.mockDelegate?.urlSessionDidFinishEvents?(forBackgroundURLSession: session)
-        }
-
-        override func cancel() {
-            self.session = nil
-        }
+    @objc public dynamic override func dataTask(with url: URL) -> URLSessionDataTask {
+        dataTask(with: URLRequest(url: url))
     }
     @objc public dynamic override func dataTask(with request: URLRequest) -> URLSessionDataTask {
-        dataTask(with: request.url!)
-    }
-    @objc public dynamic override func dataTask(with request: URLRequest, completionHandler: @escaping DataHandler) -> URLSessionDataTask {
-        dataTask(with: request.url!, completionHandler: completionHandler)
-    }
-    @objc public dynamic override func dataTask(with url: URL) -> URLSessionDataTask {
-        dataTask(with: url, completionHandler: { _, _, _ in })
+        dataTask(with: request, completionHandler: { _, _, _ in })
     }
     @objc public dynamic override func dataTask(with url: URL, completionHandler: @escaping DataHandler) -> URLSessionDataTask {
-        if url.scheme?.hasPrefix("http") != false {
-            return MockDataTask(url: url, session: self, completionHandler: completionHandler)
+        dataTask(with: URLRequest(url: url), completionHandler: completionHandler)
+    }
+    @objc public dynamic override func dataTask(with request: URLRequest, completionHandler: @escaping DataHandler) -> URLSessionDataTask {
+        if request.url?.scheme?.hasPrefix("http") != false {
+            return MockDataTask(request: request, session: self, completionHandler: completionHandler)
         } else {
-            return URLSession.shared.dataTask(with: url, completionHandler: completionHandler)
+            return URLSession.shared.dataTask(with: request, completionHandler: completionHandler)
         }
     }
 
-    class MockDownloadTask: URLSessionDownloadTask {
-        let completionHandler: URLHandler?
-        weak var session: MockDistantURLSession?
-        let url: URL
+    private class MockDownloadTask: URLSessionDownloadTask, MockSessionTask {
+        let taskData: MockSessionTaskData
 
-        init(url: URL, session: MockDistantURLSession?, completionHandler: URLHandler?) {
-            self.completionHandler = completionHandler
-            self.session = session
-            self.url = url.withCanonicalQueryParams!
+        required init(taskData: MockSessionTaskData) {
+            self.taskData = taskData
         }
 
-        var _taskDescription: String?
-        override var taskDescription: String? {
-            get { _taskDescription }
-            set { _taskDescription = newValue }
-        }
-
-        var _taskIdentifier: Int = Int.random(in: Int.min...Int.max)
-        override var taskIdentifier: Int {
-            get { _taskIdentifier }
-            set { _taskIdentifier = newValue }
-        }
-
-        var _response: URLResponse?
-        public override var response: URLResponse? {
-            get { _response }
-            set { _response = newValue }
-        }
-
-        override func resume() {
-            let mock = requestMock(url)
-            _response = mock.http
-            guard let session = session else { return }
-            self.session = nil
-
-            var url: URL?
-            if let data = mock.data {
-                url = URL.temporaryDirectory.appendingPathComponent(Foundation.UUID().uuidString, isDirectory: false)
-                try? data.write(to: url!)
-            }
-
-            if mock.noCallback { return }
-            if let completionHandler = completionHandler {
-                return completionHandler(url, mock.http, mock.error)
-            }
-            if let delegate = session.mockDelegate as? URLSessionDownloadDelegate, let url = url {
-                delegate.urlSession(session, downloadTask: self, didFinishDownloadingTo: url)
-            }
-            if let delegate = session.mockDelegate as? URLSessionTaskDelegate {
-                delegate.urlSession?(session, task: self, didCompleteWithError: mock.error)
-            }
-            session.mockDelegate?.urlSessionDidFinishEvents?(forBackgroundURLSession: session)
-        }
-
-        override func cancel() {
-            self.session = nil
-        }
+        override var taskIdentifier: Int { taskData.taskIdentifier }
+        override var response: URLResponse? { taskData.response }
+        override func resume() { session?.resume(task: self) }
+        override func cancel() { taskData.session = nil }
     }
+
     @objc public dynamic override func downloadTask(with request: URLRequest) -> URLSessionDownloadTask {
-        downloadTask(with: request.url!)
+        MockDownloadTask(request: request, session: self)
     }
     @objc public dynamic override func downloadTask(with request: URLRequest, completionHandler: @escaping URLHandler) -> URLSessionDownloadTask {
-        downloadTask(with: request.url!, completionHandler: completionHandler)
+        MockDownloadTask(request: request, session: self, completionHandler: completionHandler)
     }
     @objc public dynamic override func downloadTask(with url: URL) -> URLSessionDownloadTask {
-        MockDownloadTask(url: url, session: self, completionHandler: nil)
+        downloadTask(with: URLRequest(url: url))
     }
     @objc public dynamic override func downloadTask(with url: URL, completionHandler: @escaping URLHandler) -> URLSessionDownloadTask {
-        MockDownloadTask(url: url, session: self, completionHandler: completionHandler)
+        downloadTask(with: URLRequest(url: url), completionHandler: completionHandler)
     }
 
     // MARK: upload
-    class MockUploadTask: URLSessionUploadTask {
-        let bodyData: Data?
-        let completionHandler: DataHandler?
-        let fileURL: URL?
-        let request: URLRequest
-        weak var session: MockDistantURLSession?
-
-        init(bodyData: Data? = nil, fileURL: URL? = nil, request: URLRequest, session: MockDistantURLSession?, completionHandler: DataHandler?) {
-            self.bodyData = bodyData
-            self.completionHandler = completionHandler
-            self.fileURL = fileURL
-            self.request = request
-            self.session = session
+    private class MockUploadTask: URLSessionUploadTask, MockSessionTask {
+        let taskData: MockSessionTaskData
+        required init(taskData: MockSessionTaskData) {
+            self.taskData = taskData
         }
-
-        var _taskDescription: String?
-        override var taskDescription: String? {
-            get { _taskDescription }
-            set { _taskDescription = newValue }
-        }
-
-        var _taskIdentifier: Int = Int.random(in: Int.min...Int.max)
-        override var taskIdentifier: Int {
-            get { _taskIdentifier }
-            set { _taskIdentifier = newValue }
-        }
-
-        var _response: URLResponse?
-        public override var response: URLResponse? {
-            get { _response }
-            set { _response = newValue }
-        }
-
-        override func resume() {
-            let data = bodyData ?? fileURL.flatMap { try? Data(contentsOf: $0) }
-            guard let url = request.url else { return }
-            let mock = requestMock(url, uploadData: data)
-            _response = mock.http
-            guard let session = session else { return }
-            self.session = nil
-
-            if mock.noCallback { return }
-            if let completionHandler = completionHandler {
-                return completionHandler(mock.data, mock.http, mock.error)
-            }
-            if let delegate = session.mockDelegate as? URLSessionDataDelegate, let data = mock.data {
-                delegate.urlSession?(session, dataTask: self, didReceive: data)
-            }
-            if let delegate = session.mockDelegate as? URLSessionTaskDelegate {
-                delegate.urlSession?(session, task: self, didCompleteWithError: mock.error)
-            }
-            session.mockDelegate?.urlSessionDidFinishEvents?(forBackgroundURLSession: session)
-        }
-
-        override func cancel() {
-            self.session = nil
-        }
+        override var taskIdentifier: Int { taskData.taskIdentifier }
+        override var response: URLResponse? { taskData.response }
+        override func resume() { session?.resume(task: self) }
+        override func cancel() { taskData.session = nil }
     }
+
     @objc public dynamic override func uploadTask(with request: URLRequest, fromFile fileURL: URL) -> URLSessionUploadTask {
-        MockUploadTask(fileURL: fileURL, request: request, session: self, completionHandler: nil)
+        var newRequest = request
+        newRequest.httpBody = (try? Data(contentsOf: fileURL))!
+        return MockUploadTask(request: newRequest, session: self)
     }
     @objc public dynamic override func uploadTask(with request: URLRequest, fromFile fileURL: URL, completionHandler: @escaping DataHandler) -> URLSessionUploadTask {
-        MockUploadTask(fileURL: fileURL, request: request, session: self, completionHandler: completionHandler)
+        var newRequest = request
+        newRequest.httpBody = (try? Data(contentsOf: fileURL))!
+        return MockUploadTask(request: request, session: self, completionHandler: completionHandler)
     }
     @objc public dynamic override func uploadTask(with request: URLRequest, from bodyData: Data?) -> URLSessionUploadTask {
-        MockUploadTask(bodyData: bodyData, request: request, session: self, completionHandler: nil)
+        var newRequest = request
+        newRequest.httpBody = bodyData
+        return MockUploadTask(request: newRequest, session: self)
     }
     @objc public dynamic override func uploadTask(with request: URLRequest, from bodyData: Data?, completionHandler: @escaping DataHandler) -> URLSessionUploadTask {
-        MockUploadTask(bodyData: bodyData, request: request, session: self, completionHandler: completionHandler)
+        var newRequest = request
+        newRequest.httpBody = bodyData
+        return MockUploadTask(request: newRequest, session: self, completionHandler: completionHandler)
     }
 
     @objc public dynamic override func finishTasksAndInvalidate() {}
+}
+
+enum AnyHandler {
+    case dataHandler(MockDistantURLSession.DataHandler)
+    case urlHandler(MockDistantURLSession.URLHandler)
+}
+
+class MockSessionTaskData {
+    let completionHandler: AnyHandler?
+    weak var session: MockDistantURLSession?
+    private(set) var request: URLRequest
+
+    init(request: URLRequest, session: MockDistantURLSession?, completionHandler: AnyHandler?) {
+        self.completionHandler = completionHandler
+        self.session = session
+        self.request = request
+        self.request.url = request.url?.withCanonicalQueryParams
+    }
+    var taskIdentifier: Int = Int.random(in: Int.min...Int.max)
+    var response: URLResponse?
+}
+
+protocol MockSessionTask: URLSessionTask {
+    var taskData: MockSessionTaskData { get }
+    init(taskData: MockSessionTaskData)
+}
+
+extension MockSessionTask {
+    init(request: URLRequest, session: MockDistantURLSession?, completionHandler: MockDistantURLSession.DataHandler?) {
+        var canonicalRequest = request
+        canonicalRequest.url = request.url?.withCanonicalQueryParams
+        self.init(taskData: MockSessionTaskData(
+            request: canonicalRequest,
+            session: session,
+            completionHandler: completionHandler.map { .dataHandler($0) }
+        ))
+    }
+
+    init(request: URLRequest, session: MockDistantURLSession?, completionHandler: MockDistantURLSession.URLHandler? = nil) {
+        var canonicalRequest = request
+        canonicalRequest.url = request.url?.withCanonicalQueryParams
+        self.init(taskData: MockSessionTaskData(
+            request: canonicalRequest,
+            session: session,
+            completionHandler: completionHandler.map { .urlHandler($0) }
+        ))
+    }
+
+    var request: URLRequest { taskData.request }
+    var session: MockDistantURLSession? { taskData.session }
+    var completionHandler: AnyHandler? { taskData.completionHandler }
 }
 
 #endif
