@@ -50,4 +50,18 @@ class CourseDetailsViewControllerTests: ParentTestCase {
 
         XCTAssertTrue(router.lastRoutedTo(.compose()))
     }
+
+    func testRenderWithExperimentalFeaturesOff() {
+        ExperimentalFeature.parentInbox.isEnabled = false
+
+        api.mock( GetCourseRequest(courseID: courseID), value: .make() )
+        api.mock(GetFrontPageRequest(context: ContextModel(.course, id: courseID)), value: APIPage.make())
+
+        vc.view.layoutIfNeeded()
+        vc.viewDidLoad()
+        vc.viewWillAppear(false)
+        vc.viewDidAppear(false)
+
+        XCTAssertNil(vc.replyButton)
+    }
 }
