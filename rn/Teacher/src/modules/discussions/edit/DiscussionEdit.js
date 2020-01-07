@@ -123,14 +123,14 @@ export class DiscussionEdit extends Component<Props, any> {
       title: props.title,
       message: props.message,
       published: props.published,
-      discussion_type: props.discussion_type || 'side_comment',
+      discussion_type: props.discussion_type ?? 'side_comment',
       subscribed: props.subscribed,
       require_initial_post: props.require_initial_post,
       lock_at: props.lock_at,
       delayed_post_at: props.delayed_post_at,
       assignment: props.assignment,
-      points_possible: assignment ? assignment.points_possible : null,
-      grading_type: assignment ? assignment.grading_type : 'points',
+      points_possible: assignment?.points_possible,
+      grading_type: assignment?.grading_type ?? 'points',
       can_unpublish: props.can_unpublish == null || props.can_unpublish,
       gradingTypePickerShown: false,
       showingDatePicker: {
@@ -182,7 +182,7 @@ export class DiscussionEdit extends Component<Props, any> {
         title: props.title,
         message: props.message,
         published: props.published,
-        discussion_type: props.discussion_type || 'side_comment',
+        discussion_type: props.discussion_type ?? 'side_comment',
         subscribed: props.subscribed,
         require_initial_post: props.require_initial_post,
         lock_at: props.lock_at,
@@ -316,7 +316,7 @@ export class DiscussionEdit extends Component<Props, any> {
                   inputWidth={200}
                   onChangeText={this._valueChanged('points_possible')}
                   keyboardType='number-pad'
-                  defaultValue={(this.state.points_possible && String(this.state.points_possible)) || '0'}
+                  defaultValue={String(this.state.points_possible ?? 0)}
                   onFocus={this._scrollToInput}
                   testID='DiscussionEdit.pointsField'
                 />

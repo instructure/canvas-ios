@@ -237,7 +237,7 @@ export class DiscussionDetails extends Component<Props, any> {
   }
 
   renderDetails = (discussion: Discussion) => {
-    const showReplies = discussion.replies && discussion.replies.length > 0
+    const showReplies = discussion.replies?.length > 0
     const points = this._points(discussion)
     let user = discussion.author
     const hasValidDate = discussion.delayed_post_at || discussion.posted_at
@@ -245,15 +245,14 @@ export class DiscussionDetails extends Component<Props, any> {
     const sections = discussion.sections || []
     const showGroupTopicChildren = isTeacher() &&
       this.props.context === 'courses' &&
-      discussion.group_topic_children &&
-      discussion.group_topic_children.length > 0
+      discussion.group_topic_children?.length > 0
     return (
       <View>
         <AssignmentSection isFirstRow={true} style={style.topContainer}>
-          <Heading1 testID='DiscussionDetails.titleLabel'>{discussion.title || i18n('No Title')}</Heading1>
+          <Heading1 testID='DiscussionDetails.titleLabel'>{discussion.title ?? i18n('No Title')}</Heading1>
           { !this.props.isAnnouncement &&
             <View style={style.pointsContainer}>
-              {Boolean(points) && <Text style={style.points}>{points}</Text>}
+              {Boolean(points) && <Text testID='DiscussionDetails.pointsLabel' style={style.points}>{points}</Text>}
               {isTeacher() && <PublishedIcon published={discussion.published} />}
             </View>
           }
@@ -272,6 +271,7 @@ export class DiscussionDetails extends Component<Props, any> {
             image={Images.assignments.calendar}
             showDisclosureIndicator={true}
             onPress={this.viewDueDateDetails}
+            testID='DiscussionDetails.dueDates'
           >
             <AssignmentDates assignment={this.props.assignment} />
           </AssignmentSection>
@@ -295,7 +295,7 @@ export class DiscussionDetails extends Component<Props, any> {
 
         <View style={style.section} >
           <View style={style.authorContainer}>
-            { user && user.display_name &&
+            { user?.display_name &&
               <Avatar
                 testID='DiscussionDetails.avatar'
                 height={32}
@@ -307,17 +307,18 @@ export class DiscussionDetails extends Component<Props, any> {
               />
             }
             <View style={[style.authorInfoContainer, { marginLeft: (user && user.display_name) ? vars.padding : 0 }]}>
-              { user && user.display_name && <Text style={style.authorName}>{user.display_name}</Text> }
+              { user?.display_name && <Text style={style.authorName}>{user.display_name}</Text> }
               { hasValidDate && <Text style={style.authorDate} testID='DiscussionDetails.postDateLabel'>{i18n("{ date, date, 'MMM d'} at { date, time, short }", { date })}</Text> }
             </View>
           </View>
 
           <CanvasWebView
             style={{ flex: 1, marginHorizontal: -vars.padding, minHeight: vars.padding }}
-            automaticallySetHeight html={discussion.message || ''}
+            automaticallySetHeight
+            html={discussion.message ?? ''}
             navigator={this.props.navigator}
           />
-          { Boolean(discussion.attachments) && discussion.attachments && discussion.attachments.length === 1 &&
+          { discussion.attachments?.length === 1 &&
             // should only ever have 1, blocked by UI, but API returns array of 1 :facepalm:
             <TouchableOpacity
               testID='DiscussionDetails.attachmentButton'
@@ -366,7 +367,7 @@ export class DiscussionDetails extends Component<Props, any> {
 
         { showReplies && this.state.rootNodePath.length === 0 &&
           <AssignmentSection style={{ paddingBottom: 0 }}>
-            <Heading1>{i18n('Replies')}</Heading1>
+            <Heading1 testID='DiscussionDetails.repliesHeading'>{i18n('Replies')}</Heading1>
           </AssignmentSection>
         }
 
@@ -387,7 +388,7 @@ export class DiscussionDetails extends Component<Props, any> {
     if (this.state.rootNodePath.length !== 0) {
       return (
         <AssignmentSection style={{ paddingBottom: 0 }}>
-          <TouchableHighlight testID={`discussion.popToLastDiscussionList`}
+          <TouchableHighlight testID='discussion.popToLastDiscussionList'
             accessibilityLabel={i18n('Back to replies')}
             accessible={true}
             accessibilityTraits={['button']}
@@ -424,7 +425,6 @@ export class DiscussionDetails extends Component<Props, any> {
           readState={reply.readState}
           depth={reply.depth}
           myPath={path}
-          // $FlowFixMe
           participants={participants}
           onPressMoreReplies={this._onPressMoreReplies}
           isRootReply
