@@ -36,25 +36,24 @@ describe('CourseInvite', () => {
     const tree = shallow(
       <CourseInvite {...defaults} />
     )
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('[children="You have been invited"]').exists()).toBe(true)
   })
 
-  it('renders invite with course section', () => {
-    const props = {
-      ...defaults,
-      sectionName: defaults.courseName,
-    }
+  it('renders invite without course section', () => {
     const tree = shallow(
-      <CourseInvite {...props} />
+      <CourseInvite {...defaults} sectionName={defaults.courseName} />
     )
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('[children="Coolest Course"]').exists()).toBe(true)
   })
 
   it('renders hidden', () => {
     const tree = shallow(
-      <CourseInvite {...defaults} hidden={true} />
+      <CourseInvite
+        {...defaults}
+        invite={enrollment({ hidden: true })}
+      />
     )
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('[children="You have been invited"]').exists()).toBe(false)
   })
 
   it('renders action taken -- accept', () => {
@@ -65,7 +64,8 @@ describe('CourseInvite', () => {
     const tree = shallow(
       <CourseInvite {...props} />
     )
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('[children="Invite accepted!"]').exists()).toBe(true)
+    expect(tree.find('[accessibilityLabel="Dismiss invitation to Coolest Course"]').exists()).toBe(true)
   })
 
   it('renders action taken -- reject', () => {
@@ -76,29 +76,8 @@ describe('CourseInvite', () => {
     const tree = shallow(
       <CourseInvite {...props} />
     )
-    expect(tree).toMatchSnapshot()
-  })
-
-  it('renders displayState acted -- accept', () => {
-    let props = {
-      ...defaults,
-      invite: enrollment({ id: '1', course_id: '2', enrollment_state: 'active', displayState: 'acted' }),
-    }
-    const tree = shallow(
-      <CourseInvite {...props} />
-    )
-    expect(tree).toMatchSnapshot()
-  })
-
-  it('renders displayState acted -- reject', () => {
-    let props = {
-      ...defaults,
-      invite: enrollment({ id: '1', course_id: '2', enrollment_state: 'rejected', displayState: 'acted' }),
-    }
-    const tree = shallow(
-      <CourseInvite {...props} />
-    )
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('[children="Invite declined!"]').exists()).toBe(true)
+    expect(tree.find('[accessibilityLabel="Dismiss invitation to Coolest Course"]').exists()).toBe(true)
   })
 
   it('can accept', () => {
@@ -135,6 +114,6 @@ describe('CourseInvite', () => {
       <CourseInvite {...props} />
     )
     tree.find('[testID="CourseInvitation.1.dismissButton"]').simulate('Press')
-    expect(tree).toMatchSnapshot()
+    expect(props.hideInvite).toHaveBeenCalledWith('1')
   })
 })
