@@ -60,15 +60,15 @@ public class ProfilePresenter {
 
         if enrollment == .observer {
             if ExperimentalFeature.parentInbox.isEnabled {
-                cells.append(ProfileViewCell("inbox", type: .badge(unreadCount), name: NSLocalizedString("Inbox", comment: "")) { [weak self] _ in
+                cells.append(ProfileViewCell("inbox", type: .badge(unreadCount), name: NSLocalizedString("Inbox", bundle: .core, comment: "")) { [weak self] _ in
                     self?.view?.route(to: .conversations, options: nil)
                 })
             }
-            cells.append(ProfileViewCell("manageChildren", name: NSLocalizedString("Manage Children", comment: "")) { [weak self] _ in
+            cells.append(ProfileViewCell("manageChildren", name: NSLocalizedString("Manage Children", bundle: .core, comment: "")) { [weak self] _ in
                 self?.view?.route(to: .profileObservees, options: nil)
             })
         } else {
-            cells.append(ProfileViewCell("files", name: NSLocalizedString("Files", comment: "")) { [weak self] _ in
+            cells.append(ProfileViewCell("files", name: NSLocalizedString("Files", bundle: .core, comment: "")) { [weak self] _ in
                 self?.view?.route(to: .files(), options: nil)
             })
             for tool in tools {
@@ -80,7 +80,7 @@ public class ProfilePresenter {
 
         if enrollment == .student {
             let showGrades = env.userDefaults?.showGradesOnDashboard == true
-            cells.append(ProfileViewCell("showGrades", type: .toggle(showGrades), name: NSLocalizedString("Show Grades", comment: "")) { [weak self] cell in
+            cells.append(ProfileViewCell("showGrades", type: .toggle(showGrades), name: NSLocalizedString("Show Grades", bundle: .core, comment: "")) { [weak self] cell in
                 let showGrades = (cell.accessoryView as? UISwitch)?.isOn == true
                 self?.env.userDefaults?.showGradesOnDashboard = showGrades
                 NotificationCenter.default.post(name: NSNotification.Name("redux-action"), object: nil, userInfo: [
@@ -92,7 +92,7 @@ public class ProfilePresenter {
 
         if enrollment == .student || enrollment == .teacher {
             let colorOverlay = settings.first?.hideDashcardColorOverlays != true
-            cells.append(ProfileViewCell("colorOverlay", type: .toggle(colorOverlay), name: NSLocalizedString("Color Overlay", comment: "")) { cell in
+            cells.append(ProfileViewCell("colorOverlay", type: .toggle(colorOverlay), name: NSLocalizedString("Color Overlay", bundle: .core, comment: "")) { cell in
                 let colorOverlay = (cell.accessoryView as? UISwitch)?.isOn == true
                 NotificationCenter.default.post(name: NSNotification.Name("redux-action"), object: nil, userInfo: [
                     "type": "userInfo.updateUserSettings",
@@ -116,30 +116,30 @@ public class ProfilePresenter {
             })
         }
         if enrollment == .student || enrollment == .teacher {
-            cells.append(ProfileViewCell("settings", name: NSLocalizedString("Settings", comment: "")) { [weak self] _ in
+            cells.append(ProfileViewCell("settings", name: NSLocalizedString("Settings", bundle: .core, comment: "")) { [weak self] _ in
                 self?.view?.route(to: .profileSettings, options: [.modal, .embedInNav, .formSheet, .addDoneButton])
             })
         }
         if canActAsUser {
-            cells.append(ProfileViewCell("actAsUser", name: NSLocalizedString("Act as User", comment: "")) { [weak self] _ in
+            cells.append(ProfileViewCell("actAsUser", name: NSLocalizedString("Act as User", bundle: .core, comment: "")) { [weak self] _ in
                 self?.view?.route(to: .actAsUser, options: [.modal, .embedInNav])
             })
         }
-        cells.append(ProfileViewCell("changeUser", name: NSLocalizedString("Change User", comment: "")) { [weak self] _ in
+        cells.append(ProfileViewCell("changeUser", name: NSLocalizedString("Change User", bundle: .core, comment: "")) { [weak self] _ in
             guard let delegate = self?.env.loginDelegate else { return }
             self?.view?.dismiss(animated: true, completion: {
                 delegate.changeUser()
             })
         })
         if env.currentSession?.actAsUserID != nil {
-            cells.append(ProfileViewCell("logOut", name: NSLocalizedString("Stop Act as User", comment: "")) { [weak self] _ in
+            cells.append(ProfileViewCell("logOut", name: NSLocalizedString("Stop Act as User", bundle: .core, comment: "")) { [weak self] _ in
                 guard let session = self?.env.currentSession else { return }
                 self?.view?.dismiss(animated: true, completion: {
                     self?.env.loginDelegate?.stopActing(as: session)
                 })
             })
         } else {
-            cells.append(ProfileViewCell("logOut", name: NSLocalizedString("Log Out", comment: "")) { [weak self] _ in
+            cells.append(ProfileViewCell("logOut", name: NSLocalizedString("Log Out", bundle: .core, comment: "")) { [weak self] _ in
                 guard let session = self?.env.currentSession else { return }
                 self?.view?.dismiss(animated: true, completion: {
                     self?.env.loginDelegate?.userDidLogout(session: session)
@@ -147,7 +147,7 @@ public class ProfilePresenter {
             })
         }
         if showDevMenu {
-            cells.append(ProfileViewCell("developerMenu", name: NSLocalizedString("Developer Menu", comment: "")) { [weak self] _ in
+            cells.append(ProfileViewCell("developerMenu", name: NSLocalizedString("Developer Menu", bundle: .core, comment: "")) { [weak self] _ in
                 self?.view?.route(to: .developerMenu, options: [.modal, .embedInNav])
             })
         }
