@@ -166,7 +166,7 @@ open class CoreWebView: WKWebView {
             document.querySelectorAll('iframe').forEach(iframe => {
                 const replace = iframe => {
                     const a = document.createElement('a')
-                    a.textContent = '\(buttonText)'
+                    a.textContent = \(CoreWebView.jsString(buttonText))
                     a.classList.add('canvas-ios-lti-launch-button')
                     a.href = iframe.src
                     iframe.parentNode.replaceChild(a, iframe)
