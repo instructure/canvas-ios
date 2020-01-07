@@ -124,6 +124,7 @@
 		78AD913321C8184F0075FBCF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AD913221C8184F0075FBCF /* GoogleService-Info.plist */; };
 		7D111CFF23A2DDD100C912C0 /* ConversationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D111CFE23A2DDD100C912C0 /* ConversationListViewController.swift */; };
 		7D111D0123A2DDDF00C912C0 /* ConversationListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D111D0023A2DDDF00C912C0 /* ConversationListViewController.storyboard */; };
+		7D1591BC23AD79B100ED0106 /* ComposeRecipientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1591BB23AD79B100ED0106 /* ComposeRecipientsView.swift */; };
 		7D231BE123AC1E0A005BA31D /* ComposeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D231BE023AC1E0A005BA31D /* ComposeViewControllerTests.swift */; };
 		7D52D8A122FCC89F00684932 /* DiscussionTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D322048745B00F6EDCE /* DiscussionTopic.swift */; };
 		7D52D8A222FCC89F00684932 /* DiscussionTopic+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D332048745B00F6EDCE /* DiscussionTopic+Network.swift */; };
@@ -756,6 +757,7 @@
 		7D0215A421BAE863009A8E69 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D111CFE23A2DDD100C912C0 /* ConversationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListViewController.swift; sourceTree = "<group>"; };
 		7D111D0023A2DDDF00C912C0 /* ConversationListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConversationListViewController.storyboard; sourceTree = "<group>"; };
+		7D1591BB23AD79B100ED0106 /* ComposeRecipientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeRecipientsView.swift; sourceTree = "<group>"; };
 		7D231BE023AC1E0A005BA31D /* ComposeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewControllerTests.swift; sourceTree = "<group>"; };
 		7D349C7D21430D98004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349C7E21430D98004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
@@ -1306,6 +1308,7 @@
 		7D111CFD23A2DDAD00C912C0 /* Conversations */ = {
 			isa = PBXGroup;
 			children = (
+				7D1591BB23AD79B100ED0106 /* ComposeRecipientsView.swift */,
 				7D57D3CD23AADAAC00EB2CC5 /* ComposeViewController.storyboard */,
 				7D57D3CB23AADA0F00EB2CC5 /* ComposeViewController.swift */,
 				974BA7F823A89C5C00E09D5A /* ConversationDetailViewController.storyboard */,
@@ -1786,6 +1789,7 @@
 				5EF946271CACD91B00D10247 /* TokenLabelView.swift in Sources */,
 				6182D3B91D91D7EF00D516D5 /* DetailsAttachmentCell.swift in Sources */,
 				615300121C86422E002529CF /* DetailsDateCell.swift in Sources */,
+				7D1591BC23AD79B100ED0106 /* ComposeRecipientsView.swift in Sources */,
 				7893BDFD20D1A83F00231DF7 /* AdminViewController.swift in Sources */,
 				6196FC3A1CA1A47D0032B8EF /* EventDetailsViewModel.swift in Sources */,
 			);

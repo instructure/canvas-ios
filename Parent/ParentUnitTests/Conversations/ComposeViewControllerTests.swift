@@ -26,7 +26,7 @@ class ComposeViewControllerTests: ParentTestCase {
         body: "body",
         context: ContextModel(.course, id: "1"),
         observeeID: "2",
-        recipientIDs: [ "3" ],
+        recipients: [ .make() ],
         subject: "subject"
     )
 
