@@ -58,5 +58,10 @@ class TextAnswerCell: UITableViewCell {
 extension TextAnswerCell: SelectableAnswerCell {
     func configureForState(selected: Bool) {
         selectionStatusImageView.isHidden = !selected
+        if selected {
+            accessibilityTraits.insert(.selected)
+        } else {
+            accessibilityTraits.remove(.selected)
+        }
     }
 }
