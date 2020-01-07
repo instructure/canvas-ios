@@ -86,10 +86,7 @@ export default class CourseInvite extends React.Component<Props> {
   render () {
     const { style, courseName, invite } = this.props
     if (invite.hidden) return null
-    let acceptedOrRejected = null
-    if (invite.displayState === 'acted') {
-      acceptedOrRejected = invite.enrollment_state === 'active' ? i18n('Invite accepted!') : i18n('Invite declined!')
-    }
+    let acceptedOrRejected = invite.enrollment_state === 'active' ? i18n('Invite accepted!') : i18n('Invite declined!')
     return (
       <DashboardContent
         style={style}
@@ -102,7 +99,7 @@ export default class CourseInvite extends React.Component<Props> {
           </View>
           { invite.displayState === 'acted' ? (
             <View style={styles.inviteDetails} testID={`CourseInvitation.${invite.id}.acted`}>
-              <Text style={styles.title}>{acceptedOrRejected}</Text>
+              <Text style={styles.acted}>{acceptedOrRejected}</Text>
             </View>
           ) : (
             <View style={styles.inviteDetails}>
@@ -176,6 +173,12 @@ const styles = createStyleSheet((colors, vars) => ({
     marginBottom: 0,
     marginTop: 8,
   },
+  acted: {
+    fontWeight: '600',
+    fontSize: 18,
+    margin: 12,
+    marginVertical: 13,
+  },
   names: {
     marginHorizontal: 12,
     marginBottom: 4,
@@ -210,7 +213,7 @@ const styles = createStyleSheet((colors, vars) => ({
   action: {
     position: 'absolute',
     right: 0,
-    top: 0,
+    top: 4,
     padding: 12,
   },
   dismissIcon: {
