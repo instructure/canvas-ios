@@ -103,7 +103,17 @@ describe('courses refresher', () => {
     }).refreshCourses()
 
     let state = await testAsyncReducer(coursesReducer, action)
-    expect(state).toMatchSnapshot()
+    expect(state).toMatchObject([
+      {}, {
+      '1': {
+        color: '#fff',
+        course: course,
+      },
+      '991': {
+        color: '#aaa',
+        course: nonTeacherCourse,
+      }
+    }])
   })
 
   it('refresh courses with error', async () => {
@@ -112,6 +122,27 @@ describe('courses refresher', () => {
 
     // the courses store doesn't track errors or pending
     expect(state).toEqual([{}, {}])
+  })
+
+  it('overwrites old course data', async () => {
+    let action = {
+      type: CoursesActions().refreshCourses.toString(),
+      payload: {
+        result: [{
+          data: [templates.course()],
+        }, {
+          data: templates.customColors()
+        }],
+      },
+    }
+
+    let state = {
+      '1': {
+        course: templates.course({ an_optional_field_that_might_not_be_there: true })
+      }
+    }
+    let newState = coursesReducer(state, action)
+    expect(newState['1'].course.an_optional_field_that_might_not_be_there).toBeUndefined()
   })
 })
 

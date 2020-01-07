@@ -114,7 +114,8 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
       const colors = groupCustomColors(colorsResponse.data).custom_colors.course
       const courses = coursesResponse.data
       const newStates = courses.map((course) => {
-        return [course.id, normalizeCourse(course, colors, state[course.id])]
+        let oldState = state[course.id] ?? emptyCourseState
+        return [course.id, normalizeCourse(course, colors, { ...oldState, course: {} })]
       })
       return fromPairs(newStates)
     },
