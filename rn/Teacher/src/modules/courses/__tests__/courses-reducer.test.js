@@ -105,15 +105,15 @@ describe('courses refresher', () => {
     let state = await testAsyncReducer(coursesReducer, action)
     expect(state).toMatchObject([
       {}, {
-      '1': {
-        color: '#fff',
-        course: course,
-      },
-      '991': {
-        color: '#aaa',
-        course: nonTeacherCourse,
-      }
-    }])
+        '1': {
+          color: '#fff',
+          course: course,
+        },
+        '991': {
+          color: '#aaa',
+          course: nonTeacherCourse,
+        },
+      }])
   })
 
   it('refresh courses with error', async () => {
@@ -131,15 +131,15 @@ describe('courses refresher', () => {
         result: [{
           data: [templates.course()],
         }, {
-          data: templates.customColors()
+          data: templates.customColors(),
         }],
       },
     }
 
     let state = {
       '1': {
-        course: templates.course({ an_optional_field_that_might_not_be_there: true })
-      }
+        course: templates.course({ an_optional_field_that_might_not_be_there: true }),
+      },
     }
     let newState = coursesReducer(state, action)
     expect(newState['1'].course.an_optional_field_that_might_not_be_there).toBeUndefined()
