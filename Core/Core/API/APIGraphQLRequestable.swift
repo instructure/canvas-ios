@@ -20,10 +20,12 @@ import Foundation
 
 public struct GraphQLBody: Codable, Equatable {
     let query: String
+    let operationName: String
 }
 
 protocol APIGraphQLRequestable: APIRequestable {
     var query: String? { get }
+    var operationName: String { get }
 }
 
 extension APIGraphQLRequestable {
@@ -36,7 +38,7 @@ extension APIGraphQLRequestable {
 
     public var body: GraphQLBody? {
         if let query = query {
-            return GraphQLBody(query: query)
+            return GraphQLBody(query: query, operationName: operationName)
         }
         return nil
     }

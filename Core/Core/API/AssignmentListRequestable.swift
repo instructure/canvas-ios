@@ -35,6 +35,7 @@ public struct AssignmentListRequestable: APIGraphQLRequestable {
         self.pageSize = pageSize
     }
 
+    public let operationName = "AssignmentList"
     public var query: String? {
         //  `filter: {gradingPeriodId: null}` - will return all assignments regardless of grading period
         //  `filter: {gradingPeriodId: "<id>"}` - will return all assignments in grading period
@@ -51,7 +52,7 @@ public struct AssignmentListRequestable: APIGraphQLRequestable {
         }
 
         return """
-        {
+        query \(operationName) {
           course(id: "\(courseID)") {
             name
             gradingPeriods: gradingPeriodsConnection {

@@ -17,6 +17,7 @@ default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 format_version: '4'
 project_type: other
 workflows:
+
   danger:
     steps:
     - script:
@@ -25,72 +26,76 @@ workflows:
         - runner_bin: "/bin/zsh"
         - content: |-
             #!/bin/zsh
-            set -ex
+            set -exo pipefail
 
             if printf "%s\n" "$BITRISE_GIT_MESSAGE" | grep -iE "\[run.nightly\]"; then
                 envman add --key RUN_NIGHTLY --value YES
             fi
+            if printf "%s\n" "$BITRISE_GIT_MESSAGE" | grep -iE "\[run.ipad.tests\]"; then
+                envman add --key RUN_IPAD_TESTS --value YES
+            fi
     - build-router-start:
-        inputs:
-        - access_token: "$BITRISE_CI_TOKEN"
-        - workflows: danger-yarn
-    - set-env-var:
-        inputs:
-        - destination_keys: DANGER_YARN_SLUG
-        - value: "$ROUTER_STARTED_BUILD_SLUGS"
-
-    - build-router-start:
+        title: Start nightly if requested
         run_if: enveq "RUN_NIGHTLY" "YES"
         inputs:
         - access_token: "$BITRISE_CI_TOKEN"
         - workflows: nightly
-    - set-env-var:
-        run_if: enveq "RUN_NIGHTLY" "YES"
+    - build-router-start:
+        title: Start iPad tests if requested
+        run_if: enveq "RUN_IPAD_TESTS" "YES"
         inputs:
-        - destination_keys: NIGHTLY_SLUG
-        - value: "$ROUTER_STARTED_BUILD_SLUGS"
+        - access_token: "$BITRISE_CI_TOKEN"
+        - workflows: ipad-tests
+    - build-router-start:
+        title: Start sub-build
+        inputs:
+        - access_token: "$BITRISE_CI_TOKEN"
+        - workflows: danger-yarn
 
     - cache-pull: {}
-    - script-runner:
-        run_if: .IsCI
+    - &set-mtime
+      script-runner:
         title: Set file mtime
         inputs:
         - runner: "/bin/zsh"
         - file_path: scripts/build_automation/set-mtime.sh
-    - script:
-        title: brew tap
-        run_if: .IsCI
+    - &install-tools
+      script:
+        title: Install build tools
         inputs:
+        - runner_bin: "/bin/zsh"
         - content: |-
             #!/bin/zsh
             set -euxo pipefail
 
             brew tap mxcl/made
             brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
-    - brew-install:
-        title: brew install
-        run_if: .IsCI
-        inputs:
-        - upgrade: 'yes'
-        - packages: awscli swiftlint jq xcbeautify mxcl/made/swift-sh
-    - carthage:
+            brew reinstall swiftlint jq xcbeautify mxcl/made/swift-sh
+            pip install awscli
+    - &carthage
+      carthage:
         inputs:
         - carthage_options: "--platform ios"
-    - yarn:
+    - &yarn-install-root
+      yarn:
         title: yarn install root dependencies
-    - yarn:
+    - &yarn-install
+      yarn:
         inputs:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
         title: rn yarn install
-    - yarn:
+    - &yarn-global-add-react-native-cli
+      yarn:
         title: rn yarn global add react-native-cli
         inputs:
         - command: global add react-native-cli
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-    - cocoapods-install:
+    - &cocoapods
+      cocoapods-install:
         inputs:
         - verbose: 'false'
-    - script:
+    - &build-citests
+      script:
         title: Build CITests
         inputs:
         - runner_bin: "/bin/zsh"
@@ -109,7 +114,7 @@ workflows:
                 -configuration Debug \
                 build-for-testing |
                 tee $BITRISE_DEPLOY_DIR/raw-xcodebuild.log |
-                xcbeautify
+                xcbeautify --quiet
     - script:
         title: Run CITests
         inputs:
@@ -140,7 +145,6 @@ workflows:
         title: Wait for danger-yarn sub-build to succeed
         inputs:
         - access_token: "$BITRISE_CI_TOKEN"
-        - buildslugs: "$DANGER_YARN_SLUG"
     - script:
         title: Get danger-yarn results
         is_always_run: true
@@ -150,18 +154,18 @@ workflows:
             #!/bin/zsh
             set -euxo pipefail
 
-            ARTIFACT_SLUG=$(curl -H "Authorization: $BITRISE_CI_TOKEN" \
-                "https://api.bitrise.io/v0.1/apps/${BITRISE_APP_SLUG}/builds/${DANGER_YARN_SLUG}/artifacts" |
+            API="https://api.bitrise.io/v0.1/apps/${BITRISE_APP_SLUG}/builds/${ROUTER_STARTED_BUILD_SLUGS}"
+
+            ARTIFACT_SLUG=$(curl -H "Authorization: $BITRISE_CI_TOKEN" "$API/artifacts" |
                 jq -r '.data[] | select(.title == "results.tar.xz").slug')
-            ARTIFACT_URL=$(curl -H "Authorization: $BITRISE_CI_TOKEN" \
-                "https://api.bitrise.io/v0.1/apps/${BITRISE_APP_SLUG}/builds/${DANGER_YARN_SLUG}/artifacts/${ARTIFACT_SLUG}" |
+            ARTIFACT_URL=$(curl -H "Authorization: $BITRISE_CI_TOKEN" "$API/artifacts/${ARTIFACT_SLUG}" |
                 jq -r '.data.expiring_download_url')
             curl -L $ARTIFACT_URL | tar xJf -
             cat tmp/report_to_danger_subbuild.md >> tmp/report_to_danger.md || true
     - script:
         title: Report Coverage
-        run_if: .IsCI
         inputs:
+        - runner_bin: "/bin/zsh"
         - content: |-
             #!/usr/bin/env bash
             # fail if any commands fails
@@ -172,7 +176,6 @@ workflows:
             zip --quiet -r "$BITRISE_DEPLOY_DIR/coverage.zip" scripts/coverage/citests
     - script:
         title: Report tests
-        run_if: .IsCI
         inputs:
         - runner_bin: "/bin/zsh"
         - content: |-
@@ -190,247 +193,16 @@ workflows:
         is_always_run: true
     - yarn:
         title: yarn danger ci
-        run_if: .IsCI
         is_always_run: true
         inputs:
         - command: danger ci
     - deploy-to-bitrise-io: {}
-    - build-router-wait:
-        run_if: enveq "RUN_NIGHTLY" "YES"
-        inputs:
-        - access_token: "$BITRISE_CI_TOKEN"
-        - buildslugs: "$NIGHTLY_SLUG"
 
-  nightly:
-    steps:
-    - slack:
-        title: "Send build start message to slack"
-        inputs:
-        - webhook_url: $SLACK_URL
-        - channel: '#ios-bots'
-        - pretext: ""
-        - author_name: ""
-        - message: ""
-        - title: 'Nightly build started... ${BITRISE_BUILD_URL}'
-        - fields: ""
-        - color: warning
-        - footer: ""
-        - buttons: ""
-        - timestamp: "no"
-    - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
-        title: Canvas iOS Secrets
-    - cache-pull: {}
-    - script-runner:
-        run_if: .IsCI
-        title: Set file mtime
-        inputs:
-        - runner: "/bin/zsh"
-        - file_path: scripts/build_automation/set-mtime.sh
-    - script:
-        title: Homebrew
-        run_if: .IsCI
-        inputs:
-        - content: |-
-            #!/bin/zsh
-            set -euxo pipefail
-
-            brew tap mxcl/made
-            brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
-            brew install awscli swiftlint jq xcbeautify mxcl/made/swift-sh
-            brew install Caskroom/cask/soundflower
-    - script:
-        title: Grant simulator microphone permissions
-        run_if: .IsCI
-        inputs:
-        - content: |-
-            sudo sqlite3 ~/Library/Application\ Support/com.apple.TCC/TCC.db "
-                INSERT INTO access VALUES('kTCCServiceMicrophone','com.apple.CoreSimulator.SimulatorTrampoline',0,1,1,
-                X'fade0c00000000480000000100000006000000020000002b636f6d2e6170706c652e436f726553696d756c61746f722e53696d756c61746f725472616d706f6c696e650000000003',
-                NULL,NULL,'UNUSED',NULL,NULL,1561614941);"
-    - carthage:
-        inputs:
-        - carthage_options: "--platform ios"
-    - yarn:
-        title: yarn install root dependencies
-    - yarn:
-        inputs:
-        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-        title: rn yarn install
-    - yarn:
-        title: rn yarn global add react-native-cli
-        inputs:
-        - command: global add react-native-cli
-        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-    - cocoapods-install:
-        inputs:
-        - verbose: 'false'
-    - yarn:
-        title: rn yarn lint
-        inputs:
-        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-        - command: lint
-    - yarn:
-        title: rn yarn test
-        inputs:
-        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-        - command: test --silent --coverage --color
-    - script-runner:
-        title: Run Tests
-        inputs:
-        - runner: "/bin/zsh"
-        - file_path: scripts/run-nightly-tests.sh
-    - script:
-        title: Save xcresult
-        inputs:
-        - runner_bin: "/bin/zsh"
-        - working_dir: "$BITRISE_SOURCE_DIR/nightly-xcresults"
-        - content: |-
-            #!/bin/zsh
-            set -euxo pipefail
-
-            zip --quiet -r "$BITRISE_DEPLOY_DIR/nightly.xcresult.zip" merged.xcresult
-        is_always_run: true
-    - script:
-        title: Report Coverage
-        run_if: .IsCI
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -ex
-
-            rm -rf scripts/coverage/citests.xcresult
-            cp -r nightly-xcresults/merged.xcresult scripts/coverage/citests.xcresult
-            yarn coverage
-            zip --quiet -r "$BITRISE_DEPLOY_DIR/coverage.zip" scripts/coverage/citests
-    - script:
-        title: Report tests
-        run_if: .IsCI
-        inputs:
-        - runner_bin: "/bin/zsh"
-        - content: |-
-            #!/bin/zsh
-            set -euo pipefail
-
-            ./scripts/build_automation/summarize-test-results.swift nightly-xcresults/merged.xcresult 2>/dev/null |
-                jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' | gzip |
-                curl -q -X POST \
-                    -H "Authorization: $SPLUNK_SECRET" \
-                    -H "Content-Type: application/json" \
-                    -H "Content-Encoding: gzip" \
-                    --data-binary @- \
-                    "$SPLUNK_ENDPOINT_URL"
-        is_always_run: true
-    - deploy-to-bitrise-io: {}
-    - slack:
-        inputs:
-        - pretext_on_error: "*Nightly Build Failed!*"
-        - webhook_url: "$SLACK_URL"
-        - channel: "#ios-bots"
-        - author_name: ''
-        - title: ''
-        - message: ''
-        - pretext: "*Nightly Build Succeeded!*"
-  nightly-cache-gen:
-    steps:
-    - cache-pull: {}
-    - script:
-        title: brew tap
-        inputs:
-        - content: |-
-            #!/bin/zsh
-            set -euxo pipefail
-
-            brew tap mxcl/made
-            brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
-    - brew-install:
-        title: brew install
-        inputs:
-        - upgrade: 'yes'
-        - packages: awscli swiftlint jq xcbeautify mxcl/made/swift-sh
-    - carthage:
-        inputs:
-        - carthage_options: "--platform ios"
-    - yarn:
-        title: yarn install root dependencies
-    - yarn:
-        inputs:
-        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-        title: rn yarn install
-    - yarn:
-        title: rn yarn global add react-native-cli
-        inputs:
-        - command: global add react-native-cli
-        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-    - cocoapods-install:
-        inputs:
-        - verbose: 'false'
-    - script:
-        title: Build
-        inputs:
-        - runner_bin: "/bin/zsh"
-        - content: |-
-            #!/bin/zsh
-            set -euxo pipefail
-
-            export NSUnbufferedIO=YES
-            export CODE_SIGNING_REQUIRED=NO
-            export IgnoreFileSystemDeviceInodeChanges=1
-
-            xcodebuild \
-                -workspace Canvas.xcworkspace \
-                -scheme CITests \
-                -sdk iphonesimulator \
-                -configuration Debug \
-                build-for-testing |
-                tee $BITRISE_DEPLOY_DIR/raw-xcodebuild.log |
-                xcpretty --color
-    - script:
-        title: Prepare cache
-        inputs:
-        - runner_bin: "/bin/zsh"
-        - content: |-
-            #!/bin/zsh
-            set -euxo pipefail
-
-            mkdir -p cache-metadata
-            echo $GIT_CLONE_COMMIT_HASH > cache-metadata/cache-commit-hash
-            # always cache
-            uuidgen > cache-metadata/cache-fingerprint
-    - cache-push:
-        inputs:
-        - compress_archive: true
-        - cache_paths: |-
-            cache-metadata/ -> cache-metadata/cache-fingerprint
-            rn/Teacher/node_modules/ -> cache-metadata/cache-fingerprint
-            Carthage/ -> cache-metadata/cache-fingerprint
-            ~/Library/Developer/Xcode/DerivedData -> cache-metadata/cache-fingerprint
-            /usr/local/Homebrew -> cache-metadata/cache-fingerprint
   danger-yarn:
     steps:
     - cache-pull: {}
-    - script-runner:
-        run_if: .IsCI
-        title: Set file mtime
-        inputs:
-        - runner: "/bin/zsh"
-        - file_path: scripts/build_automation/set-mtime.sh
-    - script:
-        title: brew tap
-        run_if: .IsCI
-        inputs:
-        - content: |-
-            #!/bin/zsh
-            set -euxo pipefail
-
-            brew tap mxcl/made
-            brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
-    - brew-install:
-        title: brew install
-        run_if: .IsCI
-        inputs:
-        - upgrade: 'yes'
-        - packages: awscli swiftlint jq xcbeautify mxcl/made/swift-sh
+    - *set-mtime
+    - *install-tools
     - script:
         title: Swift Lint
         inputs:
@@ -441,23 +213,17 @@ workflows:
 
             mkdir -p tmp
             ./scripts/runSwiftLint.sh 2>&1 | xcbeautify | tee tmp/swift-lint-results.txt
-    - yarn:
-        title: yarn install root dependencies
-    - yarn:
-        inputs:
-        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-        title: rn yarn install
-    - yarn:
-        title: rn yarn global add react-native-cli
-        inputs:
-        - command: global add react-native-cli
-        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-    - yarn:
+    - *yarn-install-root
+    - *yarn-install
+    - *yarn-global-add-react-native-cli
+    - &yarn-lint
+      yarn:
         title: rn yarn lint
         inputs:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
         - command: lint:ci
-    - yarn:
+    - &yarn-test
+      yarn:
         title: rn yarn test
         inputs:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
@@ -498,3 +264,236 @@ workflows:
                 scripts/coverage/react-native \
                 tmp/report_to_danger_subbuild.md
     - deploy-to-bitrise-io: {}
+
+  nightly-cache-gen:
+    steps:
+    - cache-pull: {}
+    - *install-tools
+    - *carthage
+    - *yarn-install-root
+    - *yarn-install
+    - *yarn-global-add-react-native-cli
+    - *cocoapods
+    - *build-citests
+    - script:
+        title: Prepare cache
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            mkdir -p cache-metadata
+            echo $GIT_CLONE_COMMIT_HASH > cache-metadata/cache-commit-hash
+            # always cache
+            uuidgen > cache-metadata/cache-fingerprint
+    - cache-push:
+        inputs:
+        - compress_archive: true
+        - cache_paths: |-
+            cache-metadata/ -> cache-metadata/cache-fingerprint
+            rn/Teacher/node_modules/ -> cache-metadata/cache-fingerprint
+            Carthage/ -> cache-metadata/cache-fingerprint
+            ~/Library/Developer/Xcode/DerivedData -> cache-metadata/cache-fingerprint
+            /usr/local/Homebrew -> cache-metadata/cache-fingerprint
+
+  nightly:
+    steps:
+    - slack:
+        title: Send build start message to slack
+        run_if: enveq "BITRISE_GIT_BRANCH" "master"
+        inputs:
+        - webhook_url: $SLACK_URL
+        - channel: '#ios-bots'
+        - pretext: ""
+        - author_name: ""
+        - message: ""
+        - title: 'Nightly build started... ${BITRISE_BUILD_URL}'
+        - fields: ""
+        - color: warning
+        - footer: ""
+        - buttons: ""
+        - timestamp: "no"
+    - github-status:
+        inputs:
+        - auth_token: $DANGER_GITHUB_API_TOKEN
+        - status_identifier: ci/bitrise/${BITRISE_APP_SLUG}/nightly
+        - commit_hash: $GIT_CLONE_COMMIT_HASH
+        - set_specific_status: pending
+        - description: "In progress - Nightly Tests"
+    - &secrets
+      git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
+        title: Canvas iOS Secrets
+    - cache-pull: {}
+    - *set-mtime
+    - *install-tools
+    - &fix-microphone
+      script:
+        title: Grant simulator microphone permissions
+        run_if: .IsCI
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            brew install Caskroom/cask/soundflower
+            sudo sqlite3 ~/Library/Application\ Support/com.apple.TCC/TCC.db "
+                INSERT INTO access VALUES('kTCCServiceMicrophone','com.apple.CoreSimulator.SimulatorTrampoline',0,1,1,
+                X'fade0c00000000480000000100000006000000020000002b636f6d2e6170706c652e436f726553696d756c61746f722e53696d756c61746f725472616d706f6c696e650000000003',
+                NULL,NULL,'UNUSED',NULL,NULL,1561614941);"
+    - *carthage
+    - *yarn-install-root
+    - *yarn-install
+    - *yarn-global-add-react-native-cli
+    - *yarn-lint
+    - *yarn-test
+    - *cocoapods
+    - script:
+        title: Run Nightly Tests
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            set -euo pipefail
+            ./scripts/run-ui-tests.sh --all
+    - script:
+        title: Export failed tests for blame bot
+        is_always_run: true
+        is_skippable: true
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            set -euxo pipefail
+            envman add --key FINAL_FAILED_TESTS --value "$(cat ui-test-results/final-failed.txt)"
+            envman add --key BUILD_LINK --value "$BITRISE_BUILD_URL"
+    - build-router-start:
+        title: Release the blame bot
+        run_if: and (enveq "BITRISE_GIT_BRANCH" "master") (enveq "TESTS_FAILED" "yes")
+        is_always_run: true
+        inputs:
+        - access_token: "$BITRISE_CI_TOKEN"
+        - workflows: nightly-blame-bot
+        - environment_key_list: |-
+            FINAL_FAILED_TESTS
+            BUILD_LINK
+    - &save-xcresult
+      script:
+        title: Save xcresult
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - working_dir: "$BITRISE_SOURCE_DIR/ui-test-results"
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            zip --quiet -r "$BITRISE_DEPLOY_DIR/tests.xcresult.zip" merged.xcresult
+        is_always_run: true
+    - script:
+        title: Report Coverage
+        run_if: .IsCI
+        is_skippable: true
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -ex
+
+            rm -rf scripts/coverage/citests.xcresult
+            cp -r ui-test-results/merged.xcresult scripts/coverage/citests.xcresult
+            yarn coverage
+            zip --quiet -r "$BITRISE_DEPLOY_DIR/coverage.zip" scripts/coverage/citests
+    - script:
+        title: Report tests
+        run_if: and .IsCI (enveq "BITRISE_GIT_BRANCH" "master")
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -euo pipefail
+
+            ./scripts/build_automation/summarize-test-results.swift ui-test-results/merged.xcresult 2>/dev/null |
+                jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' | gzip |
+                curl -q -X POST \
+                    -H "Authorization: $SPLUNK_SECRET" \
+                    -H "Content-Type: application/json" \
+                    -H "Content-Encoding: gzip" \
+                    --data-binary @- \
+                    "$SPLUNK_ENDPOINT_URL"
+        is_always_run: true
+    - deploy-to-bitrise-io: {}
+    - github-status:
+        inputs:
+        - auth_token: $DANGER_GITHUB_API_TOKEN
+        - status_identifier: ci/bitrise/${BITRISE_APP_SLUG}/nightly
+        - commit_hash: $GIT_CLONE_COMMIT_HASH
+        - description: "Nightly Tests"
+    - slack:
+        title: Send build result message to slack
+        run_if: enveq "BITRISE_GIT_BRANCH" "master"
+        inputs:
+        - pretext_on_error: "*Nightly Build Failed!*"
+        - webhook_url: "$SLACK_URL"
+        - channel: "#ios-bots"
+        - author_name: ''
+        - title: ''
+        - message: ''
+        - pretext: "*Nightly Build Succeeded!*"
+
+  nightly-blame-bot:
+    steps:
+    - *secrets
+    - cache-pull: {}
+    - *set-mtime
+    - *install-tools
+    - *fix-microphone
+    - *carthage
+    - *yarn-install-root
+    - *yarn-install
+    - *yarn-global-add-react-native-cli
+    - *cocoapods
+    - script:
+        title: blame
+        inputs:
+        - content: ./scripts/nightly-blame-bot.sh --relocate-before-execute
+
+  ipad-tests:
+    steps:
+    - github-status:
+        inputs:
+        - auth_token: $DANGER_GITHUB_API_TOKEN
+        - status_identifier: bitrise-ipad-tests
+        - commit_hash: $GIT_CLONE_COMMIT_HASH
+        - set_specific_status: pending
+    - *secrets
+    - cache-pull: {}
+    - *set-mtime
+    - *install-tools
+    - *fix-microphone
+    - *carthage
+    - *yarn-install-root
+    - *yarn-install
+    - *yarn-global-add-react-native-cli
+    - *cocoapods
+    - script:
+        title: iPad tests
+        inputs:
+        - content: |-
+            set -euo pipefail
+            SCHEME=IPadTests \
+            DEVICE_NAME='iPad Air (3rd generation)' \
+            ./scripts/run-ui-tests.sh --all
+    - *save-xcresult
+    - deploy-to-bitrise-io: {}
+    - github-status:
+        inputs:
+        - auth_token: $DANGER_GITHUB_API_TOKEN
+        - status_identifier: bitrise-ipad-tests
+        - commit_hash: $GIT_CLONE_COMMIT_HASH
+    - slack:
+        title: Send build result message to slack
+        run_if: enveq "BITRISE_GIT_BRANCH" "master"
+        inputs:
+        - pretext_on_error: "*iPad Tests Failed!*"
+        - webhook_url: "$SLACK_URL"
+        - channel: "#ios-bots"
+        - author_name: ''
+        - title: ''
+        - message: ''
+        - pretext: "*iPad Tests Succeeded!*"

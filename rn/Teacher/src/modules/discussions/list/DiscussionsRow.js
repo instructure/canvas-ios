@@ -69,15 +69,15 @@ export default class DiscussionsRow extends PureComponent<Props> {
                 <DotSeparated style={style.subtitle} separated={this.dueDate(discussion)}/>
 
                 {points &&
-                <View style={style.details}>
-                  <Text style={style.points}>{points}</Text>
-                </View>
+                  <View testID='discussion.row.points' style={style.details}>
+                    <Text style={style.points}>{points}</Text>
+                  </View>
                 }
 
                 {discussionDetails &&
-                <View style={style.details}>
-                  {discussionDetails}
-                </View>
+                  <View testID='discussion.row.details' style={style.details}>
+                    {discussionDetails}
+                  </View>
                 }
               </View>
               { isTeacher() && this.renderKabob() }
@@ -134,9 +134,9 @@ export default class DiscussionsRow extends PureComponent<Props> {
 
   renderUnreadDot = (discussion: Discussion) => {
     if (discussion.unread_count > 0) {
-      return (<View style={style.unreadDot}/>)
+      return (<View testID='discussions.row.unread-dot' style={style.unreadDot}/>)
     } else {
-      return (<View />)
+      return (<View testID='discussions.row.unread-dot' />)
     }
   }
 

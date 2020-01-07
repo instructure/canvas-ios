@@ -51,6 +51,13 @@ public struct MockHTTPResponse: Codable {
     public let noCallback: Bool
     public var error: Error? { errorMessage.map { NSError.instructureError($0) } }
 
+    public lazy var dataSavedToTemporaryFileURL: URL? = {
+        guard let data = data else { return nil }
+        let url = URL.temporaryDirectory.appendingPathComponent(Foundation.UUID().uuidString, isDirectory: false)
+        (try? data.write(to: url))!
+        return url
+    }()
+
     enum CodingKeys: String, CodingKey {
         case data, errorMessage, allHeaderFields, statusCode, url, noCallback
     }

@@ -239,9 +239,11 @@ public struct XCUIElementQueryWrapper: Element {
     @discardableResult
     public func typeText(_ text: String, file: StaticString, line: UInt) -> Element {
         tap(file: file, line: line)
+        CoreUITestCase.currentTestCase?.send(.showKeyboard, ignoreErrors: true)
         var taps = 1
         while !containsKeyboardFocusedElement(file: file, line: line), taps < 5 {
             tap(file: file, line: line)
+            CoreUITestCase.currentTestCase?.send(.showKeyboard, ignoreErrors: true)
             taps += 1
             sleep(1)
         }

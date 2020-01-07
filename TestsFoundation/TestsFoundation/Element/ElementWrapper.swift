@@ -32,6 +32,13 @@ public protocol ElementWrapper: Element {
     var element: Element { get }
 }
 
+// Allow for enums with fully customizable string contents
+//
+//  enum Inbox: String, CaseIterable, RawElementWrapper {
+//      case sentButton = "inbox.filter-btn-sent"
+//  }
+public protocol RawElementWrapper: ElementWrapper {}
+
 // Provide default implementation for enums
 public extension ElementWrapper where Self: RawRepresentable, Self.RawValue: StringProtocol {
     var element: Element {
@@ -119,4 +126,8 @@ public extension ElementWrapper {
     func waitToVanish(_ timeout: TimeInterval, file: StaticString, line: UInt) -> Element {
         return element.waitToVanish(timeout, file: file, line: line)
     }
+}
+
+public extension RawElementWrapper where Self: RawRepresentable, Self.RawValue: StringProtocol {
+    var id: String { "\(rawValue)" }
 }

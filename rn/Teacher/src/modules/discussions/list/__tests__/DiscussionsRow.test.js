@@ -39,48 +39,33 @@ describe('DiscussionsRow', () => {
 
   it('renders', () => {
     const tree = shallow(<DiscussionsRow {...props} />)
-    expect(tree).toMatchSnapshot()
-  })
 
-  it('renders published', () => {
-    props.discussion.published = true
-    const tree = shallow(<DiscussionsRow {...props} />)
-    expect(tree).toMatchSnapshot()
-  })
-
-  it('renders unpublished', () => {
-    props.discussion.published = false
-    const tree = shallow(<DiscussionsRow {...props} />)
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('Row').prop('title')).toEqual(props.discussion.title)
+    expect(tree.find('Row').prop('selected')).toEqual(props.selected)
+    expect(tree.find('DotSeparated').at(0).prop('separated')).toEqual(['Due May 31, 2037 at 11:59 PM'])
   })
 
   it('sends onPress', () => {
     const tree = shallow(<DiscussionsRow {...props} />)
-    tree.find(`[testID="DiscussionListCell.${props.discussion.id}"]`).simulate('Press')
+    tree.find(`[testID="DiscussionListCell.${props.discussion.id}"]`).simulate('press')
     expect(props.onPress).toHaveBeenCalledWith(props.discussion)
   })
 
   it('renders without points possible', () => {
-    if (props.discussion.assignment) {
-      props.discussion.assignment.points_possible = null
-    }
+    props.discussion.assignment.points_possible = null
     const tree = shallow(<DiscussionsRow {...props} />)
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('[testID="discussion.row.points"]').exists()).toEqual(false)
   })
 
   it('renders with points possible', () => {
-    if (props.discussion.assignment) {
-      props.discussion.assignment.points_possible = 12
-    }
+    props.discussion.assignment.points_possible = 12
     const tree = shallow(<DiscussionsRow {...props} />)
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('[testID="discussion.row.points"] Text').prop('children')).toEqual('12 pts')
   })
 
   it('shows multiple due dates for teacher when assignment has overrides', () => {
     app.setCurrentApp('teacher')
-    if (props.discussion.assignment) {
-      props.discussion.assignment.has_overrides = true
-    }
+    props.discussion.assignment.has_overrides = true
     const tree = shallow(<DiscussionsRow {...props} />)
     expect(tree.find('DotSeparated').first().prop('separated')).toEqual([
       'Multiple Due Dates',
@@ -90,12 +75,36 @@ describe('DiscussionsRow', () => {
   it('renders with no unread count', () => {
     props.discussion.unread_count = 0
     const tree = shallow(<DiscussionsRow {...props} />)
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('[testID="discussion.row.details"] DotSeparated').prop('separated')).toEqual(['2 Replies', '0 Unread'])
+  })
+
+  it('renders with an unread count', () => {
+    props.discussion.unread_count = 2
+    const tree = shallow(<DiscussionsRow {...props} />)
+    expect(tree.find('[testID="discussion.row.details"] DotSeparated').prop('separated')).toEqual(['2 Replies', '2 Unread'])
+  })
+
+  it('renders no replies', () => {
+    props.discussion.discussion_subentry_count = 0
+    const tree = shallow(<DiscussionsRow {...props} />)
+    expect(tree.find('[testID="discussion.row.details"] DotSeparated').prop('separated')).toEqual(['0 Replies', '1 Unread'])
+  })
+
+  it('renders the unread dot', () => {
+    props.discussion.unread_count = 2
+    const tree = shallow(<DiscussionsRow {...props} />)
+    expect(tree.find('[testID="discussions.row.unread-dot"]').prop('style')).not.toBeUndefined()
+  })
+
+  it('does not render the unread dot', () => {
+    props.discussion.unread_count = 0
+    const tree = shallow(<DiscussionsRow {...props} />)
+    expect(tree.find('[testID="discussions.row.unread-dot"]').prop('style')).toBeUndefined()
   })
 
   it('renders with no assignment', () => {
     props.discussion.assignment = null
     const tree = shallow(<DiscussionsRow {...props} />)
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('DotSeparated').at(0).prop('separated')).toEqual(['Last post Dec 10, 2016 at 9:03 PM'])
   })
 })

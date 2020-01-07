@@ -32,7 +32,6 @@ class StudentCourseFileTests: CourseFileTests {}
 class StudentActAsUserTests: ActAsUserTests {}
 class StudentAnnouncementTests: AnnouncementTests {}
 class StudentTodoListTests: TodoListTests {}
-class StudentDashboardTests: DashboardTests {}
 class StudentProfileTests: ProfileTests {}
 class StudentPageTests: PageTests {}
 class StudentLoginTests: LoginTests {}

@@ -25,11 +25,13 @@ class RouteTests: XCTestCase {
         XCTAssertEqual(Route.conversation("5").url.path, "/conversations/5")
         XCTAssertEqual(Route.compose().url.path, "/conversations/compose")
         XCTAssertNil(Route.compose().url.queryItems)
-        XCTAssertEqual(Route.compose(body: "b", context: ContextModel(.course, id: "1"), observeeID: "2", recipientIDs: [ "3", "4" ], subject: "s").url.queryItems, [
+        XCTAssertEqual(Route.compose(body: "b", context: ContextModel(.course, id: "1"), observeeID: "2", recipients: [ .make() ], subject: "s").url.queryItems, [
             URLQueryItem(name: "body", value: "b"),
             URLQueryItem(name: "context", value: "course_1"),
             URLQueryItem(name: "observeeID", value: "2"),
-            URLQueryItem(name: "recipientIDs", value: "3,4"),
+            URLQueryItem(name: "recipients", value: try? JSONEncoder().encode([
+                APIConversationRecipient.make(),
+            ]).base64EncodedString()),
             URLQueryItem(name: "subject", value: "s"),
         ])
     }

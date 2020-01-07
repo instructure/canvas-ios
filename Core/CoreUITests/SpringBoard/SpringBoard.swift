@@ -24,7 +24,7 @@ public class SpringBoard {
     private init() {}
     public static let shared = SpringBoard()
 
-    let sbApp = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+    public let sbApp = XCUIApplication(bundleIdentifier: "com.apple.springboard")
 
     func relativeCoordinate(x: CGFloat, y: CGFloat) -> XCUICoordinate {
         let offset: CGVector
@@ -63,6 +63,23 @@ public class SpringBoard {
         start.press(forDuration: 0, thenDragTo: dest)
     }
 
+    internal func hideSafariKeyboard() {
+        let safariApp = XCUIApplication(bundleIdentifier: "com.apple.mobilesafari")
+        let button = safariApp.keyboards.buttons.matching(label: "Hide keyboard").firstMatch
+
+        guard button.exists else { return }
+
+        // check to see if it's off screen
+        let frame = button.frame
+        let screen = sbApp.frame
+
+        // comparing x against height is intentional. The frames are in different coordinate spaces
+        guard frame.midX > 0, frame.midX < screen.height,
+            frame.midY > 0, frame.midY < screen.height else { return }
+
+        button.tap()
+    }
+
     func setupSplitScreenWithSafariOnRight() {
         resetMultitasking()
 
@@ -70,8 +87,9 @@ public class SpringBoard {
 
         let dock = sbApp.find(id: "user icon list view")
         let safari = dock.rawElement.find(id: "Safari")
-        let dest = relativeCoordinate(x: 1.0, y: 0.5)
+        let dest = relativeCoordinate(x: 0.99, y: 0.5)
         safari.center.press(forDuration: 0.5, thenDragTo: dest)
         sleep(2)
+        hideSafariKeyboard()
     }
 }

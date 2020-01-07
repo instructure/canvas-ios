@@ -17,13 +17,54 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-set -euo pipefail
-
 # needed to run this script:
 # xcbeautify jq
 
 # brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
 # brew install xcbeautify jq
+
+set -euo pipefail
+
+
+function usage {
+    echo "Runs a UI test suite, retrying failed ones."
+    echo "usage:"
+    echo "  ./scripts/run-ui-tests.sh --all"
+    echo "  ./scripts/run-ui-tests.sh --only-testing testId ..."
+    echo "  ./scripts/run-ui-tests.sh --help"
+    echo
+    echo "optional env variables:"
+    echo '  SCHEME (default: "NightlyTests")'
+    echo '  DEVICE_NAME (default: "iPhone 8")'
+    exit $1
+}
+
+SCHEME=${SCHEME:-NightlyTests}
+DEVICE_NAME=${DEVICE_NAME:-iPhone 8}
+
+only_testing=()
+needs_build=yes
+celebration=yes
+
+case ${1-} in
+    --help|-h)
+        usage 0
+        ;;
+    --all)
+        if [[ $# -ne 1 ]]; then
+            usage 1
+        fi
+        ;;
+    --only-testing)
+        shift
+        only_testing+=($@)
+        needs_build=no
+        celebration=no
+        ;;
+    *)
+        usage 1
+        ;;
+esac
 
 function banner() (
     set +x
@@ -35,17 +76,24 @@ function banner() (
 )
 
 mkdir -p tmp
-
-destination_flag=(-destination 'platform=iOS Simulator,name=iPhone 8')
-
-banner "Building NightlyTests"
-
 export NSUnbufferedIO=YES
-xcodebuild -workspace Canvas.xcworkspace -scheme NightlyTests $destination_flag build-for-testing 2>&1 | xcbeautify
 
-BUILD_DIR=$(xcodebuild -workspace Canvas.xcworkspace -scheme NightlyTests -showBuildSettings build-for-testing -json |
-                jq -r '.[] | select(.target == "CoreTests").buildSettings.BUILD_DIR')
-base_xctestrun=($BUILD_DIR/NightlyTests_NightlyTests_*.xctestrun)
+destination_flag=(-destination "platform=iOS Simulator,name=$DEVICE_NAME")
+
+results_directory=ui-test-results
+rm -rf $results_directory
+mkdir -p $results_directory
+
+if [[ $needs_build = yes ]]; then
+    banner "Building $SCHEME"
+    xcodebuild -workspace Canvas.xcworkspace -scheme $SCHEME $destination_flag build-for-testing 2>&1 |
+        tee ${BITRISE_DEPLOY_DIR-$results_directory}/build.log |
+        xcbeautify --quiet
+fi
+
+BUILD_DIR=$(xcodebuild -workspace Canvas.xcworkspace -scheme $SCHEME -showBuildSettings build-for-testing -json |
+                jq -r '.[] | select(.target == "StudentUITests").buildSettings.BUILD_DIR')
+base_xctestrun=(${BUILD_DIR}/${SCHEME}_${SCHEME}_*.xctestrun)
 xctestrun=$base_xctestrun.script_run
 cp $base_xctestrun $xctestrun
 config_name=$(/usr/libexec/PlistBuddy $base_xctestrun -c "print :TestConfigurations:0:Name")
@@ -71,9 +119,6 @@ all_passing_tests=()
 tests_passed_this_run=()
 tests_failed_this_run=()
 total_failures=0
-results_directory=nightly-xcresults
-rm -rf $results_directory
-mkdir -p $results_directory
 
 function mergeResults {
     results=($results_directory/*.xcresult)
@@ -91,7 +136,9 @@ function getTestResults {
 
     local result_path=$results_directory/$try.xcresult
     if [[ ! -d $result_path ]]; then
-        echo "couldn't find test results!!"
+        echo "Couldn't find test results!"
+        echo > $results_directory/final-failed.txt
+        envman add --key TESTS_FAILED --value yes
         exit 1
     fi
     local test_result_id=($(xcrun xcresulttool get --format json --path $result_path |
@@ -143,13 +190,16 @@ function doTest {
     for skip in $all_passing_tests; do
         flags+=(-skip-testing:$skip)
     done
+    for test in $only_testing; do
+        flags+=(-only-testing:$test)
+    done
 
     # Do this the long way to make sure we get the correct exit code
     pipe_file=tmp/formatter-fifo
     rm -rf $pipe_file
     mkfifo $pipe_file
 
-    < $pipe_file tee ${BITRISE_DEPLOY_DIR-$results_directory}/test-run-$try-xcodebuild.log | xcbeautify &
+    < $pipe_file tee ${BITRISE_DEPLOY_DIR-$results_directory}/test-run-$try-xcodebuild.log | xcbeautify --quiet &
     local formatter_pid=$!
     local ret=0
     xcodebuild test-without-building $flags > $pipe_file 2> $pipe_file || ret=$?
@@ -176,13 +226,13 @@ function retry {
     local ret=0
     doTest || ret=$?
     if [[ -n $video_pid ]]; then
-        kill -INT $video_pid
+        kill -INT $video_pid || true
         wait $video_pid
     fi
     return $ret
 }
 
-xcrun simctl boot 'iPhone 8' || true
+xcrun simctl boot $DEVICE_NAME || true
 open -a $(xcode-select -p)/Applications/Simulator.app
 
 ret=0
@@ -194,7 +244,7 @@ doTest $base_xctestrun ||
     ret=$?
 
 if [[ $ret -eq 0 ]]; then
-    if [[ $try -eq 0 ]]; then
+    if [[ $try -eq 0 ]] && [[ $celebration = yes ]]; then
         banner "\U1F389 All tests passed ON THE FIRST TRY! \U1F389"
     else
         banner "All tests passed after $try retries! ($total_failures flaky failures)"
@@ -203,7 +253,10 @@ else
     banner "${#tests_failed_this_run} Tests still failing after $try retries"
     echo "failing tests:"
     print ${(F)tests_failed_this_run}
+    envman add --key TESTS_FAILED --value yes || true
 fi
+
+print ${(F)tests_failed_this_run} > $results_directory/final-failed.txt
 
 mergeResults
 exit $ret

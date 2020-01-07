@@ -59,7 +59,13 @@ export default class AddressBookToken extends Component<Props, any> {
         { this.props.item.avatar_url &&
           <Avatar avatarURL={this.props.item.avatar_url} userName={this.props.item.name} height={TOKEN_HEIGHT - 6}/>
         }
-        <Text key={this.props.item.id} style={{ marginLeft: leftTextPadding }}>{this.props.item.name}</Text>
+        <Text
+          key={this.props.item.id}
+          testID={`message-recipient.${this.props.item.id}.label`}
+          style={{ marginLeft: leftTextPadding }}
+        >
+          {this.props.item.name}
+        </Text>
         {this.props.canDelete &&
           <TouchableOpacity
             onPress={this._delete}

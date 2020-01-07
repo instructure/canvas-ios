@@ -34,13 +34,15 @@ let router = Router(routes: [
 
     RouteHandler(.compose()) { url, _ in
         guard ExperimentalFeature.parentInbox.isEnabled else { return nil }
+        let recipientsString = url.queryItems?.first { $0.name == "recipients" }?.value
+        let recipientsData = recipientsString.flatMap { Data(base64Encoded: $0) }
+        let recipients = recipientsData.flatMap { try? JSONDecoder().decode([APIConversationRecipient].self, from: $0) }
         return ComposeViewController.create(
             body: url.queryItems?.first { $0.name == "body" }?.value,
             context: url.queryItems?.first { $0.name == "context" }?.value
                 .flatMap { ContextModel(canvasContextID: $0) },
             observeeID: url.queryItems?.first { $0.name == "observeeID" }?.value,
-            recipientIDs: url.queryItems?.first { $0.name == "recipientIDs" }?.value?
-                .split(separator: ",").map { String($0) } ?? [],
+            recipients: recipients ?? [],
             subject: url.queryItems?.first { $0.name == "subject" }?.value
         )
     },
@@ -145,7 +147,7 @@ let router = Router(routes: [
     guard let url = components.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL) else { return }
     let request = GetWebSessionRequest(to: url)
     AppEnvironment.shared.api.makeRequest(request) { response, _, _ in
-        DispatchQueue.main.async {
+        performUIUpdate {
             AppEnvironment.shared.loginDelegate?.openExternalURL(response?.session_url ?? url)
         }
     }
