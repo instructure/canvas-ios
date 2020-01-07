@@ -119,7 +119,7 @@ extension ModuleItem {
         session.refreshScope.invalidateCache(Module.collectionCacheKey(context: context, courseID: courseID))
         session.refreshScope.invalidateCache(Module.detailsCacheKey(context: context, courseID: courseID, moduleID: moduleID))
         let dependentModules: [Module] = try context.findAll(matchingPredicate: Module.predicate(withPrerequisite: moduleID))
-        let dependentModuleIDs = Set(dependentModules.map { $0.id })
+        let dependentModuleIDs = Set(dependentModules.map { $0.id } + [moduleID])
         dependentModuleIDs.forEach {
             session.refreshScope.invalidateCache(Module.detailsCacheKey(context: context, courseID: courseID, moduleID: $0))
         }
