@@ -176,6 +176,7 @@ class MockedModulesTests: StudentUITestCase {
         XCTAssertEqual(ModulesDetail.moduleItem(index: 0).label(), "Page 2. Type: Page. Status: Locked")
         ModulesDetail.module(index: 0).tap()
         ModulesDetail.moduleItem(index: 0).tap()
+        NavBar.backButton(label: "Module 1").waitToExist(60)
         mockData(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths], perPage: 99), value: [
             .make(
                 id: "2",
