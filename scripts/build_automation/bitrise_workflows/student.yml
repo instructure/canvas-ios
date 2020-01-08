@@ -85,6 +85,9 @@ workflows:
     - _set-export-app-store
     - _common
     steps:
+    - firebase-dsym-upload:
+        inputs:
+        - fdu_google_services_location: "$BITRISE_SOURCE_DIR/Student/Student/GoogleService-Info.plist"
     - deploy-to-itunesconnect-application-loader:
         inputs:
         - password: "$APPSTORECONNECT_PASSWORD"

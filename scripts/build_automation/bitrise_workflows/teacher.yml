@@ -114,6 +114,9 @@ workflows:
     - _common
     envs:
     steps:
+    - firebase-dsym-upload:
+        inputs:
+        - fdu_google_services_location: "$BITRISE_SOURCE_DIR/rn/Teacher/ios/Teacher/GoogleService-Info.plist"
     - deploy-to-itunesconnect-application-loader:
         inputs:
         - password: "$APPSTORECONNECT_PASSWORD"
