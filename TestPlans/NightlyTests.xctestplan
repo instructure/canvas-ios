@@ -122,6 +122,20 @@
         "identifier" : "E8315D3522FC9E60003CD27C",
         "name" : "TeacherUITests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Parent\/Parent.xcodeproj",
+        "identifier" : "E8E1BE4923C6891F000E3A76",
+        "name" : "ParentUITests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Parent\/Parent.xcodeproj",
+        "identifier" : "3B36A2DE2322C26A00599A1E",
+        "name" : "ParentUnitTests"
+      }
     }
   ],
   "version" : 1
