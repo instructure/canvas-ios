@@ -68,6 +68,7 @@ class SubmissionButtonPresenter: NSObject {
         )
         guard canSubmit else { return nil }
 
+        print("QUIZ SUBMISSION = \(String(describing: quiz?.submission))")
         if quiz?.submission?.canResume == true {
             return NSLocalizedString("Resume Quiz", bundle: .student, comment: "")
         }

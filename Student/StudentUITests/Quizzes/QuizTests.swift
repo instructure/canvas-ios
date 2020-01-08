@@ -61,38 +61,12 @@ class QuizTests: CoreUITestCase {
 }
 
 class MockedQuizTests: StudentUITestCase {
-    func testTakeQuiz() {
-        mockBaseRequests()
-        let quiz = APIQuiz.make(
-            question_count: 3,
-            question_types: [
-                .multiple_choice_question,
-                .true_false_question,
-                .numerical_question,
-            ],
-            quiz_type: .assignment
-        )
-        let assignment = mock(assignment: APIAssignment.make(
-            quiz_id: quiz.id,
-            name: "A quiz",
-            submission_types: [.online_quiz ]
-        ))
-        mockData(GetQuizRequest(courseID: "1", quizID: quiz.id.value), value: quiz)
-        mockData(GetQuizSubmissionRequest(courseID: "1", quizID: quiz.id.value),
-                 value: .init(quiz_submissions: []))
-        show("courses/1/assignments/\(assignment.id)")
-
-        let submission = APIQuizSubmission.make(quiz_id: quiz.id, workflow_state: .untaken)
-
-        mockData(PostQuizSubmissionRequest(courseID: "1", quizID: quiz.id.value, body: nil),
-                 value: .init(quiz_submissions: [submission]))
-
-        mockEncodableRequest("courses/1/quizzes/\(quiz.id)/submissions/\(submission.id)/events", value: "")
-        mockEncodableRequest("quiz_submissions/1/questions", value: [
+    func mockQuestions(forSubmission submission: APIQuizSubmission, answered: Bool) {
+        mockEncodableRequest("quiz_submissions/\(submission.id)/questions", value: [
             "quiz_submission_questions": [
                 APIQuizQuestion.make(
                     id: "1",
-                    quiz_id: quiz.id.value,
+                    quiz_id: submission.quiz_id.value,
                     position: 1,
                     question_name: "Question 1",
                     question_type: .multiple_choice_question,
@@ -101,11 +75,12 @@ class MockedQuizTests: StudentUITestCase {
                         .make(id: "1", text: "A"),
                         .make(id: "2", text: "B"),
                         .make(id: "3", text: "C"),
-                    ]
+                    ],
+                    answer: answered ? .double(2) : nil
                 ),
                 APIQuizQuestion.make(
                     id: "2",
-                    quiz_id: quiz.id.value,
+                    quiz_id: submission.quiz_id.value,
                     position: 2,
                     question_name: "Question 2",
                     question_type: .true_false_question,
@@ -117,15 +92,48 @@ class MockedQuizTests: StudentUITestCase {
                 ),
                 APIQuizQuestion.make(
                     id: "3",
-                    quiz_id: quiz.id.value,
+                    quiz_id: submission.quiz_id.value,
                     position: 3,
                     question_name: "Question 3",
                     question_type: .numerical_question,
-                    question_text: "q3"
+                    question_text: "q3",
+                    answer: answered ? .double(4.2) : nil
                 ),
             ],
         ])
+    }
 
+    func testTakeQuiz() {
+        mockBaseRequests()
+
+        let quiz = APIQuiz.make(
+            question_count: 3,
+            question_types: [
+                .multiple_choice_question,
+                .true_false_question,
+                .numerical_question,
+            ],
+            quiz_type: .assignment
+        )
+
+        mockData(GetQuizRequest(courseID: "1", quizID: quiz.id.value), value: quiz)
+        let assignment = mock(assignment: APIAssignment.make(
+            quiz_id: quiz.id,
+            name: "A quiz",
+            submission_types: [.online_quiz ]
+        ))
+        mockData(GetQuizSubmissionRequest(courseID: "1", quizID: quiz.id.value),
+                 value: .init(quiz_submissions: []))
+        show("courses/1/assignments/\(assignment.id)")
+
+        let submission = APIQuizSubmission.make(quiz_id: quiz.id, workflow_state: .untaken)
+
+        mockData(PostQuizSubmissionRequest(courseID: "1", quizID: quiz.id.value, body: nil),
+                 value: .init(quiz_submissions: [submission]))
+
+        mockEncodableRequest("courses/1/quizzes/\(quiz.id)/submissions/\(submission.id)/events", value: "")
+
+        mockQuestions(forSubmission: submission, answered: false)
         XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "Take Quiz")
         AssignmentDetails.submitAssignmentButton.tap()
 
@@ -164,5 +172,71 @@ class MockedQuizTests: StudentUITestCase {
 
         app.find(label: "Quiz Submitted").waitToExist()
         app.find(label: "Done").tap().waitToVanish()
+    }
+
+    func testResumeQuiz() {
+        mockBaseRequests()
+
+        let quiz = APIQuiz.make(
+            question_count: 3,
+            question_types: [
+                .multiple_choice_question,
+                .true_false_question,
+                .numerical_question,
+            ],
+            quiz_type: .assignment
+        )
+        let quizSubmission = APIQuizSubmission.make(
+            attempt: 3,
+            attempts_left: 2,
+            id: 7,
+            quiz_id: quiz.id,
+            started_at: Date(),
+            workflow_state: .untaken
+        )
+
+        mockData(GetQuizRequest(courseID: "1", quizID: quiz.id.value), value: quiz)
+
+        let assignmentSubmission = APISubmission.make(id: 9)
+
+        let assignment = mock(assignment: APIAssignment.make(
+            quiz_id: quiz.id,
+            name: "A quiz",
+            submission: assignmentSubmission,
+            submission_types: [.online_quiz ]
+        ))
+
+        mockData(GetQuizSubmissionRequest(courseID: "1", quizID: quiz.id.value),
+                 value: .init(quiz_submissions: [ quizSubmission ]))
+        show("courses/1/assignments/\(assignment.id)")
+
+        if false {
+            sleep(1)
+            pullToRefresh()
+            sleep(1)
+        }
+        // Fails here unless you refresh
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "Resume Quiz")
+        return
+
+        mockData(PostQuizSubmissionRequest(courseID: "1", quizID: quiz.id.value, body: nil),
+                 value: .init(quiz_submissions: [ quizSubmission ]))
+        mockEncodableRequest("courses/1/quizzes/\(quiz.id)/submissions/\(quizSubmission.id)/events", value: "")
+
+        mockQuestions(forSubmission: quizSubmission, answered: true)
+        AssignmentDetails.submitAssignmentButton.tap()
+        XCTAssertEqual(Double(app.find(id: "ShortAnswerCell.textField").value() ?? "-8"), 4.2)
+        app.find(label: "Submit").tap()
+        handleAlert(withTexts: [
+            "1 questions not answered",
+            "Are you sure you want to submit your answers?",
+        ], byPressingButton: "Cancel")
+        app.find(label: "True").tap()
+        app.find(label: "Submit").tap()
+        handleAlert(withTexts: [
+            "Are you sure you want to submit your answers?",
+        ], byPressingButton: "Submit")
+
+        sleep(100000)
     }
 }

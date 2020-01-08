@@ -209,7 +209,11 @@ public class UITestHelpers {
 
     func show(_ route: String) {
         guard let root = window?.rootViewController else { return }
-        AppEnvironment.shared.router.route(to: route, from: root, options: [.modal, .embedInNav])
+        AppEnvironment.shared.router.route(to: route, from: root, options: [
+            .modal,
+            .embedInNav,
+            .fullScreen,
+        ])
     }
 
     func tearDown() {

@@ -68,6 +68,7 @@ public class MockDistantURLSession: URLSession {
     static func requestMock(_ request: URLRequest) -> MockHTTPResponse {
         mockRequestLock.lock()
         defer { mockRequestLock.unlock() }
+        print("\(request.httpMethod ?? "GET") - \(request.url?.absoluteString ?? "nil")")
         guard let responseData = UITestHelpers.shared!.send(.urlRequest(request)),
             let mock = try? JSONDecoder().decode(MockHTTPResponse.self, from: responseData) else {
                 return MockHTTPResponse()

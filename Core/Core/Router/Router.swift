@@ -30,6 +30,7 @@ public struct RouteOptions: OptionSet {
     public static let addDoneButton = RouteOptions(rawValue: 4)
     public static let formSheet = RouteOptions(rawValue: 8)
     public static let detail = RouteOptions(rawValue: 16)
+    public static let fullScreen = RouteOptions(rawValue: 32)
 }
 
 public protocol RouterProtocol {
@@ -79,6 +80,9 @@ public extension RouterProtocol {
                 nav.navigationBar.useModalStyle()
                 if options?.contains(.formSheet) == true {
                     nav.modalPresentationStyle = .formSheet
+                }
+                if options?.contains(.fullScreen) == true {
+                    nav.modalPresentationStyle = .fullScreen
                 }
                 from.present(nav, animated: true, completion: completion)
             } else {
