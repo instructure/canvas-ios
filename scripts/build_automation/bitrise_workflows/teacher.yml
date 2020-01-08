@@ -100,7 +100,7 @@ workflows:
                 <string>$BITRISE_DEVELOPER_TEAM</string>
                 </dict>
             </plist>
-    - cache-push@2.2.0:
+    - cache-push:
         inputs:
         - cache_paths: "$BITRISE_SOURCE_DIR/Carthage/Build/iOS/"
     - deploy-to-bitrise-io: {}
