@@ -103,7 +103,11 @@ public class GradesViewController: UIViewController {
     }
 
     func updateTotalGrade() {
-        totalGradeLabel.text = grades.enrollment?.formattedCurrentScore(gradingPeriodID: grades.gradingPeriodID)
+        if grades.course?.hideFinalGrades == true {
+            totalGradeLabel.text = NSLocalizedString("N/A", bundle: .core, comment: "")
+        } else {
+            totalGradeLabel.text = grades.enrollment?.formattedCurrentScore(gradingPeriodID: grades.gradingPeriodID)
+        }
     }
 
     func updateGradingPeriods() {
