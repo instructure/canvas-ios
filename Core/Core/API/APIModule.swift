@@ -25,6 +25,8 @@ public struct APIModule: Codable, Equatable {
     /// the position of this module in the course (1-based)
     public let position: Int
     public let published: Bool?
+    public let prerequisite_module_ids: [String]
+    public let state: ModuleState?
     public var items: [APIModuleItem]?
 }
 
@@ -32,6 +34,17 @@ public struct APIModule: Codable, Equatable {
 public struct APIModuleItem: Codable, Equatable {
     public struct ContentDetails: Codable, Equatable {
         public let due_at: Date?
+        public let locked_for_user: Bool?
+        public let lock_explanation: String?
+    }
+
+    public struct CompletionRequirement: Codable, Equatable {
+        public enum CompletionRequirementType: String, Codable {
+            case must_view, must_submit, must_contribute, min_score, must_mark_done
+        }
+        public let type: CompletionRequirementType
+        public let completed: Bool
+        public let min_score: Double?
     }
 
     public let id: ID
@@ -51,6 +64,7 @@ public struct APIModuleItem: Codable, Equatable {
     /// Only present if the caller has permission to view unpublished items
     public let published: Bool?
     public let content_details: ContentDetails // include[]=content_details
+    public let completion_requirement: CompletionRequirement?
 
     public init(
         id: ID,
@@ -62,7 +76,8 @@ public struct APIModuleItem: Codable, Equatable {
         html_url: URL?,
         url: URL?,
         published: Bool?,
-        content_details: ContentDetails
+        content_details: ContentDetails,
+        completion_requirement: CompletionRequirement?
     ) {
         self.id = id
         self.module_id = module_id
@@ -74,6 +89,7 @@ public struct APIModuleItem: Codable, Equatable {
         self.url = url
         self.published = published
         self.content_details = content_details
+        self.completion_requirement = completion_requirement
     }
 
     public enum CodingKeys: String, CodingKey {
@@ -87,6 +103,7 @@ public struct APIModuleItem: Codable, Equatable {
         case published
         case content
         case content_details
+        case completion_requirement
     }
 
     public init(from decoder: Decoder) throws {
@@ -101,6 +118,7 @@ public struct APIModuleItem: Codable, Equatable {
         published = try container.decodeIfPresent(Bool.self, forKey: .published)
         content = try ModuleItemType(from: decoder)
         content_details = try container.decode(ContentDetails.self, forKey: .content_details)
+        completion_requirement = try container.decodeIfPresent(CompletionRequirement.self, forKey: .completion_requirement)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -114,9 +132,11 @@ public struct APIModuleItem: Codable, Equatable {
         try container.encode(url, forKey: .url)
         try container.encode(published, forKey: .published)
         try container.encode(content_details, forKey: .content_details)
+        try container.encode(completion_requirement, forKey: .completion_requirement)
         try content.encode(to: encoder)
     }
 }
+
 enum APIModuleItemType: String, Codable {
     case file = "File"
     case page = "Page"
@@ -126,4 +146,16 @@ enum APIModuleItemType: String, Codable {
     case subHeader = "SubHeader"
     case externalURL = "ExternalUrl"
     case externalTool = "ExternalTool"
+}
+
+// https://canvas.instructure.com/doc/api/modules.html#ModuleItemSequence
+public struct APIModuleItemSequence: Codable, Equatable {
+    public struct Node: Codable, Equatable {
+        let prev: APIModuleItem?
+        let current: APIModuleItem?
+        let next: APIModuleItem?
+    }
+
+    public let items: [Node]
+    public let modules: [APIModule]
 }

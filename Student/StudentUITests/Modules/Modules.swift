@@ -19,6 +19,12 @@
 import XCTest
 import TestsFoundation
 
+enum Modules {
+    static func module(index: Int) -> Element {
+        return app.find(id: "module_cell_0_\(index)")
+    }
+}
+
 enum ModulesDetail {
     static func module(index: Int) -> Element {
         return app.find(id: "module_cell_0_\(index)")

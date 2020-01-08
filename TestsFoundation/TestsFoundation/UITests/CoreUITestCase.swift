@@ -414,6 +414,13 @@ open class CoreUITestCase: XCTestCase {
             .term,
             .totalScores,
         ]), value: course)
+        mockData(GetCourseRequest(courseID: course.id, include: [
+            .courseImage,
+            .favorites,
+            .permissions,
+            .sections,
+            .term,
+        ]), value: course)
         mockData(GetEnabledFeatureFlagsRequest(context: ContextModel(.course, id: course.id)), value: [
             "rce_enhancements",
             "new_gradebook",

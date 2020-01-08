@@ -94,7 +94,7 @@ class ModuleStore: NSObject {
         } catch {
             delegate?.moduleStoreDidEncounterError(error)
         }
-        let request = GetModulesRequest(courseID: courseID)
+        let request = GetModulesRequest(courseID: courseID, include: [.items, .content_details])
         if force || shouldRefresh {
             getModules(request, reset: true)
         }
@@ -138,7 +138,7 @@ class ModuleStore: NSObject {
                 do {
                     try context.save()
                     for apiModule in response where apiModule.items == nil {
-                        let request = GetModuleItemsRequest(courseID: self.courseID, moduleID: apiModule.id.value)
+                        let request = GetModuleItemsRequest(courseID: self.courseID, moduleID: apiModule.id.value, include: [.content_details])
                         self.getItems(moduleID: apiModule.id.value, request: request)
                     }
                     if let next = urlResponse.flatMap({ request.getNext(from: $0) }) {

@@ -61,6 +61,7 @@ class CoreTestCase: XCTestCase {
         UploadManager.shared = MockUploadManager()
         MockUploadManager.reset()
         UUID.reset()
+        ExperimentalFeature.allEnabled = false
     }
 
     override func tearDown() {

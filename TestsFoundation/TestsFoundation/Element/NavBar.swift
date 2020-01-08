@@ -21,8 +21,10 @@ import Foundation
 public enum NavBar: String, ElementWrapper {
     case title, subtitle
 
-    public static var backButton: Element {
-        return app.navigationBars.buttons.matching(label: "Back").firstElement
+    public static var backButton: Element { backButton(label: "Back") }
+
+    public static func backButton(label: String) -> Element {
+        return app.navigationBars.buttons.matching(label: label).firstElement
     }
 
     public static var dismissButton: Element {

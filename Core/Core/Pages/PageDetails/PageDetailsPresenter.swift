@@ -63,7 +63,7 @@ class PageDetailsPresenter {
         pages.refresh(force: true)
 
         NotificationCenter.default.addObserver(self, selector: #selector(pageEdited), name: Notification.Name("page-edit"), object: nil)
-
+        NotificationCenter.default.post(moduleItem: .page(pageURL), completedRequirement: .view, courseID: context.id)
     }
 
     @objc
