@@ -16,18 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-import TestsFoundation
+import Foundation
 
-class ParentUITests: XCTestCase {
-//    override var user: UITestUser? { nil }
-
+class ExampleTests: ParentUITestCase {
     func testExample() {
-//        mockBaseRequests()
-//        logIn()
-
-        app.launch()
-        print(app)
-        print()
+        mockBaseRequests()
+        logIn()
     }
 }

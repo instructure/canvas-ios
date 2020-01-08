@@ -26,7 +26,13 @@ open class CoreUITestCase: XCTestCase {
         encoder.dateEncodingStrategy = .iso8601
         return encoder
     }
-    open var homeScreen: Element { TabBar.dashboardTab }
+    open var homeScreen: Element {
+        if Bundle.main.isParentApp {
+            return TabBar.coursesTab
+        } else {
+            return TabBar.dashboardTab
+        }
+    }
 
     open var httpMocks = [URL: (URLRequest) -> MockHTTPResponse]()
     open var graphQLMocks = [String: (URLRequest) -> Data]()
@@ -455,10 +461,12 @@ open class CoreUITestCase: XCTestCase {
         return courses
     }
 
-    open lazy var baseEnrollment = APIEnrollment.make(
-        type: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
-        role: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
-    )
+    open var baseEnrollment: APIEnrollment {
+        .make(
+            type: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
+            role: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
+        )
+    }
     open lazy var baseCourse = mock(course: .make(enrollments: [ baseEnrollment ]))
 
     open func mockBaseRequests() {
