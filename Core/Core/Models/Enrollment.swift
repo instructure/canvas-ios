@@ -103,6 +103,9 @@ extension Enrollment {
 
     public func formattedCurrentScore(gradingPeriodID: String?) -> String {
         let notAvailable = NSLocalizedString("N/A", bundle: .core, comment: "")
+        if gradingPeriodID == nil, multipleGradingPeriodsEnabled, !totalsForAllGradingPeriodsOption {
+            return notAvailable
+        }
         if let score = currentScore(gradingPeriodID: gradingPeriodID) {
             return Course.scoreFormatter.string(from: NSNumber(value: score)) ?? notAvailable
         }

@@ -121,6 +121,7 @@
         <attribute name="courseCode" optional="YES" attributeType="String"/>
         <attribute name="currentGradingPeriodID" optional="YES" attributeType="String"/>
         <attribute name="defaultViewRaw" optional="YES" attributeType="String"/>
+        <attribute name="hideFinalGrades" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="imageDownloadURL" optional="YES" attributeType="URI"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>

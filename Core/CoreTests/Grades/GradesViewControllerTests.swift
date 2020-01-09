@@ -36,24 +36,7 @@ class GradesViewControllerTests: CoreTestCase {
                 ),
             ])
         )
-        api.mock(
-            GetEnrollmentsRequest(context: ContextModel(.course, id: "1"), userID: "1", gradingPeriodID: nil),
-            value: [
-                .make(
-                    id: "1",
-                    enrollment_state: .active,
-                    type: "StudentEnrollment",
-                    user_id: "1",
-                    grades: APIEnrollment.Grades(
-                        html_url: "/grades",
-                        current_grade: nil,
-                        final_grade: nil,
-                        current_score: 100,
-                        final_score: nil
-                    )
-                ),
-            ]
-        )
+        mockEnrollments(gradingPeriodID: nil, currentScore: 100)
         api.mock(
             GetAssignmentGroupsRequest(courseID: "1", gradingPeriodID: nil, include: [.assignments]),
             value: [
@@ -109,29 +92,13 @@ class GradesViewControllerTests: CoreTestCase {
                     user_id: "1",
                     computed_current_score: 100,
                     multiple_grading_periods_enabled: true,
+                    totals_for_all_grading_periods_option: true,
                     current_grading_period_id: "1",
                     current_period_computed_current_score: 50
                 ),
             ])
         )
-        api.mock(
-            GetEnrollmentsRequest(context: ContextModel(.course, id: "1"), userID: "1", gradingPeriodID: "1"),
-            value: [
-                .make(
-                    id: "1",
-                    enrollment_state: .active,
-                    type: "StudentEnrollment",
-                    user_id: "1",
-                    grades: APIEnrollment.Grades(
-                        html_url: "/grades",
-                        current_grade: nil,
-                        final_grade: nil,
-                        current_score: 50,
-                        final_score: nil
-                    )
-                ),
-            ]
-        )
+        mockEnrollments(gradingPeriodID: "1", currentScore: 50)
         api.mock(
             GetAssignmentGroupsRequest(courseID: "1", gradingPeriodID: "1", include: [.assignments]),
             value: [
@@ -169,5 +136,178 @@ class GradesViewControllerTests: CoreTestCase {
         XCTAssertEqual(viewController.filterButton.title(for: .normal), "Filter")
         XCTAssertEqual(viewController.gradingPeriodLabel.text, "All Grading Periods")
         XCTAssertEqual(viewController.totalGradeLabel.text, "100%")
+    }
+
+    func testHideFinalGradesTrue() {
+        api.mock(
+            GetCourseRequest(courseID: "1"),
+            value: .make(
+                id: "1",
+                enrollments: [
+                    .make(
+                        enrollment_state: .active,
+                        type: "student",
+                        user_id: "1",
+                        computed_current_score: 100,
+                        multiple_grading_periods_enabled: false,
+                        current_grading_period_id: nil
+                    ),
+                ],
+                hide_final_grades: true
+            )
+        )
+        mockEnrollments(gradingPeriodID: nil, currentScore: 100)
+        api.mock(
+            GetAssignmentGroupsRequest(courseID: "1", gradingPeriodID: nil, include: [.assignments]),
+            value: [
+                .make(id: "1", name: "One", position: 1, assignments: [.make(id: "1")]),
+            ]
+        )
+        api.mock(
+            GetAssignmentsRequest(courseID: "1", orderBy: .position, include: [.observed_users, .submission], perPage: 99),
+            value: [
+                .make(id: "1", course_id: "1", assignment_group_id: "1"),
+            ]
+        )
+        api.mock(GetGradingPeriodsRequest(courseID: "1"), value: [.make(id: "1", title: "The One")])
+        let viewController = GradesViewController.create(courseID: "1", userID: "1")
+        viewController.view.layoutIfNeeded()
+        XCTAssertEqual(viewController.totalGradeLabel.text, "N/A")
+    }
+
+    func testHideFinalGradesFalse() {
+        api.mock(
+            GetCourseRequest(courseID: "1"),
+            value: .make(
+                id: "1",
+                enrollments: [
+                    .make(
+                        enrollment_state: .active,
+                        type: "student",
+                        user_id: "1",
+                        computed_current_score: 100,
+                        multiple_grading_periods_enabled: false,
+                        current_grading_period_id: nil
+                    ),
+                ],
+                hide_final_grades: false
+            )
+        )
+        mockEnrollments(gradingPeriodID: nil, currentScore: 100)
+        api.mock(
+            GetAssignmentGroupsRequest(courseID: "1", gradingPeriodID: nil, include: [.assignments]),
+            value: [
+                .make(id: "1", name: "One", position: 1, assignments: [.make(id: "1")]),
+            ]
+        )
+        api.mock(
+            GetAssignmentsRequest(courseID: "1", orderBy: .position, include: [.observed_users, .submission], perPage: 99),
+            value: [
+                .make(id: "1", course_id: "1", assignment_group_id: "1"),
+            ]
+        )
+        api.mock(GetGradingPeriodsRequest(courseID: "1"), value: [.make(id: "1", title: "The One")])
+        let viewController = GradesViewController.create(courseID: "1", userID: "1")
+        viewController.view.layoutIfNeeded()
+        XCTAssertEqual(viewController.totalGradeLabel.text, "100%")
+    }
+
+    func testTotalsForAllGradingPeriodsOptionTrue() {
+        api.mock(
+            GetCourseRequest(courseID: "1"),
+            value: .make(id: "1", enrollments: [
+                .make(
+                    enrollment_state: .active,
+                    type: "student",
+                    user_id: "1",
+                    computed_current_score: 100,
+                    multiple_grading_periods_enabled: true,
+                    totals_for_all_grading_periods_option: true,
+                    current_grading_period_id: nil,
+                    current_period_computed_current_score: 50
+                ),
+            ])
+        )
+        mockEnrollments(gradingPeriodID: nil, currentScore: 100)
+        api.mock(
+            GetAssignmentGroupsRequest(courseID: "1", gradingPeriodID: nil, include: [.assignments]),
+            value: [
+                .make(id: "1", name: "One", position: 1, assignments: [.make(id: "1")]),
+                .make(id: "2", name: "Two", position: 2, assignments: [.make(id: "2")]),
+            ]
+        )
+        api.mock(
+            GetAssignmentsRequest(courseID: "1", orderBy: .position, include: [.observed_users, .submission], perPage: 99),
+            value: [
+                .make(id: "1", course_id: "1", assignment_group_id: "1"),
+                .make(id: "2", course_id: "1", assignment_group_id: "2"),
+            ]
+        )
+        api.mock(GetGradingPeriodsRequest(courseID: "1"), value: [.make(id: "1", title: "The One")])
+
+        let viewController = GradesViewController.create(courseID: "1", userID: "1")
+        viewController.view.layoutIfNeeded()
+        XCTAssertEqual(viewController.gradingPeriodLabel.text, "All Grading Periods")
+        XCTAssertEqual(viewController.totalGradeLabel.text, "100%")
+    }
+
+    func testTotalsForAllGradingPeriodsOptionFalse() {
+        api.mock(
+            GetCourseRequest(courseID: "1"),
+            value: .make(id: "1", enrollments: [
+                .make(
+                    enrollment_state: .active,
+                    type: "student",
+                    user_id: "1",
+                    computed_current_score: 100,
+                    multiple_grading_periods_enabled: true,
+                    totals_for_all_grading_periods_option: false,
+                    current_grading_period_id: nil,
+                    current_period_computed_current_score: 50
+                ),
+            ])
+        )
+        mockEnrollments(gradingPeriodID: nil, currentScore: 100)
+        api.mock(
+            GetAssignmentGroupsRequest(courseID: "1", gradingPeriodID: nil, include: [.assignments]),
+            value: [
+                .make(id: "1", name: "One", position: 1, assignments: [.make(id: "1")]),
+                .make(id: "2", name: "Two", position: 2, assignments: [.make(id: "2")]),
+            ]
+        )
+        api.mock(
+            GetAssignmentsRequest(courseID: "1", orderBy: .position, include: [.observed_users, .submission], perPage: 99),
+            value: [
+                .make(id: "1", course_id: "1", assignment_group_id: "1"),
+                .make(id: "2", course_id: "1", assignment_group_id: "2"),
+            ]
+        )
+        api.mock(GetGradingPeriodsRequest(courseID: "1"), value: [.make(id: "1", title: "The One")])
+
+        let viewController = GradesViewController.create(courseID: "1", userID: "1")
+        viewController.view.layoutIfNeeded()
+        XCTAssertEqual(viewController.gradingPeriodLabel.text, "All Grading Periods")
+        XCTAssertEqual(viewController.totalGradeLabel.text, "N/A")
+    }
+
+    func mockEnrollments(gradingPeriodID: String?, currentScore: Double?) {
+        api.mock(
+            GetEnrollmentsRequest(context: ContextModel(.course, id: "1"), userID: "1", gradingPeriodID: gradingPeriodID),
+            value: [
+                .make(
+                    id: "1",
+                    enrollment_state: .active,
+                    type: "StudentEnrollment",
+                    user_id: "1",
+                    grades: APIEnrollment.Grades(
+                        html_url: "/grades",
+                        current_grade: nil,
+                        final_grade: nil,
+                        current_score: currentScore,
+                        final_score: nil
+                    )
+                ),
+            ]
+        )
     }
 }

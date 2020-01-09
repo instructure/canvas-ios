@@ -132,7 +132,10 @@ export class Dashboard extends React.Component<Props, State> {
         !this.state.showingModal &&
         isTeacher() &&
         getSessionUnsafe()) {
-      this.props.navigator.show('/wrong-app', { modal: true })
+      this.props.navigator.show('/wrong-app', {
+        modal: true,
+        disableSwipeDownToDismissModal: true,
+      })
       this.setState({
         showingModal: true,
       })
