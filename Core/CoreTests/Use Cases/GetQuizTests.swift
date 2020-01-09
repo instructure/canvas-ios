@@ -35,7 +35,7 @@ class GetQuizTest: CoreTestCase {
         api.mock(GetQuizSubmissionRequest(courseID: courseID, quizID: quizID), value: GetQuizSubmissionRequest.Response(quiz_submissions: [.make()]))
         let useCase = GetQuiz(courseID: courseID, quizID: quizID)
         let expectation = XCTestExpectation(description: "completion handler was called")
-        useCase.makeRequest(environment: environment) { response, urlResponse, error in
+        useCase.makeRequest(environment: environment) { response, _, error in
             XCTAssertNotNil(response)
             XCTAssertNotNil(response?.quiz)
             XCTAssertNotNil(response?.submission)
