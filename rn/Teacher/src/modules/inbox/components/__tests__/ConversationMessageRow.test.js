@@ -151,7 +151,7 @@ describe('ConversationMessageRow', () => {
           id: '5678',
           name: 'participant 2',
           common_courses: {
-            '2': ['StudentEnrollment']
+            '2': ['StudentEnrollment'],
           },
         },
       ],
