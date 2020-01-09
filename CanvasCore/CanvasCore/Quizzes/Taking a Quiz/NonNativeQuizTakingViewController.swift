@@ -84,6 +84,5 @@ class NonNativeQuizTakingViewController: UIViewController, CoreWebViewLinkDelega
 
     func refreshCoreQuiz() {
         GetQuiz(courseID: contextID.id, quizID: quiz.id).fetch(force: true) { _, _, _ in }
-        GetQuizSubmission(courseID: contextID.id, quizID: quiz.id).fetch(force: true) { _, _, _ in }
     }
 }

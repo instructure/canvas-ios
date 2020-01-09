@@ -59,7 +59,6 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
     }
 
     var quizzes: Store<GetQuiz>?
-    var quizSubmission: Store<GetQuizSubmission>?
 
     let env: AppEnvironment
     weak var view: AssignmentDetailsViewProtocol?
@@ -110,13 +109,9 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
                 self?.update()
             } }
             quizzes?.refresh()
-            quizSubmission = assignment?.quizID.flatMap { quizID in env.subscribe(GetQuizSubmission(courseID: courseID, quizID: quizID)) { [weak self] in
-                self?.update()
-            } }
-            quizSubmission?.refresh()
         }
         guard let assignment = assignment, let course = courses.first else { return }
-        guard quizzes?.pending != true, quizSubmission?.pending != true else { return }
+        guard quizzes?.pending != true else { return }
         let baseURL = fragmentHash.flatMap { URL(string: $0, relativeTo: assignment.htmlURL) } ?? assignment.htmlURL
         if let submission = assignment.submission {
             userID = submission.userID
@@ -169,7 +164,6 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
         courses.refresh(force: true)
         assignments.refresh(force: true)
         quizzes?.refresh(force: true)
-        quizSubmission?.refresh(force: true)
 
         submissionButtonPresenter.arcID = .pending
         arc.refresh(force: true)

@@ -97,9 +97,8 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
 
         presenter.update()
         let quizStore = presenter.quizzes as! TestStore
-        let quizSubmissionStore = presenter.quizSubmission as! TestStore
 
-        wait(for: [quizStore.refreshExpectation, quizSubmissionStore.refreshExpectation], timeout: 0.1)
+        wait(for: [quizStore.refreshExpectation], timeout: 0.1)
 
         presenter.quizzes?.eventHandler()
         XCTAssertEqual(resultingQuiz, quiz)
