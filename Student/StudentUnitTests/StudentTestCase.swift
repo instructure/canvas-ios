@@ -35,10 +35,7 @@ class StudentTestCase: XCTestCase {
     var queue = OperationQueue()
     var env = TestEnvironment()
     var logger: TestLogger!
-    var router: TestRouter! {
-        guard let r = env.router as? TestRouter else { return nil }
-        return r
-    }
+    var router: TestRouter { env.router as! TestRouter }
     var uploadManager = MockUploadManager()
     var currentSession: LoginSession!
 
