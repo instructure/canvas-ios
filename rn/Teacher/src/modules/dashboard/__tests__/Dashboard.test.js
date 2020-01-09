@@ -329,7 +329,10 @@ describe('Dashboard', () => {
     )
 
     tree.getInstance().componentWillReceiveProps(props)
-    expect(navigator.show).toHaveBeenCalledWith('/wrong-app', { modal: true })
+    expect(navigator.show).toHaveBeenCalledWith('/wrong-app', {
+      modal: true,
+      disableSwipeDownToDismissModal: true,
+    })
   })
 
   it('does not call navigator.show to navigate to /wrong-app when canActAsUser', () => {
