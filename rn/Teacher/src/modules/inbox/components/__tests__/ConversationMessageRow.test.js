@@ -167,22 +167,29 @@ describe('ConversationMessageRow', () => {
   })
 
   it('navigates to own context card when avatar is pressed', () => {
+    let session = getSession()
     props.conversation = template.conversation({
       context_code: 'course_1',
       participants: [
-        { id: '1234', name: 'participant 1' },
         {
-          id: '5678',
-          name: 'participant 2',
+          id: session.user.id,
+          name: 'me',
           common_courses: {},
+        },
+        {
+          id: 'not_the_current_user_id',
+          name: 'participant 2',
+          common_courses: {
+            '2': ['StudentEnrollment'],
+          },
         },
       ],
     })
-    props.message.author_id = '5678'
+    props.message.author_id = session.user.id
     const tree = shallow(<ConversationMessage {...props} />)
     tree.find('Avatar').simulate('Press')
     expect(props.navigator.show).toHaveBeenCalledWith(
-      `/courses/1/users/5678`,
+      `/courses/2/users/${session.user.id}`,
       { modal: true, modalPresentationStyle: 'currentContext' },
     )
   })
