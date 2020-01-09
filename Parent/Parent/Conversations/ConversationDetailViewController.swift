@@ -51,7 +51,8 @@ class ConversationDetailViewController: UIViewController {
     }
 
     private func configureTableView() {
-        tableView?.refreshControl = refreshControl
+        tableView.refreshControl = refreshControl
+        tableView.backgroundColor = .named(.backgroundGrouped)
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.registerHeaderFooterView(UITableViewHeaderFooterView.self, fromNib: false)
     }
@@ -66,6 +67,14 @@ class ConversationDetailViewController: UIViewController {
             if refreshControl.isRefreshing { refreshControl.endRefreshing() }
             tableView?.reloadData()
             title = conversations.first?.subject.isEmpty ?? true ? NSLocalizedString("No Subject", comment: "") : conversations.first?.subject
+            let lastParticipantCount = conversations.first?.messages.first?.participantIDs.count ?? 0
+            if lastParticipantCount > 2 {
+                replyButton.setImage(.icon(.replyAll, .solid), for: .normal)
+                replyButton.accessibilityLabel = NSLocalizedString("Reply All", comment: "")
+            } else {
+                replyButton.setImage(.icon(.reply, .solid), for: .normal)
+                replyButton.accessibilityLabel = NSLocalizedString("Reply", comment: "")
+            }
         }
     }
 
@@ -75,7 +84,8 @@ class ConversationDetailViewController: UIViewController {
     }
 
     @IBAction func actionReplyClicked(_ sender: Any) {
-        print(#function)
+        guard let message = conversations.first?.messages.first else { return }
+        showReplyFor(IndexPath(row: 0, section: 0), all: message.participantIDs.count > 2)
     }
 }
 
@@ -95,39 +105,40 @@ extension ConversationDetailViewController: UITableViewDataSource, UITableViewDe
         return cell
     }
 
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        section == 0 ? 0 : 16
-    }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header: UITableViewHeaderFooterView = tableView.dequeueHeaderFooter(UITableViewHeaderFooterView.self)
-        header.backgroundView = UIView()
-        header.backgroundView?.backgroundColor = .named(.porcelain)
-        return header
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        section + 1 == conversations.first?.messages.count ? 0 : 16
     }
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         var actions: [UIContextualAction] = []
-        let reply = UIContextualAction(style: .normal, title: NSLocalizedString("Reply", comment: ""), handler: { (_: UIContextualAction, _: UIView, success: (Bool) -> Void) in
-            print("reply")
+        let reply = UIContextualAction(style: .normal, title: NSLocalizedString("Reply", comment: "")) { [weak self] _, _, success in
+            self?.showReplyFor(indexPath, all: false)
             success(true)
-        })
+        }
         reply.backgroundColor = .named(.electric)
         reply.image = .icon(.reply, .solid)
         actions.append(reply)
 
-        let replyAll = UIContextualAction(style: .normal, title: NSLocalizedString("Reply All", comment: ""), handler: { (_: UIContextualAction, _: UIView, success: (Bool) -> Void) in
-            print("replyAll")
-            success(true)
-        })
-        replyAll.backgroundColor = .named(.oxford)
-        replyAll.image = .icon(.replyAll, .solid)
-
-        if userMap.count > 2 {
+        if let msg = conversations.first?.messages[indexPath.section], msg.participantIDs.count > 2 {
+            let replyAll = UIContextualAction(style: .normal, title: NSLocalizedString("Reply All", comment: "")) { [weak self] _, _, success in
+                self?.showReplyFor(indexPath, all: true)
+                success(true)
+            }
+            replyAll.backgroundColor = .named(.oxford)
+            replyAll.image = .icon(.replyAll, .solid)
             actions.append(replyAll)
         }
 
         return UISwipeActionsConfiguration(actions: actions)
+    }
+
+    func showReplyFor(_ indexPath: IndexPath, all: Bool) {
+        guard let conversation = conversations.first else { return }
+        env.router.show(ComposeReplyViewController.create(
+            conversation: conversation,
+            message: conversation.messages[indexPath.section],
+            all: all
+        ), from: self, options: [ .modal, .embedInNav ])
     }
 }
 

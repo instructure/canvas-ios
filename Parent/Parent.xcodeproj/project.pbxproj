@@ -133,6 +133,9 @@
 		7D52D8A622FCC8C200684932 /* DiscussionKit.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 9F5A3D372048745B00F6EDCE /* DiscussionKit.xcdatamodeld */; };
 		7D57D3CC23AADA0F00EB2CC5 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D57D3CB23AADA0F00EB2CC5 /* ComposeViewController.swift */; };
 		7D57D3CE23AADAAC00EB2CC5 /* ComposeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D57D3CD23AADAAC00EB2CC5 /* ComposeViewController.storyboard */; };
+		7D6F4CE723C66738001C957D /* ComposeReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6F4CE623C66738001C957D /* ComposeReplyViewController.swift */; };
+		7D6F4CE923C676CE001C957D /* ComposeReplyViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6F4CE823C676CE001C957D /* ComposeReplyViewController.storyboard */; };
+		7D6F4CEB23C69F7F001C957D /* ComposeReplyViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6F4CEA23C69F7F001C957D /* ComposeReplyViewControllerTests.swift */; };
 		7D88EA2E23A9A1CB00D5F8FD /* ColorSchemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D88EA2D23A9A1CB00D5F8FD /* ColorSchemeTests.swift */; };
 		7DBED00A2328282200392F3C /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED0092328282200392F3C /* Routes.swift */; };
 		7DEE3E3D2335790A0009D8DC /* IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE3E3C2335790A0009D8DC /* IBDesignables.swift */; };
@@ -840,6 +843,9 @@
 		7D349CD921430E67004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D57D3CB23AADA0F00EB2CC5 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		7D57D3CD23AADAAC00EB2CC5 /* ComposeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ComposeViewController.storyboard; sourceTree = "<group>"; };
+		7D6F4CE623C66738001C957D /* ComposeReplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeReplyViewController.swift; sourceTree = "<group>"; };
+		7D6F4CE823C676CE001C957D /* ComposeReplyViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ComposeReplyViewController.storyboard; sourceTree = "<group>"; };
+		7D6F4CEA23C69F7F001C957D /* ComposeReplyViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeReplyViewControllerTests.swift; sourceTree = "<group>"; };
 		7D88EA2D23A9A1CB00D5F8FD /* ColorSchemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeTests.swift; sourceTree = "<group>"; };
 		7DBED0092328282200392F3C /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		7DE74EFD22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -1309,6 +1315,8 @@
 			isa = PBXGroup;
 			children = (
 				7D1591BB23AD79B100ED0106 /* ComposeRecipientsView.swift */,
+				7D6F4CE823C676CE001C957D /* ComposeReplyViewController.storyboard */,
+				7D6F4CE623C66738001C957D /* ComposeReplyViewController.swift */,
 				7D57D3CD23AADAAC00EB2CC5 /* ComposeViewController.storyboard */,
 				7D57D3CB23AADA0F00EB2CC5 /* ComposeViewController.swift */,
 				974BA7F823A89C5C00E09D5A /* ConversationDetailViewController.storyboard */,
@@ -1339,6 +1347,7 @@
 		7DFDB43023A3EDE200B28DED /* Conversations */ = {
 			isa = PBXGroup;
 			children = (
+				7D6F4CEA23C69F7F001C957D /* ComposeReplyViewControllerTests.swift */,
 				7D231BE023AC1E0A005BA31D /* ComposeViewControllerTests.swift */,
 				97D477C823AA738300A6BC78 /* ConversationDetailViewControllerTests.swift */,
 				7DFDB43123A3EDFB00B28DED /* ConversationListViewControllerTests.swift */,
@@ -1578,6 +1587,7 @@
 				2CB69BCC1D91CE460059C5A5 /* SettingsViewController.storyboard in Resources */,
 				785AC17F20CEDAD300C28E46 /* Settings.bundle in Resources */,
 				3B92109C231F02D500820CC3 /* StudentSettingsViewController.storyboard in Resources */,
+				7D6F4CE923C676CE001C957D /* ComposeReplyViewController.storyboard in Resources */,
 				2CB69BA81D91CDE00059C5A5 /* CourseCell.xib in Resources */,
 				2CB69BBD1D91CDFB0059C5A5 /* DetailsLocationCell.xib in Resources */,
 			);
@@ -1691,6 +1701,7 @@
 				3B36A2ED2322C2A000599A1E /* GetAlertThresholdRequestableTests.swift in Sources */,
 				7DFDB43223A3EDFB00B28DED /* ConversationListViewControllerTests.swift in Sources */,
 				B1AA55D0235785A200DFD184 /* SettingsViewControllerTests.swift in Sources */,
+				7D6F4CEB23C69F7F001C957D /* ComposeReplyViewControllerTests.swift in Sources */,
 				7D231BE123AC1E0A005BA31D /* ComposeViewControllerTests.swift in Sources */,
 				3B54E3592326F9B000D8D1D2 /* ParentTestCase.swift in Sources */,
 				3B36A2F12322C56F00599A1E /* APIAlertThresholdFixture.swift in Sources */,
@@ -1755,6 +1766,7 @@
 				5E0F9A6C1C739E6A00BB7707 /* CalendarEventCellViewModel.swift in Sources */,
 				497C48C31F912BD100A3BC06 /* ObserverAlertKit.xcdatamodeld in Sources */,
 				5EF946291CAD76C400D10247 /* TableEmptyView.swift in Sources */,
+				7D6F4CE723C66738001C957D /* ComposeReplyViewController.swift in Sources */,
 				5E41048B1C99E08B0021567C /* UIImage+Resize.swift in Sources */,
 				497C48C21F912BD100A3BC06 /* Alert+Network.swift in Sources */,
 				9F6B43E42243ECD9003C758B /* DashboardPresenter.swift in Sources */,
