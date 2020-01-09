@@ -112,7 +112,7 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
         let myID = env.currentSession?.userID ?? ""
         let recipients = !all ? [ message.authorID ]
             : message.participantIDs.filter { $0 != myID }
-        AddMessage(conversationID: conversation.id, body: body, recipientIDs: recipients).fetch { [weak self] _, response, error in performUIUpdate {
+        AddMessage(conversationID: conversation.id, body: body, recipientIDs: recipients).fetch { [weak self] _, _, error in performUIUpdate {
             if let error = error {
                 self?.showError(error)
                 return

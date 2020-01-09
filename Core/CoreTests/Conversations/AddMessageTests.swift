@@ -40,7 +40,7 @@ class AddMessageTests: CoreTestCase {
                 body: "See-Gee-IN-YOU!",
                 author_id: "2",
                 participating_user_ids: [ "1", "2" ]
-            ) ]
+            ), ]
         ))
 
         useCase.fetch()
