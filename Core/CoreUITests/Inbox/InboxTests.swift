@@ -105,16 +105,13 @@ class MockedInboxTests: CoreUITestCase {
         mockData(GetConversationRequest(id: "1", include: [.participant_avatars]), value: before)
         mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent), value: [after])
         mockData(PutConversationRequest(id: "1", workflowState: .read), value: before)
-        mockData(PostAddMessageRequest(id: "1", message: .init(
-            recipients: ["1"],
-            body: "This is a reply",
-            subject: "Subject One",
+        mockData(PostAddMessageRequest(conversationID: "1", body: .init(
             attachment_ids: nil,
+            body: "This is a reply",
             media_comment_id: nil,
             media_comment_type: nil,
-            context_code: nil,
-            bulk_message: nil)
-        ), value: after)
+            recipients: ["1"]
+        )), value: after)
         logIn()
         TabBar.inboxTab.tap()
         app.find(id: "inbox.conversation-1").tap()

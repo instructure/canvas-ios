@@ -105,6 +105,20 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
     }
 
     @objc func send() {
+        guard
+            let conversation = conversation, let message = message,
+            let body = bodyView.text?.trimmingCharacters(in: .whitespacesAndNewlines), !body.isEmpty
+        else { return }
+        let myID = env.currentSession?.userID ?? ""
+        let recipients = !all ? [ message.authorID ]
+            : message.participantIDs.filter { $0 != myID }
+        AddMessage(conversationID: conversation.id, body: body, recipientIDs: recipients).fetch { [weak self] _, _, error in performUIUpdate {
+            if let error = error {
+                self?.showError(error)
+                return
+            }
+            self?.dismiss(animated: true)
+        } }
     }
 }
 

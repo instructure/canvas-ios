@@ -23,7 +23,7 @@ final public class Conversation: NSManagedObject, WriteableModel {
     @NSManaged var audienceIDsRaw: String
     @NSManaged public var avatarURL: URL?
     @NSManaged public var contextCode: String
-    @NSManaged public var contextName: String
+    @NSManaged public var contextName: String?
     @NSManaged public var id: String
     @NSManaged public var lastMessage: String
     @NSManaged public var lastMessageAt: Date

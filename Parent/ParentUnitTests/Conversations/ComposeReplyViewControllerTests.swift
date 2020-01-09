@@ -46,5 +46,14 @@ class ComposeReplyViewControllerTests: ParentTestCase {
         controller.bodyView.text = "Replying"
         controller.bodyView.delegate?.textViewDidChange?(controller.bodyView)
         XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.isEnabled, true)
+
+        api.mock(AddMessage(conversationID: conversation.id, body: "").request, error: NSError.instructureError("Oops"))
+        let sendButton = controller.navigationItem.rightBarButtonItem
+        XCTAssertNoThrow(sendButton?.target?.perform(sendButton?.action))
+        XCTAssertEqual((router.presented as? UIAlertController)?.message, "Oops")
+
+        controller.all = true
+        api.mock(AddMessage(conversationID: conversation.id, body: "").request, value: .make())
+        XCTAssertNoThrow(sendButton?.target?.perform(sendButton?.action))
     }
 }
