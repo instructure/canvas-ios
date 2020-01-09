@@ -40,4 +40,5 @@ public struct APIRubricRating: Codable, Equatable {
 
 public struct APIRubricSettings: Codable, Equatable {
     var hide_points: Bool
+    var free_form_criterion_comments: Bool?
 }

@@ -172,7 +172,9 @@ class RubricViewController: UIViewController {
         ratingDesc.lineBreakMode = .byWordWrapping
         ratingStack.addArrangedSubview(ratingTitle)
         ratingStack.addArrangedSubview(ratingDesc)
-        if let index = model.selectedIndex {
+        if model.freeFormCriterionComments == true && model.hideRubricPoints == true {
+            container.isHidden = true
+        } else if let index = model.selectedIndex {
             let ratingInfo = model.ratingBlurb(index)
             ratingTitle.text = ratingInfo.header
             ratingDesc.text = ratingInfo.subHeader

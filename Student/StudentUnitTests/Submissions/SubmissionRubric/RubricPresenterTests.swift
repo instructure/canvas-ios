@@ -73,7 +73,8 @@ class RubricPresenterTests: StudentTestCase {
                 comment: "You failed at punctuation!",
                 rubricRatings: Array(rubric.ratings!).sorted { $0.points < $1.points },
                 isCustomAssessment: false,
-                hideRubricPoints: false
+                hideRubricPoints: false,
+                freeFormCriterionComments: false
             ),
         ]
     }
@@ -170,7 +171,8 @@ class RubricPresenterTests: StudentTestCase {
                 comment: "this is custom",
                 rubricRatings: Array(rubric.ratings!).sorted { $0.points < $1.points },
                 isCustomAssessment: true,
-                hideRubricPoints: false
+                hideRubricPoints: false,
+                freeFormCriterionComments: false
             ),
         ]
 
@@ -194,7 +196,8 @@ class RubricPresenterTests: StudentTestCase {
                                     comment: nil,
                                     rubricRatings: [rating],
                                     isCustomAssessment: true,
-                                    hideRubricPoints: false)
+                                    hideRubricPoints: false,
+                                    freeFormCriterionComments: false)
 
         let a = model.ratingBlurb(0)
         let b = model.ratingBlurb(1)
