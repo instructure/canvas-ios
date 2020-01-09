@@ -28,6 +28,7 @@ import * as template from '../../../../__templates__'
 describe('ConversationMessageRow', () => {
   let props
   beforeEach(() => {
+    jest.clearAllMocks()
     props = {
       conversation: template.conversation(),
       message: template.conversationMessage(),
@@ -143,12 +144,72 @@ describe('ConversationMessageRow', () => {
   })
 
   it('navigates to context card when the avatar is pressed', () => {
+    props.conversation = template.conversation({
+      context_code: 'course_1',
+      participants: [
+        { id: '1234', name: 'participant 1' },
+        {
+          id: '5678',
+          name: 'participant 2',
+          common_courses: {
+            '2': ['StudentEnrollment'],
+          },
+        },
+      ],
+    })
+    props.message.author_id = '5678'
     const tree = shallow(<ConversationMessage {...props} />)
     tree.find('Avatar').simulate('Press')
     expect(props.navigator.show).toHaveBeenCalledWith(
-      `/courses/1/users/1234`,
+      `/courses/2/users/5678`,
       { modal: true, modalPresentationStyle: 'currentContext' },
     )
+  })
+
+  it('navigates to own context card when avatar is pressed', () => {
+    let session = getSession()
+    props.conversation = template.conversation({
+      context_code: 'course_1',
+      participants: [
+        {
+          id: session.user.id,
+          name: 'me',
+          common_courses: {},
+        },
+        {
+          id: 'not_the_current_user_id',
+          name: 'participant 2',
+          common_courses: {
+            '2': ['StudentEnrollment'],
+          },
+        },
+      ],
+    })
+    props.message.author_id = session.user.id
+    const tree = shallow(<ConversationMessage {...props} />)
+    tree.find('Avatar').simulate('Press')
+    expect(props.navigator.show).toHaveBeenCalledWith(
+      `/courses/2/users/${session.user.id}`,
+      { modal: true, modalPresentationStyle: 'currentContext' },
+    )
+  })
+
+  it('does not navigate to context card without a valid course ID', () => {
+    props.conversation = template.conversation({
+      context_code: null, // an anomoly
+      participants: [
+        { id: '1234', name: 'participant 1' },
+        {
+          id: '5678',
+          name: 'participant 2',
+          common_courses: {},
+        },
+      ],
+    })
+    props.message.author_id = '5678'
+    const tree = shallow(<ConversationMessage {...props} />)
+    tree.find('Avatar').simulate('Press')
+    expect(props.navigator.show).not.toHaveBeenCalled()
   })
 
   it('navigates to a link when pressed', () => {

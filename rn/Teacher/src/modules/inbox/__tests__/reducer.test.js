@@ -26,6 +26,45 @@ import { testAsyncReducer } from '../../../../test/helpers/async'
 const { refreshInboxAll, updateInboxSelectedScope, markAsRead, deleteConversationMessage } = InboxActions()
 import * as templates from '../../../__templates__'
 
+describe('inbox', () => {
+  it('does not remove common_courses', () => {
+    let conversation = templates.conversation({
+      id: '1',
+      participants: [
+        {
+          id: '1',
+          name: 'participant 1',
+        },
+      ],
+    })
+    let data = [conversation]
+    const action = {
+      type: refreshInboxAll.toString(),
+      payload: { result: { data } },
+    }
+    let state = {
+      conversations: {
+        '1': {
+          data: {
+            id: '1',
+            participants: [
+              {
+                id: '1',
+                name: 'participant 1',
+                common_courses: {
+                  '2': ['StudentEnrollment'],
+                },
+              },
+            ],
+          },
+        },
+      },
+    }
+    let result = inbox(state, action)
+    expect(result.conversations['1'].data.participants[0].common_courses).not.toBeUndefined()
+  })
+})
+
 test('it handles the data', () => {
   const data = [
     templates.conversation({ id: '1' }),

@@ -61,10 +61,21 @@ export default class ConversationMessageRow extends React.Component<Props, State
     this.props.onReply(this.props.message.id)
   }
 
+  courseID () {
+    let { author_id } = this.props.message
+    let target = this.props.conversation.participants.find(({ id }) => {
+      if (author_id === getSession().user.id) {
+        // current user doesn't have common courses so take from any other participant
+        return id !== getSession().user.id
+      }
+      return id === author_id
+    })
+    return Object.keys(target?.common_courses ?? {})[0]
+  }
+
   handleAvatarPress = () => {
-    let courseID = this.props.conversation.context_code.split('_')[1]
     this.props.navigator.show(
-      `/courses/${courseID}/users/${this.props.message.author_id}`,
+      `/courses/${this.courseID()}/users/${this.props.message.author_id}`,
       { modal: true, modalPresentationStyle: 'currentContext' }
     )
   }
@@ -91,7 +102,6 @@ export default class ConversationMessageRow extends React.Component<Props, State
   author (): ConversationParticipant {
     const convo = this.props.conversation
     const message = this.props.message
-    // $FlowFixMe we know the author will always be in participants
     return convo.participants.find(({ id }) => id === message.author_id)
   }
 
@@ -144,7 +154,7 @@ export default class ConversationMessageRow extends React.Component<Props, State
               height={32}
               avatarURL={author.avatar_url}
               userName={author.name}
-              onPress={this.props.conversation.context_code ? this.handleAvatarPress : undefined}
+              onPress={this.courseID() != null ? this.handleAvatarPress : undefined}
             />
           </View>
           <View style={{ flex: 1 }}>
