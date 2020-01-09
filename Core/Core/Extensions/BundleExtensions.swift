@@ -44,5 +44,13 @@ public extension Bundle {
     var isStudentUITestsRunner: Bool { bundleIdentifier == Bundle.studentUITestsBundleID }
     var isTeacherUITestsRunner: Bool { bundleIdentifier == Bundle.teacherUITestsBundleID }
     var isParentUITestsRunner: Bool { bundleIdentifier == Bundle.parentUITestsBundleID }
+    var testTargetBundleID: String? {
+        switch bundleIdentifier {
+        case Bundle.studentUITestsBundleID: return Bundle.studentBundleID
+        case Bundle.teacherUITestsBundleID: return Bundle.teacherBundleID
+        case Bundle.parentUITestsBundleID: return Bundle.parentBundleID
+        default: return bundleIdentifier
+        }
+    }
     static var isExtension: Bool { Bundle.main.bundleURL.pathExtension == "appex" }
 }
