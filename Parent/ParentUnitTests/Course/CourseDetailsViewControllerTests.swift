@@ -38,7 +38,7 @@ class CourseDetailsViewControllerTests: ParentTestCase {
         api.mock(GetFrontPageRequest(context: ContextModel(.course, id: courseID)), value: APIPage.make())
         api.mock(
             GetTabsRequest(context: ContextModel(.course, id: courseID)),
-            value: [.make(id: "syllabus", html_url: URL(string:  "/tabs")!)]
+            value: [.make(id: "syllabus", html_url: URL(string: "/tabs")!)]
         )
     }
 
