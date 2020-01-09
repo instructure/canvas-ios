@@ -27,41 +27,100 @@ class CourseDetailsViewControllerTests: ParentTestCase {
     let courseID = "1"
     let studentID = "1"
 
+    var isSyllabusShown: Bool {
+        return vc.viewControllers.first { $0 is SyllabusViewController } != nil &&
+            vc.viewControllers.first { $0 is SyllabusActionableItemsViewController } != nil
+    }
+
     override func setUp() {
         super.setUp()
         vc = CourseDetailsViewController.create(courseID: courseID, studentID: studentID)
+        api.mock(GetFrontPageRequest(context: ContextModel(.course, id: courseID)), value: APIPage.make())
+        api.mock(
+            GetTabsRequest(context: ContextModel(.course, id: courseID)),
+            value: [.make(id: "syllabus", html_url: URL(string: "/tabs")!)]
+        )
     }
 
-    func testRender() {
-        //  Most of the other features of this view controller are tested in the individual tabs
-
-        ExperimentalFeature.parentInbox.isEnabled = true
-
-        api.mock( GetCourseRequest(courseID: courseID), value: .make() )
-        api.mock(GetFrontPageRequest(context: ContextModel(.course, id: courseID)), value: APIPage.make())
-
+    func render() {
         vc.view.layoutIfNeeded()
-        vc.viewDidLoad()
         vc.viewWillAppear(false)
         vc.viewDidAppear(false)
+    }
+
+    func testInboxReplyButton() {
+        ExperimentalFeature.parentInbox.isEnabled = true
+        api.mock(GetCourseRequest(courseID: courseID), value: .make())
+
+        render()
 
         XCTAssertNotNil(vc.replyButton)
         vc.replyButton?.sendActions(for: .primaryActionTriggered)
-
         XCTAssertTrue(router.lastRoutedTo(.compose()))
     }
 
-    func testRenderWithExperimentalFeaturesOff() {
+    func testInboxReplyWithExperimentalFeaturesOff() {
         ExperimentalFeature.parentInbox.isEnabled = false
+        api.mock(GetCourseRequest(courseID: courseID), value: .make())
 
-        api.mock( GetCourseRequest(courseID: courseID), value: .make() )
-        api.mock(GetFrontPageRequest(context: ContextModel(.course, id: courseID)), value: APIPage.make())
-
-        vc.view.layoutIfNeeded()
-        vc.viewDidLoad()
-        vc.viewWillAppear(false)
-        vc.viewDidAppear(false)
+        render()
 
         XCTAssertNil(vc.replyButton)
+    }
+
+    func testHomeIsFrontPage() {
+        api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .wiki))
+        render()
+        XCTAssertFalse(isSyllabusShown)
+    }
+
+    func testHomeIsSyllabus() {
+        api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .syllabus, syllabus_body: "body"))
+        render()
+        XCTAssertTrue(isSyllabusShown)
+    }
+
+    func testHomeIsNilSyllabus() {
+        api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .syllabus, syllabus_body: nil))
+        render()
+        XCTAssertFalse(isSyllabusShown)
+    }
+
+    func testHomeIsEmptySyllabus() {
+        api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .syllabus, syllabus_body: ""))
+        render()
+        XCTAssertFalse(isSyllabusShown)
+    }
+
+    func testHomeIsHiddenSyllabus() {
+        api.mock(GetTabsRequest(context: ContextModel(.course, id: courseID)), value: [])
+        api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .syllabus, syllabus_body: "body"))
+        render()
+        XCTAssertTrue(isSyllabusShown)
+    }
+
+    func testHomeIsUnsupportedAndSyllabusPresentButNotInTabs() {
+        api.mock(GetTabsRequest(context: ContextModel(.course, id: courseID)), value: [])
+        api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .modules, syllabus_body: "body"))
+        render()
+        XCTAssertFalse(isSyllabusShown)
+    }
+
+    func testHomeIsUnsupportedAndSyllabusIsEmpty() {
+        api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .modules, syllabus_body: ""))
+        render()
+        XCTAssertFalse(isSyllabusShown)
+    }
+
+    func testHomeIsUnsupportedAndSyllabusIsNil() {
+        api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .modules, syllabus_body: nil))
+        render()
+        XCTAssertFalse(isSyllabusShown)
+    }
+
+    func testHomeIsUnsupportedAndSyllabusIsPresent() {
+        api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .modules, syllabus_body: "body"))
+        render()
+        XCTAssertTrue(isSyllabusShown)
     }
 }

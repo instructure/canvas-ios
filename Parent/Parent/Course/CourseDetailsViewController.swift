@@ -44,6 +44,10 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         self?.courseReady()
     }
 
+    lazy var tabs = env.subscribe(GetContextTabs(context: ContextModel(.course, id: courseID))) { [weak self] in
+        self?.courseReady()
+    }
+
     static func create(courseID: String, studentID: String, env: AppEnvironment = .shared) -> CourseDetailsViewController {
         let controller = CourseDetailsViewController(nibName: nil, bundle: nil)
         controller.env = env
@@ -60,8 +64,9 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: nil, action: nil)
 
         delegate = self
-        courses.refresh()
-        frontPages.refresh()
+        courses.refresh(force: true)
+        frontPages.refresh(force: true)
+        tabs.refresh(force: true)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -111,17 +116,21 @@ class CourseDetailsViewController: HorizontalMenuViewController {
 
     func courseReady() {
         title = courses.first?.name
-        if !courses.pending && !frontPages.pending && readyToLayoutTabs, !didLayoutTabs, let course = courses.first {
+        let pending = courses.pending || frontPages.pending || tabs.pending
+        if !pending, readyToLayoutTabs, !didLayoutTabs, let course = courses.first {
             didLayoutTabs = true
             configureGrades()
-
             switch course.defaultView {
             case .wiki:
                 if let page = frontPages.first, !page.body.isEmpty {
                     configureFrontPage()
                 }
-            default:    // syllabus is default
-                if let body = course.syllabusBody, !body.isEmpty {
+            case .syllabus where course.syllabusBody?.isEmpty == false:
+                configureSyllabus()
+                configureSummary()
+            default:
+                let syllabusTab = tabs.first { $0.id == "syllabus" }
+                if syllabusTab != nil, course.syllabusBody?.isEmpty == false {
                     configureSyllabus()
                     configureSummary()
                 }
