@@ -62,7 +62,8 @@ export default class ConversationMessageRow extends React.Component<Props, State
   }
 
   courseID () {
-    return Object.keys(this.author().common_courses)[0]
+    let contextCodeID = this.props.conversation.context_code?.split('_')[1]
+    return Object.keys(this.author().common_courses ?? {})[0] ?? contextCodeID
   }
 
   handleAvatarPress = () => {
@@ -146,7 +147,7 @@ export default class ConversationMessageRow extends React.Component<Props, State
               height={32}
               avatarURL={author.avatar_url}
               userName={author.name}
-              onPress={this.props.conversation.context_code ? this.handleAvatarPress : undefined}
+              onPress={this.courseID() != null ? this.handleAvatarPress : undefined}
             />
           </View>
           <View style={{ flex: 1 }}>
