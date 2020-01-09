@@ -187,43 +187,28 @@ class MockedQuizTests: StudentUITestCase {
             quiz_type: .assignment
         )
         let quizSubmission = APIQuizSubmission.make(
-            attempt: 3,
-            attempts_left: 2,
             id: 7,
             quiz_id: quiz.id,
-            started_at: Date(),
-            workflow_state: .untaken
+            started_at: Date()
         )
 
         mockData(GetQuizRequest(courseID: "1", quizID: quiz.id.value), value: quiz)
-
-        let assignmentSubmission = APISubmission.make(id: 9)
-
         let assignment = mock(assignment: APIAssignment.make(
             quiz_id: quiz.id,
             name: "A quiz",
-            submission: assignmentSubmission,
             submission_types: [.online_quiz ]
         ))
 
         mockData(GetQuizSubmissionRequest(courseID: "1", quizID: quiz.id.value),
                  value: .init(quiz_submissions: [ quizSubmission ]))
         show("courses/1/assignments/\(assignment.id)")
-
-        if false {
-            sleep(1)
-            pullToRefresh()
-            sleep(1)
-        }
-        // Fails here unless you refresh
-        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "Resume Quiz")
-        return
-
         mockData(PostQuizSubmissionRequest(courseID: "1", quizID: quiz.id.value, body: nil),
                  value: .init(quiz_submissions: [ quizSubmission ]))
         mockEncodableRequest("courses/1/quizzes/\(quiz.id)/submissions/\(quizSubmission.id)/events", value: "")
 
         mockQuestions(forSubmission: quizSubmission, answered: true)
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "Resume Quiz")
+
         AssignmentDetails.submitAssignmentButton.tap()
         XCTAssertEqual(Double(app.find(id: "ShortAnswerCell.textField").value() ?? "-8"), 4.2)
         app.find(label: "Submit").tap()
@@ -233,10 +218,18 @@ class MockedQuizTests: StudentUITestCase {
         ], byPressingButton: "Cancel")
         app.find(label: "True").tap()
         app.find(label: "Submit").tap()
+        mockData(
+            PostQuizSubmissionCompleteRequest(
+                courseID: "1",
+                quizID: quiz.id.value,
+                quizSubmissionID: quizSubmission.id.value,
+                body: nil),
+            value: .init(quiz_submissions: [ quizSubmission ]))
         handleAlert(withTexts: [
             "Are you sure you want to submit your answers?",
         ], byPressingButton: "Submit")
 
-        sleep(100000)
+        app.find(label: "Quiz Submitted").waitToExist()
+        app.find(label: "Done").tap().waitToVanish()
     }
 }
