@@ -30,6 +30,7 @@ public struct RouteOptions: OptionSet {
     public static let addDoneButton = RouteOptions(rawValue: 4)
     public static let formSheet = RouteOptions(rawValue: 8)
     public static let detail = RouteOptions(rawValue: 16)
+    public static let inPresentation = RouteOptions(rawValue: 32)
 }
 
 public protocol RouterProtocol {
@@ -80,10 +81,16 @@ public extension RouterProtocol {
                 if options?.contains(.formSheet) == true {
                     nav.modalPresentationStyle = .formSheet
                 }
+                if #available(iOS 13, *), options?.contains(.inPresentation) == true {
+                    nav.isModalInPresentation = true
+                }
                 from.present(nav, animated: true, completion: completion)
             } else {
                 if options?.contains(.formSheet) == true {
                     view.modalPresentationStyle = .formSheet
+                }
+                if #available(iOS 13, *), options?.contains(.inPresentation) == true {
+                    view.isModalInPresentation = true
                 }
                 from.present(view, animated: true, completion: completion)
             }

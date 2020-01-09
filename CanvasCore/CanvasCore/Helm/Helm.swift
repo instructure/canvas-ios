@@ -369,6 +369,9 @@ open class HelmManager: NSObject {
                 callback?()
             } else {
                 viewController.addModalDismissButton(buttonTitle: nil)
+                if options[PropKeys.disableDismissOnSwipe] as? Bool == true {
+                    toPresent.presentationController?.delegate = self
+                }
                 current.present(toPresent, animated: options["animated"] as? Bool ?? true, completion: callback)
             }
         } else {
