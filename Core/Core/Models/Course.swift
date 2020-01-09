@@ -34,6 +34,7 @@ final public class Course: NSManagedObject, Context, WriteableModel {
     @NSManaged public var multipleGradingPeriodsEnabled: Bool
     @NSManaged public var currentGradingPeriodID: String?
     @NSManaged public var grades: Set<Grade>?
+    @NSManaged public var hideFinalGrades: Bool
 
     public var defaultView: CourseDefaultView? {
         get { return CourseDefaultView(rawValue: defaultViewRaw ?? "") }
@@ -53,6 +54,7 @@ final public class Course: NSManagedObject, Context, WriteableModel {
         model.defaultViewRaw = item.default_view?.rawValue
         model.enrollments?.forEach { context.delete($0) }
         model.enrollments = nil
+        model.hideFinalGrades = item.hide_final_grades ?? false
 
         if let apiEnrollments = item.enrollments {
             let enrollmentModels: [Enrollment] = apiEnrollments.map { apiItem in

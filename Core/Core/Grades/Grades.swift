@@ -48,6 +48,10 @@ public class Grades {
     var assignments: Store<LocalUseCase<Assignment>>!
     var gradingPeriods: Store<LocalUseCase<GradingPeriod>>!
     var enrollments: Store<LocalUseCase<Enrollment>>!
+    private lazy var courses: Store<LocalUseCase<Course>> = env.subscribe(scope: .where(#keyPath(Course.id), equals: courseID)) { [weak self] in
+        self?.notify()
+    }
+    var course: Course? { courses.first }
     var enrollment: Enrollment? { enrollments.first }
 
     var gradingPeriod: GradingPeriod? {

@@ -109,4 +109,76 @@ class EnrollmentTests: CoreTestCase {
         enrollment.role = nil
         XCTAssertNil(enrollment.formattedRole)
     }
+
+    func testCurrentScore() {
+        let enrollment: Enrollment = databaseClient.insert()
+        let currentPeriod = APIEnrollment.make(
+            grades: nil,
+            current_grading_period_id: "1",
+            current_period_computed_current_score: 10
+        )
+        let allPeriods = APIEnrollment.make(
+            grades: .make(current_score: 100)
+        )
+        enrollment.update(fromApiModel: currentPeriod, course: nil, in: databaseClient)
+        enrollment.update(fromApiModel: allPeriods, course: nil, gradingPeriodID: nil, in: databaseClient)
+        XCTAssertEqual(enrollment.currentScore, 10)
+        XCTAssertEqual(enrollment.currentScore(gradingPeriodID: "1"), 10)
+        XCTAssertEqual(enrollment.currentScore(gradingPeriodID: nil), 100)
+    }
+
+    func testFormattedCurrentScore() {
+        let enrollment: Enrollment = databaseClient.insert()
+        XCTContext.runActivity(named: "When totalsForAllGradingPeriodsOption is true") { _ in
+            let currentPeriod = APIEnrollment.make(
+                grades: nil,
+                multiple_grading_periods_enabled: true,
+                totals_for_all_grading_periods_option: true,
+                current_grading_period_id: "1",
+                current_period_computed_current_score: 10
+            )
+            let allPeriods = APIEnrollment.make(
+                grades: .make(current_score: 100)
+            )
+            enrollment.update(fromApiModel: currentPeriod, course: nil, in: databaseClient)
+            enrollment.update(fromApiModel: allPeriods, course: nil, gradingPeriodID: nil, in: databaseClient)
+            XCTAssertEqual(enrollment.formattedCurrentScore(gradingPeriodID: "1"), "10%")
+            XCTAssertEqual(enrollment.formattedCurrentScore(gradingPeriodID: nil), "100%")
+        }
+
+        XCTContext.runActivity(named: "When totalsForAllGradingPeriodsOption is false") { _ in
+            let currentPeriod = APIEnrollment.make(
+                grades: nil,
+                multiple_grading_periods_enabled: true,
+                totals_for_all_grading_periods_option: false,
+                current_grading_period_id: "1",
+                current_period_computed_current_score: 10
+            )
+            let allPeriods = APIEnrollment.make(
+                grades: .make(current_score: 100)
+            )
+            enrollment.update(fromApiModel: currentPeriod, course: nil, in: databaseClient)
+            enrollment.update(fromApiModel: allPeriods, course: nil, gradingPeriodID: nil, in: databaseClient)
+            XCTAssertEqual(enrollment.formattedCurrentScore(gradingPeriodID: "1"), "10%")
+            XCTAssertEqual(enrollment.formattedCurrentScore(gradingPeriodID: nil), "N/A")
+        }
+
+        XCTContext.runActivity(named: "When totalsForAllGradingPeriodsOption is false and MGP false") { _ in
+            let currentPeriod = APIEnrollment.make(
+                grades: nil,
+                multiple_grading_periods_enabled: false,
+                totals_for_all_grading_periods_option: nil,
+                current_grading_period_id: "1",
+                current_period_computed_current_score: 10
+            )
+            let allPeriods = APIEnrollment.make(
+                grades: .make(current_score: 100)
+            )
+            enrollment.update(fromApiModel: currentPeriod, course: nil, in: databaseClient)
+            enrollment.update(fromApiModel: allPeriods, course: nil, gradingPeriodID: nil, in: databaseClient)
+            XCTAssertEqual(enrollment.formattedCurrentScore(gradingPeriodID: "1"), "10%")
+            XCTAssertEqual(enrollment.formattedCurrentScore(gradingPeriodID: nil), "100%")
+
+        }
+    }
 }
