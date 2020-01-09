@@ -61,10 +61,13 @@ export default class ConversationMessageRow extends React.Component<Props, State
     this.props.onReply(this.props.message.id)
   }
 
+  courseID () {
+    return Object.keys(this.author().common_courses)[0]
+  }
+
   handleAvatarPress = () => {
-    let courseID = this.props.conversation.context_code.split('_')[1]
     this.props.navigator.show(
-      `/courses/${courseID}/users/${this.props.message.author_id}`,
+      `/courses/${this.courseID()}/users/${this.props.message.author_id}`,
       { modal: true, modalPresentationStyle: 'currentContext' }
     )
   }
@@ -91,7 +94,6 @@ export default class ConversationMessageRow extends React.Component<Props, State
   author (): ConversationParticipant {
     const convo = this.props.conversation
     const message = this.props.message
-    // $FlowFixMe we know the author will always be in participants
     return convo.participants.find(({ id }) => id === message.author_id)
   }
 
