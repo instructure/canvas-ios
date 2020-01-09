@@ -62,11 +62,13 @@ describe('DiscussionReplies', () => {
   })
 
   it('renders', () => {
-    expect(shallow(<Reply {...props}/>)).toMatchSnapshot()
+    let tree = shallow(<Reply {...props} />)
+    expect(tree.find(`[testID="discussion.reply.${props.reply.id}.reply-btn"]`).exists()).toBe(true)
   })
 
   it('renders without the reply button when the user cant reply', () => {
-    expect(shallow(<Reply {...props} userCanReply={false} />)).toMatchSnapshot()
+    let tree = shallow(<Reply {...props} userCanReply={false} />)
+    expect(tree.find(`[testID="discussion.reply.${props.reply.id}.reply-btn"]`).exists()).toBe(false)
   })
 
   it('renders deleted', () => {
@@ -105,7 +107,20 @@ describe('DiscussionReplies', () => {
     props.canRate = true
     let tree = shallow(<Reply {...props} />)
 
-    expect(tree.find(`[testID="discussion.reply.${props.reply.id}.rate-btn"]`).length).toEqual(1)
+    let rate = tree.find(`[testID="discussion.reply.${props.reply.id}.rate-btn"]`)
+    expect(rate.exists()).toBe(true)
+    expect(rate.prop('accessibilityStates')).toEqual([])
+  })
+
+  it('renders like accessibility state', () => {
+    props.rating = 1
+    props.showRating = true
+    props.canRate = true
+    let tree = shallow(<Reply {...props} />)
+
+    let rate = tree.find(`[testID="discussion.reply.${props.reply.id}.rate-btn"]`)
+    expect(rate.exists()).toBe(true)
+    expect(rate.prop('accessibilityStates')).toEqual([ 'selected' ])
   })
 
   it('navigates to the context card when an avatar is pressed', () => {

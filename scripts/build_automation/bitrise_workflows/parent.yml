@@ -39,7 +39,7 @@ workflows:
     steps:
     - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
         title: Canvas iOS Secrets
-    - cache-pull@2.0.1: {}
+    - cache-pull: {}
     - carthage:
         inputs:
         - carthage_options: "--platform ios"
@@ -99,7 +99,7 @@ workflows:
                 <string>$BITRISE_DEVELOPER_TEAM</string>
                 </dict>
             </plist>
-    - cache-push@2.2.0:
+    - cache-push:
         inputs:
         - cache_paths: "$BITRISE_SOURCE_DIR/Carthage/Build/iOS/"
     - deploy-to-bitrise-io: {}
@@ -112,6 +112,9 @@ workflows:
     - _set-export-app-store
     - _common
     steps:
+    - firebase-dsym-upload:
+        inputs:
+        - fdu_google_services_location: "$BITRISE_SOURCE_DIR/Parent/Parent/GoogleService-Info.plist"
     - deploy-to-itunesconnect-application-loader:
         inputs:
         - password: "$APPSTORECONNECT_PASSWORD"

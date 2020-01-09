@@ -288,7 +288,8 @@ export default class Reply extends Component<Props, State> {
                 testID={`discussion.reply.${this.props.reply.id}.rate-btn`}
                 onPress={this._actionRate}
                 accessibilityLabel={i18n('Like')}
-                accessibilityTraits={this.hasRated() ? ['button', 'selected'] : ['button']}
+                accessibilityRole='button'
+                accessibilityStates={this.hasRated() ? [ 'selected' ] : []}
               >
                 <Image
                   source={this.hasRated() ? Images.discussions.rated : Images.discussions.rate}

@@ -19,8 +19,12 @@
 import CoreData
 import Foundation
 
-public class GetQuiz: APIUseCase {
+public class GetQuiz: UseCase {
     public typealias Model = Quiz
+    public struct Response: Codable {
+        let quiz: APIQuiz?
+        let submission: APIQuizSubmission?
+    }
 
     public let courseID: String
     public let quizID: String
@@ -34,18 +38,28 @@ public class GetQuiz: APIUseCase {
         return "get-courses-\(courseID)-quizzes-\(quizID)"
     }
 
-    public var request: GetQuizRequest {
-        return GetQuizRequest(courseID: courseID, quizID: quizID)
-    }
-
     public var scope: Scope {
         return .where(#keyPath(Quiz.id), equals: quizID)
     }
 
-    public func write(response: APIQuiz?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let item = response else { return }
-        let quiz = Quiz.save(item, in: client)
+    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping (Response?, URLResponse?, Error?) -> Void) {
+        let getQuiz = GetQuizRequest(courseID: courseID, quizID: quizID)
+        let getSubmission = GetQuizSubmissionRequest(courseID: courseID, quizID: quizID)
+        environment.api.makeRequest(getQuiz) { apiQuiz, urlResponse, error in
+            guard error == nil else { return completionHandler(nil, urlResponse, error) }
+            environment.api.makeRequest(getSubmission) { submissionResponse, urlResponse, error in
+                let response = Response(quiz: apiQuiz, submission: submissionResponse?.quiz_submissions.first)
+                completionHandler(response, urlResponse, error)
+            }
+        }
+    }
+
+    public func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let apiQuiz = response?.quiz else { return }
+        let quiz = Quiz.save(apiQuiz, in: client)
         quiz.courseID = courseID
-        quiz.submission = client.first(where: #keyPath(QuizSubmission.quizID), equals: quizID)
+        let submission = response?.submission.flatMap { QuizSubmission.save($0, in: client) }
+        submission?.quiz = quiz
+        quiz.submission = submission
     }
 }
