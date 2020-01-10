@@ -44,6 +44,8 @@ struct RubricViewModel: Hashable, Equatable {
         let subHeader = isCustom ? "" : rubricRatings[atIndex].longDesc
         return (header, subHeader)
     }
+
+    var onlyShowComments: Bool { hideRubricPoints && freeFormCriterionComments }
 }
 
 class RubricPresenter {

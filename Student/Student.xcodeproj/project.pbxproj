@@ -436,6 +436,7 @@
 		9767F2A32383C741006633CA /* ActivityStreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9767F2A12383C741006633CA /* ActivityStreamViewController.swift */; };
 		9767F2A42383C741006633CA /* ActivityStreamViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9767F2A22383C741006633CA /* ActivityStreamViewController.storyboard */; };
 		97A486C6239A5B3D00084499 /* StudentSyllabusViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A486C5239A5B3D00084499 /* StudentSyllabusViewControllerTests.swift */; };
+		97BA196423C82808009AB8AC /* RubricViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA196323C82808009AB8AC /* RubricViewControllerTests.swift */; };
 		97EF506E23A025E6008136F5 /* PeopleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EF506D23A025E6008136F5 /* PeopleListViewControllerTests.swift */; };
 		9C50D612DA6414266300170B /* Pods_defaults_CanvasKit1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AB6A9FA96CE49682022ACB /* Pods_defaults_CanvasKit1.framework */; };
 		9F00A5692245593200C0CC32 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; };
@@ -1250,6 +1251,7 @@
 		9767F2A12383C741006633CA /* ActivityStreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityStreamViewController.swift; sourceTree = "<group>"; };
 		9767F2A22383C741006633CA /* ActivityStreamViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ActivityStreamViewController.storyboard; sourceTree = "<group>"; };
 		97A486C5239A5B3D00084499 /* StudentSyllabusViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSyllabusViewControllerTests.swift; sourceTree = "<group>"; };
+		97BA196323C82808009AB8AC /* RubricViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricViewControllerTests.swift; sourceTree = "<group>"; };
 		97EF506D23A025E6008136F5 /* PeopleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListViewControllerTests.swift; sourceTree = "<group>"; };
 		98F5AEA722584DFE82613E6B /* Pods-defaults-Student.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Student.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Student/Pods-defaults-Student.debug.xcconfig"; sourceTree = "<group>"; };
 		99747510483FA8853301B9F5 /* Pods-defaults-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasTests/Pods-defaults-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -2684,6 +2686,7 @@
 			isa = PBXGroup;
 			children = (
 				7DCF0F2A22F8A096000AACCE /* RubricPresenterTests.swift */,
+				97BA196323C82808009AB8AC /* RubricViewControllerTests.swift */,
 			);
 			path = SubmissionRubric;
 			sourceTree = "<group>";
@@ -4109,6 +4112,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97BA196423C82808009AB8AC /* RubricViewControllerTests.swift in Sources */,
 				7DE1162522F8AB5C005BFE98 /* StudentTestCase.swift in Sources */,
 				9734351523866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift in Sources */,
 				9F62EDDB2326E0FD00EA9F79 /* PeopleListPresenterTests.swift in Sources */,

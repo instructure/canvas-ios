@@ -56,7 +56,7 @@ class RubricCircleView: UIView {
     private func setupButtons() {
         //  remove old buttons
         buttons.forEach { $0.removeFromSuperview() }
-        if rubric?.freeFormCriterionComments == true && rubric?.hideRubricPoints == true { return }
+        if rubric?.onlyShowComments == true { return }
 
         buttons = []
 
@@ -230,7 +230,7 @@ class RubricCircleView: UIView {
         let rows = CGFloat(ceil(count / howManyCanFitInWidth))
         //  If both hideRubricPoints and freeFormCriterionComments are set,
         //  circle view should not be visible. Only comments should show of rubric.
-        if rubric.hideRubricPoints && rubric.freeFormCriterionComments { return 0 }
+        if rubric.onlyShowComments { return 0 }
         if rubric.hideRubricPoints { return hidePointsHeight(rubric: rubric, maxWidth: maxWidth) }
         return (rows * w) + ((rows - 1) * space)
     }
