@@ -45,7 +45,8 @@ public struct Route: Equatable {
         context: Context? = nil,
         observeeID: String? = nil,
         recipients: [APIConversationRecipient] = [],
-        subject: String? = nil
+        subject: String? = nil,
+        hiddenMessage: String? = nil
     ) -> Route {
         var compose = URLComponents()
         compose.path = "/conversations/compose"
@@ -64,6 +65,9 @@ public struct Route: Equatable {
         }
         if let subject = subject {
             queryItems.append(URLQueryItem(name: "subject", value: subject))
+        }
+        if let hiddenMessage = hiddenMessage {
+            queryItems.append(URLQueryItem(name: "hiddenMessage", value: hiddenMessage))
         }
         if !queryItems.isEmpty { compose.queryItems = queryItems }
         return Route(url: compose)

@@ -32,6 +32,7 @@ final public class Enrollment: NSManagedObject {
     @NSManaged public var type: String
     @NSManaged public var course: Course?
     @NSManaged public var grades: Set<Grade>
+    @NSManaged public var observedUser: User?
 
     @NSManaged public var computedCurrentScoreRaw: NSNumber?
     @NSManaged public var computedCurrentGrade: String?
@@ -155,6 +156,13 @@ extension Enrollment {
                 currentPeriodGrade.currentScore = item.current_period_computed_current_score
                 grades.insert(currentPeriodGrade)
             }
+        }
+
+        if let apiObservedUser = item.observed_user {
+            let observedUserModel = User.save(apiObservedUser, in: client)
+            observedUser = observedUserModel
+        } else {
+            observedUser = nil
         }
     }
 }

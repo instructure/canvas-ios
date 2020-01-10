@@ -30,4 +30,15 @@ class APIEnrollmentRequestableTests: XCTestCase {
         XCTAssertEqual(request.method, .post)
         XCTAssertEqual(request.body, body)
     }
+
+    func testGetEnrollmentsRequest() {
+        let request = GetEnrollmentsRequest(context: ContextModel.currentUser, userID: "1", gradingPeriodID: "2", types: ["TeacherEnrollment"], includes: [.avatar_url])
+        XCTAssertEqual(request.path, "users/self/enrollments")
+        XCTAssertEqual(request.query, [
+            .include([GetEnrollmentsRequest.Include.avatar_url.rawValue]),
+            .value("user_id", "1"),
+            .value("grading_period_id", "2"),
+            .array("type", ["TeacherEnrollment"]),
+        ])
+    }
 }

@@ -27,13 +27,18 @@ class ComposeViewControllerTests: ParentTestCase {
         context: ContextModel(.course, id: "1"),
         observeeID: "2",
         recipients: [ .make() ],
-        subject: "subject"
+        subject: "subject",
+        hiddenMessage: "hidden"
     )
+
+    func loadView() {
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+    }
 
     func testLayout() {
         let navigation = UINavigationController(rootViewController: controller)
-        controller.view.layoutIfNeeded()
-        controller.viewWillAppear(false)
+        loadView()
         XCTAssertEqual(navigation.navigationBar.barTintColor, .named(.backgroundLightest))
 
         XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.isEnabled, true)
@@ -55,5 +60,14 @@ class ComposeViewControllerTests: ParentTestCase {
         XCTAssertNoThrow(sendButton?.target?.perform(sendButton?.action))
 
         XCTAssertNotNil(controller.recipientsView.editButton)
+    }
+
+    func testFetchRecipients() {
+        let request = GetConversationRecipientsRequest(search: "", context: "\(controller.context!.canvasContextID)_teachers", includeContexts: false)
+        api.mock(request, value: [.make()])
+        controller.recipientsView.recipients = []
+        loadView()
+        drainMainQueue()
+        XCTAssertEqual(controller.recipientsView.recipients.count, 1)
     }
 }

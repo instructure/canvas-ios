@@ -42,28 +42,30 @@ struct PostEnrollmentRequest: APIRequestable {
 }
 
 // https://canvas.instructure.com/doc/api/enrollments.html#method.enrollments_api.index
-struct GetEnrollmentsRequest: APIRequestable {
-    typealias Response = [APIEnrollment]
-    enum Include: String {
+public struct GetEnrollmentsRequest: APIRequestable {
+    public typealias Response = [APIEnrollment]
+    public enum Include: String {
         case observed_users, avatar_url
     }
 
     let context: Context
     let userID: String?
     let gradingPeriodID: String?
+    let types: [String]?
     let includes: [Include]
 
-    init(context: Context, userID: String?, gradingPeriodID: String?, includes: [Include] = []) {
+    init(context: Context, userID: String?, gradingPeriodID: String?, types: [String]? = nil, includes: [Include] = []) {
         self.context = context
         self.userID = userID
         self.gradingPeriodID = gradingPeriodID
+        self.types = types
         self.includes = includes
     }
 
-    var path: String {
+    public var path: String {
         return "\(context.pathComponent)/enrollments"
     }
-    var query: [APIQueryItem] {
+    public var query: [APIQueryItem] {
         var query: [APIQueryItem] = [
             .include(includes.map { $0.rawValue }),
         ]
@@ -72,6 +74,9 @@ struct GetEnrollmentsRequest: APIRequestable {
         }
         if let gradingPeriodID = gradingPeriodID {
             query.append(.value("grading_period_id", gradingPeriodID))
+        }
+        if let types = types {
+            query.append(.array("type", types))
         }
         return query
     }

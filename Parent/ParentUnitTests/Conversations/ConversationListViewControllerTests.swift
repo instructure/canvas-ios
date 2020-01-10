@@ -33,11 +33,15 @@ class ConversationListViewControllerTests: ParentTestCase {
         ])
     }
 
+    func loadView() {
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+    }
+
     func testLayout() {
         let navigation = UINavigationController(rootViewController: controller)
         navigation.isNavigationBarHidden = true
-        controller.view.layoutIfNeeded()
-        controller.viewWillAppear(false)
+        loadView()
         XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
         XCTAssertFalse(navigation.isNavigationBarHidden)
         XCTAssertEqual(navigation.navigationBar.barStyle, .default)
@@ -58,14 +62,17 @@ class ConversationListViewControllerTests: ParentTestCase {
 
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         XCTAssert(router.lastRoutedTo(.conversation("1")))
+    }
 
+    func testTappingComposeRoutesToCourseActionSheet() {
+        loadView()
         controller.composeButton.sendActions(for: .primaryActionTriggered)
-        XCTAssert(router.lastRoutedTo(.compose()))
+        XCTAssert(router.presented is ConversationCoursesActionSheet)
     }
 
     func testErrorEmpty() {
         api.mock(controller.conversations, error: NSError.instructureError("Doh!"))
-        controller.view.layoutIfNeeded()
+        loadView()
 
         XCTAssertTrue(controller.emptyView.isHidden)
         XCTAssertFalse(controller.errorView.isHidden)
