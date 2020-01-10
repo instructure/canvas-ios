@@ -94,7 +94,7 @@ class ConversationListViewController: UIViewController, ConversationCoursesActio
 
     @IBAction func createNewConversation() {
         let vc = ConversationCoursesActionSheet.create(delegate: self)
-        env.router.show(vc, from: self, options: [.modal])
+        env.router.show(vc, from: self, options: .modal())
     }
 
     func courseSelected(course: Course, user: User) {
@@ -106,7 +106,7 @@ class ConversationListViewController: UIViewController, ConversationCoursesActio
                     hiddenMessage: String.localizedStringWithFormat(NSLocalizedString("Regarding: ", bundle: .parent, comment: ""), user.name)
                 ),
             from: self,
-            options: [.modal, .embedInNav]
+            options: .modal(embedInNav: true)
         )
     }
 }

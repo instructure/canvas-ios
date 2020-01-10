@@ -111,11 +111,11 @@ extension GroupNavigationViewController {
         guard let tab = tabs[indexPath] else { return }
         switch tab.id {
         case "home":
-            env.router.route(to: "\(context.pathComponent)/activity_stream", from: self, options: nil)
+            env.router.route(to: "\(context.pathComponent)/activity_stream", from: self)
         case "wiki", "pages":
-            env.router.route(to: "\(context.pathComponent)/pages", from: self, options: nil)
+            env.router.route(to: "\(context.pathComponent)/pages", from: self)
         default:
-            env.router.route(to: tab.htmlURL, from: self, options: nil)
+            env.router.route(to: tab.htmlURL, from: self)
         }
     }
 }

@@ -334,7 +334,7 @@
 		7DC912E61FE1CC9200A76B14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DC912E81FE1CC9200A76B14 /* Localizable.strings */; };
 		7DC912EB1FE1CC9200A76B14 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DC912ED1FE1CC9200A76B14 /* InfoPlist.strings */; };
 		7DCF0F7822F8A0CC000AACCE /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F7722F8A0CC000AACCE /* Routes.swift */; };
-		7DCF0F7A22F8A0D2000AACCE /* RouterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F7922F8A0D1000AACCE /* RouterViewController.swift */; };
+		7DCF0F7A22F8A0D2000AACCE /* RouterDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F7922F8A0D1000AACCE /* RouterDebugViewController.swift */; };
 		7DCF0F7B22F8A81B000AACCE /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EB622F89FD2000AACCE /* DashboardPresenter.swift */; };
 		7DCF0F7C22F8A81B000AACCE /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0EB722F89FD2000AACCE /* DashboardViewController.storyboard */; };
 		7DCF0F7D22F8A81B000AACCE /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EB822F89FD2000AACCE /* DashboardViewController.swift */; };
@@ -1226,7 +1226,7 @@
 		7DCF0F7322F8A0A0000AACCE /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7DCF0F7522F8A0A0000AACCE /* StudentUITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentUITestCase.swift; sourceTree = "<group>"; };
 		7DCF0F7722F8A0CC000AACCE /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
-		7DCF0F7922F8A0D1000AACCE /* RouterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterViewController.swift; sourceTree = "<group>"; };
+		7DCF0F7922F8A0D1000AACCE /* RouterDebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterDebugViewController.swift; sourceTree = "<group>"; };
 		7DD2E3DE1FE1CD11004AE8DE /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7DD2E3DF1FE1CD11004AE8DE /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7DE002DA1FE1CC9C004624BE /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1628,7 +1628,7 @@
 				9F61B52B205985A5009C0B13 /* CanvasAppDelegate+Helm.swift */,
 				49A04E561CF64C7F0051E1E7 /* CanvasTabBar.swift */,
 				492706A01CF4B93F00C631C6 /* RootViewController.swift */,
-				7DCF0F7922F8A0D1000AACCE /* RouterViewController.swift */,
+				7DCF0F7922F8A0D1000AACCE /* RouterDebugViewController.swift */,
 				7DCF0F7722F8A0CC000AACCE /* Routes.swift */,
 				2C0CAD771DEF6C33008D90FA /* InfoPlist.strings */,
 				495D8BBB1CFE17D700D41098 /* LaunchScreen.storyboard */,
@@ -3848,7 +3848,7 @@
 				7DCF0FA422F8A8A9000AACCE /* QuizListPresenter.swift in Sources */,
 				7DCF0FBB22F8A8D7000AACCE /* SubmissionCommentVideoCell.swift in Sources */,
 				7DCF0FA622F8A8A9000AACCE /* QuizListViewController.swift in Sources */,
-				7DCF0F7A22F8A0D2000AACCE /* RouterViewController.swift in Sources */,
+				7DCF0F7A22F8A0D2000AACCE /* RouterDebugViewController.swift in Sources */,
 				61CF10AD1DBFF98800B68E45 /* MasteryPathAssignmentInfoCell.swift in Sources */,
 				7DCF0F9622F8A860000AACCE /* BundleExtensions.swift in Sources */,
 				5EB46DFB1D21A75C00C859A4 /* IconTodayView.swift in Sources */,

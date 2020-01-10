@@ -25,7 +25,7 @@ public protocol CoreWebViewLinkDelegate: class {
 
 extension CoreWebViewLinkDelegate where Self: UIViewController {
     public func handleLink(_ url: URL) -> Bool {
-        AppEnvironment.shared.router.route(to: url, from: self, options: nil)
+        AppEnvironment.shared.router.route(to: url, from: self)
         return true
     }
     public var routeLinksFrom: UIViewController { return self }

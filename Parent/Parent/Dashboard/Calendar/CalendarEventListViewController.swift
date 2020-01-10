@@ -43,9 +43,9 @@ class CalendarEventListViewController: UITableViewController {
         switch calendarEvent.type {
         case .assignment, .quiz:
             guard let assignmentID = calendarEvent.assignmentID else { fallthrough }
-            env.router.route(to: .course(courseID, assignment: assignmentID), from: self, options: [.modal, .embedInNav, .addDoneButton])
+            env.router.route(to: .course(courseID, assignment: assignmentID), from: self, options: .modal(embedInNav: true, addDoneButton: true))
         default:
-            env.router.route(to: .courseCalendarEvent(courseID: courseID, eventID: calendarEvent.id), from: self, options: [.modal, .embedInNav, .addDoneButton])
+            env.router.route(to: .courseCalendarEvent(courseID: courseID, eventID: calendarEvent.id), from: self, options: .modal(embedInNav: true, addDoneButton: true))
         }
     }
 

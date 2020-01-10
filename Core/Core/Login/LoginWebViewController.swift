@@ -181,7 +181,7 @@ extension LoginWebViewController: WKNavigationDelegate {
                     completionHandler(.useCredential, credential)
                 }
             })
-            self.env.router.show(alert, from: self, options: [.modal])
+            self.env.router.show(alert, from: self, options: .modal())
         }
     }
 }

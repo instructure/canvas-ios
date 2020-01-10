@@ -226,7 +226,7 @@ class AttendanceViewController: UIViewController, ColoredNavViewProtocol {
             preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""), style: .default))
-        env.router.show(alert, from: self, options: .modal)
+        env.router.show(alert, from: self, options: .modal())
     }
 
     @objc func refresh() {
@@ -337,7 +337,7 @@ extension AttendanceViewController: DatePickerDelegate {
         nav.navigationBar.useModalStyle()
         nav.modalPresentationStyle = .popover
         nav.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
-        env.router.show(nav, from: self, options: .modal)
+        env.router.show(nav, from: self, options: .modal())
     }
 
     func didSelectDate(_ date: Date) {
@@ -368,7 +368,7 @@ extension AttendanceViewController {
 
         alert.popoverPresentationController?.sourceRect = changeSectionButton.bounds
         alert.popoverPresentationController?.sourceView = changeSectionButton
-        env.router.show(alert, from: self, options: .modal)
+        env.router.show(alert, from: self, options: .modal())
     }
 
     func changeToSection(_ section: CourseSection?) {

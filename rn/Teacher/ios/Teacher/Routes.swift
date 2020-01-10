@@ -25,13 +25,13 @@ class Router: RouterProtocol {
         return nil
     }
 
-    func route(to url: URLComponents, from: UIViewController, options: RouteOptions?) {
+    func route(to url: URLComponents, from: UIViewController, options: RouteOptions) {
         guard let url = url.url else { return }
         let name = NSNotification.Name("route")
         let userInfo: [AnyHashable: Any] = [
             "url": url.absoluteString,
-            "modal": options?.contains(.modal) == true,
-            "detail": options?.contains(.detail) == true,
+            "modal": options.modal != nil,
+            "detail": options.detail,
         ]
         NotificationCenter.default.post(name: name, object: nil, userInfo: userInfo)
     }

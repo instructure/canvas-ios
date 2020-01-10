@@ -30,7 +30,7 @@ class RoutesTests: XCTestCase {
             userInfo = note.userInfo
             expectation.fulfill()
         }
-        router.route(to: route, from: UIViewController(), options: nil)
+        router.route(to: route, from: UIViewController(), options: .noOptions)
         wait(for: [expectation], timeout: 0.5)
         XCTAssertNotNil(userInfo)
         XCTAssertEqual(userInfo?["url"] as? String, route.url!.absoluteString)
@@ -48,7 +48,7 @@ class RoutesTests: XCTestCase {
             userInfo = note.userInfo
             expectation.fulfill()
         }
-        router.route(to: route, from: UIViewController(), options: [.modal, .detail])
+        router.route(to: route, from: UIViewController(), options: .modal(detail: true))
         wait(for: [expectation], timeout: 0.5)
         XCTAssertNotNil(userInfo)
         XCTAssertEqual(userInfo?["url"] as? String, route.url!.absoluteString)

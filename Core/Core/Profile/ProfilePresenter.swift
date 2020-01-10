@@ -61,15 +61,15 @@ public class ProfilePresenter {
         if enrollment == .observer {
             if ExperimentalFeature.parentInbox.isEnabled {
                 cells.append(ProfileViewCell("inbox", type: .badge(unreadCount), name: NSLocalizedString("Inbox", bundle: .core, comment: "")) { [weak self] _ in
-                    self?.view?.route(to: .conversations, options: nil)
+                    self?.view?.route(to: .conversations)
                 })
             }
             cells.append(ProfileViewCell("manageChildren", name: NSLocalizedString("Manage Children", bundle: .core, comment: "")) { [weak self] _ in
-                self?.view?.route(to: .profileObservees, options: nil)
+                self?.view?.route(to: .profileObservees)
             })
         } else {
             cells.append(ProfileViewCell("files", name: NSLocalizedString("Files", bundle: .core, comment: "")) { [weak self] _ in
-                self?.view?.route(to: .files(), options: nil)
+                self?.view?.route(to: .files())
             })
             for tool in tools {
                 cells.append(ProfileViewCell("lti.\(tool.domain ?? "").\(tool.definitionID)", name: tool.title) { [weak self] _ in
@@ -117,12 +117,12 @@ public class ProfilePresenter {
         }
         if enrollment == .student || enrollment == .teacher {
             cells.append(ProfileViewCell("settings", name: NSLocalizedString("Settings", bundle: .core, comment: "")) { [weak self] _ in
-                self?.view?.route(to: .profileSettings, options: [.modal, .embedInNav, .formSheet, .addDoneButton])
+                self?.view?.route(to: .profileSettings, options: .modal(.formSheet, embedInNav: true, addDoneButton: true))
             })
         }
         if canActAsUser {
             cells.append(ProfileViewCell("actAsUser", name: NSLocalizedString("Act as User", bundle: .core, comment: "")) { [weak self] _ in
-                self?.view?.route(to: .actAsUser, options: [.modal, .embedInNav])
+                self?.view?.route(to: .actAsUser, options: .modal(embedInNav: true))
             })
         }
         cells.append(ProfileViewCell("changeUser", name: NSLocalizedString("Change User", bundle: .core, comment: "")) { [weak self] _ in
@@ -148,7 +148,7 @@ public class ProfilePresenter {
         }
         if showDevMenu {
             cells.append(ProfileViewCell("developerMenu", name: NSLocalizedString("Developer Menu", bundle: .core, comment: "")) { [weak self] _ in
-                self?.view?.route(to: .developerMenu, options: [.modal, .embedInNav])
+                self?.view?.route(to: .developerMenu, options: .modal(embedInNav: true))
             })
         }
         return cells

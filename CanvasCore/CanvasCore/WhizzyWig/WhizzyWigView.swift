@@ -23,7 +23,7 @@ import Core
 public typealias URLHandler = (URL)->()
 var WhizzyWigOpenURLHandler: URLHandler? = { url in
     guard let from = UIApplication.shared.keyWindow?.rootViewController?.topMostViewController() else { return }
-    AppEnvironment.shared.router.route(to: url, from: from, options: nil)
+    AppEnvironment.shared.router.route(to: url, from: from)
 }
 
 private func renderHTML(_ html: String, fontColor: UIColor, backgroundColor: UIColor, padding: UIEdgeInsets) -> String {

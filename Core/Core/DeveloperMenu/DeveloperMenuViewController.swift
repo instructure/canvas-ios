@@ -96,7 +96,7 @@ public class DeveloperMenuViewController: UIViewController {
         guard let routeMethod = routeMethod else { return }
         switch routeMethod.selectedSegmentIndex {
         case 0:
-            env?.router.route(to: route, from: self, options: [.modal, .embedInNav])
+            env?.router.route(to: route, from: self, options: .modal(embedInNav: true))
         default:
             env?.router.route(to: route, from: self)
         }
@@ -179,7 +179,7 @@ extension DeveloperMenuViewController: UITableViewDataSource, UITableViewDelegat
                 //        case .logs:
             //            shareLogs()
             case .experimentalFeatures:
-                env?.router.route(to: "/dev-menu/experimental-features", from: self, options: nil)
+                env?.router.route(to: "/dev-menu/experimental-features", from: self)
             }
         } else {
             showRoute(routeHistory[indexPath.row])

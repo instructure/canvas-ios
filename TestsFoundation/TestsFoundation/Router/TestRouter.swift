@@ -21,10 +21,10 @@ import Core
 
 public class TestRouter: RouterProtocol {
     public init() {}
-    public var calls = [(URLComponents, UIViewController, RouteOptions?)]()
-    public var viewControllerCalls = [(UIViewController, UIViewController, RouteOptions?)]()
+    public var calls = [(URLComponents, UIViewController, RouteOptions)]()
+    public var viewControllerCalls = [(UIViewController, UIViewController, RouteOptions)]()
     public var presented: UIViewController? {
-        if viewControllerCalls.last?.2?.contains(.modal) == true {
+        if viewControllerCalls.last?.2.modal != nil {
             return viewControllerCalls.last?.0
         }
         return nil
@@ -41,13 +41,13 @@ public class TestRouter: RouterProtocol {
     }
 
     public var routeExpectation = XCTestExpectation(description: "route")
-    public func route(to url: URLComponents, from: UIViewController, options: RouteOptions? = nil) {
+    public func route(to url: URLComponents, from: UIViewController, options: RouteOptions = .noOptions) {
         calls.append((url, from, options))
         routeExpectation.fulfill()
     }
 
     public var showExpectation = XCTestExpectation(description: "show")
-    public func show(_ view: UIViewController, from: UIViewController, options: RouteOptions?, completion: (() -> Void)?) {
+    public func show(_ view: UIViewController, from: UIViewController, options: RouteOptions, completion: (() -> Void)?) {
         viewControllerCalls.append((view, from, options))
         showExpectation.fulfill()
         completion?()
@@ -62,7 +62,7 @@ public class TestRouter: RouterProtocol {
         return lastRoutedTo(route.url)
     }
 
-    public func lastRoutedTo(_ route: Route, withOptions options: RouteOptions?) -> Bool {
+    public func lastRoutedTo(_ route: Route, withOptions options: RouteOptions) -> Bool {
         return lastRoutedTo(route) && calls.last?.2 == options
     }
 
@@ -74,7 +74,7 @@ public class TestRouter: RouterProtocol {
         return calls.last?.0 == url
     }
 
-    public func lastRoutedTo(_ url: URL, withOptions options: RouteOptions?) -> Bool {
+    public func lastRoutedTo(_ url: URL, withOptions options: RouteOptions) -> Bool {
         return lastRoutedTo(url) && calls.last?.2 == options
     }
 

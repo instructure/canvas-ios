@@ -130,7 +130,7 @@ extension ActivityStreamViewController: UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let a = activities[indexPath], let url = a.htmlURL else { return }
-        env.router.route(to: url, from: self, options: [.detail, .embedInNav])
+        env.router.route(to: url, from: self, options: .init(detail: true, embedInNav: true))
     }
 }
 

@@ -50,6 +50,6 @@ class SyllabusPresenter {
     }
 
     func show(_ url: URL, from viewController: UIViewController) {
-        env.router.route(to: url, from: viewController, options: nil)
+        env.router.route(to: url, from: viewController)
     }
 }

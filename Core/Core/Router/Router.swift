@@ -18,115 +18,122 @@
 
 import UIKit
 
-public struct RouteOptions: OptionSet {
-    public let rawValue: Int
+public struct RouteOptions: Equatable {
+    public let modal: Modal?
+    public let detail: Bool
+    public let embedInNav: Bool
+    public let addDoneButton: Bool
 
-    public init(rawValue: Int) {
-        self.rawValue = rawValue
+    public struct Modal: Equatable {
+        public let presentationStyle: UIModalPresentationStyle?
+        public let inPresentation: Bool
     }
 
-    public static let modal = RouteOptions(rawValue: 1)
-    public static let embedInNav = RouteOptions(rawValue: 2)
-    public static let addDoneButton = RouteOptions(rawValue: 4)
-    public static let formSheet = RouteOptions(rawValue: 8)
-    public static let detail = RouteOptions(rawValue: 16)
-    public static let inPresentation = RouteOptions(rawValue: 32)
-    public static let fullScreen = RouteOptions(rawValue: 64)
+    public init(
+        modal: Modal? = nil,
+        detail: Bool = false,
+        embedInNav: Bool = false,
+        addDoneButton: Bool = false
+    ) {
+        self.modal = modal
+        self.embedInNav = embedInNav
+        self.addDoneButton = addDoneButton
+        self.detail = detail
+    }
+
+    public static func modal(
+        _ presentationStyle: UIModalPresentationStyle? = nil,
+        inPresentation: Bool = false,
+        detail: Bool = false,
+        embedInNav: Bool = false,
+        addDoneButton: Bool = false
+    ) -> RouteOptions {
+        RouteOptions(modal: Modal(presentationStyle: presentationStyle, inPresentation: inPresentation),
+                     detail: detail,
+                     embedInNav: embedInNav,
+                     addDoneButton: addDoneButton)
+    }
+
+    public static let noOptions = RouteOptions()
 }
 
 public protocol RouterProtocol {
     func match(_ url: URLComponents) -> UIViewController?
-    func route(to: Route, from: UIViewController, options: RouteOptions?)
-    func route(to url: URL, from: UIViewController, options: RouteOptions?)
-    func route(to url: String, from: UIViewController, options: RouteOptions?)
-    func route(to url: URLComponents, from: UIViewController, options: RouteOptions?)
-    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions?, completion: (() -> Void)?)
+    func route(to: Route, from: UIViewController, options: RouteOptions)
+    func route(to url: URL, from: UIViewController, options: RouteOptions)
+    func route(to url: String, from: UIViewController, options: RouteOptions)
+    func route(to url: URLComponents, from: UIViewController, options: RouteOptions)
+    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions, completion: (() -> Void)?)
     func pop(from: UIViewController)
 }
 
 public extension RouterProtocol {
-    func route(to: Route, from: UIViewController, options: RouteOptions? = nil) {
+    func route(to: Route, from: UIViewController, options: RouteOptions = .noOptions) {
         return route(to: to.url, from: from, options: options)
     }
 
-    func route(to url: URL, from: UIViewController, options: RouteOptions? = nil) {
+    func route(to url: URL, from: UIViewController, options: RouteOptions = .noOptions) {
         return route(to: .parse(url), from: from, options: options)
     }
 
-    func route(to url: String, from: UIViewController, options: RouteOptions? = nil) {
+    func route(to url: String, from: UIViewController, options: RouteOptions = .noOptions) {
         return route(to: .parse(url), from: from, options: options)
     }
 
-    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions? = nil) {
+    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions = .noOptions) {
         show(view, from: from, options: options, completion: nil)
     }
 
-    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions? = nil, completion: (() -> Void)?) {
+    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions = .noOptions, completion: (() -> Void)?) {
         if view is UIAlertController { return from.present(view, animated: true) }
 
         if let displayModeButton = from.displayModeButtonItem,
             from.splitViewController?.isCollapsed == false,
-            options?.contains(.detail) == true || from.isInSplitViewDetail,
-            options?.contains(.modal) != true {
+            options.detail || from.isInSplitViewDetail,
+            options.modal == nil {
             view.addNavigationButton(displayModeButton, side: .left)
             view.navigationItem.leftItemsSupplementBackButton = true
         }
 
-        if options?.contains(.modal) == true {
-            if options?.contains(.embedInNav) == true {
-                if options?.contains(.addDoneButton) == true {
-                    view.addDoneButton(side: .left)
-                }
-                let nav = view as? UINavigationController ?? UINavigationController(rootViewController: view)
-                nav.navigationBar.useModalStyle()
-                if options?.contains(.formSheet) == true {
-                    nav.modalPresentationStyle = .formSheet
-                }
-                if options?.contains(.fullScreen) == true {
-                    nav.modalPresentationStyle = .fullScreen
-                }
-                if #available(iOS 13, *), options?.contains(.inPresentation) == true {
-                    nav.isModalInPresentation = true
-                }
-                from.present(nav, animated: true, completion: completion)
-            } else {
-                if options?.contains(.formSheet) == true {
-                    view.modalPresentationStyle = .formSheet
-                }
-                if options?.contains(.fullScreen) == true {
-                    view.modalPresentationStyle = .fullScreen
-                }
-                if #available(iOS 13, *), options?.contains(.inPresentation) == true {
-                    view.isModalInPresentation = true
-                }
-                from.present(view, animated: true, completion: completion)
+        if options.addDoneButton {
+            view.addDoneButton(side: .left)
+        }
+        var nav: UINavigationController?
+        if options.embedInNav {
+            nav = view as? UINavigationController ?? UINavigationController(rootViewController: view)
+        }
+
+        if let modal = options.modal {
+            nav?.navigationBar.useModalStyle()
+            if let presentationStyle = modal.presentationStyle {
+                (nav ?? view).modalPresentationStyle = presentationStyle
             }
-        } else if from.splitViewController != nil, options?.contains(.detail) == true, !from.isInSplitViewDetail {
-            if options?.contains(.embedInNav) == true {
-                from.showDetailViewController(UINavigationController(rootViewController: view), sender: from)
-            } else {
-                from.showDetailViewController(view, sender: from)
+            if #available(iOS 13, *), modal.inPresentation {
+                (nav ?? view).isModalInPresentation = true
             }
+            from.present(nav ?? view, animated: true, completion: completion)
+        } else if from.splitViewController != nil, options.detail, !from.isInSplitViewDetail {
+            from.showDetailViewController(nav ?? view, sender: from)
         } else {
-            from.show(view, sender: nil)
+            from.show(nav ?? view, sender: nil)
         }
     }
 
     func pop(from: UIViewController) {
         guard let navController = from.navigationController else {
-             return
-         }
-         if navController.viewControllers.count == 1 {
-             navController.viewControllers = [EmptyViewController(nibName: nil, bundle: nil)]
-         } else {
-             navController.popViewController(animated: true)
-         }
+            return
+        }
+        if navController.viewControllers.count == 1 {
+            navController.viewControllers = [EmptyViewController(nibName: nil, bundle: nil)]
+        } else {
+            navController.popViewController(animated: true)
+        }
     }
 }
 
 // The Router stores all routes that can be routed to in the app
 public class Router: RouterProtocol {
-    public typealias FallbackHandler = (URLComponents, UIViewController, RouteOptions?) -> Void
+    public typealias FallbackHandler = (URLComponents, UIViewController, RouteOptions) -> Void
 
     private let handlers: [RouteHandler]
     private let fallback: FallbackHandler
@@ -157,7 +164,7 @@ public class Router: RouterProtocol {
         return nil
     }
 
-    public func route(to url: URLComponents, from: UIViewController, options: RouteOptions? = nil) {
+    public func route(to url: URLComponents, from: UIViewController, options: RouteOptions = .noOptions) {
         let url = cleanURL(url)
         #if DEBUG
         DeveloperMenuViewController.recordRouteInHistory(url.url?.absoluteString)

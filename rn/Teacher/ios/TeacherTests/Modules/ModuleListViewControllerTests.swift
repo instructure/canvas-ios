@@ -302,7 +302,7 @@ class ModuleListViewControllerTests: TeacherTestCase {
         ])
         viewController.view.layoutIfNeeded()
         viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
-        XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/assignments/1")!, withOptions: [.detail]))
+        XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/assignments/1")!, withOptions: .init(detail: true)))
     }
 
     func testViewWillAppearDeselectsSelectedRow() {

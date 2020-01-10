@@ -116,7 +116,7 @@ extension TodoListViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let todo = todos[indexPath] else { return }
         Analytics.shared.logEvent("todo_selected")
-        env.router.route(to: todo.assignment.htmlURL, from: self, options: [.detail, .embedInNav])
+        env.router.route(to: todo.assignment.htmlURL, from: self, options: .init(detail: true, embedInNav: true))
     }
 
     public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
