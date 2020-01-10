@@ -69,8 +69,8 @@ public class AddMessage: APIUseCase {
         else { return }
 
         model.audienceIDs = item.audience?.map { $0.value } ?? []
-        model.lastMessage = item.last_message
-        model.lastMessageAt = item.last_message_at
+        model.lastMessage = item.last_message ?? item.last_authored_message ?? ""
+        model.lastMessageAt = item.last_message_at ?? item.last_authored_message_at ?? Date()
         model.messageCount = item.message_count
 
         model.participants = Set(item.participants.map {
