@@ -3253,7 +3253,6 @@
 				B0C8BDFA0291149E97BCF90D /* [CP] Embed Pods Frameworks */,
 				F9B947052215E97A0083E660 /* Carthage Copy Frameworks */,
 				3B6DCCB51FB502CE005EE8D2 /* Embed App Extensions */,
-				4902E1271CF4CBA00069E043 /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -3690,20 +3689,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-defaults-StudentUnitTests/Pods-defaults-StudentUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		4902E1271CF4CBA00069E043 /* Fabric */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Fabric;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "${PODS_ROOT}/Fabric/run 7cf76817b5c71690f9c8655cc366155508371fc6 f47067a1c45bff8852736f919c942fabe3f29421be87e8157e920616d5f4766b";
 		};
 		49383CF01F848F7D009C8F8E /* Start the Packager */ = {
 			isa = PBXShellScriptBuildPhase;

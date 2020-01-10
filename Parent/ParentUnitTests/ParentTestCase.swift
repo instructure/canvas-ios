@@ -33,23 +33,18 @@ class ParentTestCase: XCTestCase {
 
     var api = MockURLSession.self
     var queue = OperationQueue()
-    var router = TestRouter()
-    var env = AppEnvironment.shared
-    var logger = TestLogger()
-    var currentSession = LoginSession.make()
+    var router: TestRouter { env.router as! TestRouter }
+    var env = TestEnvironment()
+    var logger: TestLogger { env.logger as! TestLogger }
+    var currentSession: LoginSession? { env.currentSession }
 
     override func setUp() {
         super.setUp()
         queue = OperationQueue()
-        router = TestRouter()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
-        env = AppEnvironment.shared
-        env.api = URLSessionAPI(loginSession: nil, urlSession: MockURLSession())
-        env.database = database
-        env.globalDatabase = database
-        env.router = router
-        env.logger = logger
-        env.currentSession = currentSession
+        env = TestEnvironment()
+        env.mockStore = false
+        AppEnvironment.shared = env
         MockURLSession.reset()
         MockUploadManager.reset()
         ExperimentalFeature.allEnabled = false

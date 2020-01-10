@@ -316,7 +316,6 @@ class QuizPresentingViewController: UIViewController {
         let courseID = quizController.service.context.id
         let quizID = quizController.service.quizID
         GetQuiz(courseID: courseID, quizID: quizID).fetch(force: true) { _, _, _ in }
-        GetQuizSubmission(courseID: courseID, quizID: quizID).fetch(force: true) { _, _, _ in }
         dismiss(animated: true, completion: nil)
     }
     

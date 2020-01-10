@@ -327,4 +327,17 @@ class RouterTests: XCTestCase {
         XCTAssertEqual(navController.viewControllers.count, 1)
         XCTAssert(navController.viewControllers.first is EmptyViewController)
     }
+
+    @available(iOS 13, *)
+    func testInPresentation() {
+        let mockView = MockViewController()
+        let router = Router(routes: []) { _, _, _ in }
+        router.show(mockView, from: UIViewController(), options: [.modal])
+        XCTAssertFalse(mockView.isModalInPresentation)
+        router.show(mockView, from: UIViewController(), options: [.modal, .inPresentation])
+        XCTAssertTrue(mockView.isModalInPresentation)
+        router.show(mockView, from: UIViewController(), options: [.modal, .embedInNav, .inPresentation])
+        XCTAssertNotNil(mockView.navigationController)
+        XCTAssertEqual(mockView.navigationController?.isModalInPresentation, true)
+    }
 }

@@ -86,7 +86,7 @@
         <attribute name="audienceIDsRaw" attributeType="String"/>
         <attribute name="avatarURL" attributeType="URI"/>
         <attribute name="contextCode" attributeType="String"/>
-        <attribute name="contextName" attributeType="String"/>
+        <attribute name="contextName" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="lastMessage" attributeType="String"/>
         <attribute name="lastMessageAt" attributeType="Date" usesScalarValueType="NO"/>
@@ -113,6 +113,7 @@
         <attribute name="avatarURL" optional="YES" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
+        <attribute name="pronouns" optional="YES" attributeType="String"/>
         <relationship name="conversations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Conversation" inverseName="participants" inverseEntity="Conversation"/>
     </entity>
     <entity name="Course" representedClassName="Core.Course" syncable="YES">
@@ -121,6 +122,7 @@
         <attribute name="courseCode" optional="YES" attributeType="String"/>
         <attribute name="currentGradingPeriodID" optional="YES" attributeType="String"/>
         <attribute name="defaultViewRaw" optional="YES" attributeType="String"/>
+        <attribute name="hideFinalGrades" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="imageDownloadURL" optional="YES" attributeType="URI"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -577,7 +579,7 @@
         <element name="ContextColor" positionX="-177.3046875" positionY="-36" width="128" height="73"/>
         <element name="Conversation" positionX="-540" positionY="-18" width="128" height="238"/>
         <element name="ConversationMessage" positionX="-522" positionY="0" width="128" height="178"/>
-        <element name="ConversationParticipant" positionX="-531" positionY="-9" width="128" height="103"/>
+        <element name="ConversationParticipant" positionX="-531" positionY="-9" width="128" height="118"/>
         <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="223"/>
         <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="150"/>

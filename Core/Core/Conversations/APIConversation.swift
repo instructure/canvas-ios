@@ -44,7 +44,7 @@ public struct APIConversation: Codable, Equatable {
     let audience: [ID]?
     let avatar_url: APIURL
     let visible: Bool
-    let context_name: String
+    let context_name: String?
     let context_code: String
     let messages: [APIConversationMessage]?
 }
@@ -54,6 +54,7 @@ public struct APIConversationParticipant: Codable, Equatable {
     let id: ID
     let name: String
     let avatar_url: APIURL?
+    let pronouns: String?
 }
 
 public struct APIConversationMessage: Codable, Equatable {
@@ -119,12 +120,14 @@ extension APIConversationParticipant {
     public static func make(
         id: String = "1",
         name: String = "Participant One",
-        avatar_url: URL? = nil
+        avatar_url: URL? = nil,
+        pronouns: String? = nil
     ) -> APIConversationParticipant {
         return APIConversationParticipant(
             id: ID(id),
             name: name,
-            avatar_url: avatar_url.flatMap(APIURL.init(rawValue:))
+            avatar_url: avatar_url.flatMap(APIURL.init(rawValue:)),
+            pronouns: pronouns
         )
     }
 }
@@ -230,21 +233,18 @@ struct PutConversationRequest: APIRequestable {
     }
 }
 
-struct PostAddMessageRequest: APIRequestable {
-    typealias Response = APIConversation
-    struct Body: Encodable {
-        let recipients: [String]
-        let body: String
-        let subject: String?
+public struct PostAddMessageRequest: APIRequestable {
+    public typealias Response = APIConversation
+    public struct Body: Encodable {
         let attachment_ids: [String]?
+        let body: String
         let media_comment_id: String?
         let media_comment_type: MediaCommentType?
-        let context_code: String?
-        let bulk_message: Int? // nil for group, 1 for send individually
+        let recipients: [String]?
     }
 
-    let id: String
-    let message: Body
-    var path: String { "conversations/\(id)/add_message" }
-    let method = APIMethod.post
+    let conversationID: String
+    public let body: Body?
+    public var path: String { "conversations/\(conversationID)/add_message" }
+    public let method = APIMethod.post
 }

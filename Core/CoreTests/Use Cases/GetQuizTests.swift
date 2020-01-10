@@ -27,9 +27,22 @@ class GetQuizTest: CoreTestCase {
     func testProperties() {
         let useCase = GetQuiz(courseID: courseID, quizID: quizID)
         XCTAssertEqual(useCase.cacheKey, "get-courses-1-quizzes-2")
-        XCTAssertEqual(useCase.request.courseID, courseID)
-        XCTAssertEqual(useCase.request.quizID, quizID)
         XCTAssertEqual(useCase.scope, Scope.where(#keyPath(Quiz.id), equals: quizID))
+    }
+
+    func testMakeRequest() {
+        api.mock(GetQuizRequest(courseID: courseID, quizID: quizID), value: .make())
+        api.mock(GetQuizSubmissionRequest(courseID: courseID, quizID: quizID), value: GetQuizSubmissionRequest.Response(quiz_submissions: [.make()]))
+        let useCase = GetQuiz(courseID: courseID, quizID: quizID)
+        let expectation = XCTestExpectation(description: "completion handler was called")
+        useCase.makeRequest(environment: environment) { response, _, error in
+            XCTAssertNotNil(response)
+            XCTAssertNotNil(response?.quiz)
+            XCTAssertNotNil(response?.submission)
+            XCTAssertNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
     }
 
     func testWriteNothing() {
@@ -40,8 +53,9 @@ class GetQuizTest: CoreTestCase {
 
     func testWrite() {
         let quiz = APIQuiz.make(id: ID(stringLiteral: quizID))
-        QuizSubmission.make(from: .make(quiz_id: ID(stringLiteral: quizID)))
-        GetQuiz(courseID: courseID, quizID: quizID).write(response: quiz, urlResponse: nil, to: databaseClient)
+        let submission = APIQuizSubmission.make()
+        let response = GetQuiz.Response(quiz: quiz, submission: submission)
+        GetQuiz(courseID: courseID, quizID: quizID).write(response: response, urlResponse: nil, to: databaseClient)
         XCTAssertNoThrow(try databaseClient.save())
         let quizzes: [Quiz] = databaseClient.fetch()
         XCTAssertEqual(quizzes.count, 1)
