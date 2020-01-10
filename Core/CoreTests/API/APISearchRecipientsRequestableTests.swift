@@ -32,8 +32,8 @@ class APISearchRecipientsRequestableTests: XCTestCase {
         let requestable = APISearchRecipientsRequestable(context: context, search: search)
 
         XCTAssertEqual(requestable.query, [
-            .value("search", search),
             .value("context", context.canvasContextID),
+            .value("search", search),
             .value("per_page", "50"),
         ])
     }
@@ -44,8 +44,8 @@ class APISearchRecipientsRequestableTests: XCTestCase {
         let requestable = APISearchRecipientsRequestable(context: context, contextQualifier: .teachers, search: search)
 
         XCTAssertEqual(requestable.query, [
-            .value("search", search),
             .value("context", context.canvasContextID + "_teachers"),
+            .value("search", search),
             .value("per_page", "50"),
         ])
     }

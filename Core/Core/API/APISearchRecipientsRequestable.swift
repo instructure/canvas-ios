@@ -52,8 +52,8 @@ public struct APISearchRecipientsRequestable: APIRequestable {
         let contextQueryItem = APIQueryItem.value("context", contextStr)
 
         var queryItems = [
-            APIQueryItem.value("search", search),
             contextQueryItem,
+            APIQueryItem.value("search", search),
         ]
 
         if let userID = userID {
