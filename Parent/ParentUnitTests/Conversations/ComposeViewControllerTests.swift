@@ -53,5 +53,7 @@ class ComposeViewControllerTests: ParentTestCase {
 
         let sendButton = controller.navigationItem.rightBarButtonItem
         XCTAssertNoThrow(sendButton?.target?.perform(sendButton?.action))
+
+        XCTAssertNotNil(controller.recipientsView.editButton)
     }
 }

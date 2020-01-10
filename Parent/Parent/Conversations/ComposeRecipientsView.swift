@@ -24,8 +24,40 @@ class ComposeRecipientsView: UIView {
         didSet { updatePills() }
     }
 
+    var pills: [ComposeRecipientView] {
+        return subviews.compactMap { $0 as? ComposeRecipientView }
+    }
+
+    var editButton: UIButton!
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        initialize()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        initialize()
+    }
+
+    func initialize() {
+        addEditButton()
+    }
+
+    func addEditButton() {
+        editButton = UIButton(type: .system)
+        editButton.setImage(.icon(.user), for: .normal)
+        editButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(editButton)
+        NSLayoutConstraint.activate([
+            editButton.heightAnchor.constraint(equalToConstant: 24),
+            editButton.widthAnchor.constraint(equalToConstant: 24),
+            editButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            editButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+        ])
+    }
+
     func updatePills() {
-        let pills = subviews.compactMap { $0 as? ComposeRecipientView }
         for (i, recipient) in recipients.enumerated() {
             let pill: ComposeRecipientView
             if i < pills.count {
@@ -47,13 +79,13 @@ class ComposeRecipientsView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         let xPad: CGFloat = 16
-        let xMax = bounds.maxX - xPad
         let yPad: CGFloat = 12
         let space: CGFloat = 8
         var next = CGPoint(x: xPad, y: yPad)
-        let lineHeight = subviews.first?.frame.height ?? 0
-        for pill in subviews {
+        let lineHeight = pills.first?.frame.height ?? 0
+        for pill in pills {
             pill.layoutIfNeeded()
+            let xMax = next.y == yPad ? editButton.frame.minX - xPad : bounds.maxX - xPad
             if next.x + pill.frame.width > xMax {
                 next.x = xPad
                 next.y += lineHeight + space
