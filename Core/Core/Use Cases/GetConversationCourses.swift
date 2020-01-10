@@ -47,7 +47,7 @@ public class GetConversationCourses: APIUseCase {
             }
 
             let coursesRequestable = GetCoursesRequest(enrollmentState: .active, state: nil, perPage: 99)
-            environment.api.exhaust(coursesRequestable) { [weak self]  (apiCourses, response, error) in
+            environment.api.exhaust(coursesRequestable) { [weak self] (apiCourses, response, error) in
                 if error != nil {
                     completionHandler(enrollments, response, error)
                     return

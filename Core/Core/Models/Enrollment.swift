@@ -161,6 +161,8 @@ extension Enrollment {
         if let apiObservedUser = item.observed_user {
             let observedUserModel = User.save(apiObservedUser, in: client)
             observedUser = observedUserModel
+        } else {
+            observedUser = nil
         }
     }
 }
