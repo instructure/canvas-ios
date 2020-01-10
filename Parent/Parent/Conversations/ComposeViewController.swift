@@ -31,13 +31,15 @@ class ComposeViewController: UIViewController, ErrorViewController {
     let env = AppEnvironment.shared
     var keyboard: KeyboardTransitioning?
     var observeeID: String?
+    var hiddenMessage: String?
 
     static func create(
         body: String?,
         context: Context?,
         observeeID: String?,
         recipients: [APIConversationRecipient],
-        subject: String?
+        subject: String?,
+        hiddenMessage: String?
     ) -> ComposeViewController {
         let controller = loadFromStoryboard()
         controller.loadViewIfNeeded()
@@ -47,6 +49,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
         controller.recipientsView.recipients = recipients
         controller.subjectField.text = subject
         controller.textViewDidChange(controller.bodyView)
+        controller.hiddenMessage = hiddenMessage
         return controller
     }
 
@@ -77,6 +80,10 @@ class ComposeViewController: UIViewController, ErrorViewController {
         super.viewWillAppear(animated)
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
         navigationController?.navigationBar.useModalStyle()
+
+        if recipientsView.recipients.count == 0 {
+            fetchRecipients()
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -92,6 +99,20 @@ class ComposeViewController: UIViewController, ErrorViewController {
     }
 
     @objc func send() {
+        // append the hidden message
+    }
+
+    func fetchRecipients(completionHandler: (() -> Void)? = nil) {
+        guard let context = context else {
+            return
+        }
+        let searchContext = "\(context.canvasContextID)_teachers"
+        let request = GetConversationRecipientsRequest(search: "", context: searchContext, includeContexts: false)
+        env.api.makeRequest(request) { [weak self] (recipients, _, _) in
+            performUIUpdate {
+                self?.recipientsView.recipients = recipients ?? []
+            }
+        }
     }
 }
 

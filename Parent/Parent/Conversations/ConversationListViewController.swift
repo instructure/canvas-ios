@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class ConversationListViewController: UIViewController {
+class ConversationListViewController: UIViewController, ConversationCoursesActionSheetDelegate {
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var composeButton: UIButton!
     @IBOutlet weak var emptyView: EmptyView!
@@ -93,7 +93,21 @@ class ConversationListViewController: UIViewController {
     }
 
     @IBAction func createNewConversation() {
-        env.router.route(to: .compose(), from: self, options: [.modal, .embedInNav])
+        let vc = ConversationCoursesActionSheet.create(delegate: self)
+        env.router.show(vc, from: self, options: [.modal])
+    }
+
+    func courseSelected(course: Course, user: User) {
+        env.router.route(
+            to: .compose(
+                    context: ContextModel(.course, id: course.id),
+                    observeeID: user.id,
+                    subject: course.name,
+                    hiddenMessage: String.localizedStringWithFormat(NSLocalizedString("Regarding: ", bundle: .parent, comment: ""), user.name)
+                ),
+            from: self,
+            options: [.modal, .embedInNav]
+        )
     }
 }
 

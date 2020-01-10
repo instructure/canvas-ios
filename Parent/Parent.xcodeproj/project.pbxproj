@@ -145,7 +145,10 @@
 		974BA7F923A89C5C00E09D5A /* ConversationDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 974BA7F823A89C5C00E09D5A /* ConversationDetailViewController.storyboard */; };
 		97D477C923AA738300A6BC78 /* ConversationDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D477C823AA738300A6BC78 /* ConversationDetailViewControllerTests.swift */; };
 		97F0817423C43E20002B9F68 /* CourseDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0817323C43E20002B9F68 /* CourseDetailsViewControllerTests.swift */; };
+		9F397F8523C8D54600A3E2AF /* ConversationCoursesActionSheetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F397F8423C8D54600A3E2AF /* ConversationCoursesActionSheetTests.swift */; };
+		9F520B8D23BFC3D200CE3672 /* ConversationCoursesActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F520B8C23BFC3D200CE3672 /* ConversationCoursesActionSheet.swift */; };
 		9F6B43E42243ECD9003C758B /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6B43E32243ECD9003C758B /* DashboardPresenter.swift */; };
+		9FB8FC4323C3B46A00E69E6A /* ActionSheetTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8FC4223C3B46A00E69E6A /* ActionSheetTransitioning.swift */; };
 		B11A2CF720E42D9500A2DBDD /* AccountNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11A2CF620E42D9500A2DBDD /* AccountNotificationViewController.swift */; };
 		B18F80E423463A060001A666 /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F80E323463A060001A666 /* RoutesTests.swift */; };
 		B1AA55D0235785A200DFD184 /* SettingsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AA55CF235785A200DFD184 /* SettingsViewControllerTests.swift */; };
@@ -899,6 +902,8 @@
 		97D477C823AA738300A6BC78 /* ConversationDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		97F0817323C43E20002B9F68 /* CourseDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		98A80F881229764105018888 /* Pods-defaults-Parent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Parent.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Parent/Pods-defaults-Parent.release.xcconfig"; sourceTree = "<group>"; };
+		9F397F8423C8D54600A3E2AF /* ConversationCoursesActionSheetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCoursesActionSheetTests.swift; sourceTree = "<group>"; };
+		9F520B8C23BFC3D200CE3672 /* ConversationCoursesActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCoursesActionSheet.swift; sourceTree = "<group>"; };
 		9F5A3D322048745B00F6EDCE /* DiscussionTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTopic.swift; sourceTree = "<group>"; };
 		9F5A3D332048745B00F6EDCE /* DiscussionTopic+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscussionTopic+Network.swift"; sourceTree = "<group>"; };
 		9F5A3D342048745B00F6EDCE /* DiscussionTopic+Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscussionTopic+Details.swift"; sourceTree = "<group>"; };
@@ -906,6 +911,7 @@
 		9F5A3D392048745B00F6EDCE /* DiscussionTopicAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTopicAPI.swift; sourceTree = "<group>"; };
 		9F5A3D3B2048745B00F6EDCE /* Session+DiscussionKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+DiscussionKit.swift"; sourceTree = "<group>"; };
 		9F6B43E32243ECD9003C758B /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
+		9FB8FC4223C3B46A00E69E6A /* ActionSheetTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetTransitioning.swift; sourceTree = "<group>"; };
 		B11A2CF620E42D9500A2DBDD /* AccountNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotificationViewController.swift; sourceTree = "<group>"; };
 		B18F80E323463A060001A666 /* RoutesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTests.swift; sourceTree = "<group>"; };
 		B1AA55CF235785A200DFD184 /* SettingsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerTests.swift; sourceTree = "<group>"; };
@@ -1368,6 +1374,8 @@
 				7DFDB43323A4393D00B28DED /* ConversationListCell.swift */,
 				7D111D0023A2DDDF00C912C0 /* ConversationListViewController.storyboard */,
 				7D111CFE23A2DDD100C912C0 /* ConversationListViewController.swift */,
+				9F520B8C23BFC3D200CE3672 /* ConversationCoursesActionSheet.swift */,
+				9FB8FC4223C3B46A00E69E6A /* ActionSheetTransitioning.swift */,
 			);
 			path = Conversations;
 			sourceTree = "<group>";
@@ -1395,6 +1403,7 @@
 				7D231BE023AC1E0A005BA31D /* ComposeViewControllerTests.swift */,
 				97D477C823AA738300A6BC78 /* ConversationDetailViewControllerTests.swift */,
 				7DFDB43123A3EDFB00B28DED /* ConversationListViewControllerTests.swift */,
+				9F397F8423C8D54600A3E2AF /* ConversationCoursesActionSheetTests.swift */,
 			);
 			path = Conversations;
 			sourceTree = "<group>";
@@ -1789,6 +1798,7 @@
 				7D6F4CEB23C69F7F001C957D /* ComposeReplyViewControllerTests.swift in Sources */,
 				7D231BE123AC1E0A005BA31D /* ComposeViewControllerTests.swift in Sources */,
 				3B54E3592326F9B000D8D1D2 /* ParentTestCase.swift in Sources */,
+				9F397F8523C8D54600A3E2AF /* ConversationCoursesActionSheetTests.swift in Sources */,
 				3B36A2F12322C56F00599A1E /* APIAlertThresholdFixture.swift in Sources */,
 				3B8F23CB2327050F00788730 /* StudentSettingsPresenterTests.swift in Sources */,
 				97D477C923AA738300A6BC78 /* ConversationDetailViewControllerTests.swift in Sources */,
@@ -1804,8 +1814,10 @@
 				7D52D8A422FCC8A200684932 /* DiscussionTopicAPI.swift in Sources */,
 				5E0F9A741C739E6A00BB7707 /* SettingsObserveeCell.swift in Sources */,
 				7D52D8A122FCC89F00684932 /* DiscussionTopic.swift in Sources */,
+				9FB8FC4323C3B46A00E69E6A /* ActionSheetTransitioning.swift in Sources */,
 				497C48E71F9153D100A3BC06 /* Student.swift in Sources */,
 				497C48EA1F9153D100A3BC06 /* Assignments.swift in Sources */,
+				9F520B8D23BFC3D200CE3672 /* ConversationCoursesActionSheet.swift in Sources */,
 				617BE8751CA584EF008A6908 /* AnnouncementDetailsViewController.swift in Sources */,
 				5EE9A5191D1449F900EFCDAE /* StudentSettingsViewController.swift in Sources */,
 				5E0F9A6F1C739E6A00BB7707 /* CourseCellViewModel.swift in Sources */,
