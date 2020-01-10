@@ -21,27 +21,45 @@ import Foundation
 public struct APISearchRecipientsRequestable: APIRequestable {
     public typealias Response = [APISearchRecipient]
 
+    public enum ContextQualifier: String {
+        case teachers, students, observers
+    }
+
     let context: Context
+    let contextQualifier: ContextQualifier?
     let search: String
     let perPage: Int?
     let skipVisibilityChecks: Int?
     let syntheticContexts: Int?
+    let userID: String?
 
-    public init(context: Context, search: String = "", perPage: Int? = 50, skipVisibilityChecks: Int? = nil, syntheticContexts: Int? = nil) {
+    public init(context: Context, contextQualifier: ContextQualifier? = nil, search: String = "",
+                userID: String? = nil, perPage: Int? = 50, skipVisibilityChecks: Int? = nil, syntheticContexts: Int? = nil) {
         self.context = context
+        self.contextQualifier = contextQualifier
         self.search = search
         self.perPage = perPage
         self.skipVisibilityChecks = skipVisibilityChecks
         self.syntheticContexts = syntheticContexts
+        self.userID = userID
     }
 
     public var path = "search/recipients"
 
     public var query: [APIQueryItem] {
+        var contextStr = context.canvasContextID
+        if let qualifier = contextQualifier { contextStr.append("_\(qualifier.rawValue)") }
+        let contextQueryItem = APIQueryItem.value("context", contextStr)
+
         var queryItems = [
-            APIQueryItem.value("context", context.canvasContextID),
             APIQueryItem.value("search", search),
+            contextQueryItem,
         ]
+
+        if let userID = userID {
+            queryItems.append(.value("user_id", "\(userID)"))
+        }
+
         if let perPage = perPage {
             queryItems.append(.value("per_page", "\(perPage)"))
         }

@@ -25,6 +25,19 @@ public struct APIConversationRecipient: Codable {
     public let avatar_url: APIURL?
 }
 
+extension APIConversationRecipient {
+    public init(searchRecipient r: SearchRecipient) {
+        self.id = ID(r.id)
+        self.name = r.fullName
+        self.full_name = r.fullName
+        if let url = r.avatarURL {
+            self.avatar_url = APIURL(rawValue: url)
+        } else {
+            self.avatar_url = nil
+        }
+    }
+}
+
 #if DEBUG
 extension APIConversationRecipient {
     public static func make(

@@ -277,6 +277,12 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
     }
 }
 
+public extension HorizontalMenuViewController {
+    func titleForSelectedTab() -> String? {
+        return delegate?.menuItemTitle(at: selectedIndexPath)
+    }
+}
+
 public protocol HorizontalPagedMenuDelegate: class {
     var viewControllers: [UIViewController] { get }
     var menuHeight: CGFloat { get }
