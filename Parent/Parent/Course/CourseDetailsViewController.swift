@@ -31,9 +31,18 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     var env: AppEnvironment!
     var colorScheme: ColorScheme?
     var replyButton: FloatingButton?
+    var replyStarted: Bool = false
 
     enum MenuItem: Int {
         case grades, syllabus, summary
+    }
+
+    lazy var student = env.subscribe(GetSearchRecipients(context: ContextModel(.course, id: courseID), userID: studentID)) { [weak self] in
+        self?.messagingReady()
+    }
+
+    lazy var teachers = env.subscribe(GetSearchRecipients(context: ContextModel(.course, id: courseID), contextQualifier: .teachers)) { [weak self] in
+        self?.messagingReady()
     }
 
     lazy var courses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
@@ -67,6 +76,8 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         courses.refresh(force: true)
         frontPages.refresh(force: true)
         tabs.refresh(force: true)
+        student.refresh()
+        teachers.refresh()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -141,8 +152,25 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         }
     }
 
-    @IBAction func actionReplyButtonClicked(_ sender: Any) {
-        env.router.route(to: .compose(), from: self, options: [.modal, .embedInNav])
+    func messagingReady() {
+        let pending = teachers.pending || student.pending
+        if !pending && replyStarted {
+            let name = student.first?.fullName ?? ""
+            let tabTitle = titleForSelectedTab() ?? ""
+            let template = NSLocalizedString("Regarding: %@, %@", comment: "Regarding <John Doe>, <Grades | Syllabus>")
+            let subject = String.localizedStringWithFormat(template, name, tabTitle)
+            let context = ContextModel(.course, id: courseID)
+            let recipients = teachers.map { APIConversationRecipient(searchRecipient: $0) }
+            let r: Route = Route.compose(context: context, recipients: recipients, subject: subject)
+            env.router.route(to: r, from: self, options: [.modal, .embedInNav])
+            replyButton?.isEnabled = true
+        }
+    }
+
+    @IBAction func actionReplyButtonClicked(_ sender: UIButton) {
+        sender.isEnabled = false
+        replyStarted = true
+        messagingReady()
     }
 }
 

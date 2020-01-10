@@ -448,6 +448,7 @@
 		7DFDB43A23A45A5A00B28DED /* ConversationParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFDB43923A45A5A00B28DED /* ConversationParticipant.swift */; };
 		7DFFAB1A219DDB22003E71F8 /* CommentListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DFFAB19219DDB22003E71F8 /* CommentListViewController.storyboard */; };
 		7DFFAB1C219DDB8B003E71F8 /* CommentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFFAB1B219DDB8B003E71F8 /* CommentListViewController.swift */; };
+		9727093B23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9727093A23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift */; };
 		9767F2982383B846006633CA /* TokenLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9767F2972383B846006633CA /* TokenLabelView.swift */; };
 		97A486C42397826300084499 /* ProfileViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A486C32397826300084499 /* ProfileViewControllerTests.swift */; };
 		97A486CB239AB2ED00084499 /* SyllabusViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A486CA239AB2ED00084499 /* SyllabusViewControllerTests.swift */; };
@@ -1358,6 +1359,7 @@
 		7DFDB43923A45A5A00B28DED /* ConversationParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationParticipant.swift; sourceTree = "<group>"; };
 		7DFFAB19219DDB22003E71F8 /* CommentListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CommentListViewController.storyboard; sourceTree = "<group>"; };
 		7DFFAB1B219DDB8B003E71F8 /* CommentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListViewController.swift; sourceTree = "<group>"; };
+		9727093A23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalMenuViewControllerTests.swift; sourceTree = "<group>"; };
 		9767F2972383B846006633CA /* TokenLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenLabelView.swift; sourceTree = "<group>"; };
 		97A486C32397826300084499 /* ProfileViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerTests.swift; sourceTree = "<group>"; };
 		97A486CA239AB2ED00084499 /* SyllabusViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusViewControllerTests.swift; sourceTree = "<group>"; };
@@ -2281,6 +2283,7 @@
 				7DD6947A21949DC900BA4984 /* IconViewTests.swift */,
 				7D1758C3215A995200F88613 /* ListFormatterTests.swift */,
 				7D1758C7215A9A7800F88613 /* TitleSubtitleViewTests.swift */,
+				9727093A23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4066,6 +4069,7 @@
 				9FE4032D237EF6B800469B45 /* PageListViewControllerTests.swift in Sources */,
 				B119B4BD2307208200A74062 /* GetEnabledFeatureFlagsTests.swift in Sources */,
 				3B158CB122E167CD0039A568 /* PageViewEventTests.swift in Sources */,
+				9727093B23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift in Sources */,
 				7D1F704821CAE4E700E78D69 /* AppEnvironmentTests.swift in Sources */,
 				7DEAD09E22790B720030C28A /* RichContentEditorViewControllerTests.swift in Sources */,
 				7DBED03623344EDF00392F3C /* ExternalToolLaunchPlacementTests.swift in Sources */,

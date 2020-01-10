@@ -36,4 +36,12 @@ class APIConversationRecipientTests: CoreTestCase {
             .value("context", "course_1"),
         ])
     }
+
+    func testConvertFromSearchRecipient() {
+        let searchRecipient = SearchRecipient.make(from: APISearchRecipient.make())
+        let conversationRecipient = APIConversationRecipient(searchRecipient: searchRecipient)
+        XCTAssertEqual(conversationRecipient.id.value, searchRecipient.id)
+        XCTAssertEqual(conversationRecipient.name, searchRecipient.fullName)
+        XCTAssertEqual(conversationRecipient.avatar_url?.rawValue, searchRecipient.avatarURL)
+    }
 }
