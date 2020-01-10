@@ -47,11 +47,11 @@ class ConversationCoursesActionSheet: UITableViewController, ErrorViewController
         tableView.separatorStyle = .none
         tableView.registerCell(SubtitleTableViewCell.self)
 
-        let header = UILabel(frame: CGRect(x: 16, y: 0, width: tableView.frame.width - 32, height: 40))
+        let header = UILabel(frame: CGRect(x: 16, y: 8, width: tableView.frame.width - 32, height: 40))
         header.text = NSLocalizedString("Choose a course to message", bundle: .parent, comment: "")
         header.textColor = UIColor.named(.textDark)
         header.font = UIFont.scaledNamedFont(.semibold14)
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 48))
         headerView.addSubview(header)
         tableView.tableHeaderView = headerView
 
