@@ -48,6 +48,9 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupCrashlytics()
         CacheManager.resetAppIfNecessary()
+        #if DEBUG
+            UITestHelpers.setup(self)
+        #endif
         if hasFirebase {
             FirebaseApp.configure()
             let remoteConfig = RemoteConfig.remoteConfig()

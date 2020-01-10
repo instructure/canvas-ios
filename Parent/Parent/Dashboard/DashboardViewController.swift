@@ -257,18 +257,21 @@ class DashboardViewController: UIViewController {
         coursesTabItem.image = UIImage.icon(.courses)
         coursesTabItem.selectedImage = UIImage.icon(.courses)
         coursesTabItem.accessibilityLabel = String.localizedStringWithFormat(tabViewFormatString, coursesTitle, 1, 3)
+        coursesTabItem.accessibilityIdentifier = "TabBar.coursesTab"
 
         let calendarTitle = NSLocalizedString("Week", comment: "Calendar Tab")
         calendarTabItem.title = calendarTitle
         calendarTabItem.image = UIImage.icon(.calendar)
         calendarTabItem.selectedImage = UIImage.icon(.calendar)
         calendarTabItem.accessibilityLabel = String.localizedStringWithFormat(tabViewFormatString, calendarTitle, 2, 3)
+        calendarTabItem.accessibilityIdentifier = "TabBar.calendarTab"
 
         let alertsTitle = NSLocalizedString("Alerts", comment: "Alerts Tab")
         alertsTabItem.title = alertsTitle
         alertsTabItem.image = UIImage.icon(.notification)
         alertsTabItem.selectedImage = UIImage.icon(.notification)
         alertsTabItem.accessibilityLabel = String.localizedStringWithFormat(tabViewFormatString, alertsTitle, 3, 3)
+        alertsTabItem.accessibilityIdentifier = "TabBar.alertsTab"
 
         selectCoursesTab()
     }

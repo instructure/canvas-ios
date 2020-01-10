@@ -29,6 +29,7 @@ public extension Bundle {
     static let coreBundleID = "com.instructure.core"
     static let studentUITestsBundleID = "com.instructure.StudentUITests.xctrunner"
     static let teacherUITestsBundleID = "com.instructure.TeacherUITests.xctrunner"
+    static let parentUITestsBundleID = "com.instructure.ParentUITests.xctrunner"
 
     func appGroupID(bundleID: String? = nil) -> String? {
         if (bundleID ?? bundleIdentifier)?.hasPrefix(Bundle.studentBundleID) == true {
@@ -37,10 +38,19 @@ public extension Bundle {
         return nil
     }
 
-    var isStudentApp: Bool { return bundleIdentifier == Bundle.studentBundleID || isStudentUITestsRunner }
-    var isTeacherApp: Bool { return bundleIdentifier == Bundle.teacherBundleID || isTeacherUITestsRunner }
-    var isParentApp: Bool { return bundleIdentifier == Bundle.parentBundleID }
-    var isStudentUITestsRunner: Bool { return bundleIdentifier == Bundle.studentUITestsBundleID }
-    var isTeacherUITestsRunner: Bool { return bundleIdentifier == Bundle.teacherUITestsBundleID }
-    static var isExtension: Bool { return Bundle.main.bundleURL.pathExtension == "appex" }
+    var isStudentApp: Bool { bundleIdentifier == Bundle.studentBundleID || isStudentUITestsRunner }
+    var isTeacherApp: Bool { bundleIdentifier == Bundle.teacherBundleID || isTeacherUITestsRunner }
+    var isParentApp: Bool { bundleIdentifier == Bundle.parentBundleID || isParentUITestsRunner }
+    var isStudentUITestsRunner: Bool { bundleIdentifier == Bundle.studentUITestsBundleID }
+    var isTeacherUITestsRunner: Bool { bundleIdentifier == Bundle.teacherUITestsBundleID }
+    var isParentUITestsRunner: Bool { bundleIdentifier == Bundle.parentUITestsBundleID }
+    var testTargetBundleID: String? {
+        switch bundleIdentifier {
+        case Bundle.studentUITestsBundleID: return Bundle.studentBundleID
+        case Bundle.teacherUITestsBundleID: return Bundle.teacherBundleID
+        case Bundle.parentUITestsBundleID: return Bundle.parentBundleID
+        default: return bundleIdentifier
+        }
+    }
+    static var isExtension: Bool { Bundle.main.bundleURL.pathExtension == "appex" }
 }
