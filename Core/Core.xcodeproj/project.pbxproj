@@ -307,10 +307,7 @@
 		7D8E820523C7892600A8DA2C /* AddMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E820423C7892600A8DA2C /* AddMessage.swift */; };
 		7D8E820723C79B8700A8DA2C /* AddMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E820623C79B8700A8DA2C /* AddMessageTests.swift */; };
 		7D8E821023C8E14D00A8DA2C /* PeopleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E820823C8E09500A8DA2C /* PeopleListViewController.swift */; };
-		7D8E821123C8E14D00A8DA2C /* PeopleListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E820923C8E09500A8DA2C /* PeopleListPresenter.swift */; };
 		7D8E821223C8E14D00A8DA2C /* PeopleListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D8E820A23C8E09500A8DA2C /* PeopleListViewController.storyboard */; };
-		7D8E821323C8E14D00A8DA2C /* PeopleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E820B23C8E09500A8DA2C /* PeopleListCell.swift */; };
-		7D8E821423C8E15800A8DA2C /* PeopleListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E820D23C8E0AE00A8DA2C /* PeopleListPresenterTests.swift */; };
 		7D8E821523C8E15A00A8DA2C /* PeopleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E820E23C8E0AE00A8DA2C /* PeopleListViewControllerTests.swift */; };
 		7D8FDFB62187B62A0067557E /* UINavigationBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FDFB52187B62A0067557E /* UINavigationBarExtensions.swift */; };
 		7D8FDFB82187B92C0067557E /* UINavigationBarExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FDFB72187B92C0067557E /* UINavigationBarExtensionsTests.swift */; };
@@ -1225,10 +1222,7 @@
 		7D8E820423C7892600A8DA2C /* AddMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMessage.swift; sourceTree = "<group>"; };
 		7D8E820623C79B8700A8DA2C /* AddMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMessageTests.swift; sourceTree = "<group>"; };
 		7D8E820823C8E09500A8DA2C /* PeopleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListViewController.swift; sourceTree = "<group>"; };
-		7D8E820923C8E09500A8DA2C /* PeopleListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListPresenter.swift; sourceTree = "<group>"; };
 		7D8E820A23C8E09500A8DA2C /* PeopleListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PeopleListViewController.storyboard; sourceTree = "<group>"; };
-		7D8E820B23C8E09500A8DA2C /* PeopleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListCell.swift; sourceTree = "<group>"; };
-		7D8E820D23C8E0AE00A8DA2C /* PeopleListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListPresenterTests.swift; sourceTree = "<group>"; };
 		7D8E820E23C8E0AE00A8DA2C /* PeopleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListViewControllerTests.swift; sourceTree = "<group>"; };
 		7D8FDFB52187B62A0067557E /* UINavigationBarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtensions.swift; sourceTree = "<group>"; };
 		7D8FDFB72187B92C0067557E /* UINavigationBarExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtensionsTests.swift; sourceTree = "<group>"; };
@@ -2692,10 +2686,8 @@
 		7D8E820C23C8E09500A8DA2C /* People */ = {
 			isa = PBXGroup;
 			children = (
-				7D8E820823C8E09500A8DA2C /* PeopleListViewController.swift */,
-				7D8E820923C8E09500A8DA2C /* PeopleListPresenter.swift */,
 				7D8E820A23C8E09500A8DA2C /* PeopleListViewController.storyboard */,
-				7D8E820B23C8E09500A8DA2C /* PeopleListCell.swift */,
+				7D8E820823C8E09500A8DA2C /* PeopleListViewController.swift */,
 			);
 			path = People;
 			sourceTree = "<group>";
@@ -2703,7 +2695,6 @@
 		7D8E820F23C8E0AE00A8DA2C /* People */ = {
 			isa = PBXGroup;
 			children = (
-				7D8E820D23C8E0AE00A8DA2C /* PeopleListPresenterTests.swift */,
 				7D8E820E23C8E0AE00A8DA2C /* PeopleListViewControllerTests.swift */,
 			);
 			path = People;
@@ -3851,7 +3842,6 @@
 				7DD6CC6B21BD6DB1004C4BB6 /* LoadingViewController.swift in Sources */,
 				B14B704D228F30A100B568D6 /* UploadFileComment.swift in Sources */,
 				7DBED010232C2C7500392F3C /* GetAccountHelpLinks.swift in Sources */,
-				7D8E821323C8E14D00A8DA2C /* PeopleListCell.swift in Sources */,
 				9FBE5367223C1EE9001EC40C /* APIPermissionsRequestable.swift in Sources */,
 				7D6C8C6922EA0A6E00E5ADD8 /* APIActivity.swift in Sources */,
 				7D9E80D6233DA1EF003C608B /* SwitchTableViewCell.swift in Sources */,
@@ -3922,7 +3912,6 @@
 				7DA057522193A30E00A3CFBB /* IconView.swift in Sources */,
 				7D70DE96233E917E00F5C3D4 /* SubtitleTableViewCell.swift in Sources */,
 				3B635B2D225CD377001F353D /* APICalendarRequestable.swift in Sources */,
-				7D8E821123C8E14D00A8DA2C /* PeopleListPresenter.swift in Sources */,
 				9F4B101D2370AA25003DC6C5 /* EmptyViewController.swift in Sources */,
 				3B6D23E72267B9000040D3FE /* APIRubricAssessment.swift in Sources */,
 				9FD504EC2180BF1A00B395BA /* File.swift in Sources */,
@@ -4166,7 +4155,6 @@
 				3B158CB322E16D0E0039A568 /* PageViewEventRequestManagerTests.swift in Sources */,
 				7DD694812194CE8C00BA4984 /* DateExtensionsTests.swift in Sources */,
 				3B6FE4A22356371D00000B9D /* SyllabusActionableItemsPresenterTests.swift in Sources */,
-				7D8E821423C8E15800A8DA2C /* PeopleListPresenterTests.swift in Sources */,
 				7DCF1EA2216BB7E4003AF358 /* SubmissionTypeTests.swift in Sources */,
 				9F88ED01224A742F00DCCA09 /* EnrollmentTests.swift in Sources */,
 				7D979CCA215BDFD500567627 /* DividerViewTests.swift in Sources */,

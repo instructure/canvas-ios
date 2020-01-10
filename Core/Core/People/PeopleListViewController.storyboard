@@ -19,6 +19,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="G6M-0U-L6a">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="apc-fB-yu3">
+                                    <rect key="frame" x="0.0" y="120" width="414" height="0.0"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PeopleListCell" rowHeight="64" id="pX1-je-57g" customClass="PeopleListCell" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="64"/>
@@ -73,13 +78,17 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="avatar" destination="ykB-TY-mth" id="RtQ-cr-okt"/>
-                                            <outlet property="name" destination="D1m-jj-5ou" id="S1f-EP-oTo"/>
-                                            <outlet property="roles" destination="7eD-6D-vvu" id="6By-fq-doA"/>
+                                            <outlet property="avatarView" destination="ykB-TY-mth" id="JoJ-KP-7Bb"/>
+                                            <outlet property="nameLabel" destination="D1m-jj-5ou" id="63v-Cx-Ztn"/>
+                                            <outlet property="rolesLabel" destination="7eD-6D-vvu" id="jb4-tp-xae"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="saV-w2-9b6" id="Axa-io-g25"/>
+                                    <outlet property="delegate" destination="saV-w2-9b6" id="145-XW-cEH"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
