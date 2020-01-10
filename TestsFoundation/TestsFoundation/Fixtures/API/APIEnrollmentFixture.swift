@@ -74,3 +74,21 @@ extension APIEnrollment {
         )
     }
 }
+
+extension APIEnrollment.Grades {
+    public static func make(
+        html_url: String = "/grades",
+        current_grade: String? = nil,
+        final_grade: String? = nil,
+        current_score: Double? = nil,
+        final_score: Double? = nil
+    ) -> Self {
+        return Self(
+            html_url: html_url,
+            current_grade: current_grade,
+            final_grade: final_grade,
+            current_score: current_score,
+            final_score: final_score
+        )
+    }
+}

@@ -304,6 +304,8 @@
 		7D8B78FB215EC9BE005E08F1 /* BrandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B78FA215EC9BE005E08F1 /* BrandTests.swift */; };
 		7D8B78FD21627887005E08F1 /* CoreWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B78FC21627887005E08F1 /* CoreWebView.swift */; };
 		7D8B79032162B9E2005E08F1 /* CoreWebViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B79022162B9E2005E08F1 /* CoreWebViewTests.swift */; };
+		7D8E820523C7892600A8DA2C /* AddMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E820423C7892600A8DA2C /* AddMessage.swift */; };
+		7D8E820723C79B8700A8DA2C /* AddMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E820623C79B8700A8DA2C /* AddMessageTests.swift */; };
 		7D8FDFB62187B62A0067557E /* UINavigationBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FDFB52187B62A0067557E /* UINavigationBarExtensions.swift */; };
 		7D8FDFB82187B92C0067557E /* UINavigationBarExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FDFB72187B92C0067557E /* UINavigationBarExtensionsTests.swift */; };
 		7D92D653224A8D9B0015B368 /* APIMediaCommentRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92D652224A8D9B0015B368 /* APIMediaCommentRequestable.swift */; };
@@ -1214,6 +1216,8 @@
 		7D8B78FA215EC9BE005E08F1 /* BrandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandTests.swift; sourceTree = "<group>"; };
 		7D8B78FC21627887005E08F1 /* CoreWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWebView.swift; sourceTree = "<group>"; };
 		7D8B79022162B9E2005E08F1 /* CoreWebViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWebViewTests.swift; sourceTree = "<group>"; };
+		7D8E820423C7892600A8DA2C /* AddMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMessage.swift; sourceTree = "<group>"; };
+		7D8E820623C79B8700A8DA2C /* AddMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMessageTests.swift; sourceTree = "<group>"; };
 		7D8FDFB52187B62A0067557E /* UINavigationBarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtensions.swift; sourceTree = "<group>"; };
 		7D8FDFB72187B92C0067557E /* UINavigationBarExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtensionsTests.swift; sourceTree = "<group>"; };
 		7D92D652224A8D9B0015B368 /* APIMediaCommentRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMediaCommentRequestable.swift; sourceTree = "<group>"; };
@@ -2292,6 +2296,7 @@
 		7D26B84423A7F27E00262380 /* Conversations */ = {
 			isa = PBXGroup;
 			children = (
+				7D8E820423C7892600A8DA2C /* AddMessage.swift */,
 				B1B140D723A04D1900EBF687 /* APIConversation.swift */,
 				7D1591B723AD545D00ED0106 /* APIConversationRecipient.swift */,
 				7DFDB43523A4587B00B28DED /* Conversation.swift */,
@@ -2305,11 +2310,12 @@
 		7D26B84523A8043900262380 /* Conversations */ = {
 			isa = PBXGroup;
 			children = (
-				B1BF4AB123A17BD800F61ACD /* APIConversationTests.swift */,
+				7D8E820623C79B8700A8DA2C /* AddMessageTests.swift */,
 				7D1591B923AD5C6000ED0106 /* APIConversationRecipientTests.swift */,
-				7D26B84823A81E5700262380 /* ConversationTests.swift */,
+				B1BF4AB123A17BD800F61ACD /* APIConversationTests.swift */,
 				7D26B84A23A8266800262380 /* ConversationMessageTests.swift */,
 				7D26B84C23A8267600262380 /* ConversationParticipantTests.swift */,
+				7D26B84823A81E5700262380 /* ConversationTests.swift */,
 			);
 			path = Conversations;
 			sourceTree = "<group>";
@@ -3798,6 +3804,7 @@
 				7DD694872195F76C00BA4984 /* DocViewerViewController.swift in Sources */,
 				B1999AAF2305AAC300DA97A4 /* APIFeatureFlagsRequestable.swift in Sources */,
 				B195DC49213215A300797FE4 /* NSPredicateExtensions.swift in Sources */,
+				7D8E820523C7892600A8DA2C /* AddMessage.swift in Sources */,
 				7DD371BF22E7B20900C2D0F7 /* GetQuizSubmission.swift in Sources */,
 				B18E19B92386212900B03C73 /* GradeFormatter.swift in Sources */,
 				7D9E80C4233C64E4003C608B /* CommunicationChannel.swift in Sources */,
@@ -4222,6 +4229,7 @@
 				7D2DC301219A16EC008FE29A /* DocViewerConstantsTests.swift in Sources */,
 				7D5A2BC422CD0D8C0029B6AC /* APIListTests.swift in Sources */,
 				7DD371C122E7B39800C2D0F7 /* GetQuizSubmissionTests.swift in Sources */,
+				7D8E820723C79B8700A8DA2C /* AddMessageTests.swift in Sources */,
 				7DA8C37D239EAE0F004762DD /* LoginManualOAuthViewControllerTests.swift in Sources */,
 				7D2DC2F42199EC93008FE29A /* SecretTests.swift in Sources */,
 				7DCF1EA8216BC126003AF358 /* CourseWorkflowStateTests.swift in Sources */,

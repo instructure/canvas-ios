@@ -60,16 +60,13 @@ class APIConversationTests: CoreTestCase {
     }
 
     func testPostAddMessageRequest() throws {
-        let request = PostAddMessageRequest(id: "1", message: .init(
-            recipients: ["1"],
-            body: "This is a reply",
-            subject: "Subject One",
+        let request = PostAddMessageRequest(conversationID: "1", body: .init(
             attachment_ids: nil,
+            body: "This is a reply",
             media_comment_id: nil,
             media_comment_type: nil,
-            context_code: nil,
-            bulk_message: nil)
-        )
+            recipients: ["1"]
+        ))
         XCTAssertEqual(request.path, "conversations/1/add_message")
         XCTAssertEqual(request.method, .post)
     }

@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,27 +18,9 @@
 
 import Foundation
 
-public struct APIRubric: Codable, Equatable {
-    let id: ID
-    let points: Double
-    let description: String
-    let long_description: String?
-    let criterion_use_range: Bool
-    let ratings: [APIRubricRating]?
-    var assignmentID: String?
-    var position: Int?
-}
-
-public struct APIRubricRating: Codable, Equatable {
-    let id: ID
-    let points: Double?
-    let description: String
-    let long_description: String
-    var assignmentID: String?
-    var position: Int?
-}
-
-public struct APIRubricSettings: Codable, Equatable {
-    var hide_points: Bool
-    var free_form_criterion_comments: Bool?
+class ExampleTests: ParentUITestCase {
+    func testExample() {
+        mockBaseRequests()
+        logIn()
+    }
 }

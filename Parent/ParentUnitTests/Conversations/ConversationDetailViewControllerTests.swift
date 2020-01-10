@@ -28,12 +28,21 @@ class ConversationDetailViewControllerTests: ParentTestCase {
         super.setUp()
         Clock.mockNow(DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 12, day: 25).date!)
 
-        let message = APIConversationMessage.make(id: "1",
-                                                  created_at: Clock.now.addDays(-1),
-                                                  body: "hello world",
-                                                  author_id: "1",
-                                                  participating_user_ids: ["1", "2"])
-        let c = APIConversation.make(participants: [.make(id: "1", name: "user 1"), .make(id: "2", name: "user 2")], messages: [ message, ])
+        let c = APIConversation.make(
+            participants: [
+                .make(id: "1", name: "user 1"),
+                .make(id: "2", name: "user 2"),
+            ],
+            messages: [
+                APIConversationMessage.make(
+                    id: "1",
+                  created_at: Clock.now.addDays(-1),
+                  body: "hello world",
+                  author_id: "1",
+                  participating_user_ids: [ "1", "2" ]
+                ),
+            ]
+        )
         api.mock(controller.conversations, value: c)
     }
 
@@ -42,14 +51,69 @@ class ConversationDetailViewControllerTests: ParentTestCase {
         super.tearDown()
     }
 
-    func testRender() {
+    func testLayout() {
         controller.view.layoutIfNeeded()
-        controller.viewDidLoad()
         controller.viewWillAppear(false)
+
+        XCTAssertEqual(controller.replyButton.accessibilityLabel, "Reply")
+        controller.replyButton.sendActions(for: .primaryActionTriggered)
+        XCTAssertEqual((router.presented as? ComposeReplyViewController)?.all, false)
+
         let first = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ConversationDetailCell
         XCTAssertEqual(first?.fromLabel.text, "user 1")
         XCTAssertEqual(first?.toLabel.text, "to user 2")
         XCTAssertEqual(first?.messageLabel.text, "hello world")
         XCTAssertEqual(first?.dateLabel.text, DateFormatter.localizedString(from: Clock.now.addDays(-1), dateStyle: .medium, timeStyle: .short))
+
+        let actions = controller.tableView.delegate?.tableView?(
+            controller.tableView,
+            trailingSwipeActionsConfigurationForRowAt: IndexPath(row: 0, section: 0)
+        )?.actions
+        XCTAssertEqual(actions?.count, 1)
+        actions?[0].handler(actions![0], UIView()) { complete in
+            XCTAssertTrue(complete)
+        }
+        XCTAssertEqual((router.presented as? ComposeReplyViewController)?.all, false)
+    }
+
+    func testReplyAll() {
+        let c = APIConversation.make(
+            participants: [
+                .make(id: "1", name: "user 1"),
+                .make(id: "2", name: "user 2"),
+                .make(id: "3", name: "user 3"),
+            ],
+            messages: [
+                APIConversationMessage.make(
+                    id: "2",
+                  created_at: Clock.now.addDays(-2),
+                  body: "older",
+                  author_id: "2",
+                  participating_user_ids: [ "1", "2", "3" ]
+                ),
+            ]
+        )
+        api.mock(controller.conversations, value: c)
+
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        XCTAssertEqual(controller.replyButton.accessibilityLabel, "Reply All")
+        controller.replyButton.sendActions(for: .primaryActionTriggered)
+        XCTAssertEqual((router.presented as? ComposeReplyViewController)?.all, true)
+
+        let actions = controller.tableView.delegate?.tableView?(
+            controller.tableView,
+            trailingSwipeActionsConfigurationForRowAt: IndexPath(row: 0, section: 0)
+        )?.actions
+        XCTAssertEqual(actions?.count, 2)
+        actions?[0].handler(actions![0], UIView()) { complete in
+            XCTAssertTrue(complete)
+        }
+        XCTAssertEqual((router.presented as? ComposeReplyViewController)?.all, false)
+        actions?[1].handler(actions![1], UIView()) { complete in
+            XCTAssertTrue(complete)
+        }
+        XCTAssertEqual((router.presented as? ComposeReplyViewController)?.all, true)
     }
 }

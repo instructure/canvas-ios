@@ -17,6 +17,7 @@
 //
 
 import XCTest
+import SQLite3
 @testable import Core
 
 open class CoreUITestCase: XCTestCase {
@@ -26,7 +27,13 @@ open class CoreUITestCase: XCTestCase {
         encoder.dateEncodingStrategy = .iso8601
         return encoder
     }
-    open var homeScreen: Element { TabBar.dashboardTab }
+    open var homeScreen: Element {
+        if Bundle.main.isParentApp {
+            return TabBar.coursesTab
+        } else {
+            return TabBar.dashboardTab
+        }
+    }
 
     open var httpMocks = [URL: (URLRequest) -> MockHTTPResponse]()
     open var graphQLMocks = [String: (URLRequest) -> Data]()
@@ -313,6 +320,7 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open func allowAccessToPhotos(block: () -> Void) {
+        _ = setSimulatorPermission(.photos)
         let alertHandler = addUIInterruptionMonitor(withDescription: "Photos Access Alert") { (alert) -> Bool in
             _ = alert.buttons["OK"].waitForExistence(timeout: 3)
             alert.buttons["OK"].tap()
@@ -324,6 +332,7 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open func allowAccessToMicrophone(block: () -> Void) {
+        _ = setSimulatorPermission(.microphone)
         let alertHandler = addUIInterruptionMonitor(withDescription: "Permission Alert") { (alert) -> Bool in
             _ = alert.buttons["OK"].waitForExistence(timeout: 3)
             alert.buttons["OK"].tap()
@@ -338,9 +347,35 @@ open class CoreUITestCase: XCTestCase {
         send(.setAnimationsEnabled(enabled))
     }
 
-    open func mockNow(_ date: Date) {
-        Clock.mockNow(date)
-        send(.mockNow(date))
+    public enum Permission: String, CaseIterable {
+        case photos = "kTCCServicePhotos"
+        case microphone = "kTCCServiceMicrophone"
+    }
+
+    // Don't rely on this, it won't work on device. It does make simulator tests more reliable
+    open func setSimulatorPermission(_ permission: Permission, allowed: Bool = true) -> Bool {
+        let dbPath = Bundle.main.bundlePath + "/../../../../../Library/TCC/TCC.db"
+        XCTAssert(FileManager.default.fileExists(atPath: dbPath), "couldn't find TCC.db")
+
+        var db: OpaquePointer?
+        let service = permission.rawValue
+        let client = Bundle.main.testTargetBundleID!
+        let query = """
+        delete from access where service = '\(service)' and client = '\(client)';
+        insert into
+        access (service, client, client_type, allowed, prompt_count, csreq, policy_id)
+        values('\(service)', '\(client)', 0, \(allowed ? 1 : 0), 0, 0, 0);
+        """
+        print(query)
+        guard sqlite3_open(dbPath, &db) == SQLITE_OK else { return false }
+        defer { sqlite3_close(db) }
+        var err: UnsafeMutablePointer<Int8>?
+        guard sqlite3_exec(db, query, nil, nil, &err) == SQLITE_OK else {
+            let msg = err.map { String(cString: $0) } ?? "unknown error"
+            print("Error setting permission: \(msg)")
+            return false
+        }
+        return true
     }
 
     // MARK: mock (convenience)
@@ -472,10 +507,12 @@ open class CoreUITestCase: XCTestCase {
         return courses
     }
 
-    open lazy var baseEnrollment = APIEnrollment.make(
-        type: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
-        role: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
-    )
+    open var baseEnrollment: APIEnrollment {
+        .make(
+            type: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
+            role: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
+        )
+    }
     open lazy var baseCourse = mock(course: .make(enrollments: [ baseEnrollment ]))
 
     open func mockBaseRequests() {
@@ -552,5 +589,10 @@ open class CoreUITestCase: XCTestCase {
     ) {
         useMocksOnly()
         httpMocks[request.url!.withCanonicalQueryParams!] = response
+    }
+
+    open func mockNow(_ date: Date) {
+        Clock.mockNow(date)
+        send(.mockNow(date))
     }
 }

@@ -44,6 +44,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var useRubricForGrading: Bool
     @NSManaged public var lastUpdatedAt: Date?
     @NSManaged public var hideRubricPoints: Bool
+    @NSManaged public var freeFormCriterionCommentsOnRubric: Bool
     @NSManaged public var assignmentGroupID: String?
     @NSManaged public var assignmentGroupPosition: Int
     @NSManaged public var gradingPeriod: GradingPeriod?
@@ -157,6 +158,7 @@ extension Assignment {
         }
 
         hideRubricPoints = item.rubric_settings?.hide_points == true
+        freeFormCriterionCommentsOnRubric = item.rubric_settings?.free_form_criterion_comments == true
 
         if let assignmentGroupID = item.assignment_group_id?.value,
             let assignmentGroup: AssignmentGroup = client.first(where: #keyPath(AssignmentGroup.id), equals: assignmentGroupID) {

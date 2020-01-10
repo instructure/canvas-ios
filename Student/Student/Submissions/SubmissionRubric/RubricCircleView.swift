@@ -56,6 +56,8 @@ class RubricCircleView: UIView {
     private func setupButtons() {
         //  remove old buttons
         buttons.forEach { $0.removeFromSuperview() }
+        if rubric?.onlyShowComments == true { return }
+
         buttons = []
 
         let space: CGFloat = RubricCircleView.space
@@ -226,10 +228,20 @@ class RubricCircleView: UIView {
         let howManyCanFitInWidth = CGFloat( ceil( maxWidth / (w + space) ) )
         if howManyCanFitInWidth == 0 { return 0 }
         let rows = CGFloat(ceil(count / howManyCanFitInWidth))
+        //  If both hideRubricPoints and freeFormCriterionComments are set,
+        //  circle view should not be visible. Only comments should show of rubric.
+        if rubric.onlyShowComments { return 0 }
         if rubric.hideRubricPoints { return hidePointsHeight(rubric: rubric, maxWidth: maxWidth) }
         return (rows * w) + ((rows - 1) * space)
     }
 
+    /**
+    When `hideRubricPoints` is set on the rubric view model, then we measure the each button circle by the size of the
+    text vs a strict height of 49 ( private static let w: CGFloat = 49 ) which is used for a numeric score.
+    - Parameter rubric: view model
+    - Parameter maxWidth: max width
+    - Returns: CGFloat  height of circlview to be used for all view height computation.
+    */
     private static func hidePointsHeight(rubric: RubricViewModel, maxWidth: CGFloat) -> CGFloat {
         guard rubric.hideRubricPoints else { return 0.0 }
         var rows: CGFloat = 1

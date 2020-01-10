@@ -90,10 +90,16 @@ export function entityExtractor (): { [string]: Function } {
     resolved: (state, { result }) => {
       const pairs = result.data.map((c) => {
         const current = (state[c.id] || { data: {} }).data
+        let participants = c.participants.map(participant => ({
+          ...participant,
+          common_courses: current?.participants?.find(({ id }) => id === participant.id)?.common_courses,
+        }))
+
         return [c.id, {
           data: {
             ...current,
             ...c,
+            participants,
           },
         }]
       })
