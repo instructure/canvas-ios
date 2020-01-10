@@ -44,7 +44,7 @@ extension URLRequest: Codable {
     }
 }
 
-public struct MockHTTPResponse: Codable {
+public class MockHTTPResponse: Codable {
     public let data: Data?
     public let http: HTTPURLResponse?
     public let errorMessage: String?
@@ -69,7 +69,7 @@ public struct MockHTTPResponse: Codable {
         self.noCallback = noCallback
     }
 
-    public init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let root = try decoder.container(keyedBy: CodingKeys.self)
 
         data = try root.decodeIfPresent(Data.self, forKey: .data)
