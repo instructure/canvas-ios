@@ -306,6 +306,12 @@
 		7D8B79032162B9E2005E08F1 /* CoreWebViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B79022162B9E2005E08F1 /* CoreWebViewTests.swift */; };
 		7D8E820523C7892600A8DA2C /* AddMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E820423C7892600A8DA2C /* AddMessage.swift */; };
 		7D8E820723C79B8700A8DA2C /* AddMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E820623C79B8700A8DA2C /* AddMessageTests.swift */; };
+		7D8E821023C8E14D00A8DA2C /* PeopleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E820823C8E09500A8DA2C /* PeopleListViewController.swift */; };
+		7D8E821123C8E14D00A8DA2C /* PeopleListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E820923C8E09500A8DA2C /* PeopleListPresenter.swift */; };
+		7D8E821223C8E14D00A8DA2C /* PeopleListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D8E820A23C8E09500A8DA2C /* PeopleListViewController.storyboard */; };
+		7D8E821323C8E14D00A8DA2C /* PeopleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E820B23C8E09500A8DA2C /* PeopleListCell.swift */; };
+		7D8E821423C8E15800A8DA2C /* PeopleListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E820D23C8E0AE00A8DA2C /* PeopleListPresenterTests.swift */; };
+		7D8E821523C8E15A00A8DA2C /* PeopleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E820E23C8E0AE00A8DA2C /* PeopleListViewControllerTests.swift */; };
 		7D8FDFB62187B62A0067557E /* UINavigationBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FDFB52187B62A0067557E /* UINavigationBarExtensions.swift */; };
 		7D8FDFB82187B92C0067557E /* UINavigationBarExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FDFB72187B92C0067557E /* UINavigationBarExtensionsTests.swift */; };
 		7D92D653224A8D9B0015B368 /* APIMediaCommentRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92D652224A8D9B0015B368 /* APIMediaCommentRequestable.swift */; };
@@ -1218,6 +1224,12 @@
 		7D8B79022162B9E2005E08F1 /* CoreWebViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWebViewTests.swift; sourceTree = "<group>"; };
 		7D8E820423C7892600A8DA2C /* AddMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMessage.swift; sourceTree = "<group>"; };
 		7D8E820623C79B8700A8DA2C /* AddMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMessageTests.swift; sourceTree = "<group>"; };
+		7D8E820823C8E09500A8DA2C /* PeopleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListViewController.swift; sourceTree = "<group>"; };
+		7D8E820923C8E09500A8DA2C /* PeopleListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListPresenter.swift; sourceTree = "<group>"; };
+		7D8E820A23C8E09500A8DA2C /* PeopleListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PeopleListViewController.storyboard; sourceTree = "<group>"; };
+		7D8E820B23C8E09500A8DA2C /* PeopleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListCell.swift; sourceTree = "<group>"; };
+		7D8E820D23C8E0AE00A8DA2C /* PeopleListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListPresenterTests.swift; sourceTree = "<group>"; };
+		7D8E820E23C8E0AE00A8DA2C /* PeopleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListViewControllerTests.swift; sourceTree = "<group>"; };
 		7D8FDFB52187B62A0067557E /* UINavigationBarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtensions.swift; sourceTree = "<group>"; };
 		7D8FDFB72187B92C0067557E /* UINavigationBarExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtensionsTests.swift; sourceTree = "<group>"; };
 		7D92D652224A8D9B0015B368 /* APIMediaCommentRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMediaCommentRequestable.swift; sourceTree = "<group>"; };
@@ -1718,6 +1730,7 @@
 				B1911CE721C845E700F42F91 /* Notifications */,
 				EE584C7822F2043300D1E201 /* Pages */,
 				3B13D45922E1060300D23007 /* PageViewAnalytics */,
+				7D8E820C23C8E09500A8DA2C /* People */,
 				3B22E4F7234698BF000D9B91 /* Protocols */,
 				3B3467CE2135022E00F9BC2E /* Presenter */,
 				9FAA58FE223A987600FEC3F8 /* Profile */,
@@ -1761,6 +1774,7 @@
 				B1911CEA21C849AE00F42F91 /* Notifications */,
 				EE6CB48322F8C8410013D9A5 /* Pages */,
 				3B158CAD22E152F60039A568 /* PageViewAnalytics */,
+				7D8E820F23C8E0AE00A8DA2C /* People */,
 				3BE2C76D219335FA004B8E5E /* Presenter */,
 				3B22E4FA23469C4B000D9B91 /* Protocols */,
 				7DBED015232FDD8000392F3C /* Profile */,
@@ -2675,6 +2689,26 @@
 			path = AppEnvironment;
 			sourceTree = "<group>";
 		};
+		7D8E820C23C8E09500A8DA2C /* People */ = {
+			isa = PBXGroup;
+			children = (
+				7D8E820823C8E09500A8DA2C /* PeopleListViewController.swift */,
+				7D8E820923C8E09500A8DA2C /* PeopleListPresenter.swift */,
+				7D8E820A23C8E09500A8DA2C /* PeopleListViewController.storyboard */,
+				7D8E820B23C8E09500A8DA2C /* PeopleListCell.swift */,
+			);
+			path = People;
+			sourceTree = "<group>";
+		};
+		7D8E820F23C8E0AE00A8DA2C /* People */ = {
+			isa = PBXGroup;
+			children = (
+				7D8E820D23C8E0AE00A8DA2C /* PeopleListPresenterTests.swift */,
+				7D8E820E23C8E0AE00A8DA2C /* PeopleListViewControllerTests.swift */,
+			);
+			path = People;
+			sourceTree = "<group>";
+		};
 		7D9E80C0233C61DA003C608B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -3529,6 +3563,7 @@
 			files = (
 				7D0215A721BB1750009A8E69 /* LoginStartViewController.storyboard in Resources */,
 				B1B4C1C9219631AC00FA9E0E /* EmptyView.xib in Resources */,
+				7D8E821223C8E14D00A8DA2C /* PeopleListViewController.storyboard in Resources */,
 				3B4D861523295263005126A5 /* GradesViewController.storyboard in Resources */,
 				7DDC81442242E2B2000DD25A /* AudioRecorderViewController.storyboard in Resources */,
 				5BF786A6218599B600471A5F /* InfoPlist.strings in Resources */,
@@ -3816,6 +3851,7 @@
 				7DD6CC6B21BD6DB1004C4BB6 /* LoadingViewController.swift in Sources */,
 				B14B704D228F30A100B568D6 /* UploadFileComment.swift in Sources */,
 				7DBED010232C2C7500392F3C /* GetAccountHelpLinks.swift in Sources */,
+				7D8E821323C8E14D00A8DA2C /* PeopleListCell.swift in Sources */,
 				9FBE5367223C1EE9001EC40C /* APIPermissionsRequestable.swift in Sources */,
 				7D6C8C6922EA0A6E00E5ADD8 /* APIActivity.swift in Sources */,
 				7D9E80D6233DA1EF003C608B /* SwitchTableViewCell.swift in Sources */,
@@ -3851,6 +3887,7 @@
 				B1999AB12305AE3300DA97A4 /* FeatureFlag.swift in Sources */,
 				7D29D303218A54CC0036437C /* DocViewerCommentReplyAnnotation.swift in Sources */,
 				7DD7F890215ADFA5006E1715 /* UIFontExtensions.swift in Sources */,
+				7D8E821023C8E14D00A8DA2C /* PeopleListViewController.swift in Sources */,
 				B150C624229733C50096D58C /* GetArc.swift in Sources */,
 				7D63F786215D3CE300151E49 /* APIBrandVariablesRequestable.swift in Sources */,
 				3B6386A92264FB17002DEE72 /* Rubric.swift in Sources */,
@@ -3885,6 +3922,7 @@
 				7DA057522193A30E00A3CFBB /* IconView.swift in Sources */,
 				7D70DE96233E917E00F5C3D4 /* SubtitleTableViewCell.swift in Sources */,
 				3B635B2D225CD377001F353D /* APICalendarRequestable.swift in Sources */,
+				7D8E821123C8E14D00A8DA2C /* PeopleListPresenter.swift in Sources */,
 				9F4B101D2370AA25003DC6C5 /* EmptyViewController.swift in Sources */,
 				3B6D23E72267B9000040D3FE /* APIRubricAssessment.swift in Sources */,
 				9FD504EC2180BF1A00B395BA /* File.swift in Sources */,
@@ -4128,6 +4166,7 @@
 				3B158CB322E16D0E0039A568 /* PageViewEventRequestManagerTests.swift in Sources */,
 				7DD694812194CE8C00BA4984 /* DateExtensionsTests.swift in Sources */,
 				3B6FE4A22356371D00000B9D /* SyllabusActionableItemsPresenterTests.swift in Sources */,
+				7D8E821423C8E15800A8DA2C /* PeopleListPresenterTests.swift in Sources */,
 				7DCF1EA2216BB7E4003AF358 /* SubmissionTypeTests.swift in Sources */,
 				9F88ED01224A742F00DCCA09 /* EnrollmentTests.swift in Sources */,
 				7D979CCA215BDFD500567627 /* DividerViewTests.swift in Sources */,
@@ -4152,6 +4191,7 @@
 				7D26B84923A81E5700262380 /* ConversationTests.swift in Sources */,
 				B1EF7AB721E7E41F00D653D7 /* StoreTests.swift in Sources */,
 				7D5C871F2239A45300D99651 /* GetSubmissionCommentsTests.swift in Sources */,
+				7D8E821523C8E15A00A8DA2C /* PeopleListViewControllerTests.swift in Sources */,
 				7D80AC56212CF41900C40ECE /* APIRequestableTests.swift in Sources */,
 				7D08B1D92372084B0075623A /* GetFileTests.swift in Sources */,
 				7D8B78FB215EC9BE005E08F1 /* BrandTests.swift in Sources */,

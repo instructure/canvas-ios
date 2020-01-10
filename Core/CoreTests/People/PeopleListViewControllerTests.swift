@@ -17,11 +17,10 @@
 //
 
 import XCTest
-@testable import Student
 @testable import Core
 @testable import TestsFoundation
 
-class PeopleListViewControllerTests: StudentTestCase {
+class PeopleListViewControllerTests: CoreTestCase {
     lazy var vc = PeopleListViewController.create(context: ContextModel(.course, id: courseID))
     let courseID = "1"
 
@@ -37,7 +36,7 @@ class PeopleListViewControllerTests: StudentTestCase {
 
     func testRender() {
         //  given
-        env.mockStore = false
+        environment.mockStore = false
         api.mock(vc.presenter!.colors, value: APICustomColors(custom_colors: [ "course_1": "#f00" ]))
         api.mock(vc.presenter!.course, value: .make())
         api.mock(vc.presenter!.users, value: [.make(),

@@ -19,10 +19,9 @@
 import Foundation
 import XCTest
 @testable import Core
-@testable import Student
 import TestsFoundation
 
-class PeopleListPresenterTests: StudentTestCase {
+class PeopleListPresenterTests: CoreTestCase {
     var presenter: PeopleListPresenter!
 
     var resultingBackgroundColor: UIColor?
@@ -43,7 +42,7 @@ class PeopleListPresenterTests: StudentTestCase {
         super.setUp()
         expectation = XCTestExpectation(description: "View updated")
         navbarExpectation = XCTestExpectation(description: "Navbar updated")
-        presenter = PeopleListPresenter(env: env, viewController: self, context: context)
+        presenter = PeopleListPresenter(env: environment, viewController: self, context: context)
     }
 
     func testUseCasesSetupProperly() {
@@ -106,7 +105,7 @@ class PeopleListPresenterTests: StudentTestCase {
     }
 
     func testViewIsReadyGroup() {
-        presenter = PeopleListPresenter(env: env, viewController: self, context: ContextModel(.group, id: "1"))
+        presenter = PeopleListPresenter(env: environment, viewController: self, context: ContextModel(.group, id: "1"))
         presenter.viewIsReady()
         let colorsStore = presenter.colors as! TestStore
         let usersStore = presenter.users as! TestStore
@@ -119,9 +118,8 @@ class PeopleListPresenterTests: StudentTestCase {
         let user = User.make()
         presenter.select(user: user, from: UIViewController())
 
-        let router = env.router as? TestRouter
-        XCTAssertEqual(router?.calls.last?.0, .parse("/courses/1/users/1"))
-        XCTAssertEqual(router?.calls.last?.2, [.detail, .embedInNav])
+        XCTAssertEqual(router.calls.last?.0, .parse("/courses/1/users/1"))
+        XCTAssertEqual(router.calls.last?.2, [.detail, .embedInNav])
     }
 }
 

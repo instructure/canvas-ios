@@ -17,7 +17,6 @@
 //
 
 import UIKit
-import Core
 
 class PeopleListCell: UITableViewCell {
     @IBOutlet weak var avatar: AvatarView!

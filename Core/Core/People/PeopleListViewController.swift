@@ -17,33 +17,32 @@
 //
 
 import UIKit
-import Core
 
 protocol PeopleListViewProtocol: ColoredNavViewProtocol {
     func update()
 }
 
-class PeopleListViewController: UIViewController, PeopleListViewProtocol {
-    var color: UIColor?
+public class PeopleListViewController: UIViewController, PeopleListViewProtocol {
+    public var color: UIColor?
 
-    var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
+    public var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
 
     var presenter: PeopleListPresenter?
 
     @IBOutlet weak var tableView: UITableView!
 
-    static func create(env: AppEnvironment = .shared, context: Context) -> PeopleListViewController {
+    public static func create(env: AppEnvironment = .shared, context: Context) -> PeopleListViewController {
         let vc = loadFromStoryboard()
         vc.presenter = PeopleListPresenter(env: env, viewController: vc, context: context)
         return vc
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         view.backgroundColor = .named(.backgroundLightest)
         tableView.delegate = self
         tableView.dataSource = self
 
-        setupTitleViewInNavbar(title: NSLocalizedString("People", bundle: .student, comment: ""))
+        setupTitleViewInNavbar(title: NSLocalizedString("People", bundle: .core, comment: ""))
 
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -53,7 +52,7 @@ class PeopleListViewController: UIViewController, PeopleListViewProtocol {
         presenter?.viewIsReady()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let selected = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selected, animated: true)
@@ -72,7 +71,7 @@ class PeopleListViewController: UIViewController, PeopleListViewProtocol {
 }
 
 extension PeopleListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let user = presenter?.users[indexPath.row] else {
             return
         }
@@ -81,11 +80,11 @@ extension PeopleListViewController: UITableViewDelegate {
 }
 
 extension PeopleListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter?.users.count ?? 0
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(PeopleListCell.self, for: indexPath)
         cell.update(user: presenter?.users[indexPath.row])
         return cell
@@ -93,7 +92,7 @@ extension PeopleListViewController: UITableViewDataSource {
 }
 
 extension PeopleListViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.isBottomReached() {
             presenter?.users.getNextPage()
         }
