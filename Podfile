@@ -122,10 +122,17 @@ end
 
 post_install do |installer|
   installer.pod_targets.each do |target|
-    useAsSystemFramework = %w[ React ]
-    next unless useAsSystemFramework.include? target.name
-    # headers from system frameworks don't generate warnings
-    system("sed", "-i.bak", "/^framework module / s/{/[system] {/", target.module_map_path.to_path)
+    silenceWarningsInUmbrellas = %w[ React ]
+    next unless silenceWarningsInUmbrellas.include? target.name
+
+    target.umbrella_header_path.open("r+") do |file|
+      contents = file.read()
+      file.seek 0
+      file.puts '_Pragma("clang diagnostic push")'
+      file.puts '_Pragma("clang diagnostic ignored \"-Weverything\"")'
+      file.puts contents
+      file.puts '_Pragma("clang diagnostic pop")'
+    end
   end
 
   installer.pods_project.targets.each do |target|
