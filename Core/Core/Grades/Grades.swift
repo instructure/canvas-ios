@@ -29,7 +29,7 @@ public class Grades {
     }
     var gradingPeriodID: String? = UnknownGradingPeriodID {
         didSet {
-            reload()
+            performUIUpdate { self.reload() }
         }
     }
     var callback: (() -> Void)?
