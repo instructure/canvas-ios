@@ -121,6 +121,13 @@ abstract_target 'defaults' do
 end
 
 post_install do |installer|
+  installer.pod_targets.each do |target|
+    useAsSystemFramework = %w[ React ]
+    next unless useAsSystemFramework.include? target.name
+    # headers from system frameworks don't generate warnings
+    system("sed", "-i.bak", "/^framework module / s/{/[system] {/", target.module_map_path.to_path)
+  end
+
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
       config.build_settings['GCC_WARN_INHIBIT_ALL_WARNINGS'] = 'YES'
