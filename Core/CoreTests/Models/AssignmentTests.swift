@@ -49,6 +49,7 @@ class AssignmentTests: CoreTestCase {
         XCTAssertEqual(a.position, api.position)
         XCTAssertFalse(a.useRubricForGrading)
         XCTAssertFalse(a.hideRubricPoints)
+        XCTAssertFalse(a.freeFormCriterionCommentsOnRubric)
 
         XCTAssertNotNil(a.submission)
     }

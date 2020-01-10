@@ -36,6 +36,7 @@ struct RubricViewModel: Hashable, Equatable {
     let rubricRatings: [RubricRating]
     var isCustomAssessment: Bool = false
     var hideRubricPoints: Bool
+    var freeFormCriterionComments: Bool
 
     func ratingBlurb(_ atIndex: Int) -> (header: String, subHeader: String) {
         let isCustom = isCustomAssessment && atIndex >= rubricRatings.count
@@ -43,6 +44,8 @@ struct RubricViewModel: Hashable, Equatable {
         let subHeader = isCustom ? "" : rubricRatings[atIndex].longDesc
         return (header, subHeader)
     }
+
+    var onlyShowComments: Bool { hideRubricPoints && freeFormCriterionComments }
 }
 
 class RubricPresenter {
@@ -91,14 +94,17 @@ class RubricPresenter {
     func update() {
         if rubrics.count > 0, let rubrics = rubrics.all, let assignment = assignments.first, courses.first?.color != nil {
             let assessments = submissions.first?.rubricAssessments
-            let models = transformRubricsToViewModels(rubrics, assessments: assessments, hideRubricPoints: assignment.hideRubricPoints)
+            let models = transformRubricsToViewModels(rubrics,
+                                                      assessments: assessments,
+                                                      hideRubricPoints: assignment.hideRubricPoints,
+                                                      freeFormCriterionComments: assignment.freeFormCriterionCommentsOnRubric)
             view?.update(models)
         } else {
             view?.showEmptyState(true)
         }
     }
 
-    func transformRubricsToViewModels(_ rubric: [Rubric], assessments: RubricAssessments?, hideRubricPoints: Bool) -> [RubricViewModel] {
+    func transformRubricsToViewModels(_ rubric: [Rubric], assessments: RubricAssessments?, hideRubricPoints: Bool, freeFormCriterionComments: Bool) -> [RubricViewModel] {
         var models = [RubricViewModel]()
         for r in rubric {
             guard let ratings = r.ratings else { continue }
@@ -111,7 +117,7 @@ class RubricPresenter {
             var description = ""
             var isCustomAssessment = false
 
-            if let index = sorted.firstIndex(where: { rr in assessment?.ratingID == rr.id && rr.points == assessment?.points }) {
+            if let index = sorted.firstIndex(where: { rr in assessment?.ratingID == rr.id && ( freeFormCriterionComments || rr.points == assessment?.points) }) {
                 selected = sorted[index]
                 selectedIndex = index
                 comments = assessment?.comments
@@ -140,7 +146,8 @@ class RubricPresenter {
                 comment: comments,
                 rubricRatings: sorted,
                 isCustomAssessment: isCustomAssessment,
-                hideRubricPoints: hideRubricPoints
+                hideRubricPoints: hideRubricPoints,
+                freeFormCriterionComments: freeFormCriterionComments
             )
             models.append(m)
         }
