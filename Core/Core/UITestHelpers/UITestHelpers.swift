@@ -130,10 +130,12 @@ public class UITestHelpers {
         }
     }
 
+    private let ipcQueue = DispatchQueue(label: "UITestHelper-ipc")
+    private let callbackQueue = DispatchQueue(label: "UITestHelper-callback")
     func send(_ message: IPCDriverServerMessage, callback: ((Data?) -> Void)? = nil) {
-        performUIUpdate {
+        ipcQueue.async {
             let result = try? self.ipcDriverClient?.requestRemote(message)
-            callback?(result)
+            self.callbackQueue.async { callback?(result) }
         }
     }
 

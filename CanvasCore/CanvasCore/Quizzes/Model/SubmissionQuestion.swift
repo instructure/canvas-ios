@@ -51,7 +51,7 @@ extension SubmissionQuestion: JSONDecodable {
         if let json = json as? [String: Any] {
             let flagged = json["flagged"] as? Bool ?? false
 
-            if let question = Question.fromJSON(json), let answerJSON = json["answer"] {
+            if let question = Question.fromJSON(json), let answerJSON: Any = json["answer"] {
                 var answer: SubmissionAnswer = .unanswered
                 switch question.kind {
                     case .TextOnly:
