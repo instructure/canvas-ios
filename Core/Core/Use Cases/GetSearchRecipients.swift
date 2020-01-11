@@ -23,10 +23,18 @@ public struct GetSearchRecipients: CollectionUseCase {
     public typealias Request = APISearchRecipientsRequestable
     public typealias Model = SearchRecipient
 
-    public let context: Context
+    enum ContextQualifier {
+        case teachers, students, observers
+    }
 
-    public init(context: Context) {
+    public let context: Context
+    public let contextQualifier: APISearchRecipientsRequestable.ContextQualifier?
+    public let userID: String?
+
+    public init(context: Context, contextQualifier: APISearchRecipientsRequestable.ContextQualifier? = nil, userID: String? = nil) {
         self.context = context
+        self.contextQualifier = contextQualifier
+        self.userID = userID
     }
 
     public var cacheKey: String? {
@@ -34,7 +42,7 @@ public struct GetSearchRecipients: CollectionUseCase {
     }
 
     public var request: APISearchRecipientsRequestable {
-        return APISearchRecipientsRequestable(context: context)
+        return APISearchRecipientsRequestable(context: context, contextQualifier: contextQualifier, userID: userID)
     }
 
     public var scope: Scope {

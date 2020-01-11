@@ -51,12 +51,13 @@ class CourseDetailsViewControllerTests: ParentTestCase {
     func testInboxReplyButton() {
         ExperimentalFeature.parentInbox.isEnabled = true
         api.mock(GetCourseRequest(courseID: courseID), value: .make())
+        api.mock(GetSearchRecipients(context: ContextModel(.course, id: courseID), userID: "1"), value: [.make()])
 
         render()
 
         XCTAssertNotNil(vc.replyButton)
         vc.replyButton?.sendActions(for: .primaryActionTriggered)
-        XCTAssertTrue(router.lastRoutedTo(.compose()))
+        XCTAssert(router.lastRoutedTo(.parse("/conversations/compose?context=course_1&subject=Regarding:%20John%20Doe,%20Grades")))
     }
 
     func testInboxReplyWithExperimentalFeaturesOff() {

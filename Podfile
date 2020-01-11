@@ -121,6 +121,20 @@ abstract_target 'defaults' do
 end
 
 post_install do |installer|
+  installer.pod_targets.each do |target|
+    silenceWarningsInUmbrellas = %w[ React ]
+    next unless silenceWarningsInUmbrellas.include? target.name
+
+    target.umbrella_header_path.open("r+") do |file|
+      contents = file.read()
+      file.seek 0
+      file.puts '_Pragma("clang diagnostic push")'
+      file.puts '_Pragma("clang diagnostic ignored \"-Weverything\"")'
+      file.puts contents
+      file.puts '_Pragma("clang diagnostic pop")'
+    end
+  end
+
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
       config.build_settings['GCC_WARN_INHIBIT_ALL_WARNINGS'] = 'YES'

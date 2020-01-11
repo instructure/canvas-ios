@@ -37,4 +37,16 @@ class APISearchRecipientsRequestableTests: XCTestCase {
             .value("per_page", "50"),
         ])
     }
+
+    func testQueryWithContextQualifier() {
+        let context = ContextModel(.course, id: "2")
+        let search = "name"
+        let requestable = APISearchRecipientsRequestable(context: context, contextQualifier: .teachers, search: search)
+
+        XCTAssertEqual(requestable.query, [
+            .value("context", context.canvasContextID + "_teachers"),
+            .value("search", search),
+            .value("per_page", "50"),
+        ])
+    }
 }

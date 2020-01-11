@@ -43,7 +43,8 @@ let router = Router(routes: [
                 .flatMap { ContextModel(canvasContextID: $0) },
             observeeID: url.queryItems?.first { $0.name == "observeeID" }?.value,
             recipients: recipients ?? [],
-            subject: url.queryItems?.first { $0.name == "subject" }?.value
+            subject: url.queryItems?.first { $0.name == "subject" }?.value,
+            hiddenMessage: url.queryItems?.first { $0.name == "hiddenMessage" }?.value
         )
     },
 
