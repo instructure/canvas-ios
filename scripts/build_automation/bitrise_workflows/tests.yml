@@ -71,7 +71,7 @@ workflows:
             brew tap mxcl/made
             brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
             brew reinstall swiftlint jq xcbeautify mxcl/made/swift-sh
-            pip install awscli
+            pip3 install awscli
     - &carthage
       carthage:
         inputs:
