@@ -50,8 +50,9 @@ extension SubmissionQuestion: JSONDecodable {
     static func fromJSON(_ json: Any?) -> SubmissionQuestion? {
         if let json = json as? [String: Any] {
             let flagged = json["flagged"] as? Bool ?? false
+            let answerJSON: Any? = json["answer"]
 
-            if let question = Question.fromJSON(json), let answerJSON: Any = json["answer"] {
+            if let question = Question.fromJSON(json) {
                 var answer: SubmissionAnswer = .unanswered
                 switch question.kind {
                     case .TextOnly:

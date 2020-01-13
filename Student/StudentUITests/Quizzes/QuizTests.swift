@@ -131,7 +131,7 @@ class MockedQuizTests: StudentUITestCase {
         mockData(PostQuizSubmissionRequest(courseID: "1", quizID: quiz.id.value, body: nil),
                  value: .init(quiz_submissions: [submission]))
 
-        mockEncodableRequest("courses/1/quizzes/\(quiz.id)/submissions/\(submission.id)/events", value: "")
+        mockEncodableRequest("courses/1/quizzes/\(quiz.id)/submissions/\(submission.id)/events", value: nil as String?)
 
         mockQuestions(forSubmission: submission, answered: false)
         XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "Take Quiz")
@@ -204,7 +204,7 @@ class MockedQuizTests: StudentUITestCase {
         show("courses/1/assignments/\(assignment.id)")
         mockData(PostQuizSubmissionRequest(courseID: "1", quizID: quiz.id.value, body: nil),
                  value: .init(quiz_submissions: [ quizSubmission ]))
-        mockEncodableRequest("courses/1/quizzes/\(quiz.id)/submissions/\(quizSubmission.id)/events", value: "")
+        mockEncodableRequest("courses/1/quizzes/\(quiz.id)/submissions/\(quizSubmission.id)/events", value: nil as String?)
 
         mockQuestions(forSubmission: quizSubmission, answered: true)
         XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "Resume Quiz")

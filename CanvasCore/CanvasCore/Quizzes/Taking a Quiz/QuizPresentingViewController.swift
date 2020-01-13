@@ -79,7 +79,7 @@ class QuizPresentingViewController: UIViewController {
 
         timerFormatter.unitsStyle = .positional
         timerFormatter.allowedUnits = [.hour, .minute, .second]
-        
+
         submissionController.submissionDidChange = { [weak self] submissionResult in
             if let error = submissionResult.error {
                 self?.reportError(error)
