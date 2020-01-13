@@ -301,7 +301,12 @@ workflows:
     steps:
     - slack:
         title: Send build start message to slack
-        run_if: enveq "BITRISE_GIT_BRANCH" "master"
+        run_if: &nightly-slack-run-if |-
+          or
+            (enveq "BITRISE_GIT_BRANCH" "master")
+            (enveq "BITRISE_GIT_BRANCH" "release/student")
+            (enveq "BITRISE_GIT_BRANCH" "release/teacher")
+            (enveq "BITRISE_GIT_BRANCH" "release/parent")
         inputs:
         - webhook_url: $SLACK_URL
         - channel: '#ios-bots'
@@ -426,7 +431,7 @@ workflows:
         - description: "Nightly Tests"
     - slack:
         title: Send build result message to slack
-        run_if: enveq "BITRISE_GIT_BRANCH" "master"
+        run_if: *nightly-slack-run-if
         inputs:
         - pretext_on_error: "*Nightly Build Failed!*"
         - webhook_url: "$SLACK_URL"
