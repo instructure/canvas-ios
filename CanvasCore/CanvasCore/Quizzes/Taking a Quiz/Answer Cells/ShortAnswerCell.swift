@@ -51,6 +51,7 @@ class ShortAnswerCell: UITableViewCell {
     fileprivate func setup() {
         textFieldBox.layer.borderColor = UIColor.prettyLightGray().cgColor
         textFieldBox.layer.borderWidth = 2.0
+        textField.accessibilityIdentifier = "ShortAnswerCell.textField"
         
         tintColor = Brand.current.tintColor
     }

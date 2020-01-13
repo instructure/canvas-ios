@@ -97,13 +97,19 @@ open class CoreUITestCase: XCTestCase {
         }
         reset()
         send(.enableExperimentalFeatures(experimentalFeatures))
-        if let user = user {
-            logInUser(user)
-            homeScreen.waitToExist()
+
+        if case .passThruAndLog(toPath: let logPath) = missingMockBehavior {
+            usingMocksOnly = true
+            // Clear old log
+            try? FileManager.default.removeItem(atPath: logPath)
         }
         // re-install the existing mocks
         if (usingMocksOnly) {
             send(.useMocksOnly)
+        }
+        if let user = user {
+            logInUser(user)
+            homeScreen.waitToExist()
         }
     }
 
@@ -145,7 +151,7 @@ open class CoreUITestCase: XCTestCase {
                     for key in mockKeys {
                         print("  \(key)")
                     }
-                    print("mock not found for url:\n  \(url.absoluteString)")
+                    print("mock not found for url (\(request.httpMethod ?? "GET")):\n  \(url.absoluteString)")
                     return try? encoder.encode(testCase.handleMissingMock(request))
                 }
                 return try? encoder.encode(mock(request))
@@ -191,7 +197,7 @@ open class CoreUITestCase: XCTestCase {
                     writeLine(body)
                 }
             }
-            writeLine("--- RESPONSE ---")
+            writeLine("--- RESPONSE \(serverResponse?.http?.statusCode ?? 0) ---")
             if let data = serverResponse?.data {
                 if let json = try? JSONSerialization.jsonObject(with: data),
                     let data = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) {
@@ -300,6 +306,17 @@ open class CoreUITestCase: XCTestCase {
         let window = app.find(type: .window)
         window.relativeCoordinate(x: 0.5, y: 0.5)
             .press(forDuration: 0.05, thenDragTo: window.relativeCoordinate(x: 0.5, y: 1.0))
+    }
+
+    open func handleAlert(withTexts texts: [String]? = nil, byPressingButton button: String) {
+        let alert = app.find(type: .alert).waitToExist()
+        if let texts = texts {
+            let textElements = alert.rawElement.descendants(matching: .staticText)
+            let alertTexts = textElements.allElementsBoundByIndex.map { $0.label }
+            XCTAssertEqual(alertTexts, texts)
+        }
+        alert.rawElement.find(label: button).waitToExist().tap()
+        alert.waitToVanish()
     }
 
     open func allowAccessToPhotos(block: () -> Void) {

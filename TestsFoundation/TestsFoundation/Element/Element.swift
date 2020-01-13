@@ -108,6 +108,11 @@ public extension Element {
     func waitToVanish(_ timeout: TimeInterval = 10, file: StaticString = #file, line: UInt = #line) -> Element {
         return waitToVanish(timeout, file: file, line: line)
     }
+
+    func isOffscreen(_ timeout: TimeInterval = 10, file: StaticString = #file, line: UInt = #line) -> Bool {
+        waitToExist(timeout, file: file, line: line)
+        return !app.windows.element(boundBy: 0).frame.contains(rawElement.frame)
+    }
 }
 
 public extension Element {
@@ -138,7 +143,7 @@ public struct XCUIElementQueryWrapper: Element {
         usleep(100000)
     }
 
-    public var snapshot: XCUIElementSnapshot? {
+    public func snapshot(file: StaticString = #file, line: UInt = #line) -> XCUIElementSnapshot? {
         let timeout: TimeInterval = 30
 
         let deadline = Date().addingTimeInterval(timeout)
@@ -154,9 +159,10 @@ public struct XCUIElementQueryWrapper: Element {
         return nil
     }
 
-    public var exists: Bool {
-        return snapshot != nil
+    public func exists(file: StaticString = #file, line: UInt = #line) -> Bool {
+        snapshot(file: file, line: line) != nil
     }
+    public var exists: Bool { exists() }
 
     public var elementType: XCUIElement.ElementType { return rawElement.elementType }
     public var rawElement: XCUIElement {
@@ -221,7 +227,7 @@ public struct XCUIElementQueryWrapper: Element {
         waitToExist(file: file, line: line)
         // For some reason, if we don't ask for a specific element type, then snapshots get confused...
         let q2 = query.matching(NSPredicate(format: "%K == %i", #keyPath(XCUIElement.elementType), elementType.rawValue))
-        guard let snapshot = XCUIElementQueryWrapper(q2).snapshot else {
+        guard let snapshot = XCUIElementQueryWrapper(q2).snapshot(file: file, line: line) else {
             // element doesn't exist
             return false
         }
@@ -268,7 +274,7 @@ public struct XCUIElementQueryWrapper: Element {
     @discardableResult
     public func waitToExist(_ timeout: TimeInterval, file: StaticString, line: UInt) -> Element {
         let deadline = Date().addingTimeInterval(timeout)
-        while !exists {
+        while !exists(file: file, line: line) {
             XCTAssertTrue(Date() < deadline, "Element \(id) still doesn't exists", file: file, line: line)
             nap()
         }

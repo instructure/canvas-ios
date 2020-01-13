@@ -31,6 +31,7 @@ public struct RouteOptions: OptionSet {
     public static let formSheet = RouteOptions(rawValue: 8)
     public static let detail = RouteOptions(rawValue: 16)
     public static let inPresentation = RouteOptions(rawValue: 32)
+    public static let fullScreen = RouteOptions(rawValue: 64)
 }
 
 public protocol RouterProtocol {
@@ -81,6 +82,9 @@ public extension RouterProtocol {
                 if options?.contains(.formSheet) == true {
                     nav.modalPresentationStyle = .formSheet
                 }
+                if options?.contains(.fullScreen) == true {
+                    nav.modalPresentationStyle = .fullScreen
+                }
                 if #available(iOS 13, *), options?.contains(.inPresentation) == true {
                     nav.isModalInPresentation = true
                 }
@@ -88,6 +92,9 @@ public extension RouterProtocol {
             } else {
                 if options?.contains(.formSheet) == true {
                     view.modalPresentationStyle = .formSheet
+                }
+                if options?.contains(.fullScreen) == true {
+                    view.modalPresentationStyle = .fullScreen
                 }
                 if #available(iOS 13, *), options?.contains(.inPresentation) == true {
                     view.isModalInPresentation = true

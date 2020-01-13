@@ -56,12 +56,16 @@ public class UITestUser: NSObject, XCTestObservation {
         .replacingOccurrences(of: "[\\n\\s]", with: "", options: .regularExpression, range: nil)
     }
 
-    private init(_ secret: Secret) {
+    private convenience init(_ secret: Secret) {
         // crash tests if secret is invalid or missing
         let url = URLComponents.parse(secret.string!)
-        host = url.host!
-        username = url.user!
-        password = url.password!
+        self.init(host: url.host!, username: url.user!, password: url.password!)
+    }
+
+    public init(host: String, username: String, password: String) {
+        self.host = host
+        self.username = username
+        self.password = password
         super.init()
         XCTestObservationCenter.shared.addTestObserver(self)
     }
