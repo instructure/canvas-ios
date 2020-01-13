@@ -19,12 +19,16 @@
 import UIKit
 
 public class PeopleListViewController: UIViewController, ColoredNavViewProtocol {
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var emptyResultsLabel: UILabel!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
 
     public var color: UIColor?
     let env = AppEnvironment.shared
     public var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
     var context: Context = ContextModel.currentUser
+    var search: String?
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -54,6 +58,10 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
         view.backgroundColor = .named(.backgroundLightest)
         setupTitleViewInNavbar(title: NSLocalizedString("People", bundle: .core, comment: ""))
 
+        activityIndicatorView.color = Brand.shared.primary
+        emptyResultsLabel.text = NSLocalizedString("No results", bundle: .core, comment: "")
+        searchBar.placeholder = NSLocalizedString("Search", bundle: .core, comment: "")
+
         tableView.backgroundColor = .named(.backgroundLightest)
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
@@ -70,6 +78,9 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if tableView.contentOffset.y == 0 {
+            tableView.contentOffset.y += searchBar.frame.height
+        }
         if let selected = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selected, animated: true)
         }
@@ -83,6 +94,12 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
     }
 
     func update() {
+        if users.isEmpty, users.pending, tableView.refreshControl?.isRefreshing != true {
+            activityIndicatorView.startAnimating()
+        } else {
+            activityIndicatorView.stopAnimating()
+        }
+        emptyResultsLabel.isHidden = users.pending || !users.isEmpty
         tableView.reloadData()
     }
 
@@ -90,6 +107,33 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
         users.refresh(force: true) { [weak self] _ in
             self?.tableView.refreshControl?.endRefreshing()
         }
+    }
+}
+
+extension PeopleListViewController: UISearchBarDelegate {
+    public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+
+    public func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
+    }
+
+    public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        self.searchBar(searchBar, textDidChange: "")
+        searchBar.searchTextField.resignFirstResponder()
+        tableView.setContentOffset(CGPoint(x: 0, y: searchBar.frame.height), animated: true)
+    }
+
+    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let newSearch = searchText.count >= 3 ? searchText : nil
+        guard newSearch != search else { return }
+        search = newSearch
+        users = env.subscribe(GetContextUsers(context: context, search: search)) { [weak self] in
+            self?.update()
+        }
+        users.refresh()
     }
 }
 
