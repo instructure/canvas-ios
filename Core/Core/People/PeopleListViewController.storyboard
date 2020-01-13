@@ -20,13 +20,21 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translucent="NO" id="287-ad-3lu">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="name"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="saV-w2-9b6" id="dBg-p1-kL5"/>
+                                    </connections>
+                                </searchBar>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="apc-fB-yu3">
-                                    <rect key="frame" x="0.0" y="120" width="414" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="894" width="414" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PeopleListCell" rowHeight="64" id="pX1-je-57g" customClass="PeopleListCell" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="64"/>
+                                        <rect key="frame" x="0.0" y="84" width="414" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pX1-je-57g" id="koB-Xt-hdM">
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="64"/>
@@ -90,17 +98,40 @@
                                     <outlet property="delegate" destination="saV-w2-9b6" id="145-XW-cEH"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="UrV-hn-mYU">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="No results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iHH-Ah-Huh" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="168.5" y="144" width="77.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="iHH-Ah-Huh" firstAttribute="centerX" secondItem="a2n-mZ-b29" secondAttribute="centerX" id="2Kq-7x-DOK"/>
+                            <constraint firstItem="UrV-hn-mYU" firstAttribute="centerY" secondItem="a2n-mZ-b29" secondAttribute="centerY" id="65G-83-Gv2"/>
                             <constraint firstItem="SCq-AE-dGO" firstAttribute="bottom" secondItem="G6M-0U-L6a" secondAttribute="bottom" id="C1M-7b-yM2"/>
                             <constraint firstItem="G6M-0U-L6a" firstAttribute="leading" secondItem="SCq-AE-dGO" secondAttribute="leading" id="OUS-Sb-raN"/>
+                            <constraint firstItem="UrV-hn-mYU" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iHH-Ah-Huh" secondAttribute="bottom" constant="16" id="VD9-UW-gxn"/>
+                            <constraint firstItem="UrV-hn-mYU" firstAttribute="centerX" secondItem="a2n-mZ-b29" secondAttribute="centerX" id="YtG-A9-e7e"/>
+                            <constraint firstItem="iHH-Ah-Huh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="SCq-AE-dGO" secondAttribute="leading" constant="16" id="gC5-J7-bIO"/>
                             <constraint firstItem="G6M-0U-L6a" firstAttribute="top" secondItem="SCq-AE-dGO" secondAttribute="top" id="muo-A6-QcH"/>
+                            <constraint firstItem="SCq-AE-dGO" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="iHH-Ah-Huh" secondAttribute="trailing" constant="16" id="oUM-8H-4Py"/>
+                            <constraint firstItem="iHH-Ah-Huh" firstAttribute="top" secondItem="SCq-AE-dGO" secondAttribute="top" constant="100" id="ov0-pE-e02"/>
                             <constraint firstItem="SCq-AE-dGO" firstAttribute="trailing" secondItem="G6M-0U-L6a" secondAttribute="trailing" id="yd2-hT-sUw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SCq-AE-dGO"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="UrV-hn-mYU" id="mpp-XI-7P7"/>
+                        <outlet property="emptyResultsLabel" destination="iHH-Ah-Huh" id="eY1-IL-mnh"/>
+                        <outlet property="searchBar" destination="287-ad-3lu" id="Grf-lF-nAJ"/>
                         <outlet property="tableView" destination="G6M-0U-L6a" id="ybH-cU-zVH"/>
                     </connections>
                 </viewController>

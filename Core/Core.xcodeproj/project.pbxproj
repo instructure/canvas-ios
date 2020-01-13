@@ -2082,7 +2082,6 @@
 				7DF4FFD4217133AF007E5F81 /* TabType.swift */,
 				7DCF1EB9216BC8C5003AF358 /* TabVisibility.swift */,
 				7DF4FFD02171322E007E5F81 /* TTL.swift */,
-				B1CA333D233929A20015CBB4 /* User.swift */,
 				9F84595D228F34200031034E /* UserSettings.swift */,
 				B1B6F070219A1F2800C1575D /* UTI.swift */,
 				3B3FCA29237F56210011F11A /* Activity.swift */,
@@ -2131,7 +2130,6 @@
 				B19792FE2176A0F00000369C /* TabTests.swift */,
 				7DCF1EBF216BC97F003AF358 /* TabVisibilityTests.swift */,
 				9F10A66A2293191200E3360C /* UserSettingsTests.swift */,
-				B1CA3347233948870015CBB4 /* UserTests.swift */,
 				B1B6F077219A7D8B00C1575D /* UTITests.swift */,
 				3B3FCA2C238026D00011F11A /* ActivityTests.swift */,
 			);
@@ -2693,8 +2691,10 @@
 		7D8E820C23C8E09500A8DA2C /* People */ = {
 			isa = PBXGroup;
 			children = (
+				B1CA333F23392A140015CBB4 /* GetContextUsers.swift */,
 				7D8E820A23C8E09500A8DA2C /* PeopleListViewController.storyboard */,
 				7D8E820823C8E09500A8DA2C /* PeopleListViewController.swift */,
+				B1CA333D233929A20015CBB4 /* User.swift */,
 			);
 			path = People;
 			sourceTree = "<group>";
@@ -2702,7 +2702,9 @@
 		7D8E820F23C8E0AE00A8DA2C /* People */ = {
 			isa = PBXGroup;
 			children = (
+				B1CA33452339434A0015CBB4 /* GetContextUsersTests.swift */,
 				7D8E820E23C8E0AE00A8DA2C /* PeopleListViewControllerTests.swift */,
+				B1CA3347233948870015CBB4 /* UserTests.swift */,
 			);
 			path = People;
 			sourceTree = "<group>";
@@ -2947,7 +2949,6 @@
 				3B635B30225CDC2C001F353D /* GetCalendarEvents.swift */,
 				7D9BB1E722527F310058D9C6 /* GetContextPermissions.swift */,
 				9FE84DDD2150281300B95A68 /* GetContextTabs.swift */,
-				B1CA333F23392A140015CBB4 /* GetContextUsers.swift */,
 				B195DC502132257500797FE4 /* GetCourse.swift */,
 				B1EA5AEA212E641900DABC5F /* GetCourses.swift */,
 				7D64A974236759FA004EAEDF /* GetCourseSections.swift */,
@@ -3075,7 +3076,6 @@
 				3B635B36225CE59D001F353D /* GetCalendarEventsTests.swift */,
 				9F1CEA6222401AF1000BB98F /* GetContextPermissionsTests.swift */,
 				9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */,
-				B1CA33452339434A0015CBB4 /* GetContextUsersTests.swift */,
 				B1EA5AED212E656100DABC5F /* GetCoursesTest.swift */,
 				7D64A97A23676179004EAEDF /* GetCourseSectionsTests.swift */,
 				B195DC612133326900797FE4 /* GetCourseTest.swift */,

@@ -71,6 +71,18 @@ class PeopleListViewControllerTests: CoreTestCase {
         cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? PeopleListCell
         XCTAssertEqual(cell?.nameLabel.text, "George")
 
+        api.mock(GetContextUsers(context: ContextModel(.course, id: "1"), search: "fred"), value: [])
+        controller.searchBar.delegate?.searchBarTextDidBeginEditing?(controller.searchBar)
+        controller.searchBar.text = "fred"
+        controller.searchBar.delegate?.searchBar?(controller.searchBar, textDidChange: "fred")
+        controller.searchBar.delegate?.searchBarTextDidEndEditing?(controller.searchBar)
+        XCTAssertEqual(controller.emptyResultsLabel.isHidden, false)
+
+        controller.searchBar.delegate?.searchBarCancelButtonClicked?(controller.searchBar)
+        XCTAssertEqual(controller.emptyResultsLabel.isHidden, true)
+        XCTAssertEqual(controller.searchBar.text, "")
+        XCTAssertEqual(controller.tableView.contentOffset.y, controller.searchBar.frame.height)
+
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         XCTAssert(router.lastRoutedTo(.parse("/courses/1/users/1")))
     }
