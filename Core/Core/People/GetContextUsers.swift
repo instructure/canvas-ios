@@ -32,7 +32,7 @@ public class GetContextUsers: CollectionUseCase {
         self.search = search
     }
 
-    public var cacheKey: String? = nil
+    public let cacheKey: String? = nil
 
     public var request: GetContextUsersRequest {
         return GetContextUsersRequest(context: context, enrollment_type: type, search_term: search)
