@@ -30,6 +30,7 @@ extension APICourse {
         end_at: Date? = nil,
         locale: String? = nil,
         enrollments: [APIEnrollment]? = [ .make(
+            id: nil,
             enrollment_state: .active,
             user_id: "12",
             role: "StudentEnrollment",
