@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class PeopleListViewController: UIViewController, ColoredNavViewProtocol {
+public class PeopleListViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var emptyResultsLabel: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -118,6 +118,9 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
         emptyResultsLabel.isHidden = users.pending || !users.isEmpty
         tableView.tableFooterView?.frame.size.height = emptyResultsLabel.isHidden ? 0 : 100
         tableView.reloadData()
+        if let error = users.error {
+            showError(error)
+        }
     }
 
     @objc func refresh() {
