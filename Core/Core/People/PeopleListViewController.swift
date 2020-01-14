@@ -188,8 +188,7 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
         header.filterButton.addTarget(self, action: #selector(filter), for: .primaryActionTriggered)
         header.filterButton.setTitle(enrollmentType == nil
             ? NSLocalizedString("Filter", bundle: .core, comment: "")
-            : NSLocalizedString("Clear filter", bundle: .core, comment: "")
-        , for: .normal)
+            : NSLocalizedString("Clear filter", bundle: .core, comment: ""), for: .normal)
         header.filterButton.setTitleColor(color, for: .normal)
         return header
     }
