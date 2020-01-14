@@ -50,7 +50,8 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
 
         XCTAssertNotNil(vc.replyButton)
         vc.replyButton?.sendActions(for: .primaryActionTriggered)
-        let expected = "/conversations/compose?body=https://canvas.instructure.com/courses/1/assignments/1&context=course_1&subject=Regarding:%20John%20Doe,%20some%20assignment"
+        let expected =
+        "/conversations/compose?context=course_1&hiddenMessage=Regarding:%20John%20Doe,%20https://canvas.instructure.com/courses/1/assignments/1"
         XCTAssert(router.lastRoutedTo(.parse(expected)))
     }
 }
