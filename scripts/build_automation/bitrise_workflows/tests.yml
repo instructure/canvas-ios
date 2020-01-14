@@ -299,14 +299,22 @@ workflows:
 
   nightly:
     steps:
+    - script:
+        title: Set up environment variables
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -exo pipefail
+
+            case $BITRISE_GIT_BRANCH in
+                release/student|release/teacher|release/parent|master)
+                    envman add --key NOTIFY_SLACK --value YES
+                ;;
+            esac
     - slack:
         title: Send build start message to slack
-        run_if: &nightly-slack-run-if |-
-          or
-            (enveq "BITRISE_GIT_BRANCH" "master")
-            (enveq "BITRISE_GIT_BRANCH" "release/student")
-            (enveq "BITRISE_GIT_BRANCH" "release/teacher")
-            (enveq "BITRISE_GIT_BRANCH" "release/parent")
+        run_if: enveq "NOTIFY_SLACK" "YES"
         inputs:
         - webhook_url: $SLACK_URL
         - channel: '#ios-bots'
@@ -431,7 +439,7 @@ workflows:
         - description: "Nightly Tests"
     - slack:
         title: Send build result message to slack
-        run_if: *nightly-slack-run-if
+        run_if: enveq "NOTIFY_SLACK" "YES"
         inputs:
         - pretext_on_error: "*Nightly Build Failed!*"
         - webhook_url: "$SLACK_URL"
