@@ -105,6 +105,7 @@ class APIErroReportTests: CoreTestCase {
     }
 
     func testExperimentalFeatures() {
+        ExperimentalFeature.allEnabled = false
         ExperimentalFeature.testing.isEnabled = true
         let comments = PostErrorReportRequest(error: nil, email: "test@test.com", subject: "Experimental Features", impact: 1, comments: "Comments").body!.error.comments
         XCTAssertEqual(comments, """

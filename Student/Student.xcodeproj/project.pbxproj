@@ -437,17 +437,11 @@
 		9767F2A42383C741006633CA /* ActivityStreamViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9767F2A22383C741006633CA /* ActivityStreamViewController.storyboard */; };
 		97A486C6239A5B3D00084499 /* StudentSyllabusViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A486C5239A5B3D00084499 /* StudentSyllabusViewControllerTests.swift */; };
 		97BA196423C82808009AB8AC /* RubricViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA196323C82808009AB8AC /* RubricViewControllerTests.swift */; };
-		97EF506E23A025E6008136F5 /* PeopleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EF506D23A025E6008136F5 /* PeopleListViewControllerTests.swift */; };
 		9C50D612DA6414266300170B /* Pods_defaults_CanvasKit1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AB6A9FA96CE49682022ACB /* Pods_defaults_CanvasKit1.framework */; };
 		9F00A5692245593200C0CC32 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; };
 		9F00A56B2245599800C0CC32 /* GradesWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F00A56A2245599800C0CC32 /* GradesWidgetViewController.swift */; };
 		9F00A56D22455BD500C0CC32 /* GradesWidgetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F00A56C22455BD500C0CC32 /* GradesWidgetPresenter.swift */; };
 		9F61B52C205985A5009C0B13 /* CanvasAppDelegate+Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F61B52B205985A5009C0B13 /* CanvasAppDelegate+Helm.swift */; };
-		9F62EDDB2326E0FD00EA9F79 /* PeopleListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F62EDDA2326E0FD00EA9F79 /* PeopleListPresenterTests.swift */; };
-		9F87D0772322A94600EDA363 /* PeopleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87D0762322A94600EDA363 /* PeopleListCell.swift */; };
-		9F900E7C2321870600BB44B4 /* PeopleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F900E7B2321870600BB44B4 /* PeopleListViewController.swift */; };
-		9F900E7E2321870F00BB44B4 /* PeopleListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F900E7D2321870F00BB44B4 /* PeopleListPresenter.swift */; };
-		9F900E80232187D900BB44B4 /* PeopleListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F900E7F232187D900BB44B4 /* PeopleListViewController.storyboard */; };
 		9FB246CC2396CD4F0040AA9E /* AFHTTPAvatarImageResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB246C52396CD4F0040AA9E /* AFHTTPAvatarImageResponseSerializer.m */; };
 		9FB246D02396CD4F0040AA9E /* AFHTTPAvatarImageResponseSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FB246C92396CD4F0040AA9E /* AFHTTPAvatarImageResponseSerializer.h */; };
 		ACC968801D245768006AEAB1 /* Page+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */; };
@@ -1252,17 +1246,11 @@
 		9767F2A22383C741006633CA /* ActivityStreamViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ActivityStreamViewController.storyboard; sourceTree = "<group>"; };
 		97A486C5239A5B3D00084499 /* StudentSyllabusViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSyllabusViewControllerTests.swift; sourceTree = "<group>"; };
 		97BA196323C82808009AB8AC /* RubricViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricViewControllerTests.swift; sourceTree = "<group>"; };
-		97EF506D23A025E6008136F5 /* PeopleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListViewControllerTests.swift; sourceTree = "<group>"; };
 		98F5AEA722584DFE82613E6B /* Pods-defaults-Student.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Student.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Student/Pods-defaults-Student.debug.xcconfig"; sourceTree = "<group>"; };
 		99747510483FA8853301B9F5 /* Pods-defaults-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasTests/Pods-defaults-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 		9F00A56A2245599800C0CC32 /* GradesWidgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesWidgetViewController.swift; sourceTree = "<group>"; };
 		9F00A56C22455BD500C0CC32 /* GradesWidgetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesWidgetPresenter.swift; sourceTree = "<group>"; };
 		9F61B52B205985A5009C0B13 /* CanvasAppDelegate+Helm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CanvasAppDelegate+Helm.swift"; sourceTree = "<group>"; };
-		9F62EDDA2326E0FD00EA9F79 /* PeopleListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListPresenterTests.swift; sourceTree = "<group>"; };
-		9F87D0762322A94600EDA363 /* PeopleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListCell.swift; sourceTree = "<group>"; };
-		9F900E7B2321870600BB44B4 /* PeopleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListViewController.swift; sourceTree = "<group>"; };
-		9F900E7D2321870F00BB44B4 /* PeopleListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListPresenter.swift; sourceTree = "<group>"; };
-		9F900E7F232187D900BB44B4 /* PeopleListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PeopleListViewController.storyboard; sourceTree = "<group>"; };
 		9FB246C52396CD4F0040AA9E /* AFHTTPAvatarImageResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPAvatarImageResponseSerializer.m; sourceTree = "<group>"; };
 		9FB246C92396CD4F0040AA9E /* AFHTTPAvatarImageResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPAvatarImageResponseSerializer.h; sourceTree = "<group>"; };
 		A025F6634B44F7120D41717E /* Pods_defaults_common_tests_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_tests_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1653,7 +1641,6 @@
 				7DCF0EC122F8A00D000AACCE /* Groups */,
 				7DCF0ECA22F8A01C000AACCE /* IBDesignables */,
 				9767F2A02383C741006633CA /* Notifications */,
-				9F900E7A232186F400BB44B4 /* People */,
 				7DCF0ED522F8A03D000AACCE /* Quizzes */,
 				7DCF0F0A22F8A050000AACCE /* Submissions */,
 			);
@@ -2748,7 +2735,6 @@
 				7DCF0F2222F8A096000AACCE /* Extensions */,
 				7DCF0F1822F8A096000AACCE /* Groups */,
 				9734351323866A59002E9CE5 /* Notifications */,
-				9F62EDD92326E03600EA9F79 /* People */,
 				7DCF0F1E22F8A096000AACCE /* Quizzes */,
 				7DCF0F3322F8A096000AACCE /* Submissions */,
 				7DCF0F3522F8A096000AACCE /* Views */,
@@ -2918,26 +2904,6 @@
 				9767F2A22383C741006633CA /* ActivityStreamViewController.storyboard */,
 			);
 			path = Notifications;
-			sourceTree = "<group>";
-		};
-		9F62EDD92326E03600EA9F79 /* People */ = {
-			isa = PBXGroup;
-			children = (
-				9F62EDDA2326E0FD00EA9F79 /* PeopleListPresenterTests.swift */,
-				97EF506D23A025E6008136F5 /* PeopleListViewControllerTests.swift */,
-			);
-			path = People;
-			sourceTree = "<group>";
-		};
-		9F900E7A232186F400BB44B4 /* People */ = {
-			isa = PBXGroup;
-			children = (
-				9F900E7B2321870600BB44B4 /* PeopleListViewController.swift */,
-				9F900E7D2321870F00BB44B4 /* PeopleListPresenter.swift */,
-				9F900E7F232187D900BB44B4 /* PeopleListViewController.storyboard */,
-				9F87D0762322A94600EDA363 /* PeopleListCell.swift */,
-			);
-			path = People;
 			sourceTree = "<group>";
 		};
 		9FB246C22396CD4F0040AA9E /* People */ = {
@@ -3580,7 +3546,6 @@
 				2CE205B820EBF690002A6A64 /* GoogleService-Info.plist in Resources */,
 				7DCF0FB522F8A8D7000AACCE /* SubmissionCommentFileView.xib in Resources */,
 				7DCF0FAF22F8A8D7000AACCE /* RubricViewController.storyboard in Resources */,
-				9F900E80232187D900BB44B4 /* PeopleListViewController.storyboard in Resources */,
 				B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */,
 				7DCF0F8922F8A84D000AACCE /* CourseCardCell.xib in Resources */,
 				7DCF0F9422F8A84D000AACCE /* CourseListViewController.storyboard in Resources */,
@@ -3834,7 +3799,6 @@
 				7DCF0FCF22F8A8D7000AACCE /* UrlSubmissionViewController.swift in Sources */,
 				5EB46DFA1D21A75C00C859A4 /* CalendarWeekView.swift in Sources */,
 				7DCF0FC522F8A8D7000AACCE /* UrlSubmissionContentViewController.swift in Sources */,
-				9F87D0772322A94600EDA363 /* PeopleListCell.swift in Sources */,
 				61592F771DA7F0A200552B44 /* ModuleDetailDataSource.swift in Sources */,
 				5EB46DE71D21A75C00C859A4 /* NSError+CalendarKit.swift in Sources */,
 				7DCF0F9D22F8A897000AACCE /* DividerView.swift in Sources */,
@@ -3842,7 +3806,6 @@
 				7DCF0FC022F8A8D7000AACCE /* SubmissionDetailsLockedEmptyView.swift in Sources */,
 				4976C2001FBB84B900160EE4 /* CalendarEventDetailViewController.swift in Sources */,
 				5EB46DED1D21A75C00C859A4 /* UIView+Nib.swift in Sources */,
-				9F900E7E2321870F00BB44B4 /* PeopleListPresenter.swift in Sources */,
 				7DCF0F7F22F8A820000AACCE /* DashboardGroupCell.swift in Sources */,
 				7DCF0FAC22F8A8D7000AACCE /* RubricViewController.swift in Sources */,
 				7DCF0FCB22F8A8D7000AACCE /* SubmissionFilesViewController.swift in Sources */,
@@ -3915,7 +3878,6 @@
 				61592F791DA83C4900552B44 /* ModuleDetailsViewController.swift in Sources */,
 				61A6747E1DB589A3008A27FD /* ModuleViewModel.swift in Sources */,
 				7DCF0FA022F8A897000AACCE /* DynamicTextField.swift in Sources */,
-				9F900E7C2321870600BB44B4 /* PeopleListViewController.swift in Sources */,
 				492704771CF4AF7100C631C6 /* CanvasAppDelegate.swift in Sources */,
 				5EB46DE81D21A75C00C859A4 /* NSObject+Bundle.swift in Sources */,
 				5EB46DF81D21A75C00C859A4 /* CalendarNoticeView.swift in Sources */,
@@ -4100,7 +4062,6 @@
 				97BA196423C82808009AB8AC /* RubricViewControllerTests.swift in Sources */,
 				7DE1162522F8AB5C005BFE98 /* StudentTestCase.swift in Sources */,
 				9734351523866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift in Sources */,
-				9F62EDDB2326E0FD00EA9F79 /* PeopleListPresenterTests.swift in Sources */,
 				97A486C6239A5B3D00084499 /* StudentSyllabusViewControllerTests.swift in Sources */,
 				7DE1161A22F8AB5C005BFE98 /* UIViewControllerExtensionsTests.swift in Sources */,
 				7DE1161E22F8AB5C005BFE98 /* SubmissionButtonPresenterTests.swift in Sources */,
@@ -4118,7 +4079,6 @@
 				7DE1161522F8AB5C005BFE98 /* CourseNavigationPresenterTests.swift in Sources */,
 				7DE1161F22F8AB5C005BFE98 /* RubricPresenterTests.swift in Sources */,
 				7DE1162022F8AB5C005BFE98 /* SubmissionCommentsPresenterTests.swift in Sources */,
-				97EF506E23A025E6008136F5 /* PeopleListViewControllerTests.swift in Sources */,
 				7DE1162122F8AB5C005BFE98 /* SubmissionDetailsPresenterTests.swift in Sources */,
 				7DE1161822F8AB5C005BFE98 /* QuizListPresenterTests.swift in Sources */,
 				7D0E22B923A19E430075E879 /* SubmissionDetailsViewControllerTests.swift in Sources */,

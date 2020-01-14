@@ -27,6 +27,9 @@ public struct ListFormatter {
     ///
     /// See http://cldr.unicode.org/development/development-process/design-proposals/list-formatting
     public static func localizedString(from list: [String], conjunction: Conjunction = .and) -> String {
+        if #available(iOS 13, *), conjunction == .and {
+            return Foundation.ListFormatter.localizedString(byJoining: list)
+        }
         var two, start, middle, end: String
         switch conjunction {
         case .and:

@@ -22,18 +22,20 @@ import CoreData
 public class GetContextUsers: CollectionUseCase {
     public typealias Model = User
 
-    public let context: Context
+    let context: Context
+    let type: BaseEnrollmentType?
+    let search: String?
 
-    public init(context: Context) {
+    public init(context: Context, type: BaseEnrollmentType? = nil, search: String? = nil) {
         self.context = context
+        self.type = type
+        self.search = search
     }
 
-    public var cacheKey: String? {
-        return "\(context.pathComponent)/users"
-    }
+    public let cacheKey: String? = nil
 
     public var request: GetContextUsersRequest {
-        return GetContextUsersRequest(context: context)
+        return GetContextUsersRequest(context: context, enrollment_type: type, search_term: search)
     }
 
     public var scope: Scope {
@@ -58,19 +60,48 @@ public class GetContextUsers: CollectionUseCase {
     }
 }
 
+public enum BaseEnrollmentType: String, CaseIterable {
+    case designer, observer, student, ta, teacher
+
+    var name: String {
+        switch self {
+        case .designer:
+            return NSLocalizedString("Designers", bundle: .core, comment: "")
+        case .observer:
+            return NSLocalizedString("Observers", bundle: .core, comment: "")
+        case .student:
+            return NSLocalizedString("Students", bundle: .core, comment: "")
+        case .ta:
+            return NSLocalizedString("Teaching Assistants", bundle: .core, comment: "")
+        case .teacher:
+            return NSLocalizedString("Teachers", bundle: .core, comment: "")
+        }
+    }
+}
+
 public struct GetContextUsersRequest: APIRequestable {
     public typealias Response = [APIUser]
+
     let context: Context
+    let enrollment_type: BaseEnrollmentType?
+    let search_term: String?
 
     public var path: String {
         return "\(context.pathComponent)/users"
     }
 
     public var query: [APIQueryItem] {
-        return [
+        var items: [APIQueryItem] = [
             .value("sort", "username"),
             .value("per_page", "50"),
             .include(["avatar_url", "enrollments"]),
         ]
+        if let type = enrollment_type?.rawValue {
+            items.append(.value("enrollment_type", type))
+        }
+        if let term = search_term {
+            items.append(.value("search_term", term))
+        }
+        return items
     }
 }
