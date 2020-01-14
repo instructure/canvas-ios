@@ -115,7 +115,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         let subject = subjectField.text ?? ""
         let recipientIDs = recipientsView.recipients.map({ $0.id.value })
-        CreateConversation(subject: subject, body: body(), recipientIDs: recipientIDs, canvasContextID: context?.canvasContextID).fetch { [weak self] conversations, _, error in
+        CreateConversation(subject: subject, body: body(), recipientIDs: recipientIDs, canvasContextID: context?.canvasContextID).fetch { [weak self] _, _, error in
             performUIUpdate {
                 if let error = error {
                     self?.navigationItem.rightBarButtonItem = self?.sendButton
