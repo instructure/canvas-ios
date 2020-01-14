@@ -40,6 +40,7 @@ const run = (cmd) => execSync(cmd, { stdio: 'inherit' })
 // https://github.com/instructure/instructure-ui/tree/master/packages/ui-icons/svg/Solid
 const whitelist = [
   'add',
+  'address-book',
   'alerts',
   'announcement',
   'arrow-open-left',

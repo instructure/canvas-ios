@@ -46,7 +46,8 @@ class ComposeRecipientsView: UIView {
 
     func addEditButton() {
         editButton = UIButton(type: .system)
-        editButton.setImage(.icon(.user), for: .normal)
+        editButton.setImage(.icon(.addressBook), for: .normal)
+        editButton.tintColor = .named(.textDark)
         editButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(editButton)
         NSLayoutConstraint.activate([
