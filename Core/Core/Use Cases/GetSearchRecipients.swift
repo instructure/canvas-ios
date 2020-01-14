@@ -37,9 +37,7 @@ public struct GetSearchRecipients: CollectionUseCase {
         self.userID = userID
     }
 
-    public var cacheKey: String? {
-        return "get-\(context.canvasContextID)-search-recipients"
-    }
+    public var cacheKey: String? { filter }
 
     public var request: APISearchRecipientsRequestable {
         return APISearchRecipientsRequestable(context: context, contextQualifier: contextQualifier, userID: userID)

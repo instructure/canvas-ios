@@ -60,6 +60,25 @@ class ComposeViewControllerTests: ParentTestCase {
         XCTAssertNoThrow(sendButton?.target?.perform(sendButton?.action))
 
         XCTAssertNotNil(controller.recipientsView.editButton)
+        controller.recipientsView.editButton.sendActions(for: .primaryActionTriggered)
+        let actionSheet = router.presented as? ActionSheetController
+        XCTAssertEqual(actionSheet?.modalPresentationStyle, .custom)
+        XCTAssertNotNil(actionSheet?.transitioningDelegate as? ActionSheetTransitioningDelegate)
+        XCTAssertNotNil(actionSheet)
+        let editRecipients = actionSheet?.viewController as? EditComposeRecipientsViewController
+        XCTAssertNotNil(editRecipients)
+        XCTAssertEqual(editRecipients?.context?.canvasContextID, controller.context?.canvasContextID)
+        XCTAssertEqual(editRecipients?.observeeID, controller.observeeID)
+        XCTAssertEqual(editRecipients?.selectedRecipients.count, 1)
+        editRecipients?.selectedRecipients = []
+        editRecipients?.delegate?.editRecipientsControllerDidFinish(editRecipients!)
+        XCTAssertEqual(controller.recipientsView.recipients.count, 0)
+        XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.isEnabled, false)
+        editRecipients?.selectedRecipients =  [.make(id: "123")]
+        editRecipients?.delegate?.editRecipientsControllerDidFinish(editRecipients!)
+        XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.isEnabled, true)
+        XCTAssertEqual(controller.recipientsView.recipients.count, 1)
+        XCTAssertEqual(controller.recipientsView.recipients.first?.id.value, "123")
     }
 
     func testFetchRecipients() {

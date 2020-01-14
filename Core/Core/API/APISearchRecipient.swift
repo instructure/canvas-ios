@@ -23,7 +23,7 @@ public struct APISearchRecipient: Codable, Equatable {
     public let id: ID
     public let name: String
     public let full_name: String
-    public let avatar_url: URL?
+    public let avatar_url: APIURL?
     public let type: APISearchRecipientContext?
     public let common_courses: [String: [String]]
 }

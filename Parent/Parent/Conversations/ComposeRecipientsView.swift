@@ -83,12 +83,14 @@ class ComposeRecipientsView: UIView {
         let space: CGFloat = 8
         var next = CGPoint(x: xPad, y: yPad)
         let lineHeight = pills.first?.frame.height ?? 0
-        for pill in pills {
+        for (index, pill) in pills.enumerated() {
             pill.layoutIfNeeded()
             let xMax = next.y == yPad ? editButton.frame.minX - xPad : bounds.maxX - xPad
             if next.x + pill.frame.width > xMax {
                 next.x = xPad
-                next.y += lineHeight + space
+                if index > 0 {
+                    next.y += lineHeight + space
+                }
             }
             pill.frame = CGRect(origin: next, size: pill.frame.size)
             next.x += pill.frame.width + space

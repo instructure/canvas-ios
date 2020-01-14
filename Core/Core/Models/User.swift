@@ -51,3 +51,9 @@ extension User: WriteableModel {
         return user
     }
 }
+
+extension User {
+    public func formattedRole(in context: Context) -> String? {
+        enrollments?.first { $0.canvasContextID == context.canvasContextID }?.formattedRole
+    }
+}
