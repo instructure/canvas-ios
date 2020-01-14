@@ -232,4 +232,28 @@ class MockedQuizTests: StudentUITestCase {
         app.find(label: "Quiz Submitted").waitToExist()
         app.find(label: "Done").tap().waitToVanish()
     }
+
+    func testQuizTimeout() {
+        mockBaseRequests()
+        let quiz = APIQuiz.make(
+            due_at: Date(),
+            question_count: 3,
+            question_types: [
+                .multiple_choice_question,
+                .true_false_question,
+                .numerical_question,
+            ],
+            quiz_type: .survey,
+            time_limit: 100
+        )
+
+        mockData(GetQuizRequest(courseID: "1", quizID: quiz.id.value), value: quiz)
+        mockData(GetQuizSubmissionRequest(courseID: "1", quizID: quiz.id.value),
+                 value: .init(quiz_submissions: [ ]))
+        mockData(GetAllQuizSubmissionsRequest(courseID: "1", quizID: quiz.id.value),
+                 value: .init(quiz_submissions: [ ]))
+        show("courses/1/quizzes/\(quiz.id)")
+
+        sleep(100000000)
+    }
 }

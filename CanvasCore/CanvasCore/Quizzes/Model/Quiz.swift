@@ -277,7 +277,7 @@ extension Quiz: JSONDecodable {
             let questionTypes: [Question.Kind] = decodeArray(json["question_types"] as? [Any] ?? [])
             let allowedAttempts = Quiz.AttemptLimit.fromJSON(json["allowed_attempts"])
             let oqqaat = json["one_question_at_a_time"] as? Bool
-            let cantGoBack = json["cant_go_back"] as? Bool
+            let cantGoBack = json["cant_go_back"] as? Bool ?? false
             let hideResults = Quiz.HideResults.fromJSON(json["hide_results"])
             let lockedForUser = json["locked_for_user"] as? Bool
             let lockExplanation = json["lock_explanation"] as? String
@@ -286,8 +286,9 @@ extension Quiz: JSONDecodable {
             let hasAccessCode = json["has_access_code"] as? Bool ?? true
             let requiresLockdownBrowser = json["require_lockdown_browser"] as? Bool ?? false
             let requiresLockdownBrowserForResults = json["require_lockdown_browser_for_results"] as? Bool ?? false
-            
-            if let id = id, let title = title, let due = due, let timeLimit = timeLimit, let scoring = scoring, let questionCount = questionCount, let allowedAttempts = allowedAttempts, let oqqaat = oqqaat, let cantGoBack = cantGoBack, let hideResults=hideResults, let lockedForUser = lockedForUser, let mobileURL = mobileURL, let shuffleAnswers = shuffleAnswers
+
+            print(String(describing: (id, title, due, timeLimit, scoring, questionCount, allowedAttempts, oqqaat, cantGoBack, hideResults, lockedForUser, mobileURL, shuffleAnswers)))
+            if let id = id, let title = title, let due = due, let timeLimit = timeLimit, let scoring = scoring, let questionCount = questionCount, let allowedAttempts = allowedAttempts, let oqqaat = oqqaat, let hideResults=hideResults, let lockedForUser = lockedForUser, let mobileURL = mobileURL, let shuffleAnswers = shuffleAnswers
             {
                 return Quiz(id: id, title: title, description: description, due: due, timeLimit: timeLimit, scoring: scoring, questionCount: questionCount, questionTypes: questionTypes, attemptLimit: allowedAttempts, oneQuestionAtATime: oqqaat, cantGoBack: cantGoBack, hideResults: hideResults, lockAt: Date.fromJSON(json["lock_at"]), lockedForUser: lockedForUser, lockExplanation: lockExplanation, ipFilter: json["ip_filter"] as? String, mobileURL: mobileURL, shuffleAnswers: shuffleAnswers, hasAccessCode: hasAccessCode, requiresLockdownBrowser: requiresLockdownBrowser, requiresLockdownBrowserForResults: requiresLockdownBrowserForResults)
             }
