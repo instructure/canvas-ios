@@ -139,9 +139,10 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
             let name = student.first?.fullName ?? ""
             let template = NSLocalizedString("Regarding: %@, %@", comment: "Regarding <John Doe>, < assignment url >")
             let hiddenMessage = String.localizedStringWithFormat(template, name, a.htmlURL.absoluteString)
+            let subject = a.name
             let context = ContextModel(.course, id: courseID)
             let recipients = teachers.map { APIConversationRecipient(searchRecipient: $0) }
-            let r: Route = Route.compose(context: context, recipients: recipients, hiddenMessage: hiddenMessage)
+            let r: Route = Route.compose(context: context, recipients: recipients, subject: subject, hiddenMessage: hiddenMessage)
 
             env.router.route(to: r, from: self, options: [.modal, .embedInNav])
             replyButton?.isEnabled = true
