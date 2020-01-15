@@ -47,6 +47,11 @@ extension AppDelegate {
             return PageListViewController.create(context: ContextModel(.course, id: courseID), appTraitCollection: UIApplication.shared.keyWindow?.traitCollection, app: .teacher)
         })
 
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/users", factory: { props in
+            guard let courseID = props["courseID"] as? String else { return nil }
+            return PeopleListViewController.create(context: ContextModel(.course, id: courseID))
+        })
+
         if ExperimentalFeature.newPageDetails.isEnabled {
             HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/pages/:url", factory: { props in
                 guard let courseID = props["courseID"] as? String else { return nil }

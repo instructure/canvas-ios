@@ -60,8 +60,23 @@ public class GetContextUsers: CollectionUseCase {
     }
 }
 
-public enum BaseEnrollmentType: String {
+public enum BaseEnrollmentType: String, CaseIterable {
     case designer, observer, student, ta, teacher
+
+    var name: String {
+        switch self {
+        case .designer:
+            return NSLocalizedString("Designers", bundle: .core, comment: "")
+        case .observer:
+            return NSLocalizedString("Observers", bundle: .core, comment: "")
+        case .student:
+            return NSLocalizedString("Students", bundle: .core, comment: "")
+        case .ta:
+            return NSLocalizedString("Teaching Assistants", bundle: .core, comment: "")
+        case .teacher:
+            return NSLocalizedString("Teachers", bundle: .core, comment: "")
+        }
+    }
 }
 
 public struct GetContextUsersRequest: APIRequestable {

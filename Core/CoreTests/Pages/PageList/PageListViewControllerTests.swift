@@ -62,13 +62,13 @@ class PageListViewControllerTests: CoreTestCase {
         api.mock(viewController.presenter!.course!, value: APICourse.make())
         api.mock(viewController.presenter!.colors, value: APICustomColors(custom_colors: [ "course_1": "#f00" ]))
         let a = APIPage.make(html_url: URL(string: "/courses/1/pages/one")!, page_id: ID(1), title: "A")
-        api.mock(viewController.presenter!.pages, value: [a])
+        api.mock(viewController.presenter!.pages.all!, value: [a])
         let frontPage = APIPage.make(body: "hello front page", front_page: true, html_url: URL(string: "/courses/3/pages/three")!, page_id: ID(3), title: "frontpage")
-        api.mock(viewController.presenter!.frontPage, value: frontPage)
+        api.mock(viewController.presenter!.pages.frontPage!, value: frontPage)
 
         load()
 
-        XCTAssertEqual(viewController.presenter!.pages.count, 1)
+        XCTAssertEqual(viewController.presenter!.pages.all?.count, 1)
 
         let cell = viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? PageListCell
         XCTAssertEqual(cell?.titleLabel?.text, "A")
