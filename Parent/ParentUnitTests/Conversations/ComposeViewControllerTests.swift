@@ -60,6 +60,7 @@ class ComposeViewControllerTests: ParentTestCase {
         XCTAssertNoThrow(sendButton?.target?.perform(sendButton?.action))
 
         XCTAssertNotNil(controller.recipientsView.editButton)
+        XCTAssertTrue(controller.recipientsView.placeholder.isHidden)
         controller.recipientsView.editButton.sendActions(for: .primaryActionTriggered)
         let actionSheet = router.presented as? ActionSheetController
         XCTAssertEqual(actionSheet?.modalPresentationStyle, .custom)
@@ -74,11 +75,13 @@ class ComposeViewControllerTests: ParentTestCase {
         editRecipients?.delegate?.editRecipientsControllerDidFinish(editRecipients!)
         XCTAssertEqual(controller.recipientsView.recipients.count, 0)
         XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.isEnabled, false)
+        XCTAssertFalse(controller.recipientsView.placeholder.isHidden)
         editRecipients?.selectedRecipients =  [.make(id: "123")]
         editRecipients?.delegate?.editRecipientsControllerDidFinish(editRecipients!)
         XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.isEnabled, true)
         XCTAssertEqual(controller.recipientsView.recipients.count, 1)
         XCTAssertEqual(controller.recipientsView.recipients.first?.id.value, "123")
+        XCTAssertTrue(controller.recipientsView.placeholder.isHidden)
     }
 
     func testFetchRecipients() {
