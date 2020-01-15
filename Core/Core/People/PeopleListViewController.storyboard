@@ -134,6 +134,7 @@
                     <connections>
                         <outlet property="activityIndicatorView" destination="UrV-hn-mYU" id="mpp-XI-7P7"/>
                         <outlet property="emptyResultsLabel" destination="iHH-Ah-Huh" id="eY1-IL-mnh"/>
+                        <outlet property="keyboardSpace" destination="C1M-7b-yM2" id="6Oy-vo-Zah"/>
                         <outlet property="searchBar" destination="287-ad-3lu" id="Grf-lF-nAJ"/>
                         <outlet property="tableView" destination="G6M-0U-L6a" id="ybH-cU-zVH"/>
                     </connections>
