@@ -80,18 +80,18 @@ class PageListPresenterTests: CoreTestCase {
 
     func testLoadPages() {
         api.mock(GetPagesRequest(context: ContextModel(.course, id: "42")), value: [.make(title: "Answers Page")])
-        updateExpectationPredicate = { self.coursePresenter.pages.first?.title == "Answers Page" }
+        updateExpectationPredicate = { self.coursePresenter.pages.all?.first?.title == "Answers Page" }
         coursePresenter.viewIsReady()
         wait(for: [update], timeout: 1)
     }
 
     func testLoadFrontPage() {
         api.mock(GetFrontPageRequest(context: ContextModel(.course, id: "42")), value: .make(front_page: true, title: "Front Page"))
-        updateExpectationPredicate = { self.coursePresenter.frontPage.first?.title == "Front Page" }
+        updateExpectationPredicate = { self.coursePresenter.pages.frontPage?.first?.title == "Front Page" }
         coursePresenter.viewIsReady()
         wait(for: [update], timeout: 1)
-        XCTAssertEqual(coursePresenter.frontPage.first?.title, "Front Page")
-        XCTAssertEqual(coursePresenter.frontPage.first?.isFrontPage, true)
+        XCTAssertEqual(coursePresenter.pages.frontPage?.first?.title, "Front Page")
+        XCTAssertEqual(coursePresenter.pages.frontPage?.first?.isFrontPage, true)
     }
 
     func testSelect() {
@@ -117,13 +117,13 @@ class PageListPresenterTests: CoreTestCase {
         coursePresenter.viewIsReady()
 
         Page.make(from: .make(html_url: URL(string: "/courses/42/pages/test-page")!))
-        XCTAssertEqual(coursePresenter.pages.count, 1)
+        XCTAssertEqual(coursePresenter.pages.all?.count, 1)
 
         let newPage = APIPage.make(html_url: URL(string: "/courses/42/pages/new-page")!, page_id: "1234")
         NotificationCenter.default.post(name: NSNotification.Name("page-created"), object: nil, userInfo: apiPageToDictionary(page: newPage))
 
-        XCTAssertEqual(coursePresenter.pages.count, 2)
-        XCTAssertEqual(coursePresenter.pages.first!.id, newPage.page_id.value)
+        XCTAssertEqual(coursePresenter.pages.all?.count, 2)
+        XCTAssertEqual(coursePresenter.pages.all?.first!.id, newPage.page_id.value)
     }
 
     func testPageCreationOnlyHasOneFrontPage() {

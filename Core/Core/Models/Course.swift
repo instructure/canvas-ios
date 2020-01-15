@@ -52,7 +52,13 @@ final public class Course: NSManagedObject, Context, WriteableModel {
         model.imageDownloadURL = URL(string: item.image_download_url ?? "")
         model.syllabusBody = item.syllabus_body
         model.defaultViewRaw = item.default_view?.rawValue
-        model.enrollments?.forEach { context.delete($0) }
+        model.enrollments?.forEach { enrollment in
+            // we only want to delete dangling enrollments created from
+            // the minimal enrollments attached to an APICourse
+            if enrollment.id == nil {
+                context.delete(enrollment)
+            }
+        }
         model.enrollments = nil
         model.hideFinalGrades = item.hide_final_grades ?? false
 

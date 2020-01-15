@@ -143,6 +143,7 @@
 		7DFDB43423A4393D00B28DED /* ConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFDB43323A4393D00B28DED /* ConversationListCell.swift */; };
 		974BA7F723A89BE200E09D5A /* ConversationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974BA7F623A89BE200E09D5A /* ConversationDetailViewController.swift */; };
 		974BA7F923A89C5C00E09D5A /* ConversationDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 974BA7F823A89C5C00E09D5A /* ConversationDetailViewController.storyboard */; };
+		97523A8723C9375A0086D825 /* AssignmentDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97523A8623C9375A0086D825 /* AssignmentDetailsViewControllerTests.swift */; };
 		97D477C923AA738300A6BC78 /* ConversationDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D477C823AA738300A6BC78 /* ConversationDetailViewControllerTests.swift */; };
 		97F0817423C43E20002B9F68 /* CourseDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0817323C43E20002B9F68 /* CourseDetailsViewControllerTests.swift */; };
 		9F397F8523C8D54600A3E2AF /* ConversationCoursesActionSheetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F397F8423C8D54600A3E2AF /* ConversationCoursesActionSheetTests.swift */; };
@@ -902,6 +903,7 @@
 		90C9F9DE9C41E49B6739CC26 /* Pods_defaults_common_tests_ParentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_tests_ParentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		974BA7F623A89BE200E09D5A /* ConversationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationDetailViewController.swift; sourceTree = "<group>"; };
 		974BA7F823A89C5C00E09D5A /* ConversationDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConversationDetailViewController.storyboard; sourceTree = "<group>"; };
+		97523A8623C9375A0086D825 /* AssignmentDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		97D477C823AA738300A6BC78 /* ConversationDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		97F0817323C43E20002B9F68 /* CourseDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		98A80F881229764105018888 /* Pods-defaults-Parent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Parent.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Parent/Pods-defaults-Parent.release.xcconfig"; sourceTree = "<group>"; };
@@ -992,6 +994,7 @@
 		3B36A2E02322C26A00599A1E /* ParentUnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				97523A8523C9373F0086D825 /* Details */,
 				97F0817223C43E09002B9F68 /* Course */,
 				7DFDB43023A3EDE200B28DED /* Conversations */,
 				3B36A2EE2322C54900599A1E /* Fixtures */,
@@ -1417,6 +1420,14 @@
 			path = Conversations;
 			sourceTree = "<group>";
 		};
+		97523A8523C9373F0086D825 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				97523A8623C9375A0086D825 /* AssignmentDetailsViewControllerTests.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
 		97F0817223C43E09002B9F68 /* Course */ = {
 			isa = PBXGroup;
 			children = (
@@ -1801,6 +1812,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97523A8723C9375A0086D825 /* AssignmentDetailsViewControllerTests.swift in Sources */,
 				7D88EA2E23A9A1CB00D5F8FD /* ColorSchemeTests.swift in Sources */,
 				B109249023CE7F9500796903 /* EditComposeRecipientsViewControllerTests.swift in Sources */,
 				3B36A2ED2322C2A000599A1E /* GetAlertThresholdRequestableTests.swift in Sources */,

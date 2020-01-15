@@ -32,8 +32,8 @@ public class GetConversationCourses: APIUseCase {
         return Scope(
             predicate: NSPredicate(format: "%K == %@ AND %K == %@", #keyPath(Enrollment.type), "ObserverEnrollment", #keyPath(Enrollment.stateRaw), "active"),
             order: [
-                NSSortDescriptor(key: #keyPath(Enrollment.observedUser.name), ascending: true),
-                NSSortDescriptor(key: #keyPath(Enrollment.course.name), ascending: true),
+                NSSortDescriptor(key: #keyPath(Enrollment.observedUser.name), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),
+                NSSortDescriptor(key: #keyPath(Enrollment.course.name), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),
             ]
         )
     }
@@ -64,11 +64,14 @@ public class GetConversationCourses: APIUseCase {
             return
         }
 
+        for course in courses {
+            Course.save(course, in: client)
+        }
+
         for enrollment in enrollments {
-            guard let course = courses.first(where: { $0.id.value == enrollment.course_id }), let enrollmentID = enrollment.id?.value else {
+            guard let courseModel: Course = client.first(where: #keyPath(Course.id), equals: enrollment.course_id), let enrollmentID = enrollment.id?.value else {
                 continue
             }
-            let courseModel = Course.save(course, in: client)
             let enrollmentModel: Enrollment = client.first(where: #keyPath(Enrollment.id), equals: enrollmentID) ?? client.insert()
             enrollmentModel.update(fromApiModel: enrollment, course: courseModel, in: client)
         }

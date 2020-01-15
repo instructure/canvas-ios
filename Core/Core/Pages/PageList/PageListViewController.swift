@@ -46,7 +46,7 @@ public class PageListViewController: UIViewController, PageListViewProtocol {
     func update(isLoading: Bool) {
         tableView?.reloadData()
 
-        let isEmpty = presenter?.pages.isEmpty == true && presenter?.frontPage.isEmpty == true
+        let isEmpty = presenter?.pages.all?.isEmpty == true && presenter?.pages.frontPage?.isEmpty == true
         if isEmpty && !isLoading {
             emptyLabel?.text = NSLocalizedString("There are no pages to display.", bundle: .core, comment: "")
             emptyLabel?.textColor = .named(.textDarkest)
@@ -59,9 +59,9 @@ public class PageListViewController: UIViewController, PageListViewProtocol {
         if !isLoading && !isEmpty && !selectedFirstPage {
             selectedFirstPage = true
             if appTraitCollection?.horizontalSizeClass == .regular && !isInSplitViewDetail {
-                if let frontPage = presenter?.frontPage.first {
+                if let frontPage = presenter?.pages.frontPage?.first {
                     presenter?.select(frontPage, from: self)
-                } else if let page = presenter?.pages.first {
+                } else if let page = presenter?.pages.all?.first {
                     presenter?.select(page, from: self)
                 }
             }
@@ -79,7 +79,7 @@ public class PageListViewController: UIViewController, PageListViewProtocol {
         guard let headerView = tableView.tableHeaderView else { return }
         var height: CGFloat
 
-        if let frontPage = presenter?.frontPage.first {
+        if let frontPage = presenter?.pages.frontPage?.first {
             frontPageTitleLabel.text = frontPage.title
             frontPageView.isHidden = false
             height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
@@ -139,7 +139,7 @@ public class PageListViewController: UIViewController, PageListViewProtocol {
     }
 
     @IBAction func frontPageTapped(_ sender: Any) {
-        guard let page = presenter?.frontPage.first else { return }
+        guard let page = presenter?.pages.frontPage?.first else { return }
         presenter?.select(page, from: self)
     }
 
@@ -148,19 +148,18 @@ public class PageListViewController: UIViewController, PageListViewProtocol {
     }
 
     @objc func refresh(_ control: UIRefreshControl) {
-        presenter?.pages.refresh(force: true)
-        presenter?.frontPage.refresh(force: true)
+        presenter?.refreshPages()
     }
 }
 
 extension PageListViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.pages.count ?? 0
+        return presenter?.pages.all?.count ?? 0
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(PageListCell.self, for: indexPath)
-        guard let page = presenter?.pages[indexPath.row] else { return cell }
+        guard let page = presenter?.pages.all?[indexPath.row] else { return cell }
 
         cell.accessibilityIdentifier = "pages.list.page.row-\(indexPath.row)"
         cell.update(page: page, color: color)
@@ -168,7 +167,7 @@ extension PageListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let page = presenter?.pages[indexPath.row] else { return }
+        guard let page = presenter?.pages.all?[indexPath.row] else { return }
         presenter?.select(page, from: self)
     }
 }
@@ -176,7 +175,7 @@ extension PageListViewController: UITableViewDataSource, UITableViewDelegate {
 extension PageListViewController: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.isBottomReached() {
-            presenter?.pages.getNextPage()
+            presenter?.pages.all?.getNextPage()
         }
     }
 }
