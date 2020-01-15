@@ -250,6 +250,8 @@ public struct PostAddMessageRequest: APIRequestable {
 }
 
 public struct PostConversationRequest: APIRequestable {
+    // because it is possible to create one conversation per recipient
+    // the response is an array
     public typealias Response = [APIConversation]
 
     public struct Body: Encodable {
@@ -261,7 +263,7 @@ public struct PostConversationRequest: APIRequestable {
         public let media_comment_type: MediaCommentType? = nil
         public let attachment_ids: [String]? = nil
         public let group_conversation: Bool? = true
-        public let force_new: Bool? = true
+        public let force_new: Bool? = nil // Setting this seems to cause the api to ignore group_conversation
     }
 
     public let body: Body?
