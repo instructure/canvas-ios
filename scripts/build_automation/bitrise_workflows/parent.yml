@@ -40,7 +40,7 @@ workflows:
         - command: install -g react-native-cli
         title: npm install -g react-native-cli
     - cocoapods-install: {}
-    - ios-auto-provision:
+    - ios-auto-provision@1.5.0:
         inputs:
         - generate_profiles: 'yes'
         - distribution_type: "$BITRISE_EXPORT_METHOD"
