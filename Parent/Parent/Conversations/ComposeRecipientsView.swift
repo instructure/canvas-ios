@@ -29,6 +29,7 @@ class ComposeRecipientsView: UIView {
     }
 
     var editButton: UIButton!
+    var placeholder: UILabel!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,6 +43,7 @@ class ComposeRecipientsView: UIView {
 
     func initialize() {
         addEditButton()
+        addPlaceholder()
     }
 
     func addEditButton() {
@@ -58,16 +60,26 @@ class ComposeRecipientsView: UIView {
         ])
     }
 
+    func addPlaceholder() {
+        placeholder = UILabel()
+        placeholder.translatesAutoresizingMaskIntoConstraints = false
+        placeholder.text = NSLocalizedString("To", comment: "")
+        placeholder.textColor = .named(.ash)
+        placeholder.font = .scaledNamedFont(.medium16)
+        addSubview(placeholder)
+        NSLayoutConstraint.activate([
+            placeholder.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            placeholder.topAnchor.constraint(equalTo: topAnchor, constant: 19),
+            placeholder.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -18),
+        ])
+    }
+
     func updatePills() {
-        for (i, recipient) in recipients.enumerated() {
-            let pill: ComposeRecipientView
-            if i < pills.count {
-                pill = pills[i]
-            } else {
-                pill = ComposeRecipientView()
-                addSubview(pill)
-                pill.widthAnchor.constraint(lessThanOrEqualTo: widthAnchor, constant: -32).isActive = true
-            }
+        pills.forEach { $0.removeFromSuperview() }
+        for recipient in recipients {
+            let pill = ComposeRecipientView()
+            addSubview(pill)
+            pill.widthAnchor.constraint(lessThanOrEqualTo: widthAnchor, constant: -32).isActive = true
             pill.update(recipient)
             setNeedsLayout()
         }
@@ -75,6 +87,8 @@ class ComposeRecipientsView: UIView {
             pill.removeFromSuperview()
             setNeedsLayout()
         }
+        placeholder.isHidden = !pills.isEmpty
+        placeholder.setNeedsLayout()
     }
 
     override func layoutSubviews() {
@@ -97,7 +111,7 @@ class ComposeRecipientsView: UIView {
             next.x += pill.frame.width + space
         }
         let height = constraints.first { $0.firstAnchor == heightAnchor }
-        height?.constant = next.y + lineHeight + yPad
+        height?.constant = max(next.y + lineHeight + yPad, placeholder.intrinsicContentSize.height)
     }
 }
 
