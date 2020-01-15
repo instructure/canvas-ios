@@ -109,6 +109,7 @@ class PeopleListViewControllerTests: CoreTestCase {
         controller.searchBar.delegate?.searchBarTextDidBeginEditing?(controller.searchBar)
         controller.searchBar.text = "fred"
         controller.searchBar.delegate?.searchBar?(controller.searchBar, textDidChange: "fred")
+        controller.searchBar.delegate?.searchBarSearchButtonClicked?(controller.searchBar)
         controller.searchBar.delegate?.searchBarTextDidEndEditing?(controller.searchBar)
         XCTAssertEqual(controller.emptyResultsLabel.isHidden, false)
 

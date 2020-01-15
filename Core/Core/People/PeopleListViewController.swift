@@ -21,6 +21,7 @@ import UIKit
 public class PeopleListViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var emptyResultsLabel: UILabel!
+    @IBOutlet weak var keyboardSpace: NSLayoutConstraint!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
 
@@ -32,6 +33,7 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol,
     var enrollmentTypes = BaseEnrollmentType.allCases.sorted {
         $0.name.localizedStandardCompare($1.name) == .orderedAscending
     }
+    var keyboard: KeyboardTransitioning?
     var search: String?
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
@@ -94,6 +96,7 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol,
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
         if tableView.contentOffset.y == 0 {
             tableView.contentOffset.y += searchBar.frame.height
         }
@@ -158,12 +161,17 @@ extension PeopleListViewController: UISearchBarDelegate {
     public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         self.searchBar(searchBar, textDidChange: "")
+        searchBarSearchButtonClicked(searchBar)
+    }
+
+    public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.searchTextField.resignFirstResponder()
         tableView.setContentOffset(CGPoint(x: 0, y: searchBar.frame.height), animated: true)
     }
 
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let newSearch = searchText.count >= 3 ? searchText : nil
+        tableView.setContentOffset(.zero, animated: true)
         guard newSearch != search else { return }
         search = newSearch
         updateUsers()
