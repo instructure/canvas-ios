@@ -23,8 +23,7 @@ import TestsFoundation
 
 class GetContextUsersTests: CoreTestCase {
     func testCacheKey() {
-        XCTAssertEqual(GetContextUsers(context: ContextModel(.course, id: "1")).cacheKey, "courses/1/users")
-        XCTAssertEqual(GetContextUsers(context: ContextModel(.group, id: "2")).cacheKey, "groups/2/users")
+        XCTAssertEqual(GetContextUsers(context: ContextModel(.course, id: "1")).cacheKey, nil)
     }
 
     func testRequest() {
@@ -35,6 +34,16 @@ class GetContextUsersTests: CoreTestCase {
             URLQueryItem(name: "per_page", value: "50"),
             URLQueryItem(name: "include[]", value: "avatar_url"),
             URLQueryItem(name: "include[]", value: "enrollments"),
+        ])
+        let useCase2 = GetContextUsers(context: ContextModel(.group, id: "1"), type: .ta, search: "fred")
+        XCTAssertEqual(useCase2.request.path, "groups/1/users")
+        XCTAssertEqual(useCase2.request.queryItems, [
+            URLQueryItem(name: "sort", value: "username"),
+            URLQueryItem(name: "per_page", value: "50"),
+            URLQueryItem(name: "include[]", value: "avatar_url"),
+            URLQueryItem(name: "include[]", value: "enrollments"),
+            URLQueryItem(name: "enrollment_type", value: "ta"),
+            URLQueryItem(name: "search_term", value: "fred"),
         ])
     }
 

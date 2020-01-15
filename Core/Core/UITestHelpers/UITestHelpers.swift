@@ -130,9 +130,13 @@ public class UITestHelpers {
         }
     }
 
-    @discardableResult
-    func send(_ message: IPCDriverServerMessage) -> Data? {
-        return try? ipcDriverClient?.requestRemote(message)
+    private let ipcQueue = DispatchQueue(label: "UITestHelper-ipc")
+    private let callbackQueue = DispatchQueue(label: "UITestHelper-callback")
+    func send(_ message: IPCDriverServerMessage, callback: ((Data?) -> Void)? = nil) {
+        ipcQueue.async {
+            let result = try? self.ipcDriverClient?.requestRemote(message)
+            self.callbackQueue.async { callback?(result) }
+        }
     }
 
     func run(_ helper: Helper) -> Data? {
@@ -209,7 +213,11 @@ public class UITestHelpers {
 
     func show(_ route: String) {
         guard let root = window?.rootViewController else { return }
-        AppEnvironment.shared.router.route(to: route, from: root, options: [.modal, .embedInNav])
+        AppEnvironment.shared.router.route(to: route, from: root, options: [
+            .modal,
+            .embedInNav,
+            .fullScreen,
+        ])
     }
 
     func tearDown() {

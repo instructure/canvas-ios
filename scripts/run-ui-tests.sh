@@ -30,6 +30,7 @@ function usage {
     echo "Runs a UI test suite, retrying failed ones."
     echo "usage:"
     echo "  ./scripts/run-ui-tests.sh --all"
+    echo "  ./scripts/run-ui-tests.sh --only-build"
     echo "  ./scripts/run-ui-tests.sh --only-testing testId ..."
     echo "  ./scripts/run-ui-tests.sh --help"
     echo
@@ -44,6 +45,7 @@ DEVICE_NAME=${DEVICE_NAME:-iPhone 8}
 
 only_testing=()
 needs_build=yes
+only_build=no
 celebration=yes
 
 case ${1-} in
@@ -54,6 +56,9 @@ case ${1-} in
         if [[ $# -ne 1 ]]; then
             usage 1
         fi
+        ;;
+    --only-build)
+        only_build=yes
         ;;
     --only-testing)
         shift
@@ -89,6 +94,10 @@ if [[ $needs_build = yes ]]; then
     xcodebuild -workspace Canvas.xcworkspace -scheme $SCHEME $destination_flag build-for-testing 2>&1 |
         tee ${BITRISE_DEPLOY_DIR-$results_directory}/build.log |
         xcbeautify --quiet
+fi
+
+if [[ $only_build = yes ]]; then
+    exit 0
 fi
 
 BUILD_DIR=$(xcodebuild -workspace Canvas.xcworkspace -scheme $SCHEME -showBuildSettings build-for-testing -json |

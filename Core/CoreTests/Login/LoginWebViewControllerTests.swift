@@ -40,7 +40,7 @@ class LoginWebViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.webView.url, URL(string: "https://localhost:1/login/oauth2/auth?client_id=1&response_type=code&redirect_uri=https://canvas/login&mobile=1"))
     }
 
-    func testPreloaded() {
+    func xtestPreloaded() {
         controller.mdmLogin = MDMLogin(host: "localhost:1", username: "u", password: "p")
         controller.mobileVerifyModel = APIVerifyClient(authorized: true, base_url: url, client_id: "1", client_secret: "s")
         controller.view.layoutIfNeeded()

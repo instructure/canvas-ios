@@ -18,13 +18,23 @@
 
 import UIKit
 
-public class PeopleListViewController: UIViewController, ColoredNavViewProtocol {
+public class PeopleListViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var emptyResultsLabel: UILabel!
+    @IBOutlet weak var keyboardSpace: NSLayoutConstraint!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
 
     public var color: UIColor?
     let env = AppEnvironment.shared
     public var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
     var context: Context = ContextModel.currentUser
+    var enrollmentType: BaseEnrollmentType?
+    var enrollmentTypes = BaseEnrollmentType.allCases.sorted {
+        $0.name.localizedStandardCompare($1.name) == .orderedAscending
+    }
+    var keyboard: KeyboardTransitioning?
+    var search: String?
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -54,22 +64,42 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
         view.backgroundColor = .named(.backgroundLightest)
         setupTitleViewInNavbar(title: NSLocalizedString("People", bundle: .core, comment: ""))
 
+        activityIndicatorView.color = Brand.shared.primary
+        emptyResultsLabel.text = NSLocalizedString("No results", bundle: .core, comment: "")
+        searchBar.placeholder = NSLocalizedString("Search", bundle: .core, comment: "")
+
         tableView.backgroundColor = .named(.backgroundLightest)
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
+        tableView.registerHeaderFooterView(FilterHeaderView.self, fromNib: false)
         tableView.separatorColor = .named(.borderMedium)
 
         colors.refresh()
-        users.refresh()
         if context.contextType == .course {
             course.refresh()
         } else {
             group.refresh()
         }
+        users.refresh()
+
+        if context.contextType == .course {
+            env.api.makeRequest(GetConversationRecipientsRequest(search: "", context: context.canvasContextID, includeContexts: true)) { [weak self] recipients, _, _ in
+                guard let recipients = recipients else { return }
+                self?.enrollmentTypes = BaseEnrollmentType.allCases
+                    .filter { type in recipients.contains {
+                        $0.id.value.hasSuffix("_\(type)s")
+                    } }
+                    .sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
+            }
+        }
     }
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
+        if tableView.contentOffset.y == 0 {
+            tableView.contentOffset.y += searchBar.frame.height
+        }
         if let selected = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selected, animated: true)
         }
@@ -83,7 +113,17 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
     }
 
     func update() {
+        if users.isEmpty, users.pending, tableView.refreshControl?.isRefreshing != true {
+            activityIndicatorView.startAnimating()
+        } else {
+            activityIndicatorView.stopAnimating()
+        }
+        emptyResultsLabel.isHidden = users.pending || !users.isEmpty
+        tableView.tableFooterView?.frame.size.height = emptyResultsLabel.isHidden ? 0 : 100
         tableView.reloadData()
+        if let error = users.error {
+            showError(error)
+        }
     }
 
     @objc func refresh() {
@@ -91,9 +131,79 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
             self?.tableView.refreshControl?.endRefreshing()
         }
     }
+
+    @objc func filter() {
+        guard enrollmentType == nil else {
+            enrollmentType = nil
+            return updateUsers()
+        }
+        let alert = UIAlertController(title: NSLocalizedString("Filter by:", bundle: .core, comment: ""), message: nil, preferredStyle: .actionSheet)
+        for type in enrollmentTypes {
+            alert.addAction(AlertAction(type.name, style: .default) { _ in
+                self.enrollmentType = type
+                self.updateUsers()
+            })
+        }
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
+        env.router.show(alert, from: self, options: .modal)
+    }
+}
+
+extension PeopleListViewController: UISearchBarDelegate {
+    public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+
+    public func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
+    }
+
+    public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        self.searchBar(searchBar, textDidChange: "")
+        searchBarSearchButtonClicked(searchBar)
+    }
+
+    public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.searchTextField.resignFirstResponder()
+        tableView.setContentOffset(CGPoint(x: 0, y: searchBar.frame.height), animated: true)
+    }
+
+    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let newSearch = searchText.count >= 3 ? searchText : nil
+        tableView.setContentOffset(.zero, animated: true)
+        guard newSearch != search else { return }
+        search = newSearch
+        updateUsers()
+    }
+
+    func updateUsers() {
+        users = env.subscribe(GetContextUsers(context: context, type: enrollmentType, search: search)) { [weak self] in
+            self?.update()
+        }
+        users.refresh()
+    }
 }
 
 extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard context.contextType == .course else { return 0 }
+        return 16 + UIFont.scaledNamedFont(.heavy24).lineHeight + 8
+    }
+
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard context.contextType == .course else { return nil }
+        let header: FilterHeaderView = tableView.dequeueHeaderFooter()
+        header.titleLabel.text = enrollmentType?.name ?? NSLocalizedString("All People", bundle: .core, comment: "")
+        header.filterButton.removeTarget(self, action: nil, for: .primaryActionTriggered)
+        header.filterButton.addTarget(self, action: #selector(filter), for: .primaryActionTriggered)
+        header.filterButton.setTitle(enrollmentType == nil
+            ? NSLocalizedString("Filter", bundle: .core, comment: "")
+            : NSLocalizedString("Clear filter", bundle: .core, comment: ""), for: .normal)
+        header.filterButton.setTitleColor(color, for: .normal)
+        return header
+    }
+
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
     }
@@ -127,11 +237,7 @@ class PeopleListCell: UITableViewCell {
         avatarView.url = user?.avatarURL
         nameLabel.text = user?.name
         let roles = user?.enrollments?.compactMap { $0.formattedRole }.sorted() ?? []
-        if #available(iOS 13, *) {
-            rolesLabel.text = ListFormatter.localizedString(from: roles)
-        } else {
-            rolesLabel.text = roles.joined(separator: ", ")
-        }
+        rolesLabel.text = ListFormatter.localizedString(from: roles)
         rolesLabel.isHidden = roles.isEmpty
     }
 }

@@ -64,20 +64,7 @@ public class MockDistantURLSession: URLSession {
         mockConfiguration ?? super.configuration
     }
 
-    static let mockRequestLock = NSRecursiveLock()
-    static func requestMock(_ request: URLRequest) -> MockHTTPResponse {
-        mockRequestLock.lock()
-        defer { mockRequestLock.unlock() }
-        guard let responseData = UITestHelpers.shared!.send(.urlRequest(request)),
-            let mock = try? JSONDecoder().decode(MockHTTPResponse.self, from: responseData) else {
-                return MockHTTPResponse()
-        }
-        return mock
-    }
-
-    func resume(task: MockSessionTask) {
-        var mock = MockDistantURLSession.requestMock(task.request)
-
+    func processMockResponse(_ mock: MockHTTPResponse, task: MockSessionTask) {
         task.taskData.response = mock.http
         task.taskData.session = nil
 
@@ -103,6 +90,20 @@ public class MockDistantURLSession: URLSession {
             delegate.urlSession(self, downloadTask: downloadSelf, didFinishDownloadingTo: url)
         }
         mockDelegate?.urlSessionDidFinishEvents?(forBackgroundURLSession: self)
+    }
+
+    func resume(task: MockSessionTask) {
+        let request = task.request
+        print("\(request.httpMethod ?? "GET") - \(request.url?.absoluteString ?? "nil")")
+        UITestHelpers.shared!.send(.urlRequest(request)) { responseData in
+            if let data = responseData,
+                let mock = try? JSONDecoder().decode(MockHTTPResponse.self, from: data) {
+                self.processMockResponse(mock, task: task)
+            } else {
+                print("No mock response")
+                self.processMockResponse(MockHTTPResponse(), task: task)
+            }
+        }
     }
 
     // MARK: data
