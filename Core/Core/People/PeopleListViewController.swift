@@ -73,6 +73,9 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol,
         tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.registerHeaderFooterView(FilterHeaderView.self, fromNib: false)
         tableView.separatorColor = .named(.borderMedium)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
+            self.tableView.contentOffset.y = self.searchBar.frame.height
+        }
 
         colors.refresh()
         if context.contextType == .course {
@@ -97,9 +100,6 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol,
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
-        if tableView.contentOffset.y == 0 {
-            tableView.contentOffset.y += searchBar.frame.height
-        }
         if let selected = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selected, animated: true)
         }
@@ -200,7 +200,7 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
         header.filterButton.setTitle(enrollmentType == nil
             ? NSLocalizedString("Filter", bundle: .core, comment: "")
             : NSLocalizedString("Clear filter", bundle: .core, comment: ""), for: .normal)
-        header.filterButton.setTitleColor(color, for: .normal)
+        header.filterButton.setTitleColor(Brand.shared.linkColor, for: .normal)
         return header
     }
 
