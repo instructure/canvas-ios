@@ -24,7 +24,7 @@ class GetSearchRecipientsTests: CoreTestCase {
     func testCacheKey() {
         let context = ContextModel(.course, id: "1")
         let useCase = GetSearchRecipients(context: context)
-        XCTAssertEqual(useCase.cacheKey, "get-\(context.canvasContextID)-search-recipients")
+        XCTAssertEqual(useCase.cacheKey, "?context=course_1&search=&per_page=50")
     }
 
     func testRequest() {

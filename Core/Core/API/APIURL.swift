@@ -25,6 +25,11 @@ public struct APIURL: Codable, Equatable {
         self.rawValue = rawValue
     }
 
+    public init?(rawValue: URL?) {
+        guard let rawValue = rawValue else { return nil }
+        self.rawValue = rawValue
+    }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let url = try? container.decode(URL.self) {

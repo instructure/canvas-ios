@@ -20,6 +20,49 @@ import UIKit
 let animationDuration = 0.275
 let actionSheetHeight: CGFloat = 338.0
 
+class ActionSheetController: UIViewController {
+    let viewController: UIViewController
+
+    init(viewController: UIViewController) {
+        self.viewController = viewController
+        super.init(nibName: nil, bundle: nil)
+        self.title = title
+        modalPresentationStyle = .custom
+        transitioningDelegate = ActionSheetTransitioningDelegate.shared
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .named(.backgroundLightest)
+        let container = UIView()
+        container.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(container)
+        embed(viewController, in: container)
+
+        let titleLabel = UILabel()
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.text = viewController.navigationItem.title
+        titleLabel.textColor = .named(.textDark)
+        titleLabel.font = .scaledNamedFont(.semibold14)
+        view.addSubview(titleLabel)
+
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 40),
+            container.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            container.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            container.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            container.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
+    }
+}
+
 public class ActionSheetOpenTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard
