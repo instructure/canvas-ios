@@ -18,43 +18,40 @@
 
 import UIKit
 
-public struct RouteOptions: Equatable {
-    public let modal: Modal?
-    public let detail: Bool
-    public let embedInNav: Bool
-    public let addDoneButton: Bool
-
-    public struct Modal: Equatable {
-        public let presentationStyle: UIModalPresentationStyle?
-        public let inPresentation: Bool
-    }
-
-    public init(
-        modal: Modal? = nil,
-        detail: Bool = false,
+public enum RouteOptions: Equatable {
+    case push(addDoneButton: Bool = false)
+    case detail(embedInNav: Bool = false)
+    case modal(
+        _ style: UIModalPresentationStyle? = nil,
+        isDismissable: Bool = true,
         embedInNav: Bool = false,
         addDoneButton: Bool = false
-    ) {
-        self.modal = modal
-        self.embedInNav = embedInNav
-        self.addDoneButton = addDoneButton
-        self.detail = detail
+    )
+
+    public var isModal: Bool {
+        if case .modal = self {
+            return true
+        }
+        return false
     }
 
-    public static func modal(
-        _ presentationStyle: UIModalPresentationStyle? = nil,
-        inPresentation: Bool = false,
-        detail: Bool = false,
-        embedInNav: Bool = false,
-        addDoneButton: Bool = false
-    ) -> RouteOptions {
-        RouteOptions(modal: Modal(presentationStyle: presentationStyle, inPresentation: inPresentation),
-                     detail: detail,
-                     embedInNav: embedInNav,
-                     addDoneButton: addDoneButton)
+    public var isDetail: Bool {
+        if case .detail = self {
+            return true
+        }
+        return false
     }
 
-    public static let noOptions = RouteOptions()
+    public var embedInNav: Bool {
+        switch self {
+        case .detail(embedInNav: true), .modal(_, _, embedInNav: true, _):
+            return true
+        default:
+            return false
+        }
+    }
+
+    public static let noOptions = RouteOptions.push()
 }
 
 public protocol RouterProtocol {
@@ -89,32 +86,33 @@ public extension RouterProtocol {
 
         if let displayModeButton = from.displayModeButtonItem,
             from.splitViewController?.isCollapsed == false,
-            options.detail || from.isInSplitViewDetail,
-            options.modal == nil {
+            options.isDetail || from.isInSplitViewDetail,
+            !options.isModal {
             view.addNavigationButton(displayModeButton, side: .left)
             view.navigationItem.leftItemsSupplementBackButton = true
         }
 
-        if options.addDoneButton {
-            view.addDoneButton(side: .left)
-        }
         var nav: UINavigationController?
         if options.embedInNav {
             nav = view as? UINavigationController ?? UINavigationController(rootViewController: view)
         }
 
-        if let modal = options.modal {
+        switch options {
+        case let .modal(modalOptions):
+            if modalOptions.addDoneButton {
+                view.addDoneButton(side: .left)
+            }
             nav?.navigationBar.useModalStyle()
-            if let presentationStyle = modal.presentationStyle {
+            if let presentationStyle = modalOptions.0 {
                 (nav ?? view).modalPresentationStyle = presentationStyle
             }
-            if #available(iOS 13, *), modal.inPresentation {
+            if #available(iOS 13, *), !modalOptions.isDismissable {
                 (nav ?? view).isModalInPresentation = true
             }
             from.present(nav ?? view, animated: true, completion: completion)
-        } else if from.splitViewController != nil, options.detail, !from.isInSplitViewDetail {
+        case .detail where from.splitViewController != nil  && !from.isInSplitViewDetail:
             from.showDetailViewController(nav ?? view, sender: from)
-        } else {
+        default:
             from.show(nav ?? view, sender: nil)
         }
     }
