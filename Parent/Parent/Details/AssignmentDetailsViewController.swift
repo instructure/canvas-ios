@@ -144,7 +144,7 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
             let recipients = teachers.map { APIConversationRecipient(searchRecipient: $0) }
             let r: Route = Route.compose(context: context, recipients: recipients, subject: subject, hiddenMessage: hiddenMessage)
 
-            env.router.route(to: r, from: self, options: [.modal, .embedInNav])
+            env.router.route(to: r, from: self, options: .modal(embedInNav: true))
             replyButton?.isEnabled = true
         }
     }

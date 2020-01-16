@@ -57,6 +57,7 @@ public struct APISubmissionUser: Codable, Equatable {
     let name: String?
     let short_name: String
     let avatar_url: URL?
+    let pronouns: String?
 }
 
 // https://canvas.instructure.com/doc/api/submissions.html#SubmissionComment
@@ -77,6 +78,7 @@ public struct APISubmissionCommentAuthor: Codable, Equatable {
     let display_name: String
     let avatar_image_url: URL?
     let html_url: URL
+    let pronouns: String?
 }
 
 public struct APISubmissionCommentMedia: Codable, Equatable {

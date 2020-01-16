@@ -229,12 +229,12 @@ extension ModuleListViewController: UITableViewDelegate {
         case .externalURL(let url):
             let safari = SFSafariViewController(url: url)
             safari.modalPresentationStyle = .overFullScreen
-            env.router.show(safari, from: self, options: [.modal]) {
+            env.router.show(safari, from: self, options: .modal()) {
                 tableView.deselectRow(at: indexPath, animated: true)
             }
         default:
             if let url = item.url {
-                env.router.route(to: url, from: self, options: [.detail])
+                env.router.route(to: url, from: self, options: .detail())
             }
         }
     }

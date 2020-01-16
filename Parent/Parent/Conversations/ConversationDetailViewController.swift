@@ -138,7 +138,7 @@ extension ConversationDetailViewController: UITableViewDataSource, UITableViewDe
             conversation: conversation,
             message: conversation.messages[indexPath.section],
             all: all
-        ), from: self, options: [ .modal, .embedInNav ])
+        ), from: self, options: .modal(embedInNav: true))
     }
 }
 

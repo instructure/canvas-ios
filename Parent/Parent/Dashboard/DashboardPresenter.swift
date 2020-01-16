@@ -43,13 +43,13 @@ class DashboardPresenter {
         guard let view = view else {
             return
         }
-        env.router.route(to: .actAsUser, from: view, options: [.modal, .embedInNav])
+        env.router.route(to: .actAsUser, from: view, options: .modal(embedInNav: true))
     }
 
     func showWrongAppScreen() {
         guard let view = view else {
             return
         }
-        env.router.route(to: .wrongApp, from: view, options: [.modal, .embedInNav, .inPresentation])
+        env.router.route(to: .wrongApp, from: view, options: .modal(isDismissable: false, embedInNav: true))
     }
 }

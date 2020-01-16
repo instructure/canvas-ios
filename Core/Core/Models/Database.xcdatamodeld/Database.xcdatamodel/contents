@@ -513,6 +513,7 @@
         <attribute name="authorAvatarURL" optional="YES" attributeType="URI"/>
         <attribute name="authorID" attributeType="String"/>
         <attribute name="authorName" attributeType="String"/>
+        <attribute name="authorPronouns" optional="YES" attributeType="String"/>
         <attribute name="comment" attributeType="String"/>
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="editedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -558,6 +559,7 @@
         <attribute name="groupID" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="pronouns" optional="YES" attributeType="String"/>
         <attribute name="shortName" attributeType="String"/>
         <attribute name="sortableName" attributeType="String"/>
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="user" inverseEntity="Enrollment"/>
@@ -569,6 +571,7 @@
         <attribute name="id" attributeType="String"/>
         <attribute name="loginID" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
+        <attribute name="pronouns" optional="YES" attributeType="String"/>
     </entity>
     <entity name="UserSettings" representedClassName="Core.UserSettings" syncable="YES">
         <attribute name="collapseGlobalNav" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -581,6 +584,7 @@
         <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="568"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="148"/>
+        <element name="CommonCourse" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="CommunicationChannel" positionX="-531" positionY="-9" width="128" height="133"/>
         <element name="ContextColor" positionX="-177.3046875" positionY="-36" width="128" height="73"/>
         <element name="Conversation" positionX="-540" positionY="-18" width="128" height="238"/>
@@ -613,14 +617,13 @@
         <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="150"/>
         <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="118"/>
         <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="403"/>
-        <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="253"/>
+        <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="268"/>
         <element name="Syllabus" positionX="-540" positionY="-18" width="128" height="73"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="Todo" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
-        <element name="User" positionX="-540" positionY="-27" width="128" height="178"/>
-        <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="133"/>
+        <element name="User" positionX="-540" positionY="-27" width="128" height="193"/>
+        <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="CommonCourse" positionX="-540" positionY="-18" width="128" height="88"/>
     </elements>
 </model>

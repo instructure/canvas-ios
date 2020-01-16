@@ -52,7 +52,7 @@ class SettingsViewController: UIViewController {
         controller.observeesViewController = try! StudentsListViewController(session: session)
         controller.observeesViewController?.selectStudentAction = { [weak controller] session, student in
             guard let view = controller else { return }
-            env.router.route(to: .observeeThresholds(student.id), from: view, options: nil)
+            env.router.route(to: .observeeThresholds(student.id), from: view)
         }
         return controller
     }
@@ -120,7 +120,7 @@ class SettingsViewController: UIViewController {
         }
 
         alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in }))
-        env.router.show(alert, from: self, options: [.modal])
+        env.router.show(alert, from: self, options: .modal())
 
         alert.addAction(AlertAction(NSLocalizedString("Add", comment: ""), style: .default, handler: { [weak self] _ in
             guard let textField = alert.textFields?.first, let code = textField.text else { return }
@@ -136,7 +136,7 @@ class SettingsViewController: UIViewController {
                 if let error = error {
                     let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { _ in }))
-                    self.env.router.show(alert, from: self, options: [.modal])
+                    self.env.router.show(alert, from: self, options: .modal())
                 } else {
                     self.observeesViewController?.refresh()
                 }

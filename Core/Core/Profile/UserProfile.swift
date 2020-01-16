@@ -26,6 +26,7 @@ public final class UserProfile: NSManagedObject {
     @NSManaged public var loginID: String?
     @NSManaged public var avatarURL: URL?
     @NSManaged public var calendarURL: URL?
+    @NSManaged public var pronouns: String?
 }
 
 extension UserProfile: WriteableModel {
@@ -38,6 +39,7 @@ extension UserProfile: WriteableModel {
         model.loginID = item.login_id
         model.avatarURL = item.avatar_url?.rawValue
         model.calendarURL = item.calendar?.ics
+        model.pronouns = item.pronouns
         return model
     }
 }
@@ -59,5 +61,10 @@ public struct GetUserProfile: APIUseCase {
         return GetUserProfileRequest(userID: userID)
     }
 
-    public let scope = Scope(predicate: .all, order: [])
+    public var scope: Scope {
+        if userID == "self", let userID = AppEnvironment.shared.currentSession?.userID {
+            return .where(#keyPath(UserProfile.id), equals: userID)
+        }
+        return .where(#keyPath(UserProfile.id), equals: userID)
+    }
 }

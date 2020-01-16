@@ -105,7 +105,7 @@ class SyllabusActionableItemsPresenter {
     }
 
     func select(_ htmlURL: URL, from: UIViewController) {
-        env.router.route(to: htmlURL, from: from, options: nil)
+        env.router.route(to: htmlURL, from: from)
     }
 
     func formattedDueDate(_ date: Date?) -> String {
