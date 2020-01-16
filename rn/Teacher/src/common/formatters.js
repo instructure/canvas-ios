@@ -127,9 +127,8 @@ export function formatStudentGrade (assignment: Assignment) {
 }
 
 export function personDisplayName (name, pronouns) {
-  let displayName = name
   if (pronouns != null) {
-    displayName += ` (${pronouns})`
+    return i18n('{name} ({pronouns})', { name, pronouns })
   }
-  return displayName
+  return name
 }
