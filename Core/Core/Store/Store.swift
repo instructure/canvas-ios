@@ -128,7 +128,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         request(useCase, force: force, callback: callback)
     }
 
-    public func exhaust(while condition: @escaping (U.Response) -> Bool = { _ in true }) {
+    public func exhaust(force: Bool = true, while condition: @escaping (U.Response) -> Bool = { _ in true }) {
         refresh(force: true) { [weak self] response in
             if let response = response, condition(response) {
                 self?.exhaustNext(while: condition)

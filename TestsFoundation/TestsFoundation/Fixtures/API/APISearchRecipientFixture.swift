@@ -32,7 +32,7 @@ extension APISearchRecipient {
             id: id,
             name: name,
             full_name: full_name ?? name,
-            avatar_url: avatar_url,
+            avatar_url: APIURL(rawValue: avatar_url),
             type: type,
             common_courses: common_courses
         )

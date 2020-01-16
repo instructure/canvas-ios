@@ -126,7 +126,7 @@ extension APIConversationParticipant {
         return APIConversationParticipant(
             id: ID(id),
             name: name,
-            avatar_url: avatar_url.flatMap(APIURL.init(rawValue:)),
+            avatar_url: APIURL(rawValue: avatar_url),
             pronouns: pronouns
         )
     }
