@@ -513,6 +513,7 @@
         <attribute name="authorAvatarURL" optional="YES" attributeType="URI"/>
         <attribute name="authorID" attributeType="String"/>
         <attribute name="authorName" attributeType="String"/>
+        <attribute name="authorPronouns" optional="YES" attributeType="String"/>
         <attribute name="comment" attributeType="String"/>
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="editedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -613,7 +614,7 @@
         <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="150"/>
         <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="118"/>
         <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="403"/>
-        <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="253"/>
+        <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="268"/>
         <element name="Syllabus" positionX="-540" positionY="-18" width="128" height="73"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="Todo" positionX="-540" positionY="-18" width="128" height="148"/>

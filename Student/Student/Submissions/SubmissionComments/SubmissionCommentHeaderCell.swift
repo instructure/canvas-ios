@@ -36,7 +36,7 @@ class SubmissionCommentHeaderCell: UITableViewCell {
         accessibilityElementsHidden = true
         authorAvatarView?.name = comment.authorName
         authorAvatarView?.url = comment.authorAvatarURL
-        authorNameLabel?.text = comment.authorName
+        authorNameLabel?.text = User.displayName(comment.authorName, pronouns: comment.authorPronouns)
         createdAtLabel?.text = DateFormatter.localizedString(from: comment.createdAt, dateStyle: .long, timeStyle: .short)
         chatBubbleView?.isHidden = comment.attempt != nil || comment.mediaURL != nil
     }

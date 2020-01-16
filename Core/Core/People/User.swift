@@ -53,6 +53,15 @@ extension User: WriteableModel {
 }
 
 extension User {
+    public static func displayName(_ name: String, pronouns: String?) -> String {
+        return [
+            name,
+            pronouns.flatMap { "(\($0))" },
+        ]
+        .compactMap { $0 }
+        .joined(separator: " ")
+    }
+
     public func formattedRole(in context: Context) -> String? {
         enrollments?.first { $0.canvasContextID == context.canvasContextID }?.formattedRole
     }
