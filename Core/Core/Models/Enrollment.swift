@@ -75,23 +75,18 @@ extension Enrollment {
         return type.lowercased().contains("student")
     }
 
+    public var isTeacher: Bool {
+        return type.lowercased().contains("teacher")
+    }
+
+    public var isTA: Bool {
+        return type.lowercased().contains("ta")
+    }
+
     /// The localized, human-readable `role` or the custom role
     public var formattedRole: String? {
         guard let role = role else { return nil }
-        switch role {
-        case "StudentEnrollment":
-            return NSLocalizedString("Student", comment: "")
-        case "TeacherEnrollment":
-            return NSLocalizedString("Teacher", comment: "")
-        case "TaEnrollment":
-            return NSLocalizedString("TA", comment: "Teacher's Assistant (abbreviated)")
-        case "ObserverEnrollment":
-            return NSLocalizedString("Observer", comment: "")
-        case "DesignerEnrollment":
-            return NSLocalizedString("Designer", comment: "")
-        default:
-            return role // custom role
-        }
+        return Role(rawValue: role)?.description()
     }
 
     public var currentScore: Double? {

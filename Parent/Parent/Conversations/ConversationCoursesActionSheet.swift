@@ -35,25 +35,16 @@ class ConversationCoursesActionSheet: UITableViewController, ErrorViewController
 
     static func create(delegate: ConversationCoursesActionSheetDelegate) -> ConversationCoursesActionSheet {
         let vc = ConversationCoursesActionSheet()
-        vc.modalPresentationStyle = .custom
-        vc.transitioningDelegate = ActionSheetTransitioningDelegate.shared
         vc.delegate = delegate
         return vc
     }
 
     override func viewDidLoad() {
+        navigationItem.title = NSLocalizedString("Choose a course to message", bundle: .parent, comment: "")
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
         tableView.registerCell(SubtitleTableViewCell.self)
-
-        let header = UILabel(frame: CGRect(x: 16, y: 8, width: tableView.frame.width - 32, height: 40))
-        header.text = NSLocalizedString("Choose a course to message", bundle: .parent, comment: "")
-        header.textColor = UIColor.named(.textDark)
-        header.font = UIFont.scaledNamedFont(.semibold14)
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 48))
-        headerView.addSubview(header)
-        tableView.tableHeaderView = headerView
 
         loadingIndicator.hidesWhenStopped = true
         loadingIndicator.startAnimating()

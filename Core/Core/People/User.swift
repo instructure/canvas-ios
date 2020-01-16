@@ -61,4 +61,8 @@ extension User {
         .compactMap { $0 }
         .joined(separator: " ")
     }
+
+    public func formattedRole(in context: Context) -> String? {
+        enrollments?.first { $0.canvasContextID == context.canvasContextID }?.formattedRole
+    }
 }

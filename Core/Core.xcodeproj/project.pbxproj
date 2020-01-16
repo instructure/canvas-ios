@@ -529,6 +529,8 @@
 		9FE84DDE2150281300B95A68 /* GetContextTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DDD2150281300B95A68 /* GetContextTabs.swift */; };
 		9FE84DE2215037A000B95A68 /* GetContextTabsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */; };
 		B107F6CB234BB847000DAC83 /* ItemPickerElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107F6CA234BB847000DAC83 /* ItemPickerElement.swift */; };
+		B109248C23CD2BC400796903 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = B109248B23CD2BC400796903 /* Role.swift */; };
+		B109249423CE81C400796903 /* RoleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B109249323CE81C400796903 /* RoleTests.swift */; };
 		B10D777021C2E27200BCE822 /* UITableViewCellExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10D776F21C2E27200BCE822 /* UITableViewCellExtensions.swift */; };
 		B10E8905238447A700E7684E /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10E8904238447A700E7684E /* Grade.swift */; };
 		B10E89072384807B00E7684E /* GradesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10E89062384807B00E7684E /* GradesViewControllerTests.swift */; };
@@ -1447,6 +1449,8 @@
 		9FE84DDD2150281300B95A68 /* GetContextTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextTabs.swift; sourceTree = "<group>"; };
 		9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextTabsTest.swift; sourceTree = "<group>"; };
 		B107F6CA234BB847000DAC83 /* ItemPickerElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPickerElement.swift; sourceTree = "<group>"; };
+		B109248B23CD2BC400796903 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
+		B109249323CE81C400796903 /* RoleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleTests.swift; sourceTree = "<group>"; };
 		B10D776F21C2E27200BCE822 /* UITableViewCellExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtensions.swift; sourceTree = "<group>"; };
 		B10E8904238447A700E7684E /* Grade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grade.swift; sourceTree = "<group>"; };
 		B10E89062384807B00E7684E /* GradesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesViewControllerTests.swift; sourceTree = "<group>"; };
@@ -2075,6 +2079,7 @@
 				7DCE0C8922AF040200BA549F /* QuizSubmission.swift */,
 				7DCE0C8722AEFE0C00BA549F /* QuizSubmissionWorkflowState.swift */,
 				7DCF2037216D55E6003AF358 /* QuizType.swift */,
+				B109248B23CD2BC400796903 /* Role.swift */,
 				3B6386A82264FB17002DEE72 /* Rubric.swift */,
 				9F87D0782322EF5A00EDA363 /* SearchRecipient.swift */,
 				7DF4FFDE21713919007E5F81 /* Submission.swift */,
@@ -2126,6 +2131,7 @@
 				B19792FA21769B320000369C /* QuizTests.swift */,
 				7DCF2039216D5712003AF358 /* QuizTypeTests.swift */,
 				3B300C842277981100743C59 /* RubricTests.swift */,
+				B109249323CE81C400796903 /* RoleTests.swift */,
 				9F62EDCF2326C23C00EA9F79 /* SearchRecipientTests.swift */,
 				7D5C87202239A99E00D99651 /* SubmissionCommentTests.swift */,
 				7D37BE8C21C837840063FAAC /* SubmissionTests.swift */,
@@ -3952,6 +3958,7 @@
 				7D2FADBE225BA50A00BCE19E /* RichContentEditorViewController.swift in Sources */,
 				B1BEB2CB22458B5E00E893A4 /* MDMManager.swift in Sources */,
 				3B3467D821360A7C00F9BC2E /* APILoginWebRequestable.swift in Sources */,
+				B109248C23CD2BC400796903 /* Role.swift in Sources */,
 				B11AAC3D237A2428002BC41F /* APIURL.swift in Sources */,
 				7DBED02323317E0F00392F3C /* ExternalToolLaunchPlacement.swift in Sources */,
 				7D80AC21212B89C500C40ECE /* APIAccountRequestable.swift in Sources */,
@@ -4274,6 +4281,7 @@
 				7DC4A55B222EFE0E00FA03DC /* NSErrorExtensionsTests.swift in Sources */,
 				7D6A2BE4214C538F00DB15C4 /* RouteTests.swift in Sources */,
 				3B635B37225CE59D001F353D /* GetCalendarEventsTests.swift in Sources */,
+				B109249423CE81C400796903 /* RoleTests.swift in Sources */,
 				7D2DC301219A16EC008FE29A /* DocViewerConstantsTests.swift in Sources */,
 				7D5A2BC422CD0D8C0029B6AC /* APIListTests.swift in Sources */,
 				7DD371C122E7B39800C2D0F7 /* GetQuizSubmissionTests.swift in Sources */,

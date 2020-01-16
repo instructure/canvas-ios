@@ -24,17 +24,62 @@ class ComposeRecipientsView: UIView {
         didSet { updatePills() }
     }
 
+    var pills: [ComposeRecipientView] {
+        return subviews.compactMap { $0 as? ComposeRecipientView }
+    }
+
+    var editButton: UIButton!
+    var placeholder: UILabel!
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        initialize()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        initialize()
+    }
+
+    func initialize() {
+        addEditButton()
+        addPlaceholder()
+    }
+
+    func addEditButton() {
+        editButton = UIButton(type: .system)
+        editButton.setImage(.icon(.addressBook), for: .normal)
+        editButton.tintColor = .named(.textDark)
+        editButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(editButton)
+        NSLayoutConstraint.activate([
+            editButton.heightAnchor.constraint(equalToConstant: 24),
+            editButton.widthAnchor.constraint(equalToConstant: 24),
+            editButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            editButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+        ])
+    }
+
+    func addPlaceholder() {
+        placeholder = UILabel()
+        placeholder.translatesAutoresizingMaskIntoConstraints = false
+        placeholder.text = NSLocalizedString("To", comment: "")
+        placeholder.textColor = .named(.ash)
+        placeholder.font = .scaledNamedFont(.medium16)
+        addSubview(placeholder)
+        NSLayoutConstraint.activate([
+            placeholder.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            placeholder.topAnchor.constraint(equalTo: topAnchor, constant: 19),
+            placeholder.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -18),
+        ])
+    }
+
     func updatePills() {
-        let pills = subviews.compactMap { $0 as? ComposeRecipientView }
-        for (i, recipient) in recipients.enumerated() {
-            let pill: ComposeRecipientView
-            if i < pills.count {
-                pill = pills[i]
-            } else {
-                pill = ComposeRecipientView()
-                addSubview(pill)
-                pill.widthAnchor.constraint(lessThanOrEqualTo: widthAnchor, constant: -32).isActive = true
-            }
+        pills.forEach { $0.removeFromSuperview() }
+        for recipient in recipients {
+            let pill = ComposeRecipientView()
+            addSubview(pill)
+            pill.widthAnchor.constraint(lessThanOrEqualTo: widthAnchor, constant: -32).isActive = true
             pill.update(recipient)
             setNeedsLayout()
         }
@@ -42,27 +87,31 @@ class ComposeRecipientsView: UIView {
             pill.removeFromSuperview()
             setNeedsLayout()
         }
+        placeholder.isHidden = !pills.isEmpty
+        placeholder.setNeedsLayout()
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
         let xPad: CGFloat = 16
-        let xMax = bounds.maxX - xPad
         let yPad: CGFloat = 12
         let space: CGFloat = 8
         var next = CGPoint(x: xPad, y: yPad)
-        let lineHeight = subviews.first?.frame.height ?? 0
-        for pill in subviews {
+        let lineHeight = pills.first?.frame.height ?? 0
+        for (index, pill) in pills.enumerated() {
             pill.layoutIfNeeded()
+            let xMax = next.y == yPad ? editButton.frame.minX - xPad : bounds.maxX - xPad
             if next.x + pill.frame.width > xMax {
                 next.x = xPad
-                next.y += lineHeight + space
+                if index > 0 {
+                    next.y += lineHeight + space
+                }
             }
             pill.frame = CGRect(origin: next, size: pill.frame.size)
             next.x += pill.frame.width + space
         }
         let height = constraints.first { $0.firstAnchor == heightAnchor }
-        height?.constant = next.y + lineHeight + yPad
+        height?.constant = max(next.y + lineHeight + yPad, placeholder.intrinsicContentSize.height)
     }
 }
 
