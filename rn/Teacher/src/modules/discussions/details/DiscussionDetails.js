@@ -59,6 +59,7 @@ import { isTeacher, isStudent } from '../../app'
 import { alertError } from '../../../redux/middleware/error-handler'
 import { logEvent } from '../../../common/CanvasAnalytics'
 import * as canvas from '../../../canvas-api'
+import { personDisplayName } from '../../../common/formatters'
 
 const { NativeAccessibility, ModuleItemsProgress } = NativeModules
 const { markTopicAsRead } = canvas
@@ -307,7 +308,7 @@ export class DiscussionDetails extends Component<Props, any> {
               />
             }
             <View style={[style.authorInfoContainer, { marginLeft: (user && user.display_name) ? vars.padding : 0 }]}>
-              { user?.display_name && <Text style={style.authorName}>{user.display_name}</Text> }
+              { user?.display_name && <Text style={style.authorName} testID='DiscussionDetails.authorName'>{personDisplayName(user.display_name, user.pronouns)}</Text> }
               { hasValidDate && <Text style={style.authorDate} testID='DiscussionDetails.postDateLabel'>{i18n("{ date, date, 'MMM d'} at { date, time, short }", { date })}</Text> }
             </View>
           </View>

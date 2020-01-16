@@ -125,3 +125,11 @@ export function formatStudentGrade (assignment: Assignment) {
       return ''
   }
 }
+
+export function personDisplayName (name, pronouns) {
+  let displayName = name
+  if (pronouns != null) {
+    displayName += ` (${pronouns})`
+  }
+  return displayName
+}

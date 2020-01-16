@@ -39,6 +39,7 @@ import isEqual from 'lodash/isEqual'
 import RichContent from '../../../common/components/RichContent'
 import ExperimentalFeature from '@common/ExperimentalFeature'
 import { logEvent } from '@common/CanvasAnalytics'
+import { personDisplayName } from '../../../common/formatters'
 
 type ReadState = 'read' | 'unread'
 
@@ -169,8 +170,9 @@ export default class Reply extends Component<Props, State> {
             <Text
               style={style.userName}
               accessibilityTraits={this.props.isRootReply ? 'header' : 'none'}
+              testID='DiscussionReply.userName'
             >
-              {user.display_name}
+              {personDisplayName(user.display_name, user.pronouns)}
             </Text>
             <Text style={style.date}>{i18n("{ date, date, 'MMM d' } at { date, time, short }", { date: new Date(reply.updated_at) })}</Text>
             {this.state.useSimpleRenderer || reply.deleted
