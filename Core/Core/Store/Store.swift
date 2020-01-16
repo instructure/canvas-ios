@@ -105,6 +105,10 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     }
 
     public subscript(indexPath: IndexPath) -> U.Model? {
+        guard let sections = frc.sections, sections.count > indexPath.section, sections[indexPath.section].numberOfObjects > indexPath.row else {
+            return nil
+        }
+
         let object = frc.object(at: indexPath)
         if frc.managedObjectContext.isObjectDeleted(object) {
             return nil
