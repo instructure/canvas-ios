@@ -235,7 +235,7 @@ class PeopleListCell: UITableViewCell {
         backgroundColor = .named(.backgroundLightest)
         avatarView.name = user?.name ?? ""
         avatarView.url = user?.avatarURL
-        nameLabel.text = user?.name
+        nameLabel.text = user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) }
         let roles = user?.enrollments?.compactMap { $0.formattedRole }.sorted() ?? []
         rolesLabel.text = ListFormatter.localizedString(from: roles)
         rolesLabel.isHidden = roles.isEmpty

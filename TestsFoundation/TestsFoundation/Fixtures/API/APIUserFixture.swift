@@ -31,7 +31,8 @@ extension APIUser {
         email: String? = nil,
         locale: String? = "en",
         effective_locale: String? = nil,
-        bio: String? = nil
+        bio: String? = nil,
+        pronouns: String? = nil
     ) -> APIUser {
         return APIUser(
             id: id,
@@ -44,7 +45,8 @@ extension APIUser {
             email: email,
             locale: locale,
             effective_locale: effective_locale,
-            bio: bio
+            bio: bio,
+            pronouns: pronouns
         )
     }
 }

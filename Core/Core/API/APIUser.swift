@@ -44,6 +44,7 @@ public struct APIUser: Codable, Equatable {
     // let last_login: Date?
     // let time_zone: TimeZone
     let bio: String?
+    let pronouns: String?
 }
 
 public struct APICustomColors: Codable, Equatable {
