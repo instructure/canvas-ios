@@ -25,16 +25,25 @@ public struct APIConversationRecipient: Codable {
     public let avatar_url: APIURL?
 }
 
+extension APIConversationRecipient: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
 extension APIConversationRecipient {
     public init(searchRecipient r: SearchRecipient) {
         self.id = ID(r.id)
         self.name = r.fullName
         self.full_name = r.fullName
-        if let url = r.avatarURL {
-            self.avatar_url = APIURL(rawValue: url)
-        } else {
-            self.avatar_url = nil
-        }
+        self.avatar_url = APIURL(rawValue: r.avatarURL)
+    }
+
+    public init(user: User) {
+        self.id = ID(user.id)
+        self.name = user.name
+        self.full_name = user.name
+        self.avatar_url = APIURL(rawValue: user.avatarURL)
     }
 }
 

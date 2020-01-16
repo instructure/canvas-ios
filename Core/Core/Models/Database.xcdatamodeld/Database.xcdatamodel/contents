@@ -70,6 +70,11 @@
         <attribute name="title" attributeType="String"/>
         <attribute name="typeRaw" attributeType="String"/>
     </entity>
+    <entity name="CommonCourse" representedClassName="Core.CommonCourse" syncable="YES">
+        <attribute name="courseID" attributeType="String"/>
+        <attribute name="role" attributeType="String"/>
+        <relationship name="searchRecipient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SearchRecipient" inverseName="commonCourses" inverseEntity="SearchRecipient"/>
+    </entity>
     <entity name="CommunicationChannel" representedClassName="Core.CommunicationChannel" syncable="YES">
         <attribute name="address" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
@@ -475,7 +480,7 @@
         <attribute name="filter" optional="YES" attributeType="String"/>
         <attribute name="fullName" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
-        <attribute name="roles" optional="YES" attributeType="String"/>
+        <relationship name="commonCourses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CommonCourse" inverseName="searchRecipient" inverseEntity="CommonCourse"/>
     </entity>
     <entity name="Submission" representedClassName="Core.Submission" syncable="YES">
         <attribute name="assignmentID" attributeType="String"/>
@@ -508,6 +513,7 @@
         <attribute name="authorAvatarURL" optional="YES" attributeType="URI"/>
         <attribute name="authorID" attributeType="String"/>
         <attribute name="authorName" attributeType="String"/>
+        <attribute name="authorPronouns" optional="YES" attributeType="String"/>
         <attribute name="comment" attributeType="String"/>
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="editedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -606,9 +612,9 @@
         <element name="Rubric" positionX="-540" positionY="-27" width="128" height="180"/>
         <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="133"/>
         <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="150"/>
-        <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="120"/>
+        <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="118"/>
         <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="403"/>
-        <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="253"/>
+        <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="268"/>
         <element name="Syllabus" positionX="-540" positionY="-18" width="128" height="73"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="Todo" positionX="-540" positionY="-18" width="128" height="148"/>
@@ -616,5 +622,6 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="178"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="CommonCourse" positionX="-540" positionY="-18" width="128" height="88"/>
     </elements>
 </model>

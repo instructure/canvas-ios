@@ -23,9 +23,9 @@ public final class SearchRecipient: NSManagedObject {
 
     @NSManaged public var id: String
     @NSManaged public var fullName: String
-    @NSManaged public var roles: String
     @NSManaged public var avatarURL: URL?
     @NSManaged public var filter: String
+    @NSManaged public var commonCourses: Set<CommonCourse>
 
     @discardableResult
     public static func save(_ item: APISearchRecipient, filter: String, in context: NSManagedObjectContext) -> SearchRecipient {
@@ -34,19 +34,28 @@ public final class SearchRecipient: NSManagedObject {
 
         model.id = item.id.value
         model.fullName = item.full_name
-        model.avatarURL = item.avatar_url
+        model.avatarURL = item.avatar_url?.rawValue
         model.filter = filter
-
-        var allRoles: Set<String> = Set()
-        for (_, courseRoles) in item.common_courses {
-            courseRoles.forEach { role in
-                allRoles.insert(role.replacingOccurrences(of: "Enrollment", with: ""))
+        model.commonCourses = []
+        for (courseID, roles) in item.common_courses {
+            for role in roles {
+                let commonCourse: CommonCourse = context.insert()
+                commonCourse.courseID = courseID
+                commonCourse.role = role
+                model.commonCourses.insert(commonCourse)
             }
         }
-        var roles = Array(allRoles)
-        roles.sort()
-        model.roles = roles.joined(separator: ", ")
-
         return model
     }
+
+    public func hasRole(_ role: Role, in context: Context) -> Bool {
+        guard context.contextType == .course else { return false }
+        return commonCourses.first { $0.courseID == context.id && Role(rawValue: $0.role) == role } != nil
+    }
+}
+
+public class CommonCourse: NSManagedObject {
+    @NSManaged public var courseID: String
+    @NSManaged public var role: String
+    @NSManaged public var searchRecipient: SearchRecipient?
 }

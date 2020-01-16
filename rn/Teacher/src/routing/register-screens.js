@@ -59,7 +59,6 @@ import GroupList from '../modules/groups/GroupList'
 import Attachments from '../modules/attachments/Attachments'
 import ContextCard from '../modules/users/ContextCard'
 import { StudentContextCardCourse, StudentContextCardGroup } from '../modules/users/StudentContextCard'
-import PeopleList from '../modules/people/PeopleList'
 import Filter from '../modules/filter/Filter'
 import ToDoList from '../modules/to-do/list/ToDoList'
 import FilesList from '../modules/files/FilesList'
@@ -113,7 +112,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/:context/:contextID/discussion_topics/:discussionID/reply', wrap(EditReply), store)
   registerScreen('/:context/:contextID/discussion_topics/:discussionID/edit', wrap(DiscussionEdit), store)
   registerScreen('/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies', wrap(EditReply), store, { deepLink: true })
-  registerScreen('/courses/:courseID/users', wrap(PeopleList), store, { canBecomeMaster: true, deepLink: true })
+  registerScreen('/courses/:courseID/users', null, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/address-book', wrap(AddressBook), store)
   registerScreen('/:context/:contextID/files', fileListRouter, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/:context/:contextID/files/folder/*subFolder', fileListRouter, store, { canBecomeMaster: true, deepLink: true })

@@ -74,6 +74,8 @@ class ComposeViewController: UIViewController, ErrorViewController {
             string: NSLocalizedString("Subject", comment: ""),
             attributes: [ .foregroundColor: UIColor.named(.textDark) ]
         )
+
+        recipientsView.editButton.addTarget(self, action: #selector(editRecipients), for: .primaryActionTriggered)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -94,12 +96,25 @@ class ComposeViewController: UIViewController, ErrorViewController {
     @IBAction func updateSendButton() {
         navigationItem.rightBarButtonItem?.isEnabled = (
             bodyView.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false &&
-            subjectField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false
+            subjectField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false &&
+            !recipientsView.recipients.isEmpty
         )
     }
 
     @objc func send() {
         // append the hidden message
+    }
+
+    @objc func editRecipients() {
+        guard let context = context else { return }
+        let editRecipients = EditComposeRecipientsViewController.create(
+            context: context,
+            observeeID: observeeID,
+            selectedRecipients: Set(recipientsView.recipients)
+        )
+        editRecipients.delegate = self
+        let actionSheet = ActionSheetController(viewController: editRecipients)
+        env.router.show(actionSheet, from: self, options: .modal())
     }
 
     func fetchRecipients(completionHandler: (() -> Void)? = nil) {
@@ -118,6 +133,13 @@ class ComposeViewController: UIViewController, ErrorViewController {
 
 extension ComposeViewController: UITextViewDelegate {
     public func textViewDidChange(_ textView: UITextView) {
+        updateSendButton()
+    }
+}
+
+extension ComposeViewController: EditComposeRecipientsViewControllerDelegate {
+    func editRecipientsControllerDidFinish(_ controller: EditComposeRecipientsViewController) {
+        recipientsView.recipients = Array(controller.selectedRecipients)
         updateSendButton()
     }
 }

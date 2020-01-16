@@ -52,4 +52,9 @@ class UserTests: CoreTestCase {
         XCTAssertEqual(user.name, "B")
         XCTAssertEqual(user.enrollments?.count, 1)
     }
+
+    func testDisplayName() {
+        XCTAssertEqual(User.displayName("Jane Doe", pronouns: nil), "Jane Doe")
+        XCTAssertEqual(User.displayName("Jane Doe", pronouns: "She/Her"), "Jane Doe (She/Her)")
+    }
 }

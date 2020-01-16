@@ -251,6 +251,18 @@ class StoreTests: CoreTestCase {
         XCTAssertEqual(two, store[1])
     }
 
+    func testSubscriptIntObjectNotPresent() {
+        let useCase = TestUseCase(courses: nil, requestError: nil, urlResponse: nil)
+        let store = Store(env: environment, useCase: useCase) { }
+        XCTAssertNil(store[1])
+    }
+
+    func testSubscriptSectionNotPresent() {
+        let useCase = TestUseCase(courses: nil, requestError: nil, urlResponse: nil)
+        let store = Store(env: environment, useCase: useCase) { }
+        XCTAssertNil(store[IndexPath(row: 1, section: 1)])
+    }
+
     func testFirst() {
         let one = Course.make(from: .make(id: "1", name: "A"))
         Course.make(from: .make(id: "2", name: "B"))

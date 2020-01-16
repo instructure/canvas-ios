@@ -51,6 +51,22 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
     @objc let courseID: String
     @objc let assignmentID: String
     let studentID: String
+    var replyButton: FloatingButton?
+    var replyStarted: Bool = false
+    lazy var colorScheme = ColorScheme.observee(studentID)
+    let env = AppEnvironment.shared
+
+    lazy var assignment = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID)) {  [weak self] in
+        self?.messagingReady()
+    }
+
+    lazy var student = env.subscribe(GetSearchRecipients(context: ContextModel(.course, id: courseID), userID: studentID)) { [weak self] in
+        self?.messagingReady()
+    }
+
+    lazy var teachers = env.subscribe(GetSearchRecipients(context: ContextModel(.course, id: courseID), contextQualifier: .teachers)) { [weak self] in
+        self?.messagingReady()
+    }
 
     @objc init(session: Session, studentID: String, courseID: String, assignmentID: String) throws {
         self.courseID = courseID
@@ -62,8 +78,7 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
 
         prepare(observer, refresher: refresher, detailsFactory: EventDetailsViewModel.detailsForAssignment(session.baseURL, observeeID: studentID, context: self))
 
-        disposable = observer.signal.map { $0.1 }
-            .observeValues { _ in
+        disposable = observer.signal.map { $0.1 }.observeValues { _ in
         }
 
         session.enrollmentsDataSource(withScope: studentID).producer(ContextID(id: courseID, context: .course)).observe(on: UIScheduler()).startWithValues { next in
@@ -76,9 +91,61 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        student.refresh()
+        teachers.refresh()
+        assignment.refresh()
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let scheme = ColorScheme.observee(studentID)
-        navigationController?.navigationBar.useContextColor(scheme.color)
+        navigationController?.navigationBar.useContextColor(colorScheme.color)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if replyButton == nil { configureComposeMessageButton() }
+    }
+
+    func configureComposeMessageButton() {
+        guard ExperimentalFeature.parentInbox.isEnabled else { return }
+        let buttonSize: CGFloat = 56
+        let margin: CGFloat = 16
+        let bottomMargin: CGFloat = 50
+
+        replyButton = FloatingButton(frame: CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize))
+        replyButton?.setImage(UIImage.icon(.reply, .solid), for: .normal)
+        replyButton?.tintColor = .named(.white)
+        replyButton?.backgroundColor = colorScheme.color
+        if let replyButton = replyButton { view.superview?.addSubview(replyButton) }
+
+        let metrics: [String: CGFloat] = ["buttonSize": buttonSize, "margin": margin, "bottomMargin": bottomMargin]
+        replyButton?.addConstraintsWithVFL("H:[view(buttonSize)]-(margin)-|", metrics: metrics)
+        replyButton?.addConstraintsWithVFL("V:[view(buttonSize)]-(bottomMargin)-|", metrics: metrics)
+        replyButton?.addTarget(self, action: #selector(actionReplyButtonClicked(_:)), for: .primaryActionTriggered)
+    }
+
+    @IBAction func actionReplyButtonClicked(_ sender: UIButton) {
+        sender.isEnabled = false
+        replyStarted = true
+        messagingReady()
+    }
+
+    func messagingReady() {
+        let pending = teachers.pending || student.pending || assignment.pending
+        if !pending && replyStarted {
+            guard let a = assignment.first else { return }
+            let name = student.first?.fullName ?? ""
+            let template = NSLocalizedString("Regarding: %@, %@", comment: "Regarding <John Doe>, < assignment url >")
+            let hiddenMessage = String.localizedStringWithFormat(template, name, a.htmlURL.absoluteString)
+            let subject = a.name
+            let context = ContextModel(.course, id: courseID)
+            let recipients = teachers.map { APIConversationRecipient(searchRecipient: $0) }
+            let r: Route = Route.compose(context: context, recipients: recipients, subject: subject, hiddenMessage: hiddenMessage)
+
+            env.router.route(to: r, from: self, options: .modal(embedInNav: true))
+            replyButton?.isEnabled = true
+        }
     }
 }
