@@ -27,6 +27,8 @@ class ComposeViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var subjectField: UITextField!
 
+    var sendButton: UIBarButtonItem?
+
     var context: Context?
     let env = AppEnvironment.shared
     var keyboard: KeyboardTransitioning?
@@ -59,8 +61,9 @@ class ComposeViewController: UIViewController, ErrorViewController {
 
         title = NSLocalizedString("New Message", comment: "")
         addCancelButton(side: .left)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Send", comment: ""), style: .done, target: self, action: #selector(send))
-        navigationItem.rightBarButtonItem?.isEnabled = false
+        sendButton = UIBarButtonItem(title: NSLocalizedString("Send", comment: ""), style: .done, target: self, action: #selector(send))
+        sendButton?.isEnabled = false
+        navigationItem.rightBarButtonItem = sendButton
 
         bodyMinHeight = bodyView.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor)
         bodyMinHeight.isActive = true
@@ -101,8 +104,30 @@ class ComposeViewController: UIViewController, ErrorViewController {
         )
     }
 
+    public func body() -> String {
+        return """
+\(bodyView.text ?? "")
+
+\(hiddenMessage ?? "")
+"""
+    }
+
     @objc func send() {
-        // append the hidden message
+        let activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        activityIndicator.startAnimating()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
+        let subject = subjectField.text ?? ""
+        let recipientIDs = recipientsView.recipients.map({ $0.id.value })
+        CreateConversation(subject: subject, body: body(), recipientIDs: recipientIDs, canvasContextID: context?.canvasContextID).fetch { [weak self] _, _, error in
+            performUIUpdate {
+                if let error = error {
+                    self?.navigationItem.rightBarButtonItem = self?.sendButton
+                    self?.showError(error)
+                    return
+                }
+                self?.dismiss(animated: true)
+            }
+        }
     }
 
     @objc func editRecipients() {

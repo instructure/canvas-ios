@@ -480,6 +480,7 @@
 		9F6878AF223951EE00E559CE /* APIMediaComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6878AE223951EE00E559CE /* APIMediaComment.swift */; };
 		9F6878B1223952FB00E559CE /* MediaComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6878B0223952FB00E559CE /* MediaComment.swift */; };
 		9F6878B722397E8F00E559CE /* MediaCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6878B622397E8F00E559CE /* MediaCommentTests.swift */; };
+		9F73859E23C904D200A9C6FE /* CreateConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F73859D23C904D200A9C6FE /* CreateConversation.swift */; };
 		9F7C8B0923858DAB00E383BF /* ExperimentalFeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C8B0823858DAB00E383BF /* ExperimentalFeaturesViewController.swift */; };
 		9F84595C228F33620031034E /* GetUserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F84595B228F33620031034E /* GetUserSettings.swift */; };
 		9F84595E228F34200031034E /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F84595D228F34200031034E /* UserSettings.swift */; };
@@ -528,6 +529,7 @@
 		9FE84DDC214FE5C500B95A68 /* GetGroupTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */; };
 		9FE84DDE2150281300B95A68 /* GetContextTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DDD2150281300B95A68 /* GetContextTabs.swift */; };
 		9FE84DE2215037A000B95A68 /* GetContextTabsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */; };
+		9FEBF1D823CE1E18001C824B /* CreateConversationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEBF1D723CE1E18001C824B /* CreateConversationTests.swift */; };
 		B107F6CB234BB847000DAC83 /* ItemPickerElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107F6CA234BB847000DAC83 /* ItemPickerElement.swift */; };
 		B109248C23CD2BC400796903 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = B109248B23CD2BC400796903 /* Role.swift */; };
 		B109249423CE81C400796903 /* RoleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B109249323CE81C400796903 /* RoleTests.swift */; };
@@ -1400,6 +1402,7 @@
 		9F6878AE223951EE00E559CE /* APIMediaComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMediaComment.swift; sourceTree = "<group>"; };
 		9F6878B0223952FB00E559CE /* MediaComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaComment.swift; sourceTree = "<group>"; };
 		9F6878B622397E8F00E559CE /* MediaCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCommentTests.swift; sourceTree = "<group>"; };
+		9F73859D23C904D200A9C6FE /* CreateConversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateConversation.swift; sourceTree = "<group>"; };
 		9F7C8B0823858DAB00E383BF /* ExperimentalFeaturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalFeaturesViewController.swift; sourceTree = "<group>"; };
 		9F84595B228F33620031034E /* GetUserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserSettings.swift; sourceTree = "<group>"; };
 		9F84595D228F34200031034E /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
@@ -1448,6 +1451,7 @@
 		9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupTest.swift; sourceTree = "<group>"; };
 		9FE84DDD2150281300B95A68 /* GetContextTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextTabs.swift; sourceTree = "<group>"; };
 		9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextTabsTest.swift; sourceTree = "<group>"; };
+		9FEBF1D723CE1E18001C824B /* CreateConversationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateConversationTests.swift; sourceTree = "<group>"; };
 		B107F6CA234BB847000DAC83 /* ItemPickerElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPickerElement.swift; sourceTree = "<group>"; };
 		B109248B23CD2BC400796903 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		B109249323CE81C400796903 /* RoleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleTests.swift; sourceTree = "<group>"; };
@@ -2327,6 +2331,7 @@
 				7DFDB43723A45A4A00B28DED /* ConversationMessage.swift */,
 				7DFDB43923A45A5A00B28DED /* ConversationParticipant.swift */,
 				7D26B84223A7F24400262380 /* GetConversations.swift */,
+				9F73859D23C904D200A9C6FE /* CreateConversation.swift */,
 			);
 			path = Conversations;
 			sourceTree = "<group>";
@@ -2340,6 +2345,7 @@
 				7D26B84A23A8266800262380 /* ConversationMessageTests.swift */,
 				7D26B84C23A8267600262380 /* ConversationParticipantTests.swift */,
 				7D26B84823A81E5700262380 /* ConversationTests.swift */,
+				9FEBF1D723CE1E18001C824B /* CreateConversationTests.swift */,
 			);
 			path = Conversations;
 			sourceTree = "<group>";
@@ -2949,10 +2955,9 @@
 		B1445309212E5B8E0009D848 /* Use Cases */ = {
 			isa = PBXGroup;
 			children = (
-				3B3FCA3023802B800011F11A /* GetActivities.swift */,
-				3BA9FF7A2332B3BA00196A06 /* GradingPeriodUseCase.swift */,
 				3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */,
 				7DEB5C39224EB02A00F28404 /* CreateTextComment.swift */,
+				3B3FCA3023802B800011F11A /* GetActivities.swift */,
 				B150C623229733C50096D58C /* GetArc.swift */,
 				B1A32BE5215A81350071B41E /* GetAssignment.swift */,
 				3BF5C54E2187800B0081A858 /* GetAssignments.swift */,
@@ -2965,23 +2970,24 @@
 				7D64A974236759FA004EAEDF /* GetCourseSections.swift */,
 				7851D9B22138264800E76EC3 /* GetCustomColors.swift */,
 				B1999AAC2305AA7B00DA97A4 /* GetEnabledFeatureFlags.swift */,
+				EE424B3122E8BBEF00D083EE /* GetFrontPage.swift */,
 				9FE84DD9214FE06300B95A68 /* GetGroup.swift */,
 				B15CA270221DE1C80014FB02 /* GetModules.swift */,
 				9F4D24722331648B00EDFCFE /* GetPage.swift */,
 				EEC3EF6822E267BE00799FE2 /* GetPages.swift */,
-				EE424B3122E8BBEF00D083EE /* GetFrontPage.swift */,
-				9F87D07A2322F4C500EDA363 /* GetSearchRecipients.swift */,
 				7D819FFE228DB48C00C61EDD /* GetQuiz.swift */,
 				7DD371BE22E7B20900C2D0F7 /* GetQuizSubmission.swift */,
 				7DCF2043216D622B003AF358 /* GetQuizzes.swift */,
 				9FE21AAB226A0C1300A1D9AD /* GetRecentlyGradedSubmissions.swift */,
+				9F87D07A2322F4C500EDA363 /* GetSearchRecipients.swift */,
 				7D5AA3C52294AF9400438667 /* GetSSOLogin.swift */,
 				9FCD79D72188DFD00054293A /* GetSubmission.swift */,
 				7DA5C48B22385F95003CDB4C /* GetSubmissionComments.swift */,
 				B195DC44213201DE00797FE4 /* GetUserGroups.swift */,
 				9F84595B228F33620031034E /* GetUserSettings.swift */,
-				B1A8CD39223766FA00E2242D /* UploadManager.swift */,
+				3BA9FF7A2332B3BA00196A06 /* GradingPeriodUseCase.swift */,
 				B14B704C228F30A100B568D6 /* UploadFileComment.swift */,
+				B1A8CD39223766FA00E2242D /* UploadManager.swift */,
 				B17855B0226ABDB100B30C80 /* UploadMedia.swift */,
 				7D92D656224ACC7A0015B368 /* UploadMediaComment.swift */,
 				9FA690EF23C79489009D12D9 /* GetConversationCourses.swift */,
@@ -3843,6 +3849,7 @@
 				9767F2982383B846006633CA /* TokenLabelView.swift in Sources */,
 				7D364F2421AE04B20028E3EA /* CoreWebViewController.swift in Sources */,
 				7DF4FFCE21711EB3007E5F81 /* Group.swift in Sources */,
+				9F73859E23C904D200A9C6FE /* CreateConversation.swift in Sources */,
 				7DAC286B22B1701B00C0B692 /* QuizHideResults.swift in Sources */,
 				EE584C7F22F2048D00D1E201 /* PageListPresenter.swift in Sources */,
 				7D8262FB212B3B3000BD268D /* APIEnrollment.swift in Sources */,
@@ -4262,6 +4269,7 @@
 				B133A78A221F59A3000E393E /* ContextColorTests.swift in Sources */,
 				7D7110CC2139AB310085C2E5 /* URLComponentsExtensionsTests.swift in Sources */,
 				7DF4FFC121700BCE007E5F81 /* TabViewableTests.swift in Sources */,
+				9FEBF1D823CE1E18001C824B /* CreateConversationTests.swift in Sources */,
 				9F10A66F22931E7900E3360C /* GetUserSettingsTests.swift in Sources */,
 				B19792FB21769B320000369C /* QuizTests.swift in Sources */,
 				7D86285D224C15BA003A37DC /* UploadMediaCommentTests.swift in Sources */,

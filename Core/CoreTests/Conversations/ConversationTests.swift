@@ -37,4 +37,16 @@ class ConversationTests: CoreTestCase {
         conversation.workflowStateRaw = "bogus"
         XCTAssertEqual(conversation.workflowState, .read)
     }
+
+    func testUsesLastAuthoredIfLastIsNull() {
+        let apiConversation = APIConversation.make(
+            last_message: nil,
+            last_message_at: nil,
+            last_authored_message: "message",
+            last_authored_message_at: Date()
+        )
+        let conversation = Conversation.save(apiConversation, in: databaseClient)
+        XCTAssertEqual(conversation.lastMessage, apiConversation.last_authored_message)
+        XCTAssertEqual(conversation.lastMessageAt, apiConversation.last_authored_message_at)
+    }
 }
