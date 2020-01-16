@@ -47,6 +47,10 @@ public class ProfilePresenter {
         self?.view?.reload()
     }
 
+    lazy var profile = env.subscribe(GetUserProfile(userID: "self")) { [weak self] in
+        self?.view?.reload()
+    }
+
     var canActAsUser: Bool {
         if env.currentSession?.baseURL.host?.hasPrefix("siteadmin.") == true {
             return true
@@ -165,6 +169,7 @@ public class ProfilePresenter {
         permissions.refresh()
         settings.refresh()
         tools.refresh()
+        profile.refresh()
         if ExperimentalFeature.parentInbox.isEnabled {
             env.api.makeRequest(GetConversationsUnreadCountRequest()) { [weak self] (response, _, _) in performUIUpdate {
                 self?.unreadCount = response?.unread_count ?? 0

@@ -571,6 +571,7 @@
         <attribute name="id" attributeType="String"/>
         <attribute name="loginID" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
+        <attribute name="pronouns" optional="YES" attributeType="String"/>
     </entity>
     <entity name="UserSettings" representedClassName="Core.UserSettings" syncable="YES">
         <attribute name="collapseGlobalNav" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -622,7 +623,7 @@
         <element name="Todo" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
         <element name="User" positionX="-540" positionY="-27" width="128" height="193"/>
-        <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="133"/>
+        <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
     </elements>
 </model>

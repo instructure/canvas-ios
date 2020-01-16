@@ -87,16 +87,9 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        let session = AppEnvironment.shared.currentSession
-
         view?.backgroundColor = .named(.backgroundLightest)
 
         avatarButton?.accessibilityLabel = NSLocalizedString("Change Profile Image", bundle: .core, comment: "")
-        avatarView?.name = session?.userName ?? ""
-        avatarView?.url = session?.userAvatarURL
-
-        nameLabel?.text = session?.userName
-        emailLabel?.text = session?.userEmail
 
         tableView?.separatorColor = .named(.borderMedium)
         presenter?.viewIsReady()
@@ -108,6 +101,16 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
 
     public func reload() {
         tableView?.reloadData()
+        reloadProfile()
+    }
+
+    func reloadProfile() {
+        let profile = presenter?.profile.first
+        let userName = presenter?.profile.first?.name ?? env.currentSession?.userName
+        avatarView?.name = userName ?? ""
+        avatarView?.url = profile?.avatarURL
+        nameLabel?.text = userName.flatMap { User.displayName($0, pronouns: profile?.pronouns) }
+        emailLabel?.text = profile?.email
     }
 
     public func route(to: Route, options: RouteOptions?) {

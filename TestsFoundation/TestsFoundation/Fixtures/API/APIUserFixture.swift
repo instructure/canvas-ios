@@ -76,7 +76,8 @@ extension APIProfile {
         primary_email: String? = nil,
         login_id: String? = nil,
         avatar_url: URL? = nil,
-        calendar: APIProfile.APICalendar? = .make()
+        calendar: APIProfile.APICalendar? = .make(),
+        pronouns: String? = nil
     ) -> APIProfile {
         return APIProfile(
             id: id,
@@ -84,7 +85,8 @@ extension APIProfile {
             primary_email: primary_email,
             login_id: login_id,
             avatar_url: avatar_url.flatMap(APIURL.make(rawValue:)),
-            calendar: calendar
+            calendar: calendar,
+            pronouns: pronouns
         )
     }
 }

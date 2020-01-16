@@ -69,4 +69,5 @@ public struct APIProfile: Codable, Equatable {
     public let login_id: String?
     public let avatar_url: APIURL?
     public let calendar: APICalendar?
+    public let pronouns: String?
 }
