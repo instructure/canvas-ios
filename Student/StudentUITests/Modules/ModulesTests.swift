@@ -132,7 +132,7 @@ class MockedModulesTests: StudentUITestCase {
         mockBaseRequests()
     }
 
-    func testUnlockModuleItemWithPrerequisiteModule() {
+    func xtestUnlockModuleItemWithPrerequisiteModule() {
         let modules: [APIModule] = [
             .make(id: "1", name: "Module 1", position: 1, prerequisite_module_ids: [], state: .unlocked),
             .make(id: "2", name: "Module 2", position: 2, prerequisite_module_ids: ["1"], state: .locked),
