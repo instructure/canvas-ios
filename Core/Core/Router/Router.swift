@@ -19,7 +19,7 @@
 import UIKit
 
 public enum RouteOptions: Equatable {
-    case push(addDoneButton: Bool = false)
+    case push
     case detail(embedInNav: Bool = false)
     case modal(
         _ style: UIModalPresentationStyle? = nil,
