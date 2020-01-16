@@ -32,7 +32,7 @@ class RoutesTests: XCTestCase {
             userInfo = note.userInfo
             expectation.fulfill()
         }
-        router.route(to: route, from: UIViewController(), options: .noOptions)
+        router.route(to: route, from: UIViewController(), options: options)
         wait(for: [expectation], timeout: 0.5)
         NotificationCenter.default.removeObserver(observer)
         XCTAssertNotNil(userInfo)
