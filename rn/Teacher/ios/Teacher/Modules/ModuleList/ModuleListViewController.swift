@@ -218,6 +218,7 @@ extension ModuleListViewController: UITableViewDataSource {
 
 extension ModuleListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard store.count > indexPath.section, store[indexPath.section].items.count > indexPath.row else { return }
         let item = store[indexPath.section].items[indexPath.row]
         switch item.type {
         case .externalTool(let id, _):

@@ -16,9 +16,13 @@
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:rn">
-   </FileRef>
+   <Group
+      location = "group:rn"
+      name = "rn">
+      <FileRef
+         location = "group:Teacher">
+      </FileRef>
+   </Group>
    <FileRef
       location = "group:Student/Student.xcodeproj">
    </FileRef>
