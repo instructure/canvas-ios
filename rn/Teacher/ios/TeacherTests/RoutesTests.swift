@@ -18,11 +18,13 @@
 
 import Foundation
 import XCTest
+import Core
 @testable import Teacher
 
 class RoutesTests: XCTestCase {
-    func testRouteSendsNotification() {
-        let route = URLComponents(string: "https://canvas.instructure.com/api/v1/courses/1")!
+    let route = URLComponents(string: "https://canvas.instructure.com/api/v1/courses/1")!
+
+    func userInfoFromRoute(options: RouteOptions) -> [AnyHashable: Any]? {
         let expectation = self.expectation(description: "route notification")
         let name = NSNotification.Name("route")
         var userInfo: [AnyHashable: Any]?
@@ -30,30 +32,31 @@ class RoutesTests: XCTestCase {
             userInfo = note.userInfo
             expectation.fulfill()
         }
-        router.route(to: route, from: UIViewController(), options: nil)
+        router.route(to: route, from: UIViewController(), options: options)
         wait(for: [expectation], timeout: 0.5)
+        NotificationCenter.default.removeObserver(observer)
         XCTAssertNotNil(userInfo)
+        return userInfo
+    }
+
+    func testRouteSendsNotification() {
+        let userInfo = userInfoFromRoute(options: .noOptions)
         XCTAssertEqual(userInfo?["url"] as? String, route.url!.absoluteString)
         XCTAssertEqual(userInfo?["modal"] as? Bool, false)
         XCTAssertEqual(userInfo?["detail"] as? Bool, false)
-        NotificationCenter.default.removeObserver(observer)
     }
 
-    func testOptions() {
-        let route = URLComponents(string: "https://canvas.instructure.com/api/v1/courses/1")!
-        let expectation = self.expectation(description: "route notification")
-        let name = NSNotification.Name("route")
-        var userInfo: [AnyHashable: Any]?
-        let observer = NotificationCenter.default.addObserver(forName: name, object: nil, queue: nil) { note in
-            userInfo = note.userInfo
-            expectation.fulfill()
-        }
-        router.route(to: route, from: UIViewController(), options: [.modal, .detail])
-        wait(for: [expectation], timeout: 0.5)
-        XCTAssertNotNil(userInfo)
+    func testModalOption() {
+        let userInfo = userInfoFromRoute(options: .modal())
         XCTAssertEqual(userInfo?["url"] as? String, route.url!.absoluteString)
         XCTAssertEqual(userInfo?["modal"] as? Bool, true)
+        XCTAssertEqual(userInfo?["detail"] as? Bool, false)
+    }
+
+    func testDetailOption() {
+        let userInfo = userInfoFromRoute(options: .detail())
+        XCTAssertEqual(userInfo?["url"] as? String, route.url!.absoluteString)
+        XCTAssertEqual(userInfo?["modal"] as? Bool, false)
         XCTAssertEqual(userInfo?["detail"] as? Bool, true)
-        NotificationCenter.default.removeObserver(observer)
     }
 }

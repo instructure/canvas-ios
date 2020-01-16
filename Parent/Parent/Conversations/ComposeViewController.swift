@@ -114,7 +114,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
         )
         editRecipients.delegate = self
         let actionSheet = ActionSheetController(viewController: editRecipients)
-        env.router.show(actionSheet, from: self, options: [.modal])
+        env.router.show(actionSheet, from: self, options: .modal())
     }
 
     func fetchRecipients(completionHandler: (() -> Void)? = nil) {

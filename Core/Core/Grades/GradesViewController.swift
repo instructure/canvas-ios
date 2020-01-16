@@ -158,7 +158,7 @@ extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let assignment = grades.assignments[indexPath] else { return }
-        env.router.route(to: .course(courseID, assignment: assignment.id), from: self, options: nil)
+        env.router.route(to: .course(courseID, assignment: assignment.id), from: self)
     }
 
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
