@@ -88,7 +88,7 @@ extension APIModuleItem.ContentDetails {
 extension APIModuleItem.CompletionRequirement {
     public static func make(
         type: CompletionRequirementType = .must_view,
-        completed: Bool = false,
+        completed: Bool? = false,
         min_score: Double? = nil
     ) -> APIModuleItem.CompletionRequirement {
         return APIModuleItem.CompletionRequirement(type: type, completed: completed, min_score: min_score)
