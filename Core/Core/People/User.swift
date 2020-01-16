@@ -56,7 +56,7 @@ extension User {
     public static func displayName(_ name: String, pronouns: String?) -> String {
         return [
             name,
-            pronouns.flatMap { "(\($0))" }
+            pronouns.flatMap { "(\($0))" },
         ]
         .compactMap { $0 }
         .joined(separator: " ")
