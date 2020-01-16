@@ -233,7 +233,7 @@ extension ModuleListViewController: UITableViewDelegate {
             }
         default:
             if let url = item.url {
-                env.router.route(to: url, from: self, options: .init(detail: true))
+                env.router.route(to: url, from: self, options: .detail())
             }
         }
     }

@@ -86,6 +86,6 @@ class ActivityStreamTableViewController: FetchedTableViewController<CanvasCore.A
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         Analytics.shared.logEvent("notification_selected")
         let activity = collection[indexPath]
-        router.route(to: activity.url, from: self, options: .init(detail: true, embedInNav: true))
+        router.route(to: activity.url, from: self, options: .detail(embedInNav: true))
     }
 }

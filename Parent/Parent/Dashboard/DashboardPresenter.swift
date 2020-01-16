@@ -50,6 +50,6 @@ class DashboardPresenter {
         guard let view = view else {
             return
         }
-        env.router.route(to: .wrongApp, from: view, options: .modal(inPresentation: true, embedInNav: true))
+        env.router.route(to: .wrongApp, from: view, options: .modal(isDismissable: false, embedInNav: true))
     }
 }

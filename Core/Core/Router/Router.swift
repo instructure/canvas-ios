@@ -51,7 +51,7 @@ public enum RouteOptions: Equatable {
         }
     }
 
-    public static let noOptions = RouteOptions.push()
+    public static let noOptions = RouteOptions.push
 }
 
 public protocol RouterProtocol {
@@ -112,7 +112,7 @@ public extension RouterProtocol {
             from.present(nav ?? view, animated: true, completion: completion)
         case .detail where from.splitViewController != nil  && !from.isInSplitViewDetail:
             from.showDetailViewController(nav ?? view, sender: from)
-        default:
+        case .detail, .push:
             from.show(nav ?? view, sender: nil)
         }
     }

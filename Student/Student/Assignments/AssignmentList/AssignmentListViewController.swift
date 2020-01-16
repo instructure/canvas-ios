@@ -294,7 +294,7 @@ extension AssignmentListViewController: UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let a = assignment(for: indexPath)
         guard let url = a?.htmlUrl else { return }
-        env.router.route(to: url, from: self, options: .init(detail: true, embedInNav: true))
+        env.router.route(to: url, from: self, options: .detail(embedInNav: true))
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

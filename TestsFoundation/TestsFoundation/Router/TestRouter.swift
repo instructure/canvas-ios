@@ -24,7 +24,7 @@ public class TestRouter: RouterProtocol {
     public var calls = [(URLComponents, UIViewController, RouteOptions)]()
     public var viewControllerCalls = [(UIViewController, UIViewController, RouteOptions)]()
     public var presented: UIViewController? {
-        if viewControllerCalls.last?.2.modal != nil {
+        if viewControllerCalls.last?.2.isModal == true {
             return viewControllerCalls.last?.0
         }
         return nil
