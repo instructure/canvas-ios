@@ -33,6 +33,7 @@ import TypeAheadSearch from '../../common/TypeAheadSearch'
 import ListEmptyComponent from '../../common/components/ListEmptyComponent'
 import RowSeparator from '../../common/components/rows/RowSeparator'
 import CoursesActions from '../courses/actions'
+import { personDisplayName } from '../../common/formatters'
 
 export type AddressBookDataProps = {
   permissions: ?{ [string]: boolean },
@@ -152,7 +153,8 @@ export class AddressBook extends Component<AddressBookProps, State> {
       <Avatar avatarURL={item.avatar_url} userName={avatarName}/>
     </View>)
 
-    return <Row title={item.name}
+    return <Row
+      title={personDisplayName(item.name, item.pronouns)}
       border={border}
       renderImage={() => avatar}
       testID={item.id}

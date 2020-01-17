@@ -448,6 +448,7 @@ exports[`Inbox filters conversations based on course 1`] = `
                         },
                       ]
                     }
+                    testID="ConversationRow.1.names"
                   >
                     artorias of the abyss, solaire of astora
                   </Text>
@@ -466,6 +467,7 @@ exports[`Inbox filters conversations based on course 1`] = `
                           },
                         ]
                       }
+                      testID="ConversationRow.1.date"
                     >
                       5/31/2037
                     </Text>
@@ -1370,6 +1372,7 @@ exports[`Inbox renders correctly 1`] = `
                         },
                       ]
                     }
+                    testID="ConversationRow.1.names"
                   >
                     artorias of the abyss, solaire of astora
                   </Text>
@@ -1388,6 +1391,7 @@ exports[`Inbox renders correctly 1`] = `
                           },
                         ]
                       }
+                      testID="ConversationRow.1.date"
                     >
                       5/31/2037
                     </Text>
@@ -1537,6 +1541,7 @@ exports[`Inbox renders correctly 1`] = `
                         },
                       ]
                     }
+                    testID="ConversationRow.2.names"
                   >
                     artorias of the abyss, solaire of astora
                   </Text>
@@ -1555,6 +1560,7 @@ exports[`Inbox renders correctly 1`] = `
                           },
                         ]
                       }
+                      testID="ConversationRow.2.date"
                     >
                       5/31/2037
                     </Text>

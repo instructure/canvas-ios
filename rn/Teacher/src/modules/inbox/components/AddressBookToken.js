@@ -30,6 +30,7 @@ import { Text } from '../../../common/text'
 import icon from '../../../images/inst-icons'
 import { createStyleSheet } from '../../../common/stylesheet'
 import Avatar from '../../../common/components/Avatar'
+import { personDisplayName } from '../../../common/formatters'
 
 type Props = {
   item: AddressBookResult,
@@ -47,11 +48,12 @@ export default class AddressBookToken extends Component<Props, any> {
   }
 
   render () {
+    const { name, pronouns } = this.props.item
     const recipientAccessibilityLabel = i18n('Recipient: { recipient }', {
-      recipient: this.props.item.name,
+      recipient: name,
     })
     const deleteButtonAccessibilityLabel = i18n('Delete recipient { recipient }', {
-      recipient: this.props.item.name,
+      recipient: name,
     })
     return (
       <View style={styles.token} accessibilityLabel={recipientAccessibilityLabel}>
@@ -67,7 +69,7 @@ export default class AddressBookToken extends Component<Props, any> {
           style={{ marginLeft: TOKEN_SUBVIEW_SPACING }}
           testID={`message-recipient.${this.props.item.id}.label`}
         >
-          {this.props.item.name}
+          {personDisplayName(name, pronouns)}
         </Text>
         {this.props.canDelete &&
           <TouchableOpacity
