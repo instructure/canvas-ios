@@ -132,15 +132,15 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
             Section(NSLocalizedString("Legal", bundle: .core, comment: ""), rows: [
                 Row(NSLocalizedString("Privacy Policy", comment: "")) { [weak self] in
                     guard let self = self else { return }
-                    self.env.router.route(to: "https://www.instructure.com/policies/privacy/", from: self, options: nil)
+                    self.env.router.route(to: "https://www.instructure.com/policies/privacy/", from: self)
                 },
                 Row(NSLocalizedString("Terms of Use", comment: "")) { [weak self] in
                     guard let self = self else { return }
-                    self.env.router.route(to: .termsOfService(), from: self, options: nil)
+                    self.env.router.route(to: .termsOfService(), from: self)
                 },
                 Row(NSLocalizedString("Canvas on GitHub", comment: "")) { [weak self] in
                     guard let self = self else { return }
-                    self.env.router.route(to: "https://github.com/instructure/canvas-ios", from: self, options: nil)
+                    self.env.router.route(to: "https://github.com/instructure/canvas-ios", from: self)
                 },
             ]),
         ]

@@ -52,7 +52,7 @@ class CourseListPresenter {
     }
 
     func courseWasSelected(_ courseID: String, from controller: UIViewController) {
-        router.route(to: .course(courseID), from: controller, options: nil)
+        router.route(to: .course(courseID), from: controller)
     }
 
     func viewIsReady() {

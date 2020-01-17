@@ -72,6 +72,14 @@ class ConversationListViewControllerTests: ParentTestCase {
         XCTAssertNotNil(actionSheet?.viewController as? ConversationCoursesActionSheet)
     }
 
+    func testRouteToCompose() {
+        loadView()
+        let course = Course.make()
+        let user = User.make()
+        controller.courseSelected(course: course, user: user)
+        XCTAssertTrue(router.lastRoutedTo(Route.compose(context: course, observeeID: user.id, subject: course.name, hiddenMessage: "Regarding: \(user.name)"), withOptions: .modal(embedInNav: true)))
+    }
+
     func testErrorEmpty() {
         api.mock(controller.conversations, error: NSError.instructureError("Doh!"))
         loadView()

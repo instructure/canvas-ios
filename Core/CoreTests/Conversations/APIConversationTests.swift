@@ -70,4 +70,15 @@ class APIConversationTests: CoreTestCase {
         XCTAssertEqual(request.path, "conversations/1/add_message")
         XCTAssertEqual(request.method, .post)
     }
+
+    func testPostConversationRequest() {
+        let request = PostConversationRequest(body: PostConversationRequest.Body(
+            subject: "subject",
+            body: "body",
+            recipients: ["1"],
+            context_code: "course_5")
+        )
+        XCTAssertEqual(request.path, "conversations")
+        XCTAssertEqual(request.method, .post)
+    }
 }

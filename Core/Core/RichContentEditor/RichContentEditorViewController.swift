@@ -175,7 +175,7 @@ public class RichContentEditorViewController: UIViewController {
             }
             self?.updateLink(href: href, text: text)
         })
-        env.router.show(alert, from: self, options: .modal)
+        env.router.show(alert, from: self, options: .modal())
     }
 }
 
@@ -227,7 +227,7 @@ extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINa
         picker.imageExportPreset = .compatible
         picker.sourceType = UIImagePickerController.isSourceTypeAvailable(sourceType) ? sourceType : .photoLibrary
         picker.mediaTypes = [ kUTTypeImage as String, kUTTypeMovie as String ]
-        env.router.show(picker, from: self, options: .modal)
+        env.router.show(picker, from: self, options: .modal())
     }
 
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {

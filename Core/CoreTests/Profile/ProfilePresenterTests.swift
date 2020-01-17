@@ -192,7 +192,7 @@ class ProfilePresenterTests: CoreTestCase {
 
         var routedTo: Route?
         var routeExpectation: XCTestExpectation?
-        func route(to: Route, options: RouteOptions?) {
+        func route(to: Route, options: RouteOptions) {
             routedTo = to
             routeExpectation?.fulfill()
         }

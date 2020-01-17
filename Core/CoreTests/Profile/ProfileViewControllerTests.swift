@@ -34,6 +34,7 @@ class ProfileViewControllerTests: CoreTestCase {
         notificationPayload = nil
         didChangeUser = false
         didLogout = false
+        environment.mockStore = false
     }
 
     func loadView() {
@@ -43,7 +44,13 @@ class ProfileViewControllerTests: CoreTestCase {
 
     func testRender() {
         //  given
-        AppEnvironment.shared.currentSession = LoginSession.make(userAvatarURL: URL(string: "https://localhost/avatar.png")!, userEmail: "automated-test-Eve@instructure.com")
+        api.mock(GetUserProfileRequest(userID: "self"), value: .make(
+            name: "Eve",
+            primary_email: "automated-test-Eve@instructure.com",
+            avatar_url: URL(string: "https://localhost/avatar.png")!,
+            pronouns: nil
+        ))
+
         //  when
         loadView()
 
@@ -120,6 +127,22 @@ class ProfileViewControllerTests: CoreTestCase {
         // developer menu
         vc.tableView(vc.tableView!, didSelectRowAt: IndexPath(row: 6, section: 0))
         XCTAssertTrue(router.lastRoutedTo(Route.developerMenu))
+    }
+
+    func testPronouns() {
+        api.mock(GetUserProfileRequest(userID: "self"), value: .make(
+            name: "Eve",
+            primary_email: "automated-test-Eve@instructure.com",
+            pronouns: "She/Her")
+        )
+        AppEnvironment.shared.currentSession = LoginSession.make(
+            userAvatarURL: URL(string: "https://localhost/avatar.png")!,
+            userEmail: "automated-test-Eve@instructure.com"
+        )
+        loadView()
+        XCTAssertEqual(vc.emailLabel?.text, "automated-test-Eve@instructure.com")
+        XCTAssertEqual(vc.nameLabel?.text, "Eve (She/Her)")
+        XCTAssertEqual(vc.avatarView?.name, "Eve")
     }
 
     func reduxActionCalled(notification: Notification) {

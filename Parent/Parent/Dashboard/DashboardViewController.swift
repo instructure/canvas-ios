@@ -427,7 +427,7 @@ class DashboardViewController: UIViewController {
     }
 
     @IBAction func drawerDashboardButtonPressed(_ sender: UIButton) {
-        env.router.route(to: .profile, from: self, options: .modal)
+        env.router.route(to: .profile, from: self, options: .modal())
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

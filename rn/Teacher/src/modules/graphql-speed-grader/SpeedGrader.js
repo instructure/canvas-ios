@@ -268,7 +268,6 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
         getItemLayout={this.getItemLayout}
         showsHorizontalScrollIndicator={false}
         onMomentumScrollEnd={this.scrollEnded}
-        initialScrollIndex={this.state.currentPageIndex}
         style={{ marginLeft: -PAGE_GUTTER_HALF_WIDTH, marginRight: -PAGE_GUTTER_HALF_WIDTH }}
         ref={(e) => { this.scrollView = e }}
       />

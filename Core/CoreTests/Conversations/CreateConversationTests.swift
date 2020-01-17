@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,25 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import Core
-import CanvasCore
+import XCTest
+@testable import Core
 
-class Router: RouterProtocol {
-    func match(_ url: URLComponents) -> UIViewController? {
-        return nil
-    }
+class CreateConversationTests: CoreTestCase {
+    func testWritesData() {
+        let useCase = CreateConversation(subject: "subject", body: "body", recipientIDs: ["1"])
+        api.mock(useCase.request, value: [APIConversation.make(subject: "subject")])
 
-    func route(to url: URLComponents, from: UIViewController, options: RouteOptions) {
-        guard let url = url.url else { return }
-        let name = NSNotification.Name("route")
-        let userInfo: [AnyHashable: Any] = [
-            "url": url.absoluteString,
-            "modal": options.isModal,
-            "detail": options.isDetail,
-        ]
-        NotificationCenter.default.post(name: name, object: nil, userInfo: userInfo)
+        useCase.fetch()
+        let conversation: Conversation = databaseClient.fetch().first!
+        XCTAssertNotNil(conversation)
+        XCTAssertEqual(conversation.subject, "subject")
     }
 }
-
-let router = Router()

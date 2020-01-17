@@ -218,6 +218,7 @@ extension ModuleListViewController: UITableViewDataSource {
 
 extension ModuleListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard store.count > indexPath.section, store[indexPath.section].items.count > indexPath.row else { return }
         let item = store[indexPath.section].items[indexPath.row]
         switch item.type {
         case .externalTool(let id, _):
@@ -228,12 +229,12 @@ extension ModuleListViewController: UITableViewDelegate {
         case .externalURL(let url):
             let safari = SFSafariViewController(url: url)
             safari.modalPresentationStyle = .overFullScreen
-            env.router.show(safari, from: self, options: [.modal]) {
+            env.router.show(safari, from: self, options: .modal()) {
                 tableView.deselectRow(at: indexPath, animated: true)
             }
         default:
             if let url = item.url {
-                env.router.route(to: url, from: self, options: [.detail])
+                env.router.route(to: url, from: self, options: .detail())
             }
         }
     }

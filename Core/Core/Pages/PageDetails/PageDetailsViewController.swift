@@ -69,7 +69,7 @@ public class PageDetailsViewController: UIViewController, PageDetailsViewProtoco
             guard let vc = self, let page = vc.presenter.page else {
                 return
             }
-            self?.env.router.route(to: page.htmlURL.appendingPathComponent("edit"), from: vc, options: [.modal, .embedInNav, .formSheet])
+            self?.env.router.route(to: page.htmlURL.appendingPathComponent("edit"), from: vc, options: .modal(.formSheet, embedInNav: true))
         })
 
         if presenter.canDelete() {
@@ -78,7 +78,7 @@ public class PageDetailsViewController: UIViewController, PageDetailsViewProtoco
             })
         }
         alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
-        env.router.show(alert, from: self, options: [.modal])
+        env.router.show(alert, from: self, options: .modal())
     }
 
     func showDeleteConfirmation() {
@@ -87,7 +87,7 @@ public class PageDetailsViewController: UIViewController, PageDetailsViewProtoco
         alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .destructive) { [weak self] _ in
             self?.presenter.deletePage()
         })
-        env.router.show(alert, from: self, options: nil)
+        env.router.show(alert, from: self)
     }
 
     func update() {

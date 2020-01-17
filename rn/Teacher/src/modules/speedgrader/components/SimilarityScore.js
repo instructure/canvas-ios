@@ -176,8 +176,7 @@ export function mapStateToProps (state: AppState, ownProps: OwnProps): StateProp
   const { submissionID } = ownProps
 
   if (submissionID &&
-    state.entities.submissions[submissionID] &&
-    state.entities.submissions[submissionID].submission) {
+    state.entities.submissions[submissionID]?.submission) {
     // get selected submission
     const submissionData = state.entities.submissions[submissionID]
     const { submission, selectedIndex, selectedAttachmentIndex } = submissionData

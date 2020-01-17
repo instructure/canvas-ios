@@ -156,14 +156,14 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     }
 
     @IBAction func viewModules() {
-        env.router.route(to: Route.modules(forCourse: context.id), from: self, options: nil)
+        env.router.route(to: Route.modules(forCourse: context.id), from: self)
     }
 
     @objc func share(_ sender: UIBarButtonItem) {
         guard let url = localURL else { return }
         let controller = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         controller.popoverPresentationController?.barButtonItem = sender
-        env.router.show(controller, from: self, options: .modal)
+        env.router.show(controller, from: self, options: .modal())
     }
 }
 
@@ -280,7 +280,7 @@ extension FileDetailsViewController: QLPreviewControllerDataSource, QLPreviewCon
     @IBAction func openQLPreview() {
         let controller = QLPreviewController()
         controller.dataSource = self
-        env.router.show(controller, from: self, options: .modal)
+        env.router.show(controller, from: self, options: .modal())
     }
 
     public func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
