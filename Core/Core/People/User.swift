@@ -57,7 +57,7 @@ extension User: WriteableModel {
 extension User {
     public static func displayName(_ name: String, pronouns: String?) -> String {
         if let pronouns = pronouns {
-            let format = NSLocalizedString("%@ (%@)", comment: "Name and pronouns - John (He/Him)")
+            let format = NSLocalizedString("User.displayName", bundle: .core, value: "%@ (%@)", comment: "Name and pronouns - John (He/Him)")
             return String.localizedStringWithFormat(format, name, pronouns)
         }
         return name
