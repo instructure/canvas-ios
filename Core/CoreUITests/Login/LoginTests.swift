@@ -20,8 +20,9 @@ import XCTest
 import TestsFoundation
 
 class LoginTests: CoreUITestCase {
-    override var abstractTestClass: CoreUITestCase.Type { return LoginTests.self }
-    override var user: UITestUser? { return nil }
+    override var abstractTestClass: CoreUITestCase.Type { LoginTests.self }
+    override var user: UITestUser? { nil }
+    override var useMocks: Bool { false }
 
     func testFindSchool() {
         XCTAssertEqual(LoginStart.findSchoolButton.label(), "Find my school")
