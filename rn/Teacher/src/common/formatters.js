@@ -125,3 +125,10 @@ export function formatStudentGrade (assignment: Assignment) {
       return ''
   }
 }
+
+export function personDisplayName (name, pronouns) {
+  if (pronouns != null) {
+    return i18n('{name} ({pronouns})', { name, pronouns })
+  }
+  return name
+}
