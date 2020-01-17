@@ -43,7 +43,7 @@ public struct APIModuleItem: Codable, Equatable {
             case must_view, must_submit, must_contribute, min_score, must_mark_done
         }
         public let type: CompletionRequirementType
-        public let completed: Bool
+        public let completed: Bool?
         public let min_score: Double?
     }
 
