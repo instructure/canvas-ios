@@ -449,12 +449,12 @@ export function mapStateToProps (state: AppState, ownProps: GradePickerOwnProps)
     }
   }
 
-  let submission = state.entities.submissions[ownProps.submissionID].submission
+  let submission = state.entities.submissions[ownProps.submissionID]?.submission || {}
   return {
     excused: submission.excused,
     grade: submission.grade || '',
     score: submission.score,
-    pending: Boolean(state.entities.submissions[ownProps.submissionID].pending),
+    pending: Boolean(state.entities.submissions[ownProps.submissionID]?.pending),
     gradingType: assignment.grading_type,
     pointsPossible: assignment.points_possible,
     late: submission.late,
