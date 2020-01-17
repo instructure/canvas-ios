@@ -132,7 +132,7 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol,
         }
     }
 
-    @objc func filter() {
+    @objc func filter(_ sender: UIButton) {
         guard enrollmentType == nil else {
             enrollmentType = nil
             return updateUsers()
@@ -145,6 +145,7 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol,
             })
         }
         alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
+        alert.popoverPresentationController?.sourceView = sender
         env.router.show(alert, from: self, options: .modal())
     }
 }
@@ -196,7 +197,7 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
         let header: FilterHeaderView = tableView.dequeueHeaderFooter()
         header.titleLabel.text = enrollmentType?.name ?? NSLocalizedString("All People", bundle: .core, comment: "")
         header.filterButton.removeTarget(self, action: nil, for: .primaryActionTriggered)
-        header.filterButton.addTarget(self, action: #selector(filter), for: .primaryActionTriggered)
+        header.filterButton.addTarget(self, action: #selector(filter(_:)), for: .primaryActionTriggered)
         header.filterButton.setTitle(enrollmentType == nil
             ? NSLocalizedString("Filter", bundle: .core, comment: "")
             : NSLocalizedString("Clear filter", bundle: .core, comment: ""), for: .normal)
