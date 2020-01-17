@@ -72,12 +72,12 @@ echo
 
 xcodebuild -workspace Canvas.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 8' -scheme $TEST_SCHEME build-for-testing 2>&1 | xcpretty
 
-jobs=6
+jobs=1
 
 parallel '
 set -euo pipefail
 xcrun simctl delete ip8-{} || true
-xcrun simctl create ip8-{} "iPhone 8" com.apple.CoreSimulator.SimRuntime.iOS-13-0
+xcrun simctl create ip8-{} "iPhone 8" com.apple.CoreSimulator.SimRuntime.iOS-13-2
 xcrun simctl boot ip8-{}
 ' ::: $(seq $jobs)
 

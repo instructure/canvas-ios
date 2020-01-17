@@ -24,37 +24,41 @@ public class MockDistantURLSession: URLSession {
     public typealias DataHandler = (Data?, URLResponse?, Error?) -> Void
     public typealias URLHandler = (URL?, URLResponse?, Error?) -> Void
 
-    static let defaultURLSession = URLSessionAPI.defaultURLSession
-    static let cachingURLSession = URLSessionAPI.cachingURLSession
-    static let delegateURLSession = URLSessionAPI.delegateURLSession
-    static let noFollowRedirectSession = URLSessionAPI.noFollowRedirectURLSession
-    static let api = AppEnvironment.shared.api
+    struct Defaults {
+        let defaultURLSession = URLSessionAPI.defaultURLSession
+        let cachingURLSession = URLSessionAPI.cachingURLSession
+        let delegateURLSession = URLSessionAPI.delegateURLSession
+        let noFollowRedirectSession = URLSessionAPI.noFollowRedirectURLSession
+        let api = AppEnvironment.shared.api
+    }
+    static let defaults = Defaults()
 
     @objc public static var isSetup: Bool {
         URLSessionAPI.defaultURLSession is MockDistantURLSession
     }
 
-    static func setup() {
-        guard !isSetup else { return }
-        let session = MockDistantURLSession()
-        URLSessionAPI.defaultURLSession = session
-        URLSessionAPI.cachingURLSession = session
-        URLSessionAPI.noFollowRedirectURLSession = session
-        URLSessionAPI.delegateURLSession = { config, delegate, queue in
+    static func reset(useMocks: Bool) {
+        // force initialization of static lazy variable
+        _ = defaults
+        if useMocks {
             let session = MockDistantURLSession()
-            session.mockConfiguration = config
-            session.mockDelegate = delegate
-            return session
+            URLSessionAPI.defaultURLSession = session
+            URLSessionAPI.cachingURLSession = session
+            URLSessionAPI.noFollowRedirectURLSession = session
+            URLSessionAPI.delegateURLSession = { config, delegate, queue in
+                let session = MockDistantURLSession()
+                session.mockConfiguration = config
+                session.mockDelegate = delegate
+                return session
+            }
+            AppEnvironment.shared.api = URLSessionAPI()
+        } else {
+            URLSessionAPI.defaultURLSession = defaults.defaultURLSession
+            URLSessionAPI.cachingURLSession = defaults.cachingURLSession
+            URLSessionAPI.delegateURLSession = defaults.delegateURLSession
+            URLSessionAPI.noFollowRedirectURLSession = defaults.noFollowRedirectSession
+            AppEnvironment.shared.api = defaults.api
         }
-        AppEnvironment.shared.api = URLSessionAPI()
-    }
-
-    static func reset() {
-        URLSessionAPI.defaultURLSession = defaultURLSession
-        URLSessionAPI.cachingURLSession = cachingURLSession
-        URLSessionAPI.delegateURLSession = delegateURLSession
-        URLSessionAPI.noFollowRedirectURLSession = noFollowRedirectSession
-        AppEnvironment.shared.api = api
     }
 
     private var mockConfiguration: URLSessionConfiguration?
@@ -94,6 +98,9 @@ public class MockDistantURLSession: URLSession {
 
     func resume(task: MockSessionTask) {
         let request = task.request
+        if request.url?.host == "iosauto.instructure.com" {
+            print("request for iosauto in MockDistantURLSession!")
+        }
         print("\(request.httpMethod ?? "GET") - \(request.url?.absoluteString ?? "nil")")
         UITestHelpers.shared!.send(.urlRequest(request)) { responseData in
             if let data = responseData,
