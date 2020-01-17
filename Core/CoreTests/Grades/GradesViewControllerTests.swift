@@ -290,6 +290,73 @@ class GradesViewControllerTests: CoreTestCase {
         XCTAssertEqual(viewController.totalGradeLabel.text, "N/A")
     }
 
+    func testRestartLoadingAnimations() {
+        let tasks = setupMocks()
+        tasks.forEach({ $0.suspend() })
+        let viewController = GradesViewController.create(courseID: "1", userID: "1")
+        viewController.view.layoutIfNeeded()
+        viewController.itemWillBeDisplayed()
+        XCTAssertTrue(viewController.activityIndicator.isAnimating)
+    }
+
+    func testRestartRefreshControl() {
+        let tasks = setupMocks()
+        tasks.forEach({ $0.suspend() })
+        let viewController = GradesViewController.create(courseID: "1", userID: "1")
+        viewController.view.layoutIfNeeded()
+        viewController.tableView.refreshControl?.beginRefreshing()
+        viewController.itemWillBeDisplayed()
+        XCTAssertTrue(viewController.tableView.refreshControl!.isRefreshing)
+    }
+
+    @discardableResult
+    func setupMocks() -> [URLSessionTask] {
+        var tasks: [URLSessionTask] = []
+        tasks.append(api.mock(
+            GetCourseRequest(courseID: "1"),
+            value: .make(id: "1", enrollments: [
+                .make(
+                    enrollment_state: .active,
+                    type: "student",
+                    user_id: "1",
+                    computed_current_score: 100,
+                    multiple_grading_periods_enabled: false,
+                    current_grading_period_id: nil,
+                    current_period_computed_current_score: nil
+                ),
+            ])
+        ))
+        mockEnrollments(gradingPeriodID: nil, currentScore: 100)
+        tasks.append(api.mock(
+            GetAssignmentGroupsRequest(courseID: "1", gradingPeriodID: nil, include: [.assignments]),
+            value: [
+                .make(id: "1", name: "One", position: 1, assignments: [.make(id: "1")]),
+                .make(id: "2", name: "Two", position: 2, assignments: [.make(id: "2")]),
+            ]
+        ))
+        tasks.append(api.mock(
+            GetAssignmentsRequest(courseID: "1", orderBy: .position, include: [.observed_users, .submission], perPage: 99),
+            value: [
+                .make(
+                    id: "1",
+                    course_id: "1",
+                    name: "Assignment One",
+                    points_possible: 10,
+                    due_at: nil,
+                    submission: .make(assignment_id: "1", user_id: "1", score: 9, late: true),
+                    assignment_group_id: "1"
+                ),
+                .make(
+                    id: "2",
+                    course_id: "1",
+                    submission: .make(assignment_id: "2", user_id: "1"),
+                    assignment_group_id: "2"
+                ),
+            ]
+        ))
+        return tasks
+    }
+
     func mockEnrollments(gradingPeriodID: String?, currentScore: Double?) {
         api.mock(
             GetEnrollmentsRequest(context: ContextModel(.course, id: "1"), userID: "1", gradingPeriodID: gradingPeriodID),

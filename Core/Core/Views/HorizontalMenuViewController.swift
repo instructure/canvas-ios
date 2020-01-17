@@ -201,6 +201,13 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
         }
     }
 
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard collectionView != menu, let item = delegate?.viewControllers[indexPath.row] as? HorizontalPagedMenuItem else {
+            return
+        }
+        item.itemWillBeDisplayed()
+    }
+
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
       if scrollView == pages {
           underlineLeftConstraint?.constant = scrollView.contentOffset.x / CGFloat(itemCount)
@@ -302,4 +309,8 @@ public extension HorizontalPagedMenuDelegate {
     var menuItemDefaultColor: UIColor? { UIColor.named(.textDark) }
 
     var menuItemFont: UIFont { .scaledNamedFont(.semibold16) }
+}
+
+public protocol HorizontalPagedMenuItem {
+    func itemWillBeDisplayed()
 }

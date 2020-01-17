@@ -23,13 +23,14 @@ public protocol ColorDelegate: class {
     var iconColor: UIColor? { get }
 }
 
-public class GradesViewController: UIViewController {
+public class GradesViewController: UIViewController, HorizontalPagedMenuItem {
     @IBOutlet weak var filterButton: DynamicButton!
     @IBOutlet weak var totalGradeLabel: DynamicLabel!
     @IBOutlet weak var gradingPeriodLabel: DynamicLabel!
     @IBOutlet weak var gradingPeriodView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     public weak var colorDelegate: ColorDelegate?
 
     let env = AppEnvironment.shared
@@ -133,6 +134,17 @@ public class GradesViewController: UIViewController {
             headerView.frame.size.height = height
             tableView.tableHeaderView = headerView
             view.setNeedsLayout()
+        }
+    }
+
+    public func itemWillBeDisplayed() {
+        if grades.isPending == true && tableView.refreshControl?.isRefreshing == false {
+            activityIndicator.startAnimating()
+        } else if grades.isPending == true && tableView.refreshControl?.isRefreshing == true {
+            let offset = tableView.contentOffset
+            tableView.refreshControl?.endRefreshing()
+            tableView.refreshControl?.beginRefreshing()
+            tableView.contentOffset = offset
         }
     }
 }
