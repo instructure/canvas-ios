@@ -145,7 +145,7 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol,
             })
         }
         alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
-        env.router.show(alert, from: self, options: .modal)
+        env.router.show(alert, from: self, options: .modal())
     }
 }
 
@@ -222,7 +222,7 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let user = users[indexPath.row] else { return }
-        env.router.route(to: "/\(context.pathComponent)/users/\(user.id)", from: self, options: [ .detail, .embedInNav ])
+        env.router.route(to: "/\(context.pathComponent)/users/\(user.id)", from: self, options: .detail(embedInNav: true))
     }
 }
 
@@ -235,7 +235,7 @@ class PeopleListCell: UITableViewCell {
         backgroundColor = .named(.backgroundLightest)
         avatarView.name = user?.name ?? ""
         avatarView.url = user?.avatarURL
-        nameLabel.text = user?.name
+        nameLabel.text = user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) }
         let roles = user?.enrollments?.compactMap { $0.formattedRole }.sorted() ?? []
         rolesLabel.text = ListFormatter.localizedString(from: roles)
         rolesLabel.isHidden = roles.isEmpty

@@ -68,7 +68,7 @@ class CalendarEventWeekPageViewController: UIViewController {
                 syllabusButton.accessibilityLabel = NSLocalizedString("Syllabus", comment: "Syllabus Button Title")
                 syllabusButton.accessibilityIdentifier = "syllabus_button"
                 let syllabus = Action<(), (), Never> { _ in
-                    env.router.route(to: .syllabus(courseID: courseID), from: controller, options: nil)
+                    env.router.route(to: .syllabus(courseID: courseID), from: controller)
                     return .empty
                 }
                 syllabusButton.reactive.pressed = CocoaAction(syllabus)

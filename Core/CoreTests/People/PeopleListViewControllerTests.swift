@@ -36,7 +36,8 @@ class PeopleListViewControllerTests: CoreTestCase {
                 name: "Jane",
                 sortable_name: "jane doe",
                 short_name: "jane",
-                enrollments: [ .make(id: "2", role: "StudentEnrollment"), .make(id: "3", role: "Custom") ]
+                enrollments: [ .make(id: "2", role: "StudentEnrollment"), .make(id: "3", role: "Custom") ],
+                pronouns: "She/Her"
             ),
         ])
         api.mock(GetConversationRecipientsRequest(search: "", context: "course_1", includeContexts: true), value: [
@@ -66,7 +67,7 @@ class PeopleListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.rolesLabel.text, "")
 
         cell = controller.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? PeopleListCell
-        XCTAssertEqual(cell?.nameLabel.text, "Jane")
+        XCTAssertEqual(cell?.nameLabel.text, "Jane (She/Her)")
         XCTAssertEqual(cell?.rolesLabel.text, "Custom and Student")
 
         api.mock(controller.users, value: [ .make(name: "George") ])

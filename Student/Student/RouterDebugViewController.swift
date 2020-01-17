@@ -21,34 +21,34 @@ import Core
 
 struct DebugRoute {
     let path: String
-    let options: RouteOptions?
+    let options: RouteOptions
 
-    init(_ path: String, _ options: RouteOptions? = nil) {
+    init(_ path: String, _ options: RouteOptions = .noOptions) {
         self.path = path
         self.options = options
     }
 }
 
-let routes = [
-    DebugRoute("/login"),
-    DebugRoute("/courses"),
-    DebugRoute("/courses/165/assignments/2228/submissions/12"),
-    DebugRoute("/courses/167/assignments/1956/submissions/12"),
-    DebugRoute("/courses/159/assignments/2029"),
-    DebugRoute("/courses/159/assignments/2224"),
-    DebugRoute("/courses/167/assignments/1958"),
-    DebugRoute("/courses/165/assignments/2214"),
-    DebugRoute("/courses/165/assignments/2220"),
-    DebugRoute("/courses/177/assignments/1933"),
-    DebugRoute("/courses/167/quizzes"),
-    DebugRoute("/courses/162/assignments/1916/fileupload"),
-    DebugRoute("courses/162/assignments/1901/submissions/12", [.embedInNav]),
-    DebugRoute("courses/159/assignments/1932/submissions/12", [.embedInNav]),
-    DebugRoute("courses/162/assignments/1901/submissions/12/urlsubmission", [.modal, .embedInNav]),
-    DebugRoute("/logs", [.modal, .embedInNav]),
-]
+class RouterDebugViewController: UITableViewController {
+    let routes = [
+        DebugRoute("/login"),
+        DebugRoute("/courses"),
+        DebugRoute("/courses/165/assignments/2228/submissions/12"),
+        DebugRoute("/courses/167/assignments/1956/submissions/12"),
+        DebugRoute("/courses/159/assignments/2029"),
+        DebugRoute("/courses/159/assignments/2224"),
+        DebugRoute("/courses/167/assignments/1958"),
+        DebugRoute("/courses/165/assignments/2214"),
+        DebugRoute("/courses/165/assignments/2220"),
+        DebugRoute("/courses/177/assignments/1933"),
+        DebugRoute("/courses/167/quizzes"),
+        DebugRoute("/courses/162/assignments/1916/fileupload"),
+        DebugRoute("courses/162/assignments/1901/submissions/12", .modal(.fullScreen, embedInNav: true)),
+        DebugRoute("courses/159/assignments/1932/submissions/12", .modal(.fullScreen, embedInNav: true)),
+        DebugRoute("courses/162/assignments/1901/submissions/12/urlsubmission", .modal(embedInNav: true)),
+        DebugRoute("/logs", .modal(embedInNav: true)),
+    ]
 
-class RouterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()

@@ -185,7 +185,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
         guard let userID = userID else {
             return
         }
-        env.router.route(to: .submission(forCourse: courseID, assignment: assignmentID, user: userID), from: view, options: nil)
+        env.router.route(to: .submission(forCourse: courseID, assignment: assignmentID, user: userID), from: view)
     }
 
     func route(to url: URL, from view: UIViewController) -> Bool {
@@ -196,7 +196,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
                 URLQueryItem(name: "assignmentID", value: assignmentID)
             )
         }
-        env.router.route(to: dest, from: view, options: nil)
+        env.router.route(to: dest, from: view)
         return true
     }
 

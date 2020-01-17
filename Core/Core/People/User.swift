@@ -29,6 +29,7 @@ public final class User: NSManagedObject {
     @NSManaged public var courseID: String?
     @NSManaged public var groupID: String?
     @NSManaged public var enrollments: Set<Enrollment>?
+    @NSManaged public var pronouns: String?
 }
 
 extension User: WriteableModel {
@@ -41,6 +42,7 @@ extension User: WriteableModel {
         user.sortableName = item.sortable_name
         user.email = item.email
         user.avatarURL = item.avatar_url?.rawValue
+        user.pronouns = item.pronouns
         if let enrollments = item.enrollments {
             user.enrollments = Set(enrollments.map { item in
                 let enrollment = context.insert() as Enrollment

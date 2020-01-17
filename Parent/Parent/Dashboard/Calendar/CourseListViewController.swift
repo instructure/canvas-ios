@@ -72,6 +72,6 @@ class CourseListViewController: FetchedTableViewController<CanvasCore.Course> {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let course = collection[indexPath]
-        AppEnvironment.shared.router.route(to: .courseGrades(course.id), from: self, options: nil)
+        AppEnvironment.shared.router.route(to: .courseGrades(course.id), from: self)
     }
 }
