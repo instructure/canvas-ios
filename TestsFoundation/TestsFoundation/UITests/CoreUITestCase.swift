@@ -89,6 +89,9 @@ open class CoreUITestCase: XCTestCase {
                 homeScreen.waitToExist()
             }
         }
+        if useMocks {
+            mockEncodableRequest("/login/oauth2/token", value: [String]())
+        }
         reset()
         send(.enableExperimentalFeatures(experimentalFeatures))
 
@@ -96,10 +99,8 @@ open class CoreUITestCase: XCTestCase {
             // Clear old log
             try? FileManager.default.removeItem(atPath: logPath)
         }
-        // re-install the existing mocks
         if let user = user {
             logInUser(user)
-            homeScreen.waitToExist()
         }
     }
 
@@ -117,7 +118,7 @@ open class CoreUITestCase: XCTestCase {
         // and also write the request/response in plain text to the log file
         case passThruAndLog(toPath: String)
     }
-    public var missingMockBehavior: MissingMockBehavior = .failTest
+    open var missingMockBehavior: MissingMockBehavior = .failTest
 
     static var currentTestCase: CoreUITestCase?
 

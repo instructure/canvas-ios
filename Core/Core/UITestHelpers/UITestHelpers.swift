@@ -168,8 +168,9 @@ public class UITestHelpers {
         UserDefaults.standard.removeObject(forKey: MDMManager.MDMUserDefaultsKey)
 
         guard let loginDelegate = appDelegate as? LoginDelegate, let window = window else { fatalError() }
-        if let session = AppEnvironment.shared.currentSession {
-            loginDelegate.userDidStopActing(as: session)
+        if useMocks, let session = AppEnvironment.shared.currentSession {
+            // caching is ok for a real session, but bad for a mocked one
+            loginDelegate.userDidLogout(session: session)
         }
 
         // horrible hack to get rid of old modally presented controllers that stick around after the rootViewController is changed
@@ -205,6 +206,7 @@ public class UITestHelpers {
     func logIn(_ entry: LoginSession) {
         guard let loginDelegate = appDelegate as? LoginDelegate else { fatalError() }
         loginDelegate.userDidLogin(session: entry)
+        resetDatabase()
     }
 
     func show(_ route: String) {

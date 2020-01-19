@@ -26,6 +26,7 @@ class AssignmentDetailsTests: StudentUITestCase {
     lazy var course = mock(course: .make())
 
     func testUnsubmittedUpload() {
+        // FLAKY: color cache doesn't always get updated
         mockBaseRequests()
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
             course.canvasContextID: "#123456",
@@ -136,6 +137,7 @@ class AssignmentDetailsTests: StudentUITestCase {
             submission_types: [ .none ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertEqual(AssignmentDetails.name.label(), assignment.name)
         XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
     }
 
@@ -144,8 +146,8 @@ class AssignmentDetailsTests: StudentUITestCase {
         let assignment = mock(assignment: .make(
             submission_types: [ .not_graded ]
         ))
-        mockData(GetWebSessionRequest(to: URL(string: "https://canvas.instructure.com/courses/1/assignments1")))
-        show("/courses/\(course.id)/assignments\(assignment.id)")
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertEqual(AssignmentDetails.name.label(), assignment.name)
         XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
     }
 
@@ -156,6 +158,7 @@ class AssignmentDetailsTests: StudentUITestCase {
             submission_types: [.online_text_entry]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertEqual(AssignmentDetails.name.label(), assignment.name)
         XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
     }
 
@@ -214,6 +217,7 @@ class AssignmentDetailsTests: StudentUITestCase {
             submission_types: [ .online_upload ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertEqual(AssignmentDetails.name.label(), assignment.name)
         XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
     }
 
