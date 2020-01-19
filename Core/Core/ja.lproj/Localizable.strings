@@ -179,6 +179,9 @@
 "Conversation Message" = "会話メッセージ";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
 "Conversations" = "会話";
 
 /* No comment provided by engineer. */
@@ -467,6 +470,12 @@
 "Manual OAuth Login" = "手動 O承認ログイン";
 
 /* No comment provided by engineer. */
+"me" = "私";
+
+/* No comment provided by engineer. */
+"me & %@" = "私＆%@";
+
+/* No comment provided by engineer. */
 "Media Recording" = "メディアレコーディング";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "経過時間";
+
+/* No comment provided by engineer. */
+"to %@" = "～へ%@";
 
 /* No comment provided by engineer. */
 "To Do" = "タスク";

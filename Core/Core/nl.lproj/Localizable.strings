@@ -179,6 +179,9 @@
 "Conversation Message" = "Gespreksbericht";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
 "Conversations" = "Gesprekken";
 
 /* No comment provided by engineer. */
@@ -467,6 +470,12 @@
 "Manual OAuth Login" = "Handmatige OAuth Login";
 
 /* No comment provided by engineer. */
+"me" = "mij";
+
+/* No comment provided by engineer. */
+"me & %@" = "mij en %@";
+
+/* No comment provided by engineer. */
 "Media Recording" = "Media opnames";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Verstreken tijd";
+
+/* No comment provided by engineer. */
+"to %@" = "tot %@";
 
 /* No comment provided by engineer. */
 "To Do" = "Opdrachtenlijst";

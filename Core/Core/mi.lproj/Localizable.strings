@@ -179,6 +179,9 @@
 "Conversation Message" = "Karere Kōrerorero";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
 "Conversations" = "kōrerorero";
 
 /* No comment provided by engineer. */
@@ -467,6 +470,12 @@
 "Manual OAuth Login" = "Mahi ā ringa OAuth Takiuru";
 
 /* No comment provided by engineer. */
+"me" = "ahau";
+
+/* No comment provided by engineer. */
+"me & %@" = "ahau & %@";
+
+/* No comment provided by engineer. */
 "Media Recording" = "Hopu pāpāho";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Kua mutu te wā";
+
+/* No comment provided by engineer. */
+"to %@" = "kī %@";
 
 /* No comment provided by engineer. */
 "To Do" = "Hei mahi";

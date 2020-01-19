@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(Ni zadeve)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d od %3$d";
 
@@ -9,6 +12,12 @@
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ se začne ob %2$@";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, %@, last message %@ %@" = "%1$@, %2$@, zadnje sporočilo %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, neprebrano";
 
 /* Percentage field placeholder */
 "1-100%" = "1–100 %";
@@ -56,6 +65,9 @@
 "Back" = "Nazaj";
 
 /* No comment provided by engineer. */
+"Calendar Event" = "Dogodek koledarja";
+
+/* No comment provided by engineer. */
 "Cancel" = "Prekliči";
 
 /* Percent value is over 100 */
@@ -69,6 +81,9 @@
 
 /* No comment provided by engineer. */
 "Choose a student" = "Izberi študenta";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Sestavi novo sporočilo";
 
 /* Course Announcement Description */
 "Course announcements" = "Obvestila o predmetu";
@@ -119,6 +134,12 @@
 "In-Class" = "V razredu";
 
 /* No comment provided by engineer. */
+"Inbox" = "Pošta";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Nabiralnik je prazen";
+
+/* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Vnesite kodo za vzpostavljanje povezave študentov, ki ste jo prejeli.";
 
 /* Institution Announcement Description */
@@ -149,10 +170,22 @@
 "Manage Children" = "Urejaj otroke";
 
 /* No comment provided by engineer. */
+"Message" = "Sporočilo";
+
+/* No comment provided by engineer. */
 "Missing" = "Manjkajoče";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Manjkajoče: (–/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Manjkajoče: %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Manjkajoče: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Novo sporočilo";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Naslednji teden";
@@ -165,6 +198,9 @@
 
 /* Empty Students Text */
 "No Students" = "Ni študentov.";
+
+/* No comment provided by engineer. */
+"No Subject" = "Ni kratkega opisa predmeta.";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Ta teden ni ničesar.";
@@ -182,7 +218,22 @@
 "Quiz" = "Kviz";
 
 /* No comment provided by engineer. */
+"Reply" = "Odgovori";
+
+/* No comment provided by engineer. */
+"Reply All" = "Odgovori vsem";
+
+/* No comment provided by engineer. */
+"Retry" = "Ponovno poskusi";
+
+/* No comment provided by engineer. */
+"Send" = "Pošlji";
+
+/* No comment provided by engineer. */
 "Settings" = "Nastavitve";
+
+/* No comment provided by engineer. */
+"Subject" = "Kratek opis predmeta";
 
 /* No comment provided by engineer. */
 "Submitted" = "Poslano";
@@ -231,4 +282,7 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Za nastavitev opomnikov morate v možnosti »Nastavitve« dovoliti sporočila.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Seznanjeni ste z vsem";
 

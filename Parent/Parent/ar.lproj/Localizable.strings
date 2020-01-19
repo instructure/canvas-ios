@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(لا يوجد موضوع)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d من %3$d";
 
@@ -9,6 +12,12 @@
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ سيبدأ في %2$@";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, %@, last message %@ %@" = "%1$@%2$@، الرسالة الأخيرة %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@، غير مقروءة";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -56,6 +65,9 @@
 "Back" = "عودة";
 
 /* No comment provided by engineer. */
+"Calendar Event" = "حدث التقويم";
+
+/* No comment provided by engineer. */
 "Cancel" = "إلغاء";
 
 /* Percent value is over 100 */
@@ -69,6 +81,9 @@
 
 /* No comment provided by engineer. */
 "Choose a student" = "اختر طالبًا";
+
+/* No comment provided by engineer. */
+"Compose new message" = "إنشاء رسالة جديدة";
 
 /* Course Announcement Description */
 "Course announcements" = "إعلانات المساق";
@@ -119,6 +134,12 @@
 "In-Class" = "في الصف";
 
 /* No comment provided by engineer. */
+"Inbox" = "علبة الوارد";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "علبة الوارد صفر";
+
+/* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "أدخل رمز إقران الطالب المقدم لك.";
 
 /* Institution Announcement Description */
@@ -149,10 +170,22 @@
 "Manage Children" = "إدارة الأطفال";
 
 /* No comment provided by engineer. */
+"Message" = "الرسالة";
+
+/* No comment provided by engineer. */
 "Missing" = "غير منجزة";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "غير منجزة: (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "مفقود: %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "مفقود: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "رسالة جديدة";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "الأسبوع المقبل";
@@ -165,6 +198,9 @@
 
 /* Empty Students Text */
 "No Students" = "لا يوجد أي طالب";
+
+/* No comment provided by engineer. */
+"No Subject" = "لا يوجد موضوع";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "لا شيء هذا الأسبوع";
@@ -182,7 +218,22 @@
 "Quiz" = "الاختبار الموجز";
 
 /* No comment provided by engineer. */
+"Reply" = "رد";
+
+/* No comment provided by engineer. */
+"Reply All" = "رد على الكل";
+
+/* No comment provided by engineer. */
+"Retry" = "إعادة المحاولة";
+
+/* No comment provided by engineer. */
+"Send" = "إرسال";
+
+/* No comment provided by engineer. */
 "Settings" = "إعدادات";
+
+/* No comment provided by engineer. */
+"Subject" = "الموضوع";
 
 /* No comment provided by engineer. */
 "Submitted" = "تم الإرسال";
@@ -231,4 +282,7 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "يجب السماح بالإعلامات في الإعدادات لتعيين التذكيرات.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "لقد اطلعت عليها جميعًا";
 

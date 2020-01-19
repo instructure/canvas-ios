@@ -447,6 +447,9 @@
 /* label for customizing a course */
 "Customize" = "Tilpass";
 
+/* No comment provided by engineer. */
+"d_events" = "d_events";
+
 /* dashboard page title */
 "Dashboard" = "Oversikt";
 

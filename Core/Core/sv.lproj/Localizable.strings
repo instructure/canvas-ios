@@ -179,6 +179,9 @@
 "Conversation Message" = "Konversationsmeddelande";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
 "Conversations" = "Konversationer";
 
 /* No comment provided by engineer. */
@@ -467,6 +470,12 @@
 "Manual OAuth Login" = "Manuell OAuth-inloggning";
 
 /* No comment provided by engineer. */
+"me" = "jag";
+
+/* No comment provided by engineer. */
+"me & %@" = "jag och %@";
+
+/* No comment provided by engineer. */
 "Media Recording" = "Mediainspelning";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Förfluten tid";
+
+/* No comment provided by engineer. */
+"to %@" = "till %@";
 
 /* No comment provided by engineer. */
 "To Do" = "Att göra";

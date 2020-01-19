@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(inget ämne)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d av %3$d";
 
@@ -9,6 +12,12 @@
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ börjar %2$@";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, %@, last message %@ %@" = "%1$@, %2$@, senaste meddelandet %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, oläst";
 
 /* Percentage field placeholder */
 "1-100%" = "1–100 %";
@@ -56,6 +65,9 @@
 "Back" = "Tillbaka";
 
 /* No comment provided by engineer. */
+"Calendar Event" = "Kalenderhändelse";
+
+/* No comment provided by engineer. */
 "Cancel" = "Avbryt";
 
 /* Percent value is over 100 */
@@ -69,6 +81,9 @@
 
 /* No comment provided by engineer. */
 "Choose a student" = "Välj en student";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Skriv nytt meddelande";
 
 /* Course Announcement Description */
 "Course announcements" = "Anslag";
@@ -119,6 +134,12 @@
 "In-Class" = "Närvarande";
 
 /* No comment provided by engineer. */
+"Inbox" = "Inkorg";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Inbox Zero";
+
+/* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Ange kopplingskoden du fått för studenter.";
 
 /* Institution Announcement Description */
@@ -149,10 +170,22 @@
 "Manage Children" = "Hantera barn";
 
 /* No comment provided by engineer. */
+"Message" = "Meddelande";
+
+/* No comment provided by engineer. */
 "Missing" = "Saknas";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Saknas: (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Saknas: %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Saknas: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Nytt kursmeddelande";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Nästa vecka";
@@ -165,6 +198,9 @@
 
 /* Empty Students Text */
 "No Students" = "Inga studenter";
+
+/* No comment provided by engineer. */
+"No Subject" = "Inget ämne";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Inget den här veckan";
@@ -182,7 +218,22 @@
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
+"Reply" = "Svara";
+
+/* No comment provided by engineer. */
+"Reply All" = "Svara alla";
+
+/* No comment provided by engineer. */
+"Retry" = "Försök igen";
+
+/* No comment provided by engineer. */
+"Send" = "Skicka";
+
+/* No comment provided by engineer. */
 "Settings" = "Inställningar";
+
+/* No comment provided by engineer. */
+"Subject" = "Ämne";
 
 /* No comment provided by engineer. */
 "Submitted" = "Inskickad";
@@ -231,4 +282,7 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Du måste tillåta aviseringar i Inställningar för att ställa in påminnelser.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Du är helt i kapp!";
 

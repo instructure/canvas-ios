@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(无标题)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%3$d 的 %1$@ %2$d ";
 
@@ -9,6 +12,12 @@
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@开始日期%2$@";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, %@, last message %@ %@" = "%1$@, %2$@，上一条消息%3$@%4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@，未读";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -56,6 +65,9 @@
 "Back" = "返回";
 
 /* No comment provided by engineer. */
+"Calendar Event" = "日历事件";
+
+/* No comment provided by engineer. */
 "Cancel" = "取消";
 
 /* Percent value is over 100 */
@@ -69,6 +81,9 @@
 
 /* No comment provided by engineer. */
 "Choose a student" = "选择一个学生";
+
+/* No comment provided by engineer. */
+"Compose new message" = "撰写新消息";
 
 /* Course Announcement Description */
 "Course announcements" = "课程通告";
@@ -119,6 +134,12 @@
 "In-Class" = "在课堂";
 
 /* No comment provided by engineer. */
+"Inbox" = "收件箱";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "收件箱为零";
+
+/* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "输入提供给您的学生配对码。";
 
 /* Institution Announcement Description */
@@ -149,10 +170,22 @@
 "Manage Children" = "管理儿童";
 
 /* No comment provided by engineer. */
+"Message" = "消息";
+
+/* No comment provided by engineer. */
 "Missing" = "丢失";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "丢失：(-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "漏读：%@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "漏读：%1$@(%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "新消息";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "下个星期";
@@ -165,6 +198,9 @@
 
 /* Empty Students Text */
 "No Students" = "没有学生";
+
+/* No comment provided by engineer. */
+"No Subject" = "无主题";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "本周没事";
@@ -182,7 +218,22 @@
 "Quiz" = "测验";
 
 /* No comment provided by engineer. */
+"Reply" = "回复";
+
+/* No comment provided by engineer. */
+"Reply All" = "回复所有人";
+
+/* No comment provided by engineer. */
+"Retry" = "重试";
+
+/* No comment provided by engineer. */
+"Send" = "发送";
+
+/* No comment provided by engineer. */
 "Settings" = "设置";
+
+/* No comment provided by engineer. */
+"Subject" = "主题";
 
 /* No comment provided by engineer. */
 "Submitted" = "提交";
@@ -231,4 +282,7 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "您必须允许“设置”中的通知设置提醒。";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "您全部看完了！";
 

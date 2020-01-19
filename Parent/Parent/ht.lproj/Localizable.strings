@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(Okenn Sijè)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d de %3$d";
 
@@ -9,6 +12,12 @@
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ ap kòmanse a %2$@";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, %@, last message %@ %@" = "%1$@, %2$@, dènye mesaj %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, poko li";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -56,6 +65,9 @@
 "Back" = "Retounen";
 
 /* No comment provided by engineer. */
+"Calendar Event" = "Kalandriye Aktivite";
+
+/* No comment provided by engineer. */
 "Cancel" = "Anile";
 
 /* Percent value is over 100 */
@@ -69,6 +81,9 @@
 
 /* No comment provided by engineer. */
 "Choose a student" = "Chwazi yon elèv";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Ekri nouvo mesaj";
 
 /* Course Announcement Description */
 "Course announcements" = "Anons kou";
@@ -119,6 +134,12 @@
 "In-Class" = "Nan Klas";
 
 /* No comment provided by engineer. */
+"Inbox" = "Bwat resepsyon";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Bwat Resepsyon Zewo";
+
+/* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Antre kòd kouplaj elèv yo ba ou a.";
 
 /* Institution Announcement Description */
@@ -149,10 +170,22 @@
 "Manage Children" = "Jere Timoun yo";
 
 /* No comment provided by engineer. */
+"Message" = "Mesaj";
+
+/* No comment provided by engineer. */
 "Missing" = "Manke";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Manke: (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Manke: %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Manke: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Nouvo Mesaj";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Semenn Pwochen";
@@ -165,6 +198,9 @@
 
 /* Empty Students Text */
 "No Students" = "Pa gen Elèv";
+
+/* No comment provided by engineer. */
+"No Subject" = "Pa gen Sijè";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Pa gen anyen pou semenn sa a";
@@ -182,7 +218,22 @@
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
+"Reply" = "Reponn";
+
+/* No comment provided by engineer. */
+"Reply All" = "Reponn Tout";
+
+/* No comment provided by engineer. */
+"Retry" = "Re eseye";
+
+/* No comment provided by engineer. */
+"Send" = "Voye";
+
+/* No comment provided by engineer. */
 "Settings" = "Paramèt";
+
+/* No comment provided by engineer. */
+"Subject" = "Sijè";
 
 /* No comment provided by engineer. */
 "Submitted" = "Soumèt";
@@ -231,4 +282,7 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Ou dwe otorize notifikasyon nan Paramèt yo pou ka regle èd memwa yo.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Yo pran w";
 

@@ -179,6 +179,9 @@
 "Conversation Message" = "Сообщение обсуждения";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
 "Conversations" = "Обсуждения";
 
 /* No comment provided by engineer. */
@@ -467,6 +470,12 @@
 "Manual OAuth Login" = "Ручной вход в OAuth";
 
 /* No comment provided by engineer. */
+"me" = "меня";
+
+/* No comment provided by engineer. */
+"me & %@" = "я и %@";
+
+/* No comment provided by engineer. */
 "Media Recording" = "Запись на носитель";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Время истекло";
+
+/* No comment provided by engineer. */
+"to %@" = "к %@";
 
 /* No comment provided by engineer. */
 "To Do" = "Задачи";
