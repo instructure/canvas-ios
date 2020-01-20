@@ -87,6 +87,7 @@ class AccountNotificationViewController: UITableViewController {
         tableView.dataSource = self
         AnnouncementDetailsCellViewModel.tableViewDidLoad(tableView)
         tableView.reloadData()
+        navigationController?.isNavigationBarHidden = false
     }
 
     override func viewWillAppear(_ animated: Bool) {
