@@ -454,6 +454,8 @@
 		B157A61322BD795D00963E56 /* AssignmentsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157A61222BD795D00963E56 /* AssignmentsPresenter.swift */; };
 		B157A61522BD8ADA00963E56 /* SubmitAssignmentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157A61422BD8ADA00963E56 /* SubmitAssignmentPresenter.swift */; };
 		B175D62223A969F600F8E696 /* IPadAssignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B175D62123A969F600F8E696 /* IPadAssignmentsTests.swift */; };
+		B191442623D662680086FB5B /* GoogleCloudAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191442523D662680086FB5B /* GoogleCloudAssignmentViewController.swift */; };
+		B191442923D663400086FB5B /* GoogleCloudAssignmentViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191442823D663400086FB5B /* GoogleCloudAssignmentViewControllerTests.swift */; };
 		B1BB7A8522BAC820006CA068 /* SubmitAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB7A8422BAC820006CA068 /* SubmitAssignmentViewController.swift */; };
 		B1BB7A8822BAC820006CA068 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BB7A8622BAC820006CA068 /* MainInterface.storyboard */; };
 		B1BB7A8C22BAC820006CA068 /* SubmitAssignment.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -1351,6 +1353,8 @@
 		B16B5A8F1E24548F00DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5A911E24549100DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B175D62123A969F600F8E696 /* IPadAssignmentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadAssignmentsTests.swift; sourceTree = "<group>"; };
+		B191442523D662680086FB5B /* GoogleCloudAssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleCloudAssignmentViewController.swift; sourceTree = "<group>"; };
+		B191442823D663400086FB5B /* GoogleCloudAssignmentViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleCloudAssignmentViewControllerTests.swift; sourceTree = "<group>"; };
 		B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SubmitAssignment.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1BB7A8422BAC820006CA068 /* SubmitAssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAssignmentViewController.swift; sourceTree = "<group>"; };
 		B1BB7A8722BAC820006CA068 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -2544,6 +2548,7 @@
 			isa = PBXGroup;
 			children = (
 				7DCF0ED922F8A050000AACCE /* ArcSubmission */,
+				B191442423D662490086FB5B /* CloudAssignments */,
 				7DCF0EDC22F8A050000AACCE /* SubmissionButton */,
 				7DCF0EEE22F8A050000AACCE /* SubmissionComments */,
 				7DCF0EFD22F8A050000AACCE /* SubmissionDetails */,
@@ -2710,6 +2715,7 @@
 			isa = PBXGroup;
 			children = (
 				7DCF0F2722F8A096000AACCE /* ArcSubmission */,
+				B191442723D663280086FB5B /* CloudAssignments */,
 				7DCF0F2922F8A096000AACCE /* SubmissionButton */,
 				7DCF0F2B22F8A096000AACCE /* SubmissionRubric */,
 				7DCF0F2D22F8A096000AACCE /* SubmissionComments */,
@@ -2926,6 +2932,22 @@
 				B157A61222BD795D00963E56 /* AssignmentsPresenter.swift */,
 			);
 			path = Assignments;
+			sourceTree = "<group>";
+		};
+		B191442423D662490086FB5B /* CloudAssignments */ = {
+			isa = PBXGroup;
+			children = (
+				B191442523D662680086FB5B /* GoogleCloudAssignmentViewController.swift */,
+			);
+			path = CloudAssignments;
+			sourceTree = "<group>";
+		};
+		B191442723D663280086FB5B /* CloudAssignments */ = {
+			isa = PBXGroup;
+			children = (
+				B191442823D663400086FB5B /* GoogleCloudAssignmentViewControllerTests.swift */,
+			);
+			path = CloudAssignments;
 			sourceTree = "<group>";
 		};
 		B1BB7A8322BAC820006CA068 /* SubmitAssignment */ = {
@@ -3812,6 +3834,7 @@
 				7DCF0F7F22F8A820000AACCE /* DashboardGroupCell.swift in Sources */,
 				7DCF0FAC22F8A8D7000AACCE /* RubricViewController.swift in Sources */,
 				7DCF0FCB22F8A8D7000AACCE /* SubmissionFilesViewController.swift in Sources */,
+				B191442623D662680086FB5B /* GoogleCloudAssignmentViewController.swift in Sources */,
 				5EB46DF41D21A75C00C859A4 /* CalendarDayListCell.swift in Sources */,
 				7DCF0F8D22F8A84D000AACCE /* StudentSyllabusPresenter.swift in Sources */,
 				5EB46DF21D21A75C00C859A4 /* CalendarDate.swift in Sources */,
@@ -4080,6 +4103,7 @@
 				7DE1161622F8AB5C005BFE98 /* GroupNavigationViewControllerTests.swift in Sources */,
 				7DE1162322F8AB5C005BFE98 /* UrlSubmissionPresenterTests.swift in Sources */,
 				7DE1161922F8AB5C005BFE98 /* UIImageStudentExtensionTests.swift in Sources */,
+				B191442923D663400086FB5B /* GoogleCloudAssignmentViewControllerTests.swift in Sources */,
 				7DE1161522F8AB5C005BFE98 /* CourseNavigationPresenterTests.swift in Sources */,
 				7DE1161F22F8AB5C005BFE98 /* RubricPresenterTests.swift in Sources */,
 				7DE1162022F8AB5C005BFE98 /* SubmissionCommentsPresenterTests.swift in Sources */,

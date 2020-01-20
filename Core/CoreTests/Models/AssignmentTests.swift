@@ -250,4 +250,38 @@ class AssignmentTests: CoreTestCase {
         XCTAssertTrue(externalTool.requiresLTILaunch(toViewSubmission: onlineUploadWithoutAttachment))
         XCTAssertTrue(externalTool.requiresLTILaunch(toViewSubmission: onlineQuizWithAttachment))
     }
+
+    func testIsGoogleCloudAssignment() {
+        let notLTI = Assignment.make(from: .make(
+            submission_types: [.none],
+            external_tool_tag_attributes: .googleCloudAssignment
+        ))
+        XCTAssertFalse(notLTI.isGoogleCloudAssignment)
+
+        let missingToolAttributes = Assignment.make(from: .make(
+            submission_types: [.external_tool],
+            external_tool_tag_attributes: nil
+        ))
+        XCTAssertFalse(missingToolAttributes.isGoogleCloudAssignment)
+
+        var badURL = URL(string: "https://wrong.com/lti/content-view/cloud-assignment/1")!
+        let wrongHost = Assignment.make(from: .make(
+            submission_types: [.external_tool],
+            external_tool_tag_attributes: .make(url: badURL)
+        ))
+        XCTAssertFalse(wrongHost.isGoogleCloudAssignment)
+
+        badURL = URL(string: "https://google-drive-lti-iad-prod.instructure.com/wrong")!
+        let wrongPath = Assignment.make(from: .make(
+            submission_types: [.external_tool],
+            external_tool_tag_attributes: .make(url: badURL)
+        ))
+        XCTAssertFalse(wrongPath.isGoogleCloudAssignment)
+
+        let valid = Assignment.make(from: .make(
+            submission_types: [.external_tool],
+            external_tool_tag_attributes: .googleCloudAssignment
+        ))
+        XCTAssertTrue(valid.isGoogleCloudAssignment)
+    }
 }

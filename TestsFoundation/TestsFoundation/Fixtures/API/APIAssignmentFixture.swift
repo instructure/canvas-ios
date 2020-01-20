@@ -45,7 +45,8 @@ extension APIAssignment {
         rubric: [APIRubric]? = nil,
         use_rubric_for_grading: Bool? = nil,
         rubric_settings: APIRubricSettings? = nil,
-        assignment_group_id: ID? = nil
+        assignment_group_id: ID? = nil,
+        external_tool_tag_attributes: APIExternalToolTagAttributes? = nil
     ) -> APIAssignment {
 
         var submissionList: APIList<APISubmission>?
@@ -79,7 +80,8 @@ extension APIAssignment {
             submission: submissionList,
             use_rubric_for_grading: use_rubric_for_grading,
             rubric_settings: rubric_settings,
-            assignment_group_id: assignment_group_id
+            assignment_group_id: assignment_group_id,
+            external_tool_tag_attributes: external_tool_tag_attributes
         )
     }
 }
@@ -106,7 +108,8 @@ extension APIAssignmentNoSubmission {
         discussion_topic: APIDiscussionTopic? = nil,
         rubric: [APIRubric]? = nil,
         use_rubric_for_grading: Bool? = nil,
-        assignment_group_id: ID? = nil
+        assignment_group_id: ID? = nil,
+        external_tool_tag_attributes: APIExternalToolTagAttributes? = nil
     ) -> APIAssignmentNoSubmission {
         return APIAssignmentNoSubmission(
             id: id,
@@ -129,7 +132,8 @@ extension APIAssignmentNoSubmission {
             discussion_topic: discussion_topic,
             rubric: rubric,
             use_rubric_for_grading: use_rubric_for_grading,
-            assignment_group_id: assignment_group_id
+            assignment_group_id: assignment_group_id,
+            external_tool_tag_attributes: external_tool_tag_attributes
         )
     }
 }

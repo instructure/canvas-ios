@@ -44,6 +44,7 @@ public struct APIAssignment: Codable, Equatable {
     let use_rubric_for_grading: Bool?
     let rubric_settings: APIRubricSettings?
     let assignment_group_id: ID?
+    let external_tool_tag_attributes: APIExternalToolTagAttributes?
 }
 
 public struct APIAssignmentNoSubmission: Codable, Equatable {
@@ -68,6 +69,7 @@ public struct APIAssignmentNoSubmission: Codable, Equatable {
     let rubric: [APIRubric]?
     let use_rubric_for_grading: Bool?
     let assignment_group_id: ID?
+    let external_tool_tag_attributes: APIExternalToolTagAttributes?
 
     func toAPIAssignment() -> APIAssignment {
         return APIAssignment(
@@ -79,6 +81,23 @@ public struct APIAssignmentNoSubmission: Codable, Equatable {
             allowed_extensions: allowed_extensions, position: position,
             unlock_at: unlock_at, lock_at: lock_at, locked_for_user: locked_for_user, lock_explanation: nil,
             url: url, discussion_topic: discussion_topic, rubric: rubric, submission: nil,
-            use_rubric_for_grading: use_rubric_for_grading, rubric_settings: nil, assignment_group_id: assignment_group_id)
+            use_rubric_for_grading: use_rubric_for_grading, rubric_settings: nil, assignment_group_id: assignment_group_id,
+            external_tool_tag_attributes: external_tool_tag_attributes)
     }
 }
+
+public struct APIExternalToolTagAttributes: Codable, Equatable {
+    let url: URL?
+}
+
+#if DEBUG
+extension APIExternalToolTagAttributes {
+    static func make(url: URL? = nil) -> APIExternalToolTagAttributes {
+        APIExternalToolTagAttributes(url: url)
+    }
+
+    static var googleCloudAssignment: APIExternalToolTagAttributes {
+        .make(url: URL(string: "https://google-drive-lti-iad-prod.instructure.com/lti/content-view/cloud-assignment/1")!)
+    }
+}
+#endif

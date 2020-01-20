@@ -51,6 +51,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var assignmentGroup: AssignmentGroup?
     @NSManaged public var todo: Todo?
     @NSManaged public var syllabus: Syllabus?
+    @NSManaged public var externalToolTagAttributeURL: URL?
 
     /**
      Use this property (vs. submissions) when you want the most recent submission
@@ -134,6 +135,7 @@ extension Assignment {
         useRubricForGrading = item.use_rubric_for_grading ?? false
         lastUpdatedAt = Date()
         assignmentGroupID = item.assignment_group_id?.value
+        externalToolTagAttributeURL = item.external_tool_tag_attributes?.url
 
         if let topic = item.discussion_topic {
             discussionTopic = DiscussionTopic.save(topic, in: client)
@@ -187,6 +189,16 @@ extension Assignment {
     public var isLTIAssignment: Bool {
         return submissionTypes.count == 1 &&
             (submissionTypes.contains(.basic_lti_launch) || submissionTypes.contains(.external_tool))
+    }
+
+    public var isGoogleCloudAssignment: Bool {
+        guard submissionTypes.contains(.external_tool), let url = externalToolTagAttributeURL else {
+            return false
+        }
+        return (
+            url.host?.contains("google-drive-lti") == true &&
+            url.path.contains("/lti/content-view/cloud-assignment")
+        )
     }
 
     public var isDiscussion: Bool {
