@@ -57,6 +57,7 @@ public class GradesViewController: UIViewController {
         grades.refresh()
         if grades.isPending {
             loadingView.isHidden = false
+            activityIndicator.startAnimating()
         }
     }
 
@@ -76,6 +77,10 @@ public class GradesViewController: UIViewController {
             loadingView.isHidden = true
             tableView.refreshControl?.endRefreshing()
         }
+        if loadingView.isHidden == false {
+            activityIndicator.startAnimating()
+        }
+
         tableView.reloadData()
         updateTotalGrade()
         updateGradingPeriods()
