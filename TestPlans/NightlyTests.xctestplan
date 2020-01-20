@@ -136,6 +136,20 @@
         "identifier" : "3B36A2DE2322C26A00599A1E",
         "name" : "ParentUnitTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Student.xcodeproj",
+        "identifier" : "E8C6F4CF23D626220086B865",
+        "name" : "StudentE2ETests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/rn\/Teacher\/ios\/Teacher.xcodeproj",
+        "identifier" : "E841D8A223D6472F00685A63",
+        "name" : "TeacherE2ETests"
+      }
     }
   ],
   "version" : 1

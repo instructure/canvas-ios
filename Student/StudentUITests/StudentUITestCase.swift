@@ -24,7 +24,6 @@ import XCTest
 
 class StudentUITestCase: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { return StudentUITestCase.self }
-    override var user: UITestUser? { return nil }
 
     func navBarColorHex() -> String? {
         let image = app.navigationBars.firstMatch.screenshot().image

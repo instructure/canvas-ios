@@ -37,14 +37,24 @@ open class CoreUITestCase: XCTestCase {
 
     open var httpMocks = [URL: (URLRequest) -> MockHTTPResponse]()
     open var graphQLMocks = [String: (URLRequest) -> Data]()
-    open var useMocks: Bool { user == nil }
+    var useMocks: Bool {
+        switch Bundle.main.bundleIdentifier {
+        case Bundle.studentUITestsBundleID,
+             Bundle.teacherUITestsBundleID,
+             Bundle.parentUITestsBundleID:
+            return true
+        default:
+            return false
+        }
+    }
 
     open var user: UITestUser? {
-        if Bundle.main.isStudentApp {
+        switch Bundle.main.bundleIdentifier {
+        case Bundle.studentE2ETestsBundleID:
             return .readStudent1
-        } else if Bundle.main.isTeacherApp {
+        case Bundle.teacherE2ETestsBundleID:
             return .readTeacher1
-        } else {
+        default:
             return nil
         }
     }
@@ -500,8 +510,8 @@ open class CoreUITestCase: XCTestCase {
 
     open var baseEnrollment: APIEnrollment {
         .make(
-            type: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
-            role: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
+            type: Bundle.main.isTeacherTestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
+            role: Bundle.main.isTeacherTestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
         )
     }
     open lazy var baseCourse = mock(course: .make(enrollments: [ baseEnrollment ]))
@@ -578,7 +588,7 @@ open class CoreUITestCase: XCTestCase {
         _ request: URLRequest,
         response: @escaping (URLRequest) -> MockHTTPResponse
     ) {
-        XCTAssert(useMocks, "override useMocks to use mocks!")
+        XCTAssert(useMocks, "Mocks not allowed for E2E tests!")
         httpMocks[request.url!.withCanonicalQueryParams!] = response
     }
 

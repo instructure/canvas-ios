@@ -22,7 +22,6 @@ import TestsFoundation
 
 class TodoListTests: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { return TodoListTests.self }
-    override var user: UITestUser? { return nil }
 
     func testTodoItemsDisplayed() {
         mockBaseRequests()
