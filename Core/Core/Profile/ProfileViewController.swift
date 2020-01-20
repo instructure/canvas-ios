@@ -68,7 +68,7 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
     @IBOutlet weak var emailLabel: UILabel?
     @IBOutlet weak var versionLabel: UILabel?
 
-    var env = AppEnvironment.shared
+    let env = AppEnvironment.shared
     var presenter: ProfilePresenter?
     var dashboard: UIViewController {
         var dashboard = presentingViewController ?? self
@@ -81,12 +81,11 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
         return dashboard
     }
 
-    public static func create(env: AppEnvironment = .shared, enrollment: HelpLinkEnrollment) -> ProfileViewController {
+    public static func create(enrollment: HelpLinkEnrollment) -> ProfileViewController {
         let controller = loadFromStoryboard()
         controller.modalPresentationStyle = .custom
         controller.transitioningDelegate = DrawerTransitioningDelegate.shared
-        controller.env = env
-        controller.presenter = ProfilePresenter(env: env, enrollment: enrollment, view: controller)
+        controller.presenter = ProfilePresenter(enrollment: enrollment, view: controller)
         return controller
     }
 
@@ -177,6 +176,8 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         case .badge(let count):
             cell.accessoryView = nil
             cell.badgeLabel.text = NumberFormatter.localizedString(from: NSNumber(value: count), number: .none)
+            cell.badgeLabel.textColor = Brand.shared.navBadgeText
+            cell.badgeView.backgroundColor = Brand.shared.navBadgeBackground
             cell.badgeView.isHidden = count == 0
         case .none:
             cell.accessoryView = nil
