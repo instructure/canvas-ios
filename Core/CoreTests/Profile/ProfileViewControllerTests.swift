@@ -30,7 +30,7 @@ class ProfileViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        vc = ProfileViewController.create(env: environment, enrollment: .student)
+        vc = ProfileViewController.create(enrollment: .student)
         notificationPayload = nil
         didChangeUser = false
         didLogout = false

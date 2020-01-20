@@ -2772,9 +2772,9 @@
 				7DBED03523344EDE00392F3C /* ExternalToolLaunchPlacementTests.swift */,
 				7DBED016232FDDB700392F3C /* GetAccountHelpLinksTests.swift */,
 				7DBED0302333EC3B00392F3C /* ProfilePresenterTests.swift */,
+				97A486C32397826300084499 /* ProfileViewControllerTests.swift */,
 				7DBED01C2330332800392F3C /* UploadAvatarTests.swift */,
 				7D71807A233FCD0A0053FC7A /* UserProfileTests.swift */,
-				97A486C32397826300084499 /* ProfileViewControllerTests.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
