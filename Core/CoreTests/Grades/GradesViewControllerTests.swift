@@ -295,7 +295,7 @@ class GradesViewControllerTests: CoreTestCase {
         tasks.forEach({ $0.suspend() })
         let viewController = GradesViewController.create(courseID: "1", userID: "1")
         viewController.view.layoutIfNeeded()
-        viewController.itemWillBeDisplayed()
+        viewController.menuItemWillBeDisplayed()
         XCTAssertTrue(viewController.activityIndicator.isAnimating)
     }
 
@@ -305,7 +305,7 @@ class GradesViewControllerTests: CoreTestCase {
         let viewController = GradesViewController.create(courseID: "1", userID: "1")
         viewController.view.layoutIfNeeded()
         viewController.tableView.refreshControl?.beginRefreshing()
-        viewController.itemWillBeDisplayed()
+        viewController.menuItemWillBeDisplayed()
         XCTAssertTrue(viewController.tableView.refreshControl!.isRefreshing)
     }
 

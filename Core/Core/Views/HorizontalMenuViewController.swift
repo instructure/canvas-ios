@@ -205,7 +205,7 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
         guard collectionView != menu, let item = delegate?.viewControllers[indexPath.row] as? HorizontalPagedMenuItem else {
             return
         }
-        item.itemWillBeDisplayed()
+        item.menuItemWillBeDisplayed()
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -312,5 +312,5 @@ public extension HorizontalPagedMenuDelegate {
 }
 
 public protocol HorizontalPagedMenuItem {
-    func itemWillBeDisplayed()
+    func menuItemWillBeDisplayed()
 }

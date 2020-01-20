@@ -38,10 +38,10 @@ class HorizontalMenuViewControllerTests: XCTestCase {
         XCTAssertEqual("B", title)
     }
 
-    func testItemWillBeDisplayed() {
+    func testMenuItemWillBeDisplayed() {
         class MockViewController: UIViewController, HorizontalPagedMenuItem {
             let expectation = XCTestExpectation(description: "Item displayed")
-            func itemWillBeDisplayed() {
+            func menuItemWillBeDisplayed() {
                 expectation.fulfill()
             }
         }

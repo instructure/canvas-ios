@@ -23,7 +23,7 @@ public protocol ColorDelegate: class {
     var iconColor: UIColor? { get }
 }
 
-public class GradesViewController: UIViewController, HorizontalPagedMenuItem {
+public class GradesViewController: UIViewController {
     @IBOutlet weak var filterButton: DynamicButton!
     @IBOutlet weak var totalGradeLabel: DynamicLabel!
     @IBOutlet weak var gradingPeriodLabel: DynamicLabel!
@@ -136,17 +136,6 @@ public class GradesViewController: UIViewController, HorizontalPagedMenuItem {
             view.setNeedsLayout()
         }
     }
-
-    public func itemWillBeDisplayed() {
-        if grades.isPending == true && tableView.refreshControl?.isRefreshing == false {
-            activityIndicator.startAnimating()
-        } else if grades.isPending == true && tableView.refreshControl?.isRefreshing == true {
-            let offset = tableView.contentOffset
-            tableView.refreshControl?.endRefreshing()
-            tableView.refreshControl?.beginRefreshing()
-            tableView.contentOffset = offset
-        }
-    }
 }
 
 extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
@@ -185,6 +174,19 @@ extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         return 22
+    }
+}
+
+extension GradesViewController: HorizontalPagedMenuItem {
+    public func menuItemWillBeDisplayed() {
+        if grades.isPending == true && tableView.refreshControl?.isRefreshing == false {
+            activityIndicator.startAnimating()
+        } else if grades.isPending == true && tableView.refreshControl?.isRefreshing == true {
+            let offset = tableView.contentOffset
+            tableView.refreshControl?.endRefreshing()
+            tableView.refreshControl?.beginRefreshing()
+            tableView.contentOffset = offset
+        }
     }
 }
 
