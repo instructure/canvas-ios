@@ -155,6 +155,7 @@ class RouterTests: XCTestCase {
         router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail(embedInNav: true))
         XCTAssertNotNil(mockView.shown)
         XCTAssert(mockView.shown?.isKind(of: UIViewController.self) == true)
+        XCTAssert(mockView.shown?.isKind(of: UINavigationController.self) == false)
     }
 
     func testRouteDetailFromDetailDoesAShow() {
