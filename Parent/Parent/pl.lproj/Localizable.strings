@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(Brak tematu)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d of %3$d";
 
@@ -9,6 +12,12 @@
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ rozpocznie się o %2$@";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, %@, last message %@ %@" = "%1$@, %2$@, ostatnia wiadomość %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, nieprzeczytane";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -56,6 +65,9 @@
 "Back" = "Wstecz";
 
 /* No comment provided by engineer. */
+"Calendar Event" = "Wydarzenie w kalendarzu";
+
+/* No comment provided by engineer. */
 "Cancel" = "Anuluj";
 
 /* Percent value is over 100 */
@@ -69,6 +81,9 @@
 
 /* No comment provided by engineer. */
 "Choose a student" = "Wybierz ucznia";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Utwórz nową wiadomość";
 
 /* Course Announcement Description */
 "Course announcements" = "Ogłoszenie kursowe";
@@ -119,6 +134,12 @@
 "In-Class" = "W klasie";
 
 /* No comment provided by engineer. */
+"Inbox" = "Skrzynka odbiorcza";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Skrzynka odbiorcza zero";
+
+/* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Wpisz otrzymany kod parowania uczestnika.";
 
 /* Institution Announcement Description */
@@ -149,10 +170,22 @@
 "Manage Children" = "Zarządzaj dziećmi";
 
 /* No comment provided by engineer. */
+"Message" = "Wiadomość";
+
+/* No comment provided by engineer. */
 "Missing" = "Brakuje";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Brakuje:  (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Brak: %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Brak: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Nowa wiadomość";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Następny tydzień";
@@ -165,6 +198,9 @@
 
 /* Empty Students Text */
 "No Students" = "Brak uczniów";
+
+/* No comment provided by engineer. */
+"No Subject" = "Brak tematu";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Nic w tym tygodniu";
@@ -182,7 +218,22 @@
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
+"Reply" = "Odpowiedz";
+
+/* No comment provided by engineer. */
+"Reply All" = "Odpowiedz wszystkim";
+
+/* No comment provided by engineer. */
+"Retry" = "Ponów próbę";
+
+/* No comment provided by engineer. */
+"Send" = "Wyślij";
+
+/* No comment provided by engineer. */
 "Settings" = "Ustawienia";
+
+/* No comment provided by engineer. */
+"Subject" = "Temat";
 
 /* No comment provided by engineer. */
 "Submitted" = "Złożono";
@@ -231,4 +282,7 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Aby ustawić przypomnienia, musisz zezwolić na powiadomienia w Ustawieniach.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "To już wszystko";
 

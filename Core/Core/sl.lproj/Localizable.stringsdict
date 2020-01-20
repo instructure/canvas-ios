@@ -15,9 +15,9 @@
 			<key>few</key>
 			<string></string>
 			<key>one</key>
-			<string>%d other</string>
+			<string>%d drugo</string>
 			<key>other</key>
-			<string>%d others</string>
+			<string>%d drugih</string>
 			<key>two</key>
 			<string></string>
 		</dict>
@@ -35,9 +35,9 @@
 			<key>few</key>
 			<string>%d events</string>
 			<key>one</key>
-			<string>%d event</string>
+			<string>%d dogodek</string>
 			<key>other</key>
-			<string>%d events</string>
+			<string>%d dogodki</string>
 			<key>two</key>
 			<string>%d events</string>
 		</dict>

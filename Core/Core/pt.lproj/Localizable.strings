@@ -179,6 +179,9 @@
 "Conversation Message" = "Mensagem de conversa";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
 "Conversations" = "Conversas";
 
 /* No comment provided by engineer. */
@@ -467,6 +470,12 @@
 "Manual OAuth Login" = "Login Manual OAuth";
 
 /* No comment provided by engineer. */
+"me" = "eu";
+
+/* No comment provided by engineer. */
+"me & %@" = "eu & %@";
+
+/* No comment provided by engineer. */
 "Media Recording" = "Gravação de mídia";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Tempo decorrido";
+
+/* No comment provided by engineer. */
+"to %@" = "para %@";
 
 /* No comment provided by engineer. */
 "To Do" = "A Fazer";

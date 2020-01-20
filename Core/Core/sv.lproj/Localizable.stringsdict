@@ -13,9 +13,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d other</string>
+			<string>%d annan</string>
 			<key>other</key>
-			<string>%d others</string>
+			<string>%d andra</string>
 		</dict>
 	</dict>
 	<key>d_events</key>
@@ -29,9 +29,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d event</string>
+			<string>%d händelse</string>
 			<key>other</key>
-			<string>%d events</string>
+			<string>%d händelser</string>
 		</dict>
 	</dict>
 	<key>d_needs_grading</key>

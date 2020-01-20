@@ -13,7 +13,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d others</string>
+			<string>%dその他</string>
 		</dict>
 	</dict>
 	<key>d_events</key>
@@ -27,7 +27,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d events</string>
+			<string>%dイベント</string>
 		</dict>
 	</dict>
 	<key>d_needs_grading</key>

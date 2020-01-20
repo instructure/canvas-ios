@@ -179,6 +179,9 @@
 "Conversation Message" = "交談訊息";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
 "Conversations" = "交談";
 
 /* No comment provided by engineer. */
@@ -467,6 +470,12 @@
 "Manual OAuth Login" = "手動 OAuth 登入";
 
 /* No comment provided by engineer. */
+"me" = "我";
+
+/* No comment provided by engineer. */
+"me & %@" = "我和%@";
+
+/* No comment provided by engineer. */
 "Media Recording" = "媒體錄製";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "已用時間";
+
+/* No comment provided by engineer. */
+"to %@" = "至%@";
 
 /* No comment provided by engineer. */
 "To Do" = "待辦事項";

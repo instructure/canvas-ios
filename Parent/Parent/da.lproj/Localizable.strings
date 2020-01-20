@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(Intet emne)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d af %3$d";
 
@@ -9,6 +12,12 @@
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ begynder kl. %2$@";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, %@, last message %@ %@" = "%1$@, %2$@, sidste besked %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, ulæst";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -56,6 +65,9 @@
 "Back" = "Tilbage";
 
 /* No comment provided by engineer. */
+"Calendar Event" = "Kalenderbegivenhed";
+
+/* No comment provided by engineer. */
 "Cancel" = "Annuller";
 
 /* Percent value is over 100 */
@@ -69,6 +81,9 @@
 
 /* No comment provided by engineer. */
 "Choose a student" = "Vælg en studerende";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Skriv en ny besked";
 
 /* Course Announcement Description */
 "Course announcements" = "Kursusbekendtgørelser";
@@ -119,6 +134,12 @@
 "In-Class" = "I klasse";
 
 /* No comment provided by engineer. */
+"Inbox" = "Indbakke";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Indbakke nul";
+
+/* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Indtast den studerendes parringskode, der er blevet givet til dig.";
 
 /* Institution Announcement Description */
@@ -149,10 +170,22 @@
 "Manage Children" = "Administrer børn";
 
 /* No comment provided by engineer. */
+"Message" = "Besked";
+
+/* No comment provided by engineer. */
 "Missing" = "Manglende";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Manglende: (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Mangler: %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Mangler: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Ny besked";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Næste uge";
@@ -165,6 +198,9 @@
 
 /* Empty Students Text */
 "No Students" = "Ingen studerende";
+
+/* No comment provided by engineer. */
+"No Subject" = "Intet emne";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Intet denne uge";
@@ -182,7 +218,22 @@
 "Quiz" = "Test";
 
 /* No comment provided by engineer. */
+"Reply" = "Svar";
+
+/* No comment provided by engineer. */
+"Reply All" = "Svar til alle";
+
+/* No comment provided by engineer. */
+"Retry" = "Prøv igen";
+
+/* No comment provided by engineer. */
+"Send" = "Send";
+
+/* No comment provided by engineer. */
 "Settings" = "Indstillinger";
+
+/* No comment provided by engineer. */
+"Subject" = "Emne";
 
 /* No comment provided by engineer. */
 "Submitted" = "Indsendt";
@@ -231,4 +282,7 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Du skal tillade meddelelser i Indstillinger for at indstille påmindelser.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Du er ajour";
 

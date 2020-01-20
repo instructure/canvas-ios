@@ -17,9 +17,9 @@
 			<key>many</key>
 			<string></string>
 			<key>one</key>
-			<string>%d other</string>
+			<string>%d inne</string>
 			<key>other</key>
-			<string>%d others</string>
+			<string>%d inni</string>
 		</dict>
 	</dict>
 	<key>d_events</key>
@@ -37,9 +37,9 @@
 			<key>many</key>
 			<string>%d events</string>
 			<key>one</key>
-			<string>%d event</string>
+			<string>%d wydarzenie</string>
 			<key>other</key>
-			<string>%d events</string>
+			<string>%d wydarzenia</string>
 		</dict>
 	</dict>
 	<key>d_needs_grading</key>

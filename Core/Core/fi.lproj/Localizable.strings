@@ -179,6 +179,9 @@
 "Conversation Message" = "Keskustelun viesti";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
 "Conversations" = "Keskustelut";
 
 /* No comment provided by engineer. */
@@ -467,6 +470,12 @@
 "Manual OAuth Login" = "Manuaalinen OAuth-sisäänkirjautuminen";
 
 /* No comment provided by engineer. */
+"me" = "minä";
+
+/* No comment provided by engineer. */
+"me & %@" = "minä & %@";
+
+/* No comment provided by engineer. */
 "Media Recording" = "Median nauhoitus";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Kulunut aika";
+
+/* No comment provided by engineer. */
+"to %@" = "- %@";
 
 /* No comment provided by engineer. */
 "To Do" = "Tehtävä";

@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(ei aihetta)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d / %3$d";
 
@@ -9,6 +12,12 @@
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ alkaa %2$@";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, %@, last message %@ %@" = "%1$@%2$@, viimeinen viesti %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, lukematon";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100 %";
@@ -56,6 +65,9 @@
 "Back" = "Takaisin";
 
 /* No comment provided by engineer. */
+"Calendar Event" = "Kalenteritapahtuma";
+
+/* No comment provided by engineer. */
 "Cancel" = "Peruuta";
 
 /* Percent value is over 100 */
@@ -69,6 +81,9 @@
 
 /* No comment provided by engineer. */
 "Choose a student" = "Valitse opiskelija";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Luo uusi viesti";
 
 /* Course Announcement Description */
 "Course announcements" = "Kurssin ilmoitukset";
@@ -119,6 +134,12 @@
 "In-Class" = "Luokassa";
 
 /* No comment provided by engineer. */
+"Inbox" = "Tulevien laatikko";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Saapuvia posteja nolla!";
+
+/* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Pane opiskelijan parinmuodostuskoodi, joka on toimitettu sinulle.";
 
 /* Institution Announcement Description */
@@ -149,10 +170,22 @@
 "Manage Children" = "Hallitse lapsia";
 
 /* No comment provided by engineer. */
+"Message" = "Viesti";
+
+/* No comment provided by engineer. */
 "Missing" = "Puuttuu";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Puuttuu (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Puuttuu %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Puuttuu %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Uusi viesti";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Ensi viikolla";
@@ -165,6 +198,9 @@
 
 /* Empty Students Text */
 "No Students" = "Ei opiskelijoita";
+
+/* No comment provided by engineer. */
+"No Subject" = "Ei aihetta";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Ei mitään tällä viikolla";
@@ -182,7 +218,22 @@
 "Quiz" = "Tietovisa";
 
 /* No comment provided by engineer. */
+"Reply" = "Vastaus";
+
+/* No comment provided by engineer. */
+"Reply All" = "Vastaa kaikille";
+
+/* No comment provided by engineer. */
+"Retry" = "Yritä uudelleen";
+
+/* No comment provided by engineer. */
+"Send" = "Lähetä";
+
+/* No comment provided by engineer. */
 "Settings" = "Asetukset";
+
+/* No comment provided by engineer. */
+"Subject" = "Aihe";
 
 /* No comment provided by engineer. */
 "Submitted" = "Lähetetty";
@@ -231,4 +282,7 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Sinun täytyy sallia ilmoitukset asetuksissa määrittääksesi muistutukset.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Olet ajan tasalla";
 

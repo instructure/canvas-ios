@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(Нет субъекта)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d из %3$d";
 
@@ -9,6 +12,12 @@
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ начнется в %2$@";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, %@, last message %@ %@" = "%1$@, %2$@, последнее сообщение %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, не прочитано";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -56,6 +65,9 @@
 "Back" = "Назад";
 
 /* No comment provided by engineer. */
+"Calendar Event" = "Событие календаря";
+
+/* No comment provided by engineer. */
 "Cancel" = "Отменить";
 
 /* Percent value is over 100 */
@@ -69,6 +81,9 @@
 
 /* No comment provided by engineer. */
 "Choose a student" = "Выберите студента";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Написать новое сообщение";
 
 /* Course Announcement Description */
 "Course announcements" = "Объявления курса";
@@ -119,6 +134,12 @@
 "In-Class" = "Аудиторный";
 
 /* No comment provided by engineer. */
+"Inbox" = "Входящие";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Входящие Ноль";
+
+/* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Введите полученный код привязки студента.";
 
 /* Institution Announcement Description */
@@ -149,10 +170,22 @@
 "Manage Children" = "Управление детьми";
 
 /* No comment provided by engineer. */
+"Message" = "Сообщение";
+
+/* No comment provided by engineer. */
 "Missing" = "Отсутствует";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Отсутствует: (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Отсутствует: %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Отсутствует: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Новое сообщение";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "На следующей неделе";
@@ -165,6 +198,9 @@
 
 /* Empty Students Text */
 "No Students" = "Студенты отсутствуют";
+
+/* No comment provided by engineer. */
+"No Subject" = "Нет темы";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Ничего на этой неделе";
@@ -182,7 +218,22 @@
 "Quiz" = "Тест";
 
 /* No comment provided by engineer. */
+"Reply" = "Ответить";
+
+/* No comment provided by engineer. */
+"Reply All" = "Ответить на все";
+
+/* No comment provided by engineer. */
+"Retry" = "Повторить";
+
+/* No comment provided by engineer. */
+"Send" = "Отправить";
+
+/* No comment provided by engineer. */
 "Settings" = "Настройки";
+
+/* No comment provided by engineer. */
+"Subject" = "Тема";
 
 /* No comment provided by engineer. */
 "Submitted" = "Отправлено";
@@ -231,4 +282,7 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Вы должны разрешить уведомления в настройках для задания напоминаний.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Вы все нагнали";
 
