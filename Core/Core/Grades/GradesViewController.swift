@@ -30,6 +30,7 @@ public class GradesViewController: UIViewController {
     @IBOutlet weak var gradingPeriodView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     public weak var colorDelegate: ColorDelegate?
 
     let env = AppEnvironment.shared
@@ -56,6 +57,7 @@ public class GradesViewController: UIViewController {
         grades.refresh()
         if grades.isPending {
             loadingView.isHidden = false
+            activityIndicator.startAnimating()
         }
     }
 
@@ -75,6 +77,10 @@ public class GradesViewController: UIViewController {
             loadingView.isHidden = true
             tableView.refreshControl?.endRefreshing()
         }
+        if loadingView.isHidden == false {
+            activityIndicator.startAnimating()
+        }
+
         tableView.reloadData()
         updateTotalGrade()
         updateGradingPeriods()
@@ -173,6 +179,19 @@ extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         return 22
+    }
+}
+
+extension GradesViewController: HorizontalPagedMenuItem {
+    public func menuItemWillBeDisplayed() {
+        if grades.isPending == true && tableView.refreshControl?.isRefreshing == false {
+            activityIndicator.startAnimating()
+        } else if grades.isPending == true && tableView.refreshControl?.isRefreshing == true {
+            let offset = tableView.contentOffset
+            tableView.refreshControl?.endRefreshing()
+            tableView.refreshControl?.beginRefreshing()
+            tableView.contentOffset = offset
+        }
     }
 }
 

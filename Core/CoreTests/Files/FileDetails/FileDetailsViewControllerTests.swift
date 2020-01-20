@@ -202,7 +202,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertNotNil(results[1].ps_image)
     }
 
-    func testSVG() {
+    func xtestSVG() {
         mock(APIFile.make(filename: "File.svg", contentType: "image/svg+xml", mime_class: "file"))
         let done = expectation(description: "done")
         var token: NSObjectProtocol?
