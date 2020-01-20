@@ -34,7 +34,7 @@ class AlertsListViewController: FetchedTableViewController<Alert> {
 
         let emptyView = TableEmptyView.nibView()
         emptyView.textLabel.text = NSLocalizedString("Caught up on Alerts", comment: "Empty Alerts Text")
-        emptyView.imageView?.image = UIImage(named: "empty_alerts")
+        emptyView.imageView?.image = UIImage(named: "PandaNoAlerts", in: .core, compatibleWith: nil)
         emptyView.accessibilityLabel = emptyView.textLabel.text
         emptyView.accessibilityIdentifier = "alerts_empty_view"
 
@@ -43,7 +43,6 @@ class AlertsListViewController: FetchedTableViewController<Alert> {
         let collection = try Alert.collectionOfObserveeAlerts(session, observeeID: observeeID)
         let refresher = try Alert.refresher(session, observeeID: observeeID)
 
-        let scheme = ColorScheme.observee(observeeID)
         prepare(collection, refresher: refresher, viewModelFactory: { alert in
             AlertCellViewModel(alert: alert, highlightColor: .named(.backgroundLight), session: session)
         })
@@ -57,7 +56,7 @@ class AlertsListViewController: FetchedTableViewController<Alert> {
         super.viewDidLoad()
 
         tableView.tableFooterView = UIView()
-        tableView.backgroundColor = UIColor.named(.backgroundGrouped)
+        tableView.backgroundColor = UIColor.named(.backgroundLightest)
     }
 
     override func viewWillAppear(_ animated: Bool) {

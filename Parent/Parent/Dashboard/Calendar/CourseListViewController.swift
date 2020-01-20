@@ -39,13 +39,8 @@ class CourseListViewController: FetchedTableViewController<CanvasCore.Course> {
         emptyView.imageView?.image = UIImage(named: "empty_courses")
         emptyView.accessibilityLabel = emptyView.textLabel.text
         emptyView.accessibilityIdentifier = "courses_empty_view"
-        emptyView.imageCenterXConstraint.constant = -24
-        emptyView.imageWidth = 267
-        emptyView.imageHeight = 232
-
         self.emptyView = emptyView
 
-        let scheme = ColorScheme.observee(studentID)
         let collection = try Course.collectionByStudent(session, studentID: studentID)
         let refresher = try Course.airwolfCollectionRefresher(session, studentID: studentID)
         prepare(collection, refresher: refresher, viewModelFactory: { course in

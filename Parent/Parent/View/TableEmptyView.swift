@@ -20,34 +20,9 @@ import Foundation
 import CanvasCore
 
 class TableEmptyView: UIView {
-
-    @IBOutlet weak var imageView: UIImageView?
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var subtextLabel: UILabel!
-
-    @IBOutlet weak var imageWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var imageCenterXConstraint: NSLayoutConstraint!
-
-    @objc var imageWidth: CGFloat {
-        set {
-            imageWidthConstraint.constant = newValue
-            imageView?.setNeedsLayout()
-        }
-        get {
-            return imageWidthConstraint.constant
-        }
-    }
-
-    @objc var imageHeight: CGFloat {
-        set {
-            imageHeightConstraint.constant = newValue
-            imageView?.setNeedsLayout()
-        }
-        get {
-            return imageHeightConstraint.constant
-        }
-    }
 
     @objc var subtext: String? {
         get {
@@ -72,5 +47,4 @@ class TableEmptyView: UIView {
 
         isAccessibilityElement = true
     }
-
 }
