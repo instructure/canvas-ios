@@ -926,6 +926,9 @@
   "name_profile_240f0967": {
     "message": "{ name } Profile"
   },
+  "name_pronouns_8d5a0061": {
+    "message": "{ name } ({ pronouns })"
+  },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } more"
   },
