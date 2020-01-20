@@ -132,12 +132,11 @@ class MockedModulesTests: StudentUITestCase {
         mockBaseRequests()
     }
 
-    func xtestUnlockModuleItemWithPrerequisiteModule() {
-        let modules: [APIModule] = [
+    func testUnlockModuleItemWithPrerequisiteModule() {
+        mockData(GetModulesRequest(courseID: "1", include: [.items], perPage: 99), value: [
             .make(id: "1", name: "Module 1", position: 1, prerequisite_module_ids: [], state: .unlocked),
             .make(id: "2", name: "Module 2", position: 2, prerequisite_module_ids: ["1"], state: .locked),
-        ]
-        mockData(GetModulesRequest(courseID: "1", include: [.items], perPage: 99), value: modules)
+        ])
         mockData(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths], perPage: 99), value: [
             .make(
                 id: "1",
@@ -174,9 +173,7 @@ class MockedModulesTests: StudentUITestCase {
         app.find(labelContaining: "PREREQUISITE MODULES").waitToExist()
         XCTAssertEqual(app.find(id: "module_cell_0_0").label(), "Module 1")
         XCTAssertEqual(ModulesDetail.moduleItem(index: 0).label(), "Page 2. Type: Page. Status: Locked")
-        ModulesDetail.module(index: 0).tap()
-        ModulesDetail.moduleItem(index: 0).tap()
-        NavBar.backButton(label: "Module 1").waitToExist(60)
+        XCTAssertFalse(ModulesDetail.moduleItem(index: 0).isEnabled)
         mockData(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths], perPage: 99), value: [
             .make(
                 id: "2",
@@ -187,8 +184,17 @@ class MockedModulesTests: StudentUITestCase {
                 content_details: .make(locked_for_user: false)
             ),
         ])
+        mockData(GetModulesRequest(courseID: "1", include: [.items], perPage: 99), value: [
+            .make(id: "1", name: "Module 1", position: 1, prerequisite_module_ids: [], state: .unlocked),
+            .make(id: "2", name: "Module 2", position: 2, prerequisite_module_ids: ["1"], state: .unlocked),
+        ])
+        ModulesDetail.module(index: 0).tap()
+        ModulesDetail.moduleItem(index: 0).tap()
+        NavBar.backButton(label: "Module 1").waitToExist(60)
         NavBar.backButton(label: "Module 1").tap()
         NavBar.backButton(label: "Module 2").tap()
+        app.find(label: "Page 2. Type: Page").waitToExist()
         XCTAssertEqual(ModulesDetail.moduleItem(index: 0).label(), "Page 2. Type: Page")
+        XCTAssertTrue(ModulesDetail.moduleItem(index: 0).isEnabled)
     }
 }

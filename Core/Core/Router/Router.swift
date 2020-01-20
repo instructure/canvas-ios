@@ -110,9 +110,13 @@ public extension RouterProtocol {
                 (nav ?? view).isModalInPresentation = true
             }
             from.present(nav ?? view, animated: true, completion: completion)
-        case .detail where from.splitViewController != nil  && !from.isInSplitViewDetail:
+        case .detail where from.splitViewController != nil && !from.isInSplitViewDetail:
             from.showDetailViewController(nav ?? view, sender: from)
-        case .detail, .push:
+        case .detail:
+            // not in a split view so we can ignore `embedInNav`
+            // and must not `show` `nav` otherwise it will modal
+            from.show(view, sender: nil)
+        case .push:
             from.show(nav ?? view, sender: nil)
         }
     }
