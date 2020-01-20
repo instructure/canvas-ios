@@ -127,6 +127,12 @@ let router = Router(routes: [
         return ActAsUserViewController.create(loginDelegate: loginDelegate)
     },
 
+    RouteHandler(.showFile(fileID: ":fileID")) { _, params in
+        guard let fileID = params["fileID"] else { return nil }
+        let vc = FileDetailsViewController.create(context: ContextModel.currentUser, fileID: fileID)
+        return vc
+    },
+
     RouteHandler(.developerMenu) { _, _ in
         return DeveloperMenuViewController.create()
     },

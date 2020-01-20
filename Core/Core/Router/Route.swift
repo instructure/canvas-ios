@@ -188,6 +188,10 @@ public struct Route: Equatable {
         return Route("/support/\(type)")
     }
 
+    public static func showFile(fileID: String) -> Route {
+        return Route("/files/\(fileID)/download")
+    }
+
     public static let developerMenu = Route("/dev-menu")
     public static let experimentalFeatures = Route("/dev-menu/experimental-features")
 

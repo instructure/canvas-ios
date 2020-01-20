@@ -87,6 +87,11 @@ class ConversationDetailViewController: UIViewController {
         guard let message = conversations.first?.messages.first else { return }
         showReplyFor(IndexPath(row: 0, section: 0), all: message.participantIDs.count > 2)
     }
+
+    func showAttachment(_ attachment: File) {
+        guard let url = attachment.url else { return }
+        env.router.route(to: url, from: self, options: .modal(embedInNav: true, addDoneButton: true))
+    }
 }
 
 extension ConversationDetailViewController: UITableViewDataSource, UITableViewDelegate {
@@ -102,6 +107,7 @@ extension ConversationDetailViewController: UITableViewDataSource, UITableViewDe
         let cell: ConversationDetailCell = tableView.dequeue(for: indexPath)
         let msg = conversations.first?.messages[indexPath.section]
         cell.update(msg, myID: myID, userMap: userMap)
+        cell.onTapAttachment = { [weak self] file in self?.showAttachment(file) }
         return cell
     }
 
@@ -132,7 +138,7 @@ extension ConversationDetailViewController: UITableViewDataSource, UITableViewDe
         return UISwipeActionsConfiguration(actions: actions)
     }
 
-    func showReplyFor(_ indexPath: IndexPath, all: Bool) {
+    func showReplyFor(_  indexPath: IndexPath, all: Bool) {
         guard let conversation = conversations.first else { return }
         env.router.show(ComposeReplyViewController.create(
             conversation: conversation,
@@ -148,14 +154,73 @@ class ConversationDetailCell: UITableViewCell {
     @IBOutlet weak var toLabel: DynamicLabel!
     @IBOutlet weak var dateLabel: DynamicLabel!
     @IBOutlet weak var avatar: AvatarView!
+    @IBOutlet weak var stackview: UIStackView!
+    @IBOutlet weak var attachmentCollectionView: UICollectionView!
+
+    var onTapAttachment: ((File) -> Void)?
+    var message: ConversationMessage?
 
     func update(_ message: ConversationMessage?, myID: String, userMap: [String: ConversationParticipant]) {
         guard let m = message else { return }
+        self.message = m
         messageLabel.text = m.body
         toLabel.text = m.localizedAudience(myID: myID, userMap: userMap)
         fromLabel.text = userMap[ m.authorID ]?.name
         dateLabel.text = DateFormatter.localizedString(from: m.createdAt, dateStyle: .medium, timeStyle: .short)
         avatar.url = userMap[ m.authorID ]?.avatarURL
         avatar.name = userMap[ m.authorID ]?.name ?? ""
+
+        attachmentCollectionView.dataSource = nil
+        attachmentCollectionView.isHidden = message?.attachments.isEmpty == true
+        if message?.attachments.isEmpty == false {
+            attachmentCollectionView.dataSource = self
+            attachmentCollectionView.reloadData()
+        }
     }
+
+    @objc func tapAttachment(sender: UIButton) {
+        guard message?.attachments.count ?? 0 > sender.tag,
+            let attachment = message?.attachments[sender.tag] else { return }
+        onTapAttachment?(attachment)
+    }
+}
+
+class ConversationDetailAttachmentCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var button: UIButton!
+}
+
+extension ConversationDetailCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        message?.attachments.count ??  0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: ConversationDetailAttachmentCollectionViewCell = collectionView.dequeue(for: indexPath)
+        guard message?.attachments.count ?? 0 > indexPath.item else { return cell }
+        let attachment = message?.attachments[indexPath.item]
+        cell.button.tag = indexPath.item
+        cell.button.addTarget(self, action: #selector(tapAttachment(sender:)), for: .primaryActionTriggered)
+        if let icon = attachment?.attachmentIcon {
+            cell.imageView.image = icon
+            cell.imageView.contentMode = .scaleAspectFit
+
+            cell.contentView.layer.borderColor = cell.tintColor.cgColor
+            cell.contentView.layer.borderWidth = 1.0
+            cell.contentView.layer.cornerRadius = 8
+        } else {
+            cell.imageView.load(url: attachment?.previewURL ?? attachment?.thumbnailURL ?? attachment?.url)
+            cell.imageView.contentMode = .scaleAspectFill
+
+            cell.contentView.layer.borderColor = nil
+            cell.contentView.layer.borderWidth = 0
+            cell.contentView.layer.cornerRadius = 0
+
+        }
+        cell.imageView.setNeedsLayout()
+
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize { CGSize(width: 120, height: 104) }
 }

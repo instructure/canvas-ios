@@ -183,3 +183,20 @@ extension File: WriteableModel {
         }
     }
 }
+
+extension File {
+    public var attachmentIcon: UIImage? {
+        switch (mimeClass, contentType) {
+        case ("audio", _):
+            return UIImage.icon(.audio)
+        case ("image", _), (_, "image/heic"):
+            return nil
+        case ("pdf", _):
+            return UIImage.icon(.pdf)
+        case ("video", _):
+            return UIImage.icon(.video)
+        default:
+            return UIImage.icon(.paperclip)
+        }
+    }
+}
