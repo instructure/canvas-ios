@@ -51,7 +51,7 @@ PODS:
     - FirebaseCoreDiagnosticsInterop (~> 1.0)
     - GoogleUtilities/Environment (~> 6.2)
     - GoogleUtilities/Logger (~> 6.2)
-  - FirebaseCoreDiagnostics (1.1.1):
+  - FirebaseCoreDiagnostics (1.1.2):
     - FirebaseCoreDiagnosticsInterop (~> 1.0)
     - GoogleDataTransportCCTSupport (~> 1.0)
     - GoogleUtilities/Environment (~> 6.2)
@@ -81,9 +81,9 @@ PODS:
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (= 0.3.9011)
-  - GoogleDataTransport (3.1.0)
-  - GoogleDataTransportCCTSupport (1.2.1):
-    - GoogleDataTransport (~> 3.0)
+  - GoogleDataTransport (3.2.0)
+  - GoogleDataTransportCCTSupport (1.2.2):
+    - GoogleDataTransport (~> 3.2)
     - nanopb (~> 0.3.901)
   - GoogleUtilities/AppDelegateSwizzler (6.3.2):
     - GoogleUtilities/Environment
@@ -114,6 +114,9 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - Nimble (8.0.4)
+  - PactConsumerSwift (0.7.1):
+    - Nimble (~> 8.0)
   - Protobuf (3.10.0)
   - React (0.59.9):
     - React/Core (= 0.59.9)
@@ -210,6 +213,7 @@ DEPENDENCIES:
   - Interactable (from `./rn/Teacher/node_modules/react-native-interactable`)
   - Mantle (~> 1.5.5)
   - Marshal (~> 1.2.7)
+  - PactConsumerSwift (from `https://github.com/DiUS/pact-consumer-swift.git`)
   - react-native-camera (from `./rn/Teacher/node_modules/react-native-camera`)
   - react-native-document-picker (from `./rn/Teacher/node_modules/react-native-document-picker`)
   - react-native-image-picker (from `./rn/Teacher/node_modules/react-native-image-picker`)
@@ -259,6 +263,7 @@ SPEC REPOS:
     - Mantle
     - Marshal
     - nanopb
+    - Nimble
     - Protobuf
 
 EXTERNAL SOURCES:
@@ -272,6 +277,8 @@ EXTERNAL SOURCES:
     :podspec: "./rn/Teacher/node_modules/react-native/third-party-podspecs/glog.podspec"
   Interactable:
     :path: "./rn/Teacher/node_modules/react-native-interactable"
+  PactConsumerSwift:
+    :git: https://github.com/DiUS/pact-consumer-swift.git
   React:
     :path: "./rn/Teacher/node_modules/react-native/"
   react-native-camera:
@@ -295,6 +302,11 @@ EXTERNAL SOURCES:
   yoga:
     :path: "./rn/Teacher/node_modules/react-native/ReactCommon/yoga"
 
+CHECKOUT OPTIONS:
+  PactConsumerSwift:
+    :commit: 6958928946522f9916f28942b7c47a4aba97fa39
+    :git: https://github.com/DiUS/pact-consumer-swift.git
+
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
@@ -308,20 +320,22 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: 45f36d9c429fc91d206283900ab75390cd05ee8a
   FirebaseAnalyticsInterop: d48b6ab67bcf016a05e55b71fc39c61c0cb6b7f3
   FirebaseCore: 307ea2508df730c5865334e41965bd9ea344b0e5
-  FirebaseCoreDiagnostics: af29e43048607588c050889d19204f4d7b758c9f
+  FirebaseCoreDiagnostics: 511f4f3ed7d440bb69127e8b97c2bc8befae639e
   FirebaseCoreDiagnosticsInterop: e9b1b023157e3a2fc6418b5cb601e79b9af7b3a0
   FirebaseInstanceID: ebd2ea79ee38db0cb5f5167b17a0d387e1cc7b6e
   FirebaseRemoteConfig: 6ad68503c04701b8d9d709240711bc0bf6edaf94
   Folly: de497beb10f102453a1afa9edbf8cf8a251890de
   glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
   GoogleAppMeasurement: dfe55efa543e899d906309eaaac6ca26d249862f
-  GoogleDataTransport: 67cc56f6280d1bc9d470285e851ec49ee9013dba
-  GoogleDataTransportCCTSupport: f6ab1962e9dc05ab1fb938b795e5b310209edeec
+  GoogleDataTransport: 8e9b210c97d55fbff306cc5468ff91b9cb32dcf5
+  GoogleDataTransportCCTSupport: ef79a4728b864946a8aafdbab770d5294faf3b5f
   GoogleUtilities: 547a86735c6f0ee30ad17e94df4fc21f616b71cb
   Interactable: 0a9f2a42b02ea03114d7e03e714d946a65cd8d0b
   Mantle: f03b2b606c3f0cabd80214ad8a2fed6b464a7359
   Marshal: ef480864a6af10a63f67be7e55bb5d8fe67a16d9
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  Nimble: 18d5360282923225d62b09d781f63abc1a0111fc
+  PactConsumerSwift: 162222e11d1edffdd1d9d16918f6db10f914dae7
   Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
   React: a86b92f00edbe1873a63e4a212c29b7a7ad5224f
   react-native-camera: a4446f056fb28a9aa7acb3e14af595216aac0a8d
@@ -335,6 +349,6 @@ SPEC CHECKSUMS:
   RNSound: a1d01988e043aed5dbb476c2152b5ffb02446750
   yoga: 03ff42a6f223fb88deeaed60249020d80c3091ee
 
-PODFILE CHECKSUM: 5fd16cdc06c4380fd53663c05d30c15aca4e7010
+PODFILE CHECKSUM: 0409006d8343d6dd6eebe9f56338a9d078cd079d
 
 COCOAPODS: 1.8.4
