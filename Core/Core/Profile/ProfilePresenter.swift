@@ -21,7 +21,7 @@ import UIKit
 
 public class ProfilePresenter {
     var unreadCount: UInt = 0
-    let env: AppEnvironment
+    let env = AppEnvironment.shared
     weak var view: ProfileViewProtocol?
 
     #if DEBUG
@@ -158,8 +158,7 @@ public class ProfilePresenter {
         return cells
     }
 
-    init(env: AppEnvironment = .shared, enrollment: HelpLinkEnrollment, view: ProfileViewProtocol?) {
-        self.env = env
+    init(enrollment: HelpLinkEnrollment, view: ProfileViewProtocol?) {
         self.enrollment = enrollment
         self.view = view
     }
