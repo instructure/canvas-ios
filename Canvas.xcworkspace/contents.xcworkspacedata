@@ -36,9 +36,6 @@
       location = "container:TestPlans"
       name = "TestPlans">
       <FileRef
-         location = "group:/Users/acobb/src/canvas-ios/TestPlans/scratch.xctestplan">
-      </FileRef>
-      <FileRef
          location = "group:NightlyTests.xctestplan">
       </FileRef>
       <FileRef
