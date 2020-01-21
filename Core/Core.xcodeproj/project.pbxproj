@@ -257,13 +257,12 @@
 		7D765024215AEDDE00BB4F38 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D765023215AEDDD00BB4F38 /* DividerView.swift */; };
 		7D765026215AEDE300BB4F38 /* DynamicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D765025215AEDE300BB4F38 /* DynamicLabel.swift */; };
 		7D7EA2E223CD013F0021B34E /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7EA2E123CD013F0021B34E /* FilterHeaderView.swift */; };
-		7D80AC03212B445200C40ECE /* APIUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC02212B445200C40ECE /* APIUser.swift */; };
-		7D80AC05212B461F00C40ECE /* APIUserRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC04212B461F00C40ECE /* APIUserRequestable.swift */; };
+		7D80AC05212B461F00C40ECE /* APIUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC04212B461F00C40ECE /* APIUser.swift */; };
 		7D80AC0A212B4A8D00C40ECE /* APIGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC09212B4A8D00C40ECE /* APIGroup.swift */; };
 		7D80AC0C212B4C6F00C40ECE /* APITab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC0B212B4C6F00C40ECE /* APITab.swift */; };
 		7D80AC0E212B4D4100C40ECE /* APIFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC0D212B4D4100C40ECE /* APIFavorite.swift */; };
 		7D80AC12212B4F8E00C40ECE /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC11212B4F8E00C40ECE /* API.swift */; };
-		7D80AC15212B67E100C40ECE /* APIUserRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC14212B67E100C40ECE /* APIUserRequestableTests.swift */; };
+		7D80AC15212B67E100C40ECE /* APIUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC14212B67E100C40ECE /* APIUserTests.swift */; };
 		7D80AC17212B689E00C40ECE /* APITabRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC16212B689E00C40ECE /* APITabRequestableTests.swift */; };
 		7D80AC19212B697600C40ECE /* APIGroupRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC18212B697600C40ECE /* APIGroupRequestableTests.swift */; };
 		7D80AC1B212B6A7700C40ECE /* APIFavoriteRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC1A212B6A7700C40ECE /* APIFavoriteRequestableTests.swift */; };
@@ -1179,13 +1178,12 @@
 		7D765023215AEDDD00BB4F38 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 		7D765025215AEDE300BB4F38 /* DynamicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabel.swift; sourceTree = "<group>"; };
 		7D7EA2E123CD013F0021B34E /* FilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
-		7D80AC02212B445200C40ECE /* APIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUser.swift; sourceTree = "<group>"; };
-		7D80AC04212B461F00C40ECE /* APIUserRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUserRequestable.swift; sourceTree = "<group>"; };
+		7D80AC04212B461F00C40ECE /* APIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUser.swift; sourceTree = "<group>"; };
 		7D80AC09212B4A8D00C40ECE /* APIGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGroup.swift; sourceTree = "<group>"; };
 		7D80AC0B212B4C6F00C40ECE /* APITab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITab.swift; sourceTree = "<group>"; };
 		7D80AC0D212B4D4100C40ECE /* APIFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFavorite.swift; sourceTree = "<group>"; };
 		7D80AC11212B4F8E00C40ECE /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		7D80AC14212B67E100C40ECE /* APIUserRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUserRequestableTests.swift; sourceTree = "<group>"; };
+		7D80AC14212B67E100C40ECE /* APIUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUserTests.swift; sourceTree = "<group>"; };
 		7D80AC16212B689E00C40ECE /* APITabRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITabRequestableTests.swift; sourceTree = "<group>"; };
 		7D80AC18212B697600C40ECE /* APIGroupRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGroupRequestableTests.swift; sourceTree = "<group>"; };
 		7D80AC1A212B6A7700C40ECE /* APIFavoriteRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFavoriteRequestableTests.swift; sourceTree = "<group>"; };
@@ -2558,7 +2556,6 @@
 				7D80AC16212B689E00C40ECE /* APITabRequestableTests.swift */,
 				7D80AC1E212B738500C40ECE /* APITests.swift */,
 				B11AAC3A237A1EB4002BC41F /* APIURLTests.swift */,
-				7D80AC14212B67E100C40ECE /* APIUserRequestableTests.swift */,
 				3B3467D52135B99700F9BC2E /* IDTests.swift */,
 				B1EA5AF4212E66B100DABC5F /* Fixtures */,
 				3B383044237F178800B3DF05 /* APIActivityTests.swift */,
@@ -2666,8 +2663,6 @@
 				7D80AC0B212B4C6F00C40ECE /* APITab.swift */,
 				7D8262F0212B28FE00BD268D /* APITabRequestable.swift */,
 				B11AAC3C237A2428002BC41F /* APIURL.swift */,
-				7D80AC02212B445200C40ECE /* APIUser.swift */,
-				7D80AC04212B461F00C40ECE /* APIUserRequestable.swift */,
 				3B604398232AAC4E00757B93 /* AssignmentGroupRequestable.swift */,
 				3BA9FF712332B04400196A06 /* GradingPeriodRequestables.swift */,
 				3B3467D32135B7B700F9BC2E /* ID.swift */,
@@ -2711,6 +2706,7 @@
 		7D8E820C23C8E09500A8DA2C /* People */ = {
 			isa = PBXGroup;
 			children = (
+				7D80AC04212B461F00C40ECE /* APIUser.swift */,
 				B1CA333F23392A140015CBB4 /* GetContextUsers.swift */,
 				7D8E820A23C8E09500A8DA2C /* PeopleListViewController.storyboard */,
 				7D8E820823C8E09500A8DA2C /* PeopleListViewController.swift */,
@@ -2722,6 +2718,7 @@
 		7D8E820F23C8E0AE00A8DA2C /* People */ = {
 			isa = PBXGroup;
 			children = (
+				7D80AC14212B67E100C40ECE /* APIUserTests.swift */,
 				B1CA33452339434A0015CBB4 /* GetContextUsersTests.swift */,
 				7D8E820E23C8E0AE00A8DA2C /* PeopleListViewControllerTests.swift */,
 				B1CA3347233948870015CBB4 /* UserTests.swift */,
@@ -3783,7 +3780,7 @@
 				7DCF1ECB216BF544003AF358 /* SubmissionViewable.swift in Sources */,
 				7D7110BF213890AD0085C2E5 /* RouteHandler.swift in Sources */,
 				7D842A8C22A816BC00484B92 /* WrongAppLinkView.swift in Sources */,
-				7D80AC05212B461F00C40ECE /* APIUserRequestable.swift in Sources */,
+				7D80AC05212B461F00C40ECE /* APIUser.swift in Sources */,
 				7D8262EB212B1A7B00BD268D /* APIRequestable.swift in Sources */,
 				9FBFE6DF22428990002B3796 /* WrongAppViewController.swift in Sources */,
 				7D63F784215D3C3D00151E49 /* APIBrandVariables.swift in Sources */,
@@ -3927,7 +3924,6 @@
 				7D9E80D2233D9934003C608B /* GroupedSectionHeaderView.swift in Sources */,
 				3B0897B122EF8EFD00F47142 /* AppBackgroundHelperProtocol.swift in Sources */,
 				B1B4C1CB219631B700FA9E0E /* EmptyView.swift in Sources */,
-				7D80AC03212B445200C40ECE /* APIUser.swift in Sources */,
 				7D70DE92233E808600F5C3D4 /* GroupedSectionFooterView.swift in Sources */,
 				7D8262F9212B3B2000BD268D /* APICourseSection.swift in Sources */,
 				3B4B75C7222F09C7002CCBEC /* CreateSubmission.swift in Sources */,
@@ -4104,7 +4100,7 @@
 				B1F13290224BBFC0002C0555 /* ModuleItemTypeTests.swift in Sources */,
 				7DCF1ED4216C05A0003AF358 /* DueViewableTests.swift in Sources */,
 				7DD6947B21949DC900BA4984 /* IconViewTests.swift in Sources */,
-				7D80AC15212B67E100C40ECE /* APIUserRequestableTests.swift in Sources */,
+				7D80AC15212B67E100C40ECE /* APIUserTests.swift in Sources */,
 				9F4D65B22396A3D600660038 /* ProfileSettingsViewControllerTests.swift in Sources */,
 				7D70DE98233E9F3400F5C3D4 /* APICommunicationChannelTests.swift in Sources */,
 				7D7472D6218CC4B200CE1430 /* APIDocViewerRequestableTests.swift in Sources */,
