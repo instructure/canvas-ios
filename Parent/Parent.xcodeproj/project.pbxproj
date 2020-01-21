@@ -28,7 +28,6 @@
 		2CB69BC01D91CE100059C5A5 /* SettingsObserveeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BC21D91CE100059C5A5 /* SettingsObserveeCell.xib */; };
 		2CB69BC31D91CE140059C5A5 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BC51D91CE140059C5A5 /* UserCell.xib */; };
 		2CB69BC61D91CE180059C5A5 /* StudentSettingsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BC81D91CE180059C5A5 /* StudentSettingsHeaderView.xib */; };
-		2CB69BC91D91CE1D0059C5A5 /* TableEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BCB1D91CE1D0059C5A5 /* TableEmptyView.xib */; };
 		2CB69BCC1D91CE460059C5A5 /* SettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BCE1D91CE460059C5A5 /* SettingsViewController.storyboard */; };
 		2CB69BCF1D91CE4A0059C5A5 /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BD11D91CE4A0059C5A5 /* DashboardViewController.storyboard */; };
 		2CB69BD21D91CE4D0059C5A5 /* CalendarEventWeekPageViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BD41D91CE4D0059C5A5 /* CalendarEventWeekPageViewController.storyboard */; };
@@ -125,6 +124,7 @@
 		7D111D0123A2DDDF00C912C0 /* ConversationListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D111D0023A2DDDF00C912C0 /* ConversationListViewController.storyboard */; };
 		7D1591BC23AD79B100ED0106 /* ComposeRecipientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1591BB23AD79B100ED0106 /* ComposeRecipientsView.swift */; };
 		7D231BE123AC1E0A005BA31D /* ComposeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D231BE023AC1E0A005BA31D /* ComposeViewControllerTests.swift */; };
+		7D32963923D6574B008ED385 /* TableEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D32963823D6574A008ED385 /* TableEmptyView.xib */; };
 		7D52D8A122FCC89F00684932 /* DiscussionTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D322048745B00F6EDCE /* DiscussionTopic.swift */; };
 		7D52D8A222FCC89F00684932 /* DiscussionTopic+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D332048745B00F6EDCE /* DiscussionTopic+Network.swift */; };
 		7D52D8A322FCC89F00684932 /* DiscussionTopic+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D342048745B00F6EDCE /* DiscussionTopic+Details.swift */; };
@@ -581,7 +581,6 @@
 		2CB69BD01D91CE4A0059C5A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/DashboardViewController.storyboard; sourceTree = "<group>"; };
 		2CB69BD31D91CE4D0059C5A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CalendarEventWeekPageViewController.storyboard; sourceTree = "<group>"; };
 		2CB69C1A1D92C5860059C5A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DetailsAttachmentCell.xib; sourceTree = "<group>"; };
-		2CBD77E81D95938900BB111D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TableEmptyView.xib; sourceTree = "<group>"; };
 		2CCDE2961DA7E3AB00B46D87 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2CCDE2981DA7E3E300B46D87 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2CCDE2991DA7E3F900B46D87 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -791,6 +790,7 @@
 		7D111D0023A2DDDF00C912C0 /* ConversationListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConversationListViewController.storyboard; sourceTree = "<group>"; };
 		7D1591BB23AD79B100ED0106 /* ComposeRecipientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeRecipientsView.swift; sourceTree = "<group>"; };
 		7D231BE023AC1E0A005BA31D /* ComposeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewControllerTests.swift; sourceTree = "<group>"; };
+		7D32963823D6574A008ED385 /* TableEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableEmptyView.xib; sourceTree = "<group>"; };
 		7D349C7D21430D98004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349C7E21430D98004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
 		7D349C7F21430D99004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/CourseCell.strings"; sourceTree = "<group>"; };
@@ -808,7 +808,6 @@
 		7D349C8B21430D9F004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/SettingsViewController.strings"; sourceTree = "<group>"; };
 		7D349C8C21430DA0004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/UserCell.strings"; sourceTree = "<group>"; };
 		7D349C8D21430DA0004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/StudentSettingsHeaderView.strings"; sourceTree = "<group>"; };
-		7D349C8E21430DA1004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "da-instk12"; path = "da-instk12.lproj/TableEmptyView.xib"; sourceTree = "<group>"; };
 		7D349C8F21430DA1004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349C9121430DA2004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D349C9521430DE1004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -828,7 +827,6 @@
 		7D349CA321430DE8004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/SettingsViewController.strings"; sourceTree = "<group>"; };
 		7D349CA421430DE8004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/UserCell.strings"; sourceTree = "<group>"; };
 		7D349CA521430DE8004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/StudentSettingsHeaderView.strings"; sourceTree = "<group>"; };
-		7D349CA621430DE9004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/TableEmptyView.xib"; sourceTree = "<group>"; };
 		7D349CA721430DE9004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349CA921430DEA004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D349CAD21430E20004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -848,7 +846,6 @@
 		7D349CBB21430E27004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/SettingsViewController.strings"; sourceTree = "<group>"; };
 		7D349CBC21430E28004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/UserCell.strings"; sourceTree = "<group>"; };
 		7D349CBD21430E28004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/StudentSettingsHeaderView.strings"; sourceTree = "<group>"; };
-		7D349CBE21430E28004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "nb-instk12"; path = "nb-instk12.lproj/TableEmptyView.xib"; sourceTree = "<group>"; };
 		7D349CBF21430E29004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349CC121430E29004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D349CC521430E5C004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -868,7 +865,6 @@
 		7D349CD321430E64004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/SettingsViewController.strings"; sourceTree = "<group>"; };
 		7D349CD421430E65004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/UserCell.strings"; sourceTree = "<group>"; };
 		7D349CD521430E65004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/StudentSettingsHeaderView.strings"; sourceTree = "<group>"; };
-		7D349CD621430E65004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "sv-instk12"; path = "sv-instk12.lproj/TableEmptyView.xib"; sourceTree = "<group>"; };
 		7D349CD721430E66004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349CD921430E67004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D57D3CB23AADA0F00EB2CC5 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
@@ -1282,10 +1278,10 @@
 		5E64422E1C3F1C2D003D7397 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5EF946281CAD76C400D10247 /* TableEmptyView.swift */,
+				7D32963823D6574A008ED385 /* TableEmptyView.xib */,
 				5EF946241CACD83500D10247 /* TableSectionHeaderView.swift */,
 				5EF946261CACD91B00D10247 /* TokenLabelView.swift */,
-				5EF946281CAD76C400D10247 /* TableEmptyView.swift */,
-				2CB69BCB1D91CE1D0059C5A5 /* TableEmptyView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1668,7 +1664,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				974BA7F923A89C5C00E09D5A /* ConversationDetailViewController.storyboard in Resources */,
-				2CB69BC91D91CE1D0059C5A5 /* TableEmptyView.xib in Resources */,
 				7D57D3CE23AADAAC00EB2CC5 /* ComposeViewController.storyboard in Resources */,
 				2CB69BB71D91CDF30059C5A5 /* DetailsReminderCell.xib in Resources */,
 				2CB69BCF1D91CE4A0059C5A5 /* DashboardViewController.storyboard in Resources */,
@@ -1693,6 +1688,7 @@
 				7893BDD120D1A7A200231DF7 /* AdminViewController.storyboard in Resources */,
 				2CB69BD21D91CE4D0059C5A5 /* CalendarEventWeekPageViewController.storyboard in Resources */,
 				2CB69BCC1D91CE460059C5A5 /* SettingsViewController.storyboard in Resources */,
+				7D32963923D6574B008ED385 /* TableEmptyView.xib in Resources */,
 				785AC17F20CEDAD300C28E46 /* Settings.bundle in Resources */,
 				3B92109C231F02D500820CC3 /* StudentSettingsViewController.storyboard in Resources */,
 				7D6F4CE923C676CE001C957D /* ComposeReplyViewController.storyboard in Resources */,
@@ -2388,18 +2384,6 @@
 				7DE74F0722BD7942003C8B44 /* en-AU-unimelb */,
 			);
 			name = StudentSettingsHeaderView.xib;
-			sourceTree = "<group>";
-		};
-		2CB69BCB1D91CE1D0059C5A5 /* TableEmptyView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2CBD77E81D95938900BB111D /* en */,
-				7D349C8E21430DA1004C1074 /* da-instk12 */,
-				7D349CA621430DE9004C1074 /* en-GB-instukhe */,
-				7D349CBE21430E28004C1074 /* nb-instk12 */,
-				7D349CD621430E65004C1074 /* sv-instk12 */,
-			);
-			name = TableEmptyView.xib;
 			sourceTree = "<group>";
 		};
 		2CB69BCE1D91CE460059C5A5 /* SettingsViewController.storyboard */ = {

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TableEmptyView" customModule="Parent" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_courses" translatesAutoresizingMaskIntoConstraints="NO" id="v4P-rq-e0u">
+                    <rect key="frame" x="53.5" y="157" width="268" height="233"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Empty Text Goes Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4k-OS-Bmk" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
+                    <rect key="frame" x="86.5" y="454" width="202" height="24"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold20"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="subtitle" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLZ-4r-d4I" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
+                    <rect key="frame" x="16" y="485.5" width="343" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="c4k-OS-Bmk" firstAttribute="top" secondItem="v4P-rq-e0u" secondAttribute="bottom" priority="250" constant="10" id="1T5-l5-iOd"/>
+                <constraint firstAttribute="trailing" secondItem="eLZ-4r-d4I" secondAttribute="trailing" constant="16" id="2uo-h2-57y"/>
+                <constraint firstItem="c4k-OS-Bmk" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="3D9-re-ic8"/>
+                <constraint firstItem="eLZ-4r-d4I" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="50d-db-8cm"/>
+                <constraint firstItem="eLZ-4r-d4I" firstAttribute="top" secondItem="c4k-OS-Bmk" secondAttribute="bottom" constant="7.5" id="5rq-Yl-fuk"/>
+                <constraint firstItem="c4k-OS-Bmk" firstAttribute="top" secondItem="v4P-rq-e0u" secondAttribute="bottom" priority="750" constant="64" id="hFg-28-TJ1"/>
+                <constraint firstItem="v4P-rq-e0u" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="o4S-p9-vBd"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="eLZ-4r-d4I" secondAttribute="bottom" id="vbt-Ze-Cbd"/>
+                <constraint firstItem="v4P-rq-e0u" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-60" id="ydu-QL-6DK"/>
+            </constraints>
+            <connections>
+                <outlet property="imageView" destination="v4P-rq-e0u" id="2Bk-Ob-XPu"/>
+                <outlet property="subtextLabel" destination="eLZ-4r-d4I" id="6Ml-aG-ea9"/>
+                <outlet property="textLabel" destination="c4k-OS-Bmk" id="ee5-Pd-HZe"/>
+            </connections>
+            <point key="canvasLocation" x="138" y="117"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="empty_courses" width="268" height="233"/>
+    </resources>
+</document>
