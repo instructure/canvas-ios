@@ -81,7 +81,6 @@ class MockedInboxTests: CoreUITestCase {
 
     override func setUp() {
         super.setUp()
-        useMocksOnly()
         mockBaseRequests()
         mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: nil), value: [conversation1])
         mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent), value: [])
