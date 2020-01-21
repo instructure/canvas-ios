@@ -20,6 +20,7 @@ import Foundation
 import SafariServices
 import UIKit
 import Core
+import WebKit
 
 protocol SubmissionButtonViewProtocol: ApplicationViewController, ErrorViewController {
 }
@@ -107,11 +108,7 @@ class SubmissionButtonPresenter: NSObject {
                 context: ContextModel(.course, id: courseID),
                 launchType: .assessment,
                 assignmentID: assignment.id
-            ).getSessionlessLaunchURL { [weak self] url in
-                guard let url = url else { return }
-                let safari = SFSafariViewController(url: url)
-                self?.env.router.show(safari, from: view, options: .modal())
-            }
+            ).presentTool(from: view, animated: true)
         case .discussion_topic:
             Analytics.shared.logEvent("assignment_detail_discussionlaunch")
             guard let url = assignment.discussionTopic?.htmlUrl else { return }

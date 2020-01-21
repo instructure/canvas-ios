@@ -542,6 +542,7 @@
 		B11D321721E464AB00F37ABF /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11D321621E464AB00F37ABF /* Store.swift */; };
 		B12A763821914059000693DE /* fileupload.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A763721914059000693DE /* fileupload.txt */; };
 		B12A763A2191459F000693DE /* file-post-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A76392191459F000693DE /* file-post-body.txt */; };
+		B12D462D23D756F90000ED55 /* GoogleCloudAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12D462B23D754CF0000ED55 /* GoogleCloudAssignmentViewController.swift */; };
 		B133A78A221F59A3000E393E /* ContextColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B133A789221F59A3000E393E /* ContextColorTests.swift */; };
 		B14B704D228F30A100B568D6 /* UploadFileComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B704C228F30A100B568D6 /* UploadFileComment.swift */; };
 		B14B7055229468BC00B568D6 /* FilePickerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B7054229468BC00B568D6 /* FilePickerViewControllerTests.swift */; };
@@ -596,6 +597,7 @@
 		B19792FB21769B320000369C /* QuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19792FA21769B320000369C /* QuizTests.swift */; };
 		B19792FD21769E280000369C /* GroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19792FC21769E280000369C /* GroupTests.swift */; };
 		B19792FF2176A0F00000369C /* TabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19792FE2176A0F00000369C /* TabTests.swift */; };
+		B19797AB23D77CC400032BC4 /* GoogleCloudAssignmentViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19797AA23D77CC400032BC4 /* GoogleCloudAssignmentViewControllerTests.swift */; };
 		B1999AAD2305AA7B00DA97A4 /* GetEnabledFeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1999AAC2305AA7B00DA97A4 /* GetEnabledFeatureFlags.swift */; };
 		B1999AAF2305AAC300DA97A4 /* APIFeatureFlagsRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1999AAE2305AAC300DA97A4 /* APIFeatureFlagsRequestable.swift */; };
 		B1999AB12305AE3300DA97A4 /* FeatureFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1999AB02305AE3300DA97A4 /* FeatureFlag.swift */; };
@@ -1464,6 +1466,7 @@
 		B11D321621E464AB00F37ABF /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		B12A763721914059000693DE /* fileupload.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = fileupload.txt; sourceTree = "<group>"; };
 		B12A76392191459F000693DE /* file-post-body.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "file-post-body.txt"; sourceTree = "<group>"; };
+		B12D462B23D754CF0000ED55 /* GoogleCloudAssignmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCloudAssignmentViewController.swift; sourceTree = "<group>"; };
 		B133A789221F59A3000E393E /* ContextColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextColorTests.swift; sourceTree = "<group>"; };
 		B1445300212E5B6E0009D848 /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
 		B14B704C228F30A100B568D6 /* UploadFileComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFileComment.swift; sourceTree = "<group>"; };
@@ -1517,6 +1520,7 @@
 		B19792FA21769B320000369C /* QuizTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizTests.swift; sourceTree = "<group>"; };
 		B19792FC21769E280000369C /* GroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTests.swift; sourceTree = "<group>"; };
 		B19792FE2176A0F00000369C /* TabTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabTests.swift; sourceTree = "<group>"; };
+		B19797AA23D77CC400032BC4 /* GoogleCloudAssignmentViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleCloudAssignmentViewControllerTests.swift; sourceTree = "<group>"; };
 		B1999AAC2305AA7B00DA97A4 /* GetEnabledFeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEnabledFeatureFlags.swift; sourceTree = "<group>"; };
 		B1999AAE2305AAC300DA97A4 /* APIFeatureFlagsRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFeatureFlagsRequestable.swift; sourceTree = "<group>"; };
 		B1999AB02305AE3300DA97A4 /* FeatureFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlag.swift; sourceTree = "<group>"; };
@@ -2419,6 +2423,7 @@
 		7D4C3D57222D9E22001B1198 /* LTI */ = {
 			isa = PBXGroup;
 			children = (
+				B19797AA23D77CC400032BC4 /* GoogleCloudAssignmentViewControllerTests.swift */,
 				7D4C3D58222D9E41001B1198 /* LTIToolsTests.swift */,
 			);
 			path = LTI;
@@ -2889,6 +2894,7 @@
 		9FAE410821B6D09100FE7F58 /* LTI */ = {
 			isa = PBXGroup;
 			children = (
+				B12D462B23D754CF0000ED55 /* GoogleCloudAssignmentViewController.swift */,
 				9FAE410921B6D0A600FE7F58 /* LTITools.swift */,
 			);
 			path = LTI;
@@ -3769,6 +3775,7 @@
 				7D1758C1215A8F5600F88613 /* ListFormatter.swift in Sources */,
 				B19792F1217536230000369C /* Database.xcdatamodeld in Sources */,
 				7D64A9732363732D004EAEDF /* CourseSection.swift in Sources */,
+				B12D462D23D756F90000ED55 /* GoogleCloudAssignmentViewController.swift in Sources */,
 				9F4D24712331525400EDFCFE /* PageDetailsPresenter.swift in Sources */,
 				B1846D1122E8FEBD00BC4C4A /* ModuleItemCompletionRequirement.swift in Sources */,
 				7D819FFF228DB48C00C61EDD /* GetQuiz.swift in Sources */,
@@ -4118,6 +4125,7 @@
 				7DCF1EBE216BC969003AF358 /* SubmissionWorkflowStateTests.swift in Sources */,
 				7D0970EF22DFB6F200E8A551 /* APIPandataTests.swift in Sources */,
 				9F3107FA2371E02600502428 /* PageTests.swift in Sources */,
+				B19797AB23D77CC400032BC4 /* GoogleCloudAssignmentViewControllerTests.swift in Sources */,
 				7D86285B224C05BB003A37DC /* APIMediaCommentRequestableTests.swift in Sources */,
 				3B3467612130556000F9BC2E /* MockURLSession.swift in Sources */,
 				7DDC450D215BF14A003F3209 /* DynamicLabelTests.swift in Sources */,

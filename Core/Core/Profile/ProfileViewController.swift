@@ -128,7 +128,7 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
     public func launchLTI(url: URL) {
         let dashboard = self.dashboard
         dismiss(animated: true) {
-            LTITools(url: url).presentToolInSFSafariViewController(from: dashboard, animated: true)
+            LTITools(url: url).presentTool(from: dashboard, animated: true)
         }
     }
 

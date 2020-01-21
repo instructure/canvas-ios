@@ -44,7 +44,7 @@ class ExternalToolSubmissionContentViewController: UIViewController {
         }
         let context = ContextModel(.course, id: assignment.courseID)
         let lti = LTITools(env: env, context: context, id: nil, url: nil, launchType: .assessment, assignmentID: assignment.id, moduleItemID: nil)
-        lti.presentToolInSFSafariViewController(from: self, animated: true, completionHandler: { [weak self] launched in
+        lti.presentTool(from: self, animated: true, completionHandler: { [weak self] launched in
             self?.errorLabel?.isHidden = launched
         })
     }

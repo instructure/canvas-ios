@@ -174,7 +174,7 @@ class SubmissionButtonPresenterTests: StudentTestCase {
         XCTAssert(router.viewControllerCalls.isEmpty)
 
         let request = GetSessionlessLaunchURLRequest(context: ContextModel(.course, id: "1"), id: nil, url: nil, assignmentID: "1", moduleItemID: nil, launchType: .assessment)
-        api.mock(request, value: APIGetSessionlessLaunchResponse(url: URL(string: "https://instructure.com")!))
+        api.mock(request, value: .make(url: URL(string: "https://instructure.com")!))
         presenter.submitType(.external_tool, for: a, button: UIView())
         wait(for: [router.showExpectation], timeout: 5)
         XCTAssert(router.viewControllerCalls.first?.0 is SFSafariViewController)
