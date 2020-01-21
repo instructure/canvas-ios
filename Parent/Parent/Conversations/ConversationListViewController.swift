@@ -29,7 +29,7 @@ class ConversationListViewController: UIViewController, ConversationCoursesActio
     @IBOutlet weak var tableView: UITableView!
 
     let env = AppEnvironment.shared
-    lazy var conversations = env.subscribe(GetConversations()) { [weak self] in
+    lazy var conversations = env.subscribe(GetConversationsWithSent()) { [weak self] in
         self?.update()
     }
 
