@@ -73,16 +73,14 @@ public class LTITools {
                 self.env.router.show(controller, from: view, options: .modal(embedInNav: true, addDoneButton: true)) {
                     completionHandler?(true)
                 }
-            } else {
-                if self.openInSafari {
+            } else if self.openInSafari {
                     self.env.loginDelegate?.openExternalURL(url)
                     completionHandler?(true)
-                } else {
-                    let safari = SFSafariViewController(url: url)
-                    safari.modalPresentationStyle = .overFullScreen
-                    self.env.router.show(safari, from: view, options: .modal()) {
-                        completionHandler?(true)
-                    }
+            } else {
+                let safari = SFSafariViewController(url: url)
+                safari.modalPresentationStyle = .overFullScreen
+                self.env.router.show(safari, from: view, options: .modal()) {
+                    completionHandler?(true)
                 }
             }
         }
