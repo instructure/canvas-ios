@@ -92,6 +92,7 @@ public struct GetContextUsersRequest: APIRequestable {
 
     public var query: [APIQueryItem] {
         var items: [APIQueryItem] = [
+            .value("exclude_inactive", "true"),
             .value("sort", "username"),
             .value("per_page", "50"),
             .include(["avatar_url", "enrollments"]),

@@ -30,6 +30,7 @@ class GetContextUsersTests: CoreTestCase {
         let useCase = GetContextUsers(context: ContextModel(.course, id: "1"))
         XCTAssertEqual(useCase.request.path, "courses/1/users")
         XCTAssertEqual(useCase.request.queryItems, [
+            URLQueryItem(name: "exclude_inactive", value: "true"),
             URLQueryItem(name: "sort", value: "username"),
             URLQueryItem(name: "per_page", value: "50"),
             URLQueryItem(name: "include[]", value: "avatar_url"),
@@ -38,6 +39,7 @@ class GetContextUsersTests: CoreTestCase {
         let useCase2 = GetContextUsers(context: ContextModel(.group, id: "1"), type: .ta, search: "fred")
         XCTAssertEqual(useCase2.request.path, "groups/1/users")
         XCTAssertEqual(useCase2.request.queryItems, [
+            URLQueryItem(name: "exclude_inactive", value: "true"),
             URLQueryItem(name: "sort", value: "username"),
             URLQueryItem(name: "per_page", value: "50"),
             URLQueryItem(name: "include[]", value: "avatar_url"),
