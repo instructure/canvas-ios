@@ -96,6 +96,7 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
         student.refresh()
         teachers.refresh()
         assignment.refresh()
+        navigationController?.isNavigationBarHidden = false
     }
 
     override func viewWillAppear(_ animated: Bool) {
