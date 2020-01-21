@@ -174,30 +174,10 @@ class SubmissionButtonPresenterTests: StudentTestCase {
         XCTAssert(router.viewControllerCalls.isEmpty)
 
         let request = GetSessionlessLaunchURLRequest(context: ContextModel(.course, id: "1"), id: nil, url: nil, assignmentID: "1", moduleItemID: nil, launchType: .assessment)
-        api.mock(request, value: APIGetSessionlessLaunchResponse(url: URL(string: "https://instructure.com")!))
+        api.mock(request, value: .make(url: URL(string: "https://instructure.com")!))
         presenter.submitType(.external_tool, for: a, button: UIView())
         wait(for: [router.showExpectation], timeout: 5)
         XCTAssert(router.viewControllerCalls.first?.0 is SFSafariViewController)
-    }
-
-    func testSubmitGoogleCloudAssignment() throws {
-        let url = URL(string: "https://instructure.com")!
-        let assignment = Assignment.make(from: .make(
-            submission_types: [.external_tool],
-            external_tool_tag_attributes: .googleCloudAssignment
-        ))
-        let request = GetSessionlessLaunchURLRequest(
-            context: ContextModel(.course, id: "1"),
-            id: nil,
-            url: nil,
-            assignmentID: "1",
-            moduleItemID: nil,
-            launchType: .assessment
-        )
-        api.mock(request, value: APIGetSessionlessLaunchResponse(url: url))
-        presenter.submitAssignment(assignment, button: UIView())
-        let presented = try XCTUnwrap(router.presented as? GoogleCloudAssignmentViewController)
-        XCTAssertEqual(presented.url, url)
     }
 
     func xtestSubmitTypeDiscussion() {

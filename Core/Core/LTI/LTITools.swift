@@ -46,6 +46,8 @@ public class LTITools {
         self.moduleItemID = moduleItemID
     }
 
+    var openInSafari: Bool { UserDefaults.standard.bool(forKey: "open_lti_safari") }
+
     public convenience init?(env: AppEnvironment = .shared, link: URL?) {
         guard
             let retrieve = link, retrieve.host == env.api.baseURL.host,
@@ -58,25 +60,43 @@ public class LTITools {
         self.init(env: env, context: context, url: url)
     }
 
-    public func presentToolInSFSafariViewController(from: UIViewController, animated: Bool, completionHandler: ((Bool) -> Void)? = nil) {
-        getSessionlessLaunchURL { url in
-            guard let url = url else {
+    public func presentTool(from view: UIViewController, animated: Bool, completionHandler: ((Bool) -> Void)? = nil) {
+        getSessionlessLaunch { [weak view] response in
+            guard let view = view else { return }
+            guard let response = response else {
                 completionHandler?(false)
                 return
             }
-            let safari = SFSafariViewController(url: url)
-            safari.modalPresentationStyle = .overFullScreen
-            AppEnvironment.shared.router.show(safari, from: from, options: .modal()) {
-                completionHandler?(true)
+            let url = response.url
+            if response.name == "Google Apps" {
+                let controller = GoogleCloudAssignmentViewController(url: url)
+                self.env.router.show(controller, from: view, options: .modal(embedInNav: true, addDoneButton: true)) {
+                    completionHandler?(true)
+                }
+            } else {
+                if self.openInSafari {
+                    self.env.loginDelegate?.openExternalURL(url)
+                    completionHandler?(true)
+                } else {
+                    let safari = SFSafariViewController(url: url)
+                    safari.modalPresentationStyle = .overFullScreen
+                    self.env.router.show(safari, from: view, options: .modal()) {
+                        completionHandler?(true)
+                    }
+                }
             }
         }
     }
 
-    public func getSessionlessLaunchURL(completionBlock: @escaping (URL?) -> Void) {
+    public func getSessionlessLaunch(completionBlock: @escaping (APIGetSessionlessLaunchResponse?) -> Void) {
         let request = GetSessionlessLaunchURLRequest(context: context, id: id, url: url, assignmentID: assignmentID, moduleItemID: moduleItemID, launchType: launchType)
-        env.api.makeRequest(request) { response, _, _ in
-            performUIUpdate { completionBlock(response?.url) }
-        }
+        env.api.makeRequest(request) { response, _, _ in performUIUpdate {
+            completionBlock(response)
+        } }
+    }
+
+    public func getSessionlessLaunchURL(completionBlock: @escaping (URL?) -> Void) {
+        getSessionlessLaunch { completionBlock($0?.url) }
     }
 
     private static func context(forRetrieveURL url: URL) -> Context? {

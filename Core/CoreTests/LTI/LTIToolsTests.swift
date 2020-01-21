@@ -30,6 +30,13 @@ class LTIToolsTests: CoreTestCase {
     }
     let mockView = MockView()
 
+    var didOpenExternalURL: URL?
+
+    override func tearDown() {
+        UserDefaults.standard.set(nil, forKey: "open_lti_safari")
+        super.tearDown()
+    }
+
     func testInitLink() {
         XCTAssertNil(LTITools(link: nil))
         XCTAssertNil(LTITools(link: URL(string: "/")))
@@ -83,7 +90,7 @@ class LTIToolsTests: CoreTestCase {
         wait(for: [doneError], timeout: 1)
         XCTAssertNil(url)
 
-        api.mock(request, value: APIGetSessionlessLaunchResponse(url: actualURL))
+        api.mock(request, value: .make(url: actualURL))
         let doneValue = expectation(description: "callback completed")
         tools.getSessionlessLaunchURL { result in
             url = result
@@ -93,7 +100,7 @@ class LTIToolsTests: CoreTestCase {
         XCTAssertEqual(url, actualURL)
     }
 
-    func testPresentToolInSFSafariViewController() {
+    func testPresentTool() {
         let tools = LTITools(
             env: environment,
             context: ContextModel(.course, id: "1"),
@@ -109,7 +116,7 @@ class LTIToolsTests: CoreTestCase {
         api.mock(request, value: nil)
         var success = false
         let doneNil = expectation(description: "callback completed")
-        tools.presentToolInSFSafariViewController(from: mockView, animated: false) { result in
+        tools.presentTool(from: mockView, animated: false) { result in
             success = result
             doneNil.fulfill()
         }
@@ -119,7 +126,7 @@ class LTIToolsTests: CoreTestCase {
 
         api.mock(request, value: nil, error: APIRequestableError.invalidPath(""))
         let doneError = expectation(description: "callback completed")
-        tools.presentToolInSFSafariViewController(from: mockView, animated: false) { result in
+        tools.presentTool(from: mockView, animated: false) { result in
             success = result
             doneError.fulfill()
         }
@@ -127,9 +134,9 @@ class LTIToolsTests: CoreTestCase {
         XCTAssertFalse(success)
         XCTAssertNil(mockView.presented)
 
-        api.mock(request, value: APIGetSessionlessLaunchResponse(url: actualURL))
+        api.mock(request, value: .make(url: actualURL))
         let doneValue = expectation(description: "callback completed")
-        tools.presentToolInSFSafariViewController(from: mockView, animated: false) { result in
+        tools.presentTool(from: mockView, animated: false) { result in
             success = result
             doneValue.fulfill()
         }
@@ -137,5 +144,29 @@ class LTIToolsTests: CoreTestCase {
         XCTAssertTrue(success)
         XCTAssert(router.presented is SFSafariViewController)
         XCTAssertEqual(router.presented?.modalPresentationStyle, .overFullScreen)
+
+        UserDefaults.standard.set(true, forKey: "open_lti_safari")
+        tools.presentTool(from: mockView, animated: true)
+    }
+
+    func testPresentToolInSafariProper() {
+        let tools = LTITools()
+        let request = GetSessionlessLaunchURLRequest(context: tools.context, id: nil, url: nil, assignmentID: nil, moduleItemID: nil, launchType: nil)
+        let url = URL(string: "https://canvas.instructure.com")!
+        api.mock(request, value: .make(url: url))
+        UserDefaults.standard.set(true, forKey: "open_lti_safari")
+        tools.presentTool(from: mockView, animated: true)
+        XCTAssertEqual(login.externalURL, url)
+        XCTAssertNil(router.presented)
+    }
+
+    func testPresentGoogleApp() throws {
+        let tools = LTITools()
+        let request = GetSessionlessLaunchURLRequest(context: tools.context, id: nil, url: nil, assignmentID: nil, moduleItemID: nil, launchType: nil)
+        let url = URL(string: "https://canvas.instructure.com")!
+        api.mock(request, value: .make(name: "Google Apps", url: url))
+        tools.presentTool(from: mockView, animated: true)
+        let controller = try XCTUnwrap(router.presented as? GoogleCloudAssignmentViewController)
+        XCTAssertEqual(controller.url, url)
     }
 }

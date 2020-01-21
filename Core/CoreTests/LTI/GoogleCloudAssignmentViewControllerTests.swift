@@ -20,10 +20,9 @@ import Foundation
 import UIKit
 @testable import Core
 @testable import TestsFoundation
-@testable import Student
 import WebKit
 
-class GoogleCloudAssignmentViewControllerTests: StudentTestCase {
+class GoogleCloudAssignmentViewControllerTests: CoreTestCase {
     var url = URL(string: "https://google-drive-lti-iad-prod.instructure.com/lti/content-view/cloud-assignment/1")!
     lazy var controller = GoogleCloudAssignmentViewController(url: url)
 

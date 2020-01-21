@@ -230,7 +230,7 @@ extension CoreWebView: WKNavigationDelegate {
         // Handle "Launch External Tool" button
         if action.navigationType == .linkActivated, let tools = LTITools(link: action.request.url),
             let from = linkDelegate?.routeLinksFrom {
-            tools.presentToolInSFSafariViewController(from: from, animated: true)
+            tools.presentTool(from: from, animated: true)
             return decisionHandler(.cancel)
         }
 

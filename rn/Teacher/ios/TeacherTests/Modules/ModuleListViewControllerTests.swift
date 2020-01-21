@@ -276,7 +276,7 @@ class ModuleListViewControllerTests: TeacherTestCase {
                 assignmentID: nil,
                 moduleItemID: "1",
                 launchType: .module_item),
-            value: APIGetSessionlessLaunchResponse(url: URL(string: "https://canvas.instructure.com")!)
+            value: .make(url: URL(string: "https://canvas.instructure.com")!)
         )
         viewController.view.layoutIfNeeded()
         viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))

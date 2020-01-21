@@ -19,7 +19,6 @@
 import Foundation
 import UIKit
 import WebKit
-import Core
 
 class GoogleCloudAssignmentViewController: UIViewController {
     let url: URL
