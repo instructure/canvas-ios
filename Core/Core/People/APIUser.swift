@@ -72,7 +72,6 @@ public struct APIProfile: Codable, Equatable {
     public let pronouns: String?
 }
 
-
 // https://canvas.instructure.com/doc/api/users.html#method.users.get_custom_color
 public struct GetCustomColorsRequest: APIRequestable {
     public typealias Response = APICustomColors
