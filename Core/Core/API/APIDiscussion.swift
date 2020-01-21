@@ -50,8 +50,8 @@ public struct APIDiscussionEntry: Codable, Equatable {
     let created_at: Date?
     let updated_at: Date?
     let message: String
-    let rating_count: Int
-    let rating_sum: Int
+    let rating_count: Int?
+    let rating_sum: Int?
     let replies: [APIDiscussionEntry]?
 }
 
