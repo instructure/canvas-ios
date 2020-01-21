@@ -38,7 +38,7 @@ class GetConversationsWithSentTests: CoreTestCase {
         api.mock(useCase.request, error: NSError.instructureError("Error"))
 
         let expectation = XCTestExpectation(description: "make request")
-        useCase.makeRequest(environment: environment) { (conversations, _, error) in
+        useCase.makeRequest(environment: environment) { (_, _, error) in
             expectation.fulfill()
             XCTAssertNotNil(error)
         }
@@ -51,7 +51,7 @@ class GetConversationsWithSentTests: CoreTestCase {
         api.mock(GetConversationsRequest(include: [.participant_avatars], perPage: 100, scope: .sent), error: NSError.instructureError("error"))
 
         let expectation = XCTestExpectation(description: "make request")
-        useCase.makeRequest(environment: environment) { (conversations, _, error) in
+        useCase.makeRequest(environment: environment) { (_, _, error) in
             expectation.fulfill()
             XCTAssertNotNil(error)
         }

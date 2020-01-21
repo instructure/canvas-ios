@@ -49,7 +49,7 @@ public class GetConversationsWithSent: APIUseCase {
 
     public init() {}
 
-    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping (Array<APIConversation>?, URLResponse?, Error?) -> Void) {
+    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping ([APIConversation]?, URLResponse?, Error?) -> Void) {
         environment.api.exhaust(request) { [weak self] (conversations, response, error) in
             guard let self = self, error == nil else {
                 completionHandler(nil, response, error)
