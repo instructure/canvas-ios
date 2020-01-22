@@ -32,7 +32,8 @@ extension APIUser {
         locale: String? = "en",
         effective_locale: String? = nil,
         bio: String? = nil,
-        pronouns: String? = nil
+        pronouns: String? = nil,
+        permissions: Permissions? = .make()
     ) -> APIUser {
         return APIUser(
             id: id,
@@ -46,7 +47,20 @@ extension APIUser {
             locale: locale,
             effective_locale: effective_locale,
             bio: bio,
-            pronouns: pronouns
+            pronouns: pronouns,
+            permissions: permissions
+        )
+    }
+}
+
+extension APIUser.Permissions {
+    public static func make(
+        can_update_name: Bool? = true,
+        can_update_avatar: Bool? = true
+    ) -> APIUser.Permissions {
+        return APIUser.Permissions(
+            can_update_name: can_update_name,
+            can_update_avatar: can_update_avatar
         )
     }
 }
