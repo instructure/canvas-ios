@@ -29,7 +29,7 @@ public enum ConversationProperties: String, Codable {
 // https://canvas.instructure.com/doc/api/conversations.html#Conversation
 public struct APIConversation: Codable, Equatable {
     public let id: ID
-    let subject: String
+    let subject: String?
     let workflow_state: ConversationWorkflowState
     let last_message: String?
     let last_message_at: Date?
@@ -45,7 +45,7 @@ public struct APIConversation: Codable, Equatable {
     let avatar_url: APIURL
     let visible: Bool
     let context_name: String?
-    let context_code: String
+    let context_code: String?
     let messages: [APIConversationMessage]?
 }
 

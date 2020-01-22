@@ -22,7 +22,7 @@ import CoreData
 final public class Conversation: NSManagedObject, WriteableModel {
     @NSManaged var audienceIDsRaw: String
     @NSManaged public var avatarURL: URL?
-    @NSManaged public var contextCode: String
+    @NSManaged public var contextCode: String?
     @NSManaged public var contextName: String?
     @NSManaged public var id: String
     @NSManaged public var lastMessage: String
@@ -76,7 +76,7 @@ final public class Conversation: NSManagedObject, WriteableModel {
         }
 
         model.starred = item.starred
-        model.subject = item.subject
+        model.subject = item.subject ?? ""
         model.workflowState = item.workflow_state
         return model
     }
