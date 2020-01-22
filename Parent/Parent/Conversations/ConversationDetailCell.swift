@@ -56,11 +56,9 @@ class ConversationDetailCell: UITableViewCell {
                     view.heightAnchor.constraint(equalToConstant: 104),
                 ])
             }
-            if attachments.count == 1 {
-                let leftAlignViewsSpacer = UIView()
-                leftAlignViewsSpacer.setContentHuggingPriority(.defaultLow, for: .horizontal)
-                attachmentStackView.addArrangedSubview(leftAlignViewsSpacer)
-            }
+            let leftAlignViewsSpacer = UIView()
+            leftAlignViewsSpacer.setContentHuggingPriority(.defaultLow, for: .horizontal)
+            attachmentStackView.addArrangedSubview(leftAlignViewsSpacer)
         }
     }
 
@@ -82,8 +80,8 @@ class ConversationDetailCell: UITableViewCell {
     }
 
     @objc func tapAttachment(sender: UIButton) {
-        guard message?.attachments.count ?? 0 > sender.tag,
-            let attachment = message?.attachments[sender.tag] else { return }
+        guard message?.attachments.count ?? 0 > sender.tag else { return }
+        guard let attachment = message?.attachments.sorted(by: File.idCompare)[sender.tag] else { return }
         onTapAttachment?(attachment)
     }
 
