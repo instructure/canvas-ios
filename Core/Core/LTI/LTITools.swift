@@ -26,7 +26,19 @@ public class LTITools {
     let url: URL?
     let launchType: GetSessionlessLaunchURLRequest.LaunchType?
     let assignmentID: String?
+    let moduleID: String?
     let moduleItemID: String?
+
+    var request: GetSessionlessLaunchURLRequest {
+        GetSessionlessLaunchURLRequest(
+            context: context,
+            id: id,
+            url: url,
+            assignmentID: assignmentID,
+            moduleItemID: moduleItemID,
+            launchType: launchType
+        )
+    }
 
     public init(
         env: AppEnvironment = .shared,
@@ -35,6 +47,7 @@ public class LTITools {
         url: URL? = nil,
         launchType: GetSessionlessLaunchURLRequest.LaunchType? = nil,
         assignmentID: String? = nil,
+        moduleID: String? = nil,
         moduleItemID: String? = nil
     ) {
         self.env = env
@@ -43,6 +56,7 @@ public class LTITools {
         self.url = url
         self.launchType = launchType
         self.assignmentID = assignmentID
+        self.moduleID = moduleID
         self.moduleItemID = moduleItemID
     }
 
@@ -67,27 +81,30 @@ public class LTITools {
                 completionHandler?(false)
                 return
             }
+            let completionHandler = { [weak self] (success: Bool) in
+                self?.markModuleItemRead()
+                completionHandler?(success)
+            }
             let url = response.url
             if response.name == "Google Apps" {
                 let controller = GoogleCloudAssignmentViewController(url: url)
                 self.env.router.show(controller, from: view, options: .modal(embedInNav: true, addDoneButton: true)) {
-                    completionHandler?(true)
+                    completionHandler(true)
                 }
             } else if self.openInSafari {
                     self.env.loginDelegate?.openExternalURL(url)
-                    completionHandler?(true)
+                    completionHandler(true)
             } else {
                 let safari = SFSafariViewController(url: url)
                 safari.modalPresentationStyle = .overFullScreen
                 self.env.router.show(safari, from: view, options: .modal()) {
-                    completionHandler?(true)
+                    completionHandler(true)
                 }
             }
         }
     }
 
     public func getSessionlessLaunch(completionBlock: @escaping (APIGetSessionlessLaunchResponse?) -> Void) {
-        let request = GetSessionlessLaunchURLRequest(context: context, id: id, url: url, assignmentID: assignmentID, moduleItemID: moduleItemID, launchType: launchType)
         env.api.makeRequest(request) { response, _, _ in performUIUpdate {
             completionBlock(response)
         } }
@@ -106,5 +123,16 @@ public class LTITools {
             return ContextModel(contextType, id: contextID)
         }
         return nil
+    }
+
+    private func markModuleItemRead() {
+        guard launchType == .module_item, let moduleID = moduleID, let moduleItemID = moduleItemID else {
+            return
+        }
+        env.api.makeRequest(PostMarkModuleItemRead(courseID: context.id, moduleID: moduleID, moduleItemID: moduleItemID)) { _, _, error in
+            if error == nil {
+                NotificationCenter.default.post(name: .CompletedModuleItemRequirement, object: nil)
+            }
+        }
     }
 }

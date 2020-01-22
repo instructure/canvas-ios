@@ -169,4 +169,18 @@ class LTIToolsTests: CoreTestCase {
         let controller = try XCTUnwrap(router.presented as? GoogleCloudAssignmentViewController)
         XCTAssertEqual(controller.url, url)
     }
+
+    func testMarksModuleItemAsRead() {
+        api.mock(PostMarkModuleItemRead(courseID: "1", moduleID: "2", moduleItemID: "3"))
+        let tools = LTITools(context: ContextModel(.course, id: "1"), launchType: .module_item, moduleID: "2", moduleItemID: "3")
+        let request = GetSessionlessLaunchURLRequest(context: tools.context, id: nil, url: nil, assignmentID: nil, moduleItemID: "3", launchType: .module_item)
+        api.mock(request, value: .make())
+        let expectation = XCTestExpectation(description: "notification was sent")
+        let observer = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { _ in
+            expectation.fulfill()
+        }
+        tools.presentTool(from: mockView, animated: true)
+        wait(for: [expectation], timeout: 1)
+        NotificationCenter.default.removeObserver(observer)
+    }
 }
