@@ -102,6 +102,10 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
         if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
             versionLabel?.text = "v. \(version)"
         }
+
+        env.api.makeRequest(GetUserRequest(userID: "self")) { [weak self] user, _, _ in
+            self?.avatarButton?.isHidden = user?.permissions?.can_update_avatar == false
+        }
     }
 
     public func reload() {

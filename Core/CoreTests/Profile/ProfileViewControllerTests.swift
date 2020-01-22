@@ -57,6 +57,7 @@ class ProfileViewControllerTests: CoreTestCase {
         //  then
         XCTAssertEqual(vc.emailLabel?.text, "automated-test-Eve@instructure.com")
         XCTAssertEqual(vc.nameLabel?.text, "Eve")
+        XCTAssertEqual(vc.avatarButton?.isHidden, false)
         XCTAssertEqual(vc.avatarView?.name, "Eve")
         XCTAssertEqual(vc.avatarView?.url?.absoluteString, "https://localhost/avatar.png")
 
@@ -143,6 +144,13 @@ class ProfileViewControllerTests: CoreTestCase {
         XCTAssertEqual(vc.emailLabel?.text, "automated-test-Eve@instructure.com")
         XCTAssertEqual(vc.nameLabel?.text, "Eve (She/Her)")
         XCTAssertEqual(vc.avatarView?.name, "Eve")
+    }
+
+    func testChangeAvatarDisallowed() {
+        api.mock(GetUserProfileRequest(userID: "self"), value: .make())
+        api.mock(GetUserRequest(userID: "self"), value: .make(permissions: .make(can_update_avatar: false)))
+        loadView()
+        XCTAssertEqual(vc.avatarButton?.isHidden, true)
     }
 
     func reduxActionCalled(notification: Notification) {
