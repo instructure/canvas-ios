@@ -73,10 +73,10 @@ class ConversationDetailViewControllerTests: ParentTestCase {
         XCTAssertEqual(first?.messageLabel.text, "hello world")
         XCTAssertEqual(first?.dateLabel.text, DateFormatter.localizedString(from: Clock.now.addDays(-1), dateStyle: .medium, timeStyle: .short))
 
-        XCTAssertEqual(first?.attachmentStackView.arrangedSubviews.count, 2)
+        XCTAssertEqual(first?.attachmentStackView.arrangedSubviews.count, 3)
         XCTAssertTrue(first?.attachmentStackView.isHidden == false)
         XCTAssertTrue(first?.attachmentStackView.arrangedSubviews.first is ConversationDetailCell.NonPhotoAttachment)
-        XCTAssertTrue(first?.attachmentStackView.arrangedSubviews.last is ConversationDetailCell.PhotoAttachment)
+        XCTAssertTrue(first?.attachmentStackView.arrangedSubviews[1] is ConversationDetailCell.PhotoAttachment)
 
         (first?.attachmentStackView.arrangedSubviews.first as? ConversationDetailCell.NonPhotoAttachment)?.button.sendActions(for: .primaryActionTriggered)
         XCTAssertTrue(router.lastRoutedTo(.parse("https://canvas.instructure.com/files/1/download")))
