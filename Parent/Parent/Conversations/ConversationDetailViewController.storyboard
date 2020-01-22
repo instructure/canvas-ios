@@ -59,7 +59,7 @@
                                                                 </view>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="WAv-i1-qFc" secondAttribute="trailing" id="RaP-Y9-vy0"/>
+                                                                <constraint firstAttribute="trailing" secondItem="WAv-i1-qFc" secondAttribute="trailing" constant="-16" id="RaP-Y9-vy0"/>
                                                                 <constraint firstItem="WAv-i1-qFc" firstAttribute="leading" secondItem="k6R-4f-fZa" secondAttribute="leading" id="ZSt-3Q-43n"/>
                                                             </constraints>
                                                         </stackView>
