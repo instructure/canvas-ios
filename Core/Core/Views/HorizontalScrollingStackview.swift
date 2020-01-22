@@ -41,7 +41,7 @@ public class HorizontalScrollingStackview: UIView {
         stackView = {
             let s = UIStackView()
             s.axis = .horizontal
-            s.distribution = .equalCentering
+            s.distribution = .fill
             s.alignment = .fill
             s.spacing = 12
             return s

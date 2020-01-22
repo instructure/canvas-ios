@@ -56,11 +56,9 @@ class ConversationDetailCell: UITableViewCell {
                     view.heightAnchor.constraint(equalToConstant: 104),
                 ])
             }
-            if attachments.count == 1 {
-                let leftAlignViewsSpacer = UIView()
-                leftAlignViewsSpacer.setContentHuggingPriority(.defaultLow, for: .horizontal)
-                attachmentStackView.addArrangedSubview(leftAlignViewsSpacer)
-            }
+            let leftAlignViewsSpacer = UIView()
+            leftAlignViewsSpacer.setContentHuggingPriority(.defaultLow, for: .horizontal)
+            attachmentStackView.addArrangedSubview(leftAlignViewsSpacer)
         }
     }
 
