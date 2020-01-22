@@ -80,8 +80,8 @@ class ConversationDetailCell: UITableViewCell {
     }
 
     @objc func tapAttachment(sender: UIButton) {
-        guard message?.attachments.count ?? 0 > sender.tag,
-            let attachment = message?.attachments[sender.tag] else { return }
+        guard message?.attachments.count ?? 0 > sender.tag else { return }
+        guard let attachment = message?.attachments.sorted(by: File.idCompare)[sender.tag] else { return }
         onTapAttachment?(attachment)
     }
 
