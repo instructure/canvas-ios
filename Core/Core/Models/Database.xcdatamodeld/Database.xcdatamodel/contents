@@ -91,7 +91,7 @@
     <entity name="Conversation" representedClassName="Core.Conversation" syncable="YES">
         <attribute name="audienceIDsRaw" attributeType="String"/>
         <attribute name="avatarURL" attributeType="URI"/>
-        <attribute name="contextCode" attributeType="String"/>
+        <attribute name="contextCode" optional="YES" attributeType="String"/>
         <attribute name="contextName" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="lastMessage" attributeType="String"/>
