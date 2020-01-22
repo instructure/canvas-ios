@@ -22,9 +22,7 @@
 #import "FileViewController.h"
 #import "ContentLockViewController.h"
 #import "CBIModuleProgressNotifications.h"
-#import "CKIClient+CBIClient.h"
 #import "UIAlertController+TechDebt.h"
-#import "UIImage+TechDebt.h"
 #import "Routing.h"
 
 @import PSPDFKit;
@@ -257,7 +255,7 @@
         [label.centerXAnchor constraintEqualToAnchor:_legacyFileMessageView.centerXAnchor].active = YES;
         [label.centerYAnchor constraintEqualToAnchor:_legacyFileMessageView.centerYAnchor].active = YES;
 
-        UIImage *disclosureImage = [[UIImage techDebtImageNamed:@"icon_arrow_right"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        UIImage *disclosureImage = [[UIImage imageNamed:@"icon_arrow_right" inBundle:[NSBundle bundleForClass:[FileViewController class]] compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         UIImageView *disclosure = [[UIImageView alloc] initWithImage:disclosureImage];
         disclosure.tintColor = Brand.current.primaryButtonTextColor;
         disclosure.translatesAutoresizingMaskIntoConstraints = NO;
