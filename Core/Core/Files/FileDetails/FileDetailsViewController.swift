@@ -40,6 +40,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     var fileID: String = ""
     var loadObservation: NSKeyValueObservation?
     var remoteURL: URL?
+    var localURL: URL?
 
     lazy var files = env.subscribe(GetFile(context: context, fileID: fileID)) { [weak self] in
         self?.update()
@@ -168,13 +169,16 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
 }
 
 extension FileDetailsViewController: URLSessionDownloadDelegate {
-    var localURL: URL? {
+    /// This must be called to set `localURL` before initiating download, otherwise there
+    /// will be a threading issue with trying to access core data from a different thread.
+    func prepLocalURL() -> URL? {
         guard let sessionID = env.currentSession?.uniqueID, let name = files.first?.filename else { return nil }
         let base = files.first?.mimeClass == "pdf" ? URL.documentsDirectory : URL.temporaryDirectory
         return base.appendingPathComponent("\(sessionID)/\(fileID)/\(name)")
     }
 
     func downloadFile(at url: URL) {
+        localURL = prepLocalURL()
         if let path = localURL?.path, FileManager.default.fileExists(atPath: path) { return downloadComplete() }
         downloadTask = URLSessionAPI.delegateURLSession(.ephemeral, self, nil).downloadTask(with: url)
         downloadTask?.resume()

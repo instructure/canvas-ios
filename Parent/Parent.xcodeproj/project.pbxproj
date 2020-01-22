@@ -37,6 +37,7 @@
 		3B36A2D92322C15200599A1E /* AlertThresholdRequestables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36A2D62322C15200599A1E /* AlertThresholdRequestables.swift */; };
 		3B36A2ED2322C2A000599A1E /* GetAlertThresholdRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36A2EC2322C2A000599A1E /* GetAlertThresholdRequestableTests.swift */; };
 		3B36A2F12322C56F00599A1E /* APIAlertThresholdFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36A2F02322C56F00599A1E /* APIAlertThresholdFixture.swift */; };
+		3B432E2D23D7A5EA00253849 /* ConversationDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B432E2C23D7A5EA00253849 /* ConversationDetailCell.swift */; };
 		3B54E3572326F93300D8D1D2 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B54E3562326F93300D8D1D2 /* TestsFoundation.framework */; };
 		3B54E3592326F9B000D8D1D2 /* ParentTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B54E3582326F9B000D8D1D2 /* ParentTestCase.swift */; };
 		3B5F4D9A2328AAEE00998223 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B5F4D962328AA8900998223 /* CanvasKit.framework */; };
@@ -607,6 +608,7 @@
 		3B36A2E32322C26B00599A1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B36A2EC2322C2A000599A1E /* GetAlertThresholdRequestableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAlertThresholdRequestableTests.swift; sourceTree = "<group>"; };
 		3B36A2F02322C56F00599A1E /* APIAlertThresholdFixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAlertThresholdFixture.swift; sourceTree = "<group>"; };
+		3B432E2C23D7A5EA00253849 /* ConversationDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationDetailCell.swift; sourceTree = "<group>"; };
 		3B54E3542326F87D00D8D1D2 /* StudentSettingsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSettingsPresenterTests.swift; sourceTree = "<group>"; };
 		3B54E3562326F93300D8D1D2 /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B54E3582326F9B000D8D1D2 /* ParentTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentTestCase.swift; sourceTree = "<group>"; };
@@ -1383,6 +1385,7 @@
 				B109249123CE7FC900796903 /* EditComposeRecipientsViewController.swift */,
 				B109248D23CE160400796903 /* EditComposeRecipientsViewController.storyboard */,
 				9FB8FC4223C3B46A00E69E6A /* ActionSheetController.swift */,
+				3B432E2C23D7A5EA00253849 /* ConversationDetailCell.swift */,
 			);
 			path = Conversations;
 			sourceTree = "<group>";
@@ -1853,6 +1856,7 @@
 				3B36A2D92322C15200599A1E /* AlertThresholdRequestables.swift in Sources */,
 				B109249223CE7FC900796903 /* EditComposeRecipientsViewController.swift in Sources */,
 				5E0F9A6A1C739E6A00BB7707 /* CalendarEventCell.swift in Sources */,
+				3B432E2D23D7A5EA00253849 /* ConversationDetailCell.swift in Sources */,
 				612D64431C8794480045E03B /* DetailsInfoCell.swift in Sources */,
 				497C48BA1F912BD100A3BC06 /* Session+Alert.swift in Sources */,
 				7D111CFF23A2DDD100C912C0 /* ConversationListViewController.swift in Sources */,

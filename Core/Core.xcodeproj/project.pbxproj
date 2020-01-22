@@ -54,6 +54,7 @@
 		3B3FCA2D238026D00011F11A /* ActivityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FCA2C238026D00011F11A /* ActivityTests.swift */; };
 		3B3FCA3123802B800011F11A /* GetActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FCA3023802B800011F11A /* GetActivities.swift */; };
 		3B3FCA3323802D680011F11A /* GetActivitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FCA3223802D680011F11A /* GetActivitiesTests.swift */; };
+		3B432E2723D7531100253849 /* HorizontalScrollingStackview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B432E2623D7531100253849 /* HorizontalScrollingStackview.swift */; };
 		3B4687B32355109C00F293A5 /* SyllabusActionableItemsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4687B12355109B00F293A5 /* SyllabusActionableItemsPresenter.swift */; };
 		3B4687B42355109C00F293A5 /* SyllabusActionableItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4687B22355109C00F293A5 /* SyllabusActionableItemsViewController.swift */; };
 		3B4B75C7222F09C7002CCBEC /* CreateSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */; };
@@ -830,6 +831,7 @@
 		3B3FCA2C238026D00011F11A /* ActivityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTests.swift; sourceTree = "<group>"; };
 		3B3FCA3023802B800011F11A /* GetActivities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetActivities.swift; sourceTree = "<group>"; };
 		3B3FCA3223802D680011F11A /* GetActivitiesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetActivitiesTests.swift; sourceTree = "<group>"; };
+		3B432E2623D7531100253849 /* HorizontalScrollingStackview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalScrollingStackview.swift; sourceTree = "<group>"; };
 		3B4687B12355109B00F293A5 /* SyllabusActionableItemsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsPresenter.swift; sourceTree = "<group>"; };
 		3B4687B22355109C00F293A5 /* SyllabusActionableItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsViewController.swift; sourceTree = "<group>"; };
 		3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubmission.swift; sourceTree = "<group>"; };
@@ -2292,6 +2294,7 @@
 				7D1758B32159898C00F88613 /* TitleSubtitleView.swift */,
 				7D1758B521598CA400F88613 /* TitleSubtitleView.xib */,
 				9767F2972383B846006633CA /* TokenLabelView.swift */,
+				3B432E2623D7531100253849 /* HorizontalScrollingStackview.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3877,6 +3880,7 @@
 				7DD6CC6B21BD6DB1004C4BB6 /* LoadingViewController.swift in Sources */,
 				B14B704D228F30A100B568D6 /* UploadFileComment.swift in Sources */,
 				7DBED010232C2C7500392F3C /* GetAccountHelpLinks.swift in Sources */,
+				3B432E2723D7531100253849 /* HorizontalScrollingStackview.swift in Sources */,
 				9FBE5367223C1EE9001EC40C /* APIPermissionsRequestable.swift in Sources */,
 				7D6C8C6922EA0A6E00E5ADD8 /* APIActivity.swift in Sources */,
 				7D9E80D6233DA1EF003C608B /* SwitchTableViewCell.swift in Sources */,
