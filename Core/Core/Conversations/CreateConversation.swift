@@ -70,6 +70,7 @@ public class CreateConversation: APIUseCase {
 
             // attach the context name since it is not part of the api response
             // a ticket has been created to include the context_name in the api response
+            // https://instructure.atlassian.net/browse/KNO-239
             guard conversation.contextName == nil,
                   let canvasContextID = canvasContextID,
                   let context = ContextModel(canvasContextID: canvasContextID),
