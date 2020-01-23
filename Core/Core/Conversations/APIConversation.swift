@@ -88,8 +88,8 @@ extension APIConversation {
         audience: [String]? = [ "1" ],
         avatar_url: URL = URL(string: "https://canvas.instructure.com/avatar/1")!,
         visible: Bool = true,
-        context_name: String = "Canvas 101",
-        context_code: String = "course_1",
+        context_name: String? = "Canvas 101",
+        context_code: String? = "course_1",
         messages: [APIConversationMessage]? = nil
     ) -> APIConversation {
         return APIConversation(
