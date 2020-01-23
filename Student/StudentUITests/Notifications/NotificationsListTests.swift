@@ -22,8 +22,6 @@ import TestsFoundation
 @testable import CoreUITests
 
 class NotificationsListTests: CoreUITestCase {
-    override var user: UITestUser? { return nil }
-
     func testNotificationItemsDisplayed() {
         ExperimentalFeature.notifications2.isEnabled = true
         mockBaseRequests()
@@ -41,7 +39,6 @@ class NotificationsListTests: CoreUITestCase {
 }
 
 class Notifications2ListTests: CoreUITestCase {
-    override var user: UITestUser? { nil }
     override var experimentalFeatures: [ExperimentalFeature] {
         return [.notifications2]
     }

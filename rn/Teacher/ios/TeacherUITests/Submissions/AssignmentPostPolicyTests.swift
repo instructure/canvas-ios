@@ -21,8 +21,6 @@ import TestsFoundation
 @testable import Core
 
 class AssignmentPostPolicyTests: TeacherUITestCase {
-    override var user: UITestUser? { nil }
-
     func testPostPolicySettings() {
         mockBaseRequests()
         mock(assignment: .make())

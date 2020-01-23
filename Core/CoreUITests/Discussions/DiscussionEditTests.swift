@@ -22,7 +22,6 @@ import TestsFoundation
 
 class DiscussionEditTests: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { return DiscussionEditTests.self }
-    override var user: UITestUser? { return nil }
 
     lazy var course1 = mock(course: .make(id: "1", enrollments: [ .make(type: "TeacherEnrollment") ], permissions: .init(
         create_announcement: true,

@@ -219,6 +219,16 @@
                ReferencedContainer = "container:../rn/Teacher/ios/Teacher.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E841D8A223D6472F00685A63"
+               BuildableName = "TeacherE2ETests.xctest"
+               BlueprintName = "TeacherE2ETests"
+               ReferencedContainer = "container:../rn/Teacher/ios/Teacher.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

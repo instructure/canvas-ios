@@ -21,8 +21,6 @@ import TestsFoundation
 @testable import Core
 
 class ParentUITestCase: CoreUITestCase {
-    override var user: UITestUser? { nil }
-
     override var baseEnrollment: APIEnrollment {
         .make(
             type: "ObserverEnrollment",
