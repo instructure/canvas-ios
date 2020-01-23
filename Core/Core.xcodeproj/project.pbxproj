@@ -768,9 +768,24 @@
 		E841D8C323D6619B00685A63 /* AccountNotificationsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D14864B230B4CEC003944A2 /* AccountNotificationsE2ETests.swift */; };
 		E841D8C623D665D800685A63 /* DiscussionReplyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595AE20204429F69CD665D /* DiscussionReplyTests.swift */; };
 		E841D8C723D6678500685A63 /* DiscussionListE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81918F42303487C0039616A /* DiscussionListE2ETests.swift */; };
+		E81ACB9223D9F469007AFDC1 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CEB762150408A00D07CFA /* TestsFoundation.framework */; };
+		E81ACB9323D9F469007AFDC1 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C96482E211E2F1A002C3255 /* Core.framework */; };
+		E81ACB9423D9F469007AFDC1 /* Pods_defaults_CoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5B10F40238556EA8BA6B6A /* Pods_defaults_CoreTests.framework */; };
+		E81ACB9623D9F469007AFDC1 /* fileupload.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A763721914059000693DE /* fileupload.txt */; };
+		E81ACB9723D9F469007AFDC1 /* TestImage.svg in Resources */ = {isa = PBXBuildFile; fileRef = 7D4D5EB521402CA90080AC14 /* TestImage.svg */; };
+		E81ACB9823D9F469007AFDC1 /* file-post-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A76392191459F000693DE /* file-post-body.txt */; };
+		E81ACB9923D9F469007AFDC1 /* TestImage.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7D4D5EB621402CA90080AC14 /* TestImage.gif */; };
+		E81ACB9A23D9F469007AFDC1 /* instructure.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 7D2DC2FA2199FD47008FE29A /* instructure.pdf */; };
+		E81ACB9B23D9F469007AFDC1 /* TestImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4D5EB421402CA90080AC14 /* TestImage.png */; };
+		E81ACB9C23D9F469007AFDC1 /* APIAccountResults.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D58FBC92141B43300705CDF /* APIAccountResults.json */; };
+		E81ACB9E23D9F469007AFDC1 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CEB762150408A00D07CFA /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E81ACBA523D9F4F2007AFDC1 /* PactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E861489F23D755BC00ABFA5D /* PactTests.swift */; };
+		E81ACBA623D9F4F2007AFDC1 /* CanvasMockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C1032F23D8A18500A9A0F7 /* CanvasMockService.swift */; };
+		E81ACBA723D9F4F2007AFDC1 /* PactEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81ACA8623D9EA83007AFDC1 /* PactEncoder.swift */; };
+		E81ACBA823D9F4F2007AFDC1 /* PactShapeEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81ACA8A23D9EAF9007AFDC1 /* PactShapeEncodable.swift */; };
+		E81ACBA923D9F4F2007AFDC1 /* PactSimpleEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81ACA8823D9EABB007AFDC1 /* PactSimpleEncodable.swift */; };
 		E85B4918238875A0003E28DC /* UserFilesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85B4917238875A0003E28DC /* UserFilesTests.swift */; };
 		E85E7F83238C45C300BE61B3 /* FilesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E7F82238C45C300BE61B3 /* FilesList.swift */; };
-		E86148A023D755BC00ABFA5D /* GetCoursePeoplePactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E861489F23D755BC00ABFA5D /* GetCoursePeoplePactTests.swift */; };
 		E86CFBD823A2F7CD00EAE487 /* APIDashboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */; };
 		E88EA0192385B0B4008A587A /* APIDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88EA0182385B0B4008A587A /* APIDashboard.swift */; };
 		E8997906234F7E0600CA7D9B /* XCTestCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8997905234F7E0600CA7D9B /* XCTestCaseTests.swift */; };
@@ -799,6 +814,8 @@
 		E8C6F58823D641610086B865 /* CourseFileE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E819192723034C2C0039616A /* CourseFileE2ETests.swift */; };
 		E8C6F58923D641610086B865 /* CourseGroupE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E819192923034C2C0039616A /* CourseGroupE2ETests.swift */; };
 		E8C6F58B23D641610086B865 /* DashboardE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AD06702303713300D498ED /* DashboardE2ETests.swift */; };
+		E8EC0C4823D9F980007583F3 /* APIPactExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC0C4723D9F980007583F3 /* APIPactExtensions.swift */; };
+		E8EC0C4A23DA1F72007583F3 /* PactCaseEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC0C4923DA1F72007583F3 /* PactCaseEncodable.swift */; };
 		EE424B3222E8BBEF00D083EE /* GetFrontPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3122E8BBEF00D083EE /* GetFrontPage.swift */; };
 		EE424B3422E8DE2E00D083EE /* APIPageRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3322E8DE2E00D083EE /* APIPageRequestableTests.swift */; };
 		EE424B3622E8E16D00D083EE /* GetPagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3522E8E16D00D083EE /* GetPagesTests.swift */; };
@@ -853,12 +870,26 @@
 			remoteGlobalIDString = 2C96482D211E2F1A002C3255;
 			remoteInfo = Core;
 		};
+		E81ACA8E23D9F469007AFDC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C964825211E2F1A002C3255 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C96482D211E2F1A002C3255;
+			remoteInfo = Core;
+		};
 		E8C6F56723D63E900086B865 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2C964825211E2F1A002C3255 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = E81918E3230348440039616A;
 			remoteInfo = CoreUITests;
+                };
+		E81ACA9023D9F469007AFDC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C964825211E2F1A002C3255 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DFE1FF24212F69B3003F27AA;
+			remoteInfo = CoreTester;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -892,6 +923,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E8C6F56623D63E900086B865 /* CoreUITests.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E81ACB9D23D9F469007AFDC1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E81ACB9E23D9F469007AFDC1 /* TestsFoundation.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1807,9 +1849,14 @@
 		E819193E23034C2D0039616A /* ProfileE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileE2ETests.swift; sourceTree = "<group>"; };
 		E819193F23034C2D0039616A /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		E841D8BF23D647F600685A63 /* InboxE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxE2ETests.swift; sourceTree = "<group>"; };
+		E81ACA8623D9EA83007AFDC1 /* PactEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactEncoder.swift; sourceTree = "<group>"; };
+		E81ACA8823D9EABB007AFDC1 /* PactSimpleEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactSimpleEncodable.swift; sourceTree = "<group>"; };
+		E81ACA8A23D9EAF9007AFDC1 /* PactShapeEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactShapeEncodable.swift; sourceTree = "<group>"; };
+		E81ACBA323D9F469007AFDC1 /* PactTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PactTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E81ACBA423D9F469007AFDC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E85B4917238875A0003E28DC /* UserFilesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFilesTests.swift; sourceTree = "<group>"; };
 		E85E7F82238C45C300BE61B3 /* FilesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesList.swift; sourceTree = "<group>"; };
-		E861489F23D755BC00ABFA5D /* GetCoursePeoplePactTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoursePeoplePactTests.swift; sourceTree = "<group>"; };
+		E861489F23D755BC00ABFA5D /* PactTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactTests.swift; sourceTree = "<group>"; };
 		E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDashboardTests.swift; sourceTree = "<group>"; };
 		E88EA0182385B0B4008A587A /* APIDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDashboard.swift; sourceTree = "<group>"; };
 		E8997905234F7E0600CA7D9B /* XCTestCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseTests.swift; sourceTree = "<group>"; };
@@ -1824,6 +1871,9 @@
 		E8C6F52523D636B30086B865 /* Modules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modules.swift; sourceTree = "<group>"; };
 		E8C6F56323D63E6C0086B865 /* CoreE2ETests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreE2ETests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C6F56423D63E6C0086B865 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8C1032F23D8A18500A9A0F7 /* CanvasMockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasMockService.swift; sourceTree = "<group>"; };
+		E8EC0C4723D9F980007583F3 /* APIPactExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIPactExtensions.swift; sourceTree = "<group>"; };
+		E8EC0C4923DA1F72007583F3 /* PactCaseEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactCaseEncodable.swift; sourceTree = "<group>"; };
 		EE424B3122E8BBEF00D083EE /* GetFrontPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFrontPage.swift; sourceTree = "<group>"; };
 		EE424B3322E8DE2E00D083EE /* APIPageRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPageRequestableTests.swift; sourceTree = "<group>"; };
 		EE424B3522E8E16D00D083EE /* GetPagesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPagesTests.swift; sourceTree = "<group>"; };
@@ -1891,6 +1941,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E81ACB9123D9F469007AFDC1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E81ACB9223D9F469007AFDC1 /* TestsFoundation.framework in Frameworks */,
+				E81ACB9323D9F469007AFDC1 /* Core.framework in Frameworks */,
+				E81ACB9423D9F469007AFDC1 /* Pods_defaults_CoreTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -1898,6 +1958,7 @@
 			isa = PBXGroup;
 			children = (
 				2C964830211E2F1A002C3255 /* Core */,
+				E861489E23D7557A00ABFA5D /* PactTests */,
 				2C96483B211E2F1A002C3255 /* CoreTests */,
 				DFE1FF26212F69B3003F27AA /* CoreTester */,
 				E81918E5230348440039616A /* CoreUITests */,
@@ -1916,6 +1977,7 @@
 				DFE1FF25212F69B3003F27AA /* CoreTester.app */,
 				E81918E4230348440039616A /* CoreUITests.framework */,
 				E8C6F56323D63E6C0086B865 /* CoreE2ETests.framework */,
+				E81ACBA323D9F469007AFDC1 /* PactTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3618,9 +3680,23 @@
 		E861489E23D7557A00ABFA5D /* Pact */ = {
 			isa = PBXGroup;
 			children = (
-				E861489F23D755BC00ABFA5D /* GetCoursePeoplePactTests.swift */,
+				E8EC0C4423D9F935007583F3 /* API */,
+				E8EC0C4323D9F8A1007583F3 /* Pact */,
+				E8EC0C4E23DA3C34007583F3 /* Tests */,
+				E81ACBA423D9F469007AFDC1 /* Info.plist */,
 			);
-			path = Pact;
+			path = PactTests;
+			sourceTree = "<group>";
+		};
+		E861489E23D7557A00ABFA5D /* PactTests */ = {
+			isa = PBXGroup;
+			children = (
+				E8EC0C4423D9F935007583F3 /* API */,
+				E8EC0C4323D9F8A1007583F3 /* Pact */,
+				E8EC0C4E23DA3C34007583F3 /* Tests */,
+				E81ACBA423D9F469007AFDC1 /* Info.plist */,
+			);
+			path = PactTests;
 			sourceTree = "<group>";
 		};
 		E8997904234F7DBA00CA7D9B /* MetaTests */ = {
@@ -3733,6 +3809,34 @@
 				E819192C23034C2C0039616A /* PageE2ETests.swift */,
 			);
 			path = Pages;
+			sourceTree = "<group>";
+		};
+		E8EC0C4323D9F8A1007583F3 /* Pact */ = {
+			isa = PBXGroup;
+			children = (
+				E8C1032F23D8A18500A9A0F7 /* CanvasMockService.swift */,
+				E81ACA8623D9EA83007AFDC1 /* PactEncoder.swift */,
+				E81ACA8A23D9EAF9007AFDC1 /* PactShapeEncodable.swift */,
+				E81ACA8823D9EABB007AFDC1 /* PactSimpleEncodable.swift */,
+				E8EC0C4923DA1F72007583F3 /* PactCaseEncodable.swift */,
+			);
+			path = Pact;
+			sourceTree = "<group>";
+		};
+		E8EC0C4423D9F935007583F3 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				E8EC0C4723D9F980007583F3 /* APIPactExtensions.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		E8EC0C4E23DA3C34007583F3 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				E861489F23D755BC00ABFA5D /* PactTests.swift */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		EE584C7822F2043300D1E201 /* Pages */ = {
@@ -3892,7 +3996,7 @@
 				E8C6F55B23D63E6C0086B865 /* Frameworks */,
 				E8C6F55F23D63E6C0086B865 /* Resources */,
 				E8C6F56923D63E900086B865 /* Embed Frameworks */,
-			);
+                        );
 			buildRules = (
 			);
 			dependencies = (
@@ -3903,6 +4007,28 @@
 			productName = CoreUITests;
 			productReference = E8C6F56323D63E6C0086B865 /* CoreE2ETests.framework */;
 			productType = "com.apple.product-type.framework";
+                };
+		E81ACA8C23D9F469007AFDC1 /* PactTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E81ACBA023D9F469007AFDC1 /* Build configuration list for PBXNativeTarget "PactTests" */;
+			buildPhases = (
+				E81ACA9123D9F469007AFDC1 /* [CP] Check Pods Manifest.lock */,
+				E81ACA9223D9F469007AFDC1 /* Sources */,
+				E81ACB9123D9F469007AFDC1 /* Frameworks */,
+				E81ACB9523D9F469007AFDC1 /* Resources */,
+				E81ACB9D23D9F469007AFDC1 /* Embed Frameworks */,
+				E81ACB9F23D9F469007AFDC1 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E81ACA8D23D9F469007AFDC1 /* PBXTargetDependency */,
+				E81ACA8F23D9F469007AFDC1 /* PBXTargetDependency */,
+			);
+			name = PactTests;
+			productName = CoreTests;
+			productReference = E81ACBA323D9F469007AFDC1 /* PactTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -3943,6 +4069,9 @@
 						ProvisioningStyle = Automatic;
 					};
 					E8C6F52C23D63E6C0086B865 = {
+						ProvisioningStyle = Automatic;
+					};
+					E81ACA8C23D9F469007AFDC1 = {
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -3994,6 +4123,7 @@
 				DFE1FF24212F69B3003F27AA /* CoreTester */,
 				E81918E3230348440039616A /* CoreUITests */,
 				E8C6F52C23D63E6C0086B865 /* CoreE2ETests */,
+				E81ACA8C23D9F469007AFDC1 /* PactTests */,
 			);
 		};
 /* End PBXProject section */
@@ -4085,6 +4215,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E81ACB9523D9F469007AFDC1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E81ACB9623D9F469007AFDC1 /* fileupload.txt in Resources */,
+				E81ACB9723D9F469007AFDC1 /* TestImage.svg in Resources */,
+				E81ACB9823D9F469007AFDC1 /* file-post-body.txt in Resources */,
+				E81ACB9923D9F469007AFDC1 /* TestImage.gif in Resources */,
+				E81ACB9A23D9F469007AFDC1 /* instructure.pdf in Resources */,
+				E81ACB9B23D9F469007AFDC1 /* TestImage.png in Resources */,
+				E81ACB9C23D9F469007AFDC1 /* APIAccountResults.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -4162,6 +4306,90 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_document_picker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_image_picker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PactConsumerSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-defaults-CoreTests/Pods-defaults-CoreTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E81ACA9123D9F469007AFDC1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-CoreTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E81ACB9F23D9F469007AFDC1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-defaults-CoreTests/Pods-defaults-CoreTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/BVLinearGradient/BVLinearGradient.framework",
+				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
+				"${BUILT_PRODUCTS_DIR}/DoubleConversion/DoubleConversion.framework",
+				"${BUILT_PRODUCTS_DIR}/Folly/folly.framework",
+				"${BUILT_PRODUCTS_DIR}/Interactable/Interactable.framework",
+				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
+				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
+				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
+				"${BUILT_PRODUCTS_DIR}/RNCAsyncStorage/RNCAsyncStorage.framework",
+				"${BUILT_PRODUCTS_DIR}/RNDeviceInfo/RNDeviceInfo.framework",
+				"${BUILT_PRODUCTS_DIR}/RNFS/RNFS.framework",
+				"${BUILT_PRODUCTS_DIR}/RNSearchBar/RNSearchBar.framework",
+				"${BUILT_PRODUCTS_DIR}/RNSound/RNSound.framework",
+				"${BUILT_PRODUCTS_DIR}/React/React.framework",
+				"${BUILT_PRODUCTS_DIR}/glog/glog.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-camera/react_native_camera.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-document-picker/react_native_document_picker.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-image-picker/react_native_image_picker.framework",
+				"${BUILT_PRODUCTS_DIR}/yoga/yoga.framework",
+				"${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/PactConsumerSwift/PactConsumerSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BVLinearGradient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DoubleConversion.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/folly.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Interactable.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCAsyncStorage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNDeviceInfo.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNFS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNSearchBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNSound.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/glog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_camera.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_document_picker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_image_picker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PactConsumerSwift.framework",
 			);
@@ -4737,7 +4965,6 @@
 				7DCF2046216D652C003AF358 /* GetQuizzesTests.swift in Sources */,
 				9FC715CE23D758BD008CBDBF /* GetConversationsTests.swift in Sources */,
 				7DE949802385E08000B27F93 /* TodoTests.swift in Sources */,
-				E86148A023D755BC00ABFA5D /* GetCoursePeoplePactTests.swift in Sources */,
 				7DCE0C8E22B015DC00BA549F /* QuizSubmissionTests.swift in Sources */,
 				7DDC4511215BF7AA003F3209 /* BundleExtensionsTests.swift in Sources */,
 				B18E19BB2386216B00B03C73 /* GradeFormatterTests.swift in Sources */,
@@ -4967,6 +5194,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E81ACA9223D9F469007AFDC1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8EC0C4A23DA1F72007583F3 /* PactCaseEncodable.swift in Sources */,
+				E81ACBA723D9F4F2007AFDC1 /* PactEncoder.swift in Sources */,
+				E8EC0C4823D9F980007583F3 /* APIPactExtensions.swift in Sources */,
+				E81ACBA923D9F4F2007AFDC1 /* PactSimpleEncodable.swift in Sources */,
+				E81ACBA823D9F4F2007AFDC1 /* PactShapeEncodable.swift in Sources */,
+				E81ACBA523D9F4F2007AFDC1 /* PactTests.swift in Sources */,
+				E81ACBA623D9F4F2007AFDC1 /* CanvasMockService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -4999,6 +5240,16 @@
 			isa = PBXTargetDependency;
 			target = E81918E3230348440039616A /* CoreUITests */;
 			targetProxy = E8C6F56723D63E900086B865 /* PBXContainerItemProxy */;
+                };
+		E81ACA8D23D9F469007AFDC1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2C96482D211E2F1A002C3255 /* Core */;
+			targetProxy = E81ACA8E23D9F469007AFDC1 /* PBXContainerItemProxy */;
+		};
+		E81ACA8F23D9F469007AFDC1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DFE1FF24212F69B3003F27AA /* CoreTester */;
+			targetProxy = E81ACA9023D9F469007AFDC1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -5547,6 +5798,48 @@
 			};
 			name = Release;
 		};
+		E81ACBA123D9F469007AFDC1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1BAA02474C0FFB45D93B5B63 /* Pods-defaults-CoreTests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../Carthage/Build/iOS/**",
+					"$(inherited)",
+				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				INFOPLIST_FILE = PactTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.PactTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoreTester.app/CoreTester";
+			};
+			name = Debug;
+		};
+		E81ACBA223D9F469007AFDC1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B33F6C85AAF5010972866B43 /* Pods-defaults-CoreTests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../Carthage/Build/iOS/**",
+					"$(inherited)",
+				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				INFOPLIST_FILE = PactTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.PactTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoreTester.app/CoreTester";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -5600,6 +5893,15 @@
 			buildConfigurations = (
 				E8C6F56123D63E6C0086B865 /* Debug */,
 				E8C6F56223D63E6C0086B865 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E81ACBA023D9F469007AFDC1 /* Build configuration list for PBXNativeTarget "PactTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E81ACBA123D9F469007AFDC1 /* Debug */,
+				E81ACBA223D9F469007AFDC1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

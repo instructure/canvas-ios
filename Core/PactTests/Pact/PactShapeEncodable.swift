@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,7 +17,25 @@
 //
 
 import Foundation
+import PactConsumerSwift
 
-public enum EnrollmentState: String, Codable, CaseIterable {
-    case active, inactive, invited, completed, creation_pending
+// only verifies shapes match
+protocol PactShapeEncodable: PactEncodable { }
+
+extension PactShapeEncodable {
+    func pactEncode(to encoder: PactEncoder) throws {
+        try encoder.encodeAndFix(self, fixup: fixup)
+    }
+
+    func fixup(encoder: PactEncoder, result: inout NSObject?) throws {
+        guard let value = result else {
+            let context = EncodingError.Context(
+                codingPath: encoder.codingPath,
+                debugDescription: "no json found!"
+            )
+            throw EncodingError.invalidValue(self, context)
+        }
+
+        result = Matcher.somethingLike(value) as NSObject
+    }
 }

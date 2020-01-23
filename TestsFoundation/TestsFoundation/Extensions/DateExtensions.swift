@@ -40,6 +40,10 @@ extension Date {
         return endDate ?? Date()
     }
 
+    public var truncatedToSecond: Date {
+        Date(timeIntervalSinceReferenceDate: floor(timeIntervalSinceReferenceDate))
+    }
+
     public static func dateFromString(_ dateString: String, format: String = "yyyy-MM-dd HH:mm") -> Date? {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
