@@ -148,7 +148,7 @@ class ConversationDetailCell: UITableViewCell {
 
             button.pin(inside: self)
 
-            layer.borderColor = tintColor.cgColor
+            layer.borderColor = UIColor.named(.borderMedium).cgColor
             layer.borderWidth = 1.0
             layer.cornerRadius = 4.0
         }
