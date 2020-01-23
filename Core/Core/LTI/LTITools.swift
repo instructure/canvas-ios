@@ -88,7 +88,7 @@ public class LTITools {
             let url = response.url
             if response.name == "Google Apps" {
                 let controller = GoogleCloudAssignmentViewController(url: url)
-                self.env.router.show(controller, from: view, options: .modal(embedInNav: true, addDoneButton: true)) {
+                self.env.router.show(controller, from: view, options: .modal(.overFullScreen, embedInNav: true, addDoneButton: true)) {
                     completionHandler(true)
                 }
             } else if self.openInSafari {
@@ -96,8 +96,7 @@ public class LTITools {
                     completionHandler(true)
             } else {
                 let safari = SFSafariViewController(url: url)
-                safari.modalPresentationStyle = .overFullScreen
-                self.env.router.show(safari, from: view, options: .modal()) {
+                self.env.router.show(safari, from: view, options: .modal(.overFullScreen)) {
                     completionHandler(true)
                 }
             }

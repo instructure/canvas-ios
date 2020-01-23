@@ -100,7 +100,7 @@ class LTIToolsTests: CoreTestCase {
         XCTAssertEqual(url, actualURL)
     }
 
-    func testPresentTool() {
+    func testPresentTool() throws {
         let tools = LTITools(
             env: environment,
             context: ContextModel(.course, id: "1"),
@@ -142,11 +142,8 @@ class LTIToolsTests: CoreTestCase {
         }
         wait(for: [doneValue], timeout: 1)
         XCTAssertTrue(success)
-        XCTAssert(router.presented is SFSafariViewController)
-        XCTAssertEqual(router.presented?.modalPresentationStyle, .overFullScreen)
-
-        UserDefaults.standard.set(true, forKey: "open_lti_safari")
-        tools.presentTool(from: mockView, animated: true)
+        let sfSafari = try XCTUnwrap(router.presented as? SFSafariViewController)
+        XCTAssert(router.lastRoutedTo(viewController: sfSafari, from: mockView, withOptions: .modal(.overFullScreen)))
     }
 
     func testPresentToolInSafariProper() {
@@ -167,7 +164,7 @@ class LTIToolsTests: CoreTestCase {
         api.mock(request, value: .make(name: "Google Apps", url: url))
         tools.presentTool(from: mockView, animated: true)
         let controller = try XCTUnwrap(router.presented as? GoogleCloudAssignmentViewController)
-        XCTAssertEqual(controller.url, url)
+        XCTAssertTrue(router.lastRoutedTo(viewController: controller, from: mockView, withOptions: .modal(.overFullScreen, embedInNav: true, addDoneButton: true)))
     }
 
     func testMarksModuleItemAsRead() {
