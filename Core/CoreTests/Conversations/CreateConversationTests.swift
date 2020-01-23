@@ -22,11 +22,24 @@ import XCTest
 class CreateConversationTests: CoreTestCase {
     func testWritesData() {
         let useCase = CreateConversation(subject: "subject", body: "body", recipientIDs: ["1"])
-        api.mock(useCase.request, value: [APIConversation.make(subject: "subject")])
+        api.mock(useCase.request, value: [APIConversation.make(subject: "subject", context_name: nil, context_code: nil)])
 
         useCase.fetch()
         let conversation: Conversation = databaseClient.fetch().first!
         XCTAssertNotNil(conversation)
         XCTAssertEqual(conversation.subject, "subject")
+        XCTAssertNil(conversation.contextCode)
+        XCTAssertNil(conversation.contextName)
+    }
+
+    func testWritesContextName() {
+        let course = Course.make()
+        let useCase = CreateConversation(subject: "subject", body: "body", recipientIDs: ["1"], canvasContextID: course.canvasContextID)
+        api.mock(useCase.request, value: [APIConversation.make(context_name: nil)])
+
+        useCase.fetch()
+        let conversation: Conversation = databaseClient.fetch().first!
+        XCTAssertEqual(conversation.contextCode, course.canvasContextID)
+        XCTAssertEqual(conversation.contextName, course.name)
     }
 }
