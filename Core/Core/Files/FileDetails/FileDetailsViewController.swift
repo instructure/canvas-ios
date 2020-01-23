@@ -81,6 +81,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         viewModulesButton.setTitle(NSLocalizedString("View Modules", bundle: .core, comment: ""), for: .normal)
         viewModulesButton.isHidden = true
 
+        view.layoutIfNeeded()
         files.refresh()
     }
 
@@ -260,6 +261,10 @@ extension FileDetailsViewController: UIScrollViewDelegate {
         let x = max(0, (scrollView.bounds.width - image.frame.width) / 2)
         let y = max(0, (scrollView.bounds.height - image.frame.height) / 2)
         scrollView.contentInset = UIEdgeInsets(top: y, left: x, bottom: y, right: x)
+    }
+
+    public func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView) {
+        scrollViewDidZoom(scrollView)
     }
 }
 
