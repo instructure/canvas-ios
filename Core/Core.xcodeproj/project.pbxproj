@@ -545,6 +545,8 @@
 		B12A763A2191459F000693DE /* file-post-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A76392191459F000693DE /* file-post-body.txt */; };
 		B12D462D23D756F90000ED55 /* GoogleCloudAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12D462B23D754CF0000ED55 /* GoogleCloudAssignmentViewController.swift */; };
 		B133A78A221F59A3000E393E /* ContextColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B133A789221F59A3000E393E /* ContextColorTests.swift */; };
+		B149098A23D8FC240051D961 /* LTIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B149098923D8FC240051D961 /* LTIViewController.swift */; };
+		B149098C23D9154C0051D961 /* LTIViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B149098B23D9154B0051D961 /* LTIViewControllerTests.swift */; };
 		B14B704D228F30A100B568D6 /* UploadFileComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B704C228F30A100B568D6 /* UploadFileComment.swift */; };
 		B14B7055229468BC00B568D6 /* FilePickerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B7054229468BC00B568D6 /* FilePickerViewControllerTests.swift */; };
 		B14B70572294758600B568D6 /* UploadFileCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B70562294758600B568D6 /* UploadFileCommentTests.swift */; };
@@ -1471,6 +1473,8 @@
 		B12D462B23D754CF0000ED55 /* GoogleCloudAssignmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCloudAssignmentViewController.swift; sourceTree = "<group>"; };
 		B133A789221F59A3000E393E /* ContextColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextColorTests.swift; sourceTree = "<group>"; };
 		B1445300212E5B6E0009D848 /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
+		B149098923D8FC240051D961 /* LTIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIViewController.swift; sourceTree = "<group>"; };
+		B149098B23D9154B0051D961 /* LTIViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIViewControllerTests.swift; sourceTree = "<group>"; };
 		B14B704C228F30A100B568D6 /* UploadFileComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFileComment.swift; sourceTree = "<group>"; };
 		B14B7054229468BC00B568D6 /* FilePickerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerViewControllerTests.swift; sourceTree = "<group>"; };
 		B14B70562294758600B568D6 /* UploadFileCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFileCommentTests.swift; sourceTree = "<group>"; };
@@ -2428,6 +2432,7 @@
 			children = (
 				B19797AA23D77CC400032BC4 /* GoogleCloudAssignmentViewControllerTests.swift */,
 				7D4C3D58222D9E41001B1198 /* LTIToolsTests.swift */,
+				B149098B23D9154B0051D961 /* LTIViewControllerTests.swift */,
 			);
 			path = LTI;
 			sourceTree = "<group>";
@@ -2899,6 +2904,7 @@
 			children = (
 				B12D462B23D754CF0000ED55 /* GoogleCloudAssignmentViewController.swift */,
 				9FAE410921B6D0A600FE7F58 /* LTITools.swift */,
+				B149098923D8FC240051D961 /* LTIViewController.swift */,
 			);
 			path = LTI;
 			sourceTree = "<group>";
@@ -3957,6 +3963,7 @@
 				3B34674B213051FD00F9BC2E /* LoginWebViewController.swift in Sources */,
 				7D5AA3C62294AF9400438667 /* GetSSOLogin.swift in Sources */,
 				3B635B33225CDC95001F353D /* CalendarEvent.swift in Sources */,
+				B149098A23D8FC240051D961 /* LTIViewController.swift in Sources */,
 				7D02159F21B88B19009A8E69 /* UITabBarExtensions.swift in Sources */,
 				9FA690F023C79489009D12D9 /* GetConversationCourses.swift in Sources */,
 				9F900E75232178EB00BB44B4 /* APISearchRecipient.swift in Sources */,
@@ -4199,6 +4206,7 @@
 				7DC23092213D710000318ED0 /* UIImageViewExtensionsTests.swift in Sources */,
 				7DB0A1B621BF168A009ABB40 /* LoginDelegateTests.swift in Sources */,
 				3B158CB322E16D0E0039A568 /* PageViewEventRequestManagerTests.swift in Sources */,
+				B149098C23D9154C0051D961 /* LTIViewControllerTests.swift in Sources */,
 				7DD694812194CE8C00BA4984 /* DateExtensionsTests.swift in Sources */,
 				3B6FE4A22356371D00000B9D /* SyllabusActionableItemsPresenterTests.swift in Sources */,
 				7DCF1EA2216BB7E4003AF358 /* SubmissionTypeTests.swift in Sources */,

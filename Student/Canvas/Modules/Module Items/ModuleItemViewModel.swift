@@ -58,18 +58,17 @@ class ModuleItemViewModel: NSObject {
                     }
                     webView.load(source: .url(url))
                     return CanvasWebViewController(webView: webView, showDoneButton: false, showShareButton: true)
-                case .externalTool(_, _):
-                    guard let launchURL = url else {
-                        return nil
-                    }
-                    var components = URLComponents.parse(launchURL)
-                    components.queryItems = components.queryItems ?? []
-                    components.queryItems?.append(URLQueryItem(name: "launch_type", value: "module_item"))
-                    components.queryItems?.append(URLQueryItem(name: "module_item_id", value: moduleItemID))
-                    guard let url = components.url else {
-                        return nil
-                    }
-                    return LTIViewController(toolName: "", courseID: courseID, launchURL: url, in: self.session, fallbackURL: htmlURL.flatMap(URL.init))
+                case let .externalTool(toolID, url):
+                    guard let courseID = courseID else { return nil }
+                    let tools = LTITools(
+                        context: ContextModel(.course, id: courseID),
+                        id: toolID, url: url,
+                        launchType: .module_item,
+                        assignmentID: nil,
+                        moduleID: moduleID,
+                        moduleItemID: moduleItemID
+                    )
+                    return LTIViewController(tools: tools)
                 default: break
                 }
             }
