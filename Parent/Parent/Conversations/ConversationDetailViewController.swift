@@ -88,8 +88,7 @@ class ConversationDetailViewController: UIViewController {
         showReplyFor(IndexPath(row: 0, section: 0), all: message.participantIDs.count > 2)
     }
 
-    func showAttachment(_ attachment: File) {
-        guard let url = attachment.url else { return }
+    func showAttachment(_ url: URL) {
         env.router.route(to: url, from: self, options: .modal(embedInNav: true, addDoneButton: true))
     }
 }
@@ -106,7 +105,7 @@ extension ConversationDetailViewController: UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ConversationDetailCell = tableView.dequeue(for: indexPath)
         let msg = conversations.first?.messages[indexPath.section]
-        cell.update(msg, myID: myID, userMap: userMap)
+        cell.update(msg, myID: myID, userMap: userMap, parent: self)
         cell.onTapAttachment = { [weak self] file in self?.showAttachment(file) }
         return cell
     }

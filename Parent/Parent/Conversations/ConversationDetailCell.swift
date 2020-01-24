@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import AVKit
 import UIKit
 import Core
 
@@ -25,13 +26,14 @@ class ConversationDetailCell: UITableViewCell {
     @IBOutlet weak var toLabel: DynamicLabel!
     @IBOutlet weak var dateLabel: DynamicLabel!
     @IBOutlet weak var avatar: AvatarView!
-    @IBOutlet weak var stackview: UIStackView!
+    @IBOutlet weak var audioPlayerContainer: UIView!
     @IBOutlet weak var attachmentStackView: HorizontalScrollingStackview!
 
-    var onTapAttachment: ((File) -> Void)?
+    var audioPlayer: AudioPlayerViewController?
     var message: ConversationMessage?
+    var onTapAttachment: ((URL) -> Void)?
 
-    func update(_ message: ConversationMessage?, myID: String, userMap: [String: ConversationParticipant]) {
+    func update(_ message: ConversationMessage?, myID: String, userMap: [String: ConversationParticipant], parent: UIViewController) {
         guard let m = message else { return }
         self.message = m
         messageLabel.text = m.body
@@ -41,117 +43,118 @@ class ConversationDetailCell: UITableViewCell {
         avatar.url = userMap[ m.authorID ]?.avatarURL
         avatar.name = userMap[ m.authorID ]?.name ?? ""
 
-        handleAttachments(m.attachments)
+        handleAttachments(m.attachments, media: m.mediaComment, parent: parent)
     }
 
-    func handleAttachments(_ attachments: [File]) {
+    func handleAttachments(_ attachments: [File], media: MediaComment?, parent: UIViewController) {
         attachmentStackView.arrangedSubviews.forEach { v in v.removeFromSuperview() }
-        attachmentStackView.isHidden = attachments.isEmpty == true
-        if attachments.isEmpty == false {
-            for (index, a) in  attachments.sorted(by: File.idCompare).enumerated() {
-                let view = buildAttachmentView(attachment: a, atIndex: index)
-                attachmentStackView.addArrangedSubview(view)
-                NSLayoutConstraint.activate([
-                    view.widthAnchor.constraint(equalToConstant: 120),
-                    view.heightAnchor.constraint(equalToConstant: 104),
-                ])
+
+        audioPlayerContainer.isHidden = true
+        if media?.mediaType == .video, let url = media?.url {
+            addVideoAttachment(url: url, parent: parent)
+        } else if media?.mediaType == .audio {
+            addAudioPlayer(url: media?.url, parent: parent)
+        }
+
+        for (index, a) in attachments.sorted(by: File.idCompare).enumerated() {
+            if a.mimeClass == "image" {
+                addImageAttachment(index, name: a.displayName, url: a.previewURL ?? a.thumbnailURL)
+            } else if a.mimeClass == "video", let url = a.url {
+                addVideoAttachment(url: url, parent: parent)
+            } else {
+                addFileAttachment(index, name: a.displayName, icon: a.icon)
             }
+        }
+
+        if !attachmentStackView.arrangedSubviews.isEmpty {
             let leftAlignViewsSpacer = UIView()
             leftAlignViewsSpacer.setContentHuggingPriority(.defaultLow, for: .horizontal)
             attachmentStackView.addArrangedSubview(leftAlignViewsSpacer)
+            attachmentStackView.isHidden = false
+        } else {
+            attachmentStackView.isHidden = true
         }
     }
 
-    func buildAttachmentView(attachment: File, atIndex: Int) -> UIView {
-        if let icon = attachment.icon, attachment.mimeClass != "image" {
-            let view = NonPhotoAttachment()
-            view.imageView.image = icon
-            view.label.text = attachment.displayName
-            view.button.addTarget(self, action: #selector(tapAttachment(sender:)), for: .primaryActionTriggered)
-            view.button.tag = atIndex
-            return view
-        } else {
-            let view = PhotoAttachment()
-            view.imageView.load(url: attachment.previewURL ?? attachment.thumbnailURL ?? attachment.url)
-            view.button.addTarget(self, action: #selector(tapAttachment(sender:)), for: .primaryActionTriggered)
-            view.button.tag = atIndex
-            return view
+    func addAttachmentView(_ view: UIView) {
+        attachmentStackView.addArrangedSubview(view)
+        NSLayoutConstraint.activate([
+            view.widthAnchor.constraint(equalToConstant: 120),
+            view.heightAnchor.constraint(equalToConstant: 104),
+        ])
+    }
+
+    func addAudioPlayer(url: URL?, parent: UIViewController) {
+        if audioPlayer == nil {
+            let audioPlayer = AudioPlayerViewController.create()
+            parent.embed(audioPlayer, in: audioPlayerContainer)
+            self.audioPlayer = audioPlayer
         }
+        audioPlayer?.load(url: url)
+        audioPlayerContainer.isHidden = false
+    }
+
+    func addFileAttachment(_ index: Int, name: String?, icon: UIImage?) {
+        let button = UIButton(type: .custom)
+        button.accessibilityLabel = name
+        button.addTarget(self, action: #selector(tapAttachment(sender:)), for: .primaryActionTriggered)
+        button.layer.borderColor = UIColor.named(.borderMedium).cgColor
+        button.layer.borderWidth = 1.0
+        button.layer.cornerRadius = 4.0
+        button.tag = index
+        let imageView = UIImageView(image: icon)
+        imageView.contentMode = .scaleAspectFit
+        let nameLabel = UILabel()
+        nameLabel.font = .scaledNamedFont(.regular14)
+        nameLabel.lineBreakMode = .byTruncatingTail
+        nameLabel.numberOfLines = 2
+        nameLabel.textAlignment = .center
+        nameLabel.text = name
+        let stack = UIStackView(arrangedSubviews: [ imageView, nameLabel ])
+        stack.alignment = .center
+        stack.axis = .vertical
+        stack.isUserInteractionEnabled = false
+        stack.spacing = 8
+        button.addSubview(stack)
+        stack.pin(inside: button, leading: 12, trailing: 12, top: nil, bottom: nil)
+        NSLayoutConstraint.activate([
+            imageView.heightAnchor.constraint(equalToConstant: 32),
+            imageView.widthAnchor.constraint(equalToConstant: 32),
+            stack.centerYAnchor.constraint(equalTo: button.centerYAnchor),
+        ])
+        addAttachmentView(button)
+    }
+
+    func addImageAttachment(_ index: Int, name: String?, url: URL?) {
+        let button = UIButton(type: .custom)
+        button.accessibilityLabel = name
+        button.addTarget(self, action: #selector(tapAttachment(sender:)), for: .primaryActionTriggered)
+        button.layer.cornerRadius = 4.0
+        button.layer.masksToBounds = true
+        button.tag = index
+        let imageView = UIImageView()
+        button.addSubview(imageView)
+        imageView.contentMode = .scaleAspectFill
+        imageView.pin(inside: button)
+        imageView.isUserInteractionEnabled = false
+        addAttachmentView(button)
+        imageView.load(url: url)
+    }
+
+    func addVideoAttachment(url: URL, parent: UIViewController) {
+        let container = UIView()
+        container.layer.cornerRadius = 4.0
+        container.layer.masksToBounds = true
+        addAttachmentView(container)
+        let controller = AVPlayerViewController()
+        controller.entersFullScreenWhenPlaybackBegins = true
+        controller.player = AVPlayer(url: url)
+        parent.embed(controller, in: container)
     }
 
     @objc func tapAttachment(sender: UIButton) {
         guard message?.attachments.count ?? 0 > sender.tag else { return }
-        guard let attachment = message?.attachments.sorted(by: File.idCompare)[sender.tag] else { return }
-        onTapAttachment?(attachment)
+        guard let url = message?.attachments.sorted(by: File.idCompare)[sender.tag].url else { return }
+        onTapAttachment?(url)
     }
-
-    class PhotoAttachment: UIView {
-        var imageView: UIImageView!
-        var button: UIButton!
-
-        override init(frame: CGRect) {
-            super.init(frame: frame)
-            commonInit()
-        }
-
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-
-        func commonInit() {
-            imageView = UIImageView()
-            imageView.contentMode = .scaleAspectFill
-            button = UIButton(type: .system)
-            addSubview(imageView)
-            addSubview(button)
-            imageView.pin(inside: self)
-            button.pin(inside: self)
-
-            layer.cornerRadius = 4.0
-            layer.masksToBounds = true
-        }
-    }
-
-    class NonPhotoAttachment: UIView {
-        var imageView: UIImageView!
-        var button: UIButton!
-        var label: DynamicLabel!
-
-        override init(frame: CGRect) {
-            super.init(frame: frame)
-            commonInit()
-        }
-
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-
-        func commonInit() {
-            label = DynamicLabel()
-            label.font = UIFont.scaledNamedFont(.regular14)
-            label.lineBreakMode = .byTruncatingTail
-            label.numberOfLines = 2
-            label.textAlignment = .center
-            imageView = UIImageView()
-            imageView.contentMode = .scaleAspectFit
-            button = UIButton(type: .system)
-            addSubview(imageView)
-            addSubview(label)
-            addSubview(button)
-
-            label.addConstraintsWithVFL("V:[view(>=21)]-(>=16)-|")
-            label.addConstraintsWithVFL("H:|[view]|")
-
-            imageView.addConstraintsWithVFL("V:[view(30)]-(8)-[label]", views: ["label": label])
-            imageView.addConstraintsWithVFL("H:[view(30)]")
-            imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-
-            button.pin(inside: self)
-
-            layer.borderColor = UIColor.named(.borderMedium).cgColor
-            layer.borderWidth = 1.0
-            layer.cornerRadius = 4.0
-        }
-    }
-
 }
