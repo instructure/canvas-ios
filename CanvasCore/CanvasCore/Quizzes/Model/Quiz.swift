@@ -287,7 +287,6 @@ extension Quiz: JSONDecodable {
             let requiresLockdownBrowser = json["require_lockdown_browser"] as? Bool ?? false
             let requiresLockdownBrowserForResults = json["require_lockdown_browser_for_results"] as? Bool ?? false
 
-            print(String(describing: (id, title, due, timeLimit, scoring, questionCount, allowedAttempts, oqqaat, cantGoBack, hideResults, lockedForUser, mobileURL, shuffleAnswers)))
             if let id = id, let title = title, let due = due, let timeLimit = timeLimit, let scoring = scoring, let questionCount = questionCount, let allowedAttempts = allowedAttempts, let oqqaat = oqqaat, let hideResults=hideResults, let lockedForUser = lockedForUser, let mobileURL = mobileURL, let shuffleAnswers = shuffleAnswers
             {
                 return Quiz(id: id, title: title, description: description, due: due, timeLimit: timeLimit, scoring: scoring, questionCount: questionCount, questionTypes: questionTypes, attemptLimit: allowedAttempts, oneQuestionAtATime: oqqaat, cantGoBack: cantGoBack, hideResults: hideResults, lockAt: Date.fromJSON(json["lock_at"]), lockedForUser: lockedForUser, lockExplanation: lockExplanation, ipFilter: json["ip_filter"] as? String, mobileURL: mobileURL, shuffleAnswers: shuffleAnswers, hasAccessCode: hasAccessCode, requiresLockdownBrowser: requiresLockdownBrowser, requiresLockdownBrowserForResults: requiresLockdownBrowserForResults)
