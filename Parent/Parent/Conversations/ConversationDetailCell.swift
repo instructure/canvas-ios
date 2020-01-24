@@ -137,6 +137,7 @@ class ConversationDetailCell: UITableViewCell {
         let controller = AVPlayerViewController()
         controller.entersFullScreenWhenPlaybackBegins = true
         controller.player = AVPlayer(url: url)
+        controller.videoGravity = .resizeAspectFill
         parent?.embed(controller, in: container)
     }
 
