@@ -36,12 +36,14 @@ class APIMediaCommentRequestableTests: XCTestCase {
     }
 
     func testUploadForm() {
-        XCTAssertEqual(PostMediaUploadRequest(fileURL: url, type: .audio, ks: "k", token: "t").form, [
-            "fileData": APIFormDatum.file(filename: "audiocomment.m4a", type: "audio/x-m4a", at: url),
-        ])
-        XCTAssertEqual(PostMediaUploadRequest(fileURL: url, type: .video, ks: "k", token: "t").form, [
-            "fileData": APIFormDatum.file(filename: "videocomment.mp4", type: "video/mp4", at: url),
-        ])
+        let audio = PostMediaUploadRequest(fileURL: url, type: .audio, ks: "k", token: "t").form
+        XCTAssertEqual(audio?.count, 1)
+        XCTAssertEqual(audio?.first?.key, "fileData")
+        XCTAssertEqual(audio?.first?.value, .file(filename: "audiocomment.m4a", type: "audio/x-m4a", at: url))
+        let video = PostMediaUploadRequest(fileURL: url, type: .video, ks: "k", token: "t").form
+        XCTAssertEqual(video?.count, 1)
+        XCTAssertEqual(video?.first?.key, "fileData")
+        XCTAssertEqual(video?.first?.value, .file(filename: "videocomment.mp4", type: "video/mp4", at: url))
     }
 
     func testMediaIDEncode() {

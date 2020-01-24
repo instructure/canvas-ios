@@ -59,7 +59,7 @@ public class APIJSONEncoder: JSONEncoder {
     }
 }
 
-public typealias APIFormData = [String: APIFormDatum]
+public typealias APIFormData = [(key: String, value: APIFormDatum)]
 
 public enum APIFormDatum: Equatable {
     case string(String)

@@ -207,12 +207,14 @@ public struct PostFileUploadRequest: APIRequestable {
         return target.upload_url.absoluteString
     }
     public var form: APIFormData? {
-        var form: APIFormData = target.upload_params.mapValues { APIFormDatum.string($0 ?? "") }
-        form["file"] = .file(
+        var form: APIFormData = target.upload_params.map { (key, value) in
+            (key: key, value: .string(value ?? ""))
+        }
+        form.append((key: "file", value: .file(
             filename: target.upload_params["filename"] as? String ?? "",
             type: target.upload_params["content_type"] as? String ?? "application/octet-stream",
             at: fileURL
-        )
+        )))
         return form
     }
 }

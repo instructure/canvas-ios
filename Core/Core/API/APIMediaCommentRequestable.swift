@@ -81,9 +81,12 @@ struct PostMediaUploadRequest: APIRequestable {
     }
     var form: APIFormData? {
         return [
-            "fileData": type == .audio
-                ? APIFormDatum.file(filename: "audiocomment.m4a", type: "audio/x-m4a", at: fileURL)
-                : APIFormDatum.file(filename: "videocomment.mp4", type: "video/mp4", at: fileURL),
+            (
+                key: "fileData",
+                value: type == .audio
+                    ? APIFormDatum.file(filename: "audiocomment.m4a", type: "audio/x-m4a", at: fileURL)
+                    : APIFormDatum.file(filename: "videocomment.mp4", type: "video/mp4", at: fileURL)
+            ),
         ]
     }
 }

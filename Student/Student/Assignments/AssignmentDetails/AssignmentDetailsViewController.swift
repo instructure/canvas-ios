@@ -200,7 +200,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         }
 
         gradeCircleBottomConstraint?.isActive = true
-        submittedView?.isHidden = true
+        submittedView?.isHidden = presenter?.onlineUploadState == nil
     }
 
     func updateSubmissionLabels(state: OnlineUploadState) {
