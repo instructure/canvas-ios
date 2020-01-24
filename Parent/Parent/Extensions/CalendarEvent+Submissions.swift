@@ -53,13 +53,10 @@ private struct Submission {
     let pastEndDate: Bool
     let type: SubmissionTypes
     let gradePostedAt: Date?
+    let missing: Bool
 
     var onPaper: Bool {
         return type.contains(.onPaper)
-    }
-
-    var missing: Bool {
-        return pastEndDate && !type.contains(.none)
     }
 
     var displayText: String {
@@ -183,7 +180,8 @@ extension CalendarEvent {
                           pointsPossible: pointsPossible,
                           pastEndDate: pastEndDate,
                           type: submissionTypes,
-                          gradePostedAt: gradePostedAt)
+                          gradePostedAt: gradePostedAt,
+                          missing: submissionMissing)
     }
 
     @objc var submittedText: String {
@@ -220,7 +218,8 @@ extension Assignment {
                           pointsPossible: NSNumber(value: pointsPossible),
                           pastEndDate: overdue,
                           type: submissionTypes,
-                          gradePostedAt: gradePostedAt)
+                          gradePostedAt: gradePostedAt,
+                          missing: submissionMissing)
     }
 
     @objc var submittedText: String {
