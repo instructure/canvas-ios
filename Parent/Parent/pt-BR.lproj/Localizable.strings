@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(Sem assunto)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d de %3$d";
 
@@ -9,6 +12,12 @@
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ começará às %2$@";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, %@, last message %@ %@" = "%1$@, %2$@, última mensagem %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, não lido";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -56,6 +65,9 @@
 "Back" = "Voltar";
 
 /* No comment provided by engineer. */
+"Calendar Event" = "Evento do calendário";
+
+/* No comment provided by engineer. */
 "Cancel" = "Cancelar";
 
 /* Percent value is over 100 */
@@ -69,6 +81,9 @@
 
 /* No comment provided by engineer. */
 "Choose a student" = "Escolha um aluno";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Compor nova mensagem";
 
 /* Course Announcement Description */
 "Course announcements" = "Avisos do curso";
@@ -119,6 +134,12 @@
 "In-Class" = "Em sala de aula";
 
 /* No comment provided by engineer. */
+"Inbox" = "Caixa de entrada";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Caixa de Entrada Zero";
+
+/* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Insira o código de emparelhamento do aluno fornecido.";
 
 /* Institution Announcement Description */
@@ -149,10 +170,22 @@
 "Manage Children" = "Gerenciar associados";
 
 /* No comment provided by engineer. */
+"Message" = "Mensagem";
+
+/* No comment provided by engineer. */
 "Missing" = "Faltante";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Faltante: (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Faltante %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Faltante %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Nova mensagem";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Próxima Semana";
@@ -165,6 +198,9 @@
 
 /* Empty Students Text */
 "No Students" = "Sem Alunos";
+
+/* No comment provided by engineer. */
+"No Subject" = "Sem assunto";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Nada esta semana";
@@ -182,7 +218,22 @@
 "Quiz" = "Teste";
 
 /* No comment provided by engineer. */
+"Reply" = "Responder";
+
+/* No comment provided by engineer. */
+"Reply All" = "Responder a todos";
+
+/* No comment provided by engineer. */
+"Retry" = "Tentar novamente";
+
+/* No comment provided by engineer. */
+"Send" = "Enviar";
+
+/* No comment provided by engineer. */
 "Settings" = "Configurações";
+
+/* No comment provided by engineer. */
+"Subject" = "Assunto";
 
 /* No comment provided by engineer. */
 "Submitted" = "Enviado";
@@ -231,4 +282,7 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Você deve permitir notificações nas Configurações para definir lembretes.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Você está em dia";
 

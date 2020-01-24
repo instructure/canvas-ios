@@ -31,6 +31,7 @@ import { getSession } from '../../../canvas-api'
 import i18n from 'format-message'
 import icon from '../../../images/inst-icons'
 import { colors, createStyleSheet } from '../../../common/stylesheet'
+import { personDisplayName } from '../../../common/formatters'
 
 export type ConversationRowProps = {
   conversation: Conversation,
@@ -48,7 +49,7 @@ export default class ConversationRow extends Component<ConversationRowProps, any
     const myUserId = getSession().user.id
     return participants
       .filter((p) => p.id !== myUserId)
-      .map((p) => p.name)
+      .map((p) => personDisplayName(p.name, p.pronouns))
   }
 
   static extractDate = (c: Conversation): ?string => {
@@ -90,6 +91,7 @@ export default class ConversationRow extends Component<ConversationRowProps, any
     if (unread) {
       accessibilityLabel.push(i18n('Unread'))
     }
+    let testID = `ConversationRow.${c.id}`
     return (
       <TouchableHighlight
         onPress={this._onPress}
@@ -97,21 +99,23 @@ export default class ConversationRow extends Component<ConversationRowProps, any
         accessibilityLabel={accessibilityLabel.join(', ')}
       >
         <View style={containerStyles}>
-          { unread && <View style={styles.unreadDot} /> }
+          { unread && <View testID={`${testID}.unreadIndicator`} style={styles.unreadDot} /> }
           <View style={styles.avatar}>
             <Avatar avatarURL={c.avatar_url} userName={avatarUserName}/>
           </View>
           <View style={styles.contentContainer}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               { c.starred &&
-                <Image source={icon('star', 'solid')}
+                <Image
+                  source={icon('star', 'solid')}
                   style={{ tintColor: colors.primary, height: 14, width: 14, marginRight: 2 }}
+                  testID={`${testID}.starredIndicator`}
                 />
               }
               <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                <Text style={styles.names} numberOfLines={1}>{title}</Text>
+                <Text style={styles.names} numberOfLines={1} testID={`${testID}.names`}>{title}</Text>
                 <View>
-                  <Text style={styles.date}>{dateTitle}</Text>
+                  <Text style={styles.date} testID={`${testID}.date`}>{dateTitle}</Text>
                 </View>
               </View>
             </View>

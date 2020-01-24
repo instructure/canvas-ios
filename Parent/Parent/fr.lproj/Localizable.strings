@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(Pas de sujet)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d sur %3$d";
 
@@ -9,6 +12,12 @@
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ commencera à %2$@";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, %@, last message %@ %@" = "%1$@, %2$@, dernier message %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, non lu";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -56,6 +65,9 @@
 "Back" = "Retour";
 
 /* No comment provided by engineer. */
+"Calendar Event" = "Événement de calendrier";
+
+/* No comment provided by engineer. */
 "Cancel" = "Annuler";
 
 /* Percent value is over 100 */
@@ -69,6 +81,9 @@
 
 /* No comment provided by engineer. */
 "Choose a student" = "Choisissez un élève";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Composer un nouveau message";
 
 /* Course Announcement Description */
 "Course announcements" = "Annonces de cours";
@@ -119,6 +134,12 @@
 "In-Class" = "En classe";
 
 /* No comment provided by engineer. */
+"Inbox" = "Boîte de réception";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Boîte de réception Zéro";
+
+/* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Saisir le code de jumelage de l’étudiant qui vous a été fourni.";
 
 /* Institution Announcement Description */
@@ -149,10 +170,22 @@
 "Manage Children" = "Gérer les enfants";
 
 /* No comment provided by engineer. */
+"Message" = "Message";
+
+/* No comment provided by engineer. */
 "Missing" = "Manquant";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Manquant : (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Manquant : %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Manquant : %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Nouveau message";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "La semaine prochaine";
@@ -165,6 +198,9 @@
 
 /* Empty Students Text */
 "No Students" = "Aucun étudiant";
+
+/* No comment provided by engineer. */
+"No Subject" = "Aucun sujet";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Rien cette semaine";
@@ -182,7 +218,22 @@
 "Quiz" = "Questionnaire";
 
 /* No comment provided by engineer. */
+"Reply" = "Répondre";
+
+/* No comment provided by engineer. */
+"Reply All" = "Répondre à tous";
+
+/* No comment provided by engineer. */
+"Retry" = "Réessayer";
+
+/* No comment provided by engineer. */
+"Send" = "Envoyer";
+
+/* No comment provided by engineer. */
 "Settings" = "Paramètres";
+
+/* No comment provided by engineer. */
+"Subject" = "Sujet";
 
 /* No comment provided by engineer. */
 "Submitted" = "Soumis";
@@ -231,4 +282,7 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Vous devez autoriser les notifications dans les Paramètres pour définir les rappels.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Vous êtes à jour";
 

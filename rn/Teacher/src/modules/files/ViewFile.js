@@ -127,7 +127,9 @@ export default class ViewFile extends Component<Props, State> {
 
     const directoryPath = `${TemporaryDirectoryPath}/file-${file.id}`
     await mkdir(directoryPath)
-    const toFile = `${directoryPath}/${decodeURIComponent(file.filename)}`
+    const filename = decodeURIComponent(file.filename)
+      .replace(/\?/g, '_').replace(/#/g, '_')
+    const toFile = `${directoryPath}/${filename}`
     let fileExists = await exists(toFile)
     if (fileExists && !forceRefresh) {
       this.setState({ loadingDone: true, jobID: null, localPath: `file://${toFile}`, error: null })

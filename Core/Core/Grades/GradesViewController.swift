@@ -30,6 +30,7 @@ public class GradesViewController: UIViewController {
     @IBOutlet weak var gradingPeriodView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     public weak var colorDelegate: ColorDelegate?
 
     let env = AppEnvironment.shared
@@ -56,6 +57,7 @@ public class GradesViewController: UIViewController {
         grades.refresh()
         if grades.isPending {
             loadingView.isHidden = false
+            activityIndicator.startAnimating()
         }
     }
 
@@ -75,6 +77,10 @@ public class GradesViewController: UIViewController {
             loadingView.isHidden = true
             tableView.refreshControl?.endRefreshing()
         }
+        if loadingView.isHidden == false {
+            activityIndicator.startAnimating()
+        }
+
         tableView.reloadData()
         updateTotalGrade()
         updateGradingPeriods()
@@ -89,6 +95,7 @@ public class GradesViewController: UIViewController {
             grades.gradingPeriodID = nil
         } else {
             let alert = UIAlertController(title: nil, message: NSLocalizedString("Filter by:", comment: ""), preferredStyle: .actionSheet)
+            alert.popoverPresentationController?.sourceView = filterButton
             for gp in grades.gradingPeriods {
                 if gp.title?.isEmpty ?? true { continue }
                 let action = UIAlertAction(title: gp.title, style: .default) { [weak self] _ in
@@ -157,7 +164,7 @@ extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let assignment = grades.assignments[indexPath] else { return }
-        env.router.route(to: .course(courseID, assignment: assignment.id), from: self, options: nil)
+        env.router.route(to: .course(courseID, assignment: assignment.id), from: self)
     }
 
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -172,6 +179,19 @@ extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         return 22
+    }
+}
+
+extension GradesViewController: HorizontalPagedMenuItem {
+    public func menuItemWillBeDisplayed() {
+        if grades.isPending == true && tableView.refreshControl?.isRefreshing == false {
+            activityIndicator.startAnimating()
+        } else if grades.isPending == true && tableView.refreshControl?.isRefreshing == true {
+            let offset = tableView.contentOffset
+            tableView.refreshControl?.endRefreshing()
+            tableView.refreshControl?.beginRefreshing()
+            tableView.contentOffset = offset
+        }
     }
 }
 

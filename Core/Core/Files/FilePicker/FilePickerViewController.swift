@@ -240,7 +240,7 @@ extension FilePickerViewController: UITabBarDelegate {
             cameraController.delegate = self
             cameraController.sourceType = .camera
             cameraController.mediaTypes = mediaTypes
-            env.router.show(cameraController, from: self, options: .modal)
+            env.router.show(cameraController, from: self, options: .modal())
         case .library:
             guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
             let libraryController = UIImagePickerController()
@@ -248,18 +248,18 @@ extension FilePickerViewController: UITabBarDelegate {
             libraryController.sourceType = .photoLibrary
             libraryController.mediaTypes = mediaTypes
             libraryController.modalPresentationStyle = .overCurrentContext
-            env.router.show(libraryController, from: self, options: .modal)
+            env.router.show(libraryController, from: self, options: .modal())
         case .files:
             let documentTypes = utis.map { $0.rawValue }
             let documentPicker = UIDocumentPickerViewController(documentTypes: documentTypes, in: .import)
             documentPicker.delegate = self
-            env.router.show(documentPicker, from: self, options: .modal)
+            env.router.show(documentPicker, from: self, options: .modal())
         case .audio:
             let audioRecorder = AudioRecorderViewController.create()
             audioRecorder.delegate = self
             audioRecorder.view.backgroundColor = UIColor.named(.backgroundLightest)
             audioRecorder.modalPresentationStyle = .formSheet
-            env.router.show(audioRecorder, from: self, options: .modal)
+            env.router.show(audioRecorder, from: self, options: .modal())
         }
     }
 }

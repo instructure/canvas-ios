@@ -98,7 +98,32 @@ describe('ConversationMessageRow', () => {
     expect(tree.find('[children="to 2 others"]').exists()).toBe(true)
   })
 
-  it('renders correctly when there is only one author (current user) and one receiver', () => {
+  it('renders correctly with author (not current user) lots of participants', async () => {
+    const session = getSession()
+    props.conversation = template.conversation({
+      id: '1',
+      participants: [
+        { id: session.user.id, name: 'hey there i am bob' },
+        { id: '11', name: 'hey there i am jane' },
+        { id: '2', name: 'hey there i am joe' },
+        { id: '3', name: 'hey there i am jim' },
+      ],
+      audience: ['11', '2', '3'],
+    })
+    props.message = template.conversationMessage({
+      author_id: '3',
+    })
+
+    const tree = shallow(<ConversationMessage {...props} />)
+    expect(tree.find('[children="hey there i am jim + 2 others "]').exists()).toBe(true)
+    expect(tree.find('[children="to me"]').exists()).toBe(true)
+
+    props.conversation.participants[3].pronouns = 'He/Him'
+    await tree.setProps(props)
+    expect(tree.find('[children="hey there i am jim (He/Him) + 2 others "]').exists()).toBe(true)
+  })
+
+  it('renders correctly when there is only one author (current user) and one receiver', async () => {
     const session = getSession()
     props.conversation = template.conversation({
       id: '1',
@@ -115,9 +140,13 @@ describe('ConversationMessageRow', () => {
     const tree = shallow(<ConversationMessage {...props} />)
     expect(tree.find('[children="me "]').exists()).toBe(true)
     expect(tree.find('[children="to hey there i am jane"]').exists()).toBe(true)
+
+    props.conversation.participants[1].pronouns = 'She/Her'
+    await tree.setProps(props)
+    expect(tree.find('[children="to hey there i am jane (She/Her)"]').exists()).toBe(true)
   })
 
-  it('renders correctly when there is only one author (not current user) and one receiver', () => {
+  it('renders correctly when there is only one author (not current user) and one receiver', async () => {
     const session = getSession()
     props.conversation = template.conversation({
       id: '1',
@@ -134,6 +163,10 @@ describe('ConversationMessageRow', () => {
     const tree = shallow(<ConversationMessage {...props} />)
     expect(tree.find('[children="hey there i am jane "]').exists()).toBe(true)
     expect(tree.find('[children="to me"]').exists()).toBe(true)
+
+    props.conversation.participants[1].pronouns = 'She/Her'
+    await tree.setProps(props)
+    expect(tree.find('[children="hey there i am jane (She/Her) "]').exists()).toBe(true)
   })
 
   it('can be replied to', () => {

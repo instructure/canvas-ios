@@ -23,65 +23,11 @@ import TestsFoundation
 class InboxTests: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { InboxTests.self }
 
-    func testCannotMessageEntireClassWhenDisabled() {
-        TabBar.inboxTab.tap()
-        Inbox.newMessageButton.tapUntil {
-            NewMessage.selectCourseButton.exists
-        }
-
-        // Course Selection
-        NewMessage.selectCourseButton.tap()
-        MessageCourseSelection.course(id: "263").tap()
-        NewMessage.addRecipientButton.tap()
-
-        // Recipients Selection
-        MessageRecipientsSelection.studentsInCourse(courseID: "263").waitToExist()
-        XCTAssertFalse(MessageRecipientsSelection.messageAllInCourse(courseID: "263").isVisible)
-        MessageRecipientsSelection.studentsInCourse(courseID: "263").tap()
-        XCTAssertFalse(MessageRecipientsSelection.messageAllStudents(courseID: "263").isVisible)
-    }
-
-    func testCannotMessageIndividialsWhenDisabled() {
-        TabBar.inboxTab.tap()
-        Inbox.newMessageButton.tapUntil {
-            NewMessage.selectCourseButton.exists
-        }
-
-        // Course Selection
-        NewMessage.selectCourseButton.tap()
-        MessageCourseSelection.course(id: "263").tap()
-        NewMessage.addRecipientButton.tap()
-
-        // Recipients Selection
-        MessageRecipientsSelection.studentsInCourse(courseID: "263").waitToExist()
-        MessageRecipientsSelection.studentsInCourse(courseID: "263").tap()
-        MessageRecipientsSelection.student(studentID: "613").waitToExist()
-        XCTAssertFalse(MessageRecipientsSelection.student(studentID: "651").exists)
-    }
-
-    func testCanFilterMessagesAndShowsUnread() {
-        XCTAssert(TabBar.inboxTab.value() == "2 items")
-        TabBar.inboxTab.tap()
-
-        Inbox.message(id: "47").waitToExist()
-        Inbox.filterButton.tap()
-        Inbox.filterOption("Assignment").waitToExist()
-        Inbox.filterOption("Assignment").tap()
-        Inbox.message(id: "47").waitToVanish()
-        XCTAssert(Inbox.message(id: "48").isVisible)
-    }
-}
-
-class MockedInboxTests: CoreUITestCase {
-    override var abstractTestClass: CoreUITestCase.Type { MockedInboxTests.self }
-    override var user: UITestUser? { nil }
-
     let conversation1 = APIConversation.make()
     var avatarURL: URL { conversation1.avatar_url.rawValue }
 
     override func setUp() {
         super.setUp()
-        useMocksOnly()
         mockBaseRequests()
         mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: nil), value: [conversation1])
         mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent), value: [])

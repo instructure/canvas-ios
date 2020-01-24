@@ -34,6 +34,40 @@ public class GetConversations: CollectionUseCase {
     public init() {}
 }
 
+public class GetConversationsWithSent: APIUseCase {
+    public typealias Model = Conversation
+    let include: [GetConversationsRequest.Include] = [.participant_avatars]
+    let perPage: Int = 100
+
+    public var cacheKey: String? = "conversations"
+
+    public var request: GetConversationsRequest {
+        return GetConversationsRequest(include: include, perPage: perPage, scope: nil)
+    }
+
+    public var scope = Scope.all(orderBy: #keyPath(Conversation.lastMessageAt), ascending: false)
+
+    public init() {}
+
+    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping ([APIConversation]?, URLResponse?, Error?) -> Void) {
+        environment.api.exhaust(request) { [weak self] (conversations, response, error) in
+            guard let self = self, error == nil else {
+                completionHandler(nil, response, error)
+                return
+            }
+
+            let sentRequest = GetConversationsRequest(include: self.include, perPage: self.perPage, scope: .sent)
+            environment.api.exhaust(sentRequest) { (sentConversations, sentResponse, sentError) in
+                if let error = sentError {
+                    completionHandler(nil, sentResponse, error)
+                    return
+                }
+                completionHandler((conversations ?? []) + (sentConversations ?? []), response, nil)
+            }
+        }
+    }
+}
+
 public class GetConversation: APIUseCase {
     public typealias Model = Conversation
     public let id: String

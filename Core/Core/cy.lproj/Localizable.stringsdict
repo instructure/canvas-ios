@@ -17,9 +17,9 @@
 			<key>many</key>
 			<string></string>
 			<key>one</key>
-			<string>%d other</string>
+			<string>%d arall</string>
 			<key>other</key>
-			<string>%d others</string>
+			<string>%d arall</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>
@@ -41,9 +41,9 @@
 			<key>many</key>
 			<string>%d events</string>
 			<key>one</key>
-			<string>%d event</string>
+			<string>%d digwyddiad</string>
 			<key>other</key>
-			<string>%d events</string>
+			<string>%d digwyddiadau</string>
 			<key>two</key>
 			<string>%d events</string>
 			<key>zero</key>

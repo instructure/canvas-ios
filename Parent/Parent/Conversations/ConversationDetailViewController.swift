@@ -87,6 +87,11 @@ class ConversationDetailViewController: UIViewController {
         guard let message = conversations.first?.messages.first else { return }
         showReplyFor(IndexPath(row: 0, section: 0), all: message.participantIDs.count > 2)
     }
+
+    func showAttachment(_ attachment: File) {
+        guard let url = attachment.url else { return }
+        env.router.route(to: url, from: self, options: .modal(embedInNav: true, addDoneButton: true))
+    }
 }
 
 extension ConversationDetailViewController: UITableViewDataSource, UITableViewDelegate {
@@ -102,6 +107,7 @@ extension ConversationDetailViewController: UITableViewDataSource, UITableViewDe
         let cell: ConversationDetailCell = tableView.dequeue(for: indexPath)
         let msg = conversations.first?.messages[indexPath.section]
         cell.update(msg, myID: myID, userMap: userMap)
+        cell.onTapAttachment = { [weak self] file in self?.showAttachment(file) }
         return cell
     }
 
@@ -132,30 +138,12 @@ extension ConversationDetailViewController: UITableViewDataSource, UITableViewDe
         return UISwipeActionsConfiguration(actions: actions)
     }
 
-    func showReplyFor(_ indexPath: IndexPath, all: Bool) {
+    func showReplyFor(_  indexPath: IndexPath, all: Bool) {
         guard let conversation = conversations.first else { return }
         env.router.show(ComposeReplyViewController.create(
             conversation: conversation,
             message: conversation.messages[indexPath.section],
             all: all
-        ), from: self, options: [ .modal, .embedInNav ])
-    }
-}
-
-class ConversationDetailCell: UITableViewCell {
-    @IBOutlet weak var messageLabel: DynamicLabel!
-    @IBOutlet weak var fromLabel: DynamicLabel!
-    @IBOutlet weak var toLabel: DynamicLabel!
-    @IBOutlet weak var dateLabel: DynamicLabel!
-    @IBOutlet weak var avatar: AvatarView!
-
-    func update(_ message: ConversationMessage?, myID: String, userMap: [String: ConversationParticipant]) {
-        guard let m = message else { return }
-        messageLabel.text = m.body
-        toLabel.text = m.localizedAudience(myID: myID, userMap: userMap)
-        fromLabel.text = userMap[ m.authorID ]?.name
-        dateLabel.text = DateFormatter.localizedString(from: m.createdAt, dateStyle: .medium, timeStyle: .short)
-        avatar.url = userMap[ m.authorID ]?.avatarURL
-        avatar.name = userMap[ m.authorID ]?.name ?? ""
+        ), from: self, options: .modal(embedInNav: true))
     }
 }

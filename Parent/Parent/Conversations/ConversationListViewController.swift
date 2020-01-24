@@ -29,7 +29,7 @@ class ConversationListViewController: UIViewController, ConversationCoursesActio
     @IBOutlet weak var tableView: UITableView!
 
     let env = AppEnvironment.shared
-    lazy var conversations = env.subscribe(GetConversations()) { [weak self] in
+    lazy var conversations = env.subscribe(GetConversationsWithSent()) { [weak self] in
         self?.update()
     }
 
@@ -94,19 +94,20 @@ class ConversationListViewController: UIViewController, ConversationCoursesActio
 
     @IBAction func createNewConversation() {
         let vc = ConversationCoursesActionSheet.create(delegate: self)
-        env.router.show(vc, from: self, options: [.modal])
+        let actionSheet = ActionSheetController(viewController: vc)
+        env.router.show(actionSheet, from: self, options: .modal())
     }
 
     func courseSelected(course: Course, user: User) {
         env.router.route(
             to: .compose(
-                    context: ContextModel(.course, id: course.id),
+                    context: course,
                     observeeID: user.id,
                     subject: course.name,
-                    hiddenMessage: String.localizedStringWithFormat(NSLocalizedString("Regarding: ", bundle: .parent, comment: ""), user.name)
+                    hiddenMessage: String.localizedStringWithFormat(NSLocalizedString("Regarding: %@", bundle: .parent, comment: ""), user.name)
                 ),
             from: self,
-            options: [.modal, .embedInNav]
+            options: .modal(embedInNav: true)
         )
     }
 }

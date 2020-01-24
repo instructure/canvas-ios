@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "（無主題）";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d 來自 %3$d";
 
@@ -9,6 +12,12 @@
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@將開始於%2$@";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, %@, last message %@ %@" = "%1$@，%2$@，上一訊息 %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@，未讀";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -56,6 +65,9 @@
 "Back" = "返回";
 
 /* No comment provided by engineer. */
+"Calendar Event" = "行事曆活動";
+
+/* No comment provided by engineer. */
 "Cancel" = "取消";
 
 /* Percent value is over 100 */
@@ -69,6 +81,9 @@
 
 /* No comment provided by engineer. */
 "Choose a student" = "選取一個學生";
+
+/* No comment provided by engineer. */
+"Compose new message" = "撰寫新訊息";
 
 /* Course Announcement Description */
 "Course announcements" = "課程宣告";
@@ -119,6 +134,12 @@
 "In-Class" = "課堂內的";
 
 /* No comment provided by engineer. */
+"Inbox" = "收件匣";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "收件匣無訊息";
+
+/* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "輸入已提供予您的學生配對代碼。";
 
 /* Institution Announcement Description */
@@ -149,10 +170,22 @@
 "Manage Children" = "管理兒童";
 
 /* No comment provided by engineer. */
+"Message" = "訊息";
+
+/* No comment provided by engineer. */
 "Missing" = "缺少";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "缺少：(-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "缺失： %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "缺失： %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "新訊息";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "下週";
@@ -165,6 +198,9 @@
 
 /* Empty Students Text */
 "No Students" = "無學生";
+
+/* No comment provided by engineer. */
+"No Subject" = "無主題";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "本週無事";
@@ -182,7 +218,22 @@
 "Quiz" = "測驗";
 
 /* No comment provided by engineer. */
+"Reply" = "回覆";
+
+/* No comment provided by engineer. */
+"Reply All" = "全部回覆";
+
+/* No comment provided by engineer. */
+"Retry" = "重試";
+
+/* No comment provided by engineer. */
+"Send" = "傳送";
+
+/* No comment provided by engineer. */
 "Settings" = "設定";
+
+/* No comment provided by engineer. */
+"Subject" = "主題";
 
 /* No comment provided by engineer. */
 "Submitted" = "已提交";
@@ -231,4 +282,7 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "您必須允許設定內的通知，方可設定提醒。";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "您已讀完所有新訊息";
 

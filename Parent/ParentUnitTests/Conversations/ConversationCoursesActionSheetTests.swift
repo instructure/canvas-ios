@@ -40,9 +40,6 @@ class ConversationCoursesActionSheetTests: ParentTestCase {
 
     func testLayout() {
         loadView()
-        let headerLabel = controller.tableView.tableHeaderView?.subviews.first as! UILabel
-        XCTAssertEqual(headerLabel.text, "Choose a course to message")
-
         let loadingIndicator = controller.view.subviews.last as! UIActivityIndicatorView
         XCTAssertTrue(loadingIndicator.isAnimating)
 

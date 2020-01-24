@@ -438,8 +438,8 @@ open class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     
     @objc func frameForHeaderForSection(_ section: Int) -> CGRect {
         let indexPath = IndexPath(row: 0, section: section)
-        let attrs = collectionView!.layoutAttributesForSupplementaryElement(ofKind: UICollectionView.elementKindSectionHeader, at: indexPath)!
-        return attrs.frame
+        let attrs = collectionView?.layoutAttributesForSupplementaryElement(ofKind: UICollectionView.elementKindSectionHeader, at: indexPath)
+        return attrs?.frame ?? CGRect.zero
     }
     
     @objc func frameForItemAtIndexPath(_ indexPath: IndexPath) -> CGRect {

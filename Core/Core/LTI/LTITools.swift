@@ -26,7 +26,19 @@ public class LTITools {
     let url: URL?
     let launchType: GetSessionlessLaunchURLRequest.LaunchType?
     let assignmentID: String?
+    let moduleID: String?
     let moduleItemID: String?
+
+    var request: GetSessionlessLaunchURLRequest {
+        GetSessionlessLaunchURLRequest(
+            context: context,
+            id: id,
+            url: url,
+            assignmentID: assignmentID,
+            moduleItemID: moduleItemID,
+            launchType: launchType
+        )
+    }
 
     public init(
         env: AppEnvironment = .shared,
@@ -35,6 +47,7 @@ public class LTITools {
         url: URL? = nil,
         launchType: GetSessionlessLaunchURLRequest.LaunchType? = nil,
         assignmentID: String? = nil,
+        moduleID: String? = nil,
         moduleItemID: String? = nil
     ) {
         self.env = env
@@ -43,8 +56,11 @@ public class LTITools {
         self.url = url
         self.launchType = launchType
         self.assignmentID = assignmentID
+        self.moduleID = moduleID
         self.moduleItemID = moduleItemID
     }
+
+    var openInSafari: Bool { UserDefaults.standard.bool(forKey: "open_lti_safari") }
 
     public convenience init?(env: AppEnvironment = .shared, link: URL?) {
         guard
@@ -58,25 +74,43 @@ public class LTITools {
         self.init(env: env, context: context, url: url)
     }
 
-    public func presentToolInSFSafariViewController(from: UIViewController, animated: Bool, completionHandler: ((Bool) -> Void)? = nil) {
-        getSessionlessLaunchURL { url in
-            guard let url = url else {
+    public func presentTool(from view: UIViewController, animated: Bool, completionHandler: ((Bool) -> Void)? = nil) {
+        getSessionlessLaunch { [weak view] response in
+            guard let view = view else { return }
+            guard let response = response else {
                 completionHandler?(false)
                 return
             }
-            let safari = SFSafariViewController(url: url)
-            safari.modalPresentationStyle = .overFullScreen
-            AppEnvironment.shared.router.show(safari, from: from, options: [.modal]) {
-                completionHandler?(true)
+            let completionHandler = { [weak self] (success: Bool) in
+                self?.markModuleItemRead()
+                completionHandler?(success)
+            }
+            let url = response.url
+            if response.name == "Google Apps" {
+                let controller = GoogleCloudAssignmentViewController(url: url)
+                self.env.router.show(controller, from: view, options: .modal(.overFullScreen, embedInNav: true, addDoneButton: true)) {
+                    completionHandler(true)
+                }
+            } else if self.openInSafari {
+                    self.env.loginDelegate?.openExternalURL(url)
+                    completionHandler(true)
+            } else {
+                let safari = SFSafariViewController(url: url)
+                self.env.router.show(safari, from: view, options: .modal(.overFullScreen)) {
+                    completionHandler(true)
+                }
             }
         }
     }
 
+    public func getSessionlessLaunch(completionBlock: @escaping (APIGetSessionlessLaunchResponse?) -> Void) {
+        env.api.makeRequest(request) { response, _, _ in performUIUpdate {
+            completionBlock(response)
+        } }
+    }
+
     public func getSessionlessLaunchURL(completionBlock: @escaping (URL?) -> Void) {
-        let request = GetSessionlessLaunchURLRequest(context: context, id: id, url: url, assignmentID: assignmentID, moduleItemID: moduleItemID, launchType: launchType)
-        env.api.makeRequest(request) { response, _, _ in
-            performUIUpdate { completionBlock(response?.url) }
-        }
+        getSessionlessLaunch { completionBlock($0?.url) }
     }
 
     private static func context(forRetrieveURL url: URL) -> Context? {
@@ -88,5 +122,16 @@ public class LTITools {
             return ContextModel(contextType, id: contextID)
         }
         return nil
+    }
+
+    private func markModuleItemRead() {
+        guard launchType == .module_item, let moduleID = moduleID, let moduleItemID = moduleItemID else {
+            return
+        }
+        env.api.makeRequest(PostMarkModuleItemRead(courseID: context.id, moduleID: moduleID, moduleItemID: moduleItemID)) { _, _, error in
+            if error == nil {
+                NotificationCenter.default.post(name: .CompletedModuleItemRequirement, object: nil)
+            }
+        }
     }
 }

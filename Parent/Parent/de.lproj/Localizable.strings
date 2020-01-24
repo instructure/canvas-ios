@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(Kein Betreff)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d von %3$d";
 
@@ -9,6 +12,12 @@
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ beginnt um %2$@";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, %@, last message %@ %@" = "%1$@, %2$@, letzte Nachricht %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, ungelesen";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -56,6 +65,9 @@
 "Back" = "Zurück";
 
 /* No comment provided by engineer. */
+"Calendar Event" = "Kalenderereignis";
+
+/* No comment provided by engineer. */
 "Cancel" = "Abbrechen";
 
 /* Percent value is over 100 */
@@ -69,6 +81,9 @@
 
 /* No comment provided by engineer. */
 "Choose a student" = "Wählen Sie einen Studenten";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Neue Nachricht verfassen";
 
 /* Course Announcement Description */
 "Course announcements" = "Kursankündigungen";
@@ -119,6 +134,12 @@
 "In-Class" = "Klassenintern";
 
 /* No comment provided by engineer. */
+"Inbox" = "Posteingang";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Posteingang Zero";
+
+/* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Geben Sie den Studenten-Pairing-Code ein, den Sie erhalten haben.";
 
 /* Institution Announcement Description */
@@ -149,10 +170,22 @@
 "Manage Children" = "Kinder verwalten";
 
 /* No comment provided by engineer. */
+"Message" = "Nachricht";
+
+/* No comment provided by engineer. */
 "Missing" = "Fehlend";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Fehlend: (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Fehlt: %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Fehlt: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Neue Nachricht";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Nächste Woche";
@@ -165,6 +198,9 @@
 
 /* Empty Students Text */
 "No Students" = "Keine Studenten";
+
+/* No comment provided by engineer. */
+"No Subject" = "Kein Betreff";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Nichts diese Woche";
@@ -182,7 +218,22 @@
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
+"Reply" = "Antworten";
+
+/* No comment provided by engineer. */
+"Reply All" = "Allen antworten";
+
+/* No comment provided by engineer. */
+"Retry" = "Erneut versuchen";
+
+/* No comment provided by engineer. */
+"Send" = "Senden";
+
+/* No comment provided by engineer. */
 "Settings" = "Einstellungen";
+
+/* No comment provided by engineer. */
+"Subject" = "Betreff";
 
 /* No comment provided by engineer. */
 "Submitted" = "Eingereicht";
@@ -231,4 +282,7 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Sie müssen in den Einstellungen die Option Benachrichtigungen erlauben, um Erinnerungen zu verwenden.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Sie werden alle erfasst";
 

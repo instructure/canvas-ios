@@ -40,7 +40,9 @@ class SearchRecipientTests: CoreTestCase {
         XCTAssertEqual(model.fullName, "Jane Doe")
         XCTAssertEqual(model.avatarURL?.absoluteString, "https://fillmurray.com/200/200")
         XCTAssertEqual(model.filter, "?context=course_1&search=&per_page=50")
-        XCTAssertEqual(model.roles, "Student, Teacher")
+        XCTAssertEqual(model.commonCourses.count, 2)
+        XCTAssertEqual(model.commonCourses.first { $0.courseID == "1" }?.role, "Teacher")
+        XCTAssertEqual(model.commonCourses.first { $0.courseID == "2" }?.role, "Student")
     }
 
     func testUpdateExisting() {
@@ -51,5 +53,18 @@ class SearchRecipientTests: CoreTestCase {
 
         let model: SearchRecipient = databaseClient.fetch().first!
         XCTAssertEqual(model.fullName, "Jane Doe")
+    }
+
+    func testHasRole() {
+        let model = SearchRecipient.make(from: .make(common_courses: [
+            "1": ["TeacherEnrollment"],
+            "2": ["StudentEnrollment"],
+        ]))
+        XCTAssertTrue(model.hasRole(.teacher, in: ContextModel(.course, id: "1")))
+        XCTAssertTrue(model.hasRole(.student, in: ContextModel(.course, id: "2")))
+        XCTAssertFalse(model.hasRole(.student, in: ContextModel(.course, id: "1")))
+        XCTAssertFalse(model.hasRole(.teacher, in: ContextModel(.course, id: "2")))
+        XCTAssertFalse(model.hasRole(.teacher, in: ContextModel(.group, id: "1")))
+        XCTAssertFalse(model.hasRole(.student, in: ContextModel(.course, id: "3")))
     }
 }

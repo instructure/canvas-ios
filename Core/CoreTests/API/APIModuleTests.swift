@@ -28,7 +28,11 @@ class APIModuleItemTests: XCTestCase {
     func testCodableContent() {
         let file = try! decoder.decode(APIModuleItem.self, from: try! encoder.encode(APIModuleItem.make(content: .file("1"))))
         XCTAssertEqual(file.content, .file("1"))
+
         let subheader = try! decoder.decode(APIModuleItem.self, from: try! encoder.encode(APIModuleItem.make(content: .subHeader)))
         XCTAssertEqual(subheader.content, .subHeader)
+
+        let nilCompleted = try! decoder.decode(APIModuleItem.self, from: try! encoder.encode(APIModuleItem.make(completion_requirement: .make(completed: nil))))
+        XCTAssertNil(nilCompleted.completion_requirement?.completed)
     }
 }

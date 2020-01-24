@@ -37,6 +37,7 @@ import { Text } from '../../../common/text'
 import Avatar from '../../../common/components/Avatar'
 import Video from '../../../common/components/Video'
 import Images from '../../../images'
+import { personDisplayName } from '../../../common/formatters'
 
 type Props = {
   conversation: Conversation,
@@ -126,21 +127,25 @@ export default class ConversationMessageRow extends React.Component<Props, State
     const me = getSession().user
     const message = this.props.message
     const author = this.author()
-    let authorName = author.name
+    let authorName = personDisplayName(author.name, author.pronouns)
     let recipientName = ''
     if (me.id === author.id) {
       authorName = i18n('me')
 
       const audience = this.audience()
       if (audience.length === 1) {
-        recipientName = i18n('to {name}', { name: audience[0].name })
+        const name = personDisplayName(audience[0].name, audience[0].pronouns)
+        recipientName = i18n('to {name}', { name })
       } else if (audience.length > 1) {
         recipientName = i18n('to {count} others', { count: audience.length })
       }
     } else {
       const extras = this.extraParicipipantCount()
       if (extras > 0) {
-        authorName = i18n('{name} + {count, plural, one {# other} other {# others}}', { name: authorName, count: extras })
+        authorName = i18n('{name} + {count, plural, one {# other} other {# others}}', {
+          name: authorName,
+          count: extras,
+        })
       }
       recipientName = i18n('to me')
     }

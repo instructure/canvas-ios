@@ -56,8 +56,58 @@ class ComposeViewControllerTests: ParentTestCase {
         controller.subjectField.sendActions(for: .editingChanged)
         XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.isEnabled, true)
 
+        let task = api.mock(PostConversationRequest(body: PostConversationRequest.Body(
+            subject: "subject",
+            body: controller.body(),
+            recipients: [ APIConversationRecipient.make().id.value ],
+            context_code: controller.context!.canvasContextID)
+            ), value: [ APIConversation.make() ]
+        )
+        task.paused = true
         let sendButton = controller.navigationItem.rightBarButtonItem
         XCTAssertNoThrow(sendButton?.target?.perform(sendButton?.action))
+        XCTAssert(controller.navigationItem.rightBarButtonItem?.customView is UIActivityIndicatorView)
+        task.resume()
+
+        XCTAssertNotNil(controller.recipientsView.editButton)
+        XCTAssertTrue(controller.recipientsView.placeholder.isHidden)
+        controller.recipientsView.editButton.sendActions(for: .primaryActionTriggered)
+        let actionSheet = router.presented as? ActionSheetController
+        XCTAssertEqual(actionSheet?.modalPresentationStyle, .custom)
+        XCTAssertNotNil(actionSheet?.transitioningDelegate as? ActionSheetTransitioningDelegate)
+        XCTAssertNotNil(actionSheet)
+        let editRecipients = actionSheet?.viewController as? EditComposeRecipientsViewController
+        XCTAssertNotNil(editRecipients)
+        XCTAssertEqual(editRecipients?.context?.canvasContextID, controller.context?.canvasContextID)
+        XCTAssertEqual(editRecipients?.observeeID, controller.observeeID)
+        XCTAssertEqual(editRecipients?.selectedRecipients.count, 1)
+        editRecipients?.selectedRecipients = []
+        editRecipients?.delegate?.editRecipientsControllerDidFinish(editRecipients!)
+        XCTAssertEqual(controller.recipientsView.recipients.count, 0)
+        XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.isEnabled, false)
+        XCTAssertFalse(controller.recipientsView.placeholder.isHidden)
+        editRecipients?.selectedRecipients =  [.make(id: "123")]
+        editRecipients?.delegate?.editRecipientsControllerDidFinish(editRecipients!)
+        XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.isEnabled, true)
+        XCTAssertEqual(controller.recipientsView.recipients.count, 1)
+        XCTAssertEqual(controller.recipientsView.recipients.first?.id.value, "123")
+        XCTAssertTrue(controller.recipientsView.placeholder.isHidden)
+    }
+
+    func testCreateConversationError() {
+        loadView()
+
+        api.mock(PostConversationRequest(body: PostConversationRequest.Body(
+            subject: "subject",
+            body: controller.body(),
+            recipients: [ APIConversationRecipient.make().id.value ],
+            context_code: controller.context!.canvasContextID)
+            ), error: NSError.instructureError("Error")
+        )
+        let sendButton = controller.navigationItem.rightBarButtonItem
+        XCTAssertNoThrow(sendButton?.target?.perform(sendButton?.action))
+        XCTAssertEqual(controller.navigationItem.rightBarButtonItem, controller.sendButton)
+        XCTAssert(router.presented is UIAlertController)
     }
 
     func testFetchRecipients() {

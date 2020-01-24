@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "（件名なし）";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%3$d 中 %1$@ %2$d";
 
@@ -9,6 +12,12 @@
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@（）に開始します%2$@";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, %@, last message %@ %@" = "%1$@、%2$@、最終メッセージ%3$@%4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@、未読";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -56,6 +65,9 @@
 "Back" = "戻る";
 
 /* No comment provided by engineer. */
+"Calendar Event" = "予定表のイベント";
+
+/* No comment provided by engineer. */
 "Cancel" = "キャンセル";
 
 /* Percent value is over 100 */
@@ -69,6 +81,9 @@
 
 /* No comment provided by engineer. */
 "Choose a student" = "受講生を選択";
+
+/* No comment provided by engineer. */
+"Compose new message" = "新規メッセージを作成";
 
 /* Course Announcement Description */
 "Course announcements" = "コースのアナウンスメント";
@@ -119,6 +134,12 @@
 "In-Class" = "教室内";
 
 /* No comment provided by engineer. */
+"Inbox" = "受信トレイ";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "受信トレイゼロ";
+
+/* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "提供されている受講生ペアリングコードを入力します。";
 
 /* Institution Announcement Description */
@@ -149,10 +170,22 @@
 "Manage Children" = "「子」を管理する";
 
 /* No comment provided by engineer. */
+"Message" = "メッセージ";
+
+/* No comment provided by engineer. */
 "Missing" = "紛失";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "紛失: (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "欠如：%@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "欠如：%1$@(%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "新しいメッセージ";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "次週";
@@ -165,6 +198,9 @@
 
 /* Empty Students Text */
 "No Students" = "受講生なし";
+
+/* No comment provided by engineer. */
+"No Subject" = "件名なし";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "今週はありません";
@@ -182,7 +218,22 @@
 "Quiz" = "クイズ";
 
 /* No comment provided by engineer. */
+"Reply" = "返信";
+
+/* No comment provided by engineer. */
+"Reply All" = "すべてに返信";
+
+/* No comment provided by engineer. */
+"Retry" = "再試行";
+
+/* No comment provided by engineer. */
+"Send" = "送信";
+
+/* No comment provided by engineer. */
 "Settings" = "設定";
+
+/* No comment provided by engineer. */
+"Subject" = "件名";
 
 /* No comment provided by engineer. */
 "Submitted" = "提出済み";
@@ -231,4 +282,7 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "[設定]で通知を許可して、リマインダを設定しなければなりません。";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "これで完了です";
 

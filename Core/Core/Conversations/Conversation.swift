@@ -22,7 +22,7 @@ import CoreData
 final public class Conversation: NSManagedObject, WriteableModel {
     @NSManaged var audienceIDsRaw: String
     @NSManaged public var avatarURL: URL?
-    @NSManaged public var contextCode: String
+    @NSManaged public var contextCode: String?
     @NSManaged public var contextName: String?
     @NSManaged public var id: String
     @NSManaged public var lastMessage: String
@@ -53,6 +53,7 @@ final public class Conversation: NSManagedObject, WriteableModel {
         set { workflowStateRaw = newValue.rawValue }
     }
 
+    @discardableResult
     public static func save(_ item: APIConversation, in context: NSManagedObjectContext) -> Conversation {
         let model: Conversation = context.first(where: #keyPath(Conversation.id), equals: item.id.value) ?? context.insert()
         model.audienceIDs = item.audience?.map { $0.value } ?? []
@@ -60,8 +61,8 @@ final public class Conversation: NSManagedObject, WriteableModel {
         model.contextCode = item.context_code
         model.contextName = item.context_name
         model.id = item.id.value
-        model.lastMessage = item.last_message
-        model.lastMessageAt = item.last_message_at
+        model.lastMessage = item.last_message ?? item.last_authored_message ?? ""
+        model.lastMessageAt = item.last_message_at ?? item.last_authored_message_at ?? Date()
         model.messageCount = item.message_count
 
         model.participants = Set(item.participants.map {
@@ -75,7 +76,7 @@ final public class Conversation: NSManagedObject, WriteableModel {
         }
 
         model.starred = item.starred
-        model.subject = item.subject
+        model.subject = item.subject ?? ""
         model.workflowState = item.workflow_state
         return model
     }

@@ -89,7 +89,7 @@ extension APIDiscussionFullTopic {
         forced_entries: [ID] = [1],
         view: [APIDiscussionEntry] = [
             .make(id: 1, updated_at: date1, message: "m1", rating_count: 1, replies: [
-                .make(id: 2, user_id: 2, updated_at: date1, message: "m2", replies: [
+                .make(id: 2, user_id: 2, updated_at: date1, message: "m2", rating_count: 0, replies: [
                     .make(id: 3, updated_at: date1, message: "m3", rating_count: 3, replies: [
                         .make(id: 4, updated_at: date1, message: "m4 (deep)"),
                     ]),

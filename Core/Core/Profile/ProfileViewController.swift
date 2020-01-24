@@ -20,10 +20,16 @@ import UIKit
 
 public protocol ProfileViewProtocol: ErrorViewController {
     func reload()
-    func route(to: Route, options: RouteOptions?)
+    func route(to: Route, options: RouteOptions)
     func showHelpMenu(from cell: UITableViewCell)
     func launchLTI(url: URL)
     func dismiss(animated flag: Bool, completion: (() -> Void)?)
+}
+
+extension ProfileViewProtocol {
+    func route(to: Route, options: RouteOptions = .noOptions) {
+        route(to: to, options: options)
+    }
 }
 
 public typealias ProfileViewCellBlock = (UITableViewCell) -> Void
@@ -62,7 +68,7 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
     @IBOutlet weak var emailLabel: UILabel?
     @IBOutlet weak var versionLabel: UILabel?
 
-    var env = AppEnvironment.shared
+    let env = AppEnvironment.shared
     var presenter: ProfilePresenter?
     var dashboard: UIViewController {
         var dashboard = presentingViewController ?? self
@@ -75,28 +81,20 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
         return dashboard
     }
 
-    public static func create(env: AppEnvironment = .shared, enrollment: HelpLinkEnrollment) -> ProfileViewController {
+    public static func create(enrollment: HelpLinkEnrollment) -> ProfileViewController {
         let controller = loadFromStoryboard()
         controller.modalPresentationStyle = .custom
         controller.transitioningDelegate = DrawerTransitioningDelegate.shared
-        controller.env = env
-        controller.presenter = ProfilePresenter(env: env, enrollment: enrollment, view: controller)
+        controller.presenter = ProfilePresenter(enrollment: enrollment, view: controller)
         return controller
     }
 
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        let session = AppEnvironment.shared.currentSession
-
         view?.backgroundColor = .named(.backgroundLightest)
 
         avatarButton?.accessibilityLabel = NSLocalizedString("Change Profile Image", bundle: .core, comment: "")
-        avatarView?.name = session?.userName ?? ""
-        avatarView?.url = session?.userAvatarURL
-
-        nameLabel?.text = session?.userName
-        emailLabel?.text = session?.userEmail
 
         tableView?.separatorColor = .named(.borderMedium)
         presenter?.viewIsReady()
@@ -104,13 +102,27 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
         if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
             versionLabel?.text = "v. \(version)"
         }
+
+        env.api.makeRequest(GetUserRequest(userID: "self")) { [weak self] user, _, _ in
+            self?.avatarButton?.isHidden = user?.permissions?.can_update_avatar == false
+        }
     }
 
     public func reload() {
         tableView?.reloadData()
+        reloadProfile()
     }
 
-    public func route(to: Route, options: RouteOptions?) {
+    func reloadProfile() {
+        let profile = presenter?.profile.first
+        let userName = presenter?.profile.first?.name ?? env.currentSession?.userName
+        avatarView?.name = userName ?? ""
+        avatarView?.url = profile?.avatarURL
+        nameLabel?.text = userName.flatMap { User.displayName($0, pronouns: profile?.pronouns) }
+        emailLabel?.text = profile?.email
+    }
+
+    public func route(to: Route, options: RouteOptions) {
         let dashboard = self.dashboard
         dismiss(animated: true) {
             self.env.router.route(to: to, from: dashboard, options: options)
@@ -120,7 +132,7 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
     public func launchLTI(url: URL) {
         let dashboard = self.dashboard
         dismiss(animated: true) {
-            LTITools(url: url).presentToolInSFSafariViewController(from: dashboard, animated: true)
+            LTITools(url: url).presentTool(from: dashboard, animated: true)
         }
     }
 
@@ -132,11 +144,11 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
             helpMenu.addAction(UIAlertAction(title: link.text, style: .default) { [weak self] _ in
                 switch link.id {
                 case "instructor_question":
-                    self?.route(to: Route("/conversations/compose?instructorQuestion=1&canAddRecipients="), options: [.modal, .embedInNav, .formSheet])
+                    self?.route(to: Route("/conversations/compose?instructorQuestion=1&canAddRecipients="), options: .modal(.formSheet, embedInNav: true))
                 case "report_a_problem":
-                    self?.route(to: .errorReport(for: "problem"), options: [.modal, .embedInNav, .formSheet])
+                    self?.route(to: .errorReport(for: "problem"), options: .modal(.formSheet, embedInNav: true))
                 default:
-                    self?.route(to: Route(link.url.absoluteString), options: [.modal, .embedInNav])
+                    self?.route(to: Route(link.url.absoluteString), options: .modal(embedInNav: true))
                 }
             })
         }
@@ -168,6 +180,8 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         case .badge(let count):
             cell.accessoryView = nil
             cell.badgeLabel.text = NumberFormatter.localizedString(from: NSNumber(value: count), number: .none)
+            cell.badgeLabel.textColor = Brand.shared.navBadgeText
+            cell.badgeView.backgroundColor = Brand.shared.navBadgeBackground
             cell.badgeView.isHidden = count == 0
         case .none:
             cell.accessoryView = nil

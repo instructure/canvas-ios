@@ -179,6 +179,9 @@
 "Conversation Message" = "رسالة المحادثة";
 
 /* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
 "Conversations" = "المحادثات";
 
 /* No comment provided by engineer. */
@@ -467,6 +470,12 @@
 "Manual OAuth Login" = "تسجيل دخول OAuth يدوي ";
 
 /* No comment provided by engineer. */
+"me" = "أنا";
+
+/* No comment provided by engineer. */
+"me & %@" = "أنا و %@";
+
+/* No comment provided by engineer. */
 "Media Recording" = "تسجيل الوسائط";
 
 /* No comment provided by engineer. */
@@ -747,6 +756,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "الوقت المنقضي";
+
+/* No comment provided by engineer. */
+"to %@" = "إلى %@";
 
 /* No comment provided by engineer. */
 "To Do" = "قائمة المهام";

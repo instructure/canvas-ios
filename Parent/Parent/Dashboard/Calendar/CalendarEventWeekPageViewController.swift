@@ -27,7 +27,7 @@ class CalendarEventWeekPageViewController: UIViewController {
 
     @objc static var headerDateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d"
+        dateFormatter.setLocalizedDateFormatFromTemplate("MMM d")
         return dateFormatter
     }()
 
@@ -68,7 +68,7 @@ class CalendarEventWeekPageViewController: UIViewController {
                 syllabusButton.accessibilityLabel = NSLocalizedString("Syllabus", comment: "Syllabus Button Title")
                 syllabusButton.accessibilityIdentifier = "syllabus_button"
                 let syllabus = Action<(), (), Never> { _ in
-                    env.router.route(to: .syllabus(courseID: courseID), from: controller, options: nil)
+                    env.router.route(to: .syllabus(courseID: courseID), from: controller)
                     return .empty
                 }
                 syllabusButton.reactive.pressed = CocoaAction(syllabus)
@@ -117,7 +117,6 @@ class CalendarEventWeekPageViewController: UIViewController {
 
             pageVC.delegate = self
             pageVC.dataSource = self
-            pageVC.setViewControllers([UIViewController()], direction: .forward, animated: false, completion: nil)
             let startDate = initialReferenceDate.dateOnSundayAtTheBeginningOfTheWeek
             let endDate = startDate + Calendar.current.numberOfDaysInWeek.daysComponents
             //  swiftlint:disable:next force_try

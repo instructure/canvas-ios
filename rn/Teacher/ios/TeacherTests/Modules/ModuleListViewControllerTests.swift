@@ -276,7 +276,7 @@ class ModuleListViewControllerTests: TeacherTestCase {
                 assignmentID: nil,
                 moduleItemID: "1",
                 launchType: .module_item),
-            value: APIGetSessionlessLaunchResponse(url: URL(string: "https://canvas.instructure.com")!)
+            value: .make(url: URL(string: "https://canvas.instructure.com")!)
         )
         viewController.view.layoutIfNeeded()
         viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
@@ -302,7 +302,9 @@ class ModuleListViewControllerTests: TeacherTestCase {
         ])
         viewController.view.layoutIfNeeded()
         viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
-        XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/assignments/1")!, withOptions: [.detail]))
+        XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/assignments/1")!, withOptions: .detail()))
+        XCTAssertNoThrow(viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 99)))
+        XCTAssertNoThrow(viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 99, section: 0)))
     }
 
     func testViewWillAppearDeselectsSelectedRow() {

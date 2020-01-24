@@ -29,6 +29,7 @@ public final class User: NSManagedObject {
     @NSManaged public var courseID: String?
     @NSManaged public var groupID: String?
     @NSManaged public var enrollments: Set<Enrollment>?
+    @NSManaged public var pronouns: String?
 }
 
 extension User: WriteableModel {
@@ -41,6 +42,7 @@ extension User: WriteableModel {
         user.sortableName = item.sortable_name
         user.email = item.email
         user.avatarURL = item.avatar_url?.rawValue
+        user.pronouns = item.pronouns
         if let enrollments = item.enrollments {
             user.enrollments = Set(enrollments.map { item in
                 let enrollment = context.insert() as Enrollment
@@ -49,5 +51,19 @@ extension User: WriteableModel {
             })
         }
         return user
+    }
+}
+
+extension User {
+    public static func displayName(_ name: String, pronouns: String?) -> String {
+        if let pronouns = pronouns {
+            let format = NSLocalizedString("User.displayName", bundle: .core, value: "%@ (%@)", comment: "Name and pronouns - John (He/Him)")
+            return String.localizedStringWithFormat(format, name, pronouns)
+        }
+        return name
+    }
+
+    public func formattedRole(in context: Context) -> String? {
+        enrollments?.first { $0.canvasContextID == context.canvasContextID }?.formattedRole
     }
 }

@@ -134,7 +134,6 @@ export default class UserSubmissionRow extends Component<Props, any> {
       image = instIcon('discussion')
       testID = `user-submission-row${testIDSuffix}`
     }
-    console.log(image, assignment)
     return (
       <View style={styles.icon} testID={testID}>
         <AccessIcon entry={assignment} tintColor={this.props.tintColor} style={styles.icon} image={image} />

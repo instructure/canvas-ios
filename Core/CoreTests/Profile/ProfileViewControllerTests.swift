@@ -30,10 +30,11 @@ class ProfileViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        vc = ProfileViewController.create(env: environment, enrollment: .student)
+        vc = ProfileViewController.create(enrollment: .student)
         notificationPayload = nil
         didChangeUser = false
         didLogout = false
+        environment.mockStore = false
     }
 
     func loadView() {
@@ -43,13 +44,20 @@ class ProfileViewControllerTests: CoreTestCase {
 
     func testRender() {
         //  given
-        AppEnvironment.shared.currentSession = LoginSession.make(userAvatarURL: URL(string: "https://localhost/avatar.png")!, userEmail: "automated-test-Eve@instructure.com")
+        api.mock(GetUserProfileRequest(userID: "self"), value: .make(
+            name: "Eve",
+            primary_email: "automated-test-Eve@instructure.com",
+            avatar_url: URL(string: "https://localhost/avatar.png")!,
+            pronouns: nil
+        ))
+
         //  when
         loadView()
 
         //  then
         XCTAssertEqual(vc.emailLabel?.text, "automated-test-Eve@instructure.com")
         XCTAssertEqual(vc.nameLabel?.text, "Eve")
+        XCTAssertEqual(vc.avatarButton?.isHidden, false)
         XCTAssertEqual(vc.avatarView?.name, "Eve")
         XCTAssertEqual(vc.avatarView?.url?.absoluteString, "https://localhost/avatar.png")
 
@@ -120,6 +128,29 @@ class ProfileViewControllerTests: CoreTestCase {
         // developer menu
         vc.tableView(vc.tableView!, didSelectRowAt: IndexPath(row: 6, section: 0))
         XCTAssertTrue(router.lastRoutedTo(Route.developerMenu))
+    }
+
+    func testPronouns() {
+        api.mock(GetUserProfileRequest(userID: "self"), value: .make(
+            name: "Eve",
+            primary_email: "automated-test-Eve@instructure.com",
+            pronouns: "She/Her")
+        )
+        AppEnvironment.shared.currentSession = LoginSession.make(
+            userAvatarURL: URL(string: "https://localhost/avatar.png")!,
+            userEmail: "automated-test-Eve@instructure.com"
+        )
+        loadView()
+        XCTAssertEqual(vc.emailLabel?.text, "automated-test-Eve@instructure.com")
+        XCTAssertEqual(vc.nameLabel?.text, "Eve (She/Her)")
+        XCTAssertEqual(vc.avatarView?.name, "Eve")
+    }
+
+    func testChangeAvatarDisallowed() {
+        api.mock(GetUserProfileRequest(userID: "self"), value: .make())
+        api.mock(GetUserRequest(userID: "self"), value: .make(permissions: .make(can_update_avatar: false)))
+        loadView()
+        XCTAssertEqual(vc.avatarButton?.isHidden, true)
     }
 
     func reduxActionCalled(notification: Notification) {

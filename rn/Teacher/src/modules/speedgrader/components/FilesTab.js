@@ -176,7 +176,7 @@ export function mapStateToProps (state: AppState, ownProps: RouterProps): FileTa
   }
 
   return {
-    selectedAttachmentIndex: state.entities.submissions[ownProps.submissionID].selectedAttachmentIndex,
+    selectedAttachmentIndex: state.entities.submissions[ownProps.submissionID]?.selectedAttachmentIndex,
   }
 }
 

@@ -377,32 +377,6 @@ let nativeFactory: ([String: Any]) -> UIViewController? = { props in
 }
 HelmManager.shared.registerNativeViewController(for: "/native-route/*route", factory: nativeFactory)
 HelmManager.shared.registerNativeViewController(for: "/native-route-master/*route", factory: nativeFactory)
-CBIConversationStarter.setConversationStarter { recipients, context in
-    guard
-        let contextID = ContextID(canvasContext: context),
-        let currentSession = Session.current,
-        let enrollment = currentSession.enrollmentsDataSource[contextID] else {
-            return
-    }
-    HelmManager.shared.present(
-        "/conversations/compose",
-        withProps: [
-            "recipients": recipients.map { recipient in
-                return [
-                    "name": recipient.name,
-                    "avatar_url": recipient.avatarURL,
-                    "id": recipient.id,
-                ]
-            },
-            "contextCode": context,
-            "contextName": enrollment.name,
-        ],
-        options: [
-            "modal": true,
-            "embedInNavigationController": true,
-        ]
-    )
-}
 
 Routing.routeToURL = { url, view in route(view, url: url) }
 

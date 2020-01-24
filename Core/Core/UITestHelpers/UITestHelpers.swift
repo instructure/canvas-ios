@@ -24,26 +24,25 @@ import CoreData
 
 public class UITestHelpers {
     public enum Helper: Codable {
-        case reset
+        case reset(useMocks: Bool)
         case login(LoginSession)
         case show(String)
         case mockNow(Date)
         case tearDown
         case currentSession
         case setAnimationsEnabled(Bool)
-        case useMocksOnly
         case debug(Any?)
         case enableExperimentalFeatures([ExperimentalFeature])
         case showKeyboard
 
         private enum CodingKeys: String, CodingKey {
-            case reset, login, show, tearDown, currentSession, setAnimationsEnabled, useMocksOnly, debug, mockNow, experimentalFeatures, showKeyboard
+            case reset, login, show, tearDown, currentSession, setAnimationsEnabled, debug, mockNow, experimentalFeatures, showKeyboard
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            if container.contains(.reset) {
-                self = .reset
+            if let useMocks = try container.decodeIfPresent(Bool.self, forKey: .reset) {
+                self = .reset(useMocks: useMocks)
             } else if let session = try container.decodeIfPresent(LoginSession.self, forKey: .login) {
                 self = .login(session)
             } else if let route = try container.decodeIfPresent(String.self, forKey: .show) {
@@ -54,8 +53,6 @@ public class UITestHelpers {
                 self = .currentSession
             } else if let enabled = try container.decodeIfPresent(Bool.self, forKey: .setAnimationsEnabled) {
                 self = .setAnimationsEnabled(enabled)
-            } else if container.contains(.useMocksOnly) {
-                self = .useMocksOnly
             } else if let data = try container.decodeIfPresent(Data.self, forKey: .debug) {
                 self = .debug(try NSKeyedUnarchiver(forReadingFrom: data).decodeObject(forKey: "debug"))
             } else if let date = try container.decodeIfPresent(Date.self, forKey: .mockNow) {
@@ -71,8 +68,8 @@ public class UITestHelpers {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             switch self {
-            case .reset:
-                try container.encode(nil as Int?, forKey: .reset)
+            case .reset(let useMocks):
+                try container.encode(useMocks, forKey: .reset)
             case .login(let session):
                 try container.encode(session, forKey: .login)
             case .show(let route):
@@ -83,8 +80,6 @@ public class UITestHelpers {
                 try container.encode(nil as Int?, forKey: .currentSession)
             case .setAnimationsEnabled(let enabled):
                 try container.encode(enabled, forKey: .setAnimationsEnabled)
-            case .useMocksOnly:
-                try container.encode(nil as Int?, forKey: .useMocksOnly)
             case .debug(let payload):
                 let archiver = NSKeyedArchiver(requiringSecureCoding: false)
                 archiver.encode(payload, forKey: "debug")
@@ -142,8 +137,8 @@ public class UITestHelpers {
     func run(_ helper: Helper) -> Data? {
         print("Running UI Test Helper \(helper)")
         switch helper {
-        case .reset:
-            reset()
+        case .reset(let useMocks):
+            reset(useMocks: useMocks)
         case .login(let entry):
             logIn(entry)
         case .show(let route):
@@ -154,8 +149,6 @@ public class UITestHelpers {
             return try? encoder.encode(AppEnvironment.shared.currentSession)
         case .setAnimationsEnabled(let enabled):
             setAnimationsEnabled(enabled)
-        case .useMocksOnly:
-            MockDistantURLSession.setup()
         case .debug:
             // insert ad-hoc debug code here
             ()
@@ -170,11 +163,15 @@ public class UITestHelpers {
         return nil
     }
 
-    func reset() {
+    func reset(useMocks: Bool) {
         LoginSession.clearAll()
         UserDefaults.standard.removeObject(forKey: MDMManager.MDMUserDefaultsKey)
 
         guard let loginDelegate = appDelegate as? LoginDelegate, let window = window else { fatalError() }
+        if useMocks, let session = AppEnvironment.shared.currentSession {
+            // caching is ok for a real session, but bad for a mocked one
+            loginDelegate.userDidLogout(session: session)
+        }
 
         // horrible hack to get rid of old modally presented controllers that stick around after the rootViewController is changed
         window.rootViewController = nil
@@ -182,7 +179,7 @@ public class UITestHelpers {
         window.rootViewController = LoginNavigationController.create(loginDelegate: loginDelegate)
 
         resetDatabase()
-        MockDistantURLSession.reset()
+        MockDistantURLSession.reset(useMocks: useMocks)
         setAnimationsEnabled(false)
     }
 
@@ -209,15 +206,12 @@ public class UITestHelpers {
     func logIn(_ entry: LoginSession) {
         guard let loginDelegate = appDelegate as? LoginDelegate else { fatalError() }
         loginDelegate.userDidLogin(session: entry)
+        resetDatabase()
     }
 
     func show(_ route: String) {
         guard let root = window?.rootViewController else { return }
-        AppEnvironment.shared.router.route(to: route, from: root, options: [
-            .modal,
-            .embedInNav,
-            .fullScreen,
-        ])
+        AppEnvironment.shared.router.route(to: route, from: root, options: .modal(.fullScreen, embedInNav: true))
     }
 
     func tearDown() {

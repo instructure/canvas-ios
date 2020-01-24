@@ -91,6 +91,11 @@ class CalendarEventDetailsViewController: CalendarEventDetailViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = false
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let scheme = ColorScheme.observee(studentID)

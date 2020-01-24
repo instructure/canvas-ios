@@ -22,8 +22,6 @@ import TestsFoundation
 @testable import CoreUITests
 
 class IPadSpeedGraderTests: CoreUITestCase {
-    override var user: UITestUser? { nil }
-
     func testSpeedGrader() {
         XCUIDevice.shared.orientation = .landscapeLeft
         let course = mock(course: APICourse.make())

@@ -525,6 +525,38 @@ describe('DiscussionDetails', () => {
       })
     })
 
+    test('author', () => {
+      let tree = renderDetails({
+        ...props,
+        discussion: template.discussion({ author: null }),
+      })
+      expect(tree.find('[testID="DiscussionDetails.authorName"]').exists()).toEqual(false)
+
+      tree = renderDetails({
+        ...props,
+        discussion: template.discussion({ author: template.user({ display_name: null }) }),
+      })
+      expect(tree.find('[testID="DiscussionDetails.authorName"]').exists()).toEqual(false)
+
+      let user = template.userDisplay({ display_name: 'Eve' })
+      tree = renderDetails({
+        ...props,
+        discussion: template.discussion({
+          author: user,
+        }),
+      })
+      expect(tree.find('[testID="DiscussionDetails.authorName"]').prop('children')).toEqual('Eve')
+
+      user = template.userDisplay({ display_name: 'Eve', pronouns: 'She/Her' })
+      tree = renderDetails({
+        ...props,
+        discussion: template.discussion({
+          author: user,
+        }),
+      })
+      expect(tree.find('[testID="DiscussionDetails.authorName"]').prop('children')).toEqual('Eve (She/Her)')
+    })
+
     it('navigates to context card when pressing the avatar', () => {
       let tree = renderDetails(props)
       let avatar = tree.find('[testID="DiscussionDetails.avatar"]')

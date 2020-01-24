@@ -454,7 +454,11 @@ extension QuizPresentingViewController {
             let confirmationViewController = SubmissionConfirmationViewController(resultsURL: me.quizController.urlForViewingResultsForAttempt(submission.attempt), requiresLockdownBrowserForViewingResults: me.quizController.quiz?.requiresLockdownBrowserForResults ?? false)
             confirmationViewController.customLoadingText = customLoadingText
             confirmationViewController.showState(.loading)
-            me.present(UINavigationController(rootViewController: confirmationViewController), animated: true, completion: nil)
+            let nav = UINavigationController(rootViewController: confirmationViewController)
+            if #available(iOS 13.0, *) {
+                nav.isModalInPresentation = true
+            }
+            me.present(nav, animated: true, completion: nil)
 
             me.submissionController.submit { result in
                 if let _ = result.error {

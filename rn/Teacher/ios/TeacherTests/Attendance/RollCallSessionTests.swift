@@ -59,7 +59,7 @@ class RollCallSessionTests: TeacherTestCase, RollCallSessionDelegate {
     }
 
     func testLaunchNoData() {
-        api.mock(launchRequest, value: .init(url: URL(string: "data:text/plain,")!))
+        api.mock(launchRequest, value: .make(url: URL(string: "data:text/plain,")!))
         session.launch(url: URL(string: "data:text/plain,")!)
         switch session.state {
         case .error(let error):
@@ -74,7 +74,7 @@ class RollCallSessionTests: TeacherTestCase, RollCallSessionDelegate {
     func xtestLaunchError() {
         let data = "<pre>Error</pre>".data(using: .utf8)!
         let url = URL(string: "data:text/html;base64,\(data.base64EncodedString())")!
-        api.mock(launchRequest, value: .init(url: url))
+        api.mock(launchRequest, value: .make(url: url))
         switch session.state {
         case .error(let error):
             XCTAssertEqual((error as NSError).domain, "com.instructure.rollcall")
@@ -87,7 +87,7 @@ class RollCallSessionTests: TeacherTestCase, RollCallSessionDelegate {
     func testLaunchSuccess() {
         let data = "<meta name=\"csrf-token\" content=\"xsrf\">".data(using: .utf8)!
         let url = URL(string: "data:text/html;base64,\(data.base64EncodedString())")!
-        api.mock(launchRequest, value: .init(url: url))
+        api.mock(launchRequest, value: .make(url: url))
         URLSessionAPI.delegateURLSession = { (configuration: URLSessionConfiguration, delegate: URLSessionDelegate?, delegateQueue: OperationQueue?) -> URLSession in
             return URLSession(configuration: configuration, delegate: delegate, delegateQueue: delegateQueue)
         }

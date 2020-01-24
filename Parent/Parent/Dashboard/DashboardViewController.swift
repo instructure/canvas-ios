@@ -65,6 +65,7 @@ class DashboardViewController: UIViewController {
             if let student = currentStudent {
                 currentStudentID = student.id
                 let color = ColorScheme.observee(student.id).color
+                alertsTabItem.badgeColor = color
                 headerContainerView.backgroundColor = color
                 badgeLabel.textColor = color
                 badgeView.layer.borderColor = color.cgColor
@@ -118,10 +119,8 @@ class DashboardViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(studentInfoTapped))
         studentInfoContainer.addGestureRecognizer(tap)
 
-        // Set the tab navigation background and the base view to be the same
-        // This will make color below the safe area to be the same as the tab nav
-        tabBar.barTintColor = UIColor.init(r: 254, g: 254, b: 254)
-        view.backgroundColor = tabBar.barTintColor
+        tabBar.barTintColor = .named(.backgroundLightest)
+        view.backgroundColor = .named(.backgroundLightest)
 
         let color = ColorScheme.observer.color
         headerContainerView.backgroundColor = color
@@ -272,6 +271,8 @@ class DashboardViewController: UIViewController {
         alertsTabItem.selectedImage = UIImage.icon(.notification)
         alertsTabItem.accessibilityLabel = String.localizedStringWithFormat(tabViewFormatString, alertsTitle, 3, 3)
         alertsTabItem.accessibilityIdentifier = "TabBar.alertsTab"
+        alertsTabItem.badgeColor = .named(.backgroundInfo)
+        alertsTabItem.setBadgeTextAttributes([.foregroundColor: UIColor.named(.white)], for: .normal)
 
         selectCoursesTab()
     }
@@ -331,7 +332,7 @@ class DashboardViewController: UIViewController {
             alertsTabItem.badgeValue = nil
             let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [Alert.unreadPredicate(), Alert.undismissedPredicate(), Alert.observeePredicate(observeeID)])
             alertTabBadgeCountCoordinator = AlertCountCoordinator(session: session, studentID: observeeID, predicate: predicate) { [weak self] count in
-                self?.alertsTabItem.badgeValue = count > 0 ? "\(count)" : nil
+                self?.alertsTabItem.badgeValue = count > 0 ? NumberFormatter.localizedString(from: NSNumber(value: count), number: .none) : nil
             }
         } else {
             alertTabBadgeCountCoordinator = nil
@@ -427,7 +428,7 @@ class DashboardViewController: UIViewController {
     }
 
     @IBAction func drawerDashboardButtonPressed(_ sender: UIButton) {
-        env.router.route(to: .profile, from: self, options: .modal)
+        env.router.route(to: .profile, from: self, options: .modal())
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

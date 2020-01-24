@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(Dim pwnc)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d o %3$d";
 
@@ -9,6 +12,12 @@
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ yn dechrau am %2$@";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, %@, last message %@ %@" = "%1$@, %2$@, neges diwethaf %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, heb eu darllen";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -56,6 +65,9 @@
 "Back" = "Yn ôl";
 
 /* No comment provided by engineer. */
+"Calendar Event" = "Digwyddiad Calendr";
+
+/* No comment provided by engineer. */
 "Cancel" = "Canslo";
 
 /* Percent value is over 100 */
@@ -69,6 +81,9 @@
 
 /* No comment provided by engineer. */
 "Choose a student" = "Dewiswch fyfyriwr";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Creu neges newydd";
 
 /* Course Announcement Description */
 "Course announcements" = "Cyhoeddiadau cwrs";
@@ -119,6 +134,12 @@
 "In-Class" = "Yn y dosbarth";
 
 /* No comment provided by engineer. */
+"Inbox" = "Blwch Derbyn";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Inbox Zero";
+
+/* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Rhowch y cod paru myfyriwr a roddwyd i chi.";
 
 /* Institution Announcement Description */
@@ -149,10 +170,22 @@
 "Manage Children" = "Rheoli Plant";
 
 /* No comment provided by engineer. */
+"Message" = "Neges";
+
+/* No comment provided by engineer. */
 "Missing" = "Ar goll";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Ar goll: (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Ar goll: %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Ar goll: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Neges Newydd";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Wythnos Nesaf";
@@ -165,6 +198,9 @@
 
 /* Empty Students Text */
 "No Students" = "Dim Myfyrwyr";
+
+/* No comment provided by engineer. */
+"No Subject" = "Dim Pwnc";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Dim byd yr wythnos hon";
@@ -182,7 +218,22 @@
 "Quiz" = "Cwis";
 
 /* No comment provided by engineer. */
+"Reply" = "Ateb";
+
+/* No comment provided by engineer. */
+"Reply All" = "Ateb Pawb";
+
+/* No comment provided by engineer. */
+"Retry" = "Ailgynnig";
+
+/* No comment provided by engineer. */
+"Send" = "Anfon";
+
+/* No comment provided by engineer. */
 "Settings" = "Gosodiadau";
+
+/* No comment provided by engineer. */
+"Subject" = "Pwnc";
 
 /* No comment provided by engineer. */
 "Submitted" = "Wedi cyflwyno";
@@ -231,4 +282,7 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Rhaid i chi ganiatáu hysbysiadau yn y Gosodiadau er mwyn gosod nodiadau atgoffa.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Rydych chi wedi dal i fyny";
 

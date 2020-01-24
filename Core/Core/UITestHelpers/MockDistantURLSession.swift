@@ -24,47 +24,61 @@ public class MockDistantURLSession: URLSession {
     public typealias DataHandler = (Data?, URLResponse?, Error?) -> Void
     public typealias URLHandler = (URL?, URLResponse?, Error?) -> Void
 
-    static let defaultURLSession = URLSessionAPI.defaultURLSession
-    static let cachingURLSession = URLSessionAPI.cachingURLSession
-    static let delegateURLSession = URLSessionAPI.delegateURLSession
-    static let noFollowRedirectSession = URLSessionAPI.noFollowRedirectURLSession
-    static let api = AppEnvironment.shared.api
+    struct Defaults {
+        let defaultURLSession = URLSessionAPI.defaultURLSession
+        let cachingURLSession = URLSessionAPI.cachingURLSession
+        let delegateURLSession = URLSessionAPI.delegateURLSession
+        let noFollowRedirectSession = URLSessionAPI.noFollowRedirectURLSession
+        let api = AppEnvironment.shared.api
+    }
+    static let defaults = Defaults()
+    static let mockSessions = NSHashTable<MockDistantURLSession>.weakObjects()
 
     @objc public static var isSetup: Bool {
         URLSessionAPI.defaultURLSession is MockDistantURLSession
     }
 
-    static func setup() {
-        guard !isSetup else { return }
-        let session = MockDistantURLSession()
-        URLSessionAPI.defaultURLSession = session
-        URLSessionAPI.cachingURLSession = session
-        URLSessionAPI.noFollowRedirectURLSession = session
-        URLSessionAPI.delegateURLSession = { config, delegate, queue in
-            let session = MockDistantURLSession()
-            session.mockConfiguration = config
-            session.mockDelegate = delegate
-            return session
+    static func reset(useMocks: Bool) {
+        // force initialization of static lazy variable
+        _ = defaults
+        for session in mockSessions.allObjects {
+            session.invalidateAndCancel()
+            mockSessions.remove(session)
         }
-        AppEnvironment.shared.api = URLSessionAPI()
-    }
-
-    static func reset() {
-        URLSessionAPI.defaultURLSession = defaultURLSession
-        URLSessionAPI.cachingURLSession = cachingURLSession
-        URLSessionAPI.delegateURLSession = delegateURLSession
-        URLSessionAPI.noFollowRedirectURLSession = noFollowRedirectSession
-        AppEnvironment.shared.api = api
+        if useMocks {
+            let session = MockDistantURLSession()
+            mockSessions.add(session)
+            URLSessionAPI.defaultURLSession = session
+            URLSessionAPI.cachingURLSession = session
+            URLSessionAPI.noFollowRedirectURLSession = session
+            URLSessionAPI.delegateURLSession = { config, delegate, queue in
+                let session = MockDistantURLSession()
+                mockSessions.add(session)
+                session.mockConfiguration = config
+                session.mockDelegate = delegate
+                return session
+            }
+            AppEnvironment.shared.api = URLSessionAPI()
+        } else {
+            URLSessionAPI.defaultURLSession = defaults.defaultURLSession
+            URLSessionAPI.cachingURLSession = defaults.cachingURLSession
+            URLSessionAPI.delegateURLSession = defaults.delegateURLSession
+            URLSessionAPI.noFollowRedirectURLSession = defaults.noFollowRedirectSession
+            AppEnvironment.shared.api = defaults.api
+        }
     }
 
     private var mockConfiguration: URLSessionConfiguration?
     private weak var mockDelegate: URLSessionDelegate?
+    var inFlightTasks = NSHashTable<URLSessionTask>.weakObjects()
 
     public override var configuration: URLSessionConfiguration {
         mockConfiguration ?? super.configuration
     }
 
     func processMockResponse(_ mock: MockHTTPResponse, task: MockSessionTask) {
+        guard task.taskData.session != nil else { return }
+        inFlightTasks.remove(task)
         task.taskData.response = mock.http
         task.taskData.session = nil
 
@@ -93,9 +107,11 @@ public class MockDistantURLSession: URLSession {
     }
 
     func resume(task: MockSessionTask) {
+        guard valid else { return }
         let request = task.request
         print("\(request.httpMethod ?? "GET") - \(request.url?.absoluteString ?? "nil")")
         UITestHelpers.shared!.send(.urlRequest(request)) { responseData in
+            guard self.valid else { return }
             if let data = responseData,
                 let mock = try? JSONDecoder().decode(MockHTTPResponse.self, from: data) {
                 self.processMockResponse(mock, task: task)
@@ -103,6 +119,15 @@ public class MockDistantURLSession: URLSession {
                 print("No mock response")
                 self.processMockResponse(MockHTTPResponse(), task: task)
             }
+        }
+    }
+
+    internal var valid = true
+    public override func invalidateAndCancel() {
+        valid = false
+        for task in inFlightTasks.allObjects {
+            task.cancel()
+            inFlightTasks.remove(task)
         }
     }
 
@@ -131,6 +156,8 @@ public class MockDistantURLSession: URLSession {
 
         required init(taskData: MockSessionTaskData) {
             self.taskData = taskData
+            super.init()
+            taskData.session?.inFlightTasks.add(self)
         }
 
         override var taskIdentifier: Int { taskData.taskIdentifier }
@@ -157,6 +184,8 @@ public class MockDistantURLSession: URLSession {
         let taskData: MockSessionTaskData
         required init(taskData: MockSessionTaskData) {
             self.taskData = taskData
+            super.init()
+            taskData.session?.inFlightTasks.add(self)
         }
         override var taskIdentifier: Int { taskData.taskIdentifier }
         override var response: URLResponse? { taskData.response }

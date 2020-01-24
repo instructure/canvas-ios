@@ -239,6 +239,11 @@ public class ColorfulTableViewCell: UITableViewCell {
             .startWithValues { [weak self] selectionEnabled in
                 self?.selectionStyle = selectionEnabled ? .default : .none
                 self?.isUserInteractionEnabled = selectionEnabled
+                if selectionEnabled {
+                    self?.accessibilityTraits.remove(.notEnabled)
+                } else {
+                    self?.accessibilityTraits.insert(.notEnabled)
+                }
             }
 
         titleLabel.lineBreakMode = viewModel.value?.titleLineBreakMode ?? .byTruncatingTail

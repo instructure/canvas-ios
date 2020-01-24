@@ -38,6 +38,19 @@ class HorizontalMenuViewControllerTests: XCTestCase {
         XCTAssertEqual("B", title)
     }
 
+    func testMenuItemWillBeDisplayed() {
+        class MockViewController: UIViewController, HorizontalPagedMenuItem {
+            let expectation = XCTestExpectation(description: "Item displayed")
+            func menuItemWillBeDisplayed() {
+                expectation.fulfill()
+            }
+        }
+        let vc = MockViewController()
+        mock.viewControllers.append(vc)
+        mock.collectionView(mock.pages!, willDisplay: UICollectionViewCell(), forItemAt: IndexPath(row: 2, section: 0))
+        wait(for: [vc.expectation], timeout: 0.1)
+    }
+
     class Mock: HorizontalMenuViewController, HorizontalPagedMenuDelegate {
         init() {
             super.init(nibName: nil, bundle: nil)

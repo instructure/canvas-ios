@@ -53,20 +53,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         if hasFirebase {
             FirebaseApp.configure()
-            let remoteConfig = RemoteConfig.remoteConfig()
-            remoteConfig.activate { error in
-                guard error == nil else {
-                    return
-                }
-                let keys = remoteConfig.allKeys(from: RemoteConfigSource.remote)
-                for key in keys {
-                    guard let feature = ExperimentalFeature(rawValue: key) else { continue }
-                    let value = remoteConfig.configValue(forKey: key).boolValue
-                    feature.isEnabled = value
-                    Crashlytics.sharedInstance().setBoolValue(value, forKey: feature.userDefaultsKey)
-                }
-            }
-            remoteConfig.fetch(completionHandler: nil)
+            configureRemoteConfig()
         }
         setupDefaultErrorHandling()
         Analytics.shared.handler = self
@@ -90,7 +77,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         if url.scheme == "canvas-parent" {
-            environment.router.route(to: url, from: topMostViewController()!, options: [.modal, .embedInNav, .addDoneButton])
+            environment.router.route(to: url, from: topMostViewController()!, options: .modal(embedInNav: true, addDoneButton: true))
         }
         return false
     }
@@ -99,7 +86,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         let userInfo = response.notification.request.content.userInfo
         if let url = userInfo[RemindableActionURLKey] as? String, let studentID = userInfo[RemindableStudentIDKey] as? String {
             currentStudentID = studentID
-            environment.router.route(to: url, from: topMostViewController()!, options: [.modal, .embedInNav, .addDoneButton])
+            environment.router.route(to: url, from: topMostViewController()!, options: .modal(embedInNav: true, addDoneButton: true))
         }
     }
 
@@ -137,6 +124,28 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         } catch let e as NSError {
             print(e)
         }
+    }
+
+    // similar methods exist in all other app delegates
+    // please be sure to update there as well
+    // We can't move this to Core as it would require setting up
+    // Cocoapods for Core to pull in Firebase
+    func configureRemoteConfig() {
+        let remoteConfig = RemoteConfig.remoteConfig()
+        remoteConfig.activate { error in
+            guard error == nil else {
+                return
+            }
+            let keys = remoteConfig.allKeys(from: RemoteConfigSource.remote)
+            for key in keys {
+                guard let feature = ExperimentalFeature(rawValue: key) else { continue }
+                let value = remoteConfig.configValue(forKey: key).boolValue
+                feature.isEnabled = value
+                Crashlytics.sharedInstance().setBoolValue(value, forKey: feature.userDefaultsKey)
+                Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
+            }
+        }
+        remoteConfig.fetch(completionHandler: nil)
     }
 }
 

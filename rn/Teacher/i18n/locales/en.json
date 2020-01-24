@@ -92,9 +92,6 @@
   "all_in_e5ddaee0": {
     "message": "All in"
   },
-  "all_people_16d90b41": {
-    "message": "All People"
-  },
   "all_submissions_3eedfb97": {
     "message": "All submissions"
   },
@@ -467,9 +464,6 @@
   "description_436c48d7": {
     "message": "Description"
   },
-  "designer_c458392": {
-    "message": "Designer"
-  },
   "details_98a31b68": {
     "message": "Details"
   },
@@ -646,9 +640,6 @@
   },
   "filter_numselected_number_2e4c17e3": {
     "message": "Filter ({ numSelected, number })"
-  },
-  "filter_people_b34b567b": {
-    "message": "Filter People"
   },
   "filter_submissions_numselected_number_selected_177867b3": {
     "message": "Filter Submissions. ({ numSelected, number }) selected."
@@ -935,6 +926,9 @@
   "name_profile_240f0967": {
     "message": "{ name } Profile"
   },
+  "name_pronouns_8d5a0061": {
+    "message": "{ name } ({ pronouns })"
+  },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } more"
   },
@@ -1037,9 +1031,6 @@
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# Minute}\n  other {# Minutes}\n}"
   },
-  "observer_248a192e": {
-    "message": "Observer"
-  },
   "off_5385ef3f": {
     "message": "Off"
   },
@@ -1129,9 +1120,6 @@
   },
   "past_enrollments_a846da48": {
     "message": "Past Enrollments"
-  },
-  "people_b4ebb13c": {
-    "message": "People"
   },
   "percent_d7ddd35b": {
     "message": "Percent (%)"
@@ -1478,9 +1466,6 @@
   "syllabus_f191f65b": {
     "message": "Syllabus"
   },
-  "ta_8d966626": {
-    "message": "TA"
-  },
   "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
     "message": "Tap and hold a rubric number to see its description"
   },
@@ -1492,9 +1477,6 @@
   },
   "tap_to_view_submissions_list_5bfe32f3": {
     "message": "Tap to view submissions list."
-  },
-  "teacher_5a73b637": {
-    "message": "Teacher"
   },
   "teachers_52e2423f": {
     "message": "Teachers"

@@ -67,7 +67,17 @@ class ConversationListViewControllerTests: ParentTestCase {
     func testTappingComposeRoutesToCourseActionSheet() {
         loadView()
         controller.composeButton.sendActions(for: .primaryActionTriggered)
-        XCTAssert(router.presented is ConversationCoursesActionSheet)
+        let actionSheet = router.presented as? ActionSheetController
+        XCTAssertNotNil(actionSheet)
+        XCTAssertNotNil(actionSheet?.viewController as? ConversationCoursesActionSheet)
+    }
+
+    func testRouteToCompose() {
+        loadView()
+        let course = Course.make()
+        let user = User.make()
+        controller.courseSelected(course: course, user: user)
+        XCTAssertTrue(router.lastRoutedTo(Route.compose(context: course, observeeID: user.id, subject: course.name, hiddenMessage: "Regarding: \(user.name)"), withOptions: .modal(embedInNav: true)))
     }
 
     func testErrorEmpty() {

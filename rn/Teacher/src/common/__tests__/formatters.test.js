@@ -24,6 +24,7 @@ import {
   formatGradeText,
   formatGrade,
   formatStudentGrade,
+  personDisplayName,
 } from '../formatters'
 import { extractDateFromString } from '../../utils/dateUtils'
 import i18n from 'format-message'
@@ -258,5 +259,15 @@ describe('formatStudentGrade', () => {
     })
     const result = formatStudentGrade(assignment)
     expect(result).toEqual('')
+  })
+})
+
+describe('personDisplayName', () => {
+  it('formats without pronouns', () => {
+    expect(personDisplayName('John Doe')).toEqual('John Doe')
+  })
+
+  it('formats with pronouns', () => {
+    expect(personDisplayName('John Doe', 'He/Him')).toEqual('John Doe (He/Him)')
   })
 })

@@ -20,6 +20,7 @@ import Foundation
 import SafariServices
 import UIKit
 import Core
+import WebKit
 
 protocol SubmissionButtonViewProtocol: ApplicationViewController, ErrorViewController {
 }
@@ -107,11 +108,7 @@ class SubmissionButtonPresenter: NSObject {
                 context: ContextModel(.course, id: courseID),
                 launchType: .assessment,
                 assignmentID: assignment.id
-            ).getSessionlessLaunchURL { [weak self] url in
-                guard let url = url else { return }
-                let safari = SFSafariViewController(url: url)
-                self?.env.router.show(safari, from: view, options: .modal)
-            }
+            ).presentTool(from: view, animated: true)
         case .discussion_topic:
             Analytics.shared.logEvent("assignment_detail_discussionlaunch")
             guard let url = assignment.discussionTopic?.htmlUrl else { return }
@@ -125,11 +122,11 @@ class SubmissionButtonPresenter: NSObject {
                 courseID: courseID,
                 assignmentID: assignment.id,
                 userID: userID
-            ), from: view, options: [.modal, .embedInNav])
+            ), from: view, options: .modal(embedInNav: true))
         case .online_quiz:
             Analytics.shared.logEvent("assignment_detail_quizlaunch")
             guard let quizID = assignment.quizID else { return }
-            env.router.route(to: .takeQuiz(forCourse: courseID, quizID: quizID), from: view, options: [.modal, .embedInNav])
+            env.router.route(to: .takeQuiz(forCourse: courseID, quizID: quizID), from: view, options: .modal(isDismissable: false, embedInNav: true))
         case .online_upload:
             Analytics.shared.logEvent("submit_fileupload_selected")
             pickFiles(for: assignment, selectedSubmissionTypes: [type])
@@ -139,7 +136,7 @@ class SubmissionButtonPresenter: NSObject {
                 courseID: courseID,
                 assignmentID: assignment.id,
                 userID: userID
-            ), from: view, options: [.modal, .embedInNav, .formSheet])
+            ), from: view, options: .modal(.formSheet, embedInNav: true))
         case .none, .not_graded, .on_paper:
             break
         }

@@ -31,7 +31,9 @@ extension APIUser {
         email: String? = nil,
         locale: String? = "en",
         effective_locale: String? = nil,
-        bio: String? = nil
+        bio: String? = nil,
+        pronouns: String? = nil,
+        permissions: Permissions? = .make()
     ) -> APIUser {
         return APIUser(
             id: id,
@@ -44,7 +46,21 @@ extension APIUser {
             email: email,
             locale: locale,
             effective_locale: effective_locale,
-            bio: bio
+            bio: bio,
+            pronouns: pronouns,
+            permissions: permissions
+        )
+    }
+}
+
+extension APIUser.Permissions {
+    public static func make(
+        can_update_name: Bool? = true,
+        can_update_avatar: Bool? = true
+    ) -> APIUser.Permissions {
+        return APIUser.Permissions(
+            can_update_name: can_update_name,
+            can_update_avatar: can_update_avatar
         )
     }
 }
@@ -74,7 +90,8 @@ extension APIProfile {
         primary_email: String? = nil,
         login_id: String? = nil,
         avatar_url: URL? = nil,
-        calendar: APIProfile.APICalendar? = .make()
+        calendar: APIProfile.APICalendar? = .make(),
+        pronouns: String? = nil
     ) -> APIProfile {
         return APIProfile(
             id: id,
@@ -82,7 +99,8 @@ extension APIProfile {
             primary_email: primary_email,
             login_id: login_id,
             avatar_url: avatar_url.flatMap(APIURL.make(rawValue:)),
-            calendar: calendar
+            calendar: calendar,
+            pronouns: pronouns
         )
     }
 }

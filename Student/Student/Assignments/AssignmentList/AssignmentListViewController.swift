@@ -212,7 +212,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
             alert.popoverPresentationController?.sourceRect = sender.bounds
             alert.popoverPresentationController?.sourceView = sender
 
-            env.router.show(alert, from: self, options: .modal)
+            env.router.show(alert, from: self, options: .modal())
         }
     }
 
@@ -234,7 +234,7 @@ extension AssignmentListViewController: UITableViewDataSourcePrefetching {
         indexPaths.forEach {
             let fetchMore = sectionHasNext[$0.section]
             if fetchMore {
-                DispatchQueue.global().async { [weak self] in
+                DispatchQueue.main.async { [weak self] in
                     self?.fetchData()
                 }
                 return
@@ -294,7 +294,7 @@ extension AssignmentListViewController: UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let a = assignment(for: indexPath)
         guard let url = a?.htmlUrl else { return }
-        env.router.route(to: url, from: self, options: [.detail, .embedInNav])
+        env.router.route(to: url, from: self, options: .detail(embedInNav: true))
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

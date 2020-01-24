@@ -52,6 +52,16 @@ class CourseTests: CoreTestCase {
         XCTAssertEqual(resultEnrollment?.canvasContextID, "course_1")
     }
 
+    func testDeletesOnlyDanglingEnrollments() {
+        let apiCourse = APICourse.make(id: "1")
+        let course = Course.make(from: apiCourse)
+        Enrollment.make(from: .make(course_id: "1"), course: course, in: databaseClient)
+
+        Course.save(apiCourse, in: databaseClient)
+        let enrollments: [Enrollment] = databaseClient.fetch()
+        XCTAssertEqual(enrollments.count, 2)
+    }
+
     func testWidgetDisplayGradeNoEnrollments() {
         let c = Course.make(from: .make(enrollments: nil))
         XCTAssertEqual(c.displayGrade, "")

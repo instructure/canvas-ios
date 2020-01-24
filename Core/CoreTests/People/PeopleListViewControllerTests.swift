@@ -21,7 +21,8 @@ import XCTest
 @testable import TestsFoundation
 
 class PeopleListViewControllerTests: CoreTestCase {
-    lazy var controller = PeopleListViewController.create(context: ContextModel(.course, id: "1"))
+    let course1 = ContextModel(.course, id: "1")
+    lazy var controller = PeopleListViewController.create(context: course1)
 
     override func setUp() {
         super.setUp()
@@ -35,8 +36,14 @@ class PeopleListViewControllerTests: CoreTestCase {
                 name: "Jane",
                 sortable_name: "jane doe",
                 short_name: "jane",
-                enrollments: [ .make(id: "2", role: "StudentEnrollment"), .make(id: "3", role: "Custom") ]
+                enrollments: [ .make(id: "2", role: "StudentEnrollment"), .make(id: "3", role: "Custom") ],
+                pronouns: "She/Her"
             ),
+        ])
+        api.mock(GetConversationRecipientsRequest(search: "", context: "course_1", includeContexts: true), value: [
+            .make(id: "course_1_teachers"),
+            .make(id: "course_1_students"),
+            .make(id: "course_1_tas"),
         ])
     }
 
@@ -60,7 +67,7 @@ class PeopleListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.rolesLabel.text, "")
 
         cell = controller.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? PeopleListCell
-        XCTAssertEqual(cell?.nameLabel.text, "Jane")
+        XCTAssertEqual(cell?.nameLabel.text, "Jane (She/Her)")
         XCTAssertEqual(cell?.rolesLabel.text, "Custom and Student")
 
         api.mock(controller.users, value: [ .make(name: "George") ])
@@ -70,11 +77,40 @@ class PeopleListViewControllerTests: CoreTestCase {
 
         cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? PeopleListCell
         XCTAssertEqual(cell?.nameLabel.text, "George")
+    }
 
-        api.mock(GetContextUsers(context: ContextModel(.course, id: "1"), search: "fred"), value: [])
+    func testFilter() {
+        controller.view.layoutIfNeeded()
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 2)
+
+        api.mock(GetContextUsers(context: course1, type: .teacher), value: [ .make() ])
+        var header = controller.tableView.headerView(forSection: 0) as? FilterHeaderView
+        XCTAssertEqual(header?.filterButton.title(for: .normal), "Filter")
+        header?.filterButton.sendActions(for: .primaryActionTriggered)
+        let actions = (router.presented as! UIAlertController).actions
+        XCTAssertEqual(actions.count, 4)
+        XCTAssertEqual(actions[0].title, "Students")
+        XCTAssertEqual(actions[1].title, "Teachers")
+        XCTAssertEqual(actions[2].title, "Teaching Assistants")
+        XCTAssertEqual(actions[3].title, "Cancel")
+        (actions[1] as? AlertAction)?.handler?(actions[1])
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 1)
+        XCTAssertEqual(controller.enrollmentType, .teacher)
+
+        header = controller.tableView.delegate?.tableView?(controller.tableView, viewForHeaderInSection: 0) as? FilterHeaderView
+        XCTAssertEqual(header?.filterButton.title(for: .normal), "Clear filter")
+        header?.filterButton.sendActions(for: .primaryActionTriggered)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 2)
+    }
+
+    func testSearch() {
+        controller.view.layoutIfNeeded()
+
+        api.mock(GetContextUsers(context: course1, search: "fred"), value: [])
         controller.searchBar.delegate?.searchBarTextDidBeginEditing?(controller.searchBar)
         controller.searchBar.text = "fred"
         controller.searchBar.delegate?.searchBar?(controller.searchBar, textDidChange: "fred")
+        controller.searchBar.delegate?.searchBarSearchButtonClicked?(controller.searchBar)
         controller.searchBar.delegate?.searchBarTextDidEndEditing?(controller.searchBar)
         XCTAssertEqual(controller.emptyResultsLabel.isHidden, false)
 

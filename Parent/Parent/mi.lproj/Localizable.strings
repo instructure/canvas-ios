@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(Kaore he kaupapa)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d o %3$d";
 
@@ -9,6 +12,12 @@
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ ka timata ī %2$@";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, %@, last message %@ %@" = "%1$@, %2$@, karere whakamutu %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, kaore i pānuihia";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -56,6 +65,9 @@
 "Back" = "Hoki";
 
 /* No comment provided by engineer. */
+"Calendar Event" = "Tauwhāinga Māramataka";
+
+/* No comment provided by engineer. */
 "Cancel" = "Whakakore";
 
 /* Percent value is over 100 */
@@ -69,6 +81,9 @@
 
 /* No comment provided by engineer. */
 "Choose a student" = "Tīpako he ākonga";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Titoa karere hōu";
 
 /* Course Announcement Description */
 "Course announcements" = "Kōrerorero akoranga";
@@ -119,6 +134,12 @@
 "In-Class" = "I roto i te-Akomanga";
 
 /* No comment provided by engineer. */
+"Inbox" = "Pouakauru";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Pouakaroto Kore";
+
+/* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Whakauru te ākonga waihere Hono kua tukuna atu ki a koe";
 
 /* Institution Announcement Description */
@@ -149,10 +170,22 @@
 "Manage Children" = "Whakahaere ngā tamariki";
 
 /* No comment provided by engineer. */
+"Message" = "Karere";
+
+/* No comment provided by engineer. */
 "Missing" = "Ngaro";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Ngaro: (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Ngaro: %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Ngaro: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Karere Hōu";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Wiki Muri";
@@ -165,6 +198,9 @@
 
 /* Empty Students Text */
 "No Students" = "Kāore he ākonga";
+
+/* No comment provided by engineer. */
+"No Subject" = "Kāore he Kaupapa";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Kahore tēnei wiki";
@@ -182,7 +218,22 @@
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
+"Reply" = "Whakautu";
+
+/* No comment provided by engineer. */
+"Reply All" = "Whakautu ki te katoa";
+
+/* No comment provided by engineer. */
+"Retry" = "Ngana anō";
+
+/* No comment provided by engineer. */
+"Send" = "Tukua";
+
+/* No comment provided by engineer. */
 "Settings" = "Ngā Tautuhinga";
+
+/* No comment provided by engineer. */
+"Subject" = "Kaupapa";
 
 /* No comment provided by engineer. */
 "Submitted" = "Kua tukuna";
@@ -231,4 +282,7 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Me tukua e koe ngā whakamōhiotanga i roto i ngā Tautuhinga ki te whakatau ngā whakamaharatanga.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Kua mau katoa koe";
 

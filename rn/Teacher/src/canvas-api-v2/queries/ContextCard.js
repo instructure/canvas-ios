@@ -37,6 +37,7 @@ export const courseQuery = gql`query StudentContextCardCourse($courseID: ID!, $u
             id: _id
             name
             short_name: shortName
+            pronouns
             avatar_url: avatarUrl
             primary_email: email
             enrollments(courseId: $courseID) {

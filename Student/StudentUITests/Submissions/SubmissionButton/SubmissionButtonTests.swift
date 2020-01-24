@@ -55,7 +55,7 @@ class SubmissionButtonTests: StudentUITestCase {
             assignmentID: assignment.id.value,
             moduleItemID: nil,
             launchType: .assessment
-        ), value: APIGetSessionlessLaunchResponse(url: URL(string: "https://canvas.instructure.com")!))
+        ), value: .make(url: URL(string: "https://canvas.instructure.com")!))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.submitAssignmentButton.tap()
@@ -72,7 +72,7 @@ class SubmissionButtonTests: StudentUITestCase {
             assignmentID: assignment.id.value,
             moduleItemID: nil,
             launchType: .assessment
-        ), value: APIGetSessionlessLaunchResponse(url: URL(string: "https://canvas.instructure.com")!))
+        ), value: .make(url: URL(string: "https://canvas.instructure.com")!))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.submitAssignmentButton.tap()

@@ -52,4 +52,22 @@ class AddMessageTests: CoreTestCase {
         XCTAssertEqual(conversation.messages.count, 2)
         XCTAssertEqual(conversation.messageCount, 2)
     }
+
+    func testUsesLastAuthoredIfLastIsNull() {
+        Clock.mockNow(Date())
+
+        let conversation = Conversation.make()
+
+        let useCase = AddMessage(conversationID: "1", body: "See-Gee-IN-YOU")
+        api.mock(useCase.request, value: APIConversation.make(
+            last_message: nil,
+            last_message_at: nil,
+            last_authored_message: "See-Gee-IN-YOU",
+            last_authored_message_at: Clock.now
+        ))
+
+        useCase.fetch()
+        XCTAssertEqual(conversation.lastMessage, "See-Gee-IN-YOU")
+        XCTAssertEqual(conversation.lastMessageAt.isoString(), Clock.now.isoString())
+    }
 }

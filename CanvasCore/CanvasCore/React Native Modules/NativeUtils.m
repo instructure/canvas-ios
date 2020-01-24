@@ -27,7 +27,7 @@
 RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(log:(NSString*)message) {
-    NSLog(@"%@", message);
+    puts(message.UTF8String);
 }
 
 @end

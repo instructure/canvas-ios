@@ -107,6 +107,6 @@ class SubmissionCommentsPresenterTests: StudentTestCase {
         let url = URL(string: "https://canvas.instructure.com/files/803/download")!
         let file = File.make(from: .make(url: url))
         presenter.showAttachment(file, from: UIViewController())
-        XCTAssertTrue(router.lastRoutedTo(url, withOptions: [.modal, .embedInNav, .addDoneButton]))
+        XCTAssertTrue(router.lastRoutedTo(url, withOptions: .modal(embedInNav: true, addDoneButton: true)))
     }
 }

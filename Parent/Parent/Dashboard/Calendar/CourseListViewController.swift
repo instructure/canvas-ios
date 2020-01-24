@@ -39,13 +39,8 @@ class CourseListViewController: FetchedTableViewController<CanvasCore.Course> {
         emptyView.imageView?.image = UIImage(named: "empty_courses")
         emptyView.accessibilityLabel = emptyView.textLabel.text
         emptyView.accessibilityIdentifier = "courses_empty_view"
-        emptyView.imageCenterXConstraint.constant = -24
-        emptyView.imageWidth = 267
-        emptyView.imageHeight = 232
-
         self.emptyView = emptyView
 
-        let scheme = ColorScheme.observee(studentID)
         let collection = try Course.collectionByStudent(session, studentID: studentID)
         let refresher = try Course.airwolfCollectionRefresher(session, studentID: studentID)
         prepare(collection, refresher: refresher, viewModelFactory: { course in
@@ -72,6 +67,6 @@ class CourseListViewController: FetchedTableViewController<CanvasCore.Course> {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let course = collection[indexPath]
-        AppEnvironment.shared.router.route(to: .courseGrades(course.id), from: self, options: nil)
+        AppEnvironment.shared.router.route(to: .courseGrades(course.id), from: self)
     }
 }

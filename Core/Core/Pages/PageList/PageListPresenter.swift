@@ -30,15 +30,11 @@ class PageListPresenter: PageViewLoggerPresenterProtocol {
     weak var view: PageListViewProtocol?
     var course: Store<GetCourse>?
     var group: Store<GetGroup>?
+    lazy var pages = Pages(context: context) { [weak self] in
+        self?.update()
+    }
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
-        self?.update()
-    }
-    lazy var frontPage = env.subscribe(GetFrontPage(context: context)) { [weak self] in
-        self?.update()
-    }
-
-    lazy var pages = env.subscribe(GetPages(context: context)) { [weak self] in
         self?.update()
     }
 
@@ -70,7 +66,8 @@ class PageListPresenter: PageViewLoggerPresenterProtocol {
                 view?.updateNavBar(subtitle: group.name, color: group.color)
             }
         }
-        view?.update(isLoading: pages.pending)
+        let isLoading = pages.frontPage?.pending == true || pages.all?.pending == true
+        view?.update(isLoading: isLoading)
         if let error = course?.error ?? group?.error {
             view?.showError(error)
         }
@@ -79,7 +76,6 @@ class PageListPresenter: PageViewLoggerPresenterProtocol {
     func viewIsReady() {
         colors.refresh()
         pages.refresh()
-        frontPage.refresh(force: true)
         course?.refresh()
         group?.refresh()
 
@@ -92,17 +88,16 @@ class PageListPresenter: PageViewLoggerPresenterProtocol {
     }
 
     func select(_ page: Page, from view: UIViewController) {
-        env.router.route(to: page.htmlURL, from: view, options: [.detail, .embedInNav])
+        env.router.route(to: page.htmlURL, from: view, options: .detail(embedInNav: true))
     }
 
     func newPage(from view: UIViewController) {
-        env.router.route(to: "\(context.pathComponent)/pages/new", from: view, options: [.modal, .embedInNav])
+        env.router.route(to: "\(context.pathComponent)/pages/new", from: view, options: .modal(embedInNav: true))
     }
 
     @objc
     func refreshPages() {
         pages.refresh(force: true)
-        frontPage.refresh(force: true)
     }
 
     @objc

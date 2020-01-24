@@ -37,20 +37,24 @@ open class CoreUITestCase: XCTestCase {
 
     open var httpMocks = [URL: (URLRequest) -> MockHTTPResponse]()
     open var graphQLMocks = [String: (URLRequest) -> Data]()
-
-    private var usingMocksOnly = false
-    open func useMocksOnly() {
-        if usingMocksOnly { return }
-        usingMocksOnly = true
-        send(.useMocksOnly)
+    var useMocks: Bool {
+        switch Bundle.main.bundleIdentifier {
+        case Bundle.studentUITestsBundleID,
+             Bundle.teacherUITestsBundleID,
+             Bundle.parentUITestsBundleID:
+            return true
+        default:
+            return false
+        }
     }
 
     open var user: UITestUser? {
-        if Bundle.main.isStudentApp {
+        switch Bundle.main.bundleIdentifier {
+        case Bundle.studentE2ETestsBundleID:
             return .readStudent1
-        } else if Bundle.main.isTeacherApp {
+        case Bundle.teacherE2ETestsBundleID:
             return .readTeacher1
-        } else {
+        default:
             return nil
         }
     }
@@ -95,21 +99,18 @@ open class CoreUITestCase: XCTestCase {
                 homeScreen.waitToExist()
             }
         }
+        if useMocks {
+            mockEncodableRequest("/login/oauth2/token", value: [String]())
+        }
         reset()
         send(.enableExperimentalFeatures(experimentalFeatures))
 
         if case .passThruAndLog(toPath: let logPath) = missingMockBehavior {
-            usingMocksOnly = true
             // Clear old log
             try? FileManager.default.removeItem(atPath: logPath)
         }
-        // re-install the existing mocks
-        if (usingMocksOnly) {
-            send(.useMocksOnly)
-        }
         if let user = user {
             logInUser(user)
-            homeScreen.waitToExist()
         }
     }
 
@@ -127,7 +128,7 @@ open class CoreUITestCase: XCTestCase {
         // and also write the request/response in plain text to the log file
         case passThruAndLog(toPath: String)
     }
-    public var missingMockBehavior: MissingMockBehavior = .failTest
+    open var missingMockBehavior: MissingMockBehavior = .failTest
 
     static var currentTestCase: CoreUITestCase?
 
@@ -244,7 +245,7 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open func reset(file: StaticString = #file, line: UInt = #line) {
-        send(.reset)
+        send(.reset(useMocks: useMocks))
         LoginStart.findSchoolButton.waitToExist(file: file, line: line)
     }
 
@@ -517,8 +518,8 @@ open class CoreUITestCase: XCTestCase {
 
     open var baseEnrollment: APIEnrollment {
         .make(
-            type: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
-            role: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
+            type: Bundle.main.isTeacherTestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
+            role: Bundle.main.isTeacherTestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
         )
     }
     open lazy var baseCourse = mock(course: .make(enrollments: [ baseEnrollment ]))
@@ -595,7 +596,7 @@ open class CoreUITestCase: XCTestCase {
         _ request: URLRequest,
         response: @escaping (URLRequest) -> MockHTTPResponse
     ) {
-        useMocksOnly()
+        XCTAssert(useMocks, "Mocks not allowed for E2E tests!")
         httpMocks[request.url!.withCanonicalQueryParams!] = response
     }
 

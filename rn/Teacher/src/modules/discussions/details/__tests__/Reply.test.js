@@ -92,6 +92,18 @@ describe('DiscussionReplies', () => {
     expect(tree.find('Avatar').props().userName).toEqual('?')
   })
 
+  it('renders user display name', () => {
+    let user = template.userDisplay({ display_name: 'Eve' })
+    props.participants[props.reply.user_id] = user
+    let tree = shallow(<Reply {...props} />)
+    expect(tree.find('[testID="DiscussionReply.userName"]').prop('children')).toEqual('Eve')
+
+    user.pronouns = 'She/Her'
+    props.participants[props.reply.user_id] = user
+    tree = shallow(<Reply {...props} />)
+    expect(tree.find('[testID="DiscussionReply.userName"]').prop('children')).toEqual('Eve (She/Her)')
+  })
+
   it('renders with closed discussion as student', () => {
     props.discussionLockedForUser = true
     let tree = shallow(<Reply {...props} />)

@@ -22,7 +22,7 @@ public struct APISearchRecipientsRequestable: APIRequestable {
     public typealias Response = [APISearchRecipient]
 
     public enum ContextQualifier: String {
-        case teachers, students, observers
+        case teachers, students, observers, tas
     }
 
     let context: Context

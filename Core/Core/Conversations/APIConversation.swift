@@ -28,11 +28,11 @@ public enum ConversationProperties: String, Codable {
 
 // https://canvas.instructure.com/doc/api/conversations.html#Conversation
 public struct APIConversation: Codable, Equatable {
-    let id: ID
-    let subject: String
+    public let id: ID
+    let subject: String?
     let workflow_state: ConversationWorkflowState
-    let last_message: String
-    let last_message_at: Date
+    let last_message: String?
+    let last_message_at: Date?
     let last_authored_message: String?
     let last_authored_message_at: Date?
     let participants: [APIConversationParticipant]
@@ -45,7 +45,7 @@ public struct APIConversation: Codable, Equatable {
     let avatar_url: APIURL
     let visible: Bool
     let context_name: String?
-    let context_code: String
+    let context_code: String?
     let messages: [APIConversationMessage]?
 }
 
@@ -75,8 +75,8 @@ extension APIConversation {
         id: String = "1",
         subject: String = "Subject One",
         workflow_state: ConversationWorkflowState = .unread,
-        last_message: String = "Last Message One",
-        last_message_at: Date = Clock.now,
+        last_message: String? = "Last Message One",
+        last_message_at: Date? = Clock.now,
         last_authored_message: String? = "Last Authored Message One",
         last_authored_message_at: Date? = Clock.now,
         participants: [APIConversationParticipant] = [.make()],
@@ -88,8 +88,8 @@ extension APIConversation {
         audience: [String]? = [ "1" ],
         avatar_url: URL = URL(string: "https://canvas.instructure.com/avatar/1")!,
         visible: Bool = true,
-        context_name: String = "Canvas 101",
-        context_code: String = "course_1",
+        context_name: String? = "Canvas 101",
+        context_code: String? = "course_1",
         messages: [APIConversationMessage]? = nil
     ) -> APIConversation {
         return APIConversation(
@@ -126,7 +126,7 @@ extension APIConversationParticipant {
         return APIConversationParticipant(
             id: ID(id),
             name: name,
-            avatar_url: avatar_url.flatMap(APIURL.init(rawValue:)),
+            avatar_url: APIURL(rawValue: avatar_url),
             pronouns: pronouns
         )
     }
@@ -246,5 +246,27 @@ public struct PostAddMessageRequest: APIRequestable {
     let conversationID: String
     public let body: Body?
     public var path: String { "conversations/\(conversationID)/add_message" }
+    public let method = APIMethod.post
+}
+
+public struct PostConversationRequest: APIRequestable {
+    // because it is possible to create one conversation per recipient
+    // the response is an array
+    public typealias Response = [APIConversation]
+
+    public struct Body: Encodable {
+        public let subject: String
+        public let body: String
+        public let recipients: [String]
+        public let context_code: String?
+        public let media_comment_id: String? = nil
+        public let media_comment_type: MediaCommentType? = nil
+        public let attachment_ids: [String]? = nil
+        public let group_conversation: Bool? = true
+        public let force_new: Bool? = nil // Setting this seems to cause the api to ignore group_conversation
+    }
+
+    public let body: Body?
+    public var path = "conversations"
     public let method = APIMethod.post
 }

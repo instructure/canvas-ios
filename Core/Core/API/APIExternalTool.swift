@@ -30,6 +30,7 @@ public struct APIExternalTool: Codable, Equatable {
 }
 
 public struct APIGetSessionlessLaunchResponse: Codable, Equatable {
+    public let name: String?
     public let url: URL
 }
 
@@ -43,3 +44,14 @@ struct APIExternalToolLaunchPlacement: Codable, Equatable {
     let title: String
     let url: URL
 }
+
+#if DEBUG
+extension APIGetSessionlessLaunchResponse {
+    static func make(
+        name: String? = nil,
+        url: URL = URL(string: "https://canvas.instructure.com")!
+    ) -> APIGetSessionlessLaunchResponse {
+        APIGetSessionlessLaunchResponse(name: name, url: url)
+    }
+}
+#endif

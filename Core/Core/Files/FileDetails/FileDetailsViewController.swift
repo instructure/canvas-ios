@@ -40,6 +40,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     var fileID: String = ""
     var loadObservation: NSKeyValueObservation?
     var remoteURL: URL?
+    var localURL: URL?
 
     lazy var files = env.subscribe(GetFile(context: context, fileID: fileID)) { [weak self] in
         self?.update()
@@ -80,6 +81,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         viewModulesButton.setTitle(NSLocalizedString("View Modules", bundle: .core, comment: ""), for: .normal)
         viewModulesButton.isHidden = true
 
+        view.layoutIfNeeded()
         files.refresh()
     }
 
@@ -156,25 +158,28 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     }
 
     @IBAction func viewModules() {
-        env.router.route(to: Route.modules(forCourse: context.id), from: self, options: nil)
+        env.router.route(to: Route.modules(forCourse: context.id), from: self)
     }
 
     @objc func share(_ sender: UIBarButtonItem) {
         guard let url = localURL else { return }
         let controller = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         controller.popoverPresentationController?.barButtonItem = sender
-        env.router.show(controller, from: self, options: .modal)
+        env.router.show(controller, from: self, options: .modal())
     }
 }
 
 extension FileDetailsViewController: URLSessionDownloadDelegate {
-    var localURL: URL? {
+    /// This must be called to set `localURL` before initiating download, otherwise there
+    /// will be a threading issue with trying to access core data from a different thread.
+    func prepLocalURL() -> URL? {
         guard let sessionID = env.currentSession?.uniqueID, let name = files.first?.filename else { return nil }
         let base = files.first?.mimeClass == "pdf" ? URL.documentsDirectory : URL.temporaryDirectory
         return base.appendingPathComponent("\(sessionID)/\(fileID)/\(name)")
     }
 
     func downloadFile(at url: URL) {
+        localURL = prepLocalURL()
         if let path = localURL?.path, FileManager.default.fileExists(atPath: path) { return downloadComplete() }
         downloadTask = URLSessionAPI.delegateURLSession(.ephemeral, self, nil).downloadTask(with: url)
         downloadTask?.resume()
@@ -257,6 +262,10 @@ extension FileDetailsViewController: UIScrollViewDelegate {
         let y = max(0, (scrollView.bounds.height - image.frame.height) / 2)
         scrollView.contentInset = UIEdgeInsets(top: y, left: x, bottom: y, right: x)
     }
+
+    public func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView) {
+        scrollViewDidZoom(scrollView)
+    }
 }
 
 extension FileDetailsViewController: QLPreviewControllerDataSource, QLPreviewControllerDelegate {
@@ -280,7 +289,7 @@ extension FileDetailsViewController: QLPreviewControllerDataSource, QLPreviewCon
     @IBAction func openQLPreview() {
         let controller = QLPreviewController()
         controller.dataSource = self
-        env.router.show(controller, from: self, options: .modal)
+        env.router.show(controller, from: self, options: .modal())
     }
 
     public func numberOfPreviewItems(in controller: QLPreviewController) -> Int {

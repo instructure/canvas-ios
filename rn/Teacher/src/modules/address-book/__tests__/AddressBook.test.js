@@ -104,11 +104,28 @@ describe('AddressBook', () => {
   })
 
   it('renders type ahead search results', () => {
-    const screen = shallow(<AddressBook {...props} />)
-    screen.instance()._requestFinished([u1, u2], null)
+    let results = [
+      templates.addressBookResult({
+        id: '1',
+        name: 'John',
+      }),
+      templates.addressBookResult({
+        id: '2',
+        name: 'Jane',
+        pronouns: 'She/Her',
+      }),
+    ]
+    let screen = shallow(<AddressBook {...props} />)
+    let search = shallow(screen.find('FlatList').prop('ListHeaderComponent'))
+    search.prop('onRequestFinished')(results, null)
     screen.update()
-    const rows = screen.find('FlatList').props().data
-    expect(rows).toHaveLength(3)
+    let list = screen.find('FlatList')
+    let rows = list.prop('data')
+    expect(rows).toHaveLength(results.length + 1) // + All row
+    let row1 = shallow(list.prop('renderItem')({ item: rows[1], index: 1 }))
+    expect(row1.prop('title')).toEqual('John')
+    let row2 = shallow(list.prop('renderItem')({ item: rows[2], index: 2 }))
+    expect(row2.prop('title')).toEqual('Jane (She/Her)')
   })
 
   it('renders next type ahead search results', () => {
@@ -198,7 +215,8 @@ describe('AddressBook', () => {
 
   it('give type ahead the correct params', () => {
     props.context = 'course_2'
-    const typeahead = shallow(new AddressBook(props)._renderSearchBar())
+    let tree = shallow(<AddressBook {...props} />)
+    let typeahead = shallow(tree.find('FlatList').prop('ListHeaderComponent'))
     expect(typeahead.props().parameters('Malthael')).toEqual({
       context: 'course_2',
       search: 'Malthael',

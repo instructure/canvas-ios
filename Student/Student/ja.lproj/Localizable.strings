@@ -447,6 +447,9 @@
 /* label for customizing a course */
 "Customize" = "カスタマイズ";
 
+/* No comment provided by engineer. */
+"d_events" = "d_events";
+
 /* dashboard page title */
 "Dashboard" = "ダッシュボード";
 
