@@ -67,6 +67,7 @@ class ConversationListViewController: UIViewController, ConversationCoursesActio
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useModalStyle()
         navigationController?.setNavigationBarHidden(false, animated: animated)
+        navigationController?.navigationBar.useContextColor(ColorScheme.observer.color)
     }
 
     @IBAction func refresh() {

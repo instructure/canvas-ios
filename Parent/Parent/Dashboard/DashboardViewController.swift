@@ -28,49 +28,58 @@ struct DashboardViewState {
     var isValidObserver = true
 }
 
-class DashboardViewController: UIViewController {
-    var env = AppEnvironment.shared
-    var studentCollection: FetchedCollection<Student>!
-    var studentSyncProducer: Student.ModelPageSignalProducer!
-
-    // Views created from storyboard
+class DashboardViewController: UIViewController, CustomNavbarProtocol {
+    @IBOutlet weak var viewControlelrContainerView: UIView!
     @IBOutlet weak var menuButton: UIButton!
-    @IBOutlet weak var badgeView: UIView!
-    @IBOutlet weak var badgeLabel: UILabel!
     @IBOutlet weak var headerContainerView: UIView!
-    @IBOutlet weak var studentInfoContainer: UIView!
-    @IBOutlet weak var studentInfoStackView: UIStackView!
-    @IBOutlet weak var studentInfoAvatar: AvatarView!
-    @IBOutlet weak var studentInfoName: UILabel!
-    @IBOutlet weak var studentInfoDownArrow: UIImageView!
-
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var coursesTabItem: UITabBarItem!
     @IBOutlet weak var calendarTabItem: UITabBarItem!
     @IBOutlet weak var alertsTabItem: UITabBarItem!
-
-    // Views hooked up
-    @objc var pageViewController: UIPageViewController!
-    @objc var context: NSManagedObjectContext!
+    @IBOutlet weak var contentContainer: UIView!
+    var env = AppEnvironment.shared
+    var studentCollection: FetchedCollection<Student>!
+    var studentSyncProducer: Student.ModelPageSignalProducer!
+    var pageViewController: UIPageViewController!
+    var context: NSManagedObjectContext!
     var coursesViewController: CourseListViewController?
-    @objc var calendarViewController: UIViewController?
-    @objc var alertsViewController: UIViewController?
-    @objc var viewControllers: [UIViewController]!
-
-    @objc var session: Session!
+    var calendarViewController: UIViewController?
+    var alertsViewController: UIViewController?
+    var viewControllers: [UIViewController]!
+    var badgeCount: UInt = 0
+    var session: Session!
     var presenter: DashboardPresenter?
-
-    @objc var currentStudent: Student? {
+    var alertTabBadgeCountCoordinator: AlertCountCoordinator?
+    var studentCountObserver: ManagedObjectCountObserver<Student>!
+    var adminViewController: AdminViewController!
+    var viewState = DashboardViewState()
+    var shownNotAParent = false
+    var navbarBottomViewContainer: UIView!
+    var navbarMenu: UIView!
+    var navbarMenuStackView: HorizontalScrollingStackview!
+    var navbarNameButton: DynamicButton!
+    var navbarAvatar: AvatarView?
+    var navbarMenuHeightConstraint: NSLayoutConstraint!
+    weak var customNavbarDelegate: CustomNavbarActionDelegate?
+    var customNavBarColor: UIColor? {
+        if let id = currentStudentID { return ColorScheme.observee(id).color } else { return ColorScheme.observer.color }
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    var currentStudent: Student? {
         didSet {
             if let student = currentStudent {
                 currentStudentID = student.id
                 let color = ColorScheme.observee(student.id).color
                 alertsTabItem.badgeColor = color
-                headerContainerView.backgroundColor = color
-                badgeLabel.textColor = color
-                badgeView.layer.borderColor = color.cgColor
+                navbarNameButton.setTitle(student.name, for: .normal)
+                //                badgeLabel.textColor = color
+                //                badgeView.layer.borderColor = color.cgColor
+                navigationItem.leftBarButtonItem?.addBadge(number: badgeCount, color: color)
+                navbarAvatar?.url = student.avatarURL
                 tabBar.tintColor = color
-                navigationController?.view.backgroundColor = color
+                refreshNavbarColor()
             }
 
             if currentStudent == nil || oldValue?.id != currentStudent?.id {
@@ -79,13 +88,6 @@ class DashboardViewController: UIViewController {
             }
         }
     }
-
-    var alertTabBadgeCountCoordinator: AlertCountCoordinator?
-
-    var studentCountObserver: ManagedObjectCountObserver<Student>!
-    @objc var adminViewController: AdminViewController!
-    var viewState = DashboardViewState()
-    var shownNotAParent = false
 
     // ---------------------------------------------
     // MARK: - Initializers
@@ -102,44 +104,21 @@ class DashboardViewController: UIViewController {
     // MARK: - Lifecycle
     // ---------------------------------------------
     override func viewDidLoad() {
-
         super.viewDidLoad()
-
-        badgeView.isHidden = true
-        badgeView.isUserInteractionEnabled = false
-        menuButton.addSubview(badgeView)
-
-        // Remove the testing background colors
-        studentInfoContainer.backgroundColor = .clear
-        studentInfoName.backgroundColor = .clear
-
-        studentInfoDownArrow.image = UIImage.icon(.dropdown)
-
-        // Add the gesture recognizer that will open the action sheet to select a student
-        let tap = UITapGestureRecognizer(target: self, action: #selector(studentInfoTapped))
-        studentInfoContainer.addGestureRecognizer(tap)
+        customNavbarDelegate = self
+        setupCustomNavbar()
+        configurePageViewController()
+        addHamburgerButtonToNavbar()
 
         tabBar.barTintColor = .named(.backgroundLightest)
         view.backgroundColor = .named(.backgroundLightest)
-
-        let color = ColorScheme.observer.color
-        headerContainerView.backgroundColor = color
-        tabBar.tintColor = color
-
-        self.studentInfoContainer.isHidden = true
+        tabBar.tintColor = ColorScheme.observer.color
         presenter?.viewIsReady()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        if ExperimentalFeature.parentInbox.isEnabled {
-            env.api.makeRequest(GetConversationsUnreadCountRequest()) { [weak self] (response, _, _) in performUIUpdate {
-                let unreadCount = response?.unread_count ?? 0
-                self?.badgeView.isHidden = unreadCount == 0
-                self?.badgeLabel.text = NumberFormatter.localizedString(from: NSNumber(value: unreadCount), number: .none)
-            } }
-        }
+        updateBadge()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -157,26 +136,24 @@ class DashboardViewController: UIViewController {
         }
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "embed_page_view_controller" {
-            guard let pageViewController = segue.destination as? UIPageViewController else {
-                fatalError("PageViewController is not of type UIPageViewController")
-            }
-
-            self.pageViewController = pageViewController
-            self.pageViewController?.delegate = self
-            self.pageViewController?.setViewControllers([UIViewController()], direction: .forward, animated: false, completion: nil)
-        }
+    func configurePageViewController() {
+        pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        pageViewController.delegate = self
+        addChild(pageViewController)
+        contentContainer.addSubview(pageViewController.view)
+        pageViewController.view.pin(inside: contentContainer)
+        pageViewController.didMove(toParent: self)
+        hookupRootViewToMenu(contentContainer)
     }
 
-    // ---------------------------------------------
-    // MARK: - View Setup
-    // ---------------------------------------------
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+    func addHamburgerButtonToNavbar() {
+        let bbi = UIBarButtonItem(image: UIImage.icon(.hamburger, .solid), style: .plain, target: self, action: #selector(drawerDashboardButtonPressed(_:)))
+        bbi.tintColor = .white
+        navigationItem.leftBarButtonItem = bbi
+
     }
 
-    @objc func setup() throws {
+    func setup() throws {
         guard studentCollection == nil else { return }
         viewState.isSiteAdmin = session.isSiteAdmin
         studentCollection = try Student.observedStudentsCollection(session)
@@ -186,13 +163,14 @@ class DashboardViewController: UIViewController {
             // the current user session
             var noMoreLinkedStudents = false
             if count == 0,
-               let state = self?.viewState,
-               state.studentCount > 0,
-               state.isValidObserver {
+                let state = self?.viewState,
+                state.studentCount > 0,
+                state.isValidObserver {
                 noMoreLinkedStudents = true
             }
 
             self?.viewState.studentCount = count
+            self?.configureStudentMenu()
 
             if (noMoreLinkedStudents) {
                 DispatchQueue.main.async {
@@ -204,7 +182,7 @@ class DashboardViewController: UIViewController {
         try retrieveStudents()
     }
 
-    @objc func retrieveStudents() throws {
+    func retrieveStudents() throws {
         studentSyncProducer = try Student.observedStudentsSyncProducer(session)
         studentSyncProducer.startWithSignal { [weak self] (signal, disposable) in
             signal.observe({ (event) in
@@ -217,7 +195,7 @@ class DashboardViewController: UIViewController {
         }
     }
 
-    @objc public func updateMainView() {
+    public func updateMainView() {
         if (!viewState.isValidObserver &&
             !viewState.isSiteAdmin &&
             presenter?.permissions.pending == false &&
@@ -229,7 +207,7 @@ class DashboardViewController: UIViewController {
             return
         }
 
-        self.studentInfoContainer.isHidden = false
+        //        self.studentInfoContainer.isHidden = false
         setupTabs()
 
         if (viewState.isSiteAdmin || presenter?.permissions.first?.becomeUser == true) && viewState.studentCount == 0 {
@@ -239,14 +217,14 @@ class DashboardViewController: UIViewController {
         displayDefaultStudent()
     }
 
-    @objc func studentAtIndex(_ index: Int) -> Student? {
+    func studentAtIndex(_ index: Int) -> Student? {
         guard index >= 0 else { return nil }
         guard let collection = studentCollection else { return nil }
         guard collection.numberOfItemsInSection(0) > index else { return nil }
         return collection[IndexPath(row: index, section: 0)]
     }
 
-    @objc func setupTabs() {
+    func setupTabs() {
         tabBar.delegate = self
 
         let coursesTitle = NSLocalizedString("Courses", comment: "Courses Tab")
@@ -277,10 +255,10 @@ class DashboardViewController: UIViewController {
         selectCoursesTab()
     }
 
-    @objc func showSiteAdminViews() {
-        studentInfoName.text = NSLocalizedString("Admin", comment: "Label displayed when logged in as an admin")
-        studentInfoContainer.accessibilityLabel = studentInfoName.text
-        studentInfoAvatar.isHidden = true
+    func showSiteAdminViews() {
+        //        studentInfoName.text = NSLocalizedString("Admin", comment: "Label displayed when logged in as an admin")
+        //        studentInfoContainer.accessibilityLabel = studentInfoName.text
+        //        studentInfoAvatar.isHidden = true
         let storyboard = UIStoryboard(name: "AdminViewController", bundle: nil)
         adminViewController = storyboard.instantiateViewController(withIdentifier: "vc") as? AdminViewController
 
@@ -291,14 +269,14 @@ class DashboardViewController: UIViewController {
         pageViewController?.setViewControllers([adminViewController], direction: .reverse, animated: false, completion: { _ in })
     }
 
-    @objc func showNotAParentView() {
+    func showNotAParentView() {
         presenter?.showWrongAppScreen()
     }
 
     // ---------------------------------------------
     // MARK: - Data Methods
     // ---------------------------------------------
-    @objc func reloadObserveeData() {
+    func reloadObserveeData() {
         var calendarStartDate: Date = Date()
         if let calendarVC = calendarViewController as? CalendarEventWeekPageViewController, let currentStart = calendarVC.currentStartDate {
             calendarStartDate = currentStart
@@ -340,10 +318,23 @@ class DashboardViewController: UIViewController {
         }
     }
 
+    func updateBadge() {
+        if ExperimentalFeature.parentInbox.isEnabled {
+            env.api.makeRequest(GetConversationsUnreadCountRequest()) { [weak self] (response, _, _) in performUIUpdate {
+                let unreadCount = UInt(response?.unread_count ?? 0)
+                self?.badgeCount = unreadCount
+                performUIUpdate {
+                    let color = ColorScheme.observee(currentStudentID ?? "0").color
+                    self?.navigationItem.leftBarButtonItem?.addBadge(number: unreadCount, color: color)
+                }
+            } }
+        }
+    }
+
     // ---------------------------------------------
     // MARK: - ChildViewControllers
     // ---------------------------------------------
-    @objc func initialViewController() -> UIViewController? {
+    func initialViewController() -> UIViewController? {
         return coursesViewController
     }
 
@@ -355,18 +346,43 @@ class DashboardViewController: UIViewController {
         return try? CourseListViewController(session: session, studentID: currentStudent.id)
     }
 
-    @objc func calendarViewController(_ session: Session, startDate: Date = Date()) -> UIViewController? {
+    func calendarViewController(_ session: Session, startDate: Date = Date()) -> UIViewController? {
         guard let currentStudent = currentStudent else { return nil }
         return CalendarEventWeekPageViewController.create(session: session, studentID: currentStudent.id, initialReferenceDate: startDate)
     }
 
-    @objc func alertsViewController(_ session: Session) -> UIViewController? {
+    func alertsViewController(_ session: Session) -> UIViewController? {
         guard let currentStudent = currentStudent else { return nil }
         //  swiftlint:disable:next force_try
         return try! AlertsListViewController(session: session, observeeID: currentStudent.id)
     }
 
-    @objc func studentInfoTapped(gesture: UITapGestureRecognizer) {
+    func configureStudentMenu() {
+        guard let collection = studentCollection else { return }
+        guard collection.numberOfItemsInSection(0) > 0 else { return }
+        navbarMenuStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        for (index, student) in collection.enumerated() {
+            if student.id == (currentStudent?.id ?? "") { continue }
+            let item = MenuItem()
+            item.button.tag = index
+            item.button.addTarget(self, action: #selector(didSelectStudent(sender:)), for: .primaryActionTriggered)
+            navbarMenuStackView.addArrangedSubview(item)
+            item.addConstraintsWithVFL("H:[view(70)]")
+            item.addConstraintsWithVFL("V:[view(70)]")
+            item.imageView.load(url: student.avatarURL)
+            item.label.text = student.name
+        }
+        navbarMenuStackView.leftAlignArrangedSubviews()
+    }
+
+    @objc func didSelectStudent(sender: UIButton) {
+        let index = sender.tag
+        currentStudent = studentAtIndex(index)
+        showCustomNavbarMenu(false)
+        configureStudentMenu()
+    }
+
+    func studentInfoTapped(gesture: UITapGestureRecognizer) {
         guard let collection = studentCollection else { return }
         guard collection.numberOfItemsInSection(0) > 0 else { return }
 
@@ -377,8 +393,8 @@ class DashboardViewController: UIViewController {
             popover.sourceView = view
 
             // position the alert to be below the student name and in the center of it
-            let frame = view.convert(studentInfoName.frame, from: studentInfoStackView)
-            popover.sourceRect = CGRect(x: frame.midX, y: frame.maxY + 3, width: 0, height: 0)
+            //            let frame = view.convert(studentInfoName.frame, from: studentInfoStackView)
+            //            popover.sourceRect = CGRect(x: frame.midX, y: frame.maxY + 3, width: 0, height: 0)
         }
 
         collection.forEach { student in
@@ -391,7 +407,7 @@ class DashboardViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
 
-    @objc func selectCoursesTab() {
+    func selectCoursesTab() {
         tabBar.selectedItem = coursesTabItem
 
         guard let coursesViewController = coursesViewController else {
@@ -401,7 +417,7 @@ class DashboardViewController: UIViewController {
         self.pageViewController?.setViewControllers([coursesViewController], direction: .reverse, animated: false, completion: { _ in })
     }
 
-    @objc func selectCalendarTab() {
+    func selectCalendarTab() {
         tabBar.selectedItem = calendarTabItem
 
         guard let calendarViewController = calendarViewController else {
@@ -417,7 +433,7 @@ class DashboardViewController: UIViewController {
         self.pageViewController?.setViewControllers([calendarViewController], direction: direction, animated: false, completion: { _ in })
     }
 
-    @objc func selectAlertsTab() {
+    func selectAlertsTab() {
         tabBar.selectedItem = alertsTabItem
 
         guard let alertsViewController = alertsViewController else {
@@ -431,28 +447,12 @@ class DashboardViewController: UIViewController {
         env.router.route(to: .profile, from: self, options: .modal())
     }
 
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        // TODO
-        // reload user dropdown?
-    }
-
-    @objc func displayDefaultStudent() {
+    func displayDefaultStudent() {
         currentStudent = studentAtIndex(0)
     }
 
-    @objc func updateStudentInfoView() {
-        studentInfoName.text = currentStudent?.name
-        studentInfoAvatar.isHidden = currentStudent == nil
-        studentInfoDownArrow.isHidden = currentStudent == nil
-        if let student = currentStudent {
-            studentInfoAvatar.name = student.name
-            studentInfoAvatar.url = student.avatarURL
-            studentInfoContainer.accessibilityLabel = String.localizedStringWithFormat(NSLocalizedString("Current student: %@, tap to switch students", comment: ""), student.name)
-            studentInfoContainer.isAccessibilityElement = true
-        } else {
-            studentInfoContainer.isAccessibilityElement = false
-        }
+    func updateStudentInfoView() {
+        navbarAvatar?.url = currentStudent?.avatarURL
     }
 }
 
@@ -484,7 +484,54 @@ extension DashboardViewController: UIPageViewControllerDelegate {
 
 }
 
+extension DashboardViewController: CustomNavbarActionDelegate {
+    func didClickNavbarNameButton(sender: UIButton) {
+        showCustomNavbarMenu(navbarMenuIsHidden)
+//        showCustomNavbarMenu(navbarMenuIsHidden, view: pageViewController.view)
+    }
+}
+
 // Helper function inserted by Swift 4.2 migrator.
 private func convertToUIBackgroundTaskIdentifier(_ input: Int) -> UIBackgroundTaskIdentifier {
 	return UIBackgroundTaskIdentifier(rawValue: input)
+}
+
+class MenuItem: UIView {
+    var imageView: UIImageView!
+    var button: UIButton!
+    var label: DynamicLabel!
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func commonInit() {
+        label = DynamicLabel()
+        label.font = UIFont.scaledNamedFont(.semibold14)
+        label.lineBreakMode = .byTruncatingTail
+        label.numberOfLines = 1
+        label.textAlignment = .center
+        imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        button = UIButton(type: .system)
+        addSubview(imageView)
+        addSubview(label)
+        addSubview(button)
+
+        label.addConstraintsWithVFL("V:[view(21)]")
+        label.addConstraintsWithVFL("H:|[view]|")
+
+        imageView.addConstraintsWithVFL("V:|-(16)-[view(48)]-(8)-[label]", views: ["label": label])
+        imageView.addConstraintsWithVFL("H:[view(48)]")
+        imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        imageView.layer.cornerRadius = 48.0 / 2.0
+        imageView.layer.masksToBounds = true
+
+        button.pin(inside: self)
+    }
 }
