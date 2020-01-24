@@ -54,6 +54,7 @@ public final class Assignment: NSManagedObject, LockableModel {
     @NSManaged internal (set) public var currentScore: NSNumber?
     @NSManaged internal (set) public var gradePostedAt: Date?
     @NSManaged internal (set) public var submissionLate: Bool
+    @NSManaged internal (set) public var submissionMissing: Bool
     @NSManaged internal (set) public var submittedAt: Date?
     @NSManaged internal (set) public var submissionExcused: Bool
     @NSManaged internal (set) public var gradedAt: Date?
@@ -375,6 +376,7 @@ extension Assignment: SynchronizedModel {
             gradedAt            = try submissionJSON <| "graded_at"
             gradePostedAt       = try submissionJSON <| "posted_at"
             submissionState     = try submissionJSON <| "workflow_state"
+            submissionMissing   = (try submissionJSON <| "missing") ?? false
 
             // The API can give us ghost "graded" states if the teacher taps in SpeedGrader in the grade box...
             // let's make sure an actual grade exists, otherwise it's not actually "graded"
