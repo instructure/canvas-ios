@@ -158,7 +158,7 @@ public extension Element {
     }
 }
 
-func waitUntil(
+public func waitUntil(
     _ timeout: TimeInterval = 30,
     file: StaticString = #file,
     line: UInt = #line,
