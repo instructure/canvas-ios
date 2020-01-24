@@ -57,5 +57,8 @@ public extension ElementWrapper where Self: RawRepresentable, Self.RawValue: Str
 }
 
 public extension RawElementWrapper where Self: RawRepresentable, Self.RawValue: StringProtocol {
+    var element: Element {
+        app.find(id: id)
+    }
     var id: String { "\(rawValue)" }
 }
