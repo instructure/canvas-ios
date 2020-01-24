@@ -50,7 +50,7 @@ class ConversationDetailCell: UITableViewCell {
         attachmentStackView.arrangedSubviews.forEach { v in v.removeFromSuperview() }
 
         audioPlayerContainer.isHidden = true
-        if media?.mediaType == .video, let url = media?.url {
+        if /*media?.mediaType == .video,*/ let url = media?.url {
             addVideoAttachment(url: url, parent: parent)
         } else if media?.mediaType == .audio {
             addAudioPlayer(url: media?.url, parent: parent)

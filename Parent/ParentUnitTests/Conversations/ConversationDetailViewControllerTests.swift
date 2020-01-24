@@ -39,7 +39,7 @@ class ConversationDetailViewControllerTests: ParentTestCase {
                   created_at: Clock.now.addDays(-1),
                   body: "hello world",
                   author_id: "1",
-                  attachments: [.make(id: "1", mime_class: "doc"), .make(id: "2", mime_class: "image")],
+                  attachments: [.make(id: "1", mime_class: "doc"), .make(id: "2", display_name: "Image", mime_class: "image")],
                   participating_user_ids: [ "1", "2" ]
                 ),
                 APIConversationMessage.make(
@@ -75,10 +75,10 @@ class ConversationDetailViewControllerTests: ParentTestCase {
 
         XCTAssertEqual(first?.attachmentStackView.arrangedSubviews.count, 3)
         XCTAssertTrue(first?.attachmentStackView.isHidden == false)
-        XCTAssertTrue(first?.attachmentStackView.arrangedSubviews.first is ConversationDetailCell.NonPhotoAttachment)
-        XCTAssertTrue(first?.attachmentStackView.arrangedSubviews[1] is ConversationDetailCell.PhotoAttachment)
+        XCTAssertEqual(first?.attachmentStackView.arrangedSubviews[0].accessibilityLabel, "File")
+        XCTAssertEqual(first?.attachmentStackView.arrangedSubviews[1].accessibilityLabel, "Image")
 
-        (first?.attachmentStackView.arrangedSubviews.first as? ConversationDetailCell.NonPhotoAttachment)?.button.sendActions(for: .primaryActionTriggered)
+        (first?.attachmentStackView.arrangedSubviews.first as? UIButton)?.sendActions(for: .primaryActionTriggered)
         XCTAssertTrue(router.lastRoutedTo(.parse("https://canvas.instructure.com/files/1/download")))
 
         let actions = controller.tableView.delegate?.tableView?(

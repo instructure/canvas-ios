@@ -1411,9 +1411,9 @@
 			children = (
 				7D6F4CEA23C69F7F001C957D /* ComposeReplyViewControllerTests.swift */,
 				7D231BE023AC1E0A005BA31D /* ComposeViewControllerTests.swift */,
+				9F397F8423C8D54600A3E2AF /* ConversationCoursesActionSheetTests.swift */,
 				97D477C823AA738300A6BC78 /* ConversationDetailViewControllerTests.swift */,
 				7DFDB43123A3EDFB00B28DED /* ConversationListViewControllerTests.swift */,
-				9F397F8423C8D54600A3E2AF /* ConversationCoursesActionSheetTests.swift */,
 				B109248F23CE7F9500796903 /* EditComposeRecipientsViewControllerTests.swift */,
 			);
 			path = Conversations;
