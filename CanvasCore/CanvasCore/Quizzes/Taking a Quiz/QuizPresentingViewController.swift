@@ -227,6 +227,7 @@ class QuizPresentingViewController: UIViewController {
         timerLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)
         timerLabel.text = ""
         timerLabel.isUserInteractionEnabled = true
+        timerLabel.accessibilityIdentifier = "Quiz.timer"
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(QuizPresentingViewController.toggleTimer))
         timerLabel.addGestureRecognizer(tapGesture)
@@ -278,8 +279,8 @@ class QuizPresentingViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    fileprivate func updateTimer(_ currentTime: Int) {
-        if self.timerVisible {
+    fileprivate func updateTimer(_ currentTime: Int?) {
+        if let currentTime = currentTime, self.timerVisible {
             let timeInterval = TimeInterval(currentTime)
             let displayString = timerFormatter.string(from: timeInterval)
             self.timerLabel.text = displayString
@@ -368,7 +369,7 @@ class QuizPresentingViewController: UIViewController {
         timerVisible = !timerVisible
         
         if timerVisible {
-            updateTimer(quizSubmissionTimerController!.timerTime)
+            updateTimer(quizSubmissionTimerController?.timerTime)
         } else {
             timerLabel.text = NSLocalizedString("Show Timer", tableName: "Localizable", bundle: .core, value: "", comment: "Text for a button that toggles to show a timer for a timed quiz")
         }

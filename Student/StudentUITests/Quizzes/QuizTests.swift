@@ -27,7 +27,9 @@ class QuizTests: CoreUITestCase {
         CourseNavigation.quizzes.tap()
 
         app.find(labelContaining: "Quiz One").tap()
-        Quiz.resumeButton.tap()
+        Quiz.takeButton.tapUntil {
+            Quiz.text(string: "This is question A").exists
+        }
 
         Quiz.text(string: "This is question A").waitToExist()
         Quiz.text(string: "True").waitToExist()
@@ -49,7 +51,7 @@ class QuizTests: CoreUITestCase {
         CourseNavigation.quizzes.tap()
 
         app.find(labelContaining: "Web Quiz").tap()
-        Quiz.resumeButton.tap()
+        Quiz.takeButton.tap()
         app.find(label: "This quiz is for testing web view question types.").waitToExist()
     }
 
@@ -244,16 +246,36 @@ class MockedQuizTests: StudentUITestCase {
                 .numerical_question,
             ],
             quiz_type: .survey,
-            time_limit: 100
+            time_limit: 10
         )
+
+        let submission = APIQuizSubmission.make()
 
         mockData(GetQuizRequest(courseID: "1", quizID: quiz.id.value), value: quiz)
         mockData(GetQuizSubmissionRequest(courseID: "1", quizID: quiz.id.value),
                  value: .init(quiz_submissions: [ ]))
         mockData(GetAllQuizSubmissionsRequest(courseID: "1", quizID: quiz.id.value),
                  value: .init(quiz_submissions: [ ]))
-        show("courses/1/quizzes/\(quiz.id)")
 
-        sleep(100000000)
+        show("courses/1/quizzes/\(quiz.id)")
+        app.swipeLeft()
+
+        let quizTime = 10
+
+        mockData(PostQuizSubmissionRequest(courseID: "1", quizID: quiz.id.value, body: nil),
+                 value: .init(quiz_submissions: [ submission ]))
+        mockEncodableRequest("courses/1/quizzes/123/submissions/1/events", value: nil as String?)
+        mockEncodableRequest("courses/1/quizzes/123/submissions/1/time", value: ["time_left": quizTime])
+        let completed = XCTestExpectation()
+        mockQuestions(forSubmission: submission, answered: false)
+        mockRequest("courses/1/quizzes/123/submissions/1/complete") { _ in
+            completed.fulfill()
+            return MockHTTPResponse(value: PostQuizSubmissionRequest.Response.init(quiz_submissions: [submission]))!
+        }
+        app.find(label: "Take Quiz").tap()
+        waitUntil { !Quiz.timer.label().isEmpty }
+        XCTAssertLessThanOrEqual(Int(Quiz.timer.label()) ?? Int.max, quizTime)
+
+        wait(for: [completed], timeout: 30)
     }
 }

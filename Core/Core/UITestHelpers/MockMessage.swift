@@ -69,6 +69,18 @@ public class MockHTTPResponse: Codable {
         self.noCallback = noCallback
     }
 
+    convenience init?<D: Codable>(value: D) {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+
+        guard let data = try? encoder.encode(value) else {
+            return nil
+        }
+
+        self.init(data: data,
+                  http: HTTPURLResponse(url: URL(string: "/")!, statusCode: 200, httpVersion: nil, headerFields: nil))
+    }
+
     required public init(from decoder: Decoder) throws {
         let root = try decoder.container(keyedBy: CodingKeys.self)
 

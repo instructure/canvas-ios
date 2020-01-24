@@ -19,10 +19,8 @@
 import XCTest
 import TestsFoundation
 
-enum Quiz {
-    static var resumeButton: Element {
-        return app.find(labelContaining: "Resume Quiz")
-    }
+enum Quiz: String, ElementWrapper {
+    case takeButton, timer
 
     static var submitButton: Element {
         return app.buttons.matching(label: "Submit").firstElement
