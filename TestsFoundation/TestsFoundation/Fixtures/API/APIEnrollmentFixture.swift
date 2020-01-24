@@ -22,14 +22,14 @@ import Foundation
 extension APIEnrollment {
     public static func make(
         id: ID? = "1",
-        course_id: String? = nil,
-        course_section_id: String? = nil,
+        course_id: ID? = nil,
+        course_section_id: ID? = nil,
         enrollment_state: EnrollmentState = .active,
         type: String = "StudentEnrollment",
-        user_id: String = "12",
-        associated_user_id: String? = nil,
+        user_id: ID = "12",
+        associated_user_id: ID? = nil,
         role: String = "StudentEnrollment",
-        role_id: String = "3",
+        role_id: ID = "3",
         start_at: Date? = nil,
         end_at: Date? = nil,
         grades: Grades? = nil,
@@ -39,12 +39,12 @@ extension APIEnrollment {
         computed_final_grade: String? = nil,
         multiple_grading_periods_enabled: Bool? = false,
         totals_for_all_grading_periods_option: Bool? = true,
-        current_grading_period_id: String? = "1",
+        current_grading_period_id: ID? = "1",
         current_period_computed_current_score: Double? = nil,
         current_period_computed_final_score: Double? = nil,
         current_period_computed_current_grade: String? = nil,
         current_period_computed_final_grade: String? = nil,
-        user: APIUser = .make(),
+        user: APIUser? = .make(),
         observed_user: APIUser? = nil
     ) -> APIEnrollment {
         return APIEnrollment(

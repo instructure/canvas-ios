@@ -53,7 +53,7 @@ abstract_target 'defaults' do
   pod 'AFNetworking', '~> 3.0'
   pod 'Mantle', '~> 1.5.5'
 
-  target 'CoreTests' do
+  target 'PactTests' do
     project 'Core/Core.xcodeproj'
     pod 'PactConsumerSwift', :git => 'https://github.com/DiUS/pact-consumer-swift.git'
   end

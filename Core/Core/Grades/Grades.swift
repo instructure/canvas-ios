@@ -105,14 +105,14 @@ public class Grades {
                     self.error = error ?? NSError.internalError()
                     return
                 }
-                guard let enrollment = response.enrollments?.first(where: { $0.user_id == self.userID && $0.type.lowercased().contains("student") && $0.enrollment_state == .active }) else {
+                guard let enrollment = response.enrollments?.first(where: { $0.user_id.value == self.userID && $0.type.lowercased().contains("student") && $0.enrollment_state == .active }) else {
                     self.error = NSError.instructureError(NSLocalizedString("Enrollment not found.", comment: ""))
                     return
                 }
                 do {
                     Course.save(response, in: context)
                     try context.save()
-                    self.gradingPeriodID = enrollment.current_grading_period_id
+                    self.gradingPeriodID = enrollment.current_grading_period_id?.value
                 } catch {
                     self.error = error
                 }
@@ -165,8 +165,8 @@ public class Grades {
                     // Course endpoint enrollments don't include the enrollment ID so match against everything else.
                     let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                         NSPredicate(format: "%K == %@", #keyPath(Enrollment.stateRaw), item.enrollment_state.rawValue),
-                        NSPredicate(format: "%K == %@", #keyPath(Enrollment.userID), item.user_id),
-                        NSPredicate(format: "%K == %@", #keyPath(Enrollment.roleID), item.role_id),
+                        NSPredicate(format: "%K == %@", #keyPath(Enrollment.userID), item.user_id.value),
+                        NSPredicate(format: "%K == %@", #keyPath(Enrollment.roleID), item.role_id.value),
                         NSPredicate(format: "%K == %@", #keyPath(Enrollment.role), item.role),
                         NSPredicate(format: "%K == %@", #keyPath(Enrollment.course.id), self.courseID),
                     ])

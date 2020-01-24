@@ -34,6 +34,12 @@ extension URL: PactEncodable {
     }
 }
 
+extension ID: PactEncodable {
+    func pactEncode(to encoder: PactEncoder) throws {
+        try encoder.encode(Int(value))
+    }
+}
+
 extension APIUser: PactShapeEncodable { }
 extension EnrollmentState: PactCaseEncodable { }
 extension APIEnrollment: PactShapeEncodable { }

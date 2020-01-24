@@ -42,6 +42,28 @@ class CanvasMockService: MockService {
                 body: try PactEncoder.encodeToJsonObject(apiRequest.body)
         ).willRespondWith(status: 200, body: try PactEncoder.encodeToJsonObject(response))
     }
+
+    @discardableResult
+    func uponReceiving<R: APIRequestable, T>(
+        _ testDescription: String,
+        with apiRequest: R,
+        respondWithArrayLike response: T,
+        min: Int = 1
+    ) throws -> Interaction where R.Response == [T] {
+        let urlRequest = try apiRequest.urlRequest(relativeTo: api.baseURL, accessToken: "t", actAsUserID: nil)
+        let url = urlRequest.url!
+
+        let element = try PactEncoder.encodeToJsonObject(response)
+
+        return uponReceiving(testDescription)
+            .withRequest(
+                method: PactHTTPMethod(urlRequest.method),
+                path: url.path,
+                query: url.query,
+                headers: apiRequest.headers as [String: Any],
+                body: try PactEncoder.encodeToJsonObject(apiRequest.body)
+        ).willRespondWith(status: 200, body: Matcher.eachLike(element, min: min))
+    }
 }
 
 extension PactHTTPMethod {

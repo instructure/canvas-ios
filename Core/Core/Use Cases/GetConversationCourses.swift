@@ -73,7 +73,7 @@ public class GetConversationCourses: APIUseCase {
         }
 
         for enrollment in enrollments {
-            guard let courseModel: Course = client.first(where: #keyPath(Course.id), equals: enrollment.course_id), let enrollmentID = enrollment.id?.value else {
+            guard let courseModel: Course = client.first(where: #keyPath(Course.id), equals: enrollment.course_id?.value), let enrollmentID = enrollment.id?.value else {
                 continue
             }
             let enrollmentModel: Enrollment = client.first(where: #keyPath(Enrollment.id), equals: enrollmentID) ?? client.insert()

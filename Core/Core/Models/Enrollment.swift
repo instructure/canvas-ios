@@ -113,12 +113,12 @@ extension Enrollment {
     func update(fromApiModel item: APIEnrollment, course: Course?, gradingPeriodID: String? = nil, in client: NSManagedObjectContext) {
         id = item.id?.value
         role = item.role
-        roleID = item.role_id
+        roleID = item.role_id.value
         state = item.enrollment_state
         type = item.type
-        userID = item.user_id
+        userID = item.user_id.value
 
-        if let courseID = item.course_id ?? course?.id {
+        if let courseID = item.course_id?.value ?? course?.id {
             canvasContextID = "course_\(courseID)"
         }
 
@@ -131,7 +131,7 @@ extension Enrollment {
             grades.insert(grade)
         } else {
             multipleGradingPeriodsEnabled = item.multiple_grading_periods_enabled ?? false
-            currentGradingPeriodID = item.current_grading_period_id
+            currentGradingPeriodID = item.current_grading_period_id?.value
             totalsForAllGradingPeriodsOption = item.totals_for_all_grading_periods_option ?? false
             computedCurrentScore = item.computed_current_score
             computedCurrentGrade = item.computed_current_grade
@@ -146,8 +146,8 @@ extension Enrollment {
             grade.currentScore = item.computed_current_score
             grades.insert(grade)
             if let currentGradingPeriodID = item.current_grading_period_id {
-                let currentPeriodGrade = grades.first { $0.gradingPeriodID == currentGradingPeriodID } ?? client.insert()
-                currentPeriodGrade.gradingPeriodID = currentGradingPeriodID
+                let currentPeriodGrade = grades.first { $0.gradingPeriodID == currentGradingPeriodID.value } ?? client.insert()
+                currentPeriodGrade.gradingPeriodID = currentGradingPeriodID.value
                 currentPeriodGrade.currentScore = item.current_period_computed_current_score
                 grades.insert(currentPeriodGrade)
             }

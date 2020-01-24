@@ -21,10 +21,10 @@ import Foundation
 // https://canvas.instructure.com/doc/api/enrollments.html#Enrollment
 public struct APIEnrollment: Codable, Equatable {
     let id: ID?
-    let course_id: String?
+    let course_id: ID?
     // let sis_course_id: String?
     // let course_integration_id: String?
-    let course_section_id: String?
+    let course_section_id: ID?
     // let section_integration_id: String?
     // let sis_account_id: String?
     // let sis_section_id: String?
@@ -34,10 +34,10 @@ public struct APIEnrollment: Codable, Equatable {
     // let sis_import_id: String?
     // let root_account_id: String
     let type: String
-    let user_id: String
-    let associated_user_id: String?
+    let user_id: ID
+    let associated_user_id: ID?
     let role: String
-    let role_id: String
+    let role_id: ID
     // let created_at: Date
     // let updated_at: Date
     let start_at: Date?
@@ -60,7 +60,7 @@ public struct APIEnrollment: Codable, Equatable {
     let multiple_grading_periods_enabled: Bool?
     let totals_for_all_grading_periods_option: Bool?
     // let current_grading_period_title: String?
-    let current_grading_period_id: String?
+    let current_grading_period_id: ID?
     let current_period_computed_current_score: Double?
     let current_period_computed_final_score: Double?
     let current_period_computed_current_grade: String?

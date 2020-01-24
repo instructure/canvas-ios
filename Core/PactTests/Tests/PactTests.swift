@@ -1,6 +1,5 @@
 //
 // This file is part of Canvas.
-
 // Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -32,32 +31,44 @@ class PactTests: XCTestCase {
     }()
 
     func testGetCourseUsers() throws {
-        let users = [APIUser.make()]
-        let useCase = GetContextUsers(context: ContextModel(.course, id: "1"))
+        let user = APIUser.make(locale: nil, permissions: nil)
+        let useCase = GetContextUsers(context: ContextModel(.course, id: "868"))
         try provider.uponReceiving(
             "List course users",
             with: useCase.request,
-            respondWith: users
+            respondWithArrayLike: user
         )
         provider.run { testComplete in
             useCase.makeRequest(environment: self.environment) { response, _, _ in
-                XCTAssertEqual(response, users)
+                XCTAssertEqual(response, [user])
                 testComplete()
             }
         }
     }
 
     func testGetCourses() throws {
-        let courses = [APICourse.make(start_at: Date.isoDateFromString("2020-01-23T00:00:00Z"))]
+        let course = APICourse.make(
+            start_at: Date.isoDateFromString("2020-01-23T00:00:00Z"),
+            enrollments: [
+                .make(
+                    id: nil,
+                    enrollment_state: .active,
+                    user_id: "12",
+                    role: "StudentEnrollment",
+                    role_id: "3",
+                    current_grading_period_id: nil,
+                    user: nil
+                ),
+        ])
         let useCase = GetCourses()
         try provider.uponReceiving(
             "Get courses",
             with: useCase.request,
-            respondWith: courses
+            respondWithArrayLike: course
         )
         provider.run { testComplete in
             useCase.makeRequest(environment: self.environment) { response, _, _ in
-                XCTAssertEqual(response, courses)
+                XCTAssertEqual(response, [course])
                 testComplete()
             }
         }
