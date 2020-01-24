@@ -34,6 +34,7 @@ import UserSubmissionRow from './UserSubmissionRow'
 import { graphql } from 'react-apollo'
 import { courseQuery } from '../../canvas-api-v2/queries/ContextCard'
 import * as app from '../app'
+import { personDisplayName } from '../../common/formatters'
 
 export class ContextCard extends Component {
   renderHeader () {
@@ -80,7 +81,7 @@ export class ContextCard extends Component {
             />
           </View>
           <Text testID='ContextCard.userNameLabel' style={styles.userName}>
-            {user.short_name}
+            {personDisplayName(user.short_name, user.pronouns)}
           </Text>
           { user.primary_email &&
             <Text testID='ContextCard.userEmailLabel' style={styles.userEmail}>
