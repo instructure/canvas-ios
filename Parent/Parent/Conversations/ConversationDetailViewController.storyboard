@@ -21,14 +21,14 @@
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ConversationDetailCell" id="Ggl-J4-YjR" customClass="ConversationDetailCell" customModule="Parent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="283.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="235.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ggl-J4-YjR" id="WaV-UU-eyg">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="283.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="235.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yoK-vu-7JQ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="283.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="235.5"/>
                                                     <subviews>
                                                         <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ydl-fI-jzy" customClass="AvatarView" customModule="Parent" customModuleProvider="target">
                                                             <rect key="frame" x="16" y="12" width="40" height="40"/>
@@ -92,16 +92,10 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="k6R-4f-fZa">
-                                                            <rect key="frame" x="16" y="115.5" width="382" height="152"/>
+                                                            <rect key="frame" x="16" y="115.5" width="382" height="104"/>
                                                             <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNn-VI-tWH">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="32"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="32" id="9PG-to-NBM"/>
-                                                                    </constraints>
-                                                                </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WAv-i1-qFc" customClass="HorizontalScrollingStackview" customModule="Core">
-                                                                    <rect key="frame" x="0.0" y="48" width="382" height="104"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="104"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="104" id="AWb-1p-UhV"/>
@@ -141,7 +135,6 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="attachmentStackView" destination="WAv-i1-qFc" id="pOx-Rt-bjj"/>
-                                            <outlet property="audioPlayerContainer" destination="ZNn-VI-tWH" id="mcj-S4-SNi"/>
                                             <outlet property="avatar" destination="ydl-fI-jzy" id="ExW-58-iAJ"/>
                                             <outlet property="dateLabel" destination="lGq-Od-o8W" id="v4L-Qb-q2c"/>
                                             <outlet property="fromLabel" destination="rmq-tE-xSD" id="lIE-ZW-DTp"/>

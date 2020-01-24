@@ -31,7 +31,6 @@ public class AudioPlayerViewController: UIViewController {
     @IBOutlet weak var trackFill: UIView?
     @IBOutlet weak var trackFillWidth: NSLayoutConstraint?
 
-    var currentURL: URL?
     lazy var formatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.minute, .second]
@@ -93,8 +92,6 @@ public class AudioPlayerViewController: UIViewController {
     }
 
     public func load(url: URL?) {
-        guard currentURL != url else { return }
-        currentURL = url
         currentTimeLabel?.text = NSLocalizedString("--:--", bundle: .core, comment: "Unknown time duration")
         remainingTimeLabel?.text = NSLocalizedString("--:--", bundle: .core, comment: "Unknown time duration")
         loadingView?.startAnimating()

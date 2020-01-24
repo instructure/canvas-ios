@@ -21,21 +21,20 @@ import UIKit
 import Core
 
 class ConversationDetailCell: UITableViewCell {
-    @IBOutlet weak var messageLabel: DynamicLabel!
-    @IBOutlet weak var fromLabel: DynamicLabel!
-    @IBOutlet weak var toLabel: DynamicLabel!
-    @IBOutlet weak var dateLabel: DynamicLabel!
+    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var fromLabel: UILabel!
+    @IBOutlet weak var toLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var avatar: AvatarView!
-    @IBOutlet weak var audioPlayerContainer: UIView!
     @IBOutlet weak var attachmentStackView: HorizontalScrollingStackview!
 
-    var audioPlayer: AudioPlayerViewController?
     var message: ConversationMessage?
-    var onTapAttachment: ((URL) -> Void)?
+    var parent: ConversationDetailViewController?
 
-    func update(_ message: ConversationMessage?, myID: String, userMap: [String: ConversationParticipant], parent: UIViewController) {
+    func update(_ message: ConversationMessage?, myID: String, userMap: [String: ConversationParticipant], parent: ConversationDetailViewController) {
         guard let m = message else { return }
         self.message = m
+        self.parent = parent
         messageLabel.text = m.body
         toLabel.text = m.localizedAudience(myID: myID, userMap: userMap)
         fromLabel.text = userMap[ m.authorID ]?.name
@@ -43,24 +42,23 @@ class ConversationDetailCell: UITableViewCell {
         avatar.url = userMap[ m.authorID ]?.avatarURL
         avatar.name = userMap[ m.authorID ]?.name ?? ""
 
-        handleAttachments(m.attachments, media: m.mediaComment, parent: parent)
+        handleAttachments(m.attachments, media: m.mediaComment)
     }
 
-    func handleAttachments(_ attachments: [File], media: MediaComment?, parent: UIViewController) {
+    func handleAttachments(_ attachments: [File], media: MediaComment?) {
         attachmentStackView.arrangedSubviews.forEach { v in v.removeFromSuperview() }
 
-        audioPlayerContainer.isHidden = true
-        if /*media?.mediaType == .video,*/ let url = media?.url {
-            addVideoAttachment(url: url, parent: parent)
-        } else if media?.mediaType == .audio {
-            addAudioPlayer(url: media?.url, parent: parent)
+        if media?.mediaType == .video, let url = media?.url {
+            addVideoAttachment(url: url)
+        } else if media?.mediaType == .audio, media?.url != nil {
+            addFileAttachment(-1, name: media?.displayName, icon: .icon(.audio))
         }
 
         for (index, a) in attachments.sorted(by: File.idCompare).enumerated() {
             if a.mimeClass == "image" {
                 addImageAttachment(index, name: a.displayName, url: a.previewURL ?? a.thumbnailURL)
             } else if a.mimeClass == "video", let url = a.url {
-                addVideoAttachment(url: url, parent: parent)
+                addVideoAttachment(url: url)
             } else {
                 addFileAttachment(index, name: a.displayName, icon: a.icon)
             }
@@ -82,16 +80,6 @@ class ConversationDetailCell: UITableViewCell {
             view.widthAnchor.constraint(equalToConstant: 120),
             view.heightAnchor.constraint(equalToConstant: 104),
         ])
-    }
-
-    func addAudioPlayer(url: URL?, parent: UIViewController) {
-        if audioPlayer == nil {
-            let audioPlayer = AudioPlayerViewController.create()
-            parent.embed(audioPlayer, in: audioPlayerContainer)
-            self.audioPlayer = audioPlayer
-        }
-        audioPlayer?.load(url: url)
-        audioPlayerContainer.isHidden = false
     }
 
     func addFileAttachment(_ index: Int, name: String?, icon: UIImage?) {
@@ -141,7 +129,7 @@ class ConversationDetailCell: UITableViewCell {
         imageView.load(url: url)
     }
 
-    func addVideoAttachment(url: URL, parent: UIViewController) {
+    func addVideoAttachment(url: URL) {
         let container = UIView()
         container.layer.cornerRadius = 4.0
         container.layer.masksToBounds = true
@@ -149,12 +137,29 @@ class ConversationDetailCell: UITableViewCell {
         let controller = AVPlayerViewController()
         controller.entersFullScreenWhenPlaybackBegins = true
         controller.player = AVPlayer(url: url)
-        parent.embed(controller, in: container)
+        parent?.embed(controller, in: container)
     }
 
     @objc func tapAttachment(sender: UIButton) {
-        guard message?.attachments.count ?? 0 > sender.tag else { return }
-        guard let url = message?.attachments.sorted(by: File.idCompare)[sender.tag].url else { return }
-        onTapAttachment?(url)
+        guard sender.tag >= 0 else { return playAudio(url: message?.mediaComment?.url) }
+
+        guard
+            let parent = parent, message?.attachments.count ?? 0 > sender.tag,
+            let attachment = message?.attachments.sorted(by: File.idCompare)[sender.tag],
+            let url = attachment.url
+        else { return }
+        if attachment.mimeClass == "audio" || attachment.contentType?.hasPrefix("audio/") == true {
+            return playAudio(url: attachment.url)
+        }
+        parent.env.router.route(to: url, from: parent, options: .modal(embedInNav: true, addDoneButton: true))
+    }
+
+    func playAudio(url: URL?) {
+        guard let parent = parent, let url = url else { return }
+        let controller = AVPlayerViewController()
+        controller.player = AVPlayer(url: url)
+        parent.env.router.show(controller, from: parent, options: .modal()) {
+            controller.player?.play()
+        }
     }
 }

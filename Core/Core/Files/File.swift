@@ -167,19 +167,17 @@ extension File: WriteableModel {
     }
 
     public var icon: UIImage? {
-        switch mimeClass {
-        case "audio":
+        if mimeClass == "audio" || contentType?.hasPrefix("audio/") == true {
             return UIImage.icon(.audio)
-        case "doc":
+        } else if mimeClass == "doc" {
             return UIImage.icon(.document)
-        case "image":
+        } else if mimeClass == "image" || contentType?.hasPrefix("image/") == true {
             return UIImage.icon(.image)
-        case "pdf":
+        } else if mimeClass == "pdf" {
             return UIImage.icon(.pdf)
-        case "video":
+        } else if mimeClass == "video" || contentType?.hasPrefix("video/") == true {
             return UIImage.icon(.video)
-        default:
-            return UIImage.icon(.document)
         }
+        return UIImage.icon(.document)
     }
 }
