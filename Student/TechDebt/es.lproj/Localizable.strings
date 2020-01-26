@@ -76,9 +76,6 @@
 /* 88 out of 100 points */
 "%1$g out of %2$@" = "%1$g de %2$@";
 
-/* A number and a collective noun, like '5 pigs' */
-"%d %@" = "%1$d %2$@";
-
 /* time since creation (2 or more days) */
 "%d days ago" = "%d hace varios días";
 
@@ -416,7 +413,9 @@
 /* label for customizing a course */
 "Customize" = "Personalizar";
 
-/* Default delete button MLVC */
+/* Button to confirm deleting folders
+   Button to delete a discussion entry
+   Confirm deletion of discussion entry */
 "Delete" = "Eliminar";
 
 /* Button for deleting files or folders. %d will be the number of selected items */
@@ -453,8 +452,7 @@
    Title for Discussions view controller */
 "Discussions" = "Foros de discusión";
 
-/* Dismiss button title
-   uialertaction button name for dismissing the failed refresh error message */
+/* Dismiss button title */
 "Dismiss" = "Descartar";
 
 /* Alert title asking if you want to masquerade */
@@ -545,9 +543,6 @@
 
 /* No comment provided by engineer. */
 "External URL" = "URL externa";
-
-/* Error title for refresh failing on an MLVC tableview controller */
-"Failed to load" = "No se pudo cargar";
 
 /* No comment provided by engineer. */
 "File" = "Archivo";
@@ -1245,9 +1240,6 @@
 /* message displayed in the details section if there is no comment. */
 "This assignment has no details." = "Esta tarea no tiene detalles.";
 
-/* Error message for refresh failing with an unauthorized code */
-"This can happen if your course hasn't started yet or you don't have permission to access this page." = "Esto puede suceder si su curso aún no ha comenzado o si no tiene permiso para acceder a esta página.";
-
 /* No comment provided by engineer. */
 "This entry has been deleted" = "Esta entrada ha sido borrada";
 
@@ -1305,9 +1297,6 @@
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "No se puede subir al servidor";
-
-/* Error message for refresh failing on an MLVC tableview controller */
-"Unauthorized" = "No autorizado";
 
 /* Grade unavailable */
 "Unavailable" = "No disponible";
