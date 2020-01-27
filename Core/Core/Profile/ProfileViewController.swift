@@ -104,7 +104,9 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
         }
 
         env.api.makeRequest(GetUserRequest(userID: "self")) { [weak self] user, _, _ in
-            self?.avatarButton?.isHidden = user?.permissions?.can_update_avatar == false
+            performUIUpdate {
+                self?.avatarButton?.isHidden = user?.permissions?.can_update_avatar == false
+            }
         }
     }
 

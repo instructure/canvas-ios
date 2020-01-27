@@ -30,6 +30,8 @@ class ComposeRecipientsView: UIView {
 
     var editButton: UIButton!
     var placeholder: UILabel!
+    var additionalRecipients: UILabel!
+    var isExpanded: Bool = false
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,6 +46,8 @@ class ComposeRecipientsView: UIView {
     func initialize() {
         addEditButton()
         addPlaceholder()
+        addAdditionalRecipients()
+        addExpandCollapse()
     }
 
     func addEditButton() {
@@ -74,15 +78,43 @@ class ComposeRecipientsView: UIView {
         ])
     }
 
+    func addAdditionalRecipients() {
+        additionalRecipients = UILabel()
+        additionalRecipients.translatesAutoresizingMaskIntoConstraints = false
+        additionalRecipients.textColor = .named(.textDarkest)
+        additionalRecipients.font = .scaledNamedFont(.semibold16)
+        addSubview(additionalRecipients)
+        NSLayoutConstraint.activate([
+            additionalRecipients.topAnchor.constraint(equalTo: topAnchor, constant: 19),
+            additionalRecipients.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -18),
+        ])
+    }
+
+    func addExpandCollapse() {
+        let touch = UITapGestureRecognizer(target: self, action: #selector(toggleIsExpanded(sender:)))
+        self.addGestureRecognizer(touch)
+    }
+
+    @objc
+    func toggleIsExpanded(sender: UITapGestureRecognizer) {
+        isExpanded = !isExpanded
+        updatePills()
+    }
+
     func updatePills() {
+        additionalRecipients.text = String.localizedStringWithFormat(NSLocalizedString("+%d", bundle: .parent, comment: ""), recipients.count - 1)
+        additionalRecipients.isHidden = recipients.count <= 1 || isExpanded
+
         pills.forEach { $0.removeFromSuperview() }
-        for recipient in recipients {
+
+        for recipient in recipients.dropLast(isExpanded ? 0 : max(recipients.count - 1, 0)) {
             let pill = ComposeRecipientView()
             addSubview(pill)
             pill.widthAnchor.constraint(lessThanOrEqualTo: widthAnchor, constant: -32).isActive = true
             pill.update(recipient)
             setNeedsLayout()
         }
+
         for pill in pills.dropFirst(recipients.count) {
             pill.removeFromSuperview()
             setNeedsLayout()
@@ -94,7 +126,7 @@ class ComposeRecipientsView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         let xPad: CGFloat = 16
-        let yPad: CGFloat = 12
+        let yPad: CGFloat = 8
         let space: CGFloat = 8
         var next = CGPoint(x: xPad, y: yPad)
         let lineHeight = pills.first?.frame.height ?? 0
@@ -112,6 +144,8 @@ class ComposeRecipientsView: UIView {
         }
         let height = constraints.first { $0.firstAnchor == heightAnchor }
         height?.constant = max(next.y + lineHeight + yPad, placeholder.intrinsicContentSize.height)
+
+        additionalRecipients.frame.origin.x = next.x
     }
 }
 
