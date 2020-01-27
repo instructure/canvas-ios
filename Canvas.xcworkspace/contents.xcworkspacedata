@@ -39,6 +39,9 @@
          location = "group:NightlyTests.xctestplan">
       </FileRef>
       <FileRef
+         location = "group:/Users/acobb/src/canvas-ios/TestPlans/Beta.xctestplan">
+      </FileRef>
+      <FileRef
          location = "group:IPadTests.xctestplan">
       </FileRef>
    </Group>

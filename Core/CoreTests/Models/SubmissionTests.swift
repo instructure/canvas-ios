@@ -93,7 +93,7 @@ class SubmissionTests: CoreTestCase {
         XCTAssertEqual(submission.icon, UIImage.icon(.video))
 
         submission.type = .online_upload
-        submission.attachments = Set([ File.make(from: .make(mime_class: "pdf")) ])
+        submission.attachments = Set([ File.make(from: .make(contentType: "application/pdf", mime_class: "pdf")) ])
         XCTAssertEqual(submission.icon, UIImage.icon(.pdf))
 
         submission.type = .on_paper

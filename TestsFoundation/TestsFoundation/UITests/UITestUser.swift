@@ -59,7 +59,11 @@ public class UITestUser: NSObject, XCTestObservation {
     private convenience init(_ secret: Secret) {
         // crash tests if secret is invalid or missing
         let url = URLComponents.parse(secret.string!)
-        self.init(host: url.host!, username: url.user!, password: url.password!)
+        var host = url.host!
+        if let override_host = ProcessInfo.processInfo.environment["CANVAS_E2E_SERVER"] {
+            host = override_host
+        }
+        self.init(host: host, username: url.user!, password: url.password!)
     }
 
     public init(host: String, username: String, password: String) {

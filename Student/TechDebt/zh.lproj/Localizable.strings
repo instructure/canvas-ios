@@ -76,9 +76,6 @@
 /* 88 out of 100 points */
 "%1$g out of %2$@" = "%1$g共%2$@";
 
-/* A number and a collective noun, like '5 pigs' */
-"%d %@" = "%1$d%2$@";
-
 /* time since creation (2 or more days) */
 "%d days ago" = "%d天前";
 
@@ -416,7 +413,9 @@
 /* label for customizing a course */
 "Customize" = "自定义";
 
-/* Default delete button MLVC */
+/* Button to confirm deleting folders
+   Button to delete a discussion entry
+   Confirm deletion of discussion entry */
 "Delete" = "删除";
 
 /* Button for deleting files or folders. %d will be the number of selected items */
@@ -453,8 +452,7 @@
    Title for Discussions view controller */
 "Discussions" = "讨论";
 
-/* Dismiss button title
-   uialertaction button name for dismissing the failed refresh error message */
+/* Dismiss button title */
 "Dismiss" = "撤销";
 
 /* Alert title asking if you want to masquerade */
@@ -545,9 +543,6 @@
 
 /* No comment provided by engineer. */
 "External URL" = "外部 URL";
-
-/* Error title for refresh failing on an MLVC tableview controller */
-"Failed to load" = "加载失败";
 
 /* No comment provided by engineer. */
 "File" = "文件";
@@ -1245,9 +1240,6 @@
 /* message displayed in the details section if there is no comment. */
 "This assignment has no details." = "此作业没有细节。";
 
-/* Error message for refresh failing with an unauthorized code */
-"This can happen if your course hasn't started yet or you don't have permission to access this page." = "如果您的课程尚未开始或您没有权限访问此页面，就可能会出现这种情况。";
-
 /* No comment provided by engineer. */
 "This entry has been deleted" = "此输入已被删除";
 
@@ -1305,9 +1297,6 @@
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "无法上传到服务器";
-
-/* Error message for refresh failing on an MLVC tableview controller */
-"Unauthorized" = "未授权";
 
 /* Grade unavailable */
 "Unavailable" = "不可用";

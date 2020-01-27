@@ -141,7 +141,7 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
         let attachment = NSItemProvider(item: Data() as NSSecureCoding, typeIdentifier: UTI.any.rawValue)
         let item = TestExtensionItem(mockAttachments: [attachment])
         presenter.load(items: [item])
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 5)
     }
 
     func testLoadItemsImage() {
