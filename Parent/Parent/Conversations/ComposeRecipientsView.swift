@@ -86,7 +86,7 @@ class ComposeRecipientsView: UIView {
         addSubview(additionalRecipients)
         NSLayoutConstraint.activate([
             additionalRecipients.topAnchor.constraint(equalTo: topAnchor, constant: 19),
-            additionalRecipients.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -18)
+            additionalRecipients.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -18),
         ])
     }
 
@@ -107,13 +107,14 @@ class ComposeRecipientsView: UIView {
 
         pills.forEach { $0.removeFromSuperview() }
 
-        for recipient in recipients.dropLast(isExpanded ? 0 : max(recipients.count - 1, 1)) {
+        for recipient in recipients.dropLast(isExpanded ? 0 : max(recipients.count - 1, 0)) {
             let pill = ComposeRecipientView()
             addSubview(pill)
             pill.widthAnchor.constraint(lessThanOrEqualTo: widthAnchor, constant: -32).isActive = true
             pill.update(recipient)
             setNeedsLayout()
         }
+
         for pill in pills.dropFirst(recipients.count) {
             pill.removeFromSuperview()
             setNeedsLayout()

@@ -57,19 +57,6 @@ class ComposeViewControllerTests: ParentTestCase {
         controller.subjectField.sendActions(for: .editingChanged)
         XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.isEnabled, true)
 
-        let task = api.mock(PostConversationRequest(body: PostConversationRequest.Body(
-            subject: "subject",
-            body: controller.body(),
-            recipients: [ APIConversationRecipient.make().id.value ],
-            context_code: controller.context!.canvasContextID)
-            ), value: [ APIConversation.make() ]
-        )
-        task.paused = true
-        let sendButton = controller.navigationItem.rightBarButtonItem
-        XCTAssertNoThrow(sendButton?.target?.perform(sendButton?.action))
-        XCTAssert(controller.navigationItem.rightBarButtonItem?.customView is UIActivityIndicatorView)
-        task.resume()
-
         XCTAssertNotNil(controller.recipientsView.editButton)
         XCTAssertTrue(controller.recipientsView.placeholder.isHidden)
         controller.recipientsView.editButton.sendActions(for: .primaryActionTriggered)
@@ -93,6 +80,19 @@ class ComposeViewControllerTests: ParentTestCase {
         XCTAssertEqual(controller.recipientsView.recipients.count, 1)
         XCTAssertEqual(controller.recipientsView.recipients.first?.id.value, "123")
         XCTAssertTrue(controller.recipientsView.placeholder.isHidden)
+
+        let task = api.mock(PostConversationRequest(body: PostConversationRequest.Body(
+            subject: "subject",
+            body: controller.body(),
+            recipients: [ APIConversationRecipient.make().id.value ],
+            context_code: controller.context!.canvasContextID)
+            ), value: [ APIConversation.make() ]
+        )
+        task.paused = true
+        let sendButton = controller.navigationItem.rightBarButtonItem
+        XCTAssertNoThrow(sendButton?.target?.perform(sendButton?.action))
+        XCTAssert(controller.navigationItem.rightBarButtonItem?.customView is UIActivityIndicatorView)
+        task.resume()
     }
 
     func testCreateConversationError() {
