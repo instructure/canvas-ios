@@ -29,7 +29,7 @@ public enum Secret {
     case studentPSPDFKitLicense, teacherPSPDFKitLicense
 
     /// Users for UI tests
-    case testReadAdmin1, testReadStudent1, testReadStudent2, testReadTeacher1, testLDAPUser, testNotEnrolled, testSAMLUser
+    case testReadAdmin1, testReadStudent1, testReadStudent2, testReadTeacher1, testLDAPUser, testNotEnrolled, testSAMLUser, testVanityDomainUser
 
     /// The value used for testing that Secret is working properly
     case testSecret

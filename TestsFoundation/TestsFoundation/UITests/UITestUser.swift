@@ -60,8 +60,9 @@ public class UITestUser: NSObject, XCTestObservation {
         // crash tests if secret is invalid or missing
         let url = URLComponents.parse(secret.string!)
         var host = url.host!
-        if let override_host = ProcessInfo.processInfo.environment["CANVAS_E2E_SERVER"] {
-            host = override_host
+        if ProcessInfo.processInfo.environment["CANVAS_USE_BETA_E2E_SERVERS"] == "YES",
+            host.contains("beta.instructure.com") {
+            host = host.replacingOccurrences(of: ".instructure.com", with: ".beta.instructure.com")
         }
         self.init(host: host, username: url.user!, password: url.password!)
     }

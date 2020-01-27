@@ -253,8 +253,8 @@
       </BuildableProductRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
-            key = "CANVAS_MOBILE_VERIFY_SERVER"
-            value = "canvas.beta.instructure.com"
+            key = "CANVAS_USE_BETA_E2E_SERVERS"
+            value = "YES"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
