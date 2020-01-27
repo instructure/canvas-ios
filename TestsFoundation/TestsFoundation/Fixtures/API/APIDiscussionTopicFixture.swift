@@ -78,7 +78,6 @@ extension APIDiscussionPermissions {
 }
 
 extension APIDiscussionFullTopic {
-    public static let date1 = Date(timeIntervalSince1970: 0)
     public static func make(
         participants: [APIDiscussionParticipant] = [
             .make(),
@@ -88,14 +87,14 @@ extension APIDiscussionFullTopic {
         entry_ratings: [String: Int] = ["3": 1, "5": 1],
         forced_entries: [ID] = [1],
         view: [APIDiscussionEntry] = [
-            .make(id: 1, updated_at: date1, message: "m1", rating_count: 1, replies: [
-                .make(id: 2, user_id: 2, updated_at: date1, message: "m2", rating_count: 0, replies: [
-                    .make(id: 3, updated_at: date1, message: "m3", rating_count: 3, replies: [
-                        .make(id: 4, updated_at: date1, message: "m4 (deep)"),
+            .make(id: 1, message: "m1", rating_count: 1, replies: [
+                .make(id: 2, user_id: 2, message: "m2", rating_count: 0, replies: [
+                    .make(id: 3, message: "m3", rating_count: 3, replies: [
+                        .make(id: 4, message: "m4 (deep)"),
                     ]),
                 ]),
             ]),
-            .make(id: 5, updated_at: date1, message: "m5", rating_count: 1),
+            .make(id: 5, message: "m5", rating_count: 1),
         ]
     ) -> APIDiscussionFullTopic {
         return APIDiscussionFullTopic(
