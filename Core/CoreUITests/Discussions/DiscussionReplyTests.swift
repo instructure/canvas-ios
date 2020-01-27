@@ -44,7 +44,6 @@ class DiscussionReplyTests: CoreUITestCase {
             let url = URL(string: "https://canvas.instructure.com/api/v1/courses/\(course.id)/discussion_topics/\(discussion.id)/entries/\(entry)/read")!
             mockResponse(URLRequest(url: url)) { [weak self] _ in
                 self?.markedAsRead[entry] = true
-                print("entry \(entry) marked as read")
                 return MockHTTPResponse(http: HTTPURLResponse(url: url, statusCode: 204, httpVersion: nil, headerFields: [:]))
             }
         }
