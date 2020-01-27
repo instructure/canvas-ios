@@ -217,6 +217,8 @@ extension FileDetailsViewController: URLSessionDownloadDelegate {
         switch (file.mimeClass, file.contentType) {
         case ("audio", _):
             embedAudioView(for: localURL)
+        case (_, let type) where type?.hasPrefix("audio/") == true:
+            embedAudioView(for: localURL)
         case ("image", _), (_, "image/heic"):
             embedImageView(for: localURL)
         case (_, "model/vnd.usdz+zip"):

@@ -1371,21 +1371,21 @@
 		7D111CFD23A2DDAD00C912C0 /* Conversations */ = {
 			isa = PBXGroup;
 			children = (
+				9FB8FC4223C3B46A00E69E6A /* ActionSheetController.swift */,
 				7D1591BB23AD79B100ED0106 /* ComposeRecipientsView.swift */,
 				7D6F4CE823C676CE001C957D /* ComposeReplyViewController.storyboard */,
 				7D6F4CE623C66738001C957D /* ComposeReplyViewController.swift */,
 				7D57D3CD23AADAAC00EB2CC5 /* ComposeViewController.storyboard */,
 				7D57D3CB23AADA0F00EB2CC5 /* ComposeViewController.swift */,
+				9F520B8C23BFC3D200CE3672 /* ConversationCoursesActionSheet.swift */,
+				3B432E2C23D7A5EA00253849 /* ConversationDetailCell.swift */,
 				974BA7F823A89C5C00E09D5A /* ConversationDetailViewController.storyboard */,
 				974BA7F623A89BE200E09D5A /* ConversationDetailViewController.swift */,
 				7DFDB43323A4393D00B28DED /* ConversationListCell.swift */,
 				7D111D0023A2DDDF00C912C0 /* ConversationListViewController.storyboard */,
 				7D111CFE23A2DDD100C912C0 /* ConversationListViewController.swift */,
-				9F520B8C23BFC3D200CE3672 /* ConversationCoursesActionSheet.swift */,
-				B109249123CE7FC900796903 /* EditComposeRecipientsViewController.swift */,
 				B109248D23CE160400796903 /* EditComposeRecipientsViewController.storyboard */,
-				9FB8FC4223C3B46A00E69E6A /* ActionSheetController.swift */,
-				3B432E2C23D7A5EA00253849 /* ConversationDetailCell.swift */,
+				B109249123CE7FC900796903 /* EditComposeRecipientsViewController.swift */,
 			);
 			path = Conversations;
 			sourceTree = "<group>";
@@ -1411,9 +1411,9 @@
 			children = (
 				7D6F4CEA23C69F7F001C957D /* ComposeReplyViewControllerTests.swift */,
 				7D231BE023AC1E0A005BA31D /* ComposeViewControllerTests.swift */,
+				9F397F8423C8D54600A3E2AF /* ConversationCoursesActionSheetTests.swift */,
 				97D477C823AA738300A6BC78 /* ConversationDetailViewControllerTests.swift */,
 				7DFDB43123A3EDFB00B28DED /* ConversationListViewControllerTests.swift */,
-				9F397F8423C8D54600A3E2AF /* ConversationCoursesActionSheetTests.swift */,
 				B109248F23CE7F9500796903 /* EditComposeRecipientsViewControllerTests.swift */,
 			);
 			path = Conversations;
