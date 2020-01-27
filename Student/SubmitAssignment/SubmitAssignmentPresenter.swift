@@ -26,7 +26,10 @@ protocol SubmitAssignmentView: class {
 class SubmitAssignmentPresenter {
     let env: AppEnvironment = .shared
     let sharedContainer: URL
-    var uploadManager = UploadManager(identifier: "com.instructure.icanvas.SubmitAssignment.file-uploads")
+    var uploadManager = UploadManager(
+        identifier: "com.instructure.icanvas.SubmitAssignment.file-uploads",
+        sharedContainerIdentifier: "group.instructure.shared"
+    )
     weak var view: SubmitAssignmentView?
 
     private(set) var course: Course? {

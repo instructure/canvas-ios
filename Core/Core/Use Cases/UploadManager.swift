@@ -33,6 +33,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     public static var shared = UploadManager(identifier: "com.instructure.core.file-uploads")
 
     public let identifier: String
+    public let sharedContainerIdentifier: String?
     var notificationManager: NotificationManager = .shared
     var process: ProcessManager = ProcessInfo.processInfo
     var environment: AppEnvironment { .shared }
@@ -64,15 +65,16 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         return decoder
     }()
 
-    public init(identifier: String) {
+    public init(identifier: String, sharedContainerIdentifier: String? = nil) {
         self.identifier = identifier
+        self.sharedContainerIdentifier = sharedContainerIdentifier
         super.init()
     }
 
     @discardableResult
     public func createSession() -> URLSession {
         let configuration = URLSessionConfiguration.background(withIdentifier: identifier)
-        configuration.sharedContainerIdentifier = Bundle.main.appGroupID()
+        configuration.sharedContainerIdentifier = sharedContainerIdentifier
         return URLSessionAPI.delegateURLSession(configuration, self, nil)
     }
 

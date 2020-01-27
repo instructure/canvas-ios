@@ -74,7 +74,7 @@ class UploadManagerTests: CoreTestCase {
         URLSessionAPI.delegateURLSession = { (configuration: URLSessionConfiguration, delegate: URLSessionDelegate?, delegateQueue: OperationQueue?) -> URLSession in
             return URLSession(configuration: config, delegate: delegate, delegateQueue: delegateQueue)
         }
-        let manager = UploadManager(identifier: "test")
+        let manager = UploadManager(identifier: "test", sharedContainerIdentifier: "group.com.instructure.icanvas")
         XCTAssertEqual(try manager.uploadURL(url), expected)
     }
 

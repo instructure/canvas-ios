@@ -389,7 +389,6 @@
 		B175D62223A969F600F8E696 /* IPadAssignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B175D62123A969F600F8E696 /* IPadAssignmentsTests.swift */; };
 		B1BB7A8522BAC820006CA068 /* SubmitAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB7A8422BAC820006CA068 /* SubmitAssignmentViewController.swift */; };
 		B1BB7A8822BAC820006CA068 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BB7A8622BAC820006CA068 /* MainInterface.storyboard */; };
-		B1BB7A8C22BAC820006CA068 /* SubmitAssignment.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B1BB7A9122BADAC1006CA068 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BB7A9022BADAC1006CA068 /* Core.framework */; };
 		B1BB7A9922BAE9F4006CA068 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB7A9522BAE3AD006CA068 /* CoursesViewController.swift */; };
 		B1BB7A9A22BAE9FA006CA068 /* CoursesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BB7A9322BAE38C006CA068 /* CoursesViewController.storyboard */; };
@@ -409,6 +408,7 @@
 		B1D766A522C505B90097561E /* CoursesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB7A9722BAE3B9006CA068 /* CoursesPresenter.swift */; };
 		B1D766A822C509260097561E /* AssignmentsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D766A722C509260097561E /* AssignmentsPresenterTests.swift */; };
 		B1D766A922C509780097561E /* AssignmentsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157A61222BD795D00963E56 /* AssignmentsPresenter.swift */; };
+		B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B1F405E422E23C02008FAFE6 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405DE22E23C00008FAFE6 /* ReactiveSwift.framework */; };
 		B1F405E622E23C02008FAFE6 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405E022E23C01008FAFE6 /* ReactiveCocoa.framework */; };
 		B1F405E722E23C02008FAFE6 /* ReactiveObjCBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405E122E23C01008FAFE6 /* ReactiveObjCBridge.framework */; };
@@ -498,7 +498,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				B1BB7A8C22BAC820006CA068 /* SubmitAssignment.appex in Embed App Extensions */,
+				B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed App Extensions */,
 				3B6DCCB11FB502CE005EE8D2 /* GradesWidget.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
