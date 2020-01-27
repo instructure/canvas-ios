@@ -510,3 +510,36 @@ workflows:
         - title: ''
         - message: ''
         - pretext: "*iPad Tests Succeeded!*"
+
+  beta-tests:
+    steps:
+    - *secrets
+    - cache-pull: {}
+    - *set-mtime
+    - *install-tools
+    - *fix-microphone
+    - *carthage
+    - *yarn-install-root
+    - *yarn-install
+    - *yarn-global-add-react-native-cli
+    - *cocoapods
+    - script:
+        title: beta tests
+        inputs:
+        - content: |-
+            set -euo pipefail
+            export SCHEME='Beta E2E'
+            ./scripts/run-ui-tests.sh --all
+    - *save-xcresult
+    - deploy-to-bitrise-io: {}
+    - slack:
+        title: Send build result message to slack
+        run_if: enveq "BITRISE_GIT_BRANCH" "master"
+        inputs:
+        - pretext_on_error: "*Beta Tests Failed!*"
+        - webhook_url: "$SLACK_URL"
+        - channel: "#ios-bots"
+        - author_name: ''
+        - title: ''
+        - message: ''
+        - pretext: "*Beta Tests Succeeded!*"
