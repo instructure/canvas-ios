@@ -17,6 +17,7 @@
 //
 
 import XCTest
+import UIKit
 @testable import Core
 @testable import Parent
 import TestsFoundation
@@ -117,5 +118,19 @@ class ComposeViewControllerTests: ParentTestCase {
         loadView()
         drainMainQueue()
         XCTAssertEqual(controller.recipientsView.recipients.count, 1)
+    }
+
+    func testAdditionalRecipients() {
+        loadView()
+
+        XCTAssertTrue(controller.recipientsView.additionalRecipients.isHidden)
+
+        controller.recipientsView.recipients = [.make(), .make()]
+        XCTAssertFalse(controller.recipientsView.additionalRecipients.isHidden)
+        XCTAssertEqual(controller.recipientsView.pills.count, 1)
+
+        controller.recipientsView.toggleIsExpanded(sender: UITapGestureRecognizer())
+        XCTAssertTrue(controller.recipientsView.additionalRecipients.isHidden)
+        XCTAssertEqual(controller.recipientsView.pills.count, 2)
     }
 }
