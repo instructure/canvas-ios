@@ -74,7 +74,7 @@ class ModulesE2ETests: CoreUITestCase {
         ModulesDetail.moduleItem(index: 0).tap()
 
         app.find(labelContaining: "This is the first quiz").waitToExist()
-        Quiz.resumeButton.waitToExist()
+        Quiz.takeButton.waitToExist()
     }
 
     func testLaunchIntoFileModuleItem() {

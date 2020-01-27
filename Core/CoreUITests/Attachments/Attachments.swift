@@ -19,8 +19,7 @@
 import XCTest
 import TestsFoundation
 
-enum Attachments: String, ElementWrapper {
+enum Attachments: String, RawElementWrapper {
     case addButton = "attachments.add-btn"
     case dismissButton = "attachments.dismiss-btn"
-    var id: String { return self.rawValue }
 }

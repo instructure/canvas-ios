@@ -417,6 +417,12 @@ open class CoreUITestCase: XCTestCase {
         mockURL(url, data: data, response: response, error: error, noCallback: noCallback)
     }
 
+    open func mockRequest(_ path: String, dynamicResponse: @escaping (URLRequest) -> MockHTTPResponse) {
+        let api = URLSessionAPI()
+        let url = URL(string: path, relativeTo: api.baseURL.appendingPathComponent("api/v1/"))!
+        mockResponse(URLRequest(url: url), response: dynamicResponse)
+    }
+
     open func mockGraphQL(operationName: String, _ json: Any) {
         mockGraphQL(operationName: operationName) { _ in
             try! JSONSerialization.data(withJSONObject: json)
@@ -488,10 +494,12 @@ open class CoreUITestCase: XCTestCase {
         mockData(GetAssignmentRequest(courseID: assignment.course_id.value, assignmentID: assignment.id.value, include: [ .submission ]), value: assignment)
         mockData(GetAssignmentRequest(courseID: assignment.course_id.value, assignmentID: assignment.id.value, include: []), value: assignment)
         for submission in assignment.submission?.values ?? [] {
-            mockData(GetSubmissionRequest(
-                context: ContextModel(.course, id: assignment.course_id.value),
-                assignmentID: assignment.id.value, userID: "1"),
-                value: submission)
+            for userId in ["1", "self"] {
+                mockData(GetSubmissionRequest(
+                    context: ContextModel(.course, id: assignment.course_id.value),
+                    assignmentID: assignment.id.value, userID: userId),
+                         value: submission)
+            }
         }
 
         return assignment

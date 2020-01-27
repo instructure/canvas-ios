@@ -192,4 +192,48 @@ class QuizzesTests: StudentUITestCase {
         app.find(label: "Quiz Submitted").waitToExist()
         app.find(label: "Done").tap().waitToVanish()
     }
+
+    func testQuizTimeout() {
+        mockBaseRequests()
+        let quiz = APIQuiz.make(
+            due_at: Date(),
+            question_count: 3,
+            question_types: [
+                .multiple_choice_question,
+                .true_false_question,
+                .numerical_question,
+            ],
+            quiz_type: .survey,
+            time_limit: 10
+        )
+
+        let submission = APIQuizSubmission.make()
+
+        mockData(GetQuizRequest(courseID: "1", quizID: quiz.id.value), value: quiz)
+        mockData(GetQuizSubmissionRequest(courseID: "1", quizID: quiz.id.value),
+                 value: .init(quiz_submissions: [ ]))
+        mockData(GetAllQuizSubmissionsRequest(courseID: "1", quizID: quiz.id.value),
+                 value: .init(quiz_submissions: [ ]))
+
+        show("courses/1/quizzes/\(quiz.id)")
+        app.swipeLeft()
+
+        let quizTime = 10
+
+        mockData(PostQuizSubmissionRequest(courseID: "1", quizID: quiz.id.value, body: nil),
+                 value: .init(quiz_submissions: [ submission ]))
+        mockEncodableRequest("courses/1/quizzes/123/submissions/1/events", value: nil as String?)
+        mockEncodableRequest("courses/1/quizzes/123/submissions/1/time", value: ["time_left": quizTime])
+        let completed = XCTestExpectation()
+        mockQuestions(forSubmission: submission, answered: false)
+        mockRequest("courses/1/quizzes/123/submissions/1/complete") { _ in
+            completed.fulfill()
+            return MockHTTPResponse(value: PostQuizSubmissionRequest.Response.init(quiz_submissions: [submission]))!
+        }
+        app.find(label: "Take Quiz").tap()
+        waitUntil { !Quiz.timer.label().isEmpty }
+        XCTAssertLessThanOrEqual(Int(Quiz.timer.label()) ?? Int.max, quizTime)
+
+        wait(for: [completed], timeout: 30)
+    }
 }

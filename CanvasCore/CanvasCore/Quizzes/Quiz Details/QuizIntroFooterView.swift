@@ -138,6 +138,7 @@ extension QuizIntroFooterView {
         takeButton.backgroundColor = Brand.current.tintColor
         takeButton.layer.cornerRadius = 5.0
         takeButton.isEnabled = false
+        takeButton.accessibilityIdentifier = "Quiz.takeButton"
         
         visualEffectContainer.contentView.addSubview(takeButton)
         

@@ -27,9 +27,10 @@ class QuizzesE2ETests: CoreUITestCase {
         CourseNavigation.quizzes.tap()
 
         app.find(labelContaining: "Quiz One").tap()
-        Quiz.resumeButton.tap()
+        Quiz.takeButton.tapUntil {
+            Quiz.text(string: "This is question A").exists()
+        }
 
-        Quiz.text(string: "This is question A").waitToExist()
         Quiz.text(string: "True").waitToExist()
 
         Quiz.text(string: "This is question B").waitToExist()
@@ -49,7 +50,7 @@ class QuizzesE2ETests: CoreUITestCase {
         CourseNavigation.quizzes.tap()
 
         app.find(labelContaining: "Web Quiz").tap()
-        Quiz.resumeButton.tap()
+        Quiz.takeButton.tap()
         app.find(label: "This quiz is for testing web view question types.").waitToExist()
     }
 
