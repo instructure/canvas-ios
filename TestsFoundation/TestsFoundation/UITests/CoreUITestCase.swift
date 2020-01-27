@@ -225,6 +225,9 @@ open class CoreUITestCase: XCTestCase {
         app.launchEnvironment["IS_UI_TEST"] = "TRUE"
         app.launchEnvironment["APP_IPC_PORT_NAME"] = ipcAppClient.serverPortName
         app.launchEnvironment["DRIVER_IPC_PORT_NAME"] = CoreUITestCase.ipcDriverServer.machPortName
+        if let useBeta = ProcessInfo.processInfo.environment["CANVAS_USE_BETA_E2E_SERVERS"] {
+            app.launchEnvironment["CANVAS_USE_BETA_E2E_SERVERS"] = useBeta
+        }
         block?(app)
         app.launch()
         // Wait for RN to finish loading

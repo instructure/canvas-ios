@@ -28,6 +28,7 @@ public class UITestUser: NSObject, XCTestObservation {
     public static let ldapUser = UITestUser(.testLDAPUser)
     public static let notEnrolled = UITestUser(.testNotEnrolled)
     public static let saml = UITestUser(.testSAMLUser)
+    public static let vanityDomainUser = UITestUser(.testVanityDomainUser)
 
     public let host: String
     public let username: String
@@ -61,8 +62,8 @@ public class UITestUser: NSObject, XCTestObservation {
         let url = URLComponents.parse(secret.string!)
         var host = url.host!
         if ProcessInfo.processInfo.environment["CANVAS_USE_BETA_E2E_SERVERS"] == "YES",
-            host.contains("beta.instructure.com") {
-            host = host.replacingOccurrences(of: ".instructure.com", with: ".beta.instructure.com")
+            !host.contains("beta.instructure.com") {
+            host = host.replacingOccurrences(of: "instructure.com", with: "beta.instructure.com")
         }
         self.init(host: host, username: url.user!, password: url.password!)
     }
