@@ -102,7 +102,7 @@ fi
 
 BUILD_DIR=$(xcodebuild -workspace Canvas.xcworkspace -scheme $SCHEME -showBuildSettings $destination_flag build-for-testing -json |
                 jq -r '.[0].buildSettings.BUILD_DIR')
-base_xctestrun=$(find $BUILD_DIR -name '*.xctestrun' -newer tmp/timestamp)
+base_xctestrun=($BUILD_DIR/${SCHEME}_*_iphonesimulator*.xctestrun)
 xctestrun=$base_xctestrun.script_run
 cp $base_xctestrun $xctestrun
 config_name=$(/usr/libexec/PlistBuddy $base_xctestrun -c "print :TestConfigurations:0:Name")

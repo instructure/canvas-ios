@@ -148,4 +148,12 @@ class LoginE2ETests: CoreUITestCase {
 
         launch()
     }
+
+    func testVanityDomain() {
+        logInUser(.vanityDomainUser)
+
+        Dashboard.coursesLabel.waitToExist()
+        Dashboard.courseCard(id: "1602031").waitToExist()
+        XCTAssert(TabBar.dashboardTab.exists)
+    }
 }

@@ -12,12 +12,8 @@
     "codeCoverage" : false,
     "environmentVariableEntries" : [
       {
-        "key" : "CANVAS_E2E_SERVER",
-        "value" : "iosauto.beta.instructure.com"
-      },
-      {
-        "key" : "CANVAS_MOBILE_VERIFY_SERVER",
-        "value" : "canvas.beta.instructure.com"
+        "key" : "CANVAS_USE_BETA_E2E_SERVERS",
+        "value" : "YES"
       }
     ],
     "mainThreadCheckerEnabled" : false,
