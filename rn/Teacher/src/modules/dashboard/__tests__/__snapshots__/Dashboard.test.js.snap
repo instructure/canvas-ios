@@ -3340,7 +3340,7 @@ exports[`Dashboard renders course invites 1`] = `
                   }
                 >
                   Learn React Native
-                  ,
+                  , 
                   the section 1
                 </Text>
                 <View
@@ -3581,7 +3581,7 @@ exports[`Dashboard renders course invites 1`] = `
                   }
                 >
                   Learn React Native
-                  ,
+                  , 
                   the section 1
                 </Text>
                 <View
