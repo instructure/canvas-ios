@@ -42,6 +42,13 @@
         "identifier" : "E841D8A223D6472F00685A63",
         "name" : "TeacherE2ETests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Parent\/Parent.xcodeproj",
+        "identifier" : "E80763C723E08DA10085DAFB",
+        "name" : "ParentE2ETests"
+      }
     }
   ],
   "version" : 1

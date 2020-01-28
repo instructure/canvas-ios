@@ -194,7 +194,7 @@ describe('Dashboard', () => {
       <Dashboard {...props} />
     ).toJSON()
 
-    const leftButton = explore(tree).selectLeftBarButton('favorited-course-list.profile-btn') || {}
+    const leftButton = explore(tree).selectLeftBarButton('Dasboard.profileButton') || {}
     leftButton.action()
     expect(props.navigator.show).toHaveBeenCalledWith('/profile', { modal: true, embedInNavigationController: false, modalPresentationStyle: 'drawer' })
   })

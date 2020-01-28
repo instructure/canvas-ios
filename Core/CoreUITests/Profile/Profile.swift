@@ -32,7 +32,8 @@ enum Profile: String, ElementWrapper {
         showGradesToggle,
         userEmailLabel,
         userNameLabel,
-        versionLabel
+        versionLabel,
+        inboxButton
 
     static func ltiButton(domain: String, id: String) -> Element {
         return app.find(id: "Profile.lti.\(domain).\(id)")

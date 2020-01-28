@@ -34,6 +34,10 @@ public protocol ElementWrapper: Element {
 }
 
 public extension ElementWrapper {
+    var element: Element {
+        app.find(id: id)
+    }
+
     var queryWrapper: XCUIElementQueryWrapper {
         element.queryWrapper
     }
