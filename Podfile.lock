@@ -18,10 +18,10 @@ PODS:
   - BVLinearGradient (2.5.6):
     - React
   - Cartography (3.1.0)
-  - Crashlytics (3.10.9):
-    - Fabric (~> 1.7.13)
+  - Crashlytics (3.14.0):
+    - Fabric (~> 1.10.2)
   - DoubleConversion (1.1.6)
-  - Fabric (1.7.13)
+  - Fabric (1.10.2)
   - Firebase/Analytics (6.13.0):
     - Firebase/Core
   - Firebase/Core (6.13.0):
@@ -199,9 +199,9 @@ DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - BVLinearGradient (from `./rn/Teacher/node_modules/react-native-linear-gradient`)
   - Cartography (~> 3.1)
-  - Crashlytics (~> 3.10.2)
+  - Crashlytics (~> 3.14.0)
   - DoubleConversion (from `./rn/Teacher/node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
-  - Fabric (~> 1.7.7)
+  - Fabric (~> 1.10.2)
   - Firebase/Analytics (~> 6.13)
   - Firebase/Core (~> 6.13)
   - Firebase/RemoteConfig (~> 6.13)
@@ -300,9 +300,9 @@ SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
   Cartography: 1988b7578871a56c036e7af17195cb2190edf18c
-  Crashlytics: 55e24fc23989680285a21cb1146578d9d18e432c
+  Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
-  Fabric: 25d0963b691fc97be566392243ff0ecef5a68338
+  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   Firebase: 458d109512200d1aca2e1b9b6cf7d68a869a4a46
   FirebaseABTesting: 0d10f3cdc3fa00f3f175b5b56c1003c8e888299f
   FirebaseAnalytics: 45f36d9c429fc91d206283900ab75390cd05ee8a
@@ -335,6 +335,6 @@ SPEC CHECKSUMS:
   RNSound: a1d01988e043aed5dbb476c2152b5ffb02446750
   yoga: 03ff42a6f223fb88deeaed60249020d80c3091ee
 
-PODFILE CHECKSUM: 258df1eeb4979fa5eeb4189f4667ab06b6732114
+PODFILE CHECKSUM: cee2709ac95388b4496624151e8912eb1874f015
 
 COCOAPODS: 1.8.4
