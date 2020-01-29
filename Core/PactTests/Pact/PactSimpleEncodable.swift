@@ -23,6 +23,7 @@ enum PactSimpleFieldHandling {
     case exact
     case matching(regex: String)
     case somethingLike
+    case eachLike
 }
 
 protocol PactSimpleEncodable: PactEncodable {
@@ -57,6 +58,16 @@ extension PactSimpleEncodable {
                     throw EncodingError.invalidValue(self, context)
                 }
                 dict[key] = Matcher.term(matcher: regex, generate: old)
+            case .eachLike:
+                guard let old = dict[key] as? NSArray,
+                    old.count > 0 else {
+                    let context = EncodingError.Context(
+                        codingPath: encoder.codingPath,
+                        debugDescription: "eachLike fields must contain non-empty arrays"
+                    )
+                    throw EncodingError.invalidValue(self, context)
+                }
+                dict[key] = Matcher.eachLike(old[0])
             case .somethingLike, nil:
                 if let old = dict[key] {
                     dict[key] = Matcher.somethingLike(old)

@@ -1,5 +1,4 @@
-//
-// This file is part of Canvas.
+// // This file is part of Canvas.
 // Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
@@ -21,23 +20,27 @@ import TestsFoundation
 import PactConsumerSwift
 @testable import Core
 
-class PactTests: XCTestCase {
+open class PactTestCase: XCTestCase {
+    open var providerName: String { "Canvas LMS API" }
+
     let service = PactVerificationService(url: "http://localhost", allowInsecureCertificates: true)
-    lazy var provider = CanvasMockService(provider: "canvas-lms", consumer: "canvas-ios", pactVerificationService: service)
+    lazy var provider = CanvasMockService(provider: providerName, consumer: "canvas-ios", pactVerificationService: service)
     lazy var environment: TestEnvironment = {
         let environment = TestEnvironment()
         environment.api = provider.api
         return environment
     }()
+}
 
+class PactTests: PactTestCase {
     func testGetCourseUsers() throws {
         let user = APIUser.make(locale: nil, permissions: nil)
-        let useCase = GetContextUsers(context: ContextModel(.course, id: "868"))
+        let useCase = GetContextUsers(context: ContextModel(.course, id: "1"))
         try provider.uponReceiving(
             "List course users",
             with: useCase.request,
             respondWithArrayLike: user
-        )
+        ).given("a student in a course with a submitted assignment")
         provider.run { testComplete in
             useCase.makeRequest(environment: self.environment) { response, _, _ in
                 XCTAssertEqual(response, [user])
@@ -65,10 +68,29 @@ class PactTests: XCTestCase {
             "Get courses",
             with: useCase.request,
             respondWithArrayLike: course
-        )
+        ).given("a student in a course with a submitted assignment")
         provider.run { testComplete in
             useCase.makeRequest(environment: self.environment) { response, _, _ in
                 XCTAssertEqual(response, [course])
+                testComplete()
+            }
+        }
+    }
+
+}
+
+class QuizAPIPactTests: PactTestCase {
+    func testGetQuizzes() throws {
+        let quiz = APIQuiz.make()
+        let useCase = GetQuizzes(courseID: "1")
+        try provider.uponReceiving(
+            "List quizzes",
+            with: useCase.request,
+            respondWithArrayLike: quiz
+        ).given("a quiz")
+
+        provider.run { testComplete in
+            useCase.makeRequest(environment: self.environment) { _, _, _ in
                 testComplete()
             }
         }
