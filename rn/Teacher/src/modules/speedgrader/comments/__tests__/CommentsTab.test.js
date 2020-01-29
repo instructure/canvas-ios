@@ -347,14 +347,19 @@ test('mapStateToProps returns no comments for no submissionID', () => {
 test('mapStateToProps returns comment and submission rows', () => {
   let teacherComment = templates.submissionComment({
     author_id: '1111',
-    author: templates.submissionCommentAuthor({ id: '1111' }),
+    author: templates.submissionCommentAuthor({
+      id: '1111',
+      name: 'Severus Snape',
+      pronouns: null,
+    }),
     attachments: [templates.attachment({ id: '1' })],
   })
   const student = templates.submissionCommentAuthor({
     id: '6682',
     display_name: 'Harry Potter',
+    pronouns: 'He/Him',
   })
-  const studentComment = templates.submissionComment({
+  let studentComment = templates.submissionComment({
     author_id: student.id,
     author_name: student.display_name,
     author: student,
@@ -383,6 +388,7 @@ test('mapStateToProps returns comment and submission rows', () => {
 
   const quiz = templates.submission({
     id: 'quiz-attempt-id',
+    user_id: '8',
     attempt: 6,
     submitted_at: '2017-03-19T19:13:25Z',
     submission_type: 'online_quiz',
@@ -399,6 +405,11 @@ test('mapStateToProps returns comment and submission rows', () => {
     attempt: 4,
     submitted_at: '2017-03-17T19:13:25Z',
     attachments: [templates.attachment({ id: '4' })],
+    user: templates.user({
+      id: '55',
+      name: 'Bob',
+      pronouns: null,
+    }),
   })
 
   const url = templates.submission({
@@ -464,12 +475,26 @@ test('mapStateToProps returns comment and submission rows', () => {
   setSession(session)
 
   let props = mapStateToProps(appState, ownProps)
+
   let contents = props.commentRows.map(({ contents }) => contents)
   let quizAttempt = contents.filter(({ attemptIndex }) => attemptIndex === 6)[0]
   expect(quizAttempt.submissionID).toEqual(submission.id)
   expect(quizAttempt.submissionID).not.toEqual(quizAttempt.id)
-  teacherComment = props.commentRows.filter(({ userID }) => userID === '1111')[0]
+
+  teacherComment = props.commentRows.filter(({ userID }) => userID === teacherComment.author.id)[0]
   expect(teacherComment.contents.comment.attachments).toHaveLength(1)
+  expect(teacherComment.name).toEqual('Severus Snape')
+
+  studentComment = props.commentRows.filter(({ userID }) => userID === student.id)[0]
+  expect(studentComment.name).toEqual('Harry Potter (He/Him)')
+
+  let textAttempt = props.commentRows.find(({ contents }) => contents.attemptIndex === text.attempt != null)
+  expect(textAttempt.name).toEqual('Bob')
+
+  appState.entities.submissions[submission.id].submission.user.pronouns = 'He/Him'
+  props = mapStateToProps(appState, ownProps)
+  textAttempt = props.commentRows.find(({ contents }) => contents.attemptIndex === text.attempt != null)
+  expect(textAttempt.name).toEqual('Bob (He/Him)')
 })
 
 test('mapStateToProps returns true when the assignment is a quiz that is an anonymous survey', () => {
