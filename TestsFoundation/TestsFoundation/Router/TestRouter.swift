@@ -21,7 +21,7 @@ import Core
 
 public class TestRouter: RouterProtocol {
     public init() {}
-    public var calls = [(URLComponents, UIViewController, RouteOptions)]()
+    public var calls = [(URLComponents?, UIViewController, RouteOptions)]()
     public var viewControllerCalls = [(UIViewController, UIViewController, RouteOptions)]()
     public var presented: UIViewController? {
         if viewControllerCalls.last?.2.isModal == true {
@@ -70,12 +70,17 @@ public class TestRouter: RouterProtocol {
         return calls.last?.0 == URLComponents.parse(url)
     }
 
-    public func lastRoutedTo(_ url: URLComponents) -> Bool {
+    public func lastRoutedTo(_ url: URLComponents?) -> Bool {
         return calls.last?.0 == url
     }
 
     public func lastRoutedTo(_ url: URL, withOptions options: RouteOptions) -> Bool {
         return lastRoutedTo(url) && calls.last?.2 == options
+    }
+
+    public func lastRoutedTo(viewController: UIViewController, from: UIViewController, withOptions options: RouteOptions) -> Bool {
+        guard let last = viewControllerCalls.last else { return false }
+        return last == (viewController, from, options)
     }
 
     public func resetExpectations() {

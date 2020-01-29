@@ -22,8 +22,6 @@ import TestsFoundation
 @testable import CoreUITests
 
 class SpeedGraderTests: TeacherUITestCase {
-    override var user: UITestUser? { nil }
-
     func testSubmissionCommentAttachments() {
         mockBaseRequests()
         mockData(GetAssignmentRequest(courseID: "1", assignmentID: "1", allDates: true, include: [.overrides]), value: .make(id: "1"))

@@ -25,9 +25,11 @@ public class UITestUser: NSObject, XCTestObservation {
     public static let readStudent1 = UITestUser(.testReadStudent1)
     public static let readStudent2 = UITestUser(.testReadStudent2)
     public static let readTeacher1 = UITestUser(.testReadTeacher1)
+    public static let readParent1 = UITestUser(.testReadParent1)
     public static let ldapUser = UITestUser(.testLDAPUser)
     public static let notEnrolled = UITestUser(.testNotEnrolled)
     public static let saml = UITestUser(.testSAMLUser)
+    public static let vanityDomainUser = UITestUser(.testVanityDomainUser)
 
     public let host: String
     public let username: String
@@ -59,7 +61,12 @@ public class UITestUser: NSObject, XCTestObservation {
     private convenience init(_ secret: Secret) {
         // crash tests if secret is invalid or missing
         let url = URLComponents.parse(secret.string!)
-        self.init(host: url.host!, username: url.user!, password: url.password!)
+        var host = url.host!
+        if ProcessInfo.processInfo.environment["CANVAS_USE_BETA_E2E_SERVERS"] == "YES",
+            !host.contains("beta.instructure.com") {
+            host = host.replacingOccurrences(of: "instructure.com", with: "beta.instructure.com")
+        }
+        self.init(host: host, username: url.user!, password: url.password!)
     }
 
     public init(host: String, username: String, password: String) {

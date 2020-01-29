@@ -25,7 +25,6 @@
 
 set -euo pipefail
 
-
 function usage {
     echo "Runs a UI test suite, retrying failed ones."
     echo "usage:"
@@ -82,6 +81,7 @@ function banner() (
 
 mkdir -p tmp
 export NSUnbufferedIO=YES
+touch tmp/timestamp
 
 destination_flag=(-destination "platform=iOS Simulator,name=$DEVICE_NAME")
 
@@ -100,9 +100,9 @@ if [[ $only_build = yes ]]; then
     exit 0
 fi
 
-BUILD_DIR=$(xcodebuild -workspace Canvas.xcworkspace -scheme $SCHEME -showBuildSettings build-for-testing -json |
-                jq -r '.[] | select(.target == "StudentUITests").buildSettings.BUILD_DIR')
-base_xctestrun=(${BUILD_DIR}/${SCHEME}_${SCHEME}_*.xctestrun)
+BUILD_DIR=$(xcodebuild -workspace Canvas.xcworkspace -scheme $SCHEME -showBuildSettings $destination_flag build-for-testing -json |
+                jq -r '.[0].buildSettings.BUILD_DIR')
+base_xctestrun=($BUILD_DIR/${SCHEME}_*_iphonesimulator*.xctestrun)
 xctestrun=$base_xctestrun.script_run
 cp $base_xctestrun $xctestrun
 config_name=$(/usr/libexec/PlistBuddy $base_xctestrun -c "print :TestConfigurations:0:Name")

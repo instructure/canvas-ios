@@ -51,7 +51,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LhY-UH-BvJ" userLabel="Hamburger Button">
                                         <rect key="frame" x="8" y="38" width="44" height="50"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="parent-drawer-button" label="Settings"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="Dashboard.profileButton" label="Settings"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="44" id="WBI-uc-NFt"/>
                                         </constraints>

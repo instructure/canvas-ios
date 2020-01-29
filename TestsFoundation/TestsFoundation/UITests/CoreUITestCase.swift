@@ -37,14 +37,26 @@ open class CoreUITestCase: XCTestCase {
 
     open var httpMocks = [URL: (URLRequest) -> MockHTTPResponse]()
     open var graphQLMocks = [String: (URLRequest) -> Data]()
-    open var useMocks: Bool { user == nil }
+    var useMocks: Bool {
+        switch Bundle.main.bundleIdentifier {
+        case Bundle.studentUITestsBundleID,
+             Bundle.teacherUITestsBundleID,
+             Bundle.parentUITestsBundleID:
+            return true
+        default:
+            return false
+        }
+    }
 
     open var user: UITestUser? {
-        if Bundle.main.isStudentApp {
+        switch Bundle.main.bundleIdentifier {
+        case Bundle.studentE2ETestsBundleID:
             return .readStudent1
-        } else if Bundle.main.isTeacherApp {
+        case Bundle.teacherE2ETestsBundleID:
             return .readTeacher1
-        } else {
+        case Bundle.parentE2ETestsBundleID:
+            return .readParent1
+        default:
             return nil
         }
     }
@@ -215,6 +227,9 @@ open class CoreUITestCase: XCTestCase {
         app.launchEnvironment["IS_UI_TEST"] = "TRUE"
         app.launchEnvironment["APP_IPC_PORT_NAME"] = ipcAppClient.serverPortName
         app.launchEnvironment["DRIVER_IPC_PORT_NAME"] = CoreUITestCase.ipcDriverServer.machPortName
+        if let useBeta = ProcessInfo.processInfo.environment["CANVAS_USE_BETA_E2E_SERVERS"] {
+            app.launchEnvironment["CANVAS_USE_BETA_E2E_SERVERS"] = useBeta
+        }
         block?(app)
         app.launch()
         // Wait for RN to finish loading
@@ -407,6 +422,12 @@ open class CoreUITestCase: XCTestCase {
         mockURL(url, data: data, response: response, error: error, noCallback: noCallback)
     }
 
+    open func mockRequest(_ path: String, dynamicResponse: @escaping (URLRequest) -> MockHTTPResponse) {
+        let api = URLSessionAPI()
+        let url = URL(string: path, relativeTo: api.baseURL.appendingPathComponent("api/v1/"))!
+        mockResponse(URLRequest(url: url), response: dynamicResponse)
+    }
+
     open func mockGraphQL(operationName: String, _ json: Any) {
         mockGraphQL(operationName: operationName) { _ in
             try! JSONSerialization.data(withJSONObject: json)
@@ -478,10 +499,12 @@ open class CoreUITestCase: XCTestCase {
         mockData(GetAssignmentRequest(courseID: assignment.course_id.value, assignmentID: assignment.id.value, include: [ .submission ]), value: assignment)
         mockData(GetAssignmentRequest(courseID: assignment.course_id.value, assignmentID: assignment.id.value, include: []), value: assignment)
         for submission in assignment.submission?.values ?? [] {
-            mockData(GetSubmissionRequest(
-                context: ContextModel(.course, id: assignment.course_id.value),
-                assignmentID: assignment.id.value, userID: "1"),
-                value: submission)
+            for userId in ["1", "self"] {
+                mockData(GetSubmissionRequest(
+                    context: ContextModel(.course, id: assignment.course_id.value),
+                    assignmentID: assignment.id.value, userID: userId),
+                         value: submission)
+            }
         }
 
         return assignment
@@ -500,8 +523,8 @@ open class CoreUITestCase: XCTestCase {
 
     open var baseEnrollment: APIEnrollment {
         .make(
-            type: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
-            role: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
+            type: Bundle.main.isTeacherTestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
+            role: Bundle.main.isTeacherTestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
         )
     }
     open lazy var baseCourse = mock(course: .make(enrollments: [ baseEnrollment ]))
@@ -578,7 +601,7 @@ open class CoreUITestCase: XCTestCase {
         _ request: URLRequest,
         response: @escaping (URLRequest) -> MockHTTPResponse
     ) {
-        XCTAssert(useMocks, "override useMocks to use mocks!")
+        XCTAssert(useMocks, "Mocks not allowed for E2E tests!")
         httpMocks[request.url!.withCanonicalQueryParams!] = response
     }
 

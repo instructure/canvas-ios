@@ -210,7 +210,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         XCTAssertEqual(viewController.gradeSection?.isHidden, false)
         XCTAssertEqual(viewController.gradeCellDivider?.isHidden, false)
         XCTAssertEqual(viewController.gradedView?.isHidden, true)
-        XCTAssertEqual(viewController.submittedView?.isHidden, true)
+        XCTAssertEqual(viewController.submittedView?.isHidden, false)
         XCTAssertEqual(viewController.fileSubmissionButton?.isHidden, false)
         XCTAssertEqual(viewController.submittedDetailsLabel?.isHidden, true)
     }

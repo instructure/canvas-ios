@@ -53,20 +53,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         if hasFirebase {
             FirebaseApp.configure()
-            let remoteConfig = RemoteConfig.remoteConfig()
-            remoteConfig.activate { error in
-                guard error == nil else {
-                    return
-                }
-                let keys = remoteConfig.allKeys(from: RemoteConfigSource.remote)
-                for key in keys {
-                    guard let feature = ExperimentalFeature(rawValue: key) else { continue }
-                    let value = remoteConfig.configValue(forKey: key).boolValue
-                    feature.isEnabled = value
-                    Crashlytics.sharedInstance().setBoolValue(value, forKey: feature.userDefaultsKey)
-                }
-            }
-            remoteConfig.fetch(completionHandler: nil)
+            configureRemoteConfig()
         }
         setupDefaultErrorHandling()
         Analytics.shared.handler = self
@@ -137,6 +124,28 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         } catch let e as NSError {
             print(e)
         }
+    }
+
+    // similar methods exist in all other app delegates
+    // please be sure to update there as well
+    // We can't move this to Core as it would require setting up
+    // Cocoapods for Core to pull in Firebase
+    func configureRemoteConfig() {
+        let remoteConfig = RemoteConfig.remoteConfig()
+        remoteConfig.activate { error in
+            guard error == nil else {
+                return
+            }
+            let keys = remoteConfig.allKeys(from: RemoteConfigSource.remote)
+            for key in keys {
+                guard let feature = ExperimentalFeature(rawValue: key) else { continue }
+                let value = remoteConfig.configValue(forKey: key).boolValue
+                feature.isEnabled = value
+                Crashlytics.sharedInstance().setBoolValue(value, forKey: feature.userDefaultsKey)
+                Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
+            }
+        }
+        remoteConfig.fetch(completionHandler: nil)
     }
 }
 

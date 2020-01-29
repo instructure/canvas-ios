@@ -30,25 +30,22 @@ class DiscussionReplyTests: CoreUITestCase {
             create_discussion_topic: true
     )))
 
-    func mockDiscussion(allowAttachment: Bool? = true, allowRating: Bool = false) -> APIDiscussionTopic {
-        let discussId: ID = "1"
-        let discussion = APIDiscussionTopic.make(
-            id: discussId,
-            message: "top message",
-            html_url: URL(string: "/courses/\(course.id)/discussion_topics/\(discussId)"),
-            permissions: .make(attach: allowAttachment),
-            allow_rating: allowRating
-        )
+    var markedAsRead: [ID: Bool] = [:]
+
+    @discardableResult
+    func mockDiscussion(_ discussion: APIDiscussionTopic = .make(), fullTopic: APIDiscussionFullTopic = .make()) -> APIDiscussionTopic {
         mockData(ListDiscussionTopicsRequest(context: course), value: [discussion])
-        mockData(GetTopicRequests(context: course, topicID: discussId.value), value: discussion)
-        let fullTopic = APIDiscussionFullTopic.make()
-        mockData(GetFullTopicRequests(context: course, topicID: discussId.value), value: fullTopic)
-        mockData(ListDiscussionEntriesRequest(context: course, topicID: discussId.value), value: fullTopic.view)
-        let readDiscussionUrl = URL(string: "https://canvas.instructure.com/api/v1/courses/\(course.id)/discussion_topics/\(discussId)/read")!
+        mockData(GetTopicRequests(context: course, topicID: discussion.id.value), value: discussion)
+        mockData(GetFullTopicRequests(context: course, topicID: discussion.id.value), value: fullTopic)
+        mockData(ListDiscussionEntriesRequest(context: course, topicID: discussion.id.value), value: fullTopic.view)
+        let readDiscussionUrl = URL(string: "https://canvas.instructure.com/api/v1/courses/\(course.id)/discussion_topics/\(discussion.id)/read")!
         mockURL(readDiscussionUrl, response: HTTPURLResponse(url: readDiscussionUrl, statusCode: 204, httpVersion: nil, headerFields: [:]))
-        fullTopic.unread_entries.forEach {
-            let url = URL(string: "https://canvas.instructure.com/api/v1/courses/\(course.id)/discussion_topics/\(discussId)/entries/\($0)/read")!
-            mockURL(url, response: HTTPURLResponse(url: url, statusCode: 204, httpVersion: nil, headerFields: [:]))
+        fullTopic.unread_entries.forEach { entry in
+            let url = URL(string: "https://canvas.instructure.com/api/v1/courses/\(course.id)/discussion_topics/\(discussion.id)/entries/\(entry)/read")!
+            mockResponse(URLRequest(url: url)) { [weak self] _ in
+                self?.markedAsRead[entry] = true
+                return MockHTTPResponse(http: HTTPURLResponse(url: url, statusCode: 204, httpVersion: nil, headerFields: [:]))
+            }
         }
         return discussion
     }
@@ -110,7 +107,7 @@ class DiscussionReplyTests: CoreUITestCase {
     func testReplyingWithoutAttachment() {
         mockBaseRequests()
         mockCoursePermission()
-        let discussion = mockDiscussion(allowAttachment: false)
+        let discussion = mockDiscussion()
         mockEncodableRequest("courses/\(course.id)/settings", value: ["allow_student_forum_attachments": false])
         show("/courses/\(course.id)/discussion_topics/\(discussion.id)")
         app.find(label: discussion.message!).waitToExist()
@@ -142,7 +139,7 @@ class DiscussionReplyTests: CoreUITestCase {
     func testReplyingWithAttachment() {
         mockBaseRequests()
         mockCoursePermission()
-        let discussion = mockDiscussion()
+        let discussion = mockDiscussion(APIDiscussionTopic.make(permissions: .make(attach: true)))
         show("/courses/\(course.id)/discussion_topics/\(discussion.id)")
         app.find(label: discussion.message!).waitToExist()
 
@@ -175,7 +172,7 @@ class DiscussionReplyTests: CoreUITestCase {
     func testLikeReply() {
         mockBaseRequests()
         mockCoursePermission()
-        let discussion = mockDiscussion(allowRating: true)
+        let discussion = mockDiscussion(APIDiscussionTopic.make(allow_rating: true))
         show("/courses/\(course.id)/discussion_topics/\(discussion.id)")
 
         for entry in 1...5 {
@@ -196,5 +193,23 @@ class DiscussionReplyTests: CoreUITestCase {
         XCTAssertEqual(DiscussionReply.ratingCount(id: "2").label(), "Number of likes: 1")
         XCTAssertEqual(DiscussionReply.ratingCount(id: "3").label(), "Number of likes: 2")
         DiscussionReply.ratingCount(id: "5").waitToVanish()
+    }
+
+    func testRepliesMarkedAsReadOnScroll() {
+        mockBaseRequests()
+        mockCoursePermission()
+        let messageIds = (10...20).map(ID.init)
+        let discussion = mockDiscussion(fullTopic: APIDiscussionFullTopic.make(
+            unread_entries: messageIds,
+            view: messageIds.map { APIDiscussionEntry.make(id: $0, message: "reply \($0)") }
+        ))
+        show("/courses/\(course.id)/discussion_topics/\(discussion.id)")
+
+        app.find(label: "reply 10").waitToExist()
+
+        waitUntil {
+            app.swipeUp()
+            return messageIds.allSatisfy { markedAsRead[$0] == true }
+        }
     }
 }

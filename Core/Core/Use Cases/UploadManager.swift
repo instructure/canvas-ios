@@ -33,8 +33,10 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     public static var shared = UploadManager(identifier: "com.instructure.core.file-uploads")
 
     public let identifier: String
+    public let sharedContainerIdentifier: String?
     var notificationManager: NotificationManager = .shared
     var process: ProcessManager = ProcessInfo.processInfo
+    var environment: AppEnvironment { .shared }
     private var validSession: URLSession?
     var backgroundSession: URLSession {
         if let validSession = validSession {
@@ -63,15 +65,16 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         return decoder
     }()
 
-    public init(identifier: String) {
+    public init(identifier: String, sharedContainerIdentifier: String? = nil) {
         self.identifier = identifier
+        self.sharedContainerIdentifier = sharedContainerIdentifier
         super.init()
     }
 
     @discardableResult
     public func createSession() -> URLSession {
         let configuration = URLSessionConfiguration.background(withIdentifier: identifier)
-        configuration.sharedContainerIdentifier = Bundle.main.appGroupID()
+        configuration.sharedContainerIdentifier = sharedContainerIdentifier
         return URLSessionAPI.delegateURLSession(configuration, self, nil)
     }
 
@@ -90,7 +93,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         return newURL
     }
 
-    public func subscribe(environment: AppEnvironment = .shared, batchID: String, eventHandler: @escaping Store.EventHandler) -> Store {
+    public func subscribe(batchID: String, eventHandler: @escaping Store.EventHandler) -> Store {
         let user = environment.currentSession.flatMap { NSPredicate(format: "%K == %@", #keyPath(File.userID), $0.userID) } ?? .all
         let batch = NSPredicate(format: "%K == %@", #keyPath(File.batchID), batchID)
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [user, batch])
@@ -100,7 +103,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     }
 
     @discardableResult
-    public func add(environment: AppEnvironment = .shared, url: URL, batchID: String? = nil) throws -> File {
+    public func add(url: URL, batchID: String? = nil) throws -> File {
         let file: File = viewContext.insert()
         let uploadURL = try self.uploadURL(url)
         file.localFileURL = uploadURL
@@ -113,26 +116,26 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         return file
     }
 
-    open func upload(environment: AppEnvironment = .shared, batch batchID: String, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
+    open func upload(batch batchID: String, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
         context.performAndWait {
             let user = environment.currentSession.flatMap { NSPredicate(format: "%K == %@", #keyPath(File.userID), $0.userID) } ?? .all
             let batch = NSPredicate(format: "%K == %@", #keyPath(File.batchID), batchID)
             let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [user, batch])
             let files: [File] = context.fetch(predicate)
             for file in files {
-                upload(environment: environment, file: file, to: uploadContext, callback: callback)
+                upload(file: file, to: uploadContext, callback: callback)
             }
         }
     }
 
-    open func upload(environment: AppEnvironment = .shared, url: URL, batchID: String? = nil, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
+    open func upload(url: URL, batchID: String? = nil, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
         context.performAndWait {
-            guard let file = try? add(environment: environment, url: url, batchID: batchID) else { return }
-            upload(environment: environment, file: file, to: uploadContext, callback: callback)
+            guard let file = try? add(url: url, batchID: batchID) else { return }
+            upload(file: file, to: uploadContext, callback: callback)
         }
     }
 
-    open func upload(environment: AppEnvironment = .shared, file: File, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
+    open func upload(file: File, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
         Logger.shared.log()
         let objectID = file.objectID
         context.performAndWait {
@@ -190,60 +193,27 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         Logger.shared.log()
-        completeUpload(task: task, error: error)
+        self.context.performAndWait {
+            guard let file = self.file(taskID: task.taskIdentifier) else { return }
+            if error == nil, case let .submission(courseID, assignmentID, comment)? = file.context {
+                self.submit(file: file, courseID: courseID, assignmentID: assignmentID, comment: comment)
+                return
+            }
+            self.complete(file: file, error: error)
+        }
     }
 
-    func completeUpload(task: URLSessionTask, error: Error?) {
+    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         Logger.shared.log()
-        let semaphore = DispatchSemaphore(value: 0)
-        var currentTask: URLSessionTask?
-        process.performExpiringActivity(withReason: "get file") { expired in
-            if expired {
-                currentTask?.cancel()
+        self.context.performAndWait {
+            guard let file = self.file(taskID: dataTask.taskIdentifier) else { return }
+            do {
+                let response = try self.decoder.decode(APIFile.self, from: data)
+                file.update(fromAPIModel: response)
+                try self.context.save()
+            } catch {
+                self.complete(file: file, error: error)
             }
-            self.context.performAndWait {
-                guard let file = self.file(taskID: task.taskIdentifier) else { return }
-                if let response = task.response as? HTTPURLResponse,
-                    response.statusCode == 201,
-                    let location = response.allHeaderFields[HttpHeader.location] as? String,
-                    let url = URL(string: location),
-                    let user = file.user,
-                    let session = LoginSession.sessions.first(where: { user == $0 }) {
-                    let objectID = file.objectID
-                    var request = URLRequest(url: url)
-                    if let token = session.accessToken {
-                        request.setValue("Bearer \(token)", forHTTPHeaderField: HttpHeader.authorization)
-                    }
-                    request.setValue("application/json+canvas-string-ids", forHTTPHeaderField: HttpHeader.accept)
-                    currentTask = URLSession.getDefaultURLSession().dataTask(with: request) { data, _, error in
-                        self.context.performAndWait {
-                            defer { semaphore.signal() }
-                            guard let file = try? self.context.existingObject(with: objectID) as? File else { return }
-                            guard let data = data, error == nil else {
-                                self.complete(file: file, error: error ?? NSError.internalError())
-                                return
-                            }
-                            do {
-                                let result = try self.decoder.decode(APIFile.self, from: data)
-                                file.update(fromAPIModel: result)
-                                try self.context.save()
-                                if case let .submission(courseID, assignmentID, comment)? = file.context, error == nil {
-                                    self.submit(file: file, courseID: courseID, assignmentID: assignmentID, comment: comment)
-                                    return
-                                }
-                                self.complete(file: file, error: error)
-                            } catch {
-                                self.complete(file: file, error: error)
-                            }
-                        }
-                    }
-                    currentTask?.resume()
-                } else {
-                    self.complete(file: file, error: error)
-                    semaphore.signal()
-                }
-            }
-            semaphore.wait()
         }
     }
 
@@ -278,7 +248,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         }
     }
 
-    open func cancel(environment: AppEnvironment = .shared, batchID: String) {
+    open func cancel(batchID: String) {
         Logger.shared.log()
         guard let session = environment.currentSession else { return }
         context.performAndWait {
@@ -378,7 +348,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 file.localFileURL = nil
             }
             try? context.save()
-            if case let .submission(courseID, assignmentID, _)? = file.context {
+            if error != nil, case let .submission(courseID, assignmentID, _)? = file.context {
                 sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
             }
         }

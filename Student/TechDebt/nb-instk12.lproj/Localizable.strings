@@ -76,9 +76,6 @@
 /* 88 out of 100 points */
 "%1$g out of %2$@" = "%1$g ut av %2$@";
 
-/* A number and a collective noun, like '5 pigs' */
-"%d %@" = "%1$d %2$@";
-
 /* time since creation (2 or more days) */
 "%d days ago" = "%d dager siden";
 
@@ -416,7 +413,9 @@
 /* label for customizing a course */
 "Customize" = "Tilpass";
 
-/* Default delete button MLVC */
+/* Button to confirm deleting folders
+   Button to delete a discussion entry
+   Confirm deletion of discussion entry */
 "Delete" = "Slett";
 
 /* Button for deleting files or folders. %d will be the number of selected items */
@@ -453,8 +452,7 @@
    Title for Discussions view controller */
 "Discussions" = "Diskusjoner";
 
-/* Dismiss button title
-   uialertaction button name for dismissing the failed refresh error message */
+/* Dismiss button title */
 "Dismiss" = "Avvise";
 
 /* Alert title asking if you want to masquerade */
@@ -545,9 +543,6 @@
 
 /* No comment provided by engineer. */
 "External URL" = "Ekstern URL";
-
-/* Error title for refresh failing on an MLVC tableview controller */
-"Failed to load" = "Kunne ikke laste";
 
 /* No comment provided by engineer. */
 "File" = "Fil";
@@ -1245,9 +1240,6 @@
 /* message displayed in the details section if there is no comment. */
 "This assignment has no details." = "Denne oppgaven har ingen detaljer.";
 
-/* Error message for refresh failing with an unauthorized code */
-"This can happen if your course hasn't started yet or you don't have permission to access this page." = "Dette kan skje hvis faget ditt ikke har startet ennå, eller du ikke har tillatelse til å få tilgang til denne siden.";
-
 /* No comment provided by engineer. */
 "This entry has been deleted" = "Dette innlegget har blitt slettet";
 
@@ -1305,9 +1297,6 @@
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "Kunne ikke laste opp til server";
-
-/* Error message for refresh failing on an MLVC tableview controller */
-"Unauthorized" = "Uautorisert";
 
 /* Grade unavailable */
 "Unavailable" = "Utilgjengelig";

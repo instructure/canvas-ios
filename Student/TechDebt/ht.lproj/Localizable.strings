@@ -76,9 +76,6 @@
 /* 88 out of 100 points */
 "%1$g out of %2$@" = "%1$g sou %2$@";
 
-/* A number and a collective noun, like '5 pigs' */
-"%d %@" = "%1$d %2$@";
-
 /* time since creation (2 or more days) */
 "%d days ago" = "%d jou de sa";
 
@@ -416,7 +413,9 @@
 /* label for customizing a course */
 "Customize" = "Pèsonalize";
 
-/* Default delete button MLVC */
+/* Button to confirm deleting folders
+   Button to delete a discussion entry
+   Confirm deletion of discussion entry */
 "Delete" = "Efase";
 
 /* Button for deleting files or folders. %d will be the number of selected items */
@@ -453,8 +452,7 @@
    Title for Discussions view controller */
 "Discussions" = "Diskisyon";
 
-/* Dismiss button title
-   uialertaction button name for dismissing the failed refresh error message */
+/* Dismiss button title */
 "Dismiss" = "Rejte";
 
 /* Alert title asking if you want to masquerade */
@@ -545,9 +543,6 @@
 
 /* No comment provided by engineer. */
 "External URL" = "URL Ekstèn";
-
-/* Error title for refresh failing on an MLVC tableview controller */
-"Failed to load" = "Echèk chajman";
 
 /* No comment provided by engineer. */
 "File" = "Fichye";
@@ -1245,9 +1240,6 @@
 /* message displayed in the details section if there is no comment. */
 "This assignment has no details." = "Sesyon sa a pa gen detay.";
 
-/* Error message for refresh failing with an unauthorized code */
-"This can happen if your course hasn't started yet or you don't have permission to access this page." = "Sa kapab rive si kou w la poko kòmanse oswa si w pa gen pèmisyon pou w ale sou paj sa a.";
-
 /* No comment provided by engineer. */
 "This entry has been deleted" = "Antre sa a te efase";
 
@@ -1305,9 +1297,6 @@
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "Enposib pou transfere sou sèvè a";
-
-/* Error message for refresh failing on an MLVC tableview controller */
-"Unauthorized" = "Pa otorize";
 
 /* Grade unavailable */
 "Unavailable" = "Pa disponib";
