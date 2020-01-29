@@ -439,7 +439,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
 
         let url = URL.temporaryDirectory.appendingPathComponent("assignment-details.txt")
         FileManager.default.createFile(atPath: url.path, contents: "test".data(using: .utf8), attributes: nil)
-        let file = try UploadManager.shared.add(environment: env, url: url, batchID: "assignment-\(assignment.id)")
+        let file = try UploadManager.shared.add(url: url, batchID: "assignment-\(assignment.id)")
 
         let expectation = XCTestExpectation(description: "update was called after online upload updated")
         expectation.expectedFulfillmentCount = 1

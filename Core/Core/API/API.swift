@@ -152,7 +152,7 @@ public class URLSessionAPI: API {
     @discardableResult
     public func uploadTask<R: APIRequestable>(_ requestable: R) throws -> URLSessionTask {
         let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID)
-        let directory = urlSession.configuration.sharedContainerIdentifier.flatMap(URL.sharedContainer) ?? URL.temporaryDirectory
+        let directory = URL.temporaryDirectory
         let url = directory.appendingPathComponent(UUID.string)
         try request.httpBody?.write(to: url) // TODO: delete this file after upload completes
         #if DEBUG

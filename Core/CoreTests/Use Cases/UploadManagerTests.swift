@@ -74,7 +74,7 @@ class UploadManagerTests: CoreTestCase {
         URLSessionAPI.delegateURLSession = { (configuration: URLSessionConfiguration, delegate: URLSessionDelegate?, delegateQueue: OperationQueue?) -> URLSession in
             return URLSession(configuration: config, delegate: delegate, delegateQueue: delegateQueue)
         }
-        let manager = UploadManager(identifier: "test")
+        let manager = UploadManager(identifier: "test", sharedContainerIdentifier: "group.com.instructure.icanvas")
         XCTAssertEqual(try manager.uploadURL(url), expected)
     }
 
@@ -145,19 +145,15 @@ class UploadManagerTests: CoreTestCase {
 
     func testSessionTaskDidCompleteWithUpload() throws {
         LoginSession.add(currentSession)
-        let location = "https://canvas.instructure.com/api/v1/files/1"
         let task = MockURLSession.MockDataTask()
-        let response = HTTPURLResponse(url: URL(string: "https://inst-fs.com")!, statusCode: 201, httpVersion: nil, headerFields: [HttpHeader.location: location])
-        task.mock = MockURLSession.MockData(data: nil, response: response, error: nil)
+        task.mock = MockURLSession.MockData(data: nil, response: nil, error: nil)
         task.taskIdentifier = 1
-        var request = URLRequest(url: URL(string: location)!)
-        request.setValue("Bearer \(currentSession.accessToken!)", forHTTPHeaderField: HttpHeader.authorization)
-        request.setValue("application/json+canvas-string-ids", forHTTPHeaderField: HttpHeader.accept)
-        MockURLSession.mock(request, data: try encoder.encode(APIFile.make(id: "1")), taskID: 2)
         let file = try manager.add(url: url)
         file.taskID = 1
         try context.save()
         XCTAssertTrue(file.isUploading)
+        let data = try encoder.encode(APIFile.make(id: "1"))
+        manager.urlSession(backgroundSession, dataTask: task, didReceive: data)
         manager.urlSession(backgroundSession, task: task, didCompleteWithError: nil)
         context.refresh(file, mergeChanges: false)
         XCTAssertNil(file.taskID)
@@ -175,28 +171,27 @@ class UploadManagerTests: CoreTestCase {
         XCTAssertTrue(fileManager.fileExists(atPath: oneURL.path))
         XCTAssertTrue(fileManager.fileExists(atPath: twoURL.path))
         LoginSession.add(currentSession)
-        let location = "https://canvas.instructure.com/api/v1/files/1"
-        let task = MockURLSession.MockDataTask()
-        let response = HTTPURLResponse(url: URL(string: "https://inst-fs.com")!, statusCode: 201, httpVersion: nil, headerFields: [HttpHeader.location: location])
-        task.mock = MockURLSession.MockData(data: nil, response: response, error: nil)
-        task.taskIdentifier = 1
-        var request = URLRequest(url: URL(string: location)!)
-        request.setValue("Bearer \(currentSession.accessToken!)", forHTTPHeaderField: HttpHeader.authorization)
-        request.setValue("application/json+canvas-string-ids", forHTTPHeaderField: HttpHeader.accept)
-        MockURLSession.mock(request, data: try encoder.encode(APIFile.make(id: "1")), taskID: 2)
+        let task1 = MockURLSession.MockDataTask()
+        task1.taskIdentifier = 1
+        let task2 = MockURLSession.MockDataTask()
+        task2.taskIdentifier = 2
         mockSubmission(courseID: "1", assignmentID: "2", fileIDs: ["1", "2"], taskID: 3)
 
         let one = try manager.add(url: oneURL, batchID: "assignment-2")
-        one.id = "1"
         one.taskID = 1
         one.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
         let two = try manager.add(url: twoURL, batchID: "assignment-2")
-        two.id = "2"
-        two.taskID = 1
+        two.taskID = 2
         two.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
         try context.save()
 
-        manager.urlSession(backgroundSession, task: task, didCompleteWithError: nil)
+        let data1 = try encoder.encode(APIFile.make(id: "1"))
+        let data2 = try encoder.encode(APIFile.make(id: "1"))
+
+        manager.urlSession(backgroundSession, dataTask: task1, didReceive: data1)
+        manager.urlSession(backgroundSession, dataTask: task2, didReceive: data2)
+        manager.urlSession(backgroundSession, task: task1, didCompleteWithError: nil)
+        manager.urlSession(backgroundSession, task: task2, didCompleteWithError: nil)
 
         let store = manager.subscribe(batchID: "assignment-2", eventHandler: {})
         XCTAssertEqual(store.count, 0)

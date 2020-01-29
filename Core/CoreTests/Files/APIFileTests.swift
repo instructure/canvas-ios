@@ -170,5 +170,7 @@ class PostFileUploadRequestTests: XCTestCase {
         XCTAssertEqual(requestable.headers, [
             HttpHeader.authorization: nil,
         ])
+        XCTAssertEqual(requestable.form?.count, 2)
+        XCTAssertEqual(requestable.form?.last?.key, "file")
     }
 }
