@@ -16,24 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import TestsFoundation
-@testable import CoreUITests
+import Foundation
 
-class InboxTests: CoreUITestCase {
-    override var experimentalFeatures: [ExperimentalFeature] { [.parentInbox] }
-
-    func testGetToReplyScreen() {
-        Dashboard.profileButton.tap()
-        Profile.inboxButton.tap()
-        let label = ConversationList.cell(id: "320").label()
-        XCTAssert(label.contains("Assignments"))
-        XCTAssert(label.contains("need to talk"))
-        XCTAssert(label.contains("last message Jan"))
-        XCTAssert(label.contains("Jeff"))
-        ConversationList.cell(id: "320").waitToExist().tap()
-        ConversationDetail.replyButton.tapUntil {
-            ComposeReply.body.exists()
-        }
-    }
+public enum ComposeReply: String, ElementWrapper {
+    case avatar, fromLabel, toLabel, dateLabel, messageLabel, body
 }

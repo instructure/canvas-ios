@@ -16,18 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Core
 import TestsFoundation
+@testable import CoreUITests
 
-enum ConversationList: String, ElementWrapper {
-    case composeButton
-}
+class GradesListTests: CoreUITestCase {
+    override var experimentalFeatures: [ExperimentalFeature] { [.parentInbox] }
 
-struct ConversationListCell: ElementWrapper {
-    var cellId: String
-    init(_ cellId: String) {
-        self.cellId = cellId
+    func testAssignmentDetailsCompose() {
+        let courseCell = Courses.course(id: "263")
+        courseCell.tapUntil { !courseCell.exists }
+        GradesList.assignment(id: "1831").tap()
+        app.find(labelContaining: "This is assignment one.").waitToExist()
+        AssignmentDetails.replyButton.tap()
+
+        XCTAssertEqual(Compose.recipientName(id: "837").label(), "Teacher One")
+        XCTAssertEqual(Compose.subject.value(), "Assignment One")
     }
-
-    var id: String { "ConversationListCell.\(cellId)" }
 }

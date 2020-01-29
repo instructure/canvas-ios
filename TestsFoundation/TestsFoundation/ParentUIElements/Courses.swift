@@ -16,24 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import TestsFoundation
-@testable import CoreUITests
+import Foundation
 
-class InboxTests: CoreUITestCase {
-    override var experimentalFeatures: [ExperimentalFeature] { [.parentInbox] }
-
-    func testGetToReplyScreen() {
-        Dashboard.profileButton.tap()
-        Profile.inboxButton.tap()
-        let label = ConversationList.cell(id: "320").label()
-        XCTAssert(label.contains("Assignments"))
-        XCTAssert(label.contains("need to talk"))
-        XCTAssert(label.contains("last message Jan"))
-        XCTAssert(label.contains("Jeff"))
-        ConversationList.cell(id: "320").waitToExist().tap()
-        ConversationDetail.replyButton.tapUntil {
-            ComposeReply.body.exists()
-        }
+public enum Courses {
+    public static func course(id: String) -> Element {
+        app.find(id: "course_cell_\(id)")
+    }
+    public static func titleLabel(_ id: String) -> Element {
+        app.find(id: "course_title_\(id)")
     }
 }
