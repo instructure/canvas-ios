@@ -18,6 +18,7 @@
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
+import { shallow } from 'enzyme'
 import 'react-native'
 import React from 'react'
 import SubmissionRow from '../SubmissionRow'
@@ -140,6 +141,25 @@ test('anonymous grading doesnt show users names', () => {
     />
   ).toJSON()
   expect(tree).toMatchSnapshot()
+})
+
+test('renders name', () => {
+  let user = templates.user({
+    id: '1',
+    name: 'Alice',
+  })
+  let tree = shallow(<SubmissionRow {...defaultProps} user={user} />)
+  expect(tree.find('[children="Alice"]').exists()).toBe(true)
+})
+
+test('renders pronouns', () => {
+  let user = templates.user({
+    id: '1',
+    name: 'Alice',
+    pronouns: 'She/Her',
+  })
+  let tree = shallow(<SubmissionRow {...defaultProps} user={user} />)
+  expect(tree.find('[children="Alice (She/Her)"]').exists()).toBe(true)
 })
 
 test('pressing the avatar calls onAvatarPress', () => {
