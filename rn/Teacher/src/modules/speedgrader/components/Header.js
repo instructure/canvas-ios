@@ -36,6 +36,7 @@ import { isAssignmentAnonymous } from '../../../common/anonymous-grading'
 import { submissionTypeIsOnline } from '@common/submissionTypes'
 import icon from '../../../images/inst-icons'
 import { colors, createStyleSheet } from '../../../common/stylesheet'
+import { personDisplayName } from '../../../common/formatters'
 
 export class Header extends Component<HeaderProps, State> {
   state: State = {
@@ -81,9 +82,13 @@ export class Header extends Component<HeaderProps, State> {
 
   renderGroupProfile () {
     const sub = this.props.submissionProps
-    let name = this.props.anonymous
-      ? (sub.groupID ? i18n('Group') : i18n('Student'))
-      : sub.name
+    let name = personDisplayName(sub.name, sub.pronouns)
+    let avatarName = sub.name
+    if (this.props.anonymous) {
+      let anonymousName = sub.groupID ? i18n('Group') : i18n('Student')
+      name = anonymousName
+      avatarName = anonymousName
+    }
 
     let avatarURL = this.props.anonymous
       ? ''
@@ -110,7 +115,7 @@ export class Header extends Component<HeaderProps, State> {
               <Avatar
                 key={sub.userID}
                 avatarURL={avatarURL}
-                userName={name}
+                userName={avatarName}
               />
             </View>
             <View style={styles.nameContainer}>

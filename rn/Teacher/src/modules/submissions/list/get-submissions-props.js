@@ -82,7 +82,7 @@ export function gradeProp (submission: ?Submission): GradeProp {
 
 function submissionProps (enrollment: Enrollment, submission: ?SubmissionWithHistory, dueDate: ?any, sectionIDs: { string: [string] }): SubmissionDataProps {
   let { user, course_section_id: sectionID } = enrollment
-  const { id, sortable_name } = user
+  const { id, sortable_name, pronouns } = user
   const avatarURL = user.avatar_url
   const status = statusProp(submission, dueDate)
   const grade = gradeProp(submission)
@@ -92,7 +92,7 @@ function submissionProps (enrollment: Enrollment, submission: ?SubmissionWithHis
   if (submission) {
     submissionID = submission.id
   }
-  return { userID: id, avatarURL, name: sortable_name, status, grade, submissionID, submission, score, sectionID, allSectionIDs }
+  return { userID: id, avatarURL, name: sortable_name, status, grade, submissionID, submission, score, sectionID, allSectionIDs, pronouns }
 }
 
 export function dueDate (assignment: Assignment, user: ?User | SessionUser, group: ?Group): ?string {
