@@ -54,6 +54,8 @@ open class CoreUITestCase: XCTestCase {
             return .readStudent1
         case Bundle.teacherE2ETestsBundleID:
             return .readTeacher1
+        case Bundle.parentE2ETestsBundleID:
+            return .readParent1
         default:
             return nil
         }

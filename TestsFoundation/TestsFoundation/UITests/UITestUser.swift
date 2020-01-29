@@ -25,6 +25,7 @@ public class UITestUser: NSObject, XCTestObservation {
     public static let readStudent1 = UITestUser(.testReadStudent1)
     public static let readStudent2 = UITestUser(.testReadStudent2)
     public static let readTeacher1 = UITestUser(.testReadTeacher1)
+    public static let readParent1 = UITestUser(.testReadParent1)
     public static let ldapUser = UITestUser(.testLDAPUser)
     public static let notEnrolled = UITestUser(.testNotEnrolled)
     public static let saml = UITestUser(.testSAMLUser)

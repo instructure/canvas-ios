@@ -150,6 +150,7 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAw-lF-SAM" customClass="FloatingButton" customModule="Parent" customModuleProvider="target">
                                 <rect key="frame" x="342" y="790" width="56" height="56"/>
+                                <accessibility key="accessibilityConfiguration" identifier="ConversationDetail.replyButton"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="GWW-b8-mwx"/>
                                     <constraint firstAttribute="width" constant="56" id="e9j-vX-RiZ"/>

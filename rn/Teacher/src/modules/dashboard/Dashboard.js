@@ -446,7 +446,7 @@ export class Dashboard extends React.Component<Props, State> {
         leftBarButtons: [
           {
             image: Images.hamburger,
-            testID: 'favorited-course-list.profile-btn',
+            testID: 'Dashboard.profileButton',
             action: this.showProfile,
             accessibilityLabel: i18n('Profile Menu'),
           },

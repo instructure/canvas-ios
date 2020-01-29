@@ -119,6 +119,7 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
         replyButton?.setImage(UIImage.icon(.reply, .solid), for: .normal)
         replyButton?.tintColor = .named(.white)
         replyButton?.backgroundColor = colorScheme.color
+        replyButton?.accessibilityIdentifier = "AssignmentDetails.replyButton"
         if let replyButton = replyButton { view.superview?.addSubview(replyButton) }
 
         let metrics: [String: CGFloat] = ["buttonSize": buttonSize, "margin": margin, "bottomMargin": bottomMargin]
