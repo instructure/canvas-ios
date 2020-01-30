@@ -452,8 +452,10 @@
 		9727093B23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9727093A23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift */; };
 		9767F2982383B846006633CA /* TokenLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9767F2972383B846006633CA /* TokenLabelView.swift */; };
 		976B665823CE288300865549 /* Pages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976B665723CE288300865549 /* Pages.swift */; };
+		977921A123E11C3F0082696B /* UIBarButtonItemExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977921A023E11C3F0082696B /* UIBarButtonItemExtensionTests.swift */; };
 		97A486C42397826300084499 /* ProfileViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A486C32397826300084499 /* ProfileViewControllerTests.swift */; };
 		97A486CB239AB2ED00084499 /* SyllabusViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A486CA239AB2ED00084499 /* SyllabusViewControllerTests.swift */; };
+		97D9400E23DFEA6A00A9D274 /* UIBarButtonItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D9400D23DFEA6A00A9D274 /* UIBarButtonItemExtensions.swift */; };
 		97EF507623A2F4FA008136F5 /* SyllabusActionableItemsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97EF507523A2F4FA008136F5 /* SyllabusActionableItemsCell.xib */; };
 		9F0282392367526700700B41 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0282382367526700700B41 /* App.swift */; };
 		9F09A4CF22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F09A4CE22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift */; };
@@ -1394,8 +1396,10 @@
 		9727093A23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalMenuViewControllerTests.swift; sourceTree = "<group>"; };
 		9767F2972383B846006633CA /* TokenLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenLabelView.swift; sourceTree = "<group>"; };
 		976B665723CE288300865549 /* Pages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pages.swift; sourceTree = "<group>"; };
+		977921A023E11C3F0082696B /* UIBarButtonItemExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensionTests.swift; sourceTree = "<group>"; };
 		97A486C32397826300084499 /* ProfileViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerTests.swift; sourceTree = "<group>"; };
 		97A486CA239AB2ED00084499 /* SyllabusViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusViewControllerTests.swift; sourceTree = "<group>"; };
+		97D9400D23DFEA6A00A9D274 /* UIBarButtonItemExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensions.swift; sourceTree = "<group>"; };
 		97EF507523A2F4FA008136F5 /* SyllabusActionableItemsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SyllabusActionableItemsCell.xib; sourceTree = "<group>"; };
 		9F0282382367526700700B41 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		9F09A4CE22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessInfoExtensionsTests.swift; sourceTree = "<group>"; };
@@ -2543,6 +2547,7 @@
 				7D80AC57212DAE4C00C40ECE /* URLResponseExtensions.swift */,
 				B150C6392298DAB90096D58C /* WKWebViewExtensions.swift */,
 				3B158C8C22E12DC50039A568 /* StringExtensions.swift */,
+				97D9400D23DFEA6A00A9D274 /* UIBarButtonItemExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2628,6 +2633,7 @@
 				B150C63B2298DE590096D58C /* WKWebViewExtensionsTests.swift */,
 				9F09A4CE22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift */,
 				3BDB8F3422E63676003D81C3 /* StringExtensionTests.swift */,
+				977921A023E11C3F0082696B /* UIBarButtonItemExtensionTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3866,6 +3872,7 @@
 				9F6878B1223952FB00E559CE /* MediaComment.swift in Sources */,
 				7DCF202D216D461C003AF358 /* UITableViewExtensions.swift in Sources */,
 				9FE84DDE2150281300B95A68 /* GetContextTabs.swift in Sources */,
+				97D9400E23DFEA6A00A9D274 /* UIBarButtonItemExtensions.swift in Sources */,
 				7D47769C21AF3A0200B441CE /* QuizQuestionType.swift in Sources */,
 				B1A6BC80218A32F3000515E3 /* APIAssignmentOverride+Requestable.swift in Sources */,
 				7DFDB43623A4587B00B28DED /* Conversation.swift in Sources */,
@@ -4430,6 +4437,7 @@
 				B109249423CE81C400796903 /* RoleTests.swift in Sources */,
 				7D2DC301219A16EC008FE29A /* DocViewerConstantsTests.swift in Sources */,
 				7D5A2BC422CD0D8C0029B6AC /* APIListTests.swift in Sources */,
+				977921A123E11C3F0082696B /* UIBarButtonItemExtensionTests.swift in Sources */,
 				7DD371C122E7B39800C2D0F7 /* GetQuizSubmissionTests.swift in Sources */,
 				7D8E820723C79B8700A8DA2C /* AddMessageTests.swift in Sources */,
 				7DA8C37D239EAE0F004762DD /* LoginManualOAuthViewControllerTests.swift in Sources */,

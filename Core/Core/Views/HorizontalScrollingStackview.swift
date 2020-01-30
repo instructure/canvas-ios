@@ -20,10 +20,14 @@ import UIKit
 
 public class HorizontalScrollingStackview: UIView {
 
-    private var scrollView: UIScrollView!
+    public var scrollView: UIScrollView!
     private var stackView: UIStackView!
     public var arrangedSubviews: [UIView] {
         return stackView.arrangedSubviews
+    }
+    public var spacing: CGFloat {
+        get { stackView.spacing }
+        set { stackView.spacing = newValue }
     }
 
     override init(frame: CGRect) {
@@ -69,5 +73,11 @@ public class HorizontalScrollingStackview: UIView {
 
     public func addArrangedSubview(_ view: UIView) {
         stackView.addArrangedSubview(view)
+    }
+
+    public func leftAlignArrangedSubviews() {
+        let leftAlignViewsSpacer = UIView()
+        leftAlignViewsSpacer.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        stackView.addArrangedSubview(leftAlignViewsSpacer)
     }
 }

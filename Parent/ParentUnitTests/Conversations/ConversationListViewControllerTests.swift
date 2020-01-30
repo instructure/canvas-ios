@@ -44,7 +44,7 @@ class ConversationListViewControllerTests: ParentTestCase {
         loadView()
         XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
         XCTAssertFalse(navigation.isNavigationBarHidden)
-        XCTAssertEqual(navigation.navigationBar.barStyle, .default)
+        XCTAssertEqual(navigation.navigationBar.barStyle, .black)
 
         XCTAssertTrue(controller.emptyView.isHidden)
         XCTAssertTrue(controller.errorView.isHidden)
