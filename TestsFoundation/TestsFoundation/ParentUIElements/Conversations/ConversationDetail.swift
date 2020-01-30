@@ -17,8 +17,7 @@
 //
 
 import Foundation
-import TestsFoundation
 
-enum ConversationDetail: String, ElementWrapper {
+public enum ConversationDetail: String, ElementWrapper {
     case replyButton
 }

@@ -180,5 +180,6 @@ class ComposeRecipientView: UIView {
         avatarView.name = recipient.name
         avatarView.url = recipient.avatar_url?.rawValue
         nameLabel.text = recipient.name
+        nameLabel.accessibilityIdentifier = "Compose.recipientName.\(recipient.id)"
     }
 }
