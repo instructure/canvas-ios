@@ -372,8 +372,9 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
 
     @objc func didSelectStudent(sender: UIButton) {
         let index = sender.tag
-        currentStudent = studentAtIndex(index)
-        showCustomNavbarMenu(false)
+        showCustomNavbarMenu(false, completion: { [weak self] in
+            self?.currentStudent = self?.studentAtIndex(index)
+        })
         configureStudentMenu()
     }
 

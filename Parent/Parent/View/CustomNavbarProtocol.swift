@@ -46,7 +46,7 @@ protocol CustomNavbarProtocol: class {
     var customNavbarDelegate: CustomNavbarActionDelegate? { get set }
     var navbarMenuIsHidden: Bool { get }
 
-    func showCustomNavbarMenu(_ show: Bool)
+    func showCustomNavbarMenu(_ show: Bool, completion: (() -> Void)?)
     func setupCustomNavbar()
 }
 
@@ -167,16 +167,17 @@ extension CustomNavbarProtocol {
         view.topAnchor.constraint(equalTo: navbarMenu.bottomAnchor, constant: 0).isActive = true
     }
 
-    func showCustomNavbarMenu(_ show: Bool = true) {
+    func showCustomNavbarMenu(_ show: Bool = true, completion: (() -> Void)? = nil) {
         let menuHeight: CGFloat = show ? 105 : 0
-        let duration: Double = show ? 0.45 : 0.3
+        let duration: Double = show ? 0.3 : 0.3
 
         if show { navbarMenu.alpha = 1 }
         self.navbarMenuHeightConstraint.constant = menuHeight
-        UIView.animateKeyframes(withDuration: duration, delay: 0, options: .calculationModeLinear, animations: {
-            self.view.layoutIfNeeded()
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {
+            self.navbarMenu.superview?.layoutIfNeeded()
         }, completion: { _ in
             self.navbarMenu.alpha = show ? 1 : 0
+            completion?()
         })
     }
 
