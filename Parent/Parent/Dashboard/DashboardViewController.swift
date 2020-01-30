@@ -75,6 +75,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
                 alertsTabItem.badgeColor = color
                 navbarNameButton.setTitle(student.name, for: .normal)
                 navigationItem.leftBarButtonItem?.addBadge(number: badgeCount, color: color)
+                navbarAvatar?.name = student.name
                 navbarAvatar?.url = student.avatarURL
                 tabBar.tintColor = color
                 refreshNavbarColor()
@@ -364,7 +365,8 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
             navbarMenuStackView.addArrangedSubview(item)
             item.addConstraintsWithVFL("H:[view(90)]")
             item.addConstraintsWithVFL("V:[view(90)]")
-            item.imageView.load(url: student.avatarURL)
+            item.avatar.url = student.avatarURL
+            item.avatar.name = student.name
             item.label.text = student.shortName
         }
         navbarMenuStackView.leftAlignArrangedSubviews()
@@ -467,7 +469,7 @@ private func convertToUIBackgroundTaskIdentifier(_ input: Int) -> UIBackgroundTa
 }
 
 class MenuItem: UIView {
-    var imageView: UIImageView!
+    var avatar: AvatarView!
     var button: UIButton!
     var label: DynamicLabel!
 
@@ -486,21 +488,28 @@ class MenuItem: UIView {
         label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 1
         label.textAlignment = .center
-        imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        avatar = AvatarView()
         button = UIButton(type: .system)
-        addSubview(imageView)
+        addSubview(avatar)
         addSubview(label)
         addSubview(button)
 
         label.addConstraintsWithVFL("V:[view(21)]")
         label.addConstraintsWithVFL("H:|[view]|")
 
-        imageView.addConstraintsWithVFL("V:|-(16)-[view(48)]-(8)-[label]", views: ["label": label])
-        imageView.addConstraintsWithVFL("H:[view(48)]")
-        imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        imageView.layer.cornerRadius = 48.0 / 2.0
-        imageView.layer.masksToBounds = true
+        let avatarSize: CGFloat = 48.0
+        let metrics = ["size": avatarSize]
+        avatar.addConstraintsWithVFL("V:|-(16)-[view(size)]-(8)-[label]", views: ["label": label], metrics: metrics)
+        avatar.addConstraintsWithVFL("H:[view(size)]", metrics: metrics)
+        avatar.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+
+        avatar.layer.cornerRadius = ceil( avatarSize / 2.0 )
+        avatar.layer.shadowOffset = CGSize(width: 0, height: 4.0)
+        avatar.layer.shadowColor = UIColor(white: 0, alpha: 0.15).cgColor
+        avatar.layer.shadowOpacity = 0.2
+        avatar.layer.shadowRadius = 8
+        avatar.layer.shouldRasterize = true
+        avatar.layer.rasterizationScale = UIScreen.main.scale
 
         button.pin(inside: self)
     }
