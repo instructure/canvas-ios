@@ -234,7 +234,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         coursesTabItem.accessibilityLabel = String.localizedStringWithFormat(tabViewFormatString, coursesTitle, 1, 3)
         coursesTabItem.accessibilityIdentifier = "TabBar.coursesTab"
 
-        let calendarTitle = NSLocalizedString("Week", comment: "Calendar Tab")
+        let calendarTitle = NSLocalizedString("Calendar", comment: "Calendar Tab")
         calendarTabItem.title = calendarTitle
         calendarTabItem.image = UIImage.icon(.calendar)
         calendarTabItem.selectedImage = UIImage.icon(.calendar)
