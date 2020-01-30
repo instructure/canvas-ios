@@ -376,8 +376,8 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         let index = sender.tag
         showCustomNavbarMenu(false, completion: { [weak self] in
             self?.currentStudent = self?.studentAtIndex(index)
+            self?.configureStudentMenu()
         })
-        configureStudentMenu()
     }
 
     func selectCoursesTab() {
