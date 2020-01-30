@@ -362,10 +362,10 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
             item.button.tag = index
             item.button.addTarget(self, action: #selector(didSelectStudent(sender:)), for: .primaryActionTriggered)
             navbarMenuStackView.addArrangedSubview(item)
-            item.addConstraintsWithVFL("H:[view(70)]")
-            item.addConstraintsWithVFL("V:[view(70)]")
+            item.addConstraintsWithVFL("H:[view(90)]")
+            item.addConstraintsWithVFL("V:[view(90)]")
             item.imageView.load(url: student.avatarURL)
-            item.label.text = student.name
+            item.label.text = student.shortName
         }
         navbarMenuStackView.leftAlignArrangedSubviews()
     }
@@ -482,7 +482,7 @@ class MenuItem: UIView {
 
     func commonInit() {
         label = DynamicLabel()
-        label.font = UIFont.scaledNamedFont(.semibold14)
+        label.font = UIFont.scaledNamedFont(.semibold12)
         label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 1
         label.textAlignment = .center

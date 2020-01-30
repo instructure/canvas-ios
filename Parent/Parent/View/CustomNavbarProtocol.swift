@@ -91,6 +91,7 @@ extension CustomNavbarProtocol {
         ])
 
         navbarMenuStackView = HorizontalScrollingStackview()
+        navbarMenuStackView.scrollView.showsHorizontalScrollIndicator = false
         navbarMenuStackView.scrollView.contentInset.left = 24
         navbarMenu.addSubview(navbarMenuStackView)
         navbarMenuStackView.pin(inside: navbarMenu)
