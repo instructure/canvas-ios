@@ -144,7 +144,7 @@ extension CustomNavbarProtocol {
             avatar.centerYAnchor.constraint(equalTo: container.centerYAnchor),
         ])
         navbarAvatar?.addDropShadow(size: avatarSize)
-        
+
         let button = UIButton()
         container.addSubview(button)
         button.pinToAllSidesOfSuperview()
