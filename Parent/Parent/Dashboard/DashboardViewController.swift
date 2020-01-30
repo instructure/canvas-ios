@@ -74,8 +74,6 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
                 let color = ColorScheme.observee(student.id).color
                 alertsTabItem.badgeColor = color
                 navbarNameButton.setTitle(student.name, for: .normal)
-                //                badgeLabel.textColor = color
-                //                badgeView.layer.borderColor = color.cgColor
                 navigationItem.leftBarButtonItem?.addBadge(number: badgeCount, color: color)
                 navbarAvatar?.url = student.avatarURL
                 tabBar.tintColor = color
@@ -207,7 +205,6 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
             return
         }
 
-        //        self.studentInfoContainer.isHidden = false
         setupTabs()
 
         if (viewState.isSiteAdmin || presenter?.permissions.first?.becomeUser == true) && viewState.studentCount == 0 {
@@ -256,9 +253,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     }
 
     func showSiteAdminViews() {
-        //        studentInfoName.text = NSLocalizedString("Admin", comment: "Label displayed when logged in as an admin")
-        //        studentInfoContainer.accessibilityLabel = studentInfoName.text
-        //        studentInfoAvatar.isHidden = true
+        navbarNameButton.setTitle(NSLocalizedString("Admin", comment: "Label displayed when logged in as an admin"), for: .normal)
         let storyboard = UIStoryboard(name: "AdminViewController", bundle: nil)
         adminViewController = storyboard.instantiateViewController(withIdentifier: "vc") as? AdminViewController
 
@@ -382,31 +377,6 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         configureStudentMenu()
     }
 
-    func studentInfoTapped(gesture: UITapGestureRecognizer) {
-        guard let collection = studentCollection else { return }
-        guard collection.numberOfItemsInSection(0) > 0 else { return }
-
-        let alertControllerTitle = NSLocalizedString("Choose a student", comment: "")
-        let alertController = UIAlertController(title: alertControllerTitle, message: nil, preferredStyle: .actionSheet)
-        if let popover = alertController.popoverPresentationController {
-            popover.permittedArrowDirections = [.up]
-            popover.sourceView = view
-
-            // position the alert to be below the student name and in the center of it
-            //            let frame = view.convert(studentInfoName.frame, from: studentInfoStackView)
-            //            popover.sourceRect = CGRect(x: frame.midX, y: frame.maxY + 3, width: 0, height: 0)
-        }
-
-        collection.forEach { student in
-            alertController.addAction(UIAlertAction(title: student.name, style: .default) { [weak self] _ in
-                self?.currentStudent = student
-            })
-        }
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-
-        present(alertController, animated: true, completion: nil)
-    }
-
     func selectCoursesTab() {
         tabBar.selectedItem = coursesTabItem
 
@@ -487,7 +457,6 @@ extension DashboardViewController: UIPageViewControllerDelegate {
 extension DashboardViewController: CustomNavbarActionDelegate {
     func didClickNavbarNameButton(sender: UIButton) {
         showCustomNavbarMenu(navbarMenuIsHidden)
-//        showCustomNavbarMenu(navbarMenuIsHidden, view: pageViewController.view)
     }
 }
 
