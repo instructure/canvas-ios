@@ -36,11 +36,13 @@ public extension Element {
 
     @discardableResult
     func tapUntil(file: StaticString = #file, line: UInt = #line, test: () -> Bool) -> Bool {
+        tap(file: file, line: line)
+        sleep(1)
         for _ in 0..<5 where exists(file: file, line: line) {
-            tap(file: file, line: line)
             if test() {
                 return true
             }
+            tap(file: file, line: line)
             sleep(1)
         }
         return test()

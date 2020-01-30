@@ -208,7 +208,7 @@ function doTest {
     rm -rf $pipe_file
     mkfifo $pipe_file
 
-    < $pipe_file tee ${BITRISE_DEPLOY_DIR-$results_directory}/test-run-$try-xcodebuild.log | xcbeautify --quiet &
+    < $pipe_file tee ${BITRISE_DEPLOY_DIR-$results_directory}/test-run-$try-xcodebuild.log | xcbeautify &
     local formatter_pid=$!
     local ret=0
     xcodebuild test-without-building $flags > $pipe_file 2> $pipe_file || ret=$?
