@@ -35,14 +35,23 @@ public extension Element {
     }
 
     @discardableResult
-    func tapUntil(file: StaticString = #file, line: UInt = #line, test: () -> Bool) -> Element {
-        var taps = 0
-        repeat {
+    func tapUntil(file: StaticString = #file, line: UInt = #line, test: () -> Bool) -> Bool {
+        for _ in 0..<5 where exists(file: file, line: line) {
             tap(file: file, line: line)
-            taps += 1
+            if test() {
+                return true
+            }
             sleep(1)
-        } while taps < 5 && test() == false && exists(file: file, line: line)
-        return self
+        }
+        return test()
+    }
+
+    func toggleOn(file: StaticString = #file, line: UInt = #line) {
+        XCTAssertTrue(tapUntil { value(file: file, line: line) == "1" }, "failed to toggle on")
+    }
+
+    func toggleOff(file: StaticString = #file, line: UInt = #line) {
+        XCTAssertTrue(tapUntil { value(file: file, line: line) == "0" }, "failed to toggle off")
     }
 
     func exists(file: StaticString = #file, line: UInt = #line) -> Bool {

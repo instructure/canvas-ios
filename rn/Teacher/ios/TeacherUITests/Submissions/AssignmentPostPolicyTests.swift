@@ -41,8 +41,8 @@ class AssignmentPostPolicyTests: TeacherUITestCase {
 
         XCTAssertEqual(PostPolicy.postToValue.label(), "Graded")
 
-        PostPolicy.togglePostToSections.tap()
-        PostPolicy.postToSectionToggle(id: "1").tap()
+        PostPolicy.togglePostToSections.toggleOn()
+        PostPolicy.postToSectionToggle(id: "1").toggleOn()
 
         mockGraphQL(operationName: "PostAssignmentGrades", [
             "data": [ "postAssignmentGradesForSections": [ "assignment": [ "id": "1" ] ] ],
@@ -55,9 +55,8 @@ class AssignmentPostPolicyTests: TeacherUITestCase {
         SubmissionsList.postpolicy.tap()
         app.find(id: "PostSettings.hideMenuItem").tap()
 
-        PostPolicy.toggleHideGradeSections.tap()
-        let hideSectionToggle = PostPolicy.hideSectionToggle(id: "1")
-        hideSectionToggle.tap()
+        PostPolicy.toggleHideGradeSections.toggleOn()
+        PostPolicy.hideSectionToggle(id: "1").toggleOn()
 
         mockGraphQL(operationName: "HideAssignmentGrades", [
             "data": [ "hideAssignmentGradesForSections": [ "assignment": [ "id": "1" ] ] ],
