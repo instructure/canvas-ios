@@ -31,7 +31,7 @@ import { colors, createStyleSheet } from '../../../common/stylesheet'
 import { Text } from '../../../common/text'
 import SubmissionStatusLabel from './SubmissionStatusLabel'
 import Avatar from '../../../common/components/Avatar'
-import { formatGradeText } from '../../../common/formatters'
+import { formatGradeText, personDisplayName } from '../../../common/formatters'
 import images from '../../../images'
 
 type RowProps = {
@@ -105,11 +105,14 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
   render () {
     let { user, group, submission, gradingType, newGradebookEnabled } = this.props
     let contextID = group?.id ?? user?.id
-    let name = group?.name ?? user?.name
+    let name = group?.name ?? personDisplayName(user?.name, user?.pronouns)
+    let avatarName = group?.name ?? user?.name
     let avatarURL = user.avatarUrl
 
     if (this.props.anonymous) {
-      name = group != null ? i18n('Group') : i18n('Student')
+      let anonymousName = group != null ? i18n('Group') : i18n('Student')
+      name = anonymousName
+      avatarName = anonymousName
       avatarURL = null
     }
 
@@ -119,7 +122,7 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
           <Avatar
             key={contextID}
             avatarURL={avatarURL}
-            userName={name}
+            userName={avatarName}
             onPress={this.props.onAvatarPress && this.onAvatarPress}
           />
         </View>

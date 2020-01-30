@@ -24,9 +24,12 @@ protocol SubmitAssignmentView: class {
 }
 
 class SubmitAssignmentPresenter {
-    let env: AppEnvironment
+    let env: AppEnvironment = .shared
     let sharedContainer: URL
-    var uploadManager = UploadManager(identifier: "com.instructure.icanvas.SubmitAssignment.file-uploads")
+    var uploadManager = UploadManager(
+        identifier: "com.instructure.icanvas.SubmitAssignment.file-uploads",
+        sharedContainerIdentifier: "group.instructure.shared"
+    )
     weak var view: SubmitAssignmentView?
 
     private(set) var course: Course? {
@@ -61,7 +64,6 @@ class SubmitAssignmentPresenter {
             let appGroup = Bundle.main.appGroupID(),
             let container = URL.sharedContainer(appGroup)
         else { return nil }
-        env = AppEnvironment.shared
         env.userDidLogin(session: session)
         sharedContainer = container
     }
@@ -131,7 +133,7 @@ class SubmitAssignmentPresenter {
         guard let assignment = assignment, let urls = urls else { return }
         let uploadContext = FileUploadContext.submission(courseID: assignment.courseID, assignmentID: assignment.id, comment: comment)
         let batchID = "assignment-\(assignment.id)"
-        uploadManager.cancel(environment: env, batchID: batchID)
+        uploadManager.cancel(batchID: batchID)
         let semaphore = DispatchSemaphore(value: 0)
         var error: Error?
         ProcessInfo.processInfo.performExpiringActivity(withReason: "get upload targets") { expired in
@@ -143,11 +145,11 @@ class SubmitAssignmentPresenter {
                 do {
                     var files: [File] = []
                     for url in urls {
-                        let file = try self.uploadManager.add(environment: self.env, url: url, batchID: batchID)
+                        let file = try self.uploadManager.add(url: url, batchID: batchID)
                         files.append(file)
                     }
                     for file in files {
-                        self.uploadManager.upload(environment: self.env, file: file, to: uploadContext) {
+                        self.uploadManager.upload(file: file, to: uploadContext) {
                             semaphore.signal()
                         }
                     }

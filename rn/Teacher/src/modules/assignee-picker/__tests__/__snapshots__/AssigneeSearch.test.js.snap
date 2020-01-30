@@ -127,6 +127,7 @@ exports[`render correctly 1`] = `
                       },
                     ]
                   }
+                  testID="AssigneeRow.everyone.name"
                 >
                   Everyone
                 </Text>
@@ -280,6 +281,7 @@ exports[`render correctly 1`] = `
                       },
                     ]
                   }
+                  testID="AssigneeRow.section-32.name"
                 >
                   the section 1
                 </Text>
@@ -450,6 +452,7 @@ exports[`render correctly 1`] = `
                       },
                     ]
                   }
+                  testID="AssigneeRow.group-1.name"
                 >
                   Red Squadron
                 </Text>
@@ -613,6 +616,7 @@ exports[`render correctly 1`] = `
                       },
                     ]
                   }
+                  testID="AssigneeRow.student-1.name"
                 >
                   Donald Trump
                 </Text>
@@ -794,6 +798,7 @@ exports[`render correctly 2`] = `
                       },
                     ]
                   }
+                  testID="AssigneeRow.section-32.name"
                 >
                   the section 1
                 </Text>
@@ -964,6 +969,7 @@ exports[`render correctly 2`] = `
                       },
                     ]
                   }
+                  testID="AssigneeRow.group-1.name"
                 >
                   Red Squadron
                 </Text>

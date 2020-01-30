@@ -59,6 +59,13 @@ workflows:
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
+    - script:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -e
+            set -x
+            ./Pods/Fabric/upload-symbols -gsp "$BITRISE_SOURCE_DIR/Student/Student/GoogleService-Info.plist" -p ios "$BITRISE_DSYM_PATH"
     - cache-push:
         inputs:
         - cache_paths: "$BITRISE_SOURCE_DIR/Carthage/Build/iOS/"
@@ -75,9 +82,6 @@ workflows:
     - _set-export-app-store
     - _common
     steps:
-    - firebase-dsym-upload:
-        inputs:
-        - fdu_google_services_location: "$BITRISE_SOURCE_DIR/Student/Student/GoogleService-Info.plist"
     - deploy-to-itunesconnect-application-loader:
         inputs:
         - password: "$APPSTORECONNECT_PASSWORD"

@@ -35,7 +35,9 @@
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iKU-8j-3jF">
                                 <rect key="frame" x="0.0" y="618" width="375" height="49"/>
                                 <constraints>
+
                                     <constraint firstAttribute="height" constant="49" id="WhA-En-3PW"/>
+
                                 </constraints>
                                 <items>
                                     <tabBarItem title="Courses" image="icon_courses" id="BPk-vK-62u"/>

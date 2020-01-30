@@ -20,17 +20,7 @@
 
 import 'react-native'
 import { searchMapStateToProps, pickerMapStateToProps, type AssigneeSearchProps, type AssigneePickerProps } from '../map-state-to-props'
-
-const template = {
-  ...require('../__template__/Assignee.js'),
-  ...require('../../../__templates__/course'),
-  ...require('../../../__templates__/assignments'),
-  ...require('../../../__templates__/enrollments'),
-  ...require('../../../__templates__/section'),
-  ...require('../../../__templates__/group'),
-  ...require('../../../redux/__templates__/app-state'),
-  ...require('../../../__templates__/helm'),
-}
+import * as template from '../../../__templates__'
 
 test('correct output from searchMapStateToProps', () => {
   let course = template.course()
@@ -125,6 +115,13 @@ test('correct output from pickerMapStateToProps', () => {
   })
   let enrollment = template.enrollment({
     course_id: course.id,
+    user_id: '1',
+    user: template.user({ id: '1' }),
+  })
+  let enrollment2 = template.enrollment({
+    course_id: course.id,
+    user_id: '2',
+    user: template.user({ id: '2', name: 'Eve', pronouns: 'She/Her' }),
   })
   let section = template.section({
     course_id: course.id,
@@ -142,6 +139,7 @@ test('correct output from pickerMapStateToProps', () => {
       gradingPeriods: {},
       enrollments: {
         [enrollment.id]: enrollment,
+        [enrollment2.id]: enrollment2,
       },
       sections: {
         [section.id]: section,
@@ -149,6 +147,9 @@ test('correct output from pickerMapStateToProps', () => {
       users: {
         [enrollment.user_id]: {
           data: enrollment.user,
+        },
+        [enrollment2.user_id]: {
+          data: enrollment2.user,
         },
       },
       groups: {
@@ -173,10 +174,14 @@ test('correct output from pickerMapStateToProps', () => {
     dataId: group.id,
   })
 
+  let assigneeFive = template.enrollmentAssignee({
+    dataId: enrollment2.user_id,
+  })
+
   let props: AssigneePickerProps = {
     courseID: course.id,
     assignmentID: assignment.id,
-    assignees: [assigneeOne, assigneeTwo, assigneeThree, assigneeFour],
+    assignees: [assigneeOne, assigneeTwo, assigneeThree, assigneeFour, assigneeFive],
     callback: jest.fn(),
     navigator: template.navigator(),
     refreshUsers: jest.fn(),
@@ -201,6 +206,10 @@ test('correct output from pickerMapStateToProps', () => {
     {
       dataId: group.id,
       name: group.name,
+    },
+    {
+      dataId: enrollment2.user_id,
+      name: 'Eve (She/Her)',
     }],
   })
 

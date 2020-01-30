@@ -121,7 +121,21 @@ describe('SpeedGraderHeader', () => {
 
   it('anonymizes the avatar and name', () => {
     let tree = shallow(<Header {...subProps} anonymous />)
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('Avatar').prop('userName')).toEqual('Student')
+    expect(tree.find('[children="Student"]').exists()).toBe(true)
+  })
+
+  it('renders avatar and name', () => {
+    let props = _.cloneDeep(subProps)
+    props.submissionProps.name = 'Alice'
+    let tree = shallow(<Header {...props} />)
+    expect(tree.find('Avatar').prop('userName')).toEqual('Alice')
+    expect(tree.find('[children="Alice"]').exists()).toBe(true)
+
+    props.submissionProps.pronouns = 'She/Her'
+    tree = shallow(<Header {...props} />)
+    expect(tree.find('Avatar').prop('userName')).toEqual('Alice')
+    expect(tree.find('[children="Alice (She/Her)"]').exists()).toBe(true)
   })
 
   it('closes the modal', () => {

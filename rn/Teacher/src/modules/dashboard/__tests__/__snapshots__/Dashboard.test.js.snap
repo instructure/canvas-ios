@@ -10,7 +10,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
         "image": Object {
           "testUri": "../../../src/images/hamburger.png",
         },
-        "testID": "favorited-course-list.profile-btn",
+        "testID": "Dashboard.profileButton",
       },
     ]
   }
@@ -1436,7 +1436,7 @@ exports[`Dashboard render 1`] = `
         "image": Object {
           "testUri": "../../../src/images/hamburger.png",
         },
-        "testID": "favorited-course-list.profile-btn",
+        "testID": "Dashboard.profileButton",
       },
     ]
   }
@@ -2090,7 +2090,7 @@ exports[`Dashboard render while pending 1`] = `
         "image": Object {
           "testUri": "../../../src/images/hamburger.png",
         },
-        "testID": "favorited-course-list.profile-btn",
+        "testID": "Dashboard.profileButton",
       },
     ]
   }
@@ -2744,7 +2744,7 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
         "image": Object {
           "testUri": "../../../src/images/hamburger.png",
         },
-        "testID": "favorited-course-list.profile-btn",
+        "testID": "Dashboard.profileButton",
       },
     ]
   }
@@ -2977,7 +2977,7 @@ exports[`Dashboard render without favorite courses 1`] = `
         "image": Object {
           "testUri": "../../../src/images/hamburger.png",
         },
-        "testID": "favorited-course-list.profile-btn",
+        "testID": "Dashboard.profileButton",
       },
     ]
   }
@@ -3210,7 +3210,7 @@ exports[`Dashboard renders course invites 1`] = `
         "image": Object {
           "testUri": "../../../src/images/hamburger.png",
         },
-        "testID": "favorited-course-list.profile-btn",
+        "testID": "Dashboard.profileButton",
       },
     ]
   }

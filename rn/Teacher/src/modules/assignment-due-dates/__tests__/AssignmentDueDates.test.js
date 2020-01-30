@@ -18,6 +18,7 @@
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
+import { shallow } from 'enzyme'
 import 'react-native'
 import React from 'react'
 import { AssignmentDueDates } from '../AssignmentDueDates'
@@ -65,10 +66,11 @@ test('renders with overrides', () => {
 })
 
 test('renders with overrides and specific student ids and sections', () => {
-  const user = template.user()
+  const user1 = template.user({ id: '1', name: 'Alice' })
+  const user2 = template.user({ id: '2', name: 'Bob', pronouns: 'He/Him' })
   const studentId = '123456'
   const studentDate = template.assignmentDueDate({ id: studentId })
-  const studentOverride = template.assignmentOverride({ id: studentId, student_ids: [user.id] })
+  const studentOverride = template.assignmentOverride({ id: studentId, student_ids: [user1.id, user2.id] })
   const sectionId = '9999999999'
   const sectionDate = template.assignmentDueDate({ id: sectionId, title: 'Section 1' })
   const sectionOverride = template.assignmentOverride({ id: sectionId })
@@ -85,15 +87,15 @@ test('renders with overrides and specific student ids and sections', () => {
     assignment,
     assignmentID: assignment.id,
     users: {
-      [user.id]: user,
+      [user1.id]: user1,
+      [user2.id]: user2,
     },
     navigator: template.navigator(),
   }
 
-  let tree = renderer.create(
-    <AssignmentDueDates {...props} />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
+  let tree = shallow(<AssignmentDueDates {...props} />)
+  expect(tree.find('[testID="123456"]').find(`[children="Alice, Bob (He/Him)"]`).exists()).toBe(true)
+  expect(tree.find('[testID="123456"]').find(`[children="Due May 31, 2037 at 11:59 PM"]`).exists()).toBe(true)
   expect(refreshUsers).toBeCalled()
 })
 
