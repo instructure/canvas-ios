@@ -101,10 +101,11 @@ extension CustomNavbarProtocol {
     func configureNameButton() {
         navbarNameButton = DynamicButton()
         navbarNameButton.semanticContentAttribute = UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft ? .forceLeftToRight : .forceRightToLeft
-        navbarNameButton.setImage(UIImage.icon(.dropdown), for: .normal)
-        navbarNameButton.imageView?.transform = CGAffineTransform(rotationAngle: .pi)
+        let img = UIImage.icon(.arrowOpenDown, .solid).scaleTo(CGSize(width: 15, height: 15)).withRenderingMode(.alwaysTemplate)
+        navbarNameButton.setImage(img, for: .normal)
+        navbarNameButton.imageView?.contentMode = .scaleAspectFit
         navbarNameButton.tintColor = .white
-        navbarNameButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        navbarNameButton.imageEdgeInsets = UIEdgeInsets(top: 2, left: 10, bottom: 0, right: 0)
 
         navbarNameButton.titleLabel?.font = .scaledNamedFont(.semibold16)
         navbarNameButton.setTitleColor(.white, for: .normal)
@@ -186,9 +187,9 @@ extension CustomNavbarProtocol {
 
     func showNameButtonOpen( _ open: Bool) {
         if open {
-            navbarNameButton.imageView?.transform = CGAffineTransform.identity
-        } else {
             navbarNameButton.imageView?.transform = CGAffineTransform(rotationAngle: .pi)
+        } else {
+            navbarNameButton.imageView?.transform = CGAffineTransform.identity
         }
     }
 
