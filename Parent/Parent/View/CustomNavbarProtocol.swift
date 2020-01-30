@@ -102,6 +102,7 @@ extension CustomNavbarProtocol {
         navbarNameButton = DynamicButton()
         navbarNameButton.semanticContentAttribute = UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft ? .forceLeftToRight : .forceRightToLeft
         navbarNameButton.setImage(UIImage.icon(.dropdown), for: .normal)
+        navbarNameButton.imageView?.transform = CGAffineTransform(rotationAngle: .pi)
         navbarNameButton.tintColor = .white
         navbarNameButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
 
@@ -176,10 +177,19 @@ extension CustomNavbarProtocol {
         self.navbarMenuHeightConstraint.constant = menuHeight
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {
             self.navbarMenu.superview?.layoutIfNeeded()
+            self.showNameButtonOpen(show)
         }, completion: { _ in
             self.navbarMenu.alpha = show ? 1 : 0
             completion?()
         })
+    }
+
+    func showNameButtonOpen( _ open: Bool) {
+        if open {
+            navbarNameButton.imageView?.transform = CGAffineTransform.identity
+        } else {
+            navbarNameButton.imageView?.transform = CGAffineTransform(rotationAngle: .pi)
+        }
     }
 
     func customNavbarBringSubviewsToFront() {
