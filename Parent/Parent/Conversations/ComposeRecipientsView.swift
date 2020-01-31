@@ -31,7 +31,7 @@ class ComposeRecipientsView: UIView {
     var editButton: UIButton!
     var placeholder: UILabel!
     var additionalRecipients: UILabel!
-    var isExpanded: Bool = false
+    var isExpanded: Bool = UIAccessibility.isVoiceOverRunning
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,7 +47,10 @@ class ComposeRecipientsView: UIView {
         addEditButton()
         addPlaceholder()
         addAdditionalRecipients()
-        addExpandCollapse()
+
+        if UIAccessibility.isVoiceOverRunning == false {
+            addExpandCollapse()
+        }
     }
 
     func addEditButton() {
@@ -55,6 +58,7 @@ class ComposeRecipientsView: UIView {
         editButton.setImage(.icon(.addressBook), for: .normal)
         editButton.tintColor = .named(.textDark)
         editButton.translatesAutoresizingMaskIntoConstraints = false
+        editButton.accessibilityLabel = NSLocalizedString("Edit Recipients", comment: "")
         addSubview(editButton)
         NSLayoutConstraint.activate([
             editButton.heightAnchor.constraint(equalToConstant: 24),
@@ -92,7 +96,7 @@ class ComposeRecipientsView: UIView {
 
     func addExpandCollapse() {
         let touch = UITapGestureRecognizer(target: self, action: #selector(toggleIsExpanded(sender:)))
-        self.addGestureRecognizer(touch)
+        addGestureRecognizer(touch)
     }
 
     @objc
