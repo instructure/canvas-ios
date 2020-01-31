@@ -306,7 +306,6 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
 
     func configureStudentMenu() {
         navbarMenuStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        isCustomNavMenuEnabled = students.count > 1
         for (index, student) in students.enumerated() {
             if student.id == (currentStudent?.id ?? "") { continue }
             let item = MenuItem()
