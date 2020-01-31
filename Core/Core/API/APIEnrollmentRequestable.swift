@@ -48,18 +48,29 @@ public struct GetEnrollmentsRequest: APIRequestable {
         case observed_users, avatar_url
     }
 
+    public enum State: String {
+        case creation_pending, active, invited, current_and_future, completed
+        static var allForParentObserver: [State] {
+            return [.creation_pending, .active, .invited, .current_and_future, .completed]
+        }
+    }
+
     let context: Context
     let userID: String?
     let gradingPeriodID: String?
     let types: [String]?
     let includes: [Include]
+    let states: [State]?
+    let roles: [Role]?
 
-    init(context: Context, userID: String?, gradingPeriodID: String?, types: [String]? = nil, includes: [Include] = []) {
+    init(context: Context, userID: String? = nil, gradingPeriodID: String? = nil, types: [String]? = nil, includes: [Include] = [], states: [State]? = nil, roles: [Role]? = nil) {
         self.context = context
         self.userID = userID
         self.gradingPeriodID = gradingPeriodID
         self.types = types
         self.includes = includes
+        self.states = states
+        self.roles = roles
     }
 
     public var path: String {
@@ -69,6 +80,12 @@ public struct GetEnrollmentsRequest: APIRequestable {
         var query: [APIQueryItem] = [
             .include(includes.map { $0.rawValue }),
         ]
+        if let states = states {
+            query.append(.array("state", states.map { $0.rawValue }))
+        }
+        if let roles = roles {
+            query.append(.array("role", roles.map { $0.rawValue }))
+        }
         if let userID = userID {
             query.append(.value("user_id", userID))
         }

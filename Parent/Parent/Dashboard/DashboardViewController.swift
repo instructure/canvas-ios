@@ -38,8 +38,6 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     @IBOutlet weak var alertsTabItem: UITabBarItem!
     @IBOutlet weak var contentContainer: UIView!
     var env = AppEnvironment.shared
-    var studentCollection: FetchedCollection<Student>!
-    var studentSyncProducer: Student.ModelPageSignalProducer!
     var pageViewController: UIPageViewController!
     var context: NSManagedObjectContext!
     var coursesViewController: CourseListViewController?
@@ -50,7 +48,6 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     var session: Session!
     var presenter: DashboardPresenter?
     var alertTabBadgeCountCoordinator: AlertCountCoordinator?
-    var studentCountObserver: ManagedObjectCountObserver<Student>!
     var adminViewController: AdminViewController!
     var viewState = DashboardViewState()
     var shownNotAParent = false
@@ -67,7 +64,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    var currentStudent: Student? {
+    var currentStudent: Core.User? {
         didSet {
             if let student = currentStudent {
                 currentStudentID = student.id
@@ -86,6 +83,9 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
                 self.reloadObserveeData()
             }
         }
+    }
+    lazy var students = env.subscribe(GetObservedStudents(observerID: env.currentSession?.userID ??  "")) { [weak self] in
+        self?.updateStudents()
     }
 
     // ---------------------------------------------
@@ -113,6 +113,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         view.backgroundColor = .named(.backgroundLightest)
         tabBar.tintColor = ColorScheme.observer.color
         presenter?.viewIsReady()
+        students.refresh()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -125,14 +126,8 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         DispatchQueue.main.async {
             StartupManager.shared.markStartupFinished()
         }
-        // doing this in viewDidAppear since there is a chance we might present
-        // and in viewDidLoad it was possible for the view to try to present
-        // prior to the view being in the hierarchy
-        do {
-            try self.setup()
-        } catch let error as NSError {
-            print(error)
-        }
+
+        viewState.isSiteAdmin = session.isSiteAdmin
     }
 
     func configurePageViewController() {
@@ -152,45 +147,16 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
 
     }
 
-    func setup() throws {
-        guard studentCollection == nil else { return }
-        viewState.isSiteAdmin = session.isSiteAdmin
-        studentCollection = try Student.observedStudentsCollection(session)
-        studentCountObserver = try Student.countOfObservedStudentsObserver(session) { [weak self] count in
-
-            // Check to see if all students were all removed during
-            // the current user session
-            var noMoreLinkedStudents = false
-            if count == 0,
-                let state = self?.viewState,
-                state.studentCount > 0,
-                state.isValidObserver {
-                noMoreLinkedStudents = true
+    func updateStudents() {
+        if !students.pending {
+            if students.error != nil {
+                //  TODO: - may need to check the type of error
+                viewState.isValidObserver = false
+                return
             }
 
-            self?.viewState.studentCount = count
-            self?.configureStudentMenu()
-
-            if (noMoreLinkedStudents) {
-                DispatchQueue.main.async {
-                    self?.updateMainView()
-                }
-            }
-        }
-
-        try retrieveStudents()
-    }
-
-    func retrieveStudents() throws {
-        studentSyncProducer = try Student.observedStudentsSyncProducer(session)
-        studentSyncProducer.startWithSignal { [weak self] (signal, disposable) in
-            signal.observe({ (event) in
-                if let error = event.error, error.code == Student.Error.NoObserverEnrollments {
-                    self?.viewState.isValidObserver = false
-                }
-                self?.updateMainView()
-                disposable.dispose()
-            })
+            updateMainView()
+            configureStudentMenu()
         }
     }
 
@@ -215,11 +181,10 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         displayDefaultStudent()
     }
 
-    func studentAtIndex(_ index: Int) -> Student? {
-        guard index >= 0 else { return nil }
-        guard let collection = studentCollection else { return nil }
-        guard collection.numberOfItemsInSection(0) > index else { return nil }
-        return collection[IndexPath(row: index, section: 0)]
+    func studentAtIndex(_ index: Int) -> Core.User? {
+        guard students.count > 0, index >= 0 else { return nil }
+        guard index < students.count else { return nil }
+        return students[IndexPath(row: index, section: 0)]
     }
 
     func setupTabs() {
@@ -354,10 +319,8 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     }
 
     func configureStudentMenu() {
-        guard let collection = studentCollection else { return }
-        guard collection.numberOfItemsInSection(0) > 0 else { return }
         navbarMenuStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        for (index, student) in collection.enumerated() {
+        for (index, student) in students.enumerated() {
             if student.id == (currentStudent?.id ?? "") { continue }
             let item = MenuItem()
             item.button.tag = index
