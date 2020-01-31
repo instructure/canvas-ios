@@ -131,7 +131,6 @@ extension CustomNavbarProtocol {
     func configureAvatar() {
         let avatarSize: CGFloat =  44
         let container = UIView()
-        container.backgroundColor = .named(.backgroundLightest)
         container.heightAnchor.constraint(equalToConstant: avatarSize).isActive = true
         container.widthAnchor.constraint(equalToConstant: avatarSize).isActive = true
 

@@ -77,6 +77,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
                 navigationItem.leftBarButtonItem?.addBadge(number: badgeCount, color: color)
                 navbarAvatar?.name = student.name
                 navbarAvatar?.url = student.avatarURL
+                navbarAvatar?.label.backgroundColor = .white
                 tabBar.tintColor = color
                 refreshNavbarColor()
             }
