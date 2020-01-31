@@ -46,6 +46,6 @@ class ColoredNavViewProtocolTests: XCTestCase, ColoredNavViewProtocol {
         XCTAssertEqual(titleSubtitleView.subtitle, subtitle)
         XCTAssertEqual(navigationController?.navigationBar.barTintColor, expectedColor)
         XCTAssertEqual(navigationController?.navigationBar.tintColor, .named(.white))
-        XCTAssertEqual(navigationController?.navigationBar.barStyle, .black)
+        XCTAssertEqual(navigationController?.navigationBar.barStyle, .default)
     }
 }
