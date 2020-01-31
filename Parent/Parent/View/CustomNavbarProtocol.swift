@@ -67,7 +67,7 @@ extension CustomNavbarProtocol {
     func configureMenu() {
         navbarMenu = UIView()
         let v: UIView = navbarMenu
-        v.backgroundColor = .white
+        v.backgroundColor = .named(.backgroundLightest)
         v.translatesAutoresizingMaskIntoConstraints = false
         v.alpha = 0
         view.addSubview(v)
@@ -100,6 +100,7 @@ extension CustomNavbarProtocol {
 
     func configureNameButton() {
         navbarNameButton = DynamicButton()
+        navbarNameButton.adjustsImageWhenHighlighted = false
         navbarNameButton.semanticContentAttribute = UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft ? .forceLeftToRight : .forceRightToLeft
         let img = UIImage(named: "icon_down_arrow")?.withRenderingMode(.alwaysTemplate)
         navbarNameButton.setImage(img, for: .normal)
@@ -130,6 +131,7 @@ extension CustomNavbarProtocol {
     func configureAvatar() {
         let avatarSize: CGFloat =  44
         let container = UIView()
+        container.backgroundColor = .named(.backgroundLightest)
         container.heightAnchor.constraint(equalToConstant: avatarSize).isActive = true
         container.widthAnchor.constraint(equalToConstant: avatarSize).isActive = true
 
