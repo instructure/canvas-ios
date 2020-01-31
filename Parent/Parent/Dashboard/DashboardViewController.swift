@@ -149,6 +149,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         let bbi = UIBarButtonItem(image: UIImage.icon(.hamburger, .solid), style: .plain, target: self, action: #selector(drawerDashboardButtonPressed(_:)))
         bbi.tintColor = .white
         navigationItem.leftBarButtonItem = bbi
+        bbi.accessibilityIdentifier = "Dashboard.profileButton"
 
     }
 
