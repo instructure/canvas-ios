@@ -34,10 +34,10 @@
                                                 <rect key="frame" x="68" y="16" width="291" height="32"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="HJm-xJ-BZJ" userLabel="H Stack View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="291" height="17"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="291" height="20.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RjQ-fX-7cu" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="21" height="17"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="24" height="20.5"/>
                                                                 <accessibility key="accessibilityConfiguration" identifier="ComposeReply.fromLabel"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -48,7 +48,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To john doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RzV-vh-0Mf" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                                                <rect key="frame" x="25" y="0.0" width="266" height="17"/>
+                                                                <rect key="frame" x="28" y="0.0" width="263" height="20.5"/>
                                                                 <accessibility key="accessibilityConfiguration" identifier="ComposeReply.toLabel"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -61,7 +61,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Date here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddY-ls-HCE" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="19" width="291" height="13"/>
+                                                        <rect key="frame" x="0.0" y="22.5" width="291" height="9.5"/>
                                                         <accessibility key="accessibilityConfiguration" identifier="ComposeReply.dateLabel"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
@@ -125,19 +125,33 @@
                                             <outlet property="delegate" destination="gSG-NV-bvX" id="6km-tR-9aF"/>
                                         </connections>
                                     </textView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="sN9-nr-y2D">
+                                        <rect key="frame" x="0.0" y="259" width="375" height="104"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jse-l4-AlN">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="104" id="0Ky-1b-Tkg"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="2hn-R9-gA0" firstAttribute="leading" secondItem="NSM-Ya-xzc" secondAttribute="leading" id="2k0-h8-0Hg"/>
+                                    <constraint firstItem="NSM-Ya-xzc" firstAttribute="bottom" secondItem="sN9-nr-y2D" secondAttribute="bottom" constant="16" id="5hW-Ch-5VZ"/>
                                     <constraint firstItem="uZj-qi-ovj" firstAttribute="height" relation="greaterThanOrEqual" secondItem="daY-oR-8cX" secondAttribute="height" constant="-86.5" id="8RF-ha-1Pw"/>
                                     <constraint firstItem="uZj-qi-ovj" firstAttribute="leading" secondItem="NSM-Ya-xzc" secondAttribute="leading" id="8qh-ez-Q4t"/>
+                                    <constraint firstItem="sN9-nr-y2D" firstAttribute="leading" secondItem="NSM-Ya-xzc" secondAttribute="leading" id="B3S-Yh-rG6"/>
                                     <constraint firstItem="PXN-de-7oU" firstAttribute="leading" secondItem="NSM-Ya-xzc" secondAttribute="leading" id="Eie-fd-Meh"/>
-                                    <constraint firstItem="uZj-qi-ovj" firstAttribute="bottom" secondItem="NSM-Ya-xzc" secondAttribute="bottom" id="FDr-AZ-Cpi"/>
+                                    <constraint firstItem="uZj-qi-ovj" firstAttribute="bottom" secondItem="sN9-nr-y2D" secondAttribute="top" id="FDr-AZ-Cpi"/>
                                     <constraint firstItem="uZj-qi-ovj" firstAttribute="trailing" secondItem="NSM-Ya-xzc" secondAttribute="trailing" id="FXf-kk-jbe"/>
                                     <constraint firstItem="PXN-de-7oU" firstAttribute="top" secondItem="NSM-Ya-xzc" secondAttribute="top" id="Hfc-gq-32E"/>
                                     <constraint firstItem="daY-oR-8cX" firstAttribute="trailing" secondItem="PXN-de-7oU" secondAttribute="trailing" id="JD5-dI-ATE"/>
                                     <constraint firstItem="PXN-de-7oU" firstAttribute="leading" secondItem="daY-oR-8cX" secondAttribute="leading" id="cOK-gH-UOy"/>
                                     <constraint firstItem="uZj-qi-ovj" firstAttribute="top" secondItem="2hn-R9-gA0" secondAttribute="bottom" id="m2T-El-m5G"/>
                                     <constraint firstItem="PXN-de-7oU" firstAttribute="trailing" secondItem="NSM-Ya-xzc" secondAttribute="trailing" id="nBb-GD-rMF"/>
+                                    <constraint firstItem="NSM-Ya-xzc" firstAttribute="trailing" secondItem="sN9-nr-y2D" secondAttribute="trailing" id="nTR-sS-ecR"/>
                                     <constraint firstItem="NSM-Ya-xzc" firstAttribute="trailing" secondItem="2hn-R9-gA0" secondAttribute="trailing" id="oBc-qR-jdA"/>
                                     <constraint firstItem="2hn-R9-gA0" firstAttribute="top" secondItem="PXN-de-7oU" secondAttribute="bottom" id="yIX-q5-0tY"/>
                                 </constraints>
@@ -157,6 +171,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="attachmentsContainer" destination="jse-l4-AlN" id="ddB-3b-zXL"/>
                         <outlet property="avatarView" destination="qzv-tO-XK1" id="gaY-90-6wO"/>
                         <outlet property="bodyMinHeight" destination="8RF-ha-1Pw" id="mgx-fE-OHy"/>
                         <outlet property="bodyView" destination="uZj-qi-ovj" id="zpg-Pi-47G"/>

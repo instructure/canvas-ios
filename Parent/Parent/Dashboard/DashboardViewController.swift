@@ -369,7 +369,6 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
             item.avatar.name = student.name
             item.label.text = student.shortName
         }
-        navbarMenuStackView.leftAlignArrangedSubviews()
     }
 
     @objc func didSelectStudent(sender: UIButton) {

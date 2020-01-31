@@ -16,19 +16,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mok-pg-KkL">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mok-pg-KkL">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ucz-Xk-VcY">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ucz-Xk-VcY">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="141.5"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BVF-r0-wRL" customClass="ComposeRecipientsView" customModule="Parent" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BVF-r0-wRL" customClass="ComposeRecipientsView" customModule="Parent" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="zMo-r5-fqc"/>
                                                 </constraints>
                                             </view>
-                                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="noy-Us-iAN" customClass="DividerView" customModule="Parent" customModuleProvider="target">
+                                            <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="noy-Us-iAN" customClass="DividerView" customModule="Parent" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="56" width="375" height="1"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="UF3-u8-IrB"/>
@@ -37,7 +37,7 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Subject" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dz1-0x-wXN" customClass="DynamicTextField" customModule="Parent" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Subject" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dz1-0x-wXN" customClass="DynamicTextField" customModule="Parent" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="57" width="343" height="48"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="Compose.subject"/>
                                                 <constraints>
@@ -53,7 +53,7 @@
                                                     <action selector="updateSendButton" destination="5LE-uY-8Ht" eventType="editingChanged" id="tUg-4O-qDV"/>
                                                 </connections>
                                             </textField>
-                                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rhy-5d-51p" customClass="DividerView" customModule="Parent" customModuleProvider="target">
+                                            <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rhy-5d-51p" customClass="DividerView" customModule="Parent" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="105" width="375" height="1"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="pYh-ox-LRj"/>
@@ -62,7 +62,7 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oQx-YB-DID">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oQx-YB-DID">
                                                 <rect key="frame" x="0.0" y="106" width="375" height="35.5"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="Compose.body"/>
                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -75,24 +75,38 @@
                                                     <outlet property="delegate" destination="5LE-uY-8Ht" id="Kot-hW-XhU"/>
                                                 </connections>
                                             </textView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ftq-q2-BcR">
+                                                <rect key="frame" x="0.0" y="143" width="375" height="104"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oic-Gu-7jh">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="104" id="ICL-3b-TfV"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="noy-Us-iAN" firstAttribute="leading" secondItem="Ucz-Xk-VcY" secondAttribute="leading" id="1Yf-QD-ld9"/>
                                             <constraint firstAttribute="trailing" secondItem="dz1-0x-wXN" secondAttribute="trailing" constant="16" id="AQS-26-FY9"/>
-                                            <constraint firstAttribute="bottom" secondItem="oQx-YB-DID" secondAttribute="bottom" id="D4h-eO-WfQ"/>
+                                            <constraint firstItem="Ftq-q2-BcR" firstAttribute="top" secondItem="oQx-YB-DID" secondAttribute="bottom" id="CWT-JY-Suj"/>
                                             <constraint firstItem="BVF-r0-wRL" firstAttribute="leading" secondItem="Ucz-Xk-VcY" secondAttribute="leading" id="Iej-Ng-ZSm"/>
                                             <constraint firstAttribute="trailing" secondItem="BVF-r0-wRL" secondAttribute="trailing" id="Rv2-fq-0sL"/>
                                             <constraint firstItem="oQx-YB-DID" firstAttribute="top" secondItem="rhy-5d-51p" secondAttribute="bottom" id="SYL-TY-o4E"/>
                                             <constraint firstItem="dz1-0x-wXN" firstAttribute="leading" secondItem="Ucz-Xk-VcY" secondAttribute="leading" constant="16" id="SfZ-Yf-5ra"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ftq-q2-BcR" secondAttribute="trailing" id="YH7-nH-Ebg"/>
                                             <constraint firstAttribute="trailing" secondItem="oQx-YB-DID" secondAttribute="trailing" id="gQa-Et-Zkj"/>
                                             <constraint firstItem="noy-Us-iAN" firstAttribute="top" secondItem="BVF-r0-wRL" secondAttribute="bottom" id="gTR-NL-E6M"/>
                                             <constraint firstAttribute="trailing" secondItem="noy-Us-iAN" secondAttribute="trailing" id="hN3-G4-G8x"/>
                                             <constraint firstItem="BVF-r0-wRL" firstAttribute="top" secondItem="Ucz-Xk-VcY" secondAttribute="top" id="iIj-SE-kUo"/>
                                             <constraint firstItem="oQx-YB-DID" firstAttribute="leading" secondItem="Ucz-Xk-VcY" secondAttribute="leading" id="iw9-v4-Yth"/>
                                             <constraint firstItem="rhy-5d-51p" firstAttribute="top" secondItem="dz1-0x-wXN" secondAttribute="bottom" id="k43-j2-fOW"/>
+                                            <constraint firstItem="Ftq-q2-BcR" firstAttribute="leading" secondItem="Ucz-Xk-VcY" secondAttribute="leading" id="m7a-uM-hnp"/>
                                             <constraint firstItem="rhy-5d-51p" firstAttribute="leading" secondItem="Ucz-Xk-VcY" secondAttribute="leading" id="nh6-Rj-c3b"/>
                                             <constraint firstItem="dz1-0x-wXN" firstAttribute="top" secondItem="noy-Us-iAN" secondAttribute="bottom" id="qSc-U9-XLs"/>
+                                            <constraint firstAttribute="bottom" secondItem="Ftq-q2-BcR" secondAttribute="bottom" constant="16" id="qdO-Wg-lrd"/>
                                             <constraint firstAttribute="trailing" secondItem="rhy-5d-51p" secondAttribute="trailing" id="yaV-Df-GLj"/>
                                         </constraints>
                                     </view>
@@ -101,6 +115,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Ucz-Xk-VcY" secondAttribute="trailing" id="39Z-r0-NPY"/>
                                     <constraint firstAttribute="bottom" secondItem="Ucz-Xk-VcY" secondAttribute="bottom" id="4fJ-eA-NIM"/>
                                     <constraint firstItem="Ucz-Xk-VcY" firstAttribute="top" secondItem="Mok-pg-KkL" secondAttribute="top" id="Aj8-cg-8mb"/>
+                                    <constraint firstItem="oQx-YB-DID" firstAttribute="height" relation="greaterThanOrEqual" secondItem="bBS-82-d1H" secondAttribute="height" constant="-106" id="VcF-KA-SIn"/>
                                     <constraint firstItem="Ucz-Xk-VcY" firstAttribute="leading" secondItem="Mok-pg-KkL" secondAttribute="leading" id="gKW-a3-IGG"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="XNc-ZA-Zfj"/>
@@ -121,6 +136,8 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="attachmentsContainer" destination="oic-Gu-7jh" id="pvr-rP-qa2"/>
+                        <outlet property="bodyMinHeight" destination="VcF-KA-SIn" id="etS-rT-0yM"/>
                         <outlet property="bodyView" destination="oQx-YB-DID" id="Eaz-7M-1OR"/>
                         <outlet property="keyboardSpace" destination="PAF-cT-hpl" id="yQV-Rt-BFj"/>
                         <outlet property="recipientsView" destination="BVF-r0-wRL" id="M1K-5O-BuU"/>

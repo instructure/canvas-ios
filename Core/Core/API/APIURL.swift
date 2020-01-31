@@ -31,13 +31,14 @@ public struct APIURL: Codable, Equatable {
     }
 
     public init(from decoder: Decoder) throws {
+        let baseURL = AppEnvironment.shared.currentSession?.baseURL
         let container = try decoder.singleValueContainer()
-        if let url = try? container.decode(URL.self) {
+        let string = try container.decode(String.self)
+        if let url = URL(string: string, relativeTo: baseURL) {
             rawValue = url
             return
         }
-        let string = try container.decode(String.self)
-        if let safe = string.addingPercentEncoding(withAllowedCharacters: .urlSafe), let url = URL(string: safe) {
+        if let safe = string.addingPercentEncoding(withAllowedCharacters: .urlSafe), let url = URL(string: safe, relativeTo: baseURL) {
             rawValue = url
             return
         }

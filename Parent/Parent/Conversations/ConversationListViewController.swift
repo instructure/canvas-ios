@@ -94,9 +94,7 @@ class ConversationListViewController: UIViewController, ConversationCoursesActio
     }
 
     @IBAction func createNewConversation() {
-        let vc = ConversationCoursesActionSheet.create(delegate: self)
-        let actionSheet = ActionSheetController(viewController: vc)
-        env.router.show(actionSheet, from: self, options: .modal())
+        env.router.show(ConversationCoursesActionSheet.create(delegate: self), from: self, options: .modal())
     }
 
     func courseSelected(course: Course, user: User) {

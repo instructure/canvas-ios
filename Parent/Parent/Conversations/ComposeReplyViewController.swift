@@ -20,8 +20,10 @@ import UIKit
 import Core
 
 class ComposeReplyViewController: UIViewController, ErrorViewController {
+    @IBOutlet weak var attachmentsContainer: UIView!
+    let attachmentsController = AttachmentCardsViewController.create()
     @IBOutlet weak var avatarView: AvatarView!
-    @IBOutlet weak var bodyMinHeight: NSLayoutConstraint!
+    @IBOutlet var bodyMinHeight: NSLayoutConstraint!
     @IBOutlet weak var bodyView: UITextView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var fromLabel: UILabel!
@@ -29,6 +31,15 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var toLabel: UILabel!
+
+    lazy var attachButton = UIBarButtonItem(image: .icon(.paperclip), style: .plain, target: self, action: #selector(attach))
+    lazy var sendButton = UIBarButtonItem(title: NSLocalizedString("Send", comment: ""), style: .done, target: self, action: #selector(send))
+
+    let batchID = UUID.string
+    lazy var attachments = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
+        self?.updateAttachments()
+    }
+    lazy var filePicker = FilePicker(delegate: self)
 
     var conversation: Conversation?
     let env = AppEnvironment.shared
@@ -55,8 +66,13 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
         view.backgroundColor = .named(.backgroundLightest)
 
         addCancelButton(side: .left)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Send", comment: ""), style: .done, target: self, action: #selector(send))
-        navigationItem.rightBarButtonItem?.isEnabled = false
+        attachButton.accessibilityLabel = NSLocalizedString("Add Attachments", comment: "")
+        sendButton.isEnabled = false
+        navigationItem.rightBarButtonItems = [ sendButton, attachButton ]
+
+        embed(attachmentsController, in: attachmentsContainer)
+        attachmentsContainer.isHidden = true
+        attachmentsController.showOptions = showOptions(for:)
 
         bodyView.placeholder = NSLocalizedString("Message", comment: "")
         bodyView.placeholderColor = .named(.textDark)
@@ -100,7 +116,8 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
         navigationItem.rightBarButtonItem?.isEnabled = (
             conversation != nil &&
             message != nil &&
-            bodyView.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false
+            bodyView.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false &&
+            attachments.isEmpty || attachments.allSatisfy({ $0.isUploaded })
         )
     }
 
@@ -112,7 +129,8 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
         let myID = env.currentSession?.userID ?? ""
         let recipients = !all ? [ message.authorID ]
             : message.participantIDs.filter { $0 != myID }
-        AddMessage(conversationID: conversation.id, body: body, recipientIDs: recipients).fetch { [weak self] _, _, error in performUIUpdate {
+        let attachmentIDs = attachments.all?.compactMap { $0.id }
+        AddMessage(conversationID: conversation.id, attachmentIDs: attachmentIDs, body: body, recipientIDs: recipients).fetch { [weak self] _, _, error in performUIUpdate {
             if let error = error {
                 self?.showError(error)
                 return
@@ -125,5 +143,30 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
 extension ComposeReplyViewController: UITextViewDelegate {
     public func textViewDidChange(_ textView: UITextView) {
         updateSendButton()
+    }
+}
+
+extension ComposeReplyViewController: FilePickerDelegate {
+    @objc func attach() {
+        filePicker.pick(from: self)
+    }
+
+    func showOptions(for file: File) {
+        filePicker.showOptions(for: file, from: self)
+    }
+
+    func filePicker(didPick url: URL) {
+        _ = attachments // lazy init
+        UploadManager.shared.upload(url: url, batchID: batchID, to: .myFiles, folderPath: "my files/conversation attachments")
+    }
+
+    func filePicker(didRetry file: File) {
+        UploadManager.shared.upload(file: file, to: .myFiles, folderPath: "my files/conversation attachments")
+    }
+
+    func updateAttachments() {
+        bodyMinHeight.isActive = attachments.isEmpty
+        attachmentsContainer.isHidden = attachments.isEmpty
+        attachmentsController.updateAttachments(attachments.all?.sorted(by: File.objectIDCompare) ?? [])
     }
 }

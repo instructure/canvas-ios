@@ -23,12 +23,14 @@ protocol EditComposeRecipientsViewControllerDelegate: class {
     func editRecipientsControllerDidFinish(_ controller: EditComposeRecipientsViewController)
 }
 
-class EditComposeRecipientsViewController: UITableViewController {
+class EditComposeRecipientsViewController: UIViewController {
     var context: Context!
     var observeeID: String?
     var selectedRecipients: Set<APIConversationRecipient> = []
     weak var delegate: EditComposeRecipientsViewControllerDelegate?
     var env: AppEnvironment { .shared }
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var titleLabel: UILabel!
 
     lazy var teachers = env.subscribe(GetSearchRecipients(context: context, contextQualifier: .teachers)) { [weak self] in
         self?.update()
@@ -47,12 +49,16 @@ class EditComposeRecipientsViewController: UITableViewController {
         controller.context = context
         controller.observeeID = observeeID
         controller.selectedRecipients = selectedRecipients
+        controller.modalPresentationStyle = .custom
+        controller.transitioningDelegate = BottomSheetTransitioningDelegate.shared
         return controller
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = NSLocalizedString("Recipients", bundle: .parent, comment: "")
+        view.backgroundColor = .named(.backgroundLightest)
+        view.frame.size.height = 304
+        titleLabel.text = NSLocalizedString("Recipients", bundle: .parent, comment: "")
         teachers.exhaust(force: false)
         tas.exhaust(force: false)
         observee?.refresh(force: false)
@@ -85,12 +91,14 @@ class EditComposeRecipientsViewController: UITableViewController {
         }
         tableView.reloadData()
     }
+}
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension EditComposeRecipientsViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipients.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(for: indexPath) as RecipientCell
         let person = recipients[indexPath.row]
         cell.nameLabel.text = person.fullName
@@ -103,7 +111,7 @@ class EditComposeRecipientsViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let recipient = APIConversationRecipient(searchRecipient: recipients[indexPath.row])
         if selectedRecipients.contains(recipient) {
             selectedRecipients.remove(recipient)

@@ -20,14 +20,23 @@ import UIKit
 import Core
 
 class ComposeViewController: UIViewController, ErrorViewController {
-    weak var bodyMinHeight: NSLayoutConstraint!
+    @IBOutlet weak var attachmentsContainer: UIView!
+    let attachmentsController = AttachmentCardsViewController.create()
+    @IBOutlet var bodyMinHeight: NSLayoutConstraint!
     @IBOutlet weak var bodyView: UITextView!
     @IBOutlet weak var keyboardSpace: NSLayoutConstraint!
     @IBOutlet weak var recipientsView: ComposeRecipientsView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var subjectField: UITextField!
 
-    var sendButton: UIBarButtonItem?
+    lazy var attachButton = UIBarButtonItem(image: .icon(.paperclip), style: .plain, target: self, action: #selector(attach))
+    lazy var sendButton = UIBarButtonItem(title: NSLocalizedString("Send", comment: ""), style: .done, target: self, action: #selector(send))
+
+    let batchID = UUID.string
+    lazy var attachments = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
+        self?.updateAttachments()
+    }
+    lazy var filePicker = FilePicker(delegate: self)
 
     var context: Context?
     let env = AppEnvironment.shared
@@ -61,11 +70,14 @@ class ComposeViewController: UIViewController, ErrorViewController {
 
         title = NSLocalizedString("New Message", comment: "")
         addCancelButton(side: .left)
-        sendButton = UIBarButtonItem(title: NSLocalizedString("Send", comment: ""), style: .done, target: self, action: #selector(send))
-        sendButton?.isEnabled = false
-        navigationItem.rightBarButtonItem = sendButton
+        attachButton.accessibilityLabel = NSLocalizedString("Add Attachments", comment: "")
+        sendButton.isEnabled = false
+        navigationItem.rightBarButtonItems = [ sendButton, attachButton ]
 
-        bodyMinHeight = bodyView.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor)
+        embed(attachmentsController, in: attachmentsContainer)
+        attachmentsContainer.isHidden = true
+        attachmentsController.showOptions = showOptions(for:)
+
         bodyMinHeight.isActive = true
         bodyView.placeholder = NSLocalizedString("Message", comment: "")
         bodyView.placeholderColor = .named(.textDark)
@@ -85,6 +97,9 @@ class ComposeViewController: UIViewController, ErrorViewController {
         super.viewWillAppear(animated)
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
         navigationController?.navigationBar.useModalStyle()
+        if !UIAccessibility.isSwitchControlRunning, !UIAccessibility.isVoiceOverRunning {
+            bodyView.becomeFirstResponder()
+        }
 
         if recipientsView.recipients.count == 0 {
             fetchRecipients()
@@ -100,16 +115,13 @@ class ComposeViewController: UIViewController, ErrorViewController {
         navigationItem.rightBarButtonItem?.isEnabled = (
             bodyView.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false &&
             subjectField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false &&
-            !recipientsView.recipients.isEmpty
+            !recipientsView.recipients.isEmpty &&
+            attachments.isEmpty || attachments.allSatisfy({ $0.isUploaded })
         )
     }
 
     public func body() -> String {
-        return """
-\(bodyView.text ?? "")
-
-\(hiddenMessage ?? "")
-"""
+        return "\(bodyView.text ?? "")\n\n\(hiddenMessage ?? "")"
     }
 
     @objc func send() {
@@ -118,7 +130,8 @@ class ComposeViewController: UIViewController, ErrorViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         let subject = subjectField.text ?? ""
         let recipientIDs = recipientsView.recipients.map({ $0.id.value })
-        CreateConversation(subject: subject, body: body(), recipientIDs: recipientIDs, canvasContextID: context?.canvasContextID).fetch { [weak self] _, _, error in
+        let attachmentIDs = attachments.all?.compactMap { $0.id }
+        CreateConversation(subject: subject, body: body(), recipientIDs: recipientIDs, canvasContextID: context?.canvasContextID, attachmentIDs: attachmentIDs).fetch { [weak self] _, _, error in
             performUIUpdate {
                 if let error = error {
                     self?.navigationItem.rightBarButtonItem = self?.sendButton
@@ -138,8 +151,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
             selectedRecipients: Set(recipientsView.recipients)
         )
         editRecipients.delegate = self
-        let actionSheet = ActionSheetController(viewController: editRecipients)
-        env.router.show(actionSheet, from: self, options: .modal())
+        env.router.show(editRecipients, from: self, options: .modal())
     }
 
     func fetchRecipients(completionHandler: (() -> Void)? = nil) {
@@ -166,5 +178,30 @@ extension ComposeViewController: EditComposeRecipientsViewControllerDelegate {
     func editRecipientsControllerDidFinish(_ controller: EditComposeRecipientsViewController) {
         recipientsView.recipients = Array(controller.selectedRecipients)
         updateSendButton()
+    }
+}
+
+extension ComposeViewController: FilePickerDelegate {
+    @objc func attach() {
+        filePicker.pick(from: self)
+    }
+
+    func showOptions(for file: File) {
+        filePicker.showOptions(for: file, from: self)
+    }
+
+    func filePicker(didPick url: URL) {
+        _ = attachments // lazy init
+        UploadManager.shared.upload(url: url, batchID: batchID, to: .myFiles, folderPath: "my files/conversation attachments")
+    }
+
+    func filePicker(didRetry file: File) {
+        UploadManager.shared.upload(file: file, to: .myFiles, folderPath: "my files/conversation attachments")
+    }
+
+    func updateAttachments() {
+        bodyMinHeight.isActive = attachments.isEmpty
+        attachmentsContainer.isHidden = attachments.isEmpty
+        attachmentsController.updateAttachments(attachments.all?.sorted(by: File.objectIDCompare) ?? [])
     }
 }

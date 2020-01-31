@@ -92,18 +92,17 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="k6R-4f-fZa">
-                                                            <rect key="frame" x="16" y="115.5" width="382" height="104"/>
+                                                            <rect key="frame" x="0.0" y="115.5" width="414" height="104"/>
                                                             <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WAv-i1-qFc" customClass="HorizontalScrollingStackview" customModule="Core">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="104"/>
-                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WAv-i1-qFc">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="104" id="AWb-1p-UhV"/>
                                                                     </constraints>
                                                                 </view>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="WAv-i1-qFc" secondAttribute="trailing" constant="-16" id="RaP-Y9-vy0"/>
+                                                                <constraint firstAttribute="trailing" secondItem="WAv-i1-qFc" secondAttribute="trailing" id="RaP-Y9-vy0"/>
                                                                 <constraint firstItem="WAv-i1-qFc" firstAttribute="leading" secondItem="k6R-4f-fZa" secondAttribute="leading" id="ZSt-3Q-43n"/>
                                                             </constraints>
                                                         </stackView>
@@ -112,14 +111,14 @@
                                                     <constraints>
                                                         <constraint firstItem="LyF-dE-u9U" firstAttribute="top" secondItem="aOx-Ck-kOT" secondAttribute="bottom" constant="20" id="2s8-KA-m3l"/>
                                                         <constraint firstItem="aOx-Ck-kOT" firstAttribute="leading" secondItem="ydl-fI-jzy" secondAttribute="trailing" constant="12" id="73h-5S-WD0"/>
-                                                        <constraint firstAttribute="trailing" secondItem="k6R-4f-fZa" secondAttribute="trailing" constant="16" id="Jy3-xY-aj5"/>
+                                                        <constraint firstAttribute="trailing" secondItem="k6R-4f-fZa" secondAttribute="trailing" id="Jy3-xY-aj5"/>
                                                         <constraint firstAttribute="bottom" secondItem="k6R-4f-fZa" secondAttribute="bottom" constant="16" id="Mk5-3U-2PK"/>
                                                         <constraint firstItem="k6R-4f-fZa" firstAttribute="top" secondItem="LyF-dE-u9U" secondAttribute="bottom" constant="16" id="NXd-tH-wYx"/>
                                                         <constraint firstItem="LyF-dE-u9U" firstAttribute="leading" secondItem="yoK-vu-7JQ" secondAttribute="leading" constant="16" id="PIu-ov-kGb"/>
                                                         <constraint firstItem="LyF-dE-u9U" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ydl-fI-jzy" secondAttribute="bottom" constant="16" id="Qa4-kH-Ajf"/>
                                                         <constraint firstItem="aOx-Ck-kOT" firstAttribute="top" secondItem="yoK-vu-7JQ" secondAttribute="top" constant="16" id="SEN-MO-cIK"/>
                                                         <constraint firstItem="ydl-fI-jzy" firstAttribute="top" secondItem="yoK-vu-7JQ" secondAttribute="top" constant="12" id="URq-w1-me9"/>
-                                                        <constraint firstItem="k6R-4f-fZa" firstAttribute="leading" secondItem="yoK-vu-7JQ" secondAttribute="leading" constant="16" id="WdC-i2-jhV"/>
+                                                        <constraint firstItem="k6R-4f-fZa" firstAttribute="leading" secondItem="yoK-vu-7JQ" secondAttribute="leading" id="WdC-i2-jhV"/>
                                                         <constraint firstAttribute="trailing" secondItem="LyF-dE-u9U" secondAttribute="trailing" constant="16" id="Wh7-5Y-c3Z"/>
                                                         <constraint firstAttribute="trailing" secondItem="aOx-Ck-kOT" secondAttribute="trailing" constant="16" id="vvF-Sq-Sw6"/>
                                                         <constraint firstItem="ydl-fI-jzy" firstAttribute="leading" secondItem="yoK-vu-7JQ" secondAttribute="leading" constant="16" id="ysc-MJ-UcA"/>
@@ -134,7 +133,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="attachmentStackView" destination="WAv-i1-qFc" id="pOx-Rt-bjj"/>
+                                            <outlet property="attachmentCardsContainer" destination="WAv-i1-qFc" id="8Qm-NH-29l"/>
                                             <outlet property="avatar" destination="ydl-fI-jzy" id="ExW-58-iAJ"/>
                                             <outlet property="dateLabel" destination="lGq-Od-o8W" id="v4L-Qb-q2c"/>
                                             <outlet property="fromLabel" destination="rmq-tE-xSD" id="lIE-ZW-DTp"/>

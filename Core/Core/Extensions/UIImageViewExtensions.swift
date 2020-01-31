@@ -139,7 +139,7 @@ public class ImageLoader {
 
     func imageFrom(data: Data, response: HTTPURLResponse? = nil) {
         let type = response?.mimeType
-        if type == "image/svg+xml" || url.pathExtension.lowercased() == "svg" {
+        if type?.hasPrefix("image/svg") == true || url.pathExtension.lowercased() == "svg" {
             performUIUpdate { self.svgFrom(data: data) }
         } else if type == "image/gif" || url.pathExtension.lowercased() == "gif" {
             gifFrom(data: data)

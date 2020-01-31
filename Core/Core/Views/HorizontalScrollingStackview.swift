@@ -19,12 +19,16 @@
 import UIKit
 
 public class HorizontalScrollingStackview: UIView {
+    public var scrollView = UIScrollView()
+    private var stackView = UIStackView()
 
-    public var scrollView: UIScrollView!
-    private var stackView: UIStackView!
-    public var arrangedSubviews: [UIView] {
-        return stackView.arrangedSubviews
-    }
+    public var arrangedSubviews: [UIView] { stackView.arrangedSubviews }
+
+    public private(set) lazy var leadingPadding = stackView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor)
+    public private(set) lazy var trailingPadding = scrollView.contentLayoutGuide.trailingAnchor.constraint(equalTo: stackView.trailingAnchor)
+    public private(set) lazy var topPadding = stackView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor)
+    public private(set) lazy var bottomPadding = scrollView.contentLayoutGuide.bottomAnchor.constraint(equalTo: stackView.bottomAnchor)
+
     public var spacing: CGFloat {
         get { stackView.spacing }
         set { stackView.spacing = newValue }
@@ -41,43 +45,26 @@ public class HorizontalScrollingStackview: UIView {
     }
 
     func commonInit() {
-        scrollView = UIScrollView()
-        stackView = {
-            let s = UIStackView()
-            s.axis = .horizontal
-            s.distribution = .fill
-            s.alignment = .fill
-            s.spacing = 12
-            return s
-        }()
-
         addSubview(scrollView)
-        scrollView.addSubview(stackView)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
 
-        NSLayoutConstraint.activate([
-            scrollView.widthAnchor.constraint(equalTo: widthAnchor),
-            scrollView.heightAnchor.constraint(equalTo: heightAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
+        stackView.alignment = .fill
+        stackView.spacing = 12
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(stackView)
 
-            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            stackView.widthAnchor.constraint(greaterThanOrEqualTo: scrollView.widthAnchor),
+        NSLayoutConstraint.activate([
+            scrollView.frameLayoutGuide.heightAnchor.constraint(equalTo: heightAnchor),
+            scrollView.frameLayoutGuide.bottomAnchor.constraint(equalTo: bottomAnchor),
+            scrollView.frameLayoutGuide.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.frameLayoutGuide.trailingAnchor.constraint(equalTo: trailingAnchor),
+            leadingPadding, trailingPadding, topPadding, bottomPadding,
         ])
     }
 
     public func addArrangedSubview(_ view: UIView) {
         stackView.addArrangedSubview(view)
-    }
-
-    public func leftAlignArrangedSubviews() {
-        let leftAlignViewsSpacer = UIView()
-        leftAlignViewsSpacer.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        stackView.addArrangedSubview(leftAlignViewsSpacer)
     }
 }

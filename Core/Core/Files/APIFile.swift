@@ -26,7 +26,7 @@ public struct APIFile: Codable, Equatable {
     let display_name: String
     let filename: String
     let contentType: String
-    let url: URL
+    let url: APIURL
     // file size in bytes
     let size: Int
     let created_at: Date
@@ -36,7 +36,7 @@ public struct APIFile: Codable, Equatable {
     let hidden: Bool
     let lock_at: Date?
     let hidden_for_user: Bool
-    let thumbnail_url: URL?
+    let thumbnail_url: APIURL?
     let modified_at: Date
     // simplified content-type mapping
     let mime_class: String
@@ -47,7 +47,7 @@ public struct APIFile: Codable, Equatable {
     let lock_explanation: String?
     // optional: url to the document preview. This url is specific to the user
     // making the api call. Only included in submission endpoints.
-    let preview_url: URL?
+    let preview_url: APIURL?
     let avatar: APIFileToken?
 
     enum CodingKeys: String, CodingKey {
@@ -89,8 +89,8 @@ public struct APIFileFolder: Codable, Equatable {
     let files_count: Int
     let position: Int?
     let updated_at: Date
-    let folders_url: URL
-    let files_url: URL
+    let folders_url: APIURL
+    let files_url: APIURL
     let full_name: String
     let lock_at: Date?
     let id: ID
@@ -313,4 +313,14 @@ public class GetFolderRequest: APIRequestable {
     public var query: [APIQueryItem] {
         [ .include([ "usage_rights" ]) ]
     }
+}
+
+// https://canvas.instructure.com/doc/api/files.html#method.files.destroy
+struct DeleteFileRequest: APIRequestable {
+    typealias Response = APIFile
+
+    let fileID: String
+
+    let method = APIMethod.delete
+    var path: String { "files/\(fileID)" }
 }
