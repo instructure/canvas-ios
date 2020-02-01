@@ -27,7 +27,7 @@ class UINavigationBarExtensionsTests: XCTestCase {
         XCTAssertEqual(bar.titleTextAttributes?[.foregroundColor] as? UIColor, .named(.white))
         XCTAssertEqual(bar.tintColor, .named(.white))
         XCTAssertEqual(bar.barTintColor, .named(.licorice))
-        XCTAssertEqual(bar.barStyle, .black)
+        XCTAssertEqual(bar.barStyle, .default)
         XCTAssertFalse(bar.isTranslucent)
     }
 

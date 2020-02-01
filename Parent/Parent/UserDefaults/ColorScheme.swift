@@ -23,8 +23,10 @@ import Core
 enum ColorScheme: String, CaseIterable {
     case observeeGreen, observeeBlue, observeePurple, observeePink, observeeRed, observeeOrange
 
+    private static var lastScheme: ColorScheme?
+
     static var observer: ColorScheme {
-        ColorScheme.observeeBlue
+        lastScheme ?? ColorScheme.observeeBlue
     }
 
     var color: UIColor {
@@ -50,12 +52,14 @@ enum ColorScheme: String, CaseIterable {
 
     static func observee(_ studentID: String) -> ColorScheme {
         if let scheme = dictionary?[studentID].flatMap({ allCases[$0 % allCases.count] }) {
+            lastScheme = scheme
             return scheme
         }
         var mapping = dictionary ?? [:]
         currentIndex = (currentIndex + 1) % allCases.count
         mapping[studentID] = currentIndex
         dictionary = mapping
+        lastScheme = allCases[currentIndex]
         return allCases[currentIndex]
     }
 }
