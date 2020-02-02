@@ -80,7 +80,10 @@
 "Caught up on Alerts" = "Waarschuwingen bijgewerkt";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Kies een cursist";
+"Choose a course to message" = "Kies een cursus voor bericht";
+
+/* No comment provided by engineer. */
+"Close" = "Sluiten";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Nieuw bericht opstellen";
@@ -96,9 +99,6 @@
 
 /* Courses Tab */
 "Courses" = "Cursussen";
-
-/* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Huidige cursist: %@, tik om van cursist te wisselen";
 
 /* No comment provided by engineer. */
 "Discussion" = "Discussie";
@@ -117,6 +117,9 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Laden van (discussionKitModelName) NSManagedObjectModel is mislukt";
+
+/* No comment provided by engineer. */
+"for %@" = "voor %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Voorpagina";
@@ -218,6 +221,16 @@
 "Quiz" = "Toets";
 
 /* No comment provided by engineer. */
+"Recipients" = "Geadresseerden";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "Betreffende: %@";
+
+/* Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "Betreffende: %1$@, %2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "Antwoord";
 
 /* No comment provided by engineer. */
@@ -269,13 +282,13 @@
 "This student's courses may not be published yet." = "De cursussen voor deze cursist zijn mogelijk nog niet gepubliceerd.";
 
 /* No comment provided by engineer. */
+"To" = "Naar";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "Problemen met inloggen";
 
 /* No comment provided by engineer. */
 "Unread" = "Ongelezen";
-
-/* Calendar Tab */
-"Week" = "Week";
 
 /* Header title of admin view */
 "Welcome!" = "Welkom!";

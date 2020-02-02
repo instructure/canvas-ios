@@ -80,7 +80,10 @@
 "Caught up on Alerts" = "À jour avec les alertes";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Choisissez un élève";
+"Choose a course to message" = "Sélectionnez un cours à envoyer en message";
+
+/* No comment provided by engineer. */
+"Close" = "Fermer";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Composer un nouveau message";
@@ -96,9 +99,6 @@
 
 /* Courses Tab */
 "Courses" = "Cours";
-
-/* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Élève actuel : %@tapez pour modifier l'élève";
 
 /* No comment provided by engineer. */
 "Discussion" = "Discussion";
@@ -117,6 +117,9 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Échec du chargement de (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"for %@" = "pour %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Première page";
@@ -218,6 +221,16 @@
 "Quiz" = "Questionnaire";
 
 /* No comment provided by engineer. */
+"Recipients" = "Destinataires";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "À propos : %@";
+
+/* Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "À propos : %1$@, %2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "Répondre";
 
 /* No comment provided by engineer. */
@@ -269,13 +282,13 @@
 "This student's courses may not be published yet." = "Il se peut que les cours de cet étudiant ne soient pas encore publiés.";
 
 /* No comment provided by engineer. */
+"To" = "À";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "Problème de connexion";
 
 /* No comment provided by engineer. */
 "Unread" = "Non lu";
-
-/* Calendar Tab */
-"Week" = "Semaine";
 
 /* Header title of admin view */
 "Welcome!" = "Bienvenue !";

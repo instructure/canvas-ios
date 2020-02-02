@@ -32,6 +32,9 @@
 "All Grading Periods" = "Todos los períodos de calificación";
 
 /* No comment provided by engineer. */
+"All People" = "Todas las personas";
+
+/* No comment provided by engineer. */
 "All Submissions" = "Todas las entregas";
 
 /* No comment provided by engineer. */
@@ -228,6 +231,9 @@
 
 /* No comment provided by engineer. */
 "Designer" = "Diseñador";
+
+/* No comment provided by engineer. */
+"Designers" = "Diseñadores";
 
 /* No comment provided by engineer. */
 "Developer Menu" = "Menú del desarrollador";
@@ -500,6 +506,9 @@
 "No image found from image picker" = "No se encontraron imágenes en el selector de imágenes";
 
 /* No comment provided by engineer. */
+"No results" = "Sin resultados";
+
+/* No comment provided by engineer. */
 "No Submission" = "Sin entregas";
 
 /* No comment provided by engineer. */
@@ -527,6 +536,9 @@
 "Observer" = "Observador";
 
 /* No comment provided by engineer. */
+"Observers" = "Observadores";
+
+/* No comment provided by engineer. */
 "OK" = "Aceptar";
 
 /* No comment provided by engineer. */
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Pause" = "Pausar";
+
+/* No comment provided by engineer. */
+"People" = "Personas";
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Se necesita permiso";
@@ -612,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "Planificación";
+
+/* No comment provided by engineer. */
+"Search" = "Buscar";
 
 /* No comment provided by engineer. */
 "See attached files." = "Ver archivos adjuntos.";
@@ -680,6 +698,9 @@
 "Student Appointment Signups" = "Registros de citas para estudiantes";
 
 /* No comment provided by engineer. */
+"Students" = "Estudiantes";
+
+/* No comment provided by engineer. */
 "Style" = "Estilo";
 
 /* No comment provided by engineer. */
@@ -714,6 +735,12 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Profesor";
+
+/* No comment provided by engineer. */
+"Teachers" = "Profesores";
+
+/* No comment provided by engineer. */
+"Teaching Assistants" = "Profesores asistentes";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Términos de uso";
@@ -792,6 +819,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "Identificación de usuario";
+
+/* Name and pronouns - John (He/Him) */
+"User.displayName" = "%1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Username" = "Nombre de usuario";

@@ -20,7 +20,7 @@
 "Act as User" = "Nastopajoči v vlogi uporabnika";
 
 /* No comment provided by engineer. */
-"Added To Conversation" = "Dodano pogovoru";
+"Added To Conversation" = "Nadaljevanje pogovora";
 
 /* No comment provided by engineer. */
 "Administrative Notifications" = "Skrbniška obvestila";
@@ -32,16 +32,19 @@
 "All Grading Periods" = "Vsa ocenjevalna obdobja";
 
 /* No comment provided by engineer. */
+"All People" = "Vsi sodelujoči";
+
+/* No comment provided by engineer. */
 "All Submissions" = "Vse oddaje";
 
 /* No comment provided by engineer. */
 "Announcement" = "Obvestilo";
 
 /* No comment provided by engineer. */
-"Announcement Created By You" = "Obvestila, ki ste jih ustvarili.";
+"Announcement Created By You" = "Obvestila, ki ste jih ustvarili";
 
 /* No comment provided by engineer. */
-"Appointment Availability" = "Razpoložljivost sestanka";
+"Appointment Availability" = "Objave novih sestankov";
 
 /* No comment provided by engineer. */
 "Appointment Cancellations" = "Preklici sestankov";
@@ -170,7 +173,7 @@
 "Conferences" = "Konference";
 
 /* No comment provided by engineer. */
-"Content Link Error" = "Napaka povezave do vsebine";
+"Content Link Error" = "Napake pri referencah";
 
 /* No comment provided by engineer. */
 "Conversation Created By Me" = "Pogovori, ki sem jih ustvaril(a) jaz";
@@ -230,6 +233,9 @@
 "Designer" = "Snovalec";
 
 /* No comment provided by engineer. */
+"Designers" = "Snovalci";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "Meni razvijalca";
 
 /* No comment provided by engineer. */
@@ -248,7 +254,7 @@
 "Dismiss" = "Opusti";
 
 /* No comment provided by engineer. */
-"Do not send me anything" = "Ne pošiljaj mi ničesar.";
+"Do not send me anything" = "Ne pošiljaj mi ničesar";
 
 /* No comment provided by engineer. */
 "Domain" = "Domena";
@@ -257,13 +263,13 @@
 "Done" = "Dokončano";
 
 /* i.e. Due <Jan 10, 2020 at 9:00 PM> */
-"Due %@" = "Rok %@";
+"Due %@" = "Roki %@";
 
 /* No comment provided by engineer. */
 "Due Date" = "Rok";
 
 /* No comment provided by engineer. */
-"Due: %@" = "Rok: %@";
+"Due: %@" = "Roki: %@";
 
 /* No comment provided by engineer. */
 "Edit" = "Uredi";
@@ -485,7 +491,7 @@
 "Missing" = "Manjkajoče";
 
 /* No comment provided by engineer. */
-"N/A" = "Ni na voljo.";
+"N/A" = "Ni na voljo";
 
 /* No comment provided by engineer. */
 "Never" = "Nikoli";
@@ -500,13 +506,16 @@
 "No image found from image picker" = "Izbirnik slik ni našel nobene slike";
 
 /* No comment provided by engineer. */
+"No results" = "Ni rezultatov";
+
+/* No comment provided by engineer. */
 "No Submission" = "Ni oddaj.";
 
 /* No comment provided by engineer. */
 "None" = "Brez";
 
 /* No comment provided by engineer. */
-"Not Graded" = "Ni ocenjeno.";
+"Not Graded" = "Ni ocenjeno";
 
 /* No comment provided by engineer. */
 "Not Submitted" = "Ni oddano.";
@@ -521,10 +530,13 @@
 "Notifications are currently disabled in Settings. Tap to enable them again." = "Sporočila so trenutno onemogočena v nastavitvah. Tapnite, da jih znova omogočite.";
 
 /* No comment provided by engineer. */
-"Notify me right away" = "Takoj me obvesti.";
+"Notify me right away" = "Takoj me obvesti";
 
 /* No comment provided by engineer. */
 "Observer" = "Skriti bralec";
+
+/* No comment provided by engineer. */
+"Observers" = "Skriti bralci";
 
 /* No comment provided by engineer. */
 "OK" = "V redu";
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Pause" = "Začasna zaustavitev";
+
+/* No comment provided by engineer. */
+"People" = "Sodelujoči";
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Potrebno je dovoljenje.";
@@ -612,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "Razporejanje";
+
+/* No comment provided by engineer. */
+"Search" = "Iskanje";
 
 /* No comment provided by engineer. */
 "See attached files." = "Glejte dodane datoteke.";
@@ -680,6 +698,9 @@
 "Student Appointment Signups" = "Prijave študentov na sestanke";
 
 /* No comment provided by engineer. */
+"Students" = "Študenti";
+
+/* No comment provided by engineer. */
 "Style" = "Slog";
 
 /* No comment provided by engineer. */
@@ -714,6 +735,12 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Izvajalec";
+
+/* No comment provided by engineer. */
+"Teachers" = "Izvajalci";
+
+/* No comment provided by engineer. */
+"Teaching Assistants" = "Demonstratorji";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Pogoji uporabe";
@@ -761,7 +788,7 @@
 "to %@" = "naslovnik %@";
 
 /* No comment provided by engineer. */
-"To Do" = "Seznam opravil";
+"To Do" = "Čakajoča opravila";
 
 /* No comment provided by engineer. */
 "Total time" = "Skupni čas";
@@ -792,6 +819,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "ID uporabnika";
+
+/* Name and pronouns - John (He/Him) */
+"User.displayName" = "%1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Username" = "Uporabniško ime";
@@ -845,5 +875,5 @@
 "Your Email" = "Vaš e-poštni naslov";
 
 /* No comment provided by engineer. */
-"Your to do list is empty. Time to recharge." = "Seznam opravil je prazen. Čas za polnjenje z energijo.";
+"Your to do list is empty. Time to recharge." = "Čakajoča opravila je prazen. Čas za polnjenje z energijo.";
 

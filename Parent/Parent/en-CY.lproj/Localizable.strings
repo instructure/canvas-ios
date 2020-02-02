@@ -80,7 +80,10 @@
 "Caught up on Alerts" = "Caught up on alerts";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Choose a student";
+"Choose a course to message" = "Choose a module to message";
+
+/* No comment provided by engineer. */
+"Close" = "Close";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Compose new message";
@@ -96,9 +99,6 @@
 
 /* Courses Tab */
 "Courses" = "Modules";
-
-/* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Current student: %@, tap to switch students";
 
 /* No comment provided by engineer. */
 "Discussion" = "Discussion";
@@ -117,6 +117,9 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Failed to load (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"for %@" = "for %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Front page";
@@ -218,6 +221,16 @@
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
+"Recipients" = "Recipients";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "Regarding: %@";
+
+/* Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "Regarding: %1$@, %2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "Reply";
 
 /* No comment provided by engineer. */
@@ -269,13 +282,13 @@
 "This student's courses may not be published yet." = "This student's modules may not be published yet.";
 
 /* No comment provided by engineer. */
+"To" = "To";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "Trouble logging in";
 
 /* No comment provided by engineer. */
 "Unread" = "Unread";
-
-/* Calendar Tab */
-"Week" = "Week";
 
 /* Header title of admin view */
 "Welcome!" = "Welcome!";

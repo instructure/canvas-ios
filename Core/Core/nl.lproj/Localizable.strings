@@ -32,6 +32,9 @@
 "All Grading Periods" = "Alle beoordelingsperioden";
 
 /* No comment provided by engineer. */
+"All People" = "Alle personen";
+
+/* No comment provided by engineer. */
 "All Submissions" = "Alle inzendingen";
 
 /* No comment provided by engineer. */
@@ -228,6 +231,9 @@
 
 /* No comment provided by engineer. */
 "Designer" = "Ontwerper";
+
+/* No comment provided by engineer. */
+"Designers" = "Ontwerpers";
 
 /* No comment provided by engineer. */
 "Developer Menu" = "Menu Ontwikkelaar";
@@ -500,6 +506,9 @@
 "No image found from image picker" = "Er is geen afbeelding gevonden van afbeeldingkiezer";
 
 /* No comment provided by engineer. */
+"No results" = "Geen resultaten";
+
+/* No comment provided by engineer. */
 "No Submission" = "Geen inzending";
 
 /* No comment provided by engineer. */
@@ -527,6 +536,9 @@
 "Observer" = "Waarnemer";
 
 /* No comment provided by engineer. */
+"Observers" = "Waarnemers";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Pause" = "Onderbreken";
+
+/* No comment provided by engineer. */
+"People" = "Personen";
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Toestemming vereist";
@@ -612,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "Planning";
+
+/* No comment provided by engineer. */
+"Search" = "Zoeken";
 
 /* No comment provided by engineer. */
 "See attached files." = "Bijgevoegde bestanden zien.";
@@ -680,6 +698,9 @@
 "Student Appointment Signups" = "Aanmeldingen voor afspraak van cursist";
 
 /* No comment provided by engineer. */
+"Students" = "Cursisten";
+
+/* No comment provided by engineer. */
 "Style" = "Stijl";
 
 /* No comment provided by engineer. */
@@ -714,6 +735,12 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Docent";
+
+/* No comment provided by engineer. */
+"Teachers" = "Docenten";
+
+/* No comment provided by engineer. */
+"Teaching Assistants" = "Onderwijsassistenten";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Gebruiksvoorwaarden";
@@ -792,6 +819,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "Gebruikers-ID:";
+
+/* Name and pronouns - John (He/Him) */
+"User.displayName" = "%1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Username" = "Gebruikersnaam";

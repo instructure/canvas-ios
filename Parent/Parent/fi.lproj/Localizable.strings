@@ -80,7 +80,10 @@
 "Caught up on Alerts" = "Hallitse hälytykset";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Valitse opiskelija";
+"Choose a course to message" = "Valitse kurssi, jolle lähetetään viesti";
+
+/* No comment provided by engineer. */
+"Close" = "Sulje";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Luo uusi viesti";
@@ -96,9 +99,6 @@
 
 /* Courses Tab */
 "Courses" = "Kurssit";
-
-/* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Kurssin opiskelija %@, napauta vaihtaaksesi opiskelijaa";
 
 /* No comment provided by engineer. */
 "Discussion" = "Keskustelu";
@@ -117,6 +117,9 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "(discussionKitModelName) NS:n lataus epäonnistuiManagedObjectModel";
+
+/* No comment provided by engineer. */
+"for %@" = "- %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Etusivu";
@@ -218,6 +221,16 @@
 "Quiz" = "Tietovisa";
 
 /* No comment provided by engineer. */
+"Recipients" = "Vastaanottajat";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "Koskee: %@";
+
+/* Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "Koskee: %1$@, %2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "Vastaus";
 
 /* No comment provided by engineer. */
@@ -269,13 +282,13 @@
 "This student's courses may not be published yet." = "Tämän opiskelijan kursseja ei ehkä vielä julkaista.";
 
 /* No comment provided by engineer. */
+"To" = "Johonkin";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "Ongelmia sisään kirjautumisessa";
 
 /* No comment provided by engineer. */
 "Unread" = "Lukematon";
-
-/* Calendar Tab */
-"Week" = "Viikko";
 
 /* Header title of admin view */
 "Welcome!" = "Tervetuloa!";

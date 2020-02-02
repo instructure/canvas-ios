@@ -80,7 +80,10 @@
 "Caught up on Alerts" = "Pran nan Avètisman";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Chwazi yon elèv";
+"Choose a course to message" = "Chwazi yon kou pou voye mesaj";
+
+/* No comment provided by engineer. */
+"Close" = "Fèmen";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Ekri nouvo mesaj";
@@ -96,9 +99,6 @@
 
 /* Courses Tab */
 "Courses" = "Kou";
-
-/* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Elèv aktyèl: %@, tape pou chanje elèv yo";
 
 /* No comment provided by engineer. */
 "Discussion" = "Diskisyon";
@@ -117,6 +117,9 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Echèk chajman (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"for %@" = "pou %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Premye Paj";
@@ -218,6 +221,16 @@
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
+"Recipients" = "Destinatè";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "Konsènan: %@";
+
+/* Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "Konsènan: %1$@, %2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "Reponn";
 
 /* No comment provided by engineer. */
@@ -269,13 +282,13 @@
 "This student's courses may not be published yet." = "Kou elèv sa a poko ka pibliye.";
 
 /* No comment provided by engineer. */
+"To" = "Pou";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "Difikilte pou konekte";
 
 /* No comment provided by engineer. */
 "Unread" = "Poko li";
-
-/* Calendar Tab */
-"Week" = "Semenn";
 
 /* Header title of admin view */
 "Welcome!" = "Bienveni!";

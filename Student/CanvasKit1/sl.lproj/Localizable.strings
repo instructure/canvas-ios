@@ -47,7 +47,7 @@
 "Not Complete" = "Ni zaključeno.";
 
 /* not graded string. */
-"Not graded" = "Ni ocenjeno.";
+"Not graded" = "Ni ocenjeno";
 
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "Ni ocenjeno (0 od %@).";
