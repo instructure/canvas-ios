@@ -73,7 +73,8 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
                 currentStudentID = student.id
                 let color = ColorScheme.observee(student.id).color
                 alertsTabItem.badgeColor = color
-                navbarNameButton.setTitle(student.name, for: .normal)
+                let displayName = Core.User.displayName(student.name, pronouns: student.pronouns)
+                navbarNameButton.setTitle(displayName, for: .normal)
                 navigationItem.leftBarButtonItem?.addBadge(number: badgeCount, color: color)
                 navbarAvatar?.name = student.name
                 navbarAvatar?.url = student.avatarURL
@@ -369,7 +370,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
             item.addConstraintsWithVFL("V:[view(90)]")
             item.avatar.url = student.avatarURL
             item.avatar.name = student.name
-            item.label.text = student.shortName
+            item.label.text = Core.User.displayName(student.shortName, pronouns: student.pronouns)
         }
         navbarMenuStackView.leftAlignArrangedSubviews()
     }

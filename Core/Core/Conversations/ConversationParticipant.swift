@@ -23,12 +23,18 @@ public final class ConversationParticipant: NSManagedObject, WriteableModel {
     @NSManaged public var avatarURL: URL?
     @NSManaged public var id: String
     @NSManaged public var name: String
+    @NSManaged public var pronouns: String?
+
+    public var displayName: String {
+        User.displayName(name, pronouns: pronouns)
+    }
 
     public static func save(_ item: APIConversationParticipant, in context: NSManagedObjectContext) -> ConversationParticipant {
         let model: ConversationParticipant = context.first(where: #keyPath(ConversationParticipant.id), equals: item.id.value) ?? context.insert()
         model.avatarURL = item.avatar_url?.rawValue
         model.id = item.id.value
         model.name = item.name
+        model.pronouns = item.pronouns
         return model
     }
 }

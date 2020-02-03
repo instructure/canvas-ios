@@ -37,7 +37,7 @@ class ConversationDetailCell: UITableViewCell {
         self.parent = parent
         messageLabel.text = m.body
         toLabel.text = m.localizedAudience(myID: myID, userMap: userMap)
-        fromLabel.text = userMap[ m.authorID ]?.name
+        fromLabel.text = userMap[ m.authorID ]?.displayName
         dateLabel.text = DateFormatter.localizedString(from: m.createdAt, dateStyle: .medium, timeStyle: .short)
         avatar.url = userMap[ m.authorID ]?.avatarURL
         avatar.name = userMap[ m.authorID ]?.name ?? ""

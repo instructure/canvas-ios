@@ -75,7 +75,7 @@ extension ConversationMessage {
         let containsMe = audience.contains(myID)
 
         if audience.count == 1 {
-            user =  containsMe ? NSLocalizedString("me", comment: "") : userMap[ audience[0] ]?.name
+            user =  containsMe ? NSLocalizedString("me", comment: "") : userMap[ audience[0] ]?.displayName
         } else if audience.count > 1 {
             let cnt = containsMe ? audience.count - 1 : audience.count
             let pluralFormat = NSLocalizedString("conversation_recipients_to", bundle: .core, comment: "")

@@ -51,6 +51,7 @@ class EditComposeRecipientsViewControllerTests: ParentTestCase {
             id: "1",
             name: "A",
             full_name: "A",
+            pronouns: "He/Him",
             common_courses: [courseID: ["StudentEnrollment"]]
         )
         let ta = APISearchRecipient.make(
@@ -82,7 +83,7 @@ class EditComposeRecipientsViewControllerTests: ParentTestCase {
         XCTAssertTrue(taCell.selectedView.isHidden)
         let observeeCell = recipientCell(at: 3)
         XCTAssertEqual(observeeCell.avatarView.name, "A")
-        XCTAssertEqual(observeeCell.nameLabel.text, "A")
+        XCTAssertEqual(observeeCell.nameLabel.text, "A (He/Him)")
         XCTAssertEqual(observeeCell.roleLabel.text, "Student")
         XCTAssertTrue(observeeCell.selectedView.isHidden)
         controller.tableView?.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))

@@ -82,7 +82,8 @@ class ConversationCoursesActionSheet: UITableViewController, ErrorViewController
         }
 
         cell.textLabel?.text = course.name
-        cell.detailTextLabel?.text = String.localizedStringWithFormat(NSLocalizedString("for %@", bundle: .parent, comment: ""), enrollment.observedUser?.name ?? "")
+        let userName = enrollment.observedUser.flatMap { User.displayName($0.name, pronouns: $0.pronouns) } ?? ""
+        cell.detailTextLabel?.text = String.localizedStringWithFormat(NSLocalizedString("for %@", bundle: .parent, comment: ""), userName)
         return cell
     }
 

@@ -95,12 +95,33 @@ class ConversationCoursesActionSheetTests: ParentTestCase {
     }
 
     func testCellForRowAt() {
-        let enrollment = Enrollment.make(from: .make(course_id: "1", type: "ObserverEnrollment", observed_user: .make()), course: .make(from: .make(id: "1"), in: databaseClient), in: databaseClient)
+        let enrollment = Enrollment.make(
+            from: .make(
+                course_id: "1",
+                type: "ObserverEnrollment",
+                observed_user: .make(name: "Observed User")),
+            course: .make(from: .make(id: "1"))
+        )
         loadView()
 
         let cell = controller.tableView(controller.tableView, cellForRowAt: IndexPath(row: 0, section: 0))
         XCTAssertEqual(cell.textLabel?.text, enrollment.course?.name)
-        XCTAssertEqual(cell.detailTextLabel?.text, "for \(enrollment.observedUser?.name ?? "")")
+        XCTAssertEqual(cell.detailTextLabel?.text, "for Observed User")
+    }
+
+    func testCellForRowAtPronouns() {
+        let enrollment = Enrollment.make(
+            from: .make(
+                course_id: "1",
+                type: "ObserverEnrollment",
+                observed_user: .make(name: "Eve", pronouns: "She/Her")),
+            course: .make(from: .make(id: "1"))
+        )
+        loadView()
+
+        let cell = controller.tableView(controller.tableView, cellForRowAt: IndexPath(row: 0, section: 0))
+        XCTAssertEqual(cell.textLabel?.text, enrollment.course?.name)
+        XCTAssertEqual(cell.detailTextLabel?.text, "for Eve (She/Her)")
     }
 
     func testCellTapped() {

@@ -20,12 +20,16 @@ import Foundation
 import CoreData
 
 public final class SearchRecipient: NSManagedObject {
-
     @NSManaged public var id: String
     @NSManaged public var fullName: String
+    @NSManaged public var pronouns: String?
     @NSManaged public var avatarURL: URL?
     @NSManaged public var filter: String
     @NSManaged public var commonCourses: Set<CommonCourse>
+
+    public var displayName: String? {
+        User.displayName(fullName, pronouns: pronouns)
+    }
 
     @discardableResult
     public static func save(_ item: APISearchRecipient, filter: String, in context: NSManagedObjectContext) -> SearchRecipient {
@@ -34,6 +38,7 @@ public final class SearchRecipient: NSManagedObject {
 
         model.id = item.id.value
         model.fullName = item.full_name
+        model.pronouns = item.pronouns
         model.avatarURL = item.avatar_url?.rawValue
         model.filter = filter
         model.commonCourses = []

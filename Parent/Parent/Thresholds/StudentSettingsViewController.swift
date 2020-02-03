@@ -287,7 +287,7 @@ extension StudentSettingsViewController: UITableViewDataSource, UITableViewDeleg
         if section == 0 {
             let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: StudentSettingsHeaderView.self)) as? StudentSettingsHeaderView
             let student = studentObserver?.object
-            header?.nameLabel.text = student?.name
+            header?.nameLabel.text = student.flatMap { Core.User.displayName($0.name, pronouns: $0.pronouns) }
             header?.avatarView.name = student?.name ?? ""
             header?.avatarView.url = student?.avatarURL
             return header
