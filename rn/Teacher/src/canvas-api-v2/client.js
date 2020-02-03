@@ -43,7 +43,7 @@ export default function getClient () {
 
   client = new ApolloClient({
     link: new HttpLink({ uri, headers }),
-    cache: new InMemoryCache({ addTypename: false, fragmentMatcher }),
+    cache: new InMemoryCache({ fragmentMatcher }),
   })
 
   return client

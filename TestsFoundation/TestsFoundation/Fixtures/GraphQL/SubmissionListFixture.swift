@@ -35,10 +35,13 @@ public struct SubmissionListFixture {
                     "sections": [
                         "edges": [
                             [
-                                "section": ["id": "1", "name": "Section 1"],
+                                "section": ["id": "1", "name": "Section 1", "__typename": "Section"],
+                                "__typename": "SectionEdge",
                             ],
                         ],
+                        "__typename": "SectionConnection",
                     ],
+                    "__typename": "Course",
                 ],
                 "submissions": [
                     "edges": [
@@ -54,8 +57,10 @@ public struct SubmissionListFixture {
                                 "gradeMatchesCurrentSubmission": true,
                                 "state": "submitted",
                                 "postedAt": nil,
-                                "user": ["id": "1", "avatarUrl": nil, "name": "User 1", "pronouns": nil],
+                                "user": ["id": "1", "avatarUrl": nil, "name": "User 1", "pronouns": nil, "__typename": "User"],
+                                "__typename": "Submission",
                             ],
+                            "__typename": "SubmissionEdge",
                         ],
                         [
                             "submission": [
@@ -69,8 +74,10 @@ public struct SubmissionListFixture {
                                 "gradeMatchesCurrentSubmission": true,
                                 "state": "submitted",
                                 "postedAt": nil,
-                                "user": ["id": "2", "avatarUrl": nil, "name": "User 2", "pronouns": nil ],
+                                "user": ["id": "2", "avatarUrl": nil, "name": "User 2", "pronouns": nil, "__typename": "User"],
+                                "__typename": "Submission",
                             ],
+                            "__typename": "SubmissionEdge",
                         ],
                         [
                             "submission": [
@@ -84,12 +91,16 @@ public struct SubmissionListFixture {
                                 "gradeMatchesCurrentSubmission": true,
                                 "state": "submitted",
                                 "postedAt": nil,
-                                "user": ["id": "3", "avatarUrl": nil, "name": "User 3", "pronouns": nil ],
+                                "user": ["id": "3", "avatarUrl": nil, "name": "User 3", "pronouns": nil, "__typename": "User"],
+                                "__typename": "Submission",
                             ],
+                            "__typename": "SubmissionEdge",
                         ],
                     ],
+                    "__typename": "SubmissionConnection",
                 ],
                 "groupedSubmissions": nil,
+                "__typename": "Assignment",
             ],
         ],
     ]

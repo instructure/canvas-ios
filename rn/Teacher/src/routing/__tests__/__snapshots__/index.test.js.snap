@@ -16,12 +16,12 @@ exports[`wrapComponentInProviders renders wrapped screen with store correctly 1`
   client={
     ApolloClient {
       "cache": InMemoryCache {
-        "addTypename": false,
+        "addTypename": true,
         "cacheKeyRoot": KeyTrie {
           "weakness": true,
         },
         "config": Object {
-          "addTypename": false,
+          "addTypename": true,
           "dataIdFromObject": [Function],
           "fragmentMatcher": IntrospectionFragmentMatcher {
             "isReady": true,
@@ -189,12 +189,12 @@ exports[`wrapComponentInProviders renders wrapped screen with store correctly 1`
       },
       "localState": LocalState {
         "cache": InMemoryCache {
-          "addTypename": false,
+          "addTypename": true,
           "cacheKeyRoot": KeyTrie {
             "weakness": true,
           },
           "config": Object {
-            "addTypename": false,
+            "addTypename": true,
             "dataIdFromObject": [Function],
             "fragmentMatcher": IntrospectionFragmentMatcher {
               "isReady": true,
@@ -367,12 +367,12 @@ exports[`wrapComponentInProviders renders wrapped screen with store correctly 1`
         },
         "dataStore": DataStore {
           "cache": InMemoryCache {
-            "addTypename": false,
+            "addTypename": true,
             "cacheKeyRoot": KeyTrie {
               "weakness": true,
             },
             "config": Object {
-              "addTypename": false,
+              "addTypename": true,
               "dataIdFromObject": [Function],
               "fragmentMatcher": IntrospectionFragmentMatcher {
                 "isReady": true,
@@ -541,12 +541,12 @@ exports[`wrapComponentInProviders renders wrapped screen with store correctly 1`
         },
         "localState": LocalState {
           "cache": InMemoryCache {
-            "addTypename": false,
+            "addTypename": true,
             "cacheKeyRoot": KeyTrie {
               "weakness": true,
             },
             "config": Object {
-              "addTypename": false,
+              "addTypename": true,
               "dataIdFromObject": [Function],
               "fragmentMatcher": IntrospectionFragmentMatcher {
                 "isReady": true,
@@ -726,12 +726,12 @@ exports[`wrapComponentInProviders renders wrapped screen with store correctly 1`
       "resetStoreCallbacks": Array [],
       "store": DataStore {
         "cache": InMemoryCache {
-          "addTypename": false,
+          "addTypename": true,
           "cacheKeyRoot": KeyTrie {
             "weakness": true,
           },
           "config": Object {
-            "addTypename": false,
+            "addTypename": true,
             "dataIdFromObject": [Function],
             "fragmentMatcher": IntrospectionFragmentMatcher {
               "isReady": true,
@@ -913,12 +913,12 @@ exports[`wrapComponentInProviders renders wrapped screen with store correctly 1`
       apollo={
         ApolloClient {
           "cache": InMemoryCache {
-            "addTypename": false,
+            "addTypename": true,
             "cacheKeyRoot": KeyTrie {
               "weakness": true,
             },
             "config": Object {
-              "addTypename": false,
+              "addTypename": true,
               "dataIdFromObject": [Function],
               "fragmentMatcher": IntrospectionFragmentMatcher {
                 "isReady": true,
@@ -1086,12 +1086,12 @@ exports[`wrapComponentInProviders renders wrapped screen with store correctly 1`
           },
           "localState": LocalState {
             "cache": InMemoryCache {
-              "addTypename": false,
+              "addTypename": true,
               "cacheKeyRoot": KeyTrie {
                 "weakness": true,
               },
               "config": Object {
-                "addTypename": false,
+                "addTypename": true,
                 "dataIdFromObject": [Function],
                 "fragmentMatcher": IntrospectionFragmentMatcher {
                   "isReady": true,
@@ -1264,12 +1264,12 @@ exports[`wrapComponentInProviders renders wrapped screen with store correctly 1`
             },
             "dataStore": DataStore {
               "cache": InMemoryCache {
-                "addTypename": false,
+                "addTypename": true,
                 "cacheKeyRoot": KeyTrie {
                   "weakness": true,
                 },
                 "config": Object {
-                  "addTypename": false,
+                  "addTypename": true,
                   "dataIdFromObject": [Function],
                   "fragmentMatcher": IntrospectionFragmentMatcher {
                     "isReady": true,
@@ -1438,12 +1438,12 @@ exports[`wrapComponentInProviders renders wrapped screen with store correctly 1`
             },
             "localState": LocalState {
               "cache": InMemoryCache {
-                "addTypename": false,
+                "addTypename": true,
                 "cacheKeyRoot": KeyTrie {
                   "weakness": true,
                 },
                 "config": Object {
-                  "addTypename": false,
+                  "addTypename": true,
                   "dataIdFromObject": [Function],
                   "fragmentMatcher": IntrospectionFragmentMatcher {
                     "isReady": true,
@@ -1623,12 +1623,12 @@ exports[`wrapComponentInProviders renders wrapped screen with store correctly 1`
           "resetStoreCallbacks": Array [],
           "store": DataStore {
             "cache": InMemoryCache {
-              "addTypename": false,
+              "addTypename": true,
               "cacheKeyRoot": KeyTrie {
                 "weakness": true,
               },
               "config": Object {
-                "addTypename": false,
+                "addTypename": true,
                 "dataIdFromObject": [Function],
                 "fragmentMatcher": IntrospectionFragmentMatcher {
                   "isReady": true,
