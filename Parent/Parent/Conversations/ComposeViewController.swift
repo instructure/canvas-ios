@@ -48,7 +48,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
         controller.bodyView.text = body
         controller.context = context
         controller.observeeID = observeeID
-        controller.recipientsView.recipients = recipients.sorted(by: { $0.name < $1.name })
+        controller.recipientsView.recipients = recipients.sortedByName()
         controller.subjectField.text = subject
         controller.textViewDidChange(controller.bodyView)
         controller.hiddenMessage = hiddenMessage
@@ -152,7 +152,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
         let request = GetConversationRecipientsRequest(search: "", context: searchContext, includeContexts: false)
         env.api.makeRequest(request) { [weak self] (recipients, _, _) in
             performUIUpdate {
-                self?.recipientsView.recipients = recipients?.sorted(by: { $0.name < $1.name }) ?? []
+                self?.recipientsView.recipients = recipients?.sortedByName() ?? []
             }
         }
     }
@@ -166,7 +166,7 @@ extension ComposeViewController: UITextViewDelegate {
 
 extension ComposeViewController: EditComposeRecipientsViewControllerDelegate {
     func editRecipientsControllerDidFinish(_ controller: EditComposeRecipientsViewController) {
-        recipientsView.recipients = Array(controller.selectedRecipients).sorted(by: { $0.name < $1.name })
+        recipientsView.recipients = Array(controller.selectedRecipients).sortedByName()
         updateSendButton()
         UIAccessibility.post(notification: .screenChanged, argument: recipientsView.editButton)
     }

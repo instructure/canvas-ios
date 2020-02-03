@@ -47,6 +47,12 @@ extension APIConversationRecipient {
     }
 }
 
+extension Array where Element == APIConversationRecipient {
+    public func sortedByName() -> [APIConversationRecipient] {
+        return self.sorted(by: { $0.name < $1.name })
+    }
+}
+
 #if DEBUG
 extension APIConversationRecipient {
     public static func make(
