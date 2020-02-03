@@ -39,21 +39,43 @@ class ComposeReplyViewControllerTests: ParentTestCase {
         controller.update()
         XCTAssertEqual(controller.title, "Reply")
 
-        XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.isEnabled, false)
+        XCTAssertEqual(controller.sendButton.isEnabled, false)
         controller.bodyView.text = " \r\n\t"
         controller.bodyView.delegate?.textViewDidChange?(controller.bodyView)
-        XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.isEnabled, false)
+        XCTAssertEqual(controller.sendButton.isEnabled, false)
         controller.bodyView.text = "Replying"
         controller.bodyView.delegate?.textViewDidChange?(controller.bodyView)
-        XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.isEnabled, true)
+        XCTAssertEqual(controller.sendButton.isEnabled, true)
 
         api.mock(AddMessage(conversationID: conversation.id, body: "").request, error: NSError.instructureError("Oops"))
-        let sendButton = controller.navigationItem.rightBarButtonItem
-        XCTAssertNoThrow(sendButton?.target?.perform(sendButton?.action))
+        let sendButton = controller.sendButton
+        XCTAssertNoThrow(sendButton.target?.perform(sendButton.action))
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "Oops")
 
         controller.all = true
         api.mock(AddMessage(conversationID: conversation.id, body: "").request, value: .make())
-        XCTAssertNoThrow(sendButton?.target?.perform(sendButton?.action))
+        XCTAssertNoThrow(sendButton.target?.perform(sendButton.action))
+    }
+
+    func testAttachments() {
+        controller.view.layoutIfNeeded()
+        XCTAssertNoThrow(controller.attachButton.target?.perform(controller.attachButton.action))
+        XCTAssert(router.presented is BottomSheetPickerViewController)
+
+        controller.filePicker.delegate?.filePicker(didPick: URL(string: "picked")!)
+        XCTAssertEqual((UploadManager.shared as? MockUploadManager)?.uploadWasCalled, true)
+        (UploadManager.shared as? MockUploadManager)?.uploadWasCalled = false
+
+        controller.attachmentsController.showOptions?(File.make())
+        XCTAssert(router.presented is BottomSheetPickerViewController)
+
+        controller.filePicker.delegate?.filePicker(didRetry: File.make())
+        XCTAssertEqual((UploadManager.shared as? MockUploadManager)?.uploadWasCalled, true)
+
+        File.make(from: .make(id: "1"), batchID: controller.batchID, session: currentSession)
+        File.make(from: .make(id: "2"), batchID: controller.batchID, session: currentSession)
+        XCTAssertEqual(controller.bodyMinHeight.isActive, false)
+        XCTAssertEqual(controller.attachmentsContainer.isHidden, false)
+        XCTAssertEqual(controller.attachmentsController.attachments.count, 2)
     }
 }

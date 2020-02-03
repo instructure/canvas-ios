@@ -113,11 +113,11 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
     }
 
     @IBAction func updateSendButton() {
-        navigationItem.rightBarButtonItem?.isEnabled = (
+        sendButton.isEnabled = (
             conversation != nil &&
             message != nil &&
             bodyView.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false &&
-            attachments.isEmpty || attachments.allSatisfy({ $0.isUploaded })
+            (attachments.isEmpty || attachments.allSatisfy({ $0.isUploaded }))
         )
     }
 

@@ -122,6 +122,9 @@
 		787BD02121AE5C28000C90A1 /* DiscussionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787BD02021AE5C28000C90A1 /* DiscussionEntry.swift */; };
 		789C9BC12138516300B37AC4 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C9BC02138516300B37AC4 /* UIColorExtensions.swift */; };
 		7D005F772239CCEF0040CBD7 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D005F762239CCEF0040CBD7 /* AvatarView.swift */; };
+		7D016B5D23E883AC00C6E0CA /* FilePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D016B5C23E883AC00C6E0CA /* FilePickerTests.swift */; };
+		7D016B5F23E8984B00C6E0CA /* BottomSheetPickerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D016B5E23E8984B00C6E0CA /* BottomSheetPickerViewControllerTests.swift */; };
+		7D016B6123E89B7F00C6E0CA /* CircleProgressViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D016B6023E89B7F00C6E0CA /* CircleProgressViewTests.swift */; };
 		7D02159F21B88B19009A8E69 /* UITabBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D02159E21B88B19009A8E69 /* UITabBarExtensions.swift */; };
 		7D0215A121B88BDC009A8E69 /* UITabBarExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0215A021B88BDC009A8E69 /* UITabBarExtensionsTests.swift */; };
 		7D0215A721BB1750009A8E69 /* LoginStartViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D0215A621BB1750009A8E69 /* LoginStartViewController.storyboard */; };
@@ -255,7 +258,7 @@
 		7D765024215AEDDE00BB4F38 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D765023215AEDDD00BB4F38 /* DividerView.swift */; };
 		7D765026215AEDE300BB4F38 /* DynamicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D765025215AEDE300BB4F38 /* DynamicLabel.swift */; };
 		7D798A2123DF6F8C007EE831 /* FilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D798A2023DF6F8C007EE831 /* FilePicker.swift */; };
-		7D798A2323DF7A9F007EE831 /* BottomSheetTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D798A2223DF7A9F007EE831 /* BottomSheetTransitioningDelegate.swift */; };
+		7D798A2323DF7A9F007EE831 /* BottomSheetTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D798A2223DF7A9F007EE831 /* BottomSheetTransitioning.swift */; };
 		7D7EA2E223CD013F0021B34E /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7EA2E123CD013F0021B34E /* FilterHeaderView.swift */; };
 		7D80AC05212B461F00C40ECE /* APIUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC04212B461F00C40ECE /* APIUser.swift */; };
 		7D80AC0A212B4A8D00C40ECE /* APIGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC09212B4A8D00C40ECE /* APIGroup.swift */; };
@@ -1060,6 +1063,9 @@
 		787BD02021AE5C28000C90A1 /* DiscussionEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEntry.swift; sourceTree = "<group>"; };
 		789C9BC02138516300B37AC4 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		7D005F762239CCEF0040CBD7 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		7D016B5C23E883AC00C6E0CA /* FilePickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerTests.swift; sourceTree = "<group>"; };
+		7D016B5E23E8984B00C6E0CA /* BottomSheetPickerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPickerViewControllerTests.swift; sourceTree = "<group>"; };
+		7D016B6023E89B7F00C6E0CA /* CircleProgressViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressViewTests.swift; sourceTree = "<group>"; };
 		7D02159E21B88B19009A8E69 /* UITabBarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarExtensions.swift; sourceTree = "<group>"; };
 		7D0215A021B88BDC009A8E69 /* UITabBarExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarExtensionsTests.swift; sourceTree = "<group>"; };
 		7D0215A621BB1750009A8E69 /* LoginStartViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginStartViewController.storyboard; sourceTree = "<group>"; };
@@ -1202,7 +1208,7 @@
 		7D765023215AEDDD00BB4F38 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 		7D765025215AEDE300BB4F38 /* DynamicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabel.swift; sourceTree = "<group>"; };
 		7D798A2023DF6F8C007EE831 /* FilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePicker.swift; sourceTree = "<group>"; };
-		7D798A2223DF7A9F007EE831 /* BottomSheetTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetTransitioningDelegate.swift; sourceTree = "<group>"; };
+		7D798A2223DF7A9F007EE831 /* BottomSheetTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetTransitioning.swift; sourceTree = "<group>"; };
 		7D7EA2E123CD013F0021B34E /* FilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
 		7D80AC04212B461F00C40ECE /* APIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUser.swift; sourceTree = "<group>"; };
 		7D80AC09212B4A8D00C40ECE /* APIGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGroup.swift; sourceTree = "<group>"; };
@@ -2297,7 +2303,7 @@
 				7D88EA2723A9326200D5F8FD /* AvatarGroupView.swift */,
 				7D005F762239CCEF0040CBD7 /* AvatarView.swift */,
 				7D85FFED23E39E0A0055851D /* BottomSheetPickerViewController.swift */,
-				7D798A2223DF7A9F007EE831 /* BottomSheetTransitioningDelegate.swift */,
+				7D798A2223DF7A9F007EE831 /* BottomSheetTransitioning.swift */,
 				7D64A96523621690004EAEDF /* CalendarDayIconView.swift */,
 				7D64A967236219B3004EAEDF /* CalendarDayIconView.xib */,
 				3B339B69226FA9AF00D3283D /* ChatBubbleView.swift */,
@@ -2344,7 +2350,9 @@
 			children = (
 				7D88EA2923A96EA600D5F8FD /* AvatarGroupViewTests.swift */,
 				7D85D8E4226A8CFB002DBF63 /* AvatarViewTests.swift */,
+				7D016B5E23E8984B00C6E0CA /* BottomSheetPickerViewControllerTests.swift */,
 				7D64A96923622D3A004EAEDF /* CalendarDayIconViewTests.swift */,
+				7D016B6023E89B7F00C6E0CA /* CircleProgressViewTests.swift */,
 				7D8B79022162B9E2005E08F1 /* CoreWebViewTests.swift */,
 				7D979CC9215BDFD500567627 /* DividerViewTests.swift */,
 				7D63F78D215D7B8100151E49 /* DynamicButtonTests.swift */,
@@ -3093,6 +3101,7 @@
 		B1B42C1422403AE90087399A /* FilePicker */ = {
 			isa = PBXGroup;
 			children = (
+				7D016B5C23E883AC00C6E0CA /* FilePickerTests.swift */,
 				B14B7054229468BC00B568D6 /* FilePickerViewControllerTests.swift */,
 			);
 			path = FilePicker;
@@ -4139,7 +4148,7 @@
 				B1CA333E233929A30015CBB4 /* User.swift in Sources */,
 				B1F6D6B822EB672500CDD44D /* SessionDefaults.swift in Sources */,
 				B1EF7ABB21E902DD00D653D7 /* UseCase.swift in Sources */,
-				7D798A2323DF7A9F007EE831 /* BottomSheetTransitioningDelegate.swift in Sources */,
+				7D798A2323DF7A9F007EE831 /* BottomSheetTransitioning.swift in Sources */,
 				7DD6948B21960EBD00BA4984 /* DocViewerPresenter.swift in Sources */,
 				7DD6CC6721BCC597004C4BB6 /* LoginFindSchoolViewController.swift in Sources */,
 				B1E789AD21B0F0800087FE4A /* LoggableCell.swift in Sources */,
@@ -4360,6 +4369,7 @@
 				3B158CB822E241130039A568 /* KeychainTests.swift in Sources */,
 				3B3FCA3323802D680011F11A /* GetActivitiesTests.swift in Sources */,
 				7D8B78F8215EC74A005E08F1 /* UIImageExtensionsTests.swift in Sources */,
+				7D016B5F23E8984B00C6E0CA /* BottomSheetPickerViewControllerTests.swift in Sources */,
 				7D148645230B491C003944A2 /* APIAccountNotificationTests.swift in Sources */,
 				B1AAFFFE226988440088BC20 /* UITableViewCellExtensionsTests.swift in Sources */,
 				B1F3780C22499037000B7CAA /* MockMDMManager.swift in Sources */,
@@ -4380,6 +4390,7 @@
 				7D8B78FB215EC9BE005E08F1 /* BrandTests.swift in Sources */,
 				E8997906234F7E0600CA7D9B /* XCTestCaseTests.swift in Sources */,
 				B11AAC3B237A1EB4002BC41F /* APIURLTests.swift in Sources */,
+				7D016B5D23E883AC00C6E0CA /* FilePickerTests.swift in Sources */,
 				B1A464BD225669B50052F8DF /* DispatchExtensionsTests.swift in Sources */,
 				3B158CAF22E153120039A568 /* PersistencyTests.swift in Sources */,
 				3B35F06F230EEE1700674FF5 /* APIPostPolicyInfoTests.swift in Sources */,
@@ -4412,6 +4423,7 @@
 				9FAE410321B6C88000FE7F58 /* APIExternalToolRequestableTests.swift in Sources */,
 				B1CA33462339434A0015CBB4 /* GetContextUsersTests.swift in Sources */,
 				7D26B84D23A8267600262380 /* ConversationParticipantTests.swift in Sources */,
+				7D016B6123E89B7F00C6E0CA /* CircleProgressViewTests.swift in Sources */,
 				B1F13294224BC656002C0555 /* ModuleItemTests.swift in Sources */,
 				B15CA273221DE1FA0014FB02 /* GetModulesTests.swift in Sources */,
 				9FBE536B223C2B9F001EC40C /* APIPermissionsRequestableTests.swift in Sources */,

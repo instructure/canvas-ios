@@ -26,6 +26,7 @@ extension File {
         from api: APIFile = .make(),
         assignmentID: String? = nil,
         batchID: String? = nil,
+        bytesSent: Int = 0,
         courseID: String? = nil,
         removeID: Bool = false,
         removeURL: Bool = false,
@@ -37,6 +38,7 @@ extension File {
     ) -> File {
         let model = File.save(api, in: context)
         model.batchID = batchID
+        model.bytesSent = bytesSent
         if let assignmentID = assignmentID, let courseID = courseID {
             model.prepareForSubmission(courseID: courseID, assignmentID: assignmentID)
         }

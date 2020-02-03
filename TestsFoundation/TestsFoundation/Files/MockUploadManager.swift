@@ -39,17 +39,21 @@ public class MockUploadManager: UploadManager {
         uploadWasCalled = true
     }
 
-    open override func upload(url: URL, batchID: String? = nil, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
+    open override func upload(url: URL, batchID: String? = nil, to uploadContext: FileUploadContext, folderPath: String? = nil, callback: (() -> Void)? = nil) {
         uploadWasCalled = true
         callback?()
     }
 
-    open override func upload(file: File, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
+    open override func upload(file: File, to uploadContext: FileUploadContext, folderPath: String? = nil, callback: (() -> Void)? = nil) {
         uploadWasCalled = true
         callback?()
     }
 
     open override func cancel(batchID: String) {
+        cancelWasCalled = true
+    }
+
+    open override func cancel(file: File) {
         cancelWasCalled = true
     }
 }

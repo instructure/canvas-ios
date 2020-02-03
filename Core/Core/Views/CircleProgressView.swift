@@ -51,9 +51,9 @@ public class CircleProgressView: UIView {
     }
 
     func commonInit() {
+        track.fillColor = UIColor.clear.cgColor
         track.lineWidth = thickness
         track.path = ring()
-        track.fillColor = UIColor.clear.cgColor
         track.strokeColor = UIColor.named(.borderMedium).cgColor
         layer.addSublayer(track)
 
@@ -70,8 +70,8 @@ public class CircleProgressView: UIView {
         return UIBezierPath(
             arcCenter: CGPoint(x: bounds.width / 2, y: bounds.height / 2),
             radius: (min(bounds.width, bounds.height) - thickness) / 2,
-            startAngle: -pi * 0.5,
-            endAngle: (pi * 1.5),
+            startAngle: pi * -0.5, // angle starts to right, so move back to top
+            endAngle: pi * 1.5,
             clockwise: true
         ).cgPath
     }

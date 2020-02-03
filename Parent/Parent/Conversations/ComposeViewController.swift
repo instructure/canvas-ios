@@ -112,11 +112,12 @@ class ComposeViewController: UIViewController, ErrorViewController {
     }
 
     @IBAction func updateSendButton() {
-        navigationItem.rightBarButtonItem?.isEnabled = (
+        sendButton.isEnabled = (
+            sendButton.customView == nil &&
             bodyView.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false &&
             subjectField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false &&
             !recipientsView.recipients.isEmpty &&
-            attachments.isEmpty || attachments.allSatisfy({ $0.isUploaded })
+            (attachments.isEmpty || attachments.allSatisfy({ $0.isUploaded }))
         )
     }
 
@@ -127,14 +128,16 @@ class ComposeViewController: UIViewController, ErrorViewController {
     @objc func send() {
         let activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         activityIndicator.startAnimating()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
+        sendButton.customView = activityIndicator
+        updateSendButton()
         let subject = subjectField.text ?? ""
         let recipientIDs = recipientsView.recipients.map({ $0.id.value })
         let attachmentIDs = attachments.all?.compactMap { $0.id }
         CreateConversation(subject: subject, body: body(), recipientIDs: recipientIDs, canvasContextID: context?.canvasContextID, attachmentIDs: attachmentIDs).fetch { [weak self] _, _, error in
             performUIUpdate {
                 if let error = error {
-                    self?.navigationItem.rightBarButtonItem = self?.sendButton
+                    self?.sendButton.customView = nil
+                    self?.updateSendButton()
                     self?.showError(error)
                     return
                 }

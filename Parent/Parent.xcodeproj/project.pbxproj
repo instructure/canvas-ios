@@ -121,6 +121,7 @@
 		7893BDFD20D1A83F00231DF7 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7893BDFC20D1A83F00231DF7 /* AdminViewController.swift */; };
 		78A84A0E209BB7A000921C9B /* ParentAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835A5E6209B6F4C00C9220B /* ParentAppDelegate.swift */; };
 		78AD913321C8184F0075FBCF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AD913221C8184F0075FBCF /* GoogleService-Info.plist */; };
+		7D016B6323E8C6D100C6E0CA /* AttachmentCardsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D016B6223E8C6D100C6E0CA /* AttachmentCardsViewControllerTests.swift */; };
 		7D111CFF23A2DDD100C912C0 /* ConversationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D111CFE23A2DDD100C912C0 /* ConversationListViewController.swift */; };
 		7D111D0123A2DDDF00C912C0 /* ConversationListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D111D0023A2DDDF00C912C0 /* ConversationListViewController.storyboard */; };
 		7D1591BC23AD79B100ED0106 /* ComposeRecipientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1591BB23AD79B100ED0106 /* ComposeRecipientsView.swift */; };
@@ -820,6 +821,7 @@
 		7893BDFB20D1A7F100231DF7 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
 		7893BDFC20D1A83F00231DF7 /* AdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
 		78AD913221C8184F0075FBCF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7D016B6223E8C6D100C6E0CA /* AttachmentCardsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCardsViewControllerTests.swift; sourceTree = "<group>"; };
 		7D0215A421BAE863009A8E69 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D111CFE23A2DDD100C912C0 /* ConversationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListViewController.swift; sourceTree = "<group>"; };
 		7D111D0023A2DDDF00C912C0 /* ConversationListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConversationListViewController.storyboard; sourceTree = "<group>"; };
@@ -1459,6 +1461,7 @@
 		7DFDB43023A3EDE200B28DED /* Conversations */ = {
 			isa = PBXGroup;
 			children = (
+				7D016B6223E8C6D100C6E0CA /* AttachmentCardsViewControllerTests.swift */,
 				7D6F4CEA23C69F7F001C957D /* ComposeReplyViewControllerTests.swift */,
 				7D231BE023AC1E0A005BA31D /* ComposeViewControllerTests.swift */,
 				9F397F8423C8D54600A3E2AF /* ConversationCoursesActionSheetTests.swift */,
@@ -1913,6 +1916,7 @@
 				7D88EA2E23A9A1CB00D5F8FD /* ColorSchemeTests.swift in Sources */,
 				B109249023CE7F9500796903 /* EditComposeRecipientsViewControllerTests.swift in Sources */,
 				3B36A2ED2322C2A000599A1E /* GetAlertThresholdRequestableTests.swift in Sources */,
+				7D016B6323E8C6D100C6E0CA /* AttachmentCardsViewControllerTests.swift in Sources */,
 				977921A423E148470082696B /* CustomNavbarProtocolTests.swift in Sources */,
 				7DFDB43223A3EDFB00B28DED /* ConversationListViewControllerTests.swift in Sources */,
 				B1AA55D0235785A200DFD184 /* SettingsViewControllerTests.swift in Sources */,

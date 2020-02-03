@@ -47,36 +47,34 @@ class ComposeViewControllerTests: ParentTestCase {
         controller.subjectField.text = " \n"
         controller.bodyView.text = "\t\r"
         controller.bodyView.delegate?.textViewDidChange?(controller.bodyView)
-        XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.isEnabled, false)
+        XCTAssertEqual(controller.sendButton.isEnabled, false)
 
         controller.bodyView.text = "body"
         controller.bodyView.delegate?.textViewDidChange?(controller.bodyView)
-        XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.isEnabled, false)
+        XCTAssertEqual(controller.sendButton.isEnabled, false)
 
         controller.subjectField.text = "subject"
         controller.subjectField.sendActions(for: .editingChanged)
-        XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.isEnabled, true)
+        XCTAssertEqual(controller.sendButton.isEnabled, true)
 
         XCTAssertNotNil(controller.recipientsView.editButton)
         XCTAssertTrue(controller.recipientsView.placeholder.isHidden)
         controller.recipientsView.editButton.sendActions(for: .primaryActionTriggered)
-        let actionSheet = router.presented as? ActionSheetController
-        XCTAssertEqual(actionSheet?.modalPresentationStyle, .custom)
-        XCTAssertNotNil(actionSheet?.transitioningDelegate as? ActionSheetTransitioningDelegate)
-        XCTAssertNotNil(actionSheet)
-        let editRecipients = actionSheet?.viewController as? EditComposeRecipientsViewController
+        let editRecipients = router.presented as? EditComposeRecipientsViewController
         XCTAssertNotNil(editRecipients)
+        XCTAssertEqual(editRecipients?.modalPresentationStyle, .custom)
+        XCTAssertNotNil(editRecipients?.transitioningDelegate as? BottomSheetTransitioningDelegate)
         XCTAssertEqual(editRecipients?.context?.canvasContextID, controller.context?.canvasContextID)
         XCTAssertEqual(editRecipients?.observeeID, controller.observeeID)
         XCTAssertEqual(editRecipients?.selectedRecipients.count, 1)
         editRecipients?.selectedRecipients = []
         editRecipients?.delegate?.editRecipientsControllerDidFinish(editRecipients!)
         XCTAssertEqual(controller.recipientsView.recipients.count, 0)
-        XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.isEnabled, false)
+        XCTAssertEqual(controller.sendButton.isEnabled, false)
         XCTAssertFalse(controller.recipientsView.placeholder.isHidden)
         editRecipients?.selectedRecipients =  [.make(id: "123")]
         editRecipients?.delegate?.editRecipientsControllerDidFinish(editRecipients!)
-        XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.isEnabled, true)
+        XCTAssertEqual(controller.sendButton.isEnabled, true)
         XCTAssertEqual(controller.recipientsView.recipients.count, 1)
         XCTAssertEqual(controller.recipientsView.recipients.first?.id.value, "123")
         XCTAssertTrue(controller.recipientsView.placeholder.isHidden)
@@ -89,9 +87,9 @@ class ComposeViewControllerTests: ParentTestCase {
             ), value: [ APIConversation.make() ]
         )
         task.paused = true
-        let sendButton = controller.navigationItem.rightBarButtonItem
-        XCTAssertNoThrow(sendButton?.target?.perform(sendButton?.action))
-        XCTAssert(controller.navigationItem.rightBarButtonItem?.customView is UIActivityIndicatorView)
+        let sendButton = controller.sendButton
+        XCTAssertNoThrow(sendButton.target?.perform(sendButton.action))
+        XCTAssert(controller.sendButton.customView is UIActivityIndicatorView)
         task.resume()
     }
 
@@ -105,9 +103,8 @@ class ComposeViewControllerTests: ParentTestCase {
             context_code: controller.context!.canvasContextID)
             ), error: NSError.instructureError("Error")
         )
-        let sendButton = controller.navigationItem.rightBarButtonItem
-        XCTAssertNoThrow(sendButton?.target?.perform(sendButton?.action))
-        XCTAssertEqual(controller.navigationItem.rightBarButtonItem, controller.sendButton)
+        let sendButton = controller.sendButton
+        XCTAssertNoThrow(sendButton.target?.perform(sendButton.action))
         XCTAssert(router.presented is UIAlertController)
     }
 
@@ -132,5 +129,27 @@ class ComposeViewControllerTests: ParentTestCase {
         controller.recipientsView.toggleIsExpanded(sender: UITapGestureRecognizer())
         XCTAssertTrue(controller.recipientsView.additionalRecipients.isHidden)
         XCTAssertEqual(controller.recipientsView.pills.count, 2)
+    }
+
+    func testAttachments() {
+        controller.view.layoutIfNeeded()
+        XCTAssertNoThrow(controller.attachButton.target?.perform(controller.attachButton.action))
+        XCTAssert(router.presented is BottomSheetPickerViewController)
+
+        controller.filePicker.delegate?.filePicker(didPick: URL(string: "picked")!)
+        XCTAssertEqual((UploadManager.shared as? MockUploadManager)?.uploadWasCalled, true)
+        (UploadManager.shared as? MockUploadManager)?.uploadWasCalled = false
+
+        controller.attachmentsController.showOptions?(File.make())
+        XCTAssert(router.presented is BottomSheetPickerViewController)
+
+        controller.filePicker.delegate?.filePicker(didRetry: File.make())
+        XCTAssertEqual((UploadManager.shared as? MockUploadManager)?.uploadWasCalled, true)
+
+        File.make(from: .make(id: "1"), batchID: controller.batchID, session: currentSession)
+        File.make(from: .make(id: "2"), batchID: controller.batchID, session: currentSession)
+        XCTAssertEqual(controller.bodyMinHeight.isActive, false)
+        XCTAssertEqual(controller.attachmentsContainer.isHidden, false)
+        XCTAssertEqual(controller.attachmentsController.attachments.count, 2)
     }
 }

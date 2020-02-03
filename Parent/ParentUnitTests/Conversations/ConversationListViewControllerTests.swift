@@ -67,9 +67,7 @@ class ConversationListViewControllerTests: ParentTestCase {
     func testTappingComposeRoutesToCourseActionSheet() {
         loadView()
         controller.composeButton.sendActions(for: .primaryActionTriggered)
-        let actionSheet = router.presented as? ActionSheetController
-        XCTAssertNotNil(actionSheet)
-        XCTAssertNotNil(actionSheet?.viewController as? ConversationCoursesActionSheet)
+        XCTAssertNotNil(router.presented as? ConversationCoursesActionSheet)
     }
 
     func testRouteToCompose() {

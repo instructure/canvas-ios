@@ -48,24 +48,6 @@ class ConversationDetailViewControllerTests: ParentTestCase {
                     ],
                     participating_user_ids: [ "1", "2" ]
                 ),
-                APIConversationMessage.make(
-                    id: "2",
-                    created_at: Clock.now.addDays(-2),
-                    body: "foo bar",
-                    author_id: "1",
-                    participating_user_ids: [ "1", "2" ]
-                ),
-                APIConversationMessage.make(
-                    id: "3",
-                    created_at: Clock.now.addDays(-3),
-                    body: "audio",
-                    author_id: "1",
-                    media_comment: .make(media_type: .audio, url: URL(string: "data:text/plain,")!),
-                    attachments: [
-                        .make(id: "9", url: URL(string: "data:text/plain,")!, mime_class: "audio"),
-                    ],
-                    participating_user_ids: [ "1", "2" ]
-                ),
             ]
         )
         api.mock(controller.conversations, value: c)
@@ -89,14 +71,7 @@ class ConversationDetailViewControllerTests: ParentTestCase {
         XCTAssertEqual(first?.toLabel.text, "to user 2")
         XCTAssertEqual(first?.messageLabel.text, "hello world")
         XCTAssertEqual(first?.dateLabel.text, DateFormatter.localizedString(from: Clock.now.addDays(-1), dateStyle: .medium, timeStyle: .short))
-
-        XCTAssertEqual(first?.attachmentStackView.arrangedSubviews.count, 5)
-        XCTAssertEqual(first?.attachmentStackView.isHidden, false)
-        XCTAssertEqual(first?.attachmentStackView.arrangedSubviews[1].accessibilityLabel, "File")
-        XCTAssertEqual(first?.attachmentStackView.arrangedSubviews[2].accessibilityLabel, "Image")
-
-        (first?.attachmentStackView.arrangedSubviews[1] as? UIButton)?.sendActions(for: .primaryActionTriggered)
-        XCTAssertTrue(router.lastRoutedTo(.parse("https://canvas.instructure.com/files/1/download")))
+        XCTAssertEqual(first?.attachmentsController.attachments.count, 3)
 
         let actions = controller.tableView.delegate?.tableView?(
             controller.tableView,
@@ -107,19 +82,6 @@ class ConversationDetailViewControllerTests: ParentTestCase {
             XCTAssertTrue(complete)
         }
         XCTAssertEqual((router.presented as? ComposeReplyViewController)?.all, false)
-
-        let second = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? ConversationDetailCell
-        XCTAssertEqual(second?.attachmentStackView.arrangedSubviews.count, 0)
-        XCTAssertEqual(second?.attachmentStackView.isHidden, true)
-
-        let third = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 2)) as? ConversationDetailCell
-        XCTAssertEqual(third?.attachmentStackView.arrangedSubviews.count, 3)
-        XCTAssertEqual(third?.attachmentStackView.isHidden, false)
-
-        (third?.attachmentStackView.arrangedSubviews[0] as? UIButton)?.sendActions(for: .primaryActionTriggered)
-        XCTAssertTrue(router.presented is AVPlayerViewController)
-        (third?.attachmentStackView.arrangedSubviews[1] as? UIButton)?.sendActions(for: .primaryActionTriggered)
-        XCTAssertTrue(router.presented is AVPlayerViewController)
     }
 
     func testReplyAll() {
