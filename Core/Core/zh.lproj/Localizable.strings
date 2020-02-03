@@ -32,6 +32,9 @@
 "All Grading Periods" = "所有评分周期";
 
 /* No comment provided by engineer. */
+"All People" = "所有人员";
+
+/* No comment provided by engineer. */
 "All Submissions" = "所有提交项";
 
 /* No comment provided by engineer. */
@@ -228,6 +231,9 @@
 
 /* No comment provided by engineer. */
 "Designer" = "设计者";
+
+/* No comment provided by engineer. */
+"Designers" = "设计者";
 
 /* No comment provided by engineer. */
 "Developer Menu" = "开发人员菜单";
@@ -500,6 +506,9 @@
 "No image found from image picker" = "从图像选择器找不到图像";
 
 /* No comment provided by engineer. */
+"No results" = "无结果";
+
+/* No comment provided by engineer. */
 "No Submission" = "无提交项";
 
 /* No comment provided by engineer. */
@@ -527,6 +536,9 @@
 "Observer" = "观察员";
 
 /* No comment provided by engineer. */
+"Observers" = "观察员";
+
+/* No comment provided by engineer. */
 "OK" = "确定";
 
 /* No comment provided by engineer. */
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Pause" = "暂停";
+
+/* No comment provided by engineer. */
+"People" = "人员";
 
 /* No comment provided by engineer. */
 "Permission Needed" = "需要权限";
@@ -612,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "日程安排";
+
+/* No comment provided by engineer. */
+"Search" = "搜索";
 
 /* No comment provided by engineer. */
 "See attached files." = "查看附件文件。";
@@ -680,6 +698,9 @@
 "Student Appointment Signups" = "学生预约注册";
 
 /* No comment provided by engineer. */
+"Students" = "学生";
+
+/* No comment provided by engineer. */
 "Style" = "样式";
 
 /* No comment provided by engineer. */
@@ -714,6 +735,12 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "教师";
+
+/* No comment provided by engineer. */
+"Teachers" = "教师";
+
+/* No comment provided by engineer. */
+"Teaching Assistants" = "助教";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "使用条款";
@@ -792,6 +819,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "用户ID";
+
+/* Name and pronouns - John (He/Him) */
+"User.displayName" = "%1$@(%2$@)";
 
 /* No comment provided by engineer. */
 "Username" = "用户名";

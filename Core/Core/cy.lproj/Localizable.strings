@@ -32,6 +32,9 @@
 "All Grading Periods" = "Pob Cyfnod Graddio";
 
 /* No comment provided by engineer. */
+"All People" = "Holl Bobl";
+
+/* No comment provided by engineer. */
 "All Submissions" = "Pob Cyflwyniad";
 
 /* No comment provided by engineer. */
@@ -228,6 +231,9 @@
 
 /* No comment provided by engineer. */
 "Designer" = "Dylunydd";
+
+/* No comment provided by engineer. */
+"Designers" = "Dylunwyr";
 
 /* No comment provided by engineer. */
 "Developer Menu" = "Dewislen Datblygwr";
@@ -500,6 +506,9 @@
 "No image found from image picker" = "Heb ddod o hyd i ddelwedd o'r dewisydd delwedd";
 
 /* No comment provided by engineer. */
+"No results" = "Dim canlyniadau";
+
+/* No comment provided by engineer. */
 "No Submission" = "Dim cyflwyniad";
 
 /* No comment provided by engineer. */
@@ -527,6 +536,9 @@
 "Observer" = "Arsyllwr";
 
 /* No comment provided by engineer. */
+"Observers" = "Arsyllwyr";
+
+/* No comment provided by engineer. */
 "OK" = "Iawn";
 
 /* No comment provided by engineer. */
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Pause" = "Rhewi";
+
+/* No comment provided by engineer. */
+"People" = "Pobl";
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Angen Caniatâd";
@@ -612,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "Trefnu";
+
+/* No comment provided by engineer. */
+"Search" = "Chwilio";
 
 /* No comment provided by engineer. */
 "See attached files." = "Gweler y ffeiliau sydd wedi’u hatodi.";
@@ -680,6 +698,9 @@
 "Student Appointment Signups" = "Archebu Apwyntiadau gan Fyfyrwyr";
 
 /* No comment provided by engineer. */
+"Students" = "Myfyrwyr";
+
+/* No comment provided by engineer. */
 "Style" = "Arddull";
 
 /* No comment provided by engineer. */
@@ -714,6 +735,12 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Athro";
+
+/* No comment provided by engineer. */
+"Teachers" = "Athrawon";
+
+/* No comment provided by engineer. */
+"Teaching Assistants" = "Cynorthwywyr Dysgu";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Telerau Defnyddio";
@@ -792,6 +819,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "ID Defnyddiwr";
+
+/* Name and pronouns - John (He/Him) */
+"User.displayName" = "%1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Username" = "Enw defnyddiwr";

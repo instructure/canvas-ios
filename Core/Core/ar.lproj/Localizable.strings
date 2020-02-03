@@ -32,6 +32,9 @@
 "All Grading Periods" = "جميع فترات تقييم الدرجات";
 
 /* No comment provided by engineer. */
+"All People" = "جميع الأشخاص";
+
+/* No comment provided by engineer. */
 "All Submissions" = "كل الإرسالات";
 
 /* No comment provided by engineer. */
@@ -228,6 +231,9 @@
 
 /* No comment provided by engineer. */
 "Designer" = "المصمم";
+
+/* No comment provided by engineer. */
+"Designers" = "المصممون";
 
 /* No comment provided by engineer. */
 "Developer Menu" = "قائمة المطورين";
@@ -500,6 +506,9 @@
 "No image found from image picker" = "لم يتم العثور على صورة من منتقي الصور";
 
 /* No comment provided by engineer. */
+"No results" = "بلا نتائج";
+
+/* No comment provided by engineer. */
 "No Submission" = "لا يوجد إرسال";
 
 /* No comment provided by engineer. */
@@ -527,6 +536,9 @@
 "Observer" = "المراقب";
 
 /* No comment provided by engineer. */
+"Observers" = "المراقبون";
+
+/* No comment provided by engineer. */
 "OK" = "موافق";
 
 /* No comment provided by engineer. */
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Pause" = "إيقاف مؤقت";
+
+/* No comment provided by engineer. */
+"People" = "الأشخاص";
 
 /* No comment provided by engineer. */
 "Permission Needed" = "مطلوب إذن";
@@ -612,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "الجدولة";
+
+/* No comment provided by engineer. */
+"Search" = "بحث";
 
 /* No comment provided by engineer. */
 "See attached files." = "انظر الملفات المرفقة.";
@@ -680,6 +698,9 @@
 "Student Appointment Signups" = "مواعيد التسجيل للطالب";
 
 /* No comment provided by engineer. */
+"Students" = "الطلاب";
+
+/* No comment provided by engineer. */
 "Style" = "النمط";
 
 /* No comment provided by engineer. */
@@ -714,6 +735,12 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "المعلم";
+
+/* No comment provided by engineer. */
+"Teachers" = "المعلمون";
+
+/* No comment provided by engineer. */
+"Teaching Assistants" = "مساعدو المعلمين";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "شروط الاستخدام";
@@ -792,6 +819,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "معرف المستخدم";
+
+/* Name and pronouns - John (He/Him) */
+"User.displayName" = "%1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Username" = "اسم المستخدم";

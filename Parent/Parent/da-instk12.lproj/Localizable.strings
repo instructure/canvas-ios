@@ -80,7 +80,10 @@
 "Caught up on Alerts" = "Ajourført med alarmer";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Vælg en elev";
+"Choose a course to message" = "Vælg et fag at sende en meddelelse til";
+
+/* No comment provided by engineer. */
+"Close" = "Luk";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Skriv en ny besked";
@@ -96,9 +99,6 @@
 
 /* Courses Tab */
 "Courses" = "Fag";
-
-/* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Nuværende elev: %@, tryk for at skifte elev";
 
 /* No comment provided by engineer. */
 "Discussion" = "Diskussion";
@@ -117,6 +117,9 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Kunne ikke indlæse (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"for %@" = "til %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Forside";
@@ -218,6 +221,16 @@
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
+"Recipients" = "Modtagere";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "Vedrørende: %@";
+
+/* Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "Vedrørende: %1$@. %2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "Svar";
 
 /* No comment provided by engineer. */
@@ -269,13 +282,13 @@
 "This student's courses may not be published yet." = "Denne elevs fag kan ikke offentliggøres endnu.";
 
 /* No comment provided by engineer. */
+"To" = "Til";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "Problemer med at logge ind";
 
 /* No comment provided by engineer. */
 "Unread" = "Ulæst";
-
-/* Calendar Tab */
-"Week" = "Uge";
 
 /* Header title of admin view */
 "Welcome!" = "Velkommen!";

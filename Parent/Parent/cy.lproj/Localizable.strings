@@ -80,7 +80,10 @@
 "Caught up on Alerts" = "Wedi gweld y negeseuon hysbysu diweddaraf";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Dewiswch fyfyriwr";
+"Choose a course to message" = "Dewiswch gwrs i anfon neges ato";
+
+/* No comment provided by engineer. */
+"Close" = "Cau";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Creu neges newydd";
@@ -96,9 +99,6 @@
 
 /* Courses Tab */
 "Courses" = "Cyrsiau";
-
-/* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Myfyriwr Presennol: %@, tapiwch i newid myfyrwyr";
 
 /* No comment provided by engineer. */
 "Discussion" = "Trafodaeth";
@@ -117,6 +117,9 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Wedi methu llwytho (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"for %@" = "ar gyfer %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Tudalen Flaen";
@@ -218,6 +221,16 @@
 "Quiz" = "Cwis";
 
 /* No comment provided by engineer. */
+"Recipients" = "Derbynwyr";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "Ynghylch: %@";
+
+/* Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "Ynghylch: %1$@, %2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "Ateb";
 
 /* No comment provided by engineer. */
@@ -269,13 +282,13 @@
 "This student's courses may not be published yet." = "Mae’n bosib nad yw cyrsiau’r myfyriwr hwn wedi’u cyhoeddi eto.";
 
 /* No comment provided by engineer. */
+"To" = "I";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "Trafferth yn mewngofnodi";
 
 /* No comment provided by engineer. */
 "Unread" = "Heb ddarllen";
-
-/* Calendar Tab */
-"Week" = "Wythnos";
 
 /* Header title of admin view */
 "Welcome!" = "Croeso!";
