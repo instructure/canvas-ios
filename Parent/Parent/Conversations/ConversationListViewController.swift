@@ -93,7 +93,6 @@ class ConversationListViewController: UIViewController, ConversationCoursesActio
         }
     }
 
-    @objc
     @IBAction func createNewConversation() {
         let vc = ConversationCoursesActionSheet.create(delegate: self)
         let actionSheet = ActionSheetController(viewController: vc)
