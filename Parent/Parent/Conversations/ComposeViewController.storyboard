@@ -39,6 +39,7 @@
                                             </view>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Subject" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dz1-0x-wXN" customClass="DynamicTextField" customModule="Parent" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="57" width="343" height="48"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="Compose.subject"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="VCI-fH-9f0"/>
                                                 </constraints>
@@ -63,6 +64,7 @@
                                             </view>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oQx-YB-DID">
                                                 <rect key="frame" x="0.0" y="106" width="375" height="35.5"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="Compose.body"/>
                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

@@ -92,9 +92,6 @@
   "all_in_e5ddaee0": {
     "message": "Alles in"
   },
-  "all_people_16d90b41": {
-    "message": "Alle personen"
-  },
   "all_submissions_3eedfb97": {
     "message": "Alle inzendingen"
   },
@@ -467,9 +464,6 @@
   "description_436c48d7": {
     "message": "Beschrijving"
   },
-  "designer_c458392": {
-    "message": "Ontwerper"
-  },
   "details_98a31b68": {
     "message": "Details"
   },
@@ -646,9 +640,6 @@
   },
   "filter_numselected_number_2e4c17e3": {
     "message": "Filter ({ numSelected, number })"
-  },
-  "filter_people_b34b567b": {
-    "message": "Personen filteren"
   },
   "filter_submissions_numselected_number_selected_177867b3": {
     "message": "Inleveringen filteren. ({ numSelected, number }) geselecteerd."
@@ -935,6 +926,9 @@
   "name_profile_240f0967": {
     "message": "{ name } profiel"
   },
+  "name_pronouns_8d5a0061": {
+    "message": "{ name } ({ pronouns })"
+  },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } meer"
   },
@@ -1037,9 +1031,6 @@
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# minuut}\n other {# minuten}\n}"
   },
-  "observer_248a192e": {
-    "message": "Waarnemer"
-  },
   "off_5385ef3f": {
     "message": "Uit"
   },
@@ -1129,9 +1120,6 @@
   },
   "past_enrollments_a846da48": {
     "message": "Oude inschrijvingen"
-  },
-  "people_b4ebb13c": {
-    "message": "Mensen"
   },
   "percent_d7ddd35b": {
     "message": "Percentage)"
@@ -1478,9 +1466,6 @@
   "syllabus_f191f65b": {
     "message": "Syllabus"
   },
-  "ta_8d966626": {
-    "message": "Leraar assistenten"
-  },
   "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
     "message": "Tik op een rubricnummer en houd dat vast om de bijbehorende beschrijving weer te geven"
   },
@@ -1492,9 +1477,6 @@
   },
   "tap_to_view_submissions_list_5bfe32f3": {
     "message": "Tik om lijst met inzendingen weer te geven."
-  },
-  "teacher_5a73b637": {
-    "message": "Leraar"
   },
   "teachers_52e2423f": {
     "message": "Docenten"

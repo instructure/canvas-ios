@@ -72,7 +72,9 @@ export default class AssigneeRow extends Component<Props> {
       <View style={styles.container}>
         {image}
         <View style={styles.textContainer}>
-          <Text numberOfLines={1} style={styles.assigneeName}>{assignee.name}</Text>
+          <Text numberOfLines={1} style={styles.assigneeName} testID={`AssigneeRow.${assignee.id}.name`}>
+            {assignee.name}
+          </Text>
           { assignee.info && <Text numberOfLines={1} style={styles.assigneeInfo}>{assignee.info}</Text> }
         </View>
         { this.props.onDelete && (<View style={styles.deleteButtonContainer}>

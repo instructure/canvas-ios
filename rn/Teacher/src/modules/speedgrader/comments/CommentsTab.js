@@ -43,6 +43,7 @@ import bytes from '@utils/locale-bytes'
 import striptags from 'striptags'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 import { isAssignmentAnonymous } from '../../../common/anonymous-grading'
+import { personDisplayName } from '../../../common/formatters'
 
 const Actions = {
   ...SubmissionCommentActions,
@@ -293,7 +294,7 @@ function extractComments (submissionComments: SubmissionComment[]): Array<Commen
   return submissionComments
     .map(comment => ({
       key: 'comment-' + comment.id,
-      name: comment.author_name,
+      name: personDisplayName(comment.author_name, comment.author.pronouns),
       date: new Date(comment.created_at),
       avatarURL: comment.author.avatar_image_url,
       userID: comment.author.id,
@@ -395,7 +396,7 @@ function rowForSubmission (submission: Submission, attempt: Submission, assignme
   const items = contentForAttempt(attempt, assignment)
   return {
     key: `submission-${attemptNumber}`,
-    name: user.name,
+    name: personDisplayName(user.name, user.pronouns),
     avatarURL: user.avatar_url,
     userID: user.id,
     from: 'them',

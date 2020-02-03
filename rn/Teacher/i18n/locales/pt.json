@@ -92,9 +92,6 @@
   "all_in_e5ddaee0": {
     "message": "Tudo em"
   },
-  "all_people_16d90b41": {
-    "message": "Todas as pessoas"
-  },
   "all_submissions_3eedfb97": {
     "message": "Todas as submissões"
   },
@@ -467,9 +464,6 @@
   "description_436c48d7": {
     "message": "Descrição"
   },
-  "designer_c458392": {
-    "message": "Designer"
-  },
   "details_98a31b68": {
     "message": "Detalhes"
   },
@@ -646,9 +640,6 @@
   },
   "filter_numselected_number_2e4c17e3": {
     "message": "Filtrar ({ numSelected, number })"
-  },
-  "filter_people_b34b567b": {
-    "message": "Filtrar pessoas"
   },
   "filter_submissions_numselected_number_selected_177867b3": {
     "message": "Filtrar Envios. ({ numSelected, number }) selecionado."
@@ -935,6 +926,9 @@
   "name_profile_240f0967": {
     "message": "{ name } Perfil"
   },
+  "name_pronouns_8d5a0061": {
+    "message": "{ name } ({ pronouns })"
+  },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } mais"
   },
@@ -1037,9 +1031,6 @@
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# Minuto}\n other {# Minutos}\n}"
   },
-  "observer_248a192e": {
-    "message": "Observador"
-  },
   "off_5385ef3f": {
     "message": "Desligada"
   },
@@ -1129,9 +1120,6 @@
   },
   "past_enrollments_a846da48": {
     "message": "Inscrições anteriores"
-  },
-  "people_b4ebb13c": {
-    "message": "Pessoas"
   },
   "percent_d7ddd35b": {
     "message": "Percentagem (%)"
@@ -1478,9 +1466,6 @@
   "syllabus_f191f65b": {
     "message": "Apontamentos"
   },
-  "ta_8d966626": {
-    "message": "TA"
-  },
   "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
     "message": "Toque e segure um número de rubrica para ver sua descrição"
   },
@@ -1492,9 +1477,6 @@
   },
   "tap_to_view_submissions_list_5bfe32f3": {
     "message": "Toque para visualizar a lista de envios."
-  },
-  "teacher_5a73b637": {
-    "message": "Professor"
   },
   "teachers_52e2423f": {
     "message": "Professores"

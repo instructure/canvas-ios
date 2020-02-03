@@ -59,12 +59,6 @@ class CourseListViewController: FetchedTableViewController<CanvasCore.Course> {
         tableView.backgroundColor = UIColor.white
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        let scheme = ColorScheme.observee(observeeID)
-        navigationController?.navigationBar.useContextColor(scheme.color)
-    }
-
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let course = collection[indexPath]
         AppEnvironment.shared.router.route(to: .courseGrades(course.id), from: self)

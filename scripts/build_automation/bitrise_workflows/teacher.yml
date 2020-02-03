@@ -88,6 +88,13 @@ workflows:
                 <string>$BITRISE_DEVELOPER_TEAM</string>
                 </dict>
             </plist>
+    - script:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -e
+            set -x
+            ./Pods/Fabric/upload-symbols -gsp "$BITRISE_SOURCE_DIR/rn/Teacher/ios/Teacher/GoogleService-Info.plist" -p ios "$BITRISE_DSYM_PATH"
     - cache-push:
         inputs:
         - cache_paths: "$BITRISE_SOURCE_DIR/Carthage/Build/iOS/"
@@ -104,9 +111,6 @@ workflows:
     - _common
     envs:
     steps:
-    - firebase-dsym-upload:
-        inputs:
-        - fdu_google_services_location: "$BITRISE_SOURCE_DIR/rn/Teacher/ios/Teacher/GoogleService-Info.plist"
     - deploy-to-itunesconnect-application-loader:
         inputs:
         - password: "$APPSTORECONNECT_PASSWORD"

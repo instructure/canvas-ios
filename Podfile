@@ -55,7 +55,7 @@ abstract_target 'defaults' do
 
   target 'Parent' do
     project 'Parent/Parent.xcodeproj'
-    pod 'Fabric', '~> 1.7.7'
+    pod 'Fabric', '~> 1.10.2'
     pod 'Firebase/Core', '~> 6.13'
     pod 'Firebase/RemoteConfig', '~> 6.13'
     pod 'Firebase/Analytics', '~> 6.13'
@@ -63,7 +63,7 @@ abstract_target 'defaults' do
 
   target 'ParentUnitTests' do
     project 'Parent/Parent.xcodeproj'
-    pod 'Fabric', '~> 1.7.7'
+    pod 'Fabric', '~> 1.10.2'
     pod 'Firebase/Core', '~> 6.13'
     pod 'Firebase/RemoteConfig', '~> 6.13'
     pod 'Firebase/Analytics', '~> 6.13'
@@ -71,7 +71,7 @@ abstract_target 'defaults' do
 
   target 'Teacher' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
-    pod 'Fabric', '~> 1.7.7'
+    pod 'Fabric', '~> 1.10.2'
     pod 'Firebase/Core', '~> 6.13'
     pod 'Firebase/RemoteConfig', '~> 6.13'
     pod 'Firebase/Analytics', '~> 6.13'
@@ -79,7 +79,7 @@ abstract_target 'defaults' do
 
   target 'TeacherTests' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
-    pod 'Fabric', '~> 1.7.7'
+    pod 'Fabric', '~> 1.10.2'
     pod 'Firebase/Core', '~> 6.13'
     pod 'Firebase/RemoteConfig', '~> 6.13'
     pod 'Firebase/Analytics', '~> 6.13'
@@ -91,7 +91,7 @@ abstract_target 'defaults' do
 
   target 'Student' do
     project 'Student/Student.xcodeproj'
-    pod 'Fabric', '~> 1.7.7'
+    pod 'Fabric', '~> 1.10.2'
     pod 'Firebase/Core', '~> 6.13'
     pod 'Firebase/RemoteConfig', '~> 6.13'
     pod 'Firebase/Analytics', '~> 6.13'
@@ -99,7 +99,7 @@ abstract_target 'defaults' do
 
   target 'StudentUnitTests' do
     project 'Student/Student.xcodeproj'
-    pod 'Fabric', '~> 1.7.7'
+    pod 'Fabric', '~> 1.10.2'
     pod 'Firebase/Core', '~> 6.13'
     pod 'Firebase/RemoteConfig', '~> 6.13'
     pod 'Firebase/Analytics', '~> 6.13'
@@ -107,7 +107,7 @@ abstract_target 'defaults' do
 
   target 'CanvasCore' do
     project 'CanvasCore/CanvasCore.xcodeproj'
-    pod 'Crashlytics', '~> 3.10.2'
+    pod 'Crashlytics', '~> 3.14.0'
   end
 
   target 'CanvasKit1' do

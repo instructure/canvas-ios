@@ -17,8 +17,11 @@
 //
 
 import Foundation
-import TestsFoundation
 
-enum ComposeReply: String, ElementWrapper {
-    case avatar, fromLabel, toLabel, dateLabel, messageLabel, body
+public enum Compose: String, ElementWrapper {
+    case subject, body
+
+    public static func recipientName(id: String) -> Element {
+        app.find(id: "Compose.recipientName.\(id)")
+    }
 }

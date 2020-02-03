@@ -26,12 +26,12 @@ class InboxTests: CoreUITestCase {
     func testGetToReplyScreen() {
         Dashboard.profileButton.tap()
         Profile.inboxButton.tap()
-        let label = ConversationListCell("320").label()
+        let label = ConversationList.cell(id: "320").label()
         XCTAssert(label.contains("Assignments"))
         XCTAssert(label.contains("need to talk"))
         XCTAssert(label.contains("last message Jan"))
         XCTAssert(label.contains("Jeff"))
-        ConversationListCell("320").waitToExist().tap()
+        ConversationList.cell(id: "320").waitToExist().tap()
         ConversationDetail.replyButton.tapUntil {
             ComposeReply.body.exists()
         }

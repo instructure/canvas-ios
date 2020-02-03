@@ -38,6 +38,7 @@ enum AssignmentDetails: String, ElementWrapper {
     case fileSubmissionButton
     case lockIcon
     case lockSection
+    case replyButton // parent
 
     static func description(_ description: String) -> Element {
         return app.find(label: description)

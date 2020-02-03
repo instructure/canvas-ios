@@ -32,6 +32,9 @@
 "All Grading Periods" = "Tout Peryòd Klasman";
 
 /* No comment provided by engineer. */
+"All People" = "Tout Moun";
+
+/* No comment provided by engineer. */
 "All Submissions" = "Tout Soumisyon";
 
 /* No comment provided by engineer. */
@@ -228,6 +231,9 @@
 
 /* No comment provided by engineer. */
 "Designer" = "Kreyatè";
+
+/* No comment provided by engineer. */
+"Designers" = "Kreyatè";
 
 /* No comment provided by engineer. */
 "Developer Menu" = "Meni Developè";
@@ -500,6 +506,9 @@
 "No image found from image picker" = "No image found from image pickerimaj";
 
 /* No comment provided by engineer. */
+"No results" = "Okenn rezilta";
+
+/* No comment provided by engineer. */
 "No Submission" = "Pa gen Soumisyon";
 
 /* No comment provided by engineer. */
@@ -527,6 +536,9 @@
 "Observer" = "Obsèvatè";
 
 /* No comment provided by engineer. */
+"Observers" = "Obsèvatè";
+
+/* No comment provided by engineer. */
 "OK" = "DAKO";
 
 /* No comment provided by engineer. */
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Pause" = "Poz";
+
+/* No comment provided by engineer. */
+"People" = "Moun";
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Otorizasyon Nesesè";
@@ -612,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "Planifikasyon";
+
+/* No comment provided by engineer. */
+"Search" = "Chèche";
 
 /* No comment provided by engineer. */
 "See attached files." = "Gade fichye atache yo.";
@@ -680,6 +698,9 @@
 "Student Appointment Signups" = "Elèv Randevou Enskripsyon";
 
 /* No comment provided by engineer. */
+"Students" = "Elèv";
+
+/* No comment provided by engineer. */
 "Style" = "Estil";
 
 /* No comment provided by engineer. */
@@ -714,6 +735,12 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Pwofesè";
+
+/* No comment provided by engineer. */
+"Teachers" = "Pwofesè";
+
+/* No comment provided by engineer. */
+"Teaching Assistants" = "Asistan Ansèyman";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Kondisyon Itilizasyon";
@@ -792,6 +819,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "ID Itilizatè";
+
+/* Name and pronouns - John (He/Him) */
+"User.displayName" = "%1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Username" = "Non Itilizatè";

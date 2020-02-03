@@ -30,7 +30,11 @@ import {
 import { mapStateToProps, type AssignmentDueDatesProps } from './map-state-to-props'
 import UserActions from '../users/actions'
 import AssignmentDates from '../../common/AssignmentDates'
-import { formattedDueDateWithStatus, formattedDueDate } from '../../common/formatters'
+import {
+  formattedDueDateWithStatus,
+  formattedDueDate,
+  personDisplayName,
+} from '../../common/formatters'
 import { createStyleSheet } from '../../common/stylesheet'
 import { extractDateFromString } from '../../utils/dateUtils'
 import i18n from 'format-message'
@@ -63,7 +67,10 @@ export class AssignmentDueDates extends Component<AssignmentDueDatesProps, any> 
       if (override) {
         const students = (override.student_ids || []).map((id) => users[id]).filter((profile) => profile)
         if (students.length) {
-          title = students.map((profile) => profile.name).filter((name) => name).join(', ')
+          title = students
+            .map((profile) => personDisplayName(profile.name, profile.pronouns))
+            .filter((name) => name)
+            .join(', ')
         }
       }
     }
@@ -86,7 +93,8 @@ export class AssignmentDueDates extends Component<AssignmentDueDatesProps, any> 
       availableToAccessibiltyLabel = i18n('No available until date set')
     }
 
-    return (<View style={styles.row} key={date.id || 'base'} >
+    let key = date.id || 'base'
+    return (<View style={styles.row} key={key} testID={key} >
       <Heading1>{formattedDueDateWithStatus(dueAt, extractDateFromString(date.lock_at)).join('  •  ')}</Heading1>
       <View accessible={true}>
         <Text style={styles.header}>{i18n('For')}</Text>

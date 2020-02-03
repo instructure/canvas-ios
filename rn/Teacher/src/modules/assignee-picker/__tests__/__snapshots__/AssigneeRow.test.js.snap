@@ -96,6 +96,7 @@ exports[`render correctly 1`] = `
             },
           ]
         }
+        testID="AssigneeRow.student-1234.name"
       >
         Bill Murray
       </Text>
@@ -224,6 +225,7 @@ exports[`render correctly without image url 1`] = `
             },
           ]
         }
+        testID="AssigneeRow.student-1234.name"
       >
         Bill Murray
       </Text>

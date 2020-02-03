@@ -123,6 +123,7 @@ exports[`render correctly 1`] = `
                   },
                 ]
               }
+              testID="AssigneeRow.student-1234.name"
             >
               Bill Murray
             </Text>
@@ -283,6 +284,7 @@ exports[`render correctly 1`] = `
                   },
                 ]
               }
+              testID="AssigneeRow.9909342324234.name"
             >
               Bill Murray
             </Text>
@@ -443,6 +445,7 @@ exports[`render correctly 1`] = `
                   },
                 ]
               }
+              testID="AssigneeRow.group-1234.name"
             >
               Horrible Students
             </Text>

@@ -154,10 +154,11 @@ extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let a = grades.assignments[indexPath]
-        let cell: GradesCell =  tableView.dequeue(for: indexPath)
+        let cell: GradesCell = tableView.dequeue(for: indexPath)
         cell.update(a, userID: userID)
         cell.nameLabel.text = a?.name
         cell.typeImage.tintColor = colorDelegate?.iconColor ?? Brand.shared.buttonPrimaryBackground
+        cell.accessibilityIdentifier = "grades-list.grades-list-row.cell-\(a?.id ?? "nil")"
         return cell
     }
 

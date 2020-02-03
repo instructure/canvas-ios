@@ -89,6 +89,7 @@ export default gql`query SubmissionList($assignmentID: ID!, $states: [Submission
             id: _id
             avatarUrl
             name
+            pronouns
           }
         }
       }

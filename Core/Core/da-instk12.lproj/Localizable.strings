@@ -32,6 +32,9 @@
 "All Grading Periods" = "Alle vurderingsperioder";
 
 /* No comment provided by engineer. */
+"All People" = "Alle deltagere";
+
+/* No comment provided by engineer. */
 "All Submissions" = "Alle afleveringer";
 
 /* No comment provided by engineer. */
@@ -228,6 +231,9 @@
 
 /* No comment provided by engineer. */
 "Designer" = "Designer";
+
+/* No comment provided by engineer. */
+"Designers" = "Designere";
 
 /* No comment provided by engineer. */
 "Developer Menu" = "Udvikler-menu";
@@ -500,6 +506,9 @@
 "No image found from image picker" = "Intet billede fundet i billedvælgeren";
 
 /* No comment provided by engineer. */
+"No results" = "Ingen resultater";
+
+/* No comment provided by engineer. */
 "No Submission" = "Ingen aflevering";
 
 /* No comment provided by engineer. */
@@ -527,6 +536,9 @@
 "Observer" = "Observatør";
 
 /* No comment provided by engineer. */
+"Observers" = "Observatører";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Pause" = "Pause";
+
+/* No comment provided by engineer. */
+"People" = "Deltagere";
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Tilladelse nødvendig";
@@ -612,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "Planlægning";
+
+/* No comment provided by engineer. */
+"Search" = "Søg";
 
 /* No comment provided by engineer. */
 "See attached files." = "Se vedhæftede filer.";
@@ -680,6 +698,9 @@
 "Student Appointment Signups" = "Tilmeldinger til elevaftale";
 
 /* No comment provided by engineer. */
+"Students" = "Elever";
+
+/* No comment provided by engineer. */
 "Style" = "Stil";
 
 /* No comment provided by engineer. */
@@ -714,6 +735,12 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Lærer";
+
+/* No comment provided by engineer. */
+"Teachers" = "Lærere";
+
+/* No comment provided by engineer. */
+"Teaching Assistants" = "Undervisningsassistenter";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Betingelser for brug";
@@ -792,6 +819,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "Bruger-id";
+
+/* Name and pronouns - John (He/Him) */
+"User.displayName" = "%1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Username" = "Brugernavn";

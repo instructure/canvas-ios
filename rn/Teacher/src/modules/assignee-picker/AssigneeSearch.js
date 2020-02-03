@@ -39,6 +39,7 @@ import Screen from '../../routing/Screen'
 import SectionHeader from '../../common/components/rows/SectionHeader'
 import ListEmptyComponent from '../../common/components/ListEmptyComponent'
 import RowSeparator from '../../common/components/rows/RowSeparator'
+import { personDisplayName } from '../../common/formatters'
 
 export class AssigneeSearch extends Component<AssigneeSearchProps, any> {
   searchBar: SearchBar
@@ -98,7 +99,7 @@ export class AssigneeSearch extends Component<AssigneeSearchProps, any> {
         id: 'student-' + item.user.id,
         dataId: item.user.id,
         type: 'student',
-        name: item.user.name,
+        name: personDisplayName(item.user.name, item.user.pronouns),
         info: item.user.email,
         imageURL: item.user.avatar_url,
       }

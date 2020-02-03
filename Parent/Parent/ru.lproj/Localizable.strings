@@ -80,7 +80,10 @@
 "Caught up on Alerts" = "Выполнить задания по оповещениям";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Выберите студента";
+"Choose a course to message" = "Выбрать курс для сообщения";
+
+/* No comment provided by engineer. */
+"Close" = "Закрыть";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Написать новое сообщение";
@@ -96,9 +99,6 @@
 
 /* Courses Tab */
 "Courses" = "Курсы";
-
-/* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Текущий студент: %@, нажмите для переключения между студентами";
 
 /* No comment provided by engineer. */
 "Discussion" = "Обсуждение";
@@ -117,6 +117,9 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Не удалось загрузить (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"for %@" = "для %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Первая страница";
@@ -218,6 +221,16 @@
 "Quiz" = "Тест";
 
 /* No comment provided by engineer. */
+"Recipients" = "Получатели";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "Касательно: %@";
+
+/* Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "Касательно: %1$@, %2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "Ответить";
 
 /* No comment provided by engineer. */
@@ -269,13 +282,13 @@
 "This student's courses may not be published yet." = "Курсы этого студента пока еще не могут быть опубликованы.";
 
 /* No comment provided by engineer. */
+"To" = "Кому";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "Проблема со входом в систему";
 
 /* No comment provided by engineer. */
 "Unread" = "Не прочитано";
-
-/* Calendar Tab */
-"Week" = "Неделя";
 
 /* Header title of admin view */
 "Welcome!" = "Добро пожаловать!";

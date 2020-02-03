@@ -80,7 +80,10 @@
 "Caught up on Alerts" = "アラートにこだわる";
 
 /* No comment provided by engineer. */
-"Choose a student" = "受講生を選択";
+"Choose a course to message" = "メッサージを送るコースを選択する";
+
+/* No comment provided by engineer. */
+"Close" = "閉じる";
 
 /* No comment provided by engineer. */
 "Compose new message" = "新規メッセージを作成";
@@ -96,9 +99,6 @@
 
 /* Courses Tab */
 "Courses" = "コース";
-
-/* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "現在の受講生：%@、タップして受講生を切り替える";
 
 /* No comment provided by engineer. */
 "Discussion" = "ディスカッション";
@@ -117,6 +117,9 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "(discussionKitModelName) NSManagedObjectModelの読込に失敗しました";
+
+/* No comment provided by engineer. */
+"for %@" = "ための%@";
 
 /* No comment provided by engineer. */
 "Front Page" = "フロントページ";
@@ -218,6 +221,16 @@
 "Quiz" = "クイズ";
 
 /* No comment provided by engineer. */
+"Recipients" = "受信者";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "対象：%@";
+
+/* Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "対象：%1$@,%2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "返信";
 
 /* No comment provided by engineer. */
@@ -269,13 +282,13 @@
 "This student's courses may not be published yet." = "この受講生のコースはまだ公開されていないかもしれません。";
 
 /* No comment provided by engineer. */
+"To" = "変更後";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "ログインできません";
 
 /* No comment provided by engineer. */
 "Unread" = "未読";
-
-/* Calendar Tab */
-"Week" = "週";
 
 /* Header title of admin view */
 "Welcome!" = "どういたしまして！";
