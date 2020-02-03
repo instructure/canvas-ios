@@ -32,6 +32,9 @@
 "All Grading Periods" = "All Grading Periods";
 
 /* No comment provided by engineer. */
+"All People" = "All People";
+
+/* No comment provided by engineer. */
 "All Submissions" = "All Submissions";
 
 /* No comment provided by engineer. */
@@ -228,6 +231,9 @@
 
 /* No comment provided by engineer. */
 "Designer" = "Designer";
+
+/* No comment provided by engineer. */
+"Designers" = "Designers";
 
 /* No comment provided by engineer. */
 "Developer Menu" = "Developer Menu";
@@ -500,6 +506,9 @@
 "No image found from image picker" = "No image found from image picker";
 
 /* No comment provided by engineer. */
+"No results" = "No results";
+
+/* No comment provided by engineer. */
 "No Submission" = "No Submission";
 
 /* No comment provided by engineer. */
@@ -527,6 +536,9 @@
 "Observer" = "Observer";
 
 /* No comment provided by engineer. */
+"Observers" = "Observers";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Pause" = "Pause";
+
+/* No comment provided by engineer. */
+"People" = "People";
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Permission Needed";
@@ -612,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "Scheduling";
+
+/* No comment provided by engineer. */
+"Search" = "Search";
 
 /* No comment provided by engineer. */
 "See attached files." = "See attached files.";
@@ -680,6 +698,9 @@
 "Student Appointment Signups" = "Student Appointment Signups";
 
 /* No comment provided by engineer. */
+"Students" = "Students";
+
+/* No comment provided by engineer. */
 "Style" = "Style";
 
 /* No comment provided by engineer. */
@@ -714,6 +735,12 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Instructor";
+
+/* No comment provided by engineer. */
+"Teachers" = "Instructors";
+
+/* No comment provided by engineer. */
+"Teaching Assistants" = "Tutors";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Terms of Use";
@@ -792,6 +819,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "User ID";
+
+/* Name and pronouns - John (He/Him) */
+"User.displayName" = "%1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Username" = "Username";

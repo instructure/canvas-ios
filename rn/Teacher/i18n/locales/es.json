@@ -92,9 +92,6 @@
   "all_in_e5ddaee0": {
     "message": "Todo en"
   },
-  "all_people_16d90b41": {
-    "message": "Todas las personas"
-  },
   "all_submissions_3eedfb97": {
     "message": "Todas las entregas"
   },
@@ -467,9 +464,6 @@
   "description_436c48d7": {
     "message": "Descripción"
   },
-  "designer_c458392": {
-    "message": "Diseñador"
-  },
   "details_98a31b68": {
     "message": "Detalles"
   },
@@ -646,9 +640,6 @@
   },
   "filter_numselected_number_2e4c17e3": {
     "message": "Filtrar ({ numSelected, number })"
-  },
-  "filter_people_b34b567b": {
-    "message": "Filtrar personas"
   },
   "filter_submissions_numselected_number_selected_177867b3": {
     "message": "Filtrar entregas. ({ numSelected, number }) seleccionados."
@@ -935,6 +926,9 @@
   "name_profile_240f0967": {
     "message": "{ name } Perfil"
   },
+  "name_pronouns_8d5a0061": {
+    "message": "{ name } ({ pronouns })"
+  },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } más"
   },
@@ -1037,9 +1031,6 @@
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# Minuto}\n  other {# Minutos}\n}"
   },
-  "observer_248a192e": {
-    "message": "Observador"
-  },
   "off_5385ef3f": {
     "message": "Desactivado"
   },
@@ -1129,9 +1120,6 @@
   },
   "past_enrollments_a846da48": {
     "message": "Inscripciones pasadas"
-  },
-  "people_b4ebb13c": {
-    "message": "Personas"
   },
   "percent_d7ddd35b": {
     "message": "porcentaje (%)"
@@ -1478,9 +1466,6 @@
   "syllabus_f191f65b": {
     "message": "Programa del curso"
   },
-  "ta_8d966626": {
-    "message": "Profesor auxiliar"
-  },
   "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
     "message": "Toque y mantenga presionado un número de la rúbrica para ver su descripción"
   },
@@ -1492,9 +1477,6 @@
   },
   "tap_to_view_submissions_list_5bfe32f3": {
     "message": "Tocar para ver la lista de entregas."
-  },
-  "teacher_5a73b637": {
-    "message": "Profesor"
   },
   "teachers_52e2423f": {
     "message": "Profesores"

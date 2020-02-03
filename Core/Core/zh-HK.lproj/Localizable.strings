@@ -32,6 +32,9 @@
 "All Grading Periods" = "所有評分期";
 
 /* No comment provided by engineer. */
+"All People" = "所有成員";
+
+/* No comment provided by engineer. */
 "All Submissions" = "所有提交項目";
 
 /* No comment provided by engineer. */
@@ -228,6 +231,9 @@
 
 /* No comment provided by engineer. */
 "Designer" = "設計師";
+
+/* No comment provided by engineer. */
+"Designers" = "設計師";
 
 /* No comment provided by engineer. */
 "Developer Menu" = "開發人員選單";
@@ -500,6 +506,9 @@
 "No image found from image picker" = "從影像選擇器中找不到影像";
 
 /* No comment provided by engineer. */
+"No results" = "無結果";
+
+/* No comment provided by engineer. */
 "No Submission" = "無提交項目";
 
 /* No comment provided by engineer. */
@@ -527,6 +536,9 @@
 "Observer" = "觀察者";
 
 /* No comment provided by engineer. */
+"Observers" = "觀察者";
+
+/* No comment provided by engineer. */
 "OK" = "確定";
 
 /* No comment provided by engineer. */
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Pause" = "暫停";
+
+/* No comment provided by engineer. */
+"People" = "成員";
 
 /* No comment provided by engineer. */
 "Permission Needed" = "需要權限";
@@ -612,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "排程";
+
+/* No comment provided by engineer. */
+"Search" = "搜尋";
 
 /* No comment provided by engineer. */
 "See attached files." = "見所附檔案。";
@@ -680,6 +698,9 @@
 "Student Appointment Signups" = "學生登記預約";
 
 /* No comment provided by engineer. */
+"Students" = "學生";
+
+/* No comment provided by engineer. */
 "Style" = "樣式";
 
 /* No comment provided by engineer. */
@@ -714,6 +735,12 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "教師";
+
+/* No comment provided by engineer. */
+"Teachers" = "教師";
+
+/* No comment provided by engineer. */
+"Teaching Assistants" = "教學助理";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "使用條款";
@@ -792,6 +819,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "使用者 ID";
+
+/* Name and pronouns - John (He/Him) */
+"User.displayName" = "%1$@(%2$@)";
 
 /* No comment provided by engineer. */
 "Username" = "使用者名稱";

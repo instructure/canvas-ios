@@ -74,6 +74,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
                 navigationItem.leftBarButtonItem?.addBadge(number: badgeCount, color: color)
                 navbarAvatar?.name = student.name
                 navbarAvatar?.url = student.avatarURL
+                navbarAvatar?.label.backgroundColor = .white
                 tabBar.tintColor = color
                 refreshNavbarColor()
             }
@@ -144,6 +145,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         let bbi = UIBarButtonItem(image: UIImage.icon(.hamburger, .solid), style: .plain, target: self, action: #selector(drawerDashboardButtonPressed(_:)))
         bbi.tintColor = .white
         navigationItem.leftBarButtonItem = bbi
+        bbi.accessibilityIdentifier = "Dashboard.profileButton"
 
     }
 
@@ -462,15 +464,7 @@ class MenuItem: UIView {
         avatar.addConstraintsWithVFL("V:|-(16)-[view(size)]-(8)-[label]", views: ["label": label], metrics: metrics)
         avatar.addConstraintsWithVFL("H:[view(size)]", metrics: metrics)
         avatar.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-
-        avatar.layer.cornerRadius = ceil( avatarSize / 2.0 )
-        avatar.layer.shadowOffset = CGSize(width: 0, height: 4.0)
-        avatar.layer.shadowColor = UIColor(white: 0, alpha: 0.15).cgColor
-        avatar.layer.shadowOpacity = 0.2
-        avatar.layer.shadowRadius = 8
-        avatar.layer.shouldRasterize = true
-        avatar.layer.rasterizationScale = UIScreen.main.scale
-
+        avatar.addDropShadow(size: avatarSize)
         button.pin(inside: self)
     }
 }

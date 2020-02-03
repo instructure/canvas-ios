@@ -21,7 +21,7 @@ import UIKit
 @IBDesignable
 open class AvatarView: UIView {
     let imageView = UIImageView()
-    let label = UILabel()
+    public let label = UILabel()
 
     open override func layoutSubviews() {
         // One time setup.

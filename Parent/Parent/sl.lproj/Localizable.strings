@@ -80,7 +80,10 @@
 "Caught up on Alerts" = "Seznanitev z opozorili";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Izberi študenta";
+"Choose a course to message" = "Izberite predmet za pošiljanje sporočila";
+
+/* No comment provided by engineer. */
+"Close" = "Zapri";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Sestavi novo sporočilo";
@@ -96,9 +99,6 @@
 
 /* Courses Tab */
 "Courses" = "Predmeti";
-
-/* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Trenutni študent: %@, tapnite za preklop študentov.";
 
 /* No comment provided by engineer. */
 "Discussion" = "Razprava";
@@ -117,6 +117,9 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Nalaganje (discussionKitModelName) NSManagedObjectModel ni uspelo";
+
+/* No comment provided by engineer. */
+"for %@" = "za %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Prva stran";
@@ -218,6 +221,16 @@
 "Quiz" = "Kviz";
 
 /* No comment provided by engineer. */
+"Recipients" = "Prejemniki";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "Zadeva: %@";
+
+/* Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "Zadeva: %1$@, %2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "Odgovori";
 
 /* No comment provided by engineer. */
@@ -269,13 +282,13 @@
 "This student's courses may not be published yet." = "Predmeti tega študenta morda še niso objavljeni.";
 
 /* No comment provided by engineer. */
+"To" = "Naslovnik";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "Težave pri prijavi";
 
 /* No comment provided by engineer. */
 "Unread" = "Neprebrano";
-
-/* Calendar Tab */
-"Week" = "Teden";
 
 /* Header title of admin view */
 "Welcome!" = "Dobrodošli.";

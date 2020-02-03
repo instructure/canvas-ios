@@ -261,7 +261,7 @@
 "Assignment Locked" = "Naloga je zaklenjena";
 
 /* Title for Assignments view controller */
-"Assignments" = "Naloge:";
+"Assignments" = "Naloge";
 
 /* An item for attaching to a discussion */
 "Attachment" = "Priloga";
@@ -533,19 +533,19 @@
 "Drawer partially opened" = "Predal je delno odprt";
 
 /* No comment provided by engineer. */
-"Due" = "Rok";
+"Due" = "Roki";
 
 /* Formatted string for showing an assingment due date (date already localized by system) */
-"Due %@" = "Rok %@";
+"Due %@" = "Roki %@";
 
 /* Assignment is due on a date at a time */
 "due on %1$@ at %2$@" = "rok dne %1$@ ob %2$@";
 
 /* This string is prepended to the due date for an assignment */
-"Due:" = "Rok:";
+"Due:" = "Roki:";
 
 /* Due date label for to do items, first placeholder is date, second is time */
-"Due: %1$@ at %2$@" = "Rok: %1$@ ob %2$@";
+"Due: %1$@ at %2$@" = "Roki: %1$@ ob %2$@";
 
 /* Button to edit a discussion entry */
 "Edit" = "Uredi";
@@ -958,7 +958,7 @@
 "No results found" = "Ni najdenih rezultatov.";
 
 /* No Submission groupong */
-"No Submission" = "Ni oddaje.";
+"No Submission" = "Ni oddaje";
 
 /* No comment provided by engineer. */
 "No Submission Date" = "Ni datuma oddaje";
@@ -970,13 +970,13 @@
 "Not Authorized" = "Ni pooblastila.";
 
 /* Accessibility label for points out of points possible label when points are not availiable. */
-"Not available" = "Ni na voljo.";
+"Not available" = "Ni na voljo";
 
 /* Pass/fail assignment is not complete */
 "Not Complete" = "Ni zaključeno.";
 
 /* not graded string. */
-"Not graded" = "Ni ocenjeno.";
+"Not graded" = "Ni ocenjeno";
 
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "Ni ocenjeno (0 od %@).";
@@ -1529,7 +1529,7 @@
 "Time Limit:" = "Časovna omejitev:";
 
 /* Title of the Todo screen */
-"To Do" = "Seznam opravil";
+"To Do" = "Čakajoča opravila";
 
 /* No comment provided by engineer. */
 "To:" = "Naslovnik:";
@@ -1571,7 +1571,7 @@
 "Unable to upload to server" = "Nalaganje v strežnik ni mogoče.";
 
 /* Grade unavailable */
-"Unavailable" = "Ni na voljo.";
+"Unavailable" = "Ni na voljo";
 
 /* Title for grade button when no grade is present */
 "Ungraded" = "Neocenjeno";

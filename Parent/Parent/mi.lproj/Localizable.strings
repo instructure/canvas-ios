@@ -80,9 +80,6 @@
 "Caught up on Alerts" = "Mau ake i runga i Matohi";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Tīpako he ākonga";
-
-/* No comment provided by engineer. */
 "Compose new message" = "Titoa karere hōu";
 
 /* Course Announcement Description */
@@ -96,9 +93,6 @@
 
 /* Courses Tab */
 "Courses" = "Akoranga";
-
-/* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Ākonga o ināianei: %@, pātō ki te huri ngā ākonga";
 
 /* No comment provided by engineer. */
 "Discussion" = "Kōrerorero";
@@ -273,9 +267,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "kia pānuitia";
-
-/* Calendar Tab */
-"Week" = "Wiki";
 
 /* Header title of admin view */
 "Welcome!" = "Nau Mai!";

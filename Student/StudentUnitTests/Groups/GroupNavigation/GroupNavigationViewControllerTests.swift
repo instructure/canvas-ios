@@ -45,7 +45,7 @@ class GroupNavigationViewControllerTests: StudentTestCase {
         XCTAssertEqual(controller.tableView.backgroundColor, .named(.backgroundLightest))
         XCTAssertEqual(controller.titleSubtitleView.title, "Tests")
 
-        XCTAssertEqual(controller.preferredStatusBarStyle, .lightContent)
+        XCTAssertEqual(controller.preferredStatusBarStyle, .`default`)
         navigation.navigationBar.barStyle = .default
         XCTAssertEqual(controller.preferredStatusBarStyle, .default)
         controller.viewWillDisappear(false)

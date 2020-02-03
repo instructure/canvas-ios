@@ -92,9 +92,6 @@
   "all_in_e5ddaee0": {
     "message": "收起所有"
   },
-  "all_people_16d90b41": {
-    "message": "所有成員"
-  },
   "all_submissions_3eedfb97": {
     "message": "所有提交項目"
   },
@@ -467,9 +464,6 @@
   "description_436c48d7": {
     "message": "說明"
   },
-  "designer_c458392": {
-    "message": "設計師"
-  },
   "details_98a31b68": {
     "message": "詳情"
   },
@@ -646,9 +640,6 @@
   },
   "filter_numselected_number_2e4c17e3": {
     "message": "篩選器 ({ numSelected, number })"
-  },
-  "filter_people_b34b567b": {
-    "message": "篩選成員"
   },
   "filter_submissions_numselected_number_selected_177867b3": {
     "message": "篩選提交項目。已選擇 ({ numSelected, number })。"
@@ -935,6 +926,9 @@
   "name_profile_240f0967": {
     "message": "{ name } 個人檔案"
   },
+  "name_pronouns_8d5a0061": {
+    "message": "{ name } ({ pronouns })"
+  },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } 更多"
   },
@@ -1037,9 +1031,6 @@
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    other {# 分鐘}\n}"
   },
-  "observer_248a192e": {
-    "message": "觀察者"
-  },
   "off_5385ef3f": {
     "message": "關閉"
   },
@@ -1129,9 +1120,6 @@
   },
   "past_enrollments_a846da48": {
     "message": "過去的註冊"
-  },
-  "people_b4ebb13c": {
-    "message": "人"
   },
   "percent_d7ddd35b": {
     "message": "百分比（%）"
@@ -1478,9 +1466,6 @@
   "syllabus_f191f65b": {
     "message": "課程大綱"
   },
-  "ta_8d966626": {
-    "message": "助教"
-  },
   "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
     "message": "按住評分標準數字，查看有關描述"
   },
@@ -1492,9 +1477,6 @@
   },
   "tap_to_view_submissions_list_5bfe32f3": {
     "message": "點擊檢視提交項目清單。"
-  },
-  "teacher_5a73b637": {
-    "message": "老師"
   },
   "teachers_52e2423f": {
     "message": "教師"
