@@ -50,7 +50,6 @@ public class GetObservedStudents: CollectionUseCase {
             if let u = enrollment.observed_user {
                 let user = User.save(u, in: client)
                 user.observerID = observerID
-                try? client.save()
             }
         }
     }

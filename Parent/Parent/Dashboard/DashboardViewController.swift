@@ -85,7 +85,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         }
     }
     lazy var students = env.subscribe(GetObservedStudents(observerID: env.currentSession?.userID ??  "")) { [weak self] in
-        self?.updateStudents()
+        self?.update()
     }
 
     // ---------------------------------------------
@@ -147,38 +147,34 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
 
     }
 
-    func updateStudents() {
-        if !students.pending {
+    func update() {
+        let pending = students.pending || presenter?.permissions.pending == true
+        if !pending {
             if students.error != nil {
-                //  TODO: - may need to check the type of error
                 viewState.isValidObserver = false
                 return
             }
+            
+            viewState.studentCount = students.count
+            let showNotAParentModal = (!viewState.isValidObserver && !viewState.isSiteAdmin && presenter?.permissions.first?.becomeUser != true) || students.isEmpty
+            
+            if showNotAParentModal {
+                if !shownNotAParent {
+                    showNotAParentView()
+                    shownNotAParent = true
+                }
+                return
+            }
+            
+            setupTabBar()
 
-            updateMainView()
+            if (viewState.isSiteAdmin || presenter?.permissions.first?.becomeUser == true) && viewState.studentCount == 0 {
+                showSiteAdminViews()
+            }
+
+            displayDefaultStudent()
             configureStudentMenu()
         }
-    }
-
-    public func updateMainView() {
-        if (!viewState.isValidObserver &&
-            !viewState.isSiteAdmin &&
-            presenter?.permissions.pending == false &&
-            presenter?.permissions.first?.becomeUser != true) {
-            if !shownNotAParent {
-                showNotAParentView()
-                shownNotAParent = true
-            }
-            return
-        }
-
-        setupTabs()
-
-        if (viewState.isSiteAdmin || presenter?.permissions.first?.becomeUser == true) && viewState.studentCount == 0 {
-            showSiteAdminViews()
-        }
-
-        displayDefaultStudent()
     }
 
     func studentAtIndex(_ index: Int) -> Core.User? {
@@ -187,7 +183,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         return students[IndexPath(row: index, section: 0)]
     }
 
-    func setupTabs() {
+    func setupTabBar() {
         tabBar.delegate = self
 
         let coursesTitle = NSLocalizedString("Courses", comment: "Courses Tab")
@@ -320,6 +316,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
 
     func configureStudentMenu() {
         navbarMenuStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        isCustomNavMenuEnabled = students.count > 1
         for (index, student) in students.enumerated() {
             if student.id == (currentStudent?.id ?? "") { continue }
             let item = MenuItem()

@@ -106,7 +106,7 @@ extension CustomNavbarProtocol {
         navbarNameButton.imageView?.contentMode = .scaleAspectFit
         navbarNameButton.tintColor = .white
         navbarNameButton.imageEdgeInsets = UIEdgeInsets(top: 2, left: 10, bottom: 0, right: 0)
-
+        navbarNameButton.adjustsImageWhenHighlighted = false
         navbarNameButton.titleLabel?.font = .scaledNamedFont(.semibold16)
         navbarNameButton.setTitleColor(.white, for: .normal)
         navbarNameButton.titleLabel?.textAlignment = .center
@@ -171,6 +171,7 @@ extension CustomNavbarProtocol {
     }
 
     func showCustomNavbarMenu(_ show: Bool = true, completion: (() -> Void)? = nil) {
+        if !isCustomNavMenuEnabled && show { return }
         let menuHeight: CGFloat = show ? 105 : 0
         let duration: Double = show ? 0.3 : 0.3
 
@@ -202,4 +203,15 @@ extension CustomNavbarProtocol {
         navigationController?.navigationBar.barTintColor = customNavBarColor
         navbarBottomViewContainer.backgroundColor = customNavBarColor
     }
+    
+    var isCustomNavMenuEnabled: Bool {
+        get {
+            let enabled = objc_getAssociatedObject(self, &customNavBarMenuEnabledKey) as? Bool
+            return enabled ?? true
+        }
+        set {
+            objc_setAssociatedObject(self, &customNavBarMenuEnabledKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
+        }
+    }
 }
+private var customNavBarMenuEnabledKey: UInt8 = 0
