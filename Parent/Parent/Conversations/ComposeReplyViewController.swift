@@ -90,7 +90,7 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
             .reduce(into: [:]) { map, p in map[p.id] = p }
         messageLabel.text = message.body
         toLabel.text = message.localizedAudience(myID: myID, userMap: userMap)
-        fromLabel.text = userMap[message.authorID]?.name
+        fromLabel.text = userMap[message.authorID]?.displayName
         dateLabel.text = DateFormatter.localizedString(from: message.createdAt, dateStyle: .medium, timeStyle: .short)
         avatarView.url = userMap[message.authorID]?.avatarURL
         avatarView.name = userMap[message.authorID]?.name ?? ""

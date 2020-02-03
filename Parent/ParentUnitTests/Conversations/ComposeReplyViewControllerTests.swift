@@ -56,4 +56,20 @@ class ComposeReplyViewControllerTests: ParentTestCase {
         api.mock(AddMessage(conversationID: conversation.id, body: "").request, value: .make())
         XCTAssertNoThrow(sendButton?.target?.perform(sendButton?.action))
     }
+
+    func testPronouns() {
+        conversation = Conversation.make(from: .make(
+            participants: [
+                .make(id: "1", name: "user 1", pronouns: "He/Him"),
+                .make(id: "2", name: "user 2", pronouns: "She/Her"),
+            ],
+            messages: [
+                .make(id: "1", author_id: "1", participating_user_ids: ["1", "2"]),
+            ]
+        ))
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+        XCTAssertEqual(controller.toLabel.text, "to user 2 (She/Her)")
+        XCTAssertEqual(controller.fromLabel.text, "user 1 (He/Him)")
+    }
 }
