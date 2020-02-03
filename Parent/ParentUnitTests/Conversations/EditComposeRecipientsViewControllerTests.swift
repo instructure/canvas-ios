@@ -33,7 +33,7 @@ class EditComposeRecipientsViewControllerTests: ParentTestCase {
     var callbackController: EditComposeRecipientsViewController?
 
     func testLayout() {
-        selectedRecipients = [APIConversationRecipient(id: "2", name: "B", full_name: "B", avatar_url: nil)]
+        selectedRecipients = [.make(id: "2", name: "B", full_name: "B", avatar_url: nil)]
         controller.delegate = self
         let teacher = APISearchRecipient.make(
             id: "2",
