@@ -207,7 +207,7 @@ extension CustomNavbarProtocol {
         navigationController?.navigationBar.barTintColor = customNavBarColor
         navbarBottomViewContainer.backgroundColor = customNavBarColor
     }
-    
+
     var isCustomNavMenuEnabled: Bool {
         get {
             let enabled = objc_getAssociatedObject(self, &customNavBarMenuEnabledKey) as? Bool

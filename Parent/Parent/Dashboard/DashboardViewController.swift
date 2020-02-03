@@ -156,10 +156,10 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
                 viewState.isValidObserver = false
                 return
             }
-            
+
             viewState.studentCount = students.count
             let showNotAParentModal = (!viewState.isValidObserver && !viewState.isSiteAdmin && presenter?.permissions.first?.becomeUser != true) || students.isEmpty
-            
+
             if showNotAParentModal {
                 if !shownNotAParent {
                     showNotAParentView()
@@ -167,7 +167,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
                 }
                 return
             }
-            
+
             setupTabBar()
 
             if (viewState.isSiteAdmin || presenter?.permissions.first?.becomeUser == true) && viewState.studentCount == 0 {
