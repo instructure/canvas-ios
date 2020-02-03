@@ -26,6 +26,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var recipientsView: ComposeRecipientsView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var subjectField: UITextField!
+    let titleSubtitleView = TitleSubtitleView.create()
 
     var sendButton: UIBarButtonItem?
 
@@ -34,6 +35,13 @@ class ComposeViewController: UIViewController, ErrorViewController {
     var keyboard: KeyboardTransitioning?
     var observeeID: String?
     var hiddenMessage: String?
+
+    lazy var course: Store<GetCourse>? = {
+        guard let context = context, context.contextType == .course else { return nil }
+        return env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
+            self?.titleSubtitleView.subtitle = self?.course?.first?.name
+        }
+    }()
 
     static func create(
         body: String?,
@@ -44,9 +52,9 @@ class ComposeViewController: UIViewController, ErrorViewController {
         hiddenMessage: String?
     ) -> ComposeViewController {
         let controller = loadFromStoryboard()
+        controller.context = context
         controller.loadViewIfNeeded()
         controller.bodyView.text = body
-        controller.context = context
         controller.observeeID = observeeID
         controller.recipientsView.recipients = recipients
         controller.subjectField.text = subject
@@ -59,7 +67,11 @@ class ComposeViewController: UIViewController, ErrorViewController {
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
 
-        title = NSLocalizedString("New Message", comment: "")
+        titleSubtitleView.titleLabel?.textColor = .named(.textDarkest)
+        titleSubtitleView.subtitleLabel?.textColor = .named(.textDark)
+        navigationItem.titleView = titleSubtitleView
+        titleSubtitleView.title = NSLocalizedString("New Message", comment: "")
+
         addCancelButton(side: .left)
         sendButton = UIBarButtonItem(title: NSLocalizedString("Send", comment: ""), style: .done, target: self, action: #selector(send))
         sendButton?.isEnabled = false
@@ -79,6 +91,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
         )
 
         recipientsView.editButton.addTarget(self, action: #selector(editRecipients), for: .primaryActionTriggered)
+        course?.refresh()
     }
 
     override func viewWillAppear(_ animated: Bool) {

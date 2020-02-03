@@ -50,6 +50,7 @@ class ConversationCoursesActionSheet: UITableViewController, ErrorViewController
         loadingIndicator.startAnimating()
         loadingIndicator.center.x = tableView.center.x
         loadingIndicator.center.y = tableView.center.y / 2 // the table view hasn't yet been shrunk to activity sheet size
+        loadingIndicator.center.y -= 48 // minus header height to get centered
         view.addSubview(loadingIndicator)
 
         enrollments.exhaust()
