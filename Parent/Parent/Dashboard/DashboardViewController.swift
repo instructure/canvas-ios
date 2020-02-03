@@ -22,12 +22,6 @@ import ReactiveSwift
 import CanvasCore
 import Core
 
-struct DashboardViewState {
-    var studentCount = 0
-    var isSiteAdmin = false
-    var isValidObserver = true
-}
-
 class DashboardViewController: UIViewController, CustomNavbarProtocol {
     @IBOutlet weak var viewControlelrContainerView: UIView!
     @IBOutlet weak var menuButton: UIButton!
@@ -49,7 +43,6 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     var presenter: DashboardPresenter?
     var alertTabBadgeCountCoordinator: AlertCountCoordinator?
     var adminViewController: AdminViewController!
-    var viewState = DashboardViewState()
     var shownNotAParent = false
     var navbarBottomViewContainer: UIView!
     var navbarMenu: UIView!
@@ -127,8 +120,6 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         DispatchQueue.main.async {
             StartupManager.shared.markStartupFinished()
         }
-
-        viewState.isSiteAdmin = session.isSiteAdmin
     }
 
     func configurePageViewController() {
@@ -152,15 +143,13 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     func update() {
         let pending = students.pending || presenter?.permissions.pending == true
         if !pending {
-            if students.error != nil {
-                viewState.isValidObserver = false
-                return
-            }
+            let isObserver = students.error == nil
+            let isAdmin = (session.isSiteAdmin || presenter?.permissions.first?.becomeUser == true) && students.isEmpty
+            let showNotAParentModal = (!isObserver && !isAdmin && presenter?.permissions.first?.becomeUser != true)
 
-            viewState.studentCount = students.count
-            let showNotAParentModal = (!viewState.isValidObserver && !viewState.isSiteAdmin && presenter?.permissions.first?.becomeUser != true) || students.isEmpty
-
-            if showNotAParentModal {
+            if isAdmin {
+                  showSiteAdminViews()
+            } else if showNotAParentModal || students.isEmpty {
                 if !shownNotAParent {
                     showNotAParentView()
                     shownNotAParent = true
@@ -169,11 +158,6 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
             }
 
             setupTabBar()
-
-            if (viewState.isSiteAdmin || presenter?.permissions.first?.becomeUser == true) && viewState.studentCount == 0 {
-                showSiteAdminViews()
-            }
-
             displayDefaultStudent()
             configureStudentMenu()
         }
@@ -217,7 +201,8 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     }
 
     func showSiteAdminViews() {
-        navbarNameButton.setTitle(NSLocalizedString("Admin", comment: "Label displayed when logged in as an admin"), for: .normal)
+        let text = NSLocalizedString("Admin", comment: "Label displayed when logged in as an admin")
+        navbarNameButton.setTitle(text, for: .normal)
         let storyboard = UIStoryboard(name: "AdminViewController", bundle: nil)
         adminViewController = storyboard.instantiateViewController(withIdentifier: "vc") as? AdminViewController
 
@@ -226,6 +211,8 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         }
 
         pageViewController?.setViewControllers([adminViewController], direction: .reverse, animated: false, completion: { _ in })
+        navbarAvatar?.label.text = text
+        navbarAvatar?.label.backgroundColor = .white
     }
 
     func showNotAParentView() {
