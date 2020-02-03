@@ -448,6 +448,19 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open func doGraphQLMock(request: URLRequest) -> Data {
+        #if false
+        let url = URL(string: "/graphiql", relativeTo: request.url)!
+        print("=== \(url.absoluteString) ===")
+        let obj = (try? JSONSerialization.jsonObject(with: request.httpBody!) as? [String: Any])!
+        print(obj["query"]!)
+        if let vars = obj["variables"] as? [String: Any] {
+            print("=== variables ===")
+            let varData = try! JSONSerialization.data(withJSONObject: vars)
+            print(String(data: varData, encoding: .utf8)!)
+        }
+        print("==============")
+        #endif
+
         guard let body = request.httpBody,
             let json = try? JSONSerialization.jsonObject(with: body) as? [String: Any],
             let operationName = json["operationName"] as? String,
