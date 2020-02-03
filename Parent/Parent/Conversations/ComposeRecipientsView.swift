@@ -179,7 +179,7 @@ class ComposeRecipientView: UIView {
     func update(_ recipient: APIConversationRecipient) {
         avatarView.name = recipient.name
         avatarView.url = recipient.avatar_url?.rawValue
-        nameLabel.text = recipient.name
+        nameLabel.text = User.displayName(recipient.name, pronouns: recipient.pronouns)
         nameLabel.accessibilityIdentifier = "Compose.recipientName.\(recipient.id)"
     }
 }
