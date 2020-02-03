@@ -32,7 +32,7 @@ class SpeedGraderTests: TeacherUITestCase {
             display_name: "screenshot.png",
             url: URL(string: "data:image/png;base64,\(image.pngData()!.base64EncodedString())")!
         )
-        mockURL(attachment.url, data: UIImage.icon(.paperclip).pngData())
+        mockURL(attachment.url.rawValue, data: UIImage.icon(.paperclip).pngData())
         mockData(
             GetSubmissionsRequest(
                 context: ContextModel(.course, id: "1"),

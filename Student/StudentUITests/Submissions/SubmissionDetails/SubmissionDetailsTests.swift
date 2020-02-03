@@ -287,7 +287,7 @@ class SubmissionDetailsTests: StudentUITestCase {
             attachments: [ attachment ],
             url: url
         ))
-        mockEncodedData(URLRequest(url: attachment.url), data: Data())
+        mockEncodedData(URLRequest(url: attachment.url.rawValue), data: Data())
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
