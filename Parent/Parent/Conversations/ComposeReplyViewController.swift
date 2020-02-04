@@ -72,7 +72,7 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
 
         embed(attachmentsController, in: attachmentsContainer)
         attachmentsContainer.isHidden = true
-        attachmentsController.showOptions = showOptions(for:)
+        attachmentsController.showOptions = { [weak self] in self?.showOptions(for: $0) }
 
         bodyView.placeholder = NSLocalizedString("Message", comment: "")
         bodyView.placeholderColor = .named(.textDark)

@@ -76,7 +76,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
 
         embed(attachmentsController, in: attachmentsContainer)
         attachmentsContainer.isHidden = true
-        attachmentsController.showOptions = showOptions(for:)
+        attachmentsController.showOptions = { [weak self] in self?.showOptions(for: $0) }
 
         bodyMinHeight.isActive = true
         bodyView.placeholder = NSLocalizedString("Message", comment: "")
