@@ -72,13 +72,18 @@ class APIConversationTests: CoreTestCase {
     }
 
     func testPostConversationRequest() {
-        let request = PostConversationRequest(body: PostConversationRequest.Body(
+        let body = PostConversationRequest.Body(
             subject: "subject",
             body: "body",
             recipients: ["1"],
-            context_code: "course_5")
+            context_code: "course_5",
+            media_comment_id: "1",
+            media_comment_type: .audio,
+            attachment_ids: ["1"]
         )
+        let request = PostConversationRequest(body: body)
         XCTAssertEqual(request.path, "conversations")
         XCTAssertEqual(request.method, .post)
+        XCTAssertEqual(request.body, body)
     }
 }

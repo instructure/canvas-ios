@@ -55,8 +55,11 @@ public class CreateConversation: APIUseCase {
             subject: subject,
             body: body,
             recipients: recipientIDs,
-            context_code: canvasContextID)
-        )
+            context_code: canvasContextID,
+            media_comment_id: mediaCommentID,
+            media_comment_type: mediaCommentType,
+            attachment_ids: attachmentIDs
+        ))
     }
 
     public var scope: Scope = Scope.all(orderBy: #keyPath(Conversation.lastMessageAt))

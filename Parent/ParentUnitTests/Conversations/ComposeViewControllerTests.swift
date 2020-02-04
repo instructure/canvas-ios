@@ -90,7 +90,10 @@ class ComposeViewControllerTests: ParentTestCase {
             subject: "subject",
             body: controller.body(),
             recipients: [ APIConversationRecipient.make().id.value ],
-            context_code: controller.context!.canvasContextID)
+            context_code: controller.context!.canvasContextID,
+            media_comment_id: nil,
+            media_comment_type: nil,
+            attachment_ids: [])
             ), value: [ APIConversation.make() ]
         )
         task.paused = true
@@ -107,8 +110,11 @@ class ComposeViewControllerTests: ParentTestCase {
             subject: "subject",
             body: controller.body(),
             recipients: [ APIConversationRecipient.make().id.value ],
-            context_code: controller.context!.canvasContextID)
-            ), error: NSError.instructureError("Error")
+            context_code: controller.context!.canvasContextID,
+            media_comment_id: nil,
+            media_comment_type: nil,
+            attachment_ids: []
+        )), error: NSError.instructureError("Error")
         )
         let sendButton = controller.sendButton
         XCTAssertNoThrow(sendButton.target?.perform(sendButton.action))

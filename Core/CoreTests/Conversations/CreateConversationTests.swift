@@ -20,6 +20,25 @@ import XCTest
 @testable import Core
 
 class CreateConversationTests: CoreTestCase {
+    func testUseCase() {
+        let useCase = CreateConversation(
+            subject: "subject",
+            body: "body",
+            recipientIDs: ["1"],
+            canvasContextID: "course_1",
+            mediaCommentID: "1",
+            mediaCommentType: .audio,
+            attachmentIDs: ["1"]
+        )
+        XCTAssertEqual(useCase.request.body?.subject, "subject")
+        XCTAssertEqual(useCase.request.body?.body, "body")
+        XCTAssertEqual(useCase.request.body?.recipients, ["1"])
+        XCTAssertEqual(useCase.request.body?.context_code, "course_1")
+        XCTAssertEqual(useCase.request.body?.media_comment_id, "1")
+        XCTAssertEqual(useCase.request.body?.media_comment_type, .audio)
+        XCTAssertEqual(useCase.request.body?.attachment_ids, ["1"])
+    }
+
     func testWritesData() {
         let useCase = CreateConversation(subject: "subject", body: "body", recipientIDs: ["1"])
         api.mock(useCase.request, value: [APIConversation.make(subject: "subject", context_name: nil, context_code: nil)])
