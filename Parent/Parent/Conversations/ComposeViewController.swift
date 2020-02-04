@@ -222,5 +222,6 @@ extension ComposeViewController: FilePickerDelegate {
         bodyMinHeight.isActive = attachments.isEmpty
         attachmentsContainer.isHidden = attachments.isEmpty
         attachmentsController.updateAttachments(attachments.all?.sorted(by: File.objectIDCompare) ?? [])
+        updateSendButton()
     }
 }

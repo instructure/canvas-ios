@@ -138,7 +138,7 @@ class ComposeViewControllerTests: ParentTestCase {
         XCTAssertEqual(controller.recipientsView.pills.count, 2)
     }
 
-    func testAttachments() {
+    func testAttachments() throws {
         controller.view.layoutIfNeeded()
         XCTAssertNoThrow(controller.attachButton.target?.perform(controller.attachButton.action))
         XCTAssert(router.presented is BottomSheetPickerViewController)
@@ -153,10 +153,16 @@ class ComposeViewControllerTests: ParentTestCase {
         controller.filePicker.delegate?.filePicker(didRetry: File.make())
         XCTAssertEqual((UploadManager.shared as? MockUploadManager)?.uploadWasCalled, true)
 
-        File.make(from: .make(id: "1"), batchID: controller.batchID, session: currentSession)
+        let file = File.make(from: .make(id: "1"), batchID: controller.batchID, session: currentSession)
+        file.id = nil
+        try databaseClient.save()
         File.make(from: .make(id: "2"), batchID: controller.batchID, session: currentSession)
         XCTAssertEqual(controller.bodyMinHeight.isActive, false)
         XCTAssertEqual(controller.attachmentsContainer.isHidden, false)
         XCTAssertEqual(controller.attachmentsController.attachments.count, 2)
+        XCTAssertFalse(controller.sendButton.isEnabled)
+        file.id = "1"
+        try databaseClient.save()
+        XCTAssertTrue(controller.sendButton.isEnabled)
     }
 }
