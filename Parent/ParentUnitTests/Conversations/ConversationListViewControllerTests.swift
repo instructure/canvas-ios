@@ -44,7 +44,7 @@ class ConversationListViewControllerTests: ParentTestCase {
         loadView()
         XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
         XCTAssertFalse(navigation.isNavigationBarHidden)
-        XCTAssertEqual(navigation.navigationBar.barStyle, .black)
+        XCTAssertEqual(navigation.navigationBar.barStyle, .default)
 
         XCTAssertTrue(controller.emptyView.isHidden)
         XCTAssertTrue(controller.errorView.isHidden)
@@ -54,11 +54,11 @@ class ConversationListViewControllerTests: ParentTestCase {
         XCTAssertEqual(first?.contextLabel.text, "Canvas 101")
         XCTAssertEqual(first?.subjectLabel.text, "Subject One")
         XCTAssertEqual(first?.unreadView.isHidden, false)
-        XCTAssertEqual(first?.accessibilityLabel, "Canvas 101, Subject One, last message Dec 25 Last Message One, unread")
+        XCTAssertEqual(first?.accessibilityLabel, "Subject One, in Canvas 101, the last message was on Dec 25 Last Message One, unread")
 
         let last = controller.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? ConversationListCell
         XCTAssertEqual(last?.unreadView.isHidden, true)
-        XCTAssertEqual(last?.accessibilityLabel, "CTX, (No subject), last message Dec 25, 2018 last")
+        XCTAssertEqual(last?.accessibilityLabel, "(No subject), in CTX, the last message was on Dec 25, 2018 last")
 
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         XCTAssert(router.lastRoutedTo(.conversation("1")))

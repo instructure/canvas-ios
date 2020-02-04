@@ -24,6 +24,7 @@ extension APISearchRecipient {
         id: ID = "1",
         name: String = "John Doe",
         full_name: String? = nil,
+        pronouns: String? = nil,
         avatar_url: URL? = nil,
         type: APISearchRecipientContext? = .course,
         common_courses: [String: [String]] = [:]
@@ -32,6 +33,7 @@ extension APISearchRecipient {
             id: id,
             name: name,
             full_name: full_name ?? name,
+            pronouns: pronouns,
             avatar_url: APIURL(rawValue: avatar_url),
             type: type,
             common_courses: common_courses

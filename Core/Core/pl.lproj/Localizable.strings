@@ -32,6 +32,9 @@
 "All Grading Periods" = "Wszystkie okresy oceniania";
 
 /* No comment provided by engineer. */
+"All People" = "Wszystkie osoby";
+
+/* No comment provided by engineer. */
 "All Submissions" = "Wszystkie przesłane materiały";
 
 /* No comment provided by engineer. */
@@ -228,6 +231,9 @@
 
 /* No comment provided by engineer. */
 "Designer" = "Projektant";
+
+/* No comment provided by engineer. */
+"Designers" = "Projektanci";
 
 /* No comment provided by engineer. */
 "Developer Menu" = "Menu programisty";
@@ -500,6 +506,9 @@
 "No image found from image picker" = "Nie odnaleziono obrazu z narzędzia wyboru obrazów";
 
 /* No comment provided by engineer. */
+"No results" = "Brak wyników";
+
+/* No comment provided by engineer. */
 "No Submission" = "Brak przesłanych zadań";
 
 /* No comment provided by engineer. */
@@ -527,6 +536,9 @@
 "Observer" = "Obserwujący";
 
 /* No comment provided by engineer. */
+"Observers" = "Obserwatorzy";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Pause" = "Pauza";
+
+/* No comment provided by engineer. */
+"People" = "Ludzie";
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Wymagane uprawnienia";
@@ -612,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "Planowanie";
+
+/* No comment provided by engineer. */
+"Search" = "Wyszukaj";
 
 /* No comment provided by engineer. */
 "See attached files." = "Pokaż dołączone pliki.";
@@ -680,6 +698,9 @@
 "Student Appointment Signups" = "Rejestracje na spotkania uczestników";
 
 /* No comment provided by engineer. */
+"Students" = "Uczestnicy";
+
+/* No comment provided by engineer. */
 "Style" = "Styl";
 
 /* No comment provided by engineer. */
@@ -714,6 +735,12 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Nauczyciel";
+
+/* No comment provided by engineer. */
+"Teachers" = "Nauczyciele";
+
+/* No comment provided by engineer. */
+"Teaching Assistants" = "Asystenci instruktorów";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Warunki korzystania";
@@ -792,6 +819,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "ID użytkownika";
+
+/* Name and pronouns - John (He/Him) */
+"User.displayName" = "%1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Username" = "Nazwa użytkownika";

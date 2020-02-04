@@ -1,14 +1,5 @@
-/* Class = "UILabel"; text = "55"; ObjectID = "bnf-XG-aJX"; */
-"bnf-XG-aJX.text" = "55";
-
 /* Class = "UITabBarItem"; title = "Courses"; ObjectID = "BPk-vK-62u"; */
 "BPk-vK-62u.title" = "課程";
-
-/* Class = "UILabel"; text = "Peter"; ObjectID = "JVX-Up-gUl"; */
-"JVX-Up-gUl.text" = "Peter";
-
-/* Class = "UIButton"; accessibilityLabel = "Settings"; ObjectID = "LhY-UH-BvJ"; */
-"LhY-UH-BvJ.accessibilityLabel" = "設定";
 
 /* Class = "UITabBarItem"; title = "Alerts"; ObjectID = "nta-AM-F42"; */
 "nta-AM-F42.title" = "提醒";

@@ -24,6 +24,10 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BVF-r0-wRL" customClass="ComposeRecipientsView" customModule="Parent" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                    <bool key="isElement" value="NO"/>
+                                                </accessibility>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="zMo-r5-fqc"/>
                                                 </constraints>
@@ -39,7 +43,9 @@
                                             </view>
                                             <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Subject" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dz1-0x-wXN" customClass="DynamicTextField" customModule="Parent" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="57" width="343" height="48"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="Compose.subject"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="Compose.subject">
+                                                    <accessibilityTraits key="traits" header="YES"/>
+                                                </accessibility>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="VCI-fH-9f0"/>
                                                 </constraints>
@@ -64,7 +70,9 @@
                                             </view>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oQx-YB-DID">
                                                 <rect key="frame" x="0.0" y="106" width="375" height="35.5"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="Compose.body"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="Compose.body">
+                                                    <accessibilityTraits key="traits" header="YES"/>
+                                                </accessibility>
                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

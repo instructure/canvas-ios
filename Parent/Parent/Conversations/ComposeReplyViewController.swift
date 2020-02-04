@@ -79,6 +79,7 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
         bodyView.font = .scaledNamedFont(.medium16)
         bodyView.textColor = .named(.textDarkest)
         bodyView.textContainerInset = UIEdgeInsets(top: 15.5, left: 11, bottom: 15, right: 11)
+        bodyView.accessibilityLabel = NSLocalizedString("Message", comment: "")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -106,7 +107,7 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
             .reduce(into: [:]) { map, p in map[p.id] = p }
         messageLabel.text = message.body
         toLabel.text = message.localizedAudience(myID: myID, userMap: userMap)
-        fromLabel.text = userMap[message.authorID]?.name
+        fromLabel.text = userMap[message.authorID]?.displayName
         dateLabel.text = DateFormatter.localizedString(from: message.createdAt, dateStyle: .medium, timeStyle: .short)
         avatarView.url = userMap[message.authorID]?.avatarURL
         avatarView.name = userMap[message.authorID]?.name ?? ""

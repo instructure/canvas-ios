@@ -80,7 +80,10 @@
 "Caught up on Alerts" = "لا توجد تنبيهات عالقة";
 
 /* No comment provided by engineer. */
-"Choose a student" = "اختر طالبًا";
+"Choose a course to message" = "اختر مساقاً لإرسال رسالة";
+
+/* No comment provided by engineer. */
+"Close" = "إغلاق";
 
 /* No comment provided by engineer. */
 "Compose new message" = "إنشاء رسالة جديدة";
@@ -96,9 +99,6 @@
 
 /* Courses Tab */
 "Courses" = "المساقات";
-
-/* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "الطالب الحالي: %@، اضغط لتبديل الطلاب";
 
 /* No comment provided by engineer. */
 "Discussion" = "النقاش";
@@ -117,6 +117,9 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "تعذر تحميل (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"for %@" = "لـ %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "الصفحة الأمامية";
@@ -218,6 +221,16 @@
 "Quiz" = "الاختبار الموجز";
 
 /* No comment provided by engineer. */
+"Recipients" = "المتلقون";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "بخصوص: %@";
+
+/* Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "بخصوص: %1$@، %2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "رد";
 
 /* No comment provided by engineer. */
@@ -269,13 +282,13 @@
 "This student's courses may not be published yet." = "مساقات هذا الطالب قد لا تكون قد نشرت بعد.";
 
 /* No comment provided by engineer. */
+"To" = "إلى";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "مشكلة تسجيل الدخول";
 
 /* No comment provided by engineer. */
 "Unread" = "غير مقروء";
-
-/* Calendar Tab */
-"Week" = "الأسبوع";
 
 /* Header title of admin view */
 "Welcome!" = "مرحبًا!";

@@ -57,7 +57,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
         controller.bodyView.text = body
         controller.context = context
         controller.observeeID = observeeID
-        controller.recipientsView.recipients = recipients
+        controller.recipientsView.recipients = recipients.sortedByName()
         controller.subjectField.text = subject
         controller.textViewDidChange(controller.bodyView)
         controller.hiddenMessage = hiddenMessage
@@ -84,11 +84,13 @@ class ComposeViewController: UIViewController, ErrorViewController {
         bodyView.font = .scaledNamedFont(.medium16)
         bodyView.textColor = .named(.textDarkest)
         bodyView.textContainerInset = UIEdgeInsets(top: 15.5, left: 11, bottom: 15, right: 11)
+        bodyView.accessibilityLabel = NSLocalizedString("Message", comment: "")
 
         subjectField.attributedPlaceholder = NSAttributedString(
             string: NSLocalizedString("Subject", comment: ""),
             attributes: [ .foregroundColor: UIColor.named(.textDark) ]
         )
+        subjectField.accessibilityLabel = NSLocalizedString("Subject", comment: "")
 
         recipientsView.editButton.addTarget(self, action: #selector(editRecipients), for: .primaryActionTriggered)
     }
@@ -165,7 +167,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
         let request = GetConversationRecipientsRequest(search: "", context: searchContext, includeContexts: false)
         env.api.makeRequest(request) { [weak self] (recipients, _, _) in
             performUIUpdate {
-                self?.recipientsView.recipients = recipients ?? []
+                self?.recipientsView.recipients = recipients?.sortedByName() ?? []
             }
         }
     }
@@ -179,8 +181,9 @@ extension ComposeViewController: UITextViewDelegate {
 
 extension ComposeViewController: EditComposeRecipientsViewControllerDelegate {
     func editRecipientsControllerDidFinish(_ controller: EditComposeRecipientsViewController) {
-        recipientsView.recipients = Array(controller.selectedRecipients)
+        recipientsView.recipients = Array(controller.selectedRecipients).sortedByName()
         updateSendButton()
+        UIAccessibility.post(notification: .screenChanged, argument: recipientsView.editButton)
     }
 }
 

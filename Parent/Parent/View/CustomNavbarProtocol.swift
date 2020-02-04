@@ -67,7 +67,7 @@ extension CustomNavbarProtocol {
     func configureMenu() {
         navbarMenu = UIView()
         let v: UIView = navbarMenu
-        v.backgroundColor = .white
+        v.backgroundColor = .named(.backgroundLightest)
         v.translatesAutoresizingMaskIntoConstraints = false
         v.alpha = 0
         view.addSubview(v)
@@ -100,13 +100,15 @@ extension CustomNavbarProtocol {
 
     func configureNameButton() {
         navbarNameButton = DynamicButton()
+        navbarNameButton.adjustsImageWhenHighlighted = false
         navbarNameButton.semanticContentAttribute = UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft ? .forceLeftToRight : .forceRightToLeft
-        let img = UIImage.icon(.arrowOpenDown, .solid).scaleTo(CGSize(width: 15, height: 15)).withRenderingMode(.alwaysTemplate)
+        let img = UIImage(named: "icon_down_arrow")?.withRenderingMode(.alwaysTemplate)
         navbarNameButton.setImage(img, for: .normal)
+        navbarNameButton.imageView?.transform = CGAffineTransform(rotationAngle: CGFloat(180.0 * .pi))
         navbarNameButton.imageView?.contentMode = .scaleAspectFit
         navbarNameButton.tintColor = .white
-        navbarNameButton.imageEdgeInsets = UIEdgeInsets(top: 2, left: 10, bottom: 0, right: 0)
-
+        navbarNameButton.adjustsImageWhenHighlighted = false
+        navbarNameButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         navbarNameButton.titleLabel?.font = .scaledNamedFont(.semibold16)
         navbarNameButton.setTitleColor(.white, for: .normal)
         navbarNameButton.titleLabel?.textAlignment = .center
@@ -142,6 +144,8 @@ extension CustomNavbarProtocol {
             avatar.centerXAnchor.constraint(equalTo: container.centerXAnchor),
             avatar.centerYAnchor.constraint(equalTo: container.centerYAnchor),
         ])
+        navbarAvatar?.addDropShadow(size: avatarSize)
+
         let button = UIButton()
         container.addSubview(button)
         button.pinToAllSidesOfSuperview()
@@ -171,6 +175,7 @@ extension CustomNavbarProtocol {
     }
 
     func showCustomNavbarMenu(_ show: Bool = true, completion: (() -> Void)? = nil) {
+        if !isCustomNavMenuEnabled && show { return }
         let menuHeight: CGFloat = show ? 105 : 0
         let duration: Double = show ? 0.3 : 0.3
 
@@ -189,7 +194,7 @@ extension CustomNavbarProtocol {
         if open {
             navbarNameButton.imageView?.transform = CGAffineTransform(rotationAngle: .pi)
         } else {
-            navbarNameButton.imageView?.transform = CGAffineTransform.identity
+            navbarNameButton.imageView?.transform = CGAffineTransform(rotationAngle: CGFloat(180.0 * .pi))
         }
     }
 
@@ -201,5 +206,28 @@ extension CustomNavbarProtocol {
     func refreshNavbarColor() {
         navigationController?.navigationBar.barTintColor = customNavBarColor
         navbarBottomViewContainer.backgroundColor = customNavBarColor
+    }
+
+    var isCustomNavMenuEnabled: Bool {
+        get {
+            let enabled = objc_getAssociatedObject(self, &customNavBarMenuEnabledKey) as? Bool
+            return enabled ?? true
+        }
+        set {
+            objc_setAssociatedObject(self, &customNavBarMenuEnabledKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
+        }
+    }
+}
+private var customNavBarMenuEnabledKey: UInt8 = 0
+
+extension AvatarView {
+    func addDropShadow(size: CGFloat? = nil) {
+        layer.cornerRadius = ceil( size ?? bounds.size.width / 2.0 )
+        layer.shadowOffset = CGSize(width: 0, height: 4.0)
+        layer.shadowColor =  UIColor(white: 0, alpha: 1).cgColor
+        layer.shadowOpacity = 0.15
+        layer.shadowRadius = 8
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
     }
 }

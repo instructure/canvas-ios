@@ -80,7 +80,10 @@
 "Caught up on Alerts" = "趕上提示的進度";
 
 /* No comment provided by engineer. */
-"Choose a student" = "選取一個學生";
+"Choose a course to message" = "選擇課程以傳送訊息";
+
+/* No comment provided by engineer. */
+"Close" = "關閉";
 
 /* No comment provided by engineer. */
 "Compose new message" = "撰寫新訊息";
@@ -96,9 +99,6 @@
 
 /* Courses Tab */
 "Courses" = "課程";
-
-/* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "目前的學生：%@，點選以轉換學生";
 
 /* No comment provided by engineer. */
 "Discussion" = "討論";
@@ -117,6 +117,9 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "無法載入 (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"for %@" = "對象：%@";
 
 /* No comment provided by engineer. */
 "Front Page" = "首頁";
@@ -218,6 +221,16 @@
 "Quiz" = "測驗";
 
 /* No comment provided by engineer. */
+"Recipients" = "收件人";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "關於：%@";
+
+/* Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "關於：%1$@,%2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "回覆";
 
 /* No comment provided by engineer. */
@@ -269,13 +282,13 @@
 "This student's courses may not be published yet." = "此學生的課程可能尚未發佈。";
 
 /* No comment provided by engineer. */
+"To" = "至";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "登入發生問題";
 
 /* No comment provided by engineer. */
 "Unread" = "未讀";
-
-/* Calendar Tab */
-"Week" = "週";
 
 /* Header title of admin view */
 "Welcome!" = "歡迎！";

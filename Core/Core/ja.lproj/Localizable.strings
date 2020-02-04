@@ -32,6 +32,9 @@
 "All Grading Periods" = "すべての採点期間";
 
 /* No comment provided by engineer. */
+"All People" = "すべての人々";
+
+/* No comment provided by engineer. */
 "All Submissions" = "すべての提出物";
 
 /* No comment provided by engineer. */
@@ -228,6 +231,9 @@
 
 /* No comment provided by engineer. */
 "Designer" = "設計者";
+
+/* No comment provided by engineer. */
+"Designers" = "設計者";
 
 /* No comment provided by engineer. */
 "Developer Menu" = "開発者用メニュー";
@@ -500,6 +506,9 @@
 "No image found from image picker" = "画像ピッカーに画像が見つかりませんでした";
 
 /* No comment provided by engineer. */
+"No results" = "結果なし";
+
+/* No comment provided by engineer. */
 "No Submission" = "提出なし";
 
 /* No comment provided by engineer. */
@@ -527,6 +536,9 @@
 "Observer" = "オブザーバー";
 
 /* No comment provided by engineer. */
+"Observers" = "オブザーバー";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Pause" = "一時停止";
+
+/* No comment provided by engineer. */
+"People" = "メンバー";
 
 /* No comment provided by engineer. */
 "Permission Needed" = "許可が必要";
@@ -612,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "スケジュール中";
+
+/* No comment provided by engineer. */
+"Search" = "検索";
 
 /* No comment provided by engineer. */
 "See attached files." = "添付ファイルをご参照ください。";
@@ -680,6 +698,9 @@
 "Student Appointment Signups" = "受講生予約サインアップ";
 
 /* No comment provided by engineer. */
+"Students" = "受講生";
+
+/* No comment provided by engineer. */
 "Style" = "スタイル";
 
 /* No comment provided by engineer. */
@@ -714,6 +735,12 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "講師";
+
+/* No comment provided by engineer. */
+"Teachers" = "講師";
+
+/* No comment provided by engineer. */
+"Teaching Assistants" = "授業助手";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "利用規約";
@@ -792,6 +819,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "ユーザーID";
+
+/* Name and pronouns - John (He/Him) */
+"User.displayName" = "%1$@(%2$@)";
 
 /* No comment provided by engineer. */
 "Username" = "ユーザー名";

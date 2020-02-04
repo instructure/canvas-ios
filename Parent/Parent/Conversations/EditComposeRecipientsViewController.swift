@@ -101,7 +101,7 @@ extension EditComposeRecipientsViewController: UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(for: indexPath) as RecipientCell
         let person = recipients[indexPath.row]
-        cell.nameLabel.text = person.fullName
+        cell.nameLabel.text = person.displayName
         cell.roleLabel.text = person.commonCourses
             .filter { $0.courseID == context.id }
             .compactMap { Role(rawValue: $0.role)?.description() }

@@ -80,7 +80,10 @@
 "Caught up on Alerts" = "Du är uppdaterad när det gäller notiserna";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Välj en student";
+"Choose a course to message" = "Välj en kurs att skicka meddelande till";
+
+/* No comment provided by engineer. */
+"Close" = "Stäng";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Skriv nytt meddelande";
@@ -96,9 +99,6 @@
 
 /* Courses Tab */
 "Courses" = "Kurser";
-
-/* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Aktuell student: %@. Tryck för att växla student";
 
 /* No comment provided by engineer. */
 "Discussion" = "Diskussion";
@@ -117,6 +117,9 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Det gick inte att läsa in (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"for %@" = "för %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Framsida";
@@ -218,6 +221,16 @@
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
+"Recipients" = "Mottagare";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "Angående : %@";
+
+/* Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "Angående : %1$@, %2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "Svara";
 
 /* No comment provided by engineer. */
@@ -269,13 +282,13 @@
 "This student's courses may not be published yet." = "Den här studentens kurser får ännu inte publiceras.";
 
 /* No comment provided by engineer. */
+"To" = "Till";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "Problem med inloggning";
 
 /* No comment provided by engineer. */
 "Unread" = "Oläst";
-
-/* Calendar Tab */
-"Week" = "Vecka";
 
 /* Header title of admin view */
 "Welcome!" = "Välkommen!";

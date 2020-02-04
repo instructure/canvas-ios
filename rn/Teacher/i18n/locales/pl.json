@@ -92,9 +92,6 @@
   "all_in_e5ddaee0": {
     "message": "Wszystko w"
   },
-  "all_people_16d90b41": {
-    "message": "Wszystkie osoby"
-  },
   "all_submissions_3eedfb97": {
     "message": "Wszystkie przesłane materiały"
   },
@@ -467,9 +464,6 @@
   "description_436c48d7": {
     "message": "Opis"
   },
-  "designer_c458392": {
-    "message": "Projektant"
-  },
   "details_98a31b68": {
     "message": "Szczegóły"
   },
@@ -646,9 +640,6 @@
   },
   "filter_numselected_number_2e4c17e3": {
     "message": "Filtruj ({ numSelected, number })"
-  },
-  "filter_people_b34b567b": {
-    "message": "Filtruj osoby"
   },
   "filter_submissions_numselected_number_selected_177867b3": {
     "message": "Filtruj przesyłki. ({ numSelected, number }) wybrano."
@@ -935,6 +926,9 @@
   "name_profile_240f0967": {
     "message": "Profil { name }"
   },
+  "name_pronouns_8d5a0061": {
+    "message": "{ name } ({ pronouns })"
+  },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } więcej"
   },
@@ -1037,9 +1031,6 @@
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# min}\n few {# min}\n many {# min}\n other {# min}\n}"
   },
-  "observer_248a192e": {
-    "message": "Obserwator"
-  },
   "off_5385ef3f": {
     "message": "Wył."
   },
@@ -1129,9 +1120,6 @@
   },
   "past_enrollments_a846da48": {
     "message": "Wcześniejsze zapisy"
-  },
-  "people_b4ebb13c": {
-    "message": "Społeczność"
   },
   "percent_d7ddd35b": {
     "message": "Procent (%)"
@@ -1478,9 +1466,6 @@
   "syllabus_f191f65b": {
     "message": "Konspekt"
   },
-  "ta_8d966626": {
-    "message": "Asystenct nauczyciela"
-  },
   "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
     "message": "Stuknij i przytrzymaj numer rubryki, aby zobaczyć jej opis"
   },
@@ -1492,9 +1477,6 @@
   },
   "tap_to_view_submissions_list_5bfe32f3": {
     "message": "Stuknij, aby wyświetlić listę zgłoszeń."
-  },
-  "teacher_5a73b637": {
-    "message": "Nauczyciel"
   },
   "teachers_52e2423f": {
     "message": "Nauczyciele"

@@ -38,7 +38,7 @@ class ConversationDetailCell: UITableViewCell {
         self.parent = parent
         messageLabel.text = m.body
         toLabel.text = m.localizedAudience(myID: myID, userMap: userMap)
-        fromLabel.text = userMap[ m.authorID ]?.name
+        fromLabel.text = userMap[ m.authorID ]?.displayName
         dateLabel.text = DateFormatter.localizedString(from: m.createdAt, dateStyle: .medium, timeStyle: .short)
         avatar.url = userMap[ m.authorID ]?.avatarURL
         avatar.name = userMap[ m.authorID ]?.name ?? ""
@@ -47,5 +47,8 @@ class ConversationDetailCell: UITableViewCell {
             parent.embed(attachmentsController, in: attachmentCardsContainer)
         }
         attachmentsController.updateAttachments(m.attachments, mediaComment: m.mediaComment)
+
+        let template = NSLocalizedString("Message from %@, %@, on %@, %@", comment: "")
+        accessibilityLabel = String.localizedStringWithFormat(template, fromLabel.text ?? "", toLabel.text ?? "", dateLabel.text ?? "", m.body)
     }
 }

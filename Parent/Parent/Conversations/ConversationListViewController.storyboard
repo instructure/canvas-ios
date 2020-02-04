@@ -211,7 +211,9 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Prk-n7-JjP" customClass="FloatingButton" customModule="Parent" customModuleProvider="target">
                                 <rect key="frame" x="303" y="551" width="56" height="56"/>
-                                <accessibility key="accessibilityConfiguration" identifier="ConversationList.composeButton"/>
+                                <accessibility key="accessibilityConfiguration" identifier="ConversationList.composeButton">
+                                    <accessibilityTraits key="traits" button="YES" header="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="56" id="PdI-fv-6we"/>
                                     <constraint firstAttribute="height" constant="56" id="oM0-xE-QAd"/>

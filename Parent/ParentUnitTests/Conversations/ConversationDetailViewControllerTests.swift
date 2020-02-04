@@ -33,6 +33,8 @@ class ConversationDetailViewControllerTests: ParentTestCase {
             participants: [
                 .make(id: "1", name: "user 1"),
                 .make(id: "2", name: "user 2"),
+                .make(id: "3", name: "user 3", pronouns: "Them/They"),
+                .make(id: "4", name: "user 4", pronouns: "He/Him"),
             ],
             messages: [
                 APIConversationMessage.make(
@@ -47,6 +49,13 @@ class ConversationDetailViewControllerTests: ParentTestCase {
                         .make(id: "3", url: URL(string: "data:text/plain,")!, mime_class: "video"),
                     ],
                     participating_user_ids: [ "1", "2" ]
+                ),
+                APIConversationMessage.make(
+                    id: "2",
+                    created_at: Clock.now.addDays(-4),
+                    body: "foo bar",
+                    author_id: "3",
+                    participating_user_ids: [ "3", "4" ]
                 ),
             ]
         )
@@ -82,6 +91,10 @@ class ConversationDetailViewControllerTests: ParentTestCase {
             XCTAssertTrue(complete)
         }
         XCTAssertEqual((router.presented as? ComposeReplyViewController)?.all, false)
+
+        let second = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? ConversationDetailCell
+        XCTAssertEqual(second?.fromLabel.text, "user 3 (Them/They)")
+        XCTAssertEqual(second?.toLabel.text, "to user 4 (He/Him)")
     }
 
     func testReplyAll() {
