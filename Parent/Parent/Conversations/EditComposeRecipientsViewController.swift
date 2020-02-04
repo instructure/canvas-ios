@@ -107,7 +107,8 @@ extension EditComposeRecipientsViewController: UITableViewDataSource, UITableVie
             .compactMap { Role(rawValue: $0.role)?.description() }
             .joined(separator: ", ")
         cell.avatarView.name = person.fullName
-        cell.selectedView.isHidden = !selectedRecipients.contains(APIConversationRecipient(searchRecipient: person))
+        cell.isSelected = selectedRecipients.contains(APIConversationRecipient(searchRecipient: person))
+        cell.selectedView.isHidden = !cell.isSelected
         return cell
     }
 

@@ -49,22 +49,23 @@ class ComposeRecipientsView: UIView {
         addAdditionalRecipients()
 
         if UIAccessibility.isVoiceOverRunning == false {
-            addExpandCollapse()
+            addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(toggleIsExpanded(sender:))))
         }
     }
 
     func addEditButton() {
         editButton = UIButton(type: .system)
+        editButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         editButton.setImage(.icon(.addressBook), for: .normal)
         editButton.tintColor = .named(.textDark)
         editButton.translatesAutoresizingMaskIntoConstraints = false
         editButton.accessibilityLabel = NSLocalizedString("Edit Recipients", comment: "")
         addSubview(editButton)
         NSLayoutConstraint.activate([
-            editButton.heightAnchor.constraint(equalToConstant: 24),
-            editButton.widthAnchor.constraint(equalToConstant: 24),
-            editButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            editButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            editButton.heightAnchor.constraint(equalToConstant: 44),
+            editButton.widthAnchor.constraint(equalToConstant: 44),
+            editButton.topAnchor.constraint(equalTo: topAnchor, constant: 6),
+            trailingAnchor.constraint(equalTo: editButton.trailingAnchor, constant: 6),
         ])
     }
 
@@ -78,7 +79,7 @@ class ComposeRecipientsView: UIView {
         NSLayoutConstraint.activate([
             placeholder.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             placeholder.topAnchor.constraint(equalTo: topAnchor, constant: 19),
-            placeholder.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -18),
+            bottomAnchor.constraint(greaterThanOrEqualTo: placeholder.bottomAnchor, constant: 18),
         ])
     }
 
@@ -90,13 +91,8 @@ class ComposeRecipientsView: UIView {
         addSubview(additionalRecipients)
         NSLayoutConstraint.activate([
             additionalRecipients.topAnchor.constraint(equalTo: topAnchor, constant: 19),
-            additionalRecipients.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -18),
+            bottomAnchor.constraint(greaterThanOrEqualTo: additionalRecipients.bottomAnchor, constant: 18),
         ])
-    }
-
-    func addExpandCollapse() {
-        let touch = UITapGestureRecognizer(target: self, action: #selector(toggleIsExpanded(sender:)))
-        addGestureRecognizer(touch)
     }
 
     @objc

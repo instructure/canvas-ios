@@ -305,6 +305,9 @@ extension FileDetailsViewController: QLPreviewControllerDataSource, QLPreviewCon
 
 extension FileDetailsViewController: PSPDFViewControllerDelegate {
     func embedPDFView(for url: URL) {
+        guard DocViewerViewController.hasPSPDFKitLicense else {
+            return embedWebView(for: url)
+        }
         stylePSPDFKit()
 
         let document = PSPDFDocument(url: url)
