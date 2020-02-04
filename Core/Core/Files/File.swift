@@ -36,6 +36,11 @@ final public class File: NSManagedObject {
         return $0.id ?? "" < $1.id ?? ""
     }
 
+    // Used for sorting new uploads keeping them in order of started
+    public static func objectIDCompare(_ a: File, b: File) -> Bool {
+        a.objectID.uriRepresentation().lastPathComponent < b.objectID.uriRepresentation().lastPathComponent
+    }
+
     @NSManaged public var id: String?
     @NSManaged public var uuid: String?
     @NSManaged public var folderID: String?
@@ -139,7 +144,7 @@ extension File: WriteableModel {
         displayName = item.display_name
         filename = item.filename
         contentType = item.contentType
-        url = item.url
+        url = item.url.rawValue
         size = item.size
         createdAt = item.created_at
         updatedAt = item.updated_at
@@ -148,14 +153,14 @@ extension File: WriteableModel {
         hidden = item.hidden
         lockAt = item.lock_at
         hiddenForUser = item.hidden_for_user
-        thumbnailURL = item.thumbnail_url
+        thumbnailURL = item.thumbnail_url?.rawValue
         modifiedAt = item.modified_at
         mimeClass = item.mime_class
         mediaEntryID = item.media_entry_id
         lockedForUser = item.locked_for_user
         lockInfo = item.lock_info
         lockExplanation = item.lock_explanation
-        previewURL = item.preview_url
+        previewURL = item.preview_url?.rawValue
     }
 
     @discardableResult

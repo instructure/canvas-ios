@@ -67,6 +67,12 @@ class APIFileTests: XCTestCase {
         XCTAssertEqual(request.path, "folders/2")
         XCTAssertEqual(request.queryItems, [ URLQueryItem(name: "include[]", value: "usage_rights") ])
     }
+
+    func testDeleteFileRequest() {
+        let request = DeleteFileRequest(fileID: "43")
+        XCTAssertEqual(request.method, .delete)
+        XCTAssertEqual(request.path, "files/43")
+    }
 }
 
 class PostFileUploadTargetRequestTests: XCTestCase {

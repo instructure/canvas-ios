@@ -24,34 +24,50 @@ protocol ConversationCoursesActionSheetDelegate: class {
     func courseSelected(course: Course, user: User)
 }
 
-class ConversationCoursesActionSheet: UITableViewController, ErrorViewController {
+class ConversationCoursesActionSheet: UIViewController, ErrorViewController {
     let env: AppEnvironment = .shared
     weak var delegate: ConversationCoursesActionSheetDelegate?
     let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+    let tableView = UITableView()
 
     lazy var enrollments = env.subscribe(GetConversationCourses()) { [weak self] in
         self?.update()
     }
 
     static func create(delegate: ConversationCoursesActionSheetDelegate) -> ConversationCoursesActionSheet {
-        let vc = ConversationCoursesActionSheet()
-        vc.delegate = delegate
-        return vc
+        let controller = ConversationCoursesActionSheet()
+        controller.delegate = delegate
+        controller.modalPresentationStyle = .custom
+        controller.transitioningDelegate = BottomSheetTransitioningDelegate.shared
+        return controller
     }
 
     override func viewDidLoad() {
-        navigationItem.title = NSLocalizedString("Choose a course to message", bundle: .parent, comment: "")
-        tableView.delegate = self
+        super.viewDidLoad()
+        view.backgroundColor = .named(.backgroundLightest)
+        view.frame.size.height = 294
+
+        let titleLabel = UILabel()
+        titleLabel.text = NSLocalizedString("Choose a course to message", bundle: .parent, comment: "")
+        titleLabel.textColor = .named(.textDark)
+        titleLabel.font = .scaledNamedFont(.semibold14)
+        view.addSubview(titleLabel)
+        titleLabel.pin(inside: view, leading: 16, trailing: 16, top: 20, bottom: nil)
+
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.registerCell(SubtitleTableViewCell.self)
+        view.addSubview(tableView)
+        tableView.pin(inside: view, top: nil)
+        tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12).isActive = true
 
         loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.startAnimating()
-        loadingIndicator.center.x = tableView.center.x
-        loadingIndicator.center.y = tableView.center.y / 2 // the table view hasn't yet been shrunk to activity sheet size
-        loadingIndicator.center.y -= 48 // minus header height to get centered
         view.addSubview(loadingIndicator)
+        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+        loadingIndicator.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        loadingIndicator.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        loadingIndicator.startAnimating()
 
         enrollments.exhaust()
     }
@@ -65,30 +81,25 @@ class ConversationCoursesActionSheet: UITableViewController, ErrorViewController
             showError(error)
         }
 
-        self.tableView.reloadData()
+        tableView.reloadData()
+    }
+}
+
+extension ConversationCoursesActionSheet: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return enrollments.pending ? 0 : enrollments.count
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if enrollments.pending {
-            return 0
-        }
-
-        return enrollments.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let enrollment = enrollments[indexPath.row]
         let cell: SubtitleTableViewCell = tableView.dequeue(for: indexPath)
-        guard let enrollment = enrollments[indexPath.row], let course = enrollment.course else {
-            return cell
-        }
-
-        cell.textLabel?.text = course.name
-        let userName = enrollment.observedUser.flatMap { User.displayName($0.name, pronouns: $0.pronouns) } ?? ""
+        cell.textLabel?.text = enrollment?.course?.name
+        let userName = enrollment?.observedUser.flatMap { User.displayName($0.name, pronouns: $0.pronouns) } ?? ""
         cell.detailTextLabel?.text = String.localizedStringWithFormat(NSLocalizedString("for %@", bundle: .parent, comment: ""), userName)
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let enrollment = enrollments[indexPath.row], let course = enrollment.course, let observedUser = enrollment.observedUser else {
             return
         }

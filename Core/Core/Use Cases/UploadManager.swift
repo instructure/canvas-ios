@@ -128,14 +128,14 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         }
     }
 
-    open func upload(url: URL, batchID: String? = nil, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
+    open func upload(url: URL, batchID: String? = nil, to uploadContext: FileUploadContext, folderPath: String? = nil, callback: (() -> Void)? = nil) {
         context.performAndWait {
             guard let file = try? add(url: url, batchID: batchID) else { return }
-            upload(file: file, to: uploadContext, callback: callback)
+            upload(file: file, to: uploadContext, folderPath: folderPath, callback: callback)
         }
     }
 
-    open func upload(file: File, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
+    open func upload(file: File, to uploadContext: FileUploadContext, folderPath: String? = nil, callback: (() -> Void)? = nil) {
         Logger.shared.log()
         let objectID = file.objectID
         context.performAndWait {
@@ -152,14 +152,16 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 file.id = nil
                 file.bytesSent = 0
                 try context.save()
-                let body = PostFileUploadTargetRequest.Body(name: url.lastPathComponent, on_duplicate: .rename, parent_folder_id: nil, size: file.size)
+                let body = PostFileUploadTargetRequest.Body(name: url.lastPathComponent, on_duplicate: .rename, parent_folder_path: folderPath, size: file.size)
                 let request = PostFileUploadTargetRequest(context: uploadContext, body: body)
                 environment.api.makeRequest(request) { response, _, error in
                     self.context.performAndWait {
                         defer { callback?() }
-                        guard let target = response, error == nil, let file = try? self.context.existingObject(with: objectID) as? File else {
-                            self.sendFailedNotification()
-                            return
+                        guard let file = try? self.context.existingObject(with: objectID) as? File else {
+                            return self.sendFailedNotification()
+                        }
+                        guard let target = response, error == nil else {
+                            return self.complete(file: file, error: error)
                         }
                         do {
                             file.size = url.lookupFileSize()
@@ -169,8 +171,8 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                             file.taskID = task.taskIdentifier
                             try self.context.save()
                             task.resume()
-                        } catch {
-                            self.sendFailedNotification()
+                        } catch let error {
+                            self.complete(file: file, error: error)
                         }
                     }
                 }
@@ -239,7 +241,8 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         Logger.shared.log()
         let objectID = file.objectID
         context.performAndWait {
-            guard let file = try? context.existingObject(with: objectID) as? File, let taskID = file.taskID else { return }
+            guard let file = try? context.existingObject(with: objectID) as? File else { return }
+            let taskID = file.taskID
             backgroundSession.getAllTasks { tasks in
                 tasks.first { $0.taskIdentifier == taskID }?.cancel()
             }
@@ -336,9 +339,10 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
 
     public func complete(file: File, error: Error?) {
         Logger.shared.log()
-        if error != nil {
+        if let error = error {
+            Logger.shared.error(error)
             Analytics.shared.logEvent("fileupload_failed", parameters: [
-                "error": error?.localizedDescription ?? "unknown",
+                "error": error.localizedDescription,
             ])
         }
         context.performAndWait {
@@ -348,8 +352,12 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 file.localFileURL = nil
             }
             try? context.save()
-            if error != nil, case let .submission(courseID, assignmentID, _)? = file.context {
-                sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
+            if error != nil {
+                if case let .submission(courseID, assignmentID, _)? = file.context {
+                    sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
+                } else {
+                    sendFailedNotification()
+                }
             }
         }
     }

@@ -23,7 +23,7 @@ import XCTest
 private let encoder = JSONEncoder()
 private let decoder = JSONDecoder()
 
-class APIURLTests: XCTestCase {
+class APIURLTests: CoreTestCase {
     func testCodableValid() throws {
         XCTAssertEqual(
             try decoder.decode(APIURL.self, from: try encoder.encode("s://a.co")),
@@ -36,6 +36,10 @@ class APIURLTests: XCTestCase {
         XCTAssertEqual(
             try decoder.decode(APIURL.self, from: try encoder.encode("s://a.co/~")),
             .make(rawValue: URL(string: "s://a.co/~")!)
+        )
+        XCTAssertEqual(
+            try decoder.decode(APIURL.self, from: try encoder.encode("/relative/url")),
+            APIURL(rawValue: URL(string: "/relative/url", relativeTo: currentSession.baseURL))
         )
         XCTAssertThrowsError(try decoder.decode(APIURL.self, from: try encoder.encode("")))
         XCTAssertThrowsError(try decoder.decode(APIURL.self, from: try encoder.encode(1)))

@@ -47,6 +47,7 @@ class ParentTestCase: XCTestCase {
         AppEnvironment.shared = env
         MockURLSession.reset()
         MockUploadManager.reset()
+        UploadManager.shared = MockUploadManager()
         ExperimentalFeature.allEnabled = false
         Parent.currentStudentID = "1"
         Parent.legacySession = Session.current

@@ -121,6 +121,7 @@
 		7893BDFD20D1A83F00231DF7 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7893BDFC20D1A83F00231DF7 /* AdminViewController.swift */; };
 		78A84A0E209BB7A000921C9B /* ParentAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835A5E6209B6F4C00C9220B /* ParentAppDelegate.swift */; };
 		78AD913321C8184F0075FBCF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AD913221C8184F0075FBCF /* GoogleService-Info.plist */; };
+		7D016B6323E8C6D100C6E0CA /* AttachmentCardsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D016B6223E8C6D100C6E0CA /* AttachmentCardsViewControllerTests.swift */; };
 		7D111CFF23A2DDD100C912C0 /* ConversationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D111CFE23A2DDD100C912C0 /* ConversationListViewController.swift */; };
 		7D111D0123A2DDDF00C912C0 /* ConversationListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D111D0023A2DDDF00C912C0 /* ConversationListViewController.storyboard */; };
 		7D1591BC23AD79B100ED0106 /* ComposeRecipientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1591BB23AD79B100ED0106 /* ComposeRecipientsView.swift */; };
@@ -137,6 +138,7 @@
 		7D6F4CE723C66738001C957D /* ComposeReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6F4CE623C66738001C957D /* ComposeReplyViewController.swift */; };
 		7D6F4CE923C676CE001C957D /* ComposeReplyViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6F4CE823C676CE001C957D /* ComposeReplyViewController.storyboard */; };
 		7D6F4CEB23C69F7F001C957D /* ComposeReplyViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6F4CEA23C69F7F001C957D /* ComposeReplyViewControllerTests.swift */; };
+		7D85FFEA23E1F9F30055851D /* AttachmentCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D85FFE923E1F9F30055851D /* AttachmentCardsViewController.swift */; };
 		7D88EA2E23A9A1CB00D5F8FD /* ColorSchemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D88EA2D23A9A1CB00D5F8FD /* ColorSchemeTests.swift */; };
 		7DBED00A2328282200392F3C /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED0092328282200392F3C /* Routes.swift */; };
 		7DEE3E3D2335790A0009D8DC /* IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE3E3C2335790A0009D8DC /* IBDesignables.swift */; };
@@ -153,7 +155,6 @@
 		9F397F8523C8D54600A3E2AF /* ConversationCoursesActionSheetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F397F8423C8D54600A3E2AF /* ConversationCoursesActionSheetTests.swift */; };
 		9F520B8D23BFC3D200CE3672 /* ConversationCoursesActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F520B8C23BFC3D200CE3672 /* ConversationCoursesActionSheet.swift */; };
 		9F6B43E42243ECD9003C758B /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6B43E32243ECD9003C758B /* DashboardPresenter.swift */; };
-		9FB8FC4323C3B46A00E69E6A /* ActionSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8FC4223C3B46A00E69E6A /* ActionSheetController.swift */; };
 		B109248E23CE160400796903 /* EditComposeRecipientsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B109248D23CE160400796903 /* EditComposeRecipientsViewController.storyboard */; };
 		B109249023CE7F9500796903 /* EditComposeRecipientsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B109248F23CE7F9500796903 /* EditComposeRecipientsViewControllerTests.swift */; };
 		B109249223CE7FC900796903 /* EditComposeRecipientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B109249123CE7FC900796903 /* EditComposeRecipientsViewController.swift */; };
@@ -821,6 +822,7 @@
 		7893BDFB20D1A7F100231DF7 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
 		7893BDFC20D1A83F00231DF7 /* AdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
 		78AD913221C8184F0075FBCF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7D016B6223E8C6D100C6E0CA /* AttachmentCardsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCardsViewControllerTests.swift; sourceTree = "<group>"; };
 		7D0215A421BAE863009A8E69 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D111CFE23A2DDD100C912C0 /* ConversationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListViewController.swift; sourceTree = "<group>"; };
 		7D111D0023A2DDDF00C912C0 /* ConversationListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConversationListViewController.storyboard; sourceTree = "<group>"; };
@@ -908,6 +910,7 @@
 		7D6F4CE623C66738001C957D /* ComposeReplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeReplyViewController.swift; sourceTree = "<group>"; };
 		7D6F4CE823C676CE001C957D /* ComposeReplyViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ComposeReplyViewController.storyboard; sourceTree = "<group>"; };
 		7D6F4CEA23C69F7F001C957D /* ComposeReplyViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeReplyViewControllerTests.swift; sourceTree = "<group>"; };
+		7D85FFE923E1F9F30055851D /* AttachmentCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCardsViewController.swift; sourceTree = "<group>"; };
 		7D88EA2D23A9A1CB00D5F8FD /* ColorSchemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeTests.swift; sourceTree = "<group>"; };
 		7DBED0092328282200392F3C /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		7DE74EFD22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -951,7 +954,6 @@
 		9F5A3D392048745B00F6EDCE /* DiscussionTopicAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTopicAPI.swift; sourceTree = "<group>"; };
 		9F5A3D3B2048745B00F6EDCE /* Session+DiscussionKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+DiscussionKit.swift"; sourceTree = "<group>"; };
 		9F6B43E32243ECD9003C758B /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
-		9FB8FC4223C3B46A00E69E6A /* ActionSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetController.swift; sourceTree = "<group>"; };
 		B109248D23CE160400796903 /* EditComposeRecipientsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditComposeRecipientsViewController.storyboard; sourceTree = "<group>"; };
 		B109248F23CE7F9500796903 /* EditComposeRecipientsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditComposeRecipientsViewControllerTests.swift; sourceTree = "<group>"; };
 		B109249123CE7FC900796903 /* EditComposeRecipientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditComposeRecipientsViewController.swift; sourceTree = "<group>"; };
@@ -1424,7 +1426,7 @@
 		7D111CFD23A2DDAD00C912C0 /* Conversations */ = {
 			isa = PBXGroup;
 			children = (
-				9FB8FC4223C3B46A00E69E6A /* ActionSheetController.swift */,
+				7D85FFE923E1F9F30055851D /* AttachmentCardsViewController.swift */,
 				7D1591BB23AD79B100ED0106 /* ComposeRecipientsView.swift */,
 				7D6F4CE823C676CE001C957D /* ComposeReplyViewController.storyboard */,
 				7D6F4CE623C66738001C957D /* ComposeReplyViewController.swift */,
@@ -1462,6 +1464,7 @@
 		7DFDB43023A3EDE200B28DED /* Conversations */ = {
 			isa = PBXGroup;
 			children = (
+				7D016B6223E8C6D100C6E0CA /* AttachmentCardsViewControllerTests.swift */,
 				7D6F4CEA23C69F7F001C957D /* ComposeReplyViewControllerTests.swift */,
 				7D231BE023AC1E0A005BA31D /* ComposeViewControllerTests.swift */,
 				9F397F8423C8D54600A3E2AF /* ConversationCoursesActionSheetTests.swift */,
@@ -1924,6 +1927,7 @@
 				7D88EA2E23A9A1CB00D5F8FD /* ColorSchemeTests.swift in Sources */,
 				B109249023CE7F9500796903 /* EditComposeRecipientsViewControllerTests.swift in Sources */,
 				3B36A2ED2322C2A000599A1E /* GetAlertThresholdRequestableTests.swift in Sources */,
+				7D016B6323E8C6D100C6E0CA /* AttachmentCardsViewControllerTests.swift in Sources */,
 				977921A423E148470082696B /* CustomNavbarProtocolTests.swift in Sources */,
 				7DFDB43223A3EDFB00B28DED /* ConversationListViewControllerTests.swift in Sources */,
 				B1AA55D0235785A200DFD184 /* SettingsViewControllerTests.swift in Sources */,
@@ -1947,8 +1951,8 @@
 				7D52D8A422FCC8A200684932 /* DiscussionTopicAPI.swift in Sources */,
 				5E0F9A741C739E6A00BB7707 /* SettingsObserveeCell.swift in Sources */,
 				7D52D8A122FCC89F00684932 /* DiscussionTopic.swift in Sources */,
-				9FB8FC4323C3B46A00E69E6A /* ActionSheetController.swift in Sources */,
 				497C48E71F9153D100A3BC06 /* Student.swift in Sources */,
+				7D85FFEA23E1F9F30055851D /* AttachmentCardsViewController.swift in Sources */,
 				497C48EA1F9153D100A3BC06 /* Assignments.swift in Sources */,
 				9F520B8D23BFC3D200CE3672 /* ConversationCoursesActionSheet.swift in Sources */,
 				617BE8751CA584EF008A6908 /* AnnouncementDetailsViewController.swift in Sources */,

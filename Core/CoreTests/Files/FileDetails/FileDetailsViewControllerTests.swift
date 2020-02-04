@@ -36,7 +36,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         controller = FileDetailsViewController.create(context: context, fileID: "1", assignmentID: "3")
         navigation = UINavigationController(rootViewController: controller)
         api.mock(controller.files, value: file)
-        api.mockDownload(file.url)
+        api.mockDownload(file.url.rawValue)
     }
 
     override func tearDown() {
@@ -94,7 +94,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertNil(controller.downloadTask)
 
         XCTAssertNoThrow(try FileManager.default.removeItem(at: url))
-        controller.downloadFile(at: file.url) // restart download without local file
+        controller.downloadFile(at: file.url.rawValue) // restart download without local file
         let session = MockURLSession()
         let task = controller.downloadTask as! MockURLSession.MockDownloadTask
 

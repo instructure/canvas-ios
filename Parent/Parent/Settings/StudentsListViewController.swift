@@ -40,8 +40,6 @@ class StudentsListViewController: FetchedTableViewController<Student> {
 
         self.emptyView = emptyView
 
-        _ = ColorScheme.observer
-
         let collection = try Student.observedStudentsCollection(session)
         let refresher = try Student.observedStudentsRefresher(session)
         prepare(collection, refresher: refresher, viewModelFactory: { student in
