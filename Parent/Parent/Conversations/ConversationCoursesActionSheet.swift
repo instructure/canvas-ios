@@ -65,8 +65,8 @@ class ConversationCoursesActionSheet: UIViewController, ErrorViewController {
         loadingIndicator.hidesWhenStopped = true
         view.addSubview(loadingIndicator)
         loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
-        loadingIndicator.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
-        loadingIndicator.centerYAnchor.constraint(equalTo: tableView.centerYAnchor).isActive = true
+        loadingIndicator.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        loadingIndicator.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
         loadingIndicator.startAnimating()
 
         enrollments.exhaust()
