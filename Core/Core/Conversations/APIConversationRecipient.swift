@@ -23,6 +23,7 @@ public struct APIConversationRecipient: Codable {
     public let name: String
     public let full_name: String?
     public let avatar_url: APIURL?
+    public let pronouns: String?
 }
 
 extension APIConversationRecipient: Hashable {
@@ -37,6 +38,7 @@ extension APIConversationRecipient {
         self.name = r.fullName
         self.full_name = r.fullName
         self.avatar_url = APIURL(rawValue: r.avatarURL)
+        self.pronouns = r.pronouns
     }
 
     public init(user: User) {
@@ -44,6 +46,7 @@ extension APIConversationRecipient {
         self.name = user.name
         self.full_name = user.name
         self.avatar_url = APIURL(rawValue: user.avatarURL)
+        self.pronouns = user.pronouns
     }
 }
 
@@ -53,13 +56,15 @@ extension APIConversationRecipient {
         id: ID = "1",
         name: String = "Homestar",
         full_name: String = "Homestar Runner",
-        avatar_url: APIURL? = .make(rawValue: URL(string: "https://homestarrunner.com/tempHomeImg/logo_200x200@2x.png")!)
+        avatar_url: APIURL? = .make(rawValue: URL(string: "https://homestarrunner.com/tempHomeImg/logo_200x200@2x.png")!),
+        pronouns: String? = nil
     ) -> APIConversationRecipient {
         return APIConversationRecipient(
             id: id,
             name: name,
             full_name: full_name,
-            avatar_url: avatar_url
+            avatar_url: avatar_url,
+            pronouns: pronouns
         )
     }
 }
