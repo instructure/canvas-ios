@@ -183,6 +183,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
     }
 
     func testPDF() {
+        DocViewerViewController.hasPSPDFKitLicense = true
         mock(APIFile.make(filename: "File.pdf", contentType: "application/pdf", mime_class: "pdf"))
         controller.view.layoutIfNeeded()
         XCTAssertFalse(controller.activityView.isAnimating)

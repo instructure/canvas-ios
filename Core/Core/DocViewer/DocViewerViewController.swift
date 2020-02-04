@@ -31,10 +31,12 @@ public class DocViewerViewController: UIViewController, DocViewerViewProtocol {
     weak var pdfViewController: PSPDFViewController?
     var presenter: DocViewerPresenter?
     weak var parentNavigationItem: UINavigationItem?
+    public internal(set) static var hasPSPDFKitLicense = false
 
     public static func setup(_ secret: Secret) {
         if let key = secret.string {
             PSPDFKitGlobal.setLicenseKey(key)
+            hasPSPDFKitLicense = true
         }
         stylePSPDFKit()
     }
