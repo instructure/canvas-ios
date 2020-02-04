@@ -47,6 +47,7 @@ class ConversationDetailCell: UITableViewCell {
             parent.embed(attachmentsController, in: attachmentCardsContainer)
         }
         attachmentsController.updateAttachments(m.attachments, mediaComment: m.mediaComment)
+        attachmentCardsContainer.isHidden = m.mediaComment == nil && m.attachments.isEmpty
 
         let template = NSLocalizedString("Message from %@, %@, on %@, %@", comment: "")
         accessibilityLabel = String.localizedStringWithFormat(template, fromLabel.text ?? "", toLabel.text ?? "", dateLabel.text ?? "", m.body)
