@@ -28,6 +28,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var recipientsView: ComposeRecipientsView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var subjectField: UITextField!
+    let titleSubtitleView = TitleSubtitleView.create()
 
     lazy var attachButton = UIBarButtonItem(image: .icon(.paperclip), style: .plain, target: self, action: #selector(attach))
     lazy var sendButton = UIBarButtonItem(title: NSLocalizedString("Send", comment: ""), style: .done, target: self, action: #selector(send))
@@ -44,6 +45,13 @@ class ComposeViewController: UIViewController, ErrorViewController {
     var observeeID: String?
     var hiddenMessage: String?
 
+    lazy var course: Store<GetCourse>? = {
+        guard let context = context, context.contextType == .course else { return nil }
+        return env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
+            self?.titleSubtitleView.subtitle = self?.course?.first?.name
+        }
+    }()
+
     static func create(
         body: String?,
         context: Context?,
@@ -53,9 +61,9 @@ class ComposeViewController: UIViewController, ErrorViewController {
         hiddenMessage: String?
     ) -> ComposeViewController {
         let controller = loadFromStoryboard()
+        controller.context = context
         controller.loadViewIfNeeded()
         controller.bodyView.text = body
-        controller.context = context
         controller.observeeID = observeeID
         controller.recipientsView.recipients = recipients.sortedByName()
         controller.subjectField.text = subject
@@ -68,7 +76,11 @@ class ComposeViewController: UIViewController, ErrorViewController {
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
 
-        title = NSLocalizedString("New Message", comment: "")
+        titleSubtitleView.titleLabel?.textColor = .named(.textDarkest)
+        titleSubtitleView.subtitleLabel?.textColor = .named(.textDark)
+        navigationItem.titleView = titleSubtitleView
+        titleSubtitleView.title = NSLocalizedString("New Message", comment: "")
+
         addCancelButton(side: .left)
         attachButton.accessibilityLabel = NSLocalizedString("Add Attachments", comment: "")
         sendButton.isEnabled = false
@@ -93,6 +105,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
         subjectField.accessibilityLabel = NSLocalizedString("Subject", comment: "")
 
         recipientsView.editButton.addTarget(self, action: #selector(editRecipients), for: .primaryActionTriggered)
+        course?.refresh()
     }
 
     override func viewWillAppear(_ animated: Bool) {
