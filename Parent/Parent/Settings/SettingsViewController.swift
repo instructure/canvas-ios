@@ -22,6 +22,8 @@ import Core
 
 class SettingsViewController: UIViewController {
     var env = AppEnvironment.shared
+    lazy var students = env.subscribe(GetObservedStudents(observerID: env.currentSession?.userID ??  "")) { [weak self] in
+    }
 
     // ---------------------------------------------
     // MARK: - IBOutlets
@@ -149,8 +151,7 @@ class SettingsViewController: UIViewController {
                     self.env.router.show(alert, from: self, options: .modal())
                 } else {
                     self.observeesViewController?.refresh()
-                    let observees = AppEnvironment.shared.subscribe(GetObservedStudents(observerID: AppEnvironment.shared.currentSession?.userID ??  "")) { }
-                    observees.exhaust()
+                    self.students.exhaust()
                 }
             }
         }
