@@ -26,7 +26,7 @@ class DashboardPresenter {
     lazy var permissions: Store<GetContextPermissions> = {
         let useCase = GetContextPermissions(context: ContextModel(.account, id: "self"), permissions: [.becomeUser])
         return env.subscribe(useCase, { [weak self] in
-            self?.view?.updateMainView()
+            self?.view?.update()
         })
     }()
 

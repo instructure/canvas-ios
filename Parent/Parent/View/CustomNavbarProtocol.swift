@@ -107,8 +107,8 @@ extension CustomNavbarProtocol {
         navbarNameButton.imageView?.transform = CGAffineTransform(rotationAngle: CGFloat(180.0 * .pi))
         navbarNameButton.imageView?.contentMode = .scaleAspectFit
         navbarNameButton.tintColor = .white
+        navbarNameButton.adjustsImageWhenHighlighted = false
         navbarNameButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
-
         navbarNameButton.titleLabel?.font = .scaledNamedFont(.semibold16)
         navbarNameButton.setTitleColor(.white, for: .normal)
         navbarNameButton.titleLabel?.textAlignment = .center
@@ -175,6 +175,7 @@ extension CustomNavbarProtocol {
     }
 
     func showCustomNavbarMenu(_ show: Bool = true, completion: (() -> Void)? = nil) {
+        if !isCustomNavMenuEnabled && show { return }
         let menuHeight: CGFloat = show ? 105 : 0
         let duration: Double = show ? 0.3 : 0.3
 
@@ -206,7 +207,18 @@ extension CustomNavbarProtocol {
         navigationController?.navigationBar.barTintColor = customNavBarColor
         navbarBottomViewContainer.backgroundColor = customNavBarColor
     }
+
+    var isCustomNavMenuEnabled: Bool {
+        get {
+            let enabled = objc_getAssociatedObject(self, &customNavBarMenuEnabledKey) as? Bool
+            return enabled ?? true
+        }
+        set {
+            objc_setAssociatedObject(self, &customNavBarMenuEnabledKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
+        }
+    }
 }
+private var customNavBarMenuEnabledKey: UInt8 = 0
 
 extension AvatarView {
     func addDropShadow(size: CGFloat? = nil) {

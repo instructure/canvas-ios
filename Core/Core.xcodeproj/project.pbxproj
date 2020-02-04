@@ -101,6 +101,8 @@
 		3BDB8F3322E62D51003D81C3 /* PresenterPageViewLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB8F3222E62D51003D81C3 /* PresenterPageViewLogger.swift */; };
 		3BDB8F3522E63676003D81C3 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB8F3422E63676003D81C3 /* StringExtensionTests.swift */; };
 		3BDB8F3722E6389F003D81C3 /* PresenterPageViewLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB8F3622E6389F003D81C3 /* PresenterPageViewLoggerTests.swift */; };
+		3BE1A6FA23E4540D0037CAB1 /* GetObservedStudents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE1A6F923E4540D0037CAB1 /* GetObservedStudents.swift */; };
+		3BE1A6FC23E46C0C0037CAB1 /* GetObservedStudentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE1A6FB23E46C0C0037CAB1 /* GetObservedStudentsTests.swift */; };
 		3BE2ADCB21B704F1008D91AB /* DynamicTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2ADCA21B704F1008D91AB /* DynamicTextField.swift */; };
 		3BE2C760218CB50B004B8E5E /* ColoredNavViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2C75F218CB50B004B8E5E /* ColoredNavViewProtocol.swift */; };
 		3BE2C764218CB53F004B8E5E /* Enrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2C763218CB53F004B8E5E /* Enrollment.swift */; };
@@ -915,6 +917,8 @@
 		3BDB8F3222E62D51003D81C3 /* PresenterPageViewLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterPageViewLogger.swift; sourceTree = "<group>"; };
 		3BDB8F3422E63676003D81C3 /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
 		3BDB8F3622E6389F003D81C3 /* PresenterPageViewLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterPageViewLoggerTests.swift; sourceTree = "<group>"; };
+		3BE1A6F923E4540D0037CAB1 /* GetObservedStudents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetObservedStudents.swift; sourceTree = "<group>"; };
+		3BE1A6FB23E46C0C0037CAB1 /* GetObservedStudentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetObservedStudentsTests.swift; sourceTree = "<group>"; };
 		3BE2ADCA21B704F1008D91AB /* DynamicTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTextField.swift; sourceTree = "<group>"; };
 		3BE2C75F218CB50B004B8E5E /* ColoredNavViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredNavViewProtocol.swift; sourceTree = "<group>"; };
 		3BE2C763218CB53F004B8E5E /* Enrollment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enrollment.swift; sourceTree = "<group>"; };
@@ -3033,6 +3037,7 @@
 				B17855B0226ABDB100B30C80 /* UploadMedia.swift */,
 				7D92D656224ACC7A0015B368 /* UploadMediaComment.swift */,
 				9FA690EF23C79489009D12D9 /* GetConversationCourses.swift */,
+				3BE1A6F923E4540D0037CAB1 /* GetObservedStudents.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -3160,6 +3165,7 @@
 				7D86285C224C15BA003A37DC /* UploadMediaCommentTests.swift */,
 				B17855B2226ABDDD00B30C80 /* UploadMediaTests.swift */,
 				9FA690F123C7A683009D12D9 /* GetConversationCoursesTests.swift */,
+				3BE1A6FB23E46C0C0037CAB1 /* GetObservedStudentsTests.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -4037,6 +4043,7 @@
 				7D29D301218A52F00036437C /* DocViewerPointAnnotation.swift in Sources */,
 				B16F036E215AE6210011E952 /* GetAssignment.swift in Sources */,
 				9F0282392367526700700B41 /* App.swift in Sources */,
+				3BE1A6FA23E4540D0037CAB1 /* GetObservedStudents.swift in Sources */,
 				9F87D07B2322F4C500EDA363 /* GetSearchRecipients.swift in Sources */,
 				B1E789A721B0ED490087FE4A /* LogEventListViewController.swift in Sources */,
 				7D64A975236759FA004EAEDF /* GetCourseSections.swift in Sources */,
@@ -4205,6 +4212,7 @@
 				7DCF1EBC216BC94E003AF358 /* LatePolicyStatusTests.swift in Sources */,
 				7DC4A555222EF87300FA03DC /* DiscussionEntryTests.swift in Sources */,
 				3BDB8F3522E63676003D81C3 /* StringExtensionTests.swift in Sources */,
+				3BE1A6FC23E46C0C0037CAB1 /* GetObservedStudentsTests.swift in Sources */,
 				7D80AC19212B697600C40ECE /* APIGroupRequestableTests.swift in Sources */,
 				7D2DC31B219CE469008FE29A /* DocViewerSessionTests.swift in Sources */,
 				7D5762A023849D46001F980D /* APITodoTests.swift in Sources */,

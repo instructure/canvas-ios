@@ -561,6 +561,7 @@
         <attribute name="groupID" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="observerID" optional="YES" attributeType="String"/>
         <attribute name="pronouns" optional="YES" attributeType="String"/>
         <attribute name="shortName" attributeType="String"/>
         <attribute name="sortableName" attributeType="String"/>
@@ -624,7 +625,7 @@
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="Todo" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
-        <element name="User" positionX="-540" positionY="-27" width="128" height="193"/>
+        <element name="User" positionX="-540" positionY="-27" width="128" height="208"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
     </elements>

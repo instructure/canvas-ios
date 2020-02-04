@@ -30,6 +30,7 @@ public final class User: NSManagedObject {
     @NSManaged public var groupID: String?
     @NSManaged public var enrollments: Set<Enrollment>?
     @NSManaged public var pronouns: String?
+    @NSManaged public var observerID: String?
 }
 
 extension User: WriteableModel {
