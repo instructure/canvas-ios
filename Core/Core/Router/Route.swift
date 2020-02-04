@@ -153,7 +153,16 @@ public struct Route: Equatable {
 
     public static let profile = Route("/profile")
 
-    public static let profileObservees = Route("/profile/observees")
+    public static func profileObservees( showAddStudentPrompt: Bool? = nil ) -> Route {
+        var path = URLComponents()
+        path.path = "/profile/observees"
+        var queryItems: [URLQueryItem] = []
+        if let show = showAddStudentPrompt, show {
+            queryItems.append(URLQueryItem(name: "showPrompt", value: "true"))
+        }
+        if !queryItems.isEmpty { path.queryItems = queryItems }
+        return Route(url: path)
+    }
 
     public static let profileSettings = Route("/profile/settings")
 

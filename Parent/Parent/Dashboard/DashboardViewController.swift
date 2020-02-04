@@ -107,13 +107,14 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         tabBar.barTintColor = .named(.backgroundLightest)
         view.backgroundColor = .named(.backgroundLightest)
         tabBar.tintColor = ColorScheme.observer.color
+        students.exhaust()
         presenter?.viewIsReady()
-        students.refresh()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateBadge()
+        refreshNavbarColor()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -157,7 +158,6 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
                 }
                 return
             }
-
             setupTabBar()
             displayDefaultStudent()
             configureStudentMenu()
@@ -318,6 +318,36 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
             item.avatar.name = student.name
             item.label.text = Core.User.displayName(student.shortName, pronouns: student.pronouns)
         }
+        addAddStudentButtonToMenu()
+    }
+
+    func addAddStudentButtonToMenu() {
+        let item = MenuItem()
+        let img = UIImage.icon(.add, .solid)
+        let iv = UIImageView(image: img)
+        iv.contentMode = .scaleAspectFit
+        iv.tintColor = .red
+        item.insertSubview(iv, belowSubview: item.button)
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            iv.widthAnchor.constraint(equalToConstant: 20),
+            iv.heightAnchor.constraint(equalToConstant: 20),
+            iv.centerXAnchor.constraint(equalTo: item.avatar.centerXAnchor),
+            iv.centerYAnchor.constraint(equalTo: item.avatar.centerYAnchor),
+        ])
+
+        item.label.text = NSLocalizedString("Add Student", comment: "")
+        navbarMenuStackView.addArrangedSubview(item)
+        item.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            item.widthAnchor.constraint(equalToConstant: 90),
+            item.heightAnchor.constraint(equalToConstant: 90),
+        ])
+        item.button.addTarget(self, action: #selector(didPressAddStudent(sender:)), for: .primaryActionTriggered)
+    }
+
+    @objc func didPressAddStudent(sender: UIButton) {
+        env.router.route(to: .profileObservees( showAddStudentPrompt: true ), from: self, options: .push)
     }
 
     @objc func didSelectStudent(sender: UIButton) {

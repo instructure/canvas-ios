@@ -31,6 +31,7 @@ class SettingsViewController: UIViewController {
     @objc var addButton: UIBarButtonItem?
     @IBOutlet weak var observeesContainerView: UIView!
     @objc var session: Session?
+    var showAddStudentPrompt: Bool = false
 
     @objc let reuseIdentifier = "SettingsObserveesCell"
 
@@ -43,9 +44,10 @@ class SettingsViewController: UIViewController {
     // ---------------------------------------------
     // MARK: - Initializers
     // ---------------------------------------------
-    static func create(env: AppEnvironment = .shared, session: Session) -> SettingsViewController {
+    static func create(env: AppEnvironment = .shared, session: Session, showAddStudentPrompt: Bool = false) -> SettingsViewController {
         let controller = loadFromStoryboard()
         controller.env = env
+        controller.showAddStudentPrompt = showAddStudentPrompt
         controller.session = session
         controller.viewModel = SettingsViewModel(session: session)
         //  swiftlint:disable:next force_try
@@ -71,6 +73,14 @@ class SettingsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if showAddStudentPrompt {
+            showAddStudentPrompt = false
+            actionAddStudent()
+        }
     }
 
     // ---------------------------------------------
@@ -139,6 +149,8 @@ class SettingsViewController: UIViewController {
                     self.env.router.show(alert, from: self, options: .modal())
                 } else {
                     self.observeesViewController?.refresh()
+                    let observees = AppEnvironment.shared.subscribe(GetObservedStudents(observerID: AppEnvironment.shared.currentSession?.userID ??  "")) { }
+                    observees.exhaust()
                 }
             }
         }

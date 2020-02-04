@@ -102,9 +102,12 @@ let router = Router(routes: [
         return ProfileViewController.create(enrollment: .observer)
     },
 
-    RouteHandler(.profileObservees) { _, _ in
+    RouteHandler(.profileObservees()) { url, _ in
+        let showPromptValue = url.queryItems?.first { $0.name == "showPrompt" }?.value
+        let showPrompt = Bool(showPromptValue ?? "") ?? false
+
         guard let session = legacySession else { return nil }
-        return SettingsViewController.create(session: session)
+        return SettingsViewController.create(session: session, showAddStudentPrompt: showPrompt)
     },
 
     RouteHandler(.observeeThresholds(":userID")) { _, params in
