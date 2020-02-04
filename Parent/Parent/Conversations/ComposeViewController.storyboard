@@ -16,19 +16,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mok-pg-KkL">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mok-pg-KkL">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ucz-Xk-VcY">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ucz-Xk-VcY">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="141.5"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BVF-r0-wRL" customClass="ComposeRecipientsView" customModule="Parent" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BVF-r0-wRL" customClass="ComposeRecipientsView" customModule="Parent" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                    <bool key="isElement" value="NO"/>
+                                                </accessibility>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="zMo-r5-fqc"/>
                                                 </constraints>
                                             </view>
-                                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="noy-Us-iAN" customClass="DividerView" customModule="Parent" customModuleProvider="target">
+                                            <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="noy-Us-iAN" customClass="DividerView" customModule="Parent" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="56" width="375" height="1"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="UF3-u8-IrB"/>
@@ -37,9 +41,11 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Subject" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dz1-0x-wXN" customClass="DynamicTextField" customModule="Parent" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Subject" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dz1-0x-wXN" customClass="DynamicTextField" customModule="Parent" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="57" width="343" height="48"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="Compose.subject"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="Compose.subject">
+                                                    <accessibilityTraits key="traits" header="YES"/>
+                                                </accessibility>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="VCI-fH-9f0"/>
                                                 </constraints>
@@ -53,7 +59,7 @@
                                                     <action selector="updateSendButton" destination="5LE-uY-8Ht" eventType="editingChanged" id="tUg-4O-qDV"/>
                                                 </connections>
                                             </textField>
-                                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rhy-5d-51p" customClass="DividerView" customModule="Parent" customModuleProvider="target">
+                                            <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rhy-5d-51p" customClass="DividerView" customModule="Parent" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="105" width="375" height="1"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="pYh-ox-LRj"/>
@@ -62,9 +68,11 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oQx-YB-DID">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oQx-YB-DID">
                                                 <rect key="frame" x="0.0" y="106" width="375" height="35.5"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="Compose.body"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="Compose.body">
+                                                    <accessibilityTraits key="traits" header="YES"/>
+                                                </accessibility>
                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

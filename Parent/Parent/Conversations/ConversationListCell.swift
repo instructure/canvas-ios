@@ -42,9 +42,9 @@ class ConversationListCell: UITableViewCell {
 
         accessibilityIdentifier = "ConversationListCell.\(conversation.id)"
         accessibilityLabel = String.localizedStringWithFormat(
-            NSLocalizedString("%@, %@, last message %@ %@", comment: "label for conversation row with context, subject, & last message date & text"),
-            conversation.contextName ?? "",
+            NSLocalizedString("%@, in %@, the last message was on %@ %@", comment: "label for conversation row with context, subject, & last message date & text"),
             subject,
+            conversation.contextName ?? "",
             conversation.lastMessageAt.dateMediumString,
             conversation.lastMessage
         )

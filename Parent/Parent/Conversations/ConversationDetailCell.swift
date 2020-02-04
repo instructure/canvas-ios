@@ -43,6 +43,9 @@ class ConversationDetailCell: UITableViewCell {
         avatar.name = userMap[ m.authorID ]?.name ?? ""
 
         handleAttachments(m.attachments, media: m.mediaComment)
+
+        let template = NSLocalizedString("Message from %@, %@, on %@, %@", comment: "")
+        accessibilityLabel = String.localizedStringWithFormat(template, fromLabel.text ?? "", toLabel.text ?? "", dateLabel.text ?? "", m.body)
     }
 
     func handleAttachments(_ attachments: [File], media: MediaComment?) {
