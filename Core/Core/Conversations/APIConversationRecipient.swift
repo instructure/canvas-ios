@@ -35,7 +35,7 @@ extension APIConversationRecipient: Hashable {
 extension APIConversationRecipient {
     public init(searchRecipient r: SearchRecipient) {
         self.id = ID(r.id)
-        self.name = r.fullName
+        self.name = r.name
         self.full_name = r.fullName
         self.avatar_url = APIURL(rawValue: r.avatarURL)
         self.pronouns = r.pronouns

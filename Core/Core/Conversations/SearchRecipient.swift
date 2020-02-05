@@ -21,6 +21,7 @@ import CoreData
 
 public final class SearchRecipient: NSManagedObject {
     @NSManaged public var id: String
+    @NSManaged public var name: String
     @NSManaged public var fullName: String
     @NSManaged public var pronouns: String?
     @NSManaged public var avatarURL: URL?
@@ -28,7 +29,7 @@ public final class SearchRecipient: NSManagedObject {
     @NSManaged public var commonCourses: Set<CommonCourse>
 
     public var displayName: String? {
-        User.displayName(fullName, pronouns: pronouns)
+        User.displayName(name, pronouns: pronouns)
     }
 
     @discardableResult
@@ -37,6 +38,7 @@ public final class SearchRecipient: NSManagedObject {
         let model: SearchRecipient = context.fetch(predicate).first ?? context.insert()
 
         model.id = item.id.value
+        model.name = item.name
         model.fullName = item.full_name
         model.pronouns = item.pronouns
         model.avatarURL = item.avatar_url?.rawValue

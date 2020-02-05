@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="18G3020" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Activity" representedClassName=".Activity" syncable="YES">
         <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -481,6 +481,7 @@
         <attribute name="filter" optional="YES" attributeType="String"/>
         <attribute name="fullName" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
         <attribute name="pronouns" optional="YES" attributeType="String"/>
         <relationship name="commonCourses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CommonCourse" inverseName="searchRecipient" inverseEntity="CommonCourse"/>
     </entity>
@@ -618,7 +619,7 @@
         <element name="Rubric" positionX="-540" positionY="-27" width="128" height="180"/>
         <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="133"/>
         <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="150"/>
-        <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="133"/>
+        <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="148"/>
         <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="403"/>
         <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="268"/>
         <element name="Syllabus" positionX="-540" positionY="-18" width="128" height="73"/>
