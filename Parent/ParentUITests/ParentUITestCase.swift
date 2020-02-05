@@ -21,23 +21,47 @@ import TestsFoundation
 @testable import Core
 
 class ParentUITestCase: CoreUITestCase {
+    override var user: UITestUser? { nil }
+
     override var baseEnrollment: APIEnrollment {
         .make(
             type: "ObserverEnrollment",
-            role: "ObserverEnrollment"
+            role: "ObserverEnrollment",
+            observed_user: APIUser.make()
         )
+    }
+
+    @discardableResult
+    override func mock(courses: [APICourse]) -> [APICourse] {
+        courses.forEach { mock(course: $0) }
+
+        mockData(GetCoursesRequest(include: [
+            .current_grading_period_scores,
+            .favorites,
+            .needs_grading_count,
+            .observed_users,
+            .permissions,
+            .syllabus_body,
+            .tabs,
+            .term,
+            .total_scores,
+        ], perPage: 99), value: courses)
+        return courses
     }
 
     override func mockBaseRequests() {
         mockData(GetWebSessionRequest(to: URL(string: "https://canvas.instructure.com/users/self"))) // cookie keepalive
-        mockEncodableRequest([
-            "users/self/enrollments",
-            "?include[]=avatar_url&include[]=observed_users",
-            "&per_page=99",
-            "&role[]=ObserverEnrollment",
-            "&state[]=active&state[]=completed&state[]=creation_pending",
-            "&state[]=current_and_future&state[]=invited",
-        ].joined(), value: [baseEnrollment])
+        for paginated in [true, false] {
+            mockEncodableRequest([
+                "users/self/enrollments",
+                "?include[]=avatar_url&include[]=observed_users",
+                paginated ? "&per_page=99" : "",
+                "&role[]=ObserverEnrollment",
+                "&state[]=active&state[]=completed&state[]=creation_pending",
+                "&state[]=current_and_future&state[]=invited",
+                ].joined(), value: [baseEnrollment])
+        }
         mockData(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: .make())
+        mock(courses: [.make()])
     }
 }

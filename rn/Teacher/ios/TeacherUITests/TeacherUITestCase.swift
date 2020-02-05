@@ -24,4 +24,12 @@ import XCTest
 
 class TeacherUITestCase: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { return TeacherUITestCase.self }
+
+    @discardableResult
+    override func mock(courses: [APICourse]) -> [APICourse] {
+        courses.forEach { mock(course: $0) }
+        mockData(GetCoursesRequest(enrollmentState: nil, state: [.available, .completed, .unpublished]), value: courses)
+        return courses
+    }
+
 }

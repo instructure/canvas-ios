@@ -25,6 +25,13 @@ import XCTest
 class StudentUITestCase: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { return StudentUITestCase.self }
 
+    @discardableResult
+    override func mock(courses: [APICourse]) -> [APICourse] {
+        courses.forEach { mock(course: $0) }
+        mockData(GetCoursesRequest(enrollmentState: nil, state: [.available, .completed]), value: courses)
+        return courses
+    }
+
     func navBarColorHex() -> String? {
         let image = app.navigationBars.firstMatch.screenshot().image
         guard let pixelData = image.cgImage?.dataProvider?.data,

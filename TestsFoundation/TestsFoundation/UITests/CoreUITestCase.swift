@@ -525,13 +525,8 @@ open class CoreUITestCase: XCTestCase {
 
     @discardableResult
     open func mock(courses: [APICourse]) -> [APICourse] {
-        courses.forEach { mock(course: $0) }
-        var state: [GetCoursesRequest.State] = [.available, .completed]
-        if Bundle.main.isTeacherApp {
-            state.append(.unpublished)
-        }
-        mockData(GetCoursesRequest(enrollmentState: nil, state: state), value: courses)
-        return courses
+        XCTFail("Must be overridden to use some mock conveniences")
+        return []
     }
 
     open var baseEnrollment: APIEnrollment {
