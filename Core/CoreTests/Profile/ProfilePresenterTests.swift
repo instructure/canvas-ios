@@ -125,7 +125,7 @@ class ProfilePresenterTests: CoreTestCase {
         view.expect(route: Route.conversations) {
             presenter.cells.first(where: { $0.id == "inbox" })?.block(UITableViewCell())
         }
-        view.expect(route: Route.profileObservees) {
+        view.expect(route: Route.profileObservees()) {
             presenter.cells.first(where: { $0.id == "manageChildren" })?.block(UITableViewCell())
         }
         XCTAssertFalse(presenter.cells.contains(where: { $0.id == "files" }))

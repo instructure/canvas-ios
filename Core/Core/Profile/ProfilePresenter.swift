@@ -69,7 +69,7 @@ public class ProfilePresenter {
                 })
             }
             cells.append(ProfileViewCell("manageChildren", name: NSLocalizedString("Manage Children", bundle: .core, comment: "")) { [weak self] _ in
-                self?.view?.route(to: .profileObservees)
+                self?.view?.route(to: .profileObservees())
             })
         } else {
             cells.append(ProfileViewCell("files", name: NSLocalizedString("Files", bundle: .core, comment: "")) { [weak self] _ in
