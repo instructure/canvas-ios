@@ -29,7 +29,7 @@ class InboxTests: CoreUITestCase {
         let label = ConversationList.cell(id: "320").label()
         XCTAssert(label.contains("Assignments"))
         XCTAssert(label.contains("need to talk"))
-        XCTAssert(label.contains("last message Jan"))
+        XCTAssert(label.contains("last message was on Jan"))
         XCTAssert(label.contains("Jeff"))
         ConversationList.cell(id: "320").waitToExist().tap()
         ConversationDetail.replyButton.tapUntil {
