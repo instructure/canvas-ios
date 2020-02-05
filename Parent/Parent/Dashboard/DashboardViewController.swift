@@ -65,6 +65,9 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
                 alertsTabItem.badgeColor = color
                 let displayName = Core.User.displayName(student.name, pronouns: student.pronouns)
                 navbarNameButton.setTitle(displayName, for: .normal)
+                let template = NSLocalizedString("Current student: %@. Tap to switch students", comment: "")
+                navbarNameButton.accessibilityLabel = String.localizedStringWithFormat(template, displayName)
+                navbarNameButton.accessibilityTraits.insert(.header)
                 navigationItem.leftBarButtonItem?.addBadge(number: badgeCount, color: color)
                 navbarAvatar?.name = student.name
                 navbarAvatar?.url = student.avatarURL
@@ -138,7 +141,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         bbi.tintColor = .white
         navigationItem.leftBarButtonItem = bbi
         bbi.accessibilityIdentifier = "Dashboard.profileButton"
-
+        bbi.accessibilityLabel = NSLocalizedString("Settings", comment: "")
     }
 
     func update() {
@@ -311,13 +314,16 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
             if student.id == (currentStudent?.id ?? "") { continue }
             let item = MenuItem()
             item.button.tag = index
+            let studentName = Core.User.displayName(student.shortName, pronouns: student.pronouns)
+            item.button.accessibilityLabel = studentName
             item.button.addTarget(self, action: #selector(didSelectStudent(sender:)), for: .primaryActionTriggered)
             navbarMenuStackView.addArrangedSubview(item)
             item.addConstraintsWithVFL("H:[view(90)]")
             item.addConstraintsWithVFL("V:[view(90)]")
             item.avatar.url = student.avatarURL
             item.avatar.name = student.name
-            item.label.text = Core.User.displayName(student.shortName, pronouns: student.pronouns)
+            item.label.text = studentName
+            item.label.isAccessibilityElement = false
         }
     }
 
