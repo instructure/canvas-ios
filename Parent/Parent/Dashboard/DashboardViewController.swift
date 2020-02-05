@@ -65,7 +65,10 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
                 alertsTabItem.badgeColor = color
                 let displayName = Core.User.displayName(student.name, pronouns: student.pronouns)
                 navbarNameButton.setTitle(displayName, for: .normal)
-                navigationItem.leftBarButtonItem?.addBadge(number: badgeCount, color: color)
+                let template = NSLocalizedString("Current student: %@. Tap to switch students", comment: "")
+                navbarNameButton.accessibilityLabel = String.localizedStringWithFormat(template, displayName)
+                navbarNameButton.accessibilityTraits.insert(.header)
+                updateBadgeCount(color: color)
                 navbarAvatar?.name = student.name
                 navbarAvatar?.url = student.avatarURL
                 navbarAvatar?.label.backgroundColor = .white
@@ -139,7 +142,6 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         bbi.tintColor = .white
         navigationItem.leftBarButtonItem = bbi
         bbi.accessibilityIdentifier = "Dashboard.profileButton"
-
     }
 
     func update() {
@@ -272,10 +274,23 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
                 self?.badgeCount = unreadCount
                 performUIUpdate {
                     let color = ColorScheme.observee(currentStudentID ?? "0").color
-                    self?.navigationItem.leftBarButtonItem?.addBadge(number: unreadCount, color: color)
+                    self?.updateBadgeCount(color: color)
                 }
             } }
         }
+    }
+
+    func updateBadgeCount(color: UIColor) {
+        navigationItem.leftBarButtonItem?.addBadge(number: badgeCount, color: color)
+        let accessibilityLabel: String
+        if badgeCount > 0 {
+            let pluralFormat = NSLocalizedString("conversation_unread_messages", bundle: .core, comment: "")
+            let unreadMessages = String.localizedStringWithFormat(pluralFormat, badgeCount)
+            accessibilityLabel = String.localizedStringWithFormat( NSLocalizedString("Settings. %@", comment: ""), unreadMessages)
+        } else {
+            accessibilityLabel = NSLocalizedString("Settings", comment: "")
+        }
+        navigationItem.leftBarButtonItem?.accessibilityLabel = accessibilityLabel
     }
 
     // ---------------------------------------------
@@ -310,13 +325,16 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
             if student.id == (currentStudent?.id ?? "") { continue }
             let item = MenuItem()
             item.button.tag = index
+            let studentName = Core.User.displayName(student.shortName, pronouns: student.pronouns)
+            item.button.accessibilityLabel = studentName
             item.button.addTarget(self, action: #selector(didSelectStudent(sender:)), for: .primaryActionTriggered)
             navbarMenuStackView.addArrangedSubview(item)
             item.addConstraintsWithVFL("H:[view(90)]")
             item.addConstraintsWithVFL("V:[view(90)]")
             item.avatar.url = student.avatarURL
             item.avatar.name = student.name
-            item.label.text = Core.User.displayName(student.shortName, pronouns: student.pronouns)
+            item.label.text = studentName
+            item.label.isAccessibilityElement = false
         }
         addAddStudentButtonToMenu()
     }
@@ -432,7 +450,6 @@ extension DashboardViewController: UIPageViewControllerDelegate {
             tabBar.selectedItem = alertsTabItem
         }
     }
-
 }
 
 extension DashboardViewController: CustomNavbarActionDelegate {
