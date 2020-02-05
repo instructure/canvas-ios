@@ -68,7 +68,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
                 let template = NSLocalizedString("Current student: %@. Tap to switch students", comment: "")
                 navbarNameButton.accessibilityLabel = String.localizedStringWithFormat(template, displayName)
                 navbarNameButton.accessibilityTraits.insert(.header)
-                navigationItem.leftBarButtonItem?.addBadge(number: badgeCount, color: color)
+                updateBadgeCount(color: color)
                 navbarAvatar?.name = student.name
                 navbarAvatar?.url = student.avatarURL
                 navbarAvatar?.label.backgroundColor = .white
@@ -141,7 +141,6 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         bbi.tintColor = .white
         navigationItem.leftBarButtonItem = bbi
         bbi.accessibilityIdentifier = "Dashboard.profileButton"
-        bbi.accessibilityLabel = NSLocalizedString("Settings", comment: "")
     }
 
     func update() {
@@ -275,10 +274,22 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
                 self?.badgeCount = unreadCount
                 performUIUpdate {
                     let color = ColorScheme.observee(currentStudentID ?? "0").color
-                    self?.navigationItem.leftBarButtonItem?.addBadge(number: unreadCount, color: color)
+                    self?.updateBadgeCount(color: color)
                 }
             } }
         }
+    }
+
+    func updateBadgeCount(color: UIColor) {
+        navigationItem.leftBarButtonItem?.addBadge(number: badgeCount, color: color)
+        let accessibilityLabel: String
+        if badgeCount > 0 {
+            let template = NSLocalizedString("Settings. %d unread conversations.", comment: "")
+            accessibilityLabel = String.localizedStringWithFormat(template, badgeCount)
+        } else {
+            accessibilityLabel = NSLocalizedString("Settings", comment: "")
+        }
+        navigationItem.leftBarButtonItem?.accessibilityLabel = accessibilityLabel
     }
 
     // ---------------------------------------------
@@ -409,7 +420,6 @@ extension DashboardViewController: UIPageViewControllerDelegate {
             tabBar.selectedItem = alertsTabItem
         }
     }
-
 }
 
 extension DashboardViewController: CustomNavbarActionDelegate {
