@@ -284,8 +284,9 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         navigationItem.leftBarButtonItem?.addBadge(number: badgeCount, color: color)
         let accessibilityLabel: String
         if badgeCount > 0 {
-            let template = NSLocalizedString("Settings. %d unread conversations.", comment: "")
-            accessibilityLabel = String.localizedStringWithFormat(template, badgeCount)
+            let pluralFormat = NSLocalizedString("conversation_unread_messages", bundle: .core, comment: "")
+            let unreadMessages = String.localizedStringWithFormat(pluralFormat, badgeCount)
+            accessibilityLabel = String.localizedStringWithFormat( NSLocalizedString("Settings. %@", comment: ""), unreadMessages)
         } else {
             accessibilityLabel = NSLocalizedString("Settings", comment: "")
         }
