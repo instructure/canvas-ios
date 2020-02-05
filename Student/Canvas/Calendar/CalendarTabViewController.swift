@@ -17,7 +17,7 @@
 //
 
 import Foundation
-import TechDebt
+import CanvasCore
 import Core
 
 public func CalendarTabViewController(session: Session, route: @escaping (UIViewController, URL)->()) -> UIViewController {

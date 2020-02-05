@@ -85,10 +85,6 @@ abstract_target 'defaults' do
     pod 'Firebase/Analytics', '~> 6.13'
   end
 
-  target 'TechDebt' do
-    project 'Student/Student.xcodeproj'
-  end
-
   target 'Student' do
     project 'Student/Student.xcodeproj'
     pod 'Fabric', '~> 1.10.2'
@@ -108,10 +104,6 @@ abstract_target 'defaults' do
   target 'CanvasCore' do
     project 'CanvasCore/CanvasCore.xcodeproj'
     pod 'Crashlytics', '~> 3.14.0'
-  end
-
-  target 'CanvasKit1' do
-    project 'Student/Student.xcodeproj'
   end
 
   target 'CanvasKit' do

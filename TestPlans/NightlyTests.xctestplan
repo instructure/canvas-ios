@@ -33,11 +33,6 @@
         },
         {
           "containerPath" : "container:Student.xcodeproj",
-          "identifier" : "49AA29161CF4D1880055862D",
-          "name" : "CanvasKit1"
-        },
-        {
-          "containerPath" : "container:Student.xcodeproj",
           "identifier" : "3B6DCCA41FB502CD005EE8D2",
           "name" : "GradesWidget"
         },
@@ -50,11 +45,6 @@
           "containerPath" : "container:Student.xcodeproj",
           "identifier" : "B1BB7A8122BAC820006CA068",
           "name" : "SubmitAssignment"
-        },
-        {
-          "containerPath" : "container:Student.xcodeproj",
-          "identifier" : "492704AA1CF4B6D700C631C6",
-          "name" : "TechDebt"
         },
         {
           "containerPath" : "container:..\/rn\/Teacher\/ios\/Teacher.xcodeproj",

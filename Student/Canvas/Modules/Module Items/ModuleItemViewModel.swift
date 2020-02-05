@@ -19,7 +19,6 @@
 import ReactiveSwift
 import ReactiveCocoa
 import CanvasCore
-import TechDebt
 import Core
 import class CanvasCore.ModuleItem
 import class CanvasCore.Module
