@@ -31,3 +31,15 @@ RCT_EXPORT_METHOD(log:(NSString*)message) {
 }
 
 @end
+
+// Fix scrollEnabled in TextInput multiline
+#import <React/RCTMultilineTextInputViewManager.h>
+
+@interface RCTMultilineTextInputViewManager (ScrollEnabled)
+@end
+
+@implementation RCTMultilineTextInputViewManager (ScrollEnabled)
+
+RCT_REMAP_VIEW_PROPERTY(scrollEnabled, backedTextInputView.scrollEnabled, BOOL)
+
+@end
