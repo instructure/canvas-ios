@@ -2147,7 +2147,6 @@
 				7DCF2037216D55E6003AF358 /* QuizType.swift */,
 				B109248B23CD2BC400796903 /* Role.swift */,
 				3B6386A82264FB17002DEE72 /* Rubric.swift */,
-				9F87D0782322EF5A00EDA363 /* SearchRecipient.swift */,
 				7DF4FFDE21713919007E5F81 /* Submission.swift */,
 				7DA5C48722385435003CDB4C /* SubmissionComment.swift */,
 				7DCF1E9F216BB731003AF358 /* SubmissionType.swift */,
@@ -2389,8 +2388,9 @@
 				7DFDB43523A4587B00B28DED /* Conversation.swift */,
 				7DFDB43723A45A4A00B28DED /* ConversationMessage.swift */,
 				7DFDB43923A45A5A00B28DED /* ConversationParticipant.swift */,
-				7D26B84223A7F24400262380 /* GetConversations.swift */,
 				9F73859D23C904D200A9C6FE /* CreateConversation.swift */,
+				7D26B84223A7F24400262380 /* GetConversations.swift */,
+				9F87D0782322EF5A00EDA363 /* SearchRecipient.swift */,
 			);
 			path = Conversations;
 			sourceTree = "<group>";
