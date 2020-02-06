@@ -19,7 +19,7 @@
 // @flow
 
 import React, { PureComponent } from 'react'
-import ReactNative, {
+import {
   View,
   TextInput,
   TouchableHighlight,
@@ -39,12 +39,10 @@ import { colors, createStyleSheet } from '../../common/stylesheet'
 import DisclosureIndicator from '../../common/components/DisclosureIndicator'
 import RowWithSwitch from '../../common/components/rows/RowWithSwitch'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import AutoGrowingTextInput from '../../common/components/AutoGrowingTextInput'
 import ModalOverlay from '../../common/components/ModalOverlay'
 import AddressBookToken from './components/AddressBookToken'
 import { createConversation, addMessage, isAbort } from '../../canvas-api'
 import { Text } from '../../common/text'
-import throttle from 'lodash/throttle'
 
 type OwnProps = {
   conversationID?: string,
@@ -209,16 +207,6 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
     })
   }
 
-  adjust = throttle((e: any) => {
-    const element = ReactNative.findNodeHandle(e.target)
-    this.scrollView && this.scrollView.scrollToFocusedInput(element)
-  }, 250)
-
-  scrollToEnd = (e: any) => {
-    e.persist()
-    this.adjust(e)
-  }
-
   setStateAndUpdate = (state: any) => {
     this.setState(state, () => {
       this._validateSendButton()
@@ -341,18 +329,15 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
                 identifier='compose-message.send-all-toggle'
               />
             }
-            <View style={[styles.message, styles.messageWrapper]}>
-              <AutoGrowingTextInput
-                placeholder={i18n('Compose Message')}
-                style={styles.cell}
-                placeholderTextColor={colors.textDark}
-                defaultHeight={54}
-                onContentSizeChange={this.scrollToEnd}
-                onChangeText={this._bodyChanged}
-                testID='compose-message.body-text-input'
-                extraHeight={20}
-              />
-            </View>
+            <TextInput
+              placeholder={i18n('Compose Message')}
+              style={styles.body}
+              placeholderTextColor={colors.textDark}
+              onChangeText={this._bodyChanged}
+              testID='compose-message.body-text-input'
+              multiline={true}
+              scrollEnabled={false}
+            />
             {this.props.includedMessages &&
               <View testID='compose.forwarded-message' style={styles.forwardedMessage}>
                 <Text style={styles.forwardedMessageTitle}>{i18n('Forwarded Message:')}</Text>
@@ -376,14 +361,12 @@ const styles = createStyleSheet((colors, vars) => ({
     lineHeight: 19,
     color: colors.textDarkest,
   },
-  messageWrapper: {
-    borderBottomWidth: 0,
+  body: {
+    fontSize: 16,
+    lineHeight: 19,
+    color: colors.textDarkest,
     paddingTop: 10,
-    paddingBottom: 40,
-  },
-  message: {
-    paddingTop: vars.padding / 1.25,
-    paddingBottom: vars.padding / 1.25,
+    paddingBottom: vars.padding / 2,
     paddingLeft: vars.padding,
     paddingRight: vars.padding,
   },

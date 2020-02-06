@@ -153,41 +153,28 @@ exports[`Compose renders 1`] = `
         title="Send individual message to each recipient"
         value={false}
       />
-      <View
+      <TextInput
+        allowFontScaling={true}
+        multiline={true}
+        onChangeText={[Function]}
+        placeholder="Compose Message"
+        placeholderTextColor="#8B969E"
+        rejectResponderTermination={true}
+        scrollEnabled={false}
         style={
-          Array [
-            Object {
-              "paddingBottom": 12.8,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 12.8,
-            },
-            Object {
-              "borderBottomWidth": 0,
-              "paddingBottom": 40,
-              "paddingTop": 10,
-            },
-          ]
-        }
-      >
-        <AutoGrowingTextInput
-          defaultHeight={54}
-          extraHeight={20}
-          onChangeText={[Function]}
-          onContentSizeChange={[Function]}
-          placeholder="Compose Message"
-          placeholderTextColor="#8B969E"
-          style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "height": 54,
-              "lineHeight": 19,
-            }
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+            "lineHeight": 19,
+            "paddingBottom": 8,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 10,
           }
-          testID="compose-message.body-text-input"
-        />
-      </View>
+        }
+        testID="compose-message.body-text-input"
+        underlineColorAndroid="transparent"
+      />
     </KeyboardAwareScrollView>
   </View>
 </Screen>
@@ -428,41 +415,28 @@ exports[`Compose renders after picking a course 1`] = `
         title="Send individual message to each recipient"
         value={false}
       />
-      <View
+      <TextInput
+        allowFontScaling={true}
+        multiline={true}
+        onChangeText={[Function]}
+        placeholder="Compose Message"
+        placeholderTextColor="#8B969E"
+        rejectResponderTermination={true}
+        scrollEnabled={false}
         style={
-          Array [
-            Object {
-              "paddingBottom": 12.8,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 12.8,
-            },
-            Object {
-              "borderBottomWidth": 0,
-              "paddingBottom": 40,
-              "paddingTop": 10,
-            },
-          ]
-        }
-      >
-        <AutoGrowingTextInput
-          defaultHeight={54}
-          extraHeight={20}
-          onChangeText={[Function]}
-          onContentSizeChange={[Function]}
-          placeholder="Compose Message"
-          placeholderTextColor="#8B969E"
-          style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "height": 54,
-              "lineHeight": 19,
-            }
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+            "lineHeight": 19,
+            "paddingBottom": 8,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 10,
           }
-          testID="compose-message.body-text-input"
-        />
-      </View>
+        }
+        testID="compose-message.body-text-input"
+        underlineColorAndroid="transparent"
+      />
     </KeyboardAwareScrollView>
   </View>
 </Screen>
@@ -701,41 +675,28 @@ exports[`Compose renders reply 1`] = `
         title="Send individual message to each recipient"
         value={false}
       />
-      <View
+      <TextInput
+        allowFontScaling={true}
+        multiline={true}
+        onChangeText={[Function]}
+        placeholder="Compose Message"
+        placeholderTextColor="#8B969E"
+        rejectResponderTermination={true}
+        scrollEnabled={false}
         style={
-          Array [
-            Object {
-              "paddingBottom": 12.8,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 12.8,
-            },
-            Object {
-              "borderBottomWidth": 0,
-              "paddingBottom": 40,
-              "paddingTop": 10,
-            },
-          ]
-        }
-      >
-        <AutoGrowingTextInput
-          defaultHeight={54}
-          extraHeight={20}
-          onChangeText={[Function]}
-          onContentSizeChange={[Function]}
-          placeholder="Compose Message"
-          placeholderTextColor="#8B969E"
-          style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "height": 54,
-              "lineHeight": 19,
-            }
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+            "lineHeight": 19,
+            "paddingBottom": 8,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 10,
           }
-          testID="compose-message.body-text-input"
-        />
-      </View>
+        }
+        testID="compose-message.body-text-input"
+        underlineColorAndroid="transparent"
+      />
     </KeyboardAwareScrollView>
   </View>
 </Screen>
@@ -894,41 +855,28 @@ exports[`Compose renders with passed in recipients 1`] = `
         title="Send individual message to each recipient"
         value={false}
       />
-      <View
+      <TextInput
+        allowFontScaling={true}
+        multiline={true}
+        onChangeText={[Function]}
+        placeholder="Compose Message"
+        placeholderTextColor="#8B969E"
+        rejectResponderTermination={true}
+        scrollEnabled={false}
         style={
-          Array [
-            Object {
-              "paddingBottom": 12.8,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 12.8,
-            },
-            Object {
-              "borderBottomWidth": 0,
-              "paddingBottom": 40,
-              "paddingTop": 10,
-            },
-          ]
-        }
-      >
-        <AutoGrowingTextInput
-          defaultHeight={54}
-          extraHeight={20}
-          onChangeText={[Function]}
-          onContentSizeChange={[Function]}
-          placeholder="Compose Message"
-          placeholderTextColor="#8B969E"
-          style={
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-              "height": 54,
-              "lineHeight": 19,
-            }
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+            "lineHeight": 19,
+            "paddingBottom": 8,
+            "paddingLeft": 16,
+            "paddingRight": 16,
+            "paddingTop": 10,
           }
-          testID="compose-message.body-text-input"
-        />
-      </View>
+        }
+        testID="compose-message.body-text-input"
+        underlineColorAndroid="transparent"
+      />
     </KeyboardAwareScrollView>
   </View>
 </Screen>
