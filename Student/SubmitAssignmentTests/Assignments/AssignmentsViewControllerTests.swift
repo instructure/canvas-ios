@@ -24,7 +24,7 @@ import XCTest
 
 class AssignmentsViewControllerTests: SubmitAssignmentTests {
     var courseID = "1"
-    var selectedAssignmentID: String? = nil
+    var selectedAssignmentID: String?
     var callback: (Assignment) -> Void = { _ in }
 
     lazy var controller = AssignmentsViewController.create(
@@ -98,7 +98,7 @@ class AssignmentsViewControllerTests: SubmitAssignmentTests {
         XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 1)
         let loadingCell = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0))
         XCTAssert(loadingCell is LoadingCell)
-    
+
         task.paused = false
         XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 1)
         let cell = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0))
