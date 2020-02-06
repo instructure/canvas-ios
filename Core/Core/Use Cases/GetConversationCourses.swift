@@ -30,7 +30,11 @@ public class GetConversationCourses: APIUseCase {
 
     public var scope: Scope {
         return Scope(
-            predicate: NSPredicate(format: "%K == %@ AND %K == %@", #keyPath(Enrollment.type), "ObserverEnrollment", #keyPath(Enrollment.stateRaw), "active"),
+            predicate: NSPredicate(format: "%K == %@ AND %K == %@ AND %K != nil",
+                #keyPath(Enrollment.type), "ObserverEnrollment",
+                #keyPath(Enrollment.stateRaw), "active",
+                #keyPath(Enrollment.observedUser)
+            ),
             order: [
                 NSSortDescriptor(key: #keyPath(Enrollment.observedUser.name), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),
                 NSSortDescriptor(key: #keyPath(Enrollment.course.name), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),
