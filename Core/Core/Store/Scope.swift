@@ -30,7 +30,7 @@ public struct Scope: Equatable {
     }
 
     public init(predicate: NSPredicate, orderBy order: String, ascending: Bool = true, naturally: Bool = false, sectionNameKeyPath: String? = nil) {
-        let sort = NSSortDescriptor(key: order, ascending: ascending, selector: naturally ? #selector(NSString.localizedStandardCompare(_:)) : nil)
+        let sort = NSSortDescriptor(key: order, ascending: ascending, naturally: naturally)
         self.init(predicate: predicate, order: [sort], sectionNameKeyPath: sectionNameKeyPath)
     }
 
@@ -38,12 +38,18 @@ public struct Scope: Equatable {
     /// Adds a default `order` using the `key` ascending
     public static func `where`(_ key: String, equals value: Any, orderBy order: String? = nil, ascending: Bool = true, naturally: Bool = false) -> Scope {
         let predicate = NSPredicate(format: "%K == %@", argumentArray: [key, value])
-        let sort = NSSortDescriptor(key: order ?? key, ascending: ascending, selector: naturally ? #selector(NSString.localizedStandardCompare(_:)) : nil)
+        let sort = NSSortDescriptor(key: order ?? key, ascending: ascending, naturally: naturally)
         return Scope(predicate: predicate, order: [sort])
     }
 
     public static func all(orderBy order: String, ascending: Bool = true, naturally: Bool = false) -> Scope {
-        let sort = NSSortDescriptor(key: order, ascending: ascending, selector: naturally ? #selector(NSString.localizedStandardCompare(_:)) : nil)
+        let sort = NSSortDescriptor(key: order, ascending: ascending, naturally: naturally)
         return Scope(predicate: .all, order: [sort])
+    }
+}
+
+extension NSSortDescriptor {
+    convenience init(key: String?, ascending: Bool, naturally: Bool) {
+        self.init(key: key, ascending: ascending, selector: naturally ? #selector(NSString.localizedStandardCompare(_:)) : nil)
     }
 }

@@ -29,7 +29,7 @@ extension NSPredicate {
 
     public convenience init(key: String, equals value: CVarArg?) {
         if let value = value {
-            self.init(format: "%K == %@", key, value)
+            self.init(format: "%K == %@", argumentArray: [key, value])
         } else {
             self.init(format: "%K == nil", key)
         }
