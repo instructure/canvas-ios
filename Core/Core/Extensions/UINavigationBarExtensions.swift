@@ -44,9 +44,8 @@ extension UINavigationBar {
         titleTextAttributes = [.foregroundColor: UIColor.named(.textDarkest)]
         tintColor = foreground
         barTintColor = .named(.backgroundLightest)
+        isTranslucent = false
         barStyle = .default
-        isTranslucent = true
-
         shadowImage = nil
         setBackgroundImage(nil, for: .default)
     }
