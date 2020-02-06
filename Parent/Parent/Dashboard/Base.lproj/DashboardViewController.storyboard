@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,9 +12,8 @@
         <!--Navigation Controller-->
         <scene sceneID="XHV-pn-3qE">
             <objects>
-                <navigationController id="Ogv-5G-4tY" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="Ogv-5G-4tY" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TCI-yy-LpL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -32,12 +32,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hGu-9a-NfW">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="135"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tdi-oP-0Eu" customClass="DynamicButton" customModule="Parent" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="44.5" width="46" height="46"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="46" id="0Zp-hK-l2k"/>
+                                            <constraint firstAttribute="height" constant="46" id="t2o-RH-Fkm"/>
+                                        </constraints>
+                                        <color key="tintColor" name="textLightest"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="hamburgerSolid"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="hamburgerMenuPressed:" destination="RfP-iM-Wap" eventType="primaryActionTriggered" id="V1H-Un-Zye"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="135" id="jno-UE-zfB"/>
+                                    <constraint firstItem="tdi-oP-0Eu" firstAttribute="leading" secondItem="hGu-9a-NfW" secondAttribute="leading" constant="8" id="qVf-Ah-GOW"/>
+                                    <constraint firstItem="tdi-oP-0Eu" firstAttribute="centerY" secondItem="hGu-9a-NfW" secondAttribute="centerY" id="vhU-E5-Sed"/>
+                                </constraints>
+                            </view>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iKU-8j-3jF">
                                 <rect key="frame" x="0.0" y="618" width="375" height="49"/>
                                 <constraints>
-
                                     <constraint firstAttribute="height" constant="49" id="WhA-En-3PW"/>
-
                                 </constraints>
                                 <items>
                                     <tabBarItem title="Courses" image="icon_courses" id="BPk-vK-62u"/>
@@ -47,28 +71,34 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tabBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tQz-mz-EdB">
-                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <rect key="frame" x="0.0" y="135" width="375" height="483"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.99607843137254903" green="0.99607843137254903" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="iKU-8j-3jF" firstAttribute="leading" secondItem="vFv-WE-Vix" secondAttribute="leading" id="0RD-HU-8QU"/>
+                            <constraint firstItem="vFv-WE-Vix" firstAttribute="trailing" secondItem="hGu-9a-NfW" secondAttribute="trailing" id="JLA-Hc-aFE"/>
                             <constraint firstItem="tQz-mz-EdB" firstAttribute="leading" secondItem="vFv-WE-Vix" secondAttribute="leading" id="Kr8-8g-rQP"/>
                             <constraint firstItem="vFv-WE-Vix" firstAttribute="trailing" secondItem="tQz-mz-EdB" secondAttribute="trailing" id="Lb8-TL-5Ef"/>
-                            <constraint firstItem="tQz-mz-EdB" firstAttribute="top" secondItem="vFv-WE-Vix" secondAttribute="top" id="R5e-IU-4yy"/>
                             <constraint firstItem="iKU-8j-3jF" firstAttribute="trailing" secondItem="vFv-WE-Vix" secondAttribute="trailing" id="VJG-49-Asm"/>
+                            <constraint firstItem="hGu-9a-NfW" firstAttribute="leading" secondItem="vFv-WE-Vix" secondAttribute="leading" id="cDI-JF-L81"/>
                             <constraint firstItem="iKU-8j-3jF" firstAttribute="top" secondItem="tQz-mz-EdB" secondAttribute="bottom" id="hgg-xF-7aY"/>
+                            <constraint firstItem="tQz-mz-EdB" firstAttribute="top" secondItem="hGu-9a-NfW" secondAttribute="bottom" id="jK6-ju-gOs"/>
                             <constraint firstItem="iKU-8j-3jF" firstAttribute="bottom" secondItem="vFv-WE-Vix" secondAttribute="bottom" id="kC0-EO-fmh"/>
+                            <constraint firstItem="hGu-9a-NfW" firstAttribute="top" secondItem="utC-55-lT3" secondAttribute="top" id="qHd-rs-hR1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vFv-WE-Vix"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="Tsg-bE-Vpc"/>
                     <connections>
                         <outlet property="alertsTabItem" destination="nta-AM-F42" id="w8m-qN-CpN"/>
                         <outlet property="calendarTabItem" destination="W2P-Wd-gLR" id="1mr-Yk-KbW"/>
                         <outlet property="contentContainer" destination="tQz-mz-EdB" id="yzQ-BK-TYT"/>
                         <outlet property="coursesTabItem" destination="BPk-vK-62u" id="tuH-KS-Hkq"/>
+                        <outlet property="customNavBarContainer" destination="hGu-9a-NfW" id="6gW-Zi-su0"/>
+                        <outlet property="hamburgerMenuButton" destination="tdi-oP-0Eu" id="cWa-qa-4ED"/>
                         <outlet property="tabBar" destination="iKU-8j-3jF" id="syx-1v-wh8"/>
                     </connections>
                 </viewController>
@@ -81,5 +111,8 @@
         <image name="icon_calendar" width="34" height="34"/>
         <image name="icon_courses" width="34" height="34"/>
         <image name="icon_notification" width="34" height="34"/>
+        <namedColor name="textLightest">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

@@ -24,16 +24,16 @@ import Core
 }
 
 protocol CustomNavbarProtocol: class {
-    var navigationController: UINavigationController? { get }
-    var navigationItem: UINavigationItem { get }
+    var customNavBarContainer: UIView! { get }
     var view: UIView! { get }
     var customNavBarColor: UIColor? { get }
     var navbarAvatar: AvatarView? { get set }
-    var navbarBottomViewContainer: UIView! { get set }
+    var navbarContentContainer: UIView! { get set }
     var navbarMenu: UIView! { get set }
     var navbarMenuStackView: HorizontalScrollingStackview! { get set }
     var navbarMenuHeightConstraint: NSLayoutConstraint! { get set }
     var navbarNameButton: DynamicButton! { get set }
+    var navbarActionButton: UIButton! { get set }
     var customNavbarDelegate: CustomNavbarActionDelegate? { get set }
     var navbarMenuIsHidden: Bool { get }
 
@@ -47,10 +47,11 @@ extension CustomNavbarProtocol {
 
     func setupCustomNavbar() {
         refreshNavbarColor()
-        addNavbarBottomView()
+        configureButtonNameContainer()
         configureAvatar()
         configureNameButton()
         configureMenu()
+        configureActionButton()
     }
 
     func configureMenu() {
@@ -64,7 +65,7 @@ extension CustomNavbarProtocol {
         NSLayoutConstraint.activate([
             v.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             v.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            v.topAnchor.constraint(equalTo: navbarBottomViewContainer.bottomAnchor),
+            v.topAnchor.constraint(equalTo: customNavBarContainer.bottomAnchor),
             navbarMenuHeightConstraint,
         ])
 
@@ -103,13 +104,14 @@ extension CustomNavbarProtocol {
         navbarNameButton.titleLabel?.textAlignment = .center
 
         navbarNameButton.translatesAutoresizingMaskIntoConstraints = false
-        navbarBottomViewContainer.addSubview(navbarNameButton)
+        navbarContentContainer.addSubview(navbarNameButton)
 
+        guard let avatar = navbarAvatar else { return }
         NSLayoutConstraint.activate([
-            navbarNameButton.leadingAnchor.constraint(equalTo: navbarBottomViewContainer.leadingAnchor),
-            navbarNameButton.trailingAnchor.constraint(equalTo: navbarBottomViewContainer.trailingAnchor),
+            navbarNameButton.leadingAnchor.constraint(equalTo: navbarContentContainer.leadingAnchor),
+            navbarNameButton.trailingAnchor.constraint(equalTo: navbarContentContainer.trailingAnchor),
             navbarNameButton.heightAnchor.constraint(equalToConstant: 21),
-            navbarNameButton.topAnchor.constraint(equalTo: navbarBottomViewContainer.topAnchor, constant: 8),
+            navbarNameButton.topAnchor.constraint(equalTo: avatar.bottomAnchor, constant: 8),
         ])
 
         if let customNavbarDelegate = customNavbarDelegate {
@@ -119,42 +121,43 @@ extension CustomNavbarProtocol {
 
     func configureAvatar() {
         let avatarSize: CGFloat =  44
-        let container = UIView()
-        container.accessibilityElementsHidden = true
-        container.heightAnchor.constraint(equalToConstant: avatarSize).isActive = true
-        container.widthAnchor.constraint(equalToConstant: avatarSize).isActive = true
-
         let avatarRect = CGRect(x: 0, y: 0, width: avatarSize, height: avatarSize)
         let avatar = AvatarView(frame: avatarRect)
         navbarAvatar = avatar
-        navbarAvatar?.heightAnchor.constraint(equalToConstant: avatarSize).isActive = true
-        navbarAvatar?.widthAnchor.constraint(equalToConstant: avatarSize).isActive = true
-        container.addSubview(avatar)
+        navbarContentContainer.addSubview(avatar)
+        avatar.translatesAutoresizingMaskIntoConstraints = false
+        avatar.heightAnchor.constraint(equalToConstant: avatarSize).isActive = true
+        avatar.widthAnchor.constraint(equalToConstant: avatarSize).isActive = true
         NSLayoutConstraint.activate([
-            avatar.centerXAnchor.constraint(equalTo: container.centerXAnchor),
-            avatar.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+            avatar.topAnchor.constraint(equalToSystemSpacingBelow: navbarContentContainer.topAnchor, multiplier: 0),
+            avatar.centerXAnchor.constraint(equalTo: navbarContentContainer.centerXAnchor),
         ])
         navbarAvatar?.addDropShadow(size: avatarSize)
-
-        let button = UIButton()
-        container.addSubview(button)
-        button.pinToAllSidesOfSuperview()
-        button.addTarget(customNavbarDelegate, action: #selector(CustomNavbarActionDelegate.didClickNavbarNameButton(sender:)), for: .primaryActionTriggered)
-        navigationItem.titleView = container
     }
 
-    func addNavbarBottomView(height: CGFloat = 45) {
-        navbarBottomViewContainer = UIView()
-        let v: UIView = navbarBottomViewContainer
-        v.backgroundColor = customNavBarColor
+    func configureButtonNameContainer(height: CGFloat = 75) {
+        navbarContentContainer = UIView()    //  TODO: - rename this container
+        let v: UIView = navbarContentContainer
         v.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(v)
+        customNavBarContainer.addSubview(v)
         NSLayoutConstraint.activate([
-            v.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            v.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             v.heightAnchor.constraint(equalToConstant: height),
-            v.topAnchor.constraint(equalTo: view.topAnchor),
+            v.widthAnchor.constraint(equalTo: customNavBarContainer.widthAnchor, multiplier: 0.7, constant: 1),
+            v.centerXAnchor.constraint(equalTo: customNavBarContainer.centerXAnchor),
+            v.bottomAnchor.constraint(equalTo: customNavBarContainer.bottomAnchor, constant: -18),
         ])
+    }
+
+    func configureActionButton() {
+        let button = UIButton()
+        navbarContentContainer.addSubview(button)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.pinToAllSidesOfSuperview()
+
+        if let customNavbarDelegate = customNavbarDelegate {
+            button.addTarget(customNavbarDelegate, action: #selector(CustomNavbarActionDelegate.didClickNavbarNameButton(sender:)), for: .primaryActionTriggered)
+        }
+        navbarActionButton = button
     }
 
     func hookupRootViewToMenu(_ view: UIView) {
@@ -189,18 +192,11 @@ extension CustomNavbarProtocol {
 
     func customNavbarBringSubviewsToFront() {
         view.bringSubviewToFront(navbarMenu)
-        view.bringSubviewToFront(navbarBottomViewContainer)
+        view.bringSubviewToFront(navbarContentContainer)
     }
 
     func refreshNavbarColor() {
-        let img = UIImage()
-        navigationController?.navigationBar.shadowImage = img
-        navigationController?.navigationBar.setBackgroundImage(img, for: .default)
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = customNavBarColor
-        navigationController?.navigationBar.useContextColor(customNavBarColor)
-        navbarBottomViewContainer?.backgroundColor = customNavBarColor?.ensureContrast(against: .white)
-        navigationController?.navigationBar.barStyle = .default
+        customNavBarContainer.backgroundColor = customNavBarColor?.ensureContrast(against: .white)
     }
 }
 

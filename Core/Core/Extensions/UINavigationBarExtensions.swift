@@ -25,7 +25,7 @@ extension UINavigationBar {
         titleTextAttributes = [.foregroundColor: foreground]
         tintColor = foreground
         barTintColor = background
-        barStyle = .default
+        barStyle = .black
         isTranslucent = false
     }
 
@@ -44,9 +44,7 @@ extension UINavigationBar {
         titleTextAttributes = [.foregroundColor: UIColor.named(.textDarkest)]
         tintColor = foreground
         barTintColor = .named(.backgroundLightest)
-        isTranslucent = false
         barStyle = .default
-        shadowImage = nil
-        setBackgroundImage(nil, for: .default)
+        isTranslucent = false
     }
 }

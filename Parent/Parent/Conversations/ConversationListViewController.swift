@@ -27,9 +27,6 @@ class ConversationListViewController: UIViewController, ConversationCoursesActio
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var retryButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
 
     let env = AppEnvironment.shared
     lazy var conversations = env.subscribe(GetConversationsWithSent()) { [weak self] in
@@ -69,8 +66,7 @@ class ConversationListViewController: UIViewController, ConversationCoursesActio
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useModalStyle()
-        setNeedsStatusBarAppearanceUpdate()
-
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
     @IBAction func refresh() {
