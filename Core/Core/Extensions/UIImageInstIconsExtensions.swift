@@ -27,6 +27,8 @@ extension UIImage {
     }
 
     public enum InstIconName: String, CaseIterable {
+        static let page = InstIconName.document
+
         case add, addressBook, alerts, announcement, arrowOpenDown, arrowOpenLeft, arrowOpenRight,
             assignment, audio, bold, box, bulletList, calendarMonth, check, clock, cloudLock,
             comment, complete, courses, dashboard, discussion, document, email, empty,

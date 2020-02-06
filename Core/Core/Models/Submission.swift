@@ -210,6 +210,8 @@ extension Submission {
             return attachments?.first?.icon
         case .online_url:
             return UIImage.icon(.link)
+        case .wiki_page:
+            return UIImage.icon(.page)
         case .none, .not_graded, .on_paper:
             return nil
         }
@@ -237,7 +239,7 @@ extension Submission {
             }
         case .online_url:
             return url?.absoluteString
-        case .none, .not_graded, .on_paper:
+        case .none, .not_graded, .on_paper, .wiki_page:
             return nil
         }
     }

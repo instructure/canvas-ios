@@ -31,6 +31,7 @@ public enum SubmissionType: String, Codable {
     case online_url
     case on_paper
     case basic_lti_launch
+    case wiki_page
 
     public var localizedString: String {
         switch self {
@@ -54,6 +55,8 @@ public enum SubmissionType: String, Codable {
             return NSLocalizedString("Website URL", bundle: .core, comment: "")
         case .on_paper:
             return NSLocalizedString("On Paper", bundle: .core, comment: "")
+        case .wiki_page:
+            return NSLocalizedString("Page", bundle: .core, comment: "")
         }
     }
 }
