@@ -27,6 +27,9 @@ class ConversationListViewController: UIViewController, ConversationCoursesActio
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var retryButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     let env = AppEnvironment.shared
     lazy var conversations = env.subscribe(GetConversationsWithSent()) { [weak self] in
@@ -61,17 +64,15 @@ class ConversationListViewController: UIViewController, ConversationCoursesActio
         tableView.separatorColor = .named(.borderMedium)
 
         conversations.refresh()
-
-        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        navigationController?.navigationBar.useModalStyle()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.useModalStyle()
+        setNeedsStatusBarAppearanceUpdate()
+        
     }
-
+    
     @IBAction func refresh() {
         emptyView.isHidden = true
         errorView.isHidden = true

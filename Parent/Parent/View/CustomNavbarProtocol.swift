@@ -200,6 +200,7 @@ extension CustomNavbarProtocol {
         navigationController?.navigationBar.barTintColor = customNavBarColor
         navigationController?.navigationBar.useContextColor(customNavBarColor)
         navbarBottomViewContainer?.backgroundColor = customNavBarColor?.ensureContrast(against: .white)
+        navigationController?.navigationBar.barStyle = .default
     }
 }
 
