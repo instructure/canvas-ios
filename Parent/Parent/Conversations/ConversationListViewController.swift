@@ -61,13 +61,15 @@ class ConversationListViewController: UIViewController, ConversationCoursesActio
         tableView.separatorColor = .named(.borderMedium)
 
         conversations.refresh()
+
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.useModalStyle()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.useModalStyle()
-        navigationController?.setNavigationBarHidden(false, animated: animated)
-        navigationController?.navigationBar.useContextColor(ColorScheme.observer.color)
     }
 
     @IBAction func refresh() {

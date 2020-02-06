@@ -45,6 +45,9 @@ extension UINavigationBar {
         tintColor = foreground
         barTintColor = .named(.backgroundLightest)
         barStyle = .default
-        isTranslucent = false
+        isTranslucent = true
+
+        shadowImage = nil
+        setBackgroundImage(nil, for: .default)
     }
 }

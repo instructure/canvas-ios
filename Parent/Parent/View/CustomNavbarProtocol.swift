@@ -19,15 +19,6 @@
 import UIKit
 import Core
 
-extension UINavigationBar {
-    func styleOpaque() {
-        let img = UIImage()
-        shadowImage = img
-        setBackgroundImage(img, for: .default)
-        isTranslucent = false
-    }
-}
-
 @objc protocol CustomNavbarActionDelegate: class {
     func didClickNavbarNameButton(sender: UIButton)
 }
@@ -55,9 +46,7 @@ extension CustomNavbarProtocol {
     var navbarMenuIsHidden: Bool {  navbarMenuHeightConstraint.constant == 0 }
 
     func setupCustomNavbar() {
-        navigationController?.navigationBar.barTintColor = customNavBarColor
-        navigationController?.navigationBar.styleOpaque()
-        navigationController?.navigationBar.barStyle = .black
+        refreshNavbarColor()
         addNavbarBottomView()
         configureAvatar()
         configureNameButton()
@@ -204,8 +193,13 @@ extension CustomNavbarProtocol {
     }
 
     func refreshNavbarColor() {
+        let img = UIImage()
+        navigationController?.navigationBar.shadowImage = img
+        navigationController?.navigationBar.setBackgroundImage(img, for: .default)
+        navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = customNavBarColor
-        navbarBottomViewContainer.backgroundColor = customNavBarColor
+        navigationController?.navigationBar.useContextColor(customNavBarColor)
+        navbarBottomViewContainer?.backgroundColor = customNavBarColor?.ensureContrast(against: .white)
     }
 }
 
