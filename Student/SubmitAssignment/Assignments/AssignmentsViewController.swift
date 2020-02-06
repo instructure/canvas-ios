@@ -18,17 +18,24 @@
 
 import Core
 
-class AssignmentsViewController: UIViewController, AssignmentsView {
-    var presenter: AssignmentsPresenter?
+class AssignmentsViewController: UIViewController {
+    let env = AppEnvironment.shared
+    var courseID: String!
+    var selectedAssignmentID: String?
+    var callback: ((Assignment) -> Void)?
+
+    lazy var assignments = env.subscribe(GetSubmittableAssignments(courseID: courseID)) { [weak self] in
+        self?.update()
+    }
 
     @IBOutlet weak var tableView: UITableView!
     let activityIndicator = UIActivityIndicatorView(style: .white)
 
-    static func create(environment: AppEnvironment, courseID: String, selectedAssignmentID: String?, callback: @escaping (Assignment) -> Void) -> AssignmentsViewController {
+    static func create(courseID: String, selectedAssignmentID: String?, callback: @escaping (Assignment) -> Void) -> AssignmentsViewController {
         let view = loadFromStoryboard()
-        let presenter = AssignmentsPresenter(environment: environment, courseID: courseID, selectedAssignmentID: selectedAssignmentID, callback: callback)
-        view.presenter = presenter
-        presenter.view = view
+        view.courseID = courseID
+        view.selectedAssignmentID = selectedAssignmentID
+        view.callback = callback
         return view
     }
 
@@ -44,27 +51,35 @@ class AssignmentsViewController: UIViewController, AssignmentsView {
         activityIndicator.hidesWhenStopped = true
         addNavigationButton(UIBarButtonItem(customView: activityIndicator), side: .right)
 
-        presenter?.viewIsReady()
+        assignments.refresh(force: true)
     }
 
     func update() {
         tableView.reloadData()
-        presenter?.assignments.pending == true ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
+        assignments.pending == true ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
     }
 }
 
 extension AssignmentsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.assignments.count ?? 0
+        var count = assignments.count
+        if assignments.hasNextPage == true {
+            count += 1
+        }
+        return count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == assignments.count {
+            assignments.getNextPage()
+            return LoadingCell(style: .default, reuseIdentifier: nil)
+        }
         let cell: UITableViewCell = tableView.dequeue(for: indexPath)
-        let assignment = presenter?.assignments[indexPath]
+        let assignment = assignments[indexPath]
         cell.textLabel?.text = assignment?.name
         cell.textLabel?.numberOfLines = 2
         cell.accessoryType = .none
-        if presenter?.selectedAssignmentID != nil, assignment?.id == presenter?.selectedAssignmentID {
+        if selectedAssignmentID != nil, assignment?.id == selectedAssignmentID {
             cell.accessoryType = .checkmark
         }
         cell.contentView.backgroundColor = .clear
@@ -73,14 +88,26 @@ extension AssignmentsViewController: UITableViewDataSource, UITableViewDelegate 
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.selectAssignment(at: indexPath)
+        if let assignment = assignments[indexPath] {
+            callback?(assignment)
+        }
     }
 }
 
-extension AssignmentsViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.isBottomReached() {
-            presenter?.getNextPage()
-        }
+class LoadingCell: UITableViewCell {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        let indicator = UIActivityIndicatorView(style: .gray)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(indicator)
+        NSLayoutConstraint.activate([
+            indicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            indicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+        ])
+        indicator.startAnimating()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

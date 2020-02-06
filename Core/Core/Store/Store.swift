@@ -64,6 +64,8 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         return count == 0
     }
 
+    public var hasNextPage: Bool { next != nil }
+
     private var next: GetNextRequest<U.Response>?
 
     public private(set) var pending: Bool = false

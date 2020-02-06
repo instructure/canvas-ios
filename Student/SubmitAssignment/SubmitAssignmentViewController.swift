@@ -75,7 +75,7 @@ class SubmitAssignmentViewController: SLComposeServiceViewController, SubmitAssi
             assignment.valuePending = pending
             assignment.tapHandler = { [weak self] in
                 guard let self = self else { return }
-                let assignments = AssignmentsViewController.create(environment: environment, courseID: course.id, selectedAssignmentID: self.presenter?.assignment?.id) { assignment in
+                let assignments = AssignmentsViewController.create(courseID: course.id, selectedAssignmentID: self.presenter?.assignment?.id) { assignment in
                     self.presenter?.select(assignment: assignment)
                     self.navigationController?.popViewController(animated: true)
                 }
