@@ -381,7 +381,6 @@
 		B15738001D94C38C00ADBB85 /* ModuleItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */; };
 		B157A60F22BD78E800963E56 /* AssignmentsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B157A60E22BD78E800963E56 /* AssignmentsViewController.storyboard */; };
 		B157A61122BD790200963E56 /* AssignmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157A61022BD790200963E56 /* AssignmentsViewController.swift */; };
-		B157A61322BD795D00963E56 /* AssignmentsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157A61222BD795D00963E56 /* AssignmentsPresenter.swift */; };
 		B157A61522BD8ADA00963E56 /* SubmitAssignmentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157A61422BD8ADA00963E56 /* SubmitAssignmentPresenter.swift */; };
 		B175D62223A969F600F8E696 /* IPadAssignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B175D62123A969F600F8E696 /* IPadAssignmentsTests.swift */; };
 		B1BB7A8522BAC820006CA068 /* SubmitAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB7A8422BAC820006CA068 /* SubmitAssignmentViewController.swift */; };
@@ -395,6 +394,8 @@
 		B1CA093922C42520008AA352 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BB7A9022BADAC1006CA068 /* Core.framework */; };
 		B1CA093A22C425C8008AA352 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D864FFF22B2A432006B0127 /* TestsFoundation.framework */; };
 		B1CA3C6323AAA1C3006DCC48 /* CalendarMonthViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA3C6223AAA1C3006DCC48 /* CalendarMonthViewControllerTests.swift */; };
+		B1CF949D23EB82C600FD0698 /* AssignmentsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CF949C23EB82C600FD0698 /* AssignmentsViewControllerTests.swift */; };
+		B1CF949E23EB88DD00FD0698 /* AssignmentsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B157A60E22BD78E800963E56 /* AssignmentsViewController.storyboard */; };
 		B1D40D382368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D40D372368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift */; };
 		B1D5EF6423590A0400B3ACD3 /* SubmitAssignmentViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D5EF6323590A0400B3ACD3 /* SubmitAssignmentViewControllerTests.swift */; };
 		B1D5EF652359182B00B3ACD3 /* SubmitAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB7A8422BAC820006CA068 /* SubmitAssignmentViewController.swift */; };
@@ -403,8 +404,6 @@
 		B1D766A122C5049B0097561E /* SubmitAssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D766A022C5049A0097561E /* SubmitAssignmentTests.swift */; };
 		B1D766A422C505770097561E /* CoursesPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D766A322C505770097561E /* CoursesPresenterTests.swift */; };
 		B1D766A522C505B90097561E /* CoursesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB7A9722BAE3B9006CA068 /* CoursesPresenter.swift */; };
-		B1D766A822C509260097561E /* AssignmentsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D766A722C509260097561E /* AssignmentsPresenterTests.swift */; };
-		B1D766A922C509780097561E /* AssignmentsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157A61222BD795D00963E56 /* AssignmentsPresenter.swift */; };
 		B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B1F405E422E23C02008FAFE6 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405DE22E23C00008FAFE6 /* ReactiveSwift.framework */; };
 		B1F405E622E23C02008FAFE6 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405E022E23C01008FAFE6 /* ReactiveCocoa.framework */; };
@@ -1138,7 +1137,6 @@
 		B15738061D95AA7600ADBB85 /* ModuleItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleItemViewModel.swift; sourceTree = "<group>"; };
 		B157A60E22BD78E800963E56 /* AssignmentsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AssignmentsViewController.storyboard; sourceTree = "<group>"; };
 		B157A61022BD790200963E56 /* AssignmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsViewController.swift; sourceTree = "<group>"; };
-		B157A61222BD795D00963E56 /* AssignmentsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsPresenter.swift; sourceTree = "<group>"; };
 		B157A61422BD8ADA00963E56 /* SubmitAssignmentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAssignmentPresenter.swift; sourceTree = "<group>"; };
 		B16B5A2E1E24534B00DED47B /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5A2F1E24534C00DED47B /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1240,11 +1238,11 @@
 		B1CA093022C4237C008AA352 /* SubmitAssignmentPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAssignmentPresenterTests.swift; sourceTree = "<group>"; };
 		B1CA093222C4237C008AA352 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1CA3C6223AAA1C3006DCC48 /* CalendarMonthViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMonthViewControllerTests.swift; sourceTree = "<group>"; };
+		B1CF949C23EB82C600FD0698 /* AssignmentsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsViewControllerTests.swift; sourceTree = "<group>"; };
 		B1D40D372368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		B1D5EF6323590A0400B3ACD3 /* SubmitAssignmentViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAssignmentViewControllerTests.swift; sourceTree = "<group>"; };
 		B1D766A022C5049A0097561E /* SubmitAssignmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAssignmentTests.swift; sourceTree = "<group>"; };
 		B1D766A322C505770097561E /* CoursesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesPresenterTests.swift; sourceTree = "<group>"; };
-		B1D766A722C509260097561E /* AssignmentsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsPresenterTests.swift; sourceTree = "<group>"; };
 		B1E3D6E01D8305D900B4AC11 /* ModulesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ModulesTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B1F405DE22E23C00008FAFE6 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = ../Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
 		B1F405E022E23C01008FAFE6 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = ../Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
@@ -2647,7 +2645,6 @@
 			children = (
 				B157A60E22BD78E800963E56 /* AssignmentsViewController.storyboard */,
 				B157A61022BD790200963E56 /* AssignmentsViewController.swift */,
-				B157A61222BD795D00963E56 /* AssignmentsPresenter.swift */,
 			);
 			path = Assignments;
 			sourceTree = "<group>";
@@ -2710,7 +2707,7 @@
 		B1D766A622C509100097561E /* Assignments */ = {
 			isa = PBXGroup;
 			children = (
-				B1D766A722C509260097561E /* AssignmentsPresenterTests.swift */,
+				B1CF949C23EB82C600FD0698 /* AssignmentsViewControllerTests.swift */,
 			);
 			path = Assignments;
 			sourceTree = "<group>";
@@ -3398,6 +3395,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1CF949E23EB88DD00FD0698 /* AssignmentsViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3851,7 +3849,6 @@
 				B1BB7A9B22BAEA00006CA068 /* CoursesPresenter.swift in Sources */,
 				B157A61122BD790200963E56 /* AssignmentsViewController.swift in Sources */,
 				B1BB7A8522BAC820006CA068 /* SubmitAssignmentViewController.swift in Sources */,
-				B157A61322BD795D00963E56 /* AssignmentsPresenter.swift in Sources */,
 				B1BB7A9922BAE9F4006CA068 /* CoursesViewController.swift in Sources */,
 				B157A61522BD8ADA00963E56 /* SubmitAssignmentPresenter.swift in Sources */,
 			);
@@ -3863,13 +3860,12 @@
 			files = (
 				B1D5EF672359184F00B3ACD3 /* AssignmentsViewController.swift in Sources */,
 				B1D766A122C5049B0097561E /* SubmitAssignmentTests.swift in Sources */,
-				B1D766A922C509780097561E /* AssignmentsPresenter.swift in Sources */,
-				B1D766A822C509260097561E /* AssignmentsPresenterTests.swift in Sources */,
 				B1D5EF6423590A0400B3ACD3 /* SubmitAssignmentViewControllerTests.swift in Sources */,
 				B1D766A522C505B90097561E /* CoursesPresenter.swift in Sources */,
 				B1D766A422C505770097561E /* CoursesPresenterTests.swift in Sources */,
 				B1CA093122C4237C008AA352 /* SubmitAssignmentPresenterTests.swift in Sources */,
 				B1CA093822C424E6008AA352 /* SubmitAssignmentPresenter.swift in Sources */,
+				B1CF949D23EB82C600FD0698 /* AssignmentsViewControllerTests.swift in Sources */,
 				B1D5EF652359182B00B3ACD3 /* SubmitAssignmentViewController.swift in Sources */,
 				B1D5EF662359184500B3ACD3 /* CoursesViewController.swift in Sources */,
 			);
