@@ -115,6 +115,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
 
         replyButton = FloatingButton(frame: CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize))
         replyButton?.setImage(UIImage.icon(.comment, .solid), for: .normal)
+        replyButton?.imageEdgeInsets = UIEdgeInsets(top: 17, left: 17, bottom: 15, right: 15)
         replyButton?.tintColor = .named(.white)
         replyButton?.backgroundColor = colorScheme?.color
         if let replyButton = replyButton { view.addSubview(replyButton) }

@@ -70,9 +70,9 @@ class ConversationListViewController: UIViewController, ConversationCoursesActio
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useModalStyle()
         setNeedsStatusBarAppearanceUpdate()
-        
+
     }
-    
+
     @IBAction func refresh() {
         emptyView.isHidden = true
         errorView.isHidden = true
