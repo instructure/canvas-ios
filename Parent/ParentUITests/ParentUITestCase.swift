@@ -31,24 +31,6 @@ class ParentUITestCase: CoreUITestCase {
         )
     }
 
-    @discardableResult
-    override func mock(courses: [APICourse]) -> [APICourse] {
-        courses.forEach { mock(course: $0) }
-
-        mockData(GetCoursesRequest(include: [
-            .current_grading_period_scores,
-            .favorites,
-            .needs_grading_count,
-            .observed_users,
-            .permissions,
-            .syllabus_body,
-            .tabs,
-            .term,
-            .total_scores,
-        ], perPage: 99), value: courses)
-        return courses
-    }
-
     override func mockBaseRequests() {
         mockData(GetWebSessionRequest(to: URL(string: "https://canvas.instructure.com/users/self"))) // cookie keepalive
         for paginated in [true, false] {
