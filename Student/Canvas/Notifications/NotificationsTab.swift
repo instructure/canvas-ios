@@ -18,7 +18,6 @@
 
 import UIKit
 import Foundation
-import TechDebt
 import CanvasCore
 import Core
 

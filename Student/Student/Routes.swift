@@ -19,7 +19,6 @@
 import CanvasCore
 import CanvasKit
 import Core
-import TechDebt
 
 public let router: Router = {
 let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
@@ -378,8 +377,6 @@ let nativeFactory: ([String: Any]) -> UIViewController? = { props in
 HelmManager.shared.registerNativeViewController(for: "/native-route/*route", factory: nativeFactory)
 HelmManager.shared.registerNativeViewController(for: "/native-route-master/*route", factory: nativeFactory)
 
-Routing.routeToURL = { url, view in route(view, url: url) }
-
 return Router(routes: routes) { url, _, _ in
     var components = url
     if components.scheme?.hasPrefix("http") == false {
@@ -415,34 +412,13 @@ private func previewFileViewController(url: URLComponents, params: [String: Stri
 }
 
 private func fileViewController(url: URLComponents, params: [String: String]) -> UIViewController? {
-    guard let fileID = url.queryItems?.first(where: { $0.name == "preview" })?.value ?? params["fileID"], let fileIdent = UInt64(fileID) else { return nil }
-
-    if ExperimentalFeature.fileDetails.isEnabled {
-        var context = ContextModel(path: url.path) ?? ContextModel.currentUser
-        if let courseID = url.queryItems?.first(where: { $0.name == "courseID" })?.value {
-            context = ContextModel(.course, id: courseID)
-        }
-        let assignmentID = url.queryItems?.first(where: { $0.name == "assignmentID" })?.value
-        return FileDetailsViewController.create(context: context, fileID: fileID, assignmentID: assignmentID)
-    }
-
-    let controller = FileViewController()
-    controller.canvasAPI = CKCanvasAPI.current()
-    controller.fileIdent = fileIdent
-    controller.pageViewEventName = url.path.replacingOccurrences(of: "/api/v1", with: "")
-
+    guard let fileID = url.queryItems?.first(where: { $0.name == "preview" })?.value ?? params["fileID"] else { return nil }
+    var context = ContextModel(path: url.path) ?? ContextModel.currentUser
     if let courseID = url.queryItems?.first(where: { $0.name == "courseID" })?.value {
-        controller.courseID = courseID
-    } else if params["context"] == "courses" {
-        controller.courseID = params["contextID"]
-    } else {
-        controller.courseID = params["courseID"]
+        context = ContextModel(.course, id: courseID)
     }
-
-    controller.assignmentID = url.queryItems?.first(where: { $0.name == "assignmentID" })?.value
-    controller.showingOldVersion = url.path.hasSuffix("/old")
-    controller.fetchFile()
-    return controller
+    let assignmentID = url.queryItems?.first(where: { $0.name == "assignmentID" })?.value
+    return FileDetailsViewController.create(context: context, fileID: fileID, assignmentID: assignmentID)
 }
 
 private func moduleItemController(for url: URLComponents, courseID: String) -> UIViewController? {

@@ -19,7 +19,6 @@
 import Foundation
 import UIKit
 import ReactiveSwift
-import TechDebt
 import CanvasCore
 import Core
 

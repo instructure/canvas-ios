@@ -18,7 +18,6 @@
 
 import AVKit
 import UIKit
-import TechDebt
 import PSPDFKit
 import CanvasKit
 import Fabric
@@ -127,7 +126,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
             }
             PageViewEventController.instance.userDidChange()
             DispatchQueue.main.async { self.refreshNotificationTab() }
-            CKCanvasAPI.updateCurrentAPI()
             GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
                 DispatchQueue.main.async {
                     Brand.setCurrent(Brand(core: Core.Brand.shared), applyInWindow: self.window)
@@ -230,11 +228,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         StartupManager.shared.enqueueTask { [weak self] in
             PushNotifications.recordUserInfo(userInfo)
             // Handle local notifications we know about first
-            if let assignmentURL = userInfo[CBILocalNotificationAssignmentURLKey] as? String,
-                let url = URL(string: assignmentURL) {
-                self?.openCanvasURL(url)
-                return
-            } else if let routerURL = userInfo[NotificationManager.RouteURLKey] as? String,
+            if let routerURL = userInfo[NotificationManager.RouteURLKey] as? String,
                 let url = URL(string: routerURL) {
                 self?.openCanvasURL(url)
                 return

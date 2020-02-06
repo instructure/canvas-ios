@@ -19,7 +19,6 @@
 import XCTest
 @testable import CanvasCore
 @testable import Core
-@testable import TechDebt
 @testable import Student
 import TestsFoundation
 
