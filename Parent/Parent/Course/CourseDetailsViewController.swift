@@ -70,6 +70,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         view.backgroundColor = .named(.backgroundLightest)
         colorScheme = ColorScheme.observee(studentID)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.useContextColor(colorScheme?.color)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: nil, action: nil)
 
         delegate = self
