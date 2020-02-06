@@ -525,12 +525,25 @@ open class CoreUITestCase: XCTestCase {
 
     @discardableResult
     open func mock(courses: [APICourse]) -> [APICourse] {
-        courses.forEach { mock(course: $0) }
-        var state: [GetCoursesRequest.State] = [.available, .completed]
-        if Bundle.main.isTeacherApp {
-            state.append(.unpublished)
+        if Bundle.main.isStudentApp {
+            mockData(GetCoursesRequest(enrollmentState: nil, state: [.available, .completed]), value: courses)
+        } else if Bundle.main.isTeacherApp {
+            mockData(GetCoursesRequest(enrollmentState: nil, state: [.available, .completed, .unpublished]), value: courses)
+        } else if Bundle.main.isParentApp {
+            mockData(GetCoursesRequest(include: [
+                .current_grading_period_scores,
+                .favorites,
+                .needs_grading_count,
+                .observed_users,
+                .permissions,
+                .syllabus_body,
+                .tabs,
+                .term,
+                .total_scores,
+            ], perPage: 99), value: courses)
+        } else {
+            XCTFail("Unknown app")
         }
-        mockData(GetCoursesRequest(enrollmentState: nil, state: state), value: courses)
         return courses
     }
 
