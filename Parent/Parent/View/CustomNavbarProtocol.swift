@@ -196,7 +196,7 @@ extension CustomNavbarProtocol {
     }
 
     func refreshNavbarColor() {
-        customNavBarContainer.backgroundColor = customNavBarColor?.ensureContrast(against: .white)
+        customNavBarContainer?.backgroundColor = customNavBarColor?.ensureContrast(against: .white)
     }
 }
 
