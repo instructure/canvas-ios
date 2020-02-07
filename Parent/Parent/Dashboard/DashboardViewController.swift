@@ -76,7 +76,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
             }
 
             if currentStudent == nil || oldValue?.id != currentStudent?.id {
-                self.updateStudentInfoView()
+                navbarAvatar?.url = currentStudent?.avatarURL
                 self.reloadObserveeData()
             }
         }
@@ -412,10 +412,6 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
 
     func displayDefaultStudent() {
         currentStudent = studentAtIndex(0)
-    }
-
-    func updateStudentInfoView() {
-        navbarAvatar?.url = currentStudent?.avatarURL
     }
 }
 
