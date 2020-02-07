@@ -104,6 +104,16 @@ workflows:
     before_run:
     - _set-export-ad-hoc
     - _common
+    steps:
+    - script:
+        title: Update build link if part of PR
+        is_skippable: true
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            set -euo pipefail
+            ./scripts/build_automation/build-link.swift update-link teacher $BITRISE_GIT_BRANCH \
+                $BITRISE_PUBLIC_INSTALL_PAGE_URL
 
   app-store:
     before_run:
