@@ -213,6 +213,8 @@ extension APIAssignmentListAssignment {
             image = .icon(.discussion, .line)
         } else if submissionTypes.contains(.external_tool) || submissionTypes.contains(.basic_lti_launch) {
             image = .icon(.lti, .line)
+        } else if submissionTypes.contains(.wiki_page) {
+            image = .icon(.document, .line)
         }
 
         if let lockAt = lockAt, Clock.now > lockAt {

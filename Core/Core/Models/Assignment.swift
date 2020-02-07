@@ -180,6 +180,7 @@ extension Assignment {
     }
 
     public var canMakeSubmissions: Bool {
+        if submissionTypes == [.wiki_page] { return false }
         return submissionTypes.count > 0 &&
             !submissionTypes.contains(.none) && !submissionTypes.contains(.on_paper)
     }
