@@ -18,7 +18,7 @@
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import { gradeProp, statusProp, dueDate, getGroup } from '../get-submissions-props'
+import { gradeProp, statusProp, dueDate, getGroup, getSubmissionsProps } from '../get-submissions-props'
 import app from '../../../app'
 import * as template from '../../../../__templates__'
 
@@ -257,5 +257,53 @@ describe('GetSubmissionsProps gradeProp', () => {
       submitted_at: '2018-04-11T05:59:00Z',
     })
     expect(gradeProp(submission)).toEqual('A-')
+  })
+
+  describe('getSubmissionsProps', () => {
+    it('excludes inactive enrollments', () => {
+      let courseID = '1'
+      let assignmentID = '1'
+      let activeEnrollment = template.enrollment({ id: '1', user_id: '1', enrollment_state: 'active' })
+      let inactiveEnrollment = template.enrollment({ id: '2', user_id: '2', enrollment_state: 'inactive' })
+      let entities = {
+        courses: {
+          [courseID]: {
+            course: template.course({ id: courseID }),
+            enrollments: {
+              refs: ['1', '2'],
+            },
+          },
+        },
+        enrollments: {
+          [activeEnrollment.id]: activeEnrollment,
+          [inactiveEnrollment.id]: inactiveEnrollment,
+        },
+        assignments: {
+          [assignmentID]: {
+            data: template.assignment({ id: assignmentID }),
+          },
+        },
+        submissions: {
+          '1': {
+            submission: template.submission({
+              id: '1',
+              assignment_id: assignmentID,
+              user_id: activeEnrollment.user_id,
+            }),
+          },
+          '2': {
+            submission: template.submission({
+              id: '2',
+              assignment_id: assignmentID,
+              user_id: inactiveEnrollment.user_id,
+            }),
+          },
+        },
+      }
+
+      let props = getSubmissionsProps(entities, courseID, assignmentID)
+      expect(props.submissions).toHaveLength(1)
+      expect(props.submissions[0].userID).toEqual(activeEnrollment.user_id)
+    })
   })
 })
