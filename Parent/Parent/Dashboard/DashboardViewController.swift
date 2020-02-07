@@ -23,9 +23,6 @@ import CanvasCore
 import Core
 
 class DashboardViewController: UIViewController, CustomNavbarProtocol {
-    @IBOutlet weak var viewControlelrContainerView: UIView!
-    @IBOutlet weak var menuButton: UIButton!
-    @IBOutlet weak var headerContainerView: UIView!
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var coursesTabItem: UITabBarItem!
     @IBOutlet weak var calendarTabItem: UITabBarItem!

@@ -136,7 +136,7 @@ extension CustomNavbarProtocol {
     }
 
     func configureButtonNameContainer(height: CGFloat = 75) {
-        navbarContentContainer = UIView()    //  TODO: - rename this container
+        navbarContentContainer = UIView()
         let v: UIView = navbarContentContainer
         v.translatesAutoresizingMaskIntoConstraints = false
         customNavBarContainer.addSubview(v)

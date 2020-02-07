@@ -97,7 +97,7 @@
                         <outlet property="calendarTabItem" destination="W2P-Wd-gLR" id="1mr-Yk-KbW"/>
                         <outlet property="contentContainer" destination="tQz-mz-EdB" id="yzQ-BK-TYT"/>
                         <outlet property="coursesTabItem" destination="BPk-vK-62u" id="tuH-KS-Hkq"/>
-                        <outlet property="customNavBarContainer" destination="hGu-9a-NfW" id="6gW-Zi-su0"/>
+                        <outlet property="customNavBarContainer" destination="hGu-9a-NfW" id="URd-s4-yMQ"/>
                         <outlet property="hamburgerMenuButton" destination="tdi-oP-0Eu" id="cWa-qa-4ED"/>
                         <outlet property="tabBar" destination="iKU-8j-3jF" id="syx-1v-wh8"/>
                     </connections>
