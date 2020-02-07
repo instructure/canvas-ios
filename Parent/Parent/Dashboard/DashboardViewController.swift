@@ -55,9 +55,6 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     var customNavBarColor: UIColor? {
         if let id = currentStudentID { return ColorScheme.observee(id).color } else { return ColorScheme.observer.color }
     }
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .default
-    }
     var currentStudent: Core.User? {
         didSet {
             if let student = currentStudent {
@@ -122,7 +119,6 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         navigationController?.setNavigationBarHidden(true, animated: false)
         updateBadge()
         refreshNavbarColor()
-        setNeedsStatusBarAppearanceUpdate()
     }
 
     override func viewDidAppear(_ animated: Bool) {
