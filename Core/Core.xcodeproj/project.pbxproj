@@ -530,7 +530,6 @@
 		9FD504E72180BE1400B395BA /* APIFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD504E52180BE1300B395BA /* APIFile.swift */; };
 		9FD504EA2180BE2900B395BA /* APIFileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD504E92180BE2900B395BA /* APIFileTests.swift */; };
 		9FD504EC2180BF1A00B395BA /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD504EB2180BF1A00B395BA /* File.swift */; };
-		9FE21AAA226A0AC600A1D9AD /* APIRecentlyGradedRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE21AA9226A0AC600A1D9AD /* APIRecentlyGradedRequestableTests.swift */; };
 		9FE21AAC226A0C1300A1D9AD /* GetRecentlyGradedSubmissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE21AAB226A0C1300A1D9AD /* GetRecentlyGradedSubmissions.swift */; };
 		9FE4032D237EF6B800469B45 /* PageListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE4032C237EF6B800469B45 /* PageListViewControllerTests.swift */; };
 		9FE84DDA214FE06300B95A68 /* GetGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DD9214FE06300B95A68 /* GetGroup.swift */; };
@@ -1482,7 +1481,6 @@
 		9FD504E52180BE1300B395BA /* APIFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIFile.swift; sourceTree = "<group>"; };
 		9FD504E92180BE2900B395BA /* APIFileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIFileTests.swift; sourceTree = "<group>"; };
 		9FD504EB2180BF1A00B395BA /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		9FE21AA9226A0AC600A1D9AD /* APIRecentlyGradedRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRecentlyGradedRequestableTests.swift; sourceTree = "<group>"; };
 		9FE21AAB226A0C1300A1D9AD /* GetRecentlyGradedSubmissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecentlyGradedSubmissions.swift; sourceTree = "<group>"; };
 		9FE4032C237EF6B800469B45 /* PageListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListViewControllerTests.swift; sourceTree = "<group>"; };
 		9FE84DD9214FE06300B95A68 /* GetGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroup.swift; sourceTree = "<group>"; };
@@ -2612,7 +2610,6 @@
 				3B35F06E230EEE1700674FF5 /* APIPostPolicyInfoTests.swift */,
 				3B35F070230EF1B100674FF5 /* APIPostPolicyRequestableTests.swift */,
 				7DCF203F216D5EF1003AF358 /* APIQuizTests.swift */,
-				9FE21AA9226A0AC600A1D9AD /* APIRecentlyGradedRequestableTests.swift */,
 				7D80AC55212CF41900C40ECE /* APIRequestableTests.swift */,
 				9F900E7823217CC000BB44B4 /* APISearchRecipientsRequestableTests.swift */,
 				9FCD79D52188DE8B0054293A /* APISubmissionRequestableTests.swift */,
@@ -4227,7 +4224,6 @@
 				7DA8C37F239EB535004762DD /* LoginNavigationControllerTests.swift in Sources */,
 				7D80AC5B212DB0B500C40ECE /* URLResponseExtensionsTests.swift in Sources */,
 				7D26B84B23A8266800262380 /* ConversationMessageTests.swift in Sources */,
-				9FE21AAA226A0AC600A1D9AD /* APIRecentlyGradedRequestableTests.swift in Sources */,
 				3B3467DA2136FFBA00F9BC2E /* APILoginWebRequestableTests.swift in Sources */,
 				B1EA5AEE212E656100DABC5F /* GetCoursesTest.swift in Sources */,
 				7DCF1EBC216BC94E003AF358 /* LatePolicyStatusTests.swift in Sources */,
