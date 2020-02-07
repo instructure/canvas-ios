@@ -172,3 +172,22 @@ struct PutSubmissionGradeRequest: APIRequestable {
         return "\(context.pathComponent)/assignments/\(assignmentID)/submissions/\(userID)"
     }
 }
+
+public struct GetRecentlyGradedSubmissionsRequest: APIRequestable {
+    public typealias Response = [APISubmission]
+
+    let userID: String
+
+    public var path: String {
+        let context = ContextModel(.user, id: userID)
+        return "\(context.pathComponent)/graded_submissions"
+    }
+
+    public var query: [APIQueryItem] {
+        return [
+            .perPage(3),
+            .include(["assignment"]),
+            .bool("only_current_submissions", true),
+        ]
+    }
+}
