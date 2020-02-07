@@ -123,6 +123,7 @@ describe('SpeedGraderHeader', () => {
     let tree = shallow(<Header {...subProps} anonymous />)
     expect(tree.find('Avatar').prop('userName')).toEqual('Student')
     expect(tree.find('[children="Student"]').exists()).toBe(true)
+    expect(tree.find('[testID="header.context.button.4"]').prop('onPress')).toBeUndefined()
   })
 
   it('renders avatar and name', () => {

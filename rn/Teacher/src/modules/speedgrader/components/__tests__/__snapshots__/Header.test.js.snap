@@ -23,7 +23,6 @@ exports[`SpeedGraderHeader doesnt show the group name when anonymous 1`] = `
     <TouchableHighlight
       activeOpacity={0.85}
       delayPressOut={100}
-      onPress={[Function]}
       style={
         Object {
           "alignItems": "center",

@@ -172,6 +172,13 @@ test('pressing the avatar calls onAvatarPress', () => {
   expect(onAvatarPress).toHaveBeenCalledWith('1')
 })
 
+test('anonymous avatar press', () => {
+  let spy = jest.fn()
+  let tree = shallow(<SubmissionRow {...defaultProps} anonymous={true} onAvatarPress={spy} />)
+  tree.find('Avatar').simulate('Press')
+  expect(spy).not.toHaveBeenCalled()
+})
+
 test('shows the eyeball when grades are not posted', () => {
   let submission = templates.submission({
     submittedAt: '2017-04-05T15:12:45Z',
