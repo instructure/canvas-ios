@@ -103,7 +103,7 @@ class APISubmissionRequestableTests: CoreTestCase {
         XCTAssertEqual(request.query, [
             .perPage(3),
             .include(["assignment"]),
-            .bool("only_current_submissions", true)
+            .bool("only_current_submissions", true),
         ])
     }
 }
