@@ -30,6 +30,7 @@ function getEnrollments (courseContent?: CourseContentState, enrollments: Enroll
   if (!courseContent) { return [] }
   return courseContent.enrollments.refs
     .map(ref => enrollments[ref])
+    .filter(e => e?.enrollment_state === 'active')
 }
 
 export function statusProp (submission: ?Submission, dueDate: ?string): ?SubmissionStatus {
