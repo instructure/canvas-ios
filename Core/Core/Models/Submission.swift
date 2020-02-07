@@ -211,7 +211,7 @@ extension Submission {
         case .online_url:
             return UIImage.icon(.link)
         case .wiki_page:
-            return UIImage.icon(.page)
+            return UIImage.icon(.document)
         case .none, .not_graded, .on_paper:
             return nil
         }
