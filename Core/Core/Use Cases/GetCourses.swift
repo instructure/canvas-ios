@@ -26,14 +26,19 @@ public class GetCourses: CollectionUseCase {
     let perPage: Int
 
     public var scope: Scope {
+        let order = [
+            NSSortDescriptor(key: #keyPath(Course.name), ascending: true, naturally: true),
+            NSSortDescriptor(key: #keyPath(Course.id), ascending: true),
+        ]
+        let predicate: NSPredicate
         if showFavorites {
-            return Scope.where(#keyPath(Course.isFavorite), equals: true, orderBy: #keyPath(Course.name), ascending: true, naturally: true)
+            predicate = NSPredicate(key: #keyPath(Course.isFavorite), equals: true)
+        } else if let enrollmentState = enrollmentState {
+            predicate = NSPredicate(format: "ANY %K == %@", #keyPath(Course.enrollments.stateRaw), enrollmentState.rawValue)
+        } else {
+            predicate = .all
         }
-        if let enrollmentState = enrollmentState {
-            let predicate = NSPredicate(format: "ANY %K == %@", #keyPath(Course.enrollments.stateRaw), enrollmentState.rawValue)
-            return Scope(predicate: predicate, orderBy: #keyPath(Course.name), ascending: true, naturally: true)
-        }
-        return Scope.all(orderBy: #keyPath(Course.name), ascending: true, naturally: true)
+        return Scope(predicate: predicate, order: order)
     }
 
     public var request: GetCoursesRequest {

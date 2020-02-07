@@ -93,4 +93,18 @@ class GetCoursesTest: CoreTestCase {
         XCTAssertEqual(courses.first, a)
         XCTAssertEqual(courses.last, c)
     }
+
+    func testScopeOrder() {
+        let one = Course.make(from: .make(id: "1", name: "A"))
+        let two = Course.make(from: .make(id: "2", name: "B"))
+        let three = Course.make(from: .make(id: "3", name: "B"))
+
+        let useCase = GetCourses(enrollmentState: nil)
+        let courses: [Course] = databaseClient.fetch(useCase.scope.predicate, sortDescriptors: useCase.scope.order)
+
+        XCTAssertEqual(courses.count, 3)
+        XCTAssertEqual(courses[0], one)
+        XCTAssertEqual(courses[1], two)
+        XCTAssertEqual(courses[2], three)
+    }
 }
