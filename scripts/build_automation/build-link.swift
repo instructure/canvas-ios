@@ -41,16 +41,19 @@ enum App: String, CaseIterable {
     }
 }
 
-func requireEnv(_ name: String) -> String {
-    guard let res = ProcessInfo.processInfo.environment[name] else {
-        print("environment variable \(name) must be set")
-        exit(1)
-    }
-    return res
-}
+let env = ProcessInfo.processInfo.environment
 
 enum Github {
-    static let token = requireEnv("DANGER_GITHUB_API_TOKEN")
+    static var token: String {
+        if let token = env["DANGER_GITHUB_API_TOKEN"] {
+            return token
+        }
+        if let token = env["GITHUB_ACCESS_TOKEN"] {
+            return token
+        }
+        print("environment variable DANGER_GITHUB_API_TOKEN must be set")
+        exit(1)
+    }
 
     struct IssueComment: Codable {
         let body: String
@@ -111,7 +114,13 @@ enum Github {
 }
 
 enum Rebrandly {
-    static let apiKey = requireEnv("REBRANDLY_API_KEY")
+    static var apiKey: String {
+        if let token = env["REBRANDLY_API_KEY"] {
+            return token
+        }
+        print("environment variable REBRANDLY_API_KEY must be set")
+        exit(1)
+    }
 
     struct ShortenResponse: Codable {
         let id: String
