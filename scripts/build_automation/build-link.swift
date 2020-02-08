@@ -66,7 +66,10 @@ enum Github {
     static func getAllIssueComments(prID: String) throws -> [IssueComment] {
         // TODO: paging, but it'll probably be in the first page, right?
         let url = "https://api.github.com/repos/\(repo)/issues/\(prID)/comments"
-        return try cmd("curl", "-vf", url).runJson([IssueComment].self)
+        return try cmd(
+            "curl", "-vf", url,
+            "-H", "Authorization: Bearer \(token)"
+        ).runJson([IssueComment].self)
     }
 
     static func postComment(prID: String, body: String) throws {
