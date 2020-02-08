@@ -28,8 +28,6 @@
 import Foundation
 import swsh // @cobbal == 0.2.0
 
-ExternalCommand.verbose = true
-
 let repoOwner = "instructure"
 let repoName = "canvas-ios"
 let repo = "\(repoOwner)/\(repoName)"
@@ -67,7 +65,7 @@ enum Github {
         // TODO: paging, but it'll probably be in the first page, right?
         let url = "https://api.github.com/repos/\(repo)/issues/\(prID)/comments"
         return try cmd(
-            "curl", "-vf", url,
+            "curl", "-sf", url,
             "-H", "Authorization: Bearer \(token)"
         ).runJson([IssueComment].self)
     }
@@ -183,7 +181,6 @@ func createBuildLinks(prID: String) throws {
         let result = try Rebrandly.shortenOrUpdate(url: tempUrl, title: app.title(forPr: prID))
         ids.append(result.id)
         links.append("\(app): [Link](https://\(result.shortUrl)) | [QR](\(result.qrUrl))")
-        links.append("[![qr code for \(app)](\(result.qrUrl))](https://\(result.shortUrl))")
     }
 
     let body = """
