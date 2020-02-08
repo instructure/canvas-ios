@@ -28,6 +28,8 @@
 import Foundation
 import swsh // @cobbal == 0.2.0
 
+ExternalCommand.verbose = true
+
 let repoOwner = "instructure"
 let repoName = "canvas-ios"
 let repo = "\(repoOwner)/\(repoName)"
