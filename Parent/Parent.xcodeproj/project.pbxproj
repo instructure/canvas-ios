@@ -133,6 +133,9 @@
 		7D52D8A422FCC8A200684932 /* DiscussionTopicAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D392048745B00F6EDCE /* DiscussionTopicAPI.swift */; };
 		7D52D8A522FCC8A500684932 /* Session+DiscussionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D3B2048745B00F6EDCE /* Session+DiscussionKit.swift */; };
 		7D52D8A622FCC8C200684932 /* DiscussionKit.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 9F5A3D372048745B00F6EDCE /* DiscussionKit.xcdatamodeld */; };
+		7D54706B23EDC7A0005048BD /* CalendarMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D54706A23EDC7A0005048BD /* CalendarMonthView.swift */; };
+		7D54706D23EDF1ED005048BD /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D54706C23EDF1ED005048BD /* CalendarViewController.swift */; };
+		7D54706F23EDFD1E005048BD /* CalendarMonthView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D54706E23EDFD1E005048BD /* CalendarMonthView.xib */; };
 		7D57D3CC23AADA0F00EB2CC5 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D57D3CB23AADA0F00EB2CC5 /* ComposeViewController.swift */; };
 		7D57D3CE23AADAAC00EB2CC5 /* ComposeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D57D3CD23AADAAC00EB2CC5 /* ComposeViewController.storyboard */; };
 		7D6F4CE723C66738001C957D /* ComposeReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6F4CE623C66738001C957D /* ComposeReplyViewController.swift */; };
@@ -905,6 +908,9 @@
 		7D349CD521430E65004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/StudentSettingsHeaderView.strings"; sourceTree = "<group>"; };
 		7D349CD721430E66004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349CD921430E67004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D54706A23EDC7A0005048BD /* CalendarMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMonthView.swift; sourceTree = "<group>"; };
+		7D54706C23EDF1ED005048BD /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		7D54706E23EDFD1E005048BD /* CalendarMonthView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarMonthView.xib; sourceTree = "<group>"; };
 		7D57D3CB23AADA0F00EB2CC5 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		7D57D3CD23AADAAC00EB2CC5 /* ComposeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ComposeViewController.storyboard; sourceTree = "<group>"; };
 		7D6F4CE623C66738001C957D /* ComposeReplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeReplyViewController.swift; sourceTree = "<group>"; };
@@ -1207,6 +1213,9 @@
 				2CB69BD41D91CE4D0059C5A5 /* CalendarEventWeekPageViewController.storyboard */,
 				5EB4B5BA1C9749CD00CD8885 /* CalendarEventWeekPageViewController.swift */,
 				2CB69BAD1D91CDE50059C5A5 /* EmptyCalendarEventCell.xib */,
+				7D54706A23EDC7A0005048BD /* CalendarMonthView.swift */,
+				7D54706E23EDFD1E005048BD /* CalendarMonthView.xib */,
+				7D54706C23EDF1ED005048BD /* CalendarViewController.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -1772,6 +1781,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				974BA7F923A89C5C00E09D5A /* ConversationDetailViewController.storyboard in Resources */,
+				7D54706F23EDFD1E005048BD /* CalendarMonthView.xib in Resources */,
 				7D57D3CE23AADAAC00EB2CC5 /* ComposeViewController.storyboard in Resources */,
 				2CB69BB71D91CDF30059C5A5 /* DetailsReminderCell.xib in Resources */,
 				2CB69BCF1D91CE4A0059C5A5 /* DashboardViewController.storyboard in Resources */,
@@ -2014,6 +2024,7 @@
 				49DB0AE61E4E27030036D96E /* Student+AccessRemoved.swift in Sources */,
 				5E0F9A761C739E6A00BB7707 /* SettingsObserveeCellViewModel.swift in Sources */,
 				5E0F9A691C739E6A00BB7707 /* AlertCellViewModel.swift in Sources */,
+				7D54706B23EDC7A0005048BD /* CalendarMonthView.swift in Sources */,
 				3B86FA3622DD24FA0018C012 /* SettingsAPIClient.swift in Sources */,
 				497C48E61F9153D100A3BC06 /* Student+Network.swift in Sources */,
 				497C48E31F9153D100A3BC06 /* Student+Collections.swift in Sources */,
@@ -2027,6 +2038,7 @@
 				5EE9A51C1D14717300EFCDAE /* StudentSettingsHeaderView.swift in Sources */,
 				5EF946251CACD83500D10247 /* TableSectionHeaderView.swift in Sources */,
 				5E0F9A791C739E6A00BB7707 /* SettingsViewModel.swift in Sources */,
+				7D54706D23EDF1ED005048BD /* CalendarViewController.swift in Sources */,
 				7D52D8A222FCC89F00684932 /* DiscussionTopic+Network.swift in Sources */,
 				5EF946271CACD91B00D10247 /* TokenLabelView.swift in Sources */,
 				6182D3B91D91D7EF00D516D5 /* DetailsAttachmentCell.swift in Sources */,
