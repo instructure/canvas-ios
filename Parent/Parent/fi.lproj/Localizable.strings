@@ -13,9 +13,6 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ alkaa %2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, %@, last message %@ %@" = "%1$@%2$@, viimeinen viesti %3$@ %4$@";
-
 /* added to conversation label when unread */
 "%@, unread" = "%@, lukematon";
 
@@ -81,9 +78,6 @@
 
 /* No comment provided by engineer. */
 "Choose a course to message" = "Valitse kurssi, jolle lähetetään viesti";
-
-/* No comment provided by engineer. */
-"Close" = "Sulje";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Luo uusi viesti";

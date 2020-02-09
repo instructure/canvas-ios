@@ -13,9 +13,6 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ Vil begynne %2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, %@, last message %@ %@" = "%1$@, %2$@, siste melding %3$@ %4$@";
-
 /* added to conversation label when unread */
 "%@, unread" = "%@, ulest";
 
@@ -81,9 +78,6 @@
 
 /* No comment provided by engineer. */
 "Choose a course to message" = "Velg et emne du vil sende melding til";
-
-/* No comment provided by engineer. */
-"Close" = "Lukk";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Skriv ny melding";
