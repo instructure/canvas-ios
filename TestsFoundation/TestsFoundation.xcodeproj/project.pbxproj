@@ -63,6 +63,7 @@
 		7DC4A557222EF9A800FA03DC /* APIDiscussionEntryFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4A556222EF9A800FA03DC /* APIDiscussionEntryFixture.swift */; };
 		7DCF2048216D6597003AF358 /* APIQuizFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF2047216D6597003AF358 /* APIQuizFixture.swift */; };
 		7DCF204A216D6668003AF358 /* QuizFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF2049216D6668003AF358 /* QuizFixture.swift */; };
+		97F69C4223F2101C009622E3 /* PlannableFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C4123F2101C009622E3 /* PlannableFixture.swift */; };
 		9F10A66D22931C5B00E3360C /* UserSettingsFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F10A66C22931C5B00E3360C /* UserSettingsFixture.swift */; };
 		9F1CEA5B22400A1D000BB98F /* APIPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1CEA5A22400A1D000BB98F /* APIPermissions.swift */; };
 		9F1CEA5D22400CE0000BB98F /* PermissionsFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1CEA5C22400CE0000BB98F /* PermissionsFixture.swift */; };
@@ -173,6 +174,7 @@
 		7DC4A556222EF9A800FA03DC /* APIDiscussionEntryFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDiscussionEntryFixture.swift; sourceTree = "<group>"; };
 		7DCF2047216D6597003AF358 /* APIQuizFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQuizFixture.swift; sourceTree = "<group>"; };
 		7DCF2049216D6668003AF358 /* QuizFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizFixture.swift; sourceTree = "<group>"; };
+		97F69C4123F2101C009622E3 /* PlannableFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannableFixture.swift; sourceTree = "<group>"; };
 		9F10A66C22931C5B00E3360C /* UserSettingsFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsFixture.swift; sourceTree = "<group>"; };
 		9F1CEA5A22400A1D000BB98F /* APIPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPermissions.swift; sourceTree = "<group>"; };
 		9F1CEA5C22400CE0000BB98F /* PermissionsFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsFixture.swift; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 				3B032D17215037C900B570F7 /* TTLFixture.swift */,
 				B1CA334323393FEC0015CBB4 /* UserFixture.swift */,
 				9F10A66C22931C5B00E3360C /* UserSettingsFixture.swift */,
+				97F69C4123F2101C009622E3 /* PlannableFixture.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -725,6 +728,7 @@
 				7D47769821AF356200B441CE /* APIQuizRequestable.swift in Sources */,
 				3B3FCA2F238027470011F11A /* ActivityFixture.swift in Sources */,
 				3B19D25D2265391F003A0565 /* RubricFixture.swift in Sources */,
+				97F69C4223F2101C009622E3 /* PlannableFixture.swift in Sources */,
 				7D63F794215D8FC100151E49 /* APIBrandVariablesFixture.swift in Sources */,
 				3B635B35225CDFB1001F353D /* CalendarEventFixture.swift in Sources */,
 				B15DCD57224121FA0044A8A2 /* MockUploadManager.swift in Sources */,
