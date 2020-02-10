@@ -48,7 +48,7 @@ class SettingsViewController: UIViewController {
             self?.students.exhaust()
         }
     })
-    
+
     // ---------------------------------------------
     // MARK: - Initializers
     // ---------------------------------------------

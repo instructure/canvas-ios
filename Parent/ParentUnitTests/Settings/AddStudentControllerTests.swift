@@ -29,29 +29,29 @@ class AddStudentControllerTests: ParentTestCase {
         super.setUp()
         mock = AddStudentMockViewController()
     }
-    
+
     func testLayout() {
-        let controller = AddStudentController(presentingViewController: mock) { error in }
+        let controller = AddStudentController(presentingViewController: mock) { _ in }
         controller.actionAddStudent()
-        
+
         let (shown, _, _) = router.viewControllerCalls.last!
         let alert = shown as! UIAlertController
 
         var action = alert.actions[1] as! AlertAction
         XCTAssertEqual(action.title, "Add")
         XCTAssertEqual(action.style, .default)
-        
+
         action = alert.actions[0] as! AlertAction
         XCTAssertEqual(action.title, "Cancel")
         XCTAssertEqual(action.style, .cancel)
-        
+
         let tf = alert.textFields?.first!
         XCTAssertEqual(tf!.placeholder, "Pairing Code")
     }
 
     func testAddPairingCode() throws {
         api.mock(PostObserveesRequest(userID: "self", pairingCode: "abc"), value: .make())
-        let controller = AddStudentController(presentingViewController: mock) { error in }
+        let controller = AddStudentController(presentingViewController: mock) { _ in }
         controller.actionAddStudent()
         drainMainQueue()
         let alert = try XCTUnwrap(router.presented as? UIAlertController)
@@ -66,7 +66,7 @@ class AddStudentControllerTests: ParentTestCase {
 
     func testAddPairingCodeError() throws {
         api.mock(PostObserveesRequest(userID: "self", pairingCode: "abc"), error: NSError.instructureError("Oops!"))
-        let controller = AddStudentController(presentingViewController: mock) { error in }
+        let controller = AddStudentController(presentingViewController: mock) { _ in }
         controller.actionAddStudent()
         drainMainQueue()
         let alert = try XCTUnwrap(router.presented as? UIAlertController)

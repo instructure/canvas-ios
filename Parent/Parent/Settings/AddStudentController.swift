@@ -24,12 +24,12 @@ class AddStudentController {
     var env = AppEnvironment.shared
     weak var presentingViewController: UIViewController?
     var handler: Handler
-    
+
     init(presentingViewController: UIViewController, handler: @escaping Handler) {
         self.presentingViewController = presentingViewController
         self.handler = handler
     }
-    
+
     @objc func actionAddStudent() {
         let title = NSLocalizedString("Add Student", comment: "")
         let message = NSLocalizedString("Input the student pairing code provided to you.", comment: "")
@@ -45,7 +45,7 @@ class AddStudentController {
         guard let vc = presentingViewController else { return }
         env.router.show(alert, from: vc, options: .modal())
     }
-    
+
     private func addPairingCode(code: String) {
         let request = PostObserveesRequest(userID: "self", pairingCode: code)
         env.api.makeRequest(request) { [weak self] _, _, error in
