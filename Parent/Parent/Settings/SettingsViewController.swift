@@ -42,7 +42,13 @@ class SettingsViewController: UIViewController {
     // ---------------------------------------------
     var viewModel: SettingsViewModel!
     var observeesViewController: StudentsListViewController?
-
+    lazy var addStudentController = AddStudentController(presentingViewController: self, handler: { [weak self] error in
+        if error == nil {
+            self?.observeesViewController?.refresh()
+            self?.students.exhaust()
+        }
+    })
+    
     // ---------------------------------------------
     // MARK: - Initializers
     // ---------------------------------------------
@@ -81,7 +87,7 @@ class SettingsViewController: UIViewController {
         super.viewDidAppear(animated)
         if showAddStudentPrompt {
             showAddStudentPrompt = false
-            actionAddStudent()
+            addStudentController.actionAddStudent()
         }
     }
 
@@ -92,7 +98,7 @@ class SettingsViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.useContextColor(ColorScheme.observer.color)
 
-        let addStudentButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(actionAddStudent))
+        let addStudentButton = UIBarButtonItem(barButtonSystemItem: .add, target: addStudentController, action: #selector(addStudentController.actionAddStudent))
         navigationItem.rightBarButtonItem = addStudentButton
     }
 
@@ -121,39 +127,5 @@ class SettingsViewController: UIViewController {
     // ---------------------------------------------
     @IBAction func closeButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
-    }
-
-    @objc func actionAddStudent() {
-        let title = NSLocalizedString("Add Student", comment: "")
-        let message = NSLocalizedString("Input the student pairing code provided to you.", comment: "")
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addTextField { tf in
-            tf.placeholder = NSLocalizedString("Pairing Code", comment: "")
-        }
-
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in }))
-        env.router.show(alert, from: self, options: .modal())
-
-        alert.addAction(AlertAction(NSLocalizedString("Add", comment: ""), style: .default, handler: { [weak self] _ in
-            guard let textField = alert.textFields?.first, let code = textField.text else { return }
-            self?.addPairingCode(code: code)
-        }))
-    }
-
-    private func addPairingCode(code: String) {
-        let request = PostObserveesRequest(userID: "self", pairingCode: code)
-        env.api.makeRequest(request) { [weak self] _, _, error in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                if let error = error {
-                    let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { _ in }))
-                    self.env.router.show(alert, from: self, options: .modal())
-                } else {
-                    self.observeesViewController?.refresh()
-                    self.students.exhaust()
-                }
-            }
-        }
     }
 }

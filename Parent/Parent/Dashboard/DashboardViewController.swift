@@ -84,6 +84,11 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     lazy var students = env.subscribe(GetObservedStudents(observerID: env.currentSession?.userID ??  "")) { [weak self] in
         self?.update()
     }
+    lazy var addStudentController = AddStudentController(presentingViewController: self, handler: { [weak self] error in
+        if error == nil {
+            self?.students.exhaust()
+        }
+    })
 
     // ---------------------------------------------
     // MARK: - Initializers
@@ -355,11 +360,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
             item.widthAnchor.constraint(equalToConstant: 90),
             item.heightAnchor.constraint(equalToConstant: 90),
         ])
-        item.button.addTarget(self, action: #selector(didPressAddStudent(sender:)), for: .primaryActionTriggered)
-    }
-
-    @objc func didPressAddStudent(sender: UIButton) {
-        env.router.route(to: .profileObservees( showAddStudentPrompt: true ), from: self, options: .push)
+        item.button.addTarget(addStudentController, action: #selector(addStudentController.actionAddStudent), for: .primaryActionTriggered)
     }
 
     @objc func didSelectStudent(sender: UIButton) {
