@@ -316,7 +316,6 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     func configureStudentMenu() {
         navbarMenuStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for (index, student) in students.enumerated() {
-            if student.id == (currentStudent?.id ?? "") { continue }
             let item = MenuItem()
             item.button.tag = index
             let studentName = Core.User.displayName(student.shortName, pronouns: student.pronouns)

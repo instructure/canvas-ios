@@ -33,14 +33,19 @@ class DashboardViewControllerTests: ParentTestCase {
     }
 
     func testLayoutMenu() {
-        api.mock(GetObservedStudents(observerID: "1"), value: [.make(observed_user: .make())])
+        let students: [APIEnrollment] = [
+            .make(observed_user: .make(id: "1")),
+            .make(observed_user: .make(id: "2")),
+        ]
+        api.mock(GetObservedStudents(observerID: "1"), value: students)
         api.mock(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: APIPermissions.make())
 
         vc.viewDidLoad()
         vc.viewDidAppear(false)
 
-        XCTAssertFalse( vc.pageViewController.viewControllers?.first is AdminViewController )
+        XCTAssertFalse(vc.pageViewController.viewControllers?.first is AdminViewController)
         XCTAssertEqual(vc.navbarNameButton.titleLabel?.text, "Bob")
+        XCTAssertEqual(vc.navbarMenuStackView.arrangedSubviews.count, students.count + 1) // + add button
     }
 
     func testAdmin() {
