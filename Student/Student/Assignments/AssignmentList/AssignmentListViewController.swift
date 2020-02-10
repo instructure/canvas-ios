@@ -102,7 +102,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
             DispatchQueue.main.async { [weak self] in self?.showSpinner() }
         }
 
-        let requestable = AssignmentListRequestable(courseID: courseID, gradingPeriodID: selectedGradingPeriod?.id.value, filter: shouldFilter, cursor: pagingCursor)
+        let requestable = AssignmentListRequestable(courseID: courseID, gradingPeriodID: selectedGradingPeriod?.id.value, filter: shouldFilter, pageSize: 25, cursor: pagingCursor)
 
         if let cursor = pagingCursor {
             guard fetchedRequests[cursor] == nil else { return }
