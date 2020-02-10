@@ -201,6 +201,10 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(results.count, 2)
         XCTAssertEqual(results[0].title, "Style")
         XCTAssertNotNil(results[1].ps_image)
+        let document = MockDocument()
+        pdf.document = document
+        controller.viewWillDisappear(false)
+        XCTAssertTrue(document.saveWasCalled)
     }
 
     func xtestSVG() {
@@ -241,5 +245,12 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.lockLabel.text, "Locked, yo.")
         controller.viewModules() // not yet accessible from UI
         XCTAssertTrue(router.lastRoutedTo(Route.modules(forCourse: context.id)))
+    }
+}
+
+class MockDocument: PSPDFDocument {
+    var saveWasCalled = false
+    override func save(options: [PSPDFDocumentSaveOption : Any]? = nil) throws {
+        saveWasCalled = true
     }
 }
