@@ -454,7 +454,9 @@ workflows:
         - channel: "#ios-bots"
         - author_name: ''
         - title: ''
-        - message: ''
+        - message: |-
+            Failed tests:
+            $FINAL_FAILED_TESTS
         - pretext: "*Nightly Build Succeeded!*"
 
   nightly-blame-bot:
