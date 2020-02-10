@@ -438,6 +438,9 @@ workflows:
                     --data-binary @- \
                     "$SPLUNK_ENDPOINT_URL"
         is_always_run: true
+    - codecov:
+        inputs:
+        - CODECOV_TOKEN: "$CODECOV_TOKEN"
     - deploy-to-bitrise-io: {}
     - github-status:
         inputs:
