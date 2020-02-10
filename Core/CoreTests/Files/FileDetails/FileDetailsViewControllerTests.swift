@@ -250,7 +250,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
 
 class MockDocument: PSPDFDocument {
     var saveWasCalled = false
-    override func save(options: [PSPDFDocumentSaveOption : Any]? = nil) throws {
+    override func save(options: [PSPDFDocumentSaveOption: Any]? = nil) throws {
         saveWasCalled = true
     }
 }
