@@ -13,9 +13,6 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@（）に開始します%2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, %@, last message %@ %@" = "%1$@、%2$@、最終メッセージ%3$@%4$@";
-
 /* added to conversation label when unread */
 "%@, unread" = "%@、未読";
 
@@ -81,9 +78,6 @@
 
 /* No comment provided by engineer. */
 "Choose a course to message" = "メッサージを送るコースを選択する";
-
-/* No comment provided by engineer. */
-"Close" = "閉じる";
 
 /* No comment provided by engineer. */
 "Compose new message" = "新規メッセージを作成";

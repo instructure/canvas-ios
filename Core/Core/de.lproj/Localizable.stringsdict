@@ -18,6 +18,22 @@
 			<string>%d sonstige</string>
 		</dict>
 	</dict>
+	<key>conversation_unread_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@message_count@</string>
+		<key>message_count</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d unread conversation</string>
+			<key>other</key>
+			<string>%d unread conversations</string>
+		</dict>
+	</dict>
 	<key>d_events</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

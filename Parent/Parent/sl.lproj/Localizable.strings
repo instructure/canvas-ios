@@ -13,9 +13,6 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ se začne ob %2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, %@, last message %@ %@" = "%1$@, %2$@, zadnje sporočilo %3$@ %4$@";
-
 /* added to conversation label when unread */
 "%@, unread" = "%@, neprebrano";
 
@@ -81,9 +78,6 @@
 
 /* No comment provided by engineer. */
 "Choose a course to message" = "Izberite predmet za pošiljanje sporočila";
-
-/* No comment provided by engineer. */
-"Close" = "Zapri";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Sestavi novo sporočilo";

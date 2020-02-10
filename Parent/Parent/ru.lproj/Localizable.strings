@@ -13,9 +13,6 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ начнется в %2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, %@, last message %@ %@" = "%1$@, %2$@, последнее сообщение %3$@ %4$@";
-
 /* added to conversation label when unread */
 "%@, unread" = "%@, не прочитано";
 
@@ -81,9 +78,6 @@
 
 /* No comment provided by engineer. */
 "Choose a course to message" = "Выбрать курс для сообщения";
-
-/* No comment provided by engineer. */
-"Close" = "Закрыть";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Написать новое сообщение";

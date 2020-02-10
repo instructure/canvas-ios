@@ -13,9 +13,6 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ begint op %2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, %@, last message %@ %@" = "%1$@, %2$@, laatste bericht %3$@ %4$@";
-
 /* added to conversation label when unread */
 "%@, unread" = "%@, ongelezen";
 
@@ -81,9 +78,6 @@
 
 /* No comment provided by engineer. */
 "Choose a course to message" = "Kies een cursus voor bericht";
-
-/* No comment provided by engineer. */
-"Close" = "Sluiten";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Nieuw bericht opstellen";
