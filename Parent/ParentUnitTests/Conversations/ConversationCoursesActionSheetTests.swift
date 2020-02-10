@@ -99,7 +99,7 @@ class ConversationCoursesActionSheetTests: ParentTestCase {
             from: .make(
                 course_id: "1",
                 type: "ObserverEnrollment",
-                observed_user: .make(name: "Observed User")),
+                observed_user: .make(name: "Long Name", short_name: "Observed User")),
             course: .make(from: .make(id: "1"))
         )
         loadView()
@@ -114,7 +114,7 @@ class ConversationCoursesActionSheetTests: ParentTestCase {
             from: .make(
                 course_id: "1",
                 type: "ObserverEnrollment",
-                observed_user: .make(name: "Eve", pronouns: "She/Her")),
+                observed_user: .make(name: "Eve Long", short_name: "Eve", pronouns: "She/Her")),
             course: .make(from: .make(id: "1"))
         )
         loadView()
