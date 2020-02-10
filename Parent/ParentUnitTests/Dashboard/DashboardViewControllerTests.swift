@@ -34,7 +34,11 @@ class DashboardViewControllerTests: ParentTestCase {
 
     func testLayoutMenu() {
         let students: [APIEnrollment] = [
-            .make(observed_user: .make(id: "1")),
+            .make(observed_user: .make(
+                id: "1",
+                name: "Full Name",
+                short_name: "Short Name"
+            )),
             .make(observed_user: .make(id: "2")),
         ]
         api.mock(GetObservedStudents(observerID: "1"), value: students)
@@ -44,7 +48,7 @@ class DashboardViewControllerTests: ParentTestCase {
         vc.viewDidAppear(false)
 
         XCTAssertFalse(vc.pageViewController.viewControllers?.first is AdminViewController)
-        XCTAssertEqual(vc.navbarNameButton.titleLabel?.text, "Bob")
+        XCTAssertEqual(vc.navbarNameButton.titleLabel?.text, "Short Name")
         XCTAssertEqual(vc.navbarMenuStackView.arrangedSubviews.count, students.count + 1) // + add button
     }
 

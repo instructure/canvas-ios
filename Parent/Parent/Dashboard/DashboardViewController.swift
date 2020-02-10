@@ -61,7 +61,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
                 currentStudentID = student.id
                 let color = ColorScheme.observee(student.id).color
                 alertsTabItem.badgeColor = color
-                let displayName = Core.User.displayName(student.name, pronouns: student.pronouns)
+                let displayName = Core.User.displayName(student.shortName, pronouns: student.pronouns)
                 navbarNameButton.setTitle(displayName, for: .normal)
                 navbarNameButton.isAccessibilityElement = false
                 let template = NSLocalizedString("Current student: %@. Tap to switch students", comment: "")
