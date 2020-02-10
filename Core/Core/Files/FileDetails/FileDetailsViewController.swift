@@ -94,6 +94,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
 
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        saveAnnotations()
         downloadTask?.cancel()
         stopTrackingTimeOnViewController(eventName: "/\(context.pathComponent)/files/\(fileID)")
     }
@@ -348,6 +349,12 @@ extension FileDetailsViewController: PSPDFViewControllerDelegate {
         NotificationCenter.default.post(name: .init("FileViewControllerBarButtonItemsDidChange"), object: nil)
 
         doneLoading()
+    }
+
+    func saveAnnotations() {
+        for child in children {
+            _ = try? (child as? PSPDFViewController)?.document?.save()
+        }
     }
 
     public func pdfViewController(
