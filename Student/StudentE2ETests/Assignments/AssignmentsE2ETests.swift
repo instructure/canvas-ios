@@ -39,7 +39,7 @@ class AssignmentsE2ETests: CoreUITestCase {
         AssignmentDetails.description("This is assignment one.").waitToExist()
         app.swipeUp()
         AssignmentDetails.link("run.jpg").tap()
-        app.find(label: "File", type: .image).waitToExist()
+        XCTAssertEqual(FileDetails.imageView.label(), "run.jpg")
     }
 
     func testLaunchQuizzesNextAssignment() {

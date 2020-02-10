@@ -63,7 +63,7 @@ class ProfileE2ETests: CoreUITestCase {
         Profile.filesButton.tap()
 
         FilesList.file(id: "11585").tap()
-        app.find(label: "File", type: .image).waitToExist()
+        FileDetails.imageView.waitToExist()
     }
 
     func testProfileLandingPage() {
