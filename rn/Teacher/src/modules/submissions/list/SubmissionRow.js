@@ -123,7 +123,7 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
             key={contextID}
             avatarURL={avatarURL}
             userName={avatarName}
-            onPress={this.props.onAvatarPress && this.onAvatarPress}
+            onPress={!this.props.anonymous && this.props.onAvatarPress && this.onAvatarPress}
           />
         </View>
         <View style={styles.textContainer}>
