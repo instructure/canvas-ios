@@ -22,6 +22,7 @@ public protocol LoginDelegate: class {
     var supportsCanvasNetwork: Bool { get }
     var helpURL: URL? { get }
     var whatsNewURL: URL? { get }
+    var findSchoolButtonTitle: String { get }
 
     func openExternalURL(_ url: URL)
     func openSupportTicket()
@@ -33,9 +34,10 @@ public protocol LoginDelegate: class {
 }
 
 extension LoginDelegate {
-    public var supportsCanvasNetwork: Bool { return true }
-    public var helpURL: URL? { return URL(string: "https://community.canvaslms.com/docs/DOC-1543") }
-    public var whatsNewURL: URL? { return nil }
+    public var supportsCanvasNetwork: Bool { true }
+    public var helpURL: URL? { URL(string: "https://community.canvaslms.com/docs/DOC-1543") }
+    public var whatsNewURL: URL? { nil }
+    public var findSchoolButtonTitle: String { NSLocalizedString("Find my school", bundle: .core, comment: "") }
 
     public func openSupportTicket() {}
     public func changeUser() {}
