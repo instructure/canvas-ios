@@ -144,6 +144,10 @@ class CoreWebViewTests: CoreTestCase {
         view.webView(view, decidePolicyFor: MockNavigationAction(url: "example.com", type: .linkActivated)) { policy in
             XCTAssertEqual(policy, .allow)
         }
+        view.isLinkNavigationEnabled = false
+        view.webView(view, decidePolicyFor: MockNavigationAction(url: "example.com", type: .linkActivated)) { policy in
+            XCTAssertEqual(policy, .cancel)
+        }
     }
 
     func testDecidePolicyForExternal() {
@@ -153,11 +157,19 @@ class CoreWebViewTests: CoreTestCase {
         view.webView(view, decidePolicyFor: MockNavigationAction(url: "example.com", type: .linkActivated)) { policy in
             XCTAssertEqual(policy, .allow)
         }
+        let expectation = XCTestExpectation(description: "link delegate was called")
+        expectation.assertForOverFulfill = true
         linkDelegate = LinkDelegate { url in
             XCTAssertEqual(url, URL(string: "example.com"))
+            expectation.fulfill()
             return true
         }
         view.linkDelegate = linkDelegate
+        view.webView(view, decidePolicyFor: MockNavigationAction(url: "example.com", type: .linkActivated)) { policy in
+            XCTAssertEqual(policy, .cancel)
+        }
+        wait(for: [expectation], timeout: 1)
+        view.isLinkNavigationEnabled = false
         view.webView(view, decidePolicyFor: MockNavigationAction(url: "example.com", type: .linkActivated)) { policy in
             XCTAssertEqual(policy, .cancel)
         }
@@ -191,5 +203,9 @@ class CoreWebViewTests: CoreTestCase {
         XCTAssertEqual(CoreWebView.htmlString(""), "")
         XCTAssertEqual(CoreWebView.htmlString("html"), "html")
         XCTAssertEqual(CoreWebView.htmlString("&'\"<>"), "&amp;&#39;&quot;&lt;&gt;")
+    }
+
+    func testIsLinkNavigationEnabled() {
+
     }
 }

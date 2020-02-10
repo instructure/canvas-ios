@@ -102,6 +102,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         }
         legacySession = Session.current
         Analytics.shared.logSession(session)
+        getPreferences()
         showRootView()
     }
 
@@ -123,6 +124,13 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             studentsRefresher = refresher
         } catch let e as NSError {
             print(e)
+        }
+    }
+
+    func getPreferences() {
+        let request = GetUserRequest(userID: "self")
+        environment.api.makeRequest(request) { [weak self] response, _, _ in
+            self?.environment.userDefaults?.limitWebAccess = response?.permissions?.limit_parent_app_web_access
         }
     }
 
@@ -168,12 +176,23 @@ extension ParentAppDelegate: LoginDelegate {
 
     func openExternalURL(_ url: URL) {
         if url.scheme == "https", let topVC = topMostViewController() {
-            let safari = SFSafariViewController(url: url)
-            safari.modalPresentationStyle = .fullScreen
-            topVC.present(safari, animated: true, completion: nil)
+            if environment.userDefaults?.limitWebAccess == true {
+                launchLimitedWebView(url: url, from: topVC)
+            } else {
+                let safari = SFSafariViewController(url: url)
+                safari.modalPresentationStyle = .fullScreen
+                topVC.present(safari, animated: true, completion: nil)
+            }
         } else {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
+    }
+
+    func launchLimitedWebView(url: URL, from sourceViewController: UIViewController) {
+        let controller = CoreWebViewController()
+        controller.webView.isLinkNavigationEnabled = false
+        controller.webView.load(URLRequest(url: url))
+        environment.router.show(controller, from: sourceViewController, options: .modal(.fullScreen, embedInNav: true, addDoneButton: true))
     }
 
     func userDidLogin(session: LoginSession) {

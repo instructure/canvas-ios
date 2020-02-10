@@ -46,10 +46,11 @@ public struct APIUser: Codable, Equatable {
     let bio: String?
     let pronouns: String?
 
-    let permissions: Permissions?
+    public let permissions: Permissions?
     public struct Permissions: Codable, Equatable {
-        let can_update_name: Bool?
-        let can_update_avatar: Bool?
+        public let can_update_name: Bool?
+        public let can_update_avatar: Bool?
+        public let limit_parent_app_web_access: Bool?
     }
 }
 
@@ -86,12 +87,16 @@ public struct GetCustomColorsRequest: APIRequestable {
 }
 
 // https://canvas.instructure.com/doc/api/users.html#method.users.api_show
-struct GetUserRequest: APIRequestable {
-    typealias Response = APIUser
+public struct GetUserRequest: APIRequestable {
+    public typealias Response = APIUser
 
-    let userID: String
+    public let userID: String
 
-    var path: String {
+    public init(userID: String) {
+        self.userID = userID
+    }
+
+    public var path: String {
         return ContextModel(.user, id: userID).pathComponent
     }
 }
