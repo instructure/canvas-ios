@@ -29,6 +29,7 @@ class DashboardViewControllerTests: ParentTestCase {
     override func setUp() {
         super.setUp()
         vc = DashboardViewController.create(session: Session.current!)
+        vc.loadView()
     }
 
     func testLayoutMenu() {

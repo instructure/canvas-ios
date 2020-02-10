@@ -23,14 +23,14 @@ import CanvasCore
 import Core
 
 class DashboardViewController: UIViewController, CustomNavbarProtocol {
-    @IBOutlet weak var viewControlelrContainerView: UIView!
-    @IBOutlet weak var menuButton: UIButton!
-    @IBOutlet weak var headerContainerView: UIView!
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var coursesTabItem: UITabBarItem!
     @IBOutlet weak var calendarTabItem: UITabBarItem!
     @IBOutlet weak var alertsTabItem: UITabBarItem!
     @IBOutlet weak var contentContainer: UIView!
+    @IBOutlet weak var customNavBarContainer: UIView!
+    @IBOutlet weak var hamburgerMenuButton: DynamicButton!
+
     var env = AppEnvironment.shared
     var pageViewController: UIPageViewController!
     var context: NSManagedObjectContext!
@@ -44,7 +44,8 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     var alertTabBadgeCountCoordinator: AlertCountCoordinator?
     var adminViewController: AdminViewController!
     var shownNotAParent = false
-    var navbarBottomViewContainer: UIView!
+    var navbarContentContainer: UIView!
+    var navbarActionButton: UIButton!
     var navbarMenu: UIView!
     var navbarMenuStackView: HorizontalScrollingStackview!
     var navbarNameButton: DynamicButton!
@@ -54,9 +55,6 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     var customNavBarColor: UIColor? {
         if let id = currentStudentID { return ColorScheme.observee(id).color } else { return ColorScheme.observer.color }
     }
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
     var currentStudent: Core.User? {
         didSet {
             if let student = currentStudent {
@@ -65,9 +63,10 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
                 alertsTabItem.badgeColor = color
                 let displayName = Core.User.displayName(student.name, pronouns: student.pronouns)
                 navbarNameButton.setTitle(displayName, for: .normal)
+                navbarNameButton.isAccessibilityElement = false
                 let template = NSLocalizedString("Current student: %@. Tap to switch students", comment: "")
-                navbarNameButton.accessibilityLabel = String.localizedStringWithFormat(template, displayName)
-                navbarNameButton.accessibilityTraits.insert(.header)
+                navbarActionButton.accessibilityLabel = String.localizedStringWithFormat(template, displayName)
+                navbarActionButton.accessibilityTraits.insert(.header)
                 updateBadgeCount(color: color)
                 navbarAvatar?.name = student.name
                 navbarAvatar?.url = student.avatarURL
@@ -77,7 +76,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
             }
 
             if currentStudent == nil || oldValue?.id != currentStudent?.id {
-                self.updateStudentInfoView()
+                navbarAvatar?.url = currentStudent?.avatarURL
                 self.reloadObserveeData()
             }
         }
@@ -105,17 +104,19 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         customNavbarDelegate = self
         setupCustomNavbar()
         configurePageViewController()
-        addHamburgerButtonToNavbar()
 
         tabBar.barTintColor = .named(.backgroundLightest)
         view.backgroundColor = .named(.backgroundLightest)
         tabBar.tintColor = ColorScheme.observer.color
         students.exhaust()
         presenter?.viewIsReady()
+
+        hamburgerMenuButton.accessibilityIdentifier = "Dashboard.profileButton"
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
         updateBadge()
         refreshNavbarColor()
     }
@@ -135,13 +136,6 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         pageViewController.view.pin(inside: contentContainer)
         pageViewController.didMove(toParent: self)
         hookupRootViewToMenu(contentContainer)
-    }
-
-    func addHamburgerButtonToNavbar() {
-        let bbi = UIBarButtonItem(image: UIImage.icon(.hamburger, .solid), style: .plain, target: self, action: #selector(drawerDashboardButtonPressed(_:)))
-        bbi.tintColor = .white
-        navigationItem.leftBarButtonItem = bbi
-        bbi.accessibilityIdentifier = "Dashboard.profileButton"
     }
 
     func update() {
@@ -281,7 +275,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     }
 
     func updateBadgeCount(color: UIColor) {
-        navigationItem.leftBarButtonItem?.addBadge(number: badgeCount, color: color)
+        hamburgerMenuButton.addBadge(number: badgeCount, color: color)
         let accessibilityLabel: String
         if badgeCount > 0 {
             let pluralFormat = NSLocalizedString("conversation_unread_messages", bundle: .core, comment: "")
@@ -290,7 +284,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         } else {
             accessibilityLabel = NSLocalizedString("Settings", comment: "")
         }
-        navigationItem.leftBarButtonItem?.accessibilityLabel = accessibilityLabel
+        hamburgerMenuButton.accessibilityLabel = accessibilityLabel
     }
 
     // ---------------------------------------------
@@ -412,16 +406,12 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         self.pageViewController?.setViewControllers([alertsViewController], direction: .forward, animated: false, completion: { _ in })
     }
 
-    @IBAction func drawerDashboardButtonPressed(_ sender: UIButton) {
+    @IBAction func hamburgerMenuPressed(_ sender: Any) {
         env.router.route(to: .profile, from: self, options: .modal())
     }
 
     func displayDefaultStudent() {
         currentStudent = studentAtIndex(0)
-    }
-
-    func updateStudentInfoView() {
-        navbarAvatar?.url = currentStudent?.avatarURL
     }
 }
 

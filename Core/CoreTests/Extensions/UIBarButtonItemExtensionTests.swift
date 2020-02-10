@@ -20,19 +20,18 @@ import UIKit
 import XCTest
 @testable import Core
 
-class UIBarButtonItemExtensionTests: XCTestCase {
+class UIButtonExtensionTests: XCTestCase {
 
     var nav: UINavigationController?
-    func testBarButtonItem() {
-        let b = UIBarButtonItem(image: UIImage.icon(.addAudioLine), style: .plain, target: self, action: nil)
-        let v = UIView()
-        b.setValue(v, forKey: "view")
+    func testButtonBadge() {
+        let b = DynamicButton()
+        b.iconName = "hamburgerSolid"
+
         XCTAssertNoThrow(  b.addBadge(number: 3, color: .red) )
-        print(v.layer.sublayers!)
-        let textLayer: CATextLayer? = v.layer.sublayers?.first?.sublayers?.filter { $0 is CATextLayer }.first as? CATextLayer
+        let textLayer: CATextLayer? = b.layer.sublayers?.first?.sublayers?.filter { $0 is CATextLayer }.first as? CATextLayer
         let value: String? = textLayer?.string as? String
         XCTAssertEqual(value, "3")
-        let shape = v.layer.sublayers?.first as? CAShapeLayer
+        let shape = b.layer.sublayers?.first as? CAShapeLayer
         XCTAssertEqual(shape?.fillColor, UIColor.white.cgColor)
         XCTAssertEqual(shape?.strokeColor, UIColor.red.cgColor)
     }

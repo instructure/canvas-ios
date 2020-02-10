@@ -19,7 +19,7 @@
 import UIKit
 
 private var barButtonBadgeKey: UInt8 = 0
-public extension UIBarButtonItem {
+public extension UIButton {
     private var badgeLayer: CAShapeLayer? {
         if let b: AnyObject = objc_getAssociatedObject(self, &barButtonBadgeKey) as AnyObject? {
             return b as? CAShapeLayer
@@ -29,8 +29,6 @@ public extension UIBarButtonItem {
     }
 
     func addBadge(number: UInt, withOffset offset: CGPoint = CGPoint.zero, color: UIColor = UIColor.named(.electric)) {
-        guard let view = value(forKey: "view") as? UIView else { return }
-
         badgeLayer?.removeFromSuperlayer()
 
         if number == 0 { return }
@@ -38,14 +36,14 @@ public extension UIBarButtonItem {
         let badge = CAShapeLayer()
         let radius: CGFloat = 9.75
         let radiusOffset: CGFloat = 1.2
-        let location = CGPoint(x: view.frame.width - ((radius * radiusOffset) + offset.x), y: ((radius * radiusOffset) + offset.y))
+        let location = CGPoint(x: frame.width - ((radius * radiusOffset) + offset.x), y: ((radius * radiusOffset) + offset.y))
 
         badge.fillColor = UIColor.white.cgColor
         badge.strokeColor = color.cgColor
         let badgeOrigin = CGPoint(x: location.x - radius, y: location.y - radius)
         let badgeRect = CGRect(origin: badgeOrigin, size: CGSize(width: radius * 2, height: radius * 2))
         badge.path = UIBezierPath(ovalIn: badgeRect).cgPath
-        view.layer.addSublayer(badge)
+        layer.addSublayer(badge)
 
         let label = CATextLayer()
         label.string = NumberFormatter.localizedString(from: NSNumber(value: number), number: .none)

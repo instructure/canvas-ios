@@ -40,7 +40,6 @@ class ConversationListViewControllerTests: ParentTestCase {
 
     func testLayout() {
         let navigation = UINavigationController(rootViewController: controller)
-        navigation.isNavigationBarHidden = true
         loadView()
         XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
         XCTAssertFalse(navigation.isNavigationBarHidden)
