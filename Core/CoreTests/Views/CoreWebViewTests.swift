@@ -204,8 +204,4 @@ class CoreWebViewTests: CoreTestCase {
         XCTAssertEqual(CoreWebView.htmlString("html"), "html")
         XCTAssertEqual(CoreWebView.htmlString("&'\"<>"), "&amp;&#39;&quot;&lt;&gt;")
     }
-
-    func testIsLinkNavigationEnabled() {
-
-    }
 }
