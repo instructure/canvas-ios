@@ -73,6 +73,11 @@ public struct SessionDefaults {
         }
     }
 
+    public var limitWebAccess: Bool? {
+        get { self["limitWebAccess"] as? Bool }
+        set { self["limitWebAccess"] = newValue }
+    }
+
     public mutating func reset() {
         sessionDefaults = nil
     }
