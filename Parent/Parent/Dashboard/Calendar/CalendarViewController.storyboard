@@ -27,7 +27,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="61z-Nv-lJN" customClass="IconView" customModule="Parent" customModuleProvider="target">
-                                <rect key="frame" x="116" y="37" width="12" height="12"/>
+                                <rect key="frame" x="89" y="33.5" width="12" height="12"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="12" id="jSa-VO-kEi"/>
                                     <constraint firstAttribute="height" constant="12" id="z57-kW-g7G"/>
@@ -37,9 +37,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="dropdown"/>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwV-L8-SHU" customClass="DynamicButton" customModule="Parent" customModuleProvider="target">
-                                <rect key="frame" x="16" y="28.5" width="120" height="29"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwV-L8-SHU" customClass="DynamicButton" customModule="Parent" customModuleProvider="target">
+                                <rect key="frame" x="16" y="28.5" width="93" height="22"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="28" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="January"/>
@@ -52,7 +51,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZt-0r-9y6" customClass="DynamicButton" customModule="Parent" customModuleProvider="target">
-                                <rect key="frame" x="290" y="32" width="69" height="29"/>
+                                <rect key="frame" x="290" y="26.5" width="69" height="29"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                 <state key="normal" title="Calendars"/>
                                 <userDefinedRuntimeAttributes>
@@ -63,7 +62,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="T8Q-j1-Rzz">
-                                <rect key="frame" x="0.0" y="69.5" width="375" height="14.5"/>
+                                <rect key="frame" x="0.0" y="62.5" width="375" height="14.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sun" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbP-wb-YV5">
                                         <rect key="frame" x="0.0" y="0.0" width="53.5" height="14.5"/>
@@ -110,10 +109,10 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qAQ-ai-Jn4">
-                                <rect key="frame" x="0.0" y="96" width="375" height="47"/>
+                                <rect key="frame" x="0.0" y="89" width="375" height="48"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="47" id="WWZ-0h-Oyd"/>
+                                    <constraint firstAttribute="height" constant="48" id="WWZ-0h-Oyd"/>
                                 </constraints>
                             </view>
                         </subviews>

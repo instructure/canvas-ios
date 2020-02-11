@@ -23,15 +23,15 @@ import Core
 protocol CalendarDaysDelegate: class {
     var selectedDate: Date { get set }
     var isExpanded: Bool { get }
-    var tintColor: UIColor { get }
 }
 
 class CalendarDaysViewController: UIViewController {
     static let calendar = Calendar.autoupdatingCurrent
     static let numberOfDaysInWeek = calendar.maximumRange(of: .weekday)!.count
     var minHeight: CGFloat { weekHeight + 8 }
-    var maxHeight: CGFloat { CGFloat(weeksStackView.arrangedSubviews.count) * (weekHeight + 12) + 4 }
-    let weekHeight: CGFloat = 39
+    var maxHeight: CGFloat { CGFloat(weeksStackView.arrangedSubviews.count) * (weekHeight + weekGap) + 4 }
+    let weekHeight: CGFloat = 40
+    let weekGap: CGFloat = 12
 
     var anchorDate = Clock.now
     private var anchorWeekIndex = 0
@@ -50,7 +50,7 @@ class CalendarDaysViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         weeksStackView.axis = .vertical
-        weeksStackView.spacing = 12
+        weeksStackView.spacing = weekGap
         view.addSubview(weeksStackView)
         weeksStackView.pin(inside: view, top: nil, bottom: nil)
         topOffset.isActive = true
@@ -61,15 +61,11 @@ class CalendarDaysViewController: UIViewController {
         while calendar.compare(currentDate, to: anchorDate, toGranularity: .month) != .orderedDescending {
             let week = UIStackView()
             week.distribution = .fillEqually
-            week.heightAnchor.constraint(equalToConstant: weekHeight).isActive = true
             weeksStackView.addArrangedSubview(week)
 
             for _ in 0..<CalendarDaysViewController.numberOfDaysInWeek {
-                let day = CalendarDayButton(type: .custom)
-                day.date = currentDate
+                let day = CalendarDayButton(date: currentDate, selectedDate: selectedDate, calendar: calendar)
                 day.tag = weeksStackView.arrangedSubviews.count - 1
-                day.tintColor = delegate?.tintColor
-                day.update(selectedDate: selectedDate, calendar: calendar)
                 day.addTarget(self, action: #selector(selectDate(_:)), for: .primaryActionTriggered)
                 week.addArrangedSubview(day)
                 currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
@@ -82,8 +78,8 @@ class CalendarDaysViewController: UIViewController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        let ratio = (view.bounds.height - minHeight) / (maxHeight - minHeight)
-        topOffset.constant = -(1 - ratio) * CGFloat(anchorWeekIndex) * (weekHeight + 12)
+        let ratio = min(1, (view.bounds.height - minHeight) / (maxHeight - minHeight))
+        topOffset.constant = -(1 - ratio) * CGFloat(anchorWeekIndex) * (weekHeight + weekGap)
         for (w, week) in weeksStackView.arrangedSubviews.enumerated() {
             week.alpha = w == anchorWeekIndex ? 1 : ratio
         }
@@ -94,8 +90,8 @@ class CalendarDaysViewController: UIViewController {
         anchorWeekIndex = button.tag
         delegate?.selectedDate = selectedDate
         for week in weeksStackView.arrangedSubviews {
-            for day in week.subviews {
-                (day as? CalendarDayButton)?.update(selectedDate: selectedDate, calendar: calendar)
+            for day in week.subviews.compactMap({ $0 as? CalendarDayButton }) {
+                day.isSelected = calendar.isDate(day.date, inSameDayAs: selectedDate)
             }
         }
     }
@@ -127,8 +123,14 @@ class CalendarDaysViewController: UIViewController {
 
 class CalendarDayButton: UIButton {
     let circleView = UIView()
-    var date = Clock.now
     let label = UILabel()
+
+    let date: Date
+    let isToday: Bool
+    let isWeekend: Bool
+    override var isSelected: Bool {
+        didSet { tintColorDidChange() }
+    }
 
     static var dayFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -136,57 +138,53 @@ class CalendarDayButton: UIButton {
         return formatter
     }()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
+    required init?(coder: NSCoder) { return nil }
 
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
-    }
+    init(date: Date, selectedDate: Date, calendar: Calendar) {
+        self.date = date
+        isToday = calendar.isDateInToday(date)
+        isWeekend = calendar.isDateInWeekend(date)
+        super.init(frame: .zero)
+        isSelected = calendar.isDate(date, inSameDayAs: selectedDate)
 
-    func commonInit() {
+        accessibilityLabel = DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .none)
+
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(circleView)
         circleView.isUserInteractionEnabled = false
         circleView.translatesAutoresizingMaskIntoConstraints = false
-        circleView.layer.cornerRadius = 15
-        circleView.layer.borderWidth = 1
+        circleView.layer.cornerRadius = 16
+        circleView.layer.borderWidth = 2
 
         addSubview(label)
         label.isUserInteractionEnabled = false
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .scaledNamedFont(.semibold18)
+        label.text = CalendarDayButton.dayFormatter.string(from: date)
 
         NSLayoutConstraint.activate([
             circleView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            circleView.widthAnchor.constraint(equalToConstant: 30),
+            circleView.widthAnchor.constraint(equalToConstant: 32),
             circleView.topAnchor.constraint(equalTo: topAnchor),
-            circleView.heightAnchor.constraint(equalToConstant: 30),
-            bottomAnchor.constraint(equalTo: circleView.bottomAnchor, constant: 9),
+            circleView.heightAnchor.constraint(equalToConstant: 32),
+            bottomAnchor.constraint(equalTo: circleView.bottomAnchor, constant: 8),
 
             label.centerXAnchor.constraint(equalTo: circleView.centerXAnchor),
             label.centerYAnchor.constraint(equalTo: circleView.centerYAnchor),
         ])
+
+        tintColorDidChange()
     }
 
-    func update(selectedDate: Date, calendar: Calendar) {
-        let isToday = calendar.isDateInToday(date)
-        let isSelected = calendar.isDate(date, inSameDayAs: selectedDate)
-        circleView.isHidden = !isToday && !isSelected
-        circleView.layer.borderColor = isToday ? UIColor.clear.cgColor : tintColor.cgColor
-        circleView.backgroundColor = (
-            isToday && isSelected ? tintColor
-            : isToday ? UIColor.named(.backgroundDark)
-            : nil
+    override func tintColorDidChange() {
+        super.tintColorDidChange()
+        circleView.layer.borderColor = isSelected && !isToday ? tintColor.cgColor : UIColor.clear.cgColor
+        circleView.backgroundColor = isToday ? tintColor : nil
+        label.textColor = (
+            isToday ? UIColor.named(.white) :
+            isSelected ? tintColor :
+            isWeekend ? UIColor.named(.textDark) :
+            UIColor.named(.textDarkest)
         )
-
-        label.textColor = UIColor.named(
-            calendar.isDateInToday(date) ? .white
-            : calendar.isDateInWeekend(date) ? .textDark
-            : .textDarkest
-        )
-        label.text = CalendarDayButton.dayFormatter.string(from: date)
     }
 }

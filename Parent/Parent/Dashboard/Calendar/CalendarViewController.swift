@@ -32,7 +32,6 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
     @IBOutlet weak var daysHeight: NSLayoutConstraint!
     @IBOutlet weak var weekdayRow: UIStackView!
     @IBOutlet weak var yearLabel: UILabel!
-    var tintColor: UIColor { view.tintColor }
 
     lazy var yearFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -50,7 +49,7 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
         return formatter
     }()
 
-    static func create() -> CalendarViewController {
+    static func create(studentID: String) -> CalendarViewController {
         return loadFromStoryboard()
     }
 
@@ -63,12 +62,14 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.tintColor = .red
+        view.backgroundColor = .named(.backgroundLightest)
 
         let isRTL = UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft
         monthButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: isRTL ? 28 : 0, bottom: 0, right: isRTL ? 0 : 28)
+        monthButton.accessibilityLabel = NSLocalizedString("Show a month at a time", comment: "")
 
         filterButton.setTitle(NSLocalizedString("Calendar", comment: ""), for: .normal)
+        filterButton.accessibilityLabel = NSLocalizedString("Filter events", comment: "")
 
         for placeholder in weekdayRow.arrangedSubviews { placeholder.removeFromSuperview() }
         for i in 0..<numberOfDaysInWeek {
@@ -79,6 +80,7 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
             label.text = weekdayFormatter.string(from: date)
             label.textColor = .named(calendar.isDateInWeekend(date) ? .textDark : .textDarkest)
             label.textAlignment = .center
+            label.isAccessibilityElement = false
             weekdayRow.addArrangedSubview(label)
         }
 
@@ -99,6 +101,9 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
 
     @IBAction func toggleExpanded() {
         isExpanded = !isExpanded
+        monthButton.accessibilityLabel = isExpanded
+            ? NSLocalizedString("Show a week at time", comment: "")
+            : NSLocalizedString("Show a month at a time", comment: "")
         UIView.animate(withDuration: 0.3, animations: updateExpanded)
         clearPageCache()
     }
@@ -140,5 +145,10 @@ extension CalendarViewController: UIPageViewControllerDataSource, UIPageViewCont
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         updatePage()
+    }
+
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        guard let days = pendingViewControllers.first as? CalendarDaysViewController, isExpanded else { return }
+        daysHeight.constant = max(days.maxHeight, self.days.maxHeight)
     }
 }
