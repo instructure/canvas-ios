@@ -33,43 +33,4 @@ class SettingsViewControllerTests: ParentTestCase {
     func load() {
         XCTAssertNotNil(viewController.view)
     }
-
-    func testAddPairingCode() throws {
-        api.mock(PostObserveesRequest(userID: "self", pairingCode: "abc"), value: .make())
-        load()
-        viewController.viewWillAppear(false)
-        let addStudentButton = try XCTUnwrap(viewController.navigationItem.rightBarButtonItem)
-        XCTAssertEqual(addStudentButton.target as? SettingsViewController, viewController)
-        XCTAssertEqual(addStudentButton.action, #selector(SettingsViewController.actionAddStudent))
-        viewController.actionAddStudent()
-        drainMainQueue()
-        let alert = try XCTUnwrap(router.presented as? UIAlertController)
-        router.dismiss()
-        let textField = try XCTUnwrap(alert.textFields?.first)
-        textField.text = "abc"
-        let add = try XCTUnwrap(alert.actions.first { $0.title == "Add" } as? AlertAction)
-        add.handler?(add)
-        drainMainQueue()
-        XCTAssertNil(router.presented, "Nothing presented so no error alert shown")
-    }
-
-    func testAddPairingCodeError() throws {
-        api.mock(PostObserveesRequest(userID: "self", pairingCode: "abc"), error: NSError.instructureError("Oops!"))
-        load()
-        viewController.viewWillAppear(false)
-        let addStudentButton = try XCTUnwrap(viewController.navigationItem.rightBarButtonItem)
-        XCTAssertEqual(addStudentButton.target as? SettingsViewController, viewController)
-        XCTAssertEqual(addStudentButton.action, #selector(SettingsViewController.actionAddStudent))
-        viewController.actionAddStudent()
-        drainMainQueue()
-        let alert = try XCTUnwrap(router.presented as? UIAlertController)
-        router.dismiss()
-        let textField = try XCTUnwrap(alert.textFields?.first)
-        textField.text = "abc"
-        let add = try XCTUnwrap(alert.actions.first { $0.title == "Add" } as? AlertAction)
-        add.handler?(add)
-        drainMainQueue()
-        let error = try XCTUnwrap(router.presented as? UIAlertController)
-        XCTAssertEqual(error.message, "Oops!")
-    }
 }
