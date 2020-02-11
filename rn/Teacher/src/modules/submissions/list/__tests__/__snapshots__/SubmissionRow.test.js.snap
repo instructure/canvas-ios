@@ -41,7 +41,7 @@ exports[`anonymous grading doesnt show users names 1`] = `
       >
         <Avatar
           avatarURL={null}
-          onPress={[Function]}
+          onPress={false}
           userName="Student"
         />
       </View>

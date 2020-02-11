@@ -43,6 +43,7 @@ import * as canvas from '../../../canvas-api'
 import icon from '../../../images/inst-icons'
 import ExperimentalFeature from '../../../common/ExperimentalFeature'
 import { createStyleSheet } from '../../../common/stylesheet'
+import localeSort from '../../../utils/locale-sort'
 
 const { getEnabledFeatureFlags } = canvas
 
@@ -324,10 +325,7 @@ export function props (props) {
 
       let group2 = groups.find(group => group.members.nodes.find(({ user }) => user.id === s2.user.id))
       let name2 = group2?.name ?? s1.user.name
-
-      if (name1 < name2) return -1
-      if (name1 > name2) return 1
-      return 0
+      return localeSort(name1, name2)
     }) ?? []
   return {
     isGroupGradedAssignment,

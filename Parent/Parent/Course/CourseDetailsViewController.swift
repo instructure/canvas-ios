@@ -70,6 +70,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         view.backgroundColor = .named(.backgroundLightest)
         colorScheme = ColorScheme.observee(studentID)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.useContextColor(colorScheme?.color)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: nil, action: nil)
 
         delegate = self
@@ -114,7 +115,11 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         let bottomMargin: CGFloat = 50
 
         replyButton = FloatingButton(frame: CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize))
+        replyButton?.accessibilityLabel = NSLocalizedString("Compose Message", comment: "")
+        replyButton?.accessibilityIdentifier = "Grades.composeMessageButton"
+        replyButton?.accessibilityTraits.insert(.header)
         replyButton?.setImage(UIImage.icon(.comment, .solid), for: .normal)
+        replyButton?.imageEdgeInsets = UIEdgeInsets(top: 17, left: 17, bottom: 15, right: 15)
         replyButton?.tintColor = .named(.white)
         replyButton?.backgroundColor = colorScheme?.color
         if let replyButton = replyButton { view.addSubview(replyButton) }

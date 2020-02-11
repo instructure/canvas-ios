@@ -25,6 +25,9 @@ class APIQueryItemTests: XCTestCase {
         XCTAssertEqual(APIQueryItem.value("a", "b").toURLQueryItems(), [URLQueryItem(name: "a", value: "b")])
         XCTAssertEqual(APIQueryItem.array("include", [ "a", "b" ]).toURLQueryItems(), [URLQueryItem(name: "include[]", value: "a"), URLQueryItem(name: "include[]", value: "b")])
         XCTAssertEqual(APIQueryItem.include([ "a", "b" ]).toURLQueryItems(), [URLQueryItem(name: "include[]", value: "a"), URLQueryItem(name: "include[]", value: "b")])
+        XCTAssertEqual(APIQueryItem.perPage(10).toURLQueryItems(), [URLQueryItem(name: "per_page", value: "10")])
+        XCTAssertEqual(APIQueryItem.bool("do_it", true).toURLQueryItems(), [URLQueryItem(name: "do_it", value: "1")])
+        XCTAssertEqual(APIQueryItem.bool("do_it", false).toURLQueryItems(), [URLQueryItem(name: "do_it", value: "0")])
     }
 }
 

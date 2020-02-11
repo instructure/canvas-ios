@@ -13,9 +13,6 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ yn dechrau am %2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, %@, last message %@ %@" = "%1$@, %2$@, neges diwethaf %3$@ %4$@";
-
 /* added to conversation label when unread */
 "%@, unread" = "%@, heb eu darllen";
 
@@ -81,9 +78,6 @@
 
 /* No comment provided by engineer. */
 "Choose a course to message" = "Dewiswch gwrs i anfon neges ato";
-
-/* No comment provided by engineer. */
-"Close" = "Cau";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Creu neges newydd";

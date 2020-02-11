@@ -13,9 +13,6 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@將開始於%2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, %@, last message %@ %@" = "%1$@，%2$@，上一訊息 %3$@ %4$@";
-
 /* added to conversation label when unread */
 "%@, unread" = "%@，未讀";
 
@@ -81,9 +78,6 @@
 
 /* No comment provided by engineer. */
 "Choose a course to message" = "選擇課程以傳送訊息";
-
-/* No comment provided by engineer. */
-"Close" = "關閉";
 
 /* No comment provided by engineer. */
 "Compose new message" = "撰寫新訊息";

@@ -39,6 +39,9 @@ class CustomNavbarProtocolTests: XCTestCase {
 }
 
 class CustomNavbarMock: UIViewController, CustomNavbarProtocol, CustomNavbarActionDelegate {
+    var customNavBarContainer: UIView!
+    var navbarContentContainer: UIView!
+    var navbarActionButton: UIButton!
 
     var navbarBottomViewContainer: UIView!
     var navbarMenu: UIView!
@@ -53,12 +56,17 @@ class CustomNavbarMock: UIViewController, CustomNavbarProtocol, CustomNavbarActi
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        customNavBarContainer = UIView()
+        view.addSubview(customNavBarContainer)
+        customNavBarContainer.addConstraintsWithVFL("H:|[view]|")
+        customNavBarContainer.addConstraintsWithVFL("V:|[view(130)]")
         setupCustomNavbar()
         customNavbarDelegate = self
         mainView = UIView()
 
         view.addSubview(mainView)
-        mainView.pinToAllSidesOfSuperview()
+        mainView.addConstraintsWithVFL("H:|[view]|")
+        mainView.addConstraintsWithVFL("V:[above]-[view]|", views: ["above": customNavBarContainer])
         hookupRootViewToMenu(mainView)
     }
 

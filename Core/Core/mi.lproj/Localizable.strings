@@ -32,6 +32,9 @@
 "All Grading Periods" = "Takiwā kōeke katoa";
 
 /* No comment provided by engineer. */
+"All People" = "Ngā tāngata katoa";
+
+/* No comment provided by engineer. */
 "All Submissions" = "Ngā tāpaetanga katoa";
 
 /* No comment provided by engineer. */
@@ -228,6 +231,9 @@
 
 /* No comment provided by engineer. */
 "Designer" = "Kaitātai";
+
+/* No comment provided by engineer. */
+"Designers" = "Kaitātai";
 
 /* No comment provided by engineer. */
 "Developer Menu" = "Tahua Whakawhanake";
@@ -500,6 +506,9 @@
 "No image found from image picker" = "Kaore i kitea he āhua mai i te  āhua kaiwhiwhi";
 
 /* No comment provided by engineer. */
+"No results" = "Kāore he hua";
+
+/* No comment provided by engineer. */
 "No Submission" = "Kāore he Tukunga";
 
 /* No comment provided by engineer. */
@@ -527,6 +536,9 @@
 "Observer" = "Kaimātakitaki";
 
 /* No comment provided by engineer. */
+"Observers" = "Kaitirotiro";
+
+/* No comment provided by engineer. */
 "OK" = "Ae";
 
 /* No comment provided by engineer. */
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Pause" = "Okioki";
+
+/* No comment provided by engineer. */
+"People" = "Tāngata";
 
 /* No comment provided by engineer. */
 "Permission Needed" = "E hiahiatia ana he whakāetanga";
@@ -612,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "Hōtaka";
+
+/* No comment provided by engineer. */
+"Search" = "Rapu";
 
 /* No comment provided by engineer. */
 "See attached files." = "Tirohia te kōnae piri.";
@@ -680,6 +698,9 @@
 "Student Appointment Signups" = "Haina runga Ākonga Wāhui";
 
 /* No comment provided by engineer. */
+"Students" = "Ngā ākonga";
+
+/* No comment provided by engineer. */
 "Style" = "Kāhua";
 
 /* No comment provided by engineer. */
@@ -714,6 +735,12 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Kaiako";
+
+/* No comment provided by engineer. */
+"Teachers" = "Ngā Kaiako";
+
+/* No comment provided by engineer. */
+"Teaching Assistants" = "Ngā Kaiako Kaiāwhina";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Ngā ritenga whakamahi";
@@ -792,6 +819,9 @@
 
 /* No comment provided by engineer. */
 "User ID" = "Kaiwhakamahi ID";
+
+/* Name and pronouns - John (He/Him) */
+"User.displayName" = "%1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Username" = "Ingoa rēhita";

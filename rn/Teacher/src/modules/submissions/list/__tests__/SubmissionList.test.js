@@ -451,15 +451,21 @@ describe('graphql props', () => {
           groups: {
             nodes: [
               templates.group({
-                name: 'b',
+                name: 'b 2',
                 members: {
                   nodes: [{ user: templates.user({ id: '1' }) }],
                 },
               }),
               templates.group({
-                name: 'a',
+                name: 'a 2',
                 members: {
                   nodes: [{ user: templates.user({ id: '2' }) }],
+                },
+              }),
+              templates.group({
+                name: 'b 10',
+                members: {
+                  nodes: [{ user: templates.user({ id: '3' }) }],
                 },
               }),
             ],
@@ -472,6 +478,7 @@ describe('graphql props', () => {
         groupedSubmissions: { edges: [
           { submission: templates.submission({ user: templates.user({ id: '1' }) }) },
           { submission: templates.submission({ user: templates.user({ id: '2' }) }) },
+          { submission: templates.submission({ user: templates.user({ id: '3' }) }) },
         ] },
       }),
     })
@@ -479,6 +486,7 @@ describe('graphql props', () => {
     expect(graphqlProps({ data: results }).submissions).toEqual([
       templates.submission({ user: templates.user({ id: '2' }) }),
       templates.submission({ user: templates.user({ id: '1' }) }),
+      templates.submission({ user: templates.user({ id: '3' }) }),
     ])
   })
 
@@ -509,9 +517,9 @@ describe('graphql props', () => {
         }),
         submissions: { edges: [] },
         groupedSubmissions: { edges: [
+          { submission: templates.submission({ user: templates.user({ name: 'a' }) }) },
           { submission: templates.submission({ user: templates.user({ id: '1' }) }) },
           { submission: templates.submission({ user: templates.user({ id: '2' }) }) },
-          { submission: templates.submission({ user: templates.user({ name: 'a' }) }) },
         ] },
       }),
     })

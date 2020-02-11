@@ -82,51 +82,11 @@ class AssignmentTests: CoreTestCase {
     }
 
     func testCanMakeSubmissions() {
-        //  given
-        let a = Assignment.make()
-        a.submissionTypes = [.online_upload]
-
-        //  when
-        let result = a.canMakeSubmissions
-
-        //  then
-        XCTAssertTrue(result)
-    }
-
-    func testCannotMakeSubmissions() {
-        //  given
-        let a = Assignment.make()
-        a.submissionTypes = [.none]
-
-        //  when
-        let result = a.canMakeSubmissions
-
-        //  then
-        XCTAssertFalse(result)
-    }
-
-    func testCannotMakeSubmissionsOnPaper() {
-        //  given
-        let a = Assignment.make()
-        a.submissionTypes = [.on_paper]
-
-        //  when
-        let result = a.canMakeSubmissions
-
-        //  then
-        XCTAssertFalse(result)
-    }
-
-    func testCannotMakeSubmissionsWithNoSubmissionTypes() {
-        //  given
-        let a = Assignment.make()
-        a.submissionTypes = []
-
-        //  when
-        let result = a.canMakeSubmissions
-
-        //  then
-        XCTAssertFalse(result)
+        XCTAssertTrue(Assignment.make(from: .make(submission_types: [.online_upload])).canMakeSubmissions)
+        XCTAssertFalse(Assignment.make(from: .make(submission_types: [.none])).canMakeSubmissions)
+        XCTAssertFalse(Assignment.make(from: .make(submission_types: [.on_paper])).canMakeSubmissions)
+        XCTAssertFalse(Assignment.make(from: .make(submission_types: [])).canMakeSubmissions)
+        XCTAssertFalse(Assignment.make(from: .make(submission_types: [.wiki_page])).canMakeSubmissions)
     }
 
     func testIsLTIAssignment() {

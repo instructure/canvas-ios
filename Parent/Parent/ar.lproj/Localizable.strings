@@ -13,9 +13,6 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ سيبدأ في %2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, %@, last message %@ %@" = "%1$@%2$@، الرسالة الأخيرة %3$@ %4$@";
-
 /* added to conversation label when unread */
 "%@, unread" = "%@، غير مقروءة";
 
@@ -81,9 +78,6 @@
 
 /* No comment provided by engineer. */
 "Choose a course to message" = "اختر مساقاً لإرسال رسالة";
-
-/* No comment provided by engineer. */
-"Close" = "إغلاق";
 
 /* No comment provided by engineer. */
 "Compose new message" = "إنشاء رسالة جديدة";

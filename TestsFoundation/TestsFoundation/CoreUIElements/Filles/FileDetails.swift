@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,17 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-@testable import Core
+import Foundation
 
-class APIRecentlyGradedRequestableTests: XCTestCase {
-    func testPath() {
-        let request = GetRecentlyGradedSubmissionsRequest(userID: "self")
-        XCTAssertEqual(request.path, "users/self/graded_submissions")
-    }
-
-    func testQuery() {
-        let request = GetRecentlyGradedSubmissionsRequest(userID: "self")
-        XCTAssertEqual(request.query, [.value("per_page", "3"), .array("include", ["assignment"])])
-    }
+public enum FileDetails: String, ElementWrapper {
+    case imageView
 }

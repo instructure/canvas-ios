@@ -13,9 +13,6 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@开始日期%2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, %@, last message %@ %@" = "%1$@, %2$@，上一条消息%3$@%4$@";
-
 /* added to conversation label when unread */
 "%@, unread" = "%@，未读";
 
@@ -81,9 +78,6 @@
 
 /* No comment provided by engineer. */
 "Choose a course to message" = "选择一个课程来发送讯息";
-
-/* No comment provided by engineer. */
-"Close" = "关闭";
 
 /* No comment provided by engineer. */
 "Compose new message" = "撰写新消息";

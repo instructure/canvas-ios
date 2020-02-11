@@ -72,6 +72,14 @@ workflows:
             brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
             brew reinstall swiftlint jq xcbeautify mxcl/made/swift-sh
             pip3 install awscli
+    - script:
+        title: Create temporary build links
+        is_skippable: true
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            set -euo pipefail
+            ./scripts/build_automation/build-link.swift generate-temp-links $BITRISE_PULL_REQUEST
     - &carthage
       carthage:
         inputs:
@@ -446,7 +454,9 @@ workflows:
         - channel: "#ios-bots"
         - author_name: ''
         - title: ''
-        - message: ''
+        - message: |-
+            Failed tests:
+            $FINAL_FAILED_TESTS
         - pretext: "*Nightly Build Succeeded!*"
 
   nightly-blame-bot:

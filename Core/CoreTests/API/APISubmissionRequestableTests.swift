@@ -96,4 +96,14 @@ class APISubmissionRequestableTests: CoreTestCase {
             ]
         )
     }
+
+    func testGetRecentlyGradedSubmissionsRequest() {
+        let request = GetRecentlyGradedSubmissionsRequest(userID: "self")
+        XCTAssertEqual(request.path, "users/self/graded_submissions")
+        XCTAssertEqual(request.query, [
+            .perPage(3),
+            .include(["assignment"]),
+            .bool("only_current_submissions", true),
+        ])
+    }
 }
