@@ -35,12 +35,10 @@ public class GetPlannables: CollectionUseCase {
         self.filter = filter
     }
 
-    public var cacheKey: String? {
-        return "get-plannables"
-    }
+    public var cacheKey: String? { nil }
 
     public var scope: Scope {
-        return .all(orderBy: #keyPath(Plannable.id))
+        return .all(orderBy: #keyPath(Plannable.date))
     }
 
     public var request: GetPlannablesRequest {

@@ -20,13 +20,32 @@ import Foundation
 import CoreData
 
 public final class Plannable: NSManagedObject, WriteableModel {
+
+    public enum PlannableType: String {
+        case announcement, assignment, discussion_topic, quiz, wiki_page, planner_note
+        case other
+    }
+
     public typealias JSON = APIPlannable
 
     @NSManaged public var id: String
     @NSManaged public var typeRaw: String
+    @NSManaged public var title: String?
     @NSManaged public var htmlURL: URL?
     @NSManaged public var contextImage: URL?
     @NSManaged public var canvasContextIDRaw: String?
+    @NSManaged public var contextName: String?
+    @NSManaged public var date: Date
+
+    public var plannableType: PlannableType {
+        get { return PlannableType(rawValue: typeRaw) ?? PlannableType.other }
+        set { typeRaw = newValue.rawValue }
+    }
+
+    public var type: ActivityType {
+        get { return ActivityType(rawValue: typeRaw) ?? ActivityType.submission }
+        set { typeRaw = newValue.rawValue }
+    }
 
     public var context: Context? {
         get { return ContextModel(canvasContextID: canvasContextIDRaw ?? "") }
@@ -41,11 +60,35 @@ public final class Plannable: NSManagedObject, WriteableModel {
         model.typeRaw = item.plannable_type
         model.htmlURL = item.html_url
         model.contextImage = item.context_image
+        model.contextName = item.context_name
+        model.title = item.plannable?.title
+        model.date = item.plannable_date
 
-        if let contextType = ContextType(rawValue: item.context_type.lowercased()), let courseID = item.course_id?.value {
+        if let itemContextType = item.context_type, let contextType = ContextType(rawValue: itemContextType.lowercased()), let courseID = item.course_id?.value {
             model.canvasContextIDRaw = ContextModel(contextType, id: courseID).canvasContextID
         }
         return model
     }
 
+}
+
+extension Plannable {
+    func icon() -> UIImage? {
+        switch(self.plannableType) {
+        case .assignment:
+            return UIImage.icon(.assignment, .line)
+        case .quiz:
+            return UIImage.icon(.quiz, .line)
+        case .discussion_topic:
+            return UIImage.icon(.discussion, .line)
+        case .announcement:
+            return UIImage.icon(.announcement, .line)
+        case .wiki_page:
+            return UIImage.icon(.document, .line)
+        case .planner_note:
+            return UIImage.icon(.document, .line)
+        case .other:
+            return UIImage.icon(.warning, .line)
+        }
+    }
 }

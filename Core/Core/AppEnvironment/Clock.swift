@@ -18,6 +18,28 @@
 
 import Foundation
 
+public class Cal {
+    private static let shared = Cal()
+    private var mockCalendar: Calendar?
+
+    public static func reset() {
+        shared.mockCalendar = nil
+    }
+
+    public static func mockCalendar(_ c: Calendar) {
+        shared.mockCalendar = c
+    }
+
+    public static var currentCalendar: Calendar {
+        #if DEBUG
+        if let mock = shared.mockCalendar {
+            return mock
+        }
+        #endif
+        return Calendar.current
+    }
+}
+
 public class Clock {
     private static let shared = Clock()
     private var mockNow: Date?

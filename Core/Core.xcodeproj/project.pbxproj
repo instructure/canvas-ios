@@ -538,6 +538,9 @@
 		97F69C3E23F20304009622E3 /* Plannable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C3D23F20304009622E3 /* Plannable.swift */; };
 		97F69C4023F209DB009622E3 /* PlannableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C3F23F209DB009622E3 /* PlannableTests.swift */; };
 		97F69C4423F2208E009622E3 /* GetPlannablesUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C4323F2208D009622E3 /* GetPlannablesUseCaseTests.swift */; };
+		97F69C4623F34735009622E3 /* PlannerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C4523F34734009622E3 /* PlannerListViewController.swift */; };
+		97F69C4823F3475E009622E3 /* PlannerListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97F69C4723F3475E009622E3 /* PlannerListViewController.storyboard */; };
+		97F69C4A23F34DB1009622E3 /* PlannerListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C4923F34DB1009622E3 /* PlannerListViewControllerTests.swift */; };
 		9F0282392367526700700B41 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0282382367526700700B41 /* App.swift */; };
 		9F09A4CF22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F09A4CE22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift */; };
 		9F10A66B2293191200E3360C /* UserSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F10A66A2293191200E3360C /* UserSettingsTests.swift */; };
@@ -1561,6 +1564,9 @@
 		97F69C3D23F20304009622E3 /* Plannable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plannable.swift; sourceTree = "<group>"; };
 		97F69C3F23F209DB009622E3 /* PlannableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannableTests.swift; sourceTree = "<group>"; };
 		97F69C4323F2208D009622E3 /* GetPlannablesUseCaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPlannablesUseCaseTests.swift; sourceTree = "<group>"; };
+		97F69C4523F34734009622E3 /* PlannerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerListViewController.swift; sourceTree = "<group>"; };
+		97F69C4723F3475E009622E3 /* PlannerListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlannerListViewController.storyboard; sourceTree = "<group>"; };
+		97F69C4923F34DB1009622E3 /* PlannerListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerListViewControllerTests.swift; sourceTree = "<group>"; };
 		9F0282382367526700700B41 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		9F09A4CE22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessInfoExtensionsTests.swift; sourceTree = "<group>"; };
 		9F10A66A2293191200E3360C /* UserSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsTests.swift; sourceTree = "<group>"; };
@@ -3124,6 +3130,7 @@
 				97F69C4323F2208D009622E3 /* GetPlannablesUseCaseTests.swift */,
 				97F69C3723F1F9A6009622E3 /* PlannableRequestablesTests.swift */,
 				97F69C3F23F209DB009622E3 /* PlannableTests.swift */,
+				97F69C4923F34DB1009622E3 /* PlannerListViewControllerTests.swift */,
 			);
 			path = Planner;
 			sourceTree = "<group>";
@@ -3134,6 +3141,8 @@
 				97F69C3B23F1FE64009622E3 /* GetPlannablesUseCase.swift */,
 				97F69BB623F1F286009622E3 /* APIPlannable.swift */,
 				97F69BBE23F1F286009622E3 /* PlannablesRequestable.swift */,
+				97F69C4523F34734009622E3 /* PlannerListViewController.swift */,
+				97F69C4723F3475E009622E3 /* PlannerListViewController.storyboard */,
 			);
 			path = Planner;
 			sourceTree = "<group>";
@@ -3976,6 +3985,7 @@
 				7D0215A721BB1750009A8E69 /* LoginStartViewController.storyboard in Resources */,
 				B1B4C1C9219631AC00FA9E0E /* EmptyView.xib in Resources */,
 				7D8E821223C8E14D00A8DA2C /* PeopleListViewController.storyboard in Resources */,
+				97F69C4823F3475E009622E3 /* PlannerListViewController.storyboard in Resources */,
 				3B4D861523295263005126A5 /* GradesViewController.storyboard in Resources */,
 				7DDC81442242E2B2000DD25A /* AudioRecorderViewController.storyboard in Resources */,
 				5BF786A6218599B600471A5F /* InfoPlist.strings in Resources */,
@@ -4109,6 +4119,7 @@
 				B1BB68F421B5F0C90079C78B /* FileUploadContext.swift in Sources */,
 				97F69C2C23F1F286009622E3 /* APISearchRecipient.swift in Sources */,
 				97F69BF423F1F286009622E3 /* APIPageRequestable.swift in Sources */,
+				97F69C4623F34735009622E3 /* PlannerListViewController.swift in Sources */,
 				7D9E80C6233C6A65003C608B /* ProfileSettingsViewController.swift in Sources */,
 				3B158C8D22E12DC50039A568 /* StringExtensions.swift in Sources */,
 				3B4687B42355109C00F293A5 /* SyllabusActionableItemsViewController.swift in Sources */,
@@ -4600,6 +4611,7 @@
 				7D86285B224C05BB003A37DC /* APIMediaCommentRequestableTests.swift in Sources */,
 				3B3467612130556000F9BC2E /* MockURLSession.swift in Sources */,
 				7DDC450D215BF14A003F3209 /* DynamicLabelTests.swift in Sources */,
+				97F69C4A23F34DB1009622E3 /* PlannerListViewControllerTests.swift in Sources */,
 				3B5542462369F401007D3CE0 /* AssignmentListRequestableTests.swift in Sources */,
 				9FE4032D237EF6B800469B45 /* PageListViewControllerTests.swift in Sources */,
 				B119B4BD2307208200A74062 /* GetEnabledFeatureFlagsTests.swift in Sources */,

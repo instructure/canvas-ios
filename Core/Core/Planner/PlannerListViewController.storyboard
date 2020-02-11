@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Planner List View Controller-->
+        <scene sceneID="ZI6-Wn-tjg">
+            <objects>
+                <viewController storyboardIdentifier="PlannerListViewController" id="vcb-BA-qgM" customClass="PlannerListViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="d5k-GK-zzo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="z9c-iF-0LB">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlannerListCell" id="nc6-qC-n7j" customClass="PlannerListCell" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="116.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nc6-qC-n7j" id="gQz-yJ-vt1">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="116.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wqm-ri-CUc">
+                                                    <rect key="frame" x="18" y="14" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="pFj-OX-xjp"/>
+                                                        <constraint firstAttribute="height" constant="24" id="tDp-wP-8a2"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="nvF-o5-JX4">
+                                                    <rect key="frame" x="60" y="16" width="338" height="88.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="AST 101" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HyU-M2-T4c" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="338" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Essay :the rocky planets" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3t-LK-Jry" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="22.5" width="338" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Due Apr 6 at 11:59pm" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdg-qH-tTU" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="45" width="338" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="1 out of 10 pts" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rnu-Vo-JB5" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="67.5" width="338" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="electric"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nvF-o5-JX4" firstAttribute="leading" secondItem="wqm-ri-CUc" secondAttribute="trailing" constant="18" id="2Pq-eG-ayc"/>
+                                                <constraint firstItem="nvF-o5-JX4" firstAttribute="top" secondItem="gQz-yJ-vt1" secondAttribute="top" constant="16" id="85U-AM-3fz"/>
+                                                <constraint firstItem="wqm-ri-CUc" firstAttribute="top" secondItem="gQz-yJ-vt1" secondAttribute="top" constant="14" id="HoR-a4-NUc"/>
+                                                <constraint firstItem="wqm-ri-CUc" firstAttribute="leading" secondItem="gQz-yJ-vt1" secondAttribute="leading" constant="18" id="Z1d-WE-QcF"/>
+                                                <constraint firstAttribute="bottom" secondItem="nvF-o5-JX4" secondAttribute="bottom" constant="12" id="dxQ-Lf-Ypt"/>
+                                                <constraint firstAttribute="trailing" secondItem="nvF-o5-JX4" secondAttribute="trailing" constant="16" id="jl1-56-ga0"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="courseCode" destination="HyU-M2-T4c" id="faW-5P-aOG"/>
+                                            <outlet property="dueDate" destination="bdg-qH-tTU" id="baU-dm-2kC"/>
+                                            <outlet property="icon" destination="wqm-ri-CUc" id="Tut-EC-dO2"/>
+                                            <outlet property="points" destination="Rnu-Vo-JB5" id="lLd-rT-wgc"/>
+                                            <outlet property="stackView" destination="nvF-o5-JX4" id="k9l-kN-8fJ"/>
+                                            <outlet property="title" destination="Q3t-LK-Jry" id="7Js-rf-rat"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vcb-BA-qgM" id="m2e-rW-Byb"/>
+                                    <outlet property="delegate" destination="vcb-BA-qgM" id="lLs-Bt-rMT"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="z9c-iF-0LB" firstAttribute="leading" secondItem="wnQ-j9-qXD" secondAttribute="leading" id="EwV-9T-dZP"/>
+                            <constraint firstItem="wnQ-j9-qXD" firstAttribute="bottom" secondItem="z9c-iF-0LB" secondAttribute="bottom" id="FyK-Ef-WDq"/>
+                            <constraint firstItem="z9c-iF-0LB" firstAttribute="top" secondItem="wnQ-j9-qXD" secondAttribute="top" id="j2H-pY-Rme"/>
+                            <constraint firstItem="wnQ-j9-qXD" firstAttribute="trailing" secondItem="z9c-iF-0LB" secondAttribute="trailing" id="pkg-A1-h1g"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wnQ-j9-qXD"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="z9c-iF-0LB" id="rNk-uG-go7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lMM-62-YvH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-75" y="20"/>
+        </scene>
+    </scenes>
+</document>

@@ -20,12 +20,24 @@ import Foundation
 
 public struct APIPlannable: Codable, Equatable {
     let course_id: ID?
-    let context_type: String
+    let context_type: String?
     let planner_override: APIPlannerOverride?
     let plannable_id: ID
     let plannable_type: String
-    let html_url: URL
-    let context_image: URL
+    let html_url: URL?
+    let context_image: URL?
+    let context_name: String?
+    let title: String?
+    let plannable: plannable?
+    let plannable_date: Date
+    //  swiftlint:disable:next type_name
+    public struct plannable: Codable, Equatable {
+        let title: String?
+
+        public init(title: String?) {
+            self.title = title
+        }
+    }
 }
 
 public struct APIPlannerOverride: Codable, Equatable {
@@ -51,7 +63,11 @@ extension APIPlannable {
         plannable_id: ID = "1",
         plannable_type: String = "Assignment",
         html_url: URL = URL(string: "http://localhost")!,
-        context_image: URL = URL(string: "https://live.staticflickr.com/1449/24823655706_a46286c12e.jpg")!
+        context_image: URL = URL(string: "https://live.staticflickr.com/1449/24823655706_a46286c12e.jpg")!,
+        context_name: String? = "Assignment Grades",
+        title: String? = "plannable #1",
+        plannable: APIPlannable.plannable? = APIPlannable.plannable(title: "assignment a"),
+        plannable_date: Date = Clock.now
     ) -> APIPlannable {
         return APIPlannable(
             course_id: course_id,
@@ -60,7 +76,11 @@ extension APIPlannable {
             plannable_id: plannable_id,
             plannable_type: plannable_type,
             html_url: html_url,
-            context_image: context_image
+            context_image: context_image,
+            context_name: context_name,
+            title: title,
+            plannable: plannable,
+            plannable_date: plannable_date
         )
     }
 }

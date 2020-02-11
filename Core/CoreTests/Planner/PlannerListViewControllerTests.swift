@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,26 +18,20 @@
 
 import XCTest
 @testable import Core
+import WebKit
 
-class GetPlannablesUseCaseTests: CoreTestCase {
+class PlannerListViewControllerTests: CoreTestCase {
 
-    var useCase: GetPlannables!
+    var vc: PlannerListViewController!
 
     override func setUp() {
         super.setUp()
-        useCase = GetPlannables(userID: nil)
+        vc = PlannerListViewController.create(userID: "1")
     }
 
-    func testCacheKey() {
-        XCTAssertEqual(useCase.cacheKey, nil)
-
-    }
-
-    func testScope() {
-        XCTAssertEqual(useCase.scope, Scope.all(orderBy: #keyPath(Plannable.date)))
-    }
-
-    func testRequest() {
-        XCTAssertEqual(useCase.request.startDate, nil)
+    func testLayout() {
+        vc.loadView()
+        vc.viewDidLoad()
+        vc.viewWillAppear(false)
     }
 }
