@@ -37,7 +37,7 @@ class AddStudentController {
         alert.addTextField { tf in
             tf.placeholder = NSLocalizedString("Pairing Code", comment: "")
         }
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in }))
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
         alert.addAction(AlertAction(NSLocalizedString("Add", comment: ""), style: .default, handler: { [weak self] _ in
             guard let textField = alert.textFields?.first, let code = textField.text else { return }
             self?.addPairingCode(code: code)
@@ -50,7 +50,7 @@ class AddStudentController {
         let request = PostObserveesRequest(userID: "self", pairingCode: code)
         env.api.makeRequest(request) { [weak self] _, _, error in
             guard let self = self, let vc = self.presentingViewController else { return }
-            DispatchQueue.main.async {
+            performUIUpdate {
                 if let error = error {
                     let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { _ in }))
