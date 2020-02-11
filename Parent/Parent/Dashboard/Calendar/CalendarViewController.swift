@@ -101,9 +101,7 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
 
     @IBAction func toggleExpanded() {
         isExpanded = !isExpanded
-        monthButton.accessibilityLabel = isExpanded
-            ? NSLocalizedString("Show a week at time", comment: "")
-            : NSLocalizedString("Show a month at a time", comment: "")
+        monthButton.isSelected = isExpanded
         UIView.animate(withDuration: 0.3, animations: updateExpanded)
         clearPageCache()
     }

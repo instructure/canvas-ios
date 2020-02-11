@@ -127,6 +127,8 @@
 		7D1591BC23AD79B100ED0106 /* ComposeRecipientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1591BB23AD79B100ED0106 /* ComposeRecipientsView.swift */; };
 		7D231BE123AC1E0A005BA31D /* ComposeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D231BE023AC1E0A005BA31D /* ComposeViewControllerTests.swift */; };
 		7D32963923D6574B008ED385 /* TableEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D32963823D6574A008ED385 /* TableEmptyView.xib */; };
+		7D41923823F3493E0088EB54 /* CalendarViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D41923723F3493E0088EB54 /* CalendarViewControllerTests.swift */; };
+		7D41923A23F3554E0088EB54 /* CalendarDaysViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D41923923F3554E0088EB54 /* CalendarDaysViewControllerTests.swift */; };
 		7D52D8A122FCC89F00684932 /* DiscussionTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D322048745B00F6EDCE /* DiscussionTopic.swift */; };
 		7D52D8A222FCC89F00684932 /* DiscussionTopic+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D332048745B00F6EDCE /* DiscussionTopic+Network.swift */; };
 		7D52D8A322FCC89F00684932 /* DiscussionTopic+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D342048745B00F6EDCE /* DiscussionTopic+Details.swift */; };
@@ -908,6 +910,8 @@
 		7D349CD521430E65004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/StudentSettingsHeaderView.strings"; sourceTree = "<group>"; };
 		7D349CD721430E66004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349CD921430E67004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D41923723F3493E0088EB54 /* CalendarViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewControllerTests.swift; sourceTree = "<group>"; };
+		7D41923923F3554E0088EB54 /* CalendarDaysViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDaysViewControllerTests.swift; sourceTree = "<group>"; };
 		7D54706A23EDC7A0005048BD /* CalendarDaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDaysViewController.swift; sourceTree = "<group>"; };
 		7D54706C23EDF1ED005048BD /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		7D57D3CB23AADA0F00EB2CC5 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
@@ -1454,6 +1458,15 @@
 			path = Conversations;
 			sourceTree = "<group>";
 		};
+		7D41923623F3491E0088EB54 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				7D41923923F3554E0088EB54 /* CalendarDaysViewControllerTests.swift */,
+				7D41923723F3493E0088EB54 /* CalendarViewControllerTests.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		7D88EA2C23A9A1A000D5F8FD /* UserDefaults */ = {
 			isa = PBXGroup;
 			children = (
@@ -1487,6 +1500,7 @@
 		97043EDD23E8D4BA00E52436 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				7D41923623F3491E0088EB54 /* Calendar */,
 				97043EDE23E8D4D400E52436 /* DashboardViewControllerTests.swift */,
 			);
 			path = Dashboard;
@@ -1941,10 +1955,12 @@
 				977921A423E148470082696B /* CustomNavbarProtocolTests.swift in Sources */,
 				7DFDB43223A3EDFB00B28DED /* ConversationListViewControllerTests.swift in Sources */,
 				B1AA55D0235785A200DFD184 /* SettingsViewControllerTests.swift in Sources */,
+				7D41923823F3493E0088EB54 /* CalendarViewControllerTests.swift in Sources */,
 				7D6F4CEB23C69F7F001C957D /* ComposeReplyViewControllerTests.swift in Sources */,
 				7D231BE123AC1E0A005BA31D /* ComposeViewControllerTests.swift in Sources */,
 				3B54E3592326F9B000D8D1D2 /* ParentTestCase.swift in Sources */,
 				97043EDF23E8D4D400E52436 /* DashboardViewControllerTests.swift in Sources */,
+				7D41923A23F3554E0088EB54 /* CalendarDaysViewControllerTests.swift in Sources */,
 				9F397F8523C8D54600A3E2AF /* ConversationCoursesActionSheetTests.swift in Sources */,
 				3B36A2F12322C56F00599A1E /* APIAlertThresholdFixture.swift in Sources */,
 				3B8F23CB2327050F00788730 /* StudentSettingsPresenterTests.swift in Sources */,
