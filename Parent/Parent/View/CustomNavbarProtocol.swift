@@ -92,13 +92,13 @@ extension CustomNavbarProtocol {
         navbarNameButton = DynamicButton()
         navbarNameButton.adjustsImageWhenHighlighted = false
         navbarNameButton.semanticContentAttribute = UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft ? .forceLeftToRight : .forceRightToLeft
-        let img = UIImage(named: "icon_down_arrow")?.withRenderingMode(.alwaysTemplate)
+        let img = UIImage.icon(.dropdown)
         navbarNameButton.setImage(img, for: .normal)
         navbarNameButton.imageView?.transform = CGAffineTransform(rotationAngle: CGFloat(180.0 * .pi))
         navbarNameButton.imageView?.contentMode = .scaleAspectFit
         navbarNameButton.tintColor = .white
         navbarNameButton.adjustsImageWhenHighlighted = false
-        navbarNameButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        navbarNameButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
         navbarNameButton.titleLabel?.font = .scaledNamedFont(.semibold16)
         navbarNameButton.setTitleColor(.white, for: .normal)
         navbarNameButton.titleLabel?.textAlignment = .center

@@ -127,14 +127,19 @@
 		7D1591BC23AD79B100ED0106 /* ComposeRecipientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1591BB23AD79B100ED0106 /* ComposeRecipientsView.swift */; };
 		7D231BE123AC1E0A005BA31D /* ComposeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D231BE023AC1E0A005BA31D /* ComposeViewControllerTests.swift */; };
 		7D32963923D6574B008ED385 /* TableEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D32963823D6574A008ED385 /* TableEmptyView.xib */; };
+		7D41923823F3493E0088EB54 /* CalendarViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D41923723F3493E0088EB54 /* CalendarViewControllerTests.swift */; };
+		7D41923A23F3554E0088EB54 /* CalendarDaysViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D41923923F3554E0088EB54 /* CalendarDaysViewControllerTests.swift */; };
 		7D52D8A122FCC89F00684932 /* DiscussionTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D322048745B00F6EDCE /* DiscussionTopic.swift */; };
 		7D52D8A222FCC89F00684932 /* DiscussionTopic+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D332048745B00F6EDCE /* DiscussionTopic+Network.swift */; };
 		7D52D8A322FCC89F00684932 /* DiscussionTopic+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D342048745B00F6EDCE /* DiscussionTopic+Details.swift */; };
 		7D52D8A422FCC8A200684932 /* DiscussionTopicAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D392048745B00F6EDCE /* DiscussionTopicAPI.swift */; };
 		7D52D8A522FCC8A500684932 /* Session+DiscussionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D3B2048745B00F6EDCE /* Session+DiscussionKit.swift */; };
 		7D52D8A622FCC8C200684932 /* DiscussionKit.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 9F5A3D372048745B00F6EDCE /* DiscussionKit.xcdatamodeld */; };
+		7D54706B23EDC7A0005048BD /* CalendarDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D54706A23EDC7A0005048BD /* CalendarDaysViewController.swift */; };
+		7D54706D23EDF1ED005048BD /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D54706C23EDF1ED005048BD /* CalendarViewController.swift */; };
 		7D57D3CC23AADA0F00EB2CC5 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D57D3CB23AADA0F00EB2CC5 /* ComposeViewController.swift */; };
 		7D57D3CE23AADAAC00EB2CC5 /* ComposeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D57D3CD23AADAAC00EB2CC5 /* ComposeViewController.storyboard */; };
+		7D58E23C23F1E3D20089D67B /* CalendarViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D58E23B23F1E3D20089D67B /* CalendarViewController.storyboard */; };
 		7D6F4CE723C66738001C957D /* ComposeReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6F4CE623C66738001C957D /* ComposeReplyViewController.swift */; };
 		7D6F4CE923C676CE001C957D /* ComposeReplyViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6F4CE823C676CE001C957D /* ComposeReplyViewController.storyboard */; };
 		7D6F4CEB23C69F7F001C957D /* ComposeReplyViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6F4CEA23C69F7F001C957D /* ComposeReplyViewControllerTests.swift */; };
@@ -907,8 +912,13 @@
 		7D349CD521430E65004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/StudentSettingsHeaderView.strings"; sourceTree = "<group>"; };
 		7D349CD721430E66004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349CD921430E67004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D41923723F3493E0088EB54 /* CalendarViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewControllerTests.swift; sourceTree = "<group>"; };
+		7D41923923F3554E0088EB54 /* CalendarDaysViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDaysViewControllerTests.swift; sourceTree = "<group>"; };
+		7D54706A23EDC7A0005048BD /* CalendarDaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDaysViewController.swift; sourceTree = "<group>"; };
+		7D54706C23EDF1ED005048BD /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		7D57D3CB23AADA0F00EB2CC5 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		7D57D3CD23AADAAC00EB2CC5 /* ComposeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ComposeViewController.storyboard; sourceTree = "<group>"; };
+		7D58E23B23F1E3D20089D67B /* CalendarViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CalendarViewController.storyboard; sourceTree = "<group>"; };
 		7D6F4CE623C66738001C957D /* ComposeReplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeReplyViewController.swift; sourceTree = "<group>"; };
 		7D6F4CE823C676CE001C957D /* ComposeReplyViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ComposeReplyViewController.storyboard; sourceTree = "<group>"; };
 		7D6F4CEA23C69F7F001C957D /* ComposeReplyViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeReplyViewControllerTests.swift; sourceTree = "<group>"; };
@@ -1211,6 +1221,9 @@
 				2CB69BD41D91CE4D0059C5A5 /* CalendarEventWeekPageViewController.storyboard */,
 				5EB4B5BA1C9749CD00CD8885 /* CalendarEventWeekPageViewController.swift */,
 				2CB69BAD1D91CDE50059C5A5 /* EmptyCalendarEventCell.xib */,
+				7D54706A23EDC7A0005048BD /* CalendarDaysViewController.swift */,
+				7D54706C23EDF1ED005048BD /* CalendarViewController.swift */,
+				7D58E23B23F1E3D20089D67B /* CalendarViewController.storyboard */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -1450,6 +1463,15 @@
 			path = Conversations;
 			sourceTree = "<group>";
 		};
+		7D41923623F3491E0088EB54 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				7D41923923F3554E0088EB54 /* CalendarDaysViewControllerTests.swift */,
+				7D41923723F3493E0088EB54 /* CalendarViewControllerTests.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		7D88EA2C23A9A1A000D5F8FD /* UserDefaults */ = {
 			isa = PBXGroup;
 			children = (
@@ -1483,6 +1505,7 @@
 		97043EDD23E8D4BA00E52436 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				7D41923623F3491E0088EB54 /* Calendar */,
 				97043EDE23E8D4D400E52436 /* DashboardViewControllerTests.swift */,
 			);
 			path = Dashboard;
@@ -1795,6 +1818,7 @@
 				78AD913321C8184F0075FBCF /* GoogleService-Info.plist in Resources */,
 				7D111D0123A2DDDF00C912C0 /* ConversationListViewController.storyboard in Resources */,
 				5E6441921C3EE2E0003D7397 /* Assets.xcassets in Resources */,
+				7D58E23C23F1E3D20089D67B /* CalendarViewController.storyboard in Resources */,
 				2CB69BC61D91CE180059C5A5 /* StudentSettingsHeaderView.xib in Resources */,
 				2C61CD091D9311B400196C03 /* Localizable.strings in Resources */,
 				2CB69BC01D91CE100059C5A5 /* SettingsObserveeCell.xib in Resources */,
@@ -1938,10 +1962,12 @@
 				977921A423E148470082696B /* CustomNavbarProtocolTests.swift in Sources */,
 				7DFDB43223A3EDFB00B28DED /* ConversationListViewControllerTests.swift in Sources */,
 				B1AA55D0235785A200DFD184 /* SettingsViewControllerTests.swift in Sources */,
+				7D41923823F3493E0088EB54 /* CalendarViewControllerTests.swift in Sources */,
 				7D6F4CEB23C69F7F001C957D /* ComposeReplyViewControllerTests.swift in Sources */,
 				7D231BE123AC1E0A005BA31D /* ComposeViewControllerTests.swift in Sources */,
 				3B54E3592326F9B000D8D1D2 /* ParentTestCase.swift in Sources */,
 				97043EDF23E8D4D400E52436 /* DashboardViewControllerTests.swift in Sources */,
+				7D41923A23F3554E0088EB54 /* CalendarDaysViewControllerTests.swift in Sources */,
 				9F397F8523C8D54600A3E2AF /* ConversationCoursesActionSheetTests.swift in Sources */,
 				3B36A2F12322C56F00599A1E /* APIAlertThresholdFixture.swift in Sources */,
 				3B8F23CB2327050F00788730 /* StudentSettingsPresenterTests.swift in Sources */,
@@ -2022,6 +2048,7 @@
 				49DB0AE61E4E27030036D96E /* Student+AccessRemoved.swift in Sources */,
 				5E0F9A761C739E6A00BB7707 /* SettingsObserveeCellViewModel.swift in Sources */,
 				5E0F9A691C739E6A00BB7707 /* AlertCellViewModel.swift in Sources */,
+				7D54706B23EDC7A0005048BD /* CalendarDaysViewController.swift in Sources */,
 				3B86FA3622DD24FA0018C012 /* SettingsAPIClient.swift in Sources */,
 				497C48E61F9153D100A3BC06 /* Student+Network.swift in Sources */,
 				497C48E31F9153D100A3BC06 /* Student+Collections.swift in Sources */,
@@ -2035,6 +2062,7 @@
 				5EE9A51C1D14717300EFCDAE /* StudentSettingsHeaderView.swift in Sources */,
 				5EF946251CACD83500D10247 /* TableSectionHeaderView.swift in Sources */,
 				5E0F9A791C739E6A00BB7707 /* SettingsViewModel.swift in Sources */,
+				7D54706D23EDF1ED005048BD /* CalendarViewController.swift in Sources */,
 				7D52D8A222FCC89F00684932 /* DiscussionTopic+Network.swift in Sources */,
 				5EF946271CACD91B00D10247 /* TokenLabelView.swift in Sources */,
 				6182D3B91D91D7EF00D516D5 /* DetailsAttachmentCell.swift in Sources */,

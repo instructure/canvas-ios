@@ -72,6 +72,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
                 navbarAvatar?.url = student.avatarURL
                 navbarAvatar?.label.backgroundColor = .white
                 tabBar.tintColor = color
+                view.tintColor = color
                 refreshNavbarColor()
             }
 
@@ -309,6 +310,9 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
 
     func calendarViewController(_ session: Session, startDate: Date = Date()) -> UIViewController? {
         guard let currentStudent = currentStudent else { return nil }
+        if ExperimentalFeature.parentCalendar.isEnabled {
+            return CalendarViewController.create(studentID: currentStudent.id)
+        }
         return CalendarEventWeekPageViewController.create(session: session, studentID: currentStudent.id, initialReferenceDate: startDate)
     }
 
