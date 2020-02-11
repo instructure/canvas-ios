@@ -69,7 +69,7 @@ class SettingsViewController: UIViewController {
 
         setupObserveeList()
 
-        self.title = NSLocalizedString("Manage Children", comment: "Title of the manage children screen. This screen is used to add/remove children that a parent is observing.")
+        self.title = NSLocalizedString("Manage Students", comment: "")
     }
 
     override func viewWillAppear(_ animated: Bool) {

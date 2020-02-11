@@ -55,7 +55,9 @@ class LoginStartViewController: UIViewController {
 
         canvasNetworkButton.setTitle(NSLocalizedString("Canvas Network", bundle: .core, comment: ""), for: .normal)
         canvasNetworkButton.isHidden = loginDelegate?.supportsCanvasNetwork == false
-        findSchoolButton.setTitle(NSLocalizedString("Find my school", bundle: .core, comment: ""), for: .normal)
+        if let findSchoolButtonTitle = loginDelegate?.findSchoolButtonTitle {
+            findSchoolButton.setTitle(findSchoolButtonTitle, for: .normal)
+        }
         helpButton.accessibilityLabel = NSLocalizedString("Help", bundle: .core, comment: "")
         helpButton.isHidden = !Bundle.main.isParentApp
         authenticationMethodLabel.isHidden = true

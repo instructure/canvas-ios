@@ -150,7 +150,8 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension ParentAppDelegate: LoginDelegate {
-    var supportsCanvasNetwork: Bool { return false }
+    var supportsCanvasNetwork: Bool { false }
+    var findSchoolButtonTitle: String { NSLocalizedString("Find School", bundle: .core, comment: "") }
 
     func openSupportTicket() {
         guard let presentFrom = topMostViewController() else { return }

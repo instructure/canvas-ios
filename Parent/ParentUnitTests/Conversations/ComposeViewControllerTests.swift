@@ -40,13 +40,13 @@ class ComposeViewControllerTests: ParentTestCase {
     func testLayout() throws {
         api.mock(
             GetCourseRequest(courseID: "1", include: GetCourseRequest.defaultIncludes),
-            value: .make(id: "1", name: "Course 1")
+            value: .make(id: "1", name: "Course 1", course_code: "course-1")
         )
         let navigation = UINavigationController(rootViewController: controller)
         loadView()
         let titleView = try XCTUnwrap(controller.navigationItem.titleView as? TitleSubtitleView)
         XCTAssertEqual(titleView.title, "New Message")
-        XCTAssertEqual(titleView.subtitle, "Course 1")
+        XCTAssertEqual(titleView.subtitle, "course-1")
         XCTAssertEqual(navigation.navigationBar.barTintColor, .named(.backgroundLightest))
 
         XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.isEnabled, true)

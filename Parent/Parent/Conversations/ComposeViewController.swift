@@ -48,7 +48,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
     lazy var course: Store<GetCourse>? = {
         guard let context = context, context.contextType == .course else { return nil }
         return env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
-            self?.titleSubtitleView.subtitle = self?.course?.first?.name
+            self?.titleSubtitleView.subtitle = self?.course?.first?.courseCode
         }
     }()
 

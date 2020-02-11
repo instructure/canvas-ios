@@ -68,7 +68,7 @@ public class ProfilePresenter {
                     self?.view?.route(to: .conversations)
                 })
             }
-            cells.append(ProfileViewCell("manageChildren", name: NSLocalizedString("Manage Children", bundle: .core, comment: "")) { [weak self] _ in
+            cells.append(ProfileViewCell("manageChildren", name: NSLocalizedString("Manage Students", bundle: .core, comment: "")) { [weak self] _ in
                 self?.view?.route(to: .profileObservees())
             })
         } else {
