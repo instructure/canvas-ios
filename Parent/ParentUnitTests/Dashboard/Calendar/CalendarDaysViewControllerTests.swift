@@ -22,26 +22,23 @@ import XCTest
 import TestsFoundation
 
 class CalendarDaysViewControllerTests: ParentTestCase, CalendarDaysDelegate {
-    lazy var selectedDate = Clock.now
-    var isExpanded = false
+    lazy var _selectedDate: Date = Clock.now
+    var selectedDate: Date { _selectedDate }
+    func setSelectedDate(_ date: Date) {
+        _selectedDate = date
+    }
 
-    lazy var controller = CalendarDaysViewController.create(anchorDate: Clock.now, delegate: self)
+    lazy var controller = CalendarDaysViewController.create(Clock.now, selectedDate: Clock.now, delegate: self)
 
     func testDates() {
         Clock.mockNow(DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 2, day: 14).date!)
         controller.view.layoutIfNeeded()
 
-        XCTAssertEqual(controller.firstDate(isExpanded: true), DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 1, day: 26).date)
-        XCTAssertEqual(controller.firstDate(isExpanded: false), DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 2, day: 9).date)
-
-        XCTAssertEqual(controller.monthDate(isExpanded: true), DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 2, day: 12).date)
-        XCTAssertEqual(controller.monthDate(isExpanded: false), DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 2, day: 12).date)
-
-        XCTAssertEqual(controller.lastDate(isExpanded: true), DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 2, day: 29).date)
-        XCTAssertEqual(controller.lastDate(isExpanded: false), DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 2, day: 15).date)
+        XCTAssertEqual(controller.midDate(isExpanded: true), DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 2, day: 12).date)
+        XCTAssertEqual(controller.midDate(isExpanded: false), DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 2, day: 12).date)
 
         (controller.weeksStackView.arrangedSubviews.first?.subviews.first as? UIButton)?.sendActions(for: .primaryActionTriggered)
-        XCTAssertEqual(selectedDate, controller.firstDate(isExpanded: isExpanded))
+        XCTAssertEqual(selectedDate, DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 1, day: 26).date)
         XCTAssertEqual((controller.weeksStackView.arrangedSubviews.first?.subviews.first as? UIButton)?.isSelected, true)
     }
 

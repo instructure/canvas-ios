@@ -21,8 +21,7 @@ import UIKit
 import Core
 
 protocol CalendarDaysDelegate: class {
-    var selectedDate: Date { get set }
-    var isExpanded: Bool { get }
+    func setSelectedDate(_ date: Date)
 }
 
 class CalendarDaysViewController: UIViewController {
@@ -33,17 +32,19 @@ class CalendarDaysViewController: UIViewController {
     let weekHeight: CGFloat = 40
     let weekGap: CGFloat = 12
 
-    var anchorDate = Clock.now
-    private var anchorWeekIndex = 0
     var calendar: Calendar { CalendarDaysViewController.calendar }
     weak var delegate: CalendarDaysDelegate?
+    var fromDate = Clock.now
+    var selectedDate = Clock.now
+    private var selectedWeekIndex = 0
     let weeksStackView = UIStackView()
     lazy var topOffset = weeksStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
 
-    static func create(anchorDate: Date, delegate: CalendarDaysDelegate?) -> CalendarDaysViewController {
+    static func create(_ fromDate: Date, selectedDate: Date, delegate: CalendarDaysDelegate?) -> CalendarDaysViewController {
         let controller = CalendarDaysViewController()
-        controller.anchorDate = anchorDate
         controller.delegate = delegate
+        controller.fromDate = fromDate
+        controller.selectedDate = selectedDate
         return controller
     }
 
@@ -55,10 +56,9 @@ class CalendarDaysViewController: UIViewController {
         weeksStackView.pin(inside: view, top: nil, bottom: nil)
         topOffset.isActive = true
 
-        let selectedDate = delegate?.selectedDate ?? Clock.now
-        var currentDate = calendar.date(byAdding: .day, value: 1 - calendar.component(.day, from: anchorDate), to: anchorDate)!
+        var currentDate = calendar.date(byAdding: .day, value: 1 - calendar.component(.day, from: fromDate), to: fromDate)!
         currentDate = calendar.date(byAdding: .day, value: calendar.firstWeekday - calendar.component(.weekday, from: currentDate), to: currentDate)!
-        while calendar.compare(currentDate, to: anchorDate, toGranularity: .month) != .orderedDescending {
+        while calendar.compare(currentDate, to: fromDate, toGranularity: .month) != .orderedDescending {
             let week = UIStackView()
             week.distribution = .fillEqually
             weeksStackView.addArrangedSubview(week)
@@ -70,8 +70,8 @@ class CalendarDaysViewController: UIViewController {
                 week.addArrangedSubview(day)
                 currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
             }
-            if currentDate < anchorDate {
-                anchorWeekIndex += 1
+            if currentDate < selectedDate {
+                selectedWeekIndex += 1
             }
         }
     }
@@ -79,16 +79,16 @@ class CalendarDaysViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         let ratio = min(1, (view.bounds.height - minHeight) / (maxHeight - minHeight))
-        topOffset.constant = -(1 - ratio) * CGFloat(anchorWeekIndex) * (weekHeight + weekGap)
+        topOffset.constant = -(1 - ratio) * CGFloat(selectedWeekIndex) * (weekHeight + weekGap)
         for (w, week) in weeksStackView.arrangedSubviews.enumerated() {
-            week.alpha = w == anchorWeekIndex ? 1 : ratio
+            week.alpha = w == selectedWeekIndex ? 1 : ratio
         }
     }
 
     @objc func selectDate(_ button: CalendarDayButton) {
-        let selectedDate = button.date
-        anchorWeekIndex = button.tag
-        delegate?.selectedDate = selectedDate
+        selectedDate = button.date
+        selectedWeekIndex = button.tag
+        delegate?.setSelectedDate(selectedDate)
         for week in weeksStackView.arrangedSubviews {
             for day in week.subviews.compactMap({ $0 as? CalendarDayButton }) {
                 day.isSelected = calendar.isDate(day.date, inSameDayAs: selectedDate)
@@ -96,27 +96,11 @@ class CalendarDaysViewController: UIViewController {
         }
     }
 
-    func firstDate(isExpanded: Bool) -> Date {
-        let week = isExpanded
-            ? weeksStackView.arrangedSubviews.first
-            : weeksStackView.arrangedSubviews[anchorWeekIndex]
-        let button = week?.subviews.first as? CalendarDayButton
-        return button!.date
-    }
-
-    func monthDate(isExpanded: Bool) -> Date {
+    func midDate(isExpanded: Bool) -> Date {
         let week = isExpanded
             ? weeksStackView.arrangedSubviews[weeksStackView.arrangedSubviews.count / 2]
-            : weeksStackView.arrangedSubviews[anchorWeekIndex]
+            : weeksStackView.arrangedSubviews[selectedWeekIndex]
         let button = week.subviews[week.subviews.count / 2] as? CalendarDayButton
-        return button!.date
-    }
-
-    func lastDate(isExpanded: Bool) -> Date {
-        let week = isExpanded
-            ? weeksStackView.arrangedSubviews.last
-            : weeksStackView.arrangedSubviews[anchorWeekIndex]
-        let button = week?.subviews.last as? CalendarDayButton
         return button!.date
     }
 }
