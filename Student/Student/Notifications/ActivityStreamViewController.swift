@@ -83,14 +83,14 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
 
     func setupTableView() {
         tableView.registerHeaderFooterView(SectionHeaderView.self)
-        let refresh = UIRefreshControl()
+        let refresh = CircleRefreshControl()
         refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView?.refreshControl = refresh
         tableView.separatorColor = .named(.borderMedium)
         tableView.backgroundColor = .named(.backgroundLightest)
     }
 
-    @objc func refresh(_ control: UIRefreshControl) {
+    @objc func refresh(_ control: CircleRefreshControl) {
         control.endRefreshing()
         refreshData(force: true)
      }

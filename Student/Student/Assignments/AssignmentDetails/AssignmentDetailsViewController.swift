@@ -73,7 +73,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
     let scrollViewInsetPadding: CGFloat = 24.0
 
-    var refreshControl: UIRefreshControl?
+    var refreshControl: CircleRefreshControl?
     let titleSubtitleView = TitleSubtitleView.create()
     var presenter: AssignmentDetailsPresenter?
 
@@ -97,7 +97,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         scrollView?.isHidden = true
         scrollView?.backgroundColor = .named(.backgroundLightest)
         loadingView?.color = Brand.shared.primary.ensureContrast(against: .named(.backgroundLightest))
-        let refreshControl = UIRefreshControl()
+        let refreshControl = CircleRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         scrollView?.addSubview(refreshControl)
         self.refreshControl = refreshControl
@@ -145,7 +145,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     }
 
     @objc
-    func refresh(_ refreshControl: UIRefreshControl) {
+    func refresh(_ refreshControl: CircleRefreshControl) {
         presenter?.refresh()
     }
 

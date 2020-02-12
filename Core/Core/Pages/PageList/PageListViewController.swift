@@ -26,7 +26,7 @@ public class PageListViewController: UIViewController, PageListViewProtocol {
     @IBOutlet weak var emptyLabel: DynamicLabel!
     @IBOutlet weak var frontPageView: UIView!
     @IBOutlet weak var frontPageTitleLabel: DynamicLabel!
-    @IBOutlet weak var loadingView: UIActivityIndicatorView!
+    @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var frontPageViewButton: UIButton!
 
@@ -68,7 +68,7 @@ public class PageListViewController: UIViewController, PageListViewProtocol {
         }
 
         if !isEmpty || !isLoading {
-            loadingView?.stopAnimating()
+            loadingView?.isHidden = true
             tableView?.refreshControl?.endRefreshing()
             view.setNeedsLayout()
         }
@@ -99,15 +99,13 @@ public class PageListViewController: UIViewController, PageListViewProtocol {
         super.viewDidLoad()
 
         setupTitleViewInNavbar(title: NSLocalizedString("Pages", bundle: .core, comment: ""))
-        loadingView?.color = Brand.shared.primary.ensureContrast(against: .named(.white))
-        loadingView.isHidden = true
 
         if presenter?.canCreatePage() == true {
             let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
             addNavigationButton(button, side: .right)
         }
 
-        let refresh = UIRefreshControl()
+        let refresh = CircleRefreshControl()
         refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
 
         tableView?.refreshControl = refresh
@@ -147,7 +145,7 @@ public class PageListViewController: UIViewController, PageListViewProtocol {
         presenter?.newPage(from: self)
     }
 
-    @objc func refresh(_ control: UIRefreshControl) {
+    @objc func refresh(_ control: CircleRefreshControl) {
         presenter?.refreshPages()
     }
 }

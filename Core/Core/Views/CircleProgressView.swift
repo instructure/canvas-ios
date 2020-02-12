@@ -22,25 +22,30 @@ import UIKit
 public class CircleProgressView: UIView {
     let track = CAShapeLayer()
     let fill = CAShapeLayer()
-    let thickness: CGFloat = 3
-
-    @IBInspectable
-    public var progress: Double = 0 {
-        didSet {
-            fill.strokeEnd = CGFloat(progress)
-            setNeedsDisplay()
-        }
-    }
+    let morph = CAAnimationGroup()
+    let morphKey = "morph"
+    let rotate = CABasicAnimation(keyPath: "transform.rotation.z")
+    let rotateKey = "rotate"
 
     public override var bounds: CGRect {
-        didSet {
-            track.path = ring()
-            fill.path = ring()
-            setNeedsDisplay()
-        }
+        didSet { updateSize() }
     }
 
-    override public init(frame: CGRect) {
+    @IBInspectable
+    public var color: UIColor = Brand.shared.primary.ensureContrast(against: .named(.backgroundLightest)) {
+        didSet { fill.strokeColor = color.cgColor }
+    }
+
+    public var progress: CGFloat? = nil {
+        didSet { updateProgress() }
+    }
+
+    @IBInspectable
+    var thickness: CGFloat = 3 {
+        didSet { updateSize() }
+    }
+
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
     }
@@ -50,28 +55,66 @@ public class CircleProgressView: UIView {
         commonInit()
     }
 
+    func updateSize() {
+        track.lineWidth = thickness
+        track.path = ring(thickness)
+        fill.lineWidth = thickness
+        fill.path = ring(thickness)
+        fill.frame = bounds
+    }
+
+    func updateProgress() {
+        if let progress = progress {
+            fill.removeAnimation(forKey: morphKey)
+            layer.removeAnimation(forKey: rotateKey)
+            fill.strokeEnd = progress
+        } else {
+            fill.add(morph, forKey: morphKey)
+            layer.add(rotate, forKey: rotateKey)
+        }
+    }
+
     func commonInit() {
         track.fillColor = UIColor.clear.cgColor
-        track.lineWidth = thickness
-        track.path = ring()
-        track.strokeColor = UIColor.named(.borderMedium).cgColor
+        track.strokeColor = UIColor.named(.borderLight).cgColor
         layer.addSublayer(track)
 
         fill.fillColor = UIColor.clear.cgColor
-        fill.lineWidth = thickness
-        fill.path = ring()
-        fill.strokeColor = Brand.shared.primary.ensureContrast(against: .named(.backgroundLightest)).cgColor
-        fill.strokeEnd = CGFloat(progress)
+        fill.strokeColor = color.cgColor
+        fill.strokeEnd = 0.1
         layer.addSublayer(fill)
+
+        let ease = CAMediaTimingFunction(controlPoints: 0.25, 0.1, 0.25, 1.0)
+
+        let strokeEnd = CAKeyframeAnimation(keyPath: #keyPath(CAShapeLayer.strokeEnd))
+        strokeEnd.keyTimes = [ 0, 0.5, 1 ]
+        strokeEnd.values = [ 0.1, 0.725, 0.1 ]
+        strokeEnd.timingFunctions = [ ease, ease ]
+
+        let fillRotate = CAKeyframeAnimation(keyPath: "transform.rotation.z")
+        fillRotate.keyTimes = [ 0, 0.5, 1 ]
+        fillRotate.values = [ 0, 0.5 * .pi, 2.0 * .pi ]
+        fillRotate.timingFunctions = [ ease, ease ]
+
+        morph.animations = [ strokeEnd, fillRotate ]
+        morph.duration = 1.75
+        morph.repeatCount = .infinity
+
+        rotate.fromValue = 0
+        rotate.toValue = 2.0 * .pi
+        rotate.duration = 2.25
+        rotate.repeatCount = .infinity
+
+        updateSize()
+        updateProgress()
     }
 
-    func ring() -> CGPath {
-        let pi = CGFloat(Double.pi)
+    func ring(_ thickness: CGFloat) -> CGPath {
         return UIBezierPath(
             arcCenter: CGPoint(x: bounds.width / 2, y: bounds.height / 2),
             radius: (min(bounds.width, bounds.height) - thickness) / 2,
-            startAngle: pi * -0.5, // angle starts to right, so move back to top
-            endAngle: pi * 1.5,
+            startAngle: -0.5 * .pi, // angle starts to right, so move back to top
+            endAngle: 1.5 * .pi,
             clockwise: true
         ).cgPath
     }

@@ -62,7 +62,7 @@ public class GradesViewController: UIViewController {
     }
 
     func configureTableView() {
-        let refresh = UIRefreshControl()
+        let refresh = CircleRefreshControl()
         refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView.refreshControl = refresh
         tableView.tableHeaderView?.sizeToFit()
@@ -86,7 +86,7 @@ public class GradesViewController: UIViewController {
         updateGradingPeriods()
     }
 
-    @objc func refresh(_ control: UIRefreshControl) {
+    @objc func refresh(_ control: CircleRefreshControl) {
         grades.refresh()
     }
 

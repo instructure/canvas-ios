@@ -25,7 +25,7 @@ class ConversationDetailViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var conversationID: String!
     let env = AppEnvironment.shared
-    let refreshControl = UIRefreshControl()
+    let refreshControl = CircleRefreshControl()
     var userMap = [String: ConversationParticipant]()
     var myID: String = ""
 

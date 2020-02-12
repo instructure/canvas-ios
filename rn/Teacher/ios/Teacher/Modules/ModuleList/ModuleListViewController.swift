@@ -100,7 +100,7 @@ class ModuleListViewController: UIViewController, ErrorViewController, ColoredNa
         tableView.registerCell(EmptyCell.self)
         tableView.registerHeaderFooterView(ModuleSectionHeaderView.self, fromNib: false)
 
-        let refreshControl = UIRefreshControl()
+        let refreshControl = CircleRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.refreshControl = refreshControl
     }

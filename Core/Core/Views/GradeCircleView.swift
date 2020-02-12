@@ -87,7 +87,7 @@ public class GradeCircleView: UIView {
         // Update grade circle
         if let score = submission.score, let pointsPossible = assignment.pointsPossible {
             circlePoints.text = NumberFormatter.localizedString(from: NSNumber(value: score), number: .decimal)
-            gradeCircle?.progress = score / pointsPossible
+            gradeCircle?.progress = CGFloat(score / pointsPossible)
 
             gradeCircle?.accessibilityLabel = assignment.scoreOutOfPointsPossibleText
         }

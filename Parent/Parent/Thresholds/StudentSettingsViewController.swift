@@ -96,7 +96,7 @@ class StudentSettingsViewController: UIViewController {
             }
         }
 
-        let refreshControl = UIRefreshControl()
+        let refreshControl = CircleRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView.refreshControl = refreshControl
     }
@@ -179,7 +179,7 @@ class StudentSettingsViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 
-    @objc func refresh(_ refreshControl: UIRefreshControl?) {
+    @objc func refresh(_ refreshControl: CircleRefreshControl?) {
         presenter.viewIsReady()
     }
 

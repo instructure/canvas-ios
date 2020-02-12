@@ -115,7 +115,7 @@ class AttendanceViewController: UIViewController, ColoredNavViewProtocol {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableFooterView = UIView()
 
-        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl = CircleRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.refreshControl?.beginRefreshing()
 

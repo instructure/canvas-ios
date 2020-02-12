@@ -46,7 +46,7 @@ class QuizListViewController: UIViewController, QuizListViewProtocol {
 
         loadingView?.color = Brand.shared.primary.ensureContrast(against: .named(.white))
 
-        let refresh = UIRefreshControl()
+        let refresh = CircleRefreshControl()
         refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView?.refreshControl = refresh
         tableView?.separatorColor = .named(.borderMedium)
@@ -65,12 +65,15 @@ class QuizListViewController: UIViewController, QuizListViewProtocol {
         presenter?.viewDidDisappear()
     }
 
-    @objc func refresh(_ control: UIRefreshControl) {
+    @objc func refresh(_ control: CircleRefreshControl) {
         presenter?.quizzes.refresh(force: true)
     }
 
     func update(isLoading: Bool) {
         tableView?.reloadData()
+        if let color = color {
+            (tableView?.refreshControl as? CircleRefreshControl)?.color = color
+        }
         let isEmpty = presenter?.quizzes.isEmpty == true
         if isEmpty && !isLoading {
             emptyLabel?.text = NSLocalizedString("There are no quizzes to display.", bundle: .student, comment: "")
