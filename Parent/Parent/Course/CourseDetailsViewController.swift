@@ -22,7 +22,7 @@ import Core
 class CourseDetailsViewController: HorizontalMenuViewController {
     private var gradesViewController: GradesViewController!
     private var syllabusViewController: Core.SyllabusViewController!
-    private var summaryViewController: Core.SyllabusActionableItemsViewController!
+    private var summaryViewController: Core.SyllabusSummaryViewController!
     var courseID: String = ""
     var studentID: String = ""
     var viewControllers: [UIViewController] = []
@@ -98,7 +98,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     }
 
     func configureSummary() {
-        summaryViewController = Core.SyllabusActionableItemsViewController(courseID: courseID, sort: GetAssignments.Sort.dueAt, colorDelegate: self)
+        summaryViewController = Core.SyllabusSummaryViewController(courseID: courseID, sort: GetAssignments.Sort.dueAt, colorDelegate: self)
         viewControllers.append(summaryViewController)
     }
 
