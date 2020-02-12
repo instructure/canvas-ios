@@ -25,7 +25,7 @@ class CalendarViewControllerTests: ParentTestCase {
     lazy var controller = CalendarViewController.create(studentID: "1")
 
     func testLayout() {
-        Clock.mockNow(DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 1, day: 15).date!)
+        Clock.mockNow(DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 1, day: 14).date!)
         controller.view.layoutIfNeeded()
 
         XCTAssertEqual(controller.monthButton.contentEdgeInsets.right, 28)
@@ -39,19 +39,21 @@ class CalendarViewControllerTests: ParentTestCase {
         XCTAssertEqual(controller.monthButton.isSelected, true)
 
         XCTAssertNoThrow(controller.filterButton.sendActions(for: .primaryActionTriggered))
-        controller.selectedDate = DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 1, day: 16).date!
+        controller.setSelectedDate(DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 1, day: 16).date!)
 
         let dataSource = controller.daysPageController.dataSource
         let delegate = controller.daysPageController.delegate
         let prev = dataSource?.pageViewController(controller.daysPageController, viewControllerBefore: controller.days)
-        XCTAssertEqual((prev as? CalendarDaysViewController)?.anchorDate.isoString(), DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 12, day: 26).date?.isoString())
+        XCTAssertEqual((prev as? CalendarDaysViewController)?.fromDate.isoString(), DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 12, day: 15).date?.isoString())
+        XCTAssertEqual((prev as? CalendarDaysViewController)?.selectedDate.isoString(), DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 12, day: 14).date?.isoString())
         delegate?.pageViewController?(controller.daysPageController, willTransitionTo: [prev!])
         delegate?.pageViewController?(controller.daysPageController, didFinishAnimating: true, previousViewControllers: [controller.days], transitionCompleted: true)
         XCTAssertEqual(controller.daysHeight.constant, 264)
 
         controller.monthButton.sendActions(for: .primaryActionTriggered)
         let next = dataSource?.pageViewController(controller.daysPageController, viewControllerAfter: controller.days)
-        XCTAssertEqual((next as? CalendarDaysViewController)?.anchorDate.isoString(), DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 1, day: 21).date?.isoString())
+        XCTAssertEqual((next as? CalendarDaysViewController)?.fromDate.isoString(), DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 1, day: 22).date?.isoString())
+        XCTAssertEqual((next as? CalendarDaysViewController)?.selectedDate.isoString(), DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 1, day: 21).date?.isoString())
         delegate?.pageViewController?(controller.daysPageController, willTransitionTo: [next!])
         XCTAssertEqual(controller.daysHeight.constant, 48)
     }
