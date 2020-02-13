@@ -56,7 +56,7 @@ class DatePickerViewController: UIViewController {
 
     static var yearFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.setLocalizedDateFormatFromTemplate("YYYY")
+        dateFormatter.setLocalizedDateFormatFromTemplate("yyyy")
         return dateFormatter
     }()
 
@@ -68,7 +68,7 @@ class DatePickerViewController: UIViewController {
 
     static var a11yMonthFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.setLocalizedDateFormatFromTemplate("MMMM YYYY")
+        dateFormatter.setLocalizedDateFormatFromTemplate("MMMM yyyy")
         return dateFormatter
     }()
 

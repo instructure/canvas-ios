@@ -56,11 +56,13 @@ extension APIUser {
 extension APIUser.Permissions {
     public static func make(
         can_update_name: Bool? = true,
-        can_update_avatar: Bool? = true
+        can_update_avatar: Bool? = true,
+        limit_parent_app_web_access: Bool? = false
     ) -> APIUser.Permissions {
         return APIUser.Permissions(
             can_update_name: can_update_name,
-            can_update_avatar: can_update_avatar
+            can_update_avatar: can_update_avatar,
+            limit_parent_app_web_access: limit_parent_app_web_access
         )
     }
 }

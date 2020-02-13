@@ -404,6 +404,13 @@
         <attribute name="viewStatistics" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="viewUserLogins" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
     </entity>
+    <entity name="Plannable" representedClassName=".Plannable" syncable="YES">
+        <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
+        <attribute name="contextImage" optional="YES" attributeType="URI"/>
+        <attribute name="htmlURL" optional="YES" attributeType="URI"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="typeRaw" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Quiz" representedClassName="Core.Quiz" syncable="YES">
         <attribute name="accessCode" optional="YES" attributeType="String"/>
         <attribute name="allowedAttempts" optional="YES" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="YES"/>
@@ -630,5 +637,6 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="208"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="Plannable" positionX="-540" positionY="-18" width="128" height="118"/>
     </elements>
 </model>

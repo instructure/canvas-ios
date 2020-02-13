@@ -42,6 +42,7 @@ open class DynamicButton: UIButton {
     public var textColorName: String = "electric" {
         didSet {
             tintColor = Brand.shared.color(textColorName) ?? .named(.electric)
+            setTitleColor(tintColor, for: .normal)
         }
     }
 

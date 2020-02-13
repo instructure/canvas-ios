@@ -36,6 +36,8 @@ open class CoreWebView: WKWebView {
     @IBInspectable public var autoresizesHeight: Bool = false
     public weak var linkDelegate: CoreWebViewLinkDelegate?
 
+    public var isLinkNavigationEnabled = true
+
     public static let processPool = WKProcessPool()
 
     public required init?(coder: NSCoder) {
@@ -219,6 +221,11 @@ open class CoreWebView: WKWebView {
 
 extension CoreWebView: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, decidePolicyFor action: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if action.navigationType == .linkActivated && !isLinkNavigationEnabled {
+            decisionHandler(.cancel)
+            return
+        }
+
         // Check for #fragment link click
         if action.navigationType == .linkActivated, action.sourceFrame == action.targetFrame,
             let url = action.request.url, let fragment = url.fragment,

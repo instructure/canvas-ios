@@ -27,7 +27,7 @@ struct SettingsObserveeCellViewModel: TableViewCellViewModel {
     let highlightColor: UIColor
 
     init(student: Student, highlightColor: UIColor) {
-        name = Core.User.displayName(student.name, pronouns: student.pronouns)
+        name = Core.User.displayName(student.shortName, pronouns: student.pronouns)
         avatarURL = student.avatarURL
         studentID = student.id
         self.highlightColor = highlightColor

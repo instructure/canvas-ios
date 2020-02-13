@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,19 +18,28 @@
 
 import Foundation
 import XCTest
-@testable import Parent
-import TestsFoundation
 @testable import Core
 
-class SettingsViewControllerTests: ParentTestCase {
-    var viewController: SettingsViewController!
+class PlannableTests: CoreTestCase {
 
-    override func setUp() {
-        super.setUp()
-        viewController = SettingsViewController.create(env: env, session: legacySession!)
+    func testPlannable() {
+        let p = Plannable.make(from: .make())
+        XCTAssertEqual(p.id, "1")
     }
 
-    func load() {
-        XCTAssertNotNil(viewController.view)
+    func testAPIPlannable() {
+        let p = APIPlannable.make()
+        XCTAssertEqual(p.plannable_id, "1")
+        XCTAssertEqual(p.context_type, "course")
+        XCTAssertEqual(p.course_id, "1")
+        XCTAssertEqual(p.plannable_type, "Assignment")
+        XCTAssertNil(p.planner_override)
+    }
+
+    func testPlannerOverride() {
+        let override = APIPlannerOverride.make()
+        XCTAssertEqual(override.id, "1")
+        XCTAssertEqual(override.dismissed, false)
+        XCTAssertEqual(override.marked_complete, false)
     }
 }

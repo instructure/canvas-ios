@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2018-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,21 +16,28 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import XCTest
-@testable import Parent
-import TestsFoundation
 @testable import Core
 
-class SettingsViewControllerTests: ParentTestCase {
-    var viewController: SettingsViewController!
+class GetPlannablesUseCaseTests: CoreTestCase {
+
+    var useCase: GetPlannables!
 
     override func setUp() {
         super.setUp()
-        viewController = SettingsViewController.create(env: env, session: legacySession!)
+        useCase = GetPlannables(userID: nil)
     }
 
-    func load() {
-        XCTAssertNotNil(viewController.view)
+    func testCacheKey() {
+        XCTAssertEqual(useCase.cacheKey, "get-plannables")
+
+    }
+
+    func testScope() {
+        XCTAssertEqual(useCase.scope, Scope.all(orderBy: #keyPath(Plannable.id)))
+    }
+
+    func testRequest() {
+        XCTAssertEqual(useCase.request.startDate, nil)
     }
 }
