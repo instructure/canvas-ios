@@ -432,8 +432,8 @@ function extractPendingComments (assignments: ?AssignmentContentState, userID): 
     name: session.user.name,
     avatarURL: session.user.avatar_url,
     userID: session.user.id,
-    contents: pending.mediaComment
-      ? { ...pending.comment, url: pending.mediaComment.url }
+    contents: pending.comment.type === 'media'
+      ? { ...pending.comment, url: pending.mediaFilePath }
       : { type: 'text', comment: pending.comment },
     pending: pending.pending,
     error: pending.error || undefined, // this fixes flow even though error could already be undefined...

@@ -508,7 +508,6 @@ test('mapStateToProps returns comment and submission rows', () => {
   props = mapStateToProps(appState, ownProps)
   textAttempt = props.commentRows.find(({ contents }) => contents.attemptIndex === text.attempt)
   expect(textAttempt.name).toEqual('Bob (He/Him)')
-
 })
 
 test('mapStateToProps returns true when the assignment is a quiz that is an anonymous survey', () => {
