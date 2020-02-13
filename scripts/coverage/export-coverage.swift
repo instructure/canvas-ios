@@ -17,13 +17,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-// Create build links for QR codes in pull requests
+// Export xccov information to a format codecov.io can parse
 //
 // Note, swift-sh should be installed to resolve dependencies
 //   brew install mxcl/made/swift-sh
 //
 // To edit this file in xcode:
-//   swift sh edit build-link.swift
+//   swift sh edit export-coverage.swift
 
 import Foundation
 import swsh // @cobbal == 0.2.0
