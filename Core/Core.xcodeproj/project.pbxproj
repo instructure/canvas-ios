@@ -667,6 +667,7 @@
 		B1F1328E224BBBC7002C0555 /* ModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F1328D224BBBC7002C0555 /* ModuleItem.swift */; };
 		B1F13290224BBFC0002C0555 /* ModuleItemTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F1328F224BBFC0002C0555 /* ModuleItemTypeTests.swift */; };
 		B1F13294224BC656002C0555 /* ModuleItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F13293224BC656002C0555 /* ModuleItemTests.swift */; };
+		B1F2F8A723F493A100F3B5F3 /* SyllabusSummaryViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2F8A623F493A100F3B5F3 /* SyllabusSummaryViewControllerTests.swift */; };
 		B1F3780A22498AF1000B7CAA /* MDMManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3780922498AF1000B7CAA /* MDMManagerTests.swift */; };
 		B1F3780C22499037000B7CAA /* MockMDMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3780B22499037000B7CAA /* MockMDMManager.swift */; };
 		B1F6D6B822EB672500CDD44D /* SessionDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D6B722EB672500CDD44D /* SessionDefaults.swift */; };
@@ -1616,6 +1617,7 @@
 		B1F1328D224BBBC7002C0555 /* ModuleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItem.swift; sourceTree = "<group>"; };
 		B1F1328F224BBFC0002C0555 /* ModuleItemTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemTypeTests.swift; sourceTree = "<group>"; };
 		B1F13293224BC656002C0555 /* ModuleItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemTests.swift; sourceTree = "<group>"; };
+		B1F2F8A623F493A100F3B5F3 /* SyllabusSummaryViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusSummaryViewControllerTests.swift; sourceTree = "<group>"; };
 		B1F3780922498AF1000B7CAA /* MDMManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDMManagerTests.swift; sourceTree = "<group>"; };
 		B1F3780B22499037000B7CAA /* MockMDMManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMDMManager.swift; sourceTree = "<group>"; };
 		B1F6D6B722EB672500CDD44D /* SessionDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaults.swift; sourceTree = "<group>"; };
@@ -1767,7 +1769,6 @@
 		2C964830211E2F1A002C3255 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				3BF34288233D2C7F0095D0D3 /* Syllabus */,
 				3B4D86112329521F005126A5 /* Grades */,
 				9FBFE6D122412B71002B3796 /* ActAsUser */,
 				3BC3E01B2315A0B300E15C6D /* Analytics */,
@@ -1804,6 +1805,7 @@
 				7D2FADBC225BA4BC00BCE19E /* RichContentEditor */,
 				2C964858211E3049002C3255 /* Router */,
 				B11D321521E4649B00F37ABF /* Store */,
+				3BF34288233D2C7F0095D0D3 /* Syllabus */,
 				9FBE5359223ADA4D001EC40C /* TermsOfService */,
 				7DA667F023835C500062F7B9 /* Todos */,
 				7D13C52822B9566F00345253 /* UITestHelpers */,
@@ -1928,6 +1930,7 @@
 			children = (
 				3B1669DC233DAF3B00B2EFAB /* SyllabusPresenterTests.swift */,
 				97A486CA239AB2ED00084499 /* SyllabusViewControllerTests.swift */,
+				B1F2F8A623F493A100F3B5F3 /* SyllabusSummaryViewControllerTests.swift */,
 			);
 			path = Syllabus;
 			sourceTree = "<group>";
@@ -4357,6 +4360,7 @@
 				9F1CEA5F22400DC0000BB98F /* PermissionsTests.swift in Sources */,
 				7D7110C12138910D0085C2E5 /* RouteHandlerTests.swift in Sources */,
 				B195DC5521324DA600797FE4 /* GetUserGroupsTest.swift in Sources */,
+				B1F2F8A723F493A100F3B5F3 /* SyllabusSummaryViewControllerTests.swift in Sources */,
 				3B84C38F218B9B51005946BA /* AssignmentDatesTests.swift in Sources */,
 				3B158CB822E241130039A568 /* KeychainTests.swift in Sources */,
 				3B3FCA3323802D680011F11A /* GetActivitiesTests.swift in Sources */,

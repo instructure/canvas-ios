@@ -48,10 +48,11 @@ public class SyllabusSummaryViewController: UITableViewController {
         }
     }()
 
-    public convenience init(env: AppEnvironment = .shared, courseID: String, sort: GetAssignments.Sort = .dueAt, colorDelegate: ColorDelegate? = nil) {
-        self.init(nibName: nil, bundle: nil)
-        self.courseID = courseID
-        self.colorDelegate = colorDelegate
+    public static func create(courseID: String, colorDelegate: ColorDelegate? = nil) -> SyllabusSummaryViewController {
+        let viewController = SyllabusSummaryViewController(nibName: nil, bundle: nil)
+        viewController.courseID = courseID
+        viewController.colorDelegate = colorDelegate
+        return viewController
     }
 
     override public func viewDidLoad() {
@@ -69,6 +70,7 @@ public class SyllabusSummaryViewController: UITableViewController {
 
         course.refresh()
         color.refresh()
+        summary.refresh()
 
         assignments.exhaust(force: false)
         events.exhaust(force: false)
@@ -98,7 +100,7 @@ public class SyllabusSummaryViewController: UITableViewController {
         cell.itemNameLabel?.text = item?.title
         cell.iconImageView?.image = item?.type == .assignment ? .icon(.assignment, .line) : .icon(.calendarMonth, .line)
         cell.iconImageView?.tintColor = course.first?.color
-        cell.dateLabel?.text = item?.startAt.flatMap { DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .short) } ?? NSLocalizedString("No Due Date", bundle: .core, comment: "")
+        cell.dateLabel?.text = item?.startAt.flatMap(formatDate(_:)) ?? NSLocalizedString("No Due Date", bundle: .core, comment: "")
         return cell
     }
 
@@ -107,6 +109,10 @@ public class SyllabusSummaryViewController: UITableViewController {
         if let url = item?.htmlUrl {
             env.router.route(to: url, from: self)
         }
+    }
+
+    func formatDate(_ date: Date) -> String? {
+        DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .short)
     }
 }
 

@@ -98,7 +98,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     }
 
     func configureSummary() {
-        summaryViewController = Core.SyllabusSummaryViewController(courseID: courseID, sort: GetAssignments.Sort.dueAt, colorDelegate: self)
+        summaryViewController = Core.SyllabusSummaryViewController.create(courseID: courseID, colorDelegate: self)
         viewControllers.append(summaryViewController)
     }
 

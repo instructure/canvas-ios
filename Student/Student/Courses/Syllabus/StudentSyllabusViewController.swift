@@ -66,7 +66,7 @@ class StudentSyllabusViewController: HorizontalMenuViewController {
     }
 
     func configureAssignments() {
-        assignments = SyllabusSummaryViewController(courseID: courseID, sort: GetAssignments.Sort.dueAt)
+        assignments = SyllabusSummaryViewController.create(courseID: courseID)
         guard let assignments = assignments else { return }
         viewControllers.append(assignments)
     }
