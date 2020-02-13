@@ -51,6 +51,18 @@ class PageDetailsViewControllerTests: CoreTestCase {
         XCTAssertNotNil(viewController.webView?.scrollView.refreshControl)
     }
 
+    func testFrontPage() {
+        api.mock(GetFrontPageRequest(context: context), value: .make(
+            front_page: true,
+            html_url: htmlURL,
+            title: "Front Page"
+        ))
+        environment.mockStore = false
+        let viewController = PageDetailsViewController.create(context: context, pageURL: "front_page", app: .student)
+        viewController.view.layoutIfNeeded()
+        XCTAssertEqual(viewController.titleSubtitleView.title, "Front Page")
+    }
+
     func testUpdateNavBar() {
         load()
         _ = UINavigationController(rootViewController: viewController)
