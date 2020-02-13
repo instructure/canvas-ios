@@ -442,7 +442,7 @@ workflows:
     - codecov:
         inputs:
         - CODECOV_TOKEN: "$CODECOV_TOKEN"
-        - other_options: "-C $BITRISE_GIT_COMMIT -f scripts/coverage/xccov.json -f scripts/coverage/react-native/coverage-final.json -y scripts/coverage/codecov.yml"
+        - other_options: "-C $GIT_CLONE_COMMIT_HASH -f scripts/coverage/xccov.json -f scripts/coverage/react-native/coverage-final.json -y scripts/coverage/codecov.yml"
     - deploy-to-bitrise-io: {}
     - github-status:
         inputs:
