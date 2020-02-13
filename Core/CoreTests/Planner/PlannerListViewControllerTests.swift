@@ -26,7 +26,7 @@ class PlannerListViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        vc = PlannerListViewController.create(userID: "1")
+        vc = PlannerListViewController.create(studentID: "1")
     }
 
     func testLayout() {

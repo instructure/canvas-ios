@@ -42,4 +42,27 @@ class PlannableTests: CoreTestCase {
         XCTAssertEqual(override.dismissed, false)
         XCTAssertEqual(override.marked_complete, false)
     }
+
+    func testIcon() {
+        var p = Plannable.make(from: .make(plannable_type: "assignment"))
+        XCTAssertEqual(p.icon(), UIImage.icon(.assignment, .line))
+
+        p = Plannable.make(from: .make(plannable_type: "quiz"))
+        XCTAssertEqual(p.icon(), UIImage.icon(.quiz, .line))
+
+        p = Plannable.make(from: .make(plannable_type: "discussion_topic"))
+        XCTAssertEqual(p.icon(), UIImage.icon(.discussion, .line))
+
+        p = Plannable.make(from: .make(plannable_type: "wiki_page"))
+        XCTAssertEqual(p.icon(), UIImage.icon(.document, .line))
+
+        p = Plannable.make(from: .make(plannable_type: "planner_note"))
+        XCTAssertEqual(p.icon(), UIImage.icon(.document, .line))
+
+        p = Plannable.make(from: .make(plannable_type: "other"))
+        XCTAssertEqual(p.icon(), UIImage.icon(.warning, .line))
+
+        p = Plannable.make(from: .make(plannable_type: "announcement"))
+        XCTAssertEqual(p.icon(), UIImage.icon(.announcement, .line))
+    }
 }
