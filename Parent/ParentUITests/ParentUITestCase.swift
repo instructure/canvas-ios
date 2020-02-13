@@ -32,6 +32,7 @@ class ParentUITestCase: CoreUITestCase {
     }
 
     override func mockBaseRequests() {
+        mockData(GetUserRequest(userID: "self"), value: APIUser.make())
         mockData(GetWebSessionRequest(to: URL(string: "https://canvas.instructure.com/users/self"))) // cookie keepalive
         for paginated in [true, false] {
             mockEncodableRequest([
