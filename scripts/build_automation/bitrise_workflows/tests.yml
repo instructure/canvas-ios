@@ -419,6 +419,7 @@ workflows:
             rm -rf scripts/coverage/citests.xcresult
             cp -r ui-test-results/merged.xcresult scripts/coverage/citests.xcresult
             yarn coverage
+            ./scripts/coverage/export-coverage.swift
             zip --quiet -r "$BITRISE_DEPLOY_DIR/coverage.zip" scripts/coverage/citests
     - script:
         title: Report tests
@@ -438,6 +439,10 @@ workflows:
                     --data-binary @- \
                     "$SPLUNK_ENDPOINT_URL"
         is_always_run: true
+    - codecov:
+        inputs:
+        - CODECOV_TOKEN: "$CODECOV_TOKEN"
+        - other_options: "-C $GIT_CLONE_COMMIT_HASH -f scripts/coverage/xccov.json -f scripts/coverage/react-native/coverage-final.json"
     - deploy-to-bitrise-io: {}
     - github-status:
         inputs:
