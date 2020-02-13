@@ -69,7 +69,7 @@ describe('CommentInput', () => {
       .selectByID('comment-input.send') || {}
     send.props.onPress()
 
-    expect(makeComment).toHaveBeenCalledWith({ type: 'text', message: 'Hello!' })
+    expect(makeComment).toHaveBeenCalledWith({ type: 'text', comment: 'Hello!' })
     expect(blur).toHaveBeenCalled()
   })
 
