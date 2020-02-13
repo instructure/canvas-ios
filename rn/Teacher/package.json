@@ -142,7 +142,8 @@
     "coverageReporters": [
       "json-summary",
       "text-summary",
-      "html"
+      "html",
+      "json"
     ]
   }
 }
