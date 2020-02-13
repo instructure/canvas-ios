@@ -21,17 +21,17 @@ import UIKit
 public class PlannerListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     let env = AppEnvironment.shared
-    var userID: String?
+    var studentID: String?
     var start: Date = Clock.now.startOfWeek()
     var end: Date = Clock.now.endOfWeek()
 
-    lazy var plannables = env.subscribe(GetPlannables(userID: userID, startDate: start, endDate: end, contextCodes: [], filter: "")) { [weak self] in
+    lazy var plannables = env.subscribe(GetPlannables(userID: studentID, startDate: start, endDate: end, contextCodes: [], filter: "")) { [weak self] in
         self?.updatePlannables()
     }
 
-    public static func create(userID: String?) -> PlannerListViewController {
+    public static func create(studentID: String?) -> PlannerListViewController {
         let vc = loadFromStoryboard()
-        vc.userID = userID ?? ""
+        vc.studentID = studentID ?? ""
         return vc
     }
 
@@ -39,11 +39,6 @@ public class PlannerListViewController: UIViewController {
         super.viewDidLoad()
         configureTableview()
         plannables.refresh(force: true)
-    }
-
-    public override func viewWillAppear(_ animated: Bool) {
-        super .viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     private func configureTableview() {
@@ -55,6 +50,17 @@ public class PlannerListViewController: UIViewController {
         if !pending {
             tableView.reloadData()
         }
+    }
+
+    public func updateListForDates(start: Date, end: Date) {
+        self.start = start
+        self.end = end
+
+        plannables = env.subscribe(GetPlannables(userID: studentID, startDate: start, endDate: end, contextCodes: [], filter: "")) { [weak self] in
+            self?.updatePlannables()
+        }
+
+        plannables.refresh(force: true)
     }
 }
 
@@ -84,7 +90,10 @@ class PlannerListCell: UITableViewCell {
         courseCode.text = p.contextName
         title.text = p.title
         dueDate.text = DateFormatter.localizedString(from: p.date, dateStyle: .medium, timeStyle: .short)
-        points.text = nil
         icon.image = p.icon()
+
+        if let value = p.pointsPossible {
+            points.text = GradeFormatter.numberFormatter.string(from: NSNumber(value: value))
+        } else { points.text = nil }
     }
 }

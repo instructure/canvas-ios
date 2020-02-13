@@ -20,6 +20,10 @@ import Foundation
 import UIKit
 import Core
 
+protocol CalendarViewControllerDelegate: class {
+    func selectedDateDidChange(_ date: Date)
+}
+
 class CalendarViewController: UIViewController, CalendarDaysDelegate {
     @IBOutlet weak var dropdownView: UIImageView!
     @IBOutlet weak var filterButton: UIButton!
@@ -32,6 +36,7 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
     @IBOutlet weak var daysHeight: NSLayoutConstraint!
     @IBOutlet weak var weekdayRow: UIStackView!
     @IBOutlet weak var yearLabel: UILabel!
+    weak var delegate: CalendarViewControllerDelegate?
 
     lazy var yearFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -111,6 +116,7 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
         selectedDate = date
         updatePage()
         clearPageCache()
+        delegate?.selectedDateDidChange(selectedDate)
     }
 
     func clearPageCache() {

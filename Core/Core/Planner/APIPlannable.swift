@@ -33,9 +33,11 @@ public struct APIPlannable: Codable, Equatable {
     //  swiftlint:disable:next type_name
     public struct plannable: Codable, Equatable {
         let title: String?
+        let points_possible: Double?
 
-        public init(title: String?) {
+        public init(title: String? = nil, points_possible: Double? = nil) {
             self.title = title
+            self.points_possible = points_possible
         }
     }
 }

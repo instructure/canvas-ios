@@ -37,6 +37,25 @@ public final class Plannable: NSManagedObject, WriteableModel {
     @NSManaged public var contextName: String?
     @NSManaged public var date: Date
 
+    public var pointsPossible: Double? {
+        get {
+            willAccessValue(forKey: "pointsPossible")
+            defer { didAccessValue(forKey: "pointsPossible") }
+
+            return primitiveValue(forKey: "pointsPossible") as? Double
+        }
+        set {
+            willChangeValue(forKey: "pointsPossible")
+            defer { didChangeValue(forKey: "pointsPossible") }
+
+            guard let value = newValue else {
+                setPrimitiveValue(nil, forKey: "pointsPossible")
+                return
+            }
+            setPrimitiveValue(value, forKey: "pointsPossible")
+        }
+    }
+
     public var plannableType: PlannableType {
         get { return PlannableType(rawValue: typeRaw) ?? PlannableType.other }
         set { typeRaw = newValue.rawValue }
@@ -63,6 +82,7 @@ public final class Plannable: NSManagedObject, WriteableModel {
         model.contextName = item.context_name
         model.title = item.plannable?.title
         model.date = item.plannable_date
+        model.pointsPossible = item.plannable?.points_possible
 
         if let itemContextType = item.context_type, let contextType = ContextType(rawValue: itemContextType.lowercased()), let courseID = item.course_id?.value {
             model.canvasContextIDRaw = ContextModel(contextType, id: courseID).canvasContextID
