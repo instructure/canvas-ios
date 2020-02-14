@@ -66,7 +66,7 @@ export default class AttachmentView extends Component<Props, State> {
   componentDidMount () {
     if (this.props.attachment.locked_for_user) {
       this.setState({
-        error: this.props.attachment.lock_explanation ?? i18n('This file is currently locked.')
+        error: this.props.attachment.lock_explanation ?? i18n('This file is currently locked.'),
       })
       return
     }
