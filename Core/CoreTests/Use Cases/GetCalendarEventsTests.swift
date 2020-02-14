@@ -45,7 +45,7 @@ class GetCalendarEventsTests: CoreTestCase {
     }
 
     func testCache() {
-        XCTAssertEqual("get-calendar-events", useCase.cacheKey)
+        XCTAssertEqual("courses/1/calendar-events/event", useCase.cacheKey)
     }
 
     func testScopePredicate() {

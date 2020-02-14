@@ -27,14 +27,39 @@ class GetPageTests: CoreTestCase {
         XCTAssertEqual(GetPage(context: context, url: pageURL).cacheKey, "get-course_1-page-page-test")
     }
 
-    func testRequest() {
-        let request = GetPage(context: context, url: pageURL).request
-        XCTAssertEqual(request.context.canvasContextID, context.canvasContextID)
-        XCTAssertEqual(request.url, pageURL)
+    func testMakeRequest() {
+        api.mock(GetPageRequest(context: context, url: pageURL), value: .make(page_id: "1"))
+        let useCase = GetPage(context: context, url: pageURL)
+        let expectation = XCTestExpectation(description: "completion handler")
+        useCase.makeRequest(environment: environment) { response, _, _ in
+            XCTAssertEqual(response?.page_id, "1")
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
+    }
+
+    func testMakeRequestFrontPage() {
+        api.mock(GetFrontPageRequest(context: context), value: .make(front_page: true, page_id: "2"))
+        let useCase = GetPage(context: context, url: "front_page")
+        let expectation = XCTestExpectation(description: "completion handler")
+        useCase.makeRequest(environment: environment) { response, _, _ in
+            XCTAssertEqual(response?.page_id, "2")
+            XCTAssertEqual(response?.front_page, true)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
     }
 
     func testScope() {
         let scope = GetPage(context: context, url: pageURL).scope
         XCTAssertEqual(scope.predicate, NSPredicate(format: "%K == %@ && %K == %@", #keyPath(Page.contextID), context.canvasContextID, #keyPath(Page.url), pageURL))
+    }
+
+    func testScopeFrontPage() {
+        let scope = GetPage(context: context, url: "front_page").scope
+        let match = Page.make(from: .make(front_page: true, html_url: URL(string: context.pathComponent)!, page_id: "1"))
+        let mismatch = Page.make(from: .make(front_page: false, html_url: URL(string: context.pathComponent)!, page_id: "2"))
+        XCTAssertTrue(scope.predicate.evaluate(with: match))
+        XCTAssertFalse(scope.predicate.evaluate(with: mismatch))
     }
 }

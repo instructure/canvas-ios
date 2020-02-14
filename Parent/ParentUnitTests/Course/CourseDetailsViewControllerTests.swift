@@ -29,7 +29,7 @@ class CourseDetailsViewControllerTests: ParentTestCase {
 
     var isSyllabusShown: Bool {
         return vc.viewControllers.first { $0 is SyllabusViewController } != nil &&
-            vc.viewControllers.first { $0 is SyllabusActionableItemsViewController } != nil
+            vc.viewControllers.first { $0 is SyllabusSummaryViewController } != nil
     }
 
     override func setUp() {

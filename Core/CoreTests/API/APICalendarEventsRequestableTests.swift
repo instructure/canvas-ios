@@ -41,10 +41,10 @@ class APICalendarEventsRequestableTests: XCTestCase {
         XCTAssertEqual(requestable.path, "calendar_events")
         XCTAssertEqual(requestable.queryItems, [
             URLQueryItem(name: "type", value: "event"),
-            URLQueryItem(name: "start_date", value: "2017-12-25"),
-            URLQueryItem(name: "end_date", value: "2020-12-25"),
             URLQueryItem(name: "per_page", value: "100"),
             URLQueryItem(name: "include[]", value: "submission"),
+            URLQueryItem(name: "start_date", value: "2017-12-25"),
+            URLQueryItem(name: "end_date", value: "2020-12-25"),
             URLQueryItem(name: "context_codes[]", value: "course_1"),
         ])
     }
