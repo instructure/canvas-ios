@@ -19,9 +19,15 @@
 import UIKit
 
 public class CircleRefreshControl: UIRefreshControl {
-    let progressView = CircleProgressView()
     var offsetObservation: NSKeyValueObservation?
-    var isCompleted = false
+    let progressView = CircleProgressView()
+    let snappingPoint: CGFloat = 64
+    var refreshState = RefreshState.ready
+    public override var isRefreshing: Bool { refreshState == .refreshing }
+
+    enum RefreshState {
+        case ready, refreshing, complete
+    }
 
     public var color: UIColor {
         get { progressView.color }
@@ -29,37 +35,54 @@ public class CircleRefreshControl: UIRefreshControl {
     }
 
     public override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-        for v in subviews { v.removeFromSuperview() }
-        layer.zPosition = -1
-        addSubview(progressView)
-        progressView.pin(inside: self, top: 12, bottom: 16)
+        // super.didMoveToSuperview() // don't allow UIRefreshControl set up
+        progressView.removeFromSuperview()
+        offsetObservation = nil
+        guard let scrollView = superview as? UIScrollView else { return }
+        scrollView.insertSubview(progressView, at: 0)
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            progressView.widthAnchor.constraint(equalToConstant: 32),
+            progressView.heightAnchor.constraint(equalToConstant: 32),
+            progressView.centerXAnchor.constraint(equalTo: scrollView.frameLayoutGuide.centerXAnchor),
+            progressView.topAnchor.constraint(equalTo: scrollView.frameLayoutGuide.topAnchor),
+        ])
         progressView.alpha = 0
         progressView.progress = 0
-        offsetObservation = (superview as? UIScrollView)?.observe(\.contentOffset, options: .new) { [weak self] scrollView, _ in
+        offsetObservation = scrollView.observe(\.contentOffset, options: .new) { [weak self] scrollView, _ in
             self?.updateProgress(scrollView)
         }
-        addTarget(self, action: #selector(triggered), for: .primaryActionTriggered)
     }
 
     func updateProgress(_ scrollView: UIScrollView) {
         let y = scrollView.contentOffset.y
-        progressView.transform = CGAffineTransform(translationX: 0, y: (-y / 2) - 28)
-        guard !isRefreshing && (!isCompleted || y == 0) else { return }
-        isCompleted = false
-        let progress = min(1, max(0, -y) / (scrollView.frame.height / 5))
-        progressView.alpha = min(1, progress * 2)
-        progressView.progress = progress
-    }
-
-    @objc func triggered() {
-        isCompleted = true
-        progressView.alpha = 1
-        progressView.progress = nil
+        progressView.transform = CGAffineTransform(translationX: 0, y: (-y / 2) - 16)
+        switch refreshState {
+        case .ready:
+            if scrollView.isDragging, -y >= snappingPoint {
+                refreshState = .refreshing
+                progressView.alpha = 1
+                progressView.progress = nil
+                sendActions(for: .valueChanged)
+            } else {
+                let progress = min(1, max(0, -y) / snappingPoint)
+                progressView.alpha = min(1, progress * 2)
+                progressView.progress = progress
+            }
+        case .refreshing:
+            if y > -64, #available(iOS 13, *) {
+                scrollView.contentOffset.y = -64
+            }
+        case .complete:
+            if scrollView.isDecelerating, y >= -4 {
+                refreshState = .ready
+            }
+        }
     }
 
     public override func endRefreshing() {
-        super.endRefreshing()
+        guard refreshState == .refreshing else { return }
+        refreshState = .complete
         UIView.animate(withDuration: 0.3, animations: { self.progressView.alpha = 0 })
     }
 }
