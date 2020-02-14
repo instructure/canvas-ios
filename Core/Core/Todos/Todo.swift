@@ -24,7 +24,9 @@ public final class Todo: NSManagedObject, WriteableModel {
 
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.setLocalizedDateFormatFromTemplate("E, MMM d, yyy")
+        formatter.dateStyle = .full
+        formatter.timeStyle = .short
+        formatter.doesRelativeDateFormatting = true
         return formatter
     }()
 
@@ -82,10 +84,9 @@ public final class Todo: NSManagedObject, WriteableModel {
             guard let dueAt = assignment.dueAt else {
                 return NSLocalizedString("No Due Date", bundle: .core, comment: "")
             }
+            let format = NSLocalizedString("Due %@", bundle: .core, comment: "")
             let dueText = Todo.dateFormatter.string(from: dueAt)
-            let timeText = DateFormatter.localizedString(from: dueAt, dateStyle: .none, timeStyle: .short)
-            let format = NSLocalizedString("Due %@ at %@", bundle: .core, comment: "")
-            return String.localizedStringWithFormat(format, dueText, timeText)
+            return String.localizedStringWithFormat(format, dueText)
         case .grading:
             let format = NSLocalizedString("d_needs_grading", bundle: .core, comment: "")
             return String.localizedStringWithFormat(format, needsGradingCount)

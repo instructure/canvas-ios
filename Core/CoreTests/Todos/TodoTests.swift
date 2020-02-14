@@ -46,7 +46,7 @@ class TodoTests: CoreTestCase {
         let date = DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 12, day: 25, hour: 8).date!
         XCTAssertEqual(todo.subtitleText, "No Due Date")
         todo.assignment.dueAt = date
-        XCTAssertEqual(todo.subtitleText, "Due Wed, Dec 25, 2019 at 8:00 AM")
+        XCTAssertEqual(todo.subtitleText, "Due Wednesday, December 25, 2019 at 8:00 AM")
         todo.type = .grading
         XCTAssertEqual(todo.subtitleText, "0 need grading")
         todo.needsGradingCount = 1
