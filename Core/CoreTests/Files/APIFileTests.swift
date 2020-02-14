@@ -19,7 +19,20 @@
 import XCTest
 @testable import Core
 
+private let decoder = APIJSONDecoder()
+
 class APIFileTests: XCTestCase {
+    func testAPIFileDecode() {
+        var fixture = validFixture
+        var data = try! serialize(json: fixture)
+        XCTAssertNoThrow(try decoder.decode(APIFile.self, from: data))
+
+        fixture["url"] = ""
+        data = try! serialize(json: fixture)
+        let file = try! decoder.decode(APIFile.self, from: data)
+        XCTAssertNil(file.url)
+    }
+
     func testGetFileRequest() {
         let request = GetFileRequest(context: ContextModel(.course, id: "1"), fileID: "2", include: [.avatar])
         XCTAssertEqual(request.path, "courses/1/files/2")
@@ -72,6 +85,40 @@ class APIFileTests: XCTestCase {
         let request = DeleteFileRequest(fileID: "43")
         XCTAssertEqual(request.method, .delete)
         XCTAssertEqual(request.path, "files/43")
+    }
+}
+
+extension APIFileTests {
+    var validFixture: [String: Any?] {
+        [
+            "id": "1",
+            "uuid": "abc123",
+            "folder_id": nil,
+            "display_name": "File 1",
+            "filename": "file1.jpg",
+            "content-type": "image",
+            "url": "https://canvas.instructure.com/files/1",
+            "size": 10,
+            "created_at": "2020-02-10T22:26:48Z",
+            "updated_at": "2020-02-10T22:26:48Z",
+            "unlock_at": nil,
+            "locked": false,
+            "hidden": false,
+            "lock_at": nil,
+            "hidden_for_user": false,
+            "thumbnail_url": nil,
+            "modified_at": "2020-02-10T22:26:48Z",
+            "mime_class": "image/jpg",
+            "media_entry_id": nil,
+            "locked_for_user": false,
+            "lock_explanation": nil,
+            "preview_url": nil,
+            "avatar": nil,
+        ]
+    }
+
+    func serialize(json: [String: Any?]) throws -> Data {
+        try JSONSerialization.data(withJSONObject: json, options: [])
     }
 }
 

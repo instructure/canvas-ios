@@ -231,7 +231,6 @@
         <attribute name="locked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="lockedForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="lockExplanation" optional="YES" attributeType="String"/>
-        <attribute name="lockInfo" optional="YES" attributeType="String"/>
         <attribute name="mediaEntryID" optional="YES" attributeType="String"/>
         <attribute name="mimeClass" optional="YES" attributeType="String"/>
         <attribute name="modifiedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -615,7 +614,7 @@
         <element name="ExternalTool" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="ExternalToolLaunchPlacement" positionX="-513" positionY="0" width="128" height="120"/>
         <element name="FeatureFlag" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="613"/>
+        <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="598"/>
         <element name="Grade" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="GradingPeriod" positionX="-540" positionY="-27" width="128" height="103"/>
         <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="135"/>
