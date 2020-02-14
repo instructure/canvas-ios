@@ -29,12 +29,17 @@ class GetPlannablesUseCaseTests: CoreTestCase {
     }
 
     func testCacheKey() {
-        XCTAssertEqual(useCase.cacheKey, "get-plannables")
-
+        XCTAssertEqual(useCase.cacheKey, nil)
     }
 
     func testScope() {
-        XCTAssertEqual(useCase.scope, Scope.all(orderBy: #keyPath(Plannable.id)))
+        XCTAssertEqual(useCase.scope, Scope.all(orderBy: #keyPath(Plannable.date)))
+    }
+
+    func testScopeWithUserID() {
+        useCase = GetPlannables(userID: "1")
+        let expected = Scope.where(#keyPath(Plannable.userID), equals: "1", orderBy: #keyPath(Plannable.date))
+        XCTAssertEqual(useCase.scope, expected)
     }
 
     func testRequest() {

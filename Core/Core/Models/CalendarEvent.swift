@@ -24,7 +24,7 @@ public enum CalendarEventType: String, Codable {
 }
 
 public enum CalendarEventWorkflowState: String, Codable {
-    case active, deleted, locked
+    case active, deleted, locked, published
 }
 
 final public class CalendarEventItem: NSManagedObject, WriteableModel {
@@ -36,7 +36,8 @@ final public class CalendarEventItem: NSManagedObject, WriteableModel {
     @NSManaged public var endAt: Date?
     @NSManaged public var typeRaw: String
     @NSManaged public var htmlUrl: URL
-    @NSManaged var contextRaw: String
+    @NSManaged public var contextRaw: String
+    @NSManaged public var hasStartAt: Bool
 
     public var context: Context {
         get { return ContextModel(canvasContextID: contextRaw) ?? .currentUser }
@@ -63,6 +64,7 @@ final public class CalendarEventItem: NSManagedObject, WriteableModel {
         model.type = item.type
         model.htmlUrl = item.html_url
         model.contextRaw = item.context_code
+        model.hasStartAt = item.start_at != nil
         return model
     }
 }
