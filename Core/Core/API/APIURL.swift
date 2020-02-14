@@ -34,10 +34,6 @@ public struct APIURL: Codable, Equatable {
         let baseURL = AppEnvironment.shared.currentSession?.baseURL
         let container = try decoder.singleValueContainer()
         let string = try container.decode(String.self)
-        if string.isEmpty, let validBaseURL = baseURL {
-            rawValue = validBaseURL
-            return
-        }
         if let url = URL(string: string, relativeTo: baseURL) {
             rawValue = url
             return

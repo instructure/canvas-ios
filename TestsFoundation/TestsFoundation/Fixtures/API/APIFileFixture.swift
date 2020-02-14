@@ -41,7 +41,6 @@ extension APIFile {
         mime_class: String = "image",
         media_entry_id: String? = nil,
         locked_for_user: Bool = false,
-        lock_info: String? = nil,
         lock_explanation: String? = nil,
         preview_url: URL? = nil,
         avatar: APIFileToken? = nil
@@ -67,7 +66,6 @@ extension APIFile {
             mime_class: mime_class,
             media_entry_id: media_entry_id,
             locked_for_user: locked_for_user,
-            lock_info: lock_info,
             lock_explanation: lock_explanation,
             preview_url: APIURL(rawValue: preview_url),
             avatar: avatar

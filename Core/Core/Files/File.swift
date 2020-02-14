@@ -143,7 +143,7 @@ extension File: WriteableModel {
         displayName = item.display_name
         filename = item.filename
         contentType = item.contentType
-        url = item.url.rawValue
+        url = item.url?.rawValue
         size = item.size
         createdAt = item.created_at
         updatedAt = item.updated_at
