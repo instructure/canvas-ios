@@ -34,7 +34,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "echo &quot;starting pact service&quot;&#10;pact-mock-service start --pact-specification-version 2.0.0 --log &quot;${SRCROOT}/../tmp/pact.log&quot; --pact-dir &quot;${SRCROOT}/../tmp/pacts&quot; -p 1234&#10;"
+               scriptText = "set -euo pipefail&#10;&#10;if !pact-mock-service version; then&#10;    echo &quot;pact-mock-service not found! Please run&quot;&#10;    echo &quot;    gem install pact-mock_service&quot;&#10;    echo &quot;and try again&quot;&#10;    exit 1&#10;fi&#10;&#10;echo &quot;starting pact service&quot;&#10;pact-mock-service start --pact-specification-version 2.0.0 --log &quot;${SRCROOT}/../tmp/pact.log&quot; --pact-dir &quot;${SRCROOT}/../tmp/pacts&quot; -p 1234&#10;"
                shellToInvoke = "/bin/zsh">
                <EnvironmentBuildable>
                   <BuildableReference
