@@ -732,6 +732,7 @@
 		B1EA5AEB212E641900DABC5F /* GetCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AEA212E641900DABC5F /* GetCourses.swift */; };
 		B1EA5AEE212E656100DABC5F /* GetCoursesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AED212E656100DABC5F /* GetCoursesTest.swift */; };
 		B1EA5AF6212E67CE00DABC5F /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AF5212E67CE00DABC5F /* DateExtensions.swift */; };
+		B1EA933923F6FF6200A0231E /* SyllabusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA933823F6FF6200A0231E /* SyllabusTests.swift */; };
 		B1EF7AB721E7E41F00D653D7 /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF7AB621E7E41F00D653D7 /* StoreTests.swift */; };
 		B1EF7ABB21E902DD00D653D7 /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF7ABA21E902DD00D653D7 /* UseCase.swift */; };
 		B1F1328A224BAD43002C0555 /* ModuleItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F13289224BAD43002C0555 /* ModuleItemType.swift */; };
@@ -1754,6 +1755,7 @@
 		B1EA5AED212E656100DABC5F /* GetCoursesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoursesTest.swift; sourceTree = "<group>"; };
 		B1EA5AF5212E67CE00DABC5F /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		B1EA5AFA212E6E5800DABC5F /* MockDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDatabase.swift; sourceTree = "<group>"; };
+		B1EA933823F6FF6200A0231E /* SyllabusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusTests.swift; sourceTree = "<group>"; };
 		B1EF7AB621E7E41F00D653D7 /* StoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTests.swift; sourceTree = "<group>"; };
 		B1EF7ABA21E902DD00D653D7 /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
 		B1F13289224BAD43002C0555 /* ModuleItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemType.swift; sourceTree = "<group>"; };
@@ -2342,6 +2344,7 @@
 				7D37BE8C21C837840063FAAC /* SubmissionTests.swift */,
 				7DCF1EA1216BB7E4003AF358 /* SubmissionTypeTests.swift */,
 				7DCF1EBD216BC969003AF358 /* SubmissionWorkflowStateTests.swift */,
+				B1EA933823F6FF6200A0231E /* SyllabusTests.swift */,
 				B19792FE2176A0F00000369C /* TabTests.swift */,
 				7DCF1EBF216BC97F003AF358 /* TabVisibilityTests.swift */,
 				9F10A66A2293191200E3360C /* UserSettingsTests.swift */,
@@ -4763,6 +4766,7 @@
 				7DCF1ED6216C05FE003AF358 /* GradeViewableTests.swift in Sources */,
 				7D81A001228DC1F000C61EDD /* GetQuizTests.swift in Sources */,
 				7D0215A121B88BDC009A8E69 /* UITabBarExtensionsTests.swift in Sources */,
+				B1EA933923F6FF6200A0231E /* SyllabusTests.swift in Sources */,
 				7DC4A559222EFC9900FA03DC /* Int64ExtensionsTests.swift in Sources */,
 				B10E89072384807B00E7684E /* GradesViewControllerTests.swift in Sources */,
 				7D20F61B21C31CE900B77E5E /* UICollectionViewExtensionsTests.swift in Sources */,
