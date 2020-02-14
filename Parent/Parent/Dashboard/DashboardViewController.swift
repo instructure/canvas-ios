@@ -107,13 +107,12 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     // ---------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .named(.backgroundLightest)
         customNavbarDelegate = self
         setupCustomNavbar()
         configurePageViewController()
+        setupTabBar()
 
-        tabBar.barTintColor = .named(.backgroundLightest)
-        view.backgroundColor = .named(.backgroundLightest)
-        tabBar.tintColor = ColorScheme.observer.color
         students.exhaust()
         presenter?.viewIsReady()
 
@@ -160,7 +159,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
                 }
                 return
             }
-            setupTabBar()
+
             displayDefaultStudent()
             configureStudentMenu()
         }
@@ -199,6 +198,9 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         alertsTabItem.accessibilityIdentifier = "TabBar.alertsTab"
         alertsTabItem.badgeColor = .named(.backgroundInfo)
         alertsTabItem.setBadgeTextAttributes([.foregroundColor: UIColor.named(.white)], for: .normal)
+
+        tabBar.tintColor = ColorScheme.observer.color
+        tabBar.barTintColor = .named(.backgroundLightest)
 
         selectCoursesTab()
     }

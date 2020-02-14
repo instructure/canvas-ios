@@ -22,10 +22,10 @@ public class PlannerListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     let env = AppEnvironment.shared
     var studentID: String?
-    var start: Date = Clock.now.startOfWeek()
-    var end: Date = Clock.now.endOfWeek()
+    var start: Date = Clock.now.startOfDay()
+    var end: Date = Clock.now.endOfDay()
 
-    lazy var plannables = env.subscribe(GetPlannables(userID: studentID, startDate: start, endDate: end, contextCodes: [], filter: "")) { [weak self] in
+    lazy var plannables: Store<GetPlannables> = env.subscribe(GetPlannables(userID: studentID, startDate: start, endDate: end)) { [weak self] in
         self?.updatePlannables()
     }
 
