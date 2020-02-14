@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class PlannerListViewController: UIViewController {
+public class PlannerListViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var tableView: UITableView!
     let env = AppEnvironment.shared
     var studentID: String?
@@ -48,6 +48,7 @@ public class PlannerListViewController: UIViewController {
     private func updatePlannables() {
         let pending = plannables.pending
         if !pending {
+            if let error = plannables.error { showError(error) }
             tableView.reloadData()
         }
     }

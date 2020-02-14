@@ -413,6 +413,7 @@
         <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="typeRaw" optional="YES" attributeType="String"/>
+        <attribute name="userID" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Quiz" representedClassName="Core.Quiz" syncable="YES">
         <attribute name="accessCode" optional="YES" attributeType="String"/>
@@ -625,7 +626,7 @@
         <element name="NotificationCategory" positionX="-522" positionY="0" width="128" height="103"/>
         <element name="Page" positionX="-549" positionY="-27" width="128" height="193"/>
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1080"/>
-        <element name="Plannable" positionX="-540" positionY="-18" width="128" height="178"/>
+        <element name="Plannable" positionX="-540" positionY="-18" width="128" height="193"/>
         <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="463"/>
         <element name="QuizSubmission" positionX="-540" positionY="-27" width="128" height="240"/>
         <element name="Rubric" positionX="-540" positionY="-27" width="128" height="180"/>

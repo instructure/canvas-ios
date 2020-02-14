@@ -19,7 +19,7 @@
 import Foundation
 import CoreData
 
-public final class Plannable: NSManagedObject, WriteableModel {
+public final class Plannable: NSManagedObject {
 
     public enum PlannableType: String {
         case announcement, assignment, discussion_topic, quiz, wiki_page, planner_note, calendar_event
@@ -37,6 +37,7 @@ public final class Plannable: NSManagedObject, WriteableModel {
     @NSManaged public var contextName: String?
     @NSManaged public var date: Date
     @NSManaged public var pointsPossibleRaw: NSNumber?
+    @NSManaged public var userID: String?
 
     public var pointsPossible: Double? {
         get { return pointsPossibleRaw?.doubleValue }
@@ -59,7 +60,7 @@ public final class Plannable: NSManagedObject, WriteableModel {
     }
 
     @discardableResult
-    public static func save(_ item: APIPlannable, in client: NSManagedObjectContext) -> Plannable {
+    public static func save(_ item: APIPlannable, in client: NSManagedObjectContext, userID: String?) -> Plannable {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(Plannable.id), item.plannable_id.value)
         let model: Plannable = client.fetch(predicate).first ?? client.insert()
         model.id = item.plannable_id.value
@@ -70,6 +71,7 @@ public final class Plannable: NSManagedObject, WriteableModel {
         model.title = item.plannable?.title
         model.date = item.plannable_date
         model.pointsPossible = item.plannable?.points_possible
+        model.userID = userID
 
         if let itemContextType = item.context_type, let contextType = ContextType(rawValue: itemContextType.lowercased()), let courseID = item.course_id?.value {
             model.canvasContextIDRaw = ContextModel(contextType, id: courseID).canvasContextID

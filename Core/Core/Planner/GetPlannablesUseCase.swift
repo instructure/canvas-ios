@@ -38,10 +38,21 @@ public class GetPlannables: CollectionUseCase {
     public var cacheKey: String? { nil }
 
     public var scope: Scope {
-        return .all(orderBy: #keyPath(Plannable.date))
+        if let userID = userID {
+            return Scope.where(#keyPath(Plannable.userID), equals: userID, orderBy: #keyPath(Plannable.date))
+        } else {
+            return .all(orderBy: #keyPath(Plannable.date))
+        }
     }
 
     public var request: GetPlannablesRequest {
         return GetPlannablesRequest(userID: userID, startDate: startDate, endDate: endDate, contextCodes: contextCodes, filter: filter)
     }
+
+    public func write(response: [APIPlannable]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        for p in response ?? [] {
+            Plannable.save(p, in: client, userID: userID)
+        }
+    }
+
 }
