@@ -29,7 +29,7 @@ open class HorizontalMenuViewController: UIViewController {
     var underlineLeftConstraint: NSLayoutConstraint?
     var menuHeightConstraint: NSLayoutConstraint?
     public weak var delegate: HorizontalPagedMenuDelegate?
-    private var selectedIndexPath: IndexPath = IndexPath(item: 0, section: 0)
+    public private(set) var selectedIndexPath: IndexPath = IndexPath(item: 0, section: 0)
 
     private var itemCount: Int {
         return delegate?.viewControllers.count ?? 0

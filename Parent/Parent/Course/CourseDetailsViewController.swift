@@ -161,14 +161,34 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         let pending = teachers.pending || student.pending
         if !pending && replyStarted {
             let name = student.first?.fullName ?? ""
-            let tabTitle = titleForSelectedTab() ?? ""
-            let template = NSLocalizedString("Regarding: %@, %@", comment: "Regarding <John Doe>, <Grades | Syllabus>")
+            var tabTitle = titleForSelectedTab() ?? ""
+            tabTitle = tabTitle.replacingOccurrences(of: NSLocalizedString("Summary", comment: ""), with: NSLocalizedString("Syllabus", comment: ""))
+            var template = NSLocalizedString("Regarding: %@, %@", comment: "Regarding <John Doe>, <Grades | Syllabus>")
             let subject = String.localizedStringWithFormat(template, name, tabTitle)
+            template = NSLocalizedString("Regarding: %@, %@", comment: "Regarding <John Doe>, [link to grades or syllabus]")
+            let hiddenMessage = String.localizedStringWithFormat(template, name, associatedTabConversationLink())
             let context = ContextModel(.course, id: courseID)
             let recipients = teachers.map { APIConversationRecipient(searchRecipient: $0) }
-            let r: Route = Route.compose(context: context, recipients: recipients, subject: subject)
+            let r: Route = Route.compose(context: context, recipients: recipients, subject: subject, hiddenMessage: hiddenMessage)
             env.router.route(to: r, from: self, options: .modal(embedInNav: true))
             replyButton?.isEnabled = true
+        }
+    }
+
+    private func associatedTabConversationLink() -> String {
+        let na = NSLocalizedString("n/a", comment: "")
+        guard let menuItem = MenuItem(rawValue: selectedIndexPath.row) else { return na }
+        guard let baseURL = env.currentSession?.baseURL, var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true) else { return na }
+        switch menuItem {
+        case .grades:
+            components.path = "/courses/\(courseID)/grades/\(studentID)"
+            return components.url?.absoluteString ?? na
+        case .syllabus, .summary:
+            if let syllabusTab = tabs.first(where: { $0.id == "syllabus" }), courses.first?.syllabusBody?.isEmpty == false {
+                components.path = syllabusTab.htmlURL.path
+                return components.url?.absoluteString ?? na
+            }
+            return na
         }
     }
 
