@@ -22,6 +22,12 @@ import CoreData
 public final class Todo: NSManagedObject, WriteableModel {
     public typealias JSON = APITodo
 
+    static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("E, MMM d, yyy")
+        return formatter
+    }()
+
     @NSManaged public var assignment: Assignment
     @NSManaged var contextRaw: String
     @NSManaged public var id: String
@@ -76,15 +82,10 @@ public final class Todo: NSManagedObject, WriteableModel {
             guard let dueAt = assignment.dueAt else {
                 return NSLocalizedString("No Due Date", bundle: .core, comment: "")
             }
-            let calendar = Calendar.current
-            let weekday = calendar.shortWeekdaySymbols[calendar.component(.weekday, from: dueAt)]
-            let dueText = DateFormatter.localizedString(
-                from: dueAt,
-                dateStyle: .medium,
-                timeStyle: .short
-            )
-            let format = NSLocalizedString("Due %@, %@", bundle: .core, comment: "")
-            return String.localizedStringWithFormat(format, weekday, dueText)
+            let dueText = Todo.dateFormatter.string(from: dueAt)
+            let timeText = DateFormatter.localizedString(from: dueAt, dateStyle: .none, timeStyle: .short)
+            let format = NSLocalizedString("Due %@ at %@", bundle: .core, comment: "")
+            return String.localizedStringWithFormat(format, dueText, timeText)
         case .grading:
             let format = NSLocalizedString("d_needs_grading", bundle: .core, comment: "")
             return String.localizedStringWithFormat(format, needsGradingCount)
