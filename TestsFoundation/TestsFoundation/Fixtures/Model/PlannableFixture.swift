@@ -26,7 +26,7 @@ extension Plannable {
         from api: APIPlannable = .make(),
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> Plannable {
-        let model = Plannable.save(api, in: context)
+        let model = Plannable.save(api, in: context, userID: "1")
         try! context.save()
         return model
     }
