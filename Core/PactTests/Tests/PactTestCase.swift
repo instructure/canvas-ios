@@ -1,4 +1,5 @@
-// // This file is part of Canvas.
+//
+// This file is part of Canvas.
 // Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
