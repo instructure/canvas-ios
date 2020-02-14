@@ -40,8 +40,8 @@ class CalendarContainerViewController: UIViewController {
 
         embed(calendar, in: view, constraintHandler: { child, container in
             child.view.pinToLeftAndRightOfSuperview()
-            child.view.heightAnchor.constraint(greaterThanOrEqualToConstant: 140).isActive = true
             child.view.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
+            child.view.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
         })
 
         embed(plannerList, in: view, constraintHandler: { [weak self] child, container in
