@@ -21,11 +21,11 @@ import Foundation
 class GetFile: APIUseCase {
     typealias Model = File
 
-    let context: Context
+    let context: Context?
     let fileID: String
     let include: [GetFileRequest.Include]
 
-    init(context: Context, fileID: String, include: [GetFileRequest.Include] = []) {
+    init(context: Context?, fileID: String, include: [GetFileRequest.Include] = []) {
         self.context = context
         self.fileID = fileID
         self.include = include
