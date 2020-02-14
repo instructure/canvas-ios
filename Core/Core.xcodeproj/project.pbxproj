@@ -711,7 +711,7 @@
 		E81ACB9B23D9F469007AFDC1 /* TestImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4D5EB421402CA90080AC14 /* TestImage.png */; };
 		E81ACB9C23D9F469007AFDC1 /* APIAccountResults.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D58FBC92141B43300705CDF /* APIAccountResults.json */; };
 		E81ACB9E23D9F469007AFDC1 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CEB762150408A00D07CFA /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E81ACBA523D9F4F2007AFDC1 /* PactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E861489F23D755BC00ABFA5D /* PactTests.swift */; };
+		E81ACBA523D9F4F2007AFDC1 /* PactTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E861489F23D755BC00ABFA5D /* PactTestCase.swift */; };
 		E81ACBA623D9F4F2007AFDC1 /* CanvasMockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C1032F23D8A18500A9A0F7 /* CanvasMockService.swift */; };
 		E81ACBA723D9F4F2007AFDC1 /* PactEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81ACA8623D9EA83007AFDC1 /* PactEncoder.swift */; };
 		E81ACBA823D9F4F2007AFDC1 /* PactShapeEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81ACA8A23D9EAF9007AFDC1 /* PactShapeEncodable.swift */; };
@@ -750,6 +750,9 @@
 		E8C6F58823D641610086B865 /* CourseFileE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E819192723034C2C0039616A /* CourseFileE2ETests.swift */; };
 		E8C6F58923D641610086B865 /* CourseGroupE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E819192923034C2C0039616A /* CourseGroupE2ETests.swift */; };
 		E8C6F58B23D641610086B865 /* DashboardE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AD06702303713300D498ED /* DashboardE2ETests.swift */; };
+		E8CA4D3723F730F500A3CA3C /* GetCoursesPactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA4D3623F730F500A3CA3C /* GetCoursesPactTests.swift */; };
+		E8CA4D3923F7312600A3CA3C /* QuizPactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA4D3823F7312600A3CA3C /* QuizPactTests.swift */; };
+		E8CA4D3B23F7324F00A3CA3C /* GetContextUsersPactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA4D3A23F7324F00A3CA3C /* GetContextUsersPactTests.swift */; };
 		E8EC0C4823D9F980007583F3 /* APIPactExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC0C4723D9F980007583F3 /* APIPactExtensions.swift */; };
 		E8EC0C4A23DA1F72007583F3 /* PactCaseEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC0C4923DA1F72007583F3 /* PactCaseEncodable.swift */; };
 		EE424B3222E8BBEF00D083EE /* GetFrontPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3122E8BBEF00D083EE /* GetFrontPage.swift */; };
@@ -1792,7 +1795,7 @@
 		E841D8BF23D647F600685A63 /* InboxE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxE2ETests.swift; sourceTree = "<group>"; };
 		E85B4917238875A0003E28DC /* UserFilesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFilesTests.swift; sourceTree = "<group>"; };
 		E85E7F82238C45C300BE61B3 /* FilesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesList.swift; sourceTree = "<group>"; };
-		E861489F23D755BC00ABFA5D /* PactTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactTests.swift; sourceTree = "<group>"; };
+		E861489F23D755BC00ABFA5D /* PactTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactTestCase.swift; sourceTree = "<group>"; };
 		E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDashboardTests.swift; sourceTree = "<group>"; };
 		E88EA0182385B0B4008A587A /* APIDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDashboard.swift; sourceTree = "<group>"; };
 		E8997905234F7E0600CA7D9B /* XCTestCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseTests.swift; sourceTree = "<group>"; };
@@ -1808,6 +1811,9 @@
 		E8C6F52523D636B30086B865 /* Modules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modules.swift; sourceTree = "<group>"; };
 		E8C6F56323D63E6C0086B865 /* CoreE2ETests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreE2ETests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C6F56423D63E6C0086B865 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8CA4D3623F730F500A3CA3C /* GetCoursesPactTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoursesPactTests.swift; sourceTree = "<group>"; };
+		E8CA4D3823F7312600A3CA3C /* QuizPactTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizPactTests.swift; sourceTree = "<group>"; };
+		E8CA4D3A23F7324F00A3CA3C /* GetContextUsersPactTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextUsersPactTests.swift; sourceTree = "<group>"; };
 		E8EC0C4723D9F980007583F3 /* APIPactExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIPactExtensions.swift; sourceTree = "<group>"; };
 		E8EC0C4923DA1F72007583F3 /* PactCaseEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactCaseEncodable.swift; sourceTree = "<group>"; };
 		EE424B3122E8BBEF00D083EE /* GetFrontPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFrontPage.swift; sourceTree = "<group>"; };
@@ -3758,7 +3764,10 @@
 		E8EC0C4E23DA3C34007583F3 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				E861489F23D755BC00ABFA5D /* PactTests.swift */,
+				E861489F23D755BC00ABFA5D /* PactTestCase.swift */,
+				E8CA4D3623F730F500A3CA3C /* GetCoursesPactTests.swift */,
+				E8CA4D3A23F7324F00A3CA3C /* GetContextUsersPactTests.swift */,
+				E8CA4D3823F7312600A3CA3C /* QuizPactTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -4952,12 +4961,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8CA4D3923F7312600A3CA3C /* QuizPactTests.swift in Sources */,
 				E8EC0C4A23DA1F72007583F3 /* PactCaseEncodable.swift in Sources */,
 				E81ACBA723D9F4F2007AFDC1 /* PactEncoder.swift in Sources */,
 				E8EC0C4823D9F980007583F3 /* APIPactExtensions.swift in Sources */,
 				E81ACBA923D9F4F2007AFDC1 /* PactSimpleEncodable.swift in Sources */,
+				E8CA4D3723F730F500A3CA3C /* GetCoursesPactTests.swift in Sources */,
 				E81ACBA823D9F4F2007AFDC1 /* PactShapeEncodable.swift in Sources */,
-				E81ACBA523D9F4F2007AFDC1 /* PactTests.swift in Sources */,
+				E8CA4D3B23F7324F00A3CA3C /* GetContextUsersPactTests.swift in Sources */,
+				E81ACBA523D9F4F2007AFDC1 /* PactTestCase.swift in Sources */,
 				E81ACBA623D9F4F2007AFDC1 /* CanvasMockService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
