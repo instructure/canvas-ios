@@ -64,6 +64,12 @@ export default class AttachmentView extends Component<Props, State> {
   }
 
   componentDidMount () {
+    if (this.props.attachment.locked_for_user) {
+      this.setState({
+        error: this.props.attachment.lock_explanation ?? i18n('This file is currently locked.')
+      })
+      return
+    }
     if (this.props.attachment.uri) {
       this.setState({ filePath: this.props.attachment.uri })
       return
@@ -171,6 +177,7 @@ export default class AttachmentView extends Component<Props, State> {
   }
 
   render () {
+    let isPending = this.state.filePath == null && this.state.error == null
     return (
       <Screen
         title={i18n('Attachment')}
@@ -185,12 +192,12 @@ export default class AttachmentView extends Component<Props, State> {
         }]}
       >
         <View style={styles.container} onLayout={this.handleLayout}>
-          { (this.state.filePath == null) &&
+          { isPending &&
             <View style={styles.centeredContainer}>
               <ActivityIndicator />
             </View>
           }
-          { this.state.filePath != null && this.renderBody() }
+          { !isPending && this.renderBody() }
         </View>
       </Screen>
     )

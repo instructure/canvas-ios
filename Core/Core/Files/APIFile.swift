@@ -43,7 +43,7 @@ public struct APIFile: Codable, Equatable {
     // identifier for file in third-party transcoding service
     let media_entry_id: String?
     let locked_for_user: Bool
-    let lock_info: String?
+    // let lock_info: [String: Any]?
     let lock_explanation: String?
     // optional: url to the document preview. This url is specific to the user
     // making the api call. Only included in submission endpoints.
@@ -71,7 +71,6 @@ public struct APIFile: Codable, Equatable {
         case mime_class = "mime_class"
         case media_entry_id = "media_entry_id"
         case locked_for_user = "locked_for_user"
-        case lock_info = "lock_info"
         case lock_explanation = "lock_explanation"
         case preview_url = "preview_url"
         case avatar = "avatar"

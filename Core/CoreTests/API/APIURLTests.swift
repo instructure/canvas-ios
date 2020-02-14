@@ -41,7 +41,10 @@ class APIURLTests: CoreTestCase {
             try decoder.decode(APIURL.self, from: try encoder.encode("/relative/url")),
             APIURL(rawValue: URL(string: "/relative/url", relativeTo: currentSession.baseURL))
         )
-        XCTAssertThrowsError(try decoder.decode(APIURL.self, from: try encoder.encode("")))
+        XCTAssertEqual(
+            try decoder.decode(APIURL.self, from: try encoder.encode("")),
+            APIURL(rawValue: environment.currentSession!.baseURL)
+        )
         XCTAssertThrowsError(try decoder.decode(APIURL.self, from: try encoder.encode(1)))
         XCTAssertThrowsError(try decoder.decode(APIURL.self, from: try encoder.encode(true)))
     }

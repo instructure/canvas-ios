@@ -62,7 +62,6 @@ final public class File: NSManagedObject {
     @NSManaged public var mimeClass: String?
     @NSManaged public var mediaEntryID: String?
     @NSManaged public var lockedForUser: Bool
-    @NSManaged public var lockInfo: String?
     @NSManaged public var lockExplanation: String?
     @NSManaged public var previewURL: URL?
     @NSManaged public var localFileURL: URL?
@@ -158,7 +157,6 @@ extension File: WriteableModel {
         mimeClass = item.mime_class
         mediaEntryID = item.media_entry_id
         lockedForUser = item.locked_for_user
-        lockInfo = item.lock_info
         lockExplanation = item.lock_explanation
         previewURL = item.preview_url?.rawValue
     }
