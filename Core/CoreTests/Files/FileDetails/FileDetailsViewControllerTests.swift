@@ -162,7 +162,6 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.contentView.subviews[0].subviews[0].accessibilityLabel, file.display_name)
     }
 
-
     func testModel() {
         mock(APIFile.make(filename: "File.usdz", contentType: "model/vnd.usdz+zip", mime_class: "file"))
         let done = expectation(description: "done")
