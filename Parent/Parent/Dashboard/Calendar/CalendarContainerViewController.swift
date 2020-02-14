@@ -40,7 +40,7 @@ class CalendarContainerViewController: UIViewController {
 
         embed(calendar, in: view, constraintHandler: { child, container in
             child.view.pinToLeftAndRightOfSuperview()
-            child.view.heightAnchor.constraint(equalToConstant: 142).isActive = true
+            child.view.heightAnchor.constraint(greaterThanOrEqualToConstant: 140).isActive = true
             child.view.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
         })
 
@@ -48,7 +48,7 @@ class CalendarContainerViewController: UIViewController {
             guard let ss = self else { return }
             child.view.pinToLeftAndRightOfSuperview()
             NSLayoutConstraint.activate([
-                child.view.topAnchor.constraint(equalTo: ss.calendar.view.bottomAnchor),
+                child.view.topAnchor.constraint(equalTo: ss.calendar.daysContainer.bottomAnchor),
                 child.view.bottomAnchor.constraint(equalTo: container.bottomAnchor),
             ])
         })
@@ -57,6 +57,6 @@ class CalendarContainerViewController: UIViewController {
 
 extension PlannerListViewController: CalendarViewControllerDelegate {
     func selectedDateDidChange(_ date: Date) {
-        updateListForDates(start: date.startOfWeek(), end: date.endOfWeek())
+        updateListForDates(start: date.startOfDay(), end: date.endOfDay())
     }
 }

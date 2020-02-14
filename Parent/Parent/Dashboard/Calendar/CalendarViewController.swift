@@ -165,6 +165,7 @@ extension CalendarViewController: UIPageViewControllerDataSource, UIPageViewCont
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         selectedDate = days.selectedDate
         updatePage()
+        delegate?.selectedDateDidChange(selectedDate)
         // clearPageCache() // would cause a crash, so don't
     }
 

@@ -23,15 +23,25 @@ import WebKit
 class PlannerListViewControllerTests: CoreTestCase {
 
     var vc: PlannerListViewController!
+    let studentID = "1"
 
     override func setUp() {
         super.setUp()
-        vc = PlannerListViewController.create(studentID: "1")
+        environment.mockStore = false
+        vc = PlannerListViewController.create(studentID: studentID)
+        vc.loadView()
     }
 
     func testLayout() {
-        vc.loadView()
+        let date = Clock.now
+        api.mock(GetPlannables(userID: studentID, startDate: Clock.now.startOfDay(), endDate: Clock.now.endOfDay()), value: [APIPlannable.make(plannable_date: date)])
         vc.viewDidLoad()
-        vc.viewWillAppear(false)
+        vc.updateListForDates(start: Clock.now.startOfDay(), end: Clock.now.endOfDay())
+
+        let cell = vc.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? PlannerListCell
+        XCTAssertEqual(cell?.title.text, "assignment a")
+        XCTAssertEqual(cell?.courseCode.text, "Assignment Grades")
+        XCTAssertEqual(cell?.dueDate.text, DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .short) )
+        XCTAssertEqual(cell?.points.text, nil)
     }
 }

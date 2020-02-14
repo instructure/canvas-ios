@@ -60,6 +60,14 @@ public extension Date {
         return Cal.currentCalendar.date(byAdding: .weekOfYear, value: 1, to: start) ?? Date()
     }
 
+    func startOfDay() -> Date {
+        Cal.currentCalendar.startOfDay(for: self)
+    }
+
+    func endOfDay() -> Date {
+        Cal.currentCalendar.date(bySettingHour: 23, minute: 59, second: 59, of: startOfDay()) ?? Date()
+    }
+
     static var dateOnlyFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.setLocalizedDateFormatFromTemplate("MMMd")
