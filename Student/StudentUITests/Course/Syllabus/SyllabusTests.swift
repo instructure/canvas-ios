@@ -36,7 +36,7 @@ class SyllabusTests: StudentUITestCase {
         let assignment = APIAssignment.make(name: assignmentName, description: "hello world", submission: .make())
         mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: [.submission]), value: assignment)
         mockData(GetCalendarEventsRequest(contexts: [ContextModel(.course, id: course.id)], type: .event, allEvents: true), value: [
-            .make(html_url: assignment.html_url, title: assignment.name, type: .assignment, assignment: assignment)
+            .make(html_url: assignment.html_url, title: assignment.name, type: .assignment, assignment: assignment),
         ])
 
         show("/courses/\(course.id)/assignments/syllabus")
