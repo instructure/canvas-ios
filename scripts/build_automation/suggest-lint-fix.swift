@@ -67,7 +67,7 @@ enum Github {
 
     static func postComment(prID: String, comment: Comment) throws {
         try cmd(
-            "curl", "-sf", "https://api.github.com/repos/\(repo)/issues/\(prID)/comments",
+            "curl", "-sf", "https://api.github.com/repos/\(repo)/pulls/\(prID)/comments",
             "-X", "POST",
             "-H", "Content-Type: application/json; charset=utf-8",
             "-H", "Accept: application/vnd.github.comfort-fade-preview+json",
