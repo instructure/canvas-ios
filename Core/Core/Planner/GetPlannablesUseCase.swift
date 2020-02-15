@@ -24,7 +24,7 @@ public class GetPlannables: CollectionUseCase {
     var userID: String?
     var startDate: Date?
     var endDate: Date?
-    var contextCodes: [String] = []
+    var contextCodes : [String] = []
     var filter: String = ""
 
     public init(userID: String? = nil, startDate: Date? = nil, endDate: Date? = nil, contextCodes: [String] = [], filter: String = "") {
