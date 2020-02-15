@@ -50,7 +50,8 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
 
         XCTAssertNotNil(vc.replyButton)
         vc.replyButton?.sendActions(for: .primaryActionTriggered)
-        let expected = "/conversations/compose?context=course_1&subject=some%20assignment&hiddenMessage=Regarding:%20John%20Doe,%20https://canvas.instructure.com/courses/1/assignments/1"
+        //  swiftlint:disable:next line_length
+        let expected = "/conversations/compose?context=course_1&subject=Regarding:%20John%20Doe,%20Assignment%20-%20some%20assignment&hiddenMessage=Regarding:%20John%20Doe,%20https://canvas.instructure.com/courses/1/assignments/1"
         XCTAssert(router.lastRoutedTo(.parse(expected)))
     }
 }

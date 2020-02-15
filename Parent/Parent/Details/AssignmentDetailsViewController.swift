@@ -139,9 +139,10 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
         if !pending && replyStarted {
             guard let a = assignment.first else { return }
             let name = student.first?.fullName ?? ""
-            let template = NSLocalizedString("Regarding: %@, %@", comment: "Regarding <John Doe>, < assignment url >")
+            var template = NSLocalizedString("Regarding: %@, %@", comment: "Regarding <John Doe>, < assignment url >")
             let hiddenMessage = String.localizedStringWithFormat(template, name, a.htmlURL.absoluteString)
-            let subject = a.name
+            template = NSLocalizedString("Regarding: %@, Assignment - %@", comment: "Regarding <John Doe>, Assignment - < assignment name >")
+            let subject = String.localizedStringWithFormat(template, name, a.name)
             let context = ContextModel(.course, id: courseID)
             let recipients = teachers.map { APIConversationRecipient(searchRecipient: $0) }
             let r: Route = Route.compose(context: context, recipients: recipients, subject: subject, hiddenMessage: hiddenMessage)
