@@ -34,7 +34,11 @@ class GetSearchRecipientsTests: CoreTestCase {
 
     func testScope() {
         let useCase = GetSearchRecipients(context: ContextModel(.course, id: "1"))
-        XCTAssertEqual(useCase.scope, Scope.where(#keyPath(SearchRecipient.filter), equals: "per_page=50&context=course_1&search=&synthetic_contexts=1&type=user", orderBy: #keyPath(SearchRecipient.name), naturally: true))
+        XCTAssertEqual(useCase.scope, Scope.where(
+            #keyPath(SearchRecipient.filter),
+            equals: "per_page=50&context=course_1&search=&synthetic_contexts=1&type=user",
+            orderBy: #keyPath(SearchRecipient.name), naturally: true
+        ))
     }
 
     func testFilter() {
