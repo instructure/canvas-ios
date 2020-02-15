@@ -58,23 +58,22 @@ enum Github {
         let commit_id: String
         let path: String
 
-        let start_line: Int
+        let start_line: Int?
         let line: Int // last line
 
-        let start_side: String = "LEFT"
+        let start_side: String?
         let side: String = "RIGHT"
     }
 
     static func postComment(prID: String, comment: Comment) throws {
-        try cmd(
-            "curl", "-sf", "https://api.github.com/repos/\(repo)/pulls/\(prID)/comments",
-            "-X", "POST",
-            "-H", "Content-Type: application/json; charset=utf-8",
-            "-H", "Accept: application/vnd.github.comfort-fade-preview+json",
-            "-H", "Authorization: Bearer \(token)",
-
-            "--data-binary", "@-"
-        ).inputJSON(from: comment).run()
+        try (cmd(
+               "curl", "https://api.github.com/repos/\(repo)/pulls/\(prID)/comments",
+               "-X", "POST",
+               "-H", "Content-Type: application/json; charset=utf-8",
+               "-H", "Accept: application/vnd.github.comfort-fade-preview+json",
+               "-H", "Authorization: Bearer \(token)",
+               "--data-binary", "@-"
+             ) | cmd("jq")).inputJSON(from: comment).run()
     }
 }
 
@@ -86,12 +85,12 @@ _ = try! cmd("./scripts/runSwiftLint.sh", "fix").runString(joinErr: true)
 
 // don't read gitconfig, it might mess with diff format
 let gitEnv = ["GIT_CONFIG_NOGLOBAL": "1", "HOME": "", "XDG_CONFIG_HOME": ""]
-let diffText = try! cmd("git", "diff", "-U1", snapshotHash, addEnv: gitEnv).runString()
+let diffText = try! cmd("git", "diff", "-U0", snapshotHash, addEnv: gitEnv).runString()
+print(diffText)
 
 // undo fixes
 try! cmd("git", "checkout", snapshotHash, "--", ".").run()
 
-print(diffText)
 let diffs = DiffParser(input: diffText).parseDiffedFiles()
 
 let commit = try! cmd("git", "rev-parse", "HEAD").runString()
@@ -99,7 +98,8 @@ let commit = try! cmd("git", "rev-parse", "HEAD").runString()
 for diff in diffs {
     for hunk in diff.hunks {
         print(diff.previousFilePath, hunk.oldLineStart, hunk.oldLineSpan)
-        let suggestion = (hunk.changes.compactMap { $0.type == "deletion" ? nil : "    \($0.text)" }).joined(separator: "\n")
+        let suggestion = (hunk.changes.compactMap { $0.type == "deletion" ? nil : "\($0.text)" }).joined(separator: "\n")
+        let isSingleLine = hunk.oldLineSpan == 1
         let comment = Github.Comment(
           body: """
             ```suggestion
@@ -108,8 +108,9 @@ for diff in diffs {
             """,
           commit_id: commit,
           path: diff.previousFilePath,
-          start_line: hunk.oldLineStart,
-          line: hunk.oldLineStart + hunk.oldLineSpan - 1
+          start_line: isSingleLine ? nil : hunk.oldLineStart,
+          line: hunk.oldLineStart + hunk.oldLineSpan - 1,
+          start_side: isSingleLine ? nil : "RIGHT"
         )
         print(comment)
         try! cmd("jq").inputJSON(from: comment).run()
