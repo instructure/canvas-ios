@@ -34,7 +34,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     @IBOutlet weak var viewModulesButton: UIButton!
 
     var assignmentID: String?
-    var context: Context = ContextModel.currentUser
+    var context: Context?
     var downloadTask: URLSessionTask?
     let env = AppEnvironment.shared
     var fileID: String = ""
@@ -46,7 +46,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         self?.update()
     }
 
-    public static func create(context: Context, fileID: String, assignmentID: String? = nil) -> FileDetailsViewController {
+    public static func create(context: Context?, fileID: String, assignmentID: String? = nil) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.context = context
@@ -88,7 +88,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         startTrackingTimeOnViewController()
-        env.userDefaults?.submitAssignmentCourseID = context.contextType == .course ? context.id : nil
+        env.userDefaults?.submitAssignmentCourseID = context?.contextType == .course ? context?.id : nil
         env.userDefaults?.submitAssignmentID = assignmentID
     }
 
@@ -96,7 +96,11 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         super.viewWillDisappear(animated)
         saveAnnotations()
         downloadTask?.cancel()
-        stopTrackingTimeOnViewController(eventName: "/\(context.pathComponent)/files/\(fileID)")
+        if let context = context {
+            stopTrackingTimeOnViewController(eventName: "/\(context.pathComponent)/files/\(fileID)")
+        } else {
+            stopTrackingTimeOnViewController(eventName: "/files/\(fileID)")
+        }
     }
 
     func update() {
@@ -159,6 +163,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     }
 
     @IBAction func viewModules() {
+        guard let context = context else { return }
         env.router.route(to: Route.modules(forCourse: context.id), from: self)
     }
 

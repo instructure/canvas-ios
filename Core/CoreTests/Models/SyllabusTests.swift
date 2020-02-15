@@ -16,18 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CoreData
 import Foundation
 @testable import Core
+import TestsFoundation
 
-extension Plannable {
-    @discardableResult
-    public static func make(
-        from api: APIPlannable = .make(),
-        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
-    ) -> Plannable {
-        let model = Plannable.save(api, in: context, userID: "1")
-        try! context.save()
-        return model
+class SyllabusTests: CoreTestCase {
+    func testMake() {
+        XCTAssertNotNil(Syllabus.make(in: databaseClient))
     }
 }

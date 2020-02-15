@@ -413,7 +413,7 @@ private func previewFileViewController(url: URLComponents, params: [String: Stri
 
 private func fileViewController(url: URLComponents, params: [String: String]) -> UIViewController? {
     guard let fileID = url.queryItems?.first(where: { $0.name == "preview" })?.value ?? params["fileID"] else { return nil }
-    var context = ContextModel(path: url.path) ?? ContextModel.currentUser
+    var context = ContextModel(path: url.path)
     if let courseID = url.queryItems?.first(where: { $0.name == "courseID" })?.value {
         context = ContextModel(.course, id: courseID)
     }
