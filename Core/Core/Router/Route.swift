@@ -40,39 +40,6 @@ public struct Route: Equatable {
         return Route("/conversations/\(conversationID)")
     }
 
-    public static func compose(
-        body: String? = nil,
-        context: Context? = nil,
-        observeeID: String? = nil,
-        recipients: [APIConversationRecipient] = [],
-        subject: String? = nil,
-        hiddenMessage: String? = nil
-    ) -> Route {
-        var compose = URLComponents()
-        compose.path = "/conversations/compose"
-        var queryItems: [URLQueryItem] = []
-        if let body = body {
-            queryItems.append(URLQueryItem(name: "body", value: body))
-        }
-        if let context = context {
-            queryItems.append(URLQueryItem(name: "context", value: context.canvasContextID))
-        }
-        if let observeeID = observeeID {
-            queryItems.append(URLQueryItem(name: "observeeID", value: observeeID))
-        }
-        if !recipients.isEmpty, let json = try? JSONEncoder().encode(recipients).base64EncodedString() {
-            queryItems.append(URLQueryItem(name: "recipients", value: json))
-        }
-        if let subject = subject {
-            queryItems.append(URLQueryItem(name: "subject", value: subject))
-        }
-        if let hiddenMessage = hiddenMessage {
-            queryItems.append(URLQueryItem(name: "hiddenMessage", value: hiddenMessage))
-        }
-        if !queryItems.isEmpty { compose.queryItems = queryItems }
-        return Route(url: compose)
-    }
-
     public static let courses = Route("/courses")
 
     public static func course(_ courseID: String) -> Route {

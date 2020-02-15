@@ -20,7 +20,6 @@ import Foundation
 import CoreData
 
 public struct GetSearchRecipients: CollectionUseCase {
-    public typealias Request = APISearchRecipientsRequestable
     public typealias Model = SearchRecipient
 
     enum ContextQualifier {
@@ -28,23 +27,23 @@ public struct GetSearchRecipients: CollectionUseCase {
     }
 
     public let context: Context
-    public let contextQualifier: APISearchRecipientsRequestable.ContextQualifier?
+    public let qualifier: GetSearchRecipientsRequest.ContextQualifier?
     public let userID: String?
 
-    public init(context: Context, contextQualifier: APISearchRecipientsRequestable.ContextQualifier? = nil, userID: String? = nil) {
+    public init(context: Context, qualifier: GetSearchRecipientsRequest.ContextQualifier? = nil, userID: String? = nil) {
         self.context = context
-        self.contextQualifier = contextQualifier
+        self.qualifier = qualifier
         self.userID = userID
     }
 
     public var cacheKey: String? { filter }
 
-    public var request: APISearchRecipientsRequestable {
-        return APISearchRecipientsRequestable(context: context, contextQualifier: contextQualifier, userID: userID)
+    public var request: GetSearchRecipientsRequest {
+        return GetSearchRecipientsRequest(context: context, qualifier: qualifier, userID: userID)
     }
 
     public var scope: Scope {
-        return .where(#keyPath(SearchRecipient.filter), equals: filter, orderBy: #keyPath(SearchRecipient.fullName))
+        return .where(#keyPath(SearchRecipient.filter), equals: filter, orderBy: #keyPath(SearchRecipient.name), naturally: true)
     }
 
     public func write(response: [APISearchRecipient]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
@@ -58,8 +57,8 @@ public struct GetSearchRecipients: CollectionUseCase {
     }
 
     var filter: String {
-        var components = URLComponents()
-        components.queryItems = request.queryItems
-        return components.url?.absoluteString ?? ""
+        var url = URLComponents()
+        url.queryItems = request.queryItems
+        return url.url?.query ?? ""
     }
 }

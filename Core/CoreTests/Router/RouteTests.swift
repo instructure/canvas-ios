@@ -23,18 +23,6 @@ class RouteTests: XCTestCase {
     func testConversations() {
         XCTAssertEqual(Route.conversations.url.path, "/conversations")
         XCTAssertEqual(Route.conversation("5").url.path, "/conversations/5")
-        XCTAssertEqual(Route.compose().url.path, "/conversations/compose")
-        XCTAssertNil(Route.compose().url.queryItems)
-        XCTAssertEqual(Route.compose(body: "b", context: ContextModel(.course, id: "1"), observeeID: "2", recipients: [ .make() ], subject: "s", hiddenMessage: "Magic").url.queryItems, [
-            URLQueryItem(name: "body", value: "b"),
-            URLQueryItem(name: "context", value: "course_1"),
-            URLQueryItem(name: "observeeID", value: "2"),
-            URLQueryItem(name: "recipients", value: try? JSONEncoder().encode([
-                APIConversationRecipient.make(),
-            ]).base64EncodedString()),
-            URLQueryItem(name: "subject", value: "s"),
-            URLQueryItem(name: "hiddenMessage", value: "Magic"),
-        ])
     }
 
     func testCourse() {
