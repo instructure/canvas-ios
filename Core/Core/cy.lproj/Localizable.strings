@@ -470,9 +470,6 @@
 "Login" = "Mewngofnodi";
 
 /* No comment provided by engineer. */
-"Manage Children" = "Rheoli Plant";
-
-/* No comment provided by engineer. */
 "Manual OAuth Login" = "OAuth Login sydd ddim yn awtomatig";
 
 /* No comment provided by engineer. */
@@ -572,6 +569,9 @@
 "Permission Needed" = "Angen Caniatâd";
 
 /* No comment provided by engineer. */
+"Photo Library" = "Llyfrgell Luniau";
+
+/* No comment provided by engineer. */
 "Play" = "Chwarae";
 
 /* No comment provided by engineer. */
@@ -594,6 +594,9 @@
 
 /* No comment provided by engineer. */
 "Quiz" = "Cwis";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Recordio Sain";
 
 /* No comment provided by engineer. */
 "red" = "coch";
@@ -809,6 +812,9 @@
 "Updated Language Settings" = "Gosodiadau Iaith wedi’u Diweddaru";
 
 /* No comment provided by engineer. */
+"Upload File" = "Llwytho Ffeil i Fyny";
+
+/* No comment provided by engineer. */
 "Uploading %@ of %@" = "Wrthi'n llwytho i fyny %1$@ o %2$@";
 
 /* No comment provided by engineer. */
@@ -816,6 +822,9 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
+
+/* No comment provided by engineer. */
+"Use Camera" = "Defnyddio Camera";
 
 /* No comment provided by engineer. */
 "User ID" = "ID Defnyddiwr";

@@ -470,9 +470,6 @@
 "Login" = "Prijava";
 
 /* No comment provided by engineer. */
-"Manage Children" = "Urejaj otroke";
-
-/* No comment provided by engineer. */
 "Manual OAuth Login" = "Ročna prijava OAuth";
 
 /* No comment provided by engineer. */
@@ -572,6 +569,9 @@
 "Permission Needed" = "Potrebno je dovoljenje.";
 
 /* No comment provided by engineer. */
+"Photo Library" = "Knjižnica fotografij";
+
+/* No comment provided by engineer. */
 "Play" = "Predvajaj";
 
 /* No comment provided by engineer. */
@@ -594,6 +594,9 @@
 
 /* No comment provided by engineer. */
 "Quiz" = "Kviz";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Posnemi zvok";
 
 /* No comment provided by engineer. */
 "red" = "rdeča";
@@ -809,6 +812,9 @@
 "Updated Language Settings" = "Posodobljene nastavitve jezika";
 
 /* No comment provided by engineer. */
+"Upload File" = "Naloži datoteko";
+
+/* No comment provided by engineer. */
 "Uploading %@ of %@" = "Nalaganje %1$@ od %2$@";
 
 /* No comment provided by engineer. */
@@ -816,6 +822,9 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
+
+/* No comment provided by engineer. */
+"Use Camera" = "Uporabi fotoaparat";
 
 /* No comment provided by engineer. */
 "User ID" = "ID uporabnika";
