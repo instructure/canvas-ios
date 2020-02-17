@@ -13,8 +13,14 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ سيبدأ في %2$@";
 
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@، خلال %2$@، آخر رسالة تمت في %3$@ %4$@";
+
 /* added to conversation label when unread */
 "%@, unread" = "%@، غير مقروءة";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -24,6 +30,9 @@
 
 /* No comment provided by engineer. */
 "Add" = "إضافة";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "إضافة مرفقات";
 
 /* No comment provided by engineer. */
 "Add Student" = "إضافة طالب";
@@ -60,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Back" = "عودة";
+
+/* Calendar Tab */
+"Calendar" = "التقويم";
 
 /* No comment provided by engineer. */
 "Calendar Event" = "حدث التقويم";
@@ -101,6 +113,9 @@
 "Dismiss" = "رفض";
 
 /* No comment provided by engineer. */
+"Edit Recipients" = "تحرير المستلمين";
+
+/* No comment provided by engineer. */
 "Event" = "الحدث";
 
 /* No comment provided by engineer. */
@@ -111,6 +126,12 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "تعذر تحميل (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"Failed. Tap for options" = "فشل. اضغط للوصول إلى الخيارات.";
+
+/* No comment provided by engineer. */
+"File" = "الملف";
 
 /* No comment provided by engineer. */
 "for %@" = "لـ %@";
@@ -163,11 +184,11 @@
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "لا يمكن أن تكون أدنى درجة للمساق أكبر من أعلى درجة للمساق";
 
-/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "إدارة الأطفال";
-
 /* No comment provided by engineer. */
 "Message" = "الرسالة";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "رسالة من %1$@، %2$@، في %3$@، %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "غير منجزة";
@@ -220,7 +241,8 @@
 /* No comment provided by engineer. */
 "Regarding: %@" = "بخصوص: %@";
 
-/* Regarding <John Doe>, < assignment url >
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, < assignment url >
    Regarding <John Doe>, <Grades | Syllabus> */
 "Regarding: %@, %@" = "بخصوص: %1$@، %2$@";
 
@@ -283,6 +305,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "غير مقروء";
+
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "تحميل %1$@ في %2$@";
 
 /* Header title of admin view */
 "Welcome!" = "مرحبًا!";

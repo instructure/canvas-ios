@@ -470,9 +470,6 @@
 "Login" = "登录";
 
 /* No comment provided by engineer. */
-"Manage Children" = "管理儿童";
-
-/* No comment provided by engineer. */
 "Manual OAuth Login" = "手动 OAuth 登录";
 
 /* No comment provided by engineer. */
@@ -572,6 +569,9 @@
 "Permission Needed" = "需要权限";
 
 /* No comment provided by engineer. */
+"Photo Library" = "照片库";
+
+/* No comment provided by engineer. */
 "Play" = "播放";
 
 /* No comment provided by engineer. */
@@ -594,6 +594,9 @@
 
 /* No comment provided by engineer. */
 "Quiz" = "测验";
+
+/* No comment provided by engineer. */
+"Record Audio" = "录制音频";
 
 /* No comment provided by engineer. */
 "red" = "红色";
@@ -809,6 +812,9 @@
 "Updated Language Settings" = "已更新语言设置";
 
 /* No comment provided by engineer. */
+"Upload File" = "上传文件";
+
+/* No comment provided by engineer. */
 "Uploading %@ of %@" = "正在上传 %1$@，共%2$@";
 
 /* No comment provided by engineer. */
@@ -816,6 +822,9 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
+
+/* No comment provided by engineer. */
+"Use Camera" = "使用相机";
 
 /* No comment provided by engineer. */
 "User ID" = "用户ID";

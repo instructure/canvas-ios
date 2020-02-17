@@ -470,9 +470,6 @@
 "Login" = "Sisäänkirjautuminen";
 
 /* No comment provided by engineer. */
-"Manage Children" = "Hallitse lapsia";
-
-/* No comment provided by engineer. */
 "Manual OAuth Login" = "Manuaalinen OAuth-sisäänkirjautuminen";
 
 /* No comment provided by engineer. */
@@ -572,6 +569,9 @@
 "Permission Needed" = "Käyttöoikeus tarvitaan";
 
 /* No comment provided by engineer. */
+"Photo Library" = "Valokuvakirjasto";
+
+/* No comment provided by engineer. */
 "Play" = "Toista";
 
 /* No comment provided by engineer. */
@@ -594,6 +594,9 @@
 
 /* No comment provided by engineer. */
 "Quiz" = "Tietovisa";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Nauhoita ääni";
 
 /* No comment provided by engineer. */
 "red" = "punainen";
@@ -809,6 +812,9 @@
 "Updated Language Settings" = "Päivitetyt kieliasetukset";
 
 /* No comment provided by engineer. */
+"Upload File" = "Lataa tiedosto";
+
+/* No comment provided by engineer. */
 "Uploading %@ of %@" = "Ladataan tiedostoa %1$@/%2$@";
 
 /* No comment provided by engineer. */
@@ -816,6 +822,9 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
+
+/* No comment provided by engineer. */
+"Use Camera" = "Käytä kameraa";
 
 /* No comment provided by engineer. */
 "User ID" = "Käyttäjätunnus";

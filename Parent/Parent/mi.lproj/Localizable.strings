@@ -13,8 +13,14 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ ka timata ī %2$@";
 
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@, i roto %2$@, te karere whakamutunga i runga %3$@ %4$@";
+
 /* added to conversation label when unread */
 "%@, unread" = "%@, kaore i pānuihia";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -24,6 +30,9 @@
 
 /* No comment provided by engineer. */
 "Add" = "Tāpiri";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "Tāpiri ngā Apititanga";
 
 /* No comment provided by engineer. */
 "Add Student" = "Tapiri ākonga";
@@ -60,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Back" = "Hoki";
+
+/* Calendar Tab */
+"Calendar" = "Maramataka";
 
 /* No comment provided by engineer. */
 "Calendar Event" = "Tauwhāinga Māramataka";
@@ -101,6 +113,9 @@
 "Dismiss" = "Pana";
 
 /* No comment provided by engineer. */
+"Edit Recipients" = "Whakatika ngā Kaiwhiwhi";
+
+/* No comment provided by engineer. */
 "Event" = "Tauwhāinga";
 
 /* No comment provided by engineer. */
@@ -111,6 +126,12 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "I rahua te uta (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"Failed. Tap for options" = "I hapa. Pātō mo ngā kōwhiringa";
+
+/* No comment provided by engineer. */
+"File" = "Kōnae";
 
 /* No comment provided by engineer. */
 "for %@" = "hoki %@";
@@ -163,11 +184,11 @@
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "e kore e taea raro iho te kōeke akoranga kia tiketike ake kōeke akoranga teitei";
 
-/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "Whakahaere ngā tamariki";
-
 /* No comment provided by engineer. */
 "Message" = "Karere";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Karere mai %1$@, %2$@, i runga %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Ngaro";
@@ -220,7 +241,8 @@
 /* No comment provided by engineer. */
 "Regarding: %@" = "E pā ana: %@";
 
-/* Regarding <John Doe>, < assignment url >
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, < assignment url >
    Regarding <John Doe>, <Grades | Syllabus> */
 "Regarding: %@, %@" = "E pā ana: %1$@, %2$@";
 
@@ -283,6 +305,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "kia pānuitia";
+
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "E tikiake ana %1$@ kei te %2$@";
 
 /* Header title of admin view */
 "Welcome!" = "Nau Mai!";

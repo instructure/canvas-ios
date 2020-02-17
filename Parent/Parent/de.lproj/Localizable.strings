@@ -13,8 +13,14 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ beginnt um %2$@";
 
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@, in %2$@ war die letzte Nachricht am %3$@ %4$@";
+
 /* added to conversation label when unread */
 "%@, unread" = "%@, ungelesen";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -24,6 +30,9 @@
 
 /* No comment provided by engineer. */
 "Add" = "Hinzufügen";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "Anhänge hinzufügen";
 
 /* No comment provided by engineer. */
 "Add Student" = "Teilnehmer hinzufügen";
@@ -60,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Back" = "Zurück";
+
+/* Calendar Tab */
+"Calendar" = "Kalender";
 
 /* No comment provided by engineer. */
 "Calendar Event" = "Kalenderereignis";
@@ -101,6 +113,9 @@
 "Dismiss" = "Ablehnen";
 
 /* No comment provided by engineer. */
+"Edit Recipients" = "Empfänger bearbeiten";
+
+/* No comment provided by engineer. */
 "Event" = "Event";
 
 /* No comment provided by engineer. */
@@ -111,6 +126,12 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Laden von (discussionKitModelName) NS ManagedObjectModel fehlgeschlagen";
+
+/* No comment provided by engineer. */
+"Failed. Tap for options" = "Fehlgeschlagen. Antippen für Optionen";
+
+/* No comment provided by engineer. */
+"File" = "Datei";
 
 /* No comment provided by engineer. */
 "for %@" = "für %@";
@@ -163,11 +184,11 @@
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "Schlechte Kursnote kann nicht besser sein als gute Kursnote";
 
-/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "Kinder verwalten";
-
 /* No comment provided by engineer. */
 "Message" = "Nachricht";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Meldung von %1$@, %2$@, am %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Fehlend";
@@ -220,7 +241,8 @@
 /* No comment provided by engineer. */
 "Regarding: %@" = "Betreffend: %@";
 
-/* Regarding <John Doe>, < assignment url >
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, < assignment url >
    Regarding <John Doe>, <Grades | Syllabus> */
 "Regarding: %@, %@" = "Betreffend: %1$@, %2$@";
 
@@ -283,6 +305,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Ungelesen";
+
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "Hochladen %1$@ ist bei %2$@";
 
 /* Header title of admin view */
 "Welcome!" = "Willkommen!";

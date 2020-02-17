@@ -13,8 +13,14 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ begint op %2$@";
 
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@, in %2$@, was het laatste bericht op %3$@ %4$@";
+
 /* added to conversation label when unread */
 "%@, unread" = "%@, ongelezen";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -24,6 +30,9 @@
 
 /* No comment provided by engineer. */
 "Add" = "Toevoegen";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "Bijlagen toevoegen";
 
 /* No comment provided by engineer. */
 "Add Student" = "Cursist toevoegen";
@@ -60,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Back" = "Terug";
+
+/* Calendar Tab */
+"Calendar" = "Kalender";
 
 /* No comment provided by engineer. */
 "Calendar Event" = "Gebeurtenis op kalender";
@@ -101,6 +113,9 @@
 "Dismiss" = "Verwijderen";
 
 /* No comment provided by engineer. */
+"Edit Recipients" = "Ontvangers bewerken";
+
+/* No comment provided by engineer. */
 "Event" = "Gebeurtenis";
 
 /* No comment provided by engineer. */
@@ -111,6 +126,12 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Laden van (discussionKitModelName) NSManagedObjectModel is mislukt";
+
+/* No comment provided by engineer. */
+"Failed. Tap for options" = "Mislukt. Tik voor opties";
+
+/* No comment provided by engineer. */
+"File" = "Bestand";
 
 /* No comment provided by engineer. */
 "for %@" = "voor %@";
@@ -163,11 +184,11 @@
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "Laag cursuscijfer kan niet hoger zijn dan hoog cursuscijfer";
 
-/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "Kinderen beheren";
-
 /* No comment provided by engineer. */
 "Message" = "Bericht";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Bericht van %1$@, %2$@, op %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Ontbrekend";
@@ -220,7 +241,8 @@
 /* No comment provided by engineer. */
 "Regarding: %@" = "Betreffende: %@";
 
-/* Regarding <John Doe>, < assignment url >
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, < assignment url >
    Regarding <John Doe>, <Grades | Syllabus> */
 "Regarding: %@, %@" = "Betreffende: %1$@, %2$@";
 
@@ -283,6 +305,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Ongelezen";
+
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "%1$@ wordt geüpload om %2$@";
 
 /* Header title of admin view */
 "Welcome!" = "Welkom!";
