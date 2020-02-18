@@ -155,11 +155,7 @@ for diff in diffs {
             case "deletion":
                 lines[change.oldLine] = ""
             case "addition":
-                var targetLine = change.oldLine
-                // find the place to add the "new" line that's most likely not to make bad changes
-                while lines[targetLine] != "" && lines[targetLine - 1] != nil {
-                    targetLine -= 1
-                }
+                var targetLine = hunk.oldLineStart + (change.newLine - hunk.newLineStart)
                 lines[targetLine] = "\(lines[targetLine] ?? "")\(change.text)\n"
             default: fatalError()
             }
@@ -190,4 +186,4 @@ let review = Github.AddPullRequestReviewInput(
   body: "fix lint"
 )
 try cmd("jq").inputJSON(from: review).run()
-// try Github.postReview(review)
+try Github.postReview(review)
