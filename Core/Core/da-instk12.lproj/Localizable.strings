@@ -470,9 +470,6 @@
 "Login" = "Login";
 
 /* No comment provided by engineer. */
-"Manage Children" = "Administrer børn";
-
-/* No comment provided by engineer. */
 "Manual OAuth Login" = "Manuel OAuth-login";
 
 /* No comment provided by engineer. */
@@ -572,6 +569,9 @@
 "Permission Needed" = "Tilladelse nødvendig";
 
 /* No comment provided by engineer. */
+"Photo Library" = "Billedbibliotek";
+
+/* No comment provided by engineer. */
 "Play" = "Afspil";
 
 /* No comment provided by engineer. */
@@ -594,6 +594,9 @@
 
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Optage audio";
 
 /* No comment provided by engineer. */
 "red" = "rød";
@@ -809,6 +812,9 @@
 "Updated Language Settings" = "Opdaterede sprogindstillinger";
 
 /* No comment provided by engineer. */
+"Upload File" = "Overfør fil";
+
+/* No comment provided by engineer. */
 "Uploading %@ of %@" = "Overfører %1$@ af %2$@";
 
 /* No comment provided by engineer. */
@@ -816,6 +822,9 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
+
+/* No comment provided by engineer. */
+"Use Camera" = "Brug kamera";
 
 /* No comment provided by engineer. */
 "User ID" = "Bruger-id";

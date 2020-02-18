@@ -13,8 +13,14 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ se začne ob %2$@";
 
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@, v %2$@, zadnje sporočilo je bilo dne %3$@ %4$@";
+
 /* added to conversation label when unread */
 "%@, unread" = "%@, neprebrano";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
 
 /* Percentage field placeholder */
 "1-100%" = "1–100 %";
@@ -24,6 +30,9 @@
 
 /* No comment provided by engineer. */
 "Add" = "Dodaj";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "Dodaj priloge";
 
 /* No comment provided by engineer. */
 "Add Student" = "Dodaj študenta";
@@ -60,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Back" = "Nazaj";
+
+/* Calendar Tab */
+"Calendar" = "Koledar";
 
 /* No comment provided by engineer. */
 "Calendar Event" = "Dogodek koledarja";
@@ -101,6 +113,9 @@
 "Dismiss" = "Opusti";
 
 /* No comment provided by engineer. */
+"Edit Recipients" = "Uredi prejemnike";
+
+/* No comment provided by engineer. */
 "Event" = "Dogodek";
 
 /* No comment provided by engineer. */
@@ -111,6 +126,12 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Nalaganje (discussionKitModelName) NSManagedObjectModel ni uspelo";
+
+/* No comment provided by engineer. */
+"Failed. Tap for options" = "Ni uspelo. Tapnite za možnosti";
+
+/* No comment provided by engineer. */
+"File" = "Datoteka";
 
 /* No comment provided by engineer. */
 "for %@" = "za %@";
@@ -163,11 +184,11 @@
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "Nizka ocena predmeta ne more biti višja od visoke ocene predmeta.";
 
-/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "Urejaj otroke";
-
 /* No comment provided by engineer. */
 "Message" = "Sporočilo";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Sporočilo od %1$@, %2$@, dne %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Manjkajoče";
@@ -220,7 +241,8 @@
 /* No comment provided by engineer. */
 "Regarding: %@" = "Zadeva: %@";
 
-/* Regarding <John Doe>, < assignment url >
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, < assignment url >
    Regarding <John Doe>, <Grades | Syllabus> */
 "Regarding: %@, %@" = "Zadeva: %1$@, %2$@";
 
@@ -283,6 +305,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Neprebrano";
+
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "Nalaganje %1$@ je ob %2$@";
 
 /* Header title of admin view */
 "Welcome!" = "Dobrodošli.";
