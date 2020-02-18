@@ -37,7 +37,7 @@ class TodoListTests: CoreUITestCase {
 
         app.find(labelContaining: "One").waitToExist()
         app.find(labelContaining: "Two").waitToExist()
-        app.find(labelContaining: "Due:").waitToExist()
+        app.find(labelContaining: "Due").waitToExist()
         app.find(labelContaining: "No Due Date").waitToExist()
     }
 }
