@@ -27,7 +27,7 @@ public struct APIPlannable: Codable, Equatable {
     let html_url : URL?
     let context_image : URL?
     let context_name: String?
-    let title: String?
+    let title : String?
     let plannable: plannable?
     let plannable_date: Date
     //  swiftlint:disable:next type_name

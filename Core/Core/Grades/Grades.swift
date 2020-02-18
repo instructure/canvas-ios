@@ -258,6 +258,7 @@ public class Grades {
     }
 }
 
+
 extension Scope {
     static func grades(courseID: String, gradingPeriodID: String? = nil) -> Scope {
         let course = NSPredicate(key: #keyPath(Assignment.courseID), equals: courseID)

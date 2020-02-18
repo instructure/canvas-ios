@@ -27,7 +27,7 @@
 
 import Foundation
 import swsh // @cobbal == 0.2.0
-import GitDiffSwift // @cobbal == master
+import GitDiffSwift // ~/src/GitDiffSwift
 
 ExternalCommand.verbose = true
 
@@ -59,7 +59,7 @@ enum Github {
     }
 
     struct AddPullRequestReviewInput: Codable {
-        var threads: [DraftPullRequestReviewThread] = []
+        let threads: [DraftPullRequestReviewThread]
         let commitOID: String
         let event: PullRequestReviewEvent
         let pullRequestId: String // global id, not the PR number
@@ -78,10 +78,8 @@ enum Github {
         // let commit_id: String
         let path: String
 
-        let startLine: Int?
         let line: Int // last line
 
-        let startSide: String?
         let side: String = "RIGHT"
     }
 
@@ -146,37 +144,50 @@ let diffs = DiffParser(input: diffText).parseDiffedFiles()
 
 let commit = try! cmd("git", "rev-parse", "HEAD").runString()
 
+var threads: [Github.DraftPullRequestReviewThread] = []
+for diff in diffs {
+    for hunk in diff.hunks {
+        print(diff.previousFilePath, hunk.oldLineStart, hunk.oldLineSpan)
+        var lines = [Int: String]()
+        for change in hunk.changes {
+            print("  ", change.type, change.oldLine, change.text)
+            switch change.type {
+            case "deletion":
+                lines[change.oldLine] = ""
+            case "addition":
+                var targetLine = change.oldLine
+                // find the place to add the "new" line that's most likely not to make bad changes
+                while lines[targetLine] != "" && lines[targetLine - 1] != nil {
+                    targetLine -= 1
+                }
+                lines[targetLine] = "\(lines[targetLine] ?? "")\(change.text)\n"
+            default: fatalError()
+            }
+        }
+        for (line, suggestion) in lines.sorted(by: { $0.key < $1.key }) {
+            threads.append(Github.DraftPullRequestReviewThread(
+                             body: """
+                               ```suggestion
+                               \(suggestion)```
+                               """,
+                             path: diff.previousFilePath,
+                             line: line
+                           ))
+        }
+    }
+}
+
 guard let prNumber = Int(env["BITRISE_PULL_REQUEST"] ?? "") else {
     envError("BITRISE_PULL_REQUEST")
 }
 let prID = try Github.findPullRequestId(prNumber: prNumber)
 
-var review = Github.AddPullRequestReviewInput(
+let review = Github.AddPullRequestReviewInput(
+  threads: threads,
   commitOID: commit,
   event: .comment,
   pullRequestId: prID,
   body: "fix lint"
 )
-
-for diff in diffs {
-    for hunk in diff.hunks {
-        print(diff.previousFilePath, hunk.oldLineStart, hunk.oldLineSpan)
-        let suggestion = (hunk.changes.compactMap { $0.type == "deletion" ? nil : "\($0.text)" }).joined(separator: "\n")
-        let isSingleLine = hunk.oldLineSpan == 1
-        let thread = Github.DraftPullRequestReviewThread(
-          body: """
-            ```suggestion
-            \(suggestion)
-            ```
-            """,
-          path: diff.previousFilePath,
-          startLine: isSingleLine ? nil : hunk.oldLineStart,
-          line: hunk.oldLineStart + hunk.oldLineSpan - 1,
-          startSide: isSingleLine ? nil : "RIGHT"
-        )
-        review.threads.append(thread)
-    }
-}
-
 try cmd("jq").inputJSON(from: review).run()
-try Github.postReview(review)
+// try Github.postReview(review)
