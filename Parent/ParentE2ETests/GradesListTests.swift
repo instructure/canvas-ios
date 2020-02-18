@@ -31,6 +31,6 @@ class GradesListTests: CoreUITestCase {
         AssignmentDetails.replyButton.tap()
 
         XCTAssertEqual(Compose.recipientName(id: "837").label(), "Teacher One")
-        XCTAssertEqual(Compose.subject.value(), "Assignment One")
+        XCTAssertEqual(Compose.subject.value(), "Regarding: Student One, Assignment - Assignment One")
     }
 }
