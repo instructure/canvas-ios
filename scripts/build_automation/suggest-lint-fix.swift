@@ -149,7 +149,6 @@ let diffText = try! cmd("git", "diff", "-U0", snapshotHash, addEnv: gitEnv).runS
 try! cmd("git", "checkout", snapshotHash, "--", ".").run()
 
 print(diffText)
-exit(0)
 
 let diffs = DiffParser(input: diffText).parseDiffedFiles()
 
