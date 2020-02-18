@@ -38,10 +38,21 @@ class PlannerListViewControllerTests: CoreTestCase {
         vc.viewDidLoad()
         vc.updateListForDates(start: Clock.now.startOfDay(), end: Clock.now.endOfDay())
 
+        vc.emptyStateViewContainer.isHidden = true
         let cell = vc.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? PlannerListCell
         XCTAssertEqual(cell?.title.text, "assignment a")
         XCTAssertEqual(cell?.courseCode.text, "Assignment Grades")
         XCTAssertEqual(cell?.dueDate.text, DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .short) )
         XCTAssertEqual(cell?.points.text, nil)
+    }
+
+    func testEmptyState() {
+        api.mock(GetPlannables(userID: studentID, startDate: Clock.now.startOfDay(), endDate: Clock.now.endOfDay()), value: [])
+        vc.viewDidLoad()
+        vc.updateListForDates(start: Clock.now.startOfDay(), end: Clock.now.endOfDay())
+
+        vc.emptyStateViewContainer.isHidden = false
+        XCTAssertEqual(vc.emptyStateHeader.text, "No Assignments")
+        XCTAssertEqual(vc.emptyStateSubHeader.text, "It looks like assignments haven’t been created in this space yet.")
     }
 }
