@@ -523,6 +523,7 @@
 		7DA260FD23F77281005D2121 /* SyllabusSummaryItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DA260FC23F77281005D2121 /* SyllabusSummaryItemCell.xib */; };
 		7DA260FE23F773D9005D2121 /* PlannerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C4523F34734009622E3 /* PlannerListViewController.swift */; };
 		7DA260FF23F773DC005D2121 /* PlannerListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97F69C4723F3475E009622E3 /* PlannerListViewController.storyboard */; };
+		7DA2610023FC6D5A005D2121 /* SyllabusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA933823F6FF6200A0231E /* SyllabusTests.swift */; };
 		7DA667F523835FF60062F7B9 /* TodoListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DA667F423835FF60062F7B9 /* TodoListViewController.storyboard */; };
 		7DA8C37D239EAE0F004762DD /* LoginManualOAuthViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA8C37C239EAE0F004762DD /* LoginManualOAuthViewControllerTests.swift */; };
 		7DA8C37F239EB535004762DD /* LoginNavigationControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA8C37E239EB535004762DD /* LoginNavigationControllerTests.swift */; };
@@ -3885,6 +3886,7 @@
 				B1EA5AEE212E656100DABC5F /* GetCoursesTest.swift in Sources */,
 				7DCF1EBC216BC94E003AF358 /* LatePolicyStatusTests.swift in Sources */,
 				7DC4A555222EF87300FA03DC /* DiscussionEntryTests.swift in Sources */,
+				7DA2610023FC6D5A005D2121 /* SyllabusTests.swift in Sources */,
 				3BDB8F3522E63676003D81C3 /* StringExtensionTests.swift in Sources */,
 				3BE1A6FC23E46C0C0037CAB1 /* GetObservedStudentsTests.swift in Sources */,
 				7D80AC19212B697600C40ECE /* APIGroupRequestableTests.swift in Sources */,
