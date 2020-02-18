@@ -126,19 +126,30 @@ enum Github {
     }
 }
 
+func inDir<R>(_ path: String, thunk: () throws -> R) rethrows -> R {
+    let originalPath = FileManager.default.currentDirectoryPath
+    FileManager.default.changeCurrentDirectoryPath(path)
+    defer { FileManager.default.changeCurrentDirectoryPath(originalPath) }
+    return try thunk()
+}
+
 var snapshotHash = try! cmd("git", "stash", "create").runString() // may be an empty string if nothing to stash
 if snapshotHash.isEmpty {
     snapshotHash = "HEAD"
 }
-_ = try! cmd("./scripts/runSwiftLint.sh", "fix").runString(joinErr: true)
+
+_ = try cmd("./scripts/runSwiftLint.sh", "fix").runString(joinErr: true)
+inDir("rn/Teacher") { _ = try! cmd("yarn", "lint:fix").run() }
+
 
 // don't read gitconfig, it might mess with diff format
 let gitEnv = ["GIT_CONFIG_NOGLOBAL": "1", "HOME": "", "XDG_CONFIG_HOME": ""]
 let diffText = try! cmd("git", "diff", "-U0", snapshotHash, addEnv: gitEnv).runString()
-print(diffText)
-
 // undo fixes
 try! cmd("git", "checkout", snapshotHash, "--", ".").run()
+
+print(diffText)
+exit(0)
 
 let diffs = DiffParser(input: diffText).parseDiffedFiles()
 
