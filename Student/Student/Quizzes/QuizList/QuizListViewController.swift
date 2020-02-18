@@ -24,9 +24,10 @@ protocol QuizListViewProtocol: ErrorViewController, ColoredNavViewProtocol {
 }
 
 class QuizListViewController: UIViewController, QuizListViewProtocol {
-    @IBOutlet weak var emptyLabel: DynamicLabel?
-    @IBOutlet weak var loadingView: UIActivityIndicatorView?
-    @IBOutlet weak var tableView: UITableView?
+    @IBOutlet weak var emptyLabel: UILabel!
+    @IBOutlet weak var loadingView: CircleProgressView!
+    @IBOutlet weak var tableView: UITableView!
+    let refreshControl = CircleRefreshControl()
 
     var color: UIColor?
     var presenter: QuizListPresenter?
@@ -44,11 +45,8 @@ class QuizListViewController: UIViewController, QuizListViewProtocol {
         super.viewDidLoad()
         setupTitleViewInNavbar(title: NSLocalizedString("Quizzes", bundle: .student, comment: ""))
 
-        loadingView?.color = Brand.shared.primary.ensureContrast(against: .named(.white))
-
-        let refresh = CircleRefreshControl()
-        refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
-        tableView?.refreshControl = refresh
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        tableView?.refreshControl = refreshControl
         tableView?.separatorColor = .named(.borderMedium)
 
         presenter?.viewIsReady()
@@ -72,7 +70,8 @@ class QuizListViewController: UIViewController, QuizListViewProtocol {
     func update(isLoading: Bool) {
         tableView?.reloadData()
         if let color = color {
-            (tableView?.refreshControl as? CircleRefreshControl)?.color = color
+            loadingView.color = color
+            refreshControl.color = color
         }
         let isEmpty = presenter?.quizzes.isEmpty == true
         if isEmpty && !isLoading {
@@ -83,8 +82,8 @@ class QuizListViewController: UIViewController, QuizListViewProtocol {
             emptyLabel?.isHidden = true
         }
         if !isEmpty || !isLoading {
-            loadingView?.stopAnimating()
-            tableView?.refreshControl?.endRefreshing()
+            loadingView.isHidden = true
+            refreshControl.endRefreshing()
         }
     }
 

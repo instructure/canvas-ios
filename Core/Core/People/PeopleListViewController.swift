@@ -67,6 +67,7 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol,
         activityIndicatorView.color = Brand.shared.primary
         emptyResultsLabel.text = NSLocalizedString("No results", bundle: .core, comment: "")
         searchBar.placeholder = NSLocalizedString("Search", bundle: .core, comment: "")
+        searchBar.backgroundColor = .named(.backgroundLightest)
 
         tableView.backgroundColor = .named(.backgroundLightest)
         tableView.refreshControl = CircleRefreshControl()

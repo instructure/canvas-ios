@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -164,18 +164,22 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vJI-mt-tGb">
-                                <rect key="frame" x="177.5" y="277" width="20" height="20"/>
-                            </activityIndicatorView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vNN-OW-jn5" customClass="CircleProgressView" customModule="Core">
+                                <rect key="frame" x="167.5" y="267" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="80N-EI-HH9"/>
+                                    <constraint firstAttribute="height" constant="40" id="kMk-G1-EkU"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="vNN-OW-jn5" firstAttribute="centerX" secondItem="dUR-A2-chg" secondAttribute="centerX" id="2sm-LE-GRf"/>
                             <constraint firstItem="gMV-QL-l2d" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WIe-yk-vgB" secondAttribute="trailing" constant="16" id="3NW-nn-bDb"/>
-                            <constraint firstItem="vJI-mt-tGb" firstAttribute="centerY" secondItem="dUR-A2-chg" secondAttribute="centerY" id="Hcf-uN-Aad"/>
+                            <constraint firstItem="vNN-OW-jn5" firstAttribute="centerY" secondItem="dUR-A2-chg" secondAttribute="centerY" id="8bM-aa-rrl"/>
                             <constraint firstItem="WIe-yk-vgB" firstAttribute="centerY" secondItem="dUR-A2-chg" secondAttribute="centerY" id="SX5-ze-Wxs"/>
                             <constraint firstItem="gMV-QL-l2d" firstAttribute="bottom" secondItem="RK6-jg-XnT" secondAttribute="bottom" id="W6P-oW-H9S"/>
                             <constraint firstItem="RK6-jg-XnT" firstAttribute="trailing" secondItem="gMV-QL-l2d" secondAttribute="trailing" id="gGz-wr-jgb"/>
-                            <constraint firstItem="vJI-mt-tGb" firstAttribute="centerX" secondItem="dUR-A2-chg" secondAttribute="centerX" id="hl7-Fr-xZj"/>
                             <constraint firstItem="RK6-jg-XnT" firstAttribute="leading" secondItem="gMV-QL-l2d" secondAttribute="leading" id="lSo-2D-NtI"/>
                             <constraint firstItem="WIe-yk-vgB" firstAttribute="centerX" secondItem="dUR-A2-chg" secondAttribute="centerX" id="pZo-p3-uiB"/>
                             <constraint firstItem="RK6-jg-XnT" firstAttribute="top" secondItem="dUR-A2-chg" secondAttribute="top" id="qCZ-IV-gdD"/>
@@ -187,7 +191,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="emptyLabel" destination="WIe-yk-vgB" id="zxt-Mt-vre"/>
-                        <outlet property="loadingView" destination="vJI-mt-tGb" id="Pud-0r-Fwc"/>
+                        <outlet property="loadingView" destination="vNN-OW-jn5" id="hMf-jJ-FJ7"/>
                         <outlet property="tableView" destination="RK6-jg-XnT" id="qFx-Fs-2hP"/>
                     </connections>
                 </viewController>

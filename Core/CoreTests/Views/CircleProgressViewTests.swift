@@ -41,6 +41,11 @@ class CircleProgressViewTests: CoreTestCase {
             clockwise: true
         ).cgPath)
 
+        XCTAssertNotNil(view.layer.animation(forKey: view.rotateKey))
+        XCTAssertNotNil(view.fill.animation(forKey: view.morphKey))
+        view.progress = 0.0
+        XCTAssertNil(view.layer.animation(forKey: view.rotateKey))
+        XCTAssertNil(view.fill.animation(forKey: view.morphKey))
         XCTAssertEqual(view.fill.strokeEnd, 0)
         view.progress = 0.5
         XCTAssertEqual(view.fill.strokeEnd, 0.5)
