@@ -168,7 +168,7 @@ public class Grades {
                         NSPredicate(format: "%K == %@", #keyPath(Enrollment.userID), item.user_id),
                         NSPredicate(format: "%K == %@", #keyPath(Enrollment.roleID), item.role_id),
                         NSPredicate(format: "%K == %@", #keyPath(Enrollment.role), item.role),
-                        NSPredicate(format: "%K == %@", #keyPath(Enrollment.course.id), self.courseID),
+                        NSPredicate(format: "%K == %@", #keyPath(Enrollment.course.id), self.courseID)
                     ])
                     let enrollment: Enrollment = context.fetch(predicate).first ?? context.insert()
                     let course = (context.all(where: #keyPath(Course.id), equals: self.courseID) as [Course]).first

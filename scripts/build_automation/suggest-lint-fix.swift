@@ -53,27 +53,78 @@ enum Github {
         envError("DANGER_GITHUB_API_TOKEN")
     }
 
-    struct Comment: Codable {
+    struct GraphQLRequest<C: Codable>: Codable {
+        let query: String
+        let variables: [String: C]
+    }
+
+    struct AddPullRequestReviewInput: Codable {
+        var threads: [DraftPullRequestReviewThread] = []
+        let commitOID: String
+        let event: PullRequestReviewEvent
+        let pullRequestId: String // global id, not the PR number
         let body: String
-        let commit_id: String
+    }
+
+    enum PullRequestReviewEvent: String, Codable {
+        case approve = "APPROVE"
+        case comment = "COMMENT"
+        case dismiss = "DISMISS"
+        case requestChanges = "REQUEST_CHANGES"
+    }
+
+    struct DraftPullRequestReviewThread: Codable {
+        let body: String
+        // let commit_id: String
         let path: String
 
-        let start_line: Int?
+        let startLine: Int?
         let line: Int // last line
 
-        let start_side: String?
+        let startSide: String?
         let side: String = "RIGHT"
     }
 
-    static func postComment(prID: String, comment: Comment) throws {
-        try (cmd(
-               "curl", "https://api.github.com/repos/\(repo)/pulls/\(prID)/comments",
-               "-X", "POST",
-               "-H", "Content-Type: application/json; charset=utf-8",
-               "-H", "Accept: application/vnd.github.comfort-fade-preview+json",
-               "-H", "Authorization: Bearer \(token)",
-               "--data-binary", "@-"
-             ) | cmd("jq")).inputJSON(from: comment).run()
+    static func findPullRequestId(prNumber: Int) throws -> String {
+        let query = """
+            query findPullRequestId($prNumber: Int!) {
+                repository(owner: "instructure", name: "canvas-ios") {
+                    pullRequest(number: $prNumber) { id }
+                }
+            }
+            """
+        return try (cmd(
+                "curl", "-sf", "https://api.github.com/graphql",
+                "-X", "POST",
+                "-H", "Authorization: Bearer \(token)",
+                "--data-binary", "@-"
+            ).inputJSON(from: GraphQLRequest(
+                query: query,
+                variables: [ "prNumber": prNumber ]
+            )) | cmd("jq", ".data.repository.pullRequest.id")
+        ).runJson(String.self)
+    }
+
+    static func postReview(_ input: AddPullRequestReviewInput) throws {
+        let query = """
+            mutation review($input: AddPullRequestReviewInput!) {
+                addPullRequestReview(input: $input) {
+                    pullRequestReview { url }
+                }
+            }
+            """
+        let result = try (cmd(
+                "curl", "-sf", "https://api.github.com/graphql",
+                "-X", "POST",
+                "-H", "Accept: application/vnd.github.comfort-fade-preview+json",
+                "-H", "Authorization: Bearer \(token)",
+                "--data-binary", "@-"
+            ).inputJSON(from: GraphQLRequest(
+                query: query,
+                variables: [ "input": input ]
+            )) | cmd("jq")
+        ).runJson()
+        print(result)
     }
 }
 
@@ -95,27 +146,37 @@ let diffs = DiffParser(input: diffText).parseDiffedFiles()
 
 let commit = try! cmd("git", "rev-parse", "HEAD").runString()
 
+guard let prNumber = Int(env["BITRISE_PULL_REQUEST"] ?? "") else {
+    envError("BITRISE_PULL_REQUEST")
+}
+let prID = try Github.findPullRequestId(prNumber: prNumber)
+
+var review = Github.AddPullRequestReviewInput(
+  commitOID: commit,
+  event: .comment,
+  pullRequestId: prID,
+  body: "fix lint"
+)
+
 for diff in diffs {
     for hunk in diff.hunks {
         print(diff.previousFilePath, hunk.oldLineStart, hunk.oldLineSpan)
         let suggestion = (hunk.changes.compactMap { $0.type == "deletion" ? nil : "\($0.text)" }).joined(separator: "\n")
         let isSingleLine = hunk.oldLineSpan == 1
-        let comment = Github.Comment(
+        let thread = Github.DraftPullRequestReviewThread(
           body: """
             ```suggestion
             \(suggestion)
             ```
             """,
-          commit_id: commit,
           path: diff.previousFilePath,
-          start_line: isSingleLine ? nil : hunk.oldLineStart,
+          startLine: isSingleLine ? nil : hunk.oldLineStart,
           line: hunk.oldLineStart + hunk.oldLineSpan - 1,
-          start_side: isSingleLine ? nil : "RIGHT"
+          startSide: isSingleLine ? nil : "RIGHT"
         )
-        print(comment)
-        try! cmd("jq").inputJSON(from: comment).run()
-        let prID = env["BITRISE_PULL_REQUEST"]
-        guard prID?.isEmpty == false else { envError("BITRISE_PULL_REQUEST") }
-        try! Github.postComment(prID: prID!, comment: comment)
+        review.threads.append(thread)
     }
 }
+
+try cmd("jq").inputJSON(from: review).run()
+try Github.postReview(review)
