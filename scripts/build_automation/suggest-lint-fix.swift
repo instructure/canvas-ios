@@ -92,15 +92,14 @@ enum Github {
             }
             """
         return try (cmd(
-                "curl", "-sf", "https://api.github.com/graphql",
-                "-X", "POST",
-                "-H", "Authorization: Bearer \(token)",
-                "--data-binary", "@-"
-            ).inputJSON(from: GraphQLRequest(
-                query: query,
-                variables: [ "prNumber": prNumber ]
-            )) | cmd("jq", ".data.repository.pullRequest.id")
-        ).runJson(String.self)
+            "curl", "-sf", "https://api.github.com/graphql",
+            "-X", "POST",
+            "-H", "Authorization: Bearer \(token)",
+            "--data-binary", "@-"
+        ).inputJSON(from: GraphQLRequest(
+            query: query,
+            variables: [ "prNumber": prNumber ]
+        )) | cmd("jq", ".data.repository.pullRequest.id")).runJson(String.self)
     }
 
     static func postReview(_ input: AddPullRequestReviewInput) throws {
@@ -111,18 +110,16 @@ enum Github {
                 }
             }
             """
-        let result = try (cmd(
-                "curl", "-sf", "https://api.github.com/graphql",
-                "-X", "POST",
-                "-H", "Accept: application/vnd.github.comfort-fade-preview+json",
-                "-H", "Authorization: Bearer \(token)",
-                "--data-binary", "@-"
-            ).inputJSON(from: GraphQLRequest(
-                query: query,
-                variables: [ "input": input ]
-            )) | cmd("jq")
-        ).runJson()
-        print(result)
+        try (cmd(
+            "curl", "-sf", "https://api.github.com/graphql",
+            "-X", "POST",
+            "-H", "Accept: application/vnd.github.comfort-fade-preview+json",
+            "-H", "Authorization: Bearer \(token)",
+            "--data-binary", "@-"
+        ).inputJSON(from: GraphQLRequest(
+            query: query,
+            variables: [ "input": input ]
+        )) | cmd("jq")).run()
     }
 }
 
@@ -172,13 +169,13 @@ for diff in diffs {
         }
         for (line, suggestion) in lines.sorted(by: { $0.key < $1.key }) {
             threads.append(Github.DraftPullRequestReviewThread(
-                             body: """
-                               ```suggestion
-                               \(suggestion)```
-                               """,
-                             path: diff.previousFilePath,
-                             line: line
-                           ))
+                body: """
+                ```suggestion
+                \(suggestion)```
+                """,
+                path: diff.previousFilePath,
+                line: line
+            ))
         }
     }
 }
@@ -189,11 +186,11 @@ guard let prNumber = Int(env["BITRISE_PULL_REQUEST"] ?? "") else {
 let prID = try Github.findPullRequestId(prNumber: prNumber)
 
 let review = Github.AddPullRequestReviewInput(
-  threads: threads,
-  commitOID: commit,
-  event: .comment,
-  pullRequestId: prID,
-  body: "fix lint"
+    threads: threads,
+    commitOID: commit,
+    event: .comment,
+    pullRequestId: prID,
+    body: "fix lint"
 )
 try cmd("jq").inputJSON(from: review).run()
 try Github.postReview(review)
