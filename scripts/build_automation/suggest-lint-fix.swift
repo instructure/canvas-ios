@@ -27,7 +27,7 @@
 
 import Foundation
 import swsh // @cobbal == 0.2.0
-import GitDiffSwift // ~/src/GitDiffSwift
+import GitDiffSwift // @cobbal == master
 
 ExternalCommand.verbose = true
 
