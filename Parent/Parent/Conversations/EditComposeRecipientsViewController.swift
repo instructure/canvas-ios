@@ -26,16 +26,16 @@ protocol EditComposeRecipientsViewControllerDelegate: class {
 class EditComposeRecipientsViewController: UIViewController {
     var context: Context!
     var observeeID: String?
-    var selectedRecipients: Set<APIConversationRecipient> = []
+    var selectedRecipients: Set<SearchRecipient> = []
     weak var delegate: EditComposeRecipientsViewControllerDelegate?
     var env: AppEnvironment { .shared }
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
 
-    lazy var teachers = env.subscribe(GetSearchRecipients(context: context, contextQualifier: .teachers)) { [weak self] in
+    lazy var teachers = env.subscribe(GetSearchRecipients(context: context, qualifier: .teachers)) { [weak self] in
         self?.update()
     }
-    lazy var tas = env.subscribe(GetSearchRecipients(context: context, contextQualifier: .tas)) { [weak self] in
+    lazy var tas = env.subscribe(GetSearchRecipients(context: context, qualifier: .tas)) { [weak self] in
         self?.update()
     }
     lazy var observee = observeeID.flatMap { env.subscribe(GetSearchRecipients(context: context, userID: $0)) { [weak self] in
@@ -44,7 +44,7 @@ class EditComposeRecipientsViewController: UIViewController {
 
     var recipients: [SearchRecipient] = []
 
-    static func create(context: Context, observeeID: String?, selectedRecipients: Set<APIConversationRecipient>) -> EditComposeRecipientsViewController {
+    static func create(context: Context, observeeID: String?, selectedRecipients: Set<SearchRecipient>) -> EditComposeRecipientsViewController {
         let controller = loadFromStoryboard()
         controller.context = context
         controller.observeeID = observeeID
@@ -89,6 +89,12 @@ class EditComposeRecipientsViewController: UIViewController {
             }
             return lhs > rhs
         }
+        for recipient in recipients {
+            if let prev = selectedRecipients.first(where: { $0.id == recipient.id }) {
+                selectedRecipients.remove(prev)
+                selectedRecipients.insert(recipient)
+            }
+        }
         tableView.reloadData()
     }
 }
@@ -102,18 +108,19 @@ extension EditComposeRecipientsViewController: UITableViewDataSource, UITableVie
         let cell = tableView.dequeue(for: indexPath) as RecipientCell
         let person = recipients[indexPath.row]
         cell.nameLabel.text = person.displayName
-        cell.roleLabel.text = person.commonCourses
+        cell.roleLabel.text = ListFormatter.localizedString(from: person.commonCourses
             .filter { $0.courseID == context.id }
             .compactMap { Role(rawValue: $0.role)?.description() }
-            .joined(separator: ", ")
+        )
         cell.avatarView.name = person.fullName
-        cell.isSelected = selectedRecipients.contains(APIConversationRecipient(searchRecipient: person))
+        cell.avatarView.url = person.avatarURL
+        cell.isSelected = selectedRecipients.contains(person)
         cell.selectedView.isHidden = !cell.isSelected
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let recipient = APIConversationRecipient(searchRecipient: recipients[indexPath.row])
+        let recipient = recipients[indexPath.row]
         if selectedRecipients.contains(recipient) {
             selectedRecipients.remove(recipient)
         } else {

@@ -57,9 +57,9 @@ class CourseDetailsViewControllerTests: ParentTestCase {
 
         XCTAssertNotNil(vc.replyButton)
         vc.replyButton?.sendActions(for: .primaryActionTriggered)
-        //  swiftlint:disable:next line_length
-        XCTAssert( router.lastRoutedTo(  .parse("/conversations/compose?context=course_1&subject=Regarding:%20John%20Doe,%20Grades&hiddenMessage=Regarding:%20John%20Doe,%20https://canvas.instructure.com/courses/1/grades/1")
-        ))
+        let compose = router.presented as? ComposeViewController
+        XCTAssertEqual(compose?.context.id, courseID)
+        XCTAssertEqual(compose?.subjectField.text, "Regarding: John Doe, Grades")
     }
 
     func testInboxReplyWithExperimentalFeaturesOff() {

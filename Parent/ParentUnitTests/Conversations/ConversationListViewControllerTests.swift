@@ -74,7 +74,11 @@ class ConversationListViewControllerTests: ParentTestCase {
         let course = Course.make()
         let user = User.make()
         controller.courseSelected(course: course, user: user)
-        XCTAssertTrue(router.lastRoutedTo(Route.compose(context: course, observeeID: user.id, subject: course.name, hiddenMessage: "Regarding: \(user.name)"), withOptions: .modal(embedInNav: true)))
+        let compose = router.presented as? ComposeViewController
+        XCTAssertEqual(compose?.context.id, course.id)
+        XCTAssertEqual(compose?.observeeID, user.id)
+        XCTAssertEqual(compose?.subjectField.text, course.name)
+        XCTAssertEqual(compose?.hiddenMessage, "Regarding: \(user.name)")
     }
 
     func testErrorEmpty() {

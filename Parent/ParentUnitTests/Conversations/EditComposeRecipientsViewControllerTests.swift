@@ -24,17 +24,14 @@ import TestsFoundation
 class EditComposeRecipientsViewControllerTests: ParentTestCase {
     var courseID = "1"
     var observeeID = "2"
-    var selectedRecipients: Set<APIConversationRecipient> = []
     lazy var controller = EditComposeRecipientsViewController.create(
         context: ContextModel(.course, id: courseID),
         observeeID: observeeID,
-        selectedRecipients: selectedRecipients
+        selectedRecipients: [.make(from: .make(id: "2", name: "B", full_name: "B", avatar_url: nil))]
     )
     var callbackController: EditComposeRecipientsViewController?
 
     func testLayout() {
-        selectedRecipients = [.make(id: "2", name: "B", full_name: "B", avatar_url: nil)]
-        controller.delegate = self
         let teacher = APISearchRecipient.make(
             id: "2",
             name: "B",
@@ -63,6 +60,7 @@ class EditComposeRecipientsViewControllerTests: ParentTestCase {
         api.mock(controller.teachers, value: [teacher, teacher2])
         api.mock(controller.tas, value: [ta])
         api.mock(controller.observee!, value: [observee])
+        controller.delegate = self
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.tableView?.numberOfSections, 1)
         XCTAssertEqual(controller.tableView?.numberOfRows(inSection: 0), 4)
@@ -94,7 +92,7 @@ class EditComposeRecipientsViewControllerTests: ParentTestCase {
         XCTAssertFalse(teacher2Cell.selectedView.isHidden)
         controller.viewWillDisappear(false)
         XCTAssertEqual(callbackController?.selectedRecipients.count, 1)
-        XCTAssertEqual(callbackController?.selectedRecipients.first?.id, teacher2.id)
+        XCTAssertEqual(callbackController?.selectedRecipients.first?.id, teacher2.id.value)
     }
 }
 

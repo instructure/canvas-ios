@@ -40,7 +40,7 @@ class PeopleListViewControllerTests: CoreTestCase {
                 pronouns: "She/Her"
             ),
         ])
-        api.mock(GetConversationRecipientsRequest(search: "", context: "course_1", includeContexts: true), value: [
+        api.mock(GetSearchRecipientsRequest(context: course1, includeContexts: true), value: [
             .make(id: "course_1_teachers"),
             .make(id: "course_1_students"),
             .make(id: "course_1_tas"),

@@ -86,7 +86,7 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol,
         users.refresh()
 
         if context.contextType == .course {
-            env.api.makeRequest(GetConversationRecipientsRequest(search: "", context: context.canvasContextID, includeContexts: true)) { [weak self] recipients, _, _ in
+            env.api.makeRequest(GetSearchRecipientsRequest(context: context, includeContexts: true)) { [weak self] recipients, _, _ in
                 guard let recipients = recipients else { return }
                 self?.enrollmentTypes = BaseEnrollmentType.allCases
                     .filter { type in recipients.contains {
