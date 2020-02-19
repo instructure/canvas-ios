@@ -168,7 +168,7 @@ public class Grades {
                         NSPredicate(format: "%K == %@", #keyPath(Enrollment.userID), item.user_id),
                         NSPredicate(format: "%K == %@", #keyPath(Enrollment.roleID), item.role_id),
                         NSPredicate(format: "%K == %@", #keyPath(Enrollment.role), item.role),
-                        NSPredicate(format: "%K == %@", #keyPath(Enrollment.course.id), self.courseID)
+                        NSPredicate(format: "%K == %@", #keyPath(Enrollment.course.id), self.courseID),
                     ])
                     let enrollment: Enrollment = context.fetch(predicate).first ?? context.insert()
                     let course = (context.all(where: #keyPath(Course.id), equals: self.courseID) as [Course]).first
@@ -184,9 +184,9 @@ public class Grades {
     }
 
     private func getAssignmentGroups<R>(
-        gradingPeriodID : String?, request : R,
-        isFirstPage : Bool,
-        assignmentIDs : [String] = []
+        gradingPeriodID: String?, request: R,
+        isFirstPage: Bool,
+        assignmentIDs: [String] = []
     ) where R: APIRequestable, R.Response == [APIAssignmentGroup] {
         pending += 1
         env.api.makeRequest(request) { [weak self] response, urlResponse, error in
@@ -218,7 +218,6 @@ public class Grades {
             }
         }
     }
-
 
     private func getAssignments(_ assignmentIDs: [String], gradingPeriodID: String?, isFirstPage: Bool) {
         pending += 1
