@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,7 +17,18 @@
 //
 
 import Foundation
+import TestsFoundation
+import PactConsumerSwift
+@testable import Core
 
-public enum QuizHideResults: String, Codable, CaseIterable {
-    case always, until_after_last_attempt
+open class PactTestCase: XCTestCase {
+    open var providerName: String { "Canvas LMS API" }
+
+    let service = PactVerificationService(url: "http://localhost", allowInsecureCertificates: true)
+    lazy var provider = CanvasMockService(provider: providerName, consumer: "canvas-ios", pactVerificationService: service)
+    lazy var environment: TestEnvironment = {
+        let environment = TestEnvironment()
+        environment.api = provider.api
+        return environment
+    }()
 }

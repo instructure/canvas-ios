@@ -38,7 +38,7 @@ extension APIQuiz {
         one_question_at_a_time: Bool = false,
         points_possible: Double? = 11.1,
         question_count: Int = 5,
-        question_types: [QuizQuestionType] = [],
+        question_types: [QuizQuestionType]? = nil,
         quiz_type: QuizType = .survey,
         require_lockdown_browser_for_results: Bool = false,
         require_lockdown_browser: Bool = false,

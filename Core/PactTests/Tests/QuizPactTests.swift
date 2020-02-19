@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,7 +17,24 @@
 //
 
 import Foundation
+import TestsFoundation
+import PactConsumerSwift
+@testable import Core
 
-public enum QuizHideResults: String, Codable, CaseIterable {
-    case always, until_after_last_attempt
+class QuizPactTests: PactTestCase {
+    func testGetQuizzes() throws {
+        let quiz = APIQuiz.make()
+        let useCase = GetQuizzes(courseID: "1")
+        try provider.uponReceiving(
+            "List quizzes",
+            with: useCase.request,
+            respondWithArrayLike: quiz
+        ).given("a quiz")
+
+        provider.run { testComplete in
+            useCase.makeRequest(environment: self.environment) { _, _, _ in
+                testComplete()
+            }
+        }
+    }
 }

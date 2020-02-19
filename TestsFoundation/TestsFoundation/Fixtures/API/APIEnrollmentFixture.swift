@@ -44,7 +44,7 @@ extension APIEnrollment {
         current_period_computed_final_score: Double? = nil,
         current_period_computed_current_grade: String? = nil,
         current_period_computed_final_grade: String? = nil,
-        user: APIUser = .make(),
+        user: APIUser? = .make(),
         observed_user: APIUser? = nil
     ) -> APIEnrollment {
         return APIEnrollment(
