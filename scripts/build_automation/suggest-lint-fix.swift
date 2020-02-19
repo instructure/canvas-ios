@@ -99,7 +99,7 @@ enum Github {
         ).inputJSON(from: GraphQLRequest(
             query: query,
             variables: [ "prNumber": prNumber ]
-        )) | cmd("jq", ".data.repository.pullRequest.id")).runJson(String.self)
+        )) | cmd("jq", "-r", ".data.repository.pullRequest.id")).runString()
     }
 
     static func postReview(_ input: AddPullRequestReviewInput) throws {
