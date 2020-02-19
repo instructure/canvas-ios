@@ -64,7 +64,7 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
         self?.messagingReady()
     }
 
-    lazy var teachers = env.subscribe(GetSearchRecipients(context: ContextModel(.course, id: courseID), contextQualifier: .teachers)) { [weak self] in
+    lazy var teachers = env.subscribe(GetSearchRecipients(context: ContextModel(.course, id: courseID), qualifier: .teachers)) { [weak self] in
         self?.messagingReady()
     }
 
@@ -140,13 +140,14 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
             guard let a = assignment.first else { return }
             let name = student.first?.fullName ?? ""
             let template = NSLocalizedString("Regarding: %@, %@", comment: "Regarding <John Doe>, < assignment url >")
-            let hiddenMessage = String.localizedStringWithFormat(template, name, a.htmlURL.absoluteString)
-            let subject = a.name
-            let context = ContextModel(.course, id: courseID)
-            let recipients = teachers.map { APIConversationRecipient(searchRecipient: $0) }
-            let r: Route = Route.compose(context: context, recipients: recipients, subject: subject, hiddenMessage: hiddenMessage)
-
-            env.router.route(to: r, from: self, options: .modal(embedInNav: true))
+            let compose = ComposeViewController.create(
+                context: ContextModel(.course, id: courseID),
+                observeeID: studentID,
+                recipients: teachers.all,
+                subject: a.name,
+                hiddenMessage: String.localizedStringWithFormat(template, name, a.htmlURL.absoluteString)
+            )
+            env.router.show(compose, from: self, options: .modal(embedInNav: true))
             replyButton?.isEnabled = true
         }
     }

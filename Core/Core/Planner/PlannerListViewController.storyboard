@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,10 +21,10 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlannerListCell" id="nc6-qC-n7j" customClass="PlannerListCell" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="105"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="116.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nc6-qC-n7j" id="gQz-yJ-vt1">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="105"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="116.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wqm-ri-CUc">
@@ -36,10 +35,10 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="nvF-o5-JX4">
-                                                    <rect key="frame" x="60" y="16" width="338" height="77"/>
+                                                    <rect key="frame" x="60" y="16" width="338" height="88.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="AST 101" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HyU-M2-T4c" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="338" height="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="338" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -49,7 +48,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Essay :the rocky planets" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3t-LK-Jry" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="19" width="338" height="19.5"/>
+                                                            <rect key="frame" x="0.0" y="22.5" width="338" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -59,7 +58,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Due Apr 6 at 11:59pm" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdg-qH-tTU" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="40.5" width="338" height="17"/>
+                                                            <rect key="frame" x="0.0" y="45" width="338" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -69,7 +68,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="1 out of 10 pts" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rnu-Vo-JB5" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="59.5" width="338" height="17.5"/>
+                                                            <rect key="frame" x="0.0" y="67.5" width="338" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -105,6 +104,49 @@
                                     <outlet property="delegate" destination="vcb-BA-qgM" id="lLs-Bt-rMT"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5mV-Vn-z8o">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="817.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EGK-kT-erl">
+                                        <rect key="frame" x="94" y="253" width="226" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="B62-ez-y5Y"/>
+                                            <constraint firstAttribute="width" constant="226" id="uCn-pJ-DRc"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Assignments" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWT-oI-47b" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="435" width="350" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold20"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It looks like assignments haven’t been created in this space yet." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCU-lc-Waf" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="463.5" width="350" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="qCU-lc-Waf" firstAttribute="leading" secondItem="5mV-Vn-z8o" secondAttribute="leading" constant="32" id="3CI-PZ-M47"/>
+                                    <constraint firstItem="oWT-oI-47b" firstAttribute="leading" secondItem="5mV-Vn-z8o" secondAttribute="leading" constant="32" id="R2T-Hz-s4X"/>
+                                    <constraint firstItem="EGK-kT-erl" firstAttribute="centerY" secondItem="5mV-Vn-z8o" secondAttribute="centerY" multiplier="0.8" constant="1" id="S5N-Rx-o2J"/>
+                                    <constraint firstAttribute="trailing" secondItem="oWT-oI-47b" secondAttribute="trailing" constant="32" id="X3Q-o8-44x"/>
+                                    <constraint firstItem="qCU-lc-Waf" firstAttribute="top" secondItem="oWT-oI-47b" secondAttribute="bottom" constant="8" id="ZhN-t5-As9"/>
+                                    <constraint firstItem="oWT-oI-47b" firstAttribute="top" secondItem="EGK-kT-erl" secondAttribute="bottom" constant="32" id="nmd-A8-Brd"/>
+                                    <constraint firstItem="EGK-kT-erl" firstAttribute="centerX" secondItem="5mV-Vn-z8o" secondAttribute="centerX" id="vVV-Ts-24I"/>
+                                    <constraint firstAttribute="trailing" secondItem="qCU-lc-Waf" secondAttribute="trailing" constant="32" id="weO-7c-gbs"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ck-9k-z4t">
                                 <rect key="frame" x="0.0" y="44" width="414" height="0.5"/>
                                 <color key="backgroundColor" name="borderMedium"/>
@@ -121,11 +163,19 @@
                             <constraint firstItem="7Ck-9k-z4t" firstAttribute="top" secondItem="wnQ-j9-qXD" secondAttribute="top" id="JVC-dE-DmB"/>
                             <constraint firstItem="wnQ-j9-qXD" firstAttribute="trailing" secondItem="7Ck-9k-z4t" secondAttribute="trailing" id="b5G-Jm-0m5"/>
                             <constraint firstItem="z9c-iF-0LB" firstAttribute="top" secondItem="wnQ-j9-qXD" secondAttribute="top" id="j2H-pY-Rme"/>
+                            <constraint firstItem="5mV-Vn-z8o" firstAttribute="top" secondItem="7Ck-9k-z4t" secondAttribute="bottom" id="mBg-uA-JeC"/>
+                            <constraint firstItem="wnQ-j9-qXD" firstAttribute="trailing" secondItem="5mV-Vn-z8o" secondAttribute="trailing" id="nwj-MF-eCC"/>
                             <constraint firstItem="wnQ-j9-qXD" firstAttribute="trailing" secondItem="z9c-iF-0LB" secondAttribute="trailing" id="pkg-A1-h1g"/>
+                            <constraint firstItem="wnQ-j9-qXD" firstAttribute="bottom" secondItem="5mV-Vn-z8o" secondAttribute="bottom" id="xUJ-d5-KDe"/>
+                            <constraint firstItem="5mV-Vn-z8o" firstAttribute="leading" secondItem="wnQ-j9-qXD" secondAttribute="leading" id="ylA-NR-S9a"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wnQ-j9-qXD"/>
                     </view>
                     <connections>
+                        <outlet property="emptyStateHeader" destination="oWT-oI-47b" id="Xpw-bY-GEV"/>
+                        <outlet property="emptyStateSubHeader" destination="qCU-lc-Waf" id="r0A-6N-oZR"/>
+                        <outlet property="emptyStateViewContainer" destination="5mV-Vn-z8o" id="gRy-I1-f53"/>
+                        <outlet property="emptytStateImageView" destination="EGK-kT-erl" id="nvN-VF-yWl"/>
                         <outlet property="tableView" destination="z9c-iF-0LB" id="rNk-uG-go7"/>
                     </connections>
                 </viewController>

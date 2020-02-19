@@ -103,7 +103,7 @@ generateReleaseNotes() {
 	fi
 	
 	
-	PREVIOUS_RELEASE_TAG=$(git ls-remote --tags origin | grep $APP_NAME- | tail -$NUMBER_FROM_THE_BOTTOM | head -n 1 | awk '{print $2}' | sed -e "s/refs\/tags\///g")
+	PREVIOUS_RELEASE_TAG=$(git ls-remote --tags origin | grep $APP_NAME- | sort -V | tail -$NUMBER_FROM_THE_BOTTOM | head -n 1 | awk '{print $2}' | sed -e "s/refs\/tags\///g")
 	echo "previous release tag: $PREVIOUS_RELEASE_TAG"
 	
 	pushd scripts

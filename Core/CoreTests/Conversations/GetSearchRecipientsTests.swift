@@ -24,7 +24,7 @@ class GetSearchRecipientsTests: CoreTestCase {
     func testCacheKey() {
         let context = ContextModel(.course, id: "1")
         let useCase = GetSearchRecipients(context: context)
-        XCTAssertEqual(useCase.cacheKey, "?context=course_1&search=&per_page=50")
+        XCTAssertEqual(useCase.cacheKey, "per_page=50&context=course_1&search=&synthetic_contexts=1&type=user")
     }
 
     func testRequest() {
@@ -34,23 +34,27 @@ class GetSearchRecipientsTests: CoreTestCase {
 
     func testScope() {
         let useCase = GetSearchRecipients(context: ContextModel(.course, id: "1"))
-        XCTAssertEqual(useCase.scope, Scope.where(#keyPath(SearchRecipient.filter), equals: "?context=course_1&search=&per_page=50", orderBy: #keyPath(SearchRecipient.fullName)))
+        XCTAssertEqual(useCase.scope, Scope.where(
+            #keyPath(SearchRecipient.filter),
+            equals: "per_page=50&context=course_1&search=&synthetic_contexts=1&type=user",
+            orderBy: #keyPath(SearchRecipient.name), naturally: true
+        ))
     }
 
     func testFilter() {
         let useCase = GetSearchRecipients(context: ContextModel(.course, id: "1"))
-        XCTAssertEqual(useCase.filter, "?context=course_1&search=&per_page=50")
+        XCTAssertEqual(useCase.filter, "per_page=50&context=course_1&search=&synthetic_contexts=1&type=user")
     }
 
     func testSave() {
-        let one = APISearchRecipient.make(id: "1", full_name: "John Doe")
-        let two = APISearchRecipient.make(id: "2", full_name: "Jane Doe")
+        let one = APISearchRecipient.make(id: "1", name: "John")
+        let two = APISearchRecipient.make(id: "2", name: "Jane")
 
         let useCase = GetSearchRecipients(context: ContextModel(.course, id: "1"))
 
         useCase.write(response: [one, two], urlResponse: nil, to: databaseClient)
 
-        let results: [SearchRecipient] = databaseClient.fetch(useCase.scope.predicate, sortDescriptors: useCase.scope.order)
+        let results: [SearchRecipient] = databaseClient.fetch(scope: useCase.scope)
 
         XCTAssertEqual(results.count, 2)
         XCTAssertEqual(results.first!.id, two.id.value) // Jane

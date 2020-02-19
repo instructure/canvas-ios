@@ -39,33 +39,38 @@ class ComposeViewController: UIViewController, ErrorViewController {
     }
     lazy var filePicker = FilePicker(delegate: self)
 
-    var context: Context?
+    var context: Context = ContextModel.currentUser
     let env = AppEnvironment.shared
     var keyboard: KeyboardTransitioning?
     var observeeID: String?
     var hiddenMessage: String?
 
     lazy var course: Store<GetCourse>? = {
-        guard let context = context, context.contextType == .course else { return nil }
+        guard context.contextType == .course else { return nil }
         return env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
             self?.titleSubtitleView.subtitle = self?.course?.first?.courseCode
         }
     }()
 
+    lazy var teachers = env.subscribe(GetSearchRecipients(context: context, qualifier: .teachers)) { [weak self] in
+        self?.updateRecipients()
+    }
+
     static func create(
-        body: String?,
-        context: Context?,
-        observeeID: String?,
-        recipients: [APIConversationRecipient],
-        subject: String?,
-        hiddenMessage: String?
+        body: String? = nil,
+        context: Context,
+        observeeID: String? = nil,
+        recipients: [SearchRecipient]? = nil,
+        subject: String? = nil,
+        hiddenMessage: String? = nil
     ) -> ComposeViewController {
         let controller = loadFromStoryboard()
         controller.context = context
         controller.loadViewIfNeeded()
         controller.bodyView.text = body
         controller.observeeID = observeeID
-        controller.recipientsView.recipients = recipients.sortedByName()
+        controller.recipientsView.context = context
+        controller.recipientsView.recipients = recipients?.sorted(by: { $0.name < $1.name }) ?? []
         controller.subjectField.text = subject
         controller.textViewDidChange(controller.bodyView)
         controller.hiddenMessage = hiddenMessage
@@ -117,7 +122,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
         }
 
         if recipientsView.recipients.count == 0 {
-            fetchRecipients()
+            teachers.refresh()
         }
     }
 
@@ -146,9 +151,9 @@ class ComposeViewController: UIViewController, ErrorViewController {
         sendButton.customView = activityIndicator
         updateSendButton()
         let subject = subjectField.text ?? ""
-        let recipientIDs = recipientsView.recipients.map({ $0.id.value })
+        let recipientIDs = recipientsView.recipients.map({ $0.id })
         let attachmentIDs = attachments.all?.compactMap { $0.id }
-        CreateConversation(subject: subject, body: body(), recipientIDs: recipientIDs, canvasContextID: context?.canvasContextID, attachmentIDs: attachmentIDs).fetch { [weak self] _, _, error in
+        CreateConversation(subject: subject, body: body(), recipientIDs: recipientIDs, canvasContextID: context.canvasContextID, attachmentIDs: attachmentIDs).fetch { [weak self] _, _, error in
             performUIUpdate {
                 if let error = error {
                     self?.sendButton.customView = nil
@@ -162,7 +167,6 @@ class ComposeViewController: UIViewController, ErrorViewController {
     }
 
     @objc func editRecipients() {
-        guard let context = context else { return }
         let editRecipients = EditComposeRecipientsViewController.create(
             context: context,
             observeeID: observeeID,
@@ -172,17 +176,9 @@ class ComposeViewController: UIViewController, ErrorViewController {
         env.router.show(editRecipients, from: self, options: .modal())
     }
 
-    func fetchRecipients(completionHandler: (() -> Void)? = nil) {
-        guard let context = context else {
-            return
-        }
-        let searchContext = "\(context.canvasContextID)_teachers"
-        let request = GetConversationRecipientsRequest(search: "", context: searchContext, includeContexts: false)
-        env.api.makeRequest(request) { [weak self] (recipients, _, _) in
-            performUIUpdate {
-                self?.recipientsView.recipients = recipients?.sortedByName() ?? []
-            }
-        }
+    func updateRecipients() {
+        guard !teachers.pending else { return }
+        recipientsView.recipients = teachers.all?.sorted(by: { $0.name < $1.name }) ?? []
     }
 }
 
@@ -194,7 +190,7 @@ extension ComposeViewController: UITextViewDelegate {
 
 extension ComposeViewController: EditComposeRecipientsViewControllerDelegate {
     func editRecipientsControllerDidFinish(_ controller: EditComposeRecipientsViewController) {
-        recipientsView.recipients = Array(controller.selectedRecipients).sortedByName()
+        recipientsView.recipients = Array(controller.selectedRecipients).sorted(by: { $0.name < $1.name })
         updateSendButton()
         UIAccessibility.post(notification: .screenChanged, argument: recipientsView.editButton)
     }

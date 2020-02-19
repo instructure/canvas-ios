@@ -44,7 +44,7 @@ class SubmissionCommentsTests: StudentUITestCase {
             attachments: attachments,
             user: APISubmissionUser.make(id: "1", short_name: "Student")
         ))
-        attachments.forEach { mockURL($0.url.rawValue, data: nil) }
+        attachments.forEach { mockURL($0.url!.rawValue, data: nil) }
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
         SubmissionDetails.drawerGripper.tap()

@@ -470,9 +470,6 @@
 "Login" = "Logga in";
 
 /* No comment provided by engineer. */
-"Manage Children" = "Hantera barn";
-
-/* No comment provided by engineer. */
 "Manual OAuth Login" = "Manuell OAuth-inloggning";
 
 /* No comment provided by engineer. */
@@ -572,6 +569,9 @@
 "Permission Needed" = "Tillstånd behövs";
 
 /* No comment provided by engineer. */
+"Photo Library" = "Bildbibliotek";
+
+/* No comment provided by engineer. */
 "Play" = "Spela upp";
 
 /* No comment provided by engineer. */
@@ -594,6 +594,9 @@
 
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Spela in ljud";
 
 /* No comment provided by engineer. */
 "red" = "röd";
@@ -809,6 +812,9 @@
 "Updated Language Settings" = "Uppdaterade språkinställningar";
 
 /* No comment provided by engineer. */
+"Upload File" = "Ladda upp fil";
+
+/* No comment provided by engineer. */
 "Uploading %@ of %@" = "Laddar upp %1$@ av %2$@";
 
 /* No comment provided by engineer. */
@@ -816,6 +822,9 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
+
+/* No comment provided by engineer. */
+"Use Camera" = "Använd kamera";
 
 /* No comment provided by engineer. */
 "User ID" = "Användar-ID";

@@ -13,8 +13,14 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@（）に開始します%2$@";
 
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@、%2$@での最終メッセージ日：%3$@%4$@";
+
 /* added to conversation label when unread */
 "%@, unread" = "%@、未読";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -24,6 +30,9 @@
 
 /* No comment provided by engineer. */
 "Add" = "追加";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "添付を追加";
 
 /* No comment provided by engineer. */
 "Add Student" = "受講生を追加";
@@ -60,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Back" = "戻る";
+
+/* Calendar Tab */
+"Calendar" = "予定表";
 
 /* No comment provided by engineer. */
 "Calendar Event" = "予定表のイベント";
@@ -101,6 +113,9 @@
 "Dismiss" = "棄却する";
 
 /* No comment provided by engineer. */
+"Edit Recipients" = "受信者を編集する";
+
+/* No comment provided by engineer. */
 "Event" = "イベント";
 
 /* No comment provided by engineer. */
@@ -111,6 +126,12 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "(discussionKitModelName) NSManagedObjectModelの読込に失敗しました";
+
+/* No comment provided by engineer. */
+"Failed. Tap for options" = "失敗しました。タップしてオプションを表示";
+
+/* No comment provided by engineer. */
+"File" = "ファイル";
 
 /* No comment provided by engineer. */
 "for %@" = "ための%@";
@@ -163,11 +184,11 @@
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "低いコース成績は、高いコース成績より高くしないでください";
 
-/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "「子」を管理する";
-
 /* No comment provided by engineer. */
 "Message" = "メッセージ";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "%1$@からの%2$@、%3$@日のメッセージ、%4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "紛失";
@@ -220,7 +241,8 @@
 /* No comment provided by engineer. */
 "Regarding: %@" = "対象：%@";
 
-/* Regarding <John Doe>, < assignment url >
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, < assignment url >
    Regarding <John Doe>, <Grades | Syllabus> */
 "Regarding: %@, %@" = "対象：%1$@,%2$@";
 
@@ -283,6 +305,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "未読";
+
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "%1$@のアップロードが%2$@";
 
 /* Header title of admin view */
 "Welcome!" = "どういたしまして！";

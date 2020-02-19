@@ -20,7 +20,8 @@ import UIKit
 import Core
 
 class ComposeRecipientsView: UIView {
-    var recipients: [APIConversationRecipient] = [] {
+    var context: Context?
+    var recipients: [SearchRecipient] = [] {
         didSet { updatePills() }
     }
 
@@ -111,7 +112,7 @@ class ComposeRecipientsView: UIView {
             let pill = ComposeRecipientView()
             addSubview(pill)
             pill.widthAnchor.constraint(lessThanOrEqualTo: widthAnchor, constant: -32).isActive = true
-            pill.update(recipient)
+            pill.update(recipient, context: context)
             setNeedsLayout()
         }
 
@@ -152,6 +153,7 @@ class ComposeRecipientsView: UIView {
 class ComposeRecipientView: UIView {
     let avatarView = AvatarView()
     let nameLabel = UILabel()
+    let roleLabel = UILabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -162,13 +164,19 @@ class ComposeRecipientView: UIView {
         addSubview(avatarView)
         avatarView.pin(inside: self, leading: 4, trailing: nil, top: 4, bottom: 4)
         addSubview(nameLabel)
-        nameLabel.pin(inside: self, leading: nil, trailing: 16, top: 12, bottom: 12)
+        nameLabel.pin(inside: self, leading: nil, trailing: 16, top: 5, bottom: nil)
         nameLabel.font = .scaledNamedFont(.semibold14)
         nameLabel.textColor = .named(.textDarkest)
+        addSubview(roleLabel)
+        roleLabel.pin(inside: self, leading: nil, trailing: 16, top: nil, bottom: 5)
+        roleLabel.font = .scaledNamedFont(.semibold11)
+        roleLabel.textColor = .named(.textDarkest)
         NSLayoutConstraint.activate([
             avatarView.widthAnchor.constraint(equalToConstant: 32),
             avatarView.heightAnchor.constraint(equalToConstant: 32),
             nameLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 8),
+            roleLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
+            roleLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 8),
         ])
     }
 
@@ -176,10 +184,15 @@ class ComposeRecipientView: UIView {
         fatalError("\(#function) not implemented")
     }
 
-    func update(_ recipient: APIConversationRecipient) {
+    func update(_ recipient: SearchRecipient, context: Context?) {
         avatarView.name = recipient.name
-        avatarView.url = recipient.avatar_url?.rawValue
-        nameLabel.text = User.displayName(recipient.name, pronouns: recipient.pronouns)
+        avatarView.url = recipient.avatarURL
+        nameLabel.text = recipient.displayName
         nameLabel.accessibilityIdentifier = "Compose.recipientName.\(recipient.id)"
+        roleLabel.accessibilityIdentifier = "Compose.recipientRole.\(recipient.id)"
+        roleLabel.text = ListFormatter.localizedString(from: recipient.commonCourses
+            .filter { $0.courseID == context?.id }
+            .compactMap { Role(rawValue: $0.role)?.description() }
+        )
     }
 }

@@ -470,9 +470,6 @@
 "Login" = "Aanmelden";
 
 /* No comment provided by engineer. */
-"Manage Children" = "Kinderen beheren";
-
-/* No comment provided by engineer. */
 "Manual OAuth Login" = "Handmatige OAuth Login";
 
 /* No comment provided by engineer. */
@@ -572,6 +569,9 @@
 "Permission Needed" = "Toestemming vereist";
 
 /* No comment provided by engineer. */
+"Photo Library" = "Fotobibliotheek";
+
+/* No comment provided by engineer. */
 "Play" = "Afspelen";
 
 /* No comment provided by engineer. */
@@ -594,6 +594,9 @@
 
 /* No comment provided by engineer. */
 "Quiz" = "Toets";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Audio opnemen";
 
 /* No comment provided by engineer. */
 "red" = "rood";
@@ -809,6 +812,9 @@
 "Updated Language Settings" = "Bijgewerkte taalinstellingen";
 
 /* No comment provided by engineer. */
+"Upload File" = "Bestand uploaden";
+
+/* No comment provided by engineer. */
 "Uploading %@ of %@" = "Uploaden van %1$@ van %2$@";
 
 /* No comment provided by engineer. */
@@ -816,6 +822,9 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
+
+/* No comment provided by engineer. */
+"Use Camera" = "Camera gebruiken";
 
 /* No comment provided by engineer. */
 "User ID" = "Gebruikers-ID:";

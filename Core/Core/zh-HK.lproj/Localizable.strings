@@ -470,9 +470,6 @@
 "Login" = "登入";
 
 /* No comment provided by engineer. */
-"Manage Children" = "管理兒童";
-
-/* No comment provided by engineer. */
 "Manual OAuth Login" = "手動 OAuth 登入";
 
 /* No comment provided by engineer. */
@@ -572,6 +569,9 @@
 "Permission Needed" = "需要權限";
 
 /* No comment provided by engineer. */
+"Photo Library" = "相片檔案庫";
+
+/* No comment provided by engineer. */
 "Play" = "播放";
 
 /* No comment provided by engineer. */
@@ -594,6 +594,9 @@
 
 /* No comment provided by engineer. */
 "Quiz" = "測驗";
+
+/* No comment provided by engineer. */
+"Record Audio" = "錄製音訊";
 
 /* No comment provided by engineer. */
 "red" = "紅色";
@@ -809,6 +812,9 @@
 "Updated Language Settings" = "已更新語言設定";
 
 /* No comment provided by engineer. */
+"Upload File" = "上傳檔案";
+
+/* No comment provided by engineer. */
 "Uploading %@ of %@" = "正在上傳第 %1$@ / 個檔案%2$@";
 
 /* No comment provided by engineer. */
@@ -816,6 +822,9 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
+
+/* No comment provided by engineer. */
+"Use Camera" = "使用攝像頭";
 
 /* No comment provided by engineer. */
 "User ID" = "使用者 ID";

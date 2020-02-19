@@ -20,6 +20,11 @@ import UIKit
 
 public class PlannerListViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var emptyStateViewContainer: UIView!
+    @IBOutlet weak var emptyStateHeader: DynamicLabel!
+    @IBOutlet weak var emptyStateSubHeader: DynamicLabel!
+    @IBOutlet weak var emptytStateImageView: UIImageView!
+
     let env = AppEnvironment.shared
     var studentID: String?
     var start: Date = Clock.now.startOfDay()
@@ -39,6 +44,10 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
         super.viewDidLoad()
         configureTableview()
         plannables.refresh(force: true)
+
+        emptyStateHeader.text = NSLocalizedString("No Assignments", comment: "")
+        emptyStateSubHeader.text = NSLocalizedString("It looks like assignments haven’t been created in this space yet.", comment: "")
+        emptytStateImageView.image = UIImage(named: "PandaNoEvents", in: .core, compatibleWith: nil)
     }
 
     private func configureTableview() {
@@ -50,6 +59,8 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
         if !pending {
             if let error = plannables.error { showError(error) }
             tableView.reloadData()
+
+            emptyStateViewContainer.isHidden = plannables.count > 0
         }
     }
 
