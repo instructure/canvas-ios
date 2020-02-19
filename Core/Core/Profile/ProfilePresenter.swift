@@ -63,11 +63,9 @@ public class ProfilePresenter {
         var cells: [ProfileViewCell] = []
 
         if enrollment == .observer {
-            if ExperimentalFeature.parentInbox.isEnabled {
-                cells.append(ProfileViewCell("inbox", type: .badge(unreadCount), name: NSLocalizedString("Inbox", bundle: .core, comment: "")) { [weak self] _ in
-                    self?.view?.route(to: .conversations)
-                })
-            }
+            cells.append(ProfileViewCell("inbox", type: .badge(unreadCount), name: NSLocalizedString("Inbox", bundle: .core, comment: "")) { [weak self] _ in
+                self?.view?.route(to: .conversations)
+            })
             cells.append(ProfileViewCell("manageChildren", name: NSLocalizedString("Manage Students", bundle: .core, comment: "")) { [weak self] _ in
                 self?.view?.route(to: .profileObservees())
             })
@@ -169,12 +167,10 @@ public class ProfilePresenter {
         settings.refresh()
         tools.refresh()
         profile.refresh()
-        if ExperimentalFeature.parentInbox.isEnabled {
-            env.api.makeRequest(GetConversationsUnreadCountRequest()) { [weak self] (response, _, _) in performUIUpdate {
-                self?.unreadCount = response?.unread_count ?? 0
-                self?.view?.reload()
-            } }
-        }
+        env.api.makeRequest(GetConversationsUnreadCountRequest()) { [weak self] (response, _, _) in performUIUpdate {
+            self?.unreadCount = response?.unread_count ?? 0
+            self?.view?.reload()
+        } }
     }
 
     public func didTapVersion() {

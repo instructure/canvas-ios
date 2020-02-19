@@ -21,8 +21,6 @@ import TestsFoundation
 @testable import CoreUITests
 
 class InboxTests: CoreUITestCase {
-    override var experimentalFeatures: [ExperimentalFeature] { [.parentInbox] }
-
     func testGetToReplyScreen() {
         Dashboard.profileButton.tap()
         Profile.inboxButton.tap()

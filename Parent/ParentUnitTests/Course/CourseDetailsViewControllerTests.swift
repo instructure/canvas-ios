@@ -49,7 +49,6 @@ class CourseDetailsViewControllerTests: ParentTestCase {
     }
 
     func testInboxReplyButton() {
-        ExperimentalFeature.parentInbox.isEnabled = true
         api.mock(GetCourseRequest(courseID: courseID), value: .make())
         api.mock(GetSearchRecipients(context: ContextModel(.course, id: courseID), userID: "1"), value: [.make()])
 
@@ -60,15 +59,6 @@ class CourseDetailsViewControllerTests: ParentTestCase {
         let compose = router.presented as? ComposeViewController
         XCTAssertEqual(compose?.context.id, courseID)
         XCTAssertEqual(compose?.subjectField.text, "Regarding: John Doe, Grades")
-    }
-
-    func testInboxReplyWithExperimentalFeaturesOff() {
-        ExperimentalFeature.parentInbox.isEnabled = false
-        api.mock(GetCourseRequest(courseID: courseID), value: .make())
-
-        render()
-
-        XCTAssertNil(vc.replyButton)
     }
 
     func testHomeIsFrontPage() {

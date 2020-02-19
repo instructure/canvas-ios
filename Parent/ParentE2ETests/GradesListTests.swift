@@ -21,8 +21,6 @@ import TestsFoundation
 @testable import CoreUITests
 
 class GradesListTests: CoreUITestCase {
-    override var experimentalFeatures: [ExperimentalFeature] { [.parentInbox] }
-
     func testAssignmentDetailsCompose() {
         let courseCell = Courses.course(id: "263")
         courseCell.tapUntil { !courseCell.exists }

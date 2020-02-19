@@ -41,7 +41,6 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
     }
 
     func testInboxReplyButton() {
-        ExperimentalFeature.parentInbox.isEnabled = true
         api.mock(GetCourseRequest(courseID: courseID), value: .make())
         api.mock(GetAssignment(courseID: courseID, assignmentID: assignmentID), value: .make())
         api.mock(GetSearchRecipients(context: ContextModel(.course, id: courseID), userID: "1"), value: [.make()])
@@ -52,7 +51,7 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
         vc.replyButton?.sendActions(for: .primaryActionTriggered)
         let compose = router.presented as? ComposeViewController
         XCTAssertEqual(compose?.context.id, courseID)
-        XCTAssertEqual(compose?.subjectField.text, "some assignment")
+        XCTAssertEqual(compose?.subjectField.text, "Regarding: John Doe, Assignment - some assignment")
         XCTAssertEqual(compose?.hiddenMessage, "Regarding: John Doe, https://canvas.instructure.com/courses/1/assignments/1")
     }
 }

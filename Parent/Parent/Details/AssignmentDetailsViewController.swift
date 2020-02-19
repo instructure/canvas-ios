@@ -110,7 +110,6 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
     }
 
     func configureComposeMessageButton() {
-        guard ExperimentalFeature.parentInbox.isEnabled else { return }
         let buttonSize: CGFloat = 56
         let margin: CGFloat = 16
         let bottomMargin: CGFloat = 50
@@ -139,13 +138,22 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
         if !pending && replyStarted {
             guard let a = assignment.first else { return }
             let name = student.first?.fullName ?? ""
-            let template = NSLocalizedString("Regarding: %@, %@", comment: "Regarding <John Doe>, < assignment url >")
+            let subject = String.localizedStringWithFormat(
+                NSLocalizedString("Regarding: %@, Assignment - %@", comment: "Regarding <Name>, Assignment - <Assignment Name>"),
+                name,
+                a.name
+            )
+            let hiddenMessage = String.localizedStringWithFormat(
+                NSLocalizedString("Regarding: %@, %@", comment: "Regarding <Name>, <URL>"),
+                name,
+                a.htmlURL.absoluteString
+            )
             let compose = ComposeViewController.create(
                 context: ContextModel(.course, id: courseID),
                 observeeID: studentID,
                 recipients: teachers.all,
-                subject: a.name,
-                hiddenMessage: String.localizedStringWithFormat(template, name, a.htmlURL.absoluteString)
+                subject: subject,
+                hiddenMessage: hiddenMessage
             )
             env.router.show(compose, from: self, options: .modal(embedInNav: true))
             replyButton?.isEnabled = true

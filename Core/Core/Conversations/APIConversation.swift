@@ -163,6 +163,10 @@ public struct GetConversationsUnreadCountRequest: APIRequestable {
     public struct Response: Codable {
         public let unread_count: UInt
 
+        init(unread_count: UInt) {
+            self.unread_count = unread_count
+        }
+
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             unread_count = try UInt(container.decode(String.self, forKey: .unread_count)) ?? 0

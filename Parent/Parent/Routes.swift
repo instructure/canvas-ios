@@ -28,12 +28,10 @@ let router = Router(routes: [
     },
 
     RouteHandler(.conversations) { _, _ in
-        guard ExperimentalFeature.parentInbox.isEnabled else { return nil }
         return ConversationListViewController.create()
     },
 
     RouteHandler(.conversation(":conversationID")) { _, params in
-        guard ExperimentalFeature.parentInbox.isEnabled else { return nil }
         guard let conversationID = params["conversationID"] else { return nil }
         return ConversationDetailViewController.create(conversationID: conversationID)
     },

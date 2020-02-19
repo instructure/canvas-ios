@@ -46,5 +46,6 @@ class ParentUITestCase: CoreUITestCase {
         }
         mockData(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: .make())
         mock(courses: [.make()])
+        mockData(GetConversationsUnreadCountRequest(), value: .init(unread_count: 0))
     }
 }
