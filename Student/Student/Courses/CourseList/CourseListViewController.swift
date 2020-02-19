@@ -30,8 +30,8 @@ class CourseListViewController: UIViewController, CourseListViewProtocol {
     let shadowMargin: CGFloat = 5
     let cardColumns: CGFloat = 2
 
-    lazy var refreshControl: UIRefreshControl = {
-        let rc = UIRefreshControl()
+    lazy var refreshControl: CircleRefreshControl = {
+        let rc = CircleRefreshControl()
         rc.addTarget(self, action: #selector(CourseListViewController.refreshView(_:)), for: .valueChanged)
         return rc
     }()

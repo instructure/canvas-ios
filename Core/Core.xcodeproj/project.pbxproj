@@ -550,6 +550,8 @@
 		7DA260FE23F773D9005D2121 /* PlannerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C4523F34734009622E3 /* PlannerListViewController.swift */; };
 		7DA260FF23F773DC005D2121 /* PlannerListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97F69C4723F3475E009622E3 /* PlannerListViewController.storyboard */; };
 		7DA2610023FC6D5A005D2121 /* SyllabusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA933823F6FF6200A0231E /* SyllabusTests.swift */; };
+		7DA2610C23FCD8E6005D2121 /* CircleRefreshControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA2610B23FCD8E6005D2121 /* CircleRefreshControlTests.swift */; };
+		7DA2610E23FCD907005D2121 /* CircleRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA2610D23FCD907005D2121 /* CircleRefreshControl.swift */; };
 		7DA667F523835FF60062F7B9 /* TodoListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DA667F423835FF60062F7B9 /* TodoListViewController.storyboard */; };
 		7DA8C37D239EAE0F004762DD /* LoginManualOAuthViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA8C37C239EAE0F004762DD /* LoginManualOAuthViewControllerTests.swift */; };
 		7DA8C37F239EB535004762DD /* LoginNavigationControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA8C37E239EB535004762DD /* LoginNavigationControllerTests.swift */; };
@@ -1421,6 +1423,8 @@
 		7DA20E8E21680DBF00F5FD19 /* UIImageInstIconsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageInstIconsExtensions.swift; sourceTree = "<group>"; };
 		7DA20E922168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageInstIconsExtensionsTests.swift; sourceTree = "<group>"; };
 		7DA260FC23F77281005D2121 /* SyllabusSummaryItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SyllabusSummaryItemCell.xib; sourceTree = "<group>"; };
+		7DA2610B23FCD8E6005D2121 /* CircleRefreshControlTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleRefreshControlTests.swift; sourceTree = "<group>"; };
+		7DA2610D23FCD907005D2121 /* CircleRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleRefreshControl.swift; sourceTree = "<group>"; };
 		7DA5C48722385435003CDB4C /* SubmissionComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionComment.swift; sourceTree = "<group>"; };
 		7DA5C48B22385F95003CDB4C /* GetSubmissionComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionComments.swift; sourceTree = "<group>"; };
 		7DA667EE23834D150062F7B9 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
@@ -2486,6 +2490,7 @@
 				3B339B69226FA9AF00D3283D /* ChatBubbleView.swift */,
 				3B339B6B226FAA1000D3283D /* ChatBubbleView.xib */,
 				7D85FFEB23E2314B0055851D /* CircleProgressView.swift */,
+				7DA2610D23FCD907005D2121 /* CircleRefreshControl.swift */,
 				7D8B78FC21627887005E08F1 /* CoreWebView.swift */,
 				7D364F2321AE04B20028E3EA /* CoreWebViewController.swift */,
 				7D765023215AEDDD00BB4F38 /* DividerView.swift */,
@@ -2530,6 +2535,7 @@
 				7D016B5E23E8984B00C6E0CA /* BottomSheetPickerViewControllerTests.swift */,
 				7D64A96923622D3A004EAEDF /* CalendarDayIconViewTests.swift */,
 				7D016B6023E89B7F00C6E0CA /* CircleProgressViewTests.swift */,
+				7DA2610B23FCD8E6005D2121 /* CircleRefreshControlTests.swift */,
 				7D8B79022162B9E2005E08F1 /* CoreWebViewTests.swift */,
 				7D979CC9215BDFD500567627 /* DividerViewTests.swift */,
 				7D63F78D215D7B8100151E49 /* DynamicButtonTests.swift */,
@@ -2537,10 +2543,10 @@
 				9F5C93042375FBBA005105BB /* EmptyViewControllerTests.swift */,
 				7D231BE523AC3871005BA31D /* FloatingButtonTests.swift */,
 				9FCF1553227CC927009D35F6 /* GradeCircleViewTests.swift */,
+				9727093A23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift */,
 				7DD6947A21949DC900BA4984 /* IconViewTests.swift */,
 				7D1758C3215A995200F88613 /* ListFormatterTests.swift */,
 				7D1758C7215A9A7800F88613 /* TitleSubtitleViewTests.swift */,
-				9727093A23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4708,6 +4714,7 @@
 				B1BF4AB223A17BD800F61ACD /* APIConversationTests.swift in Sources */,
 				3B6043A8232AB81900757B93 /* GradesTests.swift in Sources */,
 				7D52D8AD2301C0A400684932 /* ExperimentalFeatureTests.swift in Sources */,
+				7DA2610C23FCD8E6005D2121 /* CircleRefreshControlTests.swift in Sources */,
 				9F3107FD2371EA4400502428 /* PageDetailsPresenterTests.swift in Sources */,
 				B15CA284221E00870014FB02 /* ModuleTests.swift in Sources */,
 				3B6043A5232AB00700757B93 /* AssignmentGroupRequestableTests.swift in Sources */,
@@ -5068,6 +5075,7 @@
 				7DA25FE423F721DA005D2121 /* PermissionName.swift in Sources */,
 				7DA260A223F7234C005D2121 /* UITestHelpers.swift in Sources */,
 				7DA2601823F7227A005D2121 /* UITabBarExtensions.swift in Sources */,
+				7DA2610E23FCD907005D2121 /* CircleRefreshControl.swift in Sources */,
 				7DA2609723F72338005D2121 /* RouteHandler.swift in Sources */,
 				7DA2600E23F7227A005D2121 /* ProcessInfoExtensions.swift in Sources */,
 				7DA2604423F722D9005D2121 /* DiscussionTopic.swift in Sources */,

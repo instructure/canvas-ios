@@ -16,9 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="643"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ufY-Pw-cGA">
-                                <rect key="frame" x="197" y="311.66666666666669" width="20" height="20"/>
-                            </activityIndicatorView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="There are no pages to display." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="34v-0e-P8N" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                 <rect key="frame" x="92.333333333333329" y="311.33333333333331" width="229.33333333333337" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -29,6 +26,13 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mB1-Dh-EAx" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="187" y="301.66666666666669" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="fCn-xu-hgb"/>
+                                    <constraint firstAttribute="width" constant="40" id="zk4-Au-5Bv"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="f1i-hN-714">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="643"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -178,13 +182,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="f1i-hN-714" firstAttribute="top" secondItem="xd4-nP-FkO" secondAttribute="top" id="5tU-kq-qU0"/>
+                            <constraint firstItem="mB1-Dh-EAx" firstAttribute="centerY" secondItem="xd4-nP-FkO" secondAttribute="centerY" id="OYd-dS-wxP"/>
                             <constraint firstItem="OTQ-Hj-SsO" firstAttribute="bottom" secondItem="f1i-hN-714" secondAttribute="bottom" id="QjE-l3-AKa"/>
                             <constraint firstItem="OTQ-Hj-SsO" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="34v-0e-P8N" secondAttribute="trailing" constant="16" id="ZVM-6d-61q"/>
-                            <constraint firstItem="ufY-Pw-cGA" firstAttribute="centerX" secondItem="xd4-nP-FkO" secondAttribute="centerX" id="Ze3-GF-mGs"/>
                             <constraint firstItem="34v-0e-P8N" firstAttribute="centerY" secondItem="xd4-nP-FkO" secondAttribute="centerY" id="ZuI-y8-BFa"/>
-                            <constraint firstItem="ufY-Pw-cGA" firstAttribute="centerY" secondItem="xd4-nP-FkO" secondAttribute="centerY" id="cLR-VL-Hgj"/>
                             <constraint firstItem="f1i-hN-714" firstAttribute="leading" secondItem="OTQ-Hj-SsO" secondAttribute="leading" id="fhw-dM-cAA"/>
                             <constraint firstItem="34v-0e-P8N" firstAttribute="centerX" secondItem="xd4-nP-FkO" secondAttribute="centerX" id="skd-59-cif"/>
+                            <constraint firstItem="mB1-Dh-EAx" firstAttribute="centerX" secondItem="xd4-nP-FkO" secondAttribute="centerX" id="xfW-1V-4UC"/>
                             <constraint firstItem="f1i-hN-714" firstAttribute="trailing" secondItem="OTQ-Hj-SsO" secondAttribute="trailing" id="ybr-xh-SVg"/>
                             <constraint firstItem="34v-0e-P8N" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OTQ-Hj-SsO" secondAttribute="leading" constant="16" id="zo2-f3-1ke"/>
                         </constraints>
@@ -197,7 +201,7 @@
                         <outlet property="frontPageTitleLabel" destination="paN-70-GrB" id="POr-4F-jtz"/>
                         <outlet property="frontPageView" destination="GGb-WI-PsZ" id="52X-XR-tJF"/>
                         <outlet property="frontPageViewButton" destination="7bY-hM-aJf" id="bqz-a5-LJn"/>
-                        <outlet property="loadingView" destination="ufY-Pw-cGA" id="cYi-BU-Wlj"/>
+                        <outlet property="loadingView" destination="mB1-Dh-EAx" id="pf5-JR-XXw"/>
                         <outlet property="tableView" destination="f1i-hN-714" id="Fyk-Pg-olo"/>
                     </connections>
                 </viewController>

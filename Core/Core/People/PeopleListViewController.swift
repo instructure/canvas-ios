@@ -67,9 +67,10 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol,
         activityIndicatorView.color = Brand.shared.primary
         emptyResultsLabel.text = NSLocalizedString("No results", bundle: .core, comment: "")
         searchBar.placeholder = NSLocalizedString("Search", bundle: .core, comment: "")
+        searchBar.backgroundColor = .named(.backgroundLightest)
 
         tableView.backgroundColor = .named(.backgroundLightest)
-        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl = CircleRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.registerHeaderFooterView(FilterHeaderView.self, fromNib: false)
         tableView.separatorColor = .named(.borderMedium)
@@ -109,6 +110,7 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol,
         guard let name = course.first?.name ?? group.first?.name, let color = course.first?.color ?? group.first?.color else {
             return
         }
+        (tableView.refreshControl as? CircleRefreshControl)?.color = color
         updateNavBar(subtitle: name, color: color)
     }
 

@@ -49,14 +49,14 @@ public class PageDetailsViewController: UIViewController, PageDetailsViewProtoco
         setupTitleViewInNavbar(title: NSLocalizedString("Page", bundle: .core, comment: ""))
         webView?.linkDelegate = self
 
-        let refresh = UIRefreshControl()
+        let refresh = CircleRefreshControl()
         refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         webView?.scrollView.refreshControl = refresh
 
         presenter.viewIsReady()
     }
 
-    @objc func refresh(_ refresh: UIRefreshControl) {
+    @objc func refresh(_ refresh: CircleRefreshControl) {
         presenter.pages.refresh(force: true)
     }
 

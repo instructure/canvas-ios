@@ -32,10 +32,10 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
     var selectedGradingPeriod: APIAssignmentListGradingPeriod?
     var filterButtonTitle: String = NSLocalizedString("Clear filter", comment: "")
     var gradingPeriodTitle: String?
-    let tableRefresher = UIRefreshControl()
+    let tableRefresher = CircleRefreshControl()
     var tableViewDefaultOffset: CGPoint = .zero
     var courseID: String!
-    var env: AppEnvironment!
+    var env = AppEnvironment.shared
     var shouldFilter = false
     var assignments: [String: [APIAssignmentListAssignment]] = [:]
     var pagingCursor: String?
@@ -53,16 +53,17 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
         self?.updateNavbar()
     }
 
-    static func create(env: AppEnvironment = .shared,
-                       courseID: String,
-                       sort: GetAssignments.Sort = .position,
-                       appTraitCollection: UITraitCollection? = UIApplication.shared.keyWindow?.traitCollection) -> AssignmentListViewController {
-
-        let vc = loadFromStoryboard()
-        vc.courseID = courseID
-        vc.env = env
-        vc.appTraitCollection = appTraitCollection
-        return vc
+    static func create(
+        env: AppEnvironment = .shared,
+        courseID: String,
+        sort: GetAssignments.Sort = .position,
+        appTraitCollection: UITraitCollection? = UIApplication.shared.keyWindow?.traitCollection
+    ) -> AssignmentListViewController {
+        let controller = loadFromStoryboard()
+        controller.appTraitCollection = appTraitCollection
+        controller.courseID = courseID
+        controller.env = env
+        return controller
     }
 
     override func viewDidLoad() {
@@ -99,7 +100,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
         loading = true
 
         if showActivityIndicator {
-            DispatchQueue.main.async { [weak self] in self?.showSpinner() }
+            performUIUpdate { [weak self] in self?.showSpinner() }
         }
 
         let requestable = AssignmentListRequestable(courseID: courseID, gradingPeriodID: selectedGradingPeriod?.id.value, filter: shouldFilter, pageSize: 25, cursor: pagingCursor)
@@ -216,7 +217,8 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
         }
     }
 
-    @objc func refresh(_ control: UIRefreshControl) {
+    @objc func refresh(_ control: CircleRefreshControl) {
+        pagingCursor = nil
         fetchData(showActivityIndicator: true)
     }
 
@@ -334,6 +336,7 @@ extension AssignmentListViewController {
             self.color = color
             filterButton.setTitleColor(color, for: .normal)
             updateNavBar(subtitle: courses.first?.name, color: color)
+            tableRefresher.color = color
         }
     }
 

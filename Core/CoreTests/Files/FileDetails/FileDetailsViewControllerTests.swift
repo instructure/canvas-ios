@@ -48,7 +48,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
     func testLayout() {
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
-        XCTAssertTrue(controller.activityView.isAnimating)
+        XCTAssertFalse(controller.spinnerView.isHidden)
         XCTAssertFalse(controller.progressView.isHidden)
 
         XCTAssertEqual(controller.preferredStatusBarStyle, .default)
@@ -146,7 +146,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
     func testAudio() {
         mock(APIFile.make(filename: "File.m4a", contentType: "audio/m4a", mime_class: "audio"))
         controller.view.layoutIfNeeded()
-        XCTAssertFalse(controller.activityView.isAnimating)
+        XCTAssertTrue(controller.spinnerView.isHidden)
         XCTAssertTrue(controller.progressView.isHidden)
         XCTAssert(controller.children.first is AudioPlayerViewController)
     }
@@ -155,7 +155,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         let file = APIFile.make(filename: "File.heic", contentType: "image/heic", mime_class: "file")
         mock(file)
         controller.view.layoutIfNeeded()
-        XCTAssertFalse(controller.activityView.isAnimating)
+        XCTAssertTrue(controller.spinnerView.isHidden)
         XCTAssertTrue(controller.progressView.isHidden)
         XCTAssert(controller.contentView.subviews.first is UIScrollView)
         XCTAssertEqual(controller.contentView.subviews[0].subviews[0].accessibilityIdentifier, "FileDetails.imageView")
@@ -172,7 +172,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         }
         controller.view.layoutIfNeeded()
         wait(for: [done], timeout: 5)
-        XCTAssertFalse(controller.activityView.isAnimating)
+        XCTAssertTrue(controller.spinnerView.isHidden)
         XCTAssertTrue(controller.progressView.isHidden)
         XCTAssertFalse(controller.arButton.isHidden)
         controller.arButton.sendActions(for: .primaryActionTriggered)
@@ -185,7 +185,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         DocViewerViewController.hasPSPDFKitLicense = true
         mock(APIFile.make(filename: "File.pdf", contentType: "application/pdf", mime_class: "pdf"))
         controller.view.layoutIfNeeded()
-        XCTAssertFalse(controller.activityView.isAnimating)
+        XCTAssertTrue(controller.spinnerView.isHidden)
         XCTAssertTrue(controller.progressView.isHidden)
         let pdf = controller.children.first as! PSPDFViewController
         XCTAssertTrue(controller.pdfViewController(pdf, shouldShow: UIActivityViewController(activityItems: [""], applicationActivities: nil), animated: false))
@@ -217,14 +217,14 @@ class FileDetailsViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         wait(for: [done], timeout: 5)
         XCTAssert(controller.contentView.subviews.first is CoreWebView)
-        XCTAssertFalse(controller.activityView.isAnimating)
+        XCTAssertTrue(controller.spinnerView.isHidden)
         XCTAssertTrue(controller.progressView.isHidden)
     }
 
     func testVideo() {
         mock(APIFile.make(filename: "File.m4v", contentType: "video/m4v", mime_class: "video"))
         controller.view.layoutIfNeeded()
-        XCTAssertFalse(controller.activityView.isAnimating)
+        XCTAssertTrue(controller.spinnerView.isHidden)
         XCTAssertTrue(controller.progressView.isHidden)
         XCTAssert(controller.children.first is AVPlayerViewController)
     }
@@ -251,7 +251,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         let file = APIFile.make(filename: "File.heic", contentType: "image/heic", mime_class: "file")
         mock(file)
         controller.view.layoutIfNeeded()
-        XCTAssertFalse(controller.activityView.isAnimating)
+        XCTAssertTrue(controller.spinnerView.isHidden)
         XCTAssertTrue(controller.progressView.isHidden)
         XCTAssertEqual(controller.contentView.subviews[0].subviews[0].accessibilityLabel, file.display_name)
     }

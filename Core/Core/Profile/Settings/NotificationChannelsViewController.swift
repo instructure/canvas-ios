@@ -47,7 +47,7 @@ class NotificationChannelsViewController: UIViewController {
         tableView.backgroundColor = .named(.backgroundGrouped)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl = CircleRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         tableView.registerCell(RightDetailTableViewCell.self)
         tableView.sectionFooterHeight = 0

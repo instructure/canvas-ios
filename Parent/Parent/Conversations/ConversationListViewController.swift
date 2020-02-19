@@ -55,7 +55,7 @@ class ConversationListViewController: UIViewController, ConversationCoursesActio
         retryButton.setTitle(NSLocalizedString("Retry", comment: ""), for: .normal)
         retryButton.layer.borderColor = UIColor.named(.borderDark).cgColor
 
-        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl = CircleRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.refreshControl?.tintColor = Brand.shared.primary
         tableView.separatorColor = .named(.borderMedium)

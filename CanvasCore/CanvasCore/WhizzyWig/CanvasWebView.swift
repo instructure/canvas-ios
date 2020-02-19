@@ -85,7 +85,7 @@ public class CanvasWebView: WKWebView {
     public var onRefresh: (() -> Void)? {
         didSet {
             if onRefresh != nil {
-                let refreshControl = UIRefreshControl()
+                let refreshControl = CircleRefreshControl()
                 refreshControl.addTarget(self, action: #selector(handleRefresh(_:)), for: .valueChanged)
                 self.refreshControl = refreshControl
                 scrollView.addSubview(refreshControl)
@@ -103,7 +103,7 @@ public class CanvasWebView: WKWebView {
 
     fileprivate var externalToolLaunchDisposable: Disposable?
 
-    fileprivate var refreshControl: UIRefreshControl?
+    fileprivate var refreshControl: CircleRefreshControl?
 
     @objc
     public func setNavigationHandler(routeToURL: @escaping (URL) -> Void) {
@@ -227,7 +227,7 @@ public class CanvasWebView: WKWebView {
     }
 
     @objc
-    fileprivate func handleRefresh(_ control: UIRefreshControl) {
+    fileprivate func handleRefresh(_ control: CircleRefreshControl) {
         onRefresh?()
     }
 

@@ -24,7 +24,7 @@ import QuickLookThumbnailing
 import UIKit
 
 public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegate, ErrorViewController, PageViewEventViewControllerLoggingProtocol {
-    @IBOutlet weak var activityView: UIActivityIndicatorView!
+    @IBOutlet weak var spinnerView: CircleProgressView!
     @IBOutlet weak var arButton: UIButton!
     @IBOutlet weak var arImageView: UIImageView!
     @IBOutlet weak var contentView: UIView!
@@ -62,8 +62,6 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
         contentView.backgroundColor = .named(.backgroundLightest)
-
-        activityView.color = Brand.shared.primary
 
         arButton.setTitle(NSLocalizedString("Augment Reality", bundle: .core, comment: ""), for: .normal)
         arButton.isHidden = true
@@ -154,7 +152,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     }
 
     func doneLoading() {
-        activityView.stopAnimating()
+        spinnerView.isHidden = true
         progressView.isHidden = true
         NotificationCenter.default.post(name: .init("CBIModuleItemProgressUpdatedNotification"), object: nil, userInfo: [
             "CBIUpdatedModuleItemIDStringKey": fileID,

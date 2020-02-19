@@ -57,7 +57,7 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
         emptyView.isHidden = true
 
         tableView.backgroundColor = .named(.backgroundLightest)
-        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl = CircleRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.separatorColor = .named(.borderMedium)
 

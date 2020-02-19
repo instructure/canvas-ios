@@ -29,8 +29,8 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
 
     var presenter: DashboardPresenter!
 
-    lazy var refreshControl: UIRefreshControl = {
-        let rc = UIRefreshControl()
+    lazy var refreshControl: CircleRefreshControl = {
+        let rc = CircleRefreshControl()
         rc.addTarget(self, action: #selector(DashboardViewController.refreshControlHandler(_:)), for: .valueChanged)
         return rc
     }()

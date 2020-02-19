@@ -256,7 +256,7 @@ class AttachmentCardView: UIView {
         progressTimer?.invalidate()
         progressTimer = CADisplayLink(target: self, selector: #selector(stepProgress))
         startProgressTime = Clock.now
-        startProgressValue = progressView.progress
+        startProgressValue = Double(progressView.progress ?? 0)
         endProgressValue = progress
         progressTimer?.add(to: .current, forMode: .default)
         stepProgress()
@@ -272,7 +272,7 @@ class AttachmentCardView: UIView {
         }
         let t = 1 - pow(1 - animStep, 3) // easeOutCubic
         let progress = startProgressValue + (t * (endProgressValue - startProgressValue))
-        progressView?.progress = progress
+        progressView?.progress = CGFloat(progress)
         progressLabel?.text = NumberFormatter.localizedString(from: NSNumber(value: progress), number: .percent)
     }
 
