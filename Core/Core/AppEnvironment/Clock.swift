@@ -26,8 +26,10 @@ public class Cal {
         shared.mockCalendar = nil
     }
 
-    public static func mockCalendar(_ c: Calendar) {
-        shared.mockCalendar = c
+    public static func mockCalendar(_ c: Calendar, timeZone: TimeZone = TimeZone.autoupdatingCurrent) {
+        var mockCal = c
+        mockCal.timeZone = timeZone
+        shared.mockCalendar = mockCal
     }
 
     public static var currentCalendar: Calendar {
