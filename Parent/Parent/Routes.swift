@@ -27,6 +27,11 @@ let router = Router(routes: [
         return try? AccountNotificationViewController(session: session, announcementID: id)
     },
 
+    RouteHandler("/calendar") { _, _ in
+        guard let studentID = currentStudentID, ExperimentalFeature.parentCalendar.isEnabled else { return nil }
+        return CalendarContainerViewController.create(studentID: studentID)
+    },
+
     RouteHandler(.conversations) { _, _ in
         return ConversationListViewController.create()
     },
