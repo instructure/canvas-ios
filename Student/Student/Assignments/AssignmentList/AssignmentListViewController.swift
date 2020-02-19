@@ -35,7 +35,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
     let tableRefresher = CircleRefreshControl()
     var tableViewDefaultOffset: CGPoint = .zero
     var courseID: String!
-    let env = AppEnvironment.shared
+    var env = AppEnvironment.shared
     var shouldFilter = false
     var assignments: [String: [APIAssignmentListAssignment]] = [:]
     var pagingCursor: String?
@@ -54,13 +54,15 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
     }
 
     static func create(
+        env: AppEnvironment = .shared,
         courseID: String,
         sort: GetAssignments.Sort = .position,
         appTraitCollection: UITraitCollection? = UIApplication.shared.keyWindow?.traitCollection
     ) -> AssignmentListViewController {
         let controller = loadFromStoryboard()
-        controller.courseID = courseID
         controller.appTraitCollection = appTraitCollection
+        controller.courseID = courseID
+        controller.env = env
         return controller
     }
 

@@ -32,7 +32,7 @@ class AssignmentListViewControllerTests: StudentTestCase {
     var groups: [APIAssignmentListGroup] = []
 
     override func setUp() {
-        vc = AssignmentListViewController.create(courseID: courseID)
+        vc = AssignmentListViewController.create(env: env, courseID: courseID)
         gradingPeriods = []
         groups = []
     }
@@ -167,7 +167,7 @@ class AssignmentListViewControllerTests: StudentTestCase {
         vc.filterButton?.sendActions(for: .touchUpInside)
         vc.view.layoutIfNeeded()
 
-        wait(for: [router.showExpectation], timeout: 1)
+        wait(for: [router.showExpectation], timeout: 0.5)
 
         XCTAssert(router.presented is UIAlertController)
 
@@ -201,7 +201,7 @@ class AssignmentListViewControllerTests: StudentTestCase {
     }
 
     func testSelectFirstOnIpad() {
-        vc = AssignmentListViewController.create(courseID: courseID, appTraitCollection: UITraitCollection(horizontalSizeClass: .regular))
+        vc = AssignmentListViewController.create(env: env, courseID: courseID, appTraitCollection: UITraitCollection(horizontalSizeClass: .regular))
         let svc = UISplitViewController(nibName: nil, bundle: nil)
         let nav = UINavigationController(rootViewController: vc)
         svc.viewControllers = [nav, UIViewController()]
