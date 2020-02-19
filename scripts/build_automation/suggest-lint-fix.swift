@@ -123,11 +123,11 @@ enum Github {
     }
 }
 
-func inDir<R>(_ path: String, thunk: () throws -> R) rethrows -> R {
+func inDir<R>(_ path: String, body: () throws -> R) rethrows -> R {
     let originalPath = FileManager.default.currentDirectoryPath
     FileManager.default.changeCurrentDirectoryPath(path)
     defer { FileManager.default.changeCurrentDirectoryPath(originalPath) }
-    return try thunk()
+    return try body()
 }
 
 var snapshotHash = try! cmd("git", "stash", "create").runString() // may be an empty string if nothing to stash
