@@ -41,7 +41,6 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
     }
 
     func testInboxReplyButton() {
-        ExperimentalFeature.parentInbox.isEnabled = true
         api.mock(GetCourseRequest(courseID: courseID), value: .make())
         api.mock(GetAssignment(courseID: courseID, assignmentID: assignmentID), value: .make())
         api.mock(GetSearchRecipients(context: ContextModel(.course, id: courseID), userID: "1"), value: [.make()])

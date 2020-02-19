@@ -24,10 +24,6 @@ import XCTest
 class RoutesTests: ParentTestCase {
     func testRoutes() {
         XCTAssert(Parent.router.match(.parse("/courses/1/grades")) is CourseDetailsViewController)
-
-        XCTAssertNil(Parent.router.match(Route.conversations.url))
-        XCTAssertNil(Parent.router.match(Route.conversation("1").url))
-        ExperimentalFeature.parentInbox.isEnabled = true
         XCTAssert(Parent.router.match(Route.conversations.url) is ConversationListViewController)
         XCTAssert(Parent.router.match(Route.conversation("1").url) is ConversationDetailViewController)
     }

@@ -110,7 +110,6 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
     }
 
     func configureComposeMessageButton() {
-        guard ExperimentalFeature.parentInbox.isEnabled else { return }
         let buttonSize: CGFloat = 56
         let margin: CGFloat = 16
         let bottomMargin: CGFloat = 50

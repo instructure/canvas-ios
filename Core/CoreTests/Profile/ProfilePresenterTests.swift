@@ -26,7 +26,6 @@ class ProfilePresenterTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        ExperimentalFeature.parentInbox.isEnabled = true
         api.mock(GetAccountHelpLinksRequest(), value: nil)
         api.mock(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: .make(become_user: false))
         api.mock(GetGlobalNavExternalToolsRequest(), value: [])

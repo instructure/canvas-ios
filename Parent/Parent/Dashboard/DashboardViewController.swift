@@ -270,16 +270,14 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     }
 
     func updateBadge() {
-        if ExperimentalFeature.parentInbox.isEnabled {
-            env.api.makeRequest(GetConversationsUnreadCountRequest()) { [weak self] (response, _, _) in performUIUpdate {
-                let unreadCount = UInt(response?.unread_count ?? 0)
-                self?.badgeCount = unreadCount
-                performUIUpdate {
-                    let color = ColorScheme.observee(currentStudentID ?? "0").color
-                    self?.updateBadgeCount(color: color)
-                }
-            } }
-        }
+        env.api.makeRequest(GetConversationsUnreadCountRequest()) { [weak self] (response, _, _) in performUIUpdate {
+            let unreadCount = UInt(response?.unread_count ?? 0)
+            self?.badgeCount = unreadCount
+            performUIUpdate {
+                let color = ColorScheme.observee(currentStudentID ?? "0").color
+                self?.updateBadgeCount(color: color)
+            }
+        } }
     }
 
     func updateBadgeCount(color: UIColor) {

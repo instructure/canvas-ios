@@ -32,7 +32,6 @@ public enum ExperimentalFeature: String, CaseIterable, Codable {
     case refreshTokens = "refresh_tokens"
     case newPageDetails = "new_page_details"
     case notifications2
-    case parentInbox = "parent_inbox"
     case parentCalendar = "parent_calendar"
     case testing = "testing"
 
