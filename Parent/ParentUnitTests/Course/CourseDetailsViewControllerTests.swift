@@ -29,7 +29,7 @@ class CourseDetailsViewControllerTests: ParentTestCase {
 
     var isSyllabusShown: Bool {
         return vc.viewControllers.first { $0 is SyllabusViewController } != nil &&
-            vc.viewControllers.first { $0 is SyllabusActionableItemsViewController } != nil
+            vc.viewControllers.first { $0 is SyllabusSummaryViewController } != nil
     }
 
     override func setUp() {
@@ -57,7 +57,9 @@ class CourseDetailsViewControllerTests: ParentTestCase {
 
         XCTAssertNotNil(vc.replyButton)
         vc.replyButton?.sendActions(for: .primaryActionTriggered)
-        XCTAssert(router.lastRoutedTo(.parse("/conversations/compose?context=course_1&subject=Regarding:%20John%20Doe,%20Grades")))
+        let compose = router.presented as? ComposeViewController
+        XCTAssertEqual(compose?.context.id, courseID)
+        XCTAssertEqual(compose?.subjectField.text, "Regarding: John Doe, Grades")
     }
 
     func testInboxReplyWithExperimentalFeaturesOff() {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G3020" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Activity" representedClassName=".Activity" syncable="YES">
         <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -65,6 +65,7 @@
     <entity name="CalendarEventItem" representedClassName="Core.CalendarEventItem" syncable="YES">
         <attribute name="contextRaw" attributeType="String"/>
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="hasStartAt" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="htmlUrl" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="startAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -230,7 +231,6 @@
         <attribute name="locked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="lockedForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="lockExplanation" optional="YES" attributeType="String"/>
-        <attribute name="lockInfo" optional="YES" attributeType="String"/>
         <attribute name="mediaEntryID" optional="YES" attributeType="String"/>
         <attribute name="mimeClass" optional="YES" attributeType="String"/>
         <attribute name="modifiedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -406,9 +406,14 @@
     <entity name="Plannable" representedClassName=".Plannable" syncable="YES">
         <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
         <attribute name="contextImage" optional="YES" attributeType="URI"/>
+        <attribute name="contextName" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="htmlURL" optional="YES" attributeType="URI"/>
         <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="typeRaw" optional="YES" attributeType="String"/>
+        <attribute name="userID" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Quiz" representedClassName="Core.Quiz" syncable="YES">
         <attribute name="accessCode" optional="YES" attributeType="String"/>
@@ -594,7 +599,7 @@
         <element name="AlertThreshold" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="583"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
-        <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="148"/>
+        <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="163"/>
         <element name="CommonCourse" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="CommunicationChannel" positionX="-531" positionY="-9" width="128" height="133"/>
         <element name="ContextColor" positionX="-177.3046875" positionY="-36" width="128" height="73"/>
@@ -609,7 +614,7 @@
         <element name="ExternalTool" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="ExternalToolLaunchPlacement" positionX="-513" positionY="0" width="128" height="120"/>
         <element name="FeatureFlag" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="613"/>
+        <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="598"/>
         <element name="Grade" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="GradingPeriod" positionX="-540" positionY="-27" width="128" height="103"/>
         <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="135"/>
@@ -621,6 +626,7 @@
         <element name="NotificationCategory" positionX="-522" positionY="0" width="128" height="103"/>
         <element name="Page" positionX="-549" positionY="-27" width="128" height="193"/>
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1080"/>
+        <element name="Plannable" positionX="-540" positionY="-18" width="128" height="193"/>
         <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="463"/>
         <element name="QuizSubmission" positionX="-540" positionY="-27" width="128" height="240"/>
         <element name="Rubric" positionX="-540" positionY="-27" width="128" height="180"/>
@@ -636,6 +642,5 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="208"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="Plannable" positionX="-540" positionY="-18" width="128" height="118"/>
     </elements>
 </model>

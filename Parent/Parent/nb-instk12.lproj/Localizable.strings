@@ -13,8 +13,14 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ Vil begynne %2$@";
 
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@, i %2$@, den siste meldingen var %3$@ %4$@";
+
 /* added to conversation label when unread */
 "%@, unread" = "%@, ulest";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -24,6 +30,9 @@
 
 /* No comment provided by engineer. */
 "Add" = "Legg til";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "Legg til vedlegg";
 
 /* No comment provided by engineer. */
 "Add Student" = "Legg til elev";
@@ -60,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Back" = "Tilbake";
+
+/* Calendar Tab */
+"Calendar" = "Kalender";
 
 /* No comment provided by engineer. */
 "Calendar Event" = "Kalenderhendelse";
@@ -101,6 +113,9 @@
 "Dismiss" = "Avvise";
 
 /* No comment provided by engineer. */
+"Edit Recipients" = "Rediger mottakere";
+
+/* No comment provided by engineer. */
 "Event" = "Hendelse";
 
 /* No comment provided by engineer. */
@@ -111,6 +126,12 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Kunne ikke laste inn (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"Failed. Tap for options" = "Mislyktes. Trykk for alternativer";
+
+/* No comment provided by engineer. */
+"File" = "Fil";
 
 /* No comment provided by engineer. */
 "for %@" = "for %@";
@@ -163,11 +184,11 @@
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "Lav fagvurdering kan ikke være høyere enn høy fagvurdering";
 
-/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "Håndtere barn";
-
 /* No comment provided by engineer. */
 "Message" = "Melding";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Melding fra %1$@, %2$@, den %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Mangler";
@@ -220,7 +241,8 @@
 /* No comment provided by engineer. */
 "Regarding: %@" = "Vedrørende: %@";
 
-/* Regarding <John Doe>, < assignment url >
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, < assignment url >
    Regarding <John Doe>, <Grades | Syllabus> */
 "Regarding: %@, %@" = "Vedrørende: %1$@, %2$@";
 
@@ -283,6 +305,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Ulest";
+
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "Opplasting %1$@ er på %2$@";
 
 /* Header title of admin view */
 "Welcome!" = "Velkommen!";

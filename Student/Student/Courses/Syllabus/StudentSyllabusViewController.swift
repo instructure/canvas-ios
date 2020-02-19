@@ -26,7 +26,7 @@ class StudentSyllabusViewController: HorizontalMenuViewController {
     var courseID: String = ""
     var color: UIColor?
     var syllabus: Core.SyllabusViewController?
-    var assignments: SyllabusActionableItemsViewController?
+    var assignments: SyllabusSummaryViewController?
 
     var viewControllers: [UIViewController] = []
 
@@ -66,7 +66,7 @@ class StudentSyllabusViewController: HorizontalMenuViewController {
     }
 
     func configureAssignments() {
-        assignments = SyllabusActionableItemsViewController(courseID: courseID, sort: GetAssignments.Sort.dueAt)
+        assignments = SyllabusSummaryViewController.create(courseID: courseID)
         guard let assignments = assignments else { return }
         viewControllers.append(assignments)
     }

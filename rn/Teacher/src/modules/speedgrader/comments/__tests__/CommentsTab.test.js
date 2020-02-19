@@ -448,7 +448,16 @@ test('mapStateToProps returns comment and submission rows', () => {
   appState.entities.assignments = {
     '200': {
       data: {},
-      pendingComments: {},
+      pendingComments: {
+        [student.id]: [
+          {
+            timestamp: new Date(),
+            localID: '1',
+            comment: { type: 'text', comment: 'new comment' },
+            pending: 1,
+          },
+        ],
+      },
       submissions: { refs: [], pending: 0 },
       submissionSummary: { error: null, pending: 0, data: { graded: 0, ungraded: 0, not_submitted: 0 } },
       gradeableStudents: { refs: [], pending: 0 },
@@ -481,19 +490,23 @@ test('mapStateToProps returns comment and submission rows', () => {
   expect(quizAttempt.submissionID).toEqual(submission.id)
   expect(quizAttempt.submissionID).not.toEqual(quizAttempt.id)
 
-  teacherComment = props.commentRows.filter(({ userID }) => userID === teacherComment.author.id)[0]
+  let teacherComments = props.commentRows.filter(({ userID }) => userID === teacherComment.author.id)
+  teacherComment = teacherComments.find(({ pending }) => pending !== 1)
   expect(teacherComment.contents.comment.attachments).toHaveLength(1)
   expect(teacherComment.name).toEqual('Severus Snape')
+  let pendingComment = teacherComments.find(({ pending }) => pending === 1)
+  expect(pendingComment.contents.type).toEqual('text')
+  expect(pendingComment.contents.comment.comment).toEqual('new comment')
 
   studentComment = props.commentRows.filter(({ userID }) => userID === student.id)[0]
   expect(studentComment.name).toEqual('Harry Potter (He/Him)')
 
-  let textAttempt = props.commentRows.find(({ contents }) => contents.attemptIndex === text.attempt != null)
+  let textAttempt = props.commentRows.find(({ contents }) => contents.attemptIndex === text.attempt)
   expect(textAttempt.name).toEqual('Bob')
 
   appState.entities.submissions[submission.id].submission.user.pronouns = 'He/Him'
   props = mapStateToProps(appState, ownProps)
-  textAttempt = props.commentRows.find(({ contents }) => contents.attemptIndex === text.attempt != null)
+  textAttempt = props.commentRows.find(({ contents }) => contents.attemptIndex === text.attempt)
   expect(textAttempt.name).toEqual('Bob (He/Him)')
 })
 

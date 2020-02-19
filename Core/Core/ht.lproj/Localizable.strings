@@ -470,9 +470,6 @@
 "Login" = "Koneksyon";
 
 /* No comment provided by engineer. */
-"Manage Children" = "Jere Timoun yo";
-
-/* No comment provided by engineer. */
 "Manual OAuth Login" = "Koneksyon OAuth Manyèl";
 
 /* No comment provided by engineer. */
@@ -572,6 +569,9 @@
 "Permission Needed" = "Otorizasyon Nesesè";
 
 /* No comment provided by engineer. */
+"Photo Library" = "Bibliyotèk Foto";
+
+/* No comment provided by engineer. */
 "Play" = "Jwe";
 
 /* No comment provided by engineer. */
@@ -594,6 +594,9 @@
 
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Anrejistre Son";
 
 /* No comment provided by engineer. */
 "red" = "wouj";
@@ -809,6 +812,9 @@
 "Updated Language Settings" = "Paramèt Langaj Aktyalize";
 
 /* No comment provided by engineer. */
+"Upload File" = "Transfere Fichye";
+
+/* No comment provided by engineer. */
 "Uploading %@ of %@" = "Transfè %1$@ sou %2$@";
 
 /* No comment provided by engineer. */
@@ -816,6 +822,9 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
+
+/* No comment provided by engineer. */
+"Use Camera" = "Itilize Kamera";
 
 /* No comment provided by engineer. */
 "User ID" = "ID Itilizatè";

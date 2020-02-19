@@ -71,7 +71,7 @@ class ComposeViewControllerTests: ParentTestCase {
         XCTAssertNotNil(editRecipients)
         XCTAssertEqual(editRecipients?.modalPresentationStyle, .custom)
         XCTAssertNotNil(editRecipients?.transitioningDelegate as? BottomSheetTransitioningDelegate)
-        XCTAssertEqual(editRecipients?.context?.canvasContextID, controller.context?.canvasContextID)
+        XCTAssertEqual(editRecipients?.context?.canvasContextID, controller.context.canvasContextID)
         XCTAssertEqual(editRecipients?.observeeID, controller.observeeID)
         XCTAssertEqual(editRecipients?.selectedRecipients.count, 1)
         editRecipients?.selectedRecipients = []
@@ -79,18 +79,18 @@ class ComposeViewControllerTests: ParentTestCase {
         XCTAssertEqual(controller.recipientsView.recipients.count, 0)
         XCTAssertEqual(controller.sendButton.isEnabled, false)
         XCTAssertFalse(controller.recipientsView.placeholder.isHidden)
-        editRecipients?.selectedRecipients =  [.make(id: "123")]
+        editRecipients?.selectedRecipients =  [.make(from: .make(id: "123"))]
         editRecipients?.delegate?.editRecipientsControllerDidFinish(editRecipients!)
         XCTAssertEqual(controller.sendButton.isEnabled, true)
         XCTAssertEqual(controller.recipientsView.recipients.count, 1)
-        XCTAssertEqual(controller.recipientsView.recipients.first?.id.value, "123")
+        XCTAssertEqual(controller.recipientsView.recipients.first?.id, "123")
         XCTAssertTrue(controller.recipientsView.placeholder.isHidden)
 
         let task = api.mock(PostConversationRequest(body: PostConversationRequest.Body(
             subject: "subject",
             body: controller.body(),
-            recipients: [ APIConversationRecipient.make().id.value ],
-            context_code: controller.context!.canvasContextID,
+            recipients: [ APISearchRecipient.make().id.value ],
+            context_code: controller.context.canvasContextID,
             media_comment_id: nil,
             media_comment_type: nil,
             attachment_ids: [])
@@ -109,8 +109,8 @@ class ComposeViewControllerTests: ParentTestCase {
         api.mock(PostConversationRequest(body: PostConversationRequest.Body(
             subject: "subject",
             body: controller.body(),
-            recipients: [ APIConversationRecipient.make().id.value ],
-            context_code: controller.context!.canvasContextID,
+            recipients: [ APISearchRecipient.make().id.value ],
+            context_code: controller.context.canvasContextID,
             media_comment_id: nil,
             media_comment_type: nil,
             attachment_ids: []
@@ -122,7 +122,7 @@ class ComposeViewControllerTests: ParentTestCase {
     }
 
     func testFetchRecipients() {
-        let request = GetConversationRecipientsRequest(search: "", context: "\(controller.context!.canvasContextID)_teachers", includeContexts: false)
+        let request = GetSearchRecipientsRequest(context: controller.context, qualifier: .teachers)
         api.mock(request, value: [.make()])
         controller.recipientsView.recipients = []
         loadView()

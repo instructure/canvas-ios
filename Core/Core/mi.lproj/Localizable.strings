@@ -470,9 +470,6 @@
 "Login" = "Takiuru";
 
 /* No comment provided by engineer. */
-"Manage Children" = "Whakahaere ngā tamariki";
-
-/* No comment provided by engineer. */
 "Manual OAuth Login" = "Mahi ā ringa OAuth Takiuru";
 
 /* No comment provided by engineer. */
@@ -572,6 +569,9 @@
 "Permission Needed" = "E hiahiatia ana he whakāetanga";
 
 /* No comment provided by engineer. */
+"Photo Library" = "Whakāhua Pukapuka";
+
+/* No comment provided by engineer. */
 "Play" = "Tākaro";
 
 /* No comment provided by engineer. */
@@ -594,6 +594,9 @@
 
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Tāhopu Ororongo";
 
 /* No comment provided by engineer. */
 "red" = "whero";
@@ -809,6 +812,9 @@
 "Updated Language Settings" = "Kua whakahoutia ngā Tautuhinga Reo";
 
 /* No comment provided by engineer. */
+"Upload File" = "Tukuake Kōnae";
+
+/* No comment provided by engineer. */
 "Uploading %@ of %@" = "E tukuake ana %1$@ ō %2$@";
 
 /* No comment provided by engineer. */
@@ -816,6 +822,9 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
+
+/* No comment provided by engineer. */
+"Use Camera" = "Whakamahi te Kāmera";
 
 /* No comment provided by engineer. */
 "User ID" = "Kaiwhakamahi ID";

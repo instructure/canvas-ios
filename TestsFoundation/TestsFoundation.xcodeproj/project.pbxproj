@@ -71,7 +71,6 @@
 		9F4B53AE218100BC0056A557 /* APIFileFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4B53AD218100BC0056A557 /* APIFileFixture.swift */; };
 		9F5C92FE237302CA005105BB /* TestEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5C92FD237302CA005105BB /* TestEnvironment.swift */; };
 		9F62EDD42326C5B900EA9F79 /* SearchRecipientFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F62EDD32326C5B900EA9F79 /* SearchRecipientFixture.swift */; };
-		9F62EDD62326C9E800EA9F79 /* APISearchRecipientFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F62EDD52326C9E800EA9F79 /* APISearchRecipientFixture.swift */; };
 		9F6878B322396A7900E559CE /* APIMediaCommentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6878B222396A7900E559CE /* APIMediaCommentFixture.swift */; };
 		9F6878B52239701F00E559CE /* MediaCommentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6878B42239701F00E559CE /* MediaCommentFixture.swift */; };
 		B119B4BF230720FF00A74062 /* FeatureFlagFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B119B4BE230720FF00A74062 /* FeatureFlagFixture.swift */; };
@@ -182,7 +181,6 @@
 		9F4B53AD218100BC0056A557 /* APIFileFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFileFixture.swift; sourceTree = "<group>"; };
 		9F5C92FD237302CA005105BB /* TestEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEnvironment.swift; sourceTree = "<group>"; };
 		9F62EDD32326C5B900EA9F79 /* SearchRecipientFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipientFixture.swift; sourceTree = "<group>"; };
-		9F62EDD52326C9E800EA9F79 /* APISearchRecipientFixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APISearchRecipientFixture.swift; sourceTree = "<group>"; };
 		9F6878B222396A7900E559CE /* APIMediaCommentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMediaCommentFixture.swift; sourceTree = "<group>"; };
 		9F6878B42239701F00E559CE /* MediaCommentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCommentFixture.swift; sourceTree = "<group>"; };
 		B119B4BE230720FF00A74062 /* FeatureFlagFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagFixture.swift; sourceTree = "<group>"; };
@@ -335,7 +333,6 @@
 				9F1CEA5A22400A1D000BB98F /* APIPermissions.swift */,
 				7DCF2047216D6597003AF358 /* APIQuizFixture.swift */,
 				3B6386A62264F781002DEE72 /* APIRubricFixture.swift */,
-				9F62EDD52326C9E800EA9F79 /* APISearchRecipientFixture.swift */,
 				B1A32BDF2159A28D0071B41E /* APISubmissionFixture.swift */,
 				3B0CEBA021504C2500D07CFA /* APITabFixture.swift */,
 				7DA667F823845A720062F7B9 /* APITodoFixture.swift */,
@@ -701,7 +698,6 @@
 				B1A32BDE2159A1D70071B41E /* APIAssignmentFixture.swift in Sources */,
 				7DB0A1D421C1C90D009ABB40 /* APIAccountResultsFixture.swift in Sources */,
 				B1F428DC228B5C3C00EC8C37 /* MockURLSession.swift in Sources */,
-				9F62EDD62326C9E800EA9F79 /* APISearchRecipientFixture.swift in Sources */,
 				B1D5EF622358E01200B3ACD3 /* URLAuthenticationChallengeExtensions.swift in Sources */,
 				3BAA4177218A361100701E03 /* EnrollmentFixture.swift in Sources */,
 				3B0CEB732150406400D07CFA /* GroupFixture.swift in Sources */,

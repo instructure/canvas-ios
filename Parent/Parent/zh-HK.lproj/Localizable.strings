@@ -13,8 +13,14 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@將開始於%2$@";
 
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@，在 %2$@ 中，最後的訊息在%3$@%4$@";
+
 /* added to conversation label when unread */
 "%@, unread" = "%@，未讀";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -24,6 +30,9 @@
 
 /* No comment provided by engineer. */
 "Add" = "添加";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "添加附件";
 
 /* No comment provided by engineer. */
 "Add Student" = "添加學生";
@@ -60,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Back" = "返回";
+
+/* Calendar Tab */
+"Calendar" = "行事曆";
 
 /* No comment provided by engineer. */
 "Calendar Event" = "行事曆活動";
@@ -101,6 +113,9 @@
 "Dismiss" = "取消";
 
 /* No comment provided by engineer. */
+"Edit Recipients" = "編輯收件人";
+
+/* No comment provided by engineer. */
 "Event" = "活動";
 
 /* No comment provided by engineer. */
@@ -111,6 +126,12 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "無法載入 (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"Failed. Tap for options" = "失敗。點選選項";
+
+/* No comment provided by engineer. */
+"File" = "檔案";
 
 /* No comment provided by engineer. */
 "for %@" = "對象：%@";
@@ -163,11 +184,11 @@
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "低的課程評分不可高於高的課程評分";
 
-/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "管理兒童";
-
 /* No comment provided by engineer. */
 "Message" = "訊息";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "訊息來自 %1$@，%2$@，在 %3$@,%4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "缺少";
@@ -220,7 +241,8 @@
 /* No comment provided by engineer. */
 "Regarding: %@" = "關於：%@";
 
-/* Regarding <John Doe>, < assignment url >
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, < assignment url >
    Regarding <John Doe>, <Grades | Syllabus> */
 "Regarding: %@, %@" = "關於：%1$@,%2$@";
 
@@ -283,6 +305,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "未讀";
+
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "上傳 %1$@ 在%2$@";
 
 /* Header title of admin view */
 "Welcome!" = "歡迎！";

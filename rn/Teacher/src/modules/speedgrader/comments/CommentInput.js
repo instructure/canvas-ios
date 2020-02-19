@@ -33,7 +33,7 @@ import DrawerState from '../utils/drawer-state'
 import { getBottomSpace } from 'react-native-iphone-x-helper'
 
 export type Comment
-  = { type: 'text', message: string }
+  = { type: 'text', comment: string }
 
 type CommentInputProps = {
   makeComment(comment: Comment): void,
@@ -73,7 +73,7 @@ export default class CommentInput extends Component<CommentInputProps, State> {
 
     this.props.makeComment({
       type: 'text',
-      message: text,
+      comment: text,
     })
   }
 

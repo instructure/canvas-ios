@@ -470,9 +470,6 @@
 "Login" = "Iniciar sesión";
 
 /* No comment provided by engineer. */
-"Manage Children" = "Administrar niños";
-
-/* No comment provided by engineer. */
 "Manual OAuth Login" = "Inicio manual de sesión en OAuth";
 
 /* No comment provided by engineer. */
@@ -572,6 +569,9 @@
 "Permission Needed" = "Se necesita permiso";
 
 /* No comment provided by engineer. */
+"Photo Library" = "Biblioteca de fotos";
+
+/* No comment provided by engineer. */
 "Play" = "Reproducir";
 
 /* No comment provided by engineer. */
@@ -594,6 +594,9 @@
 
 /* No comment provided by engineer. */
 "Quiz" = "Examen";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Grabar audio";
 
 /* No comment provided by engineer. */
 "red" = "rojo";
@@ -809,6 +812,9 @@
 "Updated Language Settings" = "Configuraciones de idioma actualizadas";
 
 /* No comment provided by engineer. */
+"Upload File" = "Cargar archivo";
+
+/* No comment provided by engineer. */
 "Uploading %@ of %@" = "Cargando %1$@ de %2$@";
 
 /* No comment provided by engineer. */
@@ -816,6 +822,9 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
+
+/* No comment provided by engineer. */
+"Use Camera" = "Usar cámara";
 
 /* No comment provided by engineer. */
 "User ID" = "Identificación de usuario";

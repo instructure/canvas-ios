@@ -61,7 +61,7 @@ export function commentOnSubmission (courseID: string, assignmentID: string, use
   const data = { comment: {} }
   switch (comment.type) {
     case 'text':
-      data.comment.text_comment = comment.message
+      data.comment.text_comment = comment.comment
       break
     case 'media':
       if (comment.groupComment) {

@@ -26,7 +26,7 @@ public struct APIFile: Codable, Equatable {
     let display_name: String
     let filename: String
     let contentType: String
-    let url: APIURL
+    let url: APIURL?
     // file size in bytes
     let size: Int
     let created_at: Date
@@ -43,7 +43,7 @@ public struct APIFile: Codable, Equatable {
     // identifier for file in third-party transcoding service
     let media_entry_id: String?
     let locked_for_user: Bool
-    let lock_info: String?
+    // let lock_info: [String: Any]?
     let lock_explanation: String?
     // optional: url to the document preview. This url is specific to the user
     // making the api call. Only included in submission endpoints.
@@ -71,10 +71,91 @@ public struct APIFile: Codable, Equatable {
         case mime_class = "mime_class"
         case media_entry_id = "media_entry_id"
         case locked_for_user = "locked_for_user"
-        case lock_info = "lock_info"
         case lock_explanation = "lock_explanation"
         case preview_url = "preview_url"
         case avatar = "avatar"
+    }
+
+    init(
+        id: ID,
+        uuid: String,
+        folder_id: ID,
+        display_name: String,
+        filename: String,
+        contentType: String,
+        url: APIURL,
+        size: Int,
+        created_at: Date,
+        updated_at: Date,
+        unlock_at: Date?,
+        locked: Bool,
+        hidden: Bool,
+        lock_at: Date?,
+        hidden_for_user: Bool,
+        thumbnail_url: APIURL?,
+        modified_at: Date,
+        mime_class: String,
+        media_entry_id: String?,
+        locked_for_user: Bool,
+        lock_explanation: String?,
+        preview_url: APIURL?,
+        avatar: APIFileToken?
+    ) {
+        self.id = id
+        self.uuid = uuid
+        self.folder_id = folder_id
+        self.display_name = display_name
+        self.filename = filename
+        self.contentType = contentType
+        self.url = url
+        self.size = size
+        self.created_at = created_at
+        self.updated_at = updated_at
+        self.unlock_at = unlock_at
+        self.locked = locked
+        self.hidden = hidden
+        self.lock_at = lock_at
+        self.hidden_for_user = hidden_for_user
+        self.thumbnail_url = thumbnail_url
+        self.modified_at = modified_at
+        self.mime_class = mime_class
+        self.media_entry_id = media_entry_id
+        self.locked_for_user = locked_for_user
+        self.lock_explanation = lock_explanation
+        self.preview_url = preview_url
+        self.avatar = avatar
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(ID.self, forKey: .id)
+        uuid = try container.decode(String.self, forKey: .uuid)
+        folder_id = try container.decode(ID.self, forKey: .folder_id)
+        display_name = try container.decode(String.self, forKey: .display_name)
+        filename = try container.decode(String.self, forKey: .filename)
+        contentType = try container.decode(String.self, forKey: .contentType)
+        let urlRaw = try container.decodeIfPresent(String.self, forKey: .url)
+        if urlRaw == nil || urlRaw?.isEmpty == true {
+            url = nil
+        } else {
+            url = try container.decode(APIURL.self, forKey: .url)
+        }
+        size = try container.decode(Int.self, forKey: .size)
+        created_at = try container.decode(Date.self, forKey: .created_at)
+        updated_at = try container.decode(Date.self, forKey: .updated_at)
+        unlock_at = try container.decodeIfPresent(Date.self, forKey: .unlock_at)
+        locked = try container.decode(Bool.self, forKey: .locked)
+        hidden = try container.decode(Bool.self, forKey: .hidden)
+        lock_at = try container.decodeIfPresent(Date.self, forKey: .lock_at)
+        hidden_for_user = try container.decode(Bool.self, forKey: .hidden_for_user)
+        thumbnail_url = try container.decodeIfPresent(APIURL.self, forKey: .thumbnail_url)
+        modified_at = try container.decode(Date.self, forKey: .modified_at)
+        mime_class = try container.decode(String.self, forKey: .mime_class)
+        media_entry_id = try container.decodeIfPresent(String.self, forKey: .media_entry_id)
+        locked_for_user = try container.decode(Bool.self, forKey: .locked_for_user)
+        lock_explanation = try container.decodeIfPresent(String.self, forKey: .lock_explanation)
+        preview_url = try container.decodeIfPresent(APIURL.self, forKey: .preview_url)
+        avatar = try container.decodeIfPresent(APIFileToken.self, forKey: .avatar)
     }
 }
 

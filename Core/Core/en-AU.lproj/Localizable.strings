@@ -470,9 +470,6 @@
 "Login" = "Login";
 
 /* No comment provided by engineer. */
-"Manage Children" = "Manage Children";
-
-/* No comment provided by engineer. */
 "Manual OAuth Login" = "Manual OAuth Login";
 
 /* No comment provided by engineer. */
@@ -572,6 +569,9 @@
 "Permission Needed" = "Permission Needed";
 
 /* No comment provided by engineer. */
+"Photo Library" = "Photo Library";
+
+/* No comment provided by engineer. */
 "Play" = "Play";
 
 /* No comment provided by engineer. */
@@ -594,6 +594,9 @@
 
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Record Audio";
 
 /* No comment provided by engineer. */
 "red" = "red";
@@ -809,6 +812,9 @@
 "Updated Language Settings" = "Updated Language Settings";
 
 /* No comment provided by engineer. */
+"Upload File" = "Upload File";
+
+/* No comment provided by engineer. */
 "Uploading %@ of %@" = "Uploading %1$@ of %2$@";
 
 /* No comment provided by engineer. */
@@ -816,6 +822,9 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
+
+/* No comment provided by engineer. */
+"Use Camera" = "Use Camera";
 
 /* No comment provided by engineer. */
 "User ID" = "User ID";

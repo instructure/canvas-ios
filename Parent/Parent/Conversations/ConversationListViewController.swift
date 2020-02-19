@@ -97,16 +97,16 @@ class ConversationListViewController: UIViewController, ConversationCoursesActio
     }
 
     func courseSelected(course: Course, user: User) {
-        env.router.route(
-            to: .compose(
-                    context: course,
-                    observeeID: user.id,
-                    subject: course.name,
-                    hiddenMessage: String.localizedStringWithFormat(NSLocalizedString("Regarding: %@", bundle: .parent, comment: ""), user.name)
-                ),
-            from: self,
-            options: .modal(embedInNav: true)
+        let compose = ComposeViewController.create(
+            context: ContextModel(.course, id: course.id),
+            observeeID: user.id,
+            subject: course.name,
+            hiddenMessage: String.localizedStringWithFormat(
+                NSLocalizedString("Regarding: %@", bundle: .parent, comment: ""),
+                user.name
+            )
         )
+        env.router.show(compose, from: self, options: .modal(embedInNav: true))
     }
 }
 

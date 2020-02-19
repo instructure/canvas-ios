@@ -470,9 +470,6 @@
 "Login" = "تسجيل الدخول";
 
 /* No comment provided by engineer. */
-"Manage Children" = "إدارة الأطفال";
-
-/* No comment provided by engineer. */
 "Manual OAuth Login" = "تسجيل دخول OAuth يدوي ";
 
 /* No comment provided by engineer. */
@@ -572,6 +569,9 @@
 "Permission Needed" = "مطلوب إذن";
 
 /* No comment provided by engineer. */
+"Photo Library" = "مكتبة الصور";
+
+/* No comment provided by engineer. */
 "Play" = "تشغيل";
 
 /* No comment provided by engineer. */
@@ -594,6 +594,9 @@
 
 /* No comment provided by engineer. */
 "Quiz" = "الاختبار الموجز";
+
+/* No comment provided by engineer. */
+"Record Audio" = "تسجيل الصوت";
 
 /* No comment provided by engineer. */
 "red" = "أحمر";
@@ -809,6 +812,9 @@
 "Updated Language Settings" = "إعدادات اللغة المحدثة";
 
 /* No comment provided by engineer. */
+"Upload File" = "تحميل ملف";
+
+/* No comment provided by engineer. */
 "Uploading %@ of %@" = "جارٍ تحميل %1$@ من %2$@";
 
 /* No comment provided by engineer. */
@@ -816,6 +822,9 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
+
+/* No comment provided by engineer. */
+"Use Camera" = "استخدام الكاميرا";
 
 /* No comment provided by engineer. */
 "User ID" = "معرف المستخدم";

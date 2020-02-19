@@ -69,7 +69,7 @@ class InboxTests: CoreUITestCase {
     }
 
     func testCanMessageEntireClass() {
-        mockData(APISearchRecipientsRequestable(context: baseCourse, perPage: 10, skipVisibilityChecks: 1, syntheticContexts: 1), value: [])
+        mockData(GetSearchRecipientsRequest(context: baseCourse, skipVisibilityChecks: true, includeContexts: true, perPage: 10), value: [])
         mockData(GetContextPermissionsRequest(context: baseCourse),
                  value: APIPermissions.make(send_messages: true, send_messages_all: true))
 
@@ -103,7 +103,7 @@ class InboxTests: CoreUITestCase {
     }
 
     func testCanMessageMultiple() {
-        mockData(APISearchRecipientsRequestable(context: baseCourse, perPage: 10, skipVisibilityChecks: 1, syntheticContexts: 1), value: [
+        mockData(GetSearchRecipientsRequest(context: baseCourse, skipVisibilityChecks: true, includeContexts: true, perPage: 10), value: [
             .make(id: 1, name: "Recepient One"),
             .make(id: 2, name: "Recepient Two"),
             .make(id: 3, name: "Recepient Three"),
@@ -140,7 +140,7 @@ class InboxTests: CoreUITestCase {
     }
 
     func testCanMessageAttachment() {
-        mockData(APISearchRecipientsRequestable(context: baseCourse, perPage: 10, skipVisibilityChecks: 1, syntheticContexts: 1), value: [.make()])
+        mockData(GetSearchRecipientsRequest(context: baseCourse, skipVisibilityChecks: true, includeContexts: true, perPage: 10), value: [.make()])
         mockData(GetContextPermissionsRequest(context: baseCourse),
                  value: APIPermissions.make(send_messages: true))
 

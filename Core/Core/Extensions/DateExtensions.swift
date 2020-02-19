@@ -36,6 +36,38 @@ public extension Date {
         return Calendar.current.date(byAdding: .year, value: years, to: self) ?? self
     }
 
+    func addMinutes(_ minutes: Int) -> Date {
+        let endDate = Calendar.current.date(byAdding: .minute, value: minutes, to: self)
+        return endDate ?? Date()
+    }
+
+    func addDays(_ days: Int) -> Date {
+        let endDate = Calendar.current.date(byAdding: .day, value: days, to: self)
+        return endDate ?? Date()
+    }
+
+    func addMonths(_ numberOfMonths: Int) -> Date {
+        let endDate = Calendar.current.date(byAdding: .month, value: numberOfMonths, to: self)
+        return endDate ?? Date()
+    }
+
+    func startOfWeek() -> Date {
+        return Cal.currentCalendar.date(from: Cal.currentCalendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) ?? Date()
+    }
+
+    func endOfWeek() -> Date {
+        let start = startOfWeek()
+        return Cal.currentCalendar.date(byAdding: .weekOfYear, value: 1, to: start) ?? Date()
+    }
+
+    func startOfDay() -> Date {
+        Cal.currentCalendar.startOfDay(for: self)
+    }
+
+    func endOfDay() -> Date {
+        Cal.currentCalendar.date(bySettingHour: 23, minute: 59, second: 59, of: startOfDay()) ?? Date()
+    }
+
     static var dateOnlyFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.setLocalizedDateFormatFromTemplate("MMMd")

@@ -19,22 +19,35 @@
 import Foundation
 import CoreData
 
-public struct GetPage: APIUseCase {
+public struct GetPage: UseCase {
     public typealias Model = Page
 
     public let context: Context
     public var url: String
 
+    var isFrontPage: Bool { url == "front_page" }
+
     public var cacheKey: String? {
         return "get-\(context.canvasContextID)-page-\(url)"
     }
 
-    public var request: GetPageRequest {
-        return GetPageRequest(context: context, url: url)
-    }
-
     public var scope: Scope {
+        if isFrontPage {
+            let contextID = NSPredicate(format: "%K == %@", #keyPath(Page.contextID), context.canvasContextID)
+            let isFrontPage = NSPredicate(format: "%K == true", #keyPath(Page.isFrontPage))
+            let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [contextID, isFrontPage])
+            let order = NSSortDescriptor(key: #keyPath(Page.title), ascending: true)
+            return Scope(predicate: predicate, order: [order])
+        }
         let predicate = NSPredicate(format: "%K == %@ AND %K == %@", #keyPath(Page.contextID), context.canvasContextID, #keyPath(Page.url), url)
         return Scope(predicate: predicate, order: [])
+    }
+
+    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping (APIPage?, URLResponse?, Error?) -> Void) {
+        if isFrontPage {
+            environment.api.makeRequest(GetFrontPageRequest(context: context), callback: completionHandler)
+        } else {
+            environment.api.makeRequest(GetPageRequest(context: context, url: url), callback: completionHandler)
+        }
     }
 }

@@ -70,6 +70,7 @@ yarn-error.log
 scripts/build_automation/release.config
 scripts/coverage/**/
 scripts/coverage/*.xcresult
+scripts/coverage/xccov.json
 scripts/translations/source
 scripts/translations/imports
 scripts/failing-test-pairs.txt

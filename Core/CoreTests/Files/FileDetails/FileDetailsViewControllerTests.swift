@@ -26,17 +26,16 @@ import TestsFoundation
 
 class FileDetailsViewControllerTests: CoreTestCase {
     let file = APIFile.make()
-    let context = ContextModel(.course, id: "2")
-    var controller: FileDetailsViewController!
+    var context: Context? = ContextModel(.course, id: "2")
+    lazy var controller = FileDetailsViewController.create(context: context, fileID: "1", assignmentID: "3")
     var navigation: UINavigationController!
 
     override func setUp() {
         super.setUp()
         environment.mockStore = false
-        controller = FileDetailsViewController.create(context: context, fileID: "1", assignmentID: "3")
         navigation = UINavigationController(rootViewController: controller)
         api.mock(controller.files, value: file)
-        api.mockDownload(file.url.rawValue)
+        api.mockDownload(file.url!.rawValue)
     }
 
     override func tearDown() {
@@ -94,7 +93,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertNil(controller.downloadTask)
 
         XCTAssertNoThrow(try FileManager.default.removeItem(at: url))
-        controller.downloadFile(at: file.url.rawValue) // restart download without local file
+        controller.downloadFile(at: file.url!.rawValue) // restart download without local file
         let session = MockURLSession()
         let task = controller.downloadTask as! MockURLSession.MockDownloadTask
 
@@ -244,7 +243,17 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertFalse(controller.lockView.isHidden)
         XCTAssertEqual(controller.lockLabel.text, "Locked, yo.")
         controller.viewModules() // not yet accessible from UI
-        XCTAssertTrue(router.lastRoutedTo(Route.modules(forCourse: context.id)))
+        XCTAssertTrue(router.lastRoutedTo(Route.modules(forCourse: context!.id)))
+    }
+
+    func testNilContext() {
+        context = nil
+        let file = APIFile.make(filename: "File.heic", contentType: "image/heic", mime_class: "file")
+        mock(file)
+        controller.view.layoutIfNeeded()
+        XCTAssertTrue(controller.spinnerView.isHidden)
+        XCTAssertTrue(controller.progressView.isHidden)
+        XCTAssertEqual(controller.contentView.subviews[0].subviews[0].accessibilityLabel, file.display_name)
     }
 }
 

@@ -159,6 +159,7 @@
 		97F0817423C43E20002B9F68 /* CourseDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0817323C43E20002B9F68 /* CourseDetailsViewControllerTests.swift */; };
 		97F69BA523F1C682009622E3 /* AddStudentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69BA423F1C682009622E3 /* AddStudentController.swift */; };
 		97F69BA723F1D232009622E3 /* AddStudentControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69BA623F1D232009622E3 /* AddStudentControllerTests.swift */; };
+		97F69C4E23F59B12009622E3 /* CalendarContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C4D23F59B12009622E3 /* CalendarContainerViewController.swift */; };
 		9F397F8523C8D54600A3E2AF /* ConversationCoursesActionSheetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F397F8423C8D54600A3E2AF /* ConversationCoursesActionSheetTests.swift */; };
 		9F520B8D23BFC3D200CE3672 /* ConversationCoursesActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F520B8C23BFC3D200CE3672 /* ConversationCoursesActionSheet.swift */; };
 		9F6B43E42243ECD9003C758B /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6B43E32243ECD9003C758B /* DashboardPresenter.swift */; };
@@ -958,6 +959,7 @@
 		97F0817323C43E20002B9F68 /* CourseDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		97F69BA423F1C682009622E3 /* AddStudentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStudentController.swift; sourceTree = "<group>"; };
 		97F69BA623F1D232009622E3 /* AddStudentControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStudentControllerTests.swift; sourceTree = "<group>"; };
+		97F69C4D23F59B12009622E3 /* CalendarContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarContainerViewController.swift; sourceTree = "<group>"; };
 		98A80F881229764105018888 /* Pods-defaults-Parent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Parent.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Parent/Pods-defaults-Parent.release.xcconfig"; sourceTree = "<group>"; };
 		9F397F8423C8D54600A3E2AF /* ConversationCoursesActionSheetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCoursesActionSheetTests.swift; sourceTree = "<group>"; };
 		9F520B8C23BFC3D200CE3672 /* ConversationCoursesActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCoursesActionSheet.swift; sourceTree = "<group>"; };
@@ -1224,6 +1226,7 @@
 				7D54706A23EDC7A0005048BD /* CalendarDaysViewController.swift */,
 				7D54706C23EDF1ED005048BD /* CalendarViewController.swift */,
 				7D58E23B23F1E3D20089D67B /* CalendarViewController.storyboard */,
+				97F69C4D23F59B12009622E3 /* CalendarContainerViewController.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -2055,6 +2058,7 @@
 				5EB4B5BB1C9749CD00CD8885 /* CalendarEventWeekPageViewController.swift in Sources */,
 				3B36A2D82322C15200599A1E /* APIAlertThreshold.swift in Sources */,
 				5E0F9A731C739E6A00BB7707 /* DashboardViewController.swift in Sources */,
+				97F69C4E23F59B12009622E3 /* CalendarContainerViewController.swift in Sources */,
 				497C48EB1F9153D100A3BC06 /* CalendarEvents.swift in Sources */,
 				3B801BFF2326CBFB00D143F0 /* StudentSettingsPresenter.swift in Sources */,
 				5E1B51231C8FDD590019D764 /* CalendarEventListViewController.swift in Sources */,

@@ -22,7 +22,7 @@ import Core
 class CourseDetailsViewController: HorizontalMenuViewController {
     private var gradesViewController: GradesViewController!
     private var syllabusViewController: Core.SyllabusViewController!
-    private var summaryViewController: Core.SyllabusActionableItemsViewController!
+    private var summaryViewController: Core.SyllabusSummaryViewController!
     var courseID: String = ""
     var studentID: String = ""
     var viewControllers: [UIViewController] = []
@@ -41,7 +41,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         self?.messagingReady()
     }
 
-    lazy var teachers = env.subscribe(GetSearchRecipients(context: ContextModel(.course, id: courseID), contextQualifier: .teachers)) { [weak self] in
+    lazy var teachers = env.subscribe(GetSearchRecipients(context: ContextModel(.course, id: courseID), qualifier: .teachers)) { [weak self] in
         self?.messagingReady()
     }
 
@@ -98,7 +98,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     }
 
     func configureSummary() {
-        summaryViewController = Core.SyllabusActionableItemsViewController(courseID: courseID, sort: GetAssignments.Sort.dueAt, colorDelegate: self)
+        summaryViewController = Core.SyllabusSummaryViewController.create(courseID: courseID, colorDelegate: self)
         viewControllers.append(summaryViewController)
     }
 
@@ -161,14 +161,37 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         let pending = teachers.pending || student.pending
         if !pending && replyStarted {
             let name = student.first?.fullName ?? ""
-            let tabTitle = titleForSelectedTab() ?? ""
-            let template = NSLocalizedString("Regarding: %@, %@", comment: "Regarding <John Doe>, <Grades | Syllabus>")
+            var tabTitle = titleForSelectedTab() ?? ""
+            tabTitle = tabTitle.replacingOccurrences(of: NSLocalizedString("Summary", comment: ""), with: NSLocalizedString("Syllabus", comment: ""))
+            var template = NSLocalizedString("Regarding: %@, %@", comment: "Regarding <John Doe>, <Grades | Syllabus>")
             let subject = String.localizedStringWithFormat(template, name, tabTitle)
-            let context = ContextModel(.course, id: courseID)
-            let recipients = teachers.map { APIConversationRecipient(searchRecipient: $0) }
-            let r: Route = Route.compose(context: context, recipients: recipients, subject: subject)
-            env.router.route(to: r, from: self, options: .modal(embedInNav: true))
+            template = NSLocalizedString("Regarding: %@, %@", comment: "Regarding <John Doe>, [link to grades or syllabus]")
+            let compose = ComposeViewController.create(
+                context: ContextModel(.course, id: courseID),
+                observeeID: studentID,
+                recipients: teachers.all,
+                subject: subject,
+                hiddenMessage: String.localizedStringWithFormat(template, name, associatedTabConversationLink())
+            )
+            env.router.show(compose, from: self, options: .modal(embedInNav: true))
             replyButton?.isEnabled = true
+        }
+    }
+
+    private func associatedTabConversationLink() -> String {
+        let na = NSLocalizedString("n/a", comment: "")
+        guard let menuItem = MenuItem(rawValue: selectedIndexPath.row) else { return na }
+        guard let baseURL = env.currentSession?.baseURL, var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true) else { return na }
+        switch menuItem {
+        case .grades:
+            components.path = "/courses/\(courseID)/grades/\(studentID)"
+            return components.url?.absoluteString ?? na
+        case .syllabus, .summary:
+            if let syllabusTab = tabs.first(where: { $0.id == "syllabus" }), courses.first?.syllabusBody?.isEmpty == false {
+                components.path = syllabusTab.htmlURL.path
+                return components.url?.absoluteString ?? na
+            }
+            return na
         }
     }
 

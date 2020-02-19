@@ -20,6 +20,10 @@ import Foundation
 import UIKit
 import Core
 
+protocol CalendarViewControllerDelegate: class {
+    func selectedDateDidChange(_ date: Date)
+}
+
 class CalendarViewController: UIViewController, CalendarDaysDelegate {
     @IBOutlet weak var dropdownView: UIImageView!
     @IBOutlet weak var filterButton: UIButton!
@@ -32,6 +36,7 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
     @IBOutlet weak var daysHeight: NSLayoutConstraint!
     @IBOutlet weak var weekdayRow: UIStackView!
     @IBOutlet weak var yearLabel: UILabel!
+    weak var delegate: CalendarViewControllerDelegate?
 
     lazy var yearFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -55,9 +60,7 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
 
     let calendar = Calendar.autoupdatingCurrent
     lazy var numberOfDaysInWeek: Int = calendar.maximumRange(of: .weekday)!.count
-    var selectedDate = Clock.now {
-        didSet { clearPageCache() }
-    }
+    var selectedDate = Clock.now
     var isExpanded = false
 
     override func viewDidLoad() {
@@ -88,7 +91,7 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
         daysPageController.dataSource = self
         daysPageController.delegate = self
         daysPageController.setViewControllers([
-            CalendarDaysViewController.create(anchorDate: selectedDate, delegate: self),
+            CalendarDaysViewController.create(selectedDate, selectedDate: selectedDate, delegate: self),
         ], direction: .forward, animated: false)
         for view in daysPageController.view.subviews {
             if let scroll = view as? UIScrollView {
@@ -109,15 +112,21 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
     @IBAction func filter(_ sender: UIButton) {
     }
 
+    func setSelectedDate(_ date: Date) {
+        selectedDate = date
+        updatePage()
+        clearPageCache()
+        delegate?.selectedDateDidChange(selectedDate)
+    }
+
     func clearPageCache() {
         daysPageController.dataSource = nil
         daysPageController.dataSource = self
     }
 
     func updatePage() {
-        let date = days.monthDate(isExpanded: isExpanded)
-        yearLabel.text = yearFormatter.string(from: date)
-        monthButton.setTitle(monthFormatter.string(from: date), for: .normal)
+        yearLabel.text = yearFormatter.string(from: selectedDate)
+        monthButton.setTitle(monthFormatter.string(from: selectedDate), for: .normal)
         updateExpanded()
     }
 
@@ -130,19 +139,34 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
 
 extension CalendarViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        let firstDate = (viewController as? CalendarDaysViewController)?.firstDate(isExpanded: isExpanded)
-        let prevDate = calendar.date(byAdding: .day, value: -numberOfDaysInWeek / 2, to: firstDate!)!
-        return CalendarDaysViewController.create(anchorDate: prevDate, delegate: self)
+        return daysPageDelta(-1, from: (viewController as? CalendarDaysViewController)!)
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        let lastDate = (viewController as? CalendarDaysViewController)?.lastDate(isExpanded: isExpanded)
-        let nextDate = calendar.date(byAdding: .day, value: numberOfDaysInWeek / 2, to: lastDate!)!
-        return CalendarDaysViewController.create(anchorDate: nextDate, delegate: self)
+        return daysPageDelta(1, from: (viewController as? CalendarDaysViewController)!)
+    }
+
+    func daysPageDelta(_ delta: Int, from days: CalendarDaysViewController) -> CalendarDaysViewController {
+        var midDate = days.midDate(isExpanded: isExpanded)
+        var selectedDate = days.selectedDate
+        if isExpanded {
+            midDate = calendar.date(byAdding: .month, value: 1 * delta, to: midDate)!
+            if calendar.compare(selectedDate, to: midDate, toGranularity: .month) != .orderedSame {
+                selectedDate = calendar.date(byAdding: .month, value: 1 * delta, to: selectedDate)!
+            }
+        } else {
+            midDate = calendar.date(byAdding: .day, value: numberOfDaysInWeek * delta, to: midDate)!
+            selectedDate = calendar.date(byAdding: .day, value: numberOfDaysInWeek  * delta, to: selectedDate)!
+        }
+        return CalendarDaysViewController.create(midDate, selectedDate: selectedDate, delegate: self)
+
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        selectedDate = days.selectedDate
         updatePage()
+        delegate?.selectedDateDidChange(selectedDate)
+        // clearPageCache() // would cause a crash, so don't
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {

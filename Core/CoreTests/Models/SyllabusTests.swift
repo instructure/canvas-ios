@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,25 +18,10 @@
 
 import Foundation
 @testable import Core
+import TestsFoundation
 
-extension APISearchRecipient {
-    public static func make(
-        id: ID = "1",
-        name: String = "John Doe",
-        full_name: String? = nil,
-        pronouns: String? = nil,
-        avatar_url: URL? = nil,
-        type: APISearchRecipientContext? = .course,
-        common_courses: [String: [String]] = [:]
-    ) -> APISearchRecipient {
-        return APISearchRecipient(
-            id: id,
-            name: name,
-            full_name: full_name ?? name,
-            pronouns: pronouns,
-            avatar_url: APIURL(rawValue: avatar_url),
-            type: type,
-            common_courses: common_courses
-        )
+class SyllabusTests: CoreTestCase {
+    func testMake() {
+        XCTAssertNotNil(Syllabus.make(in: databaseClient))
     }
 }
