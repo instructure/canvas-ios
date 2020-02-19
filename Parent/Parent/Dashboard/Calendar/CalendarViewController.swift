@@ -133,7 +133,7 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
     func updateExpanded() {
         daysHeight.constant = isExpanded ? days.maxHeight : days.minHeight
         dropdownView.transform = CGAffineTransform(rotationAngle: isExpanded ? .pi : 0)
-        view.layoutIfNeeded()
+        view.superview?.layoutIfNeeded()
     }
 }
 
