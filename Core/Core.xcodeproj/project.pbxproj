@@ -334,6 +334,7 @@
 		7DA057522193A30E00A3CFBB /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA057512193A30E00A3CFBB /* IconView.swift */; };
 		7DA20E8F21680DBF00F5FD19 /* UIImageInstIconsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA20E8E21680DBF00F5FD19 /* UIImageInstIconsExtensions.swift */; };
 		7DA20E932168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA20E922168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift */; };
+		7DA2610A23FCB72E005D2121 /* CircleRefreshControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA2610923FCB72E005D2121 /* CircleRefreshControlTests.swift */; };
 		7DA5C48822385435003CDB4C /* SubmissionComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA5C48722385435003CDB4C /* SubmissionComment.swift */; };
 		7DA5C48C22385F95003CDB4C /* GetSubmissionComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA5C48B22385F95003CDB4C /* GetSubmissionComments.swift */; };
 		7DA667EF23834D150062F7B9 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA667EE23834D150062F7B9 /* Todo.swift */; };
@@ -1295,6 +1296,7 @@
 		7DA057512193A30E00A3CFBB /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		7DA20E8E21680DBF00F5FD19 /* UIImageInstIconsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageInstIconsExtensions.swift; sourceTree = "<group>"; };
 		7DA20E922168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageInstIconsExtensionsTests.swift; sourceTree = "<group>"; };
+		7DA2610923FCB72E005D2121 /* CircleRefreshControlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleRefreshControlTests.swift; sourceTree = "<group>"; };
 		7DA5C48722385435003CDB4C /* SubmissionComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionComment.swift; sourceTree = "<group>"; };
 		7DA5C48B22385F95003CDB4C /* GetSubmissionComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionComments.swift; sourceTree = "<group>"; };
 		7DA667EE23834D150062F7B9 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
@@ -2372,6 +2374,7 @@
 				7D016B5E23E8984B00C6E0CA /* BottomSheetPickerViewControllerTests.swift */,
 				7D64A96923622D3A004EAEDF /* CalendarDayIconViewTests.swift */,
 				7D016B6023E89B7F00C6E0CA /* CircleProgressViewTests.swift */,
+				7DA2610923FCB72E005D2121 /* CircleRefreshControlTests.swift */,
 				7D8B79022162B9E2005E08F1 /* CoreWebViewTests.swift */,
 				7D979CC9215BDFD500567627 /* DividerViewTests.swift */,
 				7D63F78D215D7B8100151E49 /* DynamicButtonTests.swift */,
@@ -4386,6 +4389,7 @@
 				3B6043A8232AB81900757B93 /* GradesTests.swift in Sources */,
 				7D52D8AD2301C0A400684932 /* ExperimentalFeatureTests.swift in Sources */,
 				9F3107FD2371EA4400502428 /* PageDetailsPresenterTests.swift in Sources */,
+				7DA2610A23FCB72E005D2121 /* CircleRefreshControlTests.swift in Sources */,
 				B15CA284221E00870014FB02 /* ModuleTests.swift in Sources */,
 				3B6043A5232AB00700757B93 /* AssignmentGroupRequestableTests.swift in Sources */,
 				3BD364AB225D3C02006CEBD8 /* DiscussionTopicTests.swift in Sources */,

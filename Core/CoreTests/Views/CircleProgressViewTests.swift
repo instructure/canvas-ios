@@ -41,6 +41,9 @@ class CircleProgressViewTests: CoreTestCase {
             clockwise: true
         ).cgPath)
 
+        view.color = .red
+        XCTAssertEqual(view.fill.strokeColor, UIColor.red.cgColor)
+
         XCTAssertNotNil(view.layer.animation(forKey: view.rotateKey))
         XCTAssertNotNil(view.fill.animation(forKey: view.morphKey))
         view.progress = 0.0
@@ -51,5 +54,16 @@ class CircleProgressViewTests: CoreTestCase {
         XCTAssertEqual(view.fill.strokeEnd, 0.5)
         view.progress = 1
         XCTAssertEqual(view.fill.strokeEnd, 1)
+
+        view.thickness = 6
+        XCTAssertEqual(view.fill.lineWidth, 6)
+        XCTAssertEqual(view.track.lineWidth, 6)
+        XCTAssertEqual(view.track.path, UIBezierPath(
+            arcCenter: CGPoint(x: 32, y: 32),
+            radius: 58.0 / 2,
+            startAngle: pi * -0.5,
+            endAngle: pi * 1.5,
+            clockwise: true
+        ).cgPath)
     }
 }
