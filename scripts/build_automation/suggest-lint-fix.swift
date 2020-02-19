@@ -91,6 +91,7 @@ enum Github {
                 }
             }
             """
+        defer { try? cmd("cat", "OUT").run() }
         return try (cmd(
             "curl", "-sf", "https://api.github.com/graphql",
             "-X", "POST",
@@ -99,7 +100,7 @@ enum Github {
         ).inputJSON(from: GraphQLRequest(
             query: query,
             variables: [ "prNumber": prNumber ]
-        )) | cmd("jq", ".data.repository.pullRequest.id")).runJson(String.self)
+                    )) | cmd("tee", "OUT") | cmd("jq", "-r", ".data.repository.pullRequest.id")).runString()
     }
 
     static func postReview(_ input: AddPullRequestReviewInput) throws {
@@ -184,6 +185,7 @@ guard let prNumber = Int(env["BITRISE_PULL_REQUEST"] ?? "") else {
     envError("BITRISE_PULL_REQUEST")
 }
 let prID = try Github.findPullRequestId(prNumber: prNumber)
+print("PR ID: \(prID)")
 
 let review = Github.AddPullRequestReviewInput(
     threads: threads,
