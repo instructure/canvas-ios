@@ -220,7 +220,11 @@ workflows:
             set -eo pipefail
 
             mkdir -p tmp
-            ./scripts/runSwiftLint.sh 2>&1 | xcbeautify | tee tmp/swift-lint-results.txt
+            if ! ./scripts/runSwiftLint.sh > tmp/swift-lint-results-raw.txt 2>&1; then
+                xcbeautify < tmp/swift-lint-results-raw.txt > tmp/swift-lint-results.txt
+                ./scripts/build_automation/suggest-lint-fix.swift
+                exit 1
+            fi
     - *yarn-install-root
     - *yarn-install
     - *yarn-global-add-react-native-cli
