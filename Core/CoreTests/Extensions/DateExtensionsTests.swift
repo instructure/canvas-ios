@@ -23,7 +23,7 @@ class DateExtensionsTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        Cal.reset()
+        Cal.mockCalendar(Calendar(identifier: .gregorian), timeZone: TimeZone(abbreviation: "MDT")!)
     }
 
     override func tearDown() {
@@ -72,29 +72,29 @@ class DateExtensionsTests: XCTestCase {
         XCTAssertEqual(a.addMinutes(-1), c)
     }
 
-    /*
-    func testStartOfWeek() {
-        Cal.mockCalendar(Calendar(identifier: .gregorian))
+    func testStartOfMonth() {
         let a = Date(fromISOString: "2019-12-25T14:24:37Z")!
-        var b = Date(fromISOString: "2019-12-22T07:00:00Z")!
-        XCTAssertEqual(a.startOfWeek(), b)
+        let b = Date(fromISOString: "2019-12-01T07:00:00Z")!
+        XCTAssertEqual(a.startOfMonth(), b)
+    }
 
-        Cal.mockCalendar(Calendar(identifier: .iso8601))
-        b = Date(fromISOString: "2019-12-23T07:00:00Z")!
+    func testEndOfMonth() {
+        let a = Date(fromISOString: "2019-12-25T14:24:37Z")!
+        let b = Date(fromISOString: "2019-12-31T07:00:00Z")!
+        XCTAssertEqual(a.endOfMonth(), b)
+    }
+
+    func testStartOfWeek() {
+        let a = Date(fromISOString: "2019-12-25T14:24:37Z")!
+        let b = Date(fromISOString: "2019-12-22T07:00:00Z")!
         XCTAssertEqual(a.startOfWeek(), b)
     }
 
     func testEndOfWeek() {
-        Cal.mockCalendar(Calendar(identifier: .gregorian))
         let a = Date(fromISOString: "2019-12-25T14:24:37Z")!
-        var b = Date(fromISOString: "2019-12-29T07:00:00Z")!
-        XCTAssertEqual(a.endOfWeek(), b)
-
-        Cal.mockCalendar(Calendar(identifier: .iso8601))
-        b = Date(fromISOString: "2019-12-30T07:00:00Z")!
+        let b = Date(fromISOString: "2019-12-29T07:00:00Z")!
         XCTAssertEqual(a.endOfWeek(), b)
     }
-    */
 
     func testDateMediumString() {
         Clock.mockNow(DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 12, day: 25).date!)
