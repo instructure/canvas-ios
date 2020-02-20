@@ -40,7 +40,7 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
         return vc
     }
 
-    override public func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         configureTableview()
         plannables.refresh(force: true)
@@ -48,6 +48,13 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
         emptyStateHeader.text = NSLocalizedString("No Assignments", comment: "")
         emptyStateSubHeader.text = NSLocalizedString("It looks like assignments haven’t been created in this space yet.", comment: "")
         emptytStateImageView.image = UIImage(named: "PandaNoEvents", in: .core, compatibleWith: nil)
+    }
+
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let selected = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selected, animated: true)
+        }
     }
 
     private func configureTableview() {
@@ -76,7 +83,7 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
     }
 }
 
-extension PlannerListViewController: UITableViewDataSource {
+extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return plannables.count
     }
@@ -86,6 +93,11 @@ extension PlannerListViewController: UITableViewDataSource {
         let p = plannables[indexPath]
         cell.update(p)
         return cell
+    }
+
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let plannable = plannables[indexPath] else { return }
+        env.router.route(to: plannable.htmlURL, from: self, options: .detail(embedInNav: true))
     }
 }
 
