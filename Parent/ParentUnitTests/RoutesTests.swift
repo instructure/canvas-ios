@@ -31,5 +31,7 @@ class RoutesTests: ParentTestCase {
         XCTAssert(Parent.router.match(.parse("/calendar")) is CalendarContainerViewController)
         ExperimentalFeature.parentCalendar.isEnabled = false
         XCTAssertNil(Parent.router.match(.parse("/calendar")))
+
+        XCTAssert(Parent.router.match(.parse("/calendar?event_id=1")) is CalendarEventDetailsViewController)
     }
 }

@@ -27,7 +27,11 @@ let router = Router(routes: [
         return try? AccountNotificationViewController(session: session, announcementID: id)
     },
 
-    RouteHandler("/calendar") { _, _ in
+    RouteHandler("/calendar") { url, _ in
+        if let eventID = url.queryItems?.first(where: { $0.name == "event_id" })?.value {
+            guard let session = legacySession, let studentID = currentStudentID else { return nil }
+            return try? CalendarEventDetailsViewController(session: session, studentID: studentID, calendarEventID: eventID)
+        }
         guard let studentID = currentStudentID, ExperimentalFeature.parentCalendar.isEnabled else { return nil }
         return CalendarContainerViewController.create(studentID: studentID)
     },
@@ -80,7 +84,7 @@ let router = Router(routes: [
     },
 
     RouteHandler(.actionableItemCalendarEvent(eventID: ":eventID")) { _, params in
-        guard  let eventID = params["eventID"] else { return nil }
+        guard let eventID = params["eventID"] else { return nil }
         guard let session = legacySession, let studentID = currentStudentID else { return nil }
         return try? CalendarEventDetailsViewController(session: session, studentID: studentID, calendarEventID: eventID)
     },
