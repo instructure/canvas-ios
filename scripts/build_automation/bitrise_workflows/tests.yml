@@ -204,6 +204,14 @@ workflows:
         is_always_run: true
         inputs:
         - command: danger ci
+    - script:
+        title: Clean up checkmarx spam
+        is_always_run: true
+        is_skippable: true
+        inputs:
+          - content: |-
+              set -euo pipefail
+              ./scripts/delete-extra-checkmarx-comments.swift $BITRISE_PULL_REQUEST
     - deploy-to-bitrise-io: {}
 
   danger-yarn:
