@@ -20,4 +20,8 @@ import Foundation
 
 public enum ConversationDetail: String, ElementWrapper {
     case replyButton
+
+    static func cell(id: String) -> Element {
+        app.find(id: "ConversationDetailCell.\(id)")
+    }
 }
