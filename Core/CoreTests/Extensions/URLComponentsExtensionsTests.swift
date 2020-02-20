@@ -31,6 +31,12 @@ class URLComponentsExtensionsTests: XCTestCase {
         XCTAssertEqual(URLComponents.parse(url), URLComponents(string: string)!)
     }
 
+    func testParseURLWithRecursion() {
+        let string = "scheme://h/p?u=https%3A%2F%2Fh%3Fu%3Dhttps%253A%252F%252Fh%253Fa%253Db%2526b%253Dc"
+        let url = URL(string: string)!
+        XCTAssertEqual(URLComponents.parse(url), URLComponents(string: string)!)
+    }
+
     func testParseString() {
         let string = "scheme://user:password@host/path/1/2/3?query=a&b#fragment"
         XCTAssertEqual(URLComponents.parse(string), URLComponents(string: string)!)

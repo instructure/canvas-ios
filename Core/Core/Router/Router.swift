@@ -152,7 +152,7 @@ public class Router: RouterProtocol {
     private func cleanURL(_ url: URLComponents) -> URLComponents {
         // URLComponents does all the encoding we care about except we often have + meaning space in query
         var url = url
-        url.query = url.query?.replacingOccurrences(of: "+", with: " ")
+        url.percentEncodedQuery = url.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%20")
         return url
     }
 

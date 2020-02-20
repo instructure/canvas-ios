@@ -81,6 +81,20 @@ class RouterTests: XCTestCase {
         XCTAssert(mockView.presented?.isKind(of: UINavigationController.self) == false)
     }
 
+    func testRouteCleanURL() {
+        var clean: URLComponents?
+        let router = Router(routes: [
+            RouteHandler("/match") { components, _ in
+                clean = components
+                return nil
+            },
+        ]) { _, _, _ in }
+        router.route(to: .parse("/match?q=a+b&u=a%26b"), from: MockViewController())
+        XCTAssertNotNil(clean)
+        XCTAssertEqual(clean?.queryItems?[0], URLQueryItem(name: "q", value: "a b"))
+        XCTAssertEqual(clean?.queryItems?[1], URLQueryItem(name: "u", value: "a&b"))
+    }
+
     func testAddDoneButton() throws {
         let mockView = MockViewController()
         let router = Router(routes: [
