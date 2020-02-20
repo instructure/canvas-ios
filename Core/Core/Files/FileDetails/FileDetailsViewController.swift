@@ -141,6 +141,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         contentView.addSubview(webView)
         webView.pin(inside: contentView)
         webView.linkDelegate = self
+        webView.accessibilityLabel = "FileDetails.webView"
         progressView.progress = 0
         loadObservation = webView.observe(\.estimatedProgress, options: .new) { [weak self] webView, _ in
             self?.progressView.setProgress(Float(webView.estimatedProgress), animated: true)

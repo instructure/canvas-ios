@@ -51,5 +51,6 @@ class ConversationDetailCell: UITableViewCell {
 
         let template = NSLocalizedString("Message from %@, %@, on %@, %@", comment: "")
         accessibilityLabel = String.localizedStringWithFormat(template, fromLabel.text ?? "", toLabel.text ?? "", dateLabel.text ?? "", m.body)
+        accessibilityIdentifier = "ConversationDetailCell.\(m.id)"
     }
 }

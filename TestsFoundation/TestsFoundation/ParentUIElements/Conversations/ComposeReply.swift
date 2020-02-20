@@ -20,4 +20,9 @@ import Foundation
 
 public enum ComposeReply: String, ElementWrapper {
     case avatar, fromLabel, toLabel, dateLabel, messageLabel, body
+    case attachButton, sendButton
+
+    public static func attachmentCard(index: Int) -> Element {
+        return app.find(id: "AttachmentCardView.\(index)")
+    }
 }
