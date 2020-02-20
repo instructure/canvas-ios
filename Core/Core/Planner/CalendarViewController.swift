@@ -18,7 +18,6 @@
 
 import Foundation
 import UIKit
-import Core
 
 protocol CalendarViewControllerDelegate: class {
     func selectedDateDidChange(_ date: Date)
@@ -67,7 +66,7 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
 
-        let isRTL = UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft
+        let isRTL = view.effectiveUserInterfaceLayoutDirection == .rightToLeft
         monthButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: isRTL ? 28 : 0, bottom: 0, right: isRTL ? 0 : 28)
         monthButton.accessibilityLabel = NSLocalizedString("Show a month at a time", comment: "")
 

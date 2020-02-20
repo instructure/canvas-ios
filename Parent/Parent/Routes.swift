@@ -29,7 +29,7 @@ let router = Router(routes: [
 
     RouteHandler("/calendar") { _, _ in
         guard let studentID = currentStudentID, ExperimentalFeature.parentCalendar.isEnabled else { return nil }
-        return CalendarContainerViewController.create(studentID: studentID)
+        return PlannerViewController.create(studentID: studentID)
     },
 
     RouteHandler(.conversations) { _, _ in

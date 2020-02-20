@@ -18,10 +18,9 @@
 
 import XCTest
 @testable import Core
-@testable import Parent
 import TestsFoundation
 
-class CalendarDaysViewControllerTests: ParentTestCase, CalendarDaysDelegate {
+class CalendarDaysViewControllerTests: CoreTestCase, CalendarDaysDelegate {
     lazy var _selectedDate: Date = Clock.now
     var selectedDate: Date { _selectedDate }
     func setSelectedDate(_ date: Date) {

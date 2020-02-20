@@ -18,7 +18,6 @@
 
 import Foundation
 import UIKit
-import Core
 
 protocol CalendarDaysDelegate: class {
     func setSelectedDate(_ date: Date)
