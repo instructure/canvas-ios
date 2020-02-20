@@ -21,13 +21,12 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   Image,
 } from 'react-native'
 import {
   Text,
 } from '../../../common/text'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 
 type BubbleProps = {
   message: string,
@@ -67,12 +66,12 @@ export default class ChatBubble extends Component<BubbleProps, any> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   myText: {
-    color: 'white',
+    color: colors.textLightest,
   },
   theirText: {
-    color: colors.darkText,
+    color: colors.textDarkest,
   },
   myMessageContainer: {
     maxWidth: 300,
@@ -97,4 +96,4 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
   },
-})
+}))

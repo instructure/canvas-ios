@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"Absent" = "Absennol";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "Pob gradd wedi'i chuddio ar hyn o bryd.";
 
 /* No comment provided by engineer. */
@@ -11,13 +14,43 @@
 "All Posted" = "Pob un wedi'i Bostio";
 
 /* No comment provided by engineer. */
+"Attendance" = "Presenoldeb";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "Gwall Presenoldeb";
+
+/* No comment provided by engineer. */
 "Back" = "Yn ôl";
+
+/* No comment provided by engineer. */
+"Cancel" = "Canslo";
+
+/* No comment provided by engineer. */
+"Change Section" = "Newid yr Adran";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Dewiswch Adran";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Dewiswch Ddyddiad";
 
 /* No comment provided by engineer. */
 "Courses" = "Cwrs";
 
 /* No comment provided by engineer. */
+"Date picker" = "Dewiswr dyddiadau";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Gwrthod";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Gwall: Dim data wedi'i ddychwelyd o API y gofrestr.";
+
+/* No comment provided by engineer. */
 "Everyone" = "Pawb";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "Wedi methu llwytho adnodd galw cofrestr LTI.";
 
 /* No comment provided by engineer. */
 "Graded" = "Wedi graddio";
@@ -38,6 +71,18 @@
 "Hide Grades" = "Cuddio Graddau";
 
 /* No comment provided by engineer. */
+"Late" = "Yn Hwyr";
+
+/* No comment provided by engineer. */
+"Loading more modules..." = "Wrthi’n llwytho mwy o fodiwlau...";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Marcio bod y Cyfan yn Bresennol";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Marcio bod y Gweddill yn Bresennol";
+
+/* No comment provided by engineer. */
 "Modules" = "Modiwlau";
 
 /* No comment provided by engineer. */
@@ -50,8 +95,20 @@
 "Post to..." = "Postio i...";
 
 /* No comment provided by engineer. */
+"Present" = "Presennol";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Dewiswch i newid dyddiad y gofrestr";
+
+/* No comment provided by engineer. */
 "Specific Sections" = "Adrannau Penodol";
 
 /* No comment provided by engineer. */
+"This module is empty." = "Mae’r modiwl hwn yn wag.";
+
+/* No comment provided by engineer. */
 "To Do" = "Tasgau i’w Gwneud";
+
+/* No comment provided by engineer. */
+"Unmark" = "Dad-farcio";
 

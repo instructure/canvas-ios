@@ -23,17 +23,17 @@ import { connect } from 'react-redux'
 import {
   View,
   ScrollView,
-  StyleSheet,
   FlatList,
   Image,
   TouchableHighlight,
 } from 'react-native'
 import i18n from 'format-message'
 import { Text } from '../../../common/text'
-import Images from '../../../images'
+import icon from '../../../images/inst-icons'
 import SpeedGraderActions from '../actions'
 import DrawerState from '../utils/drawer-state'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 
 export class FilesTab extends Component<FileTabProps> {
   listOfFiles () {
@@ -61,20 +61,20 @@ export class FilesTab extends Component<FileTabProps> {
     if (item.thumbnail_url) {
       return <Image source={{ uri: item.thumbnail_url }} style={styles.thumbnails} />
     }
-    let src = Images.speedGrader.page
+    let src = icon('document', 'line')
     switch (item.mime_class) {
       case 'audio':
-        src = Images.speedGrader.audio
+        src = icon('audio', 'line')
         break
       case 'video':
-        src = Images.speedGrader.video
+        src = icon('video', 'line')
         break
       case 'pdf':
-        src = Images.speedGrader.pdf
+        src = icon('pdf', 'line')
         break
       case 'doc':
       default:
-        src = Images.speedGrader.page
+        src = icon('document', 'line')
         break
     }
     return <Image source={src} style={styles.icons} />
@@ -87,7 +87,7 @@ export class FilesTab extends Component<FileTabProps> {
     const traits = selected ? 'selected' : 'none'
     return <View>
       <TouchableHighlight
-        underlayColor="#eee"
+        underlayColor={colors.backgroundLight}
         onPress={() => this.selectFile(index)}
         accessible={true}
         accessibilityTraits={traits}
@@ -101,7 +101,7 @@ export class FilesTab extends Component<FileTabProps> {
             <Text style={styles.filename}>{item.display_name}</Text>
           </View>
           <View style={styles.checkmarkContainer}>
-            {selected && <Image source={Images.check} style={styles.checkmark} />}
+            {selected && <Image source={icon('check', 'solid')} style={styles.checkmark} />}
           </View>
         </View>
       </TouchableHighlight>
@@ -124,10 +124,10 @@ export class FilesTab extends Component<FileTabProps> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   row: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'lightgrey',
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
     paddingHorizontal: 16,
     paddingVertical: 16,
     flex: 1,
@@ -139,8 +139,9 @@ const styles = StyleSheet.create({
   },
   icons: {
     resizeMode: 'contain',
+    height: 24,
     width: 24,
-    tintColor: '#00BCD5',
+    tintColor: colors.textInfo,
   },
   thumbnails: {
     height: 24,
@@ -158,14 +159,14 @@ const styles = StyleSheet.create({
   },
   checkmark: {
     resizeMode: 'contain',
-    tintColor: '#008EE2',
-    height: 10,
-    width: 13,
+    tintColor: colors.primary,
+    height: 18,
+    width: 18,
   },
   checkmarkContainer: {
     alignSelf: 'center',
   },
-})
+}))
 
 export function mapStateToProps (state: AppState, ownProps: RouterProps): FileTabDataProps {
   if (!ownProps.submissionID) {
@@ -175,7 +176,7 @@ export function mapStateToProps (state: AppState, ownProps: RouterProps): FileTa
   }
 
   return {
-    selectedAttachmentIndex: state.entities.submissions[ownProps.submissionID].selectedAttachmentIndex,
+    selectedAttachmentIndex: state.entities.submissions[ownProps.submissionID]?.selectedAttachmentIndex,
   }
 }
 

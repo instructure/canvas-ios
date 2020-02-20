@@ -20,7 +20,6 @@
 
 import React, { Component } from 'react'
 import {
-  StyleSheet,
   TouchableHighlight,
   Image,
   ScrollView,
@@ -31,7 +30,7 @@ import {
 
 import ColorPicker, { getColors } from './ColorPicker'
 import icon, { type InstIconName } from '../../../images/inst-icons'
-import colors from '../../colors'
+import { colors, createStyleSheet } from '../../stylesheet'
 import i18n from 'format-message'
 
 type Props = {
@@ -109,7 +108,7 @@ export default class RichTextToolbar extends Component<Props, State> {
                 <TouchableHighlight
                   style={styles.item}
                   onPress={this._actionForItem(item)}
-                  underlayColor={colors.grey1}
+                  underlayColor={colors.backgroundLight}
                   key={item.action}
                   testID={`rich-text-toolbar-item-${item.action}`}
                   accessibilityLabel={item.accessibilityLabel || this.getTextColorLabel()}
@@ -150,7 +149,7 @@ export default class RichTextToolbar extends Component<Props, State> {
       const style = {
         backgroundColor: textColor,
         borderWidth: isWhite(textColor) ? 1 : 0,
-        borderColor: isWhite(textColor) ? colors.seperatorColor : 'transparent',
+        borderColor: isWhite(textColor) ? colors.borderMedium : 'transparent',
       }
       return (
         <View style={styles.textColor}>
@@ -160,7 +159,7 @@ export default class RichTextToolbar extends Component<Props, State> {
       )
     }
     const isActive = (this.props.active || []).includes(state)
-    const tintColor = isActive ? colors.primaryBrandColor : colors.darkText
+    const tintColor = isActive ? colors.primary : colors.textDarkest
     return <Image source={icon(image, 'solid')} style={[styles.icon, { tintColor }]} />
   }
 
@@ -195,16 +194,16 @@ function isWhite (color: string): boolean {
   return whites.includes(color.toLowerCase().replace(/[ ]/g, ''))
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors) => ({
   container: {
     flexDirection: 'column',
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     justifyContent: 'flex-end',
   },
   itemsContainer: {
     borderTopWidth: 1,
-    borderTopColor: colors.seperatorColor,
-    backgroundColor: 'white',
+    borderTopColor: colors.borderMedium,
+    backgroundColor: colors.backgroundLightest,
   },
   item: {
     width: 50,
@@ -213,19 +212,19 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   icon: {
-    tintColor: colors.darkText,
-    height: 18,
-    width: 18,
+    tintColor: colors.textDarkest,
+    height: 24,
+    width: 24,
   },
   textColor: {
-    width: 18,
-    height: 18,
+    width: 24,
+    height: 24,
   },
   textColorSwatch: {
     position: 'absolute',
-    top: 13,
-    left: 0,
+    bottom: 2,
     height: 5,
-    width: 18,
+    left: 2.5,
+    right: 2.5,
   },
-})
+}))

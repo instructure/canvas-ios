@@ -2,7 +2,7 @@
 " Error report ID: (reportID)" = "ID för felrapport: (reportID)";
 
 /* Failure reason from the JSON payload from canvas */
-" Failure reason: (reason)." = "Felorsak: (reason).";
+" Failure reason: (reason)." = "Felorsak: (orsak).";
 
 /* Shows the number of flagged questions */
 "%@ Flagged" = "%@ flaggade";
@@ -28,18 +28,11 @@
 /* Notification to alert the user that there is only 30 seconds left in the time quiz */
 "30 seconds remaining" = "30 sekunder återstår";
 
-/* Mark student absent
-   Student is present in class */
-"Absent" = "Frånvarande";
-
 /* Shows the number questions */
 "All %@ Questions" = "Alla %@ frågor";
 
 /* option to view results for all grading periods */
 "All Grading Periods" = "Alla bedömningsperioder";
-
-/* all pages segmented control title */
-"All Pages" = "Alla sidor";
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Tillåtna försök";
@@ -65,12 +58,6 @@
 /* label to be read for visually impaired users with assignment types */
 "assignment" = "uppgift";
 
-/* No comment provided by engineer. */
-"Attendance" = "Närvaro";
-
-/* Error title for attendance app */
-"Attendance Error" = "Närvarofel";
-
 /* label for quiz availability date */
 "Available Until" = "Tillgänglig tills";
 
@@ -91,9 +78,6 @@
    Cancel upload */
 "Cancel" = "Avbryt";
 
-/* No comment provided by engineer. */
-"Change Section" = "Ändra sektion";
-
 /* Choose a file */
 "Choose a File" = "Välj en fil";
 
@@ -103,14 +87,8 @@
 /* Pick a photo or video */
 "Choose a Photo or Video" = "Välj ett foto eller en video";
 
-/* No comment provided by engineer. */
-"Choose a Section" = "Välj en sektion";
-
 /* Pick a video from library */
 "Choose a Video" = "Välj en video";
-
-/* No comment provided by engineer. */
-"Choose Date" = "Välj datum";
 
 /* No comment provided by engineer. */
 "Collapse" = "Stäng";
@@ -120,9 +98,6 @@
 
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Fortsätt quiz";
-
-/* Failure reason for why it couldn't associate a tab with a context */
-"Could not parse context id from URL" = "Det gick inte att tolka kontext-id från URL";
 
 /* Header label for a screen that customizes a course */
 "Customize" = "Anpassa";
@@ -135,9 +110,6 @@
 
 /* Error title for a persistence related data failure */
 "Data Error" = "Datafel";
-
-/* No comment provided by engineer. */
-"Date picker" = "Datumväljare";
 
 /* DeepOrange course color button */
 "DeepOrange" = "DeepOrange";
@@ -160,8 +132,7 @@
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Diskfel";
 
-/* Dismiss an error alert
-   Dismiss an error dialog
+/* Dismiss an error dialog
    Dismiss button for error alert
    Dismiss button for error messages */
 "Dismiss" = "Avvisa";
@@ -192,25 +163,10 @@
 "Error Loading Quiz" = "Fel vid inläsning av quiz";
 
 /* No comment provided by engineer. */
-"Error parsing the Roll Call response. Expected (e), received (a)" = "Ett fel uppstod vid tolkningen av svaret på Roll call-data. Förväntade (e), mottog (a)";
-
-/* No comment provided by engineer. */
-"Error parsing the Roll Call response. Expected (e), received (a) for key (k)" = "Ett fel uppstod vid tolkningen av svaret på Roll call-data. Förväntade (e), mottog (a) för nyckeln (k)";
-
-/* No comment provided by engineer. */
-"Error parsing the Roll Call response. Key not found: (k)" = "Ett fel uppstod vid tolkningen av svaret på Roll call-data. Nyckeln hittades inte: (k)";
-
-/* No comment provided by engineer. */
-"Error parsing the Roll Call response. Unexpected null value: (k)" = "Ett fel uppstod vid tolkningen av svaret på Roll call-data. Oväntat nollvärde: (k)";
-
-/* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Det gick inte att hämta URL:en för verktygsstart";
 
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "Det gick inte att uppdatera uppgiften";
-
-/* rollcall status error */
-"Error: No data returned from the rollcall api." = "Fel: Inga data returnerades från rollcall api.";
 
 /* Exit button to leave the quiz */
 "Exit" = "Avsluta";
@@ -239,11 +195,8 @@
 /* State of the flagged question */
 "Flagged" = "Flaggade";
 
-/* front page segmented control title */
-"Front Page" = "Framsida";
-
 /* No comment provided by engineer. */
-"Get Grades for" = "Hämta bedömningar för";
+"Get Grades for" = "Hämta omdömen för";
 
 /* navigate */
 "Go" = "Gå";
@@ -275,10 +228,6 @@
 /* No comment provided by engineer. */
 "Invalid date received from API." = "Ogiltigt datum togs emot från API";
 
-/* Mark student late
-   Student is present in class */
-"Late" = "Sen";
-
 /* No comment provided by engineer. */
 "Launch External Tool" = "Starta externt verktyg";
 
@@ -303,12 +252,6 @@
 /* Title for when another tool called Lockdown Browser is required to take a quiz */
 "Lockdown Browser Required" = "Webbläsaren Lockdown krävs";
 
-/* No comment provided by engineer. */
-"Mark All as Present" = "Markera alla som närvarande";
-
-/* No comment provided by engineer. */
-"Mark Remaining as Present" = "Markera återstående som närvarande";
-
 /* Error alert title for network error
    Title for network errors */
 "Network Error" = "Nätverksfel";
@@ -324,9 +267,6 @@
 
 /* Error when push channel cannot be found in notificaitons */
 "No push channel found" = "Ingen pushkanal hittades";
-
-/* No comment provided by engineer. */
-"No sections available. Please make sure you are enrolled as a teacher or TA in at least on section of this course." = "Inga sektioner tillgängliga Se till att du är registrerad som lärare eller lärarassistent i minst en del av den här kursen.";
 
 /* when a quiz has no time limit */
 "No time limit" = "Ingen tidsgräns";
@@ -391,10 +331,6 @@
 /* label for number of points in a quiz */
 "Points" = "Poäng";
 
-/* Mark student present
-   Student is present in class */
-"Present" = "Närvarande";
-
 /* Purple course color button */
 "Purple" = "Lila";
 
@@ -423,7 +359,7 @@
 "Quiz Error" = "Fel på quiz";
 
 /* Label for indication that the quiz submission was successful */
-"Quiz Submitted" = "Quiz inlämnat";
+"Quiz Submitted" = "Quiz inskickat";
 
 /* Label for indication that the quiz submission failed */
 "QuizSubmission Failure" = "QuizSubmission Fel";
@@ -485,9 +421,6 @@
 /* Indicates that a matching quiz question needs to have an answer selected */
 "Select Answer" = "Välj svar";
 
-/* No comment provided by engineer. */
-"Select to change the roll call date" = "Välj för att ändra roll call-datum";
-
 /* when a button is selected */
 "Selected" = "Markerade";
 
@@ -517,10 +450,10 @@
 
 /* Submit button title
    Turn in this url button */
-"Submit" = "Lämna in";
+"Submit" = "Skicka in";
 
 /* Label for indication of submitting quiz */
-"Submitting Quiz" = "Lämnar in quiz";
+"Submitting Quiz" = "Skickar in quiz";
 
 /* Take a photo submission choice */
 "Take a Photo" = "Ta ett foto";
@@ -544,10 +477,7 @@
 "The Pages are gone!? Why are the pages always gone?" = "Är sidorna borta!? Varför är alltid sidorna borta?";
 
 /* Description for alert that shows when the quiz hits the due date */
-"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Quizzet ska lämnas in om 1 minut. Vill du lämna in det nu och göra det i tid, eller fortsätta med quizzet och kanske lämna in det för sent?";
-
-/* Error message for interrupted requests marking a to do as done */
-"The request to mark a to do as done was interrupted" = "Begäran om att markera ett att-göra-objekt som klart avbröts";
+"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Quizzet ska lämnas in om 1 minut. Vill du skicka in det nu och göra det i tid, eller fortsätta med quizzet och kanske lämna in det för sent?";
 
 /* bad url message */
 "The text you entered is not a valid URL" = "Texten som du har angett är inte en giltig URL";
@@ -555,14 +485,8 @@
 /* Data encoding error message */
 "There was a problem encoding UTF8 Data" = "Ett problem uppstod när UTF8-data skulle kodas";
 
-/* No comment provided by engineer. */
-"There was a problem fetching the list of course sections." = "Ett problem uppstod när listan över kursavsnitt skulle hämtas.";
-
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Ett problem uppstod när ett svar från servern skulle tolkas.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the (kitModelName) database file." = "Ett problem uppstod vid inläsningen av databasfilen för (kitModelName).";
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "Ett problem uppstod vid inläsningen av databasfilen för AssignmentKit.";
@@ -640,7 +564,7 @@
 "Toggle Flag" = "Växla flaggning";
 
 /* Total grade label */
-"Total Grade" = "Total bedömning";
+"Total Grade" = "Totalt omdöme";
 
 /* Error message when parsing communication preferences */
 "Unable to parse JSON for communication channels" = "Kan inte tolka JSON för kommunikationskanaler";
@@ -662,9 +586,6 @@
 
 /* When a quiz has no limit on the number of attempts */
 "Unlimited" = "Obegränsad";
-
-/* Remove attendance status */
-"Unmark" = "Avmarkera";
 
 /* Upcoming assignments */
 "Upcoming" = "Kommande";

@@ -38,6 +38,14 @@ const pending: PendingCommentState = {
   comment: { type: 'text', message: 'Hello!' },
 }
 
+const pendingMedia = {
+  pending: 1,
+  localID: 'a24b6b08-d5a5-4cc3-b4b7-6199dd1756b8',
+  timestamp: '2017-05-17T05:59:00Z',
+  comment: { type: 'media', mediaID: '1', mediaType: 'audio' },
+  mediaFilePath: '/var/media/1',
+}
+
 const completed: PendingCommentState = {
   pending: 0,
   commentID: '34',
@@ -71,6 +79,23 @@ test('reduces pending comments', () => {
   }
   expect(pendingComments({}, action)).toEqual({
     '32': [pending],
+  })
+})
+
+test('reduces pending media comments', () => {
+  const action = {
+    type: makeAComment.toString(),
+    pending: true,
+    payload: {
+      userID: '32',
+      timestamp: pendingMedia.timestamp,
+      localID: pendingMedia.localID,
+      comment: pendingMedia.comment,
+      mediaFilePath: pendingMedia.mediaFilePath,
+    },
+  }
+  expect(pendingComments({}, action)).toEqual({
+    '32': [pendingMedia],
   })
 })
 

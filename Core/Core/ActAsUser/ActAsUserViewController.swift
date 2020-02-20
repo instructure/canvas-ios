@@ -40,6 +40,7 @@ public class ActAsUserViewController: UITableViewController {
     }
 
     override public func viewDidLoad() {
+        tableView.backgroundColor = .named(.backgroundLightest)
         navigationItem.rightBarButtonItems = [] // remove Done added by Helm
         addCancelButton()
         title = NSLocalizedString("Act as User", bundle: .core, comment: "")
@@ -61,6 +62,11 @@ public class ActAsUserViewController: UITableViewController {
         redPanda.transform = redPanda.transform.rotated(by: .pi / -6).translatedBy(x: 0, y: 0)
         actAsUserButton.layer.cornerRadius = 5
         animatePanda()
+    }
+
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.useModalStyle()
     }
 
     func animatePanda() {

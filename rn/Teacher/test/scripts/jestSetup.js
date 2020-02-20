@@ -31,6 +31,7 @@ import * as template from '../../src/__templates__'
 import i18n from 'format-message'
 import setupI18n from '../../i18n/setup'
 import { shouldTrackAsyncActions } from '../../src/redux/middleware/redux-promise'
+import ExperimentalFeature from '../../src/common/ExperimentalFeature'
 
 setupI18n('en')
 
@@ -142,7 +143,6 @@ NativeModules.TabBarItemCounts = {
 NativeModules.SettingsManager = {
   settings: {
     AppleLocale: 'en',
-    'ExperimentalFeature.allEnabled': true,
   },
   setValues: jest.fn(),
 }
@@ -195,6 +195,10 @@ NativeModules.QLPreviewManager = {
 
 NativeModules.LTITools = {
   launchExternalTool: jest.fn(),
+}
+
+NativeModules.SiriShortcutManager = {
+  donateSiriShortcut: jest.fn(),
 }
 
 jest.mock('NativeEventEmitter')
@@ -304,8 +308,6 @@ NativeModules.ModuleItemsProgress = {
   contributedDiscussion: jest.fn(),
 }
 
-import './../../src/common/global-style'
-
 jest.mock('../../src/common/components/AuthenticatedWebView', () => 'AuthenticatedWebView')
 jest.mock('../../src/common/components/A11yGroup', () => 'A11yGroup')
 jest.mock('react-native-device-info', () => {
@@ -407,3 +409,20 @@ jest.mock('react-native-keyboard-aware-scroll-view/lib/KeyboardAwareScrollView',
 jest.mock('I18nManager', () => ({
   isRTL: false,
 }))
+
+jest.mock('Settings', () => {
+  let settings = {}
+  return {
+    get (key) {
+      return settings[key]
+    },
+    set (obj) {
+      settings = {
+        ...settings,
+        ...obj,
+      }
+    },
+  }
+})
+
+ExperimentalFeature.allEnabled = true

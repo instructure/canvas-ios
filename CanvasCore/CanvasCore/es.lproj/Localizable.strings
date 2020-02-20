@@ -1,5 +1,5 @@
 /* Error message component with the report id */
-" Error report ID: (reportID)" = " ID del informe del error: (reportID)";
+" Error report ID: (reportID)" = " Identificación del reporte del error: (reportID)";
 
 /* Failure reason from the JSON payload from canvas */
 " Failure reason: (reason)." = " Motivo de la falla: (motivo).";
@@ -23,23 +23,16 @@
 "0 Questions Answered" = "0 preguntas respondidas";
 
 /* Notification to alert the user that there is only 5 minutes left in the timed quiz */
-"5 minutes remaining" = "Quedan 5 minutos";
+"5 minutes remaining" = "Quedan 5 minutos";
 
 /* Notification to alert the user that there is only 30 seconds left in the time quiz */
-"30 seconds remaining" = "Quedan 30 segundos";
-
-/* Mark student absent
-   Student is present in class */
-"Absent" = "Ausente";
+"30 seconds remaining" = "Quedan 30 segundos";
 
 /* Shows the number questions */
 "All %@ Questions" = "Todas las %@ preguntas";
 
 /* option to view results for all grading periods */
 "All Grading Periods" = "Todos los períodos de calificación";
-
-/* all pages segmented control title */
-"All Pages" = "Todas las páginas";
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Intentos permitidos";
@@ -51,25 +44,19 @@
 "An unknown error has occurred." = "Ha ocurrido un error desconocido.";
 
 /* No comment provided by engineer. */
-"Answers will not be submitted while offline." = "No No se enviarán respuestas mientras esté sin conexión.";
+"Answers will not be submitted while offline." = "No se enviarán respuestas mientras esté sin conexión.";
 
 /* Question to confirm user wants to navigate away from a quiz. */
-"Are you sure you want to leave this quiz?" = "¿Seguro que quiere abandonar esta evaluación?";
+"Are you sure you want to leave this quiz?" = "¿Seguro que quiere abandonar este examen?";
 
 /* Confirmation before submitting a quiz */
-"Are you sure you want to submit your answers?" = "¿Está seguro de que desea enviar sus respuestas?";
+"Are you sure you want to submit your answers?" = "¿Está seguro de que desea entregar sus respuestas?";
 
 /* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "¿Está seguro de que desea borrar este comentario?";
+"Are you sure you would like to delete this comment?" = "¿Está seguro de que desea eliminar este comentario?";
 
 /* label to be read for visually impaired users with assignment types */
 "assignment" = "tarea";
-
-/* No comment provided by engineer. */
-"Attendance" = "Asistencia";
-
-/* Error title for attendance app */
-"Attendance Error" = "Error de asistencia";
 
 /* label for quiz availability date */
 "Available Until" = "Disponible hasta";
@@ -81,7 +68,7 @@
 "Blue" = "Azul";
 
 /* No comment provided by engineer. */
-"Browse" = "Explorar";
+"Browse" = "Examinar";
 
 /* Title for screen to build a panda avatar */
 "Build Your Panda!" = "¡Construya su Panda!";
@@ -90,9 +77,6 @@
    Cancel button title
    Cancel upload */
 "Cancel" = "Cancelar";
-
-/* No comment provided by engineer. */
-"Change Section" = "Cambiar sección";
 
 /* Choose a file */
 "Choose a File" = "Elegir un archivo";
@@ -103,14 +87,8 @@
 /* Pick a photo or video */
 "Choose a Photo or Video" = "Escoja una foto o video";
 
-/* No comment provided by engineer. */
-"Choose a Section" = "Escoger una sección";
-
 /* Pick a video from library */
 "Choose a Video" = "Escoja un video";
-
-/* No comment provided by engineer. */
-"Choose Date" = "Escoger fecha";
 
 /* No comment provided by engineer. */
 "Collapse" = "Colapsar";
@@ -119,10 +97,7 @@
 "Comments" = "Comentarios";
 
 /* Button for electing to be late on a quiz */
-"Continue Quiz" = "Continuar la evaluación";
-
-/* Failure reason for why it couldn't associate a tab with a context */
-"Could not parse context id from URL" = "No se pudo analizar la Identificación del contexto desde la URL";
+"Continue Quiz" = "Continuar el examen";
 
 /* Header label for a screen that customizes a course */
 "Customize" = "Personalizar";
@@ -135,9 +110,6 @@
 
 /* Error title for a persistence related data failure */
 "Data Error" = "Error de datos";
-
-/* No comment provided by engineer. */
-"Date picker" = "Seleccionador de fechas";
 
 /* DeepOrange course color button */
 "DeepOrange" = "DeepOrange";
@@ -152,16 +124,15 @@
 "Delete Comment" = "Eliminar comentario";
 
 /* message for delete dialog of audio recorder */
-"Delete recording?" = "¿Desea borrar la grabación?";
+"Delete recording?" = "¿Desea eliminar la grabación?";
 
 /* label to be read for visually impaired users with discusstion topic assignment types */
-"discussion topic" = "tema del foro";
+"discussion topic" = "tema del foro de discusión";
 
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Error de disco";
 
-/* Dismiss an error alert
-   Dismiss an error dialog
+/* Dismiss an error dialog
    Dismiss button for error alert
    Dismiss button for error messages */
 "Dismiss" = "Descartar";
@@ -171,7 +142,7 @@
 "Done" = "Listo";
 
 /* due date label for quiz due date */
-"Due Date" = "Fecha límite";
+"Due Date" = "Fecha de entrega";
 
 /* Data encoding error title */
 "Encoding Error" = "Error de codificación";
@@ -189,28 +160,13 @@
 "Error loading cache management database." = "Error al cargar la base de datos de administración de la memoria caché.";
 
 /* Title for quiz loading error */
-"Error Loading Quiz" = "Error al cargar la evaluación";
-
-/* No comment provided by engineer. */
-"Error parsing the Roll Call response. Expected (e), received (a)" = "Error al analizar la respuesta de la lista de asistencia. Esperado (e), recibido (a)";
-
-/* No comment provided by engineer. */
-"Error parsing the Roll Call response. Expected (e), received (a) for key (k)" = "Error al analizar la respuesta de la lista de asistencia. Esperado (e), recibido (a) para la tecla (k)";
-
-/* No comment provided by engineer. */
-"Error parsing the Roll Call response. Key not found: (k)" = "Error al analizar la respuesta de la lista de asistencia. Tecla no encontrada: (k)";
-
-/* No comment provided by engineer. */
-"Error parsing the Roll Call response. Unexpected null value: (k)" = "Error al analizar la respuesta de la lista de asistencia. Valor nulo inesperado: (k)";
+"Error Loading Quiz" = "Error al cargar el examen";
 
 /* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Error al recuperar la URL de ejecución de la herramienta";
 
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "Error al subir la tarea";
-
-/* rollcall status error */
-"Error: No data returned from the rollcall api." = "Error: No se devolvieron datos de la api de la lista de asistencia.";
 
 /* Exit button to leave the quiz */
 "Exit" = "Salir";
@@ -234,13 +190,10 @@
 "Favorites" = "Favoritos";
 
 /* title for file upload errors */
-"File Upload Error" = "Error al subir el archivo";
+"File Upload Error" = "Error al cargar el archivo";
 
 /* State of the flagged question */
 "Flagged" = "Marcada";
-
-/* front page segmented control title */
-"Front Page" = "Página de inicio";
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Obtener calificaciones para";
@@ -275,12 +228,8 @@
 /* No comment provided by engineer. */
 "Invalid date received from API." = "Se recibió una fecha inválida de API";
 
-/* Mark student late
-   Student is present in class */
-"Late" = "Atrasado";
-
 /* No comment provided by engineer. */
-"Launch External Tool" = "Lanzar la herramienta externa";
+"Launch External Tool" = "Iniciar la herramienta externa";
 
 /* Leave the quiz */
 "Leave" = "Abandonar";
@@ -298,16 +247,10 @@
 "Lock Date Reached\nSubmitting" = "Fecha de bloqueo alcanzada\nPresentando";
 
 /* Detail label for when a tool called Lockdown Browser is required to take the quiz */
-"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Se requiere LockDown Browser para poder ver los resultados. Abra la evaluación en LockDown Browser para continuar.";
+"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Se requiere LockDown Browser para poder ver los resultados. Abra el examen en LockDown Browser para continuar.";
 
 /* Title for when another tool called Lockdown Browser is required to take a quiz */
 "Lockdown Browser Required" = "Se requiere LockDown Browser";
-
-/* No comment provided by engineer. */
-"Mark All as Present" = "Marcar todos como Presentes";
-
-/* No comment provided by engineer. */
-"Mark Remaining as Present" = "Marcar los restantes como Presentes";
 
 /* Error alert title for network error
    Title for network errors */
@@ -317,19 +260,16 @@
 "Next" = "Siguiente";
 
 /* A quiz that has no due date */
-"No Due Date" = "No hay fecha límite";
+"No Due Date" = "No hay fecha de entrega";
 
 /* Title for alert when a module item doesn't have mastery paths configured */
-"No Mastery Paths" = "No se encuentran trayectorias de maestría";
+"No Mastery Paths" = "No se encuentran trayectorias de dominio";
 
 /* Error when push channel cannot be found in notificaitons */
 "No push channel found" = "No se encontraron canales automáticos";
 
-/* No comment provided by engineer. */
-"No sections available. Please make sure you are enrolled as a teacher or TA in at least on section of this course." = "Sin secciones disponibles. Asegúrese de estar inscrito como profesor o profesor auxiliar (TA) en al menos una sección de este curso.";
-
 /* when a quiz has no time limit */
-"No time limit" = "Sin tiempo límite";
+"No time limit" = "No hay límite de tiempo";
 
 /* Section header for assignments without an assignment group */
 "None" = "Ninguno";
@@ -356,13 +296,13 @@
 "Orange" = "Anaranjado";
 
 /* Overdue assignmnets (not turned in) */
-"Overdue" = "Atrasado";
+"Overdue" = "Con atraso";
 
 /* Assignments that have been turned in and are past */
 "Past" = "Pasado";
 
 /* Pause recording/playback */
-"Pause" = "Pausa";
+"Pause" = "Pausar";
 
 /* record button a11y hint */
 "Pause playback" = "Pausar la reproducción";
@@ -386,14 +326,10 @@
 "Playback Error" = "Error de reproducción";
 
 /* No comment provided by engineer. */
-"Please check your network connection and try again." = "Por favor, compruebe la conexión de la red y vuelva a intentarlo.";
+"Please check your network connection and try again." = "Compruebe la conexión de la red y vuelva a intentarlo.";
 
 /* label for number of points in a quiz */
 "Points" = "Puntos";
-
-/* Mark student present
-   Student is present in class */
-"Present" = "Presente";
 
 /* Purple course color button */
 "Purple" = "Morado";
@@ -402,7 +338,7 @@
 "Question" = "Pregunta";
 
 /* state for a question that has been flagged */
-"Question (number) Flagged" = "PrPregunta (número) marcada";
+"Question (number) Flagged" = "Pregunta (número) marcada";
 
 /* state for unflagged question */
 "Question (number) Unflagged" = "Pregunta (número) sin marcar";
@@ -414,16 +350,16 @@
 "Questions" = "Preguntas";
 
 /* label to be read for visually impaired users with quiz assignment types */
-"quiz" = "evaluación";
+"quiz" = "examen";
 
 /* Title for alert that shows when a quiz hits the due date */
-"Quiz Due" = "La evaluación vence";
+"Quiz Due" = "El examen vence";
 
 /* Title for quiz error */
-"Quiz Error" = "Error de la evaluación";
+"Quiz Error" = "Error del examen";
 
 /* Label for indication that the quiz submission was successful */
-"Quiz Submitted" = "Evaluación enviada";
+"Quiz Submitted" = "Examen entregado";
 
 /* Label for indication that the quiz submission failed */
 "QuizSubmission Failure" = "QuizSubmission Fracaso";
@@ -450,10 +386,10 @@
 "Red" = "Rojo";
 
 /* No comment provided by engineer. */
-"Remove" = "Remover";
+"Remove" = "Eliminar";
 
 /* Remove the formatting of the essay question text */
-"Remove Formatting" = "Remover el formato";
+"Remove Formatting" = "Eliminar el formato";
 
 /* No comment provided by engineer. */
 "Removed %1$@" = "Eliminado %1$@";
@@ -465,7 +401,7 @@
 "Reply" = "Respuesta";
 
 /* Button to report an error */
-"Report" = "Informe";
+"Report" = "Reporte";
 
 /* Record button a11y label */
 "Request Audio Recording Permission" = "Solicitar permiso para grabación de audio";
@@ -474,19 +410,16 @@
 "Request Permission to record audio" = "Solicitar permiso para grabar audio";
 
 /* button for resuming a quiz */
-"Resume Quiz" = "Continuar la evaluación";
+"Resume Quiz" = "Continuar el examen";
 
 /* button for retaking quiz */
-"Retake Quiz" = "Retomar la evaluación";
+"Retake Quiz" = "Volver a realizar el examen";
 
 /* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
 "Select all that apply" = "Seleccionar todas las que apliquen";
 
 /* Indicates that a matching quiz question needs to have an answer selected */
 "Select Answer" = "Seleccionar respuesta";
-
-/* No comment provided by engineer. */
-"Select to change the roll call date" = "Seleccione para cambiar la fecha de la lista de asistencia";
 
 /* when a button is selected */
 "Selected" = "Seleccionado";
@@ -517,10 +450,10 @@
 
 /* Submit button title
    Turn in this url button */
-"Submit" = "Presentar";
+"Submit" = "Entregar";
 
 /* Label for indication of submitting quiz */
-"Submitting Quiz" = "Enviando la evaluación";
+"Submitting Quiz" = "Enviando el examen";
 
 /* Take a photo submission choice */
 "Take a Photo" = "Tomar una foto";
@@ -532,7 +465,7 @@
 "Take Photo or Video" = "Tomar foto o video";
 
 /* Button for taking the quiz */
-"Take Quiz" = "Tomar la evaluación";
+"Take Quiz" = "Tomar el examen";
 
 /* Teal course color button */
 "Teal" = "Verde azulado";
@@ -544,10 +477,7 @@
 "The Pages are gone!? Why are the pages always gone?" = "¡Las páginas han desaparecido! ¿Por qué las páginas siempre desaparecen?";
 
 /* Description for alert that shows when the quiz hits the due date */
-"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "La evaluación caduca en 1 minuto. ¿Desea enviarla ahora y presentarla a tiempo o continuar tomando la evaluación y posiblemente presentarla tarde?";
-
-/* Error message for interrupted requests marking a to do as done */
-"The request to mark a to do as done was interrupted" = "La solicitud para marcar algo que se debe hacer como hecho fue interrumpida";
+"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "El examen caduca en 1 minuto. ¿Desea entregarlo ahora y presentarlo a tiempo o continuar tomando el examen y posiblemente presentarlo con atraso?";
 
 /* bad url message */
 "The text you entered is not a valid URL" = "El texto introducido no es una URL válida";
@@ -555,14 +485,8 @@
 /* Data encoding error message */
 "There was a problem encoding UTF8 Data" = "Hubo un problema al codificar los datos de UTF8";
 
-/* No comment provided by engineer. */
-"There was a problem fetching the list of course sections." = "Se produjo un problema al buscar la lista de secciones del curso.";
-
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Hubo un problema al interpretar una respuesta desde el servidor.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the (kitModelName) database file." = "Se produjo un problema al cargar el archivo de la base de datos (kitModelName).";
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "Hubo un problema al cargar el AssignmentKit archivo de la base de datos.";
@@ -577,7 +501,7 @@
 "There was a problem loading the FileKit database file." = "Hubo un problema al cargar el FileKit archivo de la base de datos.";
 
 /* Page list fails */
-"There was a problem loading the Pages database file." = "Hubo un problema al cargar el archivo de la base de datos de Pages .";
+"There was a problem loading the Pages database file." = "Hubo un problema al cargar el archivo de la base de datos de Pages.";
 
 /* PeepKit Database Load Failure Message */
 "There was a problem loading the PeepKit database file." = "Hubo un problema al cargar el PeepKit archivo de la base de datos.";
@@ -592,10 +516,10 @@
 "There was a problem reading cached data" = "Hubo un problema al leer los datos almacenados en caché";
 
 /* Error description for Push Notifications registration error. */
-"There was a problem registering your device for push notifications." = "Se ha producido un problema al registrar tu dispositivo para notificaciones push.";
+"There was a problem registering your device for push notifications." = "Se ha producido un problema al registrar su dispositivo para notificaciones push.";
 
 /* Error description for failing to compute the URL to a quiz */
-"There was a problem updating the Quiz URL" = "Hubo un problema al subir la URL de la evaluación";
+"There was a problem updating the Quiz URL" = "Hubo un problema al subir la URL del examen";
 
 /* generic error message */
 "There was a problem with the Canvas request." = "Hubo un problema con la solicitud de Canvas.";
@@ -610,28 +534,28 @@
 "There was an error while communicating with the server." = "Hubo un error durante la comunicación con el servidor.";
 
 /* No comment provided by engineer. */
-"There was no data!" = "¡No habían datos!";
+"There was no data!" = "¡No había datos!";
 
 /* Warning to users editing an essay question that was edited on the web. */
 "This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser." = "Esta pregunta del ensayo ha sido editada en la web y puede contener formato, enlaces o imágenes. A fin de editar esta respuesta en su dispositivo móvil, deberemos borrar el formato (incluidos los enlaces e imágenes). De lo contrario, puede continuar editando la pregunta a través de un navegador web.";
 
 /* Body for alert when a module item doesn't have mastery paths configured */
-"This module item does not have mastery paths configured." = "El elemento del módulo no tiene trayectorias de maestría configuradas.";
+"This module item does not have mastery paths configured." = "El item del módulo no tiene trayectorias de dominio configuradas.";
 
 /* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
 "This page is currently locked and not viewable." = "Esta página actualmente está bloqueada y no es visible.";
 
 /* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
-"This quiz has an IP address filter set." = "Esta evaluación tiene un conjunto de filtros de direcciones IP.";
+"This quiz has an IP address filter set." = "Este examen tiene un conjunto de filtros de direcciones IP.";
 
 /* Message when telling the user they can't take the quiz for some weird reason */
-"This quiz is currently unavailable." = "Esta evaluación no está disponible en este momento.";
+"This quiz is currently unavailable." = "Este examen no está disponible en este momento.";
 
 /* Message when telling the user they can't take the quiz because the quiz is locked */
-"This quiz is locked." = "Esta evaluación está bloqueada.";
+"This quiz is locked." = "Este examen está bloqueado.";
 
 /* No comment provided by engineer. */
-"This quiz is not available offline." = "La evaluación no está disponible sin conexión.";
+"This quiz is not available offline." = "El examen no está disponible sin conexión.";
 
 /* label for the time limit */
 "Time Limit" = "Límite de tiempo";
@@ -661,13 +585,10 @@
 "Unknown Error" = "Error desconocido";
 
 /* When a quiz has no limit on the number of attempts */
-"Unlimited" = "Ilimitado";
-
-/* Remove attendance status */
-"Unmark" = "Desmarcar";
+"Unlimited" = "Ilimitados";
 
 /* Upcoming assignments */
-"Upcoming" = "Próxima";
+"Upcoming" = "Próximo";
 
 /* Message displayed while a file is being uploaded */
 "Uploading file..." = "Cargando archivo...";
@@ -688,11 +609,11 @@
 "You have %d minutes." = "Tiene %d minutos.";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
-"You have used all your attempts available on this quiz." = "Ha usado todos sus intentos disponibles en esta evaluación.";
+"You have used all your attempts available on this quiz." = "Ha usado todos sus intentos disponibles en este examen.";
 
 /* permission was rejected */
 "You must grant (appName) Microphone access in the Settings app in order to record audio." = "Debe otorgar a (appName) acceso al micrófono en la aplicación de Configuraciones para grabar audio.";
 
 /* Error description for file out of space */
-"Your device is out of storage space. Please free up space and try again." = "Su dispositivo no tiene más espacio de almacenamiento. Por favor libere espacio y vuelva a intentarlo.";
+"Your device is out of storage space. Please free up space and try again." = "Su dispositivo no tiene más espacio de almacenamiento. Libere espacio y vuelva a intentarlo.";
 

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j3n-Ay-Z48">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j3n-Ay-Z48">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,54 +23,69 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Grade" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLH-v4-bTa" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                            <rect key="frame" x="16" y="20" width="84" height="13"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semiBold14"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="95%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1S-on-2PR" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                            <rect key="frame" x="16" y="35" width="52.5" height="29"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="29" id="kDU-5r-8j4"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold24"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gaj-1W-VFV" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                            <rect key="frame" x="298" y="28" width="100" height="44"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="44" id="CoX-GE-eiD"/>
-                                                <constraint firstAttribute="width" constant="100" id="OXy-ZP-aT8"/>
-                                            </constraints>
-                                            <state key="normal" title="Filter"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="electric"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semiBold14"/>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="actionUserDidClickFilter:" destination="j3n-Ay-Z48" eventType="touchUpInside" id="Sfe-J3-f7A"/>
-                                            </connections>
-                                        </button>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="7c2-aA-mlj">
+                                            <rect key="frame" x="16" y="16" width="382" height="48"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="lastBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="22T-dU-m0c">
+                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="21.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHp-y7-PBa" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="1" width="42" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold24"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gaj-1W-VFV" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                                            <rect key="frame" x="347" y="0.0" width="35" height="30"/>
+                                                            <state key="normal" title="Filter"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="electric"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semiBold14"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="actionUserDidClickFilter:" destination="j3n-Ay-Z48" eventType="touchUpInside" id="Sfe-J3-f7A"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YAQ-OS-USZ">
+                                                    <rect key="frame" x="0.0" y="27.5" width="382" height="20.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Grade" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLH-v4-bTa" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="88.5" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="95%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1S-on-2PR" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                            <rect key="frame" x="347.5" y="0.0" width="34.5" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="x1S-on-2PR" firstAttribute="top" secondItem="lLH-v4-bTa" secondAttribute="bottom" constant="2" id="192-by-tJn"/>
-                                        <constraint firstItem="x1S-on-2PR" firstAttribute="leading" secondItem="Cna-ob-xU1" secondAttribute="leading" constant="16" id="9yk-qf-Mch"/>
-                                        <constraint firstItem="lLH-v4-bTa" firstAttribute="top" secondItem="Cna-ob-xU1" secondAttribute="top" constant="20" id="F0d-6U-iJP"/>
-                                        <constraint firstItem="lLH-v4-bTa" firstAttribute="leading" secondItem="Cna-ob-xU1" secondAttribute="leading" constant="16" id="N6K-B5-IZI"/>
-                                        <constraint firstAttribute="bottom" secondItem="Gaj-1W-VFV" secondAttribute="bottom" id="lDM-Gn-c7y"/>
-                                        <constraint firstAttribute="trailing" secondItem="Gaj-1W-VFV" secondAttribute="trailing" constant="16" id="n5K-Eb-deh"/>
-                                        <constraint firstAttribute="bottom" secondItem="x1S-on-2PR" secondAttribute="bottom" constant="8" id="qNc-aL-ZWx"/>
+                                        <constraint firstAttribute="bottom" secondItem="7c2-aA-mlj" secondAttribute="bottom" constant="8" id="0Jk-Y7-owb"/>
+                                        <constraint firstAttribute="trailing" secondItem="7c2-aA-mlj" secondAttribute="trailing" constant="16" id="XsN-Zt-o6V"/>
+                                        <constraint firstItem="7c2-aA-mlj" firstAttribute="leading" secondItem="Cna-ob-xU1" secondAttribute="leading" constant="16" id="mfW-Xe-8IV"/>
+                                        <constraint firstItem="7c2-aA-mlj" firstAttribute="top" secondItem="Cna-ob-xU1" secondAttribute="top" constant="16" id="ypF-fd-K5W"/>
                                     </constraints>
                                 </view>
                                 <connections>
@@ -112,12 +125,13 @@
                         <viewLayoutGuide key="safeArea" id="cOb-sB-t27"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="bvs-mD-dxP" id="VDM-r0-44o"/>
                         <outlet property="filterButton" destination="Gaj-1W-VFV" id="s2a-4B-MWm"/>
-                        <outlet property="headerGradeHeader" destination="lLH-v4-bTa" id="cgB-FI-utY"/>
-                        <outlet property="headerGradeTotalLabel" destination="x1S-on-2PR" id="8fV-eH-0em"/>
-                        <outlet property="headerView" destination="Cna-ob-xU1" id="2Sc-7P-zqh"/>
+                        <outlet property="gradingPeriodLabel" destination="SHp-y7-PBa" id="4MQ-du-Vp0"/>
+                        <outlet property="gradingPeriodView" destination="22T-dU-m0c" id="zxn-3b-84t"/>
                         <outlet property="loadingView" destination="MUy-8Z-yN9" id="Sed-qd-e6j"/>
                         <outlet property="tableView" destination="rcC-p7-Yqh" id="KXi-xN-rRQ"/>
+                        <outlet property="totalGradeLabel" destination="x1S-on-2PR" id="5RH-d0-6St"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1EL-Kg-1oU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

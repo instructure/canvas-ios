@@ -19,25 +19,47 @@
 import Foundation
 
 public enum ActivityType: String, Codable {
-    case announcement = "Announcement"
-    case assessmentRequest = "AssessmentRequest"
-    case collaboration = "Collaboration"
-    case conference = "WebConference"
-    case conversation = "Conversation"
     case discussion = "DiscussionTopic"
+    case announcement = "Announcement"
+    case conversation = "Conversation"
     case message = "Message"
     case submission = "Submission"
+    case conference = "WebConference"
+    case collaboration = "Collaboration"
+    case assessmentRequest = "AssessmentRequest"
 }
 
-struct APIActivity: Codable {
+public struct APIActivity: Codable {
     let id: ID
-    let title: String
-    let message: String
+    let title: String?
+    let message: String?
     let html_url: URL
     let created_at: Date
     let updated_at: Date
     let type: ActivityType
-    let context_type: ContextType
+    let context_type: String?
     let course_id: ID?
     let group_id: ID?
+}
+
+public struct GetActivitiesRequest: APIRequestable {
+    public typealias Response = [APIActivity]
+    let perPage: Int?
+
+    public init(perPage: Int? = nil) {
+        self.perPage = perPage
+    }
+
+    public var path: String {
+        let context = ContextModel(.user, id: "self")
+        return "\(context.pathComponent)/activity_stream"
+    }
+
+    public var query: [APIQueryItem] {
+        var query: [APIQueryItem] = []
+        if let perPage = perPage {
+            query.append(.value("per_page", String(perPage)))
+        }
+        return query
+    }
 }

@@ -243,7 +243,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
           accessibilityLabel={i18n('No Submissions to Display')}
           style={styles.loadingWrapper}
         >
-          <Title style={{ margin: global.style.defaultPadding, textAlign: 'center' }}>{i18n("It seems there aren't any valid submissions to grade.")}</Title>
+          <Title style={{ margin: 16, textAlign: 'center' }}>{i18n("It seems there aren't any valid submissions to grade.")}</Title>
           <Button onPress={this.dismiss} title={i18n('Close')} />
         </View>
       )
@@ -268,7 +268,6 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
         getItemLayout={this.getItemLayout}
         showsHorizontalScrollIndicator={false}
         onMomentumScrollEnd={this.scrollEnded}
-        initialScrollIndex={this.state.currentPageIndex}
         style={{ marginLeft: -PAGE_GUTTER_HALF_WIDTH, marginRight: -PAGE_GUTTER_HALF_WIDTH }}
         ref={(e) => { this.scrollView = e }}
       />

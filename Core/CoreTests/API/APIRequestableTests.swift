@@ -25,6 +25,9 @@ class APIQueryItemTests: XCTestCase {
         XCTAssertEqual(APIQueryItem.value("a", "b").toURLQueryItems(), [URLQueryItem(name: "a", value: "b")])
         XCTAssertEqual(APIQueryItem.array("include", [ "a", "b" ]).toURLQueryItems(), [URLQueryItem(name: "include[]", value: "a"), URLQueryItem(name: "include[]", value: "b")])
         XCTAssertEqual(APIQueryItem.include([ "a", "b" ]).toURLQueryItems(), [URLQueryItem(name: "include[]", value: "a"), URLQueryItem(name: "include[]", value: "b")])
+        XCTAssertEqual(APIQueryItem.perPage(10).toURLQueryItems(), [URLQueryItem(name: "per_page", value: "10")])
+        XCTAssertEqual(APIQueryItem.bool("do_it", true).toURLQueryItems(), [URLQueryItem(name: "do_it", value: "1")])
+        XCTAssertEqual(APIQueryItem.bool("do_it", false).toURLQueryItems(), [URLQueryItem(name: "do_it", value: "0")])
     }
 }
 
@@ -64,9 +67,9 @@ class APIRequestableTests: XCTestCase {
         typealias Response = DateHaver
         let path = "form"
         let form: APIFormData? = [
-            "string": .string("abcde"),
-            "data": .data(filename: "data.txt", type: "text/plain", data: "hi".data(using: .utf8)!),
-            "file": .file(filename: "file.gif", type: "image/gif", at: URL(string: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==")!),
+            (key: "string", value: .string("abcde")),
+            (key: "data", value: .data(filename: "data.txt", type: "text/plain", data: "hi".data(using: .utf8)!)),
+            (key: "file", value: .file(filename: "file.gif", type: "image/gif", at: URL(string: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==")!)),
         ]
     }
 

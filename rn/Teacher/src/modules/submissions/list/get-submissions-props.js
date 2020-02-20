@@ -30,6 +30,7 @@ function getEnrollments (courseContent?: CourseContentState, enrollments: Enroll
   if (!courseContent) { return [] }
   return courseContent.enrollments.refs
     .map(ref => enrollments[ref])
+    .filter(e => e?.enrollment_state === 'active')
 }
 
 export function statusProp (submission: ?Submission, dueDate: ?string): ?SubmissionStatus {
@@ -82,7 +83,7 @@ export function gradeProp (submission: ?Submission): GradeProp {
 
 function submissionProps (enrollment: Enrollment, submission: ?SubmissionWithHistory, dueDate: ?any, sectionIDs: { string: [string] }): SubmissionDataProps {
   let { user, course_section_id: sectionID } = enrollment
-  const { id, sortable_name } = user
+  const { id, sortable_name, pronouns } = user
   const avatarURL = user.avatar_url
   const status = statusProp(submission, dueDate)
   const grade = gradeProp(submission)
@@ -92,7 +93,7 @@ function submissionProps (enrollment: Enrollment, submission: ?SubmissionWithHis
   if (submission) {
     submissionID = submission.id
   }
-  return { userID: id, avatarURL, name: sortable_name, status, grade, submissionID, submission, score, sectionID, allSectionIDs }
+  return { userID: id, avatarURL, name: sortable_name, status, grade, submissionID, submission, score, sectionID, allSectionIDs, pronouns }
 }
 
 export function dueDate (assignment: Assignment, user: ?User | SessionUser, group: ?Group): ?string {
@@ -127,7 +128,7 @@ export function pendingProp (assignmentContent?: AssignmentContentState, courseC
     return true // should be getting these things, so we'll say pending til they show up
   }
 
-  return assignmentContent.submissions.pending > 0 || courseContent.enrollments.pending > 0
+  return assignmentContent.submissions.pending > 0 || courseContent.enrollments.pending > 0 || courseContent.groups.pending > 0
 }
 
 // If a submission does not have a grade or an actual submission it will not have a group attached to the submission.

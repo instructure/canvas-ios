@@ -138,7 +138,7 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
     }
 
     @objc func stylePSPDFKit() {
-        let styleManager = PSPDFKit.sharedInstance.styleManager
+        let styleManager = PSPDFKitGlobal.sharedInstance.styleManager
         styleManager.setupDefaultStylesIfNeeded()
 
         let highlightPresets = highlightCanvadocsColors.map { return PSPDFColorPreset(color: $0) }
@@ -199,6 +199,7 @@ extension CanvadocsPDFDocumentPresenter: PSPDFViewControllerDelegate {
     }
 
     public func pdfViewController(_ pdfController: PSPDFViewController, shouldShow menuItems: [PSPDFMenuItem], atSuggestedTargetRect rect: CGRect, for annotations: [PSPDFAnnotation]?, in annotationRect: CGRect, on pageView: PSPDFPageView) -> [PSPDFMenuItem] {
+        annotations?.forEach { (pageView.annotationView(for: $0) as? PSPDFFreeTextAnnotationView)?.resizableView?.allowRotating = false }
         if annotations?.count == 1, let annotation = annotations?.first, let metadata = service.metadata?.annotationMetadata {
             var realMenuItems = [PSPDFMenuItem]()
             realMenuItems.append(PSPDFMenuItem(title: NSLocalizedString("Comments", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), block: {

@@ -28,18 +28,11 @@
 /* Notification to alert the user that there is only 30 seconds left in the time quiz */
 "30 seconds remaining" = "30 eiliad ar ôl";
 
-/* Mark student absent
-   Student is present in class */
-"Absent" = "Absennol";
-
 /* Shows the number questions */
 "All %@ Questions" = "Pob Cwestiwn %@";
 
 /* option to view results for all grading periods */
 "All Grading Periods" = "Pob Cyfnod Graddio";
-
-/* all pages segmented control title */
-"All Pages" = "Pob Tudalen";
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Ymgeisiau a ganiateir";
@@ -65,12 +58,6 @@
 /* label to be read for visually impaired users with assignment types */
 "assignment" = "aseiniad";
 
-/* No comment provided by engineer. */
-"Attendance" = "Presenoldeb";
-
-/* Error title for attendance app */
-"Attendance Error" = "Gwall Presenoldeb";
-
 /* label for quiz availability date */
 "Available Until" = "Ar gael tan";
 
@@ -91,9 +78,6 @@
    Cancel upload */
 "Cancel" = "Canslo";
 
-/* No comment provided by engineer. */
-"Change Section" = "Newid yr Adran";
-
 /* Choose a file */
 "Choose a File" = "Dewiswch Ffeil";
 
@@ -103,14 +87,8 @@
 /* Pick a photo or video */
 "Choose a Photo or Video" = "Dewiswch Lun neu Fideo";
 
-/* No comment provided by engineer. */
-"Choose a Section" = "Dewiswch Adran";
-
 /* Pick a video from library */
 "Choose a Video" = "Dewiswch Fideo";
-
-/* No comment provided by engineer. */
-"Choose Date" = "Dewiswch Ddyddiad";
 
 /* No comment provided by engineer. */
 "Collapse" = "Crebachu";
@@ -120,9 +98,6 @@
 
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Parhau â'r Cwis";
-
-/* Failure reason for why it couldn't associate a tab with a context */
-"Could not parse context id from URL" = "Doedd dim modd dosrannu’r ID cynnwys o'r URL";
 
 /* Header label for a screen that customizes a course */
 "Customize" = "Addasu";
@@ -135,9 +110,6 @@
 
 /* Error title for a persistence related data failure */
 "Data Error" = "Gwall Data";
-
-/* No comment provided by engineer. */
-"Date picker" = "Dewiswr dyddiadau";
 
 /* DeepOrange course color button */
 "DeepOrange" = "DeepOrange";
@@ -160,8 +132,7 @@
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Gwall ar y Ddisg";
 
-/* Dismiss an error alert
-   Dismiss an error dialog
+/* Dismiss an error dialog
    Dismiss button for error alert
    Dismiss button for error messages */
 "Dismiss" = "Diystyru";
@@ -192,25 +163,10 @@
 "Error Loading Quiz" = "Gwall wrth lwytho'r Cwis";
 
 /* No comment provided by engineer. */
-"Error parsing the Roll Call response. Expected (e), received (a)" = "Gwall wrth ddosrannu'r ymateb i'r Gofrestr. Disgwyliedig (e), wedi derbyn (a)";
-
-/* No comment provided by engineer. */
-"Error parsing the Roll Call response. Expected (e), received (a) for key (k)" = "Gwall wrth ddosrannu'r ymateb i'r Gofrestr. Disgwyliedig (e), wedi derbyn (a) ar gyfer allwedd (k)";
-
-/* No comment provided by engineer. */
-"Error parsing the Roll Call response. Key not found: (k)" = "Gwall wrth ddosrannu'r ymateb i'r Gofrestr. Heb ddod o hyd i'r allwedd: (k)";
-
-/* No comment provided by engineer. */
-"Error parsing the Roll Call response. Unexpected null value: (k)" = "Gwall wrth ddosrannu'r ymateb i'r Gofrestr. Gwerth nwl annisgwyl: (k)";
-
-/* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Gwall wrth adfer URL lansio adnodd";
 
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "Gwall wrth ddiweddaru'r Aseiniad";
-
-/* rollcall status error */
-"Error: No data returned from the rollcall api." = "Gwall: Dim data wedi'i ddychwelyd o API y gofrestr.";
 
 /* Exit button to leave the quiz */
 "Exit" = "Gadael";
@@ -238,9 +194,6 @@
 
 /* State of the flagged question */
 "Flagged" = "Wedi fflagio";
-
-/* front page segmented control title */
-"Front Page" = "Tudalen Flaen";
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Nôl Graddau ar gyfer";
@@ -275,10 +228,6 @@
 /* No comment provided by engineer. */
 "Invalid date received from API." = "Dyddiad annilys gan API.";
 
-/* Mark student late
-   Student is present in class */
-"Late" = "Yn Hwyr";
-
 /* No comment provided by engineer. */
 "Launch External Tool" = "Lansio Adnodd Allanol";
 
@@ -303,12 +252,6 @@
 /* Title for when another tool called Lockdown Browser is required to take a quiz */
 "Lockdown Browser Required" = "Mae angen Porwr Lockdown";
 
-/* No comment provided by engineer. */
-"Mark All as Present" = "Marcio bod y Cyfan yn Bresennol";
-
-/* No comment provided by engineer. */
-"Mark Remaining as Present" = "Marcio bod y Gweddill yn Bresennol";
-
 /* Error alert title for network error
    Title for network errors */
 "Network Error" = "Gwall ar y Rhwydwaith";
@@ -324,9 +267,6 @@
 
 /* Error when push channel cannot be found in notificaitons */
 "No push channel found" = "Heb ddod o hyd sianel marchnata";
-
-/* No comment provided by engineer. */
-"No sections available. Please make sure you are enrolled as a teacher or TA in at least on section of this course." = "Dim adrannau ar gael. Gwnewch yn siŵr eich bod wedi ymrestru fel athro neu gynorthwyydd dysgu o leiaf ar adran o'r cwrs hwn.";
 
 /* when a quiz has no time limit */
 "No time limit" = "Dim terfyn amser";
@@ -390,10 +330,6 @@
 
 /* label for number of points in a quiz */
 "Points" = "Pwyntiau";
-
-/* Mark student present
-   Student is present in class */
-"Present" = "Presennol";
 
 /* Purple course color button */
 "Purple" = "Porffor";
@@ -485,9 +421,6 @@
 /* Indicates that a matching quiz question needs to have an answer selected */
 "Select Answer" = "Dewiswch Ateb";
 
-/* No comment provided by engineer. */
-"Select to change the roll call date" = "Dewiswch i newid dyddiad y gofrestr";
-
 /* when a button is selected */
 "Selected" = "Wedi dewis";
 
@@ -546,23 +479,14 @@
 /* Description for alert that shows when the quiz hits the due date */
 "The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Mae angen cyflwyno'r cwis mewn 1 munud. Hoffech chi gyflwyno nawr a bod ar amser neu fwrw ymlaen â'r cwis a mentro bod yn hwyr?";
 
-/* Error message for interrupted requests marking a to do as done */
-"The request to mark a to do as done was interrupted" = "Fe wnaeth rhywbeth amharu ar y cais i farcio bod eitem wedi'i chwblhau ar y rhestr 'pethau i'w gwneud'.";
-
 /* bad url message */
 "The text you entered is not a valid URL" = "Dydy’r URL y gwnaethoch ei roi ddim yn ddilys";
 
 /* Data encoding error message */
 "There was a problem encoding UTF8 Data" = "Problem wrth amgodio Data UTF8";
 
-/* No comment provided by engineer. */
-"There was a problem fetching the list of course sections." = "Problem wrth nôl y rhestr o adrannau'r cwrs.";
-
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Problem wrth ddehongli ymateb gan y gweinydd.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the (kitModelName) database file." = "Problem wrth lwytho’r ffeil cronfa ddata (kitModelName).";
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "Problem wrth lwytho’r ffeil cronfa ddata AssignmentKit.";
@@ -662,9 +586,6 @@
 
 /* When a quiz has no limit on the number of attempts */
 "Unlimited" = "Diderfyn";
-
-/* Remove attendance status */
-"Unmark" = "Dad-farcio";
 
 /* Upcoming assignments */
 "Upcoming" = "Ar y gweill";

@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "Pob Cwrs";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "Pob Cyfnod Graddio";
+
 /* Button to select all members of a group */
 "All members" = "Pob aelod";
 
@@ -366,6 +369,9 @@
 "Choose Video" = "Dewiswch Fideo";
 
 /* No comment provided by engineer. */
+"Clear filter" = "Clirio’r hidlydd";
+
+/* No comment provided by engineer. */
 "Close" = "Cau";
 
 /* No comment provided by engineer. */
@@ -441,6 +447,9 @@
 /* label for customizing a course */
 "Customize" = "Addasu";
 
+/* No comment provided by engineer. */
+"d_events" = "d_events";
+
 /* dashboard page title */
 "Dashboard" = "Dangosfwrdd";
 
@@ -486,7 +495,11 @@
    Title for Discussions view controller */
 "Discussions" = "Trafodaethau";
 
-/* Dismiss an alert dialog */
+/* Dismiss an error button
+   dismiss button
+   Dismiss button for an error dialoue
+   Dismiss error alert button
+   dismiss the alert button */
 "Dismiss" = "Gwrthod";
 
 /* Alert title asking if you want to masquerade */
@@ -501,7 +514,7 @@
 /* Button to cancel deleting folders */
 "Don't delete" = "Peidio â dileu";
 
-/* Button title to mark a to do item as done */
+/* No comment provided by engineer. */
 "Done" = "Wedi gorffen";
 
 /* Shown when we cancel a file download */
@@ -530,9 +543,6 @@
 
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Erbyn:";
-
-/* Due date label for to do items, first placeholder is date, second is time */
-"Due: %@ at %@" = "Erbyn: %1$@ am %2$@";
 
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "Erbyn: %1$@ am %2$@";
@@ -631,6 +641,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Ffeiliau (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Hidlo";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Hidlo yn ôl:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Wedi gorffen llwytho i lawr";
@@ -737,9 +753,6 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "Problem";
-
-/* No comment provided by engineer. */
-"It looks like there’s nothing to do today. Enjoy your day!" = "Does dim byd i’w wneud heddiw yn ôl pob golwg. Mwynhewch eich diwrnod!";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Mae'n wag, does dim angen i chi fod yma.";
@@ -933,6 +946,9 @@
 "No Mastery Paths" = "Dim Llwybrau Meistroli";
 
 /* No comment provided by engineer. */
+"No Notifications" = "Dim Hysbysiadau";
+
+/* No comment provided by engineer. */
 "No recipients" = "Dim derbynwyr";
 
 /* Title for attempting submission without a comment */
@@ -949,9 +965,6 @@
 
 /* No comment provided by engineer. */
 "No Thanks" = "Dim diolch";
-
-/* No comment provided by engineer. */
-"No To-Do Items" = "Dim Eitemau i’w gwneud";
 
 /* error message for a 401 response. */
 "Not Authorized" = "Heb ei awdurdodi";
@@ -1478,6 +1491,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Gwall wrth lwytho’ch cynnwys. Os ydych chi'n llwytho sain neu fideo i fyny, gall fod yn prosesu o hyd.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Does dim byd i’w hysbysu eto.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "Dydi’r ap hwn ddim wedi’i awdurdodi i’w ddefnyddio.";

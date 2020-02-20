@@ -19,7 +19,6 @@
 import ReactiveSwift
 import ReactiveCocoa
 import CanvasCore
-import TechDebt
 import Core
 import class CanvasCore.ModuleItem
 import class CanvasCore.Module
@@ -58,18 +57,17 @@ class ModuleItemViewModel: NSObject {
                     }
                     webView.load(source: .url(url))
                     return CanvasWebViewController(webView: webView, showDoneButton: false, showShareButton: true)
-                case .externalTool(_, _):
-                    guard let launchURL = url else {
-                        return nil
-                    }
-                    var components = URLComponents.parse(launchURL)
-                    components.queryItems = components.queryItems ?? []
-                    components.queryItems?.append(URLQueryItem(name: "launch_type", value: "module_item"))
-                    components.queryItems?.append(URLQueryItem(name: "module_item_id", value: moduleItemID))
-                    guard let url = components.url else {
-                        return nil
-                    }
-                    return LTIViewController(toolName: "", courseID: courseID, launchURL: url, in: self.session, fallbackURL: htmlURL.flatMap(URL.init))
+                case let .externalTool(toolID, url):
+                    guard let courseID = courseID else { return nil }
+                    let tools = LTITools(
+                        context: ContextModel(.course, id: courseID),
+                        id: toolID, url: url,
+                        launchType: .module_item,
+                        assignmentID: nil,
+                        moduleID: moduleID,
+                        moduleItemID: moduleItemID
+                    )
+                    return LTIViewController(tools: tools)
                 default: break
                 }
             }
@@ -187,8 +185,18 @@ class ModuleItemViewModel: NSObject {
             }
         vm.titleTextColor <~ self.locked.producer.map { $0 && type != .assignment && type != .discussion ? .lightGray : .black }
         vm.indentationLevel <~ self.moduleItem.producer.map { $0?.indent ?? 0 }.map { Int($0) }
-        vm.selectionEnabled <~ self.locked.producer.map { !$0 || type == .assignment || type == .discussion }
-        vm.setSelected <~ self.selected
+        vm.selectionEnabled <~ self.locked.producer.map { !$0 && type != .subHeader || type == .assignment || type == .discussion }
+        let becameActive = NotificationCenter.default.reactive
+            .notifications(forName: .moduleItemBecameActive)
+            .take(duringLifetimeOf: vm.setSelected)
+        vm.setSelected <~ self.moduleItem.producer
+            .combineLatest(with: becameActive)
+            .map { moduleItem, notification in
+                if let moduleItem = moduleItem, let id = notification.userInfo?["moduleItemID"] as? String {
+                    return moduleItem.id == id
+                }
+                return false
+            }
 
         let contentType = self.moduleItem.producer.map { $0?.contentType.accessibilityLabel }
         vm.accessibilityLabel <~ SignalProducer.combineLatest(vm.title.producer, vm.subtitle.producer, contentType, self.completed.producer, self.locked.producer)
@@ -297,7 +305,6 @@ class ModuleItemViewModel: NSObject {
 
         super.init()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(moduleItemBecameActive(_:)), name: .moduleItemBecameActive, object: nil)
         beginObservingLockedStatus()
     }
 
@@ -314,12 +321,6 @@ class ModuleItemViewModel: NSObject {
         let completed = moduleItem.producer.map { $0?.completed ?? false }
         let canFulfill = SignalProducer.combineLatest(sameCompletionRequirement.skipRepeats(==), completed.skipRepeats(==)).map { $0 && !$1 }
         return Property(initial: false, then: canFulfill)
-    }
-
-    @objc func moduleItemBecameActive(_ notification: NSNotification) {
-        if let moduleItem = moduleItem.value, let id = notification.userInfo?["moduleItemID"] as? String {
-            selected.value = moduleItem.id == id
-        }
     }
 
     @objc func moduleItemBecameActive() {

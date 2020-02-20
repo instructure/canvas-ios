@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(Нет субъекта)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d из %3$d";
 
@@ -10,11 +13,26 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ начнется в %2$@";
 
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@, в %2$@, последнее сообщение было %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, не прочитано";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
+
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Действовать как пользователь";
+
+/* No comment provided by engineer. */
+"Add" = "Добавить";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "Добавить вложения";
 
 /* No comment provided by engineer. */
 "Add Student" = "Добавить студента";
@@ -52,6 +70,12 @@
 /* No comment provided by engineer. */
 "Back" = "Назад";
 
+/* Calendar Tab */
+"Calendar" = "Календарь";
+
+/* No comment provided by engineer. */
+"Calendar Event" = "Событие календаря";
+
 /* No comment provided by engineer. */
 "Cancel" = "Отменить";
 
@@ -65,7 +89,10 @@
 "Caught up on Alerts" = "Выполнить задания по оповещениям";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Выберите студента";
+"Choose a course to message" = "Выбрать курс для сообщения";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Написать новое сообщение";
 
 /* Course Announcement Description */
 "Course announcements" = "Объявления курса";
@@ -80,13 +107,13 @@
 "Courses" = "Курсы";
 
 /* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Текущий студент: %@, нажмите для переключения между студентами";
-
-/* No comment provided by engineer. */
 "Discussion" = "Обсуждение";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Отклонить";
+
+/* No comment provided by engineer. */
+"Edit Recipients" = "Редактировать получателей";
 
 /* No comment provided by engineer. */
 "Event" = "Событие";
@@ -101,6 +128,18 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Не удалось загрузить (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
+"Failed. Tap for options" = "Сбой. Коснитесь для просмотра опций";
+
+/* No comment provided by engineer. */
+"File" = "Файл";
+
+/* No comment provided by engineer. */
+"for %@" = "для %@";
+
+/* No comment provided by engineer. */
+"Front Page" = "Первая страница";
+
+/* No comment provided by engineer. */
 "Grades" = "Оценки";
 
 /* High Assignment Grade too Low */
@@ -111,6 +150,12 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "Аудиторный";
+
+/* No comment provided by engineer. */
+"Inbox" = "Входящие";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Входящие Ноль";
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Введите полученный код привязки студента.";
@@ -139,14 +184,26 @@
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "Низкая оценка за курс не может быть выше высокой оценки за курс";
 
-/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "Управление детьми";
+/* No comment provided by engineer. */
+"Message" = "Сообщение";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Сообщение от %1$@, %2$@, %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Отсутствует";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Отсутствует: (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Отсутствует: %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Отсутствует: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Новое сообщение";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "На следующей неделе";
@@ -159,6 +216,9 @@
 
 /* Empty Students Text */
 "No Students" = "Студенты отсутствуют";
+
+/* No comment provided by engineer. */
+"No Subject" = "Нет темы";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Ничего на этой неделе";
@@ -176,7 +236,33 @@
 "Quiz" = "Тест";
 
 /* No comment provided by engineer. */
+"Recipients" = "Получатели";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "Касательно: %@";
+
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "Касательно: %1$@, %2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "Ответить";
+
+/* No comment provided by engineer. */
+"Reply All" = "Ответить на все";
+
+/* No comment provided by engineer. */
+"Retry" = "Повторить";
+
+/* No comment provided by engineer. */
+"Send" = "Отправить";
+
+/* No comment provided by engineer. */
 "Settings" = "Настройки";
+
+/* No comment provided by engineer. */
+"Subject" = "Тема";
 
 /* No comment provided by engineer. */
 "Submitted" = "Отправлено";
@@ -186,6 +272,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "Отправлено: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Сводные данные";
 
 /* Syllabus Button Title */
 "Syllabus" = "Учебный план";
@@ -209,17 +298,23 @@
 "This student's courses may not be published yet." = "Курсы этого студента пока еще не могут быть опубликованы.";
 
 /* No comment provided by engineer. */
+"To" = "Кому";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "Проблема со входом в систему";
 
 /* No comment provided by engineer. */
 "Unread" = "Не прочитано";
 
-/* Calendar Tab */
-"Week" = "Неделя";
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "Загрузка %1$@ находится в %2$@";
 
 /* Header title of admin view */
 "Welcome!" = "Добро пожаловать!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Вы должны разрешить уведомления в настройках для задания напоминаний.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Вы все нагнали";
 

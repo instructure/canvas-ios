@@ -21,20 +21,19 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   Image,
   TextInput,
   TouchableOpacity,
 } from 'react-native'
 import i18n from 'format-message'
 import Images from '../../../images'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 import DrawerState from '../utils/drawer-state'
 import { getBottomSpace } from 'react-native-iphone-x-helper'
 
 export type Comment
-  = { type: 'text', message: string }
+  = { type: 'text', comment: string }
 
 type CommentInputProps = {
   makeComment(comment: Comment): void,
@@ -74,7 +73,7 @@ export default class CommentInput extends Component<CommentInputProps, State> {
 
     this.props.makeComment({
       type: 'text',
-      message: text,
+      comment: text,
     })
   }
 
@@ -136,7 +135,7 @@ export default class CommentInput extends Component<CommentInputProps, State> {
               multiline
               testID='comment-input.comment'
               placeholder={placeholder}
-              placeholderTextColor={colors.lightText}
+              placeholderTextColor={colors.textDark}
               style={styles.input}
               maxHeight={76}
               onChangeText={this.textChanged}
@@ -170,32 +169,32 @@ export default class CommentInput extends Component<CommentInputProps, State> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   mediaButton: {
     alignSelf: 'center',
     paddingHorizontal: 11,
   },
   plus: {
-    tintColor: colors.secondaryButton,
+    tintColor: colors.textDark,
   },
   toolbar: {
     overflow: 'hidden',
-    backgroundColor: '#F5F5F5',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: colors.seperatorColor,
+    backgroundColor: colors.backgroundLight,
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
     paddingVertical: 8,
-    paddingRight: global.style.defaultPadding,
+    paddingRight: vars.padding,
   },
   inputContainer: {
     flex: 1,
     borderRadius: 20,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: colors.seperatorColor,
+    borderWidth: vars.hairlineWidth,
+    borderColor: colors.borderMedium,
     overflow: 'hidden',
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
@@ -210,7 +209,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   sendButton: {
-    backgroundColor: colors.primaryButton,
+    backgroundColor: colors.buttonPrimaryBackground,
     width: 24,
     height: 24,
     borderRadius: 12,
@@ -221,7 +220,7 @@ const styles = StyleSheet.create({
     marginRight: 4,
   },
   sendButtonArrow: {
-    tintColor: 'white',
+    tintColor: colors.buttonPrimaryText,
     marginBottom: 1,
   },
-})
+}))

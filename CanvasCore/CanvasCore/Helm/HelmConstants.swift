@@ -51,4 +51,6 @@ struct PropKeys {
     static let modal = "modal"
     static let modalPresentationStyle = "modalPresentationStyle"
     static let modalTransitionStyle = "modalTransitionStyle"
+
+    static let disableDismissOnSwipe = "disableSwipeDownToDismissModal"
 }

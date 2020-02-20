@@ -24,6 +24,11 @@ class SubmissionCommentAttemptCell: UITableViewCell {
 
     var onFileTap: ((Submission?, File?) -> Void)?
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        backgroundColor = .named(.backgroundLightest)
+    }
+
     func update(comment: SubmissionComment, submission: Submission?, onFileTap: @escaping (Submission?, File?) -> Void) {
         accessibilityIdentifier = "SubmissionComments.attemptCell.\(comment.id)"
         accessibilityLabel = String.localizedStringWithFormat(

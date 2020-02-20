@@ -21,6 +21,7 @@
 import React from 'react'
 import {
   SubmissionList,
+  createFilterFromSection,
   props as graphqlProps,
 } from '../SubmissionList'
 import renderer from 'react-test-renderer'
@@ -31,6 +32,7 @@ import ExperimentalFeature from '../../../../common/ExperimentalFeature'
 
 const template = {
   ...require('../../../../__templates__/helm'),
+  ...require('../__templates__/submission-props'),
 }
 
 jest
@@ -172,6 +174,34 @@ test('SubmissionList select filter function', () => {
   expect(props.refetch).toHaveBeenCalledTimes(7)
 })
 
+test('refresh sets refreshing true by default', async () => {
+  let resolveIt
+  let promise = new Promise(resolve => { resolveIt = resolve })
+  const tree = renderer.create(
+    <SubmissionList {...props} refetch={() => promise} />
+  )
+  let instance = tree.getInstance()
+  instance.refresh()
+  expect(instance.state.refreshing).toEqual(true)
+  resolveIt()
+  await promise
+  expect(instance.state.refreshing).toEqual(false)
+})
+
+test('refresh doesnt set refreshing true when told not to', async () => {
+  let resolveIt
+  let promise = new Promise(resolve => { resolveIt = resolve })
+  const tree = renderer.create(
+    <SubmissionList {...props} refetch={() => promise} />
+  )
+  let instance = tree.getInstance()
+  instance.refresh(false)
+  expect(instance.state.refreshing).toEqual(false)
+  resolveIt()
+  await promise
+  expect(instance.state.refreshing).toEqual(false)
+})
+
 test('SubmissionList renders correctly with empty list', () => {
   const tree = renderer.create(
     <SubmissionList {...props} submissions={[]} navigator={template.navigator()} />
@@ -259,7 +289,7 @@ test('should navigate to a submission', () => {
   expect(navigator.show).toHaveBeenCalledWith(
     '/courses/12/assignments/32/submissions/2',
     { modal: true, modalPresentationStyle: 'fullscreen' },
-    { filter: expect.any(Function), studentIndex: 1, flags: [] }
+    { filter: expect.any(Function), studentIndex: 1, flags: [], onDismiss: expect.any(Function) }
   )
 
   ExperimentalFeature.allEnabled = true
@@ -282,8 +312,8 @@ it('renders a group row properly', () => {
     })],
     groups: [templates.group({
       members: {
-        edges: [{
-          member: { user: templates.user({ id: '1' }) },
+        nodes: [{
+          user: templates.user({ id: '1' }),
         }],
       },
     })],
@@ -384,18 +414,17 @@ describe('graphql props', () => {
     let results = templates.submissionListResult({
       assignment: templates.assignment({
         gradeGroupStudentsIndividually: true,
-        groupSet: templates.groupSet(),
+        groupSet: templates.groupSet({
+          groups: {
+            nodes: [templates.group({
+              members: {
+                nodes: [{ user: templates.user({ id: '1' }) }],
+              },
+            })],
+          },
+        }),
         course: templates.course({
           sections: { edges: [] },
-          groups: {
-            edges: [{
-              group: templates.group({
-                members: {
-                  edges: [{ member: templates.user({ id: '1' }) }],
-                },
-              }),
-            }],
-          },
         }),
         submissions: { edges: [] },
         groupedSubmissions: { edges: [{ submission: templates.submission({ user_id: '1' }) }] },
@@ -412,5 +441,131 @@ describe('graphql props', () => {
 
     results.assignment.groupSet = undefined
     expect(graphqlProps({ data: results }).isGroupGradedAssignment).toBeFalsy()
+  })
+
+  it('sorts grouped submissions by group name', () => {
+    let results = templates.submissionListResult({
+      assignment: templates.assignment({
+        gradeGroupStudentsIndividually: false,
+        groupSet: templates.groupSet({
+          groups: {
+            nodes: [
+              templates.group({
+                name: 'b 2',
+                members: {
+                  nodes: [{ user: templates.user({ id: '1' }) }],
+                },
+              }),
+              templates.group({
+                name: 'a 2',
+                members: {
+                  nodes: [{ user: templates.user({ id: '2' }) }],
+                },
+              }),
+              templates.group({
+                name: 'b 10',
+                members: {
+                  nodes: [{ user: templates.user({ id: '3' }) }],
+                },
+              }),
+            ],
+          },
+        }),
+        course: templates.course({
+          sections: { edges: [] },
+        }),
+        submissions: { edges: [] },
+        groupedSubmissions: { edges: [
+          { submission: templates.submission({ user: templates.user({ id: '1' }) }) },
+          { submission: templates.submission({ user: templates.user({ id: '2' }) }) },
+          { submission: templates.submission({ user: templates.user({ id: '3' }) }) },
+        ] },
+      }),
+    })
+
+    expect(graphqlProps({ data: results }).submissions).toEqual([
+      templates.submission({ user: templates.user({ id: '2' }) }),
+      templates.submission({ user: templates.user({ id: '1' }) }),
+      templates.submission({ user: templates.user({ id: '3' }) }),
+    ])
+  })
+
+  it('sorts users without a group with grouped submissions', () => {
+    let results = templates.submissionListResult({
+      assignment: templates.assignment({
+        gradeGroupStudentsIndividually: false,
+        groupSet: templates.groupSet({
+          groups: {
+            nodes: [
+              templates.group({
+                name: 'c',
+                members: {
+                  nodes: [{ user: templates.user({ id: '1' }) }],
+                },
+              }),
+              templates.group({
+                name: 'b',
+                members: {
+                  nodes: [{ user: templates.user({ id: '2' }) }],
+                },
+              }),
+            ],
+          },
+        }),
+        course: templates.course({
+          sections: { edges: [] },
+        }),
+        submissions: { edges: [] },
+        groupedSubmissions: { edges: [
+          { submission: templates.submission({ user: templates.user({ name: 'a' }) }) },
+          { submission: templates.submission({ user: templates.user({ id: '1' }) }) },
+          { submission: templates.submission({ user: templates.user({ id: '2' }) }) },
+        ] },
+      }),
+    })
+
+    expect(graphqlProps({ data: results }).submissions).toEqual([
+      templates.submission({ user: templates.user({ name: 'a' }) }),
+      templates.submission({ user: templates.user({ id: '2' }) }),
+      templates.submission({ user: templates.user({ id: '1' }) }),
+    ])
+  })
+})
+
+describe('createFilterFromSection', () => {
+  it('works', () => {
+    let filterOption = createFilterFromSection(templates.section())
+    expect(filterOption).toMatchObject({
+      type: 'section.1',
+      disabled: false,
+      selected: false,
+      exclusive: false,
+    })
+  })
+
+  it('gives the right name', () => {
+    let section = templates.section()
+    let filterOption = createFilterFromSection(section)
+    expect(filterOption.title()).toEqual(section.name)
+  })
+
+  it('getFilter', () => {
+    let section = templates.section()
+    let filterOptions = createFilterFromSection(section)
+    expect(filterOptions.getFilter()).toEqual({
+      sectionIDs: [section.id],
+    })
+  })
+
+  it('filterFunc', () => {
+    let section = templates.section()
+    let submission = template.submissionProps()
+    let filterOption = createFilterFromSection(section)
+    expect(filterOption.filterFunc()).toEqual(false)
+    expect(filterOption.filterFunc(submission)).toEqual(false)
+    submission.allSectionIDs = ['1234']
+    expect(filterOption.filterFunc(submission)).toEqual(false)
+    submission.allSectionIDs = [section.id]
+    expect(filterOption.filterFunc(submission)).toEqual(true)
   })
 })

@@ -19,65 +19,31 @@
 import XCTest
 @testable import Core
 
-class APILoginWebRequestableTests: XCTestCase {
-
-    var mobileVerify: APIVerifyClient!
-    var params: LoginParams!
-    var host = "https://localhost"
-    var url: URL!
-    override func setUp() {
-        super.setUp()
-        url = URL(string: host)!
-        mobileVerify = APIVerifyClient(authorized: true, base_url: url, client_id: "1", client_secret: "secret")
-        params = LoginParams(host: host, authenticationProvider: nil, method: .normalLogin)
-    }
-
-    func testPath() {
-        let req = LoginWebRequest(clientID: mobileVerify.client_id!, params: params)
-        let urlRequest = try? req.urlRequest(relativeTo: url, accessToken: "", actAsUserID: nil)
-        let expected = "https://localhost/login/oauth2/auth?client_id=1&response_type=code&redirect_uri=https://canvas/login&mobile=1"
-        XCTAssertEqual(urlRequest?.url?.absoluteString, expected)
-    }
-
+class APILoginWebRequestableTests: CoreTestCase {
     func testHeaders() {
-        let req = LoginWebRequest(clientID: mobileVerify.client_id!, params: params)
-        let urlRequest = try? req.urlRequest(relativeTo: url, accessToken: nil, actAsUserID: nil)
-        let expected = [HttpHeader.accept: "application/json+canvas-string-ids", HttpHeader.userAgent: UserAgent.safari.description]
-        XCTAssertEqual(urlRequest?.allHTTPHeaderFields, expected)
-    }
-
-    func testSiteAdminHeaders() {
-        params = LoginParams(host: host, authenticationProvider: "", method: .siteAdminLogin)
-        let req = LoginWebRequest(clientID: mobileVerify.client_id!, params: params)
-        let urlRequest = try? req.urlRequest(relativeTo: url, accessToken: nil, actAsUserID: nil)
-        let expected = [
-            HttpHeader.accept: "application/json+canvas-string-ids",
+        XCTAssertEqual(LoginWebRequest(authMethod: .normalLogin, clientID: "1", provider: nil).headers, [
+            HttpHeader.userAgent: UserAgent.safari.description,
+        ])
+        XCTAssertEqual(LoginWebRequest(authMethod: .siteAdminLogin, clientID: "1", provider: nil).headers, [
             HttpHeader.userAgent: UserAgent.safari.description,
             HttpHeader.cookie: "canvas_sa_delegated=1",
-        ]
-        XCTAssertEqual(urlRequest?.allHTTPHeaderFields, expected)
+        ])
     }
 
-    func testQueryItems() {
-        let req = LoginWebRequest(clientID: mobileVerify.client_id!, params: params)
-        let urlRequest = try? req.urlRequest(relativeTo: url, accessToken: "", actAsUserID: nil)
-        let expected = "client_id=1&response_type=code&redirect_uri=https://canvas/login&mobile=1"
-        XCTAssertEqual(urlRequest?.url?.query, expected)
-    }
-
-    func testQueryItemsWithForceLogin() {
-        params.method = .canvasLogin
-        let req = LoginWebRequest(clientID: mobileVerify.client_id!, params: params)
-        let urlRequest = try? req.urlRequest(relativeTo: url, accessToken: "", actAsUserID: nil)
-        let expected = "client_id=1&response_type=code&redirect_uri=https://canvas/login&mobile=1&canvas_login=1"
-        XCTAssertEqual(urlRequest?.url?.query, expected)
-    }
-
-    func testQueryItemsWithAuthenticationProvider() {
-        params.authenticationProvider = "foo"
-        let req = LoginWebRequest(clientID: mobileVerify.client_id!, params: params)
-        let urlRequest = try? req.urlRequest(relativeTo: url, accessToken: "", actAsUserID: nil)
-        let expected = "client_id=1&response_type=code&redirect_uri=https://canvas/login&mobile=1&authentication_provider=foo"
-        XCTAssertEqual(urlRequest?.url?.query, expected)
+    func testQuery() {
+        XCTAssertEqual(LoginWebRequest(authMethod: .normalLogin, clientID: "1", provider: nil).query, [
+            .value("client_id", "1"),
+            .value("response_type", "code"),
+            .value("redirect_uri", "https://canvas/login"),
+            .value("mobile", "1"),
+        ])
+        XCTAssertEqual(LoginWebRequest(authMethod: .canvasLogin, clientID: "1", provider: "p").query, [
+            .value("client_id", "1"),
+            .value("response_type", "code"),
+            .value("redirect_uri", "https://canvas/login"),
+            .value("mobile", "1"),
+            .value("canvas_login", "1"),
+            .value("authentication_provider", "p"),
+        ])
     }
 }

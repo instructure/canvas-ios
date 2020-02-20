@@ -18,6 +18,7 @@
 
 import UIKit
 import CanvasCore
+import Core
 
 typealias StudentsListSelectStudentAction = (_ session: Session, _ student: Student) -> Void
 
@@ -39,12 +40,10 @@ class StudentsListViewController: FetchedTableViewController<Student> {
 
         self.emptyView = emptyView
 
-        let scheme = ColorCoordinator.colorSchemeForParent()
-
         let collection = try Student.observedStudentsCollection(session)
         let refresher = try Student.observedStudentsRefresher(session)
         prepare(collection, refresher: refresher, viewModelFactory: { student in
-            SettingsObserveeCellViewModel(student: student, highlightColor: scheme.highlightCellColor)
+            SettingsObserveeCellViewModel(student: student, highlightColor: .named(.backgroundLight))
         })
     }
 
@@ -56,7 +55,7 @@ class StudentsListViewController: FetchedTableViewController<Student> {
         super.viewDidLoad()
 
         tableView.tableFooterView = UIView()
-        tableView.backgroundColor = UIColor.defaultTableViewBackgroundColor()
+        tableView.backgroundColor = UIColor.named(.backgroundGrouped)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

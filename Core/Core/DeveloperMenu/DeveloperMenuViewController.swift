@@ -20,8 +20,19 @@ import UIKit
 
 public class DeveloperMenuViewController: UIViewController {
 
-    enum MenuOptions: Int, CaseIterable {
-        case enableAllExperimentalFeatures
+    struct DeveloperUserDefaultKeys {
+        static let route = "com.instructure.devMenu.route"
+        static let modalSelection = "com.instructure.devMenu.modalSelection"
+        static let routeHistory = "com.instructure.devMenu.routeHistory"
+    }
+
+    enum Section: Int, CaseIterable {
+        case settings
+        case routeHistory
+    }
+
+    enum SettingsRow: Int, CaseIterable {
+        case experimentalFeatures
         case crash
         case clearStorage
 //        case logs
@@ -34,8 +45,8 @@ public class DeveloperMenuViewController: UIViewController {
                 return "Clear local cache"
 //            case .logs:
 //                return "Logs"
-            case .enableAllExperimentalFeatures:
-                return "Enable all experimental features"
+            case .experimentalFeatures:
+                return "View experimental features"
             }
         }
     }
@@ -43,6 +54,7 @@ public class DeveloperMenuViewController: UIViewController {
     @IBOutlet var routeTextField: UITextField?
     @IBOutlet var routeMethod: UISegmentedControl?
     @IBOutlet var tableView: UITableView?
+    var routeHistory: [String] = []
 
     var env: AppEnvironment?
 
@@ -54,7 +66,7 @@ public class DeveloperMenuViewController: UIViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        title = "Developer Menu"
+        title = "🛠 Developer Menu"
         addDismissBarButton(.done, side: .right)
 
         tableView?.register(SwitchTableViewCell.self, forCellReuseIdentifier: String(describing: SwitchTableViewCell.self))
@@ -63,12 +75,19 @@ public class DeveloperMenuViewController: UIViewController {
         tableView?.dataSource = self
 
         routeTextField?.addTarget(self, action: #selector(enterPressed), for: .editingDidEndOnExit)
+        routeTextField?.text = restoreRoute()
+
+        routeMethod?.selectedSegmentIndex = restoreModalSelection()
+
+        routeHistory = DeveloperMenuViewController.restoreRouteHistory()
     }
 
     @objc func enterPressed() {
         guard let route = routeTextField?.text else {
             return
         }
+        storeRouteInDefaults(route)
+        storeModalSelection(routeMethod?.selectedSegmentIndex)
         showRoute(route)
         routeTextField?.resignFirstResponder()
     }
@@ -77,7 +96,7 @@ public class DeveloperMenuViewController: UIViewController {
         guard let routeMethod = routeMethod else { return }
         switch routeMethod.selectedSegmentIndex {
         case 0:
-            env?.router.route(to: route, from: self, options: [.modal, .embedInNav])
+            env?.router.route(to: route, from: self, options: .modal(embedInNav: true))
         default:
             env?.router.route(to: route, from: self)
         }
@@ -89,47 +108,106 @@ public class DeveloperMenuViewController: UIViewController {
 //        activityViewController.excludedActivityTypes = [.postToTwitter, .postToFacebook]
 //        self.present(activityViewController, animated: true, completion: nil)
 //    }
+
+    func restoreRoute() -> String? {
+        return UserDefaults.standard.string(forKey: DeveloperUserDefaultKeys.route)
+    }
+
+    func storeRouteInDefaults(_ route: String?) {
+        UserDefaults.standard.set(route, forKey: DeveloperUserDefaultKeys.route)
+        UserDefaults.standard.synchronize()
+    }
+
+    func restoreModalSelection() -> Int {
+        return UserDefaults.standard.integer(forKey: DeveloperUserDefaultKeys.modalSelection)
+    }
+
+    func storeModalSelection(_ selection: Int?) {
+        UserDefaults.standard.set(selection, forKey: DeveloperUserDefaultKeys.modalSelection)
+        UserDefaults.standard.synchronize()
+    }
 }
 
 extension DeveloperMenuViewController: UITableViewDataSource, UITableViewDelegate {
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let menuItem = MenuOptions(rawValue: indexPath.row) else { fatalError("invalid menu item") }
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        return 1 + (routeHistory.count > 0 ? 1 : 0)
+    }
 
-        var cell: UITableViewCell
-        switch menuItem {
-        case .enableAllExperimentalFeatures:
-            let toggleCell = tableView.dequeue(for: indexPath) as SwitchTableViewCell
-            toggleCell.toggle.addTarget(self, action: #selector(actionToggleExperimentalFeatures(_:)), for: .valueChanged)
-            toggleCell.toggle.isOn = ExperimentalFeature.allEnabled
-            cell = toggleCell
-        case .clearStorage, .crash:
-            cell = tableView.dequeue(for: indexPath) as UITableViewCell
+    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0: break
+        case 1: return "Route History"
+        default: break
         }
+        return nil
+    }
 
-        cell.textLabel?.text = MenuOptions.allCases[indexPath.row].title()
-        return cell
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let section = Section(rawValue: indexPath.section) else { fatalError("invalid section") }
+
+        if section == .settings {
+            guard let menuItem = SettingsRow(rawValue: indexPath.row) else { fatalError("invalid menu item") }
+            let cell = tableView.dequeue(for: indexPath) as UITableViewCell
+            cell.textLabel?.text = menuItem.title()
+            return cell
+        } else {
+            let cell = tableView.dequeue(for: indexPath)
+            cell.textLabel?.text = URL(string: routeHistory[indexPath.row])?.path
+            return cell
+        }
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MenuOptions.allCases.count
+        guard let section = Section(rawValue: section) else { fatalError("invalid section") }
+        switch section {
+        case .settings: return SettingsRow.allCases.count
+        case .routeHistory: return routeHistory.count
+        }
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        switch MenuOptions.allCases[indexPath.row] {
-        case .crash:
-            fatalError("Forced a crash")
-        case .clearStorage:
-            UserDefaults.standard.removePersistentDomain(forName: Bundle.parentBundleID)
-            UserDefaults.standard.synchronize()
-//        case .logs:
-//            shareLogs()
-        case .enableAllExperimentalFeatures: break
+
+        guard let section = Section(rawValue: indexPath.section) else { fatalError("invalid section") }
+        if section == .settings {
+            switch SettingsRow.allCases[indexPath.row] {
+            case .crash:
+                fatalError("Forced a crash")
+            case .clearStorage:
+                UserDefaults.standard.removePersistentDomain(forName: Bundle.parentBundleID)
+                UserDefaults.standard.synchronize()
+                //        case .logs:
+            //            shareLogs()
+            case .experimentalFeatures:
+                env?.router.route(to: "/dev-menu/experimental-features", from: self)
+            }
+        } else {
+            showRoute(routeHistory[indexPath.row])
         }
     }
+}
 
-    @objc
-    func actionToggleExperimentalFeatures(_ sender: UISwitch) {
-        ExperimentalFeature.allEnabled = sender.isOn
+extension DeveloperMenuViewController {
+
+    static func restoreRouteHistory() -> [String] {
+        let key = DeveloperMenuViewController.DeveloperUserDefaultKeys.routeHistory
+        return UserDefaults.standard.array(forKey: key) as? [String] ?? []
+    }
+
+    static func recordRouteInHistory(_ route: String?) {
+        guard let url = route else { return }
+        let ignore = [
+            "/dev-menu",
+            "/profile",
+        ]
+
+        if ignore.contains(url) { return }
+
+        var all = restoreRouteHistory()
+        all.insert(url, at: 0)
+        let saveSubset = Array( all.prefix(10) )
+
+        UserDefaults.standard.set(saveSubset, forKey: DeveloperUserDefaultKeys.routeHistory)
+        UserDefaults.standard.synchronize()
     }
 }

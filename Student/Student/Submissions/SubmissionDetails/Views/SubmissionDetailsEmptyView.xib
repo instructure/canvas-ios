@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,17 +17,17 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gso-WC-3ZC">
-                    <rect key="frame" x="0.0" y="51" width="375" height="501"/>
+                    <rect key="frame" x="0.0" y="63.5" width="375" height="496.5"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PandaBalloon" translatesAutoresizingMaskIntoConstraints="NO" id="x1P-ec-FdF">
                             <rect key="frame" x="106.5" y="0.0" width="162" height="288"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Submission" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ent-lp-yUz" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                            <rect key="frame" x="130.5" y="320" width="114.5" height="20.5"/>
+                            <rect key="frame" x="131" y="320" width="113" height="19.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -39,7 +37,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This assignment is due by 11:59pm." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7av-C4-4Bu" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                            <rect key="frame" x="16" y="344.5" width="343" height="20.5"/>
+                            <rect key="frame" x="16" y="343.5" width="343" height="17"/>
                             <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.emptyAssignmentDueBy"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
@@ -50,7 +48,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGB-xT-EY9" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
-                            <rect key="frame" x="63.5" y="389" width="248" height="48"/>
+                            <rect key="frame" x="63.5" y="384.5" width="248" height="48"/>
                             <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.emptySubmitButton"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="o9r-V4-NWQ"/>
@@ -71,7 +69,6 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="7av-C4-4Bu" secondAttribute="trailing" constant="16" id="9DH-sQ-Ejv"/>
                         <constraint firstItem="ent-lp-yUz" firstAttribute="centerX" secondItem="gso-WC-3ZC" secondAttribute="centerX" id="9bO-yu-Gf8"/>
@@ -88,7 +85,6 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="gso-WC-3ZC" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="145-fi-AvK"/>
                 <constraint firstItem="gso-WC-3ZC" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="FYE-Jc-yqY"/>
@@ -97,6 +93,7 @@
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
             <nil key="simulatedBottomBarMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="142" y="107"/>
         </view>
     </objects>
     <resources>

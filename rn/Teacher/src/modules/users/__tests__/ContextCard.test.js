@@ -93,6 +93,35 @@ describe('ContextCard', () => {
     expect(label).not.toBeNull()
   })
 
+  it('renders user name', () => {
+    let props = {
+      ...defaultProps,
+      user: {
+        ...defaultProps.user,
+        short_name: 'Alfredo',
+      },
+    }
+    let view = shallow(<ContextCard {...props} />)
+    let header = shallow(view.find('FlatList').prop('ListHeaderComponent'))
+    let label = header.find('[testID="ContextCard.userNameLabel"]')
+    expect(label.prop('children')).toEqual('Alfredo')
+  })
+
+  it('renders user pronouns', () => {
+    let props = {
+      ...defaultProps,
+      user: {
+        ...defaultProps.user,
+        short_name: 'Alfredo',
+        pronouns: 'He/Him',
+      },
+    }
+    let view = shallow(<ContextCard {...props} />)
+    let header = shallow(view.find('FlatList').prop('ListHeaderComponent'))
+    let label = header.find('[testID="ContextCard.userNameLabel"]')
+    expect(label.prop('children')).toEqual('Alfredo (He/Him)')
+  })
+
   it('renders for a user that cannot view analytics', () => {
     let view = renderer.create(
       <ContextCard {...defaultProps} permissions={{ ...defaultProps.permissions, viewAnalytics: false }} isStudent={false} />

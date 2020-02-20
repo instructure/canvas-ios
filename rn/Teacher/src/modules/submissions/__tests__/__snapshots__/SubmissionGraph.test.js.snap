@@ -19,9 +19,9 @@ exports[`render 0 on graph 1`] = `
   >
     <Circle
       animated={true}
-      borderColor="#374A59"
+      borderColor="#008EE2"
       borderWidth={0}
-      color="#374A59"
+      color="#008EE2"
       progress={0}
       showsText={false}
       size={70}
@@ -93,9 +93,9 @@ exports[`render 1`] = `
   >
     <Circle
       animated={true}
-      borderColor="#374A59"
+      borderColor="#008EE2"
       borderWidth={0}
-      color="#374A59"
+      color="#008EE2"
       progress={0}
       showsText={false}
       size={70}
@@ -167,9 +167,9 @@ exports[`render undefined label 1`] = `
   >
     <Circle
       animated={true}
-      borderColor="#374A59"
+      borderColor="#008EE2"
       borderWidth={0}
-      color="#374A59"
+      color="#008EE2"
       progress={0}
       showsText={false}
       size={70}

@@ -7,6 +7,7 @@ disabled_rules: # rule identifiers to exclude from running
   - file_length
   - type_body_length
   - identifier_name
+  - function_parameter_count
 opt_in_rules: # some rules are only opt-in
   - yoda_condition
 included: # paths to include during linting. `--path` is ignored if present.

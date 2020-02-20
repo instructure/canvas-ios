@@ -19,11 +19,21 @@
 import Foundation
 
 public struct GetGradingPeriodsRequest: APIRequestable {
-    public typealias Response = APIGradingPeriodResponse
+    public typealias Response = [APIGradingPeriod]
 
     let courseID: String
 
     public var path: String {
         return "courses/\(courseID)/grading_periods"
+    }
+
+    public func decode(_ data: Data) throws -> [APIGradingPeriod] {
+        let decoder = APIJSONDecoder()
+        let response = try decoder.decode(APIGradingPeriodResponse.self, from: data)
+        return response.grading_periods
+    }
+
+    public func encode(response: [APIGradingPeriod]) throws -> Data {
+        try APIJSONEncoder().encode(APIGradingPeriodResponse(grading_periods: response))
     }
 }

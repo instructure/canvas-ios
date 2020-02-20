@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(Intet emne)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d af %3$d";
 
@@ -10,11 +13,26 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ begynder kl. %2$@";
 
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@, i %2$@, var den sidste besked den %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, ulæst";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
+
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Funger som bruger";
+
+/* No comment provided by engineer. */
+"Add" = "Tilføj";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "Tilføj vedhæftede filer";
 
 /* No comment provided by engineer. */
 "Add Student" = "Tilføj studerende";
@@ -52,6 +70,12 @@
 /* No comment provided by engineer. */
 "Back" = "Tilbage";
 
+/* Calendar Tab */
+"Calendar" = "Kalender";
+
+/* No comment provided by engineer. */
+"Calendar Event" = "Kalenderbegivenhed";
+
 /* No comment provided by engineer. */
 "Cancel" = "Annuller";
 
@@ -65,7 +89,10 @@
 "Caught up on Alerts" = "Ajourført med alarmer";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Vælg en studerende";
+"Choose a course to message" = "Vælg et fag at sende en meddelelse til";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Skriv en ny besked";
 
 /* Course Announcement Description */
 "Course announcements" = "Kursusbekendtgørelser";
@@ -80,13 +107,13 @@
 "Courses" = "Fag";
 
 /* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Nuværende studerende: %@, tryk for at skifte studerende";
-
-/* No comment provided by engineer. */
 "Discussion" = "Diskussion";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Afvis";
+
+/* No comment provided by engineer. */
+"Edit Recipients" = "Rediger modtagere";
 
 /* No comment provided by engineer. */
 "Event" = "Begivenhed";
@@ -101,6 +128,18 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Kunne ikke indlæse (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
+"Failed. Tap for options" = "Mislykkedes. Tryk for indstillinger";
+
+/* No comment provided by engineer. */
+"File" = "Fil";
+
+/* No comment provided by engineer. */
+"for %@" = "til %@";
+
+/* No comment provided by engineer. */
+"Front Page" = "Forside";
+
+/* No comment provided by engineer. */
 "Grades" = "Karakterer";
 
 /* High Assignment Grade too Low */
@@ -111,6 +150,12 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "I klasse";
+
+/* No comment provided by engineer. */
+"Inbox" = "Indbakke";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Indbakke nul";
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Indtast den studerendes parringskode, der er blevet givet til dig.";
@@ -139,14 +184,26 @@
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "Lav kursuskarakter kan ikke være højere end høj kursuskarakter";
 
-/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "Administrer børn";
+/* No comment provided by engineer. */
+"Message" = "Besked";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Besked fra %1$@, %2$@, den %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Manglende";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Manglende: (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Mangler: %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Mangler: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Ny besked";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Næste uge";
@@ -159,6 +216,9 @@
 
 /* Empty Students Text */
 "No Students" = "Ingen studerende";
+
+/* No comment provided by engineer. */
+"No Subject" = "Intet emne";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Intet denne uge";
@@ -176,7 +236,33 @@
 "Quiz" = "Test";
 
 /* No comment provided by engineer. */
+"Recipients" = "Modtagere";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "Vedrørende: %@";
+
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "Vedrørende: %1$@. %2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "Svar";
+
+/* No comment provided by engineer. */
+"Reply All" = "Svar til alle";
+
+/* No comment provided by engineer. */
+"Retry" = "Prøv igen";
+
+/* No comment provided by engineer. */
+"Send" = "Send";
+
+/* No comment provided by engineer. */
 "Settings" = "Indstillinger";
+
+/* No comment provided by engineer. */
+"Subject" = "Emne";
 
 /* No comment provided by engineer. */
 "Submitted" = "Indsendt";
@@ -186,6 +272,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "Indsendt: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Sammendrag";
 
 /* Syllabus Button Title */
 "Syllabus" = "Pensum";
@@ -209,17 +298,23 @@
 "This student's courses may not be published yet." = "Denne studerendes fag kan ikke offentliggøres endnu.";
 
 /* No comment provided by engineer. */
+"To" = "Til";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "Problemer med at logge ind";
 
 /* No comment provided by engineer. */
 "Unread" = "Ulæst";
 
-/* Calendar Tab */
-"Week" = "Uge";
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "Uploaden af %1$@ er på %2$@";
 
 /* Header title of admin view */
 "Welcome!" = "Velkommen!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Du skal tillade meddelelser i Indstillinger for at indstille påmindelser.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Du er ajour";
 

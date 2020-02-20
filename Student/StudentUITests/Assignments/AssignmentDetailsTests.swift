@@ -26,6 +26,7 @@ class AssignmentDetailsTests: StudentUITestCase {
     lazy var course = mock(course: .make())
 
     func testUnsubmittedUpload() {
+        // FLAKY: color cache doesn't always get updated
         mockBaseRequests()
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
             course.canvasContextID: "#123456",
@@ -97,6 +98,7 @@ class AssignmentDetailsTests: StudentUITestCase {
         mockBaseRequests()
         let assignment = mock(assignment: .make(
             submission: APISubmission.make(
+                submission_type: .discussion_topic,
                 discussion_entries: [ APIDiscussionEntry.make(
                     message: "My discussion entry"
                 ), ]
@@ -135,6 +137,7 @@ class AssignmentDetailsTests: StudentUITestCase {
             submission_types: [ .none ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertEqual(AssignmentDetails.name.label(), assignment.name)
         XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
     }
 
@@ -143,7 +146,8 @@ class AssignmentDetailsTests: StudentUITestCase {
         let assignment = mock(assignment: .make(
             submission_types: [ .not_graded ]
         ))
-        show("/courses/\(course.id)/assignments\(assignment.id)")
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertEqual(AssignmentDetails.name.label(), assignment.name)
         XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
     }
 
@@ -154,6 +158,7 @@ class AssignmentDetailsTests: StudentUITestCase {
             submission_types: [.online_text_entry]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertEqual(AssignmentDetails.name.label(), assignment.name)
         XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
     }
 
@@ -212,6 +217,7 @@ class AssignmentDetailsTests: StudentUITestCase {
             submission_types: [ .online_upload ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertEqual(AssignmentDetails.name.label(), assignment.name)
         XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
     }
 
@@ -240,7 +246,7 @@ class AssignmentDetailsTests: StudentUITestCase {
     func testGradeCellShowsSubmittedTextWhenNotGraded() {
         mockBaseRequests()
         let assignment = mock(assignment: .make(
-            submission: APISubmission.make()
+            submission: APISubmission.make(submission_type: .online_upload, workflow_state: .pending_review)
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         XCTAssertTrue(AssignmentDetails.submittedText.waitToExist().isVisible)
@@ -253,7 +259,8 @@ class AssignmentDetailsTests: StudentUITestCase {
             points_possible: 100,
             submission: APISubmission.make(
                 grade: "90",
-                score: 90
+                score: 90,
+                workflow_state: .graded
             )
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
@@ -266,7 +273,8 @@ class AssignmentDetailsTests: StudentUITestCase {
             points_possible: 10,
             submission: APISubmission.make(
                 grade: "80%",
-                score: 8
+                score: 8,
+                workflow_state: .graded
             ),
             grading_type: .percent
         ))
@@ -284,6 +292,7 @@ class AssignmentDetailsTests: StudentUITestCase {
                 grade: "85",
                 score: 85,
                 late: true,
+                workflow_state: .graded,
                 late_policy_status: .late,
                 points_deducted: 5
             )
@@ -319,7 +328,7 @@ class AssignmentDetailsTests: StudentUITestCase {
         mockBaseRequests()
         let assignment = mock(assignment: .make(
             points_possible: 10,
-            submission: APISubmission.make()
+            submission: APISubmission.make(submission_type: .online_upload, workflow_state: .submitted)
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.viewSubmissionButton.tap()
@@ -332,7 +341,8 @@ class AssignmentDetailsTests: StudentUITestCase {
             points_possible: 10,
             submission: APISubmission.make(
                 grade: "80%",
-                score: 8
+                score: 8,
+                workflow_state: .graded
             ),
             grading_type: .percent
         ))

@@ -24,17 +24,16 @@ import i18n from 'format-message'
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
 } from 'react-native'
 
 import AccessIcon from '../../common/components/AccessIcon'
 import { Text } from '../../common/text'
 import Row from '../../common/components/rows/Row'
-import Images from '../../images'
+import instIcon from '../../images/inst-icons'
 import OldSubmissionStatusLabel from '../submissions/list/OldSubmissionStatusLabel'
 import LinearGradient from 'react-native-linear-gradient'
 import Token from '../../common/components/Token'
-import colors from '../../common/colors'
+import { colors, createStyleSheet } from '../../common/stylesheet'
 import { formatGradeText } from '../../common/formatters'
 
 type Props = {
@@ -62,7 +61,12 @@ export default class UserSubmissionRow extends Component<Props, any> {
   grade = () => {
     const submission = this.props.submission
     const assignment = submission.assignment
-    const grade = formatGradeText(submission.grade, assignment.grading_type, assignment.points_possible)
+    const grade = formatGradeText({
+      grade: submission.grade,
+      score: submission.score,
+      gradingType: assignment.grading_type,
+      pointsPossible: assignment.points_possible,
+    })
     let flex = 1
     // if points_possible is zero we would divide by zero and get NaN
     if (assignment.points_possible > 0) {
@@ -110,7 +114,7 @@ export default class UserSubmissionRow extends Component<Props, any> {
         {submission.grading_status === 'graded' && this.grade()}
         {needsGrading &&
           <View style={{ flexDirection: 'row' }}>
-            <Token color='#FC5E13'>{i18n('Needs Grading')}</Token>
+            <Token color={colors.textWarning}>{i18n('Needs Grading')}</Token>
           </View>
         }
       </Row>
@@ -121,13 +125,13 @@ export default class UserSubmissionRow extends Component<Props, any> {
     const assignment = this.props.submission.assignment
     const testIDSuffix = `-icon-${assignment.published ? 'published' : 'not-published'}-${assignment.id}.icon-img`
     const submissionTypes = assignment.submission_types || []
-    let image = Images.course.assignments
+    let image = instIcon('assignment')
     let testID = `user-submission-row${testIDSuffix}`
     if (submissionTypes.includes('online_quiz')) {
-      image = Images.course.quizzes
+      image = instIcon('quiz')
       testID = `user-submission-row${testIDSuffix}`
     } else if (submissionTypes.includes('discussion_topic')) {
-      image = Images.course.discussions
+      image = instIcon('discussion')
       testID = `user-submission-row${testIDSuffix}`
     }
     return (
@@ -138,17 +142,17 @@ export default class UserSubmissionRow extends Component<Props, any> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   ungradedText: {
     flex: 0,
     alignSelf: 'flex-start',
     fontSize: 11,
     fontWeight: '600',
-    color: '#008EE2',
+    color: colors.textInfo,
     borderRadius: 9,
-    borderColor: '#008EE2',
+    borderColor: colors.borderInfo,
     borderWidth: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     paddingTop: 3,
     paddingBottom: 1,
     paddingLeft: 6,
@@ -167,7 +171,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   progressBackground: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: colors.backgroundLight,
     borderColor: 'transparent',
     height: 18,
     flex: 1,
@@ -183,10 +187,10 @@ const styles = StyleSheet.create({
     minWidth: 67,
     flex: 0,
     fontSize: 14,
-    color: colors.lightText,
+    color: colors.textDark,
     fontWeight: '500',
   },
   needsGradingText: {
     flex: 0,
   },
-})
+}))

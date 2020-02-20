@@ -19,6 +19,14 @@
 import Foundation
 import CoreData
 
+public enum CalendarEventType: String, Codable {
+    case assignment, event
+}
+
+public enum CalendarEventWorkflowState: String, Codable {
+    case active, deleted, locked, published
+}
+
 final public class CalendarEventItem: NSManagedObject, WriteableModel {
     public typealias JSON = APICalendarEvent
 
@@ -26,13 +34,19 @@ final public class CalendarEventItem: NSManagedObject, WriteableModel {
     @NSManaged public var title: String
     @NSManaged public var startAt: Date?
     @NSManaged public var endAt: Date?
-    @NSManaged public var type: String?
+    @NSManaged public var typeRaw: String
     @NSManaged public var htmlUrl: URL
-    @NSManaged var contextRaw: String
+    @NSManaged public var contextRaw: String
+    @NSManaged public var hasStartAt: Bool
 
     public var context: Context {
         get { return ContextModel(canvasContextID: contextRaw) ?? .currentUser }
         set { contextRaw = newValue.canvasContextID }
+    }
+
+    public var type: CalendarEventType {
+        get { return CalendarEventType(rawValue: typeRaw) ?? .event }
+        set { typeRaw = newValue.rawValue }
     }
 
     public var routingURL: URL {
@@ -50,6 +64,7 @@ final public class CalendarEventItem: NSManagedObject, WriteableModel {
         model.type = item.type
         model.htmlUrl = item.html_url
         model.contextRaw = item.context_code
+        model.hasStartAt = item.start_at != nil
         return model
     }
 }

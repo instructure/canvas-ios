@@ -24,43 +24,43 @@ import CoreData
 
 public class UITestHelpers {
     public enum Helper: Codable {
-        case reset
+        case reset(useMocks: Bool)
         case login(LoginSession)
         case show(String)
-        case mockData(MockDataMessage)
-        case mockDownload(MockDownloadMessage)
+        case mockNow(Date)
         case tearDown
         case currentSession
         case setAnimationsEnabled(Bool)
-        case useMocksOnly
         case debug(Any?)
+        case enableExperimentalFeatures([ExperimentalFeature])
+        case showKeyboard
 
         private enum CodingKeys: String, CodingKey {
-            case reset, login, show, mockData, mockDownload, tearDown, currentSession, setAnimationsEnabled, useMocksOnly, debug
+            case reset, login, show, tearDown, currentSession, setAnimationsEnabled, debug, mockNow, experimentalFeatures, showKeyboard
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            if container.contains(.reset) {
-                self = .reset
+            if let useMocks = try container.decodeIfPresent(Bool.self, forKey: .reset) {
+                self = .reset(useMocks: useMocks)
             } else if let session = try container.decodeIfPresent(LoginSession.self, forKey: .login) {
                 self = .login(session)
             } else if let route = try container.decodeIfPresent(String.self, forKey: .show) {
                 self = .show(route)
-            } else if let message = try container.decodeIfPresent(MockDataMessage.self, forKey: .mockData) {
-                self = .mockData(message)
-            } else if let message = try container.decodeIfPresent(MockDownloadMessage.self, forKey: .mockDownload) {
-                self = .mockDownload(message)
             } else if container.contains(.tearDown) {
                 self = .tearDown
             } else if container.contains(.currentSession) {
                 self = .currentSession
             } else if let enabled = try container.decodeIfPresent(Bool.self, forKey: .setAnimationsEnabled) {
                 self = .setAnimationsEnabled(enabled)
-            } else if container.contains(.useMocksOnly) {
-                self = .useMocksOnly
             } else if let data = try container.decodeIfPresent(Data.self, forKey: .debug) {
                 self = .debug(try NSKeyedUnarchiver(forReadingFrom: data).decodeObject(forKey: "debug"))
+            } else if let date = try container.decodeIfPresent(Date.self, forKey: .mockNow) {
+                self = .mockNow(date)
+            } else if let features = try container.decodeIfPresent([ExperimentalFeature].self, forKey: .experimentalFeatures) {
+                self = .enableExperimentalFeatures(features)
+            } else if container.contains(.showKeyboard) {
+                self = .showKeyboard
             } else {
                 throw DecodingError.typeMismatch(Helper.self, .init(codingPath: container.codingPath, debugDescription: "Couldn't decode \(Helper.self)"))
             }
@@ -68,28 +68,28 @@ public class UITestHelpers {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             switch self {
-            case .reset:
-                try container.encode(nil as Int?, forKey: .reset)
+            case .reset(let useMocks):
+                try container.encode(useMocks, forKey: .reset)
             case .login(let session):
                 try container.encode(session, forKey: .login)
             case .show(let route):
                 try container.encode(route, forKey: .show)
-            case .mockData(let message):
-                try container.encode(message, forKey: .mockData)
-            case .mockDownload(let message):
-                try container.encode(message, forKey: .mockDownload)
             case .tearDown:
                 try container.encode(nil as Int?, forKey: .tearDown)
             case .currentSession:
                 try container.encode(nil as Int?, forKey: .currentSession)
             case .setAnimationsEnabled(let enabled):
                 try container.encode(enabled, forKey: .setAnimationsEnabled)
-            case .useMocksOnly:
-                try container.encode(nil as Int?, forKey: .useMocksOnly)
             case .debug(let payload):
                 let archiver = NSKeyedArchiver(requiringSecureCoding: false)
                 archiver.encode(payload, forKey: "debug")
                 try container.encode(archiver.encodedData, forKey: .debug)
+            case .mockNow(let date):
+                try container.encode(date, forKey: .mockNow)
+            case .enableExperimentalFeatures(let features):
+                try container.encode(features, forKey: .experimentalFeatures)
+            case .showKeyboard:
+                try container.encode(nil as Int?, forKey: .showKeyboard)
             }
         }
     }
@@ -125,44 +125,53 @@ public class UITestHelpers {
         }
     }
 
-    @discardableResult
-    func send(_ message: IPCDriverServerMessage) -> Data? {
-        return ipcDriverClient?.requestRemote(message)
+    private let ipcQueue = DispatchQueue(label: "UITestHelper-ipc")
+    private let callbackQueue = DispatchQueue(label: "UITestHelper-callback")
+    func send(_ message: IPCDriverServerMessage, callback: ((Data?) -> Void)? = nil) {
+        ipcQueue.async {
+            let result = try? self.ipcDriverClient?.requestRemote(message)
+            self.callbackQueue.async { callback?(result) }
+        }
     }
 
     func run(_ helper: Helper) -> Data? {
         print("Running UI Test Helper \(helper)")
         switch helper {
-        case .reset:
-            reset()
+        case .reset(let useMocks):
+            reset(useMocks: useMocks)
         case .login(let entry):
             logIn(entry)
         case .show(let route):
             show(route)
-        case .mockData(let message):
-            MockDistantURLSession.mockData(message)
-        case .mockDownload(let message):
-            MockDistantURLSession.mockDownload(message)
         case .tearDown:
             tearDown()
         case .currentSession:
             return try? encoder.encode(AppEnvironment.shared.currentSession)
         case .setAnimationsEnabled(let enabled):
             setAnimationsEnabled(enabled)
-        case .useMocksOnly:
-            MockDistantURLSession.setup()
         case .debug:
             // insert ad-hoc debug code here
             ()
+        case .mockNow(let date):
+            Clock.mockNow(date)
+        case .enableExperimentalFeatures(let features):
+            ExperimentalFeature.allEnabled = false
+            features.forEach { $0.isEnabled = true }
+        case .showKeyboard:
+            showKeyboard()
         }
         return nil
     }
 
-    func reset() {
+    func reset(useMocks: Bool) {
         LoginSession.clearAll()
         UserDefaults.standard.removeObject(forKey: MDMManager.MDMUserDefaultsKey)
 
         guard let loginDelegate = appDelegate as? LoginDelegate, let window = window else { fatalError() }
+        if useMocks, let session = AppEnvironment.shared.currentSession {
+            // caching is ok for a real session, but bad for a mocked one
+            loginDelegate.userDidLogout(session: session)
+        }
 
         // horrible hack to get rid of old modally presented controllers that stick around after the rootViewController is changed
         window.rootViewController = nil
@@ -170,7 +179,7 @@ public class UITestHelpers {
         window.rootViewController = LoginNavigationController.create(loginDelegate: loginDelegate)
 
         resetDatabase()
-        MockDistantURLSession.reset()
+        MockDistantURLSession.reset(useMocks: useMocks)
         setAnimationsEnabled(false)
     }
 
@@ -197,11 +206,12 @@ public class UITestHelpers {
     func logIn(_ entry: LoginSession) {
         guard let loginDelegate = appDelegate as? LoginDelegate else { fatalError() }
         loginDelegate.userDidLogin(session: entry)
+        resetDatabase()
     }
 
     func show(_ route: String) {
         guard let root = window?.rootViewController else { return }
-        AppEnvironment.shared.router.route(to: route, from: root, options: [.modal, .embedInNav])
+        AppEnvironment.shared.router.route(to: route, from: root, options: .modal(.fullScreen, embedInNav: true))
     }
 
     func tearDown() {
@@ -213,6 +223,15 @@ public class UITestHelpers {
         window?.layer.speed = enabled ? 1 : 100
         UIView.setAnimationsEnabled(enabled)
     }
+
+    func showKeyboard() {
+        let shared = NSClassFromString("UIKeyboardImpl")!.value(forKey: "sharedInstance") as AnyObject
+        shared.perform(#selector(UIKeyboardImplLike.showKeyboard), with: nil, afterDelay: 0)
+    }
+}
+
+@objc protocol UIKeyboardImplLike {
+    @objc func showKeyboard()
 }
 
 #endif

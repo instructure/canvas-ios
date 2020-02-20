@@ -103,7 +103,17 @@ describe('courses refresher', () => {
     }).refreshCourses()
 
     let state = await testAsyncReducer(coursesReducer, action)
-    expect(state).toMatchSnapshot()
+    expect(state).toMatchObject([
+      {}, {
+        '1': {
+          color: '#fff',
+          course: course,
+        },
+        '991': {
+          color: '#aaa',
+          course: nonTeacherCourse,
+        },
+      }])
   })
 
   it('refresh courses with error', async () => {
@@ -112,6 +122,27 @@ describe('courses refresher', () => {
 
     // the courses store doesn't track errors or pending
     expect(state).toEqual([{}, {}])
+  })
+
+  it('overwrites old course data', async () => {
+    let action = {
+      type: CoursesActions().refreshCourses.toString(),
+      payload: {
+        result: [{
+          data: [templates.course()],
+        }, {
+          data: templates.customColors(),
+        }],
+      },
+    }
+
+    let state = {
+      '1': {
+        course: templates.course({ an_optional_field_that_might_not_be_there: true }),
+      },
+    }
+    let newState = coursesReducer(state, action)
+    expect(newState['1'].course.an_optional_field_that_might_not_be_there).toBeUndefined()
   })
 })
 
@@ -545,16 +576,20 @@ describe('refresh single course', () => {
     let action = {
       type: CoursesActions().refreshCourse.toString(),
       payload: {
-        result: {
-          data: {
-            id: '1',
-            permissions: {
-              create_announcement: true,
-              create_discussion_topic: true,
-            }
-            ,
+        result: [
+          {
+            data: {
+              id: '1',
+              permissions: {
+                create_announcement: true,
+                create_discussion_topic: true,
+              },
+            },
           },
-        },
+          {
+            data: templates.customColors(),
+          },
+        ],
         context: 'courses',
         courseID: '1',
       },
@@ -568,7 +603,7 @@ describe('refresh single course', () => {
           'announcements': { 'pending': 0, 'refs': [] },
           'assignmentGroups': { 'pending': 0, 'refs': [] },
           'attendanceTool': { 'pending': 0 },
-          'color': '#FFFFFF00',
+          'color': '#fff',
           'course': {
             'id': '1',
             'permissions': {
@@ -599,17 +634,19 @@ describe('refresh single course', () => {
     let action = {
       type: CoursesActions().refreshCourse.toString(),
       payload: {
-        result: {
-          data: {
-            id: '1',
-            name: 'Course 2',
-            permissions: {
-              create_announcement: false,
-              create_discussion_topic: true,
-            }
-            ,
+        result: [
+          {
+            data: {
+              id: '1',
+              name: 'Course 2',
+              permissions: {
+                create_announcement: false,
+                create_discussion_topic: true,
+              },
+            },
           },
-        },
+          { data: templates.customColors() },
+        ],
         context: 'courses',
         courseID: '1',
       },
@@ -650,7 +687,7 @@ describe('refresh single course', () => {
           'announcements': { 'pending': 0, 'refs': [] },
           'assignmentGroups': { 'pending': 0, 'refs': [] },
           'attendanceTool': { 'pending': 0 },
-          'color': '#FFFFFF00',
+          'color': '#fff',
           'course': {
             'id': '1',
             'name': 'Course 2',
@@ -812,6 +849,7 @@ describe('getDashboardCards', () => {
         dashboardPosition: 0,
       },
     })
+    expect(newState[1] === state[1]).toEqual(false)
   })
 
   it('still works when there are no courses yet', () => {

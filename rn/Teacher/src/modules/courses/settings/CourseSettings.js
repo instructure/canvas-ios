@@ -22,7 +22,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
   View,
-  StyleSheet,
   TouchableHighlight,
   PickerIOS,
   Image,
@@ -30,7 +29,7 @@ import {
 } from 'react-native'
 
 import i18n from 'format-message'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import { mapStateToProps } from './map-state-to-props'
 import CourseSettingsActions from './actions'
 import ModalOverlay from '../../../common/components/ModalOverlay'
@@ -39,7 +38,6 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Text, TextInput } from '../../../common/text'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
-import branding from '../../../common/branding'
 
 var PickerItemIOS = PickerIOS.Item
 
@@ -96,7 +94,7 @@ export class CourseSettings extends Component<Props, State> {
   }
 
   render () {
-    let pickerDetailStyle = this.state.showingPicker ? { color: branding.primaryBrandColor } : {}
+    let pickerDetailStyle = this.state.showingPicker ? { color: colors.primary } : {}
 
     const DISPLAY_NAMES = new Map([
       ['feed', i18n('Course Activity Stream')],
@@ -110,8 +108,8 @@ export class CourseSettings extends Component<Props, State> {
       <Screen
         title={i18n('Course Settings')}
         drawUnderNavBar={false}
-        navBarTitleColor={colors.darkText}
-        navBarButtonColor={colors.link}
+        navBarTitleColor={colors.textDarkest}
+        navBarButtonColor={colors.linkColor}
         rightBarButtons={[{
           style: 'done',
           testID: 'course-settings.done-btn',
@@ -192,7 +190,7 @@ export class CourseSettings extends Component<Props, State> {
 let connected = connect(mapStateToProps, CourseSettingsActions)(CourseSettings)
 export default (connected: CourseSettings)
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   scrollView: {
     flex: 1,
   },
@@ -226,25 +224,25 @@ const styles = StyleSheet.create({
     flex: 2,
     fontWeight: '600',
     fontSize: 16,
-    color: colors.darkText,
+    color: colors.textDarkest,
     lineHeight: 54,
   },
   actionableText: {
     flex: 3,
-    color: colors.darkText,
+    color: colors.textDarkest,
     fontSize: 16,
     textAlign: 'right',
     lineHeight: 54,
   },
   separator: {
-    backgroundColor: '#C7CDD1',
-    height: StyleSheet.hairlineWidth,
+    backgroundColor: colors.borderMedium,
+    height: vars.hairlineWidth,
   },
   picker: {
     flex: 1,
   },
   fakePickerDrawer: {
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     flex: 0,
   },
-})
+}))

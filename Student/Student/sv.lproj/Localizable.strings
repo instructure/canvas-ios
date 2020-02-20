@@ -1,5 +1,5 @@
 /* %@ will be replaced by the filename */
-"'%@' is now ready to submit to assignments" = "\"%@\" är nu redo att lämnas in till uppgifter";
+"'%@' is now ready to submit to assignments" = "'%@' är nu redo att skickas in till uppgifter";
 
 /* explanation for locked module item */
 "&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; är låst som en del av &quot;%2$@&quot;";
@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "Alla kurser";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "Alla bedömningsperioder";
+
 /* Button to select all members of a group */
 "All members" = "Alla medlemmar";
 
@@ -222,11 +225,11 @@
 "An unknown error occurred" = "Ett okänt fel uppstod.";
 
 /* Title of the new announcement view */
-"Announcement" = "Kursmeddelande";
+"Announcement" = "Anslag";
 
 /* Announcements title
    Title for the announcements view controller */
-"Announcements" = "Kursmeddelanden";
+"Announcements" = "Anslag";
 
 /* Archive selected messages button
    mark a message as archived */
@@ -366,6 +369,9 @@
 "Choose Video" = "Välj video";
 
 /* No comment provided by engineer. */
+"Clear filter" = "Rensa filter";
+
+/* No comment provided by engineer. */
 "Close" = "Stäng";
 
 /* No comment provided by engineer. */
@@ -436,10 +442,13 @@
 "Currently there is limited quiz support on mobile" = "För närvarande är stödet för quiz begränsat på mobiler";
 
 /* A custom grade not specified by the rubric. */
-"Custom Grade" = "Anpassad bedömning";
+"Custom Grade" = "Anpassad omdöme";
 
 /* label for customizing a course */
 "Customize" = "Anpassa";
+
+/* No comment provided by engineer. */
+"d_events" = "d_events";
 
 /* dashboard page title */
 "Dashboard" = "Översikt";
@@ -486,7 +495,11 @@
    Title for Discussions view controller */
 "Discussions" = "Diskussioner";
 
-/* Dismiss an alert dialog */
+/* Dismiss an error button
+   dismiss button
+   Dismiss button for an error dialoue
+   Dismiss error alert button
+   dismiss the alert button */
 "Dismiss" = "Avvisa";
 
 /* Alert title asking if you want to masquerade */
@@ -501,7 +514,7 @@
 /* Button to cancel deleting folders */
 "Don't delete" = "Ta inte bort";
 
-/* Button title to mark a to do item as done */
+/* No comment provided by engineer. */
 "Done" = "Klar";
 
 /* Shown when we cancel a file download */
@@ -532,9 +545,6 @@
 "Due:" = "Inlämningsdatum:";
 
 /* Due date label for to do items, first placeholder is date, second is time */
-"Due: %@ at %@" = "Inlämningsdatum: %1$@ vid %2$@";
-
-/* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "Inlämningsdatum: %1$@ vid %2$@";
 
 /* Button to edit a discussion entry */
@@ -555,7 +565,7 @@
 "Edit items" = "Redigera objekt";
 
 /* Header when editing a discussion entry with name and timestamp */
-"Editing reply by %1$@, %2$@" = "Redigerar svar från %1$@,  %2$@";
+"Editing reply by %1$@, %2$@" = "Redigerar svar från %1$@, %2$@";
 
 /* the users email */
 "Email" = "E-post";
@@ -632,6 +642,12 @@
 /* No comment provided by engineer. */
 "Files (%d)" = "Filer (%d)";
 
+/* No comment provided by engineer. */
+"Filter" = "Filtrera";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Filtrerat efter:";
+
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Nedladdning slutförd";
 
@@ -657,19 +673,19 @@
 "Go to Quiz" = "Gå till quiz";
 
 /* No comment provided by engineer. */
-"Grade" = "Bedömning";
+"Grade" = "Omdöme";
 
 /* Tells the user to grade an assignment called something like 'Biology Assignment' */
-"Grade %@" = "Bedömning %@";
+"Grade %@" = "Omdöme %@";
 
 /* Launch the SpeedGrader app */
 "Grade in SpeedGrader" = "Bedöm i SpeedGrader";
 
 /* No comment provided by engineer. */
-"Grade: %@" = "Bedömning: %@";
+"Grade: %@" = "Omdöme: %@";
 
 /* No comment provided by engineer. */
-"Grade: %1$i / %2$g" = "Bedömning: %1$i / %2$g";
+"Grade: %1$i / %2$g" = "Omdöme: %1$i / %2$g";
 
 /* Label for a discussion */
 "Graded Discussion" = "Bedömd diskussion";
@@ -684,7 +700,7 @@
 "Graded Surveys" = "Bedömda enkäter";
 
 /* Title for Grades view controller */
-"Grades" = "Bedömningar";
+"Grades" = "Omdömen";
 
 /* Button title for starting a group conversation */
 "Group conversation" = "Gruppkonversation";
@@ -699,7 +715,7 @@
 "Help" = "Hjälp";
 
 /* Accessibility label for toggling grades to hidden */
-"Hide Grades" = "Dölj bedömningar";
+"Hide Grades" = "Dölj omdömen";
 
 /* No comment provided by engineer. */
 "How do you like Canvas?" = "Vad tycker du om Canvas?";
@@ -737,9 +753,6 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "Den har problem";
-
-/* No comment provided by engineer. */
-"It looks like there’s nothing to do today. Enjoy your day!" = "Det ser ut som om det inte finns något att göra i dag. Ha en bra dag!";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Det är tomt, så vad gör du här?";
@@ -933,6 +946,9 @@
 "No Mastery Paths" = "Ingen måluppfyllelseväg";
 
 /* No comment provided by engineer. */
+"No Notifications" = "Inga aviseringar";
+
+/* No comment provided by engineer. */
 "No recipients" = "Inga mottagare";
 
 /* Title for attempting submission without a comment */
@@ -949,9 +965,6 @@
 
 /* No comment provided by engineer. */
 "No Thanks" = "Nej tack";
-
-/* No comment provided by engineer. */
-"No To-Do Items" = "Inga att-göra-objekt";
 
 /* error message for a 401 response. */
 "Not Authorized" = "Du har inte behörighet";
@@ -1116,7 +1129,7 @@
 "Quiz" = "Quiz";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
-"Quiz Alert" = "Quizlarm";
+"Quiz Alert" = "Quiz-notis";
 
 /* No comment provided by engineer. */
 "Quiz Locked" = "Quizet är låst";
@@ -1131,7 +1144,7 @@
 "Rating for %1$@, Score: %2$g" = "Betyg för %1$@, Poäng: %2$g";
 
 /* Title for a button allowing user to re-submit files for an assignment */
-"Re-submit Assignment" = "Lämna in uppgift igen";
+"Re-submit Assignment" = "Skicka in uppgift igen";
 
 /* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
 "Recipients" = "Mottagare";
@@ -1246,7 +1259,7 @@
 "Show file" = "Visa fil";
 
 /* Accessibility label for toggling grades to visible */
-"Show Grades" = "Visa bedömningar";
+"Show Grades" = "Visa omdömen";
 
 /* title for quiz assignment submission button */
 "Show Quiz" = "Visa quiz";
@@ -1478,6 +1491,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Det gick inte att läsa in ditt innehåll. Om det är en ljud- eller video-fil kanske den fortfarande bearbetas.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Det finns inget att avisera om än.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "Den här appen har inte auktoriserats för användning.";

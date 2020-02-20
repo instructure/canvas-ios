@@ -24,7 +24,8 @@ class LoginStartMDMLoginCell: UITableViewCell {
 
     func update(login: MDMLogin) {
         let identifier = "LoginStartMDMLogin.\(login.host).\(login.username)"
-        self.accessibilityIdentifier = identifier
+        accessibilityIdentifier = identifier
+        backgroundColor = .named(.backgroundLightest)
         domainLabel?.text = login.host
         nameLabel?.text = login.username
     }

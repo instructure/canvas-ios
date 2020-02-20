@@ -25,14 +25,17 @@ import { connect } from 'react-redux'
 import {
   View,
   ScrollView,
-  StyleSheet,
 } from 'react-native'
 
 import { mapStateToProps, type AssignmentDueDatesProps } from './map-state-to-props'
 import UserActions from '../users/actions'
 import AssignmentDates from '../../common/AssignmentDates'
-import { formattedDueDateWithStatus, formattedDueDate } from '../../common/formatters'
-import colors from '../../common/colors'
+import {
+  formattedDueDateWithStatus,
+  formattedDueDate,
+  personDisplayName,
+} from '../../common/formatters'
+import { createStyleSheet } from '../../common/stylesheet'
 import { extractDateFromString } from '../../utils/dateUtils'
 import i18n from 'format-message'
 import { Text, Heading1 } from '../../common/text'
@@ -64,7 +67,10 @@ export class AssignmentDueDates extends Component<AssignmentDueDatesProps, any> 
       if (override) {
         const students = (override.student_ids || []).map((id) => users[id]).filter((profile) => profile)
         if (students.length) {
-          title = students.map((profile) => profile.name).filter((name) => name).join(', ')
+          title = students
+            .map((profile) => personDisplayName(profile.name, profile.pronouns))
+            .filter((name) => name)
+            .join(', ')
         }
       }
     }
@@ -87,7 +93,8 @@ export class AssignmentDueDates extends Component<AssignmentDueDatesProps, any> 
       availableToAccessibiltyLabel = i18n('No available until date set')
     }
 
-    return (<View style={styles.row} key={date.id || 'base'} >
+    let key = date.id || 'base'
+    return (<View style={styles.row} key={key} testID={key} >
       <Heading1>{formattedDueDateWithStatus(dueAt, extractDateFromString(date.lock_at)).join('  •  ')}</Heading1>
       <View accessible={true}>
         <Text style={styles.header}>{i18n('For')}</Text>
@@ -135,31 +142,31 @@ export class AssignmentDueDates extends Component<AssignmentDueDatesProps, any> 
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
   },
   scrollContainer: {
     flex: 1,
-    paddingLeft: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
+    paddingLeft: vars.padding,
+    paddingRight: vars.padding,
   },
   row: {
-    paddingTop: global.style.defaultPadding,
+    paddingTop: vars.padding,
   },
   header: {
-    color: colors.grey4,
-    paddingTop: global.style.defaultPadding,
+    color: colors.textDark,
+    paddingTop: vars.padding,
     fontWeight: '500',
   },
   content: {
-    paddingBottom: global.style.defaultPadding,
+    paddingBottom: vars.padding,
   },
   divider: {
-    height: StyleSheet.hairlineWidth,
-    backgroundColor: colors.grey2,
+    height: vars.hairlineWidth,
+    backgroundColor: colors.borderMedium,
   },
-})
+}))
 
 let Connected = connect(mapStateToProps, UserActions)(AssignmentDueDates)
 export default (Connected: Component<AssignmentDueDatesProps, any>)

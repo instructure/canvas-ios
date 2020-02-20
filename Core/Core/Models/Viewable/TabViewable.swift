@@ -41,6 +41,7 @@ extension TabViewable {
         case "discussions":    return .icon(.discussion, .line)
         case "files":          return .icon(.folder, .line)
         case "grades":         return .icon(.gradebook, .line)
+        case "home":           return .icon(.home, .line)
         case "link":           return .icon(.link, .line)
         case "modules":        return .icon(.module, .line)
         case "outcomes":       return .icon(.outcomes, .line)

@@ -21,7 +21,7 @@ import XCTest
 import Core
 import TestsFoundation
 
-class AssignmentListPresenterTests: PersistenceTestCase {
+class AssignmentListPresenterTests: StudentTestCase {
 
     var resultingError: NSError?
     var resultingBaseURL: URL?
@@ -43,42 +43,40 @@ class AssignmentListPresenterTests: PersistenceTestCase {
         presenter = AssignmentListPresenter(env: env, view: self, courseID: "1")
     }
 
+    func testUseCasesSetupProperly() {
+        XCTAssertEqual(presenter.course.useCase.courseID, presenter.courseID)
+
+        XCTAssertEqual(presenter.assignments.useCase.courseID, presenter.courseID)
+        XCTAssertEqual(presenter.assignments.useCase.sort, .position)
+    }
+
+    func testLoadColor() {
+        let course = Course.make()
+        ContextColor.make(canvasContextID: course.canvasContextID)
+        presenter.color.eventHandler()
+        XCTAssertEqual(resultingBackgroundColor, UIColor.red)
+    }
+
+    func testLoadCourse() {
+        let course = Course.make()
+        presenter.course.eventHandler()
+        XCTAssertEqual(resultingSubtitle, course.name)
+    }
+
     func testLoadAssignments() {
-        //  given
-        let expected = Assignment.make()
-
-        //  when
-        presenter.viewIsReady()
-
-        //  then
-        XCTAssert(presenter.assignments.first! === expected)
+        Assignment.make()
+        presenter.assignments.eventHandler()
+        wait(for: [expectation], timeout: 0.1)
+        XCTAssertEqual(presenter.assignments.count, 1)
     }
 
-    func testUseCaseFetchesData() {
-        //  given
-        Assignment.make(from: .make(name: "Assignment One"))
-
-        //   when
+    func testViewIsReady() {
         presenter.viewIsReady()
+        let colorStore = presenter.color as! TestStore
+        let courseStore = presenter.course as! TestStore
+        let assignmentsStore = presenter.assignments as! TestStore
 
-        //  then
-        XCTAssertEqual(presenter.assignments.first?.name, "Assignment One")
-    }
-
-    func testLoadCourseColorsAndTitle() {
-        //  given
-        let expected = Course.make()
-        let expectedColor = Color.make()
-
-        //  when
-        presenter.viewIsReady()
-        XCTAssertEqual(presenter.course.count, 1)
-        wait(for: [expectation], timeout: 0.4)
-        presenter.loadColor()
-
-        //  then
-        XCTAssertEqual(resultingBackgroundColor, expectedColor.color)
-        XCTAssertEqual(resultingSubtitle, expected.name)
+        wait(for: [colorStore.refreshExpectation, courseStore.refreshExpectation, assignmentsStore.exhaustExpectation], timeout: 0.1)
     }
 
     func testSelect() {
@@ -97,6 +95,8 @@ extension AssignmentListPresenterTests: AssignmentListViewProtocol {
     var navigationController: UINavigationController? {
         return UINavigationController(nibName: nil, bundle: nil)
     }
+
+    func showAlert(title: String?, message: String?) {}
 
     func showError(_ error: Error) {
         resultingError = error as NSError

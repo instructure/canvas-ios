@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"Absent" = "Ngaro";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "Kei te hungaia ngā kōeke katoa i tēnei wā";
 
 /* No comment provided by engineer. */
@@ -11,13 +14,43 @@
 "All Posted" = "Kua whakairihia katoa";
 
 /* No comment provided by engineer. */
+"Attendance" = "Taenga mai";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "Taenga mai Hapa";
+
+/* No comment provided by engineer. */
 "Back" = "Hoki";
+
+/* No comment provided by engineer. */
+"Cancel" = "Whakakore";
+
+/* No comment provided by engineer. */
+"Change Section" = "Huri te wāhanga";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Kōwhiria he Wāhanga";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Kōwhiri te rā";
 
 /* No comment provided by engineer. */
 "Courses" = "Ngā Akoranga";
 
 /* No comment provided by engineer. */
+"Date picker" = "Rā Kaitoi";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Pana";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Hapa: Kaore he raraunga i whakahokia mai i rollcall.";
+
+/* No comment provided by engineer. */
 "Everyone" = "tāngata katoa";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "I hapa te tuku rollcall LTI taputapu.";
 
 /* No comment provided by engineer. */
 "Graded" = "kōekehia";
@@ -38,6 +71,18 @@
 "Hide Grades" = "Huna ngā Kōeke";
 
 /* No comment provided by engineer. */
+"Late" = "Tūreiti";
+
+/* No comment provided by engineer. */
+"Loading more modules..." = "Uta nui atu ngā kōwae ...";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Tohua katoa kei nāianei";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Tohua ngā toenga o nāianei";
+
+/* No comment provided by engineer. */
 "Modules" = "kōwae";
 
 /* No comment provided by engineer. */
@@ -50,8 +95,20 @@
 "Post to..." = "Whakairi kī";
 
 /* No comment provided by engineer. */
+"Present" = "Nāianei";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Tīpako ki te huri te rā roll call";
+
+/* No comment provided by engineer. */
 "Specific Sections" = "Ngā Wāhanga Motuhake";
 
 /* No comment provided by engineer. */
+"This module is empty." = "Kei te kore tēnei kōwae.";
+
+/* No comment provided by engineer. */
 "To Do" = "Hei mahi";
+
+/* No comment provided by engineer. */
+"Unmark" = "Kaore i mākāhia";
 

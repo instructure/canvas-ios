@@ -21,7 +21,7 @@ import Foundation
 
 extension APIEnrollment {
     public static func make(
-        id: String? = nil,
+        id: ID? = "1",
         course_id: String? = nil,
         course_section_id: String? = nil,
         enrollment_state: EnrollmentState = .active,
@@ -43,7 +43,9 @@ extension APIEnrollment {
         current_period_computed_current_score: Double? = nil,
         current_period_computed_final_score: Double? = nil,
         current_period_computed_current_grade: String? = nil,
-        current_period_computed_final_grade: String? = nil
+        current_period_computed_final_grade: String? = nil,
+        user: APIUser? = .make(),
+        observed_user: APIUser? = nil
     ) -> APIEnrollment {
         return APIEnrollment(
             id: id,
@@ -58,6 +60,7 @@ extension APIEnrollment {
             start_at: start_at,
             end_at: end_at,
             grades: grades,
+            user: user,
             computed_current_score: computed_current_score,
             computed_final_score: computed_final_score,
             computed_current_grade: computed_current_grade,
@@ -68,7 +71,26 @@ extension APIEnrollment {
             current_period_computed_current_score: current_period_computed_current_score,
             current_period_computed_final_score: current_period_computed_final_score,
             current_period_computed_current_grade: current_period_computed_current_grade,
-            current_period_computed_final_grade: current_period_computed_final_grade
+            current_period_computed_final_grade: current_period_computed_final_grade,
+            observed_user: observed_user
+        )
+    }
+}
+
+extension APIEnrollment.Grades {
+    public static func make(
+        html_url: String = "/grades",
+        current_grade: String? = nil,
+        final_grade: String? = nil,
+        current_score: Double? = nil,
+        final_score: Double? = nil
+    ) -> Self {
+        return Self(
+            html_url: html_url,
+            current_grade: current_grade,
+            final_grade: final_grade,
+            current_score: current_score,
+            final_score: final_score
         )
     }
 }

@@ -17,66 +17,89 @@
 //
 
 import UIKit
+import CoreData
+
+public protocol ColorDelegate: class {
+    var iconColor: UIColor? { get }
+}
 
 public class GradesViewController: UIViewController {
-
     @IBOutlet weak var filterButton: DynamicButton!
-    @IBOutlet weak var headerGradeHeader: DynamicLabel!
-    @IBOutlet weak var headerGradeTotalLabel: DynamicLabel!
-    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var totalGradeLabel: DynamicLabel!
+    @IBOutlet weak var gradingPeriodLabel: DynamicLabel!
+    @IBOutlet weak var gradingPeriodView: UIView!
     @IBOutlet weak var tableView: UITableView!
-    private var presenter: GradesPresenter!
     @IBOutlet weak var loadingView: UIView!
-    static let dateParser: DateFormatter = {
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd HH:mm:ss ZZ"
-        return df
-    }()
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    public weak var colorDelegate: ColorDelegate?
 
-    static let dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "EEEEMMMMd", options: 0, locale: NSLocale.current)
-        return dateFormatter
-    }()
+    let env = AppEnvironment.shared
+    var courseID: String!
+    var grades: Grades!
+    var userID: String?
 
-    public static func create(courseID: String, studentID: String) -> GradesViewController {
+    public static func create(courseID: String, userID: String?, colorDelegate: ColorDelegate? = nil) -> GradesViewController {
         let vc = GradesViewController.loadFromStoryboard()
-        vc.presenter = GradesPresenter(view: vc, courseID: courseID, studentID: studentID)
+        vc.courseID = courseID
+        vc.colorDelegate = colorDelegate
+        vc.userID = userID
+        vc.grades = Grades(courseID: courseID, userID: userID)
         return vc
     }
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
-        presenter.refresh()
-
-        headerGradeHeader.text = NSLocalizedString("Total Grade", comment: "")
-        filterButton.setTitle(presenter.filterButtonTitle, for: .normal)
+        configureTableView()
+        filterButton.setTitleColor(colorDelegate?.iconColor, for: .normal)
+        grades.subscribe { [weak self] in
+            self?.update()
+        }
+        grades.refresh()
+        if grades.isPending {
+            loadingView.isHidden = false
+            activityIndicator.startAnimating()
+        }
     }
 
-    func setupTableView() {
-        let refresh = UIRefreshControl()
+    func configureTableView() {
+        let refresh = CircleRefreshControl()
         refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView.refreshControl = refresh
-
+        tableView.tableHeaderView?.sizeToFit()
         tableView.registerHeaderFooterView(SectionHeaderView.self)
         tableView.registerCell(GradesCell.self)
     }
 
-    @objc func refresh(_ control: UIRefreshControl) {
-        presenter.refresh(force: true)
+    func update() {
+        if grades.isPending {
+            loadingView.isHidden = tableView.refreshControl?.isRefreshing == true
+        } else {
+            loadingView.isHidden = true
+            tableView.refreshControl?.endRefreshing()
+        }
+        if loadingView.isHidden == false {
+            activityIndicator.startAnimating()
+        }
+
+        tableView.reloadData()
+        updateTotalGrade()
+        updateGradingPeriods()
+    }
+
+    @objc func refresh(_ control: CircleRefreshControl) {
+        grades.refresh()
     }
 
     @IBAction func actionUserDidClickFilter(_ sender: Any) {
-        if presenter.currentGradingPeriodID != nil {
-            presenter.filterByGradingPeriod(nil)
-            filterButton.setTitle(presenter.filterButtonTitle, for: .normal)
+        if grades.gradingPeriodID != nil {
+            grades.gradingPeriodID = nil
         } else {
             let alert = UIAlertController(title: nil, message: NSLocalizedString("Filter by:", comment: ""), preferredStyle: .actionSheet)
-            for gp in presenter.gradingPeriods {
+            alert.popoverPresentationController?.sourceView = filterButton
+            for gp in grades.gradingPeriods {
+                if gp.title?.isEmpty ?? true { continue }
                 let action = UIAlertAction(title: gp.title, style: .default) { [weak self] _ in
-                    self?.presenter.filterByGradingPeriod(gp.id)
-                    self?.filterButton.setTitle(self?.presenter.filterButtonTitle, for: .normal)
+                    self?.grades.gradingPeriodID = gp.id
                 }
                 alert.addAction(action)
             }
@@ -85,68 +108,101 @@ public class GradesViewController: UIViewController {
             present(alert, animated: true, completion: nil)
         }
     }
-}
 
-extension GradesViewController: GradesViewProtocol {
-    func update(isLoading: Bool) {
-        tableView.reloadData()
-
-        if !isLoading {
-            loadingView.isHidden = true
-            tableView?.refreshControl?.endRefreshing()
-            view.setNeedsLayout()
+    func updateTotalGrade() {
+        if grades.course?.hideFinalGrades == true {
+            totalGradeLabel.text = NSLocalizedString("N/A", bundle: .core, comment: "")
+        } else {
+            totalGradeLabel.text = grades.enrollment?.formattedCurrentScore(gradingPeriodID: grades.gradingPeriodID)
         }
     }
 
-    func updateScore(_ score: String?) {
-        headerGradeTotalLabel.text = score
+    func updateGradingPeriods() {
+        gradingPeriodView.isHidden = grades.enrollment?.multipleGradingPeriodsEnabled != true
+        gradingPeriodLabel.text = grades.gradingPeriod?.title ?? NSLocalizedString("All Grading Periods", bundle: .core, comment: "")
+        if grades.gradingPeriod?.id == nil {
+            filterButton.setTitle(NSLocalizedString("Filter", bundle: .core, comment: ""), for: .normal)
+        } else {
+            filterButton.setTitle(NSLocalizedString("Clear filter", bundle: .core, comment: ""), for: .normal)
+        }
+    }
+
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateHeaderViewHeight()
+    }
+
+    func updateHeaderViewHeight() {
+        guard let headerView = tableView.tableHeaderView else { return }
+        let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+        if headerView.frame.size.height != height {
+            headerView.frame.size.height = height
+            tableView.tableHeaderView = headerView
+            view.setNeedsLayout()
+        }
     }
 }
 
 extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return presenter.assignments.numberOfSections
+        return grades.assignments.sections?.count ?? 0
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.assignments.numberOfObjects(inSection: section)
+        return grades.assignments.sections?[section].numberOfObjects ?? 0
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let a = presenter.assignments[indexPath]
-        let cell: GradesCell =  tableView.dequeue(for: indexPath)
-        cell.update(a, studentID: presenter.studentID)
+        let a = grades.assignments[indexPath]
+        let cell: GradesCell = tableView.dequeue(for: indexPath)
+        cell.update(a, userID: userID)
+        cell.nameLabel.text = a?.name
+        cell.typeImage.tintColor = colorDelegate?.iconColor ?? Brand.shared.buttonPrimaryBackground
+        cell.accessibilityIdentifier = "grades-list.grades-list-row.cell-\(a?.id ?? "nil")"
         return cell
+    }
+
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let assignment = grades.assignments[indexPath] else { return }
+        env.router.route(to: .course(courseID, assignment: assignment.id), from: self)
     }
 
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueHeaderFooter(SectionHeaderView.self)
-        guard let sectionInfo = presenter.assignments.sectionInfo(inSection: section) else { return nil }
-
-        if let date = GradesViewController.dateParser.date(from: sectionInfo.name), date != Date.distantFuture {
-            view.titleLabel?.text = GradesViewController.dateFormatter.string(from: date)
-        } else {
-            view.titleLabel?.text = NSLocalizedString("No Due Date", comment: "")
-        }
+        view.titleLabel?.text = grades.assignments[IndexPath(row: 0, section: section)]?.assignmentGroup?.name
         return view
+    }
+
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
+    public func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return 22
     }
 }
 
-extension GradesViewController: UIScrollViewDelegate {
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.isBottomReached() {
-            presenter?.assignments.getNextPage()
+extension GradesViewController: HorizontalPagedMenuItem {
+    public func menuItemWillBeDisplayed() {
+        if grades.isPending == true && tableView.refreshControl?.isRefreshing == false {
+            activityIndicator.startAnimating()
+        } else if grades.isPending == true && tableView.refreshControl?.isRefreshing == true {
+            let offset = tableView.contentOffset
+            tableView.refreshControl?.endRefreshing()
+            tableView.refreshControl?.beginRefreshing()
+            tableView.contentOffset = offset
         }
     }
 }
 
 public class GradesCell: UITableViewCell {
-
     @IBOutlet weak var nameLabel: DynamicLabel!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var typeImage: UIImageView!
     @IBOutlet weak var dueLabel: DynamicLabel!
     @IBOutlet weak var gradeLabel: DynamicLabel!
+    @IBOutlet weak var statusLabel: DynamicLabel!
 
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
@@ -158,13 +214,15 @@ public class GradesCell: UITableViewCell {
         loadFromXib()
     }
 
-    func update(_ a: Assignment?, studentID: String) {
-        typeImage.image = a?.icon
-        nameLabel.text = a?.name
-        let grade = a?.multiUserSubmissionGradeText(studentID: studentID)
-        gradeLabel.text = grade
-        gradeLabel.isHidden = grade == nil
-        dueLabel.text = a?.dueAt != nil ? a?.dueText : nil
-        dueLabel.isHidden = a?.dueAt == nil
+    func update(_ assignment: Assignment?, userID: String?) {
+        let submission = assignment?.submissions?.first { $0.userID == userID }
+        fullDivider = true
+        typeImage.image = assignment?.icon
+        nameLabel.text = assignment?.name
+        gradeLabel.text = assignment.flatMap { GradeFormatter.string(from: $0, userID: userID, style: .medium) }
+        dueLabel.text = assignment?.dueText
+        statusLabel.isHidden = assignment?.isOnline != true
+        statusLabel.text = submission?.status.text
+        statusLabel.textColor = submission?.status.color
     }
 }

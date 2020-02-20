@@ -30,6 +30,7 @@ type ShowOptions = {
   modal: boolean,
   modalPresentationStyle: string,
   embedInNavigationController: boolean,
+  disableSwipeDownToDismissModal: boolean,
 }
 
 export type TraitCollectionType = 'compact' | 'regular' | 'unspecified'
@@ -51,7 +52,7 @@ export default class Navigator {
     this.isModal = options.modal
   }
 
-  show (url: string, options: Object = { modal: false, modalPresentationStyle: 'formsheet', deepLink: false }, additionalProps: Object = {}) {
+  show (url: string, options: Object = { modal: false, modalPresentationStyle: 'formsheet', deepLink: false, detail: false }, additionalProps: Object = {}) {
     recordRoute(url, options, additionalProps)
     const r = route(url, additionalProps)
     if (!r) {
@@ -67,9 +68,12 @@ export default class Navigator {
     }
     if (options.modal) {
       const embedInNavigationController = options.embedInNavigationController == null || options.embedInNavigationController
-      return this.present(r, { modal: options.modal, modalPresentationStyle: options.modalPresentationStyle || 'formsheet', embedInNavigationController, canBecomeMaster: canBecomeMaster, modalTransitionStyle: options.modalTransitionStyle })
+      const modalPresentationStyle = options.modalPresentationStyle || 'formsheet'
+      let disableSwipeDownToDismissModal = options.disableSwipeDownToDismissModal == null || options.disableSwipeDownToDismissModal
+      if (modalPresentationStyle === 'fullscreen') disableSwipeDownToDismissModal = false
+      return this.present(r, { modal: options.modal, modalPresentationStyle, embedInNavigationController, canBecomeMaster: canBecomeMaster, modalTransitionStyle: options.modalTransitionStyle, disableSwipeDownToDismissModal })
     } else {
-      return this.push(r)
+      return this.push(r, { detail: options.detail })
     }
   }
 
@@ -94,8 +98,9 @@ export default class Navigator {
     if (r) NativeModules.Helm.pushFrom(this.moduleName, r.screen, r.passProps, { ...r.config, replace: true })
   }
 
-  push (route: RouteOptions) {
-    return NativeModules.Helm.pushFrom(this.moduleName, route.screen, route.passProps, route.config)
+  push (route: RouteOptions, options) {
+    const opts = { ...route.config, ...options }
+    return NativeModules.Helm.pushFrom(this.moduleName, route.screen, route.passProps, opts)
   }
 
   pop () {

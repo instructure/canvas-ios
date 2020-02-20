@@ -11,7 +11,6 @@ exports[`GroupRow renders 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "#ffffff01",
             "shadowColor": "#000",
             "shadowOffset": Object {
               "height": 1,
@@ -30,8 +29,8 @@ exports[`GroupRow renders 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "white",
-              "borderColor": "#e3e3e3",
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#F5F5F5",
               "borderRadius": 4,
               "borderWidth": 0.5,
               "flex": 1,
@@ -83,7 +82,7 @@ exports[`GroupRow renders 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#7F91A7",
+                  "color": "#8B969E",
                   "fontSize": 14,
                 },
                 Array [
@@ -104,7 +103,7 @@ exports[`GroupRow renders 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#7F91A7",
+                  "color": "#8B969E",
                   "fontSize": 14,
                 },
                 Object {
@@ -134,7 +133,6 @@ exports[`GroupRow renders without a term 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "#ffffff01",
             "shadowColor": "#000",
             "shadowOffset": Object {
               "height": 1,
@@ -153,8 +151,8 @@ exports[`GroupRow renders without a term 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "white",
-              "borderColor": "#e3e3e3",
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#F5F5F5",
               "borderRadius": 4,
               "borderWidth": 0.5,
               "flex": 1,
@@ -206,7 +204,7 @@ exports[`GroupRow renders without a term 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#7F91A7",
+                  "color": "#8B969E",
                   "fontSize": 14,
                 },
                 Array [

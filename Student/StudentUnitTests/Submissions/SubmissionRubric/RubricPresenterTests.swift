@@ -21,7 +21,7 @@ import XCTest
 import Core
 import TestsFoundation
 
-class RubricPresenterTests: PersistenceTestCase {
+class RubricPresenterTests: StudentTestCase {
     var presenter: RubricPresenter!
     var view: SubmissionCommentsView!
     var courseID = "1"
@@ -37,10 +37,22 @@ class RubricPresenterTests: PersistenceTestCase {
         presenter = RubricPresenter(env: env, view: self, courseID: courseID, assignmentID: assignmentID, userID: userID)
     }
 
-    func testViewIsReady() {
-        Course.make()
-        Color.make()
+    func testUseCasesSetupProperly() {
+        XCTAssertEqual(presenter.assignments.useCase.courseID, presenter.courseID)
+        XCTAssertEqual(presenter.assignments.useCase.assignmentID, presenter.assignmentID)
+        XCTAssertEqual(presenter.assignments.useCase.include, [.submission])
+
+        XCTAssertEqual(presenter.submissions.useCase.context.canvasContextID, "course_\(presenter.courseID)")
+        XCTAssertEqual(presenter.submissions.useCase.assignmentID, presenter.assignmentID)
+        XCTAssertEqual(presenter.submissions.useCase.userID, presenter.userID)
+
+        XCTAssertEqual(presenter.courses.useCase.courseID, presenter.courseID)
+    }
+
+    func setupData() -> [RubricViewModel] {
         Assignment.make()
+        Course.make()
+        ContextColor.make()
         let rubric = Rubric.make(from: .make(id: "1", ratings: [
             .make(id: "1", points: 10, position: 1),
             .make(id: "2", points: 25, position: 2),
@@ -49,8 +61,7 @@ class RubricPresenterTests: PersistenceTestCase {
             "1": .make(points: 10.0, rating_id: "1"),
             "2": .make(points: 25.0, rating_id: "2"),
         ]))
-
-        let expected: [RubricViewModel] = [
+        return [
             RubricViewModel(
                 id: "1",
                 title: "Effort",
@@ -62,19 +73,76 @@ class RubricPresenterTests: PersistenceTestCase {
                 comment: "You failed at punctuation!",
                 rubricRatings: Array(rubric.ratings!).sorted { $0.points < $1.points },
                 isCustomAssessment: false,
-                hideRubricPoints: false
+                hideRubricPoints: false,
+                freeFormCriterionComments: false
             ),
         ]
+    }
 
-        presenter.viewIsReady()
+    func testLoadAssignments() {
+        let expected = setupData()
 
+        presenter.assignments.eventHandler()
         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
         XCTAssertEqual(models.count, expected.count)
         XCTAssertEqual(models.first, expected.first)
     }
 
-    func testViewEmptyState() {
+    func testLoadSubmissions() {
+         let expected = setupData()
+
+         presenter.submissions.eventHandler()
+         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
+         XCTAssertEqual(models.count, expected.count)
+         XCTAssertEqual(models.first, expected.first)
+    }
+
+    func testLoadRubrics() {
+         let expected = setupData()
+
+         presenter.rubrics.eventHandler()
+         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
+         XCTAssertEqual(models.count, expected.count)
+         XCTAssertEqual(models.first, expected.first)
+    }
+
+    func testLoadColors() {
+         let expected = setupData()
+
+         presenter.colors.eventHandler()
+         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
+         XCTAssertEqual(models.count, expected.count)
+         XCTAssertEqual(models.first, expected.first)
+    }
+
+    func testLoadCourses() {
+         let expected = setupData()
+
+         presenter.courses.eventHandler()
+         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
+         XCTAssertEqual(models.count, expected.count)
+         XCTAssertEqual(models.first, expected.first)
+    }
+
+    func testViewIsReady() {
         presenter.viewIsReady()
+        let assignmentsStore = presenter.assignments as! TestStore
+        let submissionsStore = presenter.submissions as! TestStore
+        let rubricsStore = presenter.rubrics as! TestStore
+        let colorsStore = presenter.colors as! TestStore
+        let coursesStore = presenter.courses as! TestStore
+
+        wait(for: [
+            assignmentsStore.refreshExpectation,
+            submissionsStore.refreshExpectation,
+            rubricsStore.refreshExpectation,
+            colorsStore.refreshExpectation,
+            coursesStore.refreshExpectation,
+        ], timeout: 0.1)
+    }
+
+    func testViewEmptyState() {
+        presenter.update()
         XCTAssertTrue(showEmptyStateFlag)
     }
 
@@ -90,7 +158,7 @@ class RubricPresenterTests: PersistenceTestCase {
         ]))
         Course.make()
         Assignment.make()
-        Color.make()
+        ContextColor.make()
         let expected: [RubricViewModel] = [
             RubricViewModel(
                 id: "1",
@@ -103,11 +171,12 @@ class RubricPresenterTests: PersistenceTestCase {
                 comment: "this is custom",
                 rubricRatings: Array(rubric.ratings!).sorted { $0.points < $1.points },
                 isCustomAssessment: true,
-                hideRubricPoints: false
+                hideRubricPoints: false,
+                freeFormCriterionComments: false
             ),
         ]
 
-        presenter.viewIsReady()
+        presenter.update()
 
         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
         XCTAssertEqual(models.count, expected.count)
@@ -127,7 +196,8 @@ class RubricPresenterTests: PersistenceTestCase {
                                     comment: nil,
                                     rubricRatings: [rating],
                                     isCustomAssessment: true,
-                                    hideRubricPoints: false)
+                                    hideRubricPoints: false,
+                                    freeFormCriterionComments: false)
 
         let a = model.ratingBlurb(0)
         let b = model.ratingBlurb(1)
@@ -149,7 +219,5 @@ extension RubricPresenterTests: RubricViewProtocol {
         models = rubric
     }
 
-    var navigationController: UINavigationController? {
-        return nil
-    }
+    func showAlert(title: String?, message: String?) {}
 }

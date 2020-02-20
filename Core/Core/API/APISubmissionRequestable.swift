@@ -35,6 +35,34 @@ public struct GetSubmissionRequest: APIRequestable {
     }
 }
 
+// https://canvas.instructure.com/doc/api/submissions.html#method.submissions_api.index
+public struct GetSubmissionsRequest: APIRequestable {
+    public typealias Response = [APISubmission]
+
+    enum Include: String, CaseIterable {
+        case rubric_assessment, submission_comments, submission_history, total_scores, user, group
+    }
+
+    let context: Context
+    let assignmentID: String
+    let grouped: Bool?
+    let include: [Include]
+
+    public var path: String {
+        return "\(context.pathComponent)/assignments/\(assignmentID)/submissions"
+    }
+
+    public var query: [APIQueryItem] {
+        var query: [APIQueryItem] = [
+            .include(include.map { $0.rawValue }),
+        ]
+        if let grouped = grouped {
+            query.append(.value("grouped", String(grouped)))
+        }
+        return query
+    }
+}
+
 // https://canvas.instructure.com/doc/api/submissions.html#method.submissions.create
 public struct CreateSubmissionRequest: APIRequestable {
     public typealias Response = APISubmission
@@ -142,5 +170,24 @@ struct PutSubmissionGradeRequest: APIRequestable {
     var path: String {
         let context = ContextModel(.course, id: courseID)
         return "\(context.pathComponent)/assignments/\(assignmentID)/submissions/\(userID)"
+    }
+}
+
+public struct GetRecentlyGradedSubmissionsRequest: APIRequestable {
+    public typealias Response = [APISubmission]
+
+    let userID: String
+
+    public var path: String {
+        let context = ContextModel(.user, id: userID)
+        return "\(context.pathComponent)/graded_submissions"
+    }
+
+    public var query: [APIQueryItem] {
+        return [
+            .perPage(3),
+            .include(["assignment"]),
+            .bool("only_current_submissions", true),
+        ]
     }
 }

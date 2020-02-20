@@ -99,6 +99,11 @@ class StoreTests: CoreTestCase {
         self.eventsExpectation.fulfill()
     }
 
+    override func setUp() {
+        super.setUp()
+        environment.mockStore = false
+    }
+
     func testSubscribeWithoutCache() {
         let course = APICourse.make(id: "1")
         let useCase = TestUseCase(courses: [course])
@@ -244,6 +249,18 @@ class StoreTests: CoreTestCase {
 
         XCTAssertEqual(one, store[0])
         XCTAssertEqual(two, store[1])
+    }
+
+    func testSubscriptIntObjectNotPresent() {
+        let useCase = TestUseCase(courses: nil, requestError: nil, urlResponse: nil)
+        let store = Store(env: environment, useCase: useCase) { }
+        XCTAssertNil(store[1])
+    }
+
+    func testSubscriptSectionNotPresent() {
+        let useCase = TestUseCase(courses: nil, requestError: nil, urlResponse: nil)
+        let store = Store(env: environment, useCase: useCase) { }
+        XCTAssertNil(store[IndexPath(row: 1, section: 1)])
     }
 
     func testFirst() {

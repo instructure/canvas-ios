@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(Ni zadeve)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d od %3$d";
 
@@ -10,11 +13,26 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ se začne ob %2$@";
 
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@, v %2$@, zadnje sporočilo je bilo dne %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, neprebrano";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
+
 /* Percentage field placeholder */
 "1-100%" = "1–100 %";
 
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Nastopajoči v vlogi uporabnika";
+
+/* No comment provided by engineer. */
+"Add" = "Dodaj";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "Dodaj priloge";
 
 /* No comment provided by engineer. */
 "Add Student" = "Dodaj študenta";
@@ -52,6 +70,12 @@
 /* No comment provided by engineer. */
 "Back" = "Nazaj";
 
+/* Calendar Tab */
+"Calendar" = "Koledar";
+
+/* No comment provided by engineer. */
+"Calendar Event" = "Dogodek koledarja";
+
 /* No comment provided by engineer. */
 "Cancel" = "Prekliči";
 
@@ -65,7 +89,10 @@
 "Caught up on Alerts" = "Seznanitev z opozorili";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Izberi študenta";
+"Choose a course to message" = "Izberite predmet za pošiljanje sporočila";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Sestavi novo sporočilo";
 
 /* Course Announcement Description */
 "Course announcements" = "Obvestila o predmetu";
@@ -80,13 +107,13 @@
 "Courses" = "Predmeti";
 
 /* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Trenutni študent: %@, tapnite za preklop študentov.";
-
-/* No comment provided by engineer. */
 "Discussion" = "Razprava";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Opusti";
+
+/* No comment provided by engineer. */
+"Edit Recipients" = "Uredi prejemnike";
 
 /* No comment provided by engineer. */
 "Event" = "Dogodek";
@@ -101,6 +128,18 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Nalaganje (discussionKitModelName) NSManagedObjectModel ni uspelo";
 
 /* No comment provided by engineer. */
+"Failed. Tap for options" = "Ni uspelo. Tapnite za možnosti";
+
+/* No comment provided by engineer. */
+"File" = "Datoteka";
+
+/* No comment provided by engineer. */
+"for %@" = "za %@";
+
+/* No comment provided by engineer. */
+"Front Page" = "Prva stran";
+
+/* No comment provided by engineer. */
 "Grades" = "Ocene";
 
 /* High Assignment Grade too Low */
@@ -111,6 +150,12 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "V razredu";
+
+/* No comment provided by engineer. */
+"Inbox" = "Pošta";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Nabiralnik je prazen";
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Vnesite kodo za vzpostavljanje povezave študentov, ki ste jo prejeli.";
@@ -139,14 +184,26 @@
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "Nizka ocena predmeta ne more biti višja od visoke ocene predmeta.";
 
-/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "Urejaj otroke";
+/* No comment provided by engineer. */
+"Message" = "Sporočilo";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Sporočilo od %1$@, %2$@, dne %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Manjkajoče";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Manjkajoče: (–/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Manjkajoče: %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Manjkajoče: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Novo sporočilo";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Naslednji teden";
@@ -159,6 +216,9 @@
 
 /* Empty Students Text */
 "No Students" = "Ni študentov.";
+
+/* No comment provided by engineer. */
+"No Subject" = "Ni kratkega opisa predmeta.";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Ta teden ni ničesar.";
@@ -176,7 +236,33 @@
 "Quiz" = "Kviz";
 
 /* No comment provided by engineer. */
+"Recipients" = "Prejemniki";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "Zadeva: %@";
+
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "Zadeva: %1$@, %2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "Odgovori";
+
+/* No comment provided by engineer. */
+"Reply All" = "Odgovori vsem";
+
+/* No comment provided by engineer. */
+"Retry" = "Ponovno poskusi";
+
+/* No comment provided by engineer. */
+"Send" = "Pošlji";
+
+/* No comment provided by engineer. */
 "Settings" = "Nastavitve";
+
+/* No comment provided by engineer. */
+"Subject" = "Kratek opis predmeta";
 
 /* No comment provided by engineer. */
 "Submitted" = "Poslano";
@@ -186,6 +272,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "Poslano: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Povzetek";
 
 /* Syllabus Button Title */
 "Syllabus" = "Učni načrt";
@@ -209,17 +298,23 @@
 "This student's courses may not be published yet." = "Predmeti tega študenta morda še niso objavljeni.";
 
 /* No comment provided by engineer. */
+"To" = "Naslovnik";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "Težave pri prijavi";
 
 /* No comment provided by engineer. */
 "Unread" = "Neprebrano";
 
-/* Calendar Tab */
-"Week" = "Teden";
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "Nalaganje %1$@ je ob %2$@";
 
 /* Header title of admin view */
 "Welcome!" = "Dobrodošli.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Za nastavitev opomnikov morate v možnosti »Nastavitve« dovoliti sporočila.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Seznanjeni ste z vsem";
 

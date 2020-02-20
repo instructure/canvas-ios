@@ -21,7 +21,7 @@ import XCTest
 @testable import Student
 import TestsFoundation
 
-class UrlSubmissionPresenterTests: PersistenceTestCase {
+class UrlSubmissionPresenterTests: StudentTestCase {
     var dismissed = false
     var presenter: UrlSubmissionPresenter!
     var resultingUrl: URL?
@@ -97,6 +97,8 @@ extension UrlSubmissionPresenterTests: UrlSubmissionViewProtocol {
     func loadUrl(url: URL) {
         resultingUrl = url
     }
+
+    func showAlert(title: String?, message: String?) {}
 
     func showError(_ error: Error) {
         resultingError = error

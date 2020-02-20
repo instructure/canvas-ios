@@ -33,7 +33,7 @@ exports[`renders correctly 1`] = `
         resizeMode="contain"
         source={
           Object {
-            "testUri": "../../../src/images/course/Placeholder.png",
+            "uri": "coursesLine",
           }
         }
         style={
@@ -117,7 +117,7 @@ exports[`renders correctly 2`] = `
         resizeMode="contain"
         source={
           Object {
-            "testUri": "../../../src/images/course/Placeholder.png",
+            "uri": "coursesLine",
           }
         }
         style={

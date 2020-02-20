@@ -12,7 +12,7 @@ exports[`render correctly 1`] = `
   <RCTScrollView
     style={
       Object {
-        "backgroundColor": "#f5f5f5",
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
@@ -21,7 +21,7 @@ exports[`render correctly 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "#f5f5f5",
+            "backgroundColor": "#F5F5F5",
             "borderBottomColor": "#C7CDD1",
             "borderBottomWidth": 0.5,
             "height": 40,
@@ -50,7 +50,7 @@ exports[`render correctly 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "flex": 1,
               "flexDirection": "row",
               "paddingLeft": 16,
@@ -78,14 +78,10 @@ exports[`render correctly 1`] = `
                     "overflow": "hidden",
                   },
                   Object {
+                    "backgroundColor": "#F5F5F5",
+                    "borderRadius": 20,
                     "height": 40,
                     "width": 40,
-                  },
-                  Object {
-                    "borderRadius": 20,
-                  },
-                  Object {
-                    "backgroundColor": "#F5F5F5",
                   },
                 ]
               }
@@ -127,6 +123,7 @@ exports[`render correctly 1`] = `
                   },
                 ]
               }
+              testID="AssigneeRow.student-1234.name"
             >
               Bill Murray
             </Text>
@@ -207,7 +204,7 @@ exports[`render correctly 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "flex": 1,
               "flexDirection": "row",
               "paddingLeft": 16,
@@ -232,7 +229,7 @@ exports[`render correctly 1`] = `
                 Array [
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "white",
+                    "backgroundColor": "#FFFFFF",
                     "borderColor": "#C7CDD1",
                     "borderWidth": 0.5,
                     "justifyContent": "center",
@@ -252,7 +249,7 @@ exports[`render correctly 1`] = `
                   Array [
                     Object {
                       "backgroundColor": "transparent",
-                      "color": "#73818C",
+                      "color": "#8B969E",
                       "fontWeight": "600",
                     },
                     Object {
@@ -287,6 +284,7 @@ exports[`render correctly 1`] = `
                   },
                 ]
               }
+              testID="AssigneeRow.9909342324234.name"
             >
               Bill Murray
             </Text>
@@ -367,7 +365,7 @@ exports[`render correctly 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "flex": 1,
               "flexDirection": "row",
               "paddingLeft": 16,
@@ -392,7 +390,7 @@ exports[`render correctly 1`] = `
                 Array [
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "white",
+                    "backgroundColor": "#FFFFFF",
                     "borderColor": "#C7CDD1",
                     "borderWidth": 0.5,
                     "justifyContent": "center",
@@ -412,7 +410,7 @@ exports[`render correctly 1`] = `
                   Array [
                     Object {
                       "backgroundColor": "transparent",
-                      "color": "#73818C",
+                      "color": "#8B969E",
                       "fontWeight": "600",
                     },
                     Object {
@@ -447,6 +445,7 @@ exports[`render correctly 1`] = `
                   },
                 ]
               }
+              testID="AssigneeRow.group-1234.name"
             >
               Horrible Students
             </Text>
@@ -508,7 +507,7 @@ exports[`render correctly 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "#f5f5f5",
+            "backgroundColor": "#F5F5F5",
             "borderBottomColor": "#C7CDD1",
             "borderBottomWidth": 0.5,
             "height": 40,
@@ -536,7 +535,7 @@ exports[`render correctly 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "flex": 1,
               "flexDirection": "row",
               "justifyContent": "space-between",
@@ -549,7 +548,6 @@ exports[`render correctly 1`] = `
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
                 "flex": 1,
                 "flexDirection": "row",
                 "paddingLeft": 16,
@@ -568,7 +566,7 @@ exports[`render correctly 1`] = `
                 Object {
                   "height": 18,
                   "marginRight": 8,
-                  "tintColor": "#368BD8",
+                  "tintColor": undefined,
                   "width": 18,
                 }
               }
@@ -581,7 +579,7 @@ exports[`render correctly 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#368BD8",
+                    "color": undefined,
                     "fontSize": 16,
                     "fontWeight": "600",
                   },
@@ -597,7 +595,7 @@ exports[`render correctly 1`] = `
                 Object {
                   "alignSelf": "center",
                   "backgroundColor": "transparent",
-                  "borderColor": "#c7c7cc",
+                  "borderColor": "#C7CDD1",
                   "borderRightWidth": 2,
                   "borderTopWidth": 2,
                   "height": 10,

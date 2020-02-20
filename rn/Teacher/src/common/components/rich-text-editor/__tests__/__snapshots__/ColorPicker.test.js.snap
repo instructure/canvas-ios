@@ -4,7 +4,7 @@ exports[`ColorPicker renders 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "white",
+      "backgroundColor": "#FFFFFF",
       "borderTopColor": "#C7CDD1",
       "borderTopWidth": 1,
     }
@@ -49,7 +49,7 @@ exports[`ColorPicker renders 1`] = `
                 },
                 Object {
                   "backgroundColor": "#FFFFFF",
-                  "borderColor": "#E6E9EA",
+                  "borderColor": "#C7CDD1",
                   "borderWidth": 1,
                 },
               ]

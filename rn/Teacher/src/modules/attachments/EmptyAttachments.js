@@ -19,8 +19,9 @@
 // @flow
 
 import React, { PureComponent } from 'react'
-import { View, Image, StyleSheet } from 'react-native'
+import { View, Image } from 'react-native'
 import { Text } from '../../common/text'
+import { createStyleSheet } from '../../common/stylesheet'
 import images from '../../images'
 import i18n from 'format-message'
 
@@ -38,7 +39,7 @@ export default class EmptyAttachments extends PureComponent<{}> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -56,8 +57,8 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   text: {
-    color: '#8B969E',
+    color: colors.textDark,
     fontSize: 16,
     textAlign: 'center',
   },
-})
+}))

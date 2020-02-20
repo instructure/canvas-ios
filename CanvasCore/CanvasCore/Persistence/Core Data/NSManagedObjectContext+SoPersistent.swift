@@ -98,22 +98,8 @@ extension NSManagedObjectContext {
     
     @objc func observeChangesFromContext(_ key: String, context: NSManagedObjectContext) {
         self.userInfo[key] = NotificationCenter.default.addObserver(forName: NSNotification.Name.NSManagedObjectContextDidSave, object: context, queue: nil) { [weak self] note in
-            
-            // move changes off the source contexts queue so we can control the locking order
-            pendingMergesQueue.async { [weak self] in
-                guard let sourceContext = note.object as? NSManagedObjectContext else { return }
-                guard let destinationContext = self else { return }
-
-                // the pointer address is an artibrary, but unchanging, id for the contexts
-                // that we can use to guarantee that they lock in the same order every time.
-                let contextsToLock = [sourceContext, destinationContext].sorted(by: { $0.pointerDerivedID < $1.pointerDerivedID })
-                
-                // the first lock should not block the PendingMergesQueue
-                contextsToLock[0].perform {
-                    contextsToLock[1].performAndWait {
-                        destinationContext.mergeChanges(fromContextDidSave: note)
-                    }
-                }
+            self?.perform {
+                self?.mergeChanges(fromContextDidSave: note)
             }
         }
     }
@@ -124,7 +110,7 @@ extension NSManagedObjectContext {
         performAndWait {
             if let context = self.userInfo[SyncContextKey] as? NSManagedObjectContext { sync = context; return }
             
-            let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+            let context = NSManagedObjectContext(concurrencyType: SyncContextConcurrencyType)
             context.persistentStoreCoordinator = self.persistentStoreCoordinatorFRD
             context.mergePolicy = NSMergePolicy(merge: .mergeByPropertyObjectTrumpMergePolicyType)
             
@@ -143,6 +129,7 @@ extension NSManagedObjectContext {
 
 private let SyncContextKey = "YeOldeSyncContext"
 private let MainContextObserverKey = "YeOldeMainContextObserver"
+var SyncContextConcurrencyType = NSManagedObjectContextConcurrencyType.privateQueueConcurrencyType
 
 extension NSManagedObjectContext {
     @objc public func saveOrRollback() -> Bool {

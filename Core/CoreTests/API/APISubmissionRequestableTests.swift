@@ -65,4 +65,45 @@ class APISubmissionRequestableTests: CoreTestCase {
         XCTAssertEqual(PutSubmissionGradeRequest.Body.Comment(mediaID: "1", type: .audio, forGroup: true).text_comment, "This is a media comment")
         XCTAssertNil(PutSubmissionGradeRequest.Body.Comment(mediaID: "1", type: .audio).text_comment)
     }
+
+    func testGetSubmissionsRequest() {
+        XCTAssertEqual(
+            GetSubmissionsRequest(context: ContextModel(.course, id: "1"), assignmentID: "2", grouped: nil, include: []).path,
+            "courses/1/assignments/2/submissions"
+        )
+        XCTAssertEqual(
+            GetSubmissionsRequest(context: ContextModel(.course, id: "1"), assignmentID: "2", grouped: false, include: []).queryItems,
+            [
+                URLQueryItem(name: "grouped", value: "false"),
+            ]
+        )
+        XCTAssertEqual(
+            GetSubmissionsRequest(context: ContextModel(.course, id: "1"), assignmentID: "2", grouped: true, include: []).queryItems,
+            [
+                URLQueryItem(name: "grouped", value: "true"),
+            ]
+        )
+        XCTAssertEqual(
+            GetSubmissionsRequest(context: ContextModel(.course, id: "1"), assignmentID: "2", grouped: true, include: GetSubmissionsRequest.Include.allCases).queryItems,
+            [
+                URLQueryItem(name: "include[]", value: "rubric_assessment"),
+                URLQueryItem(name: "include[]", value: "submission_comments"),
+                URLQueryItem(name: "include[]", value: "submission_history"),
+                URLQueryItem(name: "include[]", value: "total_scores"),
+                URLQueryItem(name: "include[]", value: "user"),
+                URLQueryItem(name: "include[]", value: "group"),
+                URLQueryItem(name: "grouped", value: "true"),
+            ]
+        )
+    }
+
+    func testGetRecentlyGradedSubmissionsRequest() {
+        let request = GetRecentlyGradedSubmissionsRequest(userID: "self")
+        XCTAssertEqual(request.path, "users/self/graded_submissions")
+        XCTAssertEqual(request.query, [
+            .perPage(3),
+            .include(["assignment"]),
+            .bool("only_current_submissions", true),
+        ])
+    }
 }

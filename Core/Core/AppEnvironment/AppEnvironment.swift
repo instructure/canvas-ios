@@ -26,7 +26,7 @@ public protocol AppEnvironmentDelegate {
 open class AppEnvironment {
     public var api: API
     public var database: NSPersistentContainer
-    public var globalDatabase: NSPersistentContainer = NSPersistentContainer.create()
+    public var globalDatabase: NSPersistentContainer = NSPersistentContainer.shared
     public var logger: LoggerProtocol
     public var router: RouterProtocol
     public var currentSession: LoginSession?
@@ -51,7 +51,6 @@ open class AppEnvironment {
 
     public func userDidLogout(session: LoginSession) {
         guard session == currentSession else { return }
-        database.destroy()
         database = globalDatabase
         api = URLSessionAPI()
         currentSession = nil
@@ -59,7 +58,7 @@ open class AppEnvironment {
         Logger.shared.database = database
     }
 
-    public static let shared = AppEnvironment()
+    public static var shared = AppEnvironment()
 
     public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler) -> Store<U> where U: UseCase {
         return Store(env: self, useCase: useCase, eventHandler: callback)

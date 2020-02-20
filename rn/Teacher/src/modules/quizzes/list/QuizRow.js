@@ -20,7 +20,6 @@
 
 import React, { Component } from 'react'
 import {
-  StyleSheet,
   View,
 } from 'react-native'
 import i18n from 'format-message'
@@ -29,8 +28,9 @@ import Row from '../../../common/components/rows/Row'
 import AccessIcon from '../../../common/components/AccessIcon'
 import { formattedDueDateWithStatus } from '../../../common/formatters'
 import { extractDateFromString } from '../../../utils/dateUtils'
-import Images from '../../../images/'
+import instIcon from '../../../images/inst-icons'
 import { DotSeparated } from '../../../common/text'
+import { createStyleSheet } from '../../../common/stylesheet'
 
 export type Props = {
   quiz: Quiz,
@@ -77,7 +77,7 @@ export default class QuizRow extends Component<Props, any> {
   _renderIcon = () => {
     return (
       <View style={style.icon}>
-        <AccessIcon entry={this.props.quiz} tintColor={this.props.tintColor} image={Images.course.quizzes} />
+        <AccessIcon entry={this.props.quiz} tintColor={this.props.tintColor} image={instIcon('quiz')} />
       </View>
     )
   }
@@ -101,7 +101,7 @@ export default class QuizRow extends Component<Props, any> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet(colors => ({
   details: {
     flexDirection: 'row',
   },
@@ -109,11 +109,11 @@ const style = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   subtitle: {
-    color: '#8B969E',
+    color: colors.textDark,
     fontSize: 14,
     marginTop: 2,
   },
   detailContent: {
     fontSize: 14,
   },
-})
+}))

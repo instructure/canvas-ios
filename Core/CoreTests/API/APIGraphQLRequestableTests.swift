@@ -24,6 +24,7 @@ class APIGraphQLRequestableTests: XCTestCase {
     struct MockRequest: APIGraphQLRequestable {
         typealias Response = APINoContent
 
+        let operationName: String = "Test"
         var query: String? {
             return "id name foo"
         }
@@ -42,7 +43,8 @@ class APIGraphQLRequestableTests: XCTestCase {
     func testBody() {
         let mock = MockRequest()
         let query = "id name foo"
-        let expectedBody = GraphQLBody(query: query)
+        let operationName = "Test"
+        let expectedBody = GraphQLBody(query: query, operationName: operationName)
         XCTAssertEqual(mock.body, expectedBody)
     }
 

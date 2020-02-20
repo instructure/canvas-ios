@@ -23,7 +23,6 @@ import { connect } from 'react-redux'
 import {
   View,
   Image,
-  StyleSheet,
   TouchableHighlight,
 } from 'react-native'
 import { Text } from '../../../common/text'
@@ -31,12 +30,13 @@ import i18n from 'format-message'
 import type {
   SubmissionDataProps,
 } from '../../submissions/list/submission-prop-types'
-import SubmissionStatusLabel from '../../submissions/list/SubmissionStatusLabel'
+import OldSubmissionStatusLabel from '../../submissions/list/OldSubmissionStatusLabel'
 import Avatar from '../../../common/components/Avatar'
 import { isAssignmentAnonymous } from '../../../common/anonymous-grading'
 import { submissionTypeIsOnline } from '@common/submissionTypes'
 import icon from '../../../images/inst-icons'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
+import { personDisplayName } from '../../../common/formatters'
 
 export class Header extends Component<HeaderProps, State> {
   state: State = {
@@ -59,8 +59,8 @@ export class Header extends Component<HeaderProps, State> {
   renderDoneButton () {
     return (
       <View style={styles.barButton}>
-        <TouchableHighlight onPress={this.props.closeModal} underlayColor='white' testID='header.navigation-done'>
-          <Text style={{ color: '#008EE2', fontSize: 18, fontWeight: '600' }}>
+        <TouchableHighlight onPress={this.props.closeModal} underlayColor={colors.backgroundLightest} testID='header.navigation-done'>
+          <Text style={{ color: colors.linkColor, fontSize: 18, fontWeight: '600' }}>
             {i18n('Done')}
           </Text>
         </TouchableHighlight>
@@ -71,7 +71,7 @@ export class Header extends Component<HeaderProps, State> {
   renderEyeBall () {
     return (
       <View style={styles.barButton}>
-        <TouchableHighlight onPress={this.navigateToPostPolicies} underlayColor='white' testID='header.navigation-eye'>
+        <TouchableHighlight onPress={this.navigateToPostPolicies} underlayColor={colors.backgroundLightest} testID='header.navigation-eye'>
           <View style={{ paddingLeft: 20 }}>
             <Image source={icon('eye', 'line')} style={styles.eyeIcon} />
           </View>
@@ -82,19 +82,26 @@ export class Header extends Component<HeaderProps, State> {
 
   renderGroupProfile () {
     const sub = this.props.submissionProps
-    let name = this.props.anonymous
-      ? (sub.groupID ? i18n('Group') : i18n('Student'))
-      : sub.name
+    let name = personDisplayName(sub.name, sub.pronouns)
+    let avatarName = sub.name
+    if (this.props.anonymous) {
+      let anonymousName = sub.groupID ? i18n('Group') : i18n('Student')
+      name = anonymousName
+      avatarName = anonymousName
+    }
 
     let avatarURL = this.props.anonymous
       ? ''
       : sub.avatarURL
 
-    let action = this.navigateToContextCard
-    let testID = 'header.context.button'
-    if (sub.groupID && !this.props.anonymous) {
-      action = this.showGroup
-      testID = 'header.groupList.button'
+    let action
+    let testID = `header.context.button.${this.props.userID}`
+    if (!this.props.anonymous) {
+      action = this.navigateToContextCard
+      if (sub.groupID) {
+        action = this.showGroup
+        testID = `header.groupList.button.${sub.groupID}`
+      }
     }
     const onlineSubmissionType = this.props.assignmentSubmissionTypes?.every(submissionTypeIsOnline)
 
@@ -103,7 +110,7 @@ export class Header extends Component<HeaderProps, State> {
         <TouchableHighlight
           style={styles.innerRowContainer}
           onPress={action}
-          underlayColor='white'
+          underlayColor={colors.backgroundLightest}
           testID={testID}
         >
           <View style={styles.innerRowContainer}>
@@ -111,12 +118,12 @@ export class Header extends Component<HeaderProps, State> {
               <Avatar
                 key={sub.userID}
                 avatarURL={avatarURL}
-                userName={name}
+                userName={avatarName}
               />
             </View>
             <View style={styles.nameContainer}>
               <Text style={styles.name} accessibilityTraits='header' numberOfLines={1}>{name}</Text>
-              <SubmissionStatusLabel
+              <OldSubmissionStatusLabel
                 status={sub.status}
                 onlineSubmissionType={onlineSubmissionType}
               />
@@ -146,9 +153,9 @@ export class Header extends Component<HeaderProps, State> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   header: {
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     marginTop: 16,
   },
   profileContainer: {
@@ -156,14 +163,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   innerRowContainer: {
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     flexDirection: 'row',
     alignItems: 'center',
     flex: 1,
   },
   navButtonImage: {
     resizeMode: 'contain',
-    tintColor: '#008EE2',
+    tintColor: colors.textInfo,
   },
   avatar: {
     width: 40,
@@ -184,15 +191,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   barButton: {
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     marginRight: 12,
   },
   eyeIcon: {
     width: 20,
     height: 20,
-    tintColor: colors.grey4,
+    tintColor: colors.textDark,
   },
-})
+}))
 
 export function mapStateToProps (state: AppState, ownProps: RouterProps) {
   const { courseID, assignmentID } = ownProps

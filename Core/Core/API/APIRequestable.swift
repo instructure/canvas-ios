@@ -27,6 +27,8 @@ public enum APIQueryItem: Equatable {
     case value(String, String)
     case array(String, [String])
     case include([String])
+    case perPage(Int)
+    case bool(String, Bool)
 
     func toURLQueryItems() -> [URLQueryItem] {
         switch self {
@@ -38,11 +40,29 @@ public enum APIQueryItem: Equatable {
             return array.map({ value in URLQueryItem(name: "\(name)[]", value: value) })
         case .include(let includes):
             return APIQueryItem.array("include", includes).toURLQueryItems()
+        case .perPage(let perPage):
+            return APIQueryItem.value("per_page", String(perPage)).toURLQueryItems()
+        case .bool(let name, let value):
+            return APIQueryItem.value(name, value ? "1" : "0").toURLQueryItems()
         }
     }
 }
 
-public typealias APIFormData = [String: APIFormDatum]
+public class APIJSONDecoder: JSONDecoder {
+    public override init() {
+        super.init()
+        dateDecodingStrategy = .iso8601
+    }
+}
+
+public class APIJSONEncoder: JSONEncoder {
+    public override init() {
+        super.init()
+        dateEncodingStrategy = .iso8601
+    }
+}
+
+public typealias APIFormData = [(key: String, value: APIFormDatum)]
 
 public enum APIFormDatum: Equatable {
     case string(String)
@@ -55,6 +75,8 @@ enum APIRequestableError: Error, Equatable {
     case invalidPath(String) // our request path string can't be parsed by URLComponents
     case cannotResolve(URLComponents, URL) // our components can't be resolved against baseURL
 }
+
+public typealias APICodable = Codable & Equatable
 
 public protocol APIRequestable {
     associatedtype Response: Codable
@@ -71,6 +93,7 @@ public protocol APIRequestable {
     func urlRequest(relativeTo: URL, accessToken: String?, actAsUserID: String?) throws -> URLRequest
     func decode(_ data: Data) throws -> Response
     func encode(_ body: Body) throws -> Data
+    func encode(response: Response) throws -> Data
 }
 
 extension APIRequestable {
@@ -99,7 +122,7 @@ extension APIRequestable {
         guard var components = URLComponents(string: path) else { throw APIRequestableError.invalidPath(path) }
 
         if !path.hasPrefix("/") && components.host == nil {
-            components.path = "/api/v1/" + components.path.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+            components.path = "/api/v1/" + components.path
         }
 
         var queryItems = self.queryItems
@@ -145,15 +168,15 @@ extension APIRequestable {
     }
 
     public func decode(_ data: Data) throws -> Response {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        return try decoder.decode(Response.self, from: data)
+        try APIJSONDecoder().decode(Response.self, from: data)
     }
 
     public func encode(_ body: Body) throws -> Data {
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-        return try encoder.encode(body)
+        try APIJSONEncoder().encode(body)
+    }
+
+    public func encode(response: Response) throws -> Data {
+        try APIJSONEncoder().encode(response)
     }
 
     public func encodeFormData(boundary: String, form: APIFormData) throws -> Data {

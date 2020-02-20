@@ -21,14 +21,14 @@ import XCTest
 import Core
 import TestsFoundation
 
-class QuizListPresenterTests: PersistenceTestCase {
+class QuizListPresenterTests: StudentTestCase {
 
     var resultingError: NSError?
     var resultingSubtitle: String?
     var resultingBackgroundColor: UIColor?
     var presenter: QuizListPresenter!
 
-    let update = XCTestExpectation(description: "presenter updated")
+    var updateExpectation: XCTestExpectation!
     var onUpdateNavBar: ((String?, UIColor?) -> Void)?
 
     var color: UIColor?
@@ -38,7 +38,36 @@ class QuizListPresenterTests: PersistenceTestCase {
 
     override func setUp() {
         super.setUp()
+        updateExpectation = XCTestExpectation(description: "presenter updated")
         presenter = QuizListPresenter(env: env, view: self, courseID: "1")
+    }
+
+    func testUseCasesSetupProperly() {
+        XCTAssertEqual(presenter.course.useCase.courseID, presenter.courseID)
+        XCTAssertEqual(presenter.quizzes.useCase.courseID, presenter.courseID)
+    }
+
+    func testLoadColors() {
+        let c = Course.make()
+        ContextColor.make(canvasContextID: c.canvasContextID)
+
+        presenter.colors.eventHandler()
+        XCTAssertEqual(resultingBackgroundColor, UIColor.red)
+    }
+
+    func testLoadCourse() {
+        let c = Course.make()
+        ContextColor.make(canvasContextID: c.canvasContextID)
+
+        presenter.course.eventHandler()
+        XCTAssertEqual(resultingSubtitle, c.name)
+    }
+
+    func testLoadQuizzes() {
+        Quiz.make()
+
+        presenter.quizzes.eventHandler()
+        wait(for: [updateExpectation], timeout: 0.1)
     }
 
     func testQuizListItemModelGradeViewableStubs() {
@@ -48,29 +77,13 @@ class QuizListPresenterTests: PersistenceTestCase {
         XCTAssertEqual(quiz.viewableScore, nil)
     }
 
-    func testLoadCourse() {
-        XCTAssertNil(resultingSubtitle)
-        XCTAssertNil(resultingBackgroundColor)
-
-        let c = Course.make()
-        Color.make(canvasContextID: c.canvasContextID, color: UIColor.red)
-
-        let expectation = self.expectation(description: "navbar")
-        expectation.assertForOverFulfill = false
-        onUpdateNavBar = {
-            if $0 == c.name && $1 == c.color { expectation.fulfill() }
-        }
-        presenter.viewIsReady()
-
-        wait(for: [expectation], timeout: 5)
-    }
-
-    func testLoadQuizzes() {
+    func testQuizzes() {
         Quiz.make(from: .make(id: "a", quiz_type: .assignment))
         Quiz.make(from: .make(id: "g", quiz_type: .graded_survey))
         Quiz.make(from: .make(id: "p", quiz_type: .practice_quiz))
         Quiz.make(from: .make(id: "s", quiz_type: .survey))
-        presenter.viewIsReady()
+
+        presenter.quizzes.eventHandler()
 
         XCTAssertEqual(presenter.quiz(IndexPath(row: 0, section: 0))?.quizType, QuizType.assignment)
         XCTAssertEqual(presenter.quiz(IndexPath(row: 0, section: 1))?.quizType, QuizType.practice_quiz)
@@ -88,17 +101,18 @@ class QuizListPresenterTests: PersistenceTestCase {
 
     func testSection() {
         Quiz.make(from: .make(quiz_type: .survey))
-        presenter.viewIsReady()
+        presenter.quizzes.eventHandler()
+
         XCTAssertEqual(presenter.section(0)?.name, "survey")
     }
 
     func testSectionTitle() {
-        Quiz.make(from: .make(id: "i", quiz_type: .assignment)).setValue("invalid", forKey: "quizTypeRaw")
         Quiz.make(from: .make(id: "a", quiz_type: .assignment))
         Quiz.make(from: .make(id: "g", quiz_type: .graded_survey))
         Quiz.make(from: .make(id: "p", quiz_type: .practice_quiz))
         Quiz.make(from: .make(id: "s", quiz_type: .survey))
-        presenter.viewIsReady()
+
+        presenter.quizzes.eventHandler()
 
         XCTAssertEqual(presenter.sectionTitle(0), "Assignments")
         XCTAssertEqual(presenter.sectionTitle(1), "Practice Quizzes")
@@ -112,14 +126,16 @@ class QuizListPresenterTests: PersistenceTestCase {
         let router = env.router as? TestRouter
         XCTAssertNoThrow(presenter.select(quiz, from: UIViewController()))
         XCTAssertEqual(router?.calls.last?.0, URLComponents.parse(quiz.htmlURL))
-        XCTAssertEqual(router?.calls.last?.2, [.detail, .embedInNav])
+        XCTAssertEqual(router?.calls.last?.2, .detail(embedInNav: true))
     }
 }
 
 extension QuizListPresenterTests: QuizListViewProtocol {
     func update(isLoading: Bool) {
-        update.fulfill()
+        updateExpectation.fulfill()
     }
+
+    func showAlert(title: String?, message: String?) {}
 
     func showError(_ error: Error) {
         resultingError = error as NSError

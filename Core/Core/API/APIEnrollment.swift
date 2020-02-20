@@ -19,8 +19,8 @@
 import Foundation
 
 // https://canvas.instructure.com/doc/api/enrollments.html#Enrollment
-struct APIEnrollment: Codable, Equatable {
-    let id: String?
+public struct APIEnrollment: Codable, Equatable {
+    let id: ID?
     let course_id: String?
     // let sis_course_id: String?
     // let course_integration_id: String?
@@ -47,7 +47,7 @@ struct APIEnrollment: Codable, Equatable {
     // let total_activity_time: TimeInterval
     // let html_url: String
     let grades: Grades?
-    // let user: APIUser
+    let user: APIUser?
     let computed_current_score: Double?
     let computed_final_score: Double?
     let computed_current_grade: String?
@@ -69,6 +69,8 @@ struct APIEnrollment: Codable, Equatable {
     // let current_period_unposted_final_score: Double?
     // let current_period_unposted_current_grade: String?
     // let current_period_unposted_final_grade: String?
+
+    let observed_user: APIUser?
 
     // https://canvas.instructure.com/doc/api/enrollments.html#Grade
     struct Grades: Codable, Equatable {

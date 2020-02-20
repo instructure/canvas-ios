@@ -20,21 +20,6 @@
 
 import Foundation
 
-public struct MockDataMessage: Codable {
-    let data: Data?
-    let error: String?
-    let request: URLRequest
-    let response: MockResponse?
-    let noCallback: Bool
-}
-
-public struct MockDownloadMessage: Codable {
-    let data: Data?
-    let error: String?
-    let response: MockResponse?
-    let url: URL
-}
-
 extension URLRequest: Codable {
     enum CodingKeys: String, CodingKey {
         case allHTTPHeaderFields, cachePolicy, httpBody, httpMethod, url
@@ -59,33 +44,66 @@ extension URLRequest: Codable {
     }
 }
 
-public struct MockResponse: Codable {
-    public let http: HTTPURLResponse
+public class MockHTTPResponse: Codable {
+    public let data: Data?
+    public let http: HTTPURLResponse?
+    public let errorMessage: String?
+    public let noCallback: Bool
+    public var error: Error? { errorMessage.map { NSError.instructureError($0) } }
+
+    public lazy var dataSavedToTemporaryFileURL: URL? = {
+        guard let data = data else { return nil }
+        let url = URL.temporaryDirectory.appendingPathComponent(Foundation.UUID().uuidString, isDirectory: false)
+        (try? data.write(to: url))!
+        return url
+    }()
 
     enum CodingKeys: String, CodingKey {
-        case allHeaderFields, statusCode, url
+        case data, errorMessage, allHeaderFields, statusCode, url, noCallback
     }
 
-    public init(http: HTTPURLResponse) {
+    public init(data: Data? = nil, http: HTTPURLResponse? = nil, errorMessage: String? = nil, noCallback: Bool = false) {
+        self.data = data
         self.http = http
+        self.errorMessage = errorMessage
+        self.noCallback = noCallback
     }
 
-    public init(from decoder: Decoder) throws {
-        let root = try decoder.container(keyedBy: CodingKeys.self)
-        let allHeaderFields = try root.decodeIfPresent([String: String].self, forKey: .allHeaderFields)
-        let statusCode = try root.decode(Int.self, forKey: .statusCode)
-        let url = try root.decode(URL.self, forKey: .url)
-        guard let response = HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: allHeaderFields) else {
-            throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: root.codingPath, debugDescription: "Could not instantiate an HTTPURLResponse"))
+    convenience init?<D: Codable>(value: D) {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+
+        guard let data = try? encoder.encode(value) else {
+            return nil
         }
-        http = response
+
+        self.init(data: data,
+                  http: HTTPURLResponse(url: URL(string: "/")!, statusCode: 200, httpVersion: nil, headerFields: nil))
+    }
+
+    required public init(from decoder: Decoder) throws {
+        let root = try decoder.container(keyedBy: CodingKeys.self)
+
+        data = try root.decodeIfPresent(Data.self, forKey: .data)
+        let allHeaderFields = try root.decodeIfPresent([String: String].self, forKey: .allHeaderFields)
+        if let statusCode = try root.decodeIfPresent(Int.self, forKey: .statusCode),
+           let url = try root.decodeIfPresent(URL.self, forKey: .url) {
+            http = HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: allHeaderFields)
+        } else {
+            http = nil
+        }
+        errorMessage = try root.decodeIfPresent(String.self, forKey: .errorMessage)
+        noCallback = try root.decode(Bool.self, forKey: .noCallback)
     }
 
     public func encode(to encoder: Encoder) throws {
         var root = encoder.container(keyedBy: CodingKeys.self)
-        try root.encode(http.allHeaderFields as? [String: String], forKey: .allHeaderFields)
-        try root.encode(http.statusCode, forKey: .statusCode)
-        try root.encode(http.url, forKey: .url)
+        try root.encode(data, forKey: .data)
+        try root.encode(http?.allHeaderFields as? [String: String], forKey: .allHeaderFields)
+        try root.encode(http?.statusCode, forKey: .statusCode)
+        try root.encode(http?.url, forKey: .url)
+        try root.encode(errorMessage, forKey: .errorMessage)
+        try root.encode(noCallback, forKey: .noCallback)
     }
 }
 

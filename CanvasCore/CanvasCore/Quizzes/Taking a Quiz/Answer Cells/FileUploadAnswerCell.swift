@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import ReactiveSwift
+import Core
 
 class FileUploadAnswerCell: UITableViewCell {
     @objc static var ReuseID: String {
@@ -26,9 +26,9 @@ class FileUploadAnswerCell: UITableViewCell {
     @objc lazy var removeFileButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(.icon(.cancel), for: .normal)
-        button.addTarget(self, action: #selector(removeFile), for: .touchUpInside)
+        button.addTarget(self, action: #selector(removeFile), for: .primaryActionTriggered)
         button.frame = CGRect(x: 0, y: 0, width: 21, height: 21)
-        button.tintColor = UIColor(r: 165, g: 175, b: 181)
+        button.tintColor = .named(.textDark)
         return button
     }()
 

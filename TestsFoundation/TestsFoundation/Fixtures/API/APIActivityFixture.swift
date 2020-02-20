@@ -22,13 +22,13 @@ import Foundation
 extension APIActivity {
     public static func make(
         id: ID = "1",
-        title: String = "Assignment Created: Assignment 1",
-        message: String = "Assignment 1",
+        title: String = "title",
+        message: String = "message",
         html_url: URL = URL(string: "/courses/1/assignments/1")!,
-        created_at: Date = Date(),
-        updated_at: Date = Date(),
+        created_at: Date = Clock.now,
+        updated_at: Date = Clock.now,
         type: ActivityType = .message,
-        context_type: ContextType = .course,
+        context_type: String = ContextType.course.rawValue,
         course_id: ID? = "1",
         group_id: ID? = nil
     ) -> APIActivity {

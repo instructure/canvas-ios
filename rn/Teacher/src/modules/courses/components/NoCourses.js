@@ -21,12 +21,11 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
 } from 'react-native'
 import i18n from 'format-message'
 import { Text } from '../../../common/text'
 import { Button } from '../../../common/buttons'
-import colors from '../../../common/colors'
+import { createStyleSheet } from '../../../common/stylesheet'
 
 type Props = {
   onAddCoursePressed: () => void,
@@ -54,7 +53,7 @@ export class NoCourses extends Component<Props> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   container: {
     paddingHorizontal: 40,
     flexDirection: 'column',
@@ -64,12 +63,12 @@ const styles = StyleSheet.create({
   welcome: {
     fontSize: 30,
     lineHeight: 36,
-    color: colors.darkText,
+    color: colors.textDarkest,
     marginBottom: 8,
   },
   paragraph: {
     textAlign: 'center',
-    color: colors.grey4,
+    color: colors.textDark,
     fontSize: 16,
     lineHeight: 19,
     paddingHorizontal: 10,
@@ -84,6 +83,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingVertical: 16,
   },
-})
+}))
 
 export default NoCourses

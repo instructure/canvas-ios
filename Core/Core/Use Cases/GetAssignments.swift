@@ -26,21 +26,20 @@ public class GetAssignments: CollectionUseCase {
 
     public typealias Model = Assignment
     public let courseID: String
-    private let sort: Sort
+    public let sort: Sort
     let include: [GetAssignmentsRequest.Include]
-    let updateSubmission: Bool
-    let requestQuerySize: Int
+    let perPage: Int?
+    public var cacheKey: String? {
+        return "\(ContextModel(.course, id: courseID).pathComponent)/assignments"
+    }
 
-    public init(courseID: String, sort: Sort = .position, include: [GetAssignmentsRequest.Include] = [], requestQuerySize: Int = 100) {
+    public var clearsBeforeWrite: Bool { true }
+
+    public init(courseID: String, sort: Sort = .position, include: [GetAssignmentsRequest.Include] = [], perPage: Int? = nil) {
         self.courseID = courseID
         self.sort = sort
         self.include = include
-        self.updateSubmission = include.contains(.submission)
-        self.requestQuerySize = requestQuerySize
-    }
-
-    public var cacheKey: String? {
-        return "get-\(courseID)-assignments"
+        self.perPage = perPage
     }
 
     public var request: GetAssignmentsRequest {
@@ -51,22 +50,24 @@ public class GetAssignments: CollectionUseCase {
         case .name:
             orderBy = .name
         }
-        return GetAssignmentsRequest(courseID: courseID, orderBy: orderBy, include: include, querySize: requestQuerySize)
+        return GetAssignmentsRequest(courseID: courseID, orderBy: orderBy, include: include, perPage: perPage)
     }
 
     public var scope: Scope {
+        let order: [NSSortDescriptor]
         switch sort {
         case .dueAt:
             //  this puts nil dueAt at the bottom of the list
             let a = NSSortDescriptor(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true)
             let b = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare))
-            let predicate = NSPredicate(format: "%K == %@", argumentArray: [#keyPath(Assignment.courseID), courseID])
-            return Scope(predicate: predicate, order: [a, b])
+            order = [a, b]
         case .position:
-            return .where(#keyPath(Assignment.courseID), equals: courseID, orderBy: #keyPath(Assignment.position))
+            order = [NSSortDescriptor(key: #keyPath(Assignment.position), ascending: true)]
         case .name:
-            return .where(#keyPath(Assignment.courseID), equals: courseID, orderBy: #keyPath(Assignment.name))
+            order = [NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true)]
         }
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.courseID), courseID)
+        return Scope(predicate: predicate, order: order)
     }
 
     public func write(response: [APIAssignment]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
@@ -75,9 +76,7 @@ public class GetAssignments: CollectionUseCase {
         }
 
         for item in response {
-            let predicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.id), item.id.value)
-            let model: Assignment = client.fetch(predicate).first ?? client.insert()
-            model.update(fromApiModel: item, in: client, updateSubmission: updateSubmission)
+            Assignment.save(item, in: client, updateSubmission: include.contains(.submission))
         }
     }
 }
@@ -93,6 +92,7 @@ public class GetSubmittableAssignments: GetAssignments {
             NSPredicate(format: "%K == FALSE", #keyPath(Assignment.lockedForUser)),
             NSPredicate(format: "%K == NIL OR %K > %@", #keyPath(Assignment.lockAt), #keyPath(Assignment.lockAt), NSDate()),
             NSPredicate(format: "%K == NIL OR %K <= %@", #keyPath(Assignment.unlockAt), #keyPath(Assignment.unlockAt), NSDate()),
+            NSPredicate(format: "%K contains %@", #keyPath(Assignment.submissionTypesRaw), SubmissionType.online_upload.rawValue),
         ])
         //  this puts nil dueAt at the bottom of the list
         let a = NSSortDescriptor(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true)
@@ -101,42 +101,34 @@ public class GetSubmittableAssignments: GetAssignments {
     }
 }
 
-public class GetAssignmentsForGrades: GetAssignments {
-
-    let groupBy: GroupBy
-    let gradingPeriodID: String?
-
-    public enum GroupBy: String {
-        case assignmentGroup, dueAt
-    }
-
-    public init(courseID: String, gradingPeriodID: String? = nil, groupBy: GroupBy = .dueAt, requestQuerySize: Int = 10) {
-        self.groupBy = groupBy
-        self.gradingPeriodID = gradingPeriodID
-        super.init(courseID: courseID, sort: .dueAt, include: [.observed_users, .submission], requestQuerySize: requestQuerySize)
-    }
+public class GetSyllabusAssignments: GetAssignments {
+    public override var clearsBeforeWrite: Bool { false }
 
     public override var scope: Scope {
-        switch groupBy {
-        case .assignmentGroup:
-            let predicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.courseID), courseID)
-            let s0 = NSSortDescriptor(key: #keyPath(Assignment.assignmentGroupPosition), ascending: true, selector: nil)
-            let s1 = NSSortDescriptor(key: #keyPath(Assignment.dueAt), ascending: true, selector: nil)
-            let s2 = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))
+        let course = NSPredicate(key: #keyPath(Assignment.courseID), equals: courseID)
+        let syllabus = NSPredicate(key: #keyPath(Assignment.syllabus.courseID), equals: courseID)
+        let dueAt = NSSortDescriptor(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true)
+        let name = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare))
+        return Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [course, syllabus]), order: [dueAt, name])
+    }
 
-            return Scope(predicate: predicate, order: [s0, s1, s2], sectionNameKeyPath: #keyPath(Assignment.assignmentGroupPosition))
-        case .dueAt:
-            let a = NSSortDescriptor(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true)
-            let b = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare))
+    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping ([APIAssignment]?, URLResponse?, Error?) -> Void) {
+        environment.database.performBackgroundTask { context in
+            let syllabus: Syllabus = context.first(where: #keyPath(Syllabus.courseID), equals: self.courseID) ?? context.insert()
+            syllabus.courseID = self.courseID
+            syllabus.assignments = []
+            try? context.save()
+            super.makeRequest(environment: environment, completionHandler: completionHandler)
+        }
+    }
 
-            let p1 = NSPredicate(format: "%K == %@", argumentArray: [#keyPath(Assignment.courseID), courseID])
-            var preds: [NSPredicate] = [p1]
-            if let gradingPeriodID = gradingPeriodID {
-                let p2 = NSPredicate(format: "%K == %@", argumentArray: [#keyPath(Assignment.gradingPeriodID), gradingPeriodID])
-                preds.append(p2)
-            }
-            let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: preds)
-            return Scope(predicate: predicate, order: [a, a, b], sectionNameKeyPath: #keyPath(Assignment.dueAtSortNilsAtBottom))
+    public override func write(response: [APIAssignment]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let response = response else { return }
+        let syllabus: Syllabus = client.first(where: #keyPath(Syllabus.courseID), equals: courseID) ?? client.insert()
+        syllabus.courseID = courseID
+        for item in response {
+            let assignment = Assignment.save(item, in: client, updateSubmission: include.contains(.submission))
+            assignment.syllabus = syllabus
         }
     }
 }

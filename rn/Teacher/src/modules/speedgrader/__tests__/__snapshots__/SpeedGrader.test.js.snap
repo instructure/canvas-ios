@@ -145,7 +145,6 @@ exports[`SpeedGrader only sets submissions once 1`] = `
       getItemLayout={[Function]}
       horizontal={true}
       initialNumToRender={null}
-      initialScrollIndex={0}
       keyboardShouldPersistTaps="handled"
       onLayout={[Function]}
       onMomentumScrollEnd={[Function]}
@@ -313,7 +312,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               "pending": false,
               "refresh": [MockFunction],
               "refreshSubmissionSummary": [MockFunction],
-              "refreshSubmissions": [MockFunction],
               "refreshing": false,
               "resetDrawer": [MockFunction],
               "submissionEntities": Object {},
@@ -426,7 +424,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   pending={false}
                   refresh={[MockFunction]}
                   refreshSubmissionSummary={[MockFunction]}
-                  refreshSubmissions={[MockFunction]}
                   refreshing={false}
                   resetDrawer={[MockFunction]}
                   submissionEntities={Object {}}
@@ -484,7 +481,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                       getItemLayout={[Function]}
                       horizontal={true}
                       initialNumToRender={null}
-                      initialScrollIndex={0}
                       keyboardShouldPersistTaps="handled"
                       onLayout={[Function]}
                       onMomentumScrollEnd={[Function]}

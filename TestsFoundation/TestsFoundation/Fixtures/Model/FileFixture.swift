@@ -26,16 +26,19 @@ extension File {
         from api: APIFile = .make(),
         assignmentID: String? = nil,
         batchID: String? = nil,
+        bytesSent: Int = 0,
         courseID: String? = nil,
         removeID: Bool = false,
         removeURL: Bool = false,
         taskID: Int? = nil,
+        userID: String? = nil,
         uploadError: String? = nil,
         session: LoginSession? = nil,
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> File {
         let model = File.save(api, in: context)
         model.batchID = batchID
+        model.bytesSent = bytesSent
         if let assignmentID = assignmentID, let courseID = courseID {
             model.prepareForSubmission(courseID: courseID, assignmentID: assignmentID)
         }
@@ -50,6 +53,12 @@ extension File {
         }
         model.taskID = taskID
         model.uploadError = uploadError
+
+        if let userID = userID {
+            let u = File.User(id: userID, baseURL: URL(string: "localhost")!, masquerader: nil)
+            model.user = u
+        }
+
         try! context.save()
         return model
     }

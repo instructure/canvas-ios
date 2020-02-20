@@ -26,24 +26,23 @@ class PageListPresenter: PageViewLoggerPresenterProtocol {
 
     let context: Context
     let env: AppEnvironment
+    let app: App
     weak var view: PageListViewProtocol?
     var course: Store<GetCourse>?
     var group: Store<GetGroup>?
+    lazy var pages = Pages(context: context) { [weak self] in
+        self?.update()
+    }
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.update()
     }
-    lazy var frontPage = env.subscribe(GetFrontPage(context: context)) { [weak self] in
-        self?.update()
-    }
-    lazy var pages = env.subscribe(GetPages(context: context)) { [weak self] in
-        self?.update()
-    }
 
-    init(env: AppEnvironment = .shared, view: PageListViewProtocol, context: Context) {
+    init(env: AppEnvironment = .shared, view: PageListViewProtocol, context: Context, app: App) {
         self.context = context
         self.env = env
         self.view = view
+        self.app = app
 
         switch context.contextType {
         case .course:
@@ -67,7 +66,8 @@ class PageListPresenter: PageViewLoggerPresenterProtocol {
                 view?.updateNavBar(subtitle: group.name, color: group.color)
             }
         }
-        view?.update(isLoading: pages.pending)
+        let isLoading = pages.frontPage?.pending == true || pages.all?.pending == true
+        view?.update(isLoading: isLoading)
         if let error = course?.error ?? group?.error {
             view?.showError(error)
         }
@@ -76,24 +76,55 @@ class PageListPresenter: PageViewLoggerPresenterProtocol {
     func viewIsReady() {
         colors.refresh()
         pages.refresh()
-        frontPage.refresh()
         course?.refresh()
         group?.refresh()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshPages), name: Notification.Name("refresh-pages"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(pageCreated), name: Notification.Name("page-created"), object: nil)
+
+        if ExperimentalFeature.newPageDetails.isEnabled == false {
+            NotificationCenter.default.addObserver(self, selector: #selector(refreshPages), name: Notification.Name("refresh-pages"), object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(refreshPages), name: Notification.Name("page-edit"), object: nil)
+        }
     }
 
     func select(_ page: Page, from view: UIViewController) {
-        env.router.route(to: page.htmlURL, from: view, options: [.detail, .embedInNav])
+        env.router.route(to: page.htmlURL, from: view, options: .detail(embedInNav: true))
     }
 
     func newPage(from view: UIViewController) {
-        env.router.route(to: "/courses/\(context.id)/pages/new", from: view, options: [.modal, .embedInNav])
+        env.router.route(to: "\(context.pathComponent)/pages/new", from: view, options: .modal(embedInNav: true))
     }
 
-    @objc func refreshPages() {
+    @objc
+    func refreshPages() {
         pages.refresh(force: true)
-        frontPage.refresh(force: true)
+    }
+
+    @objc
+    func pageCreated(notification: NSNotification) {
+        guard let rawCreateData = notification.userInfo else {
+            return
+        }
+
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: rawCreateData, options: .prettyPrinted), let apiPage = try? decoder.decode(APIPage.self, from: jsonData) else {
+            return
+        }
+
+        // if the new page is the front page, find and turn off the old front page
+        if apiPage.front_page {
+            let scope = GetFrontPage(context: context).scope
+            let currentFrontPage: Page? = env.database.viewContext.fetch(scope.predicate, sortDescriptors: nil).first
+            currentFrontPage?.isFrontPage = false
+        }
+
+        Page.save(apiPage, in: env.database.viewContext)
+        try? env.database.viewContext.save()
+    }
+
+    func canCreatePage() -> Bool {
+        return app == .teacher || context.contextType == .group
     }
 
 }

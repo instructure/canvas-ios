@@ -40,3 +40,61 @@ struct PostEnrollmentRequest: APIRequestable {
         return "\(context.pathComponent)/enrollments"
     }
 }
+
+// https://canvas.instructure.com/doc/api/enrollments.html#method.enrollments_api.index
+public struct GetEnrollmentsRequest: APIRequestable {
+    public typealias Response = [APIEnrollment]
+    public enum Include: String {
+        case observed_users, avatar_url
+    }
+
+    public enum State: String {
+        case creation_pending, active, invited, current_and_future, completed
+        static var allForParentObserver: [State] {
+            return [.creation_pending, .active, .invited, .current_and_future, .completed]
+        }
+    }
+
+    let context: Context
+    let userID: String?
+    let gradingPeriodID: String?
+    let types: [String]?
+    let includes: [Include]
+    let states: [State]?
+    let roles: [Role]?
+
+    init(context: Context, userID: String? = nil, gradingPeriodID: String? = nil, types: [String]? = nil, includes: [Include] = [], states: [State]? = nil, roles: [Role]? = nil) {
+        self.context = context
+        self.userID = userID
+        self.gradingPeriodID = gradingPeriodID
+        self.types = types
+        self.includes = includes
+        self.states = states
+        self.roles = roles
+    }
+
+    public var path: String {
+        return "\(context.pathComponent)/enrollments"
+    }
+    public var query: [APIQueryItem] {
+        var query: [APIQueryItem] = [
+            .include(includes.map { $0.rawValue }),
+        ]
+        if let states = states {
+            query.append(.array("state", states.map { $0.rawValue }))
+        }
+        if let roles = roles {
+            query.append(.array("role", roles.map { $0.rawValue }))
+        }
+        if let userID = userID {
+            query.append(.value("user_id", userID))
+        }
+        if let gradingPeriodID = gradingPeriodID {
+            query.append(.value("grading_period_id", gradingPeriodID))
+        }
+        if let types = types {
+            query.append(.array("type", types))
+        }
+        return query
+    }
+}

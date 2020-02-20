@@ -96,7 +96,7 @@ class StudentSettingsViewController: UIViewController {
             }
         }
 
-        let refreshControl = UIRefreshControl()
+        let refreshControl = CircleRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView.refreshControl = refreshControl
     }
@@ -179,7 +179,7 @@ class StudentSettingsViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 
-    @objc func refresh(_ refreshControl: UIRefreshControl?) {
+    @objc func refresh(_ refreshControl: CircleRefreshControl?) {
         presenter.viewIsReady()
     }
 
@@ -189,8 +189,8 @@ class StudentSettingsViewController: UIViewController {
     @objc func setupNavigationBar() {
         guard let navBar = self.navigationController?.navigationBar else { return }
 
-        let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
-        navBar.backgroundColor = scheme.mainColor
+        let scheme = ColorScheme.observee(studentID)
+        navBar.backgroundColor = scheme.color
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         activityIndicator.hidesWhenStopped = true
     }
@@ -287,7 +287,7 @@ extension StudentSettingsViewController: UITableViewDataSource, UITableViewDeleg
         if section == 0 {
             let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: StudentSettingsHeaderView.self)) as? StudentSettingsHeaderView
             let student = studentObserver?.object
-            header?.nameLabel.text = student?.name
+            header?.nameLabel.text = student.flatMap { Core.User.displayName($0.shortName, pronouns: $0.pronouns) }
             header?.avatarView.name = student?.name ?? ""
             header?.avatarView.url = student?.avatarURL
             return header

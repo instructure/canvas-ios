@@ -22,8 +22,8 @@ import React, { PureComponent } from 'react'
 import {
   View,
   Text,
-  StyleSheet,
 } from 'react-native'
+import { createStyleSheet } from '../stylesheet'
 
 type Props = {
   text: string,
@@ -44,19 +44,19 @@ export default class DescriptionDefaultView extends PureComponent<Props, any> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   container: {
     marginTop: 4,
     paddingTop: 8,
     paddingHorizontal: 12,
     paddingBottom: 8,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: colors.backgroundLight,
     borderRadius: 3,
   },
   text: {
     alignItems: 'flex-start',
     textAlign: 'left',
-    color: '#73818C',
+    color: colors.textDark,
     fontSize: 14,
   },
-})
+}))

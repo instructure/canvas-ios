@@ -29,14 +29,13 @@ import { connect } from 'react-redux'
 import refresh from '../../utils/refresh'
 import Actions from './actions'
 import Screen from '../../routing/Screen'
-import branding from '../../common/branding'
+import { colors, vars } from '../../common/stylesheet'
 import ConversationRow from './components/ConversationRow'
 import CourseFilter from './components/CourseFilter'
 import FilterHeader from './components/FilterHeader'
 import EmptyInbox from './components/EmptyInbox'
 import Images from '../../images'
 import i18n from 'format-message'
-import color from '../../common/colors'
 import RowSeparator from '../../common/components/rows/RowSeparator'
 import CourseActions from '../courses/actions'
 import App from '../app'
@@ -159,11 +158,11 @@ export class Inbox extends Component<InboxProps, any> {
   render () {
     return (
       <Screen
-        navBarColor={color.navBarColor}
-        navBarButtonColor={color.navBarTextColor}
-        statusBarStyle={color.statusBarStyle}
+        navBarColor={colors.navBackground}
+        navBarButtonColor={colors.navTextColor}
+        navBarStyle={vars.navBarStyle}
         drawUnderNavBar
-        navBarImage={branding.headerImage}
+        navBarImage={vars.headerImageURL}
         rightBarButtons={[{
           accessibilityLabel: i18n('New Message'),
           testID: 'inbox.new-message',

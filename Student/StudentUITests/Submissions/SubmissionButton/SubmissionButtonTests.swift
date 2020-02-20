@@ -40,7 +40,7 @@ class SubmissionButtonTests: StudentUITestCase {
         AssignmentDetails.submitAssignmentButton.tap()
         FilePicker.libraryButton.tap()
         app.find(label: "All Photos").tap()
-        app.find(labelContaining: "Photo, HDR").tap()
+        app.find(labelContaining: "Photo, HDR").tapUntil { FilePicker.submitButton.isVisible }
         FilePicker.submitButton.tap()
         FilePicker.submitButton.waitToVanish()
     }
@@ -55,7 +55,7 @@ class SubmissionButtonTests: StudentUITestCase {
             assignmentID: assignment.id.value,
             moduleItemID: nil,
             launchType: .assessment
-        ), value: APIGetSessionlessLaunchResponse(url: URL(string: "https://canvas.instructure.com")!))
+        ), value: .make(url: URL(string: "https://canvas.instructure.com")!))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.submitAssignmentButton.tap()
@@ -72,7 +72,7 @@ class SubmissionButtonTests: StudentUITestCase {
             assignmentID: assignment.id.value,
             moduleItemID: nil,
             launchType: .assessment
-        ), value: APIGetSessionlessLaunchResponse(url: URL(string: "https://canvas.instructure.com")!))
+        ), value: .make(url: URL(string: "https://canvas.instructure.com")!))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.submitAssignmentButton.tap()
@@ -83,10 +83,10 @@ class SubmissionButtonTests: StudentUITestCase {
         mockBaseRequests()
         let quiz = APIQuiz.make()
         let assignment = mock(assignment: .make(quiz_id: quiz.id, submission_types: [ .online_quiz ]))
-        mockData(GetQuizRequest(courseID: course.id.value, quizID: quiz.id.value), value: .make())
-        let submission = APIQuizSubmission.make()
+        mockData(GetQuizRequest(courseID: course.id.value, quizID: quiz.id.value), value: quiz)
+        let submission = APIQuizSubmission.make(quiz_id: quiz.id)
         mockData(GetQuizSubmissionRequest(courseID: course.id.value, quizID: quiz.id.value), value: .init(quiz_submissions: [submission]))
-        mockEncodableRequest("courses/\(course.id)/quizzes/\(quiz.id)/submission", value: submission)
+        mockData(GetWebSessionRequest(to: URL(string: "/courses/1/quizzes/\(quiz.id)?platform=ios")))
 
         logIn()
         show("/courses/\(course.id)/assignments/\(assignment.id)")
@@ -99,6 +99,7 @@ class SubmissionButtonTests: StudentUITestCase {
         let topic = APIDiscussionTopic.make(html_url: URL(string: "/courses/\(course.id)/discussion_topics/1"))
         let assignment = mock(assignment: .make(submission_types: [ .discussion_topic ], discussion_topic: topic))
         mockData(GetContextPermissionsRequest(context: course), value: .make())
+        mockEncodableRequest("courses/\(course.id)/discussion_topics/1/read", value: "")
         mockEncodableRequest("courses/\(course.id)/discussion_topics/1?include[]=sections", value: topic)
         mockEncodableRequest("courses/\(course.id)/discussion_topics/1/view?include_new_entries=1", value: [
             "unread_entries": [String](),
@@ -128,9 +129,9 @@ class SubmissionButtonTests: StudentUITestCase {
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.submitAssignmentButton.tap()
         allowAccessToMicrophone {
-            app.find(label: "Record Audio").tap()
+            app.find(id: "FilePicker.audioButton").tap()
         }
-        AudioRecorder.recordButton.tap() // Doesn't start recording on bitrise. :( It works locally.
+        AudioRecorder.recordButton.tap()
         AudioRecorder.stopButton.tap()
         AudioRecorder.sendButton.tap()
         app.find(label: "Successfully submitted!").waitToExist()

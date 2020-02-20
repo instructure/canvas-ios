@@ -20,7 +20,7 @@ exports[`anonymous grading doesnt show users names 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "paddingBottom": 10,
@@ -41,7 +41,7 @@ exports[`anonymous grading doesnt show users names 1`] = `
       >
         <Avatar
           avatarURL={null}
-          onPress={[Function]}
+          onPress={false}
           userName="Student"
         />
       </View>
@@ -104,7 +104,7 @@ exports[`anonymous grading doesnt show users names 1`] = `
             },
             Array [
               Object {
-                "color": "#374A59",
+                "color": "#2D3B45",
                 "fontSize": 14,
                 "fontWeight": "600",
               },
@@ -142,7 +142,7 @@ exports[`excused row renders correctly 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "paddingBottom": 10,
@@ -204,7 +204,7 @@ exports[`excused row renders correctly 1`] = `
             },
             Array [
               Object {
-                "color": "#374A59",
+                "color": "#2D3B45",
                 "fontSize": 14,
                 "fontWeight": "600",
               },
@@ -242,7 +242,7 @@ exports[`late graded row renders correctly 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "paddingBottom": 10,
@@ -326,7 +326,7 @@ exports[`late graded row renders correctly 1`] = `
             },
             Array [
               Object {
-                "color": "#374A59",
+                "color": "#2D3B45",
                 "fontSize": 14,
                 "fontWeight": "600",
               },
@@ -364,7 +364,7 @@ exports[`missing ungraded row renders correctly 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "paddingBottom": 10,
@@ -448,7 +448,7 @@ exports[`missing ungraded row renders correctly 1`] = `
             },
             Array [
               Object {
-                "color": "#374A59",
+                "color": "#2D3B45",
                 "fontSize": 14,
                 "fontWeight": "600",
               },
@@ -486,7 +486,7 @@ exports[`submitted not_graded row renders correctly 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "paddingBottom": 10,
@@ -539,7 +539,7 @@ exports[`submitted not_graded row renders correctly 1`] = `
           Green Latern
         </Text>
         <Text
-          color="#368BD8"
+          color="#008EE2"
           style={
             Array [
               Object {
@@ -548,7 +548,7 @@ exports[`submitted not_graded row renders correctly 1`] = `
               },
               Array [
                 Object {
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "borderRadius": 9,
                   "borderWidth": 1,
                   "fontSize": 11,
@@ -561,8 +561,8 @@ exports[`submitted not_graded row renders correctly 1`] = `
                   "textAlign": "center",
                 },
                 Object {
-                  "borderColor": "#368BD8",
-                  "color": "#368BD8",
+                  "borderColor": "#008EE2",
+                  "color": "#008EE2",
                 },
                 Object {
                   "alignSelf": "flex-start",
@@ -584,7 +584,7 @@ exports[`submitted not_graded row renders correctly 1`] = `
             },
             Array [
               Object {
-                "color": "#374A59",
+                "color": "#2D3B45",
                 "fontSize": 14,
                 "fontWeight": "600",
               },
@@ -622,7 +622,7 @@ exports[`submitted ungraded row renders correctly 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "paddingBottom": 10,
@@ -688,7 +688,7 @@ exports[`submitted ungraded row renders correctly 1`] = `
                 },
                 undefined,
                 Object {
-                  "color": "#07AF1F",
+                  "color": "#00AC18",
                 },
               ],
             ]
@@ -697,7 +697,7 @@ exports[`submitted ungraded row renders correctly 1`] = `
           Submitted
         </Text>
         <Text
-          color="#368BD8"
+          color="#008EE2"
           style={
             Array [
               Object {
@@ -706,7 +706,7 @@ exports[`submitted ungraded row renders correctly 1`] = `
               },
               Array [
                 Object {
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "borderRadius": 9,
                   "borderWidth": 1,
                   "fontSize": 11,
@@ -719,8 +719,8 @@ exports[`submitted ungraded row renders correctly 1`] = `
                   "textAlign": "center",
                 },
                 Object {
-                  "borderColor": "#368BD8",
-                  "color": "#368BD8",
+                  "borderColor": "#008EE2",
+                  "color": "#008EE2",
                 },
                 Object {
                   "alignSelf": "flex-start",
@@ -742,7 +742,7 @@ exports[`submitted ungraded row renders correctly 1`] = `
             },
             Array [
               Object {
-                "color": "#374A59",
+                "color": "#2D3B45",
                 "fontSize": 14,
                 "fontWeight": "600",
               },
@@ -780,7 +780,7 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "paddingBottom": 10,
@@ -864,7 +864,7 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
             },
             Array [
               Object {
-                "color": "#374A59",
+                "color": "#2D3B45",
                 "fontSize": 14,
                 "fontWeight": "600",
               },

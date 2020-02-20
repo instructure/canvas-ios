@@ -51,7 +51,7 @@ exports[`renders correctly 1`] = `
                   "fontWeight": "600",
                 },
                 Object {
-                  "color": "#374A59",
+                  "color": "#008EE2",
                 },
               ],
             ]
@@ -63,7 +63,7 @@ exports[`renders correctly 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "#374A59",
+                "backgroundColor": "#008EE2",
                 "bottom": 0,
                 "height": 3,
                 "left": 8,
@@ -71,7 +71,7 @@ exports[`renders correctly 1`] = `
                 "right": 8,
               },
               Object {
-                "backgroundColor": "#374A59",
+                "backgroundColor": "#008EE2",
               },
             ]
           }

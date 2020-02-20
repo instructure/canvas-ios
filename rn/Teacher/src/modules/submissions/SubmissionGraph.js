@@ -22,13 +22,12 @@
 
 import i18n from 'format-message'
 import React, { Component } from 'react'
-import color from '../../common/colors'
+import { colors, createStyleSheet } from '../../common/stylesheet'
 import * as Progress from 'react-native-progress'
 import { Text } from '../../common/text'
 import {
   Text as RNText,
   View,
-  StyleSheet,
   ActivityIndicator,
 } from 'react-native'
 import RNCounter from 'react-native-counter'
@@ -84,9 +83,9 @@ export default class SubmissionGraph extends Component<SubmissionGraphProps, any
             thickness={submissionCircles.thickness}
             progress={this.state.progress}
             borderWidth={0}
-            unfilledColor={submissionCircles.backgroundColor}
-            color={color.primaryBrandColor}
-            borderColor={color.primaryBrandColor}
+            unfilledColor={colors.backgroundLight}
+            color={colors.primary}
+            borderColor={colors.primary}
             showsText={false}
             testID={`submissions.submission-graph.${testID}-progress-view`} />
         </View>
@@ -117,14 +116,13 @@ export default class SubmissionGraph extends Component<SubmissionGraphProps, any
   }
 }
 
-const submissionCircles: { [key: string]: any } = {
+const submissionCircles = {
   size: 70,
   thickness: 7,
-  backgroundColor: '#F5F5F5',
   borderWidth: 1,
 }
 
-const submissionsGraphStyle = StyleSheet.create({
+const submissionsGraphStyle = createStyleSheet(colors => ({
   container: {
     flex: 1,
     flexDirection: 'column',
@@ -141,7 +139,7 @@ const submissionsGraphStyle = StyleSheet.create({
     flex: 1,
   },
   innerText: {
-    color: color.darkText,
+    color: colors.textDarkest,
     fontWeight: '500',
     fontSize: 16,
   },
@@ -150,4 +148,4 @@ const submissionsGraphStyle = StyleSheet.create({
     position: 'absolute',
     top: 25.5,
   },
-})
+}))

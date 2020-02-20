@@ -18,6 +18,7 @@
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
+import { shallow } from 'enzyme'
 import 'react-native'
 import React from 'react'
 import SubmissionRow from '../SubmissionRow'
@@ -142,6 +143,25 @@ test('anonymous grading doesnt show users names', () => {
   expect(tree).toMatchSnapshot()
 })
 
+test('renders name', () => {
+  let user = templates.user({
+    id: '1',
+    name: 'Alice',
+  })
+  let tree = shallow(<SubmissionRow {...defaultProps} user={user} />)
+  expect(tree.find('[children="Alice"]').exists()).toBe(true)
+})
+
+test('renders pronouns', () => {
+  let user = templates.user({
+    id: '1',
+    name: 'Alice',
+    pronouns: 'She/Her',
+  })
+  let tree = shallow(<SubmissionRow {...defaultProps} user={user} />)
+  expect(tree.find('[children="Alice (She/Her)"]').exists()).toBe(true)
+})
+
 test('pressing the avatar calls onAvatarPress', () => {
   const onAvatarPress = jest.fn()
   let tree = renderer.create(
@@ -150,6 +170,13 @@ test('pressing the avatar calls onAvatarPress', () => {
   let avatar = explore(tree).selectByType('Avatar')
   avatar.props.onPress()
   expect(onAvatarPress).toHaveBeenCalledWith('1')
+})
+
+test('anonymous avatar press', () => {
+  let spy = jest.fn()
+  let tree = shallow(<SubmissionRow {...defaultProps} anonymous={true} onAvatarPress={spy} />)
+  tree.find('Avatar').simulate('Press')
+  expect(spy).not.toHaveBeenCalled()
 })
 
 test('shows the eyeball when grades are not posted', () => {

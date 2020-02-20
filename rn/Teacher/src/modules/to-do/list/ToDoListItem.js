@@ -22,13 +22,12 @@ import i18n from 'format-message'
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
 } from 'react-native'
 import Row from '../../../common/components/rows/Row'
 import { Text } from '../../../common/text'
 import AccessIcon from '../../../common/components/AccessIcon'
-import colors from '../../../common/colors'
-import images from '../../../images/'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
+import instIcon from '../../../images/inst-icons'
 import {
   fetchPropsFor,
   type FetchProps,
@@ -60,9 +59,9 @@ export class ToDoListItem extends Component<Props> {
   }
 
   renderAssignment (assignment: Assignment, needsGradingCount: number) {
-    let image = images.course.assignments
+    let image = instIcon('assignment')
     if (assignment.submission_types.includes('discussion_topic')) {
-      image = images.course.discussions
+      image = instIcon('discussion')
     }
     return this.renderNeedsGrading(
       assignment.name,
@@ -79,7 +78,7 @@ export class ToDoListItem extends Component<Props> {
       quiz.due_at,
       needsGradingCount,
       quiz,
-      images.course.quizzes
+      instIcon('quiz')
     )
   }
 
@@ -125,8 +124,8 @@ export class ToDoListItem extends Component<Props> {
           <Text style={styles.dueDate}>{dueLabel}</Text>
           <Text
             style={[ styles.needsGrading, {
-              color: colors.primaryBrandColor,
-              borderColor: colors.primaryBrandColor,
+              color: colors.primary,
+              borderColor: colors.primary,
             } ]}
           >
             {text}
@@ -137,7 +136,7 @@ export class ToDoListItem extends Component<Props> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   icon: {
     alignSelf: 'flex-start',
   },
@@ -148,7 +147,7 @@ const styles = StyleSheet.create({
   dueDate: {
     marginTop: 3,
     fontSize: 13,
-    color: '#8B969E',
+    color: colors.textDark,
   },
   needsGrading: {
     flex: 0,
@@ -157,7 +156,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     borderRadius: 9,
     borderWidth: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     paddingTop: 3,
     paddingBottom: 1,
     paddingLeft: 6,
@@ -166,14 +165,14 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   publishedIndicator: {
-    backgroundColor: '#00AC18',
+    backgroundColor: colors.backgroundSuccess,
     position: 'absolute',
     top: 4,
     bottom: 4,
     left: 0,
     width: 3,
   },
-})
+}))
 
 export default fetchPropsFor(ToDoListItem, ({ item }: HocProps, api) => {
   const course = api.getCourse(item.courseID || '')

@@ -102,8 +102,13 @@ public final class RubricAssessment: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var submissionID: String
     @NSManaged public var comments: String?
-    @NSManaged public var points: Double
+    @NSManaged var pointsRaw: NSNumber?
     @NSManaged public var ratingID: String
+
+    public var points: Double? {
+        get { return pointsRaw?.doubleValue }
+        set { pointsRaw = NSNumber(value: newValue) }
+    }
 
     @discardableResult
     public static func save(_ item: APIRubricAssessment, in context: NSManagedObjectContext, id: String, submissionID: String) -> RubricAssessment {
@@ -113,7 +118,7 @@ public final class RubricAssessment: NSManagedObject {
         model.id = id
         model.submissionID = submissionID
         model.comments = item.comments
-        model.points = item.points ?? 0
+        model.points = item.points
         model.ratingID = item.rating_id ?? "0"
         return model
     }

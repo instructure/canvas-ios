@@ -20,12 +20,11 @@ import Foundation
 
 struct LoginWebRequest: APIRequestable {
     typealias Response = String
+    let authMethod: AuthenticationMethod
     let clientID: String
-    let params: LoginParams
+    let provider: String?
 
-    var path: String {
-        return "/login/oauth2/auth"
-    }
+    let path = "/login/oauth2/auth"
 
     var query: [APIQueryItem] {
         var items: [APIQueryItem] = [
@@ -35,11 +34,11 @@ struct LoginWebRequest: APIRequestable {
             .value("mobile", "1"),
         ]
 
-        if (params.method == .canvasLogin) {
+        if (authMethod == .canvasLogin) {
             items.append(.value("canvas_login", "1"))
         }
 
-        if let provider = params.authenticationProvider {
+        if let provider = provider {
             items.append(.value("authentication_provider", provider))
         }
 
@@ -50,7 +49,7 @@ struct LoginWebRequest: APIRequestable {
         var headers = [
             HttpHeader.userAgent: UserAgent.safari.description,
         ]
-        if params.method == .siteAdminLogin {
+        if authMethod == .siteAdminLogin {
             headers[HttpHeader.cookie] = "canvas_sa_delegated=1"
         }
         return headers

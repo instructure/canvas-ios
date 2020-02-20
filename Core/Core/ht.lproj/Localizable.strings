@@ -7,12 +7,6 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
-/* No comment provided by engineer. */
-"%@ out of %@" = "%1$@ sou %2$@";
-
-/* No comment provided by engineer. */
-"%@ out of %@ (%@)" = "%1$@ sou %2$@ (%3$@)";
-
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "yon paran";
 
@@ -26,10 +20,43 @@
 "Act as User" = "Aji tankou Itilizatè";
 
 /* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "Èske se tout bon ou vle efase kòmantè sa a?";
+"Added To Conversation" = "Ajoute nan Konvèsasyon";
 
 /* No comment provided by engineer. */
-"Assignment" = "Sesyon";
+"Administrative Notifications" = "Notifikasyon Administratif";
+
+/* No comment provided by engineer. */
+"Alerts" = "Alèt";
+
+/* No comment provided by engineer. */
+"All Grading Periods" = "Tout Peryòd Klasman";
+
+/* No comment provided by engineer. */
+"All People" = "Tout Moun";
+
+/* No comment provided by engineer. */
+"All Submissions" = "Tout Soumisyon";
+
+/* No comment provided by engineer. */
+"Announcement" = "Anons";
+
+/* No comment provided by engineer. */
+"Announcement Created By You" = "Anons Ou Kreye";
+
+/* No comment provided by engineer. */
+"Appointment Availability" = "Disponibilite Randevou";
+
+/* No comment provided by engineer. */
+"Appointment Cancellations" = "Anilasyon Randevou";
+
+/* No comment provided by engineer. */
+"Appointment Signups" = "Randevou Enskripsyon";
+
+/* No comment provided by engineer. */
+"Are you sure you want to delete this page?" = "Èske se vre ou vle efase paj sa a?";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "Èske se tout bon ou vle efase kòmantè sa a?";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Tantativ %d";
@@ -38,7 +65,13 @@
 "Audio" = "Odyo";
 
 /* No comment provided by engineer. */
+"Augment Reality" = "Ogmante Reyalite a";
+
+/* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Otantifikasyon echwe. Li pwobab pou itilizatè a refize demann aksè a.";
+
+/* No comment provided by engineer. */
+"Availability: Closed" = "Disponibilite: Fèmen";
 
 /* No comment provided by engineer. */
 "black" = "nwa";
@@ -51,6 +84,9 @@
 
 /* No comment provided by engineer. */
 "Bold" = "Gra";
+
+/* No comment provided by engineer. */
+"Calendar" = "Kalandriye";
 
 /* No comment provided by engineer. */
 "Camera" = "Kamera";
@@ -71,6 +107,9 @@
 "Canvas Network" = "Canvas Network";
 
 /* No comment provided by engineer. */
+"Canvas on GitHub" = "Canvas ouvri GitHub";
+
+/* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
@@ -88,6 +127,9 @@
 /* No comment provided by engineer. */
 "Change User" = "Chanje Itilizatè";
 
+/* Description for Chat communication channel */
+"Chat Notifications" = "Notifikasyon Chat";
+
 /* No comment provided by engineer. */
 "Check network and try again!" = "Verifye rezo an epi eseye ankò!";
 
@@ -96,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Chwazi Foto Pwofil";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Efase Filtè";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Efase anrejistreman";
@@ -125,13 +170,49 @@
 "Complete" = "Fini";
 
 /* No comment provided by engineer. */
-"Course" = "Kou";
+"Conferences" = "Konferans";
+
+/* No comment provided by engineer. */
+"Content Link Error" = "Erè Lyen Kontni";
+
+/* No comment provided by engineer. */
+"Conversation Created By Me" = "Konvèsasyon Kreye pa Mwen menm";
+
+/* No comment provided by engineer. */
+"Conversation Message" = "Mesaj Konvèsasyon";
+
+/* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
+"Conversations" = "Konvèsasyon";
+
+/* No comment provided by engineer. */
+"Could not save notification preference" = "Pa t kapab anrejistre preferans notifikasyon";
+
+/* No comment provided by engineer. */
+"Course Activities" = "Aktivite Kou";
+
+/* No comment provided by engineer. */
+"Course Content" = "Kontni Kou";
+
+/* No comment provided by engineer. */
+"Courses" = "Kou";
 
 /* No comment provided by engineer. */
 "Current position" = "Pozisyon aktyèl";
 
 /* No comment provided by engineer. */
+"d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
 "d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Daily" = "Chak jou";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Tablo";
 
 /* No comment provided by engineer. */
 "Delete" = "Efase";
@@ -152,13 +233,28 @@
 "Designer" = "Kreyatè";
 
 /* No comment provided by engineer. */
+"Designers" = "Kreyatè";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "Meni Developè";
+
+/* No comment provided by engineer. */
+"Discussion" = "Diskisyon";
 
 /* No comment provided by engineer. */
 "Discussion Comment" = "Kòmantè Diskisyon";
 
 /* No comment provided by engineer. */
+"Discussion Post" = "Poste Diskisyon";
+
+/* No comment provided by engineer. */
+"Discussions" = "Diskisyon";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Rejte";
+
+/* No comment provided by engineer. */
+"Do not send me anything" = "Pa voye anyen ban mwen";
 
 /* No comment provided by engineer. */
 "Domain" = "Domèn";
@@ -166,11 +262,32 @@
 /* No comment provided by engineer. */
 "Done" = "Fini";
 
+/* i.e. Due <Jan 10, 2020 at 9:00 PM> */
+"Due %@" = "Delè %@";
+
+/* No comment provided by engineer. */
+"Due Date" = "Delè";
+
+/* No comment provided by engineer. */
+"Due: %@" = "Delè: %@";
+
+/* No comment provided by engineer. */
+"Edit" = "Modifye";
+
+/* Description for email communication channel */
+"Email Notifications" = "Avètisman Imèl";
+
 /* No comment provided by engineer. */
 "Emergency" = "Ijans";
 
 /* No comment provided by engineer. */
+"Enable Push Notifications" = "Aktive Notifikasyon Push";
+
+/* No comment provided by engineer. */
 "End Act as User" = "Fini Aksyon kòm yon Itilizatè";
+
+/* No comment provided by engineer. */
+"Enrollment not found." = "Enskripsyon entwouvab.";
 
 /* No comment provided by engineer. */
 "Error" = "Erè";
@@ -180,6 +297,9 @@
 
 /* No comment provided by engineer. */
 "Expand" = "Elaji";
+
+/* No comment provided by engineer. */
+"Experimental Features" = "Fonksyon Eksperimantal";
 
 /* No comment provided by engineer. */
 "External Tool" = "Zouti Ekstèn";
@@ -197,10 +317,19 @@
 "Failed Upload" = "Echèk Transfè";
 
 /* No comment provided by engineer. */
+"File" = "Fichye";
+
+/* No comment provided by engineer. */
 "File Upload" = "Transfè Fichye";
 
 /* No comment provided by engineer. */
 "Files" = "Fichye";
+
+/* No comment provided by engineer. */
+"Filter" = "Filtè";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Filtre pa:";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Nòt Final: %@";
@@ -224,10 +353,19 @@
 "g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
+"Grading" = "Klasman";
+
+/* No comment provided by engineer. */
+"Grading Policies" = "Politik Klasman";
+
+/* No comment provided by engineer. */
 "green" = "vèt";
 
 /* No comment provided by engineer. */
 "grey" = "gri";
+
+/* No comment provided by engineer. */
+"Groups" = "Gwoup";
 
 /* No comment provided by engineer. */
 "Help" = "Èd";
@@ -245,13 +383,22 @@
 "Image" = "Imaj";
 
 /* No comment provided by engineer. */
+"Immediately" = "Kounye a menm";
+
+/* No comment provided by engineer. */
 "Impact" = "Enpak";
 
 /* No comment provided by engineer. */
 "Impact Level" = "Nivo Enpak:";
 
 /* No comment provided by engineer. */
+"Inbox" = "Bwat resepsyon";
+
+/* No comment provided by engineer. */
 "Incomplete" = "Enkonplè";
+
+/* No comment provided by engineer. */
+"Invitation" = "Envitasyon";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Ta sanble w pa enskri nan okenn kou antan ke %@. Yonn nan lòt app nou yo kapab pi byen adapte. Tape sou yonn pou w ka vizite App Store la.";
@@ -260,13 +407,22 @@
 "Italic" = "Italik";
 
 /* No comment provided by engineer. */
+"Landing Page" = "Paj Dakèy";
+
+/* No comment provided by engineer. */
 "Late" = "An reta";
+
+/* No comment provided by engineer. */
+"Late Grading" = "Klasman an Reta";
 
 /* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Lanse Zouti Eksteryè";
+
+/* No comment provided by engineer. */
+"Legal" = "Legal";
 
 /* No comment provided by engineer. */
 "Library" = "Bibliyotèk";
@@ -311,19 +467,31 @@
 "Log Out" = "Dekonekte";
 
 /* No comment provided by engineer. */
-"Manage Children" = "Jere Timoun yo";
+"Login" = "Koneksyon";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "Koneksyon OAuth Manyèl";
 
 /* No comment provided by engineer. */
+"me" = "mwen menm";
+
+/* No comment provided by engineer. */
+"me & %@" = "mwen & %@";
+
+/* No comment provided by engineer. */
 "Media Recording" = "Anrejistreman Medya";
+
+/* No comment provided by engineer. */
+"Membership Update" = "Aktyalize Manm";
 
 /* No comment provided by engineer. */
 "Missing" = "Manke";
 
 /* No comment provided by engineer. */
 "N/A" = "N/A";
+
+/* No comment provided by engineer. */
+"Never" = "Jamè";
 
 /* No comment provided by engineer. */
 "No Content" = "Pa gen Kontni";
@@ -333,6 +501,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "No image found from image pickerimaj";
+
+/* No comment provided by engineer. */
+"No results" = "Okenn rezilta";
 
 /* No comment provided by engineer. */
 "No Submission" = "Pa gen Soumisyon";
@@ -350,7 +521,19 @@
 "Not Urgent" = "Pa Ijan";
 
 /* No comment provided by engineer. */
+"Notifications" = "Notifikasyon";
+
+/* No comment provided by engineer. */
+"Notifications are currently disabled in Settings. Tap to enable them again." = "Notifikasyon yo dezaktive nan Paramèt yo pou kounye a. Tape pou aktive yo ankò.";
+
+/* No comment provided by engineer. */
+"Notify me right away" = "Avèti m kounye a menm";
+
+/* No comment provided by engineer. */
 "Observer" = "Obsèvatè";
+
+/* No comment provided by engineer. */
+"Observers" = "Obsèvatè";
 
 /* No comment provided by engineer. */
 "OK" = "DAKO";
@@ -368,13 +551,25 @@
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
+"Page" = "Paj";
+
+/* No comment provided by engineer. */
 "Pages" = "Paj";
+
+/* No comment provided by engineer. */
+"Password" = "Modpas";
 
 /* No comment provided by engineer. */
 "Pause" = "Poz";
 
 /* No comment provided by engineer. */
+"People" = "Moun";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Otorizasyon Nesesè";
+
+/* No comment provided by engineer. */
+"Photo Library" = "Bibliyotèk Foto";
 
 /* No comment provided by engineer. */
 "Play" = "Jwe";
@@ -383,13 +578,25 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Preferences" = "Preferans";
+
+/* No comment provided by engineer. */
 "Previous Logins" = "Ansyen Koneksyon";
+
+/* No comment provided by engineer. */
+"Privacy Policy" = "Politik Konfidansyalite";
 
 /* No comment provided by engineer. */
 "purple" = "mov";
 
+/* Description for Push Notification channel */
+"Push Notifications" = "Notifikasyon Push";
+
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Anrejistre Son";
 
 /* No comment provided by engineer. */
 "red" = "wouj";
@@ -422,19 +629,16 @@
 "Retry" = "Re eseye";
 
 /* No comment provided by engineer. */
+"Scheduling" = "Planifikasyon";
+
+/* No comment provided by engineer. */
+"Search" = "Chèche";
+
+/* No comment provided by engineer. */
 "See attached files." = "Gade fichye atache yo.";
 
 /* No comment provided by engineer. */
 "See what's new." = "Gade kisa ki nouvo.";
-
-/* No comment provided by engineer. */
-"Select Account" = "Seleksyone Kont";
-
-/* No comment provided by engineer. */
-"Select Assignment" = "Seleksyone Sesyon";
-
-/* No comment provided by engineer. */
-"Select Course" = "Seleksyone Kou";
 
 /* No comment provided by engineer. */
 "Select One" = "Seleksyone Yonn";
@@ -444,6 +648,12 @@
 
 /* No comment provided by engineer. */
 "Send comment" = "Voye kòmantè";
+
+/* No comment provided by engineer. */
+"Send daily summary" = "Voye rezime chak jou";
+
+/* No comment provided by engineer. */
+"Send weekly summary" = "Voye rezime chak semenn";
 
 /* No comment provided by engineer. */
 "Set text color" = "Defini koulè tèks";
@@ -456,6 +666,12 @@
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Koneksyon Admin Sit";
+
+/* Description for Slack communication channel */
+"Slack Notifications" = "Notifikasyon Slack";
+
+/* Description for SMS communication channel */
+"SMS Notifications" = "Notifikasyon SMS";
 
 /* No comment provided by engineer. */
 "Something is broken but I can work around it" = "Gen yon bagay ki kase mwen mwen ka jere sa";
@@ -482,22 +698,31 @@
 "Student" = "Elèv";
 
 /* No comment provided by engineer. */
+"Student Appointment Signups" = "Elèv Randevou Enskripsyon";
+
+/* No comment provided by engineer. */
+"Students" = "Elèv";
+
+/* No comment provided by engineer. */
 "Style" = "Estil";
 
 /* No comment provided by engineer. */
 "Subject" = "Sijè";
 
 /* No comment provided by engineer. */
-"Submit" = "Soumèt";
+"Submission Comment" = "Kòmantè Soumisyon";
 
 /* No comment provided by engineer. */
-"Submit Assignment" = "Soumèt Sesyon";
+"Submit" = "Soumèt";
 
 /* No comment provided by engineer. */
 "Submitted" = "Soumèt";
 
 /* Submitted date */
 "Submitted %@" = "Soumèt %@";
+
+/* No comment provided by engineer. */
+"Subscribe to Calendar Feed" = "Abòne nan fil RSS Kalandriye";
 
 /* No comment provided by engineer. */
 "Success!" = "Reyisi!";
@@ -513,6 +738,12 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Pwofesè";
+
+/* No comment provided by engineer. */
+"Teachers" = "Pwofesè";
+
+/* No comment provided by engineer. */
+"Teaching Assistants" = "Asistan Ansèyman";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Kondisyon Itilizasyon";
@@ -557,7 +788,16 @@
 "Time elapsed" = "Tan ki pase";
 
 /* No comment provided by engineer. */
+"to %@" = "pou %@";
+
+/* No comment provided by engineer. */
+"To Do" = "Pou Fè";
+
+/* No comment provided by engineer. */
 "Total time" = "Tan total";
+
+/* Description for Twitter communication channel */
+"Twitter Notifications" = "Notifikasyon Twitter";
 
 /* No comment provided by engineer. */
 "Undo" = "Defèt";
@@ -572,6 +812,9 @@
 "Updated Language Settings" = "Paramèt Langaj Aktyalize";
 
 /* No comment provided by engineer. */
+"Upload File" = "Transfere Fichye";
+
+/* No comment provided by engineer. */
 "Uploading %@ of %@" = "Transfè %1$@ sou %2$@";
 
 /* No comment provided by engineer. */
@@ -581,16 +824,34 @@
 "URL" = "URL";
 
 /* No comment provided by engineer. */
+"Use Camera" = "Itilize Kamera";
+
+/* No comment provided by engineer. */
 "User ID" = "ID Itilizatè";
+
+/* Name and pronouns - John (He/Him) */
+"User.displayName" = "%1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Username" = "Non Itilizatè";
 
 /* No comment provided by engineer. */
 "Video" = "Videyo";
+
+/* No comment provided by engineer. */
+"View Modules" = "Afiche Modil";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Nou te fè kèk chanjman.";
 
 /* No comment provided by engineer. */
 "Website URL" = "URL sit Web";
+
+/* No comment provided by engineer. */
+"Weekly" = "Chak semenn";
+
+/* No comment provided by engineer. */
+"Well Done!" = "Byen Fèt!";
 
 /* No comment provided by engineer. */
 "What’s your school’s name?" = "Ki non lekòl ou a?";
@@ -607,11 +868,11 @@
 /* No comment provided by engineer. */
 "yellow" = "jòn";
 
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Ou dwe aktive pèmisyon Mikwofòn nan Paramèt.";
+/* Description for Yo communication channel */
+"Yo Notifications" = "Notifikasyon Yo";
 
 /* No comment provided by engineer. */
-"You will need to log into at least one Canvas account from the Student app first." = "Ou dwe toudabò konekte sou omwen yon kont Canvas sou app Elèv la.";
+"You must enable Microphone permissions in Settings." = "Ou dwe aktive pèmisyon Mikwofòn nan Paramèt.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Ou pral sispann aji tankou %@ epi sou kont ou.";
@@ -621,4 +882,7 @@
 
 /* No comment provided by engineer. */
 "Your Email" = "Imèl Ou";
+
+/* No comment provided by engineer. */
+"Your to do list is empty. Time to recharge." = "Lis tach ou a vid. Lè pou rechaje.";
 

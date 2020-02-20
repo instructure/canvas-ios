@@ -22,7 +22,6 @@ import React, { Component } from 'react'
 import {
   View,
   FlatList,
-  StyleSheet,
 } from 'react-native'
 import type {
   SubmissionListProps,
@@ -43,6 +42,8 @@ import query from '../../../canvas-api-v2/queries/SubmissionList'
 import * as canvas from '../../../canvas-api'
 import icon from '../../../images/inst-icons'
 import ExperimentalFeature from '../../../common/ExperimentalFeature'
+import { createStyleSheet } from '../../../common/stylesheet'
+import localeSort from '../../../utils/locale-sort'
 
 const { getEnabledFeatureFlags } = canvas
 
@@ -110,6 +111,7 @@ export class SubmissionList extends Component<Props, State> {
         filter: filter,
         studentIndex: index,
         flags: this.state.flags,
+        onDismiss: this.refresh.bind(null, false),
       }
     )
   }
@@ -125,7 +127,7 @@ export class SubmissionList extends Component<Props, State> {
     let group
     if (this.props.isGroupGradedAssignment) {
       let userID = item.user.id
-      group = this.props.groups.find(group => group.members.edges.find(({ member }) => member.user.id === userID))
+      group = this.props.groups.find(group => group.members.nodes.find(({ user }) => user.id === userID))
     }
 
     return (
@@ -183,8 +185,10 @@ export class SubmissionList extends Component<Props, State> {
     })
   }
 
-  refresh = async () => {
-    this.setState({ refreshing: true })
+  refresh = async (triggerRefreshIndicator = true) => {
+    if (triggerRefreshIndicator) {
+      this.setState({ refreshing: true })
+    }
     await this.props.refetch({
       assignmentID: this.props.assignmentID,
       ...this.state.filter,
@@ -204,7 +208,8 @@ export class SubmissionList extends Component<Props, State> {
       },
     ]
 
-    if (this.state.flags.includes('new_gradebook')) {
+    let newGradebookEnabled = this.state.flags.includes('new_gradebook')
+    if (newGradebookEnabled) {
       rightBarButtons.push({
         image: icon('eye', 'solid'),
         testID: 'SubmissionsList.postpolicy',
@@ -242,6 +247,7 @@ export class SubmissionList extends Component<Props, State> {
               anonymous={this.props.anonymous}
               muted={this.props.muted}
               navigator={this.props.navigator}
+              newGradebookEnabled={newGradebookEnabled}
             />
             <FlatList
               data={this.props.submissions}
@@ -264,14 +270,14 @@ export class SubmissionList extends Component<Props, State> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
 
   },
   header: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'lightgrey',
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'space-between',
@@ -282,12 +288,12 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#2d3b44',
+    color: colors.textDarkest,
   },
   filterButton: {
     marginBottom: 1,
   },
-})
+}))
 
 export function props (props) {
   if (props.data.loading) {
@@ -304,13 +310,23 @@ export function props (props) {
   }
 
   let assignment = props.data.assignment
-  let submissions = assignment.submissions && assignment.submissions.edges.map(({ submission }) => submission)
-  let groupedSubmissions = assignment.groupedSubmissions && assignment.groupedSubmissions.edges.map(({ submission }) => submission)
-  let groupSet = assignment.groupSet
   let course = assignment.course
   let sections = course.sections.edges.map(({ section }) => section)
-  let groups = course.groups.edges.map(({ group }) => group)
+  let submissions = assignment.submissions && assignment.submissions.edges.map(({ submission }) => submission)
+
+  let groupSet = assignment.groupSet
   let isGroupGradedAssignment = groupSet && groupSet.id && !assignment.gradeGroupStudentsIndividually
+  let groups = groupSet?.groups.nodes ?? []
+  let groupedSubmissions = assignment.groupedSubmissions?.edges
+    .map(({ submission }) => submission)
+    .sort((s1, s2) => {
+      let group1 = groups.find(group => group.members.nodes.find(({ user }) => user.id === s1.user.id))
+      let name1 = group1?.name ?? s1.user.name
+
+      let group2 = groups.find(group => group.members.nodes.find(({ user }) => user.id === s2.user.id))
+      let name2 = group2?.name ?? s1.user.name
+      return localeSort(name1, name2)
+    }) ?? []
   return {
     isGroupGradedAssignment,
     courseName: course.name,
@@ -342,7 +358,7 @@ export default graphql(query, {
   props,
 })(SubmissionList)
 
-function createFilterFromSection (section) {
+export function createFilterFromSection (section) {
   return {
     type: `section.${section.id}`,
     title: () => section.name,
@@ -353,6 +369,11 @@ function createFilterFromSection (section) {
       return {
         sectionIDs: [section.id],
       }
+    },
+    // need this for speedgrader
+    filterFunc: (submission) => {
+      if (!submission || !submission.allSectionIDs) return false
+      return submission.allSectionIDs.includes(section.id)
     },
   }
 }

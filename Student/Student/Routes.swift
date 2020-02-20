@@ -19,10 +19,9 @@
 import CanvasCore
 import CanvasKit
 import Core
-import TechDebt
 
 public let router: Router = {
-let routeMap: [String: RouteHandler.ViewFactory?] = [
+let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/act-as-user": { _, _ in
         guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
         return ActAsUserViewController.create(loginDelegate: loginDelegate)
@@ -48,14 +47,12 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
     "/courses/:courseID/tabs": nil,
 
     "/groups/:groupID": { url, _ in
-        guard let context = ContextID(path: url.path) else { return nil }
-        guard let session = Session.current else { return nil }
-        return try? TabsTableViewController(session: session, contextID: context, route: route)
+        guard let context = ContextModel(path: url.path) else { return nil }
+        return GroupNavigationViewController.create(context: context)
     },
     "/groups/:groupID/tabs": { url, _ in
-        guard let context = ContextID(path: url.path) else { return nil }
-        guard let session = Session.current else { return nil }
-        return try? TabsTableViewController(session: session, contextID: context, route: route)
+        guard let context = ContextModel(path: url.path) else { return nil }
+        return GroupNavigationViewController.create(context: context)
     },
 
     "/:context/:contextID/activity_stream": { url, _ in
@@ -68,7 +65,10 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
 
     "/:context/:contextID/announcements/:announcementID": nil,
 
-    "/courses/:courseID/assignments": nil,
+    "/courses/:courseID/assignments": { url, params in
+        guard let courseID = params["courseID"] else { return nil }
+        return AssignmentListViewController.create(courseID: courseID)
+    },
 
     "/courses/:courseID/assignments-fromHomeTab": { url, params in
         var props = params as [String: Any]
@@ -103,13 +103,21 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
         )
     },
 
-    "/courses/:courseID/assignments/:assignmentID/submissions/:userID": { _, params in
+    "/courses/:courseID/assignments/:assignmentID/submissions/:userID": { url, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = params["userID"] else { return nil }
-        return SubmissionDetailsViewController.create(
-            context: ContextModel(.course, id: ID.expandTildeID(courseID)),
-            assignmentID: ID.expandTildeID(assignmentID),
-            userID: ID.expandTildeID(userID)
-        )
+        if url.originIsNotification {
+            return AssignmentDetailsViewController.create(
+                courseID: ID.expandTildeID(courseID),
+                assignmentID: ID.expandTildeID(assignmentID),
+                fragment: url.fragment
+            )
+        } else {
+            return SubmissionDetailsViewController.create(
+                context: ContextModel(.course, id: ID.expandTildeID(courseID)),
+                assignmentID: ID.expandTildeID(assignmentID),
+                userID: ID.expandTildeID(userID)
+            )
+        }
     },
 
     // No native support, fall back to web
@@ -168,8 +176,7 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
         let contextID = ContextID.course(withID: courseID)
         // Restrict access to Modules tab if it's hidden (unless it is the home tab)
         let modulesTab = try? Tab.modulesTab(for: contextID, in: session)
-        let homeTab = try? Tab.homeTab(for: contextID, in: session)
-        let modulesAreHome = homeTab != nil && homeTab!.routingURL(session).flatMap { $0.path.contains("/modules") } ?? false
+        let modulesAreHome = session.enrollmentsDataSource[contextID]?.defaultViewPath.contains("/modules") == true
         if !modulesAreHome, modulesTab?.hidden ?? false {
             let message = NSLocalizedString("That page has been disabled for this course", comment: "")
             let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
@@ -203,13 +210,13 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
     "/courses/:courseID/pages": { _, params in
         guard let courseID = params["courseID"] else { return nil }
         let context = ContextModel(.course, id: ID.expandTildeID(courseID))
-        return PageListViewController.create(context: context, appTraitCollection: UIApplication.shared.keyWindow?.traitCollection)
+        return PageListViewController.create(context: context, appTraitCollection: UIApplication.shared.keyWindow?.traitCollection, app: .student)
     },
 
     "/groups/:groupID/pages": { _, params in
         guard let groupID = params["groupID"] else { return nil }
         let context = ContextModel(.group, id: ID.expandTildeID(groupID))
-        return PageListViewController.create(context: context, appTraitCollection: UIApplication.shared.keyWindow?.traitCollection)
+        return PageListViewController.create(context: context, appTraitCollection: UIApplication.shared.keyWindow?.traitCollection, app: .student)
     },
 
     "/:context/:contextID/wiki": { url, _ in
@@ -223,33 +230,54 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
         return AppEnvironment.shared.router.match(url)
     },
 
+    "/:context/:contextID/pages/new": nil,
+    "/:context/:contextID/wiki/new": nil,
+
     "/courses/:courseID/pages/:url": { url, params in
         guard let courseID = params["courseID"] else { return nil }
         if let controller = moduleItemController(for: url, courseID: courseID) { return controller }
-        return HelmViewController(moduleName: "/courses/:courseID/pages/:url/rn", props: makeProps(url, params: params))
+        if ExperimentalFeature.newPageDetails.isEnabled {
+            guard let url = params["url"] else { return nil }
+            return PageDetailsViewController.create(context: ContextModel(.course, id: courseID), pageURL: url, app: .student)
+        } else {
+            return HelmViewController(moduleName: "/courses/:courseID/pages/:url", props: makeProps(url, params: params))
+        }
     },
     "/courses/:courseID/wiki/:url": { url, params in
         guard let courseID = params["courseID"] else { return nil }
         if let controller = moduleItemController(for: url, courseID: courseID) { return controller }
-        return HelmViewController(moduleName: "/courses/:courseID/wiki/:url/rn", props: makeProps(url, params: params))
+        if ExperimentalFeature.newPageDetails.isEnabled {
+            guard let url = params["url"] else { return nil }
+            return PageDetailsViewController.create(context: ContextModel(.course, id: courseID), pageURL: url, app: .student)
+        } else {
+            return HelmViewController(moduleName: "/courses/:courseID/wiki/:url", props: makeProps(url, params: params))
+        }
     },
-    "/courses/:courseID/pages/:url/rn": nil,
-    "/courses/:courseID/wiki/:url/rn": nil,
-
     "/groups/:groupID/pages/:url": { url, params in
         guard let groupID = params["groupID"], let purl = params["url"] else { return nil }
         // FIXME: confusing groupIDs for courseIDs (carried over from previoud route handler)
         if let controller = moduleItemController(for: url, courseID: groupID) { return controller }
-        guard let session = Session.current else { return nil }
-        return try? Page.DetailViewController(session: session, contextID: ContextID(id: groupID, context: .group), url: purl, route: route)
+        if ExperimentalFeature.newPageDetails.isEnabled {
+            return PageDetailsViewController.create(context: ContextModel(.group, id: groupID), pageURL: purl, app: .student)
+        } else {
+            guard let session = Session.current else { return nil }
+            return try? Page.DetailViewController(session: session, contextID: ContextID(id: groupID, context: .group), url: purl, route: route)
+        }
     },
     "/groups/:groupID/wiki/:url": { url, params in
         guard let groupID = params["groupID"], let purl = params["url"] else { return nil }
         // FIXME: confusing groupIDs for courseIDs (carried over from previoud route handler)
         if let controller = moduleItemController(for: url, courseID: groupID) { return controller }
-        guard let session = Session.current else { return nil }
-        return try? Page.DetailViewController(session: session, contextID: ContextID(id: groupID, context: .group), url: purl, route: route)
+        if ExperimentalFeature.newPageDetails.isEnabled {
+            return PageDetailsViewController.create(context: ContextModel(.group, id: groupID), pageURL: purl, app: .student)
+        } else {
+            guard let session = Session.current else { return nil }
+            return try? Page.DetailViewController(session: session, contextID: ContextID(id: groupID, context: .group), url: purl, route: route)
+        }
     },
+
+    "/:context/:contextID/pages/:url/edit": nil,
+    "/:context/:contextID/wiki/:url/edit": nil,
 
     "/courses/:courseID/quizzes": { _, params in
         guard let courseID = params["courseID"] else { return nil }
@@ -282,19 +310,17 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
     },
 
     "/courses/:courseID/users/:userID": nil,
-
-    "/groups/:groupID/users/:userID": { _, params in
-        guard let groupID = params["groupID"], let userID = params["userID"] else { return nil }
-        let context = CKIGroup(id: groupID)
-        let user = CKIUser(id: userID, context: context)
-        let viewModel = CBIPeopleViewModel(for: user)
-        viewModel?.tintColor = Session.current?.colorForGroup(groupID)
-        let detailViewController = CBIPeopleDetailViewController()
-        detailViewController.viewModel = viewModel
-        return detailViewController
-    },
+    "/groups/:groupID/users/:userID": nil,
 
     "/dev-menu": nil,
+
+    "/dev-menu/experimental-features": { _, _ in
+        let vc = ExperimentalFeaturesViewController()
+        vc.afterToggle = {
+            HelmManager.shared.reload()
+        }
+        return vc
+    },
 
     "/accounts/:accountID/terms_of_service": nil,
 
@@ -317,7 +343,7 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
 ]
 
 var routes: [RouteHandler] = []
-for (template, handler) in routeMap.sorted(by: { $0.key > $1.key }) {
+for (template, handler) in routeMap {
     if let factory = handler {
         let route = RouteHandler(template, factory: factory)
         HelmManager.shared.registerNativeViewController(for: template, factory: { props in
@@ -350,34 +376,6 @@ let nativeFactory: ([String: Any]) -> UIViewController? = { props in
 }
 HelmManager.shared.registerNativeViewController(for: "/native-route/*route", factory: nativeFactory)
 HelmManager.shared.registerNativeViewController(for: "/native-route-master/*route", factory: nativeFactory)
-CBIConversationStarter.setConversationStarter { recipients, context in
-    guard
-        let contextID = ContextID(canvasContext: context),
-        let currentSession = Session.current,
-        let enrollment = currentSession.enrollmentsDataSource[contextID] else {
-            return
-    }
-    HelmManager.shared.present(
-        "/conversations/compose",
-        withProps: [
-            "recipients": recipients.map { recipient in
-                return [
-                    "name": recipient.name,
-                    "avatar_url": recipient.avatarURL,
-                    "id": recipient.id,
-                ]
-            },
-            "contextCode": context,
-            "contextName": enrollment.name,
-        ],
-        options: [
-            "modal": true,
-            "embedInNavigationController": true,
-        ]
-    )
-}
-
-Routing.routeToURL = { url, view in route(view, url: url) }
 
 return Router(routes: routes) { url, _, _ in
     var components = url
@@ -387,7 +385,7 @@ return Router(routes: routes) { url, _, _ in
     guard let url = components.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL) else { return }
     let request = GetWebSessionRequest(to: url)
     AppEnvironment.shared.api.makeRequest(request) { response, _, _ in
-        DispatchQueue.main.async {
+        performUIUpdate {
             AppEnvironment.shared.loginDelegate?.openExternalURL(response?.session_url ?? url)
         }
     }
@@ -414,23 +412,13 @@ private func previewFileViewController(url: URLComponents, params: [String: Stri
 }
 
 private func fileViewController(url: URLComponents, params: [String: String]) -> UIViewController? {
-    guard let fileID = url.queryItems?.first(where: { $0.name == "preview" })?.value ?? params["fileID"], let fileIdent = UInt64(fileID) else { return nil }
-    let controller = FileViewController()
-    controller.canvasAPI = CKCanvasAPI.current()
-    controller.fileIdent = fileIdent
-
+    guard let fileID = url.queryItems?.first(where: { $0.name == "preview" })?.value ?? params["fileID"] else { return nil }
+    var context = ContextModel(path: url.path)
     if let courseID = url.queryItems?.first(where: { $0.name == "courseID" })?.value {
-        controller.courseID = courseID
-    } else if params["context"] == "courses" {
-        controller.courseID = params["contextID"]
-    } else {
-        controller.courseID = params["courseID"]
+        context = ContextModel(.course, id: courseID)
     }
-
-    controller.assignmentID = url.queryItems?.first(where: { $0.name == "assignmentID" })?.value
-    controller.showingOldVersion = url.path.hasSuffix("/old")
-    controller.fetchFile()
-    return controller
+    let assignmentID = url.queryItems?.first(where: { $0.name == "assignmentID" })?.value
+    return FileDetailsViewController.create(context: context, fileID: fileID, assignmentID: assignmentID)
 }
 
 private func moduleItemController(for url: URLComponents, courseID: String) -> UIViewController? {

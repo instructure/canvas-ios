@@ -22,12 +22,6 @@ import XCTest
 @testable import CoreUITests
 @testable import TestsFoundation
 
-@testable import TestsFoundation
-
 class TeacherUITestCase: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { return TeacherUITestCase.self }
-
-    override func setUp() {
-        super.setUp()
-    }
 }

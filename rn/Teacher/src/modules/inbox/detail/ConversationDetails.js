@@ -22,7 +22,6 @@ import * as React from 'react'
 import {
   View,
   FlatList,
-  StyleSheet,
   TouchableOpacity,
   Image,
   ActionSheetIOS,
@@ -32,12 +31,12 @@ import { connect } from 'react-redux'
 import refresh from '../../../utils/refresh'
 import InboxActions from '../actions'
 import Screen from '../../../routing/Screen'
-import { createStyleSheet } from '../../../common/branding'
+import { colors, createStyleSheet, vars } from '../../../common/stylesheet'
 import i18n from 'format-message'
 import ConversationMessageRow from '../components/ConversationMessageRow'
 import { Heading1 } from '../../../common/text'
-import color from '../../../common/colors'
 import Images from '../../../images'
+import icon from '../../../images/inst-icons'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
 import { getSession } from '../../../canvas-api'
 
@@ -129,7 +128,7 @@ export class ConversationDetails extends React.Component <Props, State> {
     if (!this.props.conversation) return <View />
 
     const starred = this.props.conversation.starred
-    const star = starred ? Images.starFilled : Images.starLined
+    const star = icon('star', starred ? 'solid' : 'line')
 
     return (
       <View style={styles.header}>
@@ -151,9 +150,9 @@ export class ConversationDetails extends React.Component <Props, State> {
   render () {
     return (
       <Screen
-        navBarColor={color.navBarColor}
-        navBarButtonColor={color.navBarTextColor}
-        statusBarStyle={color.statusBarStyle}
+        navBarColor={colors.navBackground}
+        navBarButtonColor={colors.navTextColor}
+        navBarStyle={vars.navBarStyle}
         drawUnderNavBar
         customPageViewPath='/conversations'
         title={i18n('Message Details')}
@@ -303,10 +302,10 @@ export class ConversationDetails extends React.Component <Props, State> {
   }
 }
 
-const styles = createStyleSheet(color => ({
+const styles = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
-    backgroundColor: color.grey1,
+    backgroundColor: colors.backgroundLight,
   },
   loading: {
     flex: 1,
@@ -314,20 +313,20 @@ const styles = createStyleSheet(color => ({
     justifyContent: 'center',
   },
   list: {
-    backgroundColor: color.grey1,
+    backgroundColor: colors.backgroundLight,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'white',
-    padding: global.style.defaultPadding,
-    paddingBottom: global.style.defaultPadding / 2,
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: color.seperatorColor,
+    backgroundColor: colors.backgroundLightest,
+    padding: vars.padding,
+    paddingBottom: vars.padding / 2,
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
   },
   star: {
-    tintColor: color.primaryBrandColor,
+    tintColor: colors.primary,
     height: 24,
     width: 24,
   },

@@ -44,6 +44,32 @@ describe('AddressBookToken', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  it('renders name', async () => {
+    let props = {
+      item: {
+        id: '1',
+        name: 'Eve',
+      },
+    }
+    let tree = shallow(<AddressBookToken {...props} />)
+    expect(tree.find('[testID="message-recipient.1.label"]').prop('children')).toEqual('Eve')
+
+    props.item.pronouns = 'She/Her'
+    await tree.setProps(props)
+    expect(tree.find('[testID="message-recipient.1.label"]').prop('children')).toEqual('Eve (She/Her)')
+  })
+
+  it('renders with pronouns', () => {
+    let props = {
+      item: {
+        id: '1',
+        name: 'Eve',
+      },
+    }
+    let tree = shallow(<AddressBookToken {...props} />)
+    expect(tree.find('[testID="message-recipient.1.label"]').prop('children')).toEqual('Eve')
+  })
+
   it('renders with avatar url', () => {
     const item = {
       ...defaultProps.item,

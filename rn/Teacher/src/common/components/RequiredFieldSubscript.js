@@ -24,9 +24,9 @@ import React from 'react'
 import { UnmetRequirementSubscriptText } from '../text'
 import {
   View,
-  StyleSheet,
   LayoutAnimation,
 } from 'react-native'
+import { createStyleSheet } from '../stylesheet'
 
 type Props = {
   title: ?string,
@@ -52,16 +52,16 @@ export default class RequiredFieldSubscript extends React.Component<Props> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   visible: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'stretch',
-    backgroundColor: '#F5F5F5',
+    backgroundColor: colors.backgroundGrouped,
   },
   subscript: {
-    marginTop: global.style.defaultPadding / 4,
-    marginHorizontal: global.style.defaultPadding,
+    marginTop: vars.padding / 4,
+    marginHorizontal: vars.padding,
   },
-})
+}))

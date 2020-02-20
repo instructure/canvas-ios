@@ -25,14 +25,12 @@ class PageViewEventRequestManagerTests: CoreTestCase {
     var p: Persistency!
     var persistenceTestFileName = "pageViewRequestManagerTests.dat"
     var expectation = XCTestExpectation(description: "expectation")
-    var writeWait1 = XCTestExpectation(description: "expectation")
     var requestManager: PageViewEventRequestManager!
     let backgroundHelper = TestAppBackgroundHelper()
 
     override func setUp() {
         super.setUp()
         expectation = XCTestExpectation(description: "expectation")
-        writeWait1 = XCTestExpectation(description: "expectation")
         deletePageViewPersistenceTestFile(persistenceTestFileName)
         Persistency.persistencyFileName = persistenceTestFileName
         dispatchQueue = DispatchQueue(label: "test-pageviewevents-requestmanager-queue", attributes: .concurrent)
@@ -63,9 +61,11 @@ class PageViewEventRequestManagerTests: CoreTestCase {
         //  events
         let a = PageViewEvent(eventName: "a", attributes: [:], userID: "1", timestamp: date, eventDuration: 0.05)
         let b = PageViewEvent(eventName: "b", attributes: [:], userID: "1", timestamp: date, eventDuration: 0.05)
-        p.addToQueue(a)
-        p.addToQueue(b)
-        dispatchQueue.async { self.writeWait1.fulfill() }
+        let addEvents = XCTestExpectation(description: "events added")
+        addEvents.expectedFulfillmentCount = 2
+        p.addToQueue(a, completionHandler: addEvents.fulfill)
+        p.addToQueue(b, completionHandler: addEvents.fulfill)
+        wait(for: [addEvents], timeout: 5)
 
         let pandataEvents = p.batchOfEvents(2)?.map { $0.apiEvent(tokenResponse) } ?? []
 
@@ -74,7 +74,7 @@ class PageViewEventRequestManagerTests: CoreTestCase {
         let batchUrlReq = try! batchReq.urlRequest(relativeTo: environment.api.baseURL, accessToken: environment.api.loginSession?.accessToken, actAsUserID: nil)
         api.mock(batchUrlReq, data: "\"ok\"".data(using: .utf8))
 
-        wait(for: [writeWait1], timeout: 5)
+        drainMainQueue()
         XCTAssertEqual(p.queueCount, 2)
 
         requestManager.sendEvents { (error) in

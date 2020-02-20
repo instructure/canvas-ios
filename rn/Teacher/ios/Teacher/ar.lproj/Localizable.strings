@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"Absent" = "غائب";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "جميع الدرجات مخفية حالياً.";
 
 /* No comment provided by engineer. */
@@ -11,13 +14,43 @@
 "All Posted" = "جميعها منشورة";
 
 /* No comment provided by engineer. */
+"Attendance" = "الحضور";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "خطأ في الحضور";
+
+/* No comment provided by engineer. */
 "Back" = "عودة";
+
+/* No comment provided by engineer. */
+"Cancel" = "إلغاء";
+
+/* No comment provided by engineer. */
+"Change Section" = "تغيير القسم";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "اختيار قسم";
+
+/* No comment provided by engineer. */
+"Choose Date" = "اختيار تاريخ";
 
 /* No comment provided by engineer. */
 "Courses" = "المساقات";
 
 /* No comment provided by engineer. */
+"Date picker" = "منتقي التاريخ";
+
+/* No comment provided by engineer. */
+"Dismiss" = "تجاهل";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "خطأ: لا توجد بيانات عائدة من api للتحقق من الحضور.";
+
+/* No comment provided by engineer. */
 "Everyone" = "الجميع";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "تعذر إطلاق أداة LTI للتحقق من الحضور.";
 
 /* No comment provided by engineer. */
 "Graded" = "تم تقييم الدرجة";
@@ -38,6 +71,18 @@
 "Hide Grades" = "إخفاء الدرجات";
 
 /* No comment provided by engineer. */
+"Late" = "متأخر";
+
+/* No comment provided by engineer. */
+"Loading more modules..." = "تحميل المزيد من الوحدات النمطية...";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "وضع علامة موجود للجميع";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "وضع علامة موجود للبقية";
+
+/* No comment provided by engineer. */
 "Modules" = "الوحدات النمطية";
 
 /* No comment provided by engineer. */
@@ -50,8 +95,20 @@
 "Post to..." = "نشر على...";
 
 /* No comment provided by engineer. */
+"Present" = "موجود";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "حدد لتغيير تاريخ التحقق من الحضور";
+
+/* No comment provided by engineer. */
 "Specific Sections" = "أقسام محددة";
 
 /* No comment provided by engineer. */
+"This module is empty." = "هذه الوحدة النمطية فارغة.";
+
+/* No comment provided by engineer. */
 "To Do" = "ما يجب القيام به";
+
+/* No comment provided by engineer. */
+"Unmark" = "إلغاء العلامة";
 

@@ -27,6 +27,20 @@ let router = Router(routes: [
         return try? AccountNotificationViewController(session: session, announcementID: id)
     },
 
+    RouteHandler("/calendar") { _, _ in
+        guard let studentID = currentStudentID, ExperimentalFeature.parentCalendar.isEnabled else { return nil }
+        return CalendarContainerViewController.create(studentID: studentID)
+    },
+
+    RouteHandler(.conversations) { _, _ in
+        return ConversationListViewController.create()
+    },
+
+    RouteHandler(.conversation(":conversationID")) { _, params in
+        guard let conversationID = params["conversationID"] else { return nil }
+        return ConversationDetailViewController.create(conversationID: conversationID)
+    },
+
     RouteHandler(.courses) { _, _ in
         guard let session = legacySession else { return nil }
         return DashboardViewController.create(session: session)
@@ -44,11 +58,7 @@ let router = Router(routes: [
     RouteHandler(.courseGrades(":courseID")) { _, params in
         guard let courseID = params["courseID"] else { return nil }
         guard let studentID = currentStudentID else { return nil }
-        guard ExperimentalFeature.parent3.isEnabled else {
-            guard let session = legacySession else { return nil }
-            return CalendarEventWeekPageViewController.create(session: session, studentID: studentID, courseID: courseID)
-        }
-        return GradesViewController.create(courseID: courseID, studentID: studentID)
+        return CourseDetailsViewController.create(courseID: courseID, studentID: studentID)
     },
 
     RouteHandler(.courseCalendar(courseID: ":courseID")) { _, params in
@@ -69,13 +79,22 @@ let router = Router(routes: [
         return try? AnnouncementDetailsViewController(session: session, studentID: studentID, courseID: courseID, announcementID: topicID)
     },
 
+    RouteHandler(.actionableItemCalendarEvent(eventID: ":eventID")) { _, params in
+        guard  let eventID = params["eventID"] else { return nil }
+        guard let session = legacySession, let studentID = currentStudentID else { return nil }
+        return try? CalendarEventDetailsViewController(session: session, studentID: studentID, calendarEventID: eventID)
+    },
+
     RouteHandler(.profile) { _, _ in
         return ProfileViewController.create(enrollment: .observer)
     },
 
-    RouteHandler(.profileObservees) { _, _ in
+    RouteHandler(.profileObservees()) { url, _ in
+        let showPromptValue = url.queryItems?.first { $0.name == "showPrompt" }?.value
+        let showPrompt = Bool(showPromptValue ?? "") ?? false
+
         guard let session = legacySession else { return nil }
-        return SettingsViewController.create(session: session)
+        return SettingsViewController.create(session: session, showAddStudentPrompt: showPrompt)
     },
 
     RouteHandler(.observeeThresholds(":userID")) { _, params in
@@ -98,8 +117,18 @@ let router = Router(routes: [
         return ActAsUserViewController.create(loginDelegate: loginDelegate)
     },
 
+    RouteHandler(.showFile(fileID: ":fileID")) { _, params in
+        guard let fileID = params["fileID"] else { return nil }
+        let vc = FileDetailsViewController.create(context: ContextModel.currentUser, fileID: fileID)
+        return vc
+    },
+
     RouteHandler(.developerMenu) { _, _ in
         return DeveloperMenuViewController.create()
+    },
+
+    RouteHandler(.experimentalFeatures) { _, _ in
+        return ExperimentalFeaturesViewController()
     },
 
     RouteHandler(.wrongApp) { _, _ in
@@ -115,7 +144,7 @@ let router = Router(routes: [
     guard let url = components.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL) else { return }
     let request = GetWebSessionRequest(to: url)
     AppEnvironment.shared.api.makeRequest(request) { response, _, _ in
-        DispatchQueue.main.async {
+        performUIUpdate {
             AppEnvironment.shared.loginDelegate?.openExternalURL(response?.session_url ?? url)
         }
     }

@@ -30,6 +30,7 @@ public final class Student: NSManagedObject {
     @NSManaged fileprivate (set) public var sortableName: String
     @NSManaged fileprivate (set) public var avatarURL: URL?
     @NSManaged fileprivate (set) public var domain: URL
+    @NSManaged fileprivate (set) public var pronouns: String?
 }
 
 extension Student: SynchronizedModel {
@@ -46,5 +47,6 @@ extension Student: SynchronizedModel {
         sortableName    = (try json <| "sortable_name") ?? name
         avatarURL       = try json <| "avatar_url"
         domain          = try json <| "student_domain"
+        pronouns        = try json <| "pronouns"
     }
 }

@@ -204,4 +204,17 @@ describe('AttachmentView', () => {
       expect.any(Function)
     )
   })
+
+  it('shows an error if attachment is locked', () => {
+    let props = {
+      ...defaultProps,
+      attachment: {
+        ...defaultProps.attachment,
+        locked_for_user: true,
+        lock_explanation: 'locked yo',
+      },
+    }
+    let tree = shallow(<AttachmentView {...props} />)
+    expect(tree.find('[children="locked yo"]').exists()).toBe(true)
+  })
 })

@@ -89,7 +89,7 @@ class GetFullTopicRequestsTests: XCTestCase {
 class ListDiscussionTopicsRequestTests: XCTestCase {
     func testPath() {
         let request = ListDiscussionTopicsRequest(context: ContextModel(.course, id: "1"))
-        XCTAssertEqual(request.path, "courses/1/discussion_topics/")
+        XCTAssertEqual(request.path, "courses/1/discussion_topics")
     }
 
     func testQuery() {

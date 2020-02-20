@@ -54,6 +54,7 @@ public final class Assignment: NSManagedObject, LockableModel {
     @NSManaged internal (set) public var currentScore: NSNumber?
     @NSManaged internal (set) public var gradePostedAt: Date?
     @NSManaged internal (set) public var submissionLate: Bool
+    @NSManaged internal (set) public var submissionMissing: Bool
     @NSManaged internal (set) public var submittedAt: Date?
     @NSManaged internal (set) public var submissionExcused: Bool
     @NSManaged internal (set) public var gradedAt: Date?
@@ -341,21 +342,23 @@ extension Assignment: SynchronizedModel {
         
         assignmentGroup     = try assignmentGroupID.flatMap { try context.findOne(withValue: $0, forKey: "id") }
 
-        try updateSubmission(json, inContext: context)
+        let studentID: String? = try? json.stringID("studentID") // for parent when there are multiple submissions for different users
+        try updateSubmission(json, studentID: studentID, inContext: context)
         try updateURL(json)
         try updateRubric(json, inContext: context)
         try updateOverrides(json, inContext: context)
         try updateLockStatus(json)
     }
 
-    @objc func updateSubmission(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
+    @objc func updateSubmission(_ json: JSONObject, studentID: String? = nil, inContext context: NSManagedObjectContext) throws {
         var status: SubmissionStatus = []
         var submissionState = ""
 
         // "submission" is an array if we are an observer
         let submissions: [JSONObject]? = try? json <| "submission"
         let submission: JSONObject? = try? json <| "submission"
-        if let submissionJSON = submissions?.first ?? submission {
+        let submissionJSON: JSONObject? = try submissions?.first { try $0.stringID("user_id") == studentID } ?? submissions?.first
+        if let submissionJSON = (submissionJSON ?? submission) {
             let attempt: Int = (try submissionJSON <| "attempt") ?? 0
             hasSubmitted        = attempt > 0
 
@@ -373,6 +376,7 @@ extension Assignment: SynchronizedModel {
             gradedAt            = try submissionJSON <| "graded_at"
             gradePostedAt       = try submissionJSON <| "posted_at"
             submissionState     = try submissionJSON <| "workflow_state"
+            submissionMissing   = (try submissionJSON <| "missing") ?? false
 
             // The API can give us ghost "graded" states if the teacher taps in SpeedGrader in the grade box...
             // let's make sure an actual grade exists, otherwise it's not actually "graded"

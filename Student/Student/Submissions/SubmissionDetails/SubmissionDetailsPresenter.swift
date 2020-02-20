@@ -64,7 +64,6 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
     }
 
     var quizzes: Store<GetQuiz>?
-    var quizSubmission: Store<GetQuizSubmission>?
 
     var selectedAttempt: Int = 0
     var selectedFileID: String?
@@ -97,10 +96,6 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
                 self?.update()
             } }
             quizzes?.refresh()
-            quizSubmission = assignment.first?.quizID.flatMap { quizID in env.subscribe(GetQuizSubmission(courseID: context.id, quizID: quizID)) { [weak self] in
-                self?.update()
-            } }
-            quizSubmission?.refresh()
         }
 
         let assignment = self.assignment.first
@@ -162,7 +157,7 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
 
         // external tools submission may be unsubmitted and the type nil but there could
         // still be a submission inside the tool
-        if assignment.submissionTypes.contains(.external_tool) {
+        if assignment.requiresLTILaunch(toViewSubmission: submission) {
             return ExternalToolSubmissionContentViewController.create(env: self.env, assignment: assignment)
         }
 

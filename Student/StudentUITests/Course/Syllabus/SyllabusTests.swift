@@ -18,6 +18,7 @@
 
 import Foundation
 @testable import Core
+@testable import CoreUITests
 import TestsFoundation
 import XCTest
 
@@ -30,10 +31,12 @@ class SyllabusTests: StudentUITestCase {
         let assignmentName = "Foobar"
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
             course.canvasContextID: "#123456",
-            ]))
+        ]))
 
-        mockData(GetAssignmentsRequest(courseID: course.id), value: [
-            APIAssignment.make(name: assignmentName, description: "hello world", submission: APISubmission.make()),
+        let assignment = APIAssignment.make(name: assignmentName, description: "hello world", submission: .make())
+        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: [.submission]), value: assignment)
+        mockData(GetCalendarEventsRequest(contexts: [ContextModel(.course, id: course.id)], type: .event, allEvents: true), value: [
+            .make(html_url: assignment.html_url, title: assignment.name, type: .assignment, assignment: assignment),
         ])
 
         show("/courses/\(course.id)/assignments/syllabus")
@@ -45,11 +48,11 @@ class SyllabusTests: StudentUITestCase {
 
         app.find(label: "hello world").waitToExist()
 
+        // There's today's date in a request that has no way to be mocked currently
+        missingMockBehavior = .allow
         app.swipeLeft()
 
-        let cells = app.cells.containing(NSPredicate(format: "label CONTAINS %@", assignmentName))
-
-        let assignmentCell = cells.firstMatch
+        let assignmentCell = app.find(labelContaining: assignmentName)
         assignmentCell.tap()
         AssignmentDetails.name.waitToExist(5)
 

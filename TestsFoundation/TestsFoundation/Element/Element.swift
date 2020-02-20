@@ -20,104 +20,166 @@ import Foundation
 import XCTest
 
 public protocol Element {
-    var elementType: XCUIElement.ElementType { get }
+    var queryWrapper: XCUIElementQueryWrapper { get }
     var rawElement: XCUIElement { get }
-    var exists: Bool { get }
-    var id: String { get }
-    var isEnabled: Bool { get }
-    var isSelected: Bool { get }
-    var isVisible: Bool { get }
-    func frame(file: StaticString, line: UInt) -> CGRect
-    func label(file: StaticString, line: UInt) -> String
-    func value(file: StaticString, line: UInt) -> String?
+    func snapshot(file: StaticString, line: UInt) -> XCUIElementSnapshot?
 
-    @discardableResult
-    func pick(column: Int, value: String, file: StaticString, line: UInt) -> Element
-
-    @discardableResult
-    func swipeDown(file: StaticString, line: UInt) -> Element
-
-    @discardableResult
-    func swipeUp(file: StaticString, line: UInt) -> Element
-
-    @discardableResult
-    func tap(file: StaticString, line: UInt) -> Element
-
-    @discardableResult
-    func tapAt(_ point: CGPoint, file: StaticString, line: UInt) -> Element
-
-    @discardableResult
-    func typeText(_ text: String, file: StaticString, line: UInt) -> Element
-
-    @discardableResult
-    func waitToExist(_ timeout: TimeInterval, file: StaticString, line: UInt) -> Element
-
-    @discardableResult
-    func waitToVanish(_ timeout: TimeInterval, file: StaticString, line: UInt) -> Element
+    /// returns true if this element, or any of its children have keyboard focus
+    func containsKeyboardFocusedElement(file: StaticString, line: UInt) -> Bool
 }
 
 public extension Element {
+    func isOffscreen(_ timeout: TimeInterval = 10, file: StaticString = #file, line: UInt = #line) -> Bool {
+        waitToExist(timeout, file: file, line: line)
+        return !app.windows.element(boundBy: 0).frame.contains(frame(file: file, line: line))
+    }
+
+    @discardableResult
+    func tapUntil(file: StaticString = #file, line: UInt = #line, test: () -> Bool) -> Bool {
+        tap(file: file, line: line)
+        sleep(1)
+        for _ in 0..<5 where exists(file: file, line: line) {
+            if test() {
+                return true
+            }
+            tap(file: file, line: line)
+            sleep(1)
+        }
+        return test()
+    }
+
+    func toggleOn(file: StaticString = #file, line: UInt = #line) {
+        XCTAssertTrue(tapUntil { value(file: file, line: line) == "1" }, "failed to toggle on")
+    }
+
+    func toggleOff(file: StaticString = #file, line: UInt = #line) {
+        XCTAssertTrue(tapUntil { value(file: file, line: line) == "0" }, "failed to toggle off")
+    }
+
+    func exists(file: StaticString = #file, line: UInt = #line) -> Bool {
+        snapshot(file: file, line: line) != nil
+    }
+    var exists: Bool { exists() }
+
+    var elementType: XCUIElement.ElementType { return rawElement.elementType }
+    var id: String { rawElement.identifier }
+    var isEnabled: Bool { exists && rawElement.isEnabled }
+    var isSelected: Bool { rawElement.isSelected }
+    var isVisible: Bool { exists && rawElement.isHittable }
+    var center: XCUICoordinate {
+        rawElement.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+    }
+
+    func relativeCoordinate(x: CGFloat, y: CGFloat) -> XCUICoordinate {
+        rawElement.coordinate(withNormalizedOffset: CGVector(dx: x, dy: y))
+    }
+
     func frame(file: StaticString = #file, line: UInt = #line) -> CGRect {
-        return frame(file: file, line: line)
+        waitToExist(30, file: file, line: line)
+        return rawElement.frame
     }
     func label(file: StaticString = #file, line: UInt = #line) -> String {
-        return label(file: file, line: line)
+        waitToExist(30, file: file, line: line)
+        return rawElement.label
     }
     func value(file: StaticString = #file, line: UInt = #line) -> String? {
-        return value(file: file, line: line)
+        waitToExist(30, file: file, line: line)
+        return rawElement.value as? String
     }
 
     @discardableResult
     func pick(column: Int, value: String, file: StaticString = #file, line: UInt = #line) -> Element {
-        return pick(column: column, value: value, file: file, line: line)
-    }
-
-    @discardableResult
-    func swipeDown(file: StaticString = #file, line: UInt = #line) -> Element {
-        return swipeDown(file: file, line: line)
-    }
-
-    @discardableResult
-    func swipeUp(file: StaticString = #file, line: UInt = #line) -> Element {
-        return swipeUp(file: file, line: line)
+        waitToExist(file: file, line: line)
+        rawElement.pickerWheels.allElementsBoundByIndex[column].adjust(toPickerWheelValue: value)
+        return self
     }
 
     @discardableResult
     func tap(file: StaticString = #file, line: UInt = #line) -> Element {
-        return tap(file: file, line: line)
+        waitToExist(file: file, line: line)
+        rawElement.tap()
+        return self
     }
 
     @discardableResult
     func tapAt(_ point: CGPoint, file: StaticString = #file, line: UInt = #line) -> Element {
-        return tapAt(point, file: file, line: line)
+        waitToExist(file: file, line: line)
+        rawElement.coordinate(withNormalizedOffset: .zero)
+            .withOffset(CGVector(dx: point.x, dy: point.y))
+            .tap()
+        return self
     }
 
     @discardableResult
     func typeText(_ text: String, file: StaticString = #file, line: UInt = #line) -> Element {
-        return typeText(text, file: file, line: line)
+        tap(file: file, line: line)
+        CoreUITestCase.currentTestCase?.send(.showKeyboard, ignoreErrors: true)
+        var taps = 1
+        while !containsKeyboardFocusedElement(file: file, line: line), taps < 5 {
+            tap(file: file, line: line)
+            CoreUITestCase.currentTestCase?.send(.showKeyboard, ignoreErrors: true)
+            taps += 1
+            sleep(1)
+        }
+        rawElement.typeText(text)
+        return self
+    }
+
+    @discardableResult
+    func swipeDown(file: StaticString = #file, line: UInt = #line) -> Element {
+        waitToExist(file: file, line: line)
+        rawElement.swipeDown()
+        return self
+    }
+
+    @discardableResult
+    func swipeUp(file: StaticString = #file, line: UInt = #line) -> Element {
+        waitToExist(file: file, line: line)
+        rawElement.swipeUp()
+        return self
     }
 
     @discardableResult
     func waitToExist(_ timeout: TimeInterval = 30, file: StaticString = #file, line: UInt = #line) -> Element {
-        return waitToExist(timeout, file: file, line: line)
+        waitUntil(timeout, file: file, line: line, failureMessage: "Element \(id) still doesn't exists") {
+            exists(file: file, line: line)
+        }
+        return self
     }
 
     @discardableResult
-    func waitToVanish(_ timeout: TimeInterval = 10, file: StaticString = #file, line: UInt = #line) -> Element {
-        return waitToVanish(timeout, file: file, line: line)
+    func waitToVanish(_ timeout: TimeInterval = 30, file: StaticString = #file, line: UInt = #line) -> Element {
+        waitUntil(timeout, file: file, line: line, failureMessage: "Element \(id) still exists") {
+            !exists(file: file, line: line)
+        }
+        return self
+    }
+
+    func snapshot(file: StaticString = #file, line: UInt = #line) -> XCUIElementSnapshot? {
+        queryWrapper.snapshot(file: file, line: line)
+    }
+
+    var rawElement: XCUIElement {
+        queryWrapper.rawElement
+    }
+
+    /// returns true if this element, or any of its children have keyboard focus
+    func containsKeyboardFocusedElement(file: StaticString = #file, line: UInt = #line) -> Bool {
+        queryWrapper.containsKeyboardFocusedElement(file: file, line: line)
     }
 }
 
-public extension Element {
-    @discardableResult
-    func tapUntil(file: StaticString = #file, line: UInt = #line, test: () -> Bool) -> Element {
-        var taps = 0
-        repeat {
-            tap(file: file, line: line)
-            taps += 1
-            sleep(1)
-        } while taps < 5 && test() == false && exists
-        return self
+public func waitUntil(
+    _ timeout: TimeInterval = 30,
+    file: StaticString = #file,
+    line: UInt = #line,
+    failureMessage: @autoclosure () -> String = "waitUntil timed out",
+    predicate: () -> Bool
+) {
+    let deadline = Date().addingTimeInterval(timeout)
+    while !predicate() {
+        XCTAssertTrue(Date() < deadline, failureMessage(), file: file, line: line)
+        usleep(100000)
     }
 }
 
@@ -125,18 +187,28 @@ public struct XCUIElementQueryWrapper: Element {
     public let query: XCUIElementQuery
     public let index: Int
 
+    public var queryWrapper: XCUIElementQueryWrapper { self }
+
     // A negative index counts backwards from the end, e.g. -1 is the last matching element
     public init(_ query: XCUIElementQuery, index: Int = 0) {
         self.query = query
         self.index = index
     }
 
-    public var exists: Bool {
-        app.waitForSnapshot()
-        return rawElement.exists
+    public func snapshot(file: StaticString = #file, line: UInt = #line) -> XCUIElementSnapshot? {
+        var snapshot: XCUIElementSnapshot?
+        let timeout = 30
+        waitUntil(30, file: file, line: line, failureMessage: "failed to get snapshot within \(timeout) seconds") {
+            do {
+                snapshot = try query.allMatchingSnapshots().first as? XCUIElementSnapshot
+                return true
+            } catch {
+                return false
+            }
+        }
+        return snapshot
     }
 
-    public var elementType: XCUIElement.ElementType { return rawElement.elementType }
     public var rawElement: XCUIElement {
         let rawIndex: Int
         if index < 0 {
@@ -146,88 +218,24 @@ public struct XCUIElementQueryWrapper: Element {
         }
         return query.element(boundBy: rawIndex)
     }
-    public var id: String { return rawElement.identifier }
-    public var isEnabled: Bool { return exists && rawElement.isEnabled }
-    public var isSelected: Bool { return rawElement.isSelected }
-    public var isVisible: Bool { return exists && rawElement.isHittable }
 
-    public func frame(file: StaticString = #file, line: UInt = #line) -> CGRect {
-        waitToExist(30, file: file, line: line)
-        return rawElement.frame
-    }
-    public func label(file: StaticString = #file, line: UInt = #line) -> String {
-        waitToExist(30, file: file, line: line)
-        return rawElement.label
-    }
-    public func value(file: StaticString = #file, line: UInt = #line) -> String? {
-        waitToExist(30, file: file, line: line)
-        return rawElement.value as? String
-    }
-
-    @discardableResult
-    public func pick(column: Int, value: String, file: StaticString, line: UInt) -> Element {
+    /// returns true if this element, or any of its children have keyboard focus
+    public func containsKeyboardFocusedElement(file: StaticString = #file, line: UInt = #line) -> Bool {
         waitToExist(file: file, line: line)
-        rawElement.pickerWheels.allElementsBoundByIndex[column].adjust(toPickerWheelValue: value)
-        return self
-    }
-
-    @discardableResult
-    public func tap(file: StaticString, line: UInt) -> Element {
-        waitToExist(file: file, line: line)
-        rawElement.tap()
-        return self
-    }
-
-    @discardableResult
-    public func tapAt(_ point: CGPoint, file: StaticString, line: UInt) -> Element {
-        waitToExist(file: file, line: line)
-        rawElement.coordinate(withNormalizedOffset: .zero)
-            .withOffset(CGVector(dx: point.x, dy: point.y))
-            .tap()
-        return self
-    }
-
-    @discardableResult
-    public func typeText(_ text: String, file: StaticString, line: UInt) -> Element {
-        var taps = 0
-        while rawElement.value(forKey: "hasKeyboardFocus") as? Bool != true, taps < 5 {
-            taps += 1
-            tap(file: file, line: line)
-            sleep(1)
+        // For some reason, if we don't ask for a specific element type, then snapshots get confused...
+        let q2 = query.matching(NSPredicate(format: "%K == %i", #keyPath(XCUIElement.elementType), elementType.rawValue))
+        guard let snapshot = XCUIElementQueryWrapper(q2).snapshot(file: file, line: line) else {
+            // element doesn't exist
+            return false
         }
-        rawElement.typeText(text)
-        return self
-    }
-
-    @discardableResult
-    public func swipeDown(file: StaticString, line: UInt) -> Element {
-        waitToExist(file: file, line: line)
-        rawElement.swipeDown()
-        return self
-    }
-
-    @discardableResult
-    public func swipeUp(file: StaticString, line: UInt) -> Element {
-        waitToExist(file: file, line: line)
-        rawElement.swipeUp()
-        return self
-    }
-
-    @discardableResult
-    public func waitToExist(_ timeout: TimeInterval, file: StaticString, line: UInt) -> Element {
-        if !exists {
-            XCTAssertTrue(rawElement.waitForExistence(timeout: timeout), "Element \(id) not found", file: file, line: line)
+        var children = [snapshot]
+        while let element = children.popLast() {
+            children.append(contentsOf: element.children)
+            // Unfortunately, apple doesn't reliably expose focus
+            if "\(element)".contains("Keyboard Focused") {
+                return true
+            }
         }
-        return self
-    }
-
-    @discardableResult
-    public func waitToVanish(_ timeout: TimeInterval, file: StaticString, line: UInt) -> Element {
-        let deadline = Date().addingTimeInterval(timeout)
-        while rawElement.exists, Date() < deadline {
-            sleep(1)
-        }
-        XCTAssertFalse(rawElement.exists, "Element \(id) still exists", file: file, line: line)
-        return self
+        return false
     }
 }

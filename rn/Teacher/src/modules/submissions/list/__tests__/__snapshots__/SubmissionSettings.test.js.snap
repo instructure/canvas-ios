@@ -50,7 +50,7 @@ exports[`SubmissionSettings renders properly 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -60,8 +60,9 @@ exports[`SubmissionSettings renders properly 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
+              undefined,
             ]
           }
         >
@@ -90,6 +91,7 @@ exports[`SubmissionSettings renders properly 1`] = `
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                   ],
@@ -122,7 +124,7 @@ exports[`SubmissionSettings renders properly 1`] = `
                 testID="submission-settings.muted"
                 tintColor={null}
                 title="Mute Grades"
-                trackColor="#374A59"
+                trackColor="#008EE2"
                 value={false}
               />
             </View>

@@ -75,7 +75,6 @@ let defaultProps = {
   pending: true,
   refreshing: false,
   refresh: jest.fn(),
-  refreshSubmissions: jest.fn(),
   refreshSubmissionSummary: jest.fn(),
   navigator: templates.navigator(),
   submissions: [],
@@ -121,26 +120,6 @@ describe('SpeedGrader', () => {
 
     expect(defaultProps.getEnabledFeatureFlags).not.toHaveBeenCalled()
     expect(tree.state().flags).toEqual(['new_gradebook'])
-  })
-
-  it('calls refreshSubmissions on mount if hasAssignment is true', () => {
-    shallow(
-      <SpeedGrader {...defaultProps} hasAssignment groupAssignment={{}}/>
-    )
-    expect(defaultProps.refreshSubmissions).toHaveBeenCalledWith(defaultProps.courseID, defaultProps.assignmentID, true)
-  })
-
-  it('calls refreshSubmissions on prop receival if we now have the assignment', () => {
-    let tree = shallow(
-      <SpeedGrader {...defaultProps} hasAssignment={false} groupAssignment={null} />
-    )
-    expect(defaultProps.refreshSubmissions).not.toHaveBeenCalled()
-    tree.setProps({
-      ...defaultProps,
-      hasAssignment: true,
-      groupAssignment: null,
-    })
-    expect(defaultProps.refreshSubmissions).toHaveBeenCalledWith(defaultProps.courseID, defaultProps.assignmentID, false)
   })
 
   it('renders with a filter', () => {
@@ -233,7 +212,7 @@ describe('SpeedGrader', () => {
     const submissions = [templates.submissionProps()]
     const props = { ...defaultProps, submissions }
     let instance = new SpeedGrader(props)
-    instance.scrollView = { setNativeProps: jest.fn() }
+    instance._flatList = { setNativeProps: jest.fn() }
     let tree = shallow(instance.renderItem({
       item: {
         kehy: submissions[0].userID,
@@ -244,10 +223,10 @@ describe('SpeedGrader', () => {
     let submissionGrader = tree.find('SubmissionGrader')
 
     submissionGrader.props().setScrollEnabled(false)
-    expect(instance.scrollView.setNativeProps).toHaveBeenCalledWith({ scrollEnabled: false })
+    expect(instance._flatList.setNativeProps).toHaveBeenCalledWith({ scrollEnabled: false })
 
     submissionGrader.props().setScrollEnabled(true)
-    expect(instance.scrollView.setNativeProps).toHaveBeenCalledWith({ scrollEnabled: true })
+    expect(instance._flatList.setNativeProps).toHaveBeenCalledWith({ scrollEnabled: true })
   })
 
   it('supplies getItemLayout', () => {
@@ -331,6 +310,7 @@ describe('refresh functions', () => {
     expect(props.refreshAssignment).toHaveBeenCalledWith(props.courseID, props.assignmentID)
     expect(props.getCourseEnabledFeatures).toHaveBeenCalledWith(props.courseID)
     expect(props.refreshGroupsForCourse).toHaveBeenCalledWith(props.courseID)
+    expect(props.refreshSubmissions).toHaveBeenCalledWith(props.courseID, props.assignmentID, true)
   })
   it('isRefreshing', () => {
     const isNot = isRefreshing(props)

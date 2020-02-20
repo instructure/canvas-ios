@@ -6,7 +6,7 @@ exports[`AddressBookToken renders 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "backgroundColor": "#EBEDEE",
+      "backgroundColor": "#F5F5F5",
       "borderRadius": 15,
       "flexDirection": "row",
       "height": 30,
@@ -20,10 +20,17 @@ exports[`AddressBookToken renders 1`] = `
 >
   <Text
     style={
-      Object {
-        "marginLeft": 8,
-      }
+      Array [
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "marginLeft": 8,
+        },
+      ]
     }
+    testID="message-recipient.1.label"
   >
     Donald Trump
   </Text>
@@ -36,18 +43,23 @@ exports[`AddressBookToken renders 1`] = `
     }
     accessible={true}
     onPress={[Function]}
+    style={
+      Object {
+        "marginRight": -8,
+        "padding": 8,
+      }
+    }
     testID="message-recipient.1.delete-btn"
   >
     <Image
       source={
         Object {
-          "testUri": "../../../src/images/x-icon.png",
+          "uri": "xLine",
         }
       }
       style={
         Object {
           "height": 12,
-          "marginLeft": 8,
           "tintColor": "#2D3B45",
           "width": 12,
         }
@@ -63,7 +75,7 @@ exports[`AddressBookToken renders with avatar url 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "backgroundColor": "#EBEDEE",
+      "backgroundColor": "#F5F5F5",
       "borderRadius": 15,
       "flexDirection": "row",
       "height": 30,
@@ -83,14 +95,10 @@ exports[`AddressBookToken renders with avatar url 1`] = `
           "overflow": "hidden",
         },
         Object {
+          "backgroundColor": "#F5F5F5",
+          "borderRadius": 12,
           "height": 24,
           "width": 24,
-        },
-        Object {
-          "borderRadius": 12,
-        },
-        Object {
-          "backgroundColor": "#F5F5F5",
         },
       ]
     }
@@ -111,10 +119,17 @@ exports[`AddressBookToken renders with avatar url 1`] = `
   </View>
   <Text
     style={
-      Object {
-        "marginLeft": 8,
-      }
+      Array [
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "marginLeft": 8,
+        },
+      ]
     }
+    testID="message-recipient.1.label"
   >
     Donald Trump
   </Text>
@@ -127,18 +142,23 @@ exports[`AddressBookToken renders with avatar url 1`] = `
     }
     accessible={true}
     onPress={[Function]}
+    style={
+      Object {
+        "marginRight": -8,
+        "padding": 8,
+      }
+    }
     testID="message-recipient.1.delete-btn"
   >
     <Image
       source={
         Object {
-          "testUri": "../../../src/images/x-icon.png",
+          "uri": "xLine",
         }
       }
       style={
         Object {
           "height": 12,
-          "marginLeft": 8,
           "tintColor": "#2D3B45",
           "width": 12,
         }

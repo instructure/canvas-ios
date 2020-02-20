@@ -32,6 +32,7 @@ public class SyllabusViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         webView.linkDelegate = self
+        webView.backgroundColor = .named(.backgroundLightest)
         presenter.viewIsReady()
     }
 }

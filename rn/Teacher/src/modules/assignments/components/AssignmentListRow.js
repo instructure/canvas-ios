@@ -23,7 +23,6 @@
 import React, { PureComponent } from 'react'
 import {
   View,
-  StyleSheet,
 } from 'react-native'
 
 import i18n from 'format-message'
@@ -32,7 +31,8 @@ import AccessIcon from '../../../common/components/AccessIcon'
 import AssignmentDates from '../../../common/AssignmentDates'
 import { Text } from '../../../common/text'
 import Row from '../../../common/components/rows/Row'
-import Images from '../../../images'
+import instIcon from '../../../images/inst-icons'
+import { createStyleSheet } from '../../../common/stylesheet'
 
 type Props = {
   assignment: Assignment,
@@ -102,14 +102,14 @@ export default class AssignmentListRow extends PureComponent<Props> {
 
   _renderIcon = () => {
     const assignment = this.props.assignment
-    let image = Images.course.assignments
+    let image = instIcon('assignment')
     let testIDSuffix = `-icon-${assignment.published ? 'published' : 'not-published'}-${assignment.id}.icon-img`
     let testID = `assignment-list-row-assignment${testIDSuffix}`
     if (assignment.submission_types.includes('online_quiz')) {
-      image = Images.course.quizzes
+      image = instIcon('quiz')
       testID = `assignment-list-row-quiz${testIDSuffix}`
     } else if (assignment.submission_types.includes('discussion_topic')) {
-      image = Images.course.discussions
+      image = instIcon('discussion')
       testID = `assignment-list-row-discussion${testIDSuffix}`
     }
     return (
@@ -120,17 +120,17 @@ export default class AssignmentListRow extends PureComponent<Props> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   ungradedText: {
     flex: 0,
     alignSelf: 'flex-start',
     fontSize: 11,
     fontWeight: '600',
-    color: '#008EE2',
+    color: colors.textInfo,
     borderRadius: 9,
-    borderColor: '#008EE2',
+    borderColor: colors.borderInfo,
     borderWidth: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     paddingTop: 2,
     paddingBottom: 2,
     paddingLeft: 6,
@@ -141,4 +141,4 @@ const styles = StyleSheet.create({
   icon: {
     alignSelf: 'flex-start',
   },
-})
+}))

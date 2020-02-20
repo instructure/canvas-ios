@@ -11,12 +11,12 @@ exports[`SpeedGraderFilesTab ignores attachments for URL Submissions 1`] = `
             accessible={true}
             onPress={[Function]}
             testID="speedgrader.files.row0"
-            underlayColor="#eee"
+            underlayColor="#F5F5F5"
           >
             <View
               style={
                 Object {
-                  "borderBottomColor": "lightgrey",
+                  "borderBottomColor": "#C7CDD1",
                   "borderBottomWidth": 0.5,
                   "flex": 1,
                   "flexDirection": "row",
@@ -36,13 +36,14 @@ exports[`SpeedGraderFilesTab ignores attachments for URL Submissions 1`] = `
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/speedgrader/page.png",
+                      "uri": "documentLine",
                     }
                   }
                   style={
                     Object {
+                      "height": 24,
                       "resizeMode": "contain",
-                      "tintColor": "#00BCD5",
+                      "tintColor": "#008EE2",
                       "width": 24,
                     }
                   }
@@ -102,12 +103,12 @@ exports[`SpeedGraderFilesTab renders a selected 0 index item 1`] = `
             accessible={true}
             onPress={[Function]}
             testID="speedgrader.files.row0"
-            underlayColor="#eee"
+            underlayColor="#F5F5F5"
           >
             <View
               style={
                 Object {
-                  "borderBottomColor": "lightgrey",
+                  "borderBottomColor": "#C7CDD1",
                   "borderBottomWidth": 0.5,
                   "flex": 1,
                   "flexDirection": "row",
@@ -127,13 +128,14 @@ exports[`SpeedGraderFilesTab renders a selected 0 index item 1`] = `
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/speedgrader/page.png",
+                      "uri": "documentLine",
                     }
                   }
                   style={
                     Object {
+                      "height": 24,
                       "resizeMode": "contain",
-                      "tintColor": "#00BCD5",
+                      "tintColor": "#008EE2",
                       "width": 24,
                     }
                   }
@@ -176,15 +178,15 @@ exports[`SpeedGraderFilesTab renders a selected 0 index item 1`] = `
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/check-white.png",
+                      "uri": "checkSolid",
                     }
                   }
                   style={
                     Object {
-                      "height": 10,
+                      "height": 18,
                       "resizeMode": "contain",
                       "tintColor": "#008EE2",
-                      "width": 13,
+                      "width": 18,
                     }
                   }
                 />
@@ -209,12 +211,12 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
             accessible={true}
             onPress={[Function]}
             testID="speedgrader.files.row0"
-            underlayColor="#eee"
+            underlayColor="#F5F5F5"
           >
             <View
               style={
                 Object {
-                  "borderBottomColor": "lightgrey",
+                  "borderBottomColor": "#C7CDD1",
                   "borderBottomWidth": 0.5,
                   "flex": 1,
                   "flexDirection": "row",
@@ -234,13 +236,14 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/speedgrader/page.png",
+                      "uri": "documentLine",
                     }
                   }
                   style={
                     Object {
+                      "height": 24,
                       "resizeMode": "contain",
-                      "tintColor": "#00BCD5",
+                      "tintColor": "#008EE2",
                       "width": 24,
                     }
                   }
@@ -291,12 +294,12 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
             accessible={true}
             onPress={[Function]}
             testID="speedgrader.files.row1"
-            underlayColor="#eee"
+            underlayColor="#F5F5F5"
           >
             <View
               style={
                 Object {
-                  "borderBottomColor": "lightgrey",
+                  "borderBottomColor": "#C7CDD1",
                   "borderBottomWidth": 0.5,
                   "flex": 1,
                   "flexDirection": "row",
@@ -364,15 +367,15 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/check-white.png",
+                      "uri": "checkSolid",
                     }
                   }
                   style={
                     Object {
-                      "height": 10,
+                      "height": 18,
                       "resizeMode": "contain",
                       "tintColor": "#008EE2",
-                      "width": 13,
+                      "width": 18,
                     }
                   }
                 />
@@ -388,12 +391,12 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
             accessible={true}
             onPress={[Function]}
             testID="speedgrader.files.row2"
-            underlayColor="#eee"
+            underlayColor="#F5F5F5"
           >
             <View
               style={
                 Object {
-                  "borderBottomColor": "lightgrey",
+                  "borderBottomColor": "#C7CDD1",
                   "borderBottomWidth": 0.5,
                   "flex": 1,
                   "flexDirection": "row",
@@ -413,13 +416,14 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/speedgrader/icon_video_clip.png",
+                      "uri": "videoLine",
                     }
                   }
                   style={
                     Object {
+                      "height": 24,
                       "resizeMode": "contain",
-                      "tintColor": "#00BCD5",
+                      "tintColor": "#008EE2",
                       "width": 24,
                     }
                   }
@@ -470,12 +474,12 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
             accessible={true}
             onPress={[Function]}
             testID="speedgrader.files.row3"
-            underlayColor="#eee"
+            underlayColor="#F5F5F5"
           >
             <View
               style={
                 Object {
-                  "borderBottomColor": "lightgrey",
+                  "borderBottomColor": "#C7CDD1",
                   "borderBottomWidth": 0.5,
                   "flex": 1,
                   "flexDirection": "row",
@@ -495,13 +499,14 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/speedgrader/icon_audio.png",
+                      "uri": "audioLine",
                     }
                   }
                   style={
                     Object {
+                      "height": 24,
                       "resizeMode": "contain",
-                      "tintColor": "#00BCD5",
+                      "tintColor": "#008EE2",
                       "width": 24,
                     }
                   }
@@ -552,12 +557,12 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
             accessible={true}
             onPress={[Function]}
             testID="speedgrader.files.row4"
-            underlayColor="#eee"
+            underlayColor="#F5F5F5"
           >
             <View
               style={
                 Object {
-                  "borderBottomColor": "lightgrey",
+                  "borderBottomColor": "#C7CDD1",
                   "borderBottomWidth": 0.5,
                   "flex": 1,
                   "flexDirection": "row",
@@ -577,13 +582,14 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/speedgrader/pdf-icon.png",
+                      "uri": "pdfLine",
                     }
                   }
                   style={
                     Object {
+                      "height": 24,
                       "resizeMode": "contain",
-                      "tintColor": "#00BCD5",
+                      "tintColor": "#008EE2",
                       "width": 24,
                     }
                   }
@@ -643,12 +649,12 @@ exports[`SpeedGraderFilesTab renders with a submission 1`] = `
             accessible={true}
             onPress={[Function]}
             testID="speedgrader.files.row0"
-            underlayColor="#eee"
+            underlayColor="#F5F5F5"
           >
             <View
               style={
                 Object {
-                  "borderBottomColor": "lightgrey",
+                  "borderBottomColor": "#C7CDD1",
                   "borderBottomWidth": 0.5,
                   "flex": 1,
                   "flexDirection": "row",
@@ -668,13 +674,14 @@ exports[`SpeedGraderFilesTab renders with a submission 1`] = `
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/speedgrader/page.png",
+                      "uri": "documentLine",
                     }
                   }
                   style={
                     Object {
+                      "height": 24,
                       "resizeMode": "contain",
-                      "tintColor": "#00BCD5",
+                      "tintColor": "#008EE2",
                       "width": 24,
                     }
                   }
@@ -734,12 +741,12 @@ exports[`SpeedGraderFilesTab renders without a submission 1`] = `
             accessible={true}
             onPress={[Function]}
             testID="speedgrader.files.row0"
-            underlayColor="#eee"
+            underlayColor="#F5F5F5"
           >
             <View
               style={
                 Object {
-                  "borderBottomColor": "lightgrey",
+                  "borderBottomColor": "#C7CDD1",
                   "borderBottomWidth": 0.5,
                   "flex": 1,
                   "flexDirection": "row",
@@ -759,13 +766,14 @@ exports[`SpeedGraderFilesTab renders without a submission 1`] = `
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/speedgrader/page.png",
+                      "uri": "documentLine",
                     }
                   }
                   style={
                     Object {
+                      "height": 24,
                       "resizeMode": "contain",
-                      "tintColor": "#00BCD5",
+                      "tintColor": "#008EE2",
                       "width": 24,
                     }
                   }

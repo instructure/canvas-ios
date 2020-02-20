@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,34 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-@testable import Core
 import TestsFoundation
-import XCTest
+@testable import Core
+import CoreUITests
 
-class LoginStartTests: StudentUITestCase {
-    func testHiddenElements() {
-        XCTAssertFalse(LoginStart.helpButton.isVisible)
-        XCTAssertFalse(LoginStart.whatsNewLabel.isVisible)
-        XCTAssertFalse(LoginStart.whatsNewLink.isVisible)
-    }
-
-    func testFindSchool() {
-        XCTAssertTrue(LoginStart.findSchoolButton.isEnabled)
-        LoginStart.findSchoolButton.tap()
-
-        LoginFindSchool.searchField.waitToExist()
-    }
-
+class LoginStartTests: CoreUITestCase {
     func testCanvasNetwork() {
+        mockData(GetMobileVerifyRequest(domain: "learn.canvas.net"), value: APIVerifyClient(authorized: true, base_url: nil, client_id: nil, client_secret: "secret"))
+
         XCTAssertTrue(LoginStart.canvasNetworkButton.isEnabled)
         LoginStart.canvasNetworkButton.tap()
 
         LoginWeb.webView.waitToExist()
-    }
-
-    // HACK: relaunch to avoid a double-view bug
-    func testZzz() {
-        launch()
     }
 }

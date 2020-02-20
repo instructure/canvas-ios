@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "所有課程";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "所有評分期";
+
 /* Button to select all members of a group */
 "All members" = "所有成員";
 
@@ -366,6 +369,9 @@
 "Choose Video" = "選擇視訊";
 
 /* No comment provided by engineer. */
+"Clear filter" = "清除篩選器";
+
+/* No comment provided by engineer. */
 "Close" = "關閉";
 
 /* No comment provided by engineer. */
@@ -441,6 +447,9 @@
 /* label for customizing a course */
 "Customize" = "自定義";
 
+/* No comment provided by engineer. */
+"d_events" = "d_events";
+
 /* dashboard page title */
 "Dashboard" = "控制面板";
 
@@ -486,7 +495,11 @@
    Title for Discussions view controller */
 "Discussions" = "討論區";
 
-/* Dismiss an alert dialog */
+/* Dismiss an error button
+   dismiss button
+   Dismiss button for an error dialoue
+   Dismiss error alert button
+   dismiss the alert button */
 "Dismiss" = "忽略";
 
 /* Alert title asking if you want to masquerade */
@@ -501,7 +514,7 @@
 /* Button to cancel deleting folders */
 "Don't delete" = "不要刪除";
 
-/* Button title to mark a to do item as done */
+/* No comment provided by engineer. */
 "Done" = "已完成";
 
 /* Shown when we cancel a file download */
@@ -530,9 +543,6 @@
 
 /* This string is prepended to the due date for an assignment */
 "Due:" = "截止日期：";
-
-/* Due date label for to do items, first placeholder is date, second is time */
-"Due: %@ at %@" = "截止日期：%1$@於%2$@";
 
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "截止日期：%1$@於%2$@";
@@ -631,6 +641,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "檔案 (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "篩選器";
+
+/* No comment provided by engineer. */
+"Filter by:" = "篩選條件為：";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "完成的下載";
@@ -737,9 +753,6 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "它出問題了";
-
-/* No comment provided by engineer. */
-"It looks like there’s nothing to do today. Enjoy your day!" = "看來今天沒有要做的事。祝您愉快！";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "這裡是空的，您還在這裡做什麼呢？";
@@ -933,6 +946,9 @@
 "No Mastery Paths" = "沒有掌握歷程";
 
 /* No comment provided by engineer. */
+"No Notifications" = "無通知";
+
+/* No comment provided by engineer. */
 "No recipients" = "無收件人";
 
 /* Title for attempting submission without a comment */
@@ -949,9 +965,6 @@
 
 /* No comment provided by engineer. */
 "No Thanks" = "無感謝";
-
-/* No comment provided by engineer. */
-"No To-Do Items" = "無待辦項目";
 
 /* error message for a 401 response. */
 "Not Authorized" = "未授權";
@@ -1478,6 +1491,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "載入您的內容時發生錯誤。如果內容是音訊或視訊資料，可能仍然正在上傳中。";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "尚未有任何通知。";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "該 app 程式未獲得使用權限。";

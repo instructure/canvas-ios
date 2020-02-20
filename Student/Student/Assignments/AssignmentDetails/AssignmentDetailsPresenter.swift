@@ -59,7 +59,6 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
     }
 
     var quizzes: Store<GetQuiz>?
-    var quizSubmission: Store<GetQuizSubmission>?
 
     let env: AppEnvironment
     weak var view: AssignmentDetailsViewProtocol?
@@ -110,13 +109,9 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
                 self?.update()
             } }
             quizzes?.refresh()
-            quizSubmission = assignment?.quizID.flatMap { quizID in env.subscribe(GetQuizSubmission(courseID: courseID, quizID: quizID)) { [weak self] in
-                self?.update()
-            } }
-            quizSubmission?.refresh()
         }
         guard let assignment = assignment, let course = courses.first else { return }
-        guard quizzes?.pending != true, quizSubmission?.pending != true else { return }
+        guard quizzes?.pending != true else { return }
         let baseURL = fragmentHash.flatMap { URL(string: $0, relativeTo: assignment.htmlURL) } ?? assignment.htmlURL
         if let submission = assignment.submission {
             userID = submission.userID
@@ -169,7 +164,6 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
         courses.refresh(force: true)
         assignments.refresh(force: true)
         quizzes?.refresh(force: true)
-        quizSubmission?.refresh(force: true)
 
         submissionButtonPresenter.arcID = .pending
         arc.refresh(force: true)
@@ -191,7 +185,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
         guard let userID = userID else {
             return
         }
-        env.router.route(to: .submission(forCourse: courseID, assignment: assignmentID, user: userID), from: view, options: nil)
+        env.router.route(to: .submission(forCourse: courseID, assignment: assignmentID, user: userID), from: view)
     }
 
     func route(to url: URL, from view: UIViewController) -> Bool {
@@ -202,7 +196,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
                 URLQueryItem(name: "assignmentID", value: assignmentID)
             )
         }
-        env.router.route(to: dest, from: view, options: nil)
+        env.router.route(to: dest, from: view)
         return true
     }
 
@@ -213,7 +207,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
 
     func viewFileSubmission() {
         guard let assignment = assignment else { return }
-        submissionButtonPresenter.pickFiles(for: assignment)
+        submissionButtonPresenter.pickFiles(for: assignment, selectedSubmissionTypes: [.online_upload])
     }
 
     // MARK: - viewIsHidden methods
@@ -256,6 +250,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
 
     func submitAssignmentButtonIsHidden() -> Bool {
         return assignment?.lockStatus != .unlocked ||
+            assignment?.lockedForUser == true ||
             assignment?.isSubmittable == false ||
             assignment?.submission?.excused == true
     }

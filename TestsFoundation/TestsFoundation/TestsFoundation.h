@@ -18,6 +18,12 @@
 
 #import <UIKit/UIKit.h>
 
+#include <XCTest/XCTest.h>
+@interface XCUIElementQuery ()
+- (NSArray<XCUIElementSnapshot> *) allMatchingSnapshotsWithError:(NSError **)err;
+@end
+
+
 //! Project version number for TestsFoundation.
 FOUNDATION_EXPORT double TestsFoundationVersionNumber;
 

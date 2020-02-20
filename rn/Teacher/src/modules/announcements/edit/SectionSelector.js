@@ -26,7 +26,7 @@ import Screen from '../../../routing/Screen'
 import AssigneePickerActions from '../../assignee-picker/actions'
 import Row from '../../../common/components/rows/Row'
 import images from '../../../images'
-import colors from '../../../common/colors'
+import { colors } from '../../../common/stylesheet'
 
 type OwnProps = {
   courseID: string,
@@ -77,7 +77,7 @@ export class SectionSelector extends Component<Props, State> {
         identifier={section.id}
         onPress={this.pressSection}
         accessories={this.state.selectedSections.includes(section.id) &&
-          <Image source={images.check} style={{ tintColor: colors.checkmarkGreen }} />
+          <Image source={images.check} style={{ tintColor: colors.textSuccess }} />
         }
       />
     )

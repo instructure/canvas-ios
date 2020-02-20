@@ -22,12 +22,32 @@ import TestsFoundation
 @testable import CoreUITests
 
 class NotificationsListTests: CoreUITestCase {
-    override var user: UITestUser? { return nil }
+    func testNotificationItemsDisplayed() {
+        ExperimentalFeature.notifications2.isEnabled = true
+        mockBaseRequests()
+        mockData(GetActivitiesRequest(perPage: 99), value: [
+            APIActivity.make(id: "1", title: "Assignment Created"),
+            APIActivity.make(id: "2", title: "Another Notification"),
+        ])
+
+        logIn()
+        TabBar.notificationsTab.tap()
+
+        app.find(labelContaining: "Assignment Created").waitToExist()
+        app.find(labelContaining: "Another Notification").waitToExist()
+    }
+}
+
+class Notifications2ListTests: CoreUITestCase {
+    override var experimentalFeatures: [ExperimentalFeature] {
+        return [.notifications2]
+    }
 
     func testNotificationItemsDisplayed() {
         mockBaseRequests()
-        mockEncodableRequest("users/self/activity_stream?per_page=99", value: [
-            APIActivity.make(),
+        mockData(GetCoursesRequest(enrollmentState: .active), value: [ baseCourse ])
+        mockData(GetActivitiesRequest(), value: [
+            APIActivity.make(id: "1", title: "Assignment Created"),
             APIActivity.make(id: "2", title: "Another Notification"),
         ])
 

@@ -33,6 +33,11 @@ class SubmissionCommentVideoCell: UITableViewCell {
         playerViewController.unembed()
     }
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        backgroundColor = .named(.backgroundLightest)
+    }
+
     func update(comment: SubmissionComment, parent: UIViewController) {
         accessibilityIdentifier = "SubmissionComments.videoCell.\(comment.id)"
         accessibilityLabel = String.localizedStringWithFormat(

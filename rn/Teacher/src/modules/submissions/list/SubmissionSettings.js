@@ -27,9 +27,9 @@ import Screen from '../../../routing/Screen'
 import i18n from 'format-message'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
-import { connect } from 'react-redux'
-import AssignmentActions from '../../assignments/actions'
-import branding from '../../../common/branding'
+import { colors } from '../../../common/stylesheet'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 
 type SubmissionSettingsOwnProps = {
   courseID: string,
@@ -53,21 +53,29 @@ export class SubmissionSettings extends PureComponent<SubmissionSettingsProps> {
   props: SubmissionSettingsProps
 
   toggleMutedGrading = (value: boolean) => {
-    this.props.updateAssignment(
-      this.props.courseID,
-      {
-        ...this.props.assignment,
+    this.props.mutate({
+      variables: {
+        id: this.props.assignmentID,
         muted: value,
       },
-      this.props.assignment
-    )
+      optimisticResponse: {
+        updateAssignment: {
+          assignment: {
+            id: this.props.id,
+            muted: value,
+            __typename: 'Assignment',
+          },
+          __typename: 'UpdateAssignmentPayload',
+        },
+      },
+    })
   }
 
   render () {
     return (
       <Screen
         title={i18n('Submission Settings')}
-        navBarButtonColor={branding.link}
+        navBarButtonColor={colors.linkColor}
       >
         <ScrollView style={style.container}>
           <RowSeparator />
@@ -83,15 +91,35 @@ export class SubmissionSettings extends PureComponent<SubmissionSettingsProps> {
   }
 }
 
-export function mapStateToProps (state: AppState, ownProps: SubmissionSettingsOwnProps) {
-  const { assignmentID } = ownProps
-  let assignment = state.entities.assignments[assignmentID].data
-  let muted = assignment.muted
-
-  return { muted, assignment }
+const SubmissionSettingsWithMutation = graphql(gql`
+mutation ($id: ID!, $muted: Boolean!) {
+  updateAssignment(input: { id: $id, muted: $muted }) {
+    assignment {
+      id
+      muted
+    }
+  }
 }
-const Connect = connect(mapStateToProps, AssignmentActions)(SubmissionSettings)
-export default (Connect: any)
+`)(SubmissionSettings)
+
+export default graphql(gql`
+query ($id: ID!) {
+  assignment(id: $id) {
+    id
+    muted
+  }
+}
+`, {
+  options: (props) => ({
+    variables: {
+      id: props.assignmentID,
+    },
+  }),
+  props: (props) => ({
+    muted: props.data.assignment?.muted ?? false,
+    id: props.data.assignment?.id,
+  }),
+})(SubmissionSettingsWithMutation)
 
 const style = StyleSheet.create({
   container: {

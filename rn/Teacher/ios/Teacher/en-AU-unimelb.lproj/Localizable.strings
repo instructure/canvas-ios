@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"Absent" = "Absent";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "All grades are currently hidden.";
 
 /* No comment provided by engineer. */
@@ -11,13 +14,43 @@
 "All Posted" = "All Posted";
 
 /* No comment provided by engineer. */
+"Attendance" = "Attendance";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "Attendance Error";
+
+/* No comment provided by engineer. */
 "Back" = "Back";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancel";
+
+/* No comment provided by engineer. */
+"Change Section" = "Change Section";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Choose a Section";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Choose Date";
 
 /* No comment provided by engineer. */
 "Courses" = "Subjects";
 
 /* No comment provided by engineer. */
+"Date picker" = "Date picker";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Dismiss";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Error: No data returned from the roll call api.";
+
+/* No comment provided by engineer. */
 "Everyone" = "Everyone";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "Failed to launch roll call LTI tool.";
 
 /* No comment provided by engineer. */
 "Graded" = "Graded";
@@ -38,6 +71,18 @@
 "Hide Grades" = "Hide Grades";
 
 /* No comment provided by engineer. */
+"Late" = "Late";
+
+/* No comment provided by engineer. */
+"Loading more modules..." = "Loading more modules...";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Mark All as Present";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Mark Remaining as Present";
+
+/* No comment provided by engineer. */
 "Modules" = "Modules";
 
 /* No comment provided by engineer. */
@@ -50,8 +95,20 @@
 "Post to..." = "Post to...";
 
 /* No comment provided by engineer. */
+"Present" = "Present";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Select to change the roll call date";
+
+/* No comment provided by engineer. */
 "Specific Sections" = "Specific Sections";
 
 /* No comment provided by engineer. */
+"This module is empty." = "This module is empty.";
+
+/* No comment provided by engineer. */
 "To Do" = "To Do";
+
+/* No comment provided by engineer. */
+"Unmark" = "Unmark";
 

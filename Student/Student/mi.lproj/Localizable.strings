@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "Ngā akoranga katoa";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "Takiwā kōeke katoa";
+
 /* Button to select all members of a group */
 "All members" = "Ngā mema katoa";
 
@@ -366,6 +369,9 @@
 "Choose Video" = "Kōwhiri Ataata";
 
 /* No comment provided by engineer. */
+"Clear filter" = "Tātari mārama";
+
+/* No comment provided by engineer. */
 "Close" = "Katia";
 
 /* No comment provided by engineer. */
@@ -441,6 +447,9 @@
 /* label for customizing a course */
 "Customize" = "Whakaritea";
 
+/* No comment provided by engineer. */
+"d_events" = "d_events";
+
 /* dashboard page title */
 "Dashboard" = "Papatohu";
 
@@ -486,7 +495,11 @@
    Title for Discussions view controller */
 "Discussions" = "Ngā Kōrerorero";
 
-/* Dismiss an alert dialog */
+/* Dismiss an error button
+   dismiss button
+   Dismiss button for an error dialoue
+   Dismiss error alert button
+   dismiss the alert button */
 "Dismiss" = "Pana";
 
 /* Alert title asking if you want to masquerade */
@@ -501,7 +514,7 @@
 /* Button to cancel deleting folders */
 "Don't delete" = "Kaua e muku";
 
-/* Button title to mark a to do item as done */
+/* No comment provided by engineer. */
 "Done" = "Kua mahia";
 
 /* Shown when we cancel a file download */
@@ -530,9 +543,6 @@
 
 /* This string is prepended to the due date for an assignment */
 "Due:" = "E tika ana:";
-
-/* Due date label for to do items, first placeholder is date, second is time */
-"Due: %@ at %@" = "E tika ana: %1$@ ī %2$@";
 
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "E tika ana: %1$@ ī %2$@";
@@ -631,6 +641,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Ngā kōnae (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Tātari";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Tātari ī:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Kua oti te tikiake";
@@ -737,9 +753,6 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "He raruraru";
-
-/* No comment provided by engineer. */
-"It looks like there’s nothing to do today. Enjoy your day!" = "Ko te āhua kaore he mahi mo tēnei rā. Kia pai tō rā!";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Kei te kore, he aha tō mahi tonu i konei.";
@@ -933,6 +946,9 @@
 "No Mastery Paths" = "Kaore he ara hinganga";
 
 /* No comment provided by engineer. */
+"No Notifications" = "Kaore he whakamōhiotanga";
+
+/* No comment provided by engineer. */
 "No recipients" = "Kāore ngā kaiwhiwhi";
 
 /* Title for attempting submission without a comment */
@@ -949,9 +965,6 @@
 
 /* No comment provided by engineer. */
 "No Thanks" = "Kāore he Mihi";
-
-/* No comment provided by engineer. */
-"No To-Do Items" = "Kaore Hei-Mahi ngā tūemi";
 
 /* error message for a 401 response. */
 "Not Authorized" = "Manakore";
@@ -1478,6 +1491,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "He hapa i te wā e uta ana i tō ihirangi. Mehemea he ororongo ataata rānei tukuake ai tonu te tukatuka.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Kaore he mea hei whakamōhio i tēnei wā.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "Kaore e mana tēnei taupānga ki te whakamahi.";

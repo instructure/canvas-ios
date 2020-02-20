@@ -21,7 +21,6 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   TouchableHighlight,
 } from 'react-native'
 import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
@@ -30,7 +29,7 @@ import i18n from 'format-message'
 import type {
   GradeProp,
 } from './submission-prop-types'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import { Text } from '../../../common/text'
 import OldSubmissionStatusLabel from './OldSubmissionStatusLabel'
 import Avatar from '../../../common/components/Avatar'
@@ -78,7 +77,7 @@ class Row extends Component<RowProps, any> {
   }
 }
 
-export const Grade = ({ grade, gradingType }: {grade: ?GradeProp, gradingType: GradingType}) => {
+export const Grade = ({ grade, score, gradingType }) => {
   if (!grade || grade === 'not_submitted' || grade === 'ungraded' || gradingType === 'not_graded') {
     return null
   }
@@ -87,7 +86,7 @@ export const Grade = ({ grade, gradingType }: {grade: ?GradeProp, gradingType: G
   if (grade === 'excused') {
     gradeText = i18n('Excused')
   } else {
-    gradeText = formatGradeText(grade, gradingType)
+    gradeText = formatGradeText({ grade, score, gradingType })
   }
 
   return <Text style={[ styles.gradeText, { alignSelf: 'center' } ]}>{ gradeText }</Text>
@@ -106,7 +105,7 @@ class OldSubmissionRow extends Component<OldSubmissionRowProps, any> {
   }
 
   render () {
-    let { userID, avatarURL, name, status, grade, gradingType, disclosure } = this.props
+    let { userID, avatarURL, name, status, grade, score, gradingType, disclosure } = this.props
     if (disclosure === undefined) {
       disclosure = true
     }
@@ -133,12 +132,12 @@ class OldSubmissionRow extends Component<OldSubmissionRowProps, any> {
             <OldSubmissionStatusLabel status={status} />
           }
           {grade === 'ungraded' && gradingType !== 'not_graded' &&
-            <Token style={{ alignSelf: 'flex-start', marginTop: 8 }} color={ colors.primaryButton }>
+            <Token style={{ alignSelf: 'flex-start', marginTop: 8 }} color={ colors.textInfo }>
               {i18n('Needs Grading')}
             </Token>
           }
         </View>
-        <Grade grade={grade} gradingType={gradingType} />
+        <Grade grade={grade} score={score} gradingType={gradingType} />
       </Row>
     )
   }
@@ -146,13 +145,13 @@ class OldSubmissionRow extends Component<OldSubmissionRowProps, any> {
 
 export default OldSubmissionRow
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   touchableHighlight: {
     flex: 1,
   },
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     alignItems: 'center',
     flexDirection: 'row',
     paddingTop: 10,
@@ -167,16 +166,16 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#2D3B45',
+    color: colors.textDarkest,
   },
   gradeText: {
     fontSize: 14,
     fontWeight: '600',
-    color: colors.primaryButtonColor,
+    color: colors.textDarkest,
   },
   avatar: {
     width: 40,
     height: 40,
     marginRight: 8,
   },
-})
+}))

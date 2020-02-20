@@ -19,7 +19,7 @@
 import CoreData
 import Foundation
 
-public struct GetModules: APIUseCase {
+public class GetModules: APIUseCase {
     public typealias Model = Module
 
     public let courseID: String
@@ -34,12 +34,12 @@ public struct GetModules: APIUseCase {
         return "get-modules-\(courseID)"
     }
 
-    public init(courseID: String) {
-        self.courseID = courseID
-    }
-
     public var request: GetModulesRequest {
         return GetModulesRequest(courseID: courseID)
+    }
+
+    public init(courseID: String) {
+        self.courseID = courseID
     }
 
     public func write(response: [APIModule]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {

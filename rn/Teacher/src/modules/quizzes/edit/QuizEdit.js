@@ -23,7 +23,6 @@ import { connect } from 'react-redux'
 import i18n from 'format-message'
 import {
   View,
-  StyleSheet,
   Image,
   Text,
   LayoutAnimation,
@@ -33,7 +32,7 @@ import {
 } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { FormLabel } from '../../../common/text'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import images from '../../../images'
 import RowWithTextInput from '../../../common/components/rows/RowWithTextInput'
 import Row from '../../../common/components/rows/Row'
@@ -144,8 +143,8 @@ export class QuizEdit extends Component<Props, any> {
     return (
       <Screen
         title={i18n('Edit Quiz Details')}
-        navBarTitleColor={colors.darkText}
-        navBarButtonColor={colors.link}
+        navBarTitleColor={colors.textDarkest}
+        navBarButtonColor={colors.linkColor}
         rightBarButtons={[
           {
             title: i18n('Done'),
@@ -157,7 +156,7 @@ export class QuizEdit extends Component<Props, any> {
         ]}
         dismissButtonTitle={i18n('Cancel')}
       >
-        <View style={{ flex: 1, backgroundColor: '#F5F5F5' }}>
+        <View style={{ flex: 1, backgroundColor: colors.backgroundGrouped }}>
           { this.state.pending && <SavingBanner style={style.savingBanner} />}
           { !this.state.validation.isValid && <UnmetRequirementBanner text={i18n('Invalid field')} testID={'quizEdit.unmet-requirement-banner'}/> }
           <KeyboardAwareScrollView
@@ -612,24 +611,24 @@ export class QuizEdit extends Component<Props, any> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: colors.backgroundGrouped,
   },
   buttonInnerContainer: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingRight: global.style.defaultPadding,
+    paddingRight: vars.padding,
   },
   buttonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#008EE2',
+    color: colors.linkColor,
   },
   buttonImage: {
-    tintColor: colors.primaryButton,
+    tintColor: colors.linkColor,
     marginRight: 8,
     height: 18,
     width: 18,
@@ -637,7 +636,7 @@ const style = StyleSheet.create({
   savingBanner: {
     backgroundColor: 'transparent',
   },
-})
+}))
 
 export function mapStateToProps ({ entities }: AppState, { courseID, quizID }: OwnProps): State {
   const entity = entities.quizzes[quizID]

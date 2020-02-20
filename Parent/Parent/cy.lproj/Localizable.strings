@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(Dim pwnc)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d o %3$d";
 
@@ -10,11 +13,26 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ yn dechrau am %2$@";
 
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@, yn %2$@, roedd y neges ddiwethaf am %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, heb eu darllen";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
+
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Gweithredu fel Defnyddiwr";
+
+/* No comment provided by engineer. */
+"Add" = "Ychwanegu";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "Ychwanegu Atodiadau";
 
 /* No comment provided by engineer. */
 "Add Student" = "Ychwanegu Myfyriwr";
@@ -52,6 +70,12 @@
 /* No comment provided by engineer. */
 "Back" = "Yn ôl";
 
+/* Calendar Tab */
+"Calendar" = "Calendr";
+
+/* No comment provided by engineer. */
+"Calendar Event" = "Digwyddiad Calendr";
+
 /* No comment provided by engineer. */
 "Cancel" = "Canslo";
 
@@ -65,7 +89,10 @@
 "Caught up on Alerts" = "Wedi gweld y negeseuon hysbysu diweddaraf";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Dewiswch fyfyriwr";
+"Choose a course to message" = "Dewiswch gwrs i anfon neges ato";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Creu neges newydd";
 
 /* Course Announcement Description */
 "Course announcements" = "Cyhoeddiadau cwrs";
@@ -80,13 +107,13 @@
 "Courses" = "Cyrsiau";
 
 /* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Myfyriwr Presennol: %@, tapiwch i newid myfyrwyr";
-
-/* No comment provided by engineer. */
 "Discussion" = "Trafodaeth";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Diystyru";
+
+/* No comment provided by engineer. */
+"Edit Recipients" = "Golygu Derbynwyr";
 
 /* No comment provided by engineer. */
 "Event" = "Digwyddiad";
@@ -101,6 +128,18 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Wedi methu llwytho (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
+"Failed. Tap for options" = "Wedi methu. Tapiwch i gael opsiynau";
+
+/* No comment provided by engineer. */
+"File" = "Ffeil";
+
+/* No comment provided by engineer. */
+"for %@" = "ar gyfer %@";
+
+/* No comment provided by engineer. */
+"Front Page" = "Tudalen Flaen";
+
+/* No comment provided by engineer. */
 "Grades" = "Graddau";
 
 /* High Assignment Grade too Low */
@@ -111,6 +150,12 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "Yn y dosbarth";
+
+/* No comment provided by engineer. */
+"Inbox" = "Blwch Derbyn";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Inbox Zero";
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Rhowch y cod paru myfyriwr a roddwyd i chi.";
@@ -139,14 +184,26 @@
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "Ni all gradd cwrs isel fod yn uwch na gradd cwrs uchel";
 
-/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "Rheoli Plant";
+/* No comment provided by engineer. */
+"Message" = "Neges";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Neges gan %1$@, %2$@, ar %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Ar goll";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Ar goll: (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Ar goll: %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Ar goll: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Neges Newydd";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Wythnos Nesaf";
@@ -159,6 +216,9 @@
 
 /* Empty Students Text */
 "No Students" = "Dim Myfyrwyr";
+
+/* No comment provided by engineer. */
+"No Subject" = "Dim Pwnc";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Dim byd yr wythnos hon";
@@ -176,7 +236,33 @@
 "Quiz" = "Cwis";
 
 /* No comment provided by engineer. */
+"Recipients" = "Derbynwyr";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "Ynghylch: %@";
+
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "Ynghylch: %1$@, %2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "Ateb";
+
+/* No comment provided by engineer. */
+"Reply All" = "Ateb Pawb";
+
+/* No comment provided by engineer. */
+"Retry" = "Ailgynnig";
+
+/* No comment provided by engineer. */
+"Send" = "Anfon";
+
+/* No comment provided by engineer. */
 "Settings" = "Gosodiadau";
+
+/* No comment provided by engineer. */
+"Subject" = "Pwnc";
 
 /* No comment provided by engineer. */
 "Submitted" = "Wedi cyflwyno";
@@ -186,6 +272,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "Wedi cyflwyno: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Crynodeb";
 
 /* Syllabus Button Title */
 "Syllabus" = "Maes Llafur";
@@ -209,17 +298,23 @@
 "This student's courses may not be published yet." = "Mae’n bosib nad yw cyrsiau’r myfyriwr hwn wedi’u cyhoeddi eto.";
 
 /* No comment provided by engineer. */
+"To" = "I";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "Trafferth yn mewngofnodi";
 
 /* No comment provided by engineer. */
 "Unread" = "Heb ddarllen";
 
-/* Calendar Tab */
-"Week" = "Wythnos";
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "Mae llwytho %1$@ i fyny ar %2$@";
 
 /* Header title of admin view */
 "Welcome!" = "Croeso!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Rhaid i chi ganiatáu hysbysiadau yn y Gosodiadau er mwyn gosod nodiadau atgoffa.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Rydych chi wedi dal i fyny";
 

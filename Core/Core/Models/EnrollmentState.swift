@@ -18,6 +18,6 @@
 
 import Foundation
 
-public enum EnrollmentState: String, Codable {
+public enum EnrollmentState: String, Codable, CaseIterable {
     case active, inactive, invited, completed, creation_pending
 }

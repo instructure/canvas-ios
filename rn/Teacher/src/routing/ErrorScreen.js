@@ -26,13 +26,13 @@ import {
 import Screen from './Screen'
 import i18n from 'format-message'
 import { Text } from '../common/text'
-import colors from '../common/colors'
+import { colors } from '../common/stylesheet'
 
 export default class ErrorScreen extends Component<*> {
   render () {
     let screenProps = {}
     if (!this.props.navigator.isModal) {
-      screenProps.navBarColor = colors.navBarColor
+      screenProps.navBarColor = colors.navBackground
       screenProps.navBarStyle = 'dark'
     }
     return (

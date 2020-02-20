@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(Kein Betreff)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d von %3$d";
 
@@ -10,11 +13,26 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ beginnt um %2$@";
 
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@, in %2$@ war die letzte Nachricht am %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, ungelesen";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
+
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Handeln als Benutzer";
+
+/* No comment provided by engineer. */
+"Add" = "Hinzufügen";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "Anhänge hinzufügen";
 
 /* No comment provided by engineer. */
 "Add Student" = "Teilnehmer hinzufügen";
@@ -52,6 +70,12 @@
 /* No comment provided by engineer. */
 "Back" = "Zurück";
 
+/* Calendar Tab */
+"Calendar" = "Kalender";
+
+/* No comment provided by engineer. */
+"Calendar Event" = "Kalenderereignis";
+
 /* No comment provided by engineer. */
 "Cancel" = "Abbrechen";
 
@@ -65,7 +89,10 @@
 "Caught up on Alerts" = "Über Alarmsignale informiert";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Wählen Sie einen Studenten";
+"Choose a course to message" = "Einen Kurs zur Benachrichtigung wählen";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Neue Nachricht verfassen";
 
 /* Course Announcement Description */
 "Course announcements" = "Kursankündigungen";
@@ -80,13 +107,13 @@
 "Courses" = "Kurse";
 
 /* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Aktueller Student: %@Tippen Sie zum Wechseln des Studenten.";
-
-/* No comment provided by engineer. */
 "Discussion" = "Diskussion";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Ablehnen";
+
+/* No comment provided by engineer. */
+"Edit Recipients" = "Empfänger bearbeiten";
 
 /* No comment provided by engineer. */
 "Event" = "Event";
@@ -101,6 +128,18 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Laden von (discussionKitModelName) NS ManagedObjectModel fehlgeschlagen";
 
 /* No comment provided by engineer. */
+"Failed. Tap for options" = "Fehlgeschlagen. Antippen für Optionen";
+
+/* No comment provided by engineer. */
+"File" = "Datei";
+
+/* No comment provided by engineer. */
+"for %@" = "für %@";
+
+/* No comment provided by engineer. */
+"Front Page" = "Frontseite";
+
+/* No comment provided by engineer. */
 "Grades" = "Noten";
 
 /* High Assignment Grade too Low */
@@ -111,6 +150,12 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "Klassenintern";
+
+/* No comment provided by engineer. */
+"Inbox" = "Posteingang";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Posteingang Zero";
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Geben Sie den Studenten-Pairing-Code ein, den Sie erhalten haben.";
@@ -139,14 +184,26 @@
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "Schlechte Kursnote kann nicht besser sein als gute Kursnote";
 
-/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "Kinder verwalten";
+/* No comment provided by engineer. */
+"Message" = "Nachricht";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Meldung von %1$@, %2$@, am %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Fehlend";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Fehlend: (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Fehlt: %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Fehlt: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Neue Nachricht";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Nächste Woche";
@@ -159,6 +216,9 @@
 
 /* Empty Students Text */
 "No Students" = "Keine Studenten";
+
+/* No comment provided by engineer. */
+"No Subject" = "Kein Betreff";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Nichts diese Woche";
@@ -176,7 +236,33 @@
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
+"Recipients" = "Empfänger";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "Betreffend: %@";
+
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "Betreffend: %1$@, %2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "Antworten";
+
+/* No comment provided by engineer. */
+"Reply All" = "Allen antworten";
+
+/* No comment provided by engineer. */
+"Retry" = "Erneut versuchen";
+
+/* No comment provided by engineer. */
+"Send" = "Senden";
+
+/* No comment provided by engineer. */
 "Settings" = "Einstellungen";
+
+/* No comment provided by engineer. */
+"Subject" = "Betreff";
 
 /* No comment provided by engineer. */
 "Submitted" = "Eingereicht";
@@ -186,6 +272,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "Eingereicht: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Übersicht";
 
 /* Syllabus Button Title */
 "Syllabus" = "Lehrplan";
@@ -209,17 +298,23 @@
 "This student's courses may not be published yet." = "Die Kurse dieses Studenten können jetzt nicht veröffentlicht werden.";
 
 /* No comment provided by engineer. */
+"To" = "An";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "Probleme beim Anmelden?";
 
 /* No comment provided by engineer. */
 "Unread" = "Ungelesen";
 
-/* Calendar Tab */
-"Week" = "Woche";
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "Hochladen %1$@ ist bei %2$@";
 
 /* Header title of admin view */
 "Welcome!" = "Willkommen!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Sie müssen in den Einstellungen die Option Benachrichtigungen erlauben, um Erinnerungen zu verwenden.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Sie werden alle erfasst";
 

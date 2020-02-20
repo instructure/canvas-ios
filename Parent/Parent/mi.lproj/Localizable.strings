@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(Kaore he kaupapa)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d o %3$d";
 
@@ -10,11 +13,26 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ ka timata ī %2$@";
 
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@, i roto %2$@, te karere whakamutunga i runga %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, kaore i pānuihia";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
+
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Mahi rite kaiwhakamahi";
+
+/* No comment provided by engineer. */
+"Add" = "Tāpiri";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "Tāpiri ngā Apititanga";
 
 /* No comment provided by engineer. */
 "Add Student" = "Tapiri ākonga";
@@ -52,6 +70,12 @@
 /* No comment provided by engineer. */
 "Back" = "Hoki";
 
+/* Calendar Tab */
+"Calendar" = "Maramataka";
+
+/* No comment provided by engineer. */
+"Calendar Event" = "Tauwhāinga Māramataka";
+
 /* No comment provided by engineer. */
 "Cancel" = "Whakakore";
 
@@ -65,7 +89,10 @@
 "Caught up on Alerts" = "Mau ake i runga i Matohi";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Tīpako he ākonga";
+"Choose a course to message" = "Kōwhiri he akoranga hei karare";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Titoa karere hōu";
 
 /* Course Announcement Description */
 "Course announcements" = "Kōrerorero akoranga";
@@ -80,13 +107,13 @@
 "Courses" = "Akoranga";
 
 /* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Ākonga o ināianei: %@, pātō ki te huri ngā ākonga";
-
-/* No comment provided by engineer. */
 "Discussion" = "Kōrerorero";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Pana";
+
+/* No comment provided by engineer. */
+"Edit Recipients" = "Whakatika ngā Kaiwhiwhi";
 
 /* No comment provided by engineer. */
 "Event" = "Tauwhāinga";
@@ -101,6 +128,18 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "I rahua te uta (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
+"Failed. Tap for options" = "I hapa. Pātō mo ngā kōwhiringa";
+
+/* No comment provided by engineer. */
+"File" = "Kōnae";
+
+/* No comment provided by engineer. */
+"for %@" = "hoki %@";
+
+/* No comment provided by engineer. */
+"Front Page" = "Whārangi mua";
+
+/* No comment provided by engineer. */
 "Grades" = "Ngā Kōeke";
 
 /* High Assignment Grade too Low */
@@ -111,6 +150,12 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "I roto i te-Akomanga";
+
+/* No comment provided by engineer. */
+"Inbox" = "Pouakauru";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Pouakaroto Kore";
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Whakauru te ākonga waihere Hono kua tukuna atu ki a koe";
@@ -139,14 +184,26 @@
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "e kore e taea raro iho te kōeke akoranga kia tiketike ake kōeke akoranga teitei";
 
-/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "Whakahaere ngā tamariki";
+/* No comment provided by engineer. */
+"Message" = "Karere";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Karere mai %1$@, %2$@, i runga %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Ngaro";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Ngaro: (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Ngaro: %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Ngaro: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Karere Hōu";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Wiki Muri";
@@ -159,6 +216,9 @@
 
 /* Empty Students Text */
 "No Students" = "Kāore he ākonga";
+
+/* No comment provided by engineer. */
+"No Subject" = "Kāore he Kaupapa";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Kahore tēnei wiki";
@@ -176,7 +236,33 @@
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
+"Recipients" = "Ngā Kaiwhiwhi";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "E pā ana: %@";
+
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "E pā ana: %1$@, %2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "Whakautu";
+
+/* No comment provided by engineer. */
+"Reply All" = "Whakautu ki te katoa";
+
+/* No comment provided by engineer. */
+"Retry" = "Ngana anō";
+
+/* No comment provided by engineer. */
+"Send" = "Tukua";
+
+/* No comment provided by engineer. */
 "Settings" = "Ngā Tautuhinga";
+
+/* No comment provided by engineer. */
+"Subject" = "Kaupapa";
 
 /* No comment provided by engineer. */
 "Submitted" = "Kua tukuna";
@@ -186,6 +272,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "Tukuna: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Whakarāpopototanga";
 
 /* Syllabus Button Title */
 "Syllabus" = "Marautanga";
@@ -209,17 +298,23 @@
 "This student's courses may not be published yet." = "Kaore e pānuitia ngā akoranga a tēnei ākonga i tēnei wā.";
 
 /* No comment provided by engineer. */
+"To" = "Ki a";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "He raruraru ki te takiuru?";
 
 /* No comment provided by engineer. */
 "Unread" = "kia pānuitia";
 
-/* Calendar Tab */
-"Week" = "Wiki";
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "E tikiake ana %1$@ kei te %2$@";
 
 /* Header title of admin view */
 "Welcome!" = "Nau Mai!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Me tukua e koe ngā whakamōhiotanga i roto i ngā Tautuhinga ki te whakatau ngā whakamaharatanga.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Kua mau katoa koe";
 

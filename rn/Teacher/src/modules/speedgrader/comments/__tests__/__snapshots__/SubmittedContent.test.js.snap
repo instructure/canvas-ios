@@ -28,7 +28,7 @@ exports[`my chat bubbles render correctly 1`] = `
     style={
       Object {
         "height": 18,
-        "tintColor": "#374A59",
+        "tintColor": "#008EE2",
         "width": 18,
       }
     }
@@ -65,7 +65,7 @@ exports[`my chat bubbles render correctly 1`] = `
       style={
         Array [
           Object {
-            "color": "#7F91A7",
+            "color": "#8B969E",
             "fontSize": 14,
           },
           undefined,

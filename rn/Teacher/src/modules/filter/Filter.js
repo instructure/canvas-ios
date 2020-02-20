@@ -20,18 +20,16 @@
 
 import React, { Component } from 'react'
 import {
-  View,
   Image,
   FlatList,
-  StyleSheet,
   Alert,
 } from 'react-native'
 import i18n from 'format-message'
 import Screen from '../../routing/Screen'
 import { type SubmissionFilterOption, updateFilterSelection } from './filter-options'
 import Row from '../../common/components/rows/Row'
-import Images from '../../images'
-import colors from '../../common/colors'
+import icon from '../../images/inst-icons'
+import { createStyleSheet } from '../../common/stylesheet'
 
 type FilterProps = {
   filterOptions: Array<SubmissionFilterOption>,
@@ -93,9 +91,7 @@ export default class Filter extends Component<FilterProps, FilterState> {
         titleStyles={[styles.filterTitle, item.disabled ? styles.disabledOption : null]}
         accessories={
           item.selected &&
-            <View style={styles.selectedCheck}>
-              <Image source={Images.check} style={{ width: 12, height: 12 }} />
-            </View>
+            <Image style={styles.selectedCheck} source={icon('check', 'solid')} />
         }
         testID={`filter.option-${item.type}`}
       />
@@ -128,19 +124,17 @@ export default class Filter extends Component<FilterProps, FilterState> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   filterTitle: {
     fontWeight: '400',
     fontSize: 18,
   },
   disabledOption: {
-    color: colors.secondaryButton,
+    color: colors.textDark,
   },
   selectedCheck: {
-    backgroundColor: colors.link,
-    padding: 6,
-    borderRadius: 12,
-    width: 24,
-    height: 24,
+    tintColor: colors.primary,
+    width: 18,
+    height: 18,
   },
-})
+}))

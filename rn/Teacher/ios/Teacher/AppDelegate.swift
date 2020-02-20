@@ -46,13 +46,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if NSClassFromString("XCTestCase") != nil { return true }
         setupCrashlytics()
+        CacheManager.resetAppIfNecessary()
         #if DEBUG
             UITestHelpers.setup(self)
         #endif
-
-        CacheManager.resetAppIfNecessary()
         if hasFirebase {
             FirebaseApp.configure()
+            configureRemoteConfig()
         }
         Core.Analytics.shared.handler = self
         DocViewerViewController.setup(.teacherPSPDFKitLicense)
@@ -106,7 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             legacyUser?.name = session.userName
             legacyUser?.sortableName = session.userName
             legacyUser?.shortName = session.userName
-            legacyUser?.avatarURL = profile.avatar_url
+            legacyUser?.avatarURL = profile.avatar_url?.rawValue
             legacyUser?.loginID = profile.login_id
             legacyUser?.email = profile.primary_email
             legacyUser?.calendar = profile.calendar?.ics
@@ -115,7 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             CKIClient.current = legacyClient
             GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
                 Brand.setCurrent(Brand(core: Core.Brand.shared), applyInWindow: self.window)
-                NativeLoginManager.login(as: session, wasReload: wasReload)
+                NativeLoginManager.login(as: session)
             }
         }
         Analytics.shared.logSession(session)
@@ -140,7 +140,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 self.changeUser()
                 return
             }
-            self.setup(session: session, wasReload: true)
+            self.setup(session: session)
         }
     }
 
@@ -215,6 +215,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         return true
     }
+
+    // similar methods exist in all other app delegates
+    // please be sure to update there as well
+    // We can't move this to Core as it would require setting up
+    // Cocoapods for Core to pull in Firebase
+    func configureRemoteConfig() {
+        let remoteConfig = RemoteConfig.remoteConfig()
+        remoteConfig.activate { error in
+            guard error == nil else {
+                return
+            }
+            let keys = remoteConfig.allKeys(from: RemoteConfigSource.remote)
+            for key in keys {
+                guard let feature = ExperimentalFeature(rawValue: key) else { continue }
+                let value = remoteConfig.configValue(forKey: key).boolValue
+                feature.isEnabled = value
+                Crashlytics.sharedInstance().setBoolValue(value, forKey: feature.userDefaultsKey)
+                Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
+            }
+        }
+        remoteConfig.fetch(completionHandler: nil)
+    }
 }
 
 extension AppDelegate: AnalyticsHandler {
@@ -274,6 +296,7 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
 
     func userDidLogout(session: LoginSession) {
         let wasCurrent = environment.currentSession == session
+        environment.api.makeRequest(DeleteLoginOAuthRequest(session: session)) { _, _, _ in }
         userDidStopActing(as: session)
         if wasCurrent { changeUser() }
     }

@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "Wszystkie kursy";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "Wszystkie okresy oceniania";
+
 /* Button to select all members of a group */
 "All members" = "Wszyscy czlonkowie";
 
@@ -366,6 +369,9 @@
 "Choose Video" = "Wybierz wideo";
 
 /* No comment provided by engineer. */
+"Clear filter" = "Wyczyść filtr";
+
+/* No comment provided by engineer. */
 "Close" = "Zamknij";
 
 /* No comment provided by engineer. */
@@ -441,6 +447,9 @@
 /* label for customizing a course */
 "Customize" = "Dostosuj";
 
+/* No comment provided by engineer. */
+"d_events" = "d_events";
+
 /* dashboard page title */
 "Dashboard" = "Panel nawigacyjny";
 
@@ -486,7 +495,11 @@
    Title for Discussions view controller */
 "Discussions" = "Dyskusje";
 
-/* Dismiss an alert dialog */
+/* Dismiss an error button
+   dismiss button
+   Dismiss button for an error dialoue
+   Dismiss error alert button
+   dismiss the alert button */
 "Dismiss" = "Odrzuć";
 
 /* Alert title asking if you want to masquerade */
@@ -501,7 +514,7 @@
 /* Button to cancel deleting folders */
 "Don't delete" = "Nie usuwaj";
 
-/* Button title to mark a to do item as done */
+/* No comment provided by engineer. */
 "Done" = "Gotowe";
 
 /* Shown when we cancel a file download */
@@ -530,9 +543,6 @@
 
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Termin:";
-
-/* Due date label for to do items, first placeholder is date, second is time */
-"Due: %@ at %@" = "Termin: %1$@ o godz. %2$@";
 
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "Termin: %1$@ o godz. %2$@";
@@ -631,6 +641,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Pliki (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Filtruj";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Filtruj wg:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Pobieranie ukończone";
@@ -737,9 +753,6 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "Ma problemy";
-
-/* No comment provided by engineer. */
-"It looks like there’s nothing to do today. Enjoy your day!" = "Wygląda na to, że nie ma dziś nic do zrobienia. Korzystaj z dnia!";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Jest puste, co tu jeszcze robisz.";
@@ -933,6 +946,9 @@
 "No Mastery Paths" = "Brak ścieżek nauki";
 
 /* No comment provided by engineer. */
+"No Notifications" = "Brak powiadomień";
+
+/* No comment provided by engineer. */
 "No recipients" = "Brak odbiorców";
 
 /* Title for attempting submission without a comment */
@@ -949,9 +965,6 @@
 
 /* No comment provided by engineer. */
 "No Thanks" = "Nie dziękuję";
-
-/* No comment provided by engineer. */
-"No To-Do Items" = "Brak zadań";
 
 /* error message for a 401 response. */
 "Not Authorized" = "Brak autoryzacji";
@@ -1478,6 +1491,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Wystąpił błąd podczas wczytywania zawartości. Jeśli to jest przesyłka audio lub wideo, przetwarzanie może nadal trwać.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Brak powiadomień do przekazania.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "Ta aplikacja nie jest dopuszczona do użytku.";

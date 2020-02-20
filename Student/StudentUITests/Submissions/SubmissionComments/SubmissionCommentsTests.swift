@@ -19,6 +19,7 @@
 import Foundation
 import XCTest
 @testable import Core
+@testable import CoreUITests
 import TestsFoundation
 
 class SubmissionCommentsTests: StudentUITestCase {
@@ -31,17 +32,19 @@ class SubmissionCommentsTests: StudentUITestCase {
 
     func testFileComments() {
         mockBaseRequests()
+        let attachments = [
+            APIFile.make(id: "1", display_name: "File 1"),
+            APIFile.make(id: "2", display_name: "File 2"),
+        ]
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             id: "1",
             user_id: "1",
             submission_type: .online_upload,
             attempt: 1,
-            attachments: [
-                APIFile.make(id: "1", display_name: "File 1"),
-                APIFile.make(id: "2", display_name: "File 2"),
-            ],
+            attachments: attachments,
             user: APISubmissionUser.make(id: "1", short_name: "Student")
         ))
+        attachments.forEach { mockURL($0.url!.rawValue, data: nil) }
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
         SubmissionDetails.drawerGripper.tap()
@@ -155,7 +158,7 @@ class SubmissionCommentsTests: StudentUITestCase {
                 ),
             ]
         ))
-        mockDataRequest(URLRequest(url: testm4a), data: try! Data(contentsOf: testm4a))
+        mockURL(testm4a, data: try! Data(contentsOf: testm4a))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
         SubmissionDetails.drawerGripper.tap()
@@ -199,7 +202,7 @@ class SubmissionCommentsTests: StudentUITestCase {
         allowAccessToMicrophone {
             app.find(label: "Record Audio").tap()
         }
-        AudioRecorder.recordButton.tap() // Doesn't start recording on bitrise. :( It works locally.
+        AudioRecorder.recordButton.tap()
         AudioRecorder.stopButton.tap()
         XCTAssertTrue(AudioRecorder.currentTimeLabel.isVisible)
         AudioRecorder.clearButton.tap()
@@ -212,6 +215,6 @@ class SubmissionCommentsTests: StudentUITestCase {
         AudioRecorder.stopButton.tap()
         XCTAssertTrue(AudioRecorder.currentTimeLabel.isVisible)
         AudioRecorder.sendButton.tap()
-        XCTAssertTrue(SubmissionComments.audioCell(commentID: "42").isVisible)
+        XCTAssertTrue(SubmissionComments.audioCell(commentID: "42").waitToExist().isVisible)
     }
 }

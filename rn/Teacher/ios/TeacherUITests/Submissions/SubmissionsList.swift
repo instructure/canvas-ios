@@ -21,4 +21,8 @@ import TestsFoundation
 
 enum SubmissionsList: String, CaseIterable, ElementWrapper {
     case postpolicy
+
+    static func row(contextID: String) -> Element {
+        return app.find(id: "submission-\(contextID)")
+    }
 }

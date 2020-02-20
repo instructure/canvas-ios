@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "（無主題）";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d 來自 %3$d";
 
@@ -10,11 +13,26 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@將開始於%2$@";
 
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@，在 %2$@ 中，最後的訊息在%3$@%4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@，未讀";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
+
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
 /* Label for button that allows admin to Act as User */
 "Act as User" = "作為使用者";
+
+/* No comment provided by engineer. */
+"Add" = "添加";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "添加附件";
 
 /* No comment provided by engineer. */
 "Add Student" = "添加學生";
@@ -52,6 +70,12 @@
 /* No comment provided by engineer. */
 "Back" = "返回";
 
+/* Calendar Tab */
+"Calendar" = "行事曆";
+
+/* No comment provided by engineer. */
+"Calendar Event" = "行事曆活動";
+
 /* No comment provided by engineer. */
 "Cancel" = "取消";
 
@@ -65,7 +89,10 @@
 "Caught up on Alerts" = "趕上提示的進度";
 
 /* No comment provided by engineer. */
-"Choose a student" = "選取一個學生";
+"Choose a course to message" = "選擇課程以傳送訊息";
+
+/* No comment provided by engineer. */
+"Compose new message" = "撰寫新訊息";
 
 /* Course Announcement Description */
 "Course announcements" = "課程宣告";
@@ -80,13 +107,13 @@
 "Courses" = "課程";
 
 /* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "目前的學生：%@，點選以轉換學生";
-
-/* No comment provided by engineer. */
 "Discussion" = "討論";
 
 /* No comment provided by engineer. */
 "Dismiss" = "取消";
+
+/* No comment provided by engineer. */
+"Edit Recipients" = "編輯收件人";
 
 /* No comment provided by engineer. */
 "Event" = "活動";
@@ -101,6 +128,18 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "無法載入 (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
+"Failed. Tap for options" = "失敗。點選選項";
+
+/* No comment provided by engineer. */
+"File" = "檔案";
+
+/* No comment provided by engineer. */
+"for %@" = "對象：%@";
+
+/* No comment provided by engineer. */
+"Front Page" = "首頁";
+
+/* No comment provided by engineer. */
 "Grades" = "成績";
 
 /* High Assignment Grade too Low */
@@ -111,6 +150,12 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "課堂內的";
+
+/* No comment provided by engineer. */
+"Inbox" = "收件匣";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "收件匣無訊息";
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "輸入已提供予您的學生配對代碼。";
@@ -139,14 +184,26 @@
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "低的課程評分不可高於高的課程評分";
 
-/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "管理兒童";
+/* No comment provided by engineer. */
+"Message" = "訊息";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "訊息來自 %1$@，%2$@，在 %3$@,%4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "缺少";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "缺少：(-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "缺失： %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "缺失： %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "新訊息";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "下週";
@@ -159,6 +216,9 @@
 
 /* Empty Students Text */
 "No Students" = "無學生";
+
+/* No comment provided by engineer. */
+"No Subject" = "無主題";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "本週無事";
@@ -176,7 +236,33 @@
 "Quiz" = "測驗";
 
 /* No comment provided by engineer. */
+"Recipients" = "收件人";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "關於：%@";
+
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "關於：%1$@,%2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "回覆";
+
+/* No comment provided by engineer. */
+"Reply All" = "全部回覆";
+
+/* No comment provided by engineer. */
+"Retry" = "重試";
+
+/* No comment provided by engineer. */
+"Send" = "傳送";
+
+/* No comment provided by engineer. */
 "Settings" = "設定";
+
+/* No comment provided by engineer. */
+"Subject" = "主題";
 
 /* No comment provided by engineer. */
 "Submitted" = "已提交";
@@ -186,6 +272,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "已提交於：%1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "摘要";
 
 /* Syllabus Button Title */
 "Syllabus" = "課程大綱";
@@ -209,17 +298,23 @@
 "This student's courses may not be published yet." = "此學生的課程可能尚未發佈。";
 
 /* No comment provided by engineer. */
+"To" = "至";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "登入發生問題";
 
 /* No comment provided by engineer. */
 "Unread" = "未讀";
 
-/* Calendar Tab */
-"Week" = "週";
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "上傳 %1$@ 在%2$@";
 
 /* Header title of admin view */
 "Welcome!" = "歡迎！";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "您必須允許設定內的通知，方可設定提醒。";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "您已讀完所有新訊息";
 

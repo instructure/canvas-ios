@@ -78,7 +78,6 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="kpV-J8-jIO" firstAttribute="leading" secondItem="7yL-fW-mIX" secondAttribute="leading" id="4rk-sx-8ei"/>
                                                             <constraint firstItem="ei9-yY-MdM" firstAttribute="leading" secondItem="7yL-fW-mIX" secondAttribute="leading" id="6BV-2F-NYy"/>
@@ -106,7 +105,6 @@
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s8P-wF-IX6" customClass="AssignmentDetailsSectionContainerView" customModule="Student" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="98.5" width="343" height="128"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <accessibility key="accessibilityConfiguration" identifier="AssingmentDetails.dueSection"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eid-3a-E5r">
@@ -152,7 +150,6 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.lockSection"/>
                                                         <constraints>
                                                             <constraint firstItem="Cmp-yn-QWl" firstAttribute="top" secondItem="6g8-M8-EYR" secondAttribute="bottom" constant="-8" id="Cxe-2f-r8P"/>
@@ -169,7 +166,6 @@
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Plt-HB-bKp" customClass="AssignmentDetailsSectionContainerView" customModule="Student" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="316" width="343" height="128"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <accessibility key="accessibilityConfiguration" identifier="AssingmentDetails.submissionTypesSection"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="headerText" value="Submission Types"/>
@@ -177,7 +173,6 @@
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hil-LN-kZQ" customClass="AssignmentDetailsSectionContainerView" customModule="Student" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="452" width="343" height="128"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <accessibility key="accessibilityConfiguration" identifier="AssingmentDetails.fileTypesSection"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="headerText" value="File Types"/>
@@ -201,7 +196,6 @@
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E1l-zH-QmF" userLabel="GradedView" customClass="GradeCircleView" customModule="Core">
                                                                 <rect key="frame" x="0.0" y="20.5" width="343" height="144"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.gradeCell"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="144" id="9w5-U6-mq8"/>
@@ -242,7 +236,6 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstItem="4TE-cB-TlA" firstAttribute="leadingMargin" secondItem="A1G-mN-QCX" secondAttribute="leading" id="6oC-8k-h5Z"/>
                                                                     <constraint firstAttribute="trailingMargin" secondItem="4TE-cB-TlA" secondAttribute="trailing" id="BE6-bh-MVm"/>
@@ -296,7 +289,6 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <accessibility key="accessibilityConfiguration" identifier="AssingmentDetails.submissionsButton">
                                                                     <accessibilityTraits key="traits" button="YES"/>
                                                                 </accessibility>
@@ -412,7 +404,6 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <accessibility key="accessibilityConfiguration" identifier="AssingmentDetails.quizSection"/>
                                                         <constraints>
                                                             <constraint firstItem="wuJ-9M-78d" firstAttribute="leading" secondItem="RBf-wD-x1b" secondAttribute="leading" id="0dH-bZ-y8H"/>
@@ -450,7 +441,6 @@
                                                                 </constraints>
                                                             </imageView>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.lockIcon"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="144" id="7DX-Qo-ME5"/>
@@ -496,7 +486,6 @@
                                                 </constraints>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="VdI-qu-MC8" firstAttribute="top" secondItem="QTp-Qq-8ZA" secondAttribute="top" constant="16" id="gkd-1H-BlQ"/>
                                             <constraint firstItem="VdI-qu-MC8" firstAttribute="leading" secondItem="QTp-Qq-8ZA" secondAttribute="leading" constant="16" id="lEQ-8P-D8p"/>
@@ -504,7 +493,7 @@
                                             <constraint firstAttribute="bottom" secondItem="VdI-qu-MC8" secondAttribute="bottom" id="zbC-ic-PSA"/>
                                         </constraints>
                                     </view>
-                                    <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q3R-vd-zmQ" customClass="CoreWebView" customModule="Student" customModuleProvider="target">
+                                    <wkWebView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q3R-vd-zmQ" customClass="CoreWebView" customModule="Student" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1177" width="375" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="KpP-H1-iAI"/>
@@ -519,7 +508,6 @@
                                     </wkWebView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gpb-je-B3z" userLabel="PaddingView">
                                         <rect key="frame" x="0.0" y="1197" width="375" height="0.0"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" id="0LL-Ka-xXn"/>
                                         </constraints>
@@ -544,9 +532,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="PCA-RH-zpk"/>
                                 </constraints>
-                                <state key="normal" title="Submit Assignment">
-                                    <color key="titleColor" red="0.98040133709999999" green="0.98038035629999998" blue="0.98038440940000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
+                                <state key="normal" title="Submit Assignment"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="buttonPrimaryText"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>

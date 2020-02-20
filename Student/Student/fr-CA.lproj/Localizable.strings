@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "Tous les cours";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "Toutes les périodes de notation";
+
 /* Button to select all members of a group */
 "All members" = "Tous les membres";
 
@@ -366,6 +369,9 @@
 "Choose Video" = "Choisir une vidéo";
 
 /* No comment provided by engineer. */
+"Clear filter" = "Effacer le filtre";
+
+/* No comment provided by engineer. */
 "Close" = "Fermer";
 
 /* No comment provided by engineer. */
@@ -441,6 +447,9 @@
 /* label for customizing a course */
 "Customize" = "Personnaliser";
 
+/* No comment provided by engineer. */
+"d_events" = "d_events";
+
 /* dashboard page title */
 "Dashboard" = "Tableau de bord";
 
@@ -486,7 +495,11 @@
    Title for Discussions view controller */
 "Discussions" = "Discussions";
 
-/* Dismiss an alert dialog */
+/* Dismiss an error button
+   dismiss button
+   Dismiss button for an error dialoue
+   Dismiss error alert button
+   dismiss the alert button */
 "Dismiss" = "Ignorer";
 
 /* Alert title asking if you want to masquerade */
@@ -501,7 +514,7 @@
 /* Button to cancel deleting folders */
 "Don't delete" = "Ne pas supprimer";
 
-/* Button title to mark a to do item as done */
+/* No comment provided by engineer. */
 "Done" = "Terminé";
 
 /* Shown when we cancel a file download */
@@ -530,9 +543,6 @@
 
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Échéance :";
-
-/* Due date label for to do items, first placeholder is date, second is time */
-"Due: %@ at %@" = "Échéance : %1$@ à %2$@";
 
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "Échéance : %1$@ à %2$@";
@@ -631,6 +641,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Fichiers (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Filtre";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Filtrer par :";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Téléchargement terminé";
@@ -737,9 +753,6 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "Il comporte des problèmes";
-
-/* No comment provided by engineer. */
-"It looks like there’s nothing to do today. Enjoy your day!" = "Il semblerait qu’il n’y a rien à faire aujourd’hui. Profitez de votre journée!";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "C'est vide, que faites-vous encore ici.";
@@ -933,6 +946,9 @@
 "No Mastery Paths" = "Aucun parcours de maîtrise";
 
 /* No comment provided by engineer. */
+"No Notifications" = "Aucune notification";
+
+/* No comment provided by engineer. */
 "No recipients" = "Aucun destinataire";
 
 /* Title for attempting submission without a comment */
@@ -949,9 +965,6 @@
 
 /* No comment provided by engineer. */
 "No Thanks" = "Non merci";
-
-/* No comment provided by engineer. */
-"No To-Do Items" = "Aucun élément à faire";
 
 /* error message for a 401 response. */
 "Not Authorized" = "Non autorisé";
@@ -1478,6 +1491,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Une erreur est survenue lors du chargement de votre contenu. Si le téléversement était celui d’un fichier audio ou vidéo, il se pourrait qu'il soit toujours en cours d'exécution.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Il n'y a encore rien à signaler.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "Cette application n'est pas autorisée à l'utilisation.";

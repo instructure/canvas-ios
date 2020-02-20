@@ -18,11 +18,7 @@
 
 import Foundation
 import UIKit
-
-private func format(_ width: CGFloat) -> String {
-    return "\(Int(width))"
-}
-
+import Core
 
 public class PageTemplateRenderer: NSObject {
     
@@ -41,13 +37,22 @@ public class PageTemplateRenderer: NSObject {
             .map { "<h1 id=\"title\">\($0)</h1>" }
             ?? ""
 
+        let buttonBack = Core.Brand.shared.buttonPrimaryBackground.ensureContrast(against: .named(.backgroundLightest))
+        let buttonFore = Core.Brand.shared.buttonPrimaryText.ensureContrast(against: buttonBack)
+        let link = Core.Brand.shared.linkColor.ensureContrast(against: .named(.backgroundLightest))
+
         var template = try! String(contentsOf: templateUrl, encoding: String.Encoding.utf8)
-        template = template.replacingOccurrences(of: "{$CONTENT_WIDTH$}", with: format(viewportWidth))
+        template = template.replacingOccurrences(of: "{$CONTENT_WIDTH$}", with: "\(Int(viewportWidth))")
         template = template.replacingOccurrences(of: "{$TITLE$}", with: htmlTitle)
         template = template.replacingOccurrences(of: "{$PAGE_BODY$}", with: body)
-        template = template.replacingOccurrences(of: "{$PRIMARY_BUTTON_COLOR$}", with: Brand.current.primaryButtonColor.hex)
+        template = template.replacingOccurrences(of: "{$PRIMARY_BUTTON_BACKGROUND$}", with: buttonBack.hexString)
+        template = template.replacingOccurrences(of: "{$PRIMARY_BUTTON_TEXT$}", with: buttonFore.hexString)
+        template = template.replacingOccurrences(of: "{$LINK_COLOR$}", with: link.hexString)
+        template = template.replacingOccurrences(of: "{$TEXT_COLOR$}", with: UIColor.named(.textDarkest).hexString)
+        template = template.replacingOccurrences(of: "{$BACKGROUND_COLOR$}", with: UIColor.named(.backgroundLightest).hexString)
         template = template.replacingOccurrences(of: "{$LTI_LAUNCH_TEXT$}", with: NSLocalizedString("Launch External Tool", comment: ""))
-        template = template.replacingOccurrences(of: "{$CONTENT_DIRECTION}", with: UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft ? "rtl" : "ltr")
+        template = template.replacingOccurrences(of: "{$CONTENT_DIRECTION$}", with: UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft ? "rtl" : "ltr")
+
 
         let jquery = (body.contains("$(") || body.contains("$."))
             ? "<script defer src=\"https://code.jquery.com/jquery-1.9.1.min.js\"></script>"

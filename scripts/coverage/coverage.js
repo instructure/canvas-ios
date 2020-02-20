@@ -43,7 +43,7 @@ program
   .version(require('../../package.json').version)
   .option('--device [name]', 'Run XCTest on [name]', 'iPhone 8')
   .option('--html', 'Deprecated, html reports are always generated')
-  .option('--os [name]', 'Run XCTest on [name]', '12.2')
+  .option('--os [name]', 'Run XCTest on [name]', '13.0')
   .option('--scheme [name]', 'Report coverage for scheme [name]', 'CITests')
   .option('--test', 'Run XCTest for scheme before generating reports')
   .parse(process.argv)
@@ -305,7 +305,10 @@ function syncCoverage () {
     return
   }
   const s3folder = scheme.toLowerCase()
-  if (process.env.BITRISEIO_GIT_BRANCH_DEST) { // This is a PR, pull master coverage
+  if (process.env.BITRISE_GIT_BRANCH == "master") { // This is a master run, push to s3
+    console.log('Pushing all coverage files to s3')
+    run(`aws s3 sync "${coverageFolder}" "s3://inseng-code-coverage/ios/coverage/${s3folder}"`)
+  } else { // This is a PR (or manual trigger), pull master coverage
     console.log('Pulling master coverage summary from s3')
     try {
       run(`aws s3 cp "s3://inseng-code-coverage/ios/coverage/${s3folder}/coverage-summary.json" "${coverageFolder}/coverage-summary-master.json"`)
@@ -315,8 +318,5 @@ function syncCoverage () {
       }))
       console.log('Failed to pull prior code coverage. Creating empty coverage for master.')
     }
-  } else { // This is a master run, push to s3
-    console.log('Pushing all coverage files to s3')
-    run(`aws s3 sync "${coverageFolder}" "s3://inseng-code-coverage/ios/coverage/${s3folder}"`)
   }
 }

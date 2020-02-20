@@ -21,11 +21,11 @@
  */
 
 import React from 'react'
-import { View, Image, StyleSheet } from 'react-native'
+import { View, Image } from 'react-native'
 import Images from '../../../images'
 import i18n from 'format-message'
 import { Text } from '../../../common/text'
-import colors from '../../../common/colors'
+import { createStyleSheet } from '../../../common/stylesheet'
 
 export default class PublishedIcon extends React.Component<Object> {
   render () {
@@ -64,7 +64,7 @@ export default class PublishedIcon extends React.Component<Object> {
 
 const iconSize = 21
 
-const internalStyle = StyleSheet.create({
+const internalStyle = createStyleSheet(colors => ({
   container: {
     flex: 1,
     flexDirection: 'row',
@@ -73,18 +73,18 @@ const internalStyle = StyleSheet.create({
   text: {
     marginLeft: 6,
     fontWeight: '500',
-    color: colors.grey4,
+    color: colors.textDark,
   },
-  publishedTextStyle: { color: colors.checkmarkGreen },
-  unPublishedTextStyle: { color: colors.grey4 },
+  publishedTextStyle: { color: colors.textSuccess },
+  unPublishedTextStyle: { color: colors.textDark },
   publishedIcon: {
     height: iconSize,
     width: iconSize,
-    tintColor: colors.checkmarkGreen,
+    tintColor: colors.textSuccess,
   },
   unpublishedIcon: {
     height: iconSize,
     width: iconSize,
-    tintColor: colors.grey4,
+    tintColor: colors.textDark,
   },
-})
+}))

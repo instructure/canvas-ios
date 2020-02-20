@@ -26,13 +26,19 @@ public class ActAsUserWindow: UIWindow {
     public var uiTestHelper: UIButton?
 
     override public func layoutSubviews() {
+        isActing = (
+            !(rootViewController is LoadingViewController) &&
+            !(rootViewController is LoginNavigationController) &&
+            AppEnvironment.shared.currentSession?.actAsUserID != nil
+        )
+
         super.layoutSubviews()
-        overlay.frame = self.bounds
-        self.bringSubviewToFront(overlay)
+        overlay.frame = bounds
+        bringSubviewToFront(overlay)
         if let button = uiTestHelper {
-            self.bringSubviewToFront(button)
+            bringSubviewToFront(button)
         }
-        self.overlay.setNeedsLayout()
+        overlay.setNeedsLayout()
     }
 
     public convenience init(frame: CGRect, loginDelegate: LoginDelegate) {
@@ -46,21 +52,6 @@ public class ActAsUserWindow: UIWindow {
 
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    public override var rootViewController: UIViewController? {
-        didSet {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [view = oldValue?.viewIfLoaded] in
-                if let view = view, view.window != nil {
-                    print("⚠️: found view from dead rootViewController view: \(view)")
-                }
-            }
-            isActing = (
-                !(rootViewController is LoadingViewController) &&
-                !(rootViewController is LoginNavigationController) &&
-                AppEnvironment.shared.currentSession?.actAsUserID != nil
-            )
-        }
     }
 
     var isActing = false {
@@ -77,7 +68,6 @@ public class ActAsUserWindow: UIWindow {
                 overlay.avatarView.name = session.userName
                 overlay.avatarView.url = session.userAvatarURL
             }
-            overlay.alpha = isActing ? 1 : 0
         }
     }
 }
@@ -89,7 +79,6 @@ class ActAsUserOverlay: UIView {
         self.init(frame: frame)
         self.loginDelegate = loginDelegate
 
-        alpha = 0
         backgroundColor = .clear
         layer.borderColor = UIColor.named(.borderAlert).cgColor
         layer.borderWidth = 2

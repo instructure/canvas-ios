@@ -50,10 +50,10 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
 
         title = NSLocalizedString("Settings", comment: "")
 
-        tableView.backgroundColor = .named(.backgroundLight)
+        tableView.backgroundColor = .named(.backgroundGrouped)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl = CircleRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         tableView.registerHeaderFooterView(GroupedSectionHeaderView.self, fromNib: false)
         tableView.registerCell(RightDetailTableViewCell.self)
@@ -101,17 +101,25 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
                         delegate: self
                     ), sender: self)
                 },
+                Row(NSLocalizedString("Experimental Features", comment: "")) { [weak self] in
+                    guard let self = self else { return }
+                    let vc = ExperimentalFeaturesViewController()
+                    vc.readOnly = true
+                    self.env.router.show(vc, from: self)
+                },
             ] + channelTypes.values.map({ channels -> Row in
                 Row(channels[0].type.name) { [weak self] in
                     guard let self = self else { return }
                     if channels.count == 1, let channel = channels.first {
-                        self.show(NotificationCategoriesViewController.create(
+                        let vc = NotificationCategoriesViewController.create(
                             title: channel.type.name,
                             channelID: channel.id,
                             type: channel.type
-                        ), sender: self)
+                        )
+                        self.env.router.show(vc, from: self)
                     } else {
-                        self.show(NotificationChannelsViewController.create(type: channels[0].type), sender: self)
+                        let vc = NotificationChannelsViewController.create(type: channels[0].type)
+                        self.env.router.show(vc, from: self)
                     }
                 }
             }).sorted(by: { $0.title < $1.title }) + [
@@ -124,15 +132,15 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
             Section(NSLocalizedString("Legal", bundle: .core, comment: ""), rows: [
                 Row(NSLocalizedString("Privacy Policy", comment: "")) { [weak self] in
                     guard let self = self else { return }
-                    self.env.router.route(to: "https://www.instructure.com/policies/privacy/", from: self, options: nil)
+                    self.env.router.route(to: "https://www.instructure.com/policies/privacy/", from: self)
                 },
                 Row(NSLocalizedString("Terms of Use", comment: "")) { [weak self] in
                     guard let self = self else { return }
-                    self.env.router.route(to: .termsOfService(), from: self, options: nil)
+                    self.env.router.route(to: .termsOfService(), from: self)
                 },
                 Row(NSLocalizedString("Canvas on GitHub", comment: "")) { [weak self] in
                     guard let self = self else { return }
-                    self.env.router.route(to: "https://github.com/instructure/canvas-ios", from: self, options: nil)
+                    self.env.router.route(to: "https://github.com/instructure/canvas-ios", from: self)
                 },
             ]),
         ]
@@ -161,6 +169,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = sections[indexPath.section].rows[indexPath.row]
         let cell: RightDetailTableViewCell = tableView.dequeue(for: indexPath)
+        cell.backgroundColor = .named(.backgroundGroupedCell)
         cell.textLabel?.text = row.title
         cell.detailTextLabel?.text = row.detail
         cell.accessoryType = row.hasDisclosure ? .disclosureIndicator : .none

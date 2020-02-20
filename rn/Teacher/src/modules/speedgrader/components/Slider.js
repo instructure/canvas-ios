@@ -21,7 +21,6 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   Animated,
   PanResponder,
   Image,
@@ -31,7 +30,7 @@ import {
 } from 'react-native'
 import i18n from 'format-message'
 import { Text } from '@common/text'
-import colors from '@common/colors'
+import { createStyleSheet } from '@common/stylesheet'
 import Images from '@images/index'
 
 const AdjustableView = requireNativeComponent('Adjustable')
@@ -331,7 +330,7 @@ export default class Slider extends Component<Props, State> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   sliderContainer: {
     display: 'flex',
     flexDirection: 'row',
@@ -354,7 +353,7 @@ const styles = StyleSheet.create({
   },
   line: {
     height: 1,
-    borderTopColor: colors.grey3,
+    borderTopColor: colors.borderMedium,
     borderTopWidth: 1,
   },
   thumb: {
@@ -363,9 +362,9 @@ const styles = StyleSheet.create({
     height: 30,
     width: 30,
     borderRadius: 15,
-    borderColor: colors.grey3,
+    borderColor: colors.borderMedium,
     borderWidth: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.backgroundLightest,
     shadowRadius: 2,
     shadowColor: '#000',
     shadowOpacity: 0.25,
@@ -378,7 +377,7 @@ const styles = StyleSheet.create({
     top: -50,
   },
   tooltipBubble: {
-    backgroundColor: '#000',
+    backgroundColor: colors.backgroundDarkest,
     padding: 8,
     width: 82,
     borderRadius: 5,
@@ -388,15 +387,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   tooltipText: {
-    color: 'white',
+    color: colors.textLightest,
     textAlign: 'center',
   },
   tooltipArrow: {
-    tintColor: 'black',
+    tintColor: colors.backgroundDarkest,
     position: 'absolute',
     width: 15,
     height: 10,
     top: 30,
     transform: [{ rotate: '180deg' }],
   },
-})
+}))

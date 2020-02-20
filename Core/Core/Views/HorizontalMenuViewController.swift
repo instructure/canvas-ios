@@ -29,7 +29,7 @@ open class HorizontalMenuViewController: UIViewController {
     var underlineLeftConstraint: NSLayoutConstraint?
     var menuHeightConstraint: NSLayoutConstraint?
     public weak var delegate: HorizontalPagedMenuDelegate?
-    private var selectedIndexPath: IndexPath = IndexPath(item: 0, section: 0)
+    public private(set) var selectedIndexPath: IndexPath = IndexPath(item: 0, section: 0)
 
     private var itemCount: Int {
         return delegate?.viewControllers.count ?? 0
@@ -43,7 +43,8 @@ open class HorizontalMenuViewController: UIViewController {
         super.viewDidLoad()
         edgesForExtendedLayout = []
         view.backgroundColor = UIColor.named(.backgroundLightest)
-        NotificationCenter.default.addObserver(self, selector: #selector(splitViewControllerWillChangeDisplayModes), name: Notification.Name.SplitViewControllerWillChangeDisplayModeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(splitViewControllerWillChangeDisplayModes),
+                                               name: Notification.Name.SplitViewControllerWillChangeDisplayModeNotification, object: nil)
     }
 
     override open func viewWillLayoutSubviews() {
@@ -95,7 +96,8 @@ open class HorizontalMenuViewController: UIViewController {
 
         view.addSubview(menu)
         menu.pinToLeftAndRightOfSuperview()
-        menuHeightConstraint = menu.addConstraintsWithVFL("V:[view(height)]", metrics: ["height": menuCellHeight])?.first
+        let h = itemCount == 1 ? 0 : menuCellHeight
+        menuHeightConstraint = menu.addConstraintsWithVFL("V:[view(height)]", metrics: ["height": h])?.first
         menu.addConstraintsWithVFL("V:|[view]")
     }
 
@@ -140,7 +142,7 @@ open class HorizontalMenuViewController: UIViewController {
     func setupBottomBorder() {
         bottomBorder = UIView()
         guard let bottomBorder = bottomBorder, let underlineView = underlineView else { return }
-        bottomBorder.backgroundColor = UIColor.named(.borderDark)
+        bottomBorder.backgroundColor = UIColor.named(.borderMedium)
         view.insertSubview(bottomBorder, belowSubview: underlineView)
         bottomBorder.pinToLeftAndRightOfSuperview()
         let bottoms = NSLayoutConstraint(item: bottomBorder, attribute: .bottom, relatedBy: .equal, toItem: menu, attribute: .bottom, multiplier: 1.0, constant: -1)
@@ -197,6 +199,13 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
         } else {
             return collectionView.bounds.size
         }
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard collectionView != menu, let item = delegate?.viewControllers[indexPath.row] as? HorizontalPagedMenuItem else {
+            return
+        }
+        item.menuItemWillBeDisplayed()
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -259,7 +268,7 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
             contentView.addSubview(title)
             title.pin(inside: contentView)
             title.textColor = .systemBlue
-            contentView.backgroundColor = .white
+            backgroundColor = .named(.backgroundLightest)
         }
 
         override public var isSelected: Bool {
@@ -272,6 +281,12 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
                 }
             }
         }
+    }
+}
+
+public extension HorizontalMenuViewController {
+    func titleForSelectedTab() -> String? {
+        return delegate?.menuItemTitle(at: selectedIndexPath)
     }
 }
 
@@ -294,4 +309,8 @@ public extension HorizontalPagedMenuDelegate {
     var menuItemDefaultColor: UIColor? { UIColor.named(.textDark) }
 
     var menuItemFont: UIFont { .scaledNamedFont(.semibold16) }
+}
+
+public protocol HorizontalPagedMenuItem {
+    func menuItemWillBeDisplayed()
 }

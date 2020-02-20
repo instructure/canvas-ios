@@ -17,7 +17,7 @@
 //
 
 import UIKit
-
+import Core
 
 protocol CalendarWeekViewDelegate {
     func weekView(_ weekView: CalendarWeekView, selectedDate day: Date)
@@ -52,7 +52,7 @@ class CalendarWeekView : UIView {
     }()
     
     @objc var selectedDay: Date?
-    @objc var initialDay = Date()
+    @objc var initialDay = Clock.now
     
     fileprivate var weekButtons = [UIButton]()
     fileprivate lazy var veryShortStandaloneWeekdaySymbols: [String] = {
@@ -137,9 +137,10 @@ class CalendarWeekView : UIView {
     }
     
     @objc func dateForIndex(_ index: Int) -> Date {
-        var weekComponents = (Calendar.current as NSCalendar).components([.year, .month, .weekOfYear, .weekday], from: self.initialDay)
+        var weekComponents = (Calendar.current as NSCalendar).components([.year, .month, .weekOfYear, .weekday, .yearForWeekOfYear], from: self.initialDay)
         weekComponents.weekday = index + 1
-        return Calendar.current.date(from: weekComponents)!
+        let date = Calendar.current.date(from: weekComponents)!
+        return date
     }
     
     @objc func setSelectedWeekdayIndex(_ index: Int, animated: Bool) {

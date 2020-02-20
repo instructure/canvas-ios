@@ -28,6 +28,7 @@ import * as template from '../../../../__templates__'
 describe('ConversationMessageRow', () => {
   let props
   beforeEach(() => {
+    jest.clearAllMocks()
     props = {
       conversation: template.conversation(),
       message: template.conversationMessage(),
@@ -97,7 +98,32 @@ describe('ConversationMessageRow', () => {
     expect(tree.find('[children="to 2 others"]').exists()).toBe(true)
   })
 
-  it('renders correctly when there is only one author (current user) and one receiver', () => {
+  it('renders correctly with author (not current user) lots of participants', async () => {
+    const session = getSession()
+    props.conversation = template.conversation({
+      id: '1',
+      participants: [
+        { id: session.user.id, name: 'hey there i am bob' },
+        { id: '11', name: 'hey there i am jane' },
+        { id: '2', name: 'hey there i am joe' },
+        { id: '3', name: 'hey there i am jim' },
+      ],
+      audience: ['11', '2', '3'],
+    })
+    props.message = template.conversationMessage({
+      author_id: '3',
+    })
+
+    const tree = shallow(<ConversationMessage {...props} />)
+    expect(tree.find('[children="hey there i am jim + 2 others "]').exists()).toBe(true)
+    expect(tree.find('[children="to me"]').exists()).toBe(true)
+
+    props.conversation.participants[3].pronouns = 'He/Him'
+    await tree.setProps(props)
+    expect(tree.find('[children="hey there i am jim (He/Him) + 2 others "]').exists()).toBe(true)
+  })
+
+  it('renders correctly when there is only one author (current user) and one receiver', async () => {
     const session = getSession()
     props.conversation = template.conversation({
       id: '1',
@@ -114,9 +140,13 @@ describe('ConversationMessageRow', () => {
     const tree = shallow(<ConversationMessage {...props} />)
     expect(tree.find('[children="me "]').exists()).toBe(true)
     expect(tree.find('[children="to hey there i am jane"]').exists()).toBe(true)
+
+    props.conversation.participants[1].pronouns = 'She/Her'
+    await tree.setProps(props)
+    expect(tree.find('[children="to hey there i am jane (She/Her)"]').exists()).toBe(true)
   })
 
-  it('renders correctly when there is only one author (not current user) and one receiver', () => {
+  it('renders correctly when there is only one author (not current user) and one receiver', async () => {
     const session = getSession()
     props.conversation = template.conversation({
       id: '1',
@@ -133,6 +163,10 @@ describe('ConversationMessageRow', () => {
     const tree = shallow(<ConversationMessage {...props} />)
     expect(tree.find('[children="hey there i am jane "]').exists()).toBe(true)
     expect(tree.find('[children="to me"]').exists()).toBe(true)
+
+    props.conversation.participants[1].pronouns = 'She/Her'
+    await tree.setProps(props)
+    expect(tree.find('[children="hey there i am jane (She/Her) "]').exists()).toBe(true)
   })
 
   it('can be replied to', () => {
@@ -143,12 +177,72 @@ describe('ConversationMessageRow', () => {
   })
 
   it('navigates to context card when the avatar is pressed', () => {
+    props.conversation = template.conversation({
+      context_code: 'course_1',
+      participants: [
+        { id: '1234', name: 'participant 1' },
+        {
+          id: '5678',
+          name: 'participant 2',
+          common_courses: {
+            '2': ['StudentEnrollment'],
+          },
+        },
+      ],
+    })
+    props.message.author_id = '5678'
     const tree = shallow(<ConversationMessage {...props} />)
     tree.find('Avatar').simulate('Press')
     expect(props.navigator.show).toHaveBeenCalledWith(
-      `/courses/1/users/1234`,
+      `/courses/2/users/5678`,
       { modal: true, modalPresentationStyle: 'currentContext' },
     )
+  })
+
+  it('navigates to own context card when avatar is pressed', () => {
+    let session = getSession()
+    props.conversation = template.conversation({
+      context_code: 'course_1',
+      participants: [
+        {
+          id: session.user.id,
+          name: 'me',
+          common_courses: {},
+        },
+        {
+          id: 'not_the_current_user_id',
+          name: 'participant 2',
+          common_courses: {
+            '2': ['StudentEnrollment'],
+          },
+        },
+      ],
+    })
+    props.message.author_id = session.user.id
+    const tree = shallow(<ConversationMessage {...props} />)
+    tree.find('Avatar').simulate('Press')
+    expect(props.navigator.show).toHaveBeenCalledWith(
+      `/courses/2/users/${session.user.id}`,
+      { modal: true, modalPresentationStyle: 'currentContext' },
+    )
+  })
+
+  it('does not navigate to context card without a valid course ID', () => {
+    props.conversation = template.conversation({
+      context_code: null, // an anomoly
+      participants: [
+        { id: '1234', name: 'participant 1' },
+        {
+          id: '5678',
+          name: 'participant 2',
+          common_courses: {},
+        },
+      ],
+    })
+    props.message.author_id = '5678'
+    const tree = shallow(<ConversationMessage {...props} />)
+    tree.find('Avatar').simulate('Press')
+    expect(props.navigator.show).not.toHaveBeenCalled()
   })
 
   it('navigates to a link when pressed', () => {

@@ -35,9 +35,10 @@ class LoginStartSessionCell: UITableViewCell {
         self.entry = entry
         self.delegate = delegate
         let identifier = "LoginStartSession.\(entry.baseURL.host ?? "").\(entry.userID)"
-        self.accessibilityIdentifier = identifier
+        accessibilityIdentifier = identifier
         avatarView?.name = entry.userName
         avatarView?.url = entry.userAvatarURL
+        backgroundColor = .named(.backgroundLightest)
         domainLabel?.text = entry.baseURL.host
         forgetButton?.accessibilityLabel = String.localizedStringWithFormat(NSLocalizedString("Forget %@", bundle: .core, comment: ""), entry.userName)
         forgetButton?.accessibilityIdentifier = "\(identifier).removeButton"

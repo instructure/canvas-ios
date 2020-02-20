@@ -30,28 +30,50 @@ public struct GetCoursesRequest: APIRequestable {
         case available, completed, unpublished
     }
 
+    public enum Include: String {
+        case course_image
+        case current_grading_period_scores
+        case favorites
+        case needs_grading_count
+        case observed_users
+        case permissions
+        case sections
+        case syllabus_body
+        case tabs
+        case term
+        case total_scores
+    }
+    public static let defaultIncludes: [Include] = [
+        .course_image,
+        .current_grading_period_scores,
+        .favorites,
+        .observed_users,
+        .sections,
+        .term,
+        .total_scores,
+    ]
+
     let enrollmentState: EnrollmentState?
     let state: [State]?
+    let include: [Include]
     let perPage: Int
 
-    public init(enrollmentState: EnrollmentState? = .active, state: [State]? = nil, perPage: Int = 10) {
+    public init(
+        enrollmentState: EnrollmentState? = .active,
+        state: [State]? = nil,
+        include: [Include] = Self.defaultIncludes,
+        perPage: Int = 10
+    ) {
         self.enrollmentState = enrollmentState
         self.state = state
+        self.include = include
         self.perPage = perPage
     }
 
     public let path = "courses"
     public var query: [APIQueryItem] {
         var query: [APIQueryItem] = [
-            .array("include", [
-                "course_image",
-                "current_grading_period_scores",
-                "favorites",
-                "observed_users",
-                "sections",
-                "term",
-                "total_scores",
-            ]),
+            .include(include.map { $0.rawValue }),
             .value("per_page", String(perPage)),
         ]
         if let enrollmentState = enrollmentState {
@@ -81,15 +103,16 @@ public struct GetCourseRequest: APIRequestable {
     }
 
     let courseID: String
-    public static let defaultIncludes = [
-        Include.courseImage,
-        Include.currentGradingPeriodScores,
-        Include.favorites,
-        Include.permissions,
-        Include.sections,
-        Include.syllabusBody,
-        Include.term,
-        Include.totalScores,
+    public static let defaultIncludes: [Include] = [
+        .courseImage,
+        .currentGradingPeriodScores,
+        .favorites,
+        .permissions,
+        .sections,
+        .syllabusBody,
+        .term,
+        .totalScores,
+        .observedUsers,
     ]
 
     var include: [Include] = defaultIncludes

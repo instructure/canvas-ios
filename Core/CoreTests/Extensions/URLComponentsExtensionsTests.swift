@@ -31,6 +31,12 @@ class URLComponentsExtensionsTests: XCTestCase {
         XCTAssertEqual(URLComponents.parse(url), URLComponents(string: string)!)
     }
 
+    func testParseURLWithRecursion() {
+        let string = "scheme://h/p?u=https%3A%2F%2Fh%3Fu%3Dhttps%253A%252F%252Fh%253Fa%253Db%2526b%253Dc"
+        let url = URL(string: string)!
+        XCTAssertEqual(URLComponents.parse(url), URLComponents(string: string)!)
+    }
+
     func testParseString() {
         let string = "scheme://user:password@host/path/1/2/3?query=a&b#fragment"
         XCTAssertEqual(URLComponents.parse(string), URLComponents(string: string)!)
@@ -54,5 +60,18 @@ class URLComponentsExtensionsTests: XCTestCase {
         XCTAssertEqual(url.query, nil)
         XCTAssertEqual(url.fragment, nil)
         XCTAssertEqual(URLComponents.parse("").path, "")
+    }
+
+    func testOriginIsNotification() {
+        var url = URLComponents.parse("https://foobar.com/courses/165/assignments/900/submissions/1")
+        XCTAssertFalse(url.originIsNotification)
+
+        url.originIsNotification = true
+        XCTAssertTrue(url.originIsNotification)
+
+        XCTAssertEqual(url.url?.absoluteString, "https://foobar.com/courses/165/assignments/900/submissions/1?origin=notification")
+
+        url.originIsNotification = false
+        XCTAssertEqual(url.url?.absoluteString, "https://foobar.com/courses/165/assignments/900/submissions/1?")
     }
 }

@@ -25,16 +25,15 @@ class SubmitAssignmentViewController: SLComposeServiceViewController, SubmitAssi
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter = SubmitAssignmentPresenter()
+        presenter?.view = self
         placeholder = NSLocalizedString("Comments...", bundle: .core, comment: "")
         navigationController?.navigationBar.topItem?.rightBarButtonItem?.title = NSLocalizedString("Submit", bundle: .core, comment: "")
     }
 
     override func presentationAnimationDidFinish() {
         super.presentationAnimationDidFinish()
-        presenter = SubmitAssignmentPresenter()
-        presenter?.view = self
         presenter?.viewIsReady()
-
         let items = extensionContext?.inputItems as? [NSExtensionItem] ?? []
         presenter?.load(items: items)
     }
@@ -55,10 +54,11 @@ class SubmitAssignmentViewController: SLComposeServiceViewController, SubmitAssi
         guard let environment = presenter?.env else { return items }
         if let course = SLComposeSheetConfigurationItem() {
             course.title = NSLocalizedString("Course", bundle: .core, comment: "")
-            let pending = presenter?.courses.pending == true
+            let pending = presenter?.courses.pending == true || presenter?.defaultCourses?.pending == true
             course.value = pending ? nil : presenter?.course?.name
             course.valuePending = pending
-            course.tapHandler = {
+            course.tapHandler = { [weak self] in
+                guard let self = self else { return }
                 let courses = CoursesViewController.create(environment: environment, selectedCourseID: self.presenter?.course?.id) { course in
                     self.presenter?.select(course: course)
                     self.navigationController?.popViewController(animated: true)
@@ -70,11 +70,12 @@ class SubmitAssignmentViewController: SLComposeServiceViewController, SubmitAssi
 
         if let course = presenter?.course, let assignment = SLComposeSheetConfigurationItem() {
             assignment.title = NSLocalizedString("Assignment", bundle: .core, comment: "")
-            let pending = presenter?.assignments?.pending == true
+            let pending = presenter?.assignments?.pending == true || presenter?.defaultAssignments?.pending == true
             assignment.value = pending ? nil : presenter?.assignment?.name
             assignment.valuePending = pending
-            assignment.tapHandler = {
-                let assignments = AssignmentsViewController.create(environment: environment, courseID: course.id, selectedAssignmentID: self.presenter?.assignment?.id) { assignment in
+            assignment.tapHandler = { [weak self] in
+                guard let self = self else { return }
+                let assignments = AssignmentsViewController.create(courseID: course.id, selectedAssignmentID: self.presenter?.assignment?.id) { assignment in
                     self.presenter?.select(assignment: assignment)
                     self.navigationController?.popViewController(animated: true)
                 }

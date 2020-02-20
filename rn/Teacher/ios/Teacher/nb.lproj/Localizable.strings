@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"Absent" = "Fraværende";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "Alle karakterer er nå skjult.";
 
 /* No comment provided by engineer. */
@@ -11,13 +14,43 @@
 "All Posted" = "Alle publisert";
 
 /* No comment provided by engineer. */
+"Attendance" = "Oppmøte";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "Oppmøte avvik";
+
+/* No comment provided by engineer. */
 "Back" = "Tilbake";
+
+/* No comment provided by engineer. */
+"Cancel" = "Avbryt";
+
+/* No comment provided by engineer. */
+"Change Section" = "Bytt seksjon";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Velg en seksjon";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Velg dato";
 
 /* No comment provided by engineer. */
 "Courses" = "Emne";
 
 /* No comment provided by engineer. */
+"Date picker" = "Dato velger";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Avvise";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Avvik: Ingen data returnert fra opprop api.";
+
+/* No comment provided by engineer. */
 "Everyone" = "Alle";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "Lykkes ikke å opprette LTI-verktøyet opprop.";
 
 /* No comment provided by engineer. */
 "Graded" = "Karaktersatt";
@@ -38,6 +71,18 @@
 "Hide Grades" = "Skjul vurderinger";
 
 /* No comment provided by engineer. */
+"Late" = "Sent";
+
+/* No comment provided by engineer. */
+"Loading more modules..." = "Laster inn flere moduler...";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Merk alle som nåværende";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Marker gjenværende som nåværende";
+
+/* No comment provided by engineer. */
 "Modules" = "Moduler";
 
 /* No comment provided by engineer. */
@@ -50,8 +95,20 @@
 "Post to..." = "Publiser til";
 
 /* No comment provided by engineer. */
+"Present" = "Nåværende";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Velg for å endre dato for opprop";
+
+/* No comment provided by engineer. */
 "Specific Sections" = "Utvalgte seksjoner";
 
 /* No comment provided by engineer. */
+"This module is empty." = "Modulen er tom.";
+
+/* No comment provided by engineer. */
 "To Do" = "Gjøremål";
+
+/* No comment provided by engineer. */
+"Unmark" = "Fjern merking";
 

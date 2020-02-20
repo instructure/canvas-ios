@@ -21,7 +21,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import AccessIcon, { type Props } from '../AccessIcon'
-import Images from '../../../images'
+import icon from '../../../images/inst-icons'
 import app from '../../../modules/app'
 
 describe('AccessIcon', () => {
@@ -30,7 +30,7 @@ describe('AccessIcon', () => {
     props = {
       entry: {},
       tintColor: '#fff',
-      image: Images.kabob,
+      image: icon('instructure', 'line'),
       showAccessIcon: true,
       disableAppSpecificChecks: true,
     }
@@ -40,15 +40,13 @@ describe('AccessIcon', () => {
   it('shows published when not locked or hidden', () => {
     props.entry.published = true
     const tree = shallow(<AccessIcon {...props} />)
-    expect(tree.find('Image').at(1).prop('source')).toBe(Images.publishedSmall)
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('Image').at(1).prop('source')).toEqual(icon('publish', 'solid'))
   })
 
   it('shows unpublished when published is false', () => {
     props.entry.published = false
     const tree = shallow(<AccessIcon {...props} />)
-    expect(tree.find('Image').at(1).prop('source')).toBe(Images.unpublishedSmall)
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('Image').at(1).prop('source')).toEqual(icon('no', 'solid'))
   })
 
   it('published takes precedence over other properties', () => {
@@ -57,36 +55,31 @@ describe('AccessIcon', () => {
     props.entry.locked = true
     props.entry.unlock_at = '2018-01-01T12:00:00.000Z'
     const tree = shallow(<AccessIcon {...props} />)
-    expect(tree.find('Image').at(1).prop('source')).toBe(Images.publishedSmall)
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('Image').at(1).prop('source')).toEqual(icon('publish', 'solid'))
   })
 
   it('shows unpublished when locked', () => {
     props.entry.locked = true
     const tree = shallow(<AccessIcon {...props} />)
-    expect(tree.find('Image').at(1).prop('source')).toBe(Images.unpublishedSmall)
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('Image').at(1).prop('source')).toEqual(icon('no', 'solid'))
   })
 
   it('shows resticted when hidden', () => {
     props.entry.hidden = true
     const tree = shallow(<AccessIcon {...props} />)
-    expect(tree.find('Image').at(1).prop('source')).toBe(Images.restricted)
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('Image').at(1).prop('source')).toEqual(icon('cloudLock', 'line'))
   })
 
   it('shows resticted when unlock_at is specified', () => {
     props.entry.unlock_at = '2018-01-01T12:00:00.000Z'
     const tree = shallow(<AccessIcon {...props} />)
-    expect(tree.find('Image').at(1).prop('source')).toBe(Images.restricted)
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('Image').at(1).prop('source')).toEqual(icon('cloudLock', 'line'))
   })
 
   it('shows resticted when lock_at is specified', () => {
     props.entry.lock_at = '2018-01-01T12:00:00.000Z'
     const tree = shallow(<AccessIcon {...props} />)
-    expect(tree.find('Image').at(1).prop('source')).toBe(Images.restricted)
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('Image').at(1).prop('source')).toEqual(icon('cloudLock', 'line'))
   })
 
   it('has option to hide access icon', () => {

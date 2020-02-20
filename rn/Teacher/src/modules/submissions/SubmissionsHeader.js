@@ -21,13 +21,12 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
 } from 'react-native'
 
 import i18n from 'format-message'
 import { LinkButton } from '../../common/buttons'
 import { Heading1, Text } from '../../common/text'
-import colors from '../../common/colors'
+import { createStyleSheet } from '../../common/stylesheet'
 import { joinTitles } from '../filter/filter-options'
 
 export type SubmissionsHeaderProps = {
@@ -48,9 +47,9 @@ export default class SubmissionsHeader extends Component<SubmissionsHeaderProps,
     let title = joinTitles(this.props.filterOptions) || i18n('All Submissions')
 
     let subTitle = ''
-    if (this.props.muted && this.props.anonymous) {
+    if (this.props.muted && this.props.anonymous && !this.props.newGradebookEnabled) {
       subTitle = i18n('Grades muted, Anonymous grading')
-    } else if (this.props.muted) {
+    } else if (this.props.muted && !this.props.newGradebookEnabled) {
       subTitle = i18n('Grades muted')
     } else if (this.props.anonymous) {
       subTitle = i18n('Anonymous grading')
@@ -89,10 +88,10 @@ export default class SubmissionsHeader extends Component<SubmissionsHeaderProps,
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   headerWrapper: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'lightgrey',
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -106,7 +105,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   subtitle: {
-    color: colors.grey4,
+    color: colors.textDark,
     fontSize: 14,
     fontWeight: '500',
   },
@@ -114,4 +113,4 @@ const styles = StyleSheet.create({
     marginBottom: 1,
     width: 'auto',
   },
-})
+}))

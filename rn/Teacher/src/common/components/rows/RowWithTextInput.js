@@ -21,10 +21,10 @@
 import React, { Component } from 'react'
 import {
   TextInput,
-  StyleSheet,
   View,
 } from 'react-native'
 import Row, { type RowProps } from './Row'
+import { createStyleSheet } from '../../stylesheet'
 import i18n from 'format-message'
 
 type Props = RowProps & {
@@ -107,8 +107,9 @@ export default class RowWithTextInput extends Component<Props, any> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet(colors => ({
   input: {
     flex: 1,
+    color: colors.textDarkest,
   },
-})
+}))

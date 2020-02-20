@@ -17,7 +17,6 @@
 //
 
 import CanvasCore
-import TechDebt
 import Marshal
 import Core
 
@@ -43,7 +42,7 @@ extension AppDelegate: RCTBridgeDelegate {
                 self.changeUser()
                 return
             }
-            self.setup(session: session, wasReload: true)
+            self.setup(session: session)
         }
     }
 

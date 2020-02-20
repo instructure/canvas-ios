@@ -22,16 +22,44 @@ import Core
 class CourseDetailsViewController: HorizontalMenuViewController {
     private var gradesViewController: GradesViewController!
     private var syllabusViewController: Core.SyllabusViewController!
+    private var summaryViewController: Core.SyllabusSummaryViewController!
     var courseID: String = ""
     var studentID: String = ""
     var viewControllers: [UIViewController] = []
+    var readyToLayoutTabs: Bool = false
+    var didLayoutTabs: Bool = false
+    var env: AppEnvironment!
+    var colorScheme: ColorScheme?
+    var replyButton: FloatingButton?
+    var replyStarted: Bool = false
 
     enum MenuItem: Int {
-        case grades, syllabus
+        case grades, syllabus, summary
     }
 
-    static func create(courseID: String, studentID: String) -> CourseDetailsViewController {
+    lazy var student = env.subscribe(GetSearchRecipients(context: ContextModel(.course, id: courseID), userID: studentID)) { [weak self] in
+        self?.messagingReady()
+    }
+
+    lazy var teachers = env.subscribe(GetSearchRecipients(context: ContextModel(.course, id: courseID), qualifier: .teachers)) { [weak self] in
+        self?.messagingReady()
+    }
+
+    lazy var courses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
+        self?.courseReady()
+    }
+
+    lazy var frontPages = env.subscribe(GetFrontPage(context: ContextModel(.course, id: courseID))) { [weak self] in
+        self?.courseReady()
+    }
+
+    lazy var tabs = env.subscribe(GetContextTabs(context: ContextModel(.course, id: courseID))) { [weak self] in
+        self?.courseReady()
+    }
+
+    static func create(courseID: String, studentID: String, env: AppEnvironment = .shared) -> CourseDetailsViewController {
         let controller = CourseDetailsViewController(nibName: nil, bundle: nil)
+        controller.env = env
         controller.courseID = courseID
         controller.studentID = studentID
         return controller
@@ -39,27 +67,143 @@ class CourseDetailsViewController: HorizontalMenuViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .named(.backgroundLightest)
+        colorScheme = ColorScheme.observee(studentID)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.useContextColor(colorScheme?.color)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: nil, action: nil)
 
         delegate = self
-        configureGrades()
-        configureSyllabus()
+        courses.refresh(force: true)
+        frontPages.refresh(force: true)
+        tabs.refresh(force: true)
+        student.refresh()
+        teachers.refresh()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        layoutViewControllers()
+        readyToLayoutTabs = true
+        courseReady()
     }
 
     func configureGrades() {
-        gradesViewController = GradesViewController.create(courseID: courseID, studentID: studentID)
+        gradesViewController = GradesViewController.create(courseID: courseID, userID: studentID, colorDelegate: self)
         viewControllers.append(gradesViewController)
     }
 
     func configureSyllabus() {
         syllabusViewController = Core.SyllabusViewController.create(courseID: courseID)
         viewControllers.append(syllabusViewController)
+    }
+
+    func configureSummary() {
+        summaryViewController = Core.SyllabusSummaryViewController.create(courseID: courseID, colorDelegate: self)
+        viewControllers.append(summaryViewController)
+    }
+
+    func configureFrontPage() {
+        let vc = CoreWebViewController()
+        vc.webView.loadHTMLString(frontPages.first?.body ?? "", baseURL: nil)
+        viewControllers.append(vc)
+    }
+
+    func configureComposeMessageButton() {
+        let buttonSize: CGFloat = 56
+        let margin: CGFloat = 16
+        let bottomMargin: CGFloat = 50
+
+        replyButton = FloatingButton(frame: CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize))
+        replyButton?.accessibilityLabel = NSLocalizedString("Compose Message", comment: "")
+        replyButton?.accessibilityIdentifier = "Grades.composeMessageButton"
+        replyButton?.accessibilityTraits.insert(.header)
+        replyButton?.setImage(UIImage.icon(.comment, .solid), for: .normal)
+        replyButton?.imageEdgeInsets = UIEdgeInsets(top: 17, left: 17, bottom: 15, right: 15)
+        replyButton?.tintColor = .named(.white)
+        replyButton?.backgroundColor = colorScheme?.color
+        if let replyButton = replyButton { view.addSubview(replyButton) }
+
+        let metrics: [String: CGFloat] = ["buttonSize": buttonSize, "margin": margin, "bottomMargin": bottomMargin]
+        replyButton?.addConstraintsWithVFL("H:[view(buttonSize)]-(margin)-|", metrics: metrics)
+        replyButton?.addConstraintsWithVFL("V:[view(buttonSize)]-(bottomMargin)-|", metrics: metrics)
+        replyButton?.addTarget(self, action: #selector(actionReplyButtonClicked(_:)), for: .primaryActionTriggered)
+    }
+
+    func courseReady() {
+        title = courses.first?.name
+        let pending = courses.pending || frontPages.pending || tabs.pending
+        if !pending, readyToLayoutTabs, !didLayoutTabs, let course = courses.first {
+            didLayoutTabs = true
+            configureGrades()
+            switch course.defaultView {
+            case .wiki:
+                if let page = frontPages.first, !page.body.isEmpty {
+                    configureFrontPage()
+                }
+            case .syllabus where course.syllabusBody?.isEmpty == false:
+                configureSyllabus()
+                configureSummary()
+            default:
+                let syllabusTab = tabs.first { $0.id == "syllabus" }
+                if syllabusTab != nil, course.syllabusBody?.isEmpty == false {
+                    configureSyllabus()
+                    configureSummary()
+                }
+            }
+
+            layoutViewControllers()
+            configureComposeMessageButton()
+        }
+    }
+
+    func messagingReady() {
+        let pending = teachers.pending || student.pending
+        if !pending && replyStarted {
+            let name = student.first?.fullName ?? ""
+            var tabTitle = titleForSelectedTab() ?? ""
+            tabTitle = tabTitle.replacingOccurrences(of: NSLocalizedString("Summary", comment: ""), with: NSLocalizedString("Syllabus", comment: ""))
+            var template = NSLocalizedString("Regarding: %@, %@", comment: "Regarding <John Doe>, <Grades | Syllabus>")
+            let subject = String.localizedStringWithFormat(template, name, tabTitle)
+            template = NSLocalizedString("Regarding: %@, %@", comment: "Regarding <John Doe>, [link to grades or syllabus]")
+            let compose = ComposeViewController.create(
+                context: ContextModel(.course, id: courseID),
+                observeeID: studentID,
+                recipients: teachers.all,
+                subject: subject,
+                hiddenMessage: String.localizedStringWithFormat(template, name, associatedTabConversationLink())
+            )
+            env.router.show(compose, from: self, options: .modal(embedInNav: true))
+            replyButton?.isEnabled = true
+        }
+    }
+
+    private func associatedTabConversationLink() -> String {
+        let na = NSLocalizedString("n/a", comment: "")
+        guard let menuItem = MenuItem(rawValue: selectedIndexPath.row) else { return na }
+        guard let baseURL = env.currentSession?.baseURL, var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true) else { return na }
+        switch menuItem {
+        case .grades:
+            components.path = "/courses/\(courseID)/grades/\(studentID)"
+            return components.url?.absoluteString ?? na
+        case .syllabus, .summary:
+            if let syllabusTab = tabs.first(where: { $0.id == "syllabus" }), courses.first?.syllabusBody?.isEmpty == false {
+                components.path = syllabusTab.htmlURL.path
+                return components.url?.absoluteString ?? na
+            }
+            return na
+        }
+    }
+
+    @IBAction func actionReplyButtonClicked(_ sender: UIButton) {
+        sender.isEnabled = false
+        replyStarted = true
+        messagingReady()
+    }
+}
+
+extension CourseDetailsViewController: ColorDelegate {
+    var iconColor: UIColor? {
+        return colorScheme?.color
     }
 }
 
@@ -70,12 +214,13 @@ extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
         switch menuItem {
         case .grades: identifier = "grades"
         case .syllabus: identifier = "syllabus"
+        case .summary: identifier = "summary"
         }
         return "CourseDetail.\(identifier)MenuItem"
     }
 
     var menuItemSelectedColor: UIColor? {
-        return Brand.shared.buttonPrimaryBackground
+        return colorScheme?.color
     }
 
     func menuItemTitle(at: IndexPath) -> String {
@@ -84,7 +229,16 @@ extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
         case .grades:
             return NSLocalizedString("Grades", comment: "")
         case .syllabus:
-            return NSLocalizedString("Syllabus", comment: "")
+            switch courses.first?.defaultView {
+            case .wiki:
+                return NSLocalizedString("Front Page", comment: "")
+            case .syllabus:
+                return NSLocalizedString("Syllabus", comment: "")
+            default:
+                return NSLocalizedString("Syllabus", comment: "")
+            }
+        case .summary:
+            return NSLocalizedString("Summary", comment: "")
         }
     }
 }

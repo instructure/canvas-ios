@@ -22,7 +22,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
   View,
-  StyleSheet,
   TouchableHighlight,
   TouchableOpacity,
   Image,
@@ -49,7 +48,7 @@ import {
   Text,
   SubTitle,
 } from '../../../common/text'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet, vars } from '../../../common/stylesheet'
 import refresh from '../../../utils/refresh'
 import Screen from '../../../routing/Screen'
 import Reply from './Reply'
@@ -59,8 +58,11 @@ import { isRegularDisplayMode } from '../../../routing/utils'
 import { isTeacher, isStudent } from '../../app'
 import { alertError } from '../../../redux/middleware/error-handler'
 import { logEvent } from '../../../common/CanvasAnalytics'
+import * as canvas from '../../../canvas-api'
+import { personDisplayName } from '../../../common/formatters'
 
 const { NativeAccessibility, ModuleItemsProgress } = NativeModules
+const { markTopicAsRead } = canvas
 
 type EntryRatings = { [string]: number }
 
@@ -130,6 +132,10 @@ export type Props
 export class DiscussionDetails extends Component<Props, any> {
   hasReplaced: boolean = false
 
+  static defaultProps = {
+    markTopicAsRead,
+  }
+
   constructor (props: Props) {
     super(props)
     this.state = {
@@ -150,6 +156,7 @@ export class DiscussionDetails extends Component<Props, any> {
       if (isStudent) {
         ModuleItemsProgress.viewedDiscussion(props.contextID, props.discussionID)
       }
+      props.markTopicAsRead(props.context, props.contextID, props.discussionID)
     }
   }
 
@@ -231,7 +238,7 @@ export class DiscussionDetails extends Component<Props, any> {
   }
 
   renderDetails = (discussion: Discussion) => {
-    const showReplies = discussion.replies && discussion.replies.length > 0
+    const showReplies = discussion.replies?.length > 0
     const points = this._points(discussion)
     let user = discussion.author
     const hasValidDate = discussion.delayed_post_at || discussion.posted_at
@@ -239,15 +246,14 @@ export class DiscussionDetails extends Component<Props, any> {
     const sections = discussion.sections || []
     const showGroupTopicChildren = isTeacher() &&
       this.props.context === 'courses' &&
-      discussion.group_topic_children &&
-      discussion.group_topic_children.length > 0
+      discussion.group_topic_children?.length > 0
     return (
       <View>
         <AssignmentSection isFirstRow={true} style={style.topContainer}>
-          <Heading1 testID='DiscussionDetails.titleLabel'>{discussion.title || i18n('No Title')}</Heading1>
+          <Heading1 testID='DiscussionDetails.titleLabel'>{discussion.title ?? i18n('No Title')}</Heading1>
           { !this.props.isAnnouncement &&
             <View style={style.pointsContainer}>
-              {Boolean(points) && <Text style={style.points}>{points}</Text>}
+              {Boolean(points) && <Text testID='DiscussionDetails.pointsLabel' style={style.points}>{points}</Text>}
               {isTeacher() && <PublishedIcon published={discussion.published} />}
             </View>
           }
@@ -266,6 +272,7 @@ export class DiscussionDetails extends Component<Props, any> {
             image={Images.assignments.calendar}
             showDisclosureIndicator={true}
             onPress={this.viewDueDateDetails}
+            testID='DiscussionDetails.dueDates'
           >
             <AssignmentDates assignment={this.props.assignment} />
           </AssignmentSection>
@@ -274,7 +281,7 @@ export class DiscussionDetails extends Component<Props, any> {
         { isTeacher() && this.props.assignment && !showGroupTopicChildren &&
           <AssignmentSection
             title={i18n('Submissions')}
-            testID='discussions.submission-graphs'
+            testID='DiscussionDetails.submissionGraphs'
             onPress={() => this.viewSubmissions()}
             showDisclosureIndicator
           >
@@ -289,9 +296,9 @@ export class DiscussionDetails extends Component<Props, any> {
 
         <View style={style.section} >
           <View style={style.authorContainer}>
-            { user && user.display_name &&
+            { user?.display_name &&
               <Avatar
-                testID='discussion.details.avatar'
+                testID='DiscussionDetails.avatar'
                 height={32}
                 key={user.id}
                 avatarURL={user.avatar_image_url}
@@ -300,18 +307,19 @@ export class DiscussionDetails extends Component<Props, any> {
                 onPress={this.navigateToContextCard}
               />
             }
-            <View style={[style.authorInfoContainer, { marginLeft: (user && user.display_name) ? global.style.defaultPadding : 0 }]}>
-              { user && user.display_name && <Text style={style.authorName}>{user.display_name}</Text> }
-              { hasValidDate && <Text style={style.authorDate} testID='discussion.details.post-date-lbl'>{i18n("{ date, date, 'MMM d'} at { date, time, short }", { date })}</Text> }
+            <View style={[style.authorInfoContainer, { marginLeft: (user && user.display_name) ? vars.padding : 0 }]}>
+              { user?.display_name && <Text style={style.authorName} testID='DiscussionDetails.authorName'>{personDisplayName(user.display_name, user.pronouns)}</Text> }
+              { hasValidDate && <Text style={style.authorDate} testID='DiscussionDetails.postDateLabel'>{i18n("{ date, date, 'MMM d'} at { date, time, short }", { date })}</Text> }
             </View>
           </View>
 
           <CanvasWebView
-            style={{ flex: 1, marginHorizontal: -global.style.defaultPadding, minHeight: global.style.defaultPadding }}
-            automaticallySetHeight html={discussion.message || ''}
+            style={{ flex: 1, marginHorizontal: -vars.padding, minHeight: vars.padding }}
+            automaticallySetHeight
+            html={discussion.message ?? ''}
             navigator={this.props.navigator}
           />
-          { Boolean(discussion.attachments) && discussion.attachments && discussion.attachments.length === 1 &&
+          { discussion.attachments?.length === 1 &&
             // should only ever have 1, blocked by UI, but API returns array of 1 :facepalm:
             <TouchableOpacity
               testID='DiscussionDetails.attachmentButton'
@@ -330,17 +338,17 @@ export class DiscussionDetails extends Component<Props, any> {
           {!discussion.locked_for_user && this.props.permissions.post_to_forum &&
             <View style={style.authorContainer}>
               <TouchableHighlight
-                underlayColor='white'
+                underlayColor={colors.backgroundLightest}
                 onPress={this._onPressReply}
-                testID='discussion-reply'
+                testID='DiscussionDetails.replyButton'
                 accessibilityTraits='button'
               >
-                <View style={[{ backgroundColor: colors.primaryButtonColor }, style.replyButtonWrapper]}>
+                <View style={style.replyButtonWrapper}>
                   <Image
                     source={icon('reply')}
                     style={style.replyButtonImage}
                   />
-                  <Text style={[{ color: colors.primaryButtonTextColor }, style.reply]}>{i18n('Reply')}</Text>
+                  <Text style={style.reply}>{i18n('Reply')}</Text>
                 </View>
               </TouchableHighlight>
             </View>
@@ -360,7 +368,7 @@ export class DiscussionDetails extends Component<Props, any> {
 
         { showReplies && this.state.rootNodePath.length === 0 &&
           <AssignmentSection style={{ paddingBottom: 0 }}>
-            <Heading1>{i18n('Replies')}</Heading1>
+            <Heading1 testID='DiscussionDetails.repliesHeading'>{i18n('Replies')}</Heading1>
           </AssignmentSection>
         }
 
@@ -381,15 +389,15 @@ export class DiscussionDetails extends Component<Props, any> {
     if (this.state.rootNodePath.length !== 0) {
       return (
         <AssignmentSection style={{ paddingBottom: 0 }}>
-          <TouchableHighlight testID={`discussion.popToLastDiscussionList`}
+          <TouchableHighlight testID='discussion.popToLastDiscussionList'
             accessibilityLabel={i18n('Back to replies')}
             accessible={true}
             accessibilityTraits={['button']}
             onPress={this._onPopReplyRootPath}
-            underlayColor='white'>
+            underlayColor={colors.backgroundLightest}>
             <View style={style.popReplyStackContainer}>
               <Image source={Images.backIcon} style={style.popReplyStackIcon}/>
-              <Text style={{ paddingLeft: 5, color: colors.link }}>{i18n('Back')}</Text>
+              <Text style={{ paddingLeft: 5, color: colors.linkColor }}>{i18n('Back')}</Text>
             </View>
           </TouchableHighlight>
         </AssignmentSection>
@@ -418,7 +426,6 @@ export class DiscussionDetails extends Component<Props, any> {
           readState={reply.readState}
           depth={reply.depth}
           myPath={path}
-          // $FlowFixMe
           participants={participants}
           onPressMoreReplies={this._onPressMoreReplies}
           isRootReply
@@ -477,7 +484,7 @@ export class DiscussionDetails extends Component<Props, any> {
         rightBarButtons={ isTeacher() && [
           {
             image: Images.kabob,
-            testID: 'discussions.details.edit.button',
+            testID: 'DiscussionDetails.editButton',
             accessibilityLabel: i18n('Options'),
             action: this.showEditActionSheet,
           },
@@ -632,13 +639,13 @@ export class DiscussionDetails extends Component<Props, any> {
     } else {
       logEvent('discussion_topic_replied', { nested: false })
     }
-    this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true }, { indexPath: [], lastReplyAt, permissions })
+    this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true, disableSwipeDownToDismissModal: true }, { indexPath: [], lastReplyAt, permissions })
   }
 
   _onPressReplyToEntry = (entryID: string, indexPath: number[]) => {
     let lastReplyAt = this.props.discussion && this.props.discussion.last_reply_at
     let permissions = this.props.discussion && this.props.discussion.permissions
-    this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/discussion_topics/${this.props.discussionID}/entries/${entryID}/replies`, { modal: true }, { indexPath: indexPath, entryID, lastReplyAt, permissions })
+    this.props.navigator.show(`/${this.props.context}/${this.props.contextID}/discussion_topics/${this.props.discussionID}/entries/${entryID}/replies`, { modal: true, disableSwipeDownToDismissModal: true }, { indexPath: indexPath, entryID, lastReplyAt, permissions })
   }
 
   _editDiscussion = () => {
@@ -688,7 +695,7 @@ export class DiscussionDetails extends Component<Props, any> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet((colors, vars) => ({
   sectionListContainer: {
     flex: 1,
   },
@@ -703,19 +710,19 @@ const style = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
   },
-  avatar: { marginTop: global.style.defaultPadding },
+  avatar: { marginTop: vars.padding },
   authorName: {
     fontSize: 14,
     fontWeight: '600',
   },
   authorDate: {
     fontSize: 12,
-    color: colors.grey5,
+    color: colors.textDark,
   },
   topContainer: {
     paddingTop: 14,
-    paddingLeft: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
+    paddingLeft: vars.padding,
+    paddingRight: vars.padding,
     paddingBottom: 17,
   },
   pointsContainer: {
@@ -726,11 +733,11 @@ const style = StyleSheet.create({
   },
   points: {
     fontWeight: '500',
-    color: colors.grey4,
+    color: colors.textDark,
     marginRight: 14,
   },
   reply: {
-    color: 'white',
+    color: colors.buttonPrimaryText,
     fontSize: 14,
     marginLeft: 4,
     fontWeight: '500',
@@ -739,10 +746,11 @@ const style = StyleSheet.create({
     width: 18,
     height: 18,
     resizeMode: 'contain',
-    tintColor: colors.primaryButtonTextColor,
+    tintColor: colors.buttonPrimaryText,
     marginRight: 6,
   },
   replyButtonWrapper: {
+    backgroundColor: colors.buttonPrimaryBackground,
     flexDirection: 'row',
     paddingHorizontal: 16,
     paddingVertical: 10,
@@ -752,21 +760,21 @@ const style = StyleSheet.create({
   },
   submission: {
     marginRight: 40,
-    marginTop: global.style.defaultPadding / 2,
+    marginTop: vars.padding / 2,
   },
   attachment: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: global.style.defaultPadding,
+    marginBottom: vars.padding,
   },
   attachmentIcon: {
-    tintColor: colors.link,
+    tintColor: colors.linkColor,
     height: 14,
     width: 14,
   },
   attachmentText: {
-    color: colors.link,
+    color: colors.linkColor,
     fontWeight: 'bold',
     marginLeft: 4,
     fontSize: 14,
@@ -775,30 +783,30 @@ const style = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: global.style.defaultPadding / 2,
+    marginBottom: vars.padding / 2,
   },
   popReplyStackIcon: {
-    tintColor: colors.link,
+    tintColor: colors.linkColor,
   },
   section: {
     flex: 1,
-    paddingTop: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
-    paddingBottom: global.style.defaultPadding,
-    paddingLeft: global.style.defaultPadding,
-    backgroundColor: 'white',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: colors.grey2,
+    paddingTop: vars.padding,
+    paddingRight: vars.padding,
+    paddingBottom: vars.padding,
+    paddingLeft: vars.padding,
+    backgroundColor: colors.backgroundLightest,
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
   },
   row: {
     flex: 1,
     flexDirection: 'row',
-    paddingHorizontal: global.style.defaultPadding,
+    paddingHorizontal: vars.padding,
   },
   sectionsText: {
     marginTop: 8,
   },
-})
+}))
 
 export function mapStateToProps ({ entities }: AppState, ownProps: OwnProps): State {
   const contextID = ownProps.contextID

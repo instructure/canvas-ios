@@ -10,10 +10,8 @@
     "\\/Views\\/",
     "CanvasCore\/",
     "CanvasKit1\/",
-    "Core\/ShareExtension\/",
     "Core\/Use Cases\/SubmitFileSubmission",
     "Frameworks\/",
-    "OperationQueueExtensions.swift",
     "Parent\/",
     "Pods\\/",
     "Student\/Canvas\/",
@@ -22,7 +20,8 @@
     "Student\/GradesWidget\/",
     "TechDebt\/",
     "UITestHelpers\/",
-    "rn/Teacher\/src\/modules\/graphql-speed-grader\/"
+    "rn/Teacher\/src\/modules\/graphql-speed-grader\/",
+    "SubmissionButtonPresenter.swift"
   ],
   "fileMinCoverage": 0.5,
   "totalMinCoverage": 0.9

@@ -25,7 +25,7 @@ import SubmissionGraph from '../../submissions/SubmissionGraph'
 import { connect } from 'react-redux'
 import SubmissionActions from '../../submissions/list/actions'
 import { Text, SubTitle } from '../../../common/text'
-import colors from '../../../common/colors'
+import { colors, vars } from '../../../common/stylesheet'
 
 import {
   View,
@@ -107,7 +107,7 @@ export class SubmissionBreakdownGraphSection extends Component<SubmissionBreakdo
     }
 
     return (
-      <View style={[style.container, this.props.style, paperOnly && { paddingLeft: global.style.defaultPadding / 2 }]}>
+      <View style={[style.container, this.props.style, paperOnly && { paddingLeft: vars.padding / 2 }]}>
         {data.map((item, index) =>
           <TouchableOpacity underlayColor='#eeeeee00' style={!paperOnly && style.common} key={`submission_dial_highlight_${index}`}
             testID={`assignment-details.submission-breakdown-graph-section.${ids[index]}-dial`} onPress={() => this.onPress(index) } accessibilityTraits='button'>
@@ -126,7 +126,7 @@ export class SubmissionBreakdownGraphSection extends Component<SubmissionBreakdo
 
         {paperOnly &&
           <View style={style.paperOnlyContainer} accessible={true} accessibilityLabel={paperOnlyMessage}>
-            <SubTitle style={{ color: colors.darkText }}>{paperOnlyMessage}</SubTitle>
+            <SubTitle style={{ color: colors.textDarkest }}>{paperOnlyMessage}</SubTitle>
           </View>
         }
 

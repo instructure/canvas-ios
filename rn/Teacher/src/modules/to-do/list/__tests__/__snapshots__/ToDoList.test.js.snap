@@ -4,8 +4,8 @@ exports[`ToDoList renders items 1`] = `
 <Screen
   customPageViewPath="/"
   drawUnderNavBar={true}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarImage={
     Object {
       "testUri": "../../../src/images/canvas-logo.png",
@@ -13,7 +13,7 @@ exports[`ToDoList renders items 1`] = `
   }
   navBarStyle="light"
   showDismissButton={true}
-  statusBarStyle="light"
+  statusBarStyle="default"
 >
   <View
     onLayout={[Function]}
@@ -31,7 +31,7 @@ exports[`ToDoList renders items 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "column",
                 "justifyContent": "center",

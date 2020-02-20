@@ -47,9 +47,8 @@ import CourseInvite from './CourseInvite'
 import GroupRow, { type GroupRowProps } from './GroupRow'
 import CourseCard from '@modules/courses/components/CourseCard'
 import NoCourses from '@modules/courses/components/NoCourses'
-import color from '@common/colors'
+import { colors, vars } from '@common/stylesheet'
 import Images from '@images'
-import branding from '@common/branding'
 import Navigator from '@routing/Navigator'
 import { getSessionUnsafe, getSession } from '@canvas-api'
 import AccountNotificationActions from './account-notification-actions'
@@ -133,7 +132,10 @@ export class Dashboard extends React.Component<Props, State> {
         !this.state.showingModal &&
         isTeacher() &&
         getSessionUnsafe()) {
-      this.props.navigator.show('/wrong-app', { modal: true })
+      this.props.navigator.show('/wrong-app', {
+        modal: true,
+        disableSwipeDownToDismissModal: true,
+      })
       this.setState({
         showingModal: true,
       })
@@ -433,7 +435,7 @@ export class Dashboard extends React.Component<Props, State> {
     return !this.props.isFullDashboard
       ? { title: i18n('All Courses') }
       : {
-        navBarImage: branding.headerImage,
+        navBarImage: vars.headerImageURL,
         rightBarButtons: [{
           title: i18n('Edit'),
           testID: 'dashboard.edit-btn',
@@ -444,7 +446,7 @@ export class Dashboard extends React.Component<Props, State> {
         leftBarButtons: [
           {
             image: Images.hamburger,
-            testID: 'favorited-course-list.profile-btn',
+            testID: 'Dashboard.profileButton',
             action: this.showProfile,
             accessibilityLabel: i18n('Profile Menu'),
           },
@@ -457,9 +459,9 @@ export class Dashboard extends React.Component<Props, State> {
       <Screen
         { ...this.screenProps() }
         navBarHidden={false}
-        navBarColor={color.navBarColor}
-        navBarButtonColor={color.navBarTextColor}
-        statusBarStyle={color.statusBarStyle}
+        navBarColor={colors.navBackground}
+        navBarButtonColor={colors.navTextColor}
+        navBarStyle={vars.navBarStyle}
       >
         {this.renderDashboard()}
       </Screen>
@@ -590,7 +592,7 @@ export function mapStateToProps (isFullDashboard: boolean) {
           name: group.name,
           contextName: courseData ? courseData.course.name : i18n('Account Group'),
           term: courseData && courseData.course.term && courseData.course.term.name,
-          color: groupColor || (courseData ? courseData.color : color.lightText),
+          color: groupColor || (courseData ? courseData.color : colors.textDark),
         }
       })
 

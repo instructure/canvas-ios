@@ -194,7 +194,7 @@ describe('Dashboard', () => {
       <Dashboard {...props} />
     ).toJSON()
 
-    const leftButton = explore(tree).selectLeftBarButton('favorited-course-list.profile-btn') || {}
+    const leftButton = explore(tree).selectLeftBarButton('Dashboard.profileButton') || {}
     leftButton.action()
     expect(props.navigator.show).toHaveBeenCalledWith('/profile', { modal: true, embedInNavigationController: false, modalPresentationStyle: 'drawer' })
   })
@@ -329,7 +329,10 @@ describe('Dashboard', () => {
     )
 
     tree.getInstance().componentWillReceiveProps(props)
-    expect(navigator.show).toHaveBeenCalledWith('/wrong-app', { modal: true })
+    expect(navigator.show).toHaveBeenCalledWith('/wrong-app', {
+      modal: true,
+      disableSwipeDownToDismissModal: true,
+    })
   })
 
   it('does not call navigator.show to navigate to /wrong-app when canActAsUser', () => {

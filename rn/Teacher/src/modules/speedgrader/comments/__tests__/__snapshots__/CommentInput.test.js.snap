@@ -21,7 +21,7 @@ exports[`CommentInput CommentInput renders 1`] = `
       style={
         Object {
           "alignItems": "flex-start",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "borderColor": "#C7CDD1",
           "borderRadius": 20,
           "borderWidth": 0.5,
@@ -40,7 +40,7 @@ exports[`CommentInput CommentInput renders 1`] = `
         onBlur={[Function]}
         onChangeText={[Function]}
         placeholder="Comment"
-        placeholderTextColor="#7F91A7"
+        placeholderTextColor="#8B969E"
         rejectResponderTermination={true}
         style={
           Object {
@@ -98,7 +98,7 @@ exports[`CommentInput Wont render the media buttons when allowMediaInputs is set
       style={
         Object {
           "alignItems": "flex-start",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "borderColor": "#C7CDD1",
           "borderRadius": 20,
           "borderWidth": 0.5,
@@ -117,7 +117,7 @@ exports[`CommentInput Wont render the media buttons when allowMediaInputs is set
         onBlur={[Function]}
         onChangeText={[Function]}
         placeholder="Comment"
-        placeholderTextColor="#7F91A7"
+        placeholderTextColor="#8B969E"
         rejectResponderTermination={true}
         style={
           Object {
@@ -175,7 +175,7 @@ exports[`CommentInput disables the send button with a prop 1`] = `
       style={
         Object {
           "alignItems": "flex-start",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "borderColor": "#C7CDD1",
           "borderRadius": 20,
           "borderWidth": 0.5,
@@ -194,7 +194,7 @@ exports[`CommentInput disables the send button with a prop 1`] = `
         onBlur={[Function]}
         onChangeText={[Function]}
         placeholder="Comment"
-        placeholderTextColor="#7F91A7"
+        placeholderTextColor="#8B969E"
         rejectResponderTermination={true}
         style={
           Object {

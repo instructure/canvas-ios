@@ -21,7 +21,6 @@ import CoreData
 
 public class MockUploadManager: UploadManager {
     public static func reset() {
-        try? UploadManager.shared.database.clearAllRecords()
     }
 
     public var uploadWasCalled = false
@@ -32,21 +31,29 @@ public class MockUploadManager: UploadManager {
         super.init(identifier: "mock")
     }
 
-    open override func upload(environment: AppEnvironment = .shared, batch batchID: String, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
+    public override var database: NSPersistentContainer {
+        return singleSharedTestDatabase
+    }
+
+    open override func upload(batch batchID: String, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
         uploadWasCalled = true
     }
 
-    open override func upload(environment: AppEnvironment = .shared, url: URL, batchID: String? = nil, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
+    open override func upload(url: URL, batchID: String? = nil, to uploadContext: FileUploadContext, folderPath: String? = nil, callback: (() -> Void)? = nil) {
         uploadWasCalled = true
         callback?()
     }
 
-    open override func upload(environment: AppEnvironment = .shared, file: File, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
+    open override func upload(file: File, to uploadContext: FileUploadContext, folderPath: String? = nil, callback: (() -> Void)? = nil) {
         uploadWasCalled = true
         callback?()
     }
 
-    open override func cancel(environment: AppEnvironment = .shared, batchID: String) {
+    open override func cancel(batchID: String) {
+        cancelWasCalled = true
+    }
+
+    open override func cancel(file: File) {
         cancelWasCalled = true
     }
 }

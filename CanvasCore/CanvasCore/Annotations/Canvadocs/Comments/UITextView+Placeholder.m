@@ -55,12 +55,17 @@
 
 + (UIColor *)defaultPlaceholderColor {
     static UIColor *color = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        UITextField *textField = [[UITextField alloc] init];
-        textField.placeholder = @" ";
-        color = [textField valueForKeyPath:@"_placeholderLabel.textColor"];
-    });
+    if (@available(iOS 13.0, *)) {
+        color = [UIColor placeholderTextColor];
+    } else {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            UITextField *textField = [[UITextField alloc] init];
+            textField.placeholder = @" ";
+            // this private api has changed in ios 13 but continues to work in ios 12
+            color = [textField valueForKeyPath:@"_placeholderLabel.textColor"];
+        });
+    }
     return color;
 }
 

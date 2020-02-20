@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(No subject)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d of %3$d";
 
@@ -10,11 +13,26 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ will begin at %2$@";
 
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@, in %2$@, the last message was on %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, unread";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
+
 /* Percentage field placeholder */
 "1-100%" = "1 – 100%";
 
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Act as user";
+
+/* No comment provided by engineer. */
+"Add" = "Add";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "Add attachments";
 
 /* No comment provided by engineer. */
 "Add Student" = "Add student";
@@ -52,6 +70,12 @@
 /* No comment provided by engineer. */
 "Back" = "Back";
 
+/* Calendar Tab */
+"Calendar" = "Calendar";
+
+/* No comment provided by engineer. */
+"Calendar Event" = "Calendar event";
+
 /* No comment provided by engineer. */
 "Cancel" = "Cancel";
 
@@ -65,7 +89,10 @@
 "Caught up on Alerts" = "Caught up on alerts";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Choose a student";
+"Choose a course to message" = "Choose a module to message";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Compose new message";
 
 /* Course Announcement Description */
 "Course announcements" = "Module announcements";
@@ -80,13 +107,13 @@
 "Courses" = "Modules";
 
 /* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Current student: %@, tap to switch students";
-
-/* No comment provided by engineer. */
 "Discussion" = "Discussion";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Dismiss";
+
+/* No comment provided by engineer. */
+"Edit Recipients" = "Edit Recipients";
 
 /* No comment provided by engineer. */
 "Event" = "Event";
@@ -101,6 +128,18 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Failed to load (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
+"Failed. Tap for options" = "Failed. Tap for options";
+
+/* No comment provided by engineer. */
+"File" = "File";
+
+/* No comment provided by engineer. */
+"for %@" = "for %@";
+
+/* No comment provided by engineer. */
+"Front Page" = "Front page";
+
+/* No comment provided by engineer. */
 "Grades" = "Grades";
 
 /* High Assignment Grade too Low */
@@ -111,6 +150,12 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "In-class";
+
+/* No comment provided by engineer. */
+"Inbox" = "Inbox";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Inbox zero";
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Input the student pairing code provided to you.";
@@ -139,14 +184,26 @@
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "Low module mark cannot be higher than high module mark";
 
-/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "Manage children";
+/* No comment provided by engineer. */
+"Message" = "Message";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Message from %1$@, %2$@, on %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Missing";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Missing: (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Missing: %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Missing: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "New message";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Next week";
@@ -159,6 +216,9 @@
 
 /* Empty Students Text */
 "No Students" = "No students";
+
+/* No comment provided by engineer. */
+"No Subject" = "No Subject";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Nothing this week";
@@ -176,7 +236,33 @@
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
+"Recipients" = "Recipients";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "Regarding: %@";
+
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "Regarding: %1$@, %2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "Reply";
+
+/* No comment provided by engineer. */
+"Reply All" = "Reply all";
+
+/* No comment provided by engineer. */
+"Retry" = "Retry";
+
+/* No comment provided by engineer. */
+"Send" = "Send";
+
+/* No comment provided by engineer. */
 "Settings" = "Settings";
+
+/* No comment provided by engineer. */
+"Subject" = "Subject";
 
 /* No comment provided by engineer. */
 "Submitted" = "Submitted";
@@ -186,6 +272,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "Submitted: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Summary";
 
 /* Syllabus Button Title */
 "Syllabus" = "Syllabus";
@@ -209,17 +298,23 @@
 "This student's courses may not be published yet." = "This student's modules may not be published yet.";
 
 /* No comment provided by engineer. */
+"To" = "To";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "Trouble logging in";
 
 /* No comment provided by engineer. */
 "Unread" = "Unread";
 
-/* Calendar Tab */
-"Week" = "Week";
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "Uploading %1$@ is at %2$@";
 
 /* Header title of admin view */
 "Welcome!" = "Welcome!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "You must allow notifications in settings to set reminders.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "You’re all caught up";
 

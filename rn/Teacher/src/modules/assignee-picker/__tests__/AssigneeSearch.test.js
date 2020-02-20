@@ -20,6 +20,7 @@
  * @flow
  */
 
+import { shallow } from 'enzyme'
 import 'react-native'
 import React from 'react'
 import { AssigneeSearch } from '../AssigneeSearch'
@@ -27,20 +28,11 @@ import renderer from 'react-test-renderer'
 import { registerScreens } from '../../../../src/routing/register-screens'
 import setProps from '../../../../test/helpers/setProps'
 import { type AssigneeSearchProps } from '../map-state-to-props'
+import * as template from '../../../__templates__'
 
 registerScreens({})
 
 jest.mock('react-native-search-bar', () => require('../../../__mocks__/SearchBar').default)
-
-const template = {
-  ...require('../__template__/Assignee.js'),
-  ...require('../../../__templates__/course'),
-  ...require('../../../__templates__/assignments'),
-  ...require('../../../__templates__/enrollments'),
-  ...require('../../../__templates__/section'),
-  ...require('../../../__templates__/group'),
-  ...require('../../../__templates__/helm'),
-}
 
 const defaultProps: AssigneeSearchProps = {
   courseID: template.course().id,
@@ -64,6 +56,35 @@ test('render correctly', () => {
   )
   setProps(tree, { ...defaultProps })
   expect(tree.toJSON()).toMatchSnapshot()
+})
+
+test('renders student names', () => {
+  let props = {
+    ...defaultProps,
+    enrollments: [
+      template.enrollment({
+        user: template.user({
+          id: '1',
+          name: 'Alfredo',
+          pronouns: null,
+        }),
+      }),
+      template.enrollment({
+        user: template.user({
+          id: '2',
+          name: 'Eve',
+          pronouns: 'She/Her',
+        }),
+      }),
+    ],
+  }
+  let tree = shallow(<AssigneeSearch {...props} />)
+  let list = tree.find('SectionList')
+  let sections = list.prop('sections')
+  let user1Row = shallow(list.prop('renderItem')({ item: sections[3].data[0], index: 0 }))
+  expect(user1Row.find('[testID="AssigneeRow.student-1.name"]').prop('children')).toEqual('Alfredo')
+  let user2Row = shallow(list.prop('renderItem')({ item: sections[3].data[1], index: 1 }))
+  expect(user2Row.find('[testID="AssigneeRow.student-2.name"]').prop('children')).toEqual('Eve (She/Her)')
 })
 
 test('render correctly', () => {

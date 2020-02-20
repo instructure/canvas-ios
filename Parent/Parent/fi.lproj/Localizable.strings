@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(ei aihetta)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d / %3$d";
 
@@ -10,11 +13,26 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ alkaa %2$@";
 
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@ kohdassa %2$@ viimeinen viesti oli %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, lukematon";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
+
 /* Percentage field placeholder */
 "1-100%" = "1-100 %";
 
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Toimi käyttäjänä";
+
+/* No comment provided by engineer. */
+"Add" = "Lisää";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "Lisää liite";
 
 /* No comment provided by engineer. */
 "Add Student" = "Lisää opiskelija";
@@ -52,6 +70,12 @@
 /* No comment provided by engineer. */
 "Back" = "Takaisin";
 
+/* Calendar Tab */
+"Calendar" = "Kalenteri";
+
+/* No comment provided by engineer. */
+"Calendar Event" = "Kalenteritapahtuma";
+
 /* No comment provided by engineer. */
 "Cancel" = "Peruuta";
 
@@ -65,7 +89,10 @@
 "Caught up on Alerts" = "Hallitse hälytykset";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Valitse opiskelija";
+"Choose a course to message" = "Valitse kurssi, jolle lähetetään viesti";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Luo uusi viesti";
 
 /* Course Announcement Description */
 "Course announcements" = "Kurssin ilmoitukset";
@@ -80,13 +107,13 @@
 "Courses" = "Kurssit";
 
 /* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Kurssin opiskelija %@, napauta vaihtaaksesi opiskelijaa";
-
-/* No comment provided by engineer. */
 "Discussion" = "Keskustelu";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Ohita";
+
+/* No comment provided by engineer. */
+"Edit Recipients" = "Muokkaa vastaanottajia";
 
 /* No comment provided by engineer. */
 "Event" = "Tapahtuma";
@@ -101,6 +128,18 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "(discussionKitModelName) NS:n lataus epäonnistuiManagedObjectModel";
 
 /* No comment provided by engineer. */
+"Failed. Tap for options" = "Epäonnistui. Asetukset napauttamalla";
+
+/* No comment provided by engineer. */
+"File" = "Tiedosto";
+
+/* No comment provided by engineer. */
+"for %@" = "- %@";
+
+/* No comment provided by engineer. */
+"Front Page" = "Etusivu";
+
+/* No comment provided by engineer. */
 "Grades" = "Arvosanat";
 
 /* High Assignment Grade too Low */
@@ -111,6 +150,12 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "Luokassa";
+
+/* No comment provided by engineer. */
+"Inbox" = "Tulevien laatikko";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Saapuvia posteja nolla!";
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Pane opiskelijan parinmuodostuskoodi, joka on toimitettu sinulle.";
@@ -139,14 +184,26 @@
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "Alhainen kurssin arvosana ei voi olla suurempi kuin korkea kurssin arvosana";
 
-/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "Hallitse lapsia";
+/* No comment provided by engineer. */
+"Message" = "Viesti";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Viesti kohteesta %1$@, %2$@, %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Puuttuu";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Puuttuu (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Puuttuu %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Puuttuu %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Uusi viesti";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Ensi viikolla";
@@ -159,6 +216,9 @@
 
 /* Empty Students Text */
 "No Students" = "Ei opiskelijoita";
+
+/* No comment provided by engineer. */
+"No Subject" = "Ei aihetta";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Ei mitään tällä viikolla";
@@ -176,7 +236,33 @@
 "Quiz" = "Tietovisa";
 
 /* No comment provided by engineer. */
+"Recipients" = "Vastaanottajat";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "Koskee: %@";
+
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "Koskee: %1$@, %2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "Vastaus";
+
+/* No comment provided by engineer. */
+"Reply All" = "Vastaa kaikille";
+
+/* No comment provided by engineer. */
+"Retry" = "Yritä uudelleen";
+
+/* No comment provided by engineer. */
+"Send" = "Lähetä";
+
+/* No comment provided by engineer. */
 "Settings" = "Asetukset";
+
+/* No comment provided by engineer. */
+"Subject" = "Aihe";
 
 /* No comment provided by engineer. */
 "Submitted" = "Lähetetty";
@@ -186,6 +272,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "Lähetetty: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Yhteenveto";
 
 /* Syllabus Button Title */
 "Syllabus" = "Opinto-ohjelma";
@@ -209,17 +298,23 @@
 "This student's courses may not be published yet." = "Tämän opiskelijan kursseja ei ehkä vielä julkaista.";
 
 /* No comment provided by engineer. */
+"To" = "Johonkin";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "Ongelmia sisään kirjautumisessa";
 
 /* No comment provided by engineer. */
 "Unread" = "Lukematon";
 
-/* Calendar Tab */
-"Week" = "Viikko";
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "%1$@ lataus on %2$@";
 
 /* Header title of admin view */
 "Welcome!" = "Tervetuloa!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Sinun täytyy sallia ilmoitukset asetuksissa määrittääksesi muistutukset.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Olet ajan tasalla";
 

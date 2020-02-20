@@ -22,7 +22,16 @@ import TestsFoundation
 import XCTest
 
 class LoginFindSchoolTests: StudentUITestCase {
+    func mockSearchAndPrefixes(searchTerm: String, results: [APIAccountResult]) {
+        for index in searchTerm.indices {
+            mockData(GetAccountsSearchRequest(searchTerm: String(searchTerm.prefix(through: index))), value: results)
+        }
+    }
+
     func testEnterDomain() {
+        mockSearchAndPrefixes(searchTerm: "test", results: [])
+        mockData(GetMobileVerifyRequest(domain: "test.instructure.com"), value: APIVerifyClient(authorized: true, base_url: nil, client_id: nil, client_secret: "secret"))
+
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.waitToExist()
 
@@ -31,7 +40,7 @@ class LoginFindSchoolTests: StudentUITestCase {
     }
 
     func testEmptyStates() {
-        mockData(GetAccountsSearchRequest(searchTerm: "zxzx"), value: [])
+        mockSearchAndPrefixes(searchTerm: "zxzx", results: [])
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.waitToExist()
 
@@ -45,17 +54,18 @@ class LoginFindSchoolTests: StudentUITestCase {
     }
 
     func testFoundResults() {
-        mockData(GetAccountsSearchRequest(searchTerm: "cgnu"), value: [
-            APIAccountResult.make(name: "Crazy Go Nuts University", domain: "http://cgnuonline-eniversity.edu"),
-        ])
+        let name = "Crazy Go Nuts University"
+        let domain = "http://cgnuonline-eniversity.edu"
+        mockSearchAndPrefixes(searchTerm: "cgnu", results: [APIAccountResult.make(name: name, domain: domain)])
+        mockData(GetMobileVerifyRequest(domain: domain), value: APIVerifyClient(authorized: true, base_url: nil, client_id: nil, client_secret: "secret"))
 
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.waitToExist()
 
         LoginFindSchool.searchField.typeText("cgnu")
-        let item = LoginFindAccountResult.item(host: "http://cgnuonline-eniversity.edu")
+        let item = LoginFindAccountResult.item(host: domain)
 
-        XCTAssertEqual(item.label(), "Crazy Go Nuts University")
+        XCTAssertEqual(item.label(), name)
         item.tap()
         LoginWeb.webView.waitToExist()
     }

@@ -22,7 +22,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
   View,
-  StyleSheet,
   Image,
   TouchableHighlight,
   PickerIOS,
@@ -35,7 +34,7 @@ import type {
 } from '../../submissions/list/submission-prop-types'
 import { formattedDueDate } from '../../../common/formatters'
 import SpeedGraderActions from '../actions'
-import brand from '../../../common/branding'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 
 var PickerItemIOS = PickerIOS.Item
 
@@ -77,13 +76,13 @@ export class SubmissionPicker extends Component<SubmissionPickerProps, State> {
       }
       return <View style={styles.container}>
         <TouchableHighlight
-          underlayColor='white'
+          underlayColor={colors.backgroundLightest}
           onPress={this._togglePicker}
           testID='header.toggle-submission_history-picker'
           accessibilityTraits='button'
         >
           <View style={styles.submissionHistoryContainer}>
-            <Text style={[styles.submissionDate, this.state.showingPicker && { color: brand.primaryBrandColor }]}>
+            <Text style={[styles.submissionDate, this.state.showingPicker && { color: colors.primary }]}>
               {formattedDueDate(new Date((selected && selected.submitted_at) || ''))}
             </Text>
             <Image source={Images.pickerArrow} style={[{ alignSelf: 'center' }, this.state.showingPicker && styles.arrowSelecting]} />
@@ -120,12 +119,12 @@ export class SubmissionPicker extends Component<SubmissionPickerProps, State> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   container: {
     marginTop: 16,
     paddingHorizontal: 16,
-    borderBottomColor: '#D8D8D8',
-    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
+    borderBottomWidth: vars.hairlineWidth,
     borderStyle: 'solid',
     paddingBottom: 4,
   },
@@ -138,7 +137,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   submissionDate: {
-    color: '#8B969E',
+    color: colors.textDark,
     fontSize: 14,
     fontWeight: '500',
   },
@@ -147,7 +146,7 @@ const styles = StyleSheet.create({
       { rotate: '180deg' },
     ],
   },
-})
+}))
 
 export function mapStateToProps (state: AppState, ownProps: RouterProps): SubmissionPickerDataProps {
   if (!ownProps.submissionID) {
@@ -157,7 +156,7 @@ export function mapStateToProps (state: AppState, ownProps: RouterProps): Submis
   }
 
   return {
-    selectedIndex: state.entities.submissions[ownProps.submissionID].selectedIndex,
+    selectedIndex: state.entities.submissions[ownProps.submissionID]?.selectedIndex,
   }
 }
 

@@ -21,7 +21,6 @@ import React, { Component } from 'react'
 import {
   View,
   SegmentedControlIOS,
-  StyleSheet,
   Dimensions,
 } from 'react-native'
 import i18n from 'format-message'
@@ -35,7 +34,7 @@ import DrawerState, { type DrawerPosition } from './utils/drawer-state'
 import SubmissionViewer from './SubmissionViewer'
 import ToolTip from '../../common/components/ToolTip'
 import A11yGroup from '../../common/components/A11yGroup'
-import colors from '../../common/colors'
+import { colors, createStyleSheet } from '../../common/stylesheet'
 import SimilarityScore from './components/SimilarityScore'
 
 let { width, height } = Dimensions.get('window')
@@ -210,7 +209,7 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
           ]}
           selectedIndex={this.state.selectedTabIndex}
           onChange={this.changeTab}
-          tintColor={colors.primaryButtonColor}
+          tintColor={colors.buttonPrimaryBackground}
         />
       </View>
     )
@@ -313,20 +312,20 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   speedGrader: {
     flex: 1,
   },
   controlWrapper: {
     paddingHorizontal: 16,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'lightgray',
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
     paddingBottom: 8,
   },
   splitViewHeader: {
     paddingBottom: 16,
-    borderBottomColor: colors.seperatorColor,
-    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
+    borderBottomWidth: vars.hairlineWidth,
   },
   splitView: {
     flexDirection: 'row',
@@ -335,10 +334,10 @@ const styles = StyleSheet.create({
   right: {
     width: DRAWER_WIDTH,
     paddingTop: 16,
-    borderLeftWidth: StyleSheet.hairlineWidth,
-    borderLeftColor: colors.seperatorColor,
+    borderLeftWidth: vars.hairlineWidth,
+    borderLeftColor: colors.borderMedium,
   },
   left: {
     flex: 1,
   },
-})
+}))

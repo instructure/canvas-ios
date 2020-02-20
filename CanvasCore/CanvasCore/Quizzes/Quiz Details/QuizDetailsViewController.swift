@@ -17,9 +17,8 @@
 //
 
 import UIKit
-
 import Cartography
-
+import Core
 
 class QuizDetailsViewController: UITableViewController {
     
@@ -66,6 +65,7 @@ class QuizDetailsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isTranslucent = false
         prepareTable()
         prepareDescriptionCell()
     }
@@ -76,7 +76,7 @@ class QuizDetailsViewController: UITableViewController {
         tableView.estimatedRowHeight = 44
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 20+44+20)) // padding for scrolling above the page indicator, TODO: make constants
         tableView.register(QuizDetailCell.Nib, forCellReuseIdentifier: QuizDetailCell.ReuseID)
-        let refresh = UIRefreshControl()
+        let refresh = CircleRefreshControl()
         refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView?.refreshControl = refresh
     }
@@ -142,7 +142,7 @@ class QuizDetailsViewController: UITableViewController {
         }
     }
 
-    @objc func refresh(_ control: UIRefreshControl) {
+    @objc func refresh(_ control: CircleRefreshControl) {
         quizController?.refreshQuiz {
             control.endRefreshing()
         }

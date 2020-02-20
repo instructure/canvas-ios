@@ -2,6 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>d_events</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@events@</string>
+		<key>events</key>
+		<dict>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>one</key>
+			<string>%d event</string>
+			<key>other</key>
+			<string>%d events</string>
+		</dict>
+	</dict>
 	<key>final_grade_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -166,5 +182,71 @@
 			<string>%d Questions</string>
 		</dict>
 	</dict>
+	<key>d_needs_grading</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@needs_grading@</string>
+		<key>needs_grading</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d needs grading</string>
+			<key>two</key>
+			<string></string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>other</key>
+			<string>%d need grading</string>
+		</dict>
+	</dict>
+	<key>conversation_recipients_to</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@audience_size@</string>
+		<key>audience_size</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d other</string>
+			<key>two</key>
+			<string></string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>other</key>
+			<string>%d others</string>
+		</dict>
+	</dict>
+    <key>conversation_unread_messages</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@message_count@</string>
+        <key>message_count</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>d</string>
+            <key>one</key>
+            <string>%d unread conversation</string>
+            <key>two</key>
+            <string></string>
+            <key>few</key>
+            <string></string>
+            <key>many</key>
+            <string></string>
+            <key>other</key>
+            <string>%d unread conversations</string>
+        </dict>
+    </dict>
 </dict>
 </plist>

@@ -22,13 +22,12 @@ import React, { Component } from 'react'
 import {
   Image,
   View,
-  StyleSheet,
   ActionSheetIOS,
   TouchableOpacity,
 } from 'react-native'
 import { Text } from '../../../common/text'
 import { LinkButton, Button } from '../../../common/buttons'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet, vars } from '../../../common/stylesheet'
 import Images from '../../../images'
 import Avatar from '../../../common/components/Avatar'
 import CanvasWebView from '../../../common/components/CanvasWebView'
@@ -40,6 +39,7 @@ import isEqual from 'lodash/isEqual'
 import RichContent from '../../../common/components/RichContent'
 import ExperimentalFeature from '@common/ExperimentalFeature'
 import { logEvent } from '@common/CanvasAnalytics'
+import { personDisplayName } from '../../../common/formatters'
 
 type ReadState = 'read' | 'unread'
 
@@ -112,7 +112,7 @@ export default class Reply extends Component<Props, State> {
 
   showAttachment = () => {
     if (this.props.reply.attachment) {
-      this.props.navigator.show('/attachment', { modal: true }, {
+      this.props.navigator.show('/attachment', { modal: true, disableSwipeDownToDismissModal: true }, {
         attachment: this.props.reply.attachment,
       })
     }
@@ -147,7 +147,7 @@ export default class Reply extends Component<Props, State> {
     participants = participants || {}
 
     let user = this._userFromParticipants(reply, participants)
-    let message = reply.deleted ? `<i style="color:${colors.grey4}">${i18n('Deleted this reply.')}</i>` : reply.message
+    let message = reply.deleted ? `<i style="color:${colors.textDark}">${i18n('Deleted this reply.')}</i>` : reply.message
     const unreadDot = this._renderUnreadDot(reply, readState)
     return (
       <View style={style.parentRow}>
@@ -155,7 +155,7 @@ export default class Reply extends Component<Props, State> {
         <View style={style.colA}>
           { unreadDot }
           <Avatar
-            testID='reply.avatar'
+            testID={`discussion.reply.${reply.id}.avatar`}
             height={AVATAR_SIZE}
             key={user.id}
             avatarURL={user.avatar_image_url}
@@ -170,15 +170,16 @@ export default class Reply extends Component<Props, State> {
             <Text
               style={style.userName}
               accessibilityTraits={this.props.isRootReply ? 'header' : 'none'}
+              testID='DiscussionReply.userName'
             >
-              {user.display_name}
+              {personDisplayName(user.display_name, user.pronouns)}
             </Text>
             <Text style={style.date}>{i18n("{ date, date, 'MMM d' } at { date, time, short }", { date: new Date(reply.updated_at) })}</Text>
             {this.state.useSimpleRenderer || reply.deleted
               ? <RichContent html={message} navigator={this.props.navigator} />
               : <CanvasWebView
                 automaticallySetHeight
-                style={{ flex: 1, margin: -global.style.defaultPadding }}
+                style={{ flex: 1, margin: -vars.padding }}
                 html={message}
                 navigator={this.props.navigator}
                 ref={(ref) => { this.webView = ref }}
@@ -186,7 +187,7 @@ export default class Reply extends Component<Props, State> {
               />
             }
             {!reply.deleted && reply.attachment &&
-              <TouchableOpacity testID={`discussion-reply.${reply.id}.attachment`} onPress={this.showAttachment}>
+              <TouchableOpacity testID={`discussion.reply.${reply.id}.attachment`} onPress={this.showAttachment}>
                 <View style={style.attachment}>
                   <Image source={Images.paperclip} style={style.attachmentIcon} />
                   <Text style={style.attachmentText}>
@@ -196,7 +197,7 @@ export default class Reply extends Component<Props, State> {
               </TouchableOpacity>
             }
 
-            {reply.deleted && <View style={{ marginTop: global.style.defaultPadding }}/>}
+            {reply.deleted && <View style={{ marginTop: vars.padding }}/>}
             {!reply.deleted && this._renderButtons()}
             {this._renderMoreRepliesButton(depth, reply, maxReplyNodeDepth)}
 
@@ -213,7 +214,13 @@ export default class Reply extends Component<Props, State> {
     let repliesText = i18n('View more replies')
     return (
       <View style={style.moreContainer}>
-        <Button containerStyle={style.moreButtonContainer} style={style.moreButton} onPress={this._actionMore} accessibilityLabel={repliesText} testID='discussion.more-replies'>
+        <Button
+          containerStyle={style.moreButtonContainer}
+          style={style.moreButton}
+          onPress={this._actionMore}
+          accessibilityLabel={repliesText}
+          testID={`discussion.reply.${this.props.reply.id}.more-replies`}
+        >
           {repliesText}
         </Button>
       </View>
@@ -226,7 +233,7 @@ export default class Reply extends Component<Props, State> {
 
     const buttonTextStyle = {
       fontWeight: '500',
-      color: colors.grey4,
+      color: colors.textDark,
       fontSize: 16,
     }
     let containerStyles = [style.footerButtonsContainer]
@@ -238,14 +245,24 @@ export default class Reply extends Component<Props, State> {
       <View style={containerStyles}>
         { !discussionLockedForUser && userCanReply &&
           <View style={style.footerActionsContainer}>
-            <LinkButton style={style.footer} textStyle={buttonTextStyle} onPress={this._actionReply} testID={`discussion.reply-btn.${this.props.reply.id}`}>
+            <LinkButton
+              style={style.footer}
+              textStyle={buttonTextStyle}
+              onPress={this._actionReply}
+              testID={`discussion.reply.${this.props.reply.id}.reply-btn`}
+            >
               {i18n('Reply')}
             </LinkButton>
             { this._canEdit() &&
-              <Text style={[style.footer, { color: colors.grey2, textAlign: 'center', alignSelf: 'center', paddingLeft: 10, paddingRight: 10 }]} accessible={false}>|</Text>
+              <Text style={[style.footer, { color: colors.borderMedium, textAlign: 'center', alignSelf: 'center', paddingLeft: 10, paddingRight: 10 }]} accessible={false}>|</Text>
             }
             { this._canEdit() &&
-              <LinkButton style={style.footer} textStyle={buttonTextStyle} onPress={this._actionEdit} testID='discussion.edit-btn'>
+              <LinkButton
+                style={style.footer}
+                textStyle={buttonTextStyle}
+                onPress={this._actionEdit}
+                testID={`discussion.reply.${this.props.reply.id}.edit-btn`}
+              >
                 {i18n('Edit')}
               </LinkButton>
             }
@@ -259,10 +276,10 @@ export default class Reply extends Component<Props, State> {
                   buttonTextStyle,
                   {
                     marginRight: 6,
-                    color: this.hasRated() ? colors.primaryBrandColor : buttonTextStyle.color,
+                    color: this.hasRated() ? colors.primary : buttonTextStyle.color,
                   },
                 ]}
-                testID='discussion.reply.rating-count'
+                testID={`discussion.reply.${this.props.reply.id}.rating-count`}
                 accessibilityLabel={i18n(`Number of likes: {count}`, { count: ratingCount })}
               >
                 ({ratingCount})
@@ -270,16 +287,17 @@ export default class Reply extends Component<Props, State> {
             }
             { canRate &&
               <TouchableOpacity
-                testID='discussion.reply.rate-btn'
+                testID={`discussion.reply.${this.props.reply.id}.rate-btn`}
                 onPress={this._actionRate}
                 accessibilityLabel={i18n('Like')}
-                accessibilityTraits={this.hasRated() ? ['button', 'selected'] : ['button']}
+                accessibilityRole='button'
+                accessibilityStates={this.hasRated() ? [ 'selected' ] : []}
               >
                 <Image
                   source={this.hasRated() ? Images.discussions.rated : Images.discussions.rate}
                   style={[
                     style.ratingIcon,
-                    { tintColor: this.hasRated() ? colors.primaryBrandColor : buttonTextStyle.color },
+                    { tintColor: this.hasRated() ? colors.primary : buttonTextStyle.color },
                   ]}
                 />
               </TouchableOpacity>
@@ -311,7 +329,7 @@ export default class Reply extends Component<Props, State> {
 
   _renderUnreadDot (reply: DiscussionReply, state: ReadState) {
     return state === 'unread' && !reply.deleted ? (
-      <View style={style.unreadDot} accessible={true} accessibilityLabel={i18n('Unread')} testID={`reply.${this.props.reply.id}.unread`} />
+      <View style={style.unreadDot} accessible={true} accessibilityLabel={i18n('Unread')} testID={`discussion.reply.${this.props.reply.id}.unread`} />
     ) : <View />
   }
 
@@ -367,7 +385,7 @@ export default class Reply extends Component<Props, State> {
 const AVATAR_SIZE = 24
 const AVATAR_MARGIN_RIGHT = 8
 const unreadDotSize = 6
-const style = StyleSheet.create({
+const style = createStyleSheet((colors, vars) => ({
   parentRow: {
     flex: 1,
     flexDirection: 'row',
@@ -385,14 +403,14 @@ const style = StyleSheet.create({
   },
   rowA: {
     alignSelf: 'stretch',
-    marginTop: global.style.defaultPadding / 1.25,
+    marginTop: vars.padding / 1.25,
   },
   rowB: {
     flex: 1,
     alignSelf: 'stretch',
   },
   threadLine: {
-    backgroundColor: colors.grey1,
+    backgroundColor: colors.backgroundLight,
     width: 1,
     flex: 1,
   },
@@ -400,14 +418,14 @@ const style = StyleSheet.create({
     height: AVATAR_SIZE,
     width: AVATAR_SIZE,
     borderRadius: AVATAR_SIZE / 2,
-    backgroundColor: colors.grey1,
-    marginTop: global.style.defaultPadding / 1.25,
+    backgroundColor: colors.backgroundLight,
+    marginTop: vars.padding / 1.25,
   },
   unreadDot: {
     width: unreadDotSize,
     height: unreadDotSize,
     borderRadius: unreadDotSize / 2,
-    backgroundColor: '#008EE4',
+    backgroundColor: colors.textInfo,
     position: 'absolute',
     top: 0,
     left: unreadDotSize * -1,
@@ -417,9 +435,9 @@ const style = StyleSheet.create({
     fontWeight: '600',
   },
   date: {
-    color: colors.grey5,
+    color: colors.textDark,
     fontSize: 12,
-    marginBottom: global.style.defaultPadding,
+    marginBottom: vars.padding,
   },
   footer: {
     paddingTop: 2,
@@ -428,7 +446,7 @@ const style = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   footerButtonsContainer: {
-    marginTop: global.style.defaultPadding,
+    marginTop: vars.padding,
     marginBottom: 8,
     flexDirection: 'row',
     flex: 1,
@@ -445,25 +463,25 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   ratingIcon: {
-    tintColor: colors.grey4,
+    tintColor: colors.textDark,
   },
   moreContainer: {
-    marginTop: global.style.defaultPadding,
-    marginBottom: global.style.defaultPadding,
+    marginTop: vars.padding,
+    marginBottom: vars.padding,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     height: 27,
     flex: 1,
-    paddingRight: global.style.defaultPadding,
+    paddingRight: vars.padding,
   },
   moreButton: {
     fontSize: 12,
     fontWeight: 'normal',
-    color: colors.grey4,
+    color: colors.textDark,
   },
   moreButtonContainer: {
-    backgroundColor: colors.grey1,
-    borderColor: colors.grey2,
+    backgroundColor: colors.backgroundLight,
+    borderColor: colors.borderMedium,
     borderWidth: 1,
     borderRadius: 4,
     flex: 1,
@@ -475,14 +493,14 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   attachmentIcon: {
-    tintColor: colors.link,
+    tintColor: colors.linkColor,
     height: 14,
     width: 14,
   },
   attachmentText: {
-    color: colors.link,
+    color: colors.linkColor,
     fontWeight: 'bold',
     marginLeft: 4,
     fontSize: 14,
   },
-})
+}))

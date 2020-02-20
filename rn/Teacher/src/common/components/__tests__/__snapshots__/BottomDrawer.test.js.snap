@@ -72,7 +72,7 @@ exports[`BottomDrawer renders any children 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "borderTopLeftRadius": 12,
           "borderTopRightRadius": 12,
           "bottom": 0,
@@ -115,7 +115,7 @@ exports[`BottomDrawer renders any children 1`] = `
           style={
             Object {
               "alignSelf": "center",
-              "backgroundColor": "darkgray",
+              "backgroundColor": "#8B969E",
               "borderRadius": 5,
               "height": 4,
               "marginTop": 22,

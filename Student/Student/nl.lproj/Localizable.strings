@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "Alle cursussen";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "Alle beoordelingsperioden";
+
 /* Button to select all members of a group */
 "All members" = "Alle leden";
 
@@ -366,6 +369,9 @@
 "Choose Video" = "Video kiezen";
 
 /* No comment provided by engineer. */
+"Clear filter" = "Filter wissen";
+
+/* No comment provided by engineer. */
 "Close" = "Sluiten";
 
 /* No comment provided by engineer. */
@@ -441,6 +447,9 @@
 /* label for customizing a course */
 "Customize" = "Aanpassen";
 
+/* No comment provided by engineer. */
+"d_events" = "d_events";
+
 /* dashboard page title */
 "Dashboard" = "Dashboard";
 
@@ -486,7 +495,11 @@
    Title for Discussions view controller */
 "Discussions" = "Discussies";
 
-/* Dismiss an alert dialog */
+/* Dismiss an error button
+   dismiss button
+   Dismiss button for an error dialoue
+   Dismiss error alert button
+   dismiss the alert button */
 "Dismiss" = "Afwijzen";
 
 /* Alert title asking if you want to masquerade */
@@ -501,7 +514,7 @@
 /* Button to cancel deleting folders */
 "Don't delete" = "Niet verwijderen";
 
-/* Button title to mark a to do item as done */
+/* No comment provided by engineer. */
 "Done" = "Gereed";
 
 /* Shown when we cancel a file download */
@@ -530,9 +543,6 @@
 
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Inleverdatum:";
-
-/* Due date label for to do items, first placeholder is date, second is time */
-"Due: %@ at %@" = "Inleverdatum: %1$@ om %2$@";
 
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "Inleverdatum: %1$@ om %2$@";
@@ -631,6 +641,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Bestanden (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Filter";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Filteren op:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Downloaden voltooid";
@@ -737,9 +753,6 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "Er zijn problemen";
-
-/* No comment provided by engineer. */
-"It looks like there’s nothing to do today. Enjoy your day!" = "Het ziet ernaar uit dat er vandaag niks te doen is. Een fijne dag gewenst!";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Het is leeg, wat doe je hier nog .";
@@ -933,6 +946,9 @@
 "No Mastery Paths" = "Geen leertrajecten";
 
 /* No comment provided by engineer. */
+"No Notifications" = "Geen meldingen";
+
+/* No comment provided by engineer. */
 "No recipients" = "Geen geadresseerden";
 
 /* Title for attempting submission without a comment */
@@ -949,9 +965,6 @@
 
 /* No comment provided by engineer. */
 "No Thanks" = "Nee, bedankt";
-
-/* No comment provided by engineer. */
-"No To-Do Items" = "Geen to-do-items";
 
 /* error message for a 401 response. */
 "Not Authorized" = "Geen toestemming";
@@ -1478,6 +1491,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Er was een probleem bij het laden van je inhoud. Als het een audio- of video-upload is, wordt het misschien nog verwerkt.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Er is nog niets om te melden.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "Deze app mag niet gebruikt worden.";

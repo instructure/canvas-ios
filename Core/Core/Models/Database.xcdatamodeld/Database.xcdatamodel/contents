@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="18G103" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Activity" representedClassName=".Activity" syncable="YES">
+        <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="htmlURL" optional="YES" attributeType="URI"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="message" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="typeRaw" optional="YES" attributeType="String"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
     <entity name="AlertThreshold" representedClassName="Core.AlertThreshold" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="observerID" optional="YES" attributeType="String"/>
@@ -8,13 +18,17 @@
         <attribute name="typeRaw" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Assignment" representedClassName="Core.Assignment" syncable="YES">
-        <attribute name="allowedExtensions" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="allowedExtensionsRaw" attributeType="String" defaultValueString=""/>
         <attribute name="assignmentGroupID" optional="YES" attributeType="String"/>
         <attribute name="assignmentGroupPosition" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="assignmentGroupSectionName" optional="YES" transient="YES" attributeType="String"/>
+        <attribute name="cacheKey" optional="YES" attributeType="String"/>
         <attribute name="courseID" attributeType="String"/>
         <attribute name="details" optional="YES" attributeType="String"/>
         <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="dueAtSortNilsAtBottom" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="externalToolTagAttributeURL" optional="YES" attributeType="URI"/>
+        <attribute name="freeFormCriterionCommentsOnRubric" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="gradedIndividually" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="gradingPeriodID" optional="YES" attributeType="String"/>
         <attribute name="gradingTypeRaw" attributeType="String"/>
@@ -29,32 +43,39 @@
         <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="quizID" optional="YES" attributeType="String"/>
-        <attribute name="submissionTypesRaw" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="submissionTypesRaw" attributeType="String"/>
         <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
         <attribute name="useRubricForGrading" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="assignmentGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AssignmentGroup" inverseName="assignments" inverseEntity="AssignmentGroup"/>
         <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="assignment" inverseEntity="DiscussionTopic"/>
+        <relationship name="gradingPeriod" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GradingPeriod" inverseName="assignments" inverseEntity="GradingPeriod"/>
         <relationship name="rubric" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Rubric" inverseName="assignment" inverseEntity="Rubric"/>
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Submission" inverseName="assignment" inverseEntity="Submission"/>
+        <relationship name="syllabus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Syllabus" inverseName="assignments" inverseEntity="Syllabus"/>
+        <relationship name="todo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Todo" inverseName="assignment" inverseEntity="Todo"/>
     </entity>
     <entity name="AssignmentGroup" representedClassName="Core.AssignmentGroup" syncable="YES">
         <attribute name="courseID" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignment" inverseName="assignmentGroup" inverseEntity="Assignment"/>
     </entity>
     <entity name="CalendarEventItem" representedClassName="Core.CalendarEventItem" syncable="YES">
         <attribute name="contextRaw" attributeType="String"/>
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="hasStartAt" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="htmlUrl" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="startAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="title" attributeType="String"/>
-        <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="typeRaw" attributeType="String"/>
     </entity>
-    <entity name="Color" representedClassName="Core.Color" syncable="YES">
-        <attribute name="canvasContextID" attributeType="String"/>
-        <attribute name="colorRaw" attributeType="Integer 32" valueTransformerName="" defaultValueString="0" usesScalarValueType="YES" customClassName="UIKit.UIColor"/>
+    <entity name="CommonCourse" representedClassName="Core.CommonCourse" syncable="YES">
+        <attribute name="courseID" attributeType="String"/>
+        <attribute name="role" attributeType="String"/>
+        <relationship name="searchRecipient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SearchRecipient" inverseName="commonCourses" inverseEntity="SearchRecipient"/>
     </entity>
     <entity name="CommunicationChannel" representedClassName="Core.CommunicationChannel" syncable="YES">
         <attribute name="address" attributeType="String"/>
@@ -64,17 +85,66 @@
         <attribute name="userID" attributeType="String"/>
         <attribute name="workflowStateRaw" attributeType="String"/>
     </entity>
+    <entity name="ContextColor" representedClassName="Core.ContextColor" syncable="YES">
+        <attribute name="canvasContextID" attributeType="String"/>
+        <attribute name="colorRaw" attributeType="Integer 32" valueTransformerName="" defaultValueString="0" usesScalarValueType="YES" customClassName="UIKit.UIColor"/>
+    </entity>
+    <entity name="Conversation" representedClassName="Core.Conversation" syncable="YES">
+        <attribute name="audienceIDsRaw" attributeType="String"/>
+        <attribute name="avatarURL" attributeType="URI"/>
+        <attribute name="contextCode" optional="YES" attributeType="String"/>
+        <attribute name="contextName" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="lastMessage" attributeType="String"/>
+        <attribute name="lastMessageAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="messageCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="starred" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="subject" attributeType="String"/>
+        <attribute name="workflowStateRaw" attributeType="String"/>
+        <relationship name="messagesRaw" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="ConversationMessage" inverseName="conversation" inverseEntity="ConversationMessage"/>
+        <relationship name="participants" toMany="YES" deletionRule="Nullify" destinationEntity="ConversationParticipant" inverseName="conversations" inverseEntity="ConversationParticipant"/>
+    </entity>
+    <entity name="ConversationMessage" representedClassName="Core.ConversationMessage" syncable="YES">
+        <attribute name="authorID" attributeType="String"/>
+        <attribute name="body" attributeType="String"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="generated" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="participantIDsRaw" optional="YES" attributeType="String"/>
+        <relationship name="attachmentsRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="File" inverseName="conversationMessage" inverseEntity="File"/>
+        <relationship name="conversation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="messagesRaw" inverseEntity="Conversation"/>
+        <relationship name="forwardedRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ConversationMessage"/>
+        <relationship name="mediaComment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MediaComment" inverseName="conversationMessage" inverseEntity="MediaComment"/>
+    </entity>
+    <entity name="ConversationParticipant" representedClassName="Core.ConversationParticipant" syncable="YES">
+        <attribute name="avatarURL" optional="YES" attributeType="URI"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="pronouns" optional="YES" attributeType="String"/>
+        <relationship name="conversations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Conversation" inverseName="participants" inverseEntity="Conversation"/>
+    </entity>
     <entity name="Course" representedClassName="Core.Course" syncable="YES">
         <attribute name="arcEnabledRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="arcID" optional="YES" attributeType="String"/>
         <attribute name="courseCode" optional="YES" attributeType="String"/>
+        <attribute name="currentGradingPeriodID" optional="YES" attributeType="String"/>
         <attribute name="defaultViewRaw" optional="YES" attributeType="String"/>
+        <attribute name="hideFinalGrades" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="imageDownloadURL" optional="YES" attributeType="URI"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="multipleGradingPeriodsEnabled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="syllabusBody" optional="YES" attributeType="String"/>
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="course" inverseEntity="Enrollment"/>
+    </entity>
+    <entity name="CourseSection" representedClassName="Core.CourseSection" syncable="YES">
+        <attribute name="courseID" attributeType="String"/>
+        <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="startAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="totalStudentsRaw" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="DiscussionEntry" representedClassName="Core.DiscussionEntry" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -112,14 +182,17 @@
         <attribute name="currentPeriodComputedCurrentScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="currentPeriodComputedFinalGrade" optional="YES" attributeType="String"/>
         <attribute name="currentPeriodComputedFinalScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="multipleGradingPeriodsEnabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="role" attributeType="String"/>
+        <attribute name="role" optional="YES" attributeType="String"/>
         <attribute name="roleID" optional="YES" attributeType="String"/>
         <attribute name="stateRaw" optional="YES" attributeType="String"/>
         <attribute name="totalsForAllGradingPeriodsOption" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="type" attributeType="String"/>
         <attribute name="userID" optional="YES" attributeType="String"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="enrollments" inverseEntity="Course"/>
+        <relationship name="grades" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Grade" inverseName="enrollment" inverseEntity="Grade"/>
+        <relationship name="observedUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="enrollments" inverseEntity="User"/>
     </entity>
     <entity name="ExternalTool" representedClassName="Core.ExternalTool" syncable="YES">
@@ -158,7 +231,6 @@
         <attribute name="locked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="lockedForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="lockExplanation" optional="YES" attributeType="String"/>
-        <attribute name="lockInfo" optional="YES" attributeType="String"/>
         <attribute name="mediaEntryID" optional="YES" attributeType="String"/>
         <attribute name="mimeClass" optional="YES" attributeType="String"/>
         <attribute name="modifiedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -174,14 +246,21 @@
         <attribute name="userID" optional="YES" attributeType="String"/>
         <attribute name="userRaw" optional="YES" attributeType="Binary"/>
         <attribute name="uuid" optional="YES" attributeType="String"/>
+        <relationship name="conversationMessage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ConversationMessage" inverseName="attachmentsRaw" inverseEntity="ConversationMessage"/>
         <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="attachments" inverseEntity="DiscussionTopic"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="attachments" inverseEntity="Submission"/>
         <relationship name="submissionComment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubmissionComment" inverseName="attachments" inverseEntity="SubmissionComment"/>
+    </entity>
+    <entity name="Grade" representedClassName="Core.Grade" syncable="YES">
+        <attribute name="currentScoreRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="gradingPeriodID" optional="YES" attributeType="String"/>
+        <relationship name="enrollment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="grades" inverseEntity="Enrollment"/>
     </entity>
     <entity name="GradingPeriod" representedClassName="Core.GradingPeriod" syncable="YES">
         <attribute name="courseID" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignment" inverseName="gradingPeriod" inverseEntity="Assignment"/>
     </entity>
     <entity name="Group" representedClassName="Core.Group" syncable="YES">
         <attribute name="avatarURL" optional="YES" attributeType="URI"/>
@@ -210,6 +289,7 @@
         <attribute name="mediaID" attributeType="String"/>
         <attribute name="mediaTypeRaw" attributeType="String"/>
         <attribute name="url" attributeType="URI"/>
+        <relationship name="conversationMessage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ConversationMessage" inverseName="mediaComment" inverseEntity="ConversationMessage"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="mediaComment" inverseEntity="Submission"/>
     </entity>
     <entity name="Module" representedClassName="Core.Module" syncable="YES">
@@ -241,8 +321,10 @@
         <attribute name="notificationsRaw" attributeType="String" defaultValueString=""/>
     </entity>
     <entity name="Page" representedClassName="Core.Page" syncable="YES">
+        <attribute name="body" optional="YES" attributeType="String"/>
         <attribute name="contextID" attributeType="String"/>
-        <attribute name="htmlURL" attributeType="String"/>
+        <attribute name="editingRoles" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="htmlURL" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="isFrontPage" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="lastUpdated" attributeType="Date" usesScalarValueType="NO"/>
@@ -321,6 +403,18 @@
         <attribute name="viewStatistics" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="viewUserLogins" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
     </entity>
+    <entity name="Plannable" representedClassName=".Plannable" syncable="YES">
+        <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
+        <attribute name="contextImage" optional="YES" attributeType="URI"/>
+        <attribute name="contextName" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="htmlURL" optional="YES" attributeType="URI"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="typeRaw" optional="YES" attributeType="String"/>
+        <attribute name="userID" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Quiz" representedClassName="Core.Quiz" syncable="YES">
         <attribute name="accessCode" optional="YES" attributeType="String"/>
         <attribute name="allowedAttempts" optional="YES" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="YES"/>
@@ -380,7 +474,7 @@
     <entity name="RubricAssessment" representedClassName="Core.RubricAssessment" syncable="YES">
         <attribute name="comments" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String" defaultValueString="0"/>
-        <attribute name="points" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="pointsRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="ratingID" attributeType="String"/>
         <attribute name="submissionID" attributeType="String" defaultValueString="0"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="rubricAssesmentRaw" inverseEntity="Submission"/>
@@ -399,7 +493,9 @@
         <attribute name="filter" optional="YES" attributeType="String"/>
         <attribute name="fullName" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
-        <attribute name="roles" optional="YES" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="pronouns" optional="YES" attributeType="String"/>
+        <relationship name="commonCourses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CommonCourse" inverseName="searchRecipient" inverseEntity="CommonCourse"/>
     </entity>
     <entity name="Submission" representedClassName="Core.Submission" syncable="YES">
         <attribute name="assignmentID" attributeType="String"/>
@@ -408,6 +504,7 @@
         <attribute name="excusedRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="grade" optional="YES" attributeType="String"/>
         <attribute name="gradedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="gradeMatchesCurrentSubmission" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="late" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="latePolicyStatusRaw" optional="YES" attributeType="String"/>
@@ -431,6 +528,7 @@
         <attribute name="authorAvatarURL" optional="YES" attributeType="URI"/>
         <attribute name="authorID" attributeType="String"/>
         <attribute name="authorName" attributeType="String"/>
+        <attribute name="authorPronouns" optional="YES" attributeType="String"/>
         <attribute name="comment" attributeType="String"/>
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="editedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -442,6 +540,10 @@
         <attribute name="userID" optional="YES" attributeType="String"/>
         <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="submissionComment" inverseEntity="File"/>
     </entity>
+    <entity name="Syllabus" representedClassName="Core.Syllabus" syncable="YES">
+        <attribute name="courseID" attributeType="String"/>
+        <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignment" inverseName="syllabus" inverseEntity="Assignment"/>
+    </entity>
     <entity name="Tab" representedClassName="Core.Tab" syncable="YES">
         <attribute name="contextRaw" attributeType="String"/>
         <attribute name="hiddenRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -451,6 +553,15 @@
         <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="typeRaw" attributeType="String"/>
         <attribute name="visibilityRaw" attributeType="String"/>
+    </entity>
+    <entity name="Todo" representedClassName="Core.Todo" syncable="YES">
+        <attribute name="contextRaw" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="ignorePermanentlyURL" attributeType="URI"/>
+        <attribute name="ignoreURL" attributeType="URI"/>
+        <attribute name="needsGradingCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="typeRaw" attributeType="String"/>
+        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="todo" inverseEntity="Assignment"/>
     </entity>
     <entity name="TTL" representedClassName="Core.TTL" syncable="YES">
         <attribute name="key" attributeType="String"/>
@@ -463,6 +574,8 @@
         <attribute name="groupID" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="observerID" optional="YES" attributeType="String"/>
+        <attribute name="pronouns" optional="YES" attributeType="String"/>
         <attribute name="shortName" attributeType="String"/>
         <attribute name="sortableName" attributeType="String"/>
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="user" inverseEntity="Enrollment"/>
@@ -474,6 +587,7 @@
         <attribute name="id" attributeType="String"/>
         <attribute name="loginID" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
+        <attribute name="pronouns" optional="YES" attributeType="String"/>
     </entity>
     <entity name="UserSettings" representedClassName="Core.UserSettings" syncable="YES">
         <attribute name="collapseGlobalNav" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -481,42 +595,52 @@
         <attribute name="manualMarkAsRead" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <elements>
+        <element name="Activity" positionX="-540" positionY="-18" width="128" height="163"/>
         <element name="AlertThreshold" positionX="-540" positionY="-27" width="128" height="120"/>
-        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="463"/>
+        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="583"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
-        <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="150"/>
-        <element name="Color" positionX="-177.3046875" positionY="-36" width="128" height="73"/>
+        <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="163"/>
+        <element name="CommonCourse" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="CommunicationChannel" positionX="-531" positionY="-9" width="128" height="133"/>
-        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="195"/>
+        <element name="ContextColor" positionX="-177.3046875" positionY="-36" width="128" height="73"/>
+        <element name="Conversation" positionX="-540" positionY="-18" width="128" height="238"/>
+        <element name="ConversationMessage" positionX="-522" positionY="0" width="128" height="178"/>
+        <element name="ConversationParticipant" positionX="-531" positionY="-9" width="128" height="118"/>
+        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="223"/>
+        <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="150"/>
         <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="255"/>
-        <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="330"/>
+        <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="373"/>
         <element name="ExternalTool" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="ExternalToolLaunchPlacement" positionX="-513" positionY="0" width="128" height="120"/>
         <element name="FeatureFlag" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="660"/>
-        <element name="GradingPeriod" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="598"/>
+        <element name="Grade" positionX="-540" positionY="-18" width="128" height="88"/>
+        <element name="GradingPeriod" positionX="-540" positionY="-27" width="128" height="103"/>
         <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="135"/>
         <element name="HelpLink" positionX="-540" positionY="-27" width="128" height="135"/>
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
-        <element name="MediaComment" positionX="-369" positionY="-18" width="128" height="135"/>
-        <element name="Module" positionX="-369" positionY="-18" width="128" height="135"/>
+        <element name="MediaComment" positionX="-369" positionY="-18" width="128" height="148"/>
+        <element name="Module" positionX="-369" positionY="-18" width="128" height="133"/>
         <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="225"/>
         <element name="NotificationCategory" positionX="-522" positionY="0" width="128" height="103"/>
-        <element name="Page" positionX="-549" positionY="-27" width="128" height="165"/>
+        <element name="Page" positionX="-549" positionY="-27" width="128" height="193"/>
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1080"/>
+        <element name="Plannable" positionX="-540" positionY="-18" width="128" height="193"/>
         <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="463"/>
         <element name="QuizSubmission" positionX="-540" positionY="-27" width="128" height="240"/>
         <element name="Rubric" positionX="-540" positionY="-27" width="128" height="180"/>
-        <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="135"/>
+        <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="133"/>
         <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="150"/>
-        <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="120"/>
-        <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="390"/>
-        <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="253"/>
+        <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="148"/>
+        <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="403"/>
+        <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="268"/>
+        <element name="Syllabus" positionX="-540" positionY="-18" width="128" height="73"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
+        <element name="Todo" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
-        <element name="User" positionX="-540" positionY="-27" width="128" height="180"/>
-        <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="133"/>
+        <element name="User" positionX="-540" positionY="-27" width="128" height="208"/>
+        <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
     </elements>
 </model>

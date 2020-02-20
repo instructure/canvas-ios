@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,11 +28,11 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="helpTapped:" destination="QZA-SV-u24" eventType="touchUpInside" id="edh-ZV-N8n"/>
+                                    <action selector="helpTapped:" destination="QZA-SV-u24" eventType="primaryActionTriggered" id="7VA-YO-tLW"/>
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Canvas Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pX-Al-xWp" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="20" y="71.5" width="332" height="19.5"/>
+                                <rect key="frame" x="20" y="71" width="332" height="20.5"/>
                                 <accessibility key="accessibilityConfiguration" identifier="LoginStart.authenticationMethodLabel"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -45,14 +43,21 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instructureLine" translatesAutoresizingMaskIntoConstraints="NO" id="YBX-Gr-kI6">
-                                <rect key="frame" x="175" y="246" width="64" height="64"/>
+                                <rect key="frame" x="169" y="240" width="76" height="76"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="TGN-lb-CPg"/>
-                                    <constraint firstAttribute="width" constant="64" id="wxc-X2-xtt"/>
+                                    <constraint firstAttribute="height" constant="76" id="TGN-lb-CPg"/>
+                                    <constraint firstAttribute="width" constant="76" id="wxc-X2-xtt"/>
                                 </constraints>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wordmark" translatesAutoresizingMaskIntoConstraints="NO" id="shp-bR-v4y" customClass="IconView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="125" y="328" width="164" height="40"/>
+                                <color key="tintColor" red="0.7803921568627451" green="0.80392156862745101" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="tiara"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STUDENT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qr-uo-RMu">
-                                <rect key="frame" x="179" y="382" width="56" height="16.5"/>
+                                <rect key="frame" x="179" y="376" width="56" height="16.5"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <bool key="isElement" value="NO"/>
                                 </accessibility>
@@ -61,27 +66,27 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3D-iK-gpK" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="96" y="430.5" width="222" height="52"/>
+                                <rect key="frame" x="101.5" y="424.5" width="211" height="50"/>
                                 <accessibility key="accessibilityConfiguration" identifier="LoginStart.findSchoolButton"/>
                                 <inset key="contentEdgeInsets" minX="54" minY="16" maxX="54" maxY="16"/>
                                 <state key="normal" title="Find my school"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="electric"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textLightest"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="white"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="findTapped:" destination="QZA-SV-u24" eventType="touchUpInside" id="6zj-G0-18X"/>
+                                    <action selector="findTapped:" destination="QZA-SV-u24" eventType="primaryActionTriggered" id="YLM-cq-b7C"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="g3X-Rb-xXO">
-                                <rect key="frame" x="63.5" y="498.5" width="287" height="58"/>
+                                <rect key="frame" x="37.5" y="490.5" width="339" height="66"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EW-4z-2Mo" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="287" height="29"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="339" height="33"/>
                                         <accessibility key="accessibilityConfiguration" identifier="LoginStart.canvasNetworkButton"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Canvas Network"/>
@@ -90,14 +95,14 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="canvasNetworkTapped:" destination="QZA-SV-u24" eventType="touchUpInside" id="gls-Wx-7hQ"/>
+                                            <action selector="canvasNetworkTapped:" destination="QZA-SV-u24" eventType="primaryActionTriggered" id="fvf-PH-m9C"/>
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="3Ua-og-syp">
-                                        <rect key="frame" x="0.0" y="29" width="287" height="29"/>
+                                        <rect key="frame" x="0.0" y="33" width="339" height="33"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We've made a few changes." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRY-FA-Dia" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="180" height="29"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="213" height="33"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="LoginStart.whatsNewLabel"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.45098039220000002" green="0.50588235290000005" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -108,7 +113,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="va0-Ci-EPu" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="183" y="0.0" width="104" height="29"/>
+                                                <rect key="frame" x="216" y="0.0" width="123" height="33"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="LoginStart.whatsNewLink"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <state key="normal" title="See what's new."/>
@@ -117,7 +122,7 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="whatsNewTapped:" destination="QZA-SV-u24" eventType="touchUpInside" id="uaY-Ki-c9E"/>
+                                                    <action selector="whatsNewTapped:" destination="QZA-SV-u24" eventType="primaryActionTriggered" id="UGa-eF-dF9"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -125,7 +130,7 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xBc-5O-QU6">
-                                <rect key="frame" x="0.0" y="687" width="414" height="175"/>
+                                <rect key="frame" x="0.0" y="671" width="414" height="225"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Previous Logins" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Op3-kc-wqp" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="16" y="0.0" width="382" height="19.5"/>
@@ -137,9 +142,8 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="body"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k72-wA-dRu" userLabel="Divider" customClass="DividerView" customModule="Core" customModuleProvider="target">
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k72-wA-dRu" userLabel="Divider" customClass="DividerView" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="16" y="23.5" width="382" height="1"/>
-                                        <color key="backgroundColor" red="0.60278356079999995" green="0.63886892799999995" blue="0.66806358099999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="Z9V-hw-fJ8"/>
                                         </constraints>
@@ -148,12 +152,11 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Vec-s2-2D4">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="150.5"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="200.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <view key="tableFooterView" contentMode="scaleToFill" id="PGb-jA-lWX">
-                                            <rect key="frame" x="0.0" y="148" width="414" height="0.0"/>
+                                            <rect key="frame" x="0.0" y="176" width="414" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="LoginStartSessionCell" rowHeight="60" id="2S8-Fv-s54" customClass="LoginStartSessionCell" customModule="Core" customModuleProvider="target">
@@ -174,7 +177,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Firstname Lastname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMF-iS-x7M" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="58" y="13" width="136.5" height="17"/>
+                                                            <rect key="frame" x="58" y="13" width="155" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -184,7 +187,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mobiledev.instructure.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubm-Qb-95q" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="58" y="31" width="158.5" height="14.5"/>
+                                                            <rect key="frame" x="58" y="34.5" width="203" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -206,7 +209,7 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="removeTapped:" destination="2S8-Fv-s54" eventType="touchUpInside" id="8C1-f3-0bZ"/>
+                                                                <action selector="removeTapped:" destination="2S8-Fv-s54" eventType="primaryActionTriggered" id="vnb-j5-R6h"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -249,7 +252,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Firstname Lastname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwZ-Od-DuW" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="58" y="13" width="136.5" height="17"/>
+                                                            <rect key="frame" x="58" y="13" width="155" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -259,7 +262,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mobiledev.instructure.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9O-5a-W5N" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="58" y="31" width="158.5" height="14.5"/>
+                                                            <rect key="frame" x="58" y="34.5" width="203" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -292,14 +295,13 @@
                                         </connections>
                                     </tableView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Vec-s2-2D4" secondAttribute="bottom" id="9h1-7J-egl"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="Cap-As-ior"/>
                                     <constraint firstItem="Vec-s2-2D4" firstAttribute="leading" secondItem="xBc-5O-QU6" secondAttribute="leading" id="GCc-Dr-KkO"/>
                                     <constraint firstAttribute="trailing" secondItem="k72-wA-dRu" secondAttribute="trailing" constant="16" id="NxQ-js-qpq"/>
                                     <constraint firstItem="Op3-kc-wqp" firstAttribute="leading" secondItem="xBc-5O-QU6" secondAttribute="leading" constant="16" id="QqB-yW-Rd2"/>
-                                    <constraint firstAttribute="height" constant="175" id="WS4-Gy-0Kt"/>
+                                    <constraint firstAttribute="height" priority="750" constant="225" id="WS4-Gy-0Kt"/>
                                     <constraint firstItem="k72-wA-dRu" firstAttribute="top" secondItem="Op3-kc-wqp" secondAttribute="bottom" constant="4" id="bGU-iE-Fk0"/>
                                     <constraint firstAttribute="trailing" secondItem="Vec-s2-2D4" secondAttribute="trailing" id="f6O-Ay-mYa"/>
                                     <constraint firstItem="Vec-s2-2D4" firstAttribute="top" secondItem="k72-wA-dRu" secondAttribute="bottom" id="hVf-va-Ucm"/>
@@ -308,12 +310,6 @@
                                     <constraint firstItem="k72-wA-dRu" firstAttribute="leading" secondItem="xBc-5O-QU6" secondAttribute="leading" constant="16" id="sVC-lQ-Mcn"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wordmark" translatesAutoresizingMaskIntoConstraints="NO" id="shp-bR-v4y" customClass="IconView" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="125" y="334" width="164" height="40"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="tiara"/>
-                                </userDefinedRuntimeAttributes>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
@@ -321,17 +317,18 @@
                             <constraint firstItem="g3X-Rb-xXO" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="040-0l-bYr"/>
                             <constraint firstItem="Al6-ev-ond" firstAttribute="leading" secondItem="1pX-Al-xWp" secondAttribute="trailing" constant="8" id="05N-Iw-HQD"/>
                             <constraint firstItem="g3X-Rb-xXO" firstAttribute="top" secondItem="K3D-iK-gpK" secondAttribute="bottom" constant="16" id="6y7-tf-ieH"/>
-                            <constraint firstItem="NxW-YV-uVK" firstAttribute="bottom" secondItem="xBc-5O-QU6" secondAttribute="bottom" id="AcQ-O0-5EB"/>
+                            <constraint firstAttribute="bottom" secondItem="xBc-5O-QU6" secondAttribute="bottom" id="AcQ-O0-5EB"/>
                             <constraint firstItem="xBc-5O-QU6" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="Duc-2p-Av2"/>
                             <constraint firstItem="K3D-iK-gpK" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="FpS-ol-ufb"/>
                             <constraint firstItem="xBc-5O-QU6" firstAttribute="trailing" secondItem="NxW-YV-uVK" secondAttribute="trailing" priority="750" id="MgA-PG-fka"/>
-                            <constraint firstItem="shp-bR-v4y" firstAttribute="top" secondItem="YBX-Gr-kI6" secondAttribute="bottom" constant="24" id="MsO-mB-XoA"/>
+                            <constraint firstItem="shp-bR-v4y" firstAttribute="top" secondItem="YBX-Gr-kI6" secondAttribute="bottom" constant="18" id="MsO-mB-XoA"/>
                             <constraint firstItem="1qr-uo-RMu" firstAttribute="top" secondItem="shp-bR-v4y" secondAttribute="bottom" constant="8" id="ciQ-rd-BGA"/>
                             <constraint firstItem="1qr-uo-RMu" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="d9A-OW-6So"/>
                             <constraint firstItem="Al6-ev-ond" firstAttribute="top" secondItem="soV-nE-xVI" secondAttribute="topMargin" constant="20" id="ghQ-Pe-ZZE"/>
                             <constraint firstItem="YBX-Gr-kI6" firstAttribute="centerY" secondItem="soV-nE-xVI" secondAttribute="centerY" constant="-170" id="kGm-Ij-BhX"/>
                             <constraint firstItem="K3D-iK-gpK" firstAttribute="top" secondItem="1qr-uo-RMu" secondAttribute="bottom" constant="32" id="p8y-4Q-PXj"/>
                             <constraint firstItem="xBc-5O-QU6" firstAttribute="leading" secondItem="NxW-YV-uVK" secondAttribute="leading" priority="750" id="plr-4r-4Qu"/>
+                            <constraint firstItem="xBc-5O-QU6" firstAttribute="top" relation="greaterThanOrEqual" secondItem="g3X-Rb-xXO" secondAttribute="bottom" constant="32" id="rIX-DQ-UxL"/>
                             <constraint firstItem="YBX-Gr-kI6" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="twd-Q8-Fto"/>
                             <constraint firstItem="Al6-ev-ond" firstAttribute="centerY" secondItem="1pX-Al-xWp" secondAttribute="centerY" id="uuY-uw-dPv"/>
                             <constraint firstItem="shp-bR-v4y" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="wOX-Fv-fg4"/>

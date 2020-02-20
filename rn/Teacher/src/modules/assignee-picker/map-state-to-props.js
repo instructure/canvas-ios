@@ -24,6 +24,7 @@ import Navigator from '../../routing/Navigator'
 import EnrollmentActions from '../enrollments/actions'
 import SectionActions from './actions'
 import { asyncChecker } from '../../redux/actions/async-tracker'
+import { personDisplayName } from '../../common/formatters'
 
 let { refreshGroupsForCategory, refreshSections } = SectionActions
 let { refreshEnrollments } = EnrollmentActions
@@ -117,7 +118,7 @@ export function pickerMapStateToProps (state: AppState, ownProps: AssigneePicker
       case 'student':
         const user = state.entities.users[assignee.dataId]
         if (user && user.data) {
-          newAssignee.name = user.data.name
+          newAssignee.name = personDisplayName(user.data.name, user.data.pronouns)
           newAssignee.imageURL = user.data.avatar_url
         }
         break

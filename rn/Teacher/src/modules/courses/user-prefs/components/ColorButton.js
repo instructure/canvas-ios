@@ -25,7 +25,8 @@ import {
   Image,
 } from 'react-native'
 import i18n from 'format-message'
-import Images from '../../../../images/'
+import Images from '../../../../images'
+import { colors } from '../../../../common/stylesheet'
 
 type Props = {
   color: string,
@@ -53,7 +54,7 @@ export default class ColorButton extends Component<Props> {
           : i18n('Choose {color}', { color: this.props.color })
         }
         onPress={this.onPress}
-        underlayColor='#fff'
+        underlayColor={colors.backgroundLightest}
         testID={`colorButton.${this.props.color}`}
       >
         <View

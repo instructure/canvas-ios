@@ -3,10 +3,10 @@
 exports[`FilesList progress function should update the UI correctly 1`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarStyle="light"
-  navBarTitleColor="#374A59"
+  navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -20,7 +20,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
       },
     ]
   }
-  statusBarStyle="light"
   title="Files"
 >
   <DropView
@@ -56,7 +55,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -66,8 +65,9 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -82,7 +82,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                     accessibilityLabel="Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -91,51 +90,46 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/files/folder.png",
+                          "uri": "folderSolid",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "#8B969E",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "publishSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#00AC18",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -163,6 +157,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -215,7 +210,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -264,7 +259,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -274,8 +269,9 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -290,7 +286,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                     accessibilityLabel="Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -299,51 +294,46 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/Document.png",
+                          "uri": "documentLine",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "#8B969E",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "publishSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#00AC18",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -371,6 +361,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -423,7 +414,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -472,7 +463,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -482,8 +473,9 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -498,7 +490,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                     accessibilityLabel="Not Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -507,51 +498,46 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/Document.png",
+                          "uri": "documentLine",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "#8B969E",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "noSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/unpublish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#8B969E",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -579,6 +565,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -631,7 +618,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -829,10 +816,10 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
 exports[`FilesList progress function should update the UI correctly 2`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarStyle="light"
-  navBarTitleColor="#374A59"
+  navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -846,7 +833,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
       },
     ]
   }
-  statusBarStyle="light"
   title="Files"
 >
   <DropView
@@ -882,7 +868,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -892,8 +878,9 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -908,7 +895,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                     accessibilityLabel="Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -917,51 +903,46 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/files/folder.png",
+                          "uri": "folderSolid",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "#8B969E",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "publishSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#00AC18",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -989,6 +970,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -1041,7 +1023,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -1090,7 +1072,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -1100,8 +1082,9 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -1116,7 +1099,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                     accessibilityLabel="Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -1125,51 +1107,46 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/Document.png",
+                          "uri": "documentLine",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "#8B969E",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "publishSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#00AC18",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -1197,6 +1174,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -1249,7 +1227,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -1298,7 +1276,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -1308,8 +1286,9 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -1324,7 +1303,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                     accessibilityLabel="Not Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -1333,51 +1311,46 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/Document.png",
+                          "uri": "documentLine",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "#8B969E",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "noSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/unpublish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#8B969E",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -1405,6 +1378,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -1457,7 +1431,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -1655,10 +1629,10 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
 exports[`FilesList progress function should update the UI correctly 3`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarStyle="light"
-  navBarTitleColor="#374A59"
+  navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -1672,7 +1646,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
       },
     ]
   }
-  statusBarStyle="light"
   title="Files"
 >
   <DropView
@@ -1708,7 +1681,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -1718,8 +1691,9 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -1734,7 +1708,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                     accessibilityLabel="Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -1743,51 +1716,46 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/files/folder.png",
+                          "uri": "folderSolid",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "#8B969E",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "publishSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#00AC18",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -1815,6 +1783,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -1867,7 +1836,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -1916,7 +1885,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -1926,8 +1895,9 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -1942,7 +1912,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                     accessibilityLabel="Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -1951,51 +1920,46 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/Document.png",
+                          "uri": "documentLine",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "#8B969E",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "publishSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#00AC18",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -2023,6 +1987,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -2075,7 +2040,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -2124,7 +2089,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -2134,8 +2099,9 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -2150,7 +2116,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                     accessibilityLabel="Not Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -2159,51 +2124,46 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/Document.png",
+                          "uri": "documentLine",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "#8B969E",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "noSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/unpublish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#8B969E",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -2231,6 +2191,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -2283,7 +2244,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -2481,10 +2442,10 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
 exports[`FilesList sending weird data into the progress update function should not break all the things 1`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarStyle="light"
-  navBarTitleColor="#374A59"
+  navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -2498,7 +2459,6 @@ exports[`FilesList sending weird data into the progress update function should n
       },
     ]
   }
-  statusBarStyle="light"
   title="Files"
 >
   <DropView
@@ -2534,7 +2494,7 @@ exports[`FilesList sending weird data into the progress update function should n
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -2544,8 +2504,9 @@ exports[`FilesList sending weird data into the progress update function should n
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -2560,7 +2521,6 @@ exports[`FilesList sending weird data into the progress update function should n
                     accessibilityLabel="Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -2569,51 +2529,46 @@ exports[`FilesList sending weird data into the progress update function should n
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/files/folder.png",
+                          "uri": "folderSolid",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "#8B969E",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "publishSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#00AC18",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -2641,6 +2596,7 @@ exports[`FilesList sending weird data into the progress update function should n
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -2693,7 +2649,7 @@ exports[`FilesList sending weird data into the progress update function should n
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -2742,7 +2698,7 @@ exports[`FilesList sending weird data into the progress update function should n
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -2752,8 +2708,9 @@ exports[`FilesList sending weird data into the progress update function should n
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -2768,7 +2725,6 @@ exports[`FilesList sending weird data into the progress update function should n
                     accessibilityLabel="Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -2777,51 +2733,46 @@ exports[`FilesList sending weird data into the progress update function should n
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/Document.png",
+                          "uri": "documentLine",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "#8B969E",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "publishSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#00AC18",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -2849,6 +2800,7 @@ exports[`FilesList sending weird data into the progress update function should n
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -2901,7 +2853,7 @@ exports[`FilesList sending weird data into the progress update function should n
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -2950,7 +2902,7 @@ exports[`FilesList sending weird data into the progress update function should n
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -2960,8 +2912,9 @@ exports[`FilesList sending weird data into the progress update function should n
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -2976,7 +2929,6 @@ exports[`FilesList sending weird data into the progress update function should n
                     accessibilityLabel="Not Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -2985,51 +2937,46 @@ exports[`FilesList sending weird data into the progress update function should n
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/Document.png",
+                          "uri": "documentLine",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "#8B969E",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "noSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/unpublish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#8B969E",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -3057,6 +3004,7 @@ exports[`FilesList sending weird data into the progress update function should n
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -3109,7 +3057,7 @@ exports[`FilesList sending weird data into the progress update function should n
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -3314,10 +3262,10 @@ exports[`FilesList sending weird data into the progress update function should n
 exports[`FilesList should render 1`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarStyle="light"
-  navBarTitleColor="#374A59"
+  navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -3331,7 +3279,6 @@ exports[`FilesList should render 1`] = `
       },
     ]
   }
-  statusBarStyle="light"
   title="Files"
 >
   <DropView
@@ -3367,7 +3314,7 @@ exports[`FilesList should render 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -3377,8 +3324,9 @@ exports[`FilesList should render 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -3393,7 +3341,6 @@ exports[`FilesList should render 1`] = `
                     accessibilityLabel="Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -3402,51 +3349,46 @@ exports[`FilesList should render 1`] = `
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/files/folder.png",
+                          "uri": "folderSolid",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "#8B969E",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "publishSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#00AC18",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -3474,6 +3416,7 @@ exports[`FilesList should render 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -3526,7 +3469,7 @@ exports[`FilesList should render 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -3575,7 +3518,7 @@ exports[`FilesList should render 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -3585,8 +3528,9 @@ exports[`FilesList should render 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -3601,7 +3545,6 @@ exports[`FilesList should render 1`] = `
                     accessibilityLabel="Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -3610,51 +3553,46 @@ exports[`FilesList should render 1`] = `
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/Document.png",
+                          "uri": "documentLine",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "#8B969E",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "publishSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#00AC18",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -3682,6 +3620,7 @@ exports[`FilesList should render 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -3734,7 +3673,7 @@ exports[`FilesList should render 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -3783,7 +3722,7 @@ exports[`FilesList should render 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -3793,8 +3732,9 @@ exports[`FilesList should render 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -3809,7 +3749,6 @@ exports[`FilesList should render 1`] = `
                     accessibilityLabel="Not Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -3818,51 +3757,46 @@ exports[`FilesList should render 1`] = `
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/Document.png",
+                          "uri": "documentLine",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "#8B969E",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "noSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/unpublish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#8B969E",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -3890,6 +3824,7 @@ exports[`FilesList should render 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -3942,7 +3877,7 @@ exports[`FilesList should render 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -4014,10 +3949,10 @@ exports[`FilesList should render 1`] = `
 exports[`FilesList should render for course files 1`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="white"
+  navBarButtonColor="#FFFFFF"
   navBarColor="red"
   navBarStyle="dark"
-  navBarTitleColor="white"
+  navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -4031,7 +3966,6 @@ exports[`FilesList should render for course files 1`] = `
       },
     ]
   }
-  statusBarStyle="light"
   title="Files"
 >
   <DropView
@@ -4067,7 +4001,7 @@ exports[`FilesList should render for course files 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -4077,8 +4011,9 @@ exports[`FilesList should render for course files 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -4093,7 +4028,6 @@ exports[`FilesList should render for course files 1`] = `
                     accessibilityLabel="Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -4102,51 +4036,46 @@ exports[`FilesList should render for course files 1`] = `
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/files/folder.png",
+                          "uri": "folderSolid",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "red",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "publishSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#00AC18",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -4174,6 +4103,7 @@ exports[`FilesList should render for course files 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -4226,7 +4156,7 @@ exports[`FilesList should render for course files 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -4275,7 +4205,7 @@ exports[`FilesList should render for course files 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -4285,8 +4215,9 @@ exports[`FilesList should render for course files 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -4301,7 +4232,6 @@ exports[`FilesList should render for course files 1`] = `
                     accessibilityLabel="Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -4310,51 +4240,46 @@ exports[`FilesList should render for course files 1`] = `
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/Document.png",
+                          "uri": "documentLine",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "red",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "publishSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#00AC18",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -4382,6 +4307,7 @@ exports[`FilesList should render for course files 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -4434,7 +4360,7 @@ exports[`FilesList should render for course files 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -4483,7 +4409,7 @@ exports[`FilesList should render for course files 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -4493,8 +4419,9 @@ exports[`FilesList should render for course files 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -4509,7 +4436,6 @@ exports[`FilesList should render for course files 1`] = `
                     accessibilityLabel="Not Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -4518,51 +4444,46 @@ exports[`FilesList should render for course files 1`] = `
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/Document.png",
+                          "uri": "documentLine",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "red",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "noSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/unpublish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#8B969E",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -4590,6 +4511,7 @@ exports[`FilesList should render for course files 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -4642,7 +4564,7 @@ exports[`FilesList should render for course files 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -4721,10 +4643,10 @@ exports[`FilesList should render for course files 1`] = `
 exports[`FilesList should render for user files 1`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarStyle="light"
-  navBarTitleColor="#374A59"
+  navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -4738,7 +4660,6 @@ exports[`FilesList should render for user files 1`] = `
       },
     ]
   }
-  statusBarStyle="light"
   title="Files"
 >
   <DropView
@@ -4774,7 +4695,7 @@ exports[`FilesList should render for user files 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -4784,8 +4705,9 @@ exports[`FilesList should render for user files 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -4800,7 +4722,6 @@ exports[`FilesList should render for user files 1`] = `
                     accessibilityLabel="Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -4809,51 +4730,46 @@ exports[`FilesList should render for user files 1`] = `
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/files/folder.png",
+                          "uri": "folderSolid",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "#8B969E",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "publishSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#00AC18",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -4881,6 +4797,7 @@ exports[`FilesList should render for user files 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -4933,7 +4850,7 @@ exports[`FilesList should render for user files 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -4982,7 +4899,7 @@ exports[`FilesList should render for user files 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -4992,8 +4909,9 @@ exports[`FilesList should render for user files 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -5008,7 +4926,6 @@ exports[`FilesList should render for user files 1`] = `
                     accessibilityLabel="Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -5017,51 +4934,46 @@ exports[`FilesList should render for user files 1`] = `
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/Document.png",
+                          "uri": "documentLine",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "#8B969E",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "publishSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#00AC18",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -5089,6 +5001,7 @@ exports[`FilesList should render for user files 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -5141,7 +5054,7 @@ exports[`FilesList should render for user files 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -5190,7 +5103,7 @@ exports[`FilesList should render for user files 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -5200,8 +5113,9 @@ exports[`FilesList should render for user files 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -5216,7 +5130,6 @@ exports[`FilesList should render for user files 1`] = `
                     accessibilityLabel="Not Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -5225,51 +5138,46 @@ exports[`FilesList should render for user files 1`] = `
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/Document.png",
+                          "uri": "documentLine",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "#8B969E",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "noSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/unpublish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#8B969E",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -5297,6 +5205,7 @@ exports[`FilesList should render for user files 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -5349,7 +5258,7 @@ exports[`FilesList should render for user files 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -5435,10 +5344,10 @@ exports[`FilesList should render for user files 1`] = `
 exports[`FilesList should render with folders 1`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarStyle="light"
-  navBarTitleColor="#374A59"
+  navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -5452,7 +5361,6 @@ exports[`FilesList should render with folders 1`] = `
       },
     ]
   }
-  statusBarStyle="light"
   title="Files"
 >
   <DropView
@@ -5488,7 +5396,7 @@ exports[`FilesList should render with folders 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -5498,8 +5406,9 @@ exports[`FilesList should render with folders 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -5514,7 +5423,6 @@ exports[`FilesList should render with folders 1`] = `
                     accessibilityLabel="Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -5523,51 +5431,46 @@ exports[`FilesList should render with folders 1`] = `
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/files/folder.png",
+                          "uri": "folderSolid",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "#8B969E",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "publishSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#00AC18",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -5595,6 +5498,7 @@ exports[`FilesList should render with folders 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -5647,7 +5551,7 @@ exports[`FilesList should render with folders 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -5696,7 +5600,7 @@ exports[`FilesList should render with folders 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -5706,8 +5610,9 @@ exports[`FilesList should render with folders 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -5722,7 +5627,6 @@ exports[`FilesList should render with folders 1`] = `
                     accessibilityLabel="Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -5731,51 +5635,46 @@ exports[`FilesList should render with folders 1`] = `
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/Document.png",
+                          "uri": "documentLine",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "#8B969E",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "publishSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#00AC18",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -5803,6 +5702,7 @@ exports[`FilesList should render with folders 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -5855,7 +5755,7 @@ exports[`FilesList should render with folders 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -5904,7 +5804,7 @@ exports[`FilesList should render with folders 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -5914,8 +5814,9 @@ exports[`FilesList should render with folders 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -5930,7 +5831,6 @@ exports[`FilesList should render with folders 1`] = `
                     accessibilityLabel="Not Published"
                     style={
                       Object {
-                        "alignItems": "center",
                         "flex": 0,
                       }
                     }
@@ -5939,51 +5839,46 @@ exports[`FilesList should render with folders 1`] = `
                       resizeMode="cover"
                       source={
                         Object {
-                          "testUri": "../../../src/images/Document.png",
+                          "uri": "documentLine",
                         }
                       }
                       style={
                         Array [
-                          false,
                           Object {
-                            "minHeight": 24,
-                            "minWidth": 24,
+                            "height": 24,
+                            "width": 24,
+                          },
+                          Object {
+                            "tintColor": "#8B969E",
                           },
                         ]
                       }
                       testID="access-icon-image"
                     />
-                    <View
-                      style={
+                    <Image
+                      source={
                         Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "borderRadius": 8,
-                          "bottom": -6,
-                          "height": 16,
-                          "justifyContent": "center",
-                          "position": "absolute",
-                          "right": -5,
-                          "width": 16,
+                          "uri": "noSolid",
                         }
                       }
-                    >
-                      <Image
-                        source={
+                      style={
+                        Array [
                           Object {
-                            "testUri": "../../../src/images/unpublish-small.png",
-                          }
-                        }
-                        style={
+                            "backgroundColor": "#FFFFFF",
+                            "borderRadius": 8,
+                            "bottom": -4,
+                            "height": 16,
+                            "position": "absolute",
+                            "right": -4,
+                            "width": 16,
+                          },
                           Object {
-                            "height": 12,
                             "tintColor": "#8B969E",
-                            "width": 12,
-                          }
-                        }
-                        testID="access-icon-icon"
-                      />
-                    </View>
+                          },
+                        ]
+                      }
+                      testID="access-icon-icon"
+                    />
                   </View>
                 </View>
                 <View
@@ -6011,6 +5906,7 @@ exports[`FilesList should render with folders 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -6063,7 +5959,7 @@ exports[`FilesList should render with folders 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -6156,10 +6052,10 @@ exports[`FilesList should render with folders 1`] = `
 exports[`FilesList should render with no data at all 1`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarStyle="light"
-  navBarTitleColor="#374A59"
+  navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -6173,7 +6069,6 @@ exports[`FilesList should render with no data at all 1`] = `
       },
     ]
   }
-  statusBarStyle="light"
   title="Files"
 >
   <DropView
@@ -6289,11 +6184,11 @@ exports[`FilesList uses correct icon for videos 1`] = `
   }
   image={
     Object {
-      "testUri": "../../../src/images/files/media-icon.png",
+      "uri": "videoLine",
     }
   }
   showAccessIcon={true}
   statusOffset={Object {}}
-  tintColor="#73818C"
+  tintColor="#8B969E"
 />
 `;

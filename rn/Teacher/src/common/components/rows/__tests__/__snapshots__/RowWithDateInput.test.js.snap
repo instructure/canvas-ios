@@ -5,7 +5,7 @@ exports[`Render row with date 1`] = `
   style={
     Array [
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "borderBottomColor": "#C7CDD1",
         "borderBottomWidth": 0.5,
         "minHeight": 54,
@@ -40,7 +40,7 @@ exports[`Render row with date 1`] = `
         Array [
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "flex": 1,
             "flexDirection": "row",
             "justifyContent": "space-between",
@@ -109,7 +109,7 @@ exports[`Render row with date and the clear button 1`] = `
   style={
     Array [
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "borderBottomColor": "#C7CDD1",
         "borderBottomWidth": 0.5,
         "minHeight": 54,
@@ -144,7 +144,7 @@ exports[`Render row with date and the clear button 1`] = `
         Array [
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "flex": 1,
             "flexDirection": "row",
             "justifyContent": "space-between",

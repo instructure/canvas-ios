@@ -135,6 +135,7 @@ public class ErrorReportViewController: UIViewController {
             let impact = selectedImpact?.row,
             let comments = commentsField?.text?.trimmingCharacters(in: .whitespacesAndNewlines), !comments.isEmpty
         else { return }
+
         let request = PostErrorReportRequest(error: error, email: email, subject: subject, impact: impact, comments: comments)
         env.api.makeRequest(request) { (_, response, error) in DispatchQueue.main.async {
             let isError = error != nil || ((response as? HTTPURLResponse)?.statusCode ?? 0) >= 300

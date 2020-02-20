@@ -38,6 +38,9 @@ open class HelmSplitViewController: UISplitViewController {
             if let presented = firstNav.presentedViewController, presented.isBeingDismissed == false {
                 return presented.preferredStatusBarStyle
             } else {
+                if #available(iOS 13, *) {
+                    return firstNav.navigationBar.barStyle == .black ? .lightContent : .darkContent
+                }
                 return firstNav.navigationBar.barStyle == .black ? .lightContent : .default
             }
         } else {

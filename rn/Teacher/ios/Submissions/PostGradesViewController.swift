@@ -50,6 +50,7 @@ class PostGradesViewController: UIViewController {
 
         postGradesButton.setTitle(NSLocalizedString("Post Grades", comment: ""), for: .normal)
 
+        allGradesPostedView.backgroundColor = .named(.backgroundLightest)
         allGradesPostedView.isHidden = true
         allGradesPostedLabel.text = NSLocalizedString("All Posted", comment: "")
         allGradesPostedSubheader.text = NSLocalizedString("All grades are currently posted.", comment: "")
@@ -57,6 +58,7 @@ class PostGradesViewController: UIViewController {
     }
 
     func setupTableView() {
+        tableView.backgroundColor = .named(.backgroundGrouped)
         tableView.registerCell(SectionCell.self)
         tableView.registerCell(PostToCell.self)
     }
@@ -91,7 +93,6 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
             case .postTo:
                 cell.textLabel?.text = NSLocalizedString("Post to...", comment: "")
                 cell.detailTextLabel?.text = postPolicy.title
-                cell.detailTextLabel?.font = UIFont.scaledNamedFont(.semibold16)
                 cell.detailTextLabel?.accessibilityIdentifier = "PostPolicy.postToValue"
                 cell.accessoryType = .disclosureIndicator
                 cell.selectionStyle = .default
@@ -134,8 +135,16 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
 
         if let row = Row(rawValue: indexPath.row), row == .postTo {
-            let vc = PostToVisibilitySelectionViewController.create(visibility: postPolicy, delegate: self)
-            navigationController?.pushViewController(vc, animated: true)
+            show(ItemPickerViewController.create(
+                title: NSLocalizedString("Post to...", comment: ""),
+                sections: [ ItemPickerSection(items: PostGradePolicy.allCases.map {
+                    ItemPickerItem(title: $0.title, subtitle: $0.subtitle, accessibilityIdentifier: "PostToSelection.\($0.rawValue)")
+                }), ],
+                selected: PostGradePolicy.allCases.firstIndex(of: postPolicy).flatMap {
+                    IndexPath(row: $0, section: 0)
+                },
+                delegate: self
+            ), sender: self)
         }
     }
 
@@ -156,6 +165,9 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             toggle = UISwitch(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
             super.init(style: style, reuseIdentifier: reuseIdentifier)
+            backgroundColor = .named(.backgroundLightest)
+            textLabel?.textColor = .named(.textDarkest)
+            textLabel?.font = .scaledNamedFont(.semibold16)
             accessoryView = toggle
         }
 
@@ -167,6 +179,10 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
     class PostToCell: UITableViewCell {
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: .value1, reuseIdentifier: reuseIdentifier)
+            backgroundColor = .named(.backgroundLightest)
+            textLabel?.textColor = .named(.textDarkest)
+            textLabel?.font = .scaledNamedFont(.semibold16)
+            detailTextLabel?.font = .scaledNamedFont(.medium16)
         }
 
         required init?(coder aDecoder: NSCoder) {
@@ -175,9 +191,9 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension PostGradesViewController: PostToVisibilitySelectionDelegate {
-    func visibilityDidChange(visibility: PostGradePolicy) {
-        self.postPolicy = visibility
+extension PostGradesViewController: ItemPickerDelegate {
+    func itemPicker(_ itemPicker: ItemPickerViewController, didSelectRowAt indexPath: IndexPath) {
+        postPolicy = PostGradePolicy.allCases[indexPath.row]
         tableView.reloadData()
     }
 }
@@ -213,7 +229,7 @@ extension PostGradePolicy {
         }
     }
 
-    var subHeader: String {
+    var subtitle: String {
         switch self {
         case .everyone:
             return NSLocalizedString("Grades will be made visible to all students", comment: "")

@@ -37,7 +37,7 @@ class SubmissionCommentsView: SubmissionCommentsViewProtocol {
     }
 }
 
-class SubmissionCommentsPresenterTests: PersistenceTestCase {
+class SubmissionCommentsPresenterTests: StudentTestCase {
     var presenter: SubmissionCommentsPresenter!
     var view: SubmissionCommentsView!
 
@@ -107,6 +107,6 @@ class SubmissionCommentsPresenterTests: PersistenceTestCase {
         let url = URL(string: "https://canvas.instructure.com/files/803/download")!
         let file = File.make(from: .make(url: url))
         presenter.showAttachment(file, from: UIViewController())
-        XCTAssertTrue(router.lastRoutedTo(url, withOptions: [.modal, .embedInNav]))
+        XCTAssertTrue(router.lastRoutedTo(url, withOptions: .modal(embedInNav: true, addDoneButton: true)))
     }
 }

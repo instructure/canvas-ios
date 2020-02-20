@@ -20,19 +20,18 @@
 
 import React, { PureComponent } from 'react'
 import {
-  StyleSheet,
   View,
   TouchableHighlight,
   Image,
 } from 'react-native'
 import i18n from 'format-message'
-import colors from '@common/colors'
+import { createStyleSheet } from '@common/stylesheet'
 
 import Row from '@common/components/rows/Row'
 import AccessIcon from '@common/components/AccessIcon'
 import { formattedDueDateWithStatus, formattedDueDate } from '@common/formatters'
 import { extractDateFromString } from '@utils/dateUtils'
-import Images from '@images'
+import instIcon from '@images/inst-icons'
 import { DotSeparated, Text } from '@common/text'
 import { isTeacher } from '@modules/app'
 
@@ -70,15 +69,15 @@ export default class DiscussionsRow extends PureComponent<Props> {
                 <DotSeparated style={style.subtitle} separated={this.dueDate(discussion)}/>
 
                 {points &&
-                <View style={style.details}>
-                  <Text style={style.points}>{points}</Text>
-                </View>
+                  <View testID='discussion.row.points' style={style.details}>
+                    <Text style={style.points}>{points}</Text>
+                  </View>
                 }
 
                 {discussionDetails &&
-                <View style={style.details}>
-                  {discussionDetails}
-                </View>
+                  <View testID='discussion.row.details' style={style.details}>
+                    {discussionDetails}
+                  </View>
                 }
               </View>
               { isTeacher() && this.renderKabob() }
@@ -103,7 +102,7 @@ export default class DiscussionsRow extends PureComponent<Props> {
         underlayColor='#ffffff00'
         testID={`discussion.kabob-${this.props.discussion.id}`}
       >
-        <Image style={style.kabob} source={Images.kabob}/>
+        <Image style={style.kabob} source={instIcon('more')}/>
       </TouchableHighlight>
     )
   }
@@ -135,9 +134,9 @@ export default class DiscussionsRow extends PureComponent<Props> {
 
   renderUnreadDot = (discussion: Discussion) => {
     if (discussion.unread_count > 0) {
-      return (<View style={style.unreadDot}/>)
+      return (<View testID='discussions.row.unread-dot' style={style.unreadDot}/>)
     } else {
-      return (<View />)
+      return (<View testID='discussions.row.unread-dot' />)
     }
   }
 
@@ -148,7 +147,7 @@ export default class DiscussionsRow extends PureComponent<Props> {
         <AccessIcon
           entry={discussion}
           tintColor={this.props.tintColor}
-          image={discussion.assignment ? Images.course.assignments : Images.course.discussions}
+          image={instIcon(discussion.assignment ? 'assignment' : 'discussion')}
         />
       </View>
     )
@@ -191,7 +190,7 @@ export default class DiscussionsRow extends PureComponent<Props> {
 }
 
 const unreadDotSize = 5
-const style = StyleSheet.create({
+const style = createStyleSheet((colors, vars) => ({
   rowContent: {
     flex: 1,
     flexDirection: 'row',
@@ -210,7 +209,7 @@ const style = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   subtitle: {
-    color: '#8B969E',
+    color: colors.textDark,
     fontSize: 14,
     marginTop: 2,
   },
@@ -224,7 +223,7 @@ const style = StyleSheet.create({
     width: unreadDotSize,
     height: unreadDotSize,
     borderRadius: unreadDotSize / 2,
-    backgroundColor: '#008EE4',
+    backgroundColor: colors.textInfo,
     position: 'absolute',
     top: 6,
     left: 8,
@@ -237,13 +236,13 @@ const style = StyleSheet.create({
     width: 43,
     height: 43,
     marginTop: -15,
-    marginRight: -global.style.defaultPadding / 2,
+    marginRight: -vars.padding / 2,
   },
   kabob: {
     alignSelf: 'center',
     width: 18,
     height: 18,
-    tintColor: colors.grey5,
+    tintColor: colors.textDark,
     transform: [{ rotate: '180deg' }],
   },
-})
+}))

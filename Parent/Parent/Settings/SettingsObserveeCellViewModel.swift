@@ -17,7 +17,7 @@
 //
 
 import Foundation
-
+import Core
 import CanvasCore
 
 struct SettingsObserveeCellViewModel: TableViewCellViewModel {
@@ -27,7 +27,7 @@ struct SettingsObserveeCellViewModel: TableViewCellViewModel {
     let highlightColor: UIColor
 
     init(student: Student, highlightColor: UIColor) {
-        name = student.name
+        name = Core.User.displayName(student.shortName, pronouns: student.pronouns)
         avatarURL = student.avatarURL
         studentID = student.id
         self.highlightColor = highlightColor

@@ -21,10 +21,9 @@
 import React, { PureComponent } from 'react'
 import {
   View,
-  StyleSheet,
 } from 'react-native'
 import { Text } from '../../../common/text'
-import color from '../../colors'
+import { createStyleSheet } from '../../stylesheet'
 
 type Props = {
   title: string,
@@ -53,27 +52,26 @@ export default class SectionHeader extends PureComponent<Props> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   section: {
     flex: 1,
-    backgroundColor: color.grey1,
+    backgroundColor: colors.backgroundLight,
     justifyContent: 'center',
-    paddingLeft: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding / 2,
-    paddingVertical: global.style.defaultPadding / 4,
+    paddingLeft: vars.padding,
+    paddingRight: vars.padding / 2,
+    paddingVertical: vars.padding / 4,
   },
   title: {
     fontSize: 14,
-    backgroundColor: color.grey1,
-    color: color.grey5,
+    color: colors.textDark,
     fontWeight: '600',
   },
   topHairline: {
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: color.seperatorColor,
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
   },
   bottomHairline: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: color.seperatorColor,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
   },
-})
+}))

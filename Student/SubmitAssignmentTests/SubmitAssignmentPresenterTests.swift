@@ -55,7 +55,7 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
         presenter.view = self
         presenter.uploadManager = uploadManager
         // SubmitAssignmentPresenter calls env.userDidLogin, so need to reset after
-        env.api = api
+        env.api = URLSessionAPI()
         env.database = database
         env.userDefaults?.reset()
     }
@@ -69,12 +69,14 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
 
     func testInitValid() {
         XCTAssertNotNil(LoginSession.mostRecent)
-        XCTAssertNotNil(SubmitAssignmentPresenter())
+        let presenter = SubmitAssignmentPresenter()
+        XCTAssertNotNil(presenter)
+        XCTAssertEqual(presenter?.uploadManager.sharedContainerIdentifier, "group.instructure.shared")
     }
 
     func testViewIsReady() {
         Course.make(from: .make(id: "1"))
-        Assignment.make(from: .make(course_id: "1"))
+        Assignment.make(from: .make(course_id: "1", submission_types: [.online_upload]))
         let expectation = XCTestExpectation(description: "got course and assignment")
         expectation.assertForOverFulfill = false
         onUpdate = {
@@ -141,7 +143,7 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
         let attachment = NSItemProvider(item: Data() as NSSecureCoding, typeIdentifier: UTI.any.rawValue)
         let item = TestExtensionItem(mockAttachments: [attachment])
         presenter.load(items: [item])
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 5)
     }
 
     func testLoadItemsImage() {

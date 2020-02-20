@@ -20,7 +20,6 @@
 
 import React, { Component } from 'react'
 import {
-  StyleSheet,
   Dimensions,
   Animated,
   View,
@@ -37,6 +36,7 @@ import DrawerState, {
   HANDLE_PADDING_TOP,
   HANDLE_VISIBLE_PADDING,
 } from '../../modules/speedgrader/utils/drawer-state'
+import { createStyleSheet } from '../stylesheet'
 
 let { height, width } = Dimensions.get('window')
 
@@ -200,7 +200,7 @@ export default class BottomDrawer extends Component<Props, State> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   drawer: {
     transform: [{ rotate: '180deg' }],
     position: 'absolute',
@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
     right: 0,
   },
   drawerBackground: {
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     position: 'absolute',
     top: 0,
     left: 0,
@@ -229,14 +229,14 @@ const styles = StyleSheet.create({
   },
   handle: {
     position: 'absolute',
-    left: global.style.defaultPadding,
-    right: global.style.defaultPadding,
+    left: vars.padding,
+    right: vars.padding,
     height: HANDLE_HEIGHT,
   },
   handleBar: {
     width: 40,
     height: HANDLE_BAR_HEIGHT,
-    backgroundColor: 'darkgray',
+    backgroundColor: colors.backgroundDark,
     borderRadius: 5,
     marginTop: HANDLE_PADDING_TOP,
     alignSelf: 'center',
@@ -244,4 +244,4 @@ const styles = StyleSheet.create({
   handleContent: {
     marginTop: HANDLE_VISIBLE_PADDING,
   },
-})
+}))

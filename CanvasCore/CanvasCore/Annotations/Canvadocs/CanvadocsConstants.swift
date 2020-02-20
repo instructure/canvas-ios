@@ -105,6 +105,7 @@ public func teacherAppConfiguration(bottomInset: CGFloat) -> PSPDFConfiguration 
         builder.additionalScrollViewFrameInsets.bottom = bottomInset
         builder.backgroundColor = UIColor(red: 165.0/255.0, green: 175.0/255.0, blue: 181.0/255.0, alpha: 1.0)
         builder.userInterfaceViewMode = .never
+        builder.naturalDrawingAnnotationEnabled = false
     }
 }
 

@@ -59,7 +59,7 @@ exports[`Slider renders 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "borderTopColor": "#A5AFB5",
+          "borderTopColor": "#C7CDD1",
           "borderTopWidth": 1,
           "height": 1,
         }
@@ -101,8 +101,8 @@ exports[`Slider renders 1`] = `
             ],
           },
           Object {
-            "backgroundColor": "#fff",
-            "borderColor": "#A5AFB5",
+            "backgroundColor": "#FFFFFF",
+            "borderColor": "#C7CDD1",
             "borderRadius": 15,
             "borderWidth": 1,
             "height": 30,

@@ -22,7 +22,7 @@ public extension UIFont {
     enum Name: String, CaseIterable {
         case regular10, regular11Monodigit, regular12, regular14, regular14Italic, regular16, regular20, regular24, regular20Monodigit, regular30
         case medium10, medium12, medium14, medium16, medium20
-        case semibold12, semibold14, semibold16, semibold20
+        case semibold11, semibold12, semibold14, semibold16, semibold18, semibold20
         case bold11, bold17, bold20, bold24
         case heavy24
     }
@@ -64,12 +64,16 @@ public extension UIFont {
         case .medium20:
             return scaledFont(.title1, for: .systemFont(ofSize: 20, weight: .medium))
 
+        case .semibold11:
+            return scaledFont(.body, for: .systemFont(ofSize: 11, weight: .semibold))
         case .semibold12:
             return scaledFont(.body, for: .systemFont(ofSize: 12, weight: .semibold))
         case .semibold14:
             return scaledFont(.callout, for: .systemFont(ofSize: 14, weight: .semibold))
         case .semibold16:
             return scaledFont(.callout, for: .systemFont(ofSize: 16, weight: .semibold))
+        case .semibold18:
+            return scaledFont(.title2, for: .systemFont(ofSize: 18, weight: .semibold))
         case .semibold20:
             return scaledFont(.title3, for: .systemFont(ofSize: 20, weight: .semibold))
 
@@ -83,7 +87,7 @@ public extension UIFont {
             return UIFontMetrics(forTextStyle: .title3).scaledFont(for: .systemFont(ofSize: 20, weight: .bold))
 
         case .bold24:
-            return scaledFont(.headline, for: .systemFont(ofSize: 24, weight: .bold))
+            return scaledFont(.largeTitle, for: .systemFont(ofSize: 24, weight: .bold))
 
         case .heavy24:
             return scaledFont(.title1, for: .systemFont(ofSize: 24, weight: .heavy))

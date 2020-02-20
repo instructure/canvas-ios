@@ -26,7 +26,7 @@ exports[`renders 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "paddingBottom": 16,
                 "paddingLeft": 16,
@@ -182,7 +182,7 @@ exports[`renders 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "paddingBottom": 16,
                 "paddingLeft": 16,
@@ -477,7 +477,7 @@ exports[`renders 1`] = `
                     Object {
                       "alignSelf": "center",
                       "backgroundColor": "transparent",
-                      "borderColor": "#c7c7cc",
+                      "borderColor": "#C7CDD1",
                       "borderRightWidth": 2,
                       "borderTopWidth": 2,
                       "height": 10,
@@ -506,7 +506,7 @@ exports[`renders 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "paddingBottom": 16,
                 "paddingLeft": 16,
@@ -650,7 +650,7 @@ exports[`renders 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "borderTopColor": "#C7CDD1",
             "borderTopWidth": 0.5,
             "flex": 1,
@@ -756,7 +756,7 @@ exports[`renders as a designer 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "paddingBottom": 16,
                 "paddingLeft": 16,
@@ -912,7 +912,7 @@ exports[`renders as a designer 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "paddingBottom": 16,
                 "paddingLeft": 16,
@@ -1207,7 +1207,7 @@ exports[`renders as a designer 1`] = `
                     Object {
                       "alignSelf": "center",
                       "backgroundColor": "transparent",
-                      "borderColor": "#c7c7cc",
+                      "borderColor": "#C7CDD1",
                       "borderRightWidth": 2,
                       "borderTopWidth": 2,
                       "height": 10,
@@ -1236,7 +1236,7 @@ exports[`renders as a designer 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "paddingBottom": 16,
                 "paddingLeft": 16,
@@ -1332,7 +1332,7 @@ exports[`renders as a designer 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "borderTopColor": "#C7CDD1",
             "borderTopWidth": 0.5,
             "flex": 1,
@@ -1438,7 +1438,7 @@ exports[`renders loading 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "paddingBottom": 16,
                 "paddingLeft": 16,
@@ -1594,7 +1594,7 @@ exports[`renders loading 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "paddingBottom": 16,
                 "paddingLeft": 16,
@@ -1889,7 +1889,7 @@ exports[`renders loading 1`] = `
                     Object {
                       "alignSelf": "center",
                       "backgroundColor": "transparent",
-                      "borderColor": "#c7c7cc",
+                      "borderColor": "#C7CDD1",
                       "borderRightWidth": 2,
                       "borderTopWidth": 2,
                       "height": 10,
@@ -1918,7 +1918,7 @@ exports[`renders loading 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "paddingBottom": 16,
                 "paddingLeft": 16,
@@ -2012,7 +2012,7 @@ exports[`renders loading 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "borderTopColor": "#C7CDD1",
             "borderTopWidth": 0.5,
             "flex": 1,
@@ -2120,7 +2120,7 @@ exports[`renders with no submission types 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "paddingBottom": 16,
                 "paddingLeft": 16,
@@ -2276,7 +2276,7 @@ exports[`renders with no submission types 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "paddingBottom": 16,
                 "paddingLeft": 16,
@@ -2571,7 +2571,7 @@ exports[`renders with no submission types 1`] = `
                     Object {
                       "alignSelf": "center",
                       "backgroundColor": "transparent",
-                      "borderColor": "#c7c7cc",
+                      "borderColor": "#C7CDD1",
                       "borderRightWidth": 2,
                       "borderTopWidth": 2,
                       "height": 10,
@@ -2600,7 +2600,7 @@ exports[`renders with no submission types 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "paddingBottom": 16,
                 "paddingLeft": 16,
@@ -2696,7 +2696,7 @@ exports[`renders with no submission types 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "borderTopColor": "#C7CDD1",
             "borderTopWidth": 0.5,
             "flex": 1,
@@ -2802,7 +2802,7 @@ exports[`renders with not_graded submission type 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "paddingBottom": 16,
                 "paddingLeft": 16,
@@ -2958,7 +2958,7 @@ exports[`renders with not_graded submission type 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "paddingBottom": 16,
                 "paddingLeft": 16,
@@ -3253,7 +3253,7 @@ exports[`renders with not_graded submission type 1`] = `
                     Object {
                       "alignSelf": "center",
                       "backgroundColor": "transparent",
-                      "borderColor": "#c7c7cc",
+                      "borderColor": "#C7CDD1",
                       "borderRightWidth": 2,
                       "borderTopWidth": 2,
                       "height": 10,
@@ -3282,7 +3282,7 @@ exports[`renders with not_graded submission type 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "paddingBottom": 16,
                 "paddingLeft": 16,
@@ -3376,7 +3376,7 @@ exports[`renders with not_graded submission type 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "borderTopColor": "#C7CDD1",
             "borderTopWidth": 0.5,
             "flex": 1,
@@ -3482,7 +3482,7 @@ exports[`renders without description 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "paddingBottom": 16,
                 "paddingLeft": 16,
@@ -3638,7 +3638,7 @@ exports[`renders without description 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "paddingBottom": 16,
                 "paddingLeft": 16,
@@ -3933,7 +3933,7 @@ exports[`renders without description 1`] = `
                     Object {
                       "alignSelf": "center",
                       "backgroundColor": "transparent",
-                      "borderColor": "#c7c7cc",
+                      "borderColor": "#C7CDD1",
                       "borderRightWidth": 2,
                       "borderTopWidth": 2,
                       "height": 10,
@@ -3962,7 +3962,7 @@ exports[`renders without description 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "paddingBottom": 16,
                 "paddingLeft": 16,
@@ -4106,7 +4106,7 @@ exports[`renders without description 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "borderTopColor": "#C7CDD1",
             "borderTopWidth": 0.5,
             "flex": 1,
@@ -4155,7 +4155,7 @@ exports[`renders without description 1`] = `
             style={
               Object {
                 "alignItems": "flex-start",
-                "color": "#73818C",
+                "color": "#8B969E",
                 "fontSize": 14,
                 "textAlign": "left",
               }

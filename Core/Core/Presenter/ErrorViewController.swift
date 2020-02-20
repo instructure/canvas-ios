@@ -18,32 +18,28 @@
 
 import Foundation
 
-public protocol AlertViewController: class {
-    var navigationController: UINavigationController? { get }
+public protocol ErrorViewController: class {
     func showAlert(title: String?, message: String?)
-}
-
-extension AlertViewController {
-    public func showAlert(title: String?, message: String?) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertAction.Style.default, handler: nil))
-        navigationController?.present(alert, animated: true, completion: nil)
-    }
-}
-
-public protocol ErrorViewController: AlertViewController {
     func showError(_ error: Error)
     func showError(message: String)
 }
 
+extension ErrorViewController where Self: UIViewController {
+    public func showAlert(title: String?, message: String?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default))
+        AppEnvironment.shared.router.show(alert, from: self, options: .modal())
+    }
+}
+
 extension ErrorViewController {
     public func showError(_ error: Error) {
-        DispatchQueue.main.async {
-            self.showError(message: error.localizedDescription)
-        }
+        showError(message: error.localizedDescription)
     }
 
     public func showError(message: String) {
-        showAlert(title: nil, message: message)
+        performUIUpdate {
+            self.showAlert(title: nil, message: message)
+        }
     }
 }

@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "All Courses";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "All Grading Periods";
+
 /* Button to select all members of a group */
 "All members" = "All members";
 
@@ -366,6 +369,9 @@
 "Choose Video" = "Choose Video";
 
 /* No comment provided by engineer. */
+"Clear filter" = "Clear filter";
+
+/* No comment provided by engineer. */
 "Close" = "Close";
 
 /* No comment provided by engineer. */
@@ -441,6 +447,9 @@
 /* label for customizing a course */
 "Customize" = "Customise";
 
+/* No comment provided by engineer. */
+"d_events" = "d_events";
+
 /* dashboard page title */
 "Dashboard" = "Dashboard";
 
@@ -486,7 +495,11 @@
    Title for Discussions view controller */
 "Discussions" = "Discussions";
 
-/* Dismiss an alert dialog */
+/* Dismiss an error button
+   dismiss button
+   Dismiss button for an error dialoue
+   Dismiss error alert button
+   dismiss the alert button */
 "Dismiss" = "Dismiss";
 
 /* Alert title asking if you want to masquerade */
@@ -501,7 +514,7 @@
 /* Button to cancel deleting folders */
 "Don't delete" = "Don't delete";
 
-/* Button title to mark a to do item as done */
+/* No comment provided by engineer. */
 "Done" = "Done";
 
 /* Shown when we cancel a file download */
@@ -530,9 +543,6 @@
 
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Due:";
-
-/* Due date label for to do items, first placeholder is date, second is time */
-"Due: %@ at %@" = "Due: %1$@ at %2$@";
 
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "Due: %1$@ at %2$@";
@@ -631,6 +641,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Files (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Filter";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Filter by:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Finished downloading";
@@ -737,9 +753,6 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "It has problems";
-
-/* No comment provided by engineer. */
-"It looks like there’s nothing to do today. Enjoy your day!" = "It looks like there’s nothing to do today. Enjoy your day!";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "It’s empty; what are you still doing here?";
@@ -933,6 +946,9 @@
 "No Mastery Paths" = "No Mastery Paths";
 
 /* No comment provided by engineer. */
+"No Notifications" = "No Notifications";
+
+/* No comment provided by engineer. */
 "No recipients" = "No recipients";
 
 /* Title for attempting submission without a comment */
@@ -949,9 +965,6 @@
 
 /* No comment provided by engineer. */
 "No Thanks" = "No Thanks";
-
-/* No comment provided by engineer. */
-"No To-Do Items" = "No To-Do Items";
 
 /* error message for a 401 response. */
 "Not Authorized" = "Not Authorised";
@@ -1478,6 +1491,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "There was an error loading your content. If it is an audio or video upload it may still be processing.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "There's nothing to be notified of yet.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "This app is not authorised for use.";

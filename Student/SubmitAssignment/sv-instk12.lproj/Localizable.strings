@@ -5,7 +5,7 @@
 "Assignments" = "Uppgifter";
 
 /* No comment provided by engineer. */
-"Comments..." = "Kommentarer...";
+"Comments..." = "Kommentarer ...";
 
 /* No comment provided by engineer. */
 "Course" = "Kurs";
@@ -14,5 +14,8 @@
 "Courses" = "Kurser";
 
 /* No comment provided by engineer. */
-"Submit" = "Lämna in";
+"Format not supported" = "Formatet stöds inte";
+
+/* No comment provided by engineer. */
+"Submit" = "Skicka in";
 

@@ -22,7 +22,7 @@ import ReactiveSwift
 import CanvasCore
 import Core
 
-extension Activity {
+extension CanvasCore.Activity {
     @objc var icon: UIImage? {
         switch type {
         case .discussion:       return .icon(.discussion)
@@ -37,7 +37,7 @@ extension Activity {
     }
 }
 
-private func colorfulActivity(session: Session) -> ((Activity) -> ColorfulViewModel) {
+private func colorfulActivity(session: Session) -> ((CanvasCore.Activity) -> ColorfulViewModel) {
     return { activity in
         var vm: ColorfulViewModel
         if activity.context.context == .course {
@@ -69,7 +69,7 @@ private func colorfulActivity(session: Session) -> ((Activity) -> ColorfulViewMo
     }
 }
 
-class ActivityStreamTableViewController: FetchedTableViewController<Activity> {
+class ActivityStreamTableViewController: FetchedTableViewController<CanvasCore.Activity> {
     init(session: Session, context: ContextID = .currentUser) throws {
         super.init()
 
@@ -86,6 +86,6 @@ class ActivityStreamTableViewController: FetchedTableViewController<Activity> {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         Analytics.shared.logEvent("notification_selected")
         let activity = collection[indexPath]
-        router.route(to: activity.url, from: self, options: [.detail, .embedInNav])
+        router.route(to: activity.url, from: self, options: .detail(embedInNav: true))
     }
 }

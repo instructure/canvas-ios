@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"Absent" = "Ausente";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "Todas as classificações estão atualmente ocultas.";
 
 /* No comment provided by engineer. */
@@ -11,13 +14,43 @@
 "All Posted" = "Tudo publicado";
 
 /* No comment provided by engineer. */
+"Attendance" = "Presença";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "Erro de Presença";
+
+/* No comment provided by engineer. */
 "Back" = "Voltar";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancelar";
+
+/* No comment provided by engineer. */
+"Change Section" = "Alterar Seção";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Escolher uma Seção";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Escolher Data";
 
 /* No comment provided by engineer. */
 "Courses" = "Disciplinas";
 
 /* No comment provided by engineer. */
+"Date picker" = "Seletor de data";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Ignorar";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Erro: Nenhum dado retornou do rollcall api.";
+
+/* No comment provided by engineer. */
 "Everyone" = "Todos";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "Falha ao iniciar a ferramenta LTI rollcall.";
 
 /* No comment provided by engineer. */
 "Graded" = "Classificado";
@@ -38,6 +71,18 @@
 "Hide Grades" = "Esconder Classificações";
 
 /* No comment provided by engineer. */
+"Late" = "Atrasado";
+
+/* No comment provided by engineer. */
+"Loading more modules..." = "A carregar mais comentários...";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Marcar tudo como presente";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Marcar restante como presente";
+
+/* No comment provided by engineer. */
 "Modules" = "Módulos";
 
 /* No comment provided by engineer. */
@@ -50,8 +95,20 @@
 "Post to..." = "Publicar para...";
 
 /* No comment provided by engineer. */
+"Present" = "Presente";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Selecionar para alterar a data de rodapé";
+
+/* No comment provided by engineer. */
 "Specific Sections" = "Seções Específicas";
 
 /* No comment provided by engineer. */
+"This module is empty." = "Este módulo está vazio.";
+
+/* No comment provided by engineer. */
 "To Do" = "A Fazer";
+
+/* No comment provided by engineer. */
+"Unmark" = "Desmarcar";
 

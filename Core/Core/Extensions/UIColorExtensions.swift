@@ -82,21 +82,6 @@ extension UIColor {
         }
     }
 
-    // MARK: Styleguide Colors
-
-    /// Loads the named Canvas styleguide color from assets, accounting for contrast
-    public static func named(_ name: Name, inHighContrast: Bool = UIAccessibility.isDarkerSystemColorsEnabled) -> UIColor {
-        let named = inHighContrast ? "\(name.rawValue)HighContrast" : name.rawValue
-        return UIColor(named: named, in: .core, compatibleWith: nil)!
-    }
-
-    public enum Name: String, CaseIterable {
-        case ash, barney, crimson, electric, fire, licorice, oxford, porcelain, shamrock, tiara, white
-        case backgroundAlert, backgroundDanger, backgroundDark, backgroundDarkest, backgroundInfo, backgroundLight, backgroundLightest, backgroundMedium, backgroundSuccess, backgroundWarning
-        case borderAlert, borderDanger, borderDark, borderDarkest, borderDebug, borderInfo, borderLight, borderLightest, borderMedium, borderSuccess, borderWarning
-        case textAlert, textDanger, textDark, textDarkest, textInfo, textLight, textLightest, textSuccess, textWarning
-    }
-
     // MARK: Contrast
 
     /// Relative luminance as defined by WCAG 2.0

@@ -267,12 +267,12 @@ describe('gradeSubmission', () => {
         error: null,
       },
     }
-
+    let postedAt = new Date().toISOString()
     const action = {
       type: gradeSubmission.toString(),
       payload: {
         result: {
-          data: templates.submission({ id: '1', grade: '1', score: 1 }),
+          data: templates.submission({ id: '1', grade: '1', score: 1, posted_at: postedAt }),
         },
         submissionID: '1',
       },
@@ -285,6 +285,7 @@ describe('gradeSubmission', () => {
         score: 1,
         excused: false,
         grade_matches_current_submission: true,
+        posted_at: postedAt,
       },
       pending: 0,
     })

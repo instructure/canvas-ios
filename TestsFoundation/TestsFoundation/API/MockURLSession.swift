@@ -19,6 +19,7 @@
 import Core
 
 public class MockURLSession: URLSession {
+    public typealias UrlResponseTuple = (Data?, URLResponse?, Error?)
     public static var dataMocks: [String: MockDataTask] = [:]
     public static var downloadMocks: [String: MockDownloadTask] = [:]
 
@@ -39,6 +40,7 @@ public class MockURLSession: URLSession {
 
     public class MockDataTask: URLSessionUploadTask {
         public var callback: ((Data?, URLResponse?, Error?) -> Void)?
+        public var dataHandler: (() -> UrlResponseTuple)?
 
         private var id: Int = 0
         public override var taskIdentifier: Int {
@@ -60,15 +62,33 @@ public class MockURLSession: URLSession {
         public var resumed = false
         public var canceled = false
 
+        public var paused = false {
+            didSet {
+                if !paused && state == .running {
+                    resume()
+                }
+            }
+        }
+
         public var _state: URLSessionTask.State = .suspended
         public override var state: URLSessionTask.State {
             return _state
         }
 
         public override func resume() {
-            callback?(mock?.data, mock?.response, mock?.error)
+            _state = .running
             resumed = true
+            if paused {
+                return
+            }
+
             _state = .completed
+            if let dataHandler = dataHandler {
+                let data = dataHandler()
+                callback?(data.0, data.1, data.2)
+            } else {
+                callback?(mock?.data, mock?.response, mock?.error)
+            }
         }
 
         public override func cancel() {
@@ -120,6 +140,7 @@ public class MockURLSession: URLSession {
         dataMocks = [:]
     }
 
+    @discardableResult
     public static func mock<R: APIRequestable>(
         _ requestable: R,
         value: R.Response? = nil,
@@ -128,16 +149,15 @@ public class MockURLSession: URLSession {
         baseURL: URL = URL(string: "https://canvas.instructure.com")!,
         accessToken: String? = nil,
         taskID: Int = 0
-    ) {
+    ) -> MockDataTask {
         var data: Data?
         if let value = value {
-            let encoder = JSONEncoder()
-            encoder.dateEncodingStrategy = .iso8601
-            data = try! encoder.encode(value)
+            data = try! requestable.encode(response: value)
         }
-        mock(requestable, data: data, response: response, error: error, baseURL: baseURL, accessToken: accessToken, taskID: taskID)
+        return mock(requestable, data: data, response: response, error: error, baseURL: baseURL, accessToken: accessToken, taskID: taskID)
     }
 
+    @discardableResult
     public static func mock<R: APIRequestable>(
         _ requestable: R,
         response: URLResponse? = nil,
@@ -145,10 +165,11 @@ public class MockURLSession: URLSession {
         baseURL: URL = URL(string: "https://canvas.instructure.com")!,
         accessToken: String? = nil,
         taskID: Int = 0
-    ) {
-        mock(requestable, value: nil, error: error, baseURL: baseURL, accessToken: accessToken, taskID: taskID)
+    ) -> MockDataTask {
+        return mock(requestable, value: nil, response: response, error: error, baseURL: baseURL, accessToken: accessToken, taskID: taskID)
     }
 
+    @discardableResult
     public static func mock<R: APIRequestable>(
         _ requestable: R,
         data: Data? = nil,
@@ -156,19 +177,46 @@ public class MockURLSession: URLSession {
         error: Error? = nil,
         baseURL: URL = URL(string: "https://canvas.instructure.com")!,
         accessToken: String? = nil,
+        dataHandler: (() -> UrlResponseTuple)? = nil,
         taskID: Int = 0
-    ) {
+    ) -> MockDataTask {
         let request = try! requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil)
-        mock(request, data: data, response: response, error: error, taskID: taskID)
+        return mock(request, data: data, response: response, error: error, dataHandler: dataHandler, taskID: taskID)
     }
 
     @discardableResult
-    public static func mock(_ request: URLRequest, data: Data? = nil, response: URLResponse? = nil, error: Error? = nil, taskID: Int = 0) -> MockDataTask {
+    public static func mock(_ request: URLRequest,
+                            data: Data? = nil,
+                            response: URLResponse? = nil,
+                            error: Error? = nil,
+                            dataHandler: (() -> UrlResponseTuple)? = nil,
+                            taskID: Int = 0) -> MockDataTask {
         let task = MockDataTask()
         task.mock = MockData(data: data, response: response, error: error)
+        task.dataHandler = dataHandler
         task.taskIdentifier = taskID
-        MockURLSession.dataMocks[request.url!.absoluteString] = task
+        MockURLSession.dataMocks[request.url!.withCanonicalQueryParams!.absoluteString] = task
         return task
+    }
+
+    @discardableResult
+    public static func mock<S, U>(
+        _ store: S,
+        value: U.Request.Response? = nil,
+        response: URLResponse? = nil,
+        error: Error? = nil
+    ) -> MockDataTask where S: Store<U>, U: APIUseCase {
+        return mock(store.useCase, value: value, response: response, error: error)
+    }
+
+    @discardableResult
+    public static func mock<U>(
+        _ useCase: U,
+        value: U.Request.Response? = nil,
+        response: URLResponse? = nil,
+        error: Error? = nil
+    ) -> MockDataTask where U: APIUseCase {
+        return mock(useCase.request, value: value, response: response, error: error)
     }
 
     public static func mockDataTask<R: APIRequestable>(
@@ -177,7 +225,7 @@ public class MockURLSession: URLSession {
         accessToken: String? = nil
     ) -> MockDataTask? {
         let request = try! requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil)
-        return dataMocks[request.url!.absoluteString]
+        return dataMocks[request.url!.withCanonicalQueryParams!.absoluteString]
     }
 
     @discardableResult
@@ -185,12 +233,12 @@ public class MockURLSession: URLSession {
         let request = URLRequest(url: url)
         let task = MockDownloadTask()
         task.mock = MockDownload(data: value, response: response, error: error)
-        MockURLSession.downloadMocks[request.url!.absoluteString] = task
+        MockURLSession.downloadMocks[request.url!.withCanonicalQueryParams!.absoluteString] = task
         return task
     }
 
     public override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        let task = MockURLSession.dataMocks[request.url!.absoluteString] ?? MockDataTask()
+        let task = MockURLSession.dataMocks[request.url!.withCanonicalQueryParams!.absoluteString] ?? MockDataTask()
         if task.mock == nil {
             print("⚠️ mock not found for url: \(request.url?.absoluteString ?? "<n/a>")")
         }
@@ -198,16 +246,24 @@ public class MockURLSession: URLSession {
         return task
     }
 
+    public override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+        return dataTask(with: URLRequest(url: url.withCanonicalQueryParams!), completionHandler: completionHandler)
+    }
+
     public override func dataTask(with request: URLRequest) -> URLSessionDataTask {
-        let task = MockURLSession.dataMocks[request.url!.absoluteString] ?? MockDataTask()
+        let task = MockURLSession.dataMocks[request.url!.withCanonicalQueryParams!.absoluteString] ?? MockDataTask()
         if task.mock == nil {
             print("⚠️ mock not found for url: \(request.url?.absoluteString ?? "<n/a>")")
         }
         return task
     }
 
+    public override func dataTask(with url: URL) -> URLSessionDataTask {
+        return dataTask(with: URLRequest(url: url.withCanonicalQueryParams!))
+    }
+
     public override func uploadTask(with request: URLRequest, fromFile fileURL: URL) -> URLSessionUploadTask {
-        let task = MockURLSession.dataMocks[request.url!.absoluteString] ?? MockDataTask()
+        let task = MockURLSession.dataMocks[request.url!.withCanonicalQueryParams!.absoluteString] ?? MockDataTask()
         if task.mock == nil {
             print("⚠️ mock not found for url: \(request.url?.absoluteString ?? "<n/a>")")
         }
@@ -215,11 +271,23 @@ public class MockURLSession: URLSession {
     }
 
     public override func downloadTask(with request: URLRequest, completionHandler: @escaping (URL?, URLResponse?, Error?) -> Void) -> URLSessionDownloadTask {
-        let task = MockURLSession.downloadMocks[request.url!.absoluteString] ?? MockDownloadTask()
+        let task = MockURLSession.downloadMocks[request.url!.withCanonicalQueryParams!.absoluteString] ?? MockDownloadTask()
         if task.mock == nil {
             print("⚠️ download mock not found for url: \(request.url?.absoluteString ?? "<n/a>")")
         }
         task.callback = completionHandler
+        return task
+    }
+
+    public override func downloadTask(with url: URL) -> URLSessionDownloadTask {
+        return downloadTask(with: URLRequest(url: url))
+    }
+
+    public override func downloadTask(with request: URLRequest) -> URLSessionDownloadTask {
+        let task = MockURLSession.downloadMocks[request.url!.withCanonicalQueryParams!.absoluteString] ?? MockDownloadTask()
+        if task.mock == nil {
+            print("⚠️ download mock not found for url: \(request.url?.absoluteString ?? "<n/a>")")
+        }
         return task
     }
 

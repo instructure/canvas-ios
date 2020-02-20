@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   avatar: {
     width: 40,
     height: 40,
-    marginRight: global.style.defaultPadding,
+    marginRight: 16,
   },
 })
 

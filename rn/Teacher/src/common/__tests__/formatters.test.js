@@ -24,6 +24,7 @@ import {
   formatGradeText,
   formatGrade,
   formatStudentGrade,
+  personDisplayName,
 } from '../formatters'
 import { extractDateFromString } from '../../utils/dateUtils'
 import i18n from 'format-message'
@@ -94,31 +95,34 @@ describe('formatGrade', () => {
 
 describe('formatGradeText', () => {
   it('works for pass', () => {
-    expect(formatGradeText('pass')).toEqual('Pass')
+    expect(formatGradeText({ grade: 'pass' })).toEqual('Pass')
   })
   it('works for complete', () => {
-    expect(formatGradeText('complete')).toEqual('Complete')
+    expect(formatGradeText({ grade: 'complete' })).toEqual('Complete')
   })
   it('works for fail', () => {
-    expect(formatGradeText('fail')).toEqual('Fail')
+    expect(formatGradeText({ grade: 'fail' })).toEqual('Fail')
   })
   it('works for incomplete', () => {
-    expect(formatGradeText('incomplete')).toEqual('Incomplete')
+    expect(formatGradeText({ grade: 'incomplete' })).toEqual('Incomplete')
   })
   it('passes through non number grades', () => {
-    expect(formatGradeText('yo')).toEqual('yo')
+    expect(formatGradeText({ grade: 'yo' })).toEqual('yo')
   })
   it('gives back a percentage', () => {
-    expect(formatGradeText('75%', 'percent')).toEqual('75%')
+    expect(formatGradeText({ grade: '75%', gradingType: 'percent' })).toEqual('75%')
   })
   it('rounds percents to 2 decimals', () => {
-    expect(formatGradeText('75.985%', 'percent')).toEqual('75.99%')
+    expect(formatGradeText({ grade: '75.985%', gradingType: 'percent' })).toEqual('75.99%')
   })
   it('gives back points', () => {
-    expect(formatGradeText('1000', 'points')).toEqual('1,000')
+    expect(formatGradeText({ grade: '1000', gradingType: 'points' })).toEqual('1,000')
   })
   it('rounds points to 2 decimals', () => {
-    expect(formatGradeText('1000.985', 'points')).toEqual('1,000.99')
+    expect(formatGradeText({ grade: '1000.985', gradingType: 'points' })).toEqual('1,000.99')
+  })
+  it('prefers score over grade', () => {
+    expect(formatGradeText({ grade: '2.99', score: 3, gradingType: 'points', pointsPossible: 5 })).toEqual('3/5')
   })
 })
 
@@ -255,5 +259,15 @@ describe('formatStudentGrade', () => {
     })
     const result = formatStudentGrade(assignment)
     expect(result).toEqual('')
+  })
+})
+
+describe('personDisplayName', () => {
+  it('formats without pronouns', () => {
+    expect(personDisplayName('John Doe')).toEqual('John Doe')
+  })
+
+  it('formats with pronouns', () => {
+    expect(personDisplayName('John Doe', 'He/Him')).toEqual('John Doe (He/Him)')
   })
 })

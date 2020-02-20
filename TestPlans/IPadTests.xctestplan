@@ -1,0 +1,43 @@
+{
+  "configurations" : [
+    {
+      "id" : "F222A9EC-9C71-4E01-9FC5-A202C673E0E5",
+      "name" : "Default",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Student.xcodeproj",
+      "identifier" : "492704721CF4AF7100C631C6",
+      "name" : "Student"
+    }
+  },
+  "testTargets" : [
+    {
+      "selectedTests" : [
+        "IPadAssignmentsTest\/testAssignments()",
+        "StudentSpringBoardTests\/testMultitaskingSetup()"
+      ],
+      "target" : {
+        "containerPath" : "container:Student.xcodeproj",
+        "identifier" : "7DC5716F22F8B16200F2E9BB",
+        "name" : "StudentUITests"
+      }
+    },
+    {
+      "selectedTests" : [
+        "IPadSpeedGraderTests\/testSpeedGrader()"
+      ],
+      "target" : {
+        "containerPath" : "container:..\/rn\/Teacher\/ios\/Teacher.xcodeproj",
+        "identifier" : "E8315D3522FC9E60003CD27C",
+        "name" : "TeacherUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

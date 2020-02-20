@@ -82,6 +82,7 @@ export function buildRows (enrollments: Enrollment[],
       score,
       sectionID: enrollment.course_section_id,
       allSectionIDs: sectionIDs[user.id],
+      gradingType: 'points',
     }
   })
 }

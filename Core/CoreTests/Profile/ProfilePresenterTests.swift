@@ -33,6 +33,7 @@ class ProfilePresenterTests: CoreTestCase {
     }
 
     lazy var presenter: ProfilePresenter = {
+        environment.mockStore = false
         let presenter = ProfilePresenter(enrollment: enrollment, view: view)
         let ready = expectation(description: "stores ready")
         ready.assertForOverFulfill = false
@@ -120,7 +121,10 @@ class ProfilePresenterTests: CoreTestCase {
 
     func testObserver() {
         enrollment = .observer
-        view.expect(route: Route.profileObservees) {
+        view.expect(route: Route.conversations) {
+            presenter.cells.first(where: { $0.id == "inbox" })?.block(UITableViewCell())
+        }
+        view.expect(route: Route.profileObservees()) {
             presenter.cells.first(where: { $0.id == "manageChildren" })?.block(UITableViewCell())
         }
         XCTAssertFalse(presenter.cells.contains(where: { $0.id == "files" }))
@@ -187,7 +191,7 @@ class ProfilePresenterTests: CoreTestCase {
 
         var routedTo: Route?
         var routeExpectation: XCTestExpectation?
-        func route(to: Route, options: RouteOptions?) {
+        func route(to: Route, options: RouteOptions) {
             routedTo = to
             routeExpectation?.fulfill()
         }
@@ -210,6 +214,10 @@ class ProfilePresenterTests: CoreTestCase {
         func showError(_ error: Error) {}
         func showError(_ message: String) {}
 
-        var navigationController: UINavigationController?
+        func showAlert(title: String?, message: String?) {}
+
+        func dismiss(animated flag: Bool, completion: (() -> Void)?) {
+            completion?()
+        }
     }
 }

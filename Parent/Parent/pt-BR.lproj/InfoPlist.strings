@@ -5,7 +5,7 @@
 "NSCameraUsageDescription" = "Anexe fotos e vídeos a mensagens e posts de discussões ou entregue-as como envios de tarefa.";
 
 /* Privacy - Microphone Usage Description */
-"NSMicrophoneUsageDescription" = "Anexe gravações de aúdio a mensagens e posts de discussões ou entregue-as como envios de tarefa.";
+"NSMicrophoneUsageDescription" = "Anexe gravações de áudio a mensagens e posts de discussões ou entregue-as como envios de tarefa.";
 
 /* Privacy - Photo Library Additions Usage Description */
 "NSPhotoLibraryAddUsageDescription" = "Anexe fotos e vídeos a mensagens e posts de discussões ou entregue-as como envios de tarefa.";

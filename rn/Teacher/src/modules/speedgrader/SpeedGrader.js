@@ -55,6 +55,7 @@ import CommentInput from './comments/CommentInput'
 import { isAssignmentAnonymous } from '../../common/anonymous-grading'
 import A11yGroup from '../../common/components/A11yGroup'
 import { getEnabledFeatureFlags } from '../../canvas-api'
+import { vars } from '../../common/stylesheet'
 
 const { NativeAccessibility } = NativeModules
 
@@ -74,7 +75,6 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   props: SpeedGraderProps
   state: State
   _flatList: ?FlatList
-  scrollView: ?{ setNativeProps: (Object) => void }
   hasRenderedBody = false
 
   static drawerState = new DrawerState()
@@ -87,7 +87,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   constructor (props: SpeedGraderProps) {
     super(props)
 
-    const { height, width } = Dimensions.get('window')
+    const { height, width } = Dimensions.get('screen')
     const position = SpeedGrader.drawerState.currentSnap
     this.state = {
       size: {
@@ -107,9 +107,6 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   async componentDidMount () {
     this.setSubmissions(this.props)
     SpeedGrader.drawerState.registerDrawer(this)
-    if (this.props.hasAssignment) {
-      this.props.refreshSubmissions(this.props.courseID, this.props.assignmentID, this.props.groupAssignment != null)
-    }
 
     if (this.state.flags.length === 0) {
       try {
@@ -122,10 +119,6 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
 
   componentWillReceiveProps (nextProps: SpeedGraderProps) {
     this.setSubmissions(nextProps)
-
-    if (this.props.hasAssignment === false && nextProps.hasAssignment === true) {
-      this.props.refreshSubmissions(this.props.courseID, this.props.assignmentID, this.props.groupAssignment != null)
-    }
   }
 
   // DrawerObserver
@@ -234,7 +227,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
         gradeSubmissionWithRubric={this.props.gradeSubmissionWithRubric}
         selectedTabIndex={this.getInitialTabIndex()}
         setScrollEnabled={(value) => {
-          this.scrollView.setNativeProps({ scrollEnabled: value })
+          this._flatList.setNativeProps({ scrollEnabled: value })
         }}
         newGradebookEnabled={this.state.flags.includes('new_gradebook')}
       />
@@ -296,7 +289,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
           accessibilityLabel={i18n('No Submissions to Display')}
           style={styles.loadingWrapper}
         >
-          <Title style={{ margin: global.style.defaultPadding, textAlign: 'center' }}>{i18n("It seems there aren't any valid submissions to grade.")}</Title>
+          <Title style={{ margin: vars.padding, textAlign: 'center' }}>{i18n("It seems there aren't any valid submissions to grade.")}</Title>
           <Button onPress={this.dismiss} title={i18n('Close')} />
         </View>
       )
@@ -324,9 +317,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
         getItemLayout={this.getItemLayout}
         showsHorizontalScrollIndicator={false}
         onMomentumScrollEnd={this.scrollEnded}
-        initialScrollIndex={this.state.currentPageIndex}
         style={{ marginLeft: -PAGE_GUTTER_HALF_WIDTH, marginRight: -PAGE_GUTTER_HALF_WIDTH }}
-        ref={(e) => { this.scrollView = e }}
       />
     )
   }
@@ -423,6 +414,7 @@ export function refreshSpeedGrader (props: SpeedGraderProps): void {
   props.getCourseEnabledFeatures(props.courseID)
   props.refreshGroupsForCourse(props.courseID)
   props.refreshEnrollments(props.courseID)
+  props.refreshSubmissions(props.courseID, props.assignmentID, true)
 }
 
 export function shouldRefresh (props: SpeedGraderProps): boolean {

@@ -18,6 +18,6 @@
 
 import Foundation
 
-public enum QuizHideResults: String, Codable {
+public enum QuizHideResults: String, Codable, CaseIterable {
     case always, until_after_last_attempt
 }

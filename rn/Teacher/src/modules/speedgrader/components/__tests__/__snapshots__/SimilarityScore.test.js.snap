@@ -9,7 +9,7 @@ exports[`SimilarityScore renders error status 1`] = `
         "padding": 4,
       },
       Object {
-        "backgroundColor": "#F30017",
+        "backgroundColor": "#EE0612",
       },
     ]
   }
@@ -24,7 +24,7 @@ exports[`SimilarityScore renders error status 1`] = `
     style={
       Object {
         "height": 18,
-        "tintColor": "white",
+        "tintColor": "#FFFFFF",
         "width": 18,
       }
     }
@@ -42,7 +42,7 @@ exports[`SimilarityScore renders pending status 1`] = `
         "padding": 4,
       },
       Object {
-        "backgroundColor": "#72818B",
+        "backgroundColor": "#8B969E",
       },
     ]
   }
@@ -57,7 +57,7 @@ exports[`SimilarityScore renders pending status 1`] = `
     style={
       Object {
         "height": 18,
-        "tintColor": "white",
+        "tintColor": "#FFFFFF",
         "width": 18,
       }
     }
@@ -100,7 +100,7 @@ Array [
     "paddingVertical": 4,
   },
   Object {
-    "backgroundColor": "#FFC100",
+    "backgroundColor": "#FC5E13",
   },
 ]
 `;
@@ -113,7 +113,7 @@ Array [
     "paddingVertical": 4,
   },
   Object {
-    "backgroundColor": "#FC5E13",
+    "backgroundColor": "#BF32A4",
   },
 ]
 `;

@@ -39,8 +39,9 @@ class PageListPresenterTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        coursePresenter = PageListPresenter(env: environment, view: self, context: ContextModel(.course, id: "42"))
-        groupPresenter = PageListPresenter(env: environment, view: self, context: ContextModel(.group, id: "42"))
+        environment.mockStore = false
+        coursePresenter = PageListPresenter(env: environment, view: self, context: ContextModel(.course, id: "42"), app: .student)
+        groupPresenter = PageListPresenter(env: environment, view: self, context: ContextModel(.group, id: "42"), app: .student)
     }
 
     func testLoadGroup() {
@@ -48,7 +49,7 @@ class PageListPresenterTests: CoreTestCase {
         XCTAssertNil(resultingBackgroundColor)
 
         let g = Group.make(from: .make(id: "42"), in: databaseClient)
-        Color.make(canvasContextID: g.canvasContextID, color: UIColor.red)
+        ContextColor.make(canvasContextID: g.canvasContextID, color: UIColor.red)
 
         let expectation = self.expectation(description: "navbar")
         expectation.assertForOverFulfill = false
@@ -65,7 +66,7 @@ class PageListPresenterTests: CoreTestCase {
         XCTAssertNil(resultingBackgroundColor)
 
         let c = Course.make(from: .make(id: "42"), in: databaseClient)
-        Color.make(canvasContextID: c.canvasContextID, color: UIColor.red)
+        ContextColor.make(canvasContextID: c.canvasContextID, color: UIColor.red)
 
         let expectation = self.expectation(description: "navbar")
         expectation.assertForOverFulfill = false
@@ -78,19 +79,19 @@ class PageListPresenterTests: CoreTestCase {
     }
 
     func testLoadPages() {
-        Page.make(from: .make(title: "Answers Page"))
-        updateExpectationPredicate = { self.coursePresenter.pages.first?.title == "Answers Page" }
+        api.mock(GetPagesRequest(context: ContextModel(.course, id: "42")), value: [.make(title: "Answers Page")])
+        updateExpectationPredicate = { self.coursePresenter.pages.all?.first?.title == "Answers Page" }
         coursePresenter.viewIsReady()
         wait(for: [update], timeout: 1)
     }
 
     func testLoadFrontPage() {
-        Page.make(from: .make(front_page: true, title: "Front Page"))
-        updateExpectationPredicate = { self.coursePresenter.frontPage.first?.title == "Front Page" }
+        api.mock(GetFrontPageRequest(context: ContextModel(.course, id: "42")), value: .make(front_page: true, title: "Front Page"))
+        updateExpectationPredicate = { self.coursePresenter.pages.frontPage?.first?.title == "Front Page" }
         coursePresenter.viewIsReady()
         wait(for: [update], timeout: 1)
-        XCTAssertEqual(coursePresenter.frontPage.first?.title, "Front Page")
-        XCTAssertEqual(coursePresenter.frontPage.first?.isFrontPage, true)
+        XCTAssertEqual(coursePresenter.pages.frontPage?.first?.title, "Front Page")
+        XCTAssertEqual(coursePresenter.pages.frontPage?.first?.isFrontPage, true)
     }
 
     func testSelect() {
@@ -98,21 +99,72 @@ class PageListPresenterTests: CoreTestCase {
         let router = environment.router as? TestRouter
         XCTAssertNoThrow(coursePresenter.select(page, from: UIViewController()))
         XCTAssertEqual(router?.calls.last?.0, URLComponents.parse(page.htmlURL))
-        XCTAssertEqual(router?.calls.last?.2, [.detail, .embedInNav])
+        XCTAssertEqual(router?.calls.last?.2, .detail(embedInNav: true))
+
+        let groupPage = Page.make(from: .make(
+            html_url: URL(string: "/groups/42/pages/answers-page")!
+        ))
+        XCTAssertNoThrow(groupPresenter.select(groupPage, from: UIViewController()))
+        XCTAssertEqual(router?.calls.last?.0, URLComponents.parse(groupPage.htmlURL))
+        XCTAssertEqual(router?.calls.last?.2, .detail(embedInNav: true))
     }
 
     func testPageViewEventName() {
         XCTAssertEqual(coursePresenter.pageViewEventName, "courses/42/pages")
     }
+
+    func testPageCreated() {
+        coursePresenter.viewIsReady()
+
+        Page.make(from: .make(html_url: URL(string: "/courses/42/pages/test-page")!))
+        XCTAssertEqual(coursePresenter.pages.all?.count, 1)
+
+        let newPage = APIPage.make(html_url: URL(string: "/courses/42/pages/new-page")!, page_id: "1234")
+        NotificationCenter.default.post(name: NSNotification.Name("page-created"), object: nil, userInfo: apiPageToDictionary(page: newPage))
+
+        XCTAssertEqual(coursePresenter.pages.all?.count, 2)
+        XCTAssertEqual(coursePresenter.pages.all?.first!.id, newPage.page_id.value)
+    }
+
+    func testPageCreationOnlyHasOneFrontPage() {
+        coursePresenter.viewIsReady()
+
+        Page.make(from: .make(front_page: true, html_url: URL(string: "/courses/42/pages/test-page")!))
+
+        let newPage = APIPage.make(front_page: true, html_url: URL(string: "/courses/42/pages/new-page")!, page_id: "1234")
+        NotificationCenter.default.post(name: NSNotification.Name("page-created"), object: nil, userInfo: apiPageToDictionary(page: newPage))
+        let frontPage: [Page] = databaseClient.fetch(NSPredicate(format: "%K == true", #keyPath(Page.isFrontPage)), sortDescriptors: nil)
+        XCTAssertEqual(frontPage.count, 1)
+        XCTAssertEqual(frontPage.first?.id, "1234")
+    }
+
+    func apiPageToDictionary(page: APIPage) -> [String: Any] {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        let data = try! encoder.encode(page)
+        return try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String: Any]
+    }
+
+    func testCanCreatePage() {
+        var presenter = PageListPresenter(view: self, context: ContextModel(.course, id: "1"), app: .teacher)
+        XCTAssertTrue(presenter.canCreatePage())
+
+        presenter = PageListPresenter(view: self, context: ContextModel(.course, id: "1"), app: .student)
+        XCTAssertFalse(presenter.canCreatePage())
+
+        presenter = PageListPresenter(view: self, context: ContextModel(.group, id: "1"), app: .student)
+        XCTAssertTrue(presenter.canCreatePage())
+    }
 }
 
 extension PageListPresenterTests: PageListViewProtocol {
-
     func update(isLoading: Bool) {
         if (updateExpectationPredicate()) {
             update.fulfill()
         }
     }
+
+    func showAlert(title: String?, message: String?) {}
 
     func showError(_ error: Error) {
         resultingError = error as NSError

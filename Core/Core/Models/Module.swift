@@ -19,6 +19,10 @@
 import Foundation
 import CoreData
 
+public enum ModuleState: String, Codable {
+    case locked, unlocked, started, completed
+}
+
 public class Module: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var name: String

@@ -24,7 +24,6 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   Animated,
   RefreshControl,
   DeviceInfo,
@@ -41,6 +40,7 @@ import i18n from 'format-message'
 import Images from '../../images'
 import colors from '../../common/colors'
 import { Text } from '../../common/text'
+import { createStyleSheet } from '../../common/stylesheet'
 
 type TabsListProps = {
   tabs: Array<Tab>,
@@ -249,7 +249,7 @@ export default class TabsList extends Component<TabsListProps, any> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   container: {
     flex: 1,
   },
@@ -266,14 +266,14 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     backgroundColor: 'transparent',
-    color: 'white',
+    color: colors.white,
     fontWeight: '600',
     fontSize: 24,
     textAlign: 'center',
     marginBottom: 3,
   },
   headerSubtitle: {
-    color: 'white',
+    color: colors.white,
     opacity: 0.9,
     backgroundColor: 'transparent',
     fontWeight: '600',
@@ -304,10 +304,6 @@ const styles = StyleSheet.create({
   settingsButton: {
     width: 24,
   },
-  navButtonImage: {
-    resizeMode: 'contain',
-    tintColor: 'white',
-  },
   tabContainer: {
     flex: 1,
     justifyContent: 'flex-start',
@@ -317,6 +313,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+<<<<<<< HEAD
   studentView: {
     flex: 0,
     flexDirection: 'row',
@@ -328,3 +325,6 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
   },
 })
+=======
+}))
+>>>>>>> master

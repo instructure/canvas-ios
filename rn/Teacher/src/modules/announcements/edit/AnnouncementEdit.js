@@ -22,7 +22,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ReactNative, {
   View,
-  StyleSheet,
   LayoutAnimation,
   DatePickerIOS,
   NativeModules,
@@ -36,7 +35,7 @@ import RowWithTextInput from '../../../common/components/rows/RowWithTextInput'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import RowWithDateInput from '../../../common/components/rows/RowWithDateInput'
 import RowWithDetail from '../../../common/components/rows/RowWithDetail'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import images from '../../../images'
 import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
 import { extractDateFromString } from '../../../utils/dateUtils'
@@ -91,7 +90,8 @@ export class AnnouncementEdit extends Component<Props, any> {
   state = {
     title: this.props.title,
     message: this.props.message,
-    require_initial_post: this.props.require_initial_post,
+    locked: this.props.locked ?? true,
+    require_initial_post: this.props.require_initial_post ?? false,
     delayed_post_at: this.props.delayed_post_at,
     delayPosting: Boolean(this.props.delayed_post_at),
     delayedPostAtPickerShown: false,
@@ -135,7 +135,6 @@ export class AnnouncementEdit extends Component<Props, any> {
 
   render () {
     const title = this.props.announcementID ? i18n('Edit') : i18n('New')
-    const requireInitialPost = this.state.require_initial_post || false
     return (
       <Screen
         title={i18n('{title} Announcement', { title })}
@@ -153,8 +152,8 @@ export class AnnouncementEdit extends Component<Props, any> {
             accessibilityLabel: i18n('Add attachment'),
             badge: this.state.attachment && {
               text: '1',
-              backgroundColor: processColor(colors.primaryButtonColor),
-              textColor: processColor(colors.primaryBrandColor),
+              backgroundColor: processColor(colors.buttonPrimaryBackground),
+              textColor: processColor(colors.primary),
             },
           },
         ]}
@@ -252,11 +251,21 @@ export class AnnouncementEdit extends Component<Props, any> {
                   </View>
                 }
                 <RowWithSwitch
-                  title={i18n('Students must post before seeing replies')}
+                  testID='announcement.edit.locked'
+                  title={i18n('Allow users to comment')}
                   border='bottom'
-                  value={requireInitialPost}
-                  onValueChange={this._valueChanged('require_initial_post')}
+                  value={!this.state.locked}
+                  onValueChange={this._toggleLocked}
                 />
+                {this.state.locked === false &&
+                  <RowWithSwitch
+                    testID='announcement.edit.initial-post'
+                    title={i18n('Students must post before seeing replies')}
+                    border='bottom'
+                    value={this.state.require_initial_post}
+                    onValueChange={this._valueChanged('require_initial_post')}
+                  />
+                }
               </View>
             }
           </KeyboardAwareScrollView>
@@ -277,6 +286,13 @@ export class AnnouncementEdit extends Component<Props, any> {
       LayoutAnimation.easeInEaseOut()
     }
     this.setState({ ...values })
+  }
+
+  _toggleLocked = () => {
+    this.setState((prevState) => ({
+      locked: !prevState.locked,
+      require_initial_post: false,
+    }))
   }
 
   _toggleDelayPosting = (delayPosting: boolean) => {
@@ -314,9 +330,10 @@ export class AnnouncementEdit extends Component<Props, any> {
     }
 
     const params: CreateDiscussionParameters | UpdateDiscussionParameters = {
-      title: this.state.title || i18n('No Title'),
+      title: this.state.title ?? i18n('No Title'),
       message: message,
-      require_initial_post: this.state.require_initial_post || false,
+      locked: this.state.locked,
+      require_initial_post: this.state.require_initial_post ?? false,
       delayed_post_at: this.state.delayed_post_at,
       is_announcement: true,
       attachment: this.state.attachment,
@@ -388,23 +405,23 @@ export class AnnouncementEdit extends Component<Props, any> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: colors.backgroundLight,
   },
   description: {
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: colors.seperatorColor,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.seperatorColor,
-    backgroundColor: 'white',
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
+    backgroundColor: colors.backgroundLightest,
     height: 200,
   },
   deleteButtonTitle: {
-    color: '#EE0612',
+    color: colors.textDanger,
   },
-})
+}))
 
 export function mapStateToProps ({ entities }: AppState, { context, contextID, announcementID }: OwnProps): DataProps {
   let announcement = {}
@@ -441,6 +458,7 @@ export function mapStateToProps ({ entities }: AppState, { context, contextID, a
     require_initial_post,
     delayed_post_at,
     sections,
+    locked,
   } = announcement
 
   let selectedSections = sections && sections.map(({ id }) => id) || []
@@ -455,6 +473,7 @@ export function mapStateToProps ({ entities }: AppState, { context, contextID, a
     message,
     require_initial_post,
     delayed_post_at,
+    locked,
     pending,
     error,
     attachment,

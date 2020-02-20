@@ -30,11 +30,32 @@ class LTIToolsTests: CoreTestCase {
     }
     let mockView = MockView()
 
+    var didOpenExternalURL: URL?
+
+    override func tearDown() {
+        UserDefaults.standard.set(nil, forKey: "open_lti_safari")
+        super.tearDown()
+    }
+
     func testInitLink() {
         XCTAssertNil(LTITools(link: nil))
         XCTAssertNil(LTITools(link: URL(string: "/")))
         XCTAssertNil(LTITools(link: URL(string: "https://else.where/external_tools/retrieve?url=/")))
         XCTAssertEqual(LTITools(link: URL(string: "/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL))?.url, URL(string: "/"))
+    }
+
+    func testInitLinkContext() {
+        let defaultContext = LTITools(link: URL(string: "/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL))
+        XCTAssertEqual(defaultContext?.context.contextType, .account)
+        XCTAssertEqual(defaultContext?.context.id, "self")
+
+        let course = LTITools(link: URL(string: "/courses/1/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL))
+        XCTAssertEqual(course?.context.contextType, .course)
+        XCTAssertEqual(course?.context.id, "1")
+
+        let account = LTITools(link: URL(string: "/accounts/2/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL))
+        XCTAssertEqual(account?.context.contextType, .account)
+        XCTAssertEqual(account?.context.id, "2")
     }
 
     func testGetSessionlessLaunchURL() {
@@ -69,7 +90,7 @@ class LTIToolsTests: CoreTestCase {
         wait(for: [doneError], timeout: 1)
         XCTAssertNil(url)
 
-        api.mock(request, value: APIGetSessionlessLaunchResponse(url: actualURL))
+        api.mock(request, value: .make(url: actualURL))
         let doneValue = expectation(description: "callback completed")
         tools.getSessionlessLaunchURL { result in
             url = result
@@ -79,7 +100,7 @@ class LTIToolsTests: CoreTestCase {
         XCTAssertEqual(url, actualURL)
     }
 
-    func testPresentToolInSFSafariViewController() {
+    func testPresentTool() throws {
         let tools = LTITools(
             env: environment,
             context: ContextModel(.course, id: "1"),
@@ -95,7 +116,7 @@ class LTIToolsTests: CoreTestCase {
         api.mock(request, value: nil)
         var success = false
         let doneNil = expectation(description: "callback completed")
-        tools.presentToolInSFSafariViewController(from: mockView, animated: false) { result in
+        tools.presentTool(from: mockView, animated: false) { result in
             success = result
             doneNil.fulfill()
         }
@@ -105,7 +126,7 @@ class LTIToolsTests: CoreTestCase {
 
         api.mock(request, value: nil, error: APIRequestableError.invalidPath(""))
         let doneError = expectation(description: "callback completed")
-        tools.presentToolInSFSafariViewController(from: mockView, animated: false) { result in
+        tools.presentTool(from: mockView, animated: false) { result in
             success = result
             doneError.fulfill()
         }
@@ -113,15 +134,50 @@ class LTIToolsTests: CoreTestCase {
         XCTAssertFalse(success)
         XCTAssertNil(mockView.presented)
 
-        api.mock(request, value: APIGetSessionlessLaunchResponse(url: actualURL))
+        api.mock(request, value: .make(url: actualURL))
         let doneValue = expectation(description: "callback completed")
-        tools.presentToolInSFSafariViewController(from: mockView, animated: false) { result in
+        tools.presentTool(from: mockView, animated: false) { result in
             success = result
             doneValue.fulfill()
         }
         wait(for: [doneValue], timeout: 1)
         XCTAssertTrue(success)
-        XCTAssert(mockView.presented is SFSafariViewController)
-        XCTAssertEqual(mockView.presented?.modalPresentationStyle, .overFullScreen)
+        let sfSafari = try XCTUnwrap(router.presented as? SFSafariViewController)
+        XCTAssert(router.lastRoutedTo(viewController: sfSafari, from: mockView, withOptions: .modal(.overFullScreen)))
+    }
+
+    func testPresentToolInSafariProper() {
+        let tools = LTITools()
+        let request = GetSessionlessLaunchURLRequest(context: tools.context, id: nil, url: nil, assignmentID: nil, moduleItemID: nil, launchType: nil)
+        let url = URL(string: "https://canvas.instructure.com")!
+        api.mock(request, value: .make(url: url))
+        UserDefaults.standard.set(true, forKey: "open_lti_safari")
+        tools.presentTool(from: mockView, animated: true)
+        XCTAssertEqual(login.externalURL, url)
+        XCTAssertNil(router.presented)
+    }
+
+    func testPresentGoogleApp() throws {
+        let tools = LTITools()
+        let request = GetSessionlessLaunchURLRequest(context: tools.context, id: nil, url: nil, assignmentID: nil, moduleItemID: nil, launchType: nil)
+        let url = URL(string: "https://canvas.instructure.com")!
+        api.mock(request, value: .make(name: "Google Apps", url: url))
+        tools.presentTool(from: mockView, animated: true)
+        let controller = try XCTUnwrap(router.presented as? GoogleCloudAssignmentViewController)
+        XCTAssertTrue(router.lastRoutedTo(viewController: controller, from: mockView, withOptions: .modal(.overFullScreen, embedInNav: true, addDoneButton: true)))
+    }
+
+    func testMarksModuleItemAsRead() {
+        api.mock(PostMarkModuleItemRead(courseID: "1", moduleID: "2", moduleItemID: "3"))
+        let tools = LTITools(context: ContextModel(.course, id: "1"), launchType: .module_item, moduleID: "2", moduleItemID: "3")
+        let request = GetSessionlessLaunchURLRequest(context: tools.context, id: nil, url: nil, assignmentID: nil, moduleItemID: "3", launchType: .module_item)
+        api.mock(request, value: .make())
+        let expectation = XCTestExpectation(description: "notification was sent")
+        let observer = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { _ in
+            expectation.fulfill()
+        }
+        tools.presentTool(from: mockView, animated: true)
+        wait(for: [expectation], timeout: 1)
+        NotificationCenter.default.removeObserver(observer)
     }
 }

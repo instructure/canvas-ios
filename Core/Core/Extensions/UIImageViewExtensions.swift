@@ -138,10 +138,10 @@ public class ImageLoader {
     }
 
     func imageFrom(data: Data, response: HTTPURLResponse? = nil) {
-        let type = response?.allHeaderFields["Content-Type"] as? String
-        if type == "image/svg+xml" || url.pathExtension == "svg" {
-            DispatchQueue.main.async { self.svgFrom(data: data) }
-        } else if type == "image/gif" || url.pathExtension == "gif" {
+        let type = response?.mimeType
+        if type?.hasPrefix("image/svg") == true || url.pathExtension.lowercased() == "svg" {
+            performUIUpdate { self.svgFrom(data: data) }
+        } else if type == "image/gif" || url.pathExtension.lowercased() == "gif" {
             gifFrom(data: data)
         } else {
             handle(UIImage(data: data)?.normalize())
@@ -149,14 +149,14 @@ public class ImageLoader {
     }
 
     func handle(_ image: UIImage?, _ repeatCount: Int = 0, _ error: Error? = nil) {
-        DispatchQueue.main.async { self.notify(image, repeatCount, error) }
+        performUIUpdate { self.notify(image, repeatCount, error) }
     }
 
     func notify(_ image: UIImage?, _ repeatCount: Int, _ error: Error? = nil) {
         var loaded: LoadedImage?
         if let image = image {
             loaded = LoadedImage(image: image, repeatCount: repeatCount)
-            ImageLoader.rendered[key] = loaded
+            if !url.isFileURL { ImageLoader.rendered[key] = loaded }
         }
         for loader in ImageLoader.loading[key] ?? [] {
             loader.view?.load(url: url, didCompleteWith: loaded, error: error)

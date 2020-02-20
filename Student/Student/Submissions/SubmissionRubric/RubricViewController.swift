@@ -50,6 +50,7 @@ class RubricViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .named(.backgroundLightest)
 
         emptyViewLabel.text = NSLocalizedString("There is no rubric for this assignment", comment: "")
 
@@ -171,7 +172,9 @@ class RubricViewController: UIViewController {
         ratingDesc.lineBreakMode = .byWordWrapping
         ratingStack.addArrangedSubview(ratingTitle)
         ratingStack.addArrangedSubview(ratingDesc)
-        if let index = model.selectedIndex {
+        if model.onlyShowComments {
+            container.isHidden = true
+        } else if let index = model.selectedIndex {
             let ratingInfo = model.ratingBlurb(index)
             ratingTitle.text = ratingInfo.header
             ratingDesc.text = ratingInfo.subHeader

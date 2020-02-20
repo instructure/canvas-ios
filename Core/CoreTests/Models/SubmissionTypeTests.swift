@@ -18,6 +18,7 @@
 
 import XCTest
 @testable import Core
+import MobileCoreServices
 
 class SubmissionTypeTests: XCTestCase {
     func testInitRawValue() {
@@ -37,5 +38,71 @@ class SubmissionTypeTests: XCTestCase {
         XCTAssertEqual(SubmissionType.online_upload.localizedString, "File Upload")
         XCTAssertEqual(SubmissionType.online_url.localizedString, "Website URL")
         XCTAssertEqual(SubmissionType.on_paper.localizedString, "On Paper")
+    }
+
+    func testAllowedMediaTypesForMediaRecordings() {
+        var submissionTypes: [SubmissionType] = [.media_recording]
+        XCTAssertEqual(submissionTypes.allowedMediaTypes, [kUTTypeMovie as String, kUTTypeAudio as String])
+
+        submissionTypes = [.media_recording, .online_upload]
+        XCTAssertEqual(submissionTypes.allowedMediaTypes, [kUTTypeMovie as String, kUTTypeImage as String])
+    }
+
+    func testAllowedUTIsNoneIsEmpty() {
+        let submissionTypes: [SubmissionType] = [.none]
+        let r = submissionTypes.allowedUTIs( allowedExtensions: ["png"] )
+        XCTAssertTrue(r.isEmpty)
+    }
+
+    func testAllowedUTIsAny() {
+
+        let submissionTypes: [SubmissionType] = [.online_upload]
+
+        XCTAssertEqual(submissionTypes.allowedUTIs(allowedExtensions: []), [.any])
+    }
+
+    func testAllowedUTIsAllowedExtensions() {
+        let submissionTypes: [SubmissionType] = [.online_upload]
+        let allowedExtensions = ["png", "mov", "mp3"]
+        let result = submissionTypes.allowedUTIs(allowedExtensions: allowedExtensions)
+        XCTAssertEqual(result.count, 3)
+        XCTAssertTrue(result[0].isImage)
+        XCTAssertTrue(result[1].isVideo)
+        XCTAssertTrue(result[2].isAudio)
+    }
+
+    func testAllowedUTIsAllowedExtensionsVideo() {
+        let submissionTypes: [SubmissionType] = [.online_upload]
+        let allowedExtensions = ["mov", "mp4"]
+        let result = submissionTypes.allowedUTIs(allowedExtensions: allowedExtensions)
+        XCTAssertTrue(result[0].isVideo)
+        XCTAssertTrue(result[1].isVideo)
+    }
+
+    func testAllowedUTIsMediaRecording() {
+        let submissionTypes: [SubmissionType] = [.media_recording]
+        XCTAssertEqual(submissionTypes.allowedUTIs(allowedExtensions: []), [.video, .audio])
+    }
+
+    func testAllowedUTIsText() {
+        let submissionTypes: [SubmissionType] = [.online_text_entry]
+        XCTAssertEqual(submissionTypes.allowedUTIs(allowedExtensions: []), [.text])
+    }
+
+    func testAllowedUTIsURL() {
+        let submissionTypes: [SubmissionType] = [.online_url]
+        XCTAssertEqual(submissionTypes.allowedUTIs(allowedExtensions: []), [.url])
+    }
+
+    func testAllowedUTIsMultipleSubmissionTypes() {
+        let submissionTypes: [SubmissionType] = [
+            .online_upload,
+            .online_text_entry,
+        ]
+        let allowedExtensions = ["jpeg"]
+        let result = submissionTypes.allowedUTIs(allowedExtensions: allowedExtensions)
+        XCTAssertEqual(result.count, 2)
+        XCTAssertTrue(result[0].isImage)
+        XCTAssertEqual(result[1], .text)
     }
 }

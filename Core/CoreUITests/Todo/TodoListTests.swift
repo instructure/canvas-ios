@@ -22,11 +22,12 @@ import TestsFoundation
 
 class TodoListTests: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { return TodoListTests.self }
-    override var user: UITestUser? { return nil }
 
     func testTodoItemsDisplayed() {
         mockBaseRequests()
-        mockEncodableRequest("users/self/todo?per_page=99", value: [
+        mockData(GetCoursesRequest(enrollmentState: .active), value: [ baseCourse ])
+        mockData(GetGroupsRequest(context: ContextModel.currentUser), value: [])
+        mockData(GetTodosRequest(), value: [
             APITodo.make(assignment: .make(name: "One", due_at: Date().add(.day, number: 1))),
             APITodo.make(assignment: .make(id: "2", name: "Two")),
         ])
@@ -36,7 +37,7 @@ class TodoListTests: CoreUITestCase {
 
         app.find(labelContaining: "One").waitToExist()
         app.find(labelContaining: "Two").waitToExist()
-        app.find(labelContaining: "Due:").waitToExist()
+        app.find(labelContaining: "Due").waitToExist()
         app.find(labelContaining: "No Due Date").waitToExist()
     }
 }

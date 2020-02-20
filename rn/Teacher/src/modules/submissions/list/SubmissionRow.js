@@ -22,17 +22,16 @@ import React, { Component } from 'react'
 import {
   View,
   Image,
-  StyleSheet,
   TouchableHighlight,
 } from 'react-native'
 import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
 import Token from '../../../common/components/Token'
 import i18n from 'format-message'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import { Text } from '../../../common/text'
 import SubmissionStatusLabel from './SubmissionStatusLabel'
 import Avatar from '../../../common/components/Avatar'
-import { formatGradeText } from '../../../common/formatters'
+import { formatGradeText, personDisplayName } from '../../../common/formatters'
 import images from '../../../images'
 
 type RowProps = {
@@ -85,7 +84,7 @@ export const Grade = ({ submission, gradingType }) => {
   } else if (submission.excused) {
     gradeText = i18n('Excused')
   } else {
-    gradeText = formatGradeText(submission.grade, gradingType)
+    gradeText = formatGradeText({ grade: submission.grade, score: submission.score, gradingType })
   }
 
   return <Text style={[ styles.gradeText, { alignSelf: 'center' } ]}>{ gradeText }</Text>
@@ -106,11 +105,14 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
   render () {
     let { user, group, submission, gradingType, newGradebookEnabled } = this.props
     let contextID = group?.id ?? user?.id
-    let name = group?.name ?? user?.name
+    let name = group?.name ?? personDisplayName(user?.name, user?.pronouns)
+    let avatarName = group?.name ?? user?.name
     let avatarURL = user.avatarUrl
 
     if (this.props.anonymous) {
-      name = group != null ? i18n('Group') : i18n('Student')
+      let anonymousName = group != null ? i18n('Group') : i18n('Student')
+      name = anonymousName
+      avatarName = anonymousName
       avatarURL = null
     }
 
@@ -120,8 +122,8 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
           <Avatar
             key={contextID}
             avatarURL={avatarURL}
-            userName={name}
-            onPress={this.props.onAvatarPress && this.onAvatarPress}
+            userName={avatarName}
+            onPress={!this.props.anonymous && this.props.onAvatarPress && this.onAvatarPress}
           />
         </View>
         <View style={styles.textContainer}>
@@ -133,7 +135,7 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
             <SubmissionStatusLabel submission={submission} />
           }
           {submission.gradingStatus === 'needs_grading' &&
-            <Token style={{ alignSelf: 'flex-start', marginTop: 8 }} color={ colors.primaryButton }>
+            <Token style={{ alignSelf: 'flex-start', marginTop: 8 }} color={ colors.textInfo }>
               {i18n('Needs Grading')}
             </Token>
           }
@@ -143,7 +145,7 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
           <Image
             source={images.off}
             testID='SubmissionRow.hiddenIcon'
-            style={{ tintColor: colors.destructiveButtonColor, height: 20, width: 20, marginLeft: 10 }}
+            style={{ tintColor: colors.textDanger, height: 20, width: 20, marginLeft: 10 }}
           />
         }
       </Row>
@@ -153,13 +155,13 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
 
 export default SubmissionRow
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   touchableHighlight: {
     flex: 1,
   },
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     alignItems: 'center',
     flexDirection: 'row',
     paddingTop: 10,
@@ -174,16 +176,16 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#2D3B45',
+    color: colors.textDarkest,
   },
   gradeText: {
     fontSize: 14,
     fontWeight: '600',
-    color: colors.primaryButtonColor,
+    color: colors.textDarkest,
   },
   avatar: {
     width: 40,
     height: 40,
     marginRight: 8,
   },
-})
+}))

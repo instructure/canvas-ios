@@ -74,6 +74,9 @@ class QuizListPresenter: PageViewLoggerPresenterProtocol {
     }
 
     func section(_ index: Int) -> NSFetchedResultsSectionInfo? {
+        if sectionIndex.indices.contains(index) == false {
+            return nil
+        }
         return quizzes.sections?[sectionIndex[index]]
     }
 
@@ -98,6 +101,6 @@ class QuizListPresenter: PageViewLoggerPresenterProtocol {
     }
 
     func select(_ quiz: Quiz, from view: UIViewController) {
-        env.router.route(to: quiz.htmlURL, from: view, options: [.detail, .embedInNav])
+        env.router.route(to: quiz.htmlURL, from: view, options: .detail(embedInNav: true))
     }
 }

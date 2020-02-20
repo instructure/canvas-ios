@@ -118,7 +118,6 @@ function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
             }
 
             if (!request.status || request.status >= 400) {
-              console.log(request)
               throw new TypeError('Network request failed')
             }
             if (config.transform) {
@@ -128,7 +127,6 @@ function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
             resolve(response)
             break
           case 'error':
-            console.log(request)
             throw new TypeError('Network request failed')
           case 'timeout':
             throw new TypeError('Network request timed out')

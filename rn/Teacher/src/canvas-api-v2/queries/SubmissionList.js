@@ -21,6 +21,7 @@ import gql from 'graphql-tag'
 
 export default gql`query SubmissionList($assignmentID: ID!, $states: [SubmissionState!], $late: Boolean, $scoredMoreThan: Float, $scoredLessThan: Float, $sectionIDs: [ID!], $gradingStatus: SubmissionGradingStatus) {
   assignment(id: $assignmentID) {
+    id
     name
     pointsPossible
     gradeGroupStudentsIndividually
@@ -30,28 +31,23 @@ export default gql`query SubmissionList($assignmentID: ID!, $states: [Submission
 
     groupSet {
       id
-    }
-
-    course {
-      name
-
       groups: groupsConnection {
-        edges {
-          group: node {
-            id: _id
-            name
-            members: membersConnection {
-              edges {
-                member: node {
-                  user {
-                    id: _id
-                  }
-                }
+        nodes {
+          id: _id
+          name
+          members: membersConnection {
+            nodes {
+              user {
+                id: _id
               }
             }
           }
         }
       }
+    }
+
+    course {
+      name
 
       sections: sectionsConnection {
         edges{
@@ -79,6 +75,7 @@ export default gql`query SubmissionList($assignmentID: ID!, $states: [Submission
       edges {
         submission: node {
           grade
+          score
           late
           missing
           excused
@@ -92,6 +89,7 @@ export default gql`query SubmissionList($assignmentID: ID!, $states: [Submission
             id: _id
             avatarUrl
             name
+            pronouns
           }
         }
       }
@@ -113,6 +111,7 @@ export default gql`query SubmissionList($assignmentID: ID!, $states: [Submission
       edges {
         submission: node {
           grade
+          score
           late
           missing
           excused

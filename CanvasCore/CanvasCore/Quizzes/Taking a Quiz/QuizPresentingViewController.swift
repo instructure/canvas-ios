@@ -79,7 +79,7 @@ class QuizPresentingViewController: UIViewController {
 
         timerFormatter.unitsStyle = .positional
         timerFormatter.allowedUnits = [.hour, .minute, .second]
-        
+
         submissionController.submissionDidChange = { [weak self] submissionResult in
             if let error = submissionResult.error {
                 self?.reportError(error)
@@ -227,6 +227,7 @@ class QuizPresentingViewController: UIViewController {
         timerLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)
         timerLabel.text = ""
         timerLabel.isUserInteractionEnabled = true
+        timerLabel.accessibilityIdentifier = "Quiz.timer"
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(QuizPresentingViewController.toggleTimer))
         timerLabel.addGestureRecognizer(tapGesture)
@@ -278,8 +279,8 @@ class QuizPresentingViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    fileprivate func updateTimer(_ currentTime: Int) {
-        if self.timerVisible {
+    fileprivate func updateTimer(_ currentTime: Int?) {
+        if let currentTime = currentTime, self.timerVisible {
             let timeInterval = TimeInterval(currentTime)
             let displayString = timerFormatter.string(from: timeInterval)
             self.timerLabel.text = displayString
@@ -316,7 +317,6 @@ class QuizPresentingViewController: UIViewController {
         let courseID = quizController.service.context.id
         let quizID = quizController.service.quizID
         GetQuiz(courseID: courseID, quizID: quizID).fetch(force: true) { _, _, _ in }
-        GetQuizSubmission(courseID: courseID, quizID: quizID).fetch(force: true) { _, _, _ in }
         dismiss(animated: true, completion: nil)
     }
     
@@ -369,7 +369,7 @@ class QuizPresentingViewController: UIViewController {
         timerVisible = !timerVisible
         
         if timerVisible {
-            updateTimer(quizSubmissionTimerController!.timerTime)
+            updateTimer(quizSubmissionTimerController?.timerTime)
         } else {
             timerLabel.text = NSLocalizedString("Show Timer", tableName: "Localizable", bundle: .core, value: "", comment: "Text for a button that toggles to show a timer for a timed quiz")
         }
@@ -454,7 +454,11 @@ extension QuizPresentingViewController {
             let confirmationViewController = SubmissionConfirmationViewController(resultsURL: me.quizController.urlForViewingResultsForAttempt(submission.attempt), requiresLockdownBrowserForViewingResults: me.quizController.quiz?.requiresLockdownBrowserForResults ?? false)
             confirmationViewController.customLoadingText = customLoadingText
             confirmationViewController.showState(.loading)
-            me.present(UINavigationController(rootViewController: confirmationViewController), animated: true, completion: nil)
+            let nav = UINavigationController(rootViewController: confirmationViewController)
+            if #available(iOS 13.0, *) {
+                nav.isModalInPresentation = true
+            }
+            me.present(nav, animated: true, completion: nil)
 
             me.submissionController.submit { result in
                 if let _ = result.error {

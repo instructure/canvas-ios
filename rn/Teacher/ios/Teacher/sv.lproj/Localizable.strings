@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"Absent" = "Frånvarande";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "Alla omdömen döljs för tillfället.";
 
 /* No comment provided by engineer. */
@@ -11,22 +14,52 @@
 "All Posted" = "Alla publicerade";
 
 /* No comment provided by engineer. */
+"Attendance" = "Närvaro";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "Närvarofel";
+
+/* No comment provided by engineer. */
 "Back" = "Tillbaka";
+
+/* No comment provided by engineer. */
+"Cancel" = "Avbryt";
+
+/* No comment provided by engineer. */
+"Change Section" = "Ändra sektion";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Välj en sektion";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Välj datum";
 
 /* No comment provided by engineer. */
 "Courses" = "Kurser";
 
 /* No comment provided by engineer. */
+"Date picker" = "Datumväljare";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Avvisa";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Fel: Ingen data returnerades från närvaro-API.";
+
+/* No comment provided by engineer. */
 "Everyone" = "Alla";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "Det gick inte att starta LTI-verktyget för närvaro.";
 
 /* No comment provided by engineer. */
 "Graded" = "Har bedömts";
 
 /* No comment provided by engineer. */
-"Grades will be made visible to all students" = "Bedömningar kan ses av alla studenter";
+"Grades will be made visible to all students" = "Omdömen kan ses av alla studenter";
 
 /* No comment provided by engineer. */
-"Grades will be made visible to students with graded submissions" = "Bedömningar kan ses av alla studenter med bedömda inlämningar";
+"Grades will be made visible to students with graded submissions" = "Omdömen kan ses av alla studenter med bedömda inlämningar";
 
 /* number of grades hidden */
 "grades_currently_hidden" = "grades_currently_hidden";
@@ -35,13 +68,25 @@
 "grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
-"Hide Grades" = "Dölj bedömningar";
+"Hide Grades" = "Dölj omdömen";
+
+/* No comment provided by engineer. */
+"Late" = "Sen";
+
+/* No comment provided by engineer. */
+"Loading more modules..." = "Läser in fler moduler...";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Markera alla som närvarande";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Markera återstående som närvarande";
 
 /* No comment provided by engineer. */
 "Modules" = "Moduler";
 
 /* No comment provided by engineer. */
-"Post Grades" = "Publicera bedömningar";
+"Post Grades" = "Publicera omdömen";
 
 /* No comment provided by engineer. */
 "Post Settings" = "Publiceringsinställningar";
@@ -50,8 +95,20 @@
 "Post to..." = "Publicera till...";
 
 /* No comment provided by engineer. */
+"Present" = "Närvarande";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Välj för att ändra närvarodatum";
+
+/* No comment provided by engineer. */
 "Specific Sections" = "Specifika sektioner";
 
 /* No comment provided by engineer. */
+"This module is empty." = "Den här modulen är tom.";
+
+/* No comment provided by engineer. */
 "To Do" = "Att göra";
+
+/* No comment provided by engineer. */
+"Unmark" = "Avmarkera";
 

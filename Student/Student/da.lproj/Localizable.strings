@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "Alle fag";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "Alle karakterperioder";
+
 /* Button to select all members of a group */
 "All members" = "Alle medlemmer";
 
@@ -366,6 +369,9 @@
 "Choose Video" = "Vælg video";
 
 /* No comment provided by engineer. */
+"Clear filter" = "Nulstil filter";
+
+/* No comment provided by engineer. */
 "Close" = "Luk";
 
 /* No comment provided by engineer. */
@@ -441,6 +447,9 @@
 /* label for customizing a course */
 "Customize" = "Tilpas";
 
+/* No comment provided by engineer. */
+"d_events" = "d_events";
+
 /* dashboard page title */
 "Dashboard" = "Oversigt";
 
@@ -486,7 +495,11 @@
    Title for Discussions view controller */
 "Discussions" = "Diskussioner";
 
-/* Dismiss an alert dialog */
+/* Dismiss an error button
+   dismiss button
+   Dismiss button for an error dialoue
+   Dismiss error alert button
+   dismiss the alert button */
 "Dismiss" = "Afvis";
 
 /* Alert title asking if you want to masquerade */
@@ -501,7 +514,7 @@
 /* Button to cancel deleting folders */
 "Don't delete" = "Slet ikke";
 
-/* Button title to mark a to do item as done */
+/* No comment provided by engineer. */
 "Done" = "Udført";
 
 /* Shown when we cancel a file download */
@@ -530,9 +543,6 @@
 
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Forfalder:";
-
-/* Due date label for to do items, first placeholder is date, second is time */
-"Due: %@ at %@" = "Forfalder: %1$@ ved %2$@";
 
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "Forfalder: %1$@ ved %2$@";
@@ -631,6 +641,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Filer (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Filter";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Filtrer efter:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Downloading fuldført";
@@ -737,9 +753,6 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "Det har problemer";
-
-/* No comment provided by engineer. */
-"It looks like there’s nothing to do today. Enjoy your day!" = "Det ser ud som om der ikke er noget at lave i dag. Hav en god dag!";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Det er tomt, hvad gør du stadig her?";
@@ -933,6 +946,9 @@
 "No Mastery Paths" = "Ingen læringsstier";
 
 /* No comment provided by engineer. */
+"No Notifications" = "Ingen notifikationer";
+
+/* No comment provided by engineer. */
 "No recipients" = "Ingen modtagere";
 
 /* Title for attempting submission without a comment */
@@ -949,9 +965,6 @@
 
 /* No comment provided by engineer. */
 "No Thanks" = "Nej tak";
-
-/* No comment provided by engineer. */
-"No To-Do Items" = "Ingenting på opgavelisten";
 
 /* error message for a 401 response. */
 "Not Authorized" = "Ikke tilladt";
@@ -1478,6 +1491,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Der opstod en fejl under indlæsningen af indholdet. Hvis det er en audio- eller videofil, behandles den muligvis stadig.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Der er ikke noget at blive underrettet om endnu.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "Denne app er ikke autoriseret for brug.";

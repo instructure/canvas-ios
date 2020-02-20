@@ -18,6 +18,7 @@
 
 import UIKit
 import ReactiveSwift
+import Core
 
 public protocol Refresher: class {
     var cacheKey: String { get }
@@ -34,14 +35,14 @@ public protocol Refresher: class {
     var refreshingBegan: Signal<(), Never> { get set }
     var refreshingCompleted: Signal<NSError?, Never> { get set }
 
-    var refreshControl: UIRefreshControl { get }
+    var refreshControl: CircleRefreshControl { get }
 }
 
 import ReactiveSwift
 
 open class SignalProducerRefresher<Value>: NSObject, Refresher {
 
-    @objc public let refreshControl = UIRefreshControl()
+    @objc public let refreshControl = CircleRefreshControl()
     let signalProducer: SignalProducer<Value, NSError>
     var disposable: Disposable?
 
@@ -105,7 +106,7 @@ open class SignalProducerRefresher<Value>: NSObject, Refresher {
 
     @objc open func refresh(_ forced: Bool) {
         guard forced || shouldRefresh else { return }
-        DispatchQueue.main.async {
+        performUIUpdate {
             self.refreshControl.beginRefreshing()
 
             if let scrollView = self.refreshControl.superview as? UIScrollView, forced || self.shouldRefresh {
@@ -130,7 +131,7 @@ open class SignalProducerRefresher<Value>: NSObject, Refresher {
         disposable?.dispose()
     }
 
-    @objc func beginRefresh(_ control: UIRefreshControl) {
+    @objc func beginRefresh(_ control: CircleRefreshControl) {
         guard let scope = self.scope else { return }
 
         isRefreshing = true

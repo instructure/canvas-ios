@@ -94,7 +94,8 @@ open class QuizIntroViewController: UIViewController, PageViewEventViewControlle
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         didShowOfflineAlert = false
-        self.quizController.refreshQuiz()
+        quizController.refreshQuiz()
+        takeabilityController?.refreshTakeability()
         startTrackingTimeOnViewController()
     }
 
@@ -239,10 +240,15 @@ open class QuizIntroViewController: UIViewController, PageViewEventViewControlle
             if takeabilityController.takeableNatively() {
                 let controller = takeabilityController.submissionControllerForTakingQuiz(quizController.quiz!)
                 let vc = QuizPresentingViewController(quizController: quizController, submissionController: controller)
-                present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
+                let nav = UINavigationController(rootViewController: vc)
+                nav.modalPresentationStyle = .fullScreen
+                present(nav, animated: true, completion: nil)
             } else if takeabilityController.takeableInWebView() {
                 let vc = NonNativeQuizTakingViewController(session: takeabilityController.service.session, contextID: self.quizController.service.context, quiz: quizController.quiz!, baseURL: quizController.service.baseURL)
-                present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
+                vc.modalPresentationStyle = .fullScreen
+                let nav = UINavigationController(rootViewController: vc)
+                nav.modalPresentationStyle = .fullScreen
+                present(nav, animated: true, completion: nil)
             } else {
                 var message = ""
                 switch takeabilityController.takeability {

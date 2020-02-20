@@ -30,4 +30,26 @@ class APIEnrollmentRequestableTests: XCTestCase {
         XCTAssertEqual(request.method, .post)
         XCTAssertEqual(request.body, body)
     }
+
+    func testGetEnrollmentsRequest() {
+        let request = GetEnrollmentsRequest(context: ContextModel.currentUser, userID: "1", gradingPeriodID: "2", types: ["TeacherEnrollment"], includes: [.avatar_url])
+        XCTAssertEqual(request.path, "users/self/enrollments")
+        XCTAssertEqual(request.query, [
+            .include([GetEnrollmentsRequest.Include.avatar_url.rawValue]),
+            .value("user_id", "1"),
+            .value("grading_period_id", "2"),
+            .array("type", ["TeacherEnrollment"]),
+        ])
+    }
+
+    func testGetEnrollmentsRequestForParentObservedStudents() {
+        let request = GetEnrollmentsRequest(context: ContextModel.currentUser, includes: [.observed_users, .avatar_url], states: GetEnrollmentsRequest.State.allForParentObserver, roles: [.observer])
+        XCTAssertEqual(request.path, "users/self/enrollments")
+        let expectedStates = GetEnrollmentsRequest.State.allForParentObserver.map { $0.rawValue }
+        XCTAssertEqual(request.query, [
+            .include([GetEnrollmentsRequest.Include.observed_users.rawValue, GetEnrollmentsRequest.Include.avatar_url.rawValue]),
+            .array("state", expectedStates),
+            .array("role", ["ObserverEnrollment"]),
+        ])
+    }
 }

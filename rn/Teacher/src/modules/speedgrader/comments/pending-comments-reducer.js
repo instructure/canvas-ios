@@ -43,13 +43,14 @@ const pendingComments: Reducer<PendingCommentsState, any> = handleActions({
     },
   }),
   [makeAComment.toString()]: handleAsync({
-    pending: (state, { timestamp, localID, userID, comment }) => {
+    pending: (state, { timestamp, localID, userID, comment, mediaFilePath }) => {
       const userComments = state[userID] || []
       const newComment = {
         timestamp,
         localID,
         comment,
         pending: 1,
+        mediaFilePath,
       }
       return {
         ...state,

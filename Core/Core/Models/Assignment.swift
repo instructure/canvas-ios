@@ -20,7 +20,7 @@ import Foundation
 import CoreData
 
 public class Assignment: NSManagedObject {
-    @NSManaged public var allowedExtensions: [String]
+    @NSManaged var allowedExtensionsRaw: String
     @NSManaged public var courseID: String
     @NSManaged public var quizID: String?
     @NSManaged public var details: String?
@@ -32,7 +32,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var name: String
     @NSManaged var pointsPossibleRaw: NSNumber?
-    @NSManaged var submissionTypesRaw: [String]
+    @NSManaged var submissionTypesRaw: String
     @NSManaged public var position: Int
     @NSManaged public var lockAt: Date?
     @NSManaged public var unlockAt: Date?
@@ -44,9 +44,13 @@ public class Assignment: NSManagedObject {
     @NSManaged public var useRubricForGrading: Bool
     @NSManaged public var lastUpdatedAt: Date?
     @NSManaged public var hideRubricPoints: Bool
+    @NSManaged public var freeFormCriterionCommentsOnRubric: Bool
     @NSManaged public var assignmentGroupID: String?
     @NSManaged public var assignmentGroupPosition: Int
-    @NSManaged public var gradingPeriodID: String?
+    @NSManaged public var gradingPeriod: GradingPeriod?
+    @NSManaged public var assignmentGroup: AssignmentGroup?
+    @NSManaged public var todo: Todo?
+    @NSManaged public var syllabus: Syllabus?
 
     /**
      Use this property (vs. submissions) when you want the most recent submission
@@ -73,6 +77,11 @@ public class Assignment: NSManagedObject {
      */
     @NSManaged public var submissions: Set<Submission>?
 
+    public var allowedExtensions: [String] {
+        get { return allowedExtensionsRaw.split(separator: ",").map { String($0) } }
+        set { allowedExtensionsRaw = newValue.joined(separator: ",") }
+    }
+
     public var gradingType: GradingType {
         get { return GradingType(rawValue: gradingTypeRaw) ?? .points }
         set { gradingTypeRaw = newValue.rawValue }
@@ -84,8 +93,20 @@ public class Assignment: NSManagedObject {
     }
 
     public var submissionTypes: [SubmissionType] {
-        get { return submissionTypesRaw.compactMap { SubmissionType(rawValue: $0) } }
-        set { submissionTypesRaw = newValue.map { $0.rawValue } }
+        get { return submissionTypesRaw.components(separatedBy: ",").compactMap { SubmissionType(rawValue: $0) } }
+        set { submissionTypesRaw = newValue.map { $0.rawValue } .joined(separator: ",") }
+    }
+
+    @objc public var assignmentGroupSectionName: String? {
+        guard let assignmentGroup = assignmentGroup else { return nil }
+        return assignmentGroup.name
+    }
+
+    @discardableResult
+    public static func save(_ item: APIAssignment, in context: NSManagedObjectContext, updateSubmission: Bool) -> Assignment {
+        let assignment: Assignment = context.first(where: #keyPath(Assignment.id), equals: item.id.value) ?? context.insert()
+        assignment.update(fromApiModel: item, in: context, updateSubmission: updateSubmission)
+        return assignment
     }
 }
 
@@ -137,6 +158,14 @@ extension Assignment {
         }
 
         hideRubricPoints = item.rubric_settings?.hide_points == true
+        freeFormCriterionCommentsOnRubric = item.rubric_settings?.free_form_criterion_comments == true
+
+        if let assignmentGroupID = item.assignment_group_id?.value,
+            let assignmentGroup: AssignmentGroup = client.first(where: #keyPath(AssignmentGroup.id), equals: assignmentGroupID) {
+            self.assignmentGroup = assignmentGroup
+        } else {
+            assignmentGroup = nil
+        }
 
         if updateSubmission {
             if let values = item.submission?.values, values.count > 0 {
@@ -151,6 +180,7 @@ extension Assignment {
     }
 
     public var canMakeSubmissions: Bool {
+        if submissionTypes == [.wiki_page] { return false }
         return submissionTypes.count > 0 &&
             !submissionTypes.contains(.none) && !submissionTypes.contains(.on_paper)
     }
@@ -165,55 +195,8 @@ extension Assignment {
             submissionTypes.contains(.discussion_topic)
     }
 
-    public var allowedUTIs: [UTI] {
-        var utis: [UTI] = []
-
-        if submissionTypes.contains(.online_upload) {
-            if allowedExtensions.isEmpty {
-                utis += [.any]
-            } else {
-                utis += allowedExtensions.compactMap(UTI.init)
-            }
-        }
-
-        if submissionTypes.contains(.media_recording) {
-            utis += [.video, .audio]
-        }
-
-        if submissionTypes.contains(.online_text_entry) {
-            utis += [.text]
-        }
-
-        if submissionTypes.contains(.online_url) {
-            utis += [.url]
-        }
-
-        return utis
-    }
-
-    public var gradeText: String? {
-        guard let submission = submission else {
-            return nil
-        }
-        switch gradingType {
-        case .gpa_scale:
-            guard let grade = submission.grade else { return nil }
-            let format = NSLocalizedString("%@ GPA", bundle: .core, comment: "")
-            return String.localizedStringWithFormat(format, grade)
-
-        case .pass_fail:
-            guard let grade = submission.grade else { return nil }
-            return grade == "incomplete"
-                ? NSLocalizedString("Incomplete", bundle: .core, comment: "")
-                : NSLocalizedString("Complete", bundle: .core, comment: "")
-
-        case .points:
-            guard let score = submission.score, let pointsPossible = pointsPossible else { return nil }
-            return NumberFormatter.localizedString(from: NSNumber(value: score / pointsPossible * 100), number: .decimal)
-
-        case .letter_grade, .percent, .not_graded:
-            return submission.grade
-        }
+    public var isOnline: Bool {
+        return submissionTypes.isOnline
     }
 
     public func isOpenForSubmissions(referenceDate: Date = Clock.now) -> Bool {
@@ -239,16 +222,8 @@ extension Assignment {
         }
     }
 
-    public var submissionStatus: String {
-        guard let s = submission else { return NSLocalizedString("Not Submitted", comment: "") }
-
-        if !submissionTypes.isOnline { return "" }
-        if s.excused ?? false { return "" }
-        if s.late { return NSLocalizedString("Late", comment: "") }
-        if s.missing { return NSLocalizedString("Missing", comment: "") }
-        if s.submittedAt != nil { return NSLocalizedString("Submitted", comment: "") }
-
-        return ""
+    public var submissionStatus: SubmissionStatus {
+        return submission?.status ?? .notSubmitted
     }
 
     public var icon: UIImage? {
@@ -268,44 +243,11 @@ extension Assignment {
         return image
     }
 
-    public func multiUserSubmissionGradeText(studentID: String) -> String? {
-        guard let submission = submissions?.filter({ $0.userID == studentID }).first else { return nil }
-
-        if submission.excused ?? false {
-            return NSLocalizedString("Excused", comment: "")
-        }
-
-        if submission.score == nil {
-            return nil
-        }
-
-        let score = formattedGradeNumber(submission.score)
-        let totalPointsPossible: String = formattedGradeNumber(pointsPossible) ?? ""
-
-        switch gradingType {
-        case .pass_fail:
-            let status = submission.grade == "incomplete"
-                ? NSLocalizedString("Incomplete", bundle: .core, comment: "")
-                : NSLocalizedString("Complete", bundle: .core, comment: "")
-            return status
-        case .points:
-            if let score = score {
-                let format = NSLocalizedString("%@ out of %@", comment: "")
-                return String.localizedStringWithFormat(format, score, totalPointsPossible)
-            }
-        case .letter_grade, .percent, .gpa_scale:
-            if let score = score {
-                let format = NSLocalizedString("%@ out of %@ (%@)", comment: "")
-                return String.localizedStringWithFormat(format, score, totalPointsPossible, submission.grade ?? "")
-            }
-        case .not_graded: break
-        }
-        return nil
-    }
-
-    func formattedGradeNumber(_ number: Double?) -> String? {
-        guard let number = number else { return nil }
-        return NumberFormatter.localizedString(from: NSNumber(value: (number * 100) / 100), number: .decimal)
+    public func requiresLTILaunch(toViewSubmission submission: Submission) -> Bool {
+        // If it's an online_upload with an attachment
+        // we would rather show the attachment than launch the LTI (ex: Google Cloud Assignments)
+        let onlineUploadWithAttachment = submission.type == .online_upload && submission.attachments?.isEmpty == false
+        return submissionTypes.contains(.external_tool) && !onlineUploadWithAttachment
     }
 }
 

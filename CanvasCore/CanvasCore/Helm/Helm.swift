@@ -136,6 +136,7 @@ open class HelmManager: NSObject {
         let pushOntoNav: (UINavigationController) -> Void
         let replaceInNav: (UINavigationController) -> Void
         let pushToReplace = options["replace"] as? Bool ?? false
+        let detail = options["detail"] as? Bool == true
 
         // The views need to know when they are shown modaly and potentially other options
         // Doing it here instead of in JS so that native routing will also work
@@ -241,7 +242,7 @@ open class HelmManager: NSObject {
                 // because there is no other view controller to navigate back to. pushOnToNav will be called if
                 // a VC can be master or this navigation event was initiated from a non-empty detail view. A Back
                 // button will be shown after pushOnToNav is called...as long as the nav.viewControllers.count > 1.
-                let resetDetailNavStack = sideBySideViews && !canBecomeMaster && (clickedFromMaster || onlyDetailVCWasEmptyVC)
+                let resetDetailNavStack = sideBySideViews && !canBecomeMaster && (clickedFromMaster || onlyDetailVCWasEmptyVC || detail)
                 if (resetDetailNavStack) {
                     replaceInNav(nav)
                     callback?()
@@ -329,7 +330,7 @@ open class HelmManager: NSObject {
                 }
             }
 
-            if let modalTransitionStyle = options[PropKeys.modalPresentationStyle] as? String {
+            if let modalTransitionStyle = options[PropKeys.modalTransitionStyle] as? String {
                 switch modalTransitionStyle {
                 case "flip": viewController.modalTransitionStyle = .flipHorizontal
                 case "fade": viewController.modalTransitionStyle = .crossDissolve
@@ -358,6 +359,7 @@ open class HelmManager: NSObject {
                 factory.presenter == nil,
                 nav == nil {
                 toPresent = HelmNavigationController(rootViewController: viewController)
+                viewController.navigationController?.navigationBar.useModalStyle()
             }
 
             configureModalProps(for: toPresent)
@@ -367,6 +369,9 @@ open class HelmManager: NSObject {
                 callback?()
             } else {
                 viewController.addModalDismissButton(buttonTitle: nil)
+                if options[PropKeys.disableDismissOnSwipe] as? Bool == true {
+                    toPresent.presentationController?.delegate = self
+                }
                 current.present(toPresent, animated: options["animated"] as? Bool ?? true, completion: callback)
             }
         } else {
@@ -378,6 +383,14 @@ open class HelmManager: NSObject {
             helmVC = vc
             if let embedInNavigationController: Bool = options["embedInNavigationController"] as? Bool, embedInNavigationController {
                 toPresent = HelmNavigationController(rootViewController: vc)
+                vc.navigationController?.navigationBar.useModalStyle()
+                if let disableSwipeDownToDismissModal: Bool = options[PropKeys.disableDismissOnSwipe] as? Bool,
+                    disableSwipeDownToDismissModal,
+                    vc.modalPresentationStyle == .formSheet || vc.modalPresentationStyle == .pageSheet
+                {
+                    toPresent.presentationController?.delegate = self
+                }
+
             }
 
             configureModalProps(for: toPresent)
@@ -446,13 +459,13 @@ open class HelmManager: NSObject {
 
 extension HelmManager {
     @objc func navigationControllerForSplitViewControllerPush(splitViewController: HelmSplitViewController?, sourceModule: ModuleName, destinationModule: ModuleName, props: [String: Any], options: [String: Any]) -> UINavigationController? {
-
-        if (splitViewController?.detailTopViewController as? HelmModule)?.moduleName == sourceModule {
+        let canBecomeMaster = options["canBecomeMaster"] as? Bool == true
+        if canBecomeMaster, let masterNav = splitViewController?.masterHelmNavigationController {
+            return masterNav
+        } else if (splitViewController?.detailTopViewController as? HelmModule)?.moduleName == sourceModule {
             return splitViewController?.detailHelmNavigationController ?? splitViewController?.detailNavigationController
         } else {
-            let canBecomeMaster = options["canBecomeMaster"] as? Bool ?? false
-
-            if canBecomeMaster || (splitViewController?.traitCollection.horizontalSizeClass ?? .compact) == .compact {
+            if (splitViewController?.traitCollection.horizontalSizeClass ?? .compact) == .compact {
                 return splitViewController?.masterHelmNavigationController as? HelmNavigationController
             }
 
@@ -512,5 +525,11 @@ extension HelmManager {
         view.widthAnchor.constraint(equalToConstant: 44).isActive = true
         view.backgroundColor = Core.Brand.shared.headerImageBackground
         return view
+    }
+}
+
+extension HelmManager: UIAdaptivePresentationControllerDelegate {
+    public func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
+        return false
     }
 }

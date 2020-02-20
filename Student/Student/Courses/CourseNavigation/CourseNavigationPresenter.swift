@@ -26,6 +26,10 @@ class CourseNavigationPresenter {
     var context: Context
     let env: AppEnvironment
 
+    lazy var color = env.subscribe(GetCustomColors()) { [weak self] in
+        self?.update()
+    }
+
     lazy var courses = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
         self?.update()
     }
@@ -42,7 +46,8 @@ class CourseNavigationPresenter {
 
     func viewIsReady() {
         courses.refresh()
-        tabs.refresh()
+        color.refresh()
+        tabs.exhaust(while: { _ in true })
     }
 
     func update() {

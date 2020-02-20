@@ -33,6 +33,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import i18n from 'format-message'
+import { vars } from '../../../../common/stylesheet'
 
 export type QuizSubmissionBreakdownGraphSectionProps = {
   courseID: string,
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginRight: 40,
-    marginTop: global.style.defaultPadding / 2,
+    marginTop: vars.padding / 2,
   },
   loadingWrapper: {
     flex: 1,

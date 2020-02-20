@@ -68,9 +68,8 @@ public class PageViewEventController: NSObject {
         mutableAttributes["app_name"] = "Canvas Student for iOS"
         mutableAttributes["user_id"] = userID
         mutableAttributes["agent"] = UserAgent.default.description
-        if let masqueradeID = authSession.actAsUserID {
-            mutableAttributes["user_id"] = masqueradeID
-            mutableAttributes["real_user_id"] = userID
+        if let realUserID = authSession.originalUserID {
+            mutableAttributes["real_user_id"] = realUserID
         }
         if let url = cleanupUrl(url: eventNameOrPath, attributes: mutableAttributes) {
             mutableAttributes["url"] = url

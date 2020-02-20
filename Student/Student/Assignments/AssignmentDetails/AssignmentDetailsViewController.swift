@@ -73,7 +73,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
     let scrollViewInsetPadding: CGFloat = 24.0
 
-    var refreshControl: UIRefreshControl?
+    var refreshControl: CircleRefreshControl?
     let titleSubtitleView = TitleSubtitleView.create()
     var presenter: AssignmentDetailsPresenter?
 
@@ -87,6 +87,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .named(.backgroundLightest)
 
         // Navigation Bar
         navigationItem.titleView = titleSubtitleView
@@ -94,8 +95,9 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
         // Loading
         scrollView?.isHidden = true
-        loadingView?.color = Brand.shared.primary.ensureContrast(against: .named(.white))
-        let refreshControl = UIRefreshControl()
+        scrollView?.backgroundColor = .named(.backgroundLightest)
+        loadingView?.color = Brand.shared.primary.ensureContrast(against: .named(.backgroundLightest))
+        let refreshControl = CircleRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         scrollView?.addSubview(refreshControl)
         self.refreshControl = refreshControl
@@ -143,7 +145,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     }
 
     @objc
-    func refresh(_ refreshControl: UIRefreshControl) {
+    func refresh(_ refreshControl: CircleRefreshControl) {
         presenter?.refresh()
     }
 
@@ -183,44 +185,46 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
             submittedView?.isHidden = false
             fileSubmissionButton?.isHidden = false
             submittedDetailsLabel?.isHidden = true
-            switch onlineUploadState {
-            case .failed:
-                submittedLabel?.text = NSLocalizedString("Submission Failed", bundle: .core, comment: "")
-                submittedLabel?.textColor = UIColor.named(.textDanger).ensureContrast(against: .white)
-                fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view details", bundle: .core, comment: ""), for: .normal)
-                return
-            case .uploading:
-                submittedLabel?.text = NSLocalizedString("Submission Uploading...", bundle: .core, comment: "")
-                submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
-                fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
-                return
-            case .staged:
-                submittedLabel?.text = NSLocalizedString("Submission In Progress...", bundle: .core, comment: "")
-                submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
-                fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
-                return
-            case .completed:
-                if let nav = presentedViewController as? UINavigationController, let filePicker = nav.viewControllers.first as? FilePickerViewController {
-                    filePicker.dismiss(animated: true, completion: nil)
-                }
-            }
+            updateSubmissionLabels(state: onlineUploadState)
         }
 
-        guard submission.workflowState != .unsubmitted else {
+        if submission.workflowState == .unsubmitted {
             hideGradeCell()
             return
         }
 
-        gradeSection?.isHidden = false
-
-        guard submission.grade != nil else {
+        if submission.needsGrading, submission.score == nil {
             gradeCircleBottomConstraint?.isActive = false
             submittedView?.isHidden = false
             return
         }
 
         gradeCircleBottomConstraint?.isActive = true
-        submittedView?.isHidden = true
+        submittedView?.isHidden = presenter?.onlineUploadState == nil
+    }
+
+    func updateSubmissionLabels(state: OnlineUploadState) {
+        switch state {
+        case .failed:
+            submittedLabel?.text = NSLocalizedString("Submission Failed", bundle: .core, comment: "")
+            submittedLabel?.textColor = UIColor.named(.textDanger).ensureContrast(against: .white)
+            fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view details", bundle: .core, comment: ""), for: .normal)
+            return
+        case .uploading:
+            submittedLabel?.text = NSLocalizedString("Submission Uploading...", bundle: .core, comment: "")
+            submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
+            fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
+            return
+        case .staged:
+            submittedLabel?.text = NSLocalizedString("Submission In Progress...", bundle: .core, comment: "")
+            submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
+            fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
+            return
+        case .completed:
+            if let nav = presentedViewController as? UINavigationController, let filePicker = nav.viewControllers.first as? FilePickerViewController {
+                filePicker.dismiss(animated: true, completion: nil)
+            }
+        }
     }
 
     func update(assignment: Assignment, quiz: Quiz?, baseURL: URL?) {
@@ -249,7 +253,8 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         lockedSection?.isHidden = presenter.lockedSectionIsHidden()
         fileTypesSection?.isHidden = presenter.fileTypesSectionIsHidden()
         submissionTypesSection?.isHidden = presenter.submissionTypesSectionIsHidden()
-        gradeSection?.isHidden = presenter.gradesSectionIsHidden()
+        let showGradeSection = assignment.submission?.needsGrading == true || assignment.submission?.isGraded == true
+        gradeSection?.isHidden = !showGradeSection
         submissionButtonSection?.isHidden = presenter.viewSubmissionButtonSectionIsHidden()
         showDescription(!presenter.descriptionIsHidden())
         submitAssignmentButton.isHidden = presenter.submitAssignmentButtonIsHidden()
@@ -276,7 +281,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
             let svFrame = scrollView?.frame ?? CGRect.zero
             let originInSV = lockedIconContainerView.superview?.convert(lockedIconContainerView.frame, to: scrollView) ?? CGRect.zero
             let height = (svFrame.size.height - originInSV.origin.y) - (submitAssignmentButton.bounds.size.height + scrollViewInsetPadding)
-            self.lockedIconHeight.constant = max( height, minIconHeight )
+            lockedIconHeight.constant = max( height, minIconHeight )
             UIView.animate(withDuration: 0.08) {
                 self.lockedIconContainerView?.layoutIfNeeded()
                 self.lockedIconContainerView.alpha = 1.0

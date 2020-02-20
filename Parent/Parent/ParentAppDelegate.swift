@@ -33,6 +33,7 @@ var currentStudentID: String?
 @UIApplicationMain
 class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     lazy var window: UIWindow? = ActAsUserWindow(frame: UIScreen.main.bounds, loginDelegate: self)
+    var studentsRefresher: Refresher?
 
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
@@ -47,8 +48,12 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupCrashlytics()
         CacheManager.resetAppIfNecessary()
+        #if DEBUG
+            UITestHelpers.setup(self)
+        #endif
         if hasFirebase {
             FirebaseApp.configure()
+            configureRemoteConfig()
         }
         setupDefaultErrorHandling()
         Analytics.shared.handler = self
@@ -72,7 +77,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         if url.scheme == "canvas-parent" {
-            environment.router.route(to: url, from: topMostViewController()!, options: [.modal, .embedInNav, .addDoneButton])
+            environment.router.route(to: url, from: topMostViewController()!, options: .modal(embedInNav: true, addDoneButton: true))
         }
         return false
     }
@@ -81,7 +86,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         let userInfo = response.notification.request.content.userInfo
         if let url = userInfo[RemindableActionURLKey] as? String, let studentID = userInfo[RemindableStudentIDKey] as? String {
             currentStudentID = studentID
-            environment.router.route(to: url, from: topMostViewController()!, options: [.modal, .embedInNav, .addDoneButton])
+            environment.router.route(to: url, from: topMostViewController()!, options: .modal(embedInNav: true, addDoneButton: true))
         }
     }
 
@@ -90,13 +95,14 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         CoreWebView.keepCookieAlive(for: environment)
         // UX requires that students are given color schemes in a specific order.
         // The method call below ensures that we always start with the first color scheme.
-        ColorCoordinator.clearColorSchemeDictionary()
+        ColorScheme.clear()
         if Locale.current.regionCode != "CA" {
             let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
             Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)
         }
         legacySession = Session.current
         Analytics.shared.logSession(session)
+        getPreferences()
         showRootView()
     }
 
@@ -106,6 +112,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             let refresher = try Student.observedStudentsRefresher(session)
             refresher.refreshingCompleted.observeValues { [weak self] _ in
                 guard let self = self, let window = self.window else { return }
+                self.studentsRefresher = nil
 
                 let controller = UINavigationController(rootViewController: DashboardViewController.create(session: session))
                 controller.view.layoutIfNeeded()
@@ -114,14 +121,45 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
                 }, completion: nil)
             }
             refresher.refresh(true)
+            studentsRefresher = refresher
         } catch let e as NSError {
             print(e)
         }
     }
+
+    func getPreferences() {
+        let request = GetUserRequest(userID: "self")
+        environment.api.makeRequest(request) { [weak self] response, _, _ in
+            self?.environment.userDefaults?.limitWebAccess = response?.permissions?.limit_parent_app_web_access
+        }
+    }
+
+    // similar methods exist in all other app delegates
+    // please be sure to update there as well
+    // We can't move this to Core as it would require setting up
+    // Cocoapods for Core to pull in Firebase
+    func configureRemoteConfig() {
+        let remoteConfig = RemoteConfig.remoteConfig()
+        remoteConfig.activate { error in
+            guard error == nil else {
+                return
+            }
+            let keys = remoteConfig.allKeys(from: RemoteConfigSource.remote)
+            for key in keys {
+                guard let feature = ExperimentalFeature(rawValue: key) else { continue }
+                let value = remoteConfig.configValue(forKey: key).boolValue
+                feature.isEnabled = value
+                Crashlytics.sharedInstance().setBoolValue(value, forKey: feature.userDefaultsKey)
+                Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
+            }
+        }
+        remoteConfig.fetch(completionHandler: nil)
+    }
 }
 
 extension ParentAppDelegate: LoginDelegate {
-    var supportsCanvasNetwork: Bool { return false }
+    var supportsCanvasNetwork: Bool { false }
+    var findSchoolButtonTitle: String { NSLocalizedString("Find School", bundle: .core, comment: "") }
 
     func openSupportTicket() {
         guard let presentFrom = topMostViewController() else { return }
@@ -139,12 +177,24 @@ extension ParentAppDelegate: LoginDelegate {
 
     func openExternalURL(_ url: URL) {
         if url.scheme == "https", let topVC = topMostViewController() {
-            let safari = SFSafariViewController(url: url)
-            safari.modalPresentationStyle = .fullScreen
-            topVC.present(safari, animated: true, completion: nil)
+            if environment.userDefaults?.limitWebAccess == true {
+                launchLimitedWebView(url: url, from: topVC)
+            } else {
+                let safari = SFSafariViewController(url: url)
+                safari.modalPresentationStyle = .fullScreen
+                topVC.present(safari, animated: true, completion: nil)
+            }
         } else {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
+    }
+
+    func launchLimitedWebView(url: URL, from sourceViewController: UIViewController) {
+        let controller = CoreWebViewController()
+        controller.webView.isLinkNavigationEnabled = false
+        controller.webView.allowsLinkPreview = false
+        controller.webView.load(URLRequest(url: url))
+        environment.router.show(controller, from: sourceViewController, options: .modal(.fullScreen, embedInNav: true, addDoneButton: true))
     }
 
     func userDidLogin(session: LoginSession) {
@@ -165,6 +215,7 @@ extension ParentAppDelegate: LoginDelegate {
 
     func userDidLogout(session: LoginSession) {
         let wasCurrent = environment.currentSession == session
+        environment.api.makeRequest(DeleteLoginOAuthRequest(session: session)) { _, _, _ in }
         userDidStopActing(as: session)
         if wasCurrent { changeUser() }
     }

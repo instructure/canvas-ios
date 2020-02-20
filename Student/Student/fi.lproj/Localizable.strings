@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "Kaikki kurssit";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "Kaikki arvosanojen antojaksot";
+
 /* Button to select all members of a group */
 "All members" = "Kaikki jäsenet";
 
@@ -366,6 +369,9 @@
 "Choose Video" = "Valitse video";
 
 /* No comment provided by engineer. */
+"Clear filter" = "Tyhjennä suodatin";
+
+/* No comment provided by engineer. */
 "Close" = "Sulje";
 
 /* No comment provided by engineer. */
@@ -441,6 +447,9 @@
 /* label for customizing a course */
 "Customize" = "Mukauttaa";
 
+/* No comment provided by engineer. */
+"d_events" = "d_events";
+
 /* dashboard page title */
 "Dashboard" = "Koontinäyttö";
 
@@ -486,7 +495,11 @@
    Title for Discussions view controller */
 "Discussions" = "Keskustelut";
 
-/* Dismiss an alert dialog */
+/* Dismiss an error button
+   dismiss button
+   Dismiss button for an error dialoue
+   Dismiss error alert button
+   dismiss the alert button */
 "Dismiss" = "Ohita";
 
 /* Alert title asking if you want to masquerade */
@@ -501,7 +514,7 @@
 /* Button to cancel deleting folders */
 "Don't delete" = "Älä poista";
 
-/* Button title to mark a to do item as done */
+/* No comment provided by engineer. */
 "Done" = "Valmis";
 
 /* Shown when we cancel a file download */
@@ -530,9 +543,6 @@
 
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Määräpäivä:";
-
-/* Due date label for to do items, first placeholder is date, second is time */
-"Due: %@ at %@" = "Määräpäivä: %1$@ kohteessa %2$@";
 
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "Määräpäivä: %1$@ kohteessa %2$@";
@@ -631,6 +641,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Tiedostot (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Suodatin";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Suodatustapa:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Lataus valmis";
@@ -737,9 +753,6 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "Siinä on ongelmia";
-
-/* No comment provided by engineer. */
-"It looks like there’s nothing to do today. Enjoy your day!" = "Näyttää siltä, että täällä ei ole mitään tehtävänä tänään. Nauti päivästäsi!";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Se on tyhjä, mitä sinä vielä teet täällä.";
@@ -933,6 +946,9 @@
 "No Mastery Paths" = "Ei hallintapolkuja";
 
 /* No comment provided by engineer. */
+"No Notifications" = "Ei ilmoituksia";
+
+/* No comment provided by engineer. */
 "No recipients" = "Ei vastaanottajia";
 
 /* Title for attempting submission without a comment */
@@ -949,9 +965,6 @@
 
 /* No comment provided by engineer. */
 "No Thanks" = "Ei kiitos";
-
-/* No comment provided by engineer. */
-"No To-Do Items" = "Ei tehtäväkohteita";
 
 /* error message for a 401 response. */
 "Not Authorized" = "Ei valtuutettu";
@@ -1478,6 +1491,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Sisältösi latauksessa ilmeni virhe. Jos se on äänen tai videon lataus, sitä saatetaan yhä käsitellä.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Ei ole vielä mitään ilmoitettavaa.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "Tätä sovellusta ei ole valtuutettu käyttöön.";

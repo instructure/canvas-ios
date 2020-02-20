@@ -31,6 +31,10 @@ final public class Course: NSManagedObject, Context, WriteableModel {
     @NSManaged public var name: String?
     @NSManaged public var enrollments: Set<Enrollment>?
     @NSManaged public var syllabusBody: String?
+    @NSManaged public var multipleGradingPeriodsEnabled: Bool
+    @NSManaged public var currentGradingPeriodID: String?
+    @NSManaged public var grades: Set<Grade>?
+    @NSManaged public var hideFinalGrades: Bool
 
     public var defaultView: CourseDefaultView? {
         get { return CourseDefaultView(rawValue: defaultViewRaw ?? "") }
@@ -47,9 +51,16 @@ final public class Course: NSManagedObject, Context, WriteableModel {
         model.courseCode = item.course_code
         model.imageDownloadURL = URL(string: item.image_download_url ?? "")
         model.syllabusBody = item.syllabus_body
-
-        model.enrollments?.forEach { context.delete($0) }
+        model.defaultViewRaw = item.default_view?.rawValue
+        model.enrollments?.forEach { enrollment in
+            // we only want to delete dangling enrollments created from
+            // the minimal enrollments attached to an APICourse
+            if enrollment.id == nil {
+                context.delete(enrollment)
+            }
+        }
         model.enrollments = nil
+        model.hideFinalGrades = item.hide_final_grades ?? false
 
         if let apiEnrollments = item.enrollments {
             let enrollmentModels: [Enrollment] = apiEnrollments.map { apiItem in
@@ -66,9 +77,9 @@ final public class Course: NSManagedObject, Context, WriteableModel {
 
 extension Course {
     public var color: UIColor {
-        let request = NSFetchRequest<Color>(entityName: String(describing: Color.self))
+        let request = NSFetchRequest<ContextColor>(entityName: String(describing: ContextColor.self))
         request.fetchLimit = 1
-        request.predicate = NSPredicate(format: "%K == %@", #keyPath(Color.canvasContextID), canvasContextID)
+        request.predicate = NSPredicate(format: "%K == %@", #keyPath(ContextColor.canvasContextID), canvasContextID)
         let color = try? managedObjectContext?.fetch(request).first
         return color?.color ?? .named(.ash)
     }
@@ -102,7 +113,7 @@ extension Course {
         }
 
         guard let scoreNotNil = score, let scoreString = Course.scoreFormatter.string(from: NSNumber(value: scoreNotNil)) else {
-                return grade ?? NSLocalizedString("N/A", bundle: .core, comment: "")
+            return grade ?? NSLocalizedString("N/A", bundle: .core, comment: "")
         }
 
         if let grade = grade {

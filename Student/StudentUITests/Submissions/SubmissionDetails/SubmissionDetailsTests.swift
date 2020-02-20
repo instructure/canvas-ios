@@ -20,7 +20,6 @@ import Foundation
 @testable import Core
 import TestsFoundation
 import XCTest
-@testable import CoreUITests
 
 class SubmissionDetailsTests: StudentUITestCase {
     lazy var course = mock(course: .make())
@@ -142,7 +141,7 @@ class SubmissionDetailsTests: StudentUITestCase {
                 preview_url: previewURL
             ), ]
         ))
-        mockDataRequest(URLRequest(url: previewURL), response: HTTPURLResponse(
+        mockURL(previewURL, response: HTTPURLResponse(
             url: previewURL, statusCode: 301, httpVersion: nil, headerFields: [
                 "Location": "\(sessionURL.absoluteString)/view",
             ]
@@ -150,7 +149,8 @@ class SubmissionDetailsTests: StudentUITestCase {
         mockData(GetDocViewerMetadataRequest(path: sessionURL.absoluteString), value: APIDocViewerMetadata.make(
             urls: .make(pdf_download: downloadURL)
         ))
-        mockDownload(downloadURL, data: url)
+        mockEncodableRequest("https://doc.viewer/2018-04-06/sessions/123/annotations", value: APIDocViewerAnnotations(data: []))
+        mockURL(downloadURL, data: url.flatMap { try? Data(contentsOf: $0) })
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
@@ -181,7 +181,7 @@ class SubmissionDetailsTests: StudentUITestCase {
                 preview_url: previewURL
             ), ]
         ))
-        mockDataRequest(URLRequest(url: previewURL), response: HTTPURLResponse(
+        mockURL(previewURL, response: HTTPURLResponse(
             url: previewURL, statusCode: 301, httpVersion: nil, headerFields: [
                 "Location": "\(sessionURL.absoluteString)/view",
             ]
@@ -207,10 +207,10 @@ class SubmissionDetailsTests: StudentUITestCase {
                 inreplyto: "1"
             ),
         ]))
-        mockDownload(downloadURL, data: url)
+        mockURL(downloadURL, data: url.flatMap { try? Data(contentsOf: $0) })
 
         // There's a uuid in a request that has no way to be mocked currently
-        failTestOnMissingMock = false
+        missingMockBehavior = .allow
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
         // 😱 PSPDFAnnotations are not in the accessibility tree
@@ -268,6 +268,8 @@ class SubmissionDetailsTests: StudentUITestCase {
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             submission_type: .online_quiz
         ))
+        mockData(GetQuizRequest(courseID: "1", quizID: "1"), value: APIQuiz.make())
+        mockData(GetQuizSubmissionRequest(courseID: course.id.value, quizID: "1"), value: .init(quiz_submissions: []))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
@@ -279,11 +281,13 @@ class SubmissionDetailsTests: StudentUITestCase {
         mockBaseRequests()
         let url = URL(string: "https://www.instructure.com/")!
         let assignment = mock(assignment: .make(submission_types: [ .online_url ]))
+        let attachment = APIFile.make()
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             submission_type: .online_url,
-            attachments: [ APIFile.make() ],
+            attachments: [ attachment ],
             url: url
         ))
+        mockEncodedData(URLRequest(url: attachment.url!.rawValue), data: Data())
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 

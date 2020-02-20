@@ -20,4 +20,7 @@ import Foundation
 
 public enum TabBar: String, ElementWrapper {
     case dashboardTab, calendarTab, todoTab, notificationsTab, inboxTab
+
+    // parent only
+    case coursesTab, alertsTab
 }

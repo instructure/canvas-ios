@@ -23,21 +23,21 @@ import XCTest
 class GroupTests: CoreTestCase {
     func testColorWithNoLinkOrCourse() {
         let a = Group.make()
-        _ = Color.make()
+        ContextColor.make()
 
         XCTAssertEqual(a.color, .named(.ash))
     }
 
     func testColor() {
         let a = Group.make()
-        _ = Color.make(canvasContextID: a.canvasContextID)
+        ContextColor.make(canvasContextID: a.canvasContextID)
 
         XCTAssertEqual(a.color, .red)
     }
 
     func testColorWithCourseID() {
         let a = Group.make(from: .make(course_id: "1"))
-        _ = Color.make()
+        ContextColor.make()
 
         XCTAssertEqual(a.color, .red)
     }

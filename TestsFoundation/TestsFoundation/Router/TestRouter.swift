@@ -16,39 +16,76 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import XCTest
 import Core
 
 public class TestRouter: RouterProtocol {
     public init() {}
-    public var calls = [(URLComponents, UIViewController, RouteOptions?)]()
-    public var viewControllerCalls = [(UIViewController, UIViewController, RouteOptions?)]()
+    public var calls = [(URLComponents?, UIViewController, RouteOptions)]()
+    public var viewControllerCalls = [(UIViewController, UIViewController, RouteOptions)]()
+    public var presented: UIViewController? {
+        if viewControllerCalls.last?.2.isModal == true {
+            return viewControllerCalls.last?.0
+        }
+        return nil
+    }
+
+    @discardableResult
+    public func dismiss() -> UIViewController? {
+        assert(presented != nil)
+        return viewControllerCalls.popLast()?.0
+    }
 
     public func match(_ url: URLComponents) -> UIViewController? {
         return nil
     }
 
-    public func route(to url: URLComponents, from: UIViewController, options: RouteOptions? = nil) {
+    public var routeExpectation = XCTestExpectation(description: "route")
+    public func route(to url: URLComponents, from: UIViewController, options: RouteOptions = .noOptions) {
         calls.append((url, from, options))
+        routeExpectation.fulfill()
     }
 
-    public func show(_ view: UIViewController, from: UIViewController, options: RouteOptions?) {
+    public var showExpectation = XCTestExpectation(description: "show")
+    public func show(_ view: UIViewController, from: UIViewController, options: RouteOptions, completion: (() -> Void)?) {
         viewControllerCalls.append((view, from, options))
+        showExpectation.fulfill()
+        completion?()
+    }
+
+    public var popExpectation = XCTestExpectation(description: "pop")
+    public func pop(from: UIViewController) {
+        popExpectation.fulfill()
     }
 
     public func lastRoutedTo(_ route: Route) -> Bool {
         return lastRoutedTo(route.url)
     }
 
+    public func lastRoutedTo(_ route: Route, withOptions options: RouteOptions) -> Bool {
+        return lastRoutedTo(route) && calls.last?.2 == options
+    }
+
     public func lastRoutedTo(_ url: URL) -> Bool {
         return calls.last?.0 == URLComponents.parse(url)
     }
 
-    public func lastRoutedTo(_ url: URLComponents) -> Bool {
+    public func lastRoutedTo(_ url: URLComponents?) -> Bool {
         return calls.last?.0 == url
     }
 
-    public func lastRoutedTo(_ url: URL, withOptions options: RouteOptions?) -> Bool {
+    public func lastRoutedTo(_ url: URL, withOptions options: RouteOptions) -> Bool {
         return lastRoutedTo(url) && calls.last?.2 == options
+    }
+
+    public func lastRoutedTo(viewController: UIViewController, from: UIViewController, withOptions options: RouteOptions) -> Bool {
+        guard let last = viewControllerCalls.last else { return false }
+        return last == (viewController, from, options)
+    }
+
+    public func resetExpectations() {
+        routeExpectation = XCTestExpectation(description: "route")
+        showExpectation = XCTestExpectation(description: "show")
+        popExpectation = XCTestExpectation(description: "pop")
     }
 }

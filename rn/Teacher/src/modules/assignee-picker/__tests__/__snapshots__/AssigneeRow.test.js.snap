@@ -23,7 +23,7 @@ exports[`render correctly 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "flex": 1,
         "flexDirection": "row",
         "paddingLeft": 16,
@@ -51,14 +51,10 @@ exports[`render correctly 1`] = `
               "overflow": "hidden",
             },
             Object {
+              "backgroundColor": "#F5F5F5",
+              "borderRadius": 20,
               "height": 40,
               "width": 40,
-            },
-            Object {
-              "borderRadius": 20,
-            },
-            Object {
-              "backgroundColor": "#F5F5F5",
             },
           ]
         }
@@ -100,6 +96,7 @@ exports[`render correctly 1`] = `
             },
           ]
         }
+        testID="AssigneeRow.student-1234.name"
       >
         Bill Murray
       </Text>
@@ -148,7 +145,7 @@ exports[`render correctly without image url 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "flex": 1,
         "flexDirection": "row",
         "paddingLeft": 16,
@@ -173,7 +170,7 @@ exports[`render correctly without image url 1`] = `
           Array [
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderColor": "#C7CDD1",
               "borderWidth": 0.5,
               "justifyContent": "center",
@@ -193,7 +190,7 @@ exports[`render correctly without image url 1`] = `
             Array [
               Object {
                 "backgroundColor": "transparent",
-                "color": "#73818C",
+                "color": "#8B969E",
                 "fontWeight": "600",
               },
               Object {
@@ -228,6 +225,7 @@ exports[`render correctly without image url 1`] = `
             },
           ]
         }
+        testID="AssigneeRow.student-1234.name"
       >
         Bill Murray
       </Text>

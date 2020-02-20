@@ -19,23 +19,29 @@
 import UIKit
 import Core
 
-class TextSubmissionViewController: UIViewController, ErrorViewController, RichContentEditorDelegate, TextSubmissionViewProtocol {
-    @IBOutlet weak var contentView: UIView?
-    @IBOutlet weak var keyboardSpace: NSLayoutConstraint?
+class TextSubmissionViewController: UIViewController, ErrorViewController, RichContentEditorDelegate {
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var keyboardSpace: NSLayoutConstraint!
 
-    var editor: RichContentEditorViewController?
+    var assignmentID: String!
+    var courseID: String!
+    var editor: RichContentEditorViewController!
+    let env = AppEnvironment.shared
     var keyboard: KeyboardTransitioning?
-    var presenter: TextSubmissionPresenter?
+    var userID: String!
 
-    static func create(env: AppEnvironment = .shared, courseID: String, assignmentID: String, userID: String) -> TextSubmissionViewController {
+    static func create(courseID: String, assignmentID: String, userID: String) -> TextSubmissionViewController {
         let controller = loadFromStoryboard()
-        controller.editor = RichContentEditorViewController.create(env: env, context: ContextModel(.course, id: courseID), uploadTo: .myFiles)
-        controller.presenter = TextSubmissionPresenter(env: env, view: controller, courseID: courseID, assignmentID: assignmentID, userID: userID)
+        controller.assignmentID = assignmentID
+        controller.courseID = courseID
+        controller.userID = userID
+        controller.editor = RichContentEditorViewController.create(context: ContextModel(.course, id: courseID), uploadTo: .myFiles)
         return controller
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .named(.backgroundLightest)
         title = NSLocalizedString("Text Entry", bundle: .student, comment: "")
 
         navigationController?.navigationBar.useModalStyle()
@@ -44,12 +50,10 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
         navigationItem.rightBarButtonItem?.isEnabled = false
         addCancelButton(side: .left)
 
-        if let contentView = contentView, let editor = editor {
-            editor.delegate = self
-            editor.placeholder = NSLocalizedString("Enter submission", bundle: .student, comment: "")
-            editor.webView.scrollView.layer.masksToBounds = false
-            embed(editor, in: contentView)
-        }
+        editor.delegate = self
+        editor.placeholder = NSLocalizedString("Enter submission", bundle: .student, comment: "")
+        editor.webView.scrollView.layer.masksToBounds = false
+        embed(editor, in: contentView)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -65,17 +69,21 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
         showError(error)
     }
 
-    @objc func submit(_ sender: Any? = nil) {
-        editor?.getHTML { (html: String) in
-            self.presenter?.submit(html) { [weak self] error in
-                DispatchQueue.main.async {
-                    if let error = error {
-                        self?.showError(error)
-                    } else {
-                        self?.dismiss(animated: true, completion: nil)
-                    }
+    @objc func submit() {
+        editor.getHTML { (html: String) in
+            CreateSubmission(
+                context: ContextModel(.course, id: self.courseID),
+                assignmentID: self.assignmentID,
+                userID: self.userID,
+                submissionType: .online_text_entry,
+                body: html
+            ).fetch { (_, _, error) in performUIUpdate {
+                if let error = error {
+                    self.showError(error)
+                } else {
+                    self.dismiss(animated: true, completion: nil)
                 }
-            }
+            } }
         }
     }
 }

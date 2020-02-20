@@ -33,6 +33,59 @@ public extension Date {
     }
 
     func addYears(_ years: Int) -> Date {
-        return Calendar.current.date(byAdding: .year, value: years, to: self) ?? Date()
+        return Calendar.current.date(byAdding: .year, value: years, to: self) ?? self
+    }
+
+    func addMinutes(_ minutes: Int) -> Date {
+        let endDate = Calendar.current.date(byAdding: .minute, value: minutes, to: self)
+        return endDate ?? Date()
+    }
+
+    func addDays(_ days: Int) -> Date {
+        let endDate = Calendar.current.date(byAdding: .day, value: days, to: self)
+        return endDate ?? Date()
+    }
+
+    func addMonths(_ numberOfMonths: Int) -> Date {
+        let endDate = Calendar.current.date(byAdding: .month, value: numberOfMonths, to: self)
+        return endDate ?? Date()
+    }
+
+    func startOfWeek() -> Date {
+        return Cal.currentCalendar.date(from: Cal.currentCalendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) ?? Date()
+    }
+
+    func endOfWeek() -> Date {
+        let start = startOfWeek()
+        return Cal.currentCalendar.date(byAdding: .weekOfYear, value: 1, to: start) ?? Date()
+    }
+
+    func startOfDay() -> Date {
+        Cal.currentCalendar.startOfDay(for: self)
+    }
+
+    func endOfDay() -> Date {
+        Cal.currentCalendar.date(bySettingHour: 23, minute: 59, second: 59, of: startOfDay()) ?? Date()
+    }
+
+    func startOfMonth() -> Date {
+        return Cal.currentCalendar.date(from: Cal.currentCalendar.dateComponents([.year, .month], from: startOfDay())) ?? Date()
+    }
+
+    func endOfMonth() -> Date {
+        return Cal.currentCalendar.date(byAdding: DateComponents(month: 1, day: -1), to: startOfMonth()) ?? Date()
+    }
+
+    static var dateOnlyFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("MMMd")
+        return formatter
+    }()
+
+    var dateMediumString: String {
+        if Calendar.current.component(.year, from: self) == Calendar.current.component(.year, from: Clock.now) {
+            return Date.dateOnlyFormatter.string(from: self)
+        }
+        return DateFormatter.localizedString(from: self, dateStyle: .medium, timeStyle: .none)
     }
 }

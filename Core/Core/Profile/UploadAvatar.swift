@@ -85,7 +85,7 @@ public class UploadAvatar {
                     locale: session.locale,
                     masquerader: session.masquerader,
                     refreshToken: session.refreshToken,
-                    userAvatarURL: url,
+                    userAvatarURL: url.rawValue,
                     userID: session.userID,
                     userName: session.userName,
                     userEmail: session.userEmail,
@@ -97,7 +97,7 @@ public class UploadAvatar {
                     LoginSession.add(updated)
                 }
             }
-            self.callback(.success(url))
+            self.callback(.success(url.rawValue))
         }
     }
 }

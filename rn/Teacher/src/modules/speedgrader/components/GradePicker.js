@@ -21,7 +21,6 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   Alert,
   Image,
   ActivityIndicator,
@@ -35,8 +34,7 @@ import { Heading1, Text } from '../../../common/text'
 import { connect } from 'react-redux'
 import SpeedGraderActions from '../actions'
 import Images from '../../../images'
-import colors from '../../../common/colors'
-import branding from '../../../common/branding'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import { formatGradeText } from '../../../common/formatters'
 import Slider from './Slider'
 
@@ -203,7 +201,11 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
     let scoreToUse = latePolicy ? this.props.enteredScore : this.props.score
 
     let score = this.props.useRubricForGrading && !this.state.useCustomGrade ? this.props.rubricScore : scoreToUse
-    let grade = this.props.gradingType !== 'points' && formatGradeText(gradeToUse, this.props.gradingType)
+    let grade = this.props.gradingType !== 'points' && formatGradeText({
+      grade: gradeToUse,
+      score: scoreToUse,
+      gradingType: this.props.gradingType,
+    })
 
     return { grade, score, pointsPossible: this.props.pointsPossible }
   }
@@ -240,9 +242,9 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
 
   getButtonStyles = (latePolicy: boolean = false) => {
     if (this.props.gradingType === PASS_FAIL && this.state.pickerOpen) {
-      return { color: branding.primaryBrandColor }
+      return { color: colors.primary }
     } else if (this.applyLatePolicy() && latePolicy) {
-      return { color: colors.lightText }
+      return { color: colors.textDark }
     }
   }
 
@@ -295,7 +297,7 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
     let headingStyles = {}
     let cellStyles = styles.gradeCell
     if (this.applyLatePolicy()) {
-      headingStyles = { color: colors.lightText }
+      headingStyles = { color: colors.textDark }
       cellStyles = styles.gradeCellTop
     }
     return (
@@ -379,13 +381,13 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   gradePicker: {
     paddingHorizontal: 16,
   },
   gradeCellContainer: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'lightgray',
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
     paddingVertical: 12,
   },
   gradeCell: {
@@ -416,11 +418,11 @@ const styles = StyleSheet.create({
     minHeight: 20,
   },
   ungradedButton: {
-    tintColor: colors.primaryButton,
+    tintColor: colors.linkColor,
   },
   orangeText: {
     fontSize: 14,
-    color: '#FC5E13',
+    color: colors.textWarning,
   },
   gradePolicyWrapper: {
     flexDirection: 'row',
@@ -429,10 +431,10 @@ const styles = StyleSheet.create({
   eyeball: {
     width: 20,
     height: 20,
-    tintColor: colors.destructiveButtonColor,
+    tintColor: colors.textDanger,
     marginLeft: 10,
   },
-})
+}))
 
 export function mapStateToProps (state: AppState, ownProps: GradePickerOwnProps): GradePickerDataProps {
   let assignment = state.entities.assignments[ownProps.assignmentID].data
@@ -447,12 +449,12 @@ export function mapStateToProps (state: AppState, ownProps: GradePickerOwnProps)
     }
   }
 
-  let submission = state.entities.submissions[ownProps.submissionID].submission
+  let submission = state.entities.submissions[ownProps.submissionID]?.submission || {}
   return {
     excused: submission.excused,
     grade: submission.grade || '',
     score: submission.score,
-    pending: Boolean(state.entities.submissions[ownProps.submissionID].pending),
+    pending: Boolean(state.entities.submissions[ownProps.submissionID]?.pending),
     gradingType: assignment.grading_type,
     pointsPossible: assignment.points_possible,
     late: submission.late,

@@ -21,13 +21,12 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   Image,
 } from 'react-native'
 import { Text } from '../../../../common/text'
 import Screen from '../../../../routing/Screen'
-import Images from '../../../../images/'
-import colors from '../../../../common/colors'
+import instIcon from '../../../../images/inst-icons'
+import { createStyleSheet } from '../../../../common/stylesheet'
 
 export default class CourseDetailsSplitViewPlaceholder extends Component<*> {
   render () {
@@ -42,7 +41,7 @@ export default class CourseDetailsSplitViewPlaceholder extends Component<*> {
       >
         <View style={style.container}>
           <View style={style.subContainer}>
-            <Image source={Images.course.placeholder} style={style.icon} resizeMode='contain' />
+            <Image source={instIcon('courses')} style={style.icon} resizeMode='contain' />
             <Text style={style.courseName}>{course.name}</Text>
             <Text style={style.term}>{courseCode}</Text>
           </View>
@@ -52,7 +51,7 @@ export default class CourseDetailsSplitViewPlaceholder extends Component<*> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet(colors => ({
   container: {
     flex: 1,
     alignItems: 'center',
@@ -68,17 +67,17 @@ const style = StyleSheet.create({
   icon: {
     width: 80,
     height: 80,
-    tintColor: colors.grey2,
+    tintColor: colors.borderMedium,
   },
   courseName: {
     fontWeight: '500',
     fontSize: 24,
     marginTop: 32,
-    color: colors.darkText,
+    color: colors.textDarkest,
   },
   term: {
     marginTop: 4,
-    color: colors.grey4,
+    color: colors.textDark,
     fontWeight: '600',
   },
-})
+}))

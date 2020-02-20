@@ -19,10 +19,10 @@
 /* @flow */
 
 import { refs, discussions, addOrUpdateReply } from '../reducer'
-import { default as ListActions } from '../list/actions'
-import { default as DetailActions } from '../details/actions'
-import { default as AnnouncementListActions } from '../../announcements/list/actions'
-import { default as EditActions } from '../edit/actions'
+import ListActions from '../list/actions'
+import DetailActions from '../details/actions'
+import AnnouncementListActions from '../../announcements/list/actions'
+import EditActions from '../edit/actions'
 
 const { refreshDiscussions } = ListActions
 const {
@@ -1074,6 +1074,35 @@ describe('updateDiscussion', () => {
         error: null,
       },
     })
+  })
+
+  it('preserves replies for announcements', () => {
+    const discussion = template.discussion({
+      id: '35',
+      is_announcement: true,
+      replies: [template.discussionReply()],
+    })
+    const params = template.updateDiscussionParams({ id: '35' })
+    const initialState = {
+      '35': {
+        data: discussion,
+        pending: 1,
+        error: null,
+      },
+    }
+    const resolved = {
+      type: updateDiscussion.toString(),
+      payload: {
+        result: { data: discussion },
+        params,
+        handlesError: true,
+        courseID: '3',
+      },
+    }
+
+    expect(
+      discussions(initialState, resolved)['35'].data.replies
+    ).toEqual(discussion.replies)
   })
 
   it('handles rejected', () => {

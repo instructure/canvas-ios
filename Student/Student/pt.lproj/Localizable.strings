@@ -212,6 +212,9 @@
 /* All Courses screen title */
 "All Courses" = "Todas as disciplinas";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "Todos os períodos de classificação";
+
 /* Button to select all members of a group */
 "All members" = "Todos os membros";
 
@@ -366,6 +369,9 @@
 "Choose Video" = "Escolher Vídeo";
 
 /* No comment provided by engineer. */
+"Clear filter" = "Filtro limpo";
+
+/* No comment provided by engineer. */
 "Close" = "Fechar";
 
 /* No comment provided by engineer. */
@@ -441,6 +447,9 @@
 /* label for customizing a course */
 "Customize" = "Personalizar";
 
+/* No comment provided by engineer. */
+"d_events" = "d_events";
+
 /* dashboard page title */
 "Dashboard" = "Painel de controlo";
 
@@ -486,7 +495,11 @@
    Title for Discussions view controller */
 "Discussions" = "Discussões";
 
-/* Dismiss an alert dialog */
+/* Dismiss an error button
+   dismiss button
+   Dismiss button for an error dialoue
+   Dismiss error alert button
+   dismiss the alert button */
 "Dismiss" = "Ignorar";
 
 /* Alert title asking if you want to masquerade */
@@ -501,7 +514,7 @@
 /* Button to cancel deleting folders */
 "Don't delete" = "Não apagar";
 
-/* Button title to mark a to do item as done */
+/* No comment provided by engineer. */
 "Done" = "Feito";
 
 /* Shown when we cancel a file download */
@@ -530,9 +543,6 @@
 
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Vencimento:";
-
-/* Due date label for to do items, first placeholder is date, second is time */
-"Due: %@ at %@" = "Vencimento: %1$@ em %2$@";
 
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "Vencimento: %1$@ em %2$@";
@@ -631,6 +641,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Ficheiros (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Filtro";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Filtrar por:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Terminou descarga";
@@ -737,9 +753,6 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "Tem problemas";
-
-/* No comment provided by engineer. */
-"It looks like there’s nothing to do today. Enjoy your day!" = "Parece que não há nada para fazer hoje. Desfrute seu dia!";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Está vazio, o que faz aqui.";
@@ -933,6 +946,9 @@
 "No Mastery Paths" = "Nenhum caminho de domínio";
 
 /* No comment provided by engineer. */
+"No Notifications" = "Nenhuma notificação";
+
+/* No comment provided by engineer. */
 "No recipients" = "Sem destinatários";
 
 /* Title for attempting submission without a comment */
@@ -949,9 +965,6 @@
 
 /* No comment provided by engineer. */
 "No Thanks" = "Não, Obrigado";
-
-/* No comment provided by engineer. */
-"No To-Do Items" = "Não há itens de tarefas";
 
 /* error message for a 401 response. */
 "Not Authorized" = "Não autorizado";
@@ -1478,6 +1491,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it is an audio or video upload it may still be processing." = "Ocorreu um erro ao carregar o seu conteúdo. Se for um carregamento audio ou vídeo pode ainda estar a processar.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Não há nada para ser notificado ainda.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "Esta app não está autorizada para utilização.";

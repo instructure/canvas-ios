@@ -22,11 +22,10 @@ import React, { Component } from 'react'
 import {
   TouchableHighlight,
   View,
-  StyleSheet,
   Image,
 } from 'react-native'
-import colors from '../../../../common/colors'
-import Images from '../../../../images/'
+import { colors, createStyleSheet } from '../../../../common/stylesheet'
+import icon from '../../../../images/inst-icons'
 import { Text } from '../../../../common/text'
 
 type Props = {
@@ -50,8 +49,8 @@ export default class CourseFavorite extends Component<Props> {
       >
         <View style={styles.courseWrapper}>
           <Image
-            source={this.props.isFavorite ? Images.starFilled : Images.starLined}
-            style={[styles.favoritesImage, { tintColor: colors.primaryBrandColor }]}
+            source={icon('star', this.props.isFavorite ? 'solid' : 'line')}
+            style={[styles.favoritesImage, { tintColor: colors.primary }]}
           />
           <Text style={styles.courseName}>{this.props.course.name}</Text>
         </View>
@@ -60,17 +59,17 @@ export default class CourseFavorite extends Component<Props> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   courseRow: {
     borderBottomWidth: 1,
-    borderBottomColor: '#e3e3e3',
+    borderBottomColor: colors.borderMedium,
   },
   courseWrapper: {
     paddingHorizontal: 16,
     paddingVertical: 16,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
   },
   courseName: {
     marginRight: 16,
@@ -81,4 +80,4 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
   },
-})
+}))

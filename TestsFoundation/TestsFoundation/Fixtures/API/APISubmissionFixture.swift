@@ -40,6 +40,7 @@ extension APISubmission {
         url: URL? = nil,
         media_comment: APIMediaComment? = nil,
         graded_at: Date? = nil,
+        grade_matches_current_submission: Bool = true,
         late_policy_status: LatePolicyStatus? = nil,
         points_deducted: Double? = nil,
         submission_comments: [APISubmissionComment]? = nil,
@@ -68,6 +69,7 @@ extension APISubmission {
             url: url,
             media_comment: media_comment,
             graded_at: graded_at,
+            grade_matches_current_submission: grade_matches_current_submission,
             late_policy_status: late_policy_status,
             points_deducted: points_deducted,
             submission_comments: submission_comments,
@@ -110,13 +112,15 @@ extension APISubmissionCommentAuthor {
         id: String = "1",
         display_name: String = "Steve",
         avatar_image_url: URL? = nil,
-        html_url: URL = URL(string: "/users/1")!
+        html_url: URL = URL(string: "/users/1")!,
+        pronouns: String? = nil
     ) -> APISubmissionCommentAuthor {
         return APISubmissionCommentAuthor(
             id: id,
             display_name: display_name,
             avatar_image_url: avatar_image_url,
-            html_url: html_url
+            html_url: html_url,
+            pronouns: pronouns
         )
     }
 }
@@ -126,13 +130,15 @@ extension APISubmissionUser {
         id: String = "1",
         name: String? = "Bob",
         short_name: String = "Bob",
-        avatar_url: URL? = nil
+        avatar_url: URL? = nil,
+        pronouns: String? = nil
     ) -> APISubmissionUser {
         return APISubmissionUser(
             id: id,
             name: name,
             short_name: short_name,
-            avatar_url: avatar_url
+            avatar_url: avatar_url,
+            pronouns: pronouns
         )
     }
 }

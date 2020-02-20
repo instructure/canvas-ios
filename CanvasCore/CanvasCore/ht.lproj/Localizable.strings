@@ -28,18 +28,11 @@
 /* Notification to alert the user that there is only 30 seconds left in the time quiz */
 "30 seconds remaining" = "30 segond ki rete";
 
-/* Mark student absent
-   Student is present in class */
-"Absent" = "Absan";
-
 /* Shows the number questions */
 "All %@ Questions" = "Tout %@ Kesyon";
 
 /* option to view results for all grading periods */
 "All Grading Periods" = "Tout Peryòd Klasman";
-
-/* all pages segmented control title */
-"All Pages" = "Tout Paj";
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Tantativ Otorize";
@@ -65,12 +58,6 @@
 /* label to be read for visually impaired users with assignment types */
 "assignment" = "sesyon";
 
-/* No comment provided by engineer. */
-"Attendance" = "Prezans";
-
-/* Error title for attendance app */
-"Attendance Error" = "Erè Prezans";
-
 /* label for quiz availability date */
 "Available Until" = "Disponib Jiska";
 
@@ -91,9 +78,6 @@
    Cancel upload */
 "Cancel" = "Anile";
 
-/* No comment provided by engineer. */
-"Change Section" = "Chanje Seksyon";
-
 /* Choose a file */
 "Choose a File" = "Chwazi yon Fichye";
 
@@ -103,14 +87,8 @@
 /* Pick a photo or video */
 "Choose a Photo or Video" = "Chwazi yon Foto oswa Videyo";
 
-/* No comment provided by engineer. */
-"Choose a Section" = "Chwazi yon Seksyon";
-
 /* Pick a video from library */
 "Choose a Video" = "Chwazi yon Videyo";
-
-/* No comment provided by engineer. */
-"Choose Date" = "Chwazi Dat";
 
 /* No comment provided by engineer. */
 "Collapse" = "Redwi";
@@ -120,9 +98,6 @@
 
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Kontinye Quiz";
-
-/* Failure reason for why it couldn't associate a tab with a context */
-"Could not parse context id from URL" = "Enposib pou analize kontèks id apati de URL";
 
 /* Header label for a screen that customizes a course */
 "Customize" = "Pèsonalize";
@@ -135,9 +110,6 @@
 
 /* Error title for a persistence related data failure */
 "Data Error" = "Erè Data";
-
-/* No comment provided by engineer. */
-"Date picker" = "Selektè dat";
 
 /* DeepOrange course color button */
 "DeepOrange" = "DeepOrange";
@@ -160,8 +132,7 @@
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Erè Disk";
 
-/* Dismiss an error alert
-   Dismiss an error dialog
+/* Dismiss an error dialog
    Dismiss button for error alert
    Dismiss button for error messages */
 "Dismiss" = "Rejte";
@@ -192,25 +163,10 @@
 "Error Loading Quiz" = "Erè nan Chajman Quiz";
 
 /* No comment provided by engineer. */
-"Error parsing the Roll Call response. Expected (e), received (a)" = "Erè pandan analiz repons Apèl Nominal la. Espere (e), resevwa (a)";
-
-/* No comment provided by engineer. */
-"Error parsing the Roll Call response. Expected (e), received (a) for key (k)" = "Erè pandan analiz repons Apèl Nominal la. Espere (e), resevwa (a) pou kle (k)";
-
-/* No comment provided by engineer. */
-"Error parsing the Roll Call response. Key not found: (k)" = "Erè pandan analiz repons Apèl Nominal la. Kle entwouvab: (k)";
-
-/* No comment provided by engineer. */
-"Error parsing the Roll Call response. Unexpected null value: (k)" = "Erè pandan analiz repons Apèl Nominal la. Valè nil sanzatann: (k)";
-
-/* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Erè pandan rekiperasyon URL lansman enstriman";
 
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "Erè Pandan Aktyalizasyon Sesyon an";
-
-/* rollcall status error */
-"Error: No data returned from the rollcall api." = "Erè: Okenn done ranvwaye pa API apèl la.";
 
 /* Exit button to leave the quiz */
 "Exit" = "Soti";
@@ -238,9 +194,6 @@
 
 /* State of the flagged question */
 "Flagged" = "Siyale";
-
-/* front page segmented control title */
-"Front Page" = "Premye Paj";
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Jwenn Nòt pou";
@@ -275,10 +228,6 @@
 /* No comment provided by engineer. */
 "Invalid date received from API." = "Done yo resevwa de API yo envalid";
 
-/* Mark student late
-   Student is present in class */
-"Late" = "An reta";
-
 /* No comment provided by engineer. */
 "Launch External Tool" = "Lanse Zouti Eksteryè";
 
@@ -303,12 +252,6 @@
 /* Title for when another tool called Lockdown Browser is required to take a quiz */
 "Lockdown Browser Required" = "Navigatè Lockdown Nesesè";
 
-/* No comment provided by engineer. */
-"Mark All as Present" = "Make Tout kòm Prezan";
-
-/* No comment provided by engineer. */
-"Mark Remaining as Present" = "Make Rete kòm Prezan";
-
 /* Error alert title for network error
    Title for network errors */
 "Network Error" = "Erè Rezo";
@@ -324,9 +267,6 @@
 
 /* Error when push channel cannot be found in notificaitons */
 "No push channel found" = "Kanal push entwouvab";
-
-/* No comment provided by engineer. */
-"No sections available. Please make sure you are enrolled as a teacher or TA in at least on section of this course." = "Pa gen seksyon disponib. Tanpri asire w ou te enskri kom pwofesè oswa AP nan yon seksyon kou sa a pou pi piti.";
 
 /* when a quiz has no time limit */
 "No time limit" = "Pa gen limit tan";
@@ -390,10 +330,6 @@
 
 /* label for number of points in a quiz */
 "Points" = "Pwen";
-
-/* Mark student present
-   Student is present in class */
-"Present" = "Prezan";
 
 /* Purple course color button */
 "Purple" = "Mov";
@@ -485,9 +421,6 @@
 /* Indicates that a matching quiz question needs to have an answer selected */
 "Select Answer" = "Chwazi Repons";
 
-/* No comment provided by engineer. */
-"Select to change the roll call date" = "Seleksyone pou chanje dat apèl la";
-
 /* when a button is selected */
 "Selected" = "Chwazi";
 
@@ -546,23 +479,14 @@
 /* Description for alert that shows when the quiz hits the due date */
 "The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Delè quiz la se nan 1 minit Èske w ta renmen soumèt kounye a epi pou w a lè oswa ou vle kontinye ak quiz la men li posib pou w an reta?";
 
-/* Error message for interrupted requests marking a to do as done */
-"The request to mark a to do as done was interrupted" = "Demand pou make yon aktivite kòm aktivite ki fèt deja a te sispann";
-
 /* bad url message */
 "The text you entered is not a valid URL" = "Tèks ou antre a pa yon URL valid";
 
 /* Data encoding error message */
 "There was a problem encoding UTF8 Data" = "Te gen yon erè nan kodaj Done UTF8 yo";
 
-/* No comment provided by engineer. */
-"There was a problem fetching the list of course sections." = "Gen yon pwoblèm ki pase pandan ekstraksyon lis seksyon kou yo.";
-
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Te gen yon pwoblèm nan entèpretasyon repons de sèvè a.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the (kitModelName) database file." = "Te gen yon pwoblèm nan chajman fichye baz de done (kitModelName) a.";
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "Te gen yon pwoblèm nan chajman fichye baz de done AssignmentKit a.";
@@ -662,9 +586,6 @@
 
 /* When a quiz has no limit on the number of attempts */
 "Unlimited" = "Ilimite";
-
-/* Remove attendance status */
-"Unmark" = "San make";
 
 /* Upcoming assignments */
 "Upcoming" = "Pwochen";

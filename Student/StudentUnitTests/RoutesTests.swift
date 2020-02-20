@@ -19,7 +19,6 @@
 import XCTest
 @testable import CanvasCore
 @testable import Core
-@testable import TechDebt
 @testable import Student
 import TestsFoundation
 
@@ -82,9 +81,7 @@ class RoutesTests: XCTestCase {
     }
 
     func testGroup() {
-        XCTAssert(router.match(Route.group("7").url) is TabsTableViewController)
-        AppEnvironment.shared.currentSession = nil
-        XCTAssertNil(router.match(Route.group("7").url))
+        XCTAssert(router.match(Route.group("7").url) is GroupNavigationViewController)
     }
 
     func testQuizzes() {
@@ -92,7 +89,7 @@ class RoutesTests: XCTestCase {
     }
 
     func testAssignmentList() {
-        XCTAssertEqual((router.match(Route.assignments(forCourse: "1").url) as? HelmViewController)?.moduleName, "/courses/:courseID/assignments")
+        XCTAssert((router.match(Route.assignments(forCourse: "1").url) is AssignmentListViewController))
     }
 
     func testCourseNavTab() {

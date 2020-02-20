@@ -25,7 +25,7 @@ public protocol CoreWebViewLinkDelegate: class {
 
 extension CoreWebViewLinkDelegate where Self: UIViewController {
     public func handleLink(_ url: URL) -> Bool {
-        AppEnvironment.shared.router.route(to: url, from: self, options: nil)
+        AppEnvironment.shared.router.route(to: url, from: self)
         return true
     }
     public var routeLinksFrom: UIViewController { return self }
@@ -35,6 +35,8 @@ extension CoreWebViewLinkDelegate where Self: UIViewController {
 open class CoreWebView: WKWebView {
     @IBInspectable public var autoresizesHeight: Bool = false
     public weak var linkDelegate: CoreWebViewLinkDelegate?
+
+    public var isLinkNavigationEnabled = true
 
     public static let processPool = WKProcessPool()
 
@@ -96,9 +98,12 @@ open class CoreWebView: WKWebView {
         let link = Brand.shared.linkColor.ensureContrast(against: .named(.backgroundLightest))
 
         return """
-            body {
+            html {
+                background: \(UIColor.named(.backgroundLightest).hexString);
                 color: \(UIColor.named(.textDarkest).hexString);
                 font: -apple-system-body;
+            }
+            body {
                 margin: 16px;
             }
             a {
@@ -144,23 +149,26 @@ open class CoreWebView: WKWebView {
             // Handle Math Equations
             let foundMath = !!document.querySelector('math')
             document.querySelectorAll('img.equation_image').forEach(img => {
-                if (!img.dataset.mathml && !img.dataset.equationContent) return
-                foundMath = true
-                const div = document.createElement('div')
-                div.innerHTML = img.dataset.mathml || `$$${img.dataset.equationContent}$$`
-                img.parentNode.replaceChild(div.firstChild, img)
+              let mathml = img.getAttribute('x-canvaslms-safe-mathml')
+              if (!mathml && !img.dataset.equationContent) return
+              foundMath = true
+              const div = document.createElement('div')
+              div.innerHTML = mathml || '<span>$$' + img.dataset.equationContent + '$$</span>'
+              div.firstChild.setAttribute('style', img.getAttribute('style'))
+              img.parentNode.replaceChild(div.firstChild, img)
             })
             if (foundMath) {
-                const script = document.createElement('script')
-                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
-                document.body.appendChild(script)
+              window.MathJax = { displayAlign: 'inherit' }
+              const script = document.createElement('script')
+              script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+              document.body.appendChild(script)
             }
 
             // Replace all iframes with a button to launch in SFSafariViewController
             document.querySelectorAll('iframe').forEach(iframe => {
                 const replace = iframe => {
                     const a = document.createElement('a')
-                    a.textContent = '\(buttonText)'
+                    a.textContent = \(CoreWebView.jsString(buttonText))
                     a.classList.add('canvas-ios-lti-launch-button')
                     a.href = iframe.src
                     iframe.parentNode.replaceChild(a, iframe)
@@ -213,6 +221,11 @@ open class CoreWebView: WKWebView {
 
 extension CoreWebView: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, decidePolicyFor action: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if action.navigationType == .linkActivated && !isLinkNavigationEnabled {
+            decisionHandler(.cancel)
+            return
+        }
+
         // Check for #fragment link click
         if action.navigationType == .linkActivated, action.sourceFrame == action.targetFrame,
             let url = action.request.url, let fragment = url.fragment,
@@ -224,7 +237,7 @@ extension CoreWebView: WKNavigationDelegate {
         // Handle "Launch External Tool" button
         if action.navigationType == .linkActivated, let tools = LTITools(link: action.request.url),
             let from = linkDelegate?.routeLinksFrom {
-            tools.presentToolInSFSafariViewController(from: from, animated: true)
+            tools.presentTool(from: from, animated: true)
             return decisionHandler(.cancel)
         }
 

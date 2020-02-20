@@ -43,6 +43,7 @@ import bytes from '@utils/locale-bytes'
 import striptags from 'striptags'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 import { isAssignmentAnonymous } from '../../../common/anonymous-grading'
+import { personDisplayName } from '../../../common/formatters'
 
 const Actions = {
   ...SubmissionCommentActions,
@@ -167,6 +168,10 @@ export class CommentsTab extends Component<CommentsTabProps, any> {
     )
   }
 
+  showAttachment = (attachment) => {
+    this.props.navigator.show('/attachment', { modal: true }, { attachment })
+  }
+
   renderComment = ({ item }: { item: CommentRowProps }) =>
     <CommentRow
       {...item}
@@ -177,6 +182,7 @@ export class CommentsTab extends Component<CommentsTabProps, any> {
       switchFile={this.switchFile}
       localID={item.key}
       onAvatarPress={this.navigateToContextCard}
+      onAttachmentPress={this.showAttachment}
     />
 
   statusComplete = () => {
@@ -288,12 +294,12 @@ function extractComments (submissionComments: SubmissionComment[]): Array<Commen
   return submissionComments
     .map(comment => ({
       key: 'comment-' + comment.id,
-      name: comment.author_name,
+      name: personDisplayName(comment.author_name, comment.author.pronouns),
       date: new Date(comment.created_at),
       avatarURL: comment.author.avatar_image_url,
       userID: comment.author.id,
       from: comment.author.id === myUserID ? 'me' : 'them',
-      contents: comment.media_comment ? contentForMediaComment(comment.media_comment) : { type: 'text', message: comment.comment },
+      contents: comment.media_comment ? contentForMediaComment(comment.media_comment) : { type: 'text', comment },
       pending: 0,
     }))
 }
@@ -390,7 +396,7 @@ function rowForSubmission (submission: Submission, attempt: Submission, assignme
   const items = contentForAttempt(attempt, assignment)
   return {
     key: `submission-${attemptNumber}`,
-    name: user.name,
+    name: personDisplayName(user.name, user.pronouns),
     avatarURL: user.avatar_url,
     userID: user.id,
     from: 'them',
@@ -426,7 +432,9 @@ function extractPendingComments (assignments: ?AssignmentContentState, userID): 
     name: session.user.name,
     avatarURL: session.user.avatar_url,
     userID: session.user.id,
-    contents: pending.mediaComment ? { ...pending.comment, url: pending.mediaComment.url } : pending.comment,
+    contents: pending.comment.type === 'media'
+      ? { ...pending.comment, url: pending.mediaFilePath }
+      : { type: 'text', comment: pending.comment },
     pending: pending.pending,
     error: pending.error || undefined, // this fixes flow even though error could already be undefined...
   }))
@@ -436,10 +444,7 @@ export function mapStateToProps (appState: AppState, ownProps: RoutingProps): Co
   const { entities } = appState
   const { submissionID, userID, assignmentID, courseID } = ownProps
 
-  const submission = submissionID &&
-    entities.submissions[submissionID]
-    ? entities.submissions[submissionID].submission
-    : undefined
+  const submission = submissionID && entities.submissions[submissionID]?.submission
 
   const entity = entities.assignments[assignmentID]
 

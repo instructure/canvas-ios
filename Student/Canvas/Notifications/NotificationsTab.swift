@@ -18,13 +18,18 @@
 
 import UIKit
 import Foundation
-import TechDebt
 import CanvasCore
 import Core
 
 func NotificationsTab(session: Session) throws -> UIViewController {
     let title = NSLocalizedString("Notifications", comment: "Notifications tab title")
-    let activityStream = try ActivityStreamTableViewController(session: session)
+    let activityStream: UIViewController
+    if ExperimentalFeature.notifications2.isEnabled {
+        activityStream = ActivityStreamViewController.create()
+    } else {
+        activityStream = try ActivityStreamTableViewController(session: session)
+    }
+    
     activityStream.title = title
     
     let split = HelmSplitViewController()
@@ -33,7 +38,7 @@ func NotificationsTab(session: Session) throws -> UIViewController {
     let detailNav = UINavigationController()
     masterNav.navigationBar.useGlobalNavStyle()
     detailNav.navigationBar.useGlobalNavStyle()
-    detailNav.view.backgroundColor = UIColor.white
+    detailNav.view.backgroundColor = .named(.backgroundLightest)
     split.viewControllers = [masterNav, detailNav]
     
     activityStream.navigationItem.title = title

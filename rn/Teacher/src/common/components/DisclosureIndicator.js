@@ -19,7 +19,8 @@
 // @flow
 
 import React, { PureComponent } from 'react'
-import { View, StyleSheet, I18nManager } from 'react-native'
+import { View, I18nManager } from 'react-native'
+import { createStyleSheet } from '../stylesheet'
 
 export default class DisclosureIndicator extends PureComponent<{}> {
   render () {
@@ -27,7 +28,7 @@ export default class DisclosureIndicator extends PureComponent<{}> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   disclosureIndicator: {
     width: 10,
     height: 10,
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     borderTopWidth: 2,
     borderRightWidth: 2,
-    borderColor: '#c7c7cc',
+    borderColor: colors.borderMedium,
     alignSelf: 'center',
   },
-})
+}))

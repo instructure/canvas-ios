@@ -122,8 +122,16 @@ function createHappyPathTestState () {
     refs: ['0', '1', '2', '3', '4'],
   }
 
+  const groupRefs = { pending: 0 }
+
   const courses = {
-    '100': { enrollments: enrRefs, color: '#000', course: { name: 'fancy name' }, enabledFeatures: [] },
+    '100': {
+      enrollments: enrRefs,
+      groups: groupRefs,
+      color: '#000',
+      course: { name: 'fancy name' },
+      enabledFeatures: [],
+    },
   }
 
   const subRefs = { pending: 0, refs: ['20', '30', '40'] }
@@ -235,6 +243,7 @@ test('filters out StudentViewEnrollment', () => {
       courses: {
         [course.id]: {
           enrollments: { pending: 0, refs: [student.id, testStudent.id] },
+          groups: { pending: 0 },
           enabledFeatures: [],
         },
       },

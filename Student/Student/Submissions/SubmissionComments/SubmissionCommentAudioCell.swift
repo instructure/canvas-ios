@@ -25,6 +25,11 @@ class SubmissionCommentAudioCell: UITableViewCell {
 
     let player = AudioPlayerViewController.create()
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        backgroundColor = .named(.backgroundLightest)
+    }
+
     func update(comment: SubmissionComment, parent: UIViewController) {
         accessibilityIdentifier = "SubmissionComments.audioCell.\(comment.id)"
         accessibilityLabel = String.localizedStringWithFormat(

@@ -51,6 +51,9 @@ video.mp4
 # Generated data
 fastlane/1
 bluepill/
+nightly-xcresults/
+ui-test-results/
+cache-metadata/
 
 # rn
 package-lock.json
@@ -67,6 +70,7 @@ yarn-error.log
 scripts/build_automation/release.config
 scripts/coverage/**/
 scripts/coverage/*.xcresult
+scripts/coverage/xccov.json
 scripts/translations/source
 scripts/translations/imports
 scripts/failing-test-pairs.txt
@@ -75,3 +79,4 @@ scripts/apiModelCodegen/input.json
 
 # Secrets
 **/*.xcassets/Secrets/*.dataset
+.bitrise.secrets.yml

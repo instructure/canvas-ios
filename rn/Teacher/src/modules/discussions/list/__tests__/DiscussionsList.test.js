@@ -20,10 +20,9 @@
 
 import React from 'react'
 import { ActionSheetIOS, Alert } from 'react-native'
-import renderer from 'react-test-renderer'
+import { shallow } from 'enzyme'
 
 import { DiscussionsList, mapStateToProps, type Props } from '../DiscussionsList'
-import explore from '@test/helpers/explore'
 import app from '@modules/app'
 
 jest
@@ -58,6 +57,7 @@ describe('DiscussionsList', () => {
       discussions: [],
       navigator: template.navigator(),
       courseColor: null,
+      courseName: 'Course Name',
       updateDiscussion: jest.fn(),
       refreshDiscussions: jest.fn(),
       deleteDiscussion: jest.fn(),
@@ -67,67 +67,111 @@ describe('DiscussionsList', () => {
     }
   })
 
-  it('renders', () => {
-    testRender(props)
-  })
-
-  it('renders as student app', () => {
-    props.permissions.create_discussion_topic = false
-    app.isTeacher = jest.fn(() => false)
-    testRender(props)
-  })
-
   it('renders an activity indicator while loading', () => {
-    testRender({
-      ...props,
-      pending: true,
+    let tree = shallow(<DiscussionsList {...props} pending />)
+    expect(tree.find('ActivityIndicatorView').exists()).toEqual(true)
+  })
+
+  it('uses the course color for the nav bar', () => {
+    let tree = shallow(<DiscussionsList {...props} courseColor='#fff' />)
+    expect(tree.find('Screen').prop('navBarColor')).toEqual('#fff')
+  })
+
+  it('uses the course name for the subtitle in the nav bar', () => {
+    let tree = shallow(<DiscussionsList {...props} />)
+    expect(tree.find('Screen').prop('subtitle')).toEqual(props.courseName)
+  })
+
+  it('shows the empty list when no discussions', () => {
+    let tree = shallow(<DiscussionsList {...props} />)
+    let emptyComponent = shallow(tree.find('SectionList').prop('ListEmptyComponent'))
+    expect(emptyComponent.exists()).toEqual(true)
+  })
+
+  it('sets screen display mode when trait collection changes', () => {
+    let horizontal = 'wide'
+    props.navigator.traitCollection = jest.fn((cb) => {
+      cb({
+        window: { horizontal },
+      })
     })
+    let tree = shallow(<DiscussionsList {...props} />)
+    expect(tree.state().isRegularScreenDisplayMode).toEqual(false)
+
+    let screen = tree.find('Screen')
+    horizontal = 'regular'
+    screen.simulate('traitCollectionChange')
+    expect(tree.state().isRegularScreenDisplayMode).toEqual(true)
   })
 
-  it('renders discussions', () => {
-    const one = template.discussion({ id: '1', title: 'discussion 1' })
-    const two = template.discussion({ id: '2', title: 'discussion 2' })
-    props.discussions = [one, two]
-    testRender(props)
-  })
-
-  it('renders discussions with no assignments', () => {
-    const one = template.discussion({ id: '1', title: 'discussion 1', assignment: null })
-    const two = template.discussion({ id: '2', title: 'discussion 2', assignment: null })
-    props.discussions = [one, two]
-    testRender(props)
-  })
-
-  it('renders pinned discussions', () => {
-    const one = template.discussion({ id: '1', title: 'discussion 1', pinned: true })
-    const two = template.discussion({ id: '2', title: 'discussion 2', locked: true })
-    const tre = template.discussion({ id: '3', title: 'discussion 3', locked: true, pinned: true })
-    props.discussions = [one, two, tre]
-    testRender(props)
-  })
-
-  it('navigates to discussion', () => {
-    const discussion = template.discussion({ id: '1' })
-    props.discussions = [discussion]
-    const tree = render(props).toJSON()
-
-    const row: any = explore(tree).selectByID('DiscussionListCell.1')
-    row.props.onPress()
-
-    expect(props.navigator.show).toHaveBeenCalledWith(discussion.html_url)
+  it('applies the data correctly', () => {
+    let discussions = [
+      template.discussion({ id: '1' }),
+      template.discussion({ id: '2' }),
+      template.discussion({ id: '3', assignment: null }),
+      template.discussion({ id: '4', assignment: null }),
+      template.discussion({ id: '5', pinned: true }),
+      template.discussion({ id: '6', locked: true }),
+      template.discussion({ id: '7', locked: true, pinned: true }),
+    ]
+    let tree = shallow(<DiscussionsList {...props} discussions={discussions} />)
+    expect(tree.find('SectionList').prop('sections')).toEqual([
+      {
+        key: 'C_pinned',
+        data: [discussions[4], discussions[6]],
+      },
+      {
+        key: 'B_discussion',
+        data: discussions.slice(0, 4),
+      },
+      {
+        key: 'A_locked',
+        data: [discussions[5]],
+      },
+    ])
   })
 
   it('renders in correct order', () => {
-    props.discussions = [
-      template.discussion({ id: '1', title: 'First', due_at: '2118-03-28T15:07:56.312Z' }),
-      template.discussion({ id: '2', title: 'Second', due_at: '2117-03-28T15:07:56.312Z' }),
+    let discussions = [
+      template.discussion({ id: '1', title: 'First', last_reply_at: '2117-03-28T15:07:56.312Z' }),
+      template.discussion({ id: '2', title: 'Second', last_reply_at: '2118-03-28T15:07:56.312Z' }),
     ]
-    testRender(props)
+    let tree = shallow(<DiscussionsList {...props} discussions={discussions} />)
+    let data = tree.find('SectionList').prop('sections')
+    expect(data[0].data.map(({ title }) => title)).toEqual(['Second', 'First'])
+  })
+
+  it('does not show the create button when the user does not have permission', () => {
+    props.permissions.create_discussion_topic = false
+    let tree = shallow(<DiscussionsList {...props} />)
+    expect(tree.find('Screen').prop('rightBarButtons')).toEqual(false)
+  })
+
+  it('navigates to discussion creation', () => {
+    props.navigator.show = jest.fn()
+    props.contextID = '1'
+    let tree = shallow(<DiscussionsList {...props} />)
+    const addBtn = tree.find('Screen').prop('rightBarButtons')[0]
+    expect(addBtn).not.toBeUndefined()
+    addBtn.action()
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/new', { modal: true, modalPresentationStyle: 'formsheet' })
+  })
+
+  it('navigates to a discussion on row press', () => {
+    const discussion = template.discussion({ id: '1' })
+    let row = shallow(
+      new DiscussionsList({
+        ...props,
+        discussions: [discussion],
+      }).renderRow({ item: discussion, index: 0 })
+    ).find('Row')
+    row.simulate('press')
+    expect(props.navigator.show).toHaveBeenCalledWith(discussion.html_url)
   })
 
   it('returns correct options when pinned and locked', () => {
     props.discussions = []
-    let list = render(props).getInstance()
+    let list = shallow(<DiscussionsList {...props} />).instance()
     let options = list._optionsForTogglingDiscussion(template.discussion({ id: '2', pinned: true, locked: true }))
     let expected = ['Unpin', 'Open for comments', 'Delete', 'Cancel']
     expect(options).toEqual(expected)
@@ -135,7 +179,7 @@ describe('DiscussionsList', () => {
 
   it('returns correct options when unpinned and unlocked', () => {
     props.discussions = []
-    let list = render(props).getInstance()
+    let list = shallow(<DiscussionsList {...props} />).instance()
     let options = list._optionsForTogglingDiscussion(template.discussion({ id: '2', pinned: false, locked: false }))
     let expected = ['Pin', 'Close for comments', 'Delete', 'Cancel']
     expect(options).toEqual(expected)
@@ -177,9 +221,9 @@ describe('DiscussionsList', () => {
     testActionSheet(input, expected, 3, false)
   })
 
-  it('Will ask to confirm delete discussion', () => {
+  it('confirms discussion deletion', () => {
     const input = template.discussion({ pinned: false, locked: true })
-    let list = render(props).getInstance()
+    let list = shallow(<DiscussionsList {...props} />).instance()
     list._confirmDeleteDiscussion = jest.fn()
     list._onToggleDiscussionGrouping(input)
     // $FlowFixMe
@@ -188,7 +232,7 @@ describe('DiscussionsList', () => {
     expect(list._confirmDeleteDiscussion).toHaveBeenCalledWith(input)
   })
 
-  it('deletes discussion onConfirmation', () => {
+  it('deletes a discussion', () => {
     const one = template.discussion({ id: '1', title: 'discussion 1' })
     props.discussions = [one]
     props.deleteDiscussion = jest.fn()
@@ -197,21 +241,14 @@ describe('DiscussionsList', () => {
     // $FlowFixMe
     Alert.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
     props.contextID = '1'
-    const kabob: any = explore(render(props).toJSON()).selectByID(`discussion.kabob-${props.discussions[0].id}`)
-    kabob.props.onPress()
+    let tree = shallow(new DiscussionsList({ ...props }).renderRow({ item: one, index: 0 }))
+    const kabob = tree.find(`[testID="discussion.kabob-${props.discussions[0].id}"]`)
+    kabob.simulate('press')
     expect(props.deleteDiscussion).toHaveBeenCalledWith(props.context, props.contextID, '1')
   })
 
-  it('navigates to new discussion form', () => {
-    props.navigator.show = jest.fn()
-    props.contextID = '1'
-    const addBtn: any = explore(render(props).toJSON()).selectRightBarButton('DiscussionList.newButton')
-    addBtn.action()
-    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/new', { modal: true, modalPresentationStyle: 'formsheet' })
-  })
-
   function testActionSheet (inputDiscussion: Discussion, expectedDiscussion: Discussion, buttonIndex: number, expectToCallUpdateDiscussion: boolean = true) {
-    let list = render(props).getInstance()
+    let list = shallow(<DiscussionsList {...props} />).instance()
     list._onToggleDiscussionGrouping(inputDiscussion)
     // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](buttonIndex)
@@ -219,14 +256,6 @@ describe('DiscussionsList', () => {
     if (expectToCallUpdateDiscussion) {
       expect(props.updateDiscussion).toHaveBeenCalledWith('courses', '1', expectedDiscussion)
     }
-  }
-
-  function testRender (props: Props) {
-    expect(render(props).toJSON()).toMatchSnapshot()
-  }
-
-  function render (props: Props): any {
-    return renderer.create(<DiscussionsList {...props} />)
   }
 })
 

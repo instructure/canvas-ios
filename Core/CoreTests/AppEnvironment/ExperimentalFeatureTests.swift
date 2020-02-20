@@ -19,32 +19,26 @@
 import XCTest
 @testable import Core
 
-class ExperimentalFeatureTests: XCTestCase {
-    let allEnabled = ExperimentalFeature.allEnabled
-    override func tearDown() {
-        ExperimentalFeature.allEnabled = allEnabled
+class ExperimentalFeatureTests: CoreTestCase {
+    let testFeature = ExperimentalFeature(rawValue: "testing")!
+
+    override func setUp() {
+        super.setUp()
+        testFeature.isEnabled = false
     }
 
-    func testIsEnabled() {
-        ExperimentalFeature.allEnabled = false
-        XCTAssertFalse(ExperimentalFeature(state: .disabled).isEnabled)
-        XCTAssertTrue(ExperimentalFeature(state: .enabled).isEnabled)
+    func testSettingsKey() {
+        XCTAssertEqual(testFeature.userDefaultsKey, "ExperimentalFeature.testing")
+    }
 
-        AppEnvironment.shared.currentSession = LoginSession.make(baseURL: URL(string: "https://canvas.beta.instructure.com")!)
-        XCTAssertTrue(ExperimentalFeature(state: .enabledInBeta).isEnabled)
-        AppEnvironment.shared.currentSession = LoginSession.make(baseURL: URL(string: "https://canvas.instructure.com")!)
-        XCTAssertFalse(ExperimentalFeature(state: .enabledInBeta).isEnabled)
-        AppEnvironment.shared.currentSession = nil
-        XCTAssertFalse(ExperimentalFeature(state: .enabledInBeta).isEnabled)
+    func testUsesUserDefaults() {
+        UserDefaults.standard.set(true, forKey: testFeature.userDefaultsKey)
+        XCTAssertTrue(testFeature.isEnabled)
+        UserDefaults.standard.set(false, forKey: testFeature.userDefaultsKey)
+    }
 
-        AppEnvironment.shared.currentSession = LoginSession.make(baseURL: URL(string: "https://a.edu")!)
-        XCTAssertTrue(ExperimentalFeature(state: .enabledForHosts([ "a.edu" ])).isEnabled)
-        XCTAssertFalse(ExperimentalFeature(state: .enabledForHosts([ "a.ed" ])).isEnabled)
-        XCTAssertFalse(ExperimentalFeature(state: .enabledForHosts([ "b.edu" ])).isEnabled)
-        AppEnvironment.shared.currentSession = nil
-        XCTAssertFalse(ExperimentalFeature(state: .enabledForHosts([ "a.edu" ])).isEnabled)
-
-        ExperimentalFeature.allEnabled = true
-        XCTAssertTrue(ExperimentalFeature(state: .disabled).isEnabled)
+    func testSetsUserDefaults() {
+        testFeature.isEnabled = true
+        XCTAssertTrue(UserDefaults.standard.bool(forKey: testFeature.userDefaultsKey))
     }
 }

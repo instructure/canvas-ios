@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(Sin asunto)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d de %3$d";
 
@@ -5,10 +8,19 @@
 "%@ is due at %@" = "%1$@ vence el %2$@";
 
 /* No comment provided by engineer. */
-"%@ to %@" = "%1$@ a %2$@";
+"%@ to %@" = "%1$@ para %2$@";
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ comenzará el %2$@";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@, en %2$@, el último mensaje fue el %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, no leído";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
 
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
@@ -17,10 +29,16 @@
 "Act as User" = "Actuar en nombre de Usuario";
 
 /* No comment provided by engineer. */
+"Add" = "Agregar";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "Agregar adjuntos";
+
+/* No comment provided by engineer. */
 "Add Student" = "Agregar estudiante";
 
 /* Label displayed when logged in as an admin */
-"Admin" = "Admin";
+"Admin" = "Administrador";
 
 /* Alert Section Header */
 "Alert me when:" = "Avíseme cuando:";
@@ -44,13 +62,19 @@
 "Assignment grade below" = "Calificación de la tarea inferior a";
 
 /* Assignment Missing Description */
-"Assignment missing" = "Falta la tarea";
+"Assignment missing" = "Tarea faltante";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Recordatorio de la tarea";
 
 /* No comment provided by engineer. */
 "Back" = "Volver";
+
+/* Calendar Tab */
+"Calendar" = "Calendario";
+
+/* No comment provided by engineer. */
+"Calendar Event" = "Evento del calendario";
 
 /* No comment provided by engineer. */
 "Cancel" = "Cancelar";
@@ -65,7 +89,10 @@
 "Caught up on Alerts" = "Al día en las alertas";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Elegir un alumno";
+"Choose a course to message" = "ElijaElija un curso para enviar un mensaje";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Escribir mensaje nuevo";
 
 /* Course Announcement Description */
 "Course announcements" = "Anuncios del curso";
@@ -80,13 +107,13 @@
 "Courses" = "Cursos";
 
 /* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Alumno actual: %@, toque para cambiar entre alumnos";
-
-/* No comment provided by engineer. */
-"Discussion" = "Foro";
+"Discussion" = "Foro de discusión";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Descartar";
+
+/* No comment provided by engineer. */
+"Edit Recipients" = "Editar destinatarios";
 
 /* No comment provided by engineer. */
 "Event" = "Evento";
@@ -95,10 +122,22 @@
 "Event reminder" = "Recordatorio del evento";
 
 /* No comment provided by engineer. */
-"Excused" = "Excusado";
+"Excused" = "Justificado";
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "No se pudo cargar (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"Failed. Tap for options" = "Se produjo un error. Tocar para acceder a más opciones";
+
+/* No comment provided by engineer. */
+"File" = "Archivo";
+
+/* No comment provided by engineer. */
+"for %@" = "para %@";
+
+/* No comment provided by engineer. */
+"Front Page" = "Página de inicio";
 
 /* No comment provided by engineer. */
 "Grades" = "Calificaciones";
@@ -110,10 +149,16 @@
 "High course grade cannot be lower than low course grade" = "La calificación alta del curso no puede ser más baja que la calificación baja del curso";
 
 /* No comment provided by engineer. */
-"In-Class" = "En clases";
+"In-Class" = "Presencial";
 
 /* No comment provided by engineer. */
-"Input the student pairing code provided to you." = "Introduzca el código de emparejamiento de alumno que se le proporcionó.";
+"Inbox" = "Buzón de entrada";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Buzón de entrada vacío";
+
+/* No comment provided by engineer. */
+"Input the student pairing code provided to you." = "Introduzca el código de emparejamiento de estudiante que se le proporcionó.";
 
 /* Institution Announcement Description */
 "Institution announcements" = "Anuncios de la institución";
@@ -122,16 +167,16 @@
 "Invalid Input" = "Entrada inválida";
 
 /* Last Week Button Accessibility Label */
-"Last Week" = "Semana pasada";
+"Last Week" = "Última semana";
 
 /* No comment provided by engineer. */
-"Late" = "Atrasado";
+"Late" = "Con atraso";
 
 /* No comment provided by engineer. */
-"Late: %@" = "Atrasado: %@";
+"Late: %@" = "Con atraso: %@";
 
 /* No comment provided by engineer. */
-"Late: %@ (%@/%@)" = "Atrasado: %1$@ (%2$@/%3$@)";
+"Late: %@ (%@/%@)" = "Con atraso: %1$@ (%2$@/%3$@)";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "La calificación baja de la tarea no puede ser más alta que la calificación alta de la tarea";
@@ -139,14 +184,26 @@
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "La calificación baja del curso no puede ser más alta que la calificación alta del curso";
 
-/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "Gestionar niños";
+/* No comment provided by engineer. */
+"Message" = "Mensaje";
 
 /* No comment provided by engineer. */
-"Missing" = "Falta";
+"Message from %@, %@, on %@, %@" = "Mensaje de %1$@, %2$@, el %3$@, %4$@";
 
 /* No comment provided by engineer. */
-"Missing: (-/%@)" = "Falta: (-/%@)";
+"Missing" = "Deficiente";
+
+/* No comment provided by engineer. */
+"Missing: (-/%@)" = "Deficiente: (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Faltante: %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Faltante: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Mensaje nuevo";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Próxima semana";
@@ -158,13 +215,16 @@
 "No Grade" = "Sin calificación";
 
 /* Empty Students Text */
-"No Students" = "Sin estudiantes";
+"No Students" = "No hay estudiantes";
+
+/* No comment provided by engineer. */
+"No Subject" = "Sin asunto";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Nada para esta semana";
 
 /* OK Button Title */
-"OK" = "OK";
+"OK" = "Aceptar";
 
 /* No comment provided by engineer. */
 "Pairing Code" = "Código de emparejamiento";
@@ -173,22 +233,51 @@
 "Permission Needed" = "Se necesita permiso";
 
 /* No comment provided by engineer. */
-"Quiz" = "Evaluación";
+"Quiz" = "Examen";
+
+/* No comment provided by engineer. */
+"Recipients" = "Destinatarios";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "Asunto: %@";
+
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "Asunto: %1$@, %2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "Responder";
+
+/* No comment provided by engineer. */
+"Reply All" = "Responder a todos";
+
+/* No comment provided by engineer. */
+"Retry" = "Reintentar";
+
+/* No comment provided by engineer. */
+"Send" = "Enviar";
 
 /* No comment provided by engineer. */
 "Settings" = "Configuraciones";
 
 /* No comment provided by engineer. */
-"Submitted" = "Enviado";
+"Subject" = "Asunto";
 
 /* No comment provided by engineer. */
-"Submitted: %@" = "Enviado: %@";
+"Submitted" = "Entregado";
 
 /* No comment provided by engineer. */
-"Submitted: %@ (%@/%@)" = "Enviado: %1$@ (%2$@/%3$@)";
+"Submitted: %@" = "Entregado: %@";
+
+/* No comment provided by engineer. */
+"Submitted: %@ (%@/%@)" = "Entregado: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Resumen";
 
 /* Syllabus Button Title */
-"Syllabus" = "Plan de estudio ";
+"Syllabus" = "Programa del curso";
 
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Toque para empezar a ver Canvas como otra persona.";
@@ -206,7 +295,10 @@
 "This announcement has expired." = "Este anuncio ha caducado.";
 
 /* No comment provided by engineer. */
-"This student's courses may not be published yet." = "Los cursos de este alumno no pueden publicarse todavía.";
+"This student's courses may not be published yet." = "Los cursos de este estudiante no pueden publicarse todavía.";
+
+/* No comment provided by engineer. */
+"To" = "Para";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "Problemas para iniciar sesión";
@@ -214,12 +306,15 @@
 /* No comment provided by engineer. */
 "Unread" = "No leído";
 
-/* Calendar Tab */
-"Week" = "Semana";
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "La carga de %1$@ está en %2$@";
 
 /* Header title of admin view */
 "Welcome!" = "¡Bienvenido!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Debe habilitar las notificaciones en Configuraciones para poder configurar recordatorios.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "¡Ya está al día!";
 

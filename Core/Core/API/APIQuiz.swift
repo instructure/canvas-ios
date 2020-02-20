@@ -95,6 +95,10 @@ public struct GetQuizzesRequest: APIRequestable {
 
     let courseID: String
 
+    public init (courseID: String) {
+        self.courseID = courseID
+    }
+
     public var path: String {
         let context = ContextModel(.course, id: courseID)
         return "\(context.pathComponent)/quizzes?per_page=100"
@@ -126,5 +130,20 @@ public struct GetQuizSubmissionRequest: APIRequestable {
     public var path: String {
         let context = ContextModel(.course, id: courseID)
         return "\(context.pathComponent)/quizzes/\(quizID)/submission"
+    }
+}
+
+// https://canvas.instructure.com/doc/api/quiz_submissions.html#method.quizzes/quiz_submissions_api.index
+public struct GetAllQuizSubmissionsRequest: APIRequestable {
+    public struct Response: Codable {
+        let quiz_submissions: [APIQuizSubmission]
+    }
+
+    let courseID: String
+    let quizID: String
+
+    public var path: String {
+        let context = ContextModel(.course, id: courseID)
+        return "\(context.pathComponent)/quizzes/\(quizID)/submissions"
     }
 }

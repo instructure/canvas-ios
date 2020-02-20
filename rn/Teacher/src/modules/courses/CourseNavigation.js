@@ -143,13 +143,9 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
 
   selectTab = (tab: Tab) => {
     logEvent('course_tab_selected', { tabId: tab.id })
-    if (tab.id === this.props.attendanceTabID && tab.url && this.props.course) {
-      this.props.navigator.show('/attendance', {}, {
-        launchURL: tab.url,
-        courseName: this.props.course.name,
-        courseID: this.props.courseID,
-        courseColor: processColor(this.props.color),
-      })
+    if (tab.id === this.props.attendanceTabID && this.props.course) {
+      const toolID = tab.id.replace('context_external_tool_', '')
+      this.props.navigator.show(`/courses/${this.props.courseID}/attendance/${toolID}`)
     } else {
       if (tab.type === 'external' && tab.url) {
         LTITools.launchExternalTool(tab.url)
@@ -328,7 +324,7 @@ export let Refreshed: any = refresh(
     if (isTeacher()) {
       props.refreshLTITools(props.courseID)
     }
-    props.refreshCourses()
+    props.refreshCourse(props.courseID)
     props.refreshTabs(props.courseID)
     props.getUserSettings()
     props.getCoursePermissions(props.courseID)

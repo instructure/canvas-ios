@@ -28,7 +28,7 @@ exports[`Render the base row 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "minHeight": 54,
@@ -38,15 +38,16 @@ exports[`Render the base row 1`] = `
           "paddingTop": 12,
         },
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
         },
+        undefined,
       ]
     }
   >
     <Image
       source={
         Object {
-          "testUri": "../../../src/images/course/Assignment.png",
+          "testUri": "../../../src/images/invisible.png",
         }
       }
       style={
@@ -87,6 +88,7 @@ exports[`Render the base row 1`] = `
             },
             Array [
               Object {
+                "color": "#2D3B45",
                 "fontWeight": "600",
               },
             ],
@@ -139,7 +141,7 @@ exports[`Render the base row 1`] = `
               Object {
                 "alignSelf": "center",
                 "backgroundColor": "transparent",
-                "borderColor": "#c7c7cc",
+                "borderColor": "#C7CDD1",
                 "borderRightWidth": 2,
                 "borderTopWidth": 2,
                 "height": 10,

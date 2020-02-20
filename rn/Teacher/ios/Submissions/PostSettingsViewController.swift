@@ -39,6 +39,7 @@ class PostSettingsViewController: HorizontalMenuViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .named(.backgroundLightest)
         title = NSLocalizedString("Post Settings", comment: "")
 
         delegate = self

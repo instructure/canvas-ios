@@ -23,7 +23,7 @@ exports[`Render row with switch 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "minHeight": 54,
@@ -33,8 +33,9 @@ exports[`Render row with switch 1`] = `
           "paddingTop": 12,
         },
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
         },
+        undefined,
       ]
     }
   >
@@ -63,6 +64,7 @@ exports[`Render row with switch 1`] = `
             },
             Array [
               Object {
+                "color": "#2D3B45",
                 "fontWeight": "600",
               },
             ],

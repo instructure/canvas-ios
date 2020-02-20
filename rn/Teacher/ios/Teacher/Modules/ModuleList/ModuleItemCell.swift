@@ -31,6 +31,7 @@ class ModuleItemCell: UITableViewCell {
 
     var item: ModuleItem? {
         didSet {
+            backgroundColor = .named(.backgroundLightest)
             nameLabel.text = item?.title
             iconView.image = item?.type?.icon
             publishedIconView.published = item?.published

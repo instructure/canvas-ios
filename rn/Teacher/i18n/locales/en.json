@@ -92,9 +92,6 @@
   "all_in_e5ddaee0": {
     "message": "All in"
   },
-  "all_people_16d90b41": {
-    "message": "All People"
-  },
   "all_submissions_3eedfb97": {
     "message": "All submissions"
   },
@@ -106,6 +103,9 @@
   },
   "allow_threaded_replies_43b2311e": {
     "message": "Allow threaded replies"
+  },
+  "allow_users_to_comment_45b8f753": {
+    "message": "Allow users to comment"
   },
   "allowed_attempts_4e229caa": {
     "message": "Allowed Attempts"
@@ -464,9 +464,6 @@
   "description_436c48d7": {
     "message": "Description"
   },
-  "designer_c458392": {
-    "message": "Designer"
-  },
   "details_98a31b68": {
     "message": "Details"
   },
@@ -643,9 +640,6 @@
   },
   "filter_numselected_number_2e4c17e3": {
     "message": "Filter ({ numSelected, number })"
-  },
-  "filter_people_b34b567b": {
-    "message": "Filter People"
   },
   "filter_submissions_numselected_number_selected_177867b3": {
     "message": "Filter Submissions. ({ numSelected, number }) selected."
@@ -932,6 +926,9 @@
   "name_profile_240f0967": {
     "message": "{ name } Profile"
   },
+  "name_pronouns_8d5a0061": {
+    "message": "{ name } ({ pronouns })"
+  },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } more"
   },
@@ -1034,9 +1031,6 @@
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# Minute}\n  other {# Minutes}\n}"
   },
-  "observer_248a192e": {
-    "message": "Observer"
-  },
   "off_5385ef3f": {
     "message": "Off"
   },
@@ -1069,6 +1063,9 @@
   },
   "only_available_to_students_with_link_not_available_c12278d2": {
     "message": "Only available to students with link. Not available in student files."
+  },
+  "only_members_232519d6": {
+    "message": "Only members"
   },
   "only_once_after_each_attempt_cc842738": {
     "message": "Only Once After Each Attempt"
@@ -1123,9 +1120,6 @@
   },
   "past_enrollments_a846da48": {
     "message": "Past Enrollments"
-  },
-  "people_b4ebb13c": {
-    "message": "People"
   },
   "percent_d7ddd35b": {
     "message": "Percent (%)"
@@ -1472,9 +1466,6 @@
   "syllabus_f191f65b": {
     "message": "Syllabus"
   },
-  "ta_8d966626": {
-    "message": "TA"
-  },
   "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
     "message": "Tap and hold a rubric number to see its description"
   },
@@ -1486,9 +1477,6 @@
   },
   "tap_to_view_submissions_list_5bfe32f3": {
     "message": "Tap to view submissions list."
-  },
-  "teacher_5a73b637": {
-    "message": "Teacher"
   },
   "teachers_52e2423f": {
     "message": "Teachers"
@@ -1609,6 +1597,9 @@
   },
   "this_criterion_will_not_impact_the_score_94adf77b": {
     "message": "This criterion will not impact the score."
+  },
+  "this_file_is_currently_locked_6dc6635f": {
+    "message": "This file is currently locked."
   },
   "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
     "message": "This file must have usage rights set before it can be published."

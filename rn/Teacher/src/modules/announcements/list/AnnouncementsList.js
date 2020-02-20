@@ -39,6 +39,7 @@ import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 import { Text } from '../../../common/text'
 import { isRegularDisplayMode } from '../../../routing/utils'
 import type { TraitCollection } from '../../../routing/Navigator'
+import { createStyleSheet } from '../../../common/stylesheet'
 
 const { refreshCourse } = CourseActions
 const { refreshAnnouncements } = ListActions
@@ -199,8 +200,8 @@ export function mapStateToProps ({ entities }: AppState, { context, contextID }:
     announcements = refs
       .map(ref => entities.discussions[ref].data)
       .sort((a1, a2) => {
-        if (a1.position === a2.position) return 0
-        return a1.position > a2.position ? -1 : 1
+        if (a1.posted_at === a2.posted_at) return 0
+        return a1.posted_at > a2.posted_at ? -1 : 1
       })
   }
 
@@ -227,13 +228,13 @@ export const Refreshed = refresh(
 const Connected = connect(mapStateToProps, Actions)(Refreshed)
 export default (Connected: Component<Props, any>)
 
-const style = StyleSheet.create({
+const style = createStyleSheet(colors => ({
   subtitleContainer: {
     flex: 1,
     flexDirection: 'row',
   },
   subtitle: {
-    color: '#8B969E',
+    color: colors.textDark,
     fontSize: 14,
     marginTop: 2,
   },
@@ -241,4 +242,4 @@ const style = StyleSheet.create({
   delay: {
     fontWeight: '600',
   },
-})
+}))

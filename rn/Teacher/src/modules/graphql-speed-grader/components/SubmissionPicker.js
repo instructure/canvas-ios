@@ -21,7 +21,6 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   Image,
   TouchableHighlight,
   PickerIOS,
@@ -32,9 +31,8 @@ import type {
   SubmissionDataProps,
 } from '../../submissions/list/submission-prop-types'
 import { formattedDueDate } from '../../../common/formatters'
-import brand from '../../../common/branding'
 import icon from '../../../images/inst-icons'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 
 var PickerItemIOS = PickerIOS.Item
 
@@ -70,13 +68,13 @@ export default class SubmissionPicker extends Component<SubmissionPickerProps, S
       let selected = submission.submissionHistory.edges[this.props.selectedIndex].submission
       return <View style={styles.container}>
         <TouchableHighlight
-          underlayColor='white'
+          underlayColor={colors.backgroundLightest}
           onPress={this._togglePicker}
           testID='header.toggle-submission_history-picker'
           accessibilityTraits='button'
         >
           <View style={styles.submissionHistoryContainer}>
-            <Text style={[styles.submissionDate, this.state.showingPicker && { color: brand.primaryBrandColor }]}>
+            <Text style={[styles.submissionDate, this.state.showingPicker && { color: colors.primary }]}>
               {formattedDueDate(new Date((selected && selected.submittedAt) || ''))}
             </Text>
             <Image source={icon('miniArrowDown', 'line')} style={[styles.arrow, this.state.showingPicker && styles.arrowSelecting]} />
@@ -113,12 +111,12 @@ export default class SubmissionPicker extends Component<SubmissionPickerProps, S
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   container: {
     marginTop: 16,
     paddingHorizontal: 16,
-    borderBottomColor: '#D8D8D8',
-    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
+    borderBottomWidth: vars.hairlineWidth,
     borderStyle: 'solid',
     paddingBottom: 4,
   },
@@ -131,7 +129,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   submissionDate: {
-    color: '#8B969E',
+    color: colors.textDark,
     fontSize: 14,
     fontWeight: '500',
   },
@@ -139,14 +137,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: 16,
     height: 10,
-    tintColor: colors.grey4,
+    tintColor: colors.textDark,
   },
   arrowSelecting: {
     transform: [
       { rotate: '180deg' },
     ],
   },
-})
+}))
 
 type RouterProps = {
   submissionID: ?string,

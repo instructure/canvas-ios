@@ -25,6 +25,8 @@ extension APIModule {
         name: String = "Module 1",
         position: Int = 1,
         published: Bool = true,
+        prerequisite_module_ids: [String] = [],
+        state: ModuleState? = nil,
         items: [APIModuleItem]? = nil
     ) -> APIModule {
         return APIModule(
@@ -32,6 +34,8 @@ extension APIModule {
             name: name,
             position: position,
             published: published,
+            prerequisite_module_ids: prerequisite_module_ids,
+            state: state,
             items: items
         )
     }
@@ -48,7 +52,8 @@ extension APIModuleItem {
         html_url: URL? = URL(string: "https://canvas.example.edu/courses/222/modules/items/768"),
         url: URL? = URL(string: "https://canvas.example.edu/api/v1/courses/222/assignments/987"),
         published: Bool? = nil,
-        content_details: ContentDetails = .make()
+        content_details: ContentDetails = .make(),
+        completion_requirement: CompletionRequirement? = nil
     ) -> APIModuleItem {
         return APIModuleItem(
             id: id,
@@ -60,17 +65,32 @@ extension APIModuleItem {
             html_url: html_url,
             url: url,
             published: published,
-            content_details: content_details
+            content_details: content_details,
+            completion_requirement: completion_requirement
         )
     }
 }
 
 extension APIModuleItem.ContentDetails {
     public static func make(
-        due_at: Date? = nil
+        due_at: Date? = nil,
+        locked_for_user: Bool? = nil,
+        lock_explanation: String? = nil
     ) -> APIModuleItem.ContentDetails {
         return APIModuleItem.ContentDetails(
-            due_at: due_at
+            due_at: due_at,
+            locked_for_user: locked_for_user,
+            lock_explanation: lock_explanation
         )
+    }
+}
+
+extension APIModuleItem.CompletionRequirement {
+    public static func make(
+        type: CompletionRequirementType = .must_view,
+        completed: Bool? = false,
+        min_score: Double? = nil
+    ) -> APIModuleItem.CompletionRequirement {
+        return APIModuleItem.CompletionRequirement(type: type, completed: completed, min_score: min_score)
     }
 }

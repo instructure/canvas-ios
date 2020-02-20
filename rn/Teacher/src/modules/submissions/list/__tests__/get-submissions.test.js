@@ -136,8 +136,13 @@ test('submissions', () => {
     refs: ['0', '1', '2', '3', '4', '6', '7', '8'],
   }
 
+  const groupRefs = { pending: 0 }
+
   const courses = {
-    '100': { enrollments: enrRefs },
+    '100': {
+      enrollments: enrRefs,
+      groups: groupRefs,
+    },
   }
 
   const subRefs = { pending: 0, refs: ['10', '20', '30', '40', '50'] }
@@ -213,8 +218,13 @@ test('doesnt return submissions if we have enrollments but no submissions yet', 
     refs: ['1'],
   }
 
+  const groupRefs = { pending: 0 }
+
   const courses = {
-    '100': { enrollments: enrRefs },
+    '100': {
+      enrollments: enrRefs,
+      groups: groupRefs,
+    },
   }
 
   const subRefs = { pending: 0, refs: [] }
@@ -298,8 +308,16 @@ test('can work on group assignments', () => {
     refs: ['1', '2', '3'],
   }
 
+  const groupRefs = {
+    pending: 0,
+    refs: ['1'],
+  }
+
   const courses = {
-    '100': { enrollments: enrRefs },
+    '100': {
+      enrollments: enrRefs,
+      groups: groupRefs,
+    },
   }
 
   const subRefs = { pending: 0, refs: ['10', '20'] }

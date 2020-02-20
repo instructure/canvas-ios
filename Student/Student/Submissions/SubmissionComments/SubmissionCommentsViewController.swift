@@ -57,6 +57,8 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .named(.backgroundLightest)
+        tableView?.backgroundColor = .named(.backgroundLightest)
         addCommentBorderView?.backgroundColor = .named(.backgroundLightest)
         addCommentBorderView?.layer.borderColor = UIColor.named(.borderMedium).cgColor
         addCommentBorderView?.layer.borderWidth = 1 / UIScreen.main.scale
@@ -82,14 +84,9 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
     }
 
     func setInsets() {
-        guard let view = addCommentView, !view.isHidden else {
-            tableView?.contentInset = .zero
-            tableView?.scrollIndicatorInsets = .zero
-            return
-        }
         // Remember top & bottom are flipped by the transform.
-        tableView?.contentInset = UIEdgeInsets(top: view.frame.height, left: 0, bottom: 0, right: 0)
-        tableView?.scrollIndicatorInsets = UIEdgeInsets(top: view.frame.height, left: 0, bottom: 0, right: 0)
+        tableView?.contentInset = UIEdgeInsets(top: addCommentView?.frame.height ?? 0, left: 0, bottom: 0, right: 0)
+        tableView?.scrollIndicatorInsets = UIEdgeInsets(top: addCommentView?.frame.height ?? 0, left: 0, bottom: 0, right: 0)
     }
 
     @IBAction func addCommentButtonPressed(_ sender: UIButton) {
@@ -193,10 +190,6 @@ extension SubmissionCommentsViewController: UIImagePickerControllerDelegate, UIN
 
 extension SubmissionCommentsViewController: SubmissionCommentsViewProtocol {
     func reload() {
-        if let assignment = presenter?.assignment.first {
-            addCommentView?.isHidden = !assignment.isOpenForSubmissions()
-            setInsets()
-        }
         emptyContainer?.isHidden = presenter?.comments.isEmpty == false
         guard let changes = presenter?.comments.changes, changes.count == 1 else {
             tableView?.reloadData()
@@ -286,7 +279,7 @@ extension SubmissionCommentsViewController: FilePickerControllerDelegate {
     }
 
     func canSubmit(_ controller: FilePickerViewController) -> Bool {
-        return controller.files?.isEmpty == false
+        return controller.files.isEmpty == false
     }
 
     func cancel(_ controller: FilePickerViewController) {

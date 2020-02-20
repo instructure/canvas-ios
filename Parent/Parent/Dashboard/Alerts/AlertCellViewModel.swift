@@ -17,8 +17,8 @@
 //
 
 import Foundation
-
 import CanvasCore
+import Core
 
 struct AlertCellViewModel: TableViewCellViewModel {
 
@@ -72,13 +72,13 @@ struct AlertCellViewModel: TableViewCellViewModel {
         switch alert.type {
         case .institutionAnnouncement, .courseAnnouncement:
             imageName = "icon_announcements_fill"
-            color = UIColor.parentBlueColor()
+            color = UIColor.named(.textInfo)
         case .assignmentMissing, .assignmentGradeLow, .courseGradeLow:
             imageName = "icon_alert_fill"
-            color = UIColor.parentRedColor()
+            color = UIColor.named(.textDanger)
         case .assignmentGradeHigh, .courseGradeHigh:
             imageName = "icon_favorite_fill"
-            color = UIColor.parentBlueColor()
+            color = UIColor.named(.textInfo)
         }
 
         switch alert.type {

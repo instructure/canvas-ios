@@ -21,6 +21,10 @@ import Foundation
 public struct Route: Equatable {
     public let url: URLComponents
 
+    private init(url: URLComponents) {
+        self.url = url
+    }
+
     init(_ path: String) {
         url = .parse(path)
     }
@@ -28,6 +32,12 @@ public struct Route: Equatable {
     /// Used only in Parent app (not web)
     public static func accountNotification(_ id: String) -> Route {
         return Route("/accounts/self/users/self/account_notifications/\(id)")
+    }
+
+    public static let conversations = Route("/conversations")
+
+    public static func conversation(_ conversationID: String) -> Route {
+        return Route("/conversations/\(conversationID)")
     }
 
     public static let courses = Route("/courses")
@@ -56,6 +66,10 @@ public struct Route: Equatable {
     /// Used only in Parent app (not web)
     public static func courseCalendarEvent(courseID: String, eventID: String) -> Route {
         return Route("/courses/\(courseID)/calendar_events/\(eventID)")
+    }
+
+    public static func actionableItemCalendarEvent(eventID: String) -> Route {
+        return Route("/calendar_events/\(eventID)")
     }
 
     public static func courseDiscussion(courseID: String, topicID: String) -> Route {
@@ -106,7 +120,16 @@ public struct Route: Equatable {
 
     public static let profile = Route("/profile")
 
-    public static let profileObservees = Route("/profile/observees")
+    public static func profileObservees( showAddStudentPrompt: Bool? = nil ) -> Route {
+        var path = URLComponents()
+        path.path = "/profile/observees"
+        var queryItems: [URLQueryItem] = []
+        if let show = showAddStudentPrompt, show {
+            queryItems.append(URLQueryItem(name: "showPrompt", value: "true"))
+        }
+        if !queryItems.isEmpty { path.queryItems = queryItems }
+        return Route(url: path)
+    }
 
     public static let profileSettings = Route("/profile/settings")
 
@@ -141,7 +164,12 @@ public struct Route: Equatable {
         return Route("/support/\(type)")
     }
 
+    public static func showFile(fileID: String) -> Route {
+        return Route("/files/\(fileID)/download")
+    }
+
     public static let developerMenu = Route("/dev-menu")
+    public static let experimentalFeatures = Route("/dev-menu/experimental-features")
 
     public static func termsOfService(forAccount accountID: String = "self") -> Route {
         return Route("/accounts/\(accountID)/terms_of_service")

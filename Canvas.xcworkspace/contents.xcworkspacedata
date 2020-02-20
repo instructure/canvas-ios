@@ -16,6 +16,13 @@
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
+   <Group
+      location = "group:rn"
+      name = "rn">
+      <FileRef
+         location = "group:Teacher">
+      </FileRef>
+   </Group>
    <FileRef
       location = "group:Student/Student.xcodeproj">
    </FileRef>
@@ -25,7 +32,17 @@
    <FileRef
       location = "group:TestsFoundation/TestsFoundation.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:NightlyTests.xctestplan">
-   </FileRef>
+   <Group
+      location = "container:TestPlans"
+      name = "TestPlans">
+      <FileRef
+         location = "group:NightlyTests.xctestplan">
+      </FileRef>
+      <FileRef
+         location = "group:/Users/acobb/src/canvas-ios/TestPlans/Beta.xctestplan">
+      </FileRef>
+      <FileRef
+         location = "group:IPadTests.xctestplan">
+      </FileRef>
+   </Group>
 </Workspace>

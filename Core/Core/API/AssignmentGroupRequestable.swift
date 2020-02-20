@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+// https://canvas.instructure.com/doc/api/assignment_groups.html#method.assignment_groups.index
 public struct GetAssignmentGroupsRequest: APIRequestable {
     public typealias Response = [APIAssignmentGroup]
 
@@ -26,11 +27,13 @@ public struct GetAssignmentGroupsRequest: APIRequestable {
     let courseID: String
     let gradingPeriodID: String?
     let include: [Include]
+    let perPage: Int?
 
-    init(courseID: String, gradingPeriodID: String? = nil, include: [Include] = []) {
+    init(courseID: String, gradingPeriodID: String? = nil, include: [Include] = [], perPage: Int? = nil) {
         self.courseID = courseID
         self.gradingPeriodID = gradingPeriodID
         self.include = include
+        self.perPage = perPage
     }
 
     public var path: String {
@@ -38,16 +41,15 @@ public struct GetAssignmentGroupsRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        var q: [APIQueryItem] = [ .value("per_page", "99") ]
-
-        if !include.isEmpty {
-            q.append( .array("include", include.map { $0.rawValue }) )
-        }
-
+        var query: [APIQueryItem] = [
+            .include(include.map { $0.rawValue }),
+        ]
         if let gradingPeriodID = gradingPeriodID {
-            q.append( .value("grading_period_id", gradingPeriodID))
+            query.append(.value("grading_period_id", gradingPeriodID))
         }
-
-        return q
+        if let perPage = perPage {
+            query.append(.value("per_page", String(perPage)))
+        }
+        return query
     }
 }

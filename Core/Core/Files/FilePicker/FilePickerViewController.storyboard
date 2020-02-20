@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--File Picker View Controller-->
+        <scene sceneID="3GB-lY-EAg">
+            <objects>
+                <viewController storyboardIdentifier="FilePickerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="322-BI-Xkc" customClass="FilePickerViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="d2d-X9-ntc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PJu-Wl-5yf" userLabel="Content">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="724"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ivp-6e-qcJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="724"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KBk-nG-lHe" customClass="FilePickerProgressView" customModule="Core" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="Tq4-1T-32v"/>
+                                                </constraints>
+                                            </view>
+                                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GfU-Vo-pWl" customClass="DividerView" customModule="Core" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="70" width="414" height="1"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="eIm-fQ-lEG"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pZl-T1-Myp">
+                                                <rect key="frame" x="0.0" y="71" width="414" height="653"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FilePickerCell" id="pcl-I5-RWL" customClass="FilePickerCell" customModule="Core" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="414" height="89.5"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pcl-I5-RWL" id="ZS2-mP-O7B">
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="89.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mGL-9R-YWD">
+                                                                    <rect key="frame" x="16" y="23" width="382" height="43.5"/>
+                                                                    <subviews>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Dhw-5t-pcT">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="334" height="43.5"/>
+                                                                            <subviews>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayS-WB-6W3" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="334" height="20.5"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                    <nil key="textColor"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                    <userDefinedRuntimeAttributes>
+                                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                                                                    </userDefinedRuntimeAttributes>
+                                                                                </label>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TbO-YC-yC8" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                                                    <rect key="frame" x="0.0" y="22.5" width="334" height="21"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                    <nil key="textColor"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                    <userDefinedRuntimeAttributes>
+                                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
+                                                                                    </userDefinedRuntimeAttributes>
+                                                                                </label>
+                                                                            </subviews>
+                                                                        </stackView>
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="251" image="troubleSolid" translatesAutoresizingMaskIntoConstraints="NO" id="dQm-mE-bZr" customClass="IconView" customModule="Core" customModuleProvider="target">
+                                                                            <rect key="frame" x="334" y="0.0" width="48" height="43.5"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="warning"/>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="textDanger"/>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                        </imageView>
+                                                                    </subviews>
+                                                                </stackView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="mGL-9R-YWD" secondAttribute="trailing" constant="16" id="EIg-La-3tv"/>
+                                                                <constraint firstItem="mGL-9R-YWD" firstAttribute="top" secondItem="ZS2-mP-O7B" secondAttribute="topMargin" constant="12" id="FvY-Iz-QwT"/>
+                                                                <constraint firstAttribute="bottomMargin" secondItem="mGL-9R-YWD" secondAttribute="bottom" constant="12" id="LBt-dj-Xdo"/>
+                                                                <constraint firstItem="mGL-9R-YWD" firstAttribute="leading" secondItem="ZS2-mP-O7B" secondAttribute="leading" constant="16" id="p3Z-Um-aV4"/>
+                                                            </constraints>
+                                                        </tableViewCellContentView>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="fullDivider" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="errorIcon" destination="dQm-mE-bZr" id="r1l-c5-s3I"/>
+                                                            <outlet property="nameLabel" destination="ayS-WB-6W3" id="xpv-iw-RfI"/>
+                                                            <outlet property="subtitleLabel" destination="TbO-YC-yC8" id="X9O-Te-gXV"/>
+                                                        </connections>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="322-BI-Xkc" id="kfk-Jg-FEQ"/>
+                                                    <outlet property="delegate" destination="322-BI-Xkc" id="bJQ-eU-rZh"/>
+                                                </connections>
+                                            </tableView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Ivp-6e-qcJ" secondAttribute="bottom" id="R5u-Un-4WI"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ivp-6e-qcJ" secondAttribute="trailing" id="Sr0-4s-Wgu"/>
+                                    <constraint firstItem="Ivp-6e-qcJ" firstAttribute="leading" secondItem="PJu-Wl-5yf" secondAttribute="leading" id="iCW-PH-ZhU"/>
+                                    <constraint firstItem="Ivp-6e-qcJ" firstAttribute="top" secondItem="PJu-Wl-5yf" secondAttribute="top" id="qSt-W8-0GA"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uej-Jh-rpx" customClass="EmptyView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="724"/>
+                                <accessibility key="accessibilityConfiguration" identifier="FilePicker.emptyView"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Choose a File"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="bodyText" value="Attach files to your submission by tapping an option below."/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="imageWidth">
+                                        <real key="value" value="141"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="imageHeight">
+                                        <real key="value" value="126"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="imageName" value="PandaFilePicker"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RNN-Ca-8UT" customClass="DividerView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="724" width="414" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="uFL-yt-qk5"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <tabBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SnX-m6-lex">
+                                <rect key="frame" x="0.0" y="725" width="414" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="delegate" destination="322-BI-Xkc" id="AFq-N1-ilU"/>
+                                </connections>
+                            </tabBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="RNN-Ca-8UT" firstAttribute="top" secondItem="PJu-Wl-5yf" secondAttribute="bottom" id="0Y0-ZF-V7D"/>
+                            <constraint firstItem="RNN-Ca-8UT" firstAttribute="leading" secondItem="lJn-4R-3UW" secondAttribute="leading" id="8XA-eH-4r2"/>
+                            <constraint firstItem="PJu-Wl-5yf" firstAttribute="top" secondItem="lJn-4R-3UW" secondAttribute="top" id="AVl-WB-tDP"/>
+                            <constraint firstItem="lJn-4R-3UW" firstAttribute="trailing" secondItem="uej-Jh-rpx" secondAttribute="trailing" id="Mk5-08-zdW"/>
+                            <constraint firstItem="PJu-Wl-5yf" firstAttribute="leading" secondItem="lJn-4R-3UW" secondAttribute="leading" id="ODM-UP-AeQ"/>
+                            <constraint firstItem="uej-Jh-rpx" firstAttribute="leading" secondItem="lJn-4R-3UW" secondAttribute="leading" id="QZS-Us-HWi"/>
+                            <constraint firstItem="SnX-m6-lex" firstAttribute="leading" secondItem="lJn-4R-3UW" secondAttribute="leading" id="WaJ-Go-rTM"/>
+                            <constraint firstItem="RNN-Ca-8UT" firstAttribute="top" secondItem="uej-Jh-rpx" secondAttribute="bottom" id="feR-Ff-635"/>
+                            <constraint firstItem="lJn-4R-3UW" firstAttribute="bottom" secondItem="SnX-m6-lex" secondAttribute="bottom" id="gRF-SO-8nN"/>
+                            <constraint firstItem="SnX-m6-lex" firstAttribute="top" secondItem="RNN-Ca-8UT" secondAttribute="bottom" id="mYn-wk-f49"/>
+                            <constraint firstItem="uej-Jh-rpx" firstAttribute="top" secondItem="lJn-4R-3UW" secondAttribute="top" id="o2F-WY-out"/>
+                            <constraint firstItem="SnX-m6-lex" firstAttribute="trailing" secondItem="lJn-4R-3UW" secondAttribute="trailing" id="sjm-f3-ehF"/>
+                            <constraint firstItem="lJn-4R-3UW" firstAttribute="trailing" secondItem="PJu-Wl-5yf" secondAttribute="trailing" id="wXN-qV-15y"/>
+                            <constraint firstItem="lJn-4R-3UW" firstAttribute="trailing" secondItem="RNN-Ca-8UT" secondAttribute="trailing" id="xU3-VY-gp5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lJn-4R-3UW"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="contentView" destination="PJu-Wl-5yf" id="SV4-ys-mkM"/>
+                        <outlet property="dividerView" destination="RNN-Ca-8UT" id="1dK-FV-3C2"/>
+                        <outlet property="emptyView" destination="uej-Jh-rpx" id="q50-gn-6ng"/>
+                        <outlet property="progressView" destination="KBk-nG-lHe" id="Sta-OD-3hq"/>
+                        <outlet property="sourcesTabBar" destination="SnX-m6-lex" id="Etu-fY-0Wz"/>
+                        <outlet property="tableView" destination="pZl-T1-Myp" id="yF6-gT-KzF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7HU-fZ-iXh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-655.20000000000005" y="-77.811094452773617"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="troubleSolid" width="24" height="24"/>
+    </resources>
+</document>

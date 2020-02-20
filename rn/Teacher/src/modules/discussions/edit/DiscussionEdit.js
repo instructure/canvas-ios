@@ -22,7 +22,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ReactNative, {
   View,
-  StyleSheet,
   LayoutAnimation,
   PickerIOS,
   DatePickerIOS,
@@ -38,7 +37,7 @@ import RowWithTextInput from '../../../common/components/rows/RowWithTextInput'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import RowWithDetail from '../../../common/components/rows/RowWithDetail'
 import RowWithDateInput from '../../../common/components/rows/RowWithDateInput'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
 import Images from '../../../images'
 import ModalOverlay from '../../../common/components/ModalOverlay'
@@ -124,14 +123,14 @@ export class DiscussionEdit extends Component<Props, any> {
       title: props.title,
       message: props.message,
       published: props.published,
-      discussion_type: props.discussion_type || 'side_comment',
+      discussion_type: props.discussion_type ?? 'side_comment',
       subscribed: props.subscribed,
       require_initial_post: props.require_initial_post,
       lock_at: props.lock_at,
       delayed_post_at: props.delayed_post_at,
       assignment: props.assignment,
-      points_possible: assignment ? assignment.points_possible : null,
-      grading_type: assignment ? assignment.grading_type : 'points',
+      points_possible: assignment?.points_possible,
+      grading_type: assignment?.grading_type ?? 'points',
       can_unpublish: props.can_unpublish == null || props.can_unpublish,
       gradingTypePickerShown: false,
       showingDatePicker: {
@@ -183,7 +182,7 @@ export class DiscussionEdit extends Component<Props, any> {
         title: props.title,
         message: props.message,
         published: props.published,
-        discussion_type: props.discussion_type || 'side_comment',
+        discussion_type: props.discussion_type ?? 'side_comment',
         subscribed: props.subscribed,
         require_initial_post: props.require_initial_post,
         lock_at: props.lock_at,
@@ -217,8 +216,8 @@ export class DiscussionEdit extends Component<Props, any> {
             accessibilityLabel: i18n('Edit attachment ({count})', { count: this.state.attachment ? '1' : i18n('none') }),
             badge: this.state.attachment && {
               text: '1',
-              backgroundColor: processColor('#008EE2'),
-              textColor: processColor('white'),
+              backgroundColor: processColor(colors.backgroundInfo),
+              textColor: processColor(colors.white),
             },
           } : null,
         ]}
@@ -317,7 +316,7 @@ export class DiscussionEdit extends Component<Props, any> {
                   inputWidth={200}
                   onChangeText={this._valueChanged('points_possible')}
                   keyboardType='number-pad'
-                  defaultValue={(this.state.points_possible && String(this.state.points_possible)) || '0'}
+                  defaultValue={String(this.state.points_possible ?? 0)}
                   onFocus={this._scrollToInput}
                   testID='DiscussionEdit.pointsField'
                 />
@@ -566,23 +565,23 @@ export class DiscussionEdit extends Component<Props, any> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: colors.backgroundGrouped,
   },
   description: {
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: colors.seperatorColor,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.seperatorColor,
-    backgroundColor: 'white',
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
+    backgroundColor: colors.backgroundLightest,
     height: 200,
   },
   deleteButtonTitle: {
-    color: '#EE0612',
+    color: colors.textDanger,
   },
-})
+}))
 
 export function mapStateToProps ({ entities }: AppState, { context, contextID, discussionID }: OwnProps): State {
   let discussion = {}

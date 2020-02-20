@@ -61,7 +61,7 @@ extension ModuleItem {
             case let .externalURL(url):
                 progress = Progress(kind: kind, contextID: contextID, itemType: .url, itemID: url.absoluteString)
             case let .file(id):
-                progress = Progress(kind: kind, contextID: contextID, itemType: .externalTool, itemID: id)
+                progress = Progress(kind: kind, contextID: contextID, itemType: .file, itemID: id)
             case let .page(url):
                 progress = Progress(kind: kind, contextID: contextID, itemType: .page, itemID: url)
             case let .quiz(id):
@@ -119,7 +119,7 @@ extension ModuleItem {
         session.refreshScope.invalidateCache(Module.collectionCacheKey(context: context, courseID: courseID))
         session.refreshScope.invalidateCache(Module.detailsCacheKey(context: context, courseID: courseID, moduleID: moduleID))
         let dependentModules: [Module] = try context.findAll(matchingPredicate: Module.predicate(withPrerequisite: moduleID))
-        let dependentModuleIDs = Set(dependentModules.map { $0.id })
+        let dependentModuleIDs = Set(dependentModules.map { $0.id } + [moduleID])
         dependentModuleIDs.forEach {
             session.refreshScope.invalidateCache(Module.detailsCacheKey(context: context, courseID: courseID, moduleID: $0))
         }
@@ -156,11 +156,11 @@ extension ModuleItem {
             // using only the `itemID` and the `completionRequirement`.
             let id = NSCompoundPredicate(orPredicateWithSubpredicates: [contentID, pageURL, externalURL, url])
             return NSCompoundPredicate(andPredicateWithSubpredicates: [id, requirement, incomplete, unlocked])
-        case .assignment, .file, .quiz, .discussion:
+        case .assignment, .file, .quiz, .discussion, .externalTool:
             return NSCompoundPredicate(andPredicateWithSubpredicates: [contentID, predicate])
         case .page:
             return NSCompoundPredicate(andPredicateWithSubpredicates: [pageURL, predicate])
-        case .url, .externalTool:
+        case .url:
             return NSCompoundPredicate(andPredicateWithSubpredicates: [externalURL, predicate])
         case .moduleItem:
             return NSPredicate(value: false)

@@ -92,9 +92,6 @@
   "all_in_e5ddaee0": {
     "message": "Alle in"
   },
-  "all_people_16d90b41": {
-    "message": "Alle Personen"
-  },
   "all_submissions_3eedfb97": {
     "message": "Alle Abgaben"
   },
@@ -106,6 +103,9 @@
   },
   "allow_threaded_replies_43b2311e": {
     "message": "Gelistete Antworten zulassen"
+  },
+  "allow_users_to_comment_45b8f753": {
+    "message": "Benutzern Kommentare erlauben"
   },
   "allowed_attempts_4e229caa": {
     "message": "Zugelassene Versuche"
@@ -464,9 +464,6 @@
   "description_436c48d7": {
     "message": "Beschreibung"
   },
-  "designer_c458392": {
-    "message": "Designer"
-  },
   "details_98a31b68": {
     "message": "Details"
   },
@@ -643,9 +640,6 @@
   },
   "filter_numselected_number_2e4c17e3": {
     "message": "Filter ({ numSelected, number })"
-  },
-  "filter_people_b34b567b": {
-    "message": "Personen filtern"
   },
   "filter_submissions_numselected_number_selected_177867b3": {
     "message": "Abgaben filtern ({ numSelected, number }) ausgewählt"
@@ -932,6 +926,9 @@
   "name_profile_240f0967": {
     "message": "{ name }-Profil"
   },
+  "name_pronouns_8d5a0061": {
+    "message": "{ name } ({ pronouns })"
+  },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } mehr"
   },
@@ -1034,9 +1031,6 @@
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# Minute}\n other {# Minuten}\n}"
   },
-  "observer_248a192e": {
-    "message": "Beobachter"
-  },
   "off_5385ef3f": {
     "message": "Aus"
   },
@@ -1069,6 +1063,9 @@
   },
   "only_available_to_students_with_link_not_available_c12278d2": {
     "message": "Nur verfügbar für Studenten mit Link. In Studentendateien nicht verfügbar."
+  },
+  "only_members_232519d6": {
+    "message": "Nur Mitglieder"
   },
   "only_once_after_each_attempt_cc842738": {
     "message": "Nur einmal nach jedem Versuch"
@@ -1123,9 +1120,6 @@
   },
   "past_enrollments_a846da48": {
     "message": "Frühere Einschreibungen"
-  },
-  "people_b4ebb13c": {
-    "message": "Menschen"
   },
   "percent_d7ddd35b": {
     "message": "Prozent (%)"
@@ -1472,9 +1466,6 @@
   "syllabus_f191f65b": {
     "message": "Lehrplan"
   },
-  "ta_8d966626": {
-    "message": "Tutor"
-  },
   "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
     "message": "Tippen und halten Sie eine Bewertungsschema-Nummer, um die Beschreibung anzuzeigen."
   },
@@ -1486,9 +1477,6 @@
   },
   "tap_to_view_submissions_list_5bfe32f3": {
     "message": "Zum Anzeigen der Abgabeliste tippen."
-  },
-  "teacher_5a73b637": {
-    "message": "Dozent"
   },
   "teachers_52e2423f": {
     "message": "Dozenten"

@@ -96,7 +96,7 @@ exports[`renders a single file type 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "borderTopColor": "#C7CDD1",
           "borderTopWidth": 0.5,
           "flex": 1,
@@ -236,7 +236,7 @@ exports[`renders even if there is fake data 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "borderTopColor": "#C7CDD1",
           "borderTopWidth": 0.5,
           "flex": 1,
@@ -376,7 +376,7 @@ exports[`renders for a student 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "borderTopColor": "#C7CDD1",
           "borderTopWidth": 0.5,
           "flex": 1,
@@ -524,7 +524,7 @@ exports[`renders multiple file types 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "borderTopColor": "#C7CDD1",
           "borderTopWidth": 0.5,
           "flex": 1,
@@ -664,7 +664,7 @@ exports[`renders without a due date 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "borderTopColor": "#C7CDD1",
           "borderTopWidth": 0.5,
           "flex": 1,
@@ -804,7 +804,7 @@ exports[`renders without description 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "borderTopColor": "#C7CDD1",
           "borderTopWidth": 0.5,
           "flex": 1,

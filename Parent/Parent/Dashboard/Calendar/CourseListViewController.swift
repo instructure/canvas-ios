@@ -39,17 +39,12 @@ class CourseListViewController: FetchedTableViewController<CanvasCore.Course> {
         emptyView.imageView?.image = UIImage(named: "empty_courses")
         emptyView.accessibilityLabel = emptyView.textLabel.text
         emptyView.accessibilityIdentifier = "courses_empty_view"
-        emptyView.imageCenterXConstraint.constant = -24
-        emptyView.imageWidth = 267
-        emptyView.imageHeight = 232
-
         self.emptyView = emptyView
 
-        let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
         let collection = try Course.collectionByStudent(session, studentID: studentID)
         let refresher = try Course.airwolfCollectionRefresher(session, studentID: studentID)
         prepare(collection, refresher: refresher, viewModelFactory: { course in
-            CourseCellViewModel(course: course, highlightColor: scheme.highlightCellColor)
+            CourseCellViewModel(course: course, highlightColor: .named(.backgroundLight))
         })
     }
 
@@ -64,20 +59,8 @@ class CourseListViewController: FetchedTableViewController<CanvasCore.Course> {
         tableView.backgroundColor = UIColor.white
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        let scheme = ColorCoordinator.colorSchemeForStudentID(observeeID)
-        navigationController?.navigationBar.useContextColor(scheme.mainColor)
-    }
-
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let course = collection[indexPath]
-        if ExperimentalFeature.parent3.isEnabled {
-            let vc = CourseDetailsViewController.create(courseID: course.id, studentID: currentStudentID ?? "")
-            navigationController?.pushViewController(vc, animated: true)
-        } else {
-            AppEnvironment.shared.router.route(to: .courseCalendar(courseID: course.id), from: self, options: [.modal, .embedInNav, .addDoneButton])
-        }
+        AppEnvironment.shared.router.route(to: .courseGrades(course.id), from: self)
     }
-
 }

@@ -92,9 +92,6 @@
   "all_in_e5ddaee0": {
     "message": "Kaikki sisässä"
   },
-  "all_people_16d90b41": {
-    "message": "Kaikki henkilöt"
-  },
   "all_submissions_3eedfb97": {
     "message": "Kaikki lähetykset"
   },
@@ -106,6 +103,9 @@
   },
   "allow_threaded_replies_43b2311e": {
     "message": "Kaikki ketjutetut vastaukset"
+  },
+  "allow_users_to_comment_45b8f753": {
+    "message": "Salli käyttäjien kommentoida"
   },
   "allowed_attempts_4e229caa": {
     "message": "Sallitut yritykset"
@@ -464,9 +464,6 @@
   "description_436c48d7": {
     "message": "Kuvaus"
   },
-  "designer_c458392": {
-    "message": "Suunnittelija"
-  },
   "details_98a31b68": {
     "message": "Lisätiedot"
   },
@@ -643,9 +640,6 @@
   },
   "filter_numselected_number_2e4c17e3": {
     "message": "Suodatin ({ numSelected, number })"
-  },
-  "filter_people_b34b567b": {
-    "message": "Suodata ihmisiä"
   },
   "filter_submissions_numselected_number_selected_177867b3": {
     "message": "Suodattimen lähetykset. ({ numSelected, number }) valittu."
@@ -932,6 +926,9 @@
   "name_profile_240f0967": {
     "message": "{ name } Profiili"
   },
+  "name_pronouns_8d5a0061": {
+    "message": "{ name } ({ pronouns })"
+  },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } lisää"
   },
@@ -1034,9 +1031,6 @@
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# Minuuttia}\n  other {# Minuuttia}\n}"
   },
-  "observer_248a192e": {
-    "message": "Havainnoija"
-  },
   "off_5385ef3f": {
     "message": "Pois"
   },
@@ -1069,6 +1063,9 @@
   },
   "only_available_to_students_with_link_not_available_c12278d2": {
     "message": "Saatavissa vain opiskelijoille linkin kanssa. Ei saatavilla opiskelijan tiedostoissa."
+  },
+  "only_members_232519d6": {
+    "message": "Vain jäsenet"
   },
   "only_once_after_each_attempt_cc842738": {
     "message": "Vain yksi jokaisen yrityksen jälkeen"
@@ -1123,9 +1120,6 @@
   },
   "past_enrollments_a846da48": {
     "message": "Menneet rekisteröitymiset"
-  },
-  "people_b4ebb13c": {
-    "message": "Henkilöt"
   },
   "percent_d7ddd35b": {
     "message": "Prosentti (%)"
@@ -1472,9 +1466,6 @@
   "syllabus_f191f65b": {
     "message": "Opinto-ohjelma"
   },
-  "ta_8d966626": {
-    "message": "Apuopettaja"
-  },
   "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
     "message": "Napauta ja pidä numeroa nähdäksesi sen kuvaus"
   },
@@ -1486,9 +1477,6 @@
   },
   "tap_to_view_submissions_list_5bfe32f3": {
     "message": "Napauta nähdäksesi lähetysluettelo."
-  },
-  "teacher_5a73b637": {
-    "message": "Opettaja"
   },
   "teachers_52e2423f": {
     "message": "Opettajat"

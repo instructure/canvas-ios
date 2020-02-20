@@ -22,7 +22,6 @@ import React, { Component } from 'react'
 import {
   View,
   TouchableOpacity,
-  StyleSheet,
 } from 'react-native'
 import i18n from 'format-message'
 import { Text } from '../../common/text'
@@ -36,6 +35,7 @@ import URLSubmissionViewer from './submission-viewers/URLSubmissionViewer'
 import ImageSubmissionViewer from './submission-viewers/ImageSubmissionViewer'
 import CanvadocViewer from './components/CanvadocViewer'
 import debounce from 'lodash/debounce'
+import { createStyleSheet, vars } from '../../common/stylesheet'
 
 type State = {
   saving: boolean,
@@ -246,7 +246,7 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps, S
           />
           break
         case 'media_recording':
-          const width = this.props.size.width - global.style.defaultPadding * 2.0
+          const width = this.props.size.width - vars.padding * 2.0
           const height = Math.ceil(width * 9.0 / 16.0)
           const url = submission.media_comment
             ? submission.media_comment.url
@@ -286,13 +286,13 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps, S
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   container: {
     paddingTop: 16,
     paddingLeft: 16,
     paddingRight: 16,
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
   },
   webContainer: {
     flex: 1,
@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     paddingRight: 16,
     flex: 1,
-    backgroundColor: '#A3ADB3',
+    backgroundColor: colors.backgroundDark,
   },
   centeredText: {
     height: 200,
@@ -318,13 +318,13 @@ const styles = StyleSheet.create({
     height: 22,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#FAFAFA',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#D8D8D8',
+    backgroundColor: colors.backgroundLight,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
     borderStyle: 'solid',
   },
   savingBannerText: {
-    color: '#73818C',
+    color: colors.textDark,
     textAlign: 'center',
     fontWeight: '500',
     fontSize: 12,
@@ -333,12 +333,12 @@ const styles = StyleSheet.create({
     height: 22,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#EE0612',
+    backgroundColor: colors.backgroundDanger,
   },
   errorBannerText: {
-    color: 'white',
+    color: colors.white,
     textAlign: 'center',
     fontWeight: '500',
     fontSize: 12,
   },
-})
+}))

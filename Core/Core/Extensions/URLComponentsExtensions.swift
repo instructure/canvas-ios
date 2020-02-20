@@ -40,7 +40,7 @@ public extension URLComponents {
     /// Tries `init(string: String)`, then again with aggressive percent encoding, then falls back to putting the string in a `path` property.
     static func parse(_ string: String) -> URLComponents {
         if let url = URLComponents(string: string) { return url }
-        if let safe = string.addingPercentEncoding(withAllowedCharacters: CharacterSet(charactersIn: ":/?&=#%").union(.alphanumerics)),
+        if let safe = string.addingPercentEncoding(withAllowedCharacters: .urlSafe),
             let url = URLComponents(string: safe) { return url }
         var url = URLComponents()
         url.path = string
@@ -56,4 +56,29 @@ public extension URLComponents {
 
         return cleaned
     }
+
+    var originIsNotification: Bool {
+        get {
+            if let origin = queryItems?.first(where: { $0.name == "origin" })?.value, origin == "notification" {
+                return true
+            }
+            return false
+        }
+        set {
+            var qitems = queryItems ?? []
+            if newValue {
+                qitems.append( URLQueryItem(name: "origin", value: "notification") )
+                queryItems = qitems
+            } else {
+                if var items = queryItems {
+                    items.removeAll(where: { $0.name == "origin" && $0.value == "notification" })
+                    queryItems = items
+                }
+            }
+        }
+    }
+}
+
+public extension CharacterSet {
+    static let urlSafe = CharacterSet(charactersIn: ":/?&=#%.").union(.alphanumerics)
 }

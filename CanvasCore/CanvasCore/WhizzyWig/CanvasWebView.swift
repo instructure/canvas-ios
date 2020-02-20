@@ -85,7 +85,7 @@ public class CanvasWebView: WKWebView {
     public var onRefresh: (() -> Void)? {
         didSet {
             if onRefresh != nil {
-                let refreshControl = UIRefreshControl()
+                let refreshControl = CircleRefreshControl()
                 refreshControl.addTarget(self, action: #selector(handleRefresh(_:)), for: .valueChanged)
                 self.refreshControl = refreshControl
                 scrollView.addSubview(refreshControl)
@@ -103,7 +103,7 @@ public class CanvasWebView: WKWebView {
 
     fileprivate var externalToolLaunchDisposable: Disposable?
 
-    fileprivate var refreshControl: UIRefreshControl?
+    fileprivate var refreshControl: CircleRefreshControl?
 
     @objc
     public func setNavigationHandler(routeToURL: @escaping (URL) -> Void) {
@@ -227,16 +227,17 @@ public class CanvasWebView: WKWebView {
     }
 
     @objc
-    fileprivate func handleRefresh(_ control: UIRefreshControl) {
+    fileprivate func handleRefresh(_ control: CircleRefreshControl) {
         onRefresh?()
     }
 
     /// Reloads `self` with an authenticated url for `src`
     @objc func loadFrame(src: String) {
+        let url = URL(string: src)
         let request = GetWebSessionRequest(to: url)
         AppEnvironment.shared.api.makeRequest(request) { [weak self] response, urlResponse, error in
             DispatchQueue.main.async {
-                guard let response = response, error != nil else {
+                guard let response = response else {
                     self?.onError?(error ?? NSError.internalError())
                     return
                 }

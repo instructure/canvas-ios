@@ -21,9 +21,8 @@
 import React, { PureComponent } from 'react'
 import {
   View,
-  StyleSheet,
 } from 'react-native'
-import colors from '../../colors'
+import { createStyleSheet } from '../../stylesheet'
 
 export default class RowSeparator extends PureComponent<any, any> {
   render () {
@@ -31,9 +30,9 @@ export default class RowSeparator extends PureComponent<any, any> {
   }
 }
 
-var style = StyleSheet.create({
+var style = createStyleSheet((colors, vars) => ({
   separator: {
-    backgroundColor: colors.seperatorColor,
-    height: StyleSheet.hairlineWidth,
+    backgroundColor: colors.borderMedium,
+    height: vars.hairlineWidth,
   },
-})
+}))

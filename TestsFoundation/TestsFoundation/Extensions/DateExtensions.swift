@@ -25,21 +25,6 @@ extension Date {
         return endDate ?? Date()
     }
 
-    public func addMinutes(_ days: Int) -> Date {
-        let endDate = Calendar.current.date(byAdding: .minute, value: days, to: self)
-        return endDate ?? Date()
-    }
-
-    public func addDays(_ days: Int) -> Date {
-        let endDate = Calendar.current.date(byAdding: .month, value: days, to: self)
-        return endDate ?? Date()
-    }
-
-    public func addMonths(_ numberOfMonths: Int) -> Date {
-        let endDate = Calendar.current.date(byAdding: .month, value: numberOfMonths, to: self)
-        return endDate ?? Date()
-    }
-
     public static func dateFromString(_ dateString: String, format: String = "yyyy-MM-dd HH:mm") -> Date? {
         let formatter = DateFormatter()
         formatter.dateStyle = .short

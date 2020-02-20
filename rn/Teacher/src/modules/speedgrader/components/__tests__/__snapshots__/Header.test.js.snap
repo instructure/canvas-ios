@@ -1,133 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SpeedGraderHeader anonymizes the avatar and name 1`] = `
-<View
-  style={
-    Array [
-      undefined,
-      Object {
-        "backgroundColor": "white",
-        "marginTop": 16,
-      },
-    ]
-  }
->
-  <View
-    style={
-      Object {
-        "alignItems": "center",
-        "flexDirection": "row",
-      }
-    }
-  >
-    <TouchableHighlight
-      activeOpacity={0.85}
-      delayPressOut={100}
-      onPress={[Function]}
-      style={
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "white",
-          "flex": 1,
-          "flexDirection": "row",
-        }
-      }
-      testID="header.context.button"
-      underlayColor="white"
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "white",
-            "flex": 1,
-            "flexDirection": "row",
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "height": 40,
-              "marginLeft": 16,
-              "width": 40,
-            }
-          }
-        >
-          <Avatar
-            avatarURL=""
-            key="4"
-            userName="Student"
-          />
-        </View>
-        <View
-          style={
-            Object {
-              "flex": 1,
-              "flexDirection": "column",
-              "justifyContent": "space-between",
-              "marginLeft": 12,
-            }
-          }
-        >
-          <Text
-            accessibilityTraits="header"
-            numberOfLines={1}
-            style={
-              Object {
-                "fontSize": 16,
-                "fontWeight": "600",
-              }
-            }
-          >
-            Student
-          </Text>
-          <SubmissionStatusLabel
-            onlineSubmissionType={true}
-            status="submitted"
-          />
-        </View>
-      </View>
-    </TouchableHighlight>
-    <View
-      style={
-        Object {
-          "backgroundColor": "white",
-          "marginRight": 12,
-        }
-      }
-    >
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
-        onPress={[MockFunction]}
-        testID="header.navigation-done"
-        underlayColor="white"
-      >
-        <Text
-          style={
-            Object {
-              "color": "#008EE2",
-              "fontSize": 18,
-              "fontWeight": "600",
-            }
-          }
-        >
-          Done
-        </Text>
-      </TouchableHighlight>
-    </View>
-  </View>
-</View>
-`;
-
 exports[`SpeedGraderHeader doesnt show the group name when anonymous 1`] = `
 <View
   style={
     Array [
       undefined,
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "marginTop": 16,
       },
     ]
@@ -144,23 +23,22 @@ exports[`SpeedGraderHeader doesnt show the group name when anonymous 1`] = `
     <TouchableHighlight
       activeOpacity={0.85}
       delayPressOut={100}
-      onPress={[Function]}
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
         }
       }
-      testID="header.context.button"
-      underlayColor="white"
+      testID="header.context.button.4"
+      underlayColor="#FFFFFF"
     >
       <View
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "flex": 1,
             "flexDirection": "row",
           }
@@ -203,7 +81,7 @@ exports[`SpeedGraderHeader doesnt show the group name when anonymous 1`] = `
           >
             Group
           </Text>
-          <SubmissionStatusLabel
+          <OldSubmissionStatusLabel
             onlineSubmissionType={true}
             status="submitted"
           />
@@ -213,7 +91,7 @@ exports[`SpeedGraderHeader doesnt show the group name when anonymous 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "marginRight": 12,
         }
       }
@@ -223,7 +101,7 @@ exports[`SpeedGraderHeader doesnt show the group name when anonymous 1`] = `
         delayPressOut={100}
         onPress={[MockFunction]}
         testID="header.navigation-done"
-        underlayColor="white"
+        underlayColor="#FFFFFF"
       >
         <Text
           style={
@@ -248,7 +126,7 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
     Array [
       undefined,
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "marginTop": 16,
       },
     ]
@@ -269,19 +147,19 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
         }
       }
-      testID="header.context.button"
-      underlayColor="white"
+      testID="header.context.button.4"
+      underlayColor="#FFFFFF"
     >
       <View
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "flex": 1,
             "flexDirection": "row",
           }
@@ -324,7 +202,7 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
           >
             Allura
           </Text>
-          <SubmissionStatusLabel
+          <OldSubmissionStatusLabel
             onlineSubmissionType={true}
             status="none"
           />
@@ -334,7 +212,7 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "marginRight": 12,
         }
       }
@@ -344,7 +222,7 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
         delayPressOut={100}
         onPress={[MockFunction]}
         testID="header.navigation-done"
-        underlayColor="white"
+        underlayColor="#FFFFFF"
       >
         <Text
           style={
@@ -369,7 +247,7 @@ exports[`SpeedGraderHeader renders with a group submission 1`] = `
     Array [
       undefined,
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "marginTop": 16,
       },
     ]
@@ -390,19 +268,19 @@ exports[`SpeedGraderHeader renders with a group submission 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
         }
       }
-      testID="header.groupList.button"
-      underlayColor="white"
+      testID="header.groupList.button.1"
+      underlayColor="#FFFFFF"
     >
       <View
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "flex": 1,
             "flexDirection": "row",
           }
@@ -445,7 +323,7 @@ exports[`SpeedGraderHeader renders with a group submission 1`] = `
           >
             Allura
           </Text>
-          <SubmissionStatusLabel
+          <OldSubmissionStatusLabel
             onlineSubmissionType={true}
             status="submitted"
           />
@@ -455,7 +333,7 @@ exports[`SpeedGraderHeader renders with a group submission 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "marginRight": 12,
         }
       }
@@ -465,7 +343,7 @@ exports[`SpeedGraderHeader renders with a group submission 1`] = `
         delayPressOut={100}
         onPress={[MockFunction]}
         testID="header.navigation-done"
-        underlayColor="white"
+        underlayColor="#FFFFFF"
       >
         <Text
           style={
@@ -490,7 +368,7 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
     Array [
       undefined,
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "marginTop": 16,
       },
     ]
@@ -511,19 +389,19 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
         }
       }
-      testID="header.context.button"
-      underlayColor="white"
+      testID="header.context.button.4"
+      underlayColor="#FFFFFF"
     >
       <View
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "flex": 1,
             "flexDirection": "row",
           }
@@ -566,7 +444,7 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
           >
             Allura
           </Text>
-          <SubmissionStatusLabel
+          <OldSubmissionStatusLabel
             onlineSubmissionType={true}
             status="submitted"
           />
@@ -576,7 +454,7 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "marginRight": 12,
         }
       }
@@ -586,7 +464,7 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
         delayPressOut={100}
         onPress={[MockFunction]}
         testID="header.navigation-done"
-        underlayColor="white"
+        underlayColor="#FFFFFF"
       >
         <Text
           style={
@@ -611,7 +489,7 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
     Array [
       undefined,
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "marginTop": 16,
       },
     ]
@@ -632,19 +510,19 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
         }
       }
-      testID="header.context.button"
-      underlayColor="white"
+      testID="header.context.button.4"
+      underlayColor="#FFFFFF"
     >
       <View
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "flex": 1,
             "flexDirection": "row",
           }
@@ -687,7 +565,7 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
           >
             Allura
           </Text>
-          <SubmissionStatusLabel
+          <OldSubmissionStatusLabel
             onlineSubmissionType={true}
             status="missing"
           />
@@ -697,7 +575,7 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "marginRight": 12,
         }
       }
@@ -707,7 +585,7 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
         delayPressOut={100}
         onPress={[MockFunction]}
         testID="header.navigation-done"
-        underlayColor="white"
+        underlayColor="#FFFFFF"
       >
         <Text
           style={
@@ -732,7 +610,7 @@ exports[`SpeedGraderHeader renders with an ungraded submission 1`] = `
     Array [
       undefined,
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "marginTop": 16,
       },
     ]
@@ -753,19 +631,19 @@ exports[`SpeedGraderHeader renders with an ungraded submission 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
         }
       }
-      testID="header.context.button"
-      underlayColor="white"
+      testID="header.context.button.4"
+      underlayColor="#FFFFFF"
     >
       <View
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "flex": 1,
             "flexDirection": "row",
           }
@@ -808,7 +686,7 @@ exports[`SpeedGraderHeader renders with an ungraded submission 1`] = `
           >
             Allura
           </Text>
-          <SubmissionStatusLabel
+          <OldSubmissionStatusLabel
             onlineSubmissionType={false}
             status="missing"
           />
@@ -818,7 +696,7 @@ exports[`SpeedGraderHeader renders with an ungraded submission 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "marginRight": 12,
         }
       }
@@ -828,7 +706,7 @@ exports[`SpeedGraderHeader renders with an ungraded submission 1`] = `
         delayPressOut={100}
         onPress={[MockFunction]}
         testID="header.navigation-done"
-        underlayColor="white"
+        underlayColor="#FFFFFF"
       >
         <Text
           style={
@@ -853,7 +731,7 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
     Array [
       undefined,
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "marginTop": 16,
       },
     ]
@@ -874,19 +752,19 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
         }
       }
-      testID="header.context.button"
-      underlayColor="white"
+      testID="header.context.button.4"
+      underlayColor="#FFFFFF"
     >
       <View
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "flex": 1,
             "flexDirection": "row",
           }
@@ -929,7 +807,7 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
           >
             Allura
           </Text>
-          <SubmissionStatusLabel
+          <OldSubmissionStatusLabel
             onlineSubmissionType={true}
             status="none"
           />
@@ -939,7 +817,7 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "marginRight": 12,
         }
       }
@@ -949,7 +827,7 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
         delayPressOut={100}
         onPress={[MockFunction]}
         testID="header.navigation-done"
-        underlayColor="white"
+        underlayColor="#FFFFFF"
       >
         <Text
           style={

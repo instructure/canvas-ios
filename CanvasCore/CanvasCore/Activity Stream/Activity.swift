@@ -18,18 +18,7 @@
 
 import Foundation
 import CoreData
-
-
-public enum ActivityType: String {
-    case discussion = "DiscussionTopic"
-    case announcement = "Announcement"
-    case conversation = "Conversation"
-    case message = "Message"
-    case submission = "Submission"
-    case conference = "WebConference"
-    case collaboration = "Collaboration"
-    case assessmentRequest = "AssessmentRequest"
-}
+import Core
 
 public class Activity: NSManagedObject {
     @NSManaged internal(set) public var id: String

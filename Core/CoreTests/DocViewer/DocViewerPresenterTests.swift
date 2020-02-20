@@ -26,7 +26,7 @@ class DocViewerPresenterTests: CoreTestCase {
     var error: Error?
     var resetted = false
 
-    let url = Bundle(for: DocViewerPresenterTests.self).url(forResource: "instructure", withExtension: "pdf")!
+    lazy var url = Bundle(for: DocViewerPresenterTests.self).url(forResource: "instructure", withExtension: "pdf")!
 
     class MockSession: DocViewerSession {
         var requested: URL?
@@ -132,6 +132,13 @@ class DocViewerPresenterTests: CoreTestCase {
         }
     }
 
+    class MockPDFPageView: PSPDFPageView {
+        var annotationView: (UIView & PSPDFAnnotationPresenting)?
+        override func annotationView(for annotation: PSPDFAnnotation) -> (UIView & PSPDFAnnotationPresenting)? {
+            return annotationView
+        }
+    }
+
     func testShouldShowForNoAnnotations() {
         let menuItems = [
             PSPDFMenuItem(title: "test", block: {}),
@@ -178,6 +185,31 @@ class DocViewerPresenterTests: CoreTestCase {
         XCTAssertEqual((viewController.document as? MockPDFDocument)?.removed, [annotation])
     }
 
+    func testShouldShowForAnnotationsDontAllowRotating() {
+        let menuItems = [
+            PSPDFMenuItem(title: "test", block: {}),
+            PSPDFMenuItem(title: "opacity", block: {}, identifier: PSPDFTextMenu.annotationMenuOpacity.rawValue),
+            PSPDFMenuItem(title: "inspector", block: {}, identifier: PSPDFTextMenu.annotationMenuInspector.rawValue),
+        ]
+        presenter.metadata = APIDocViewerMetadata.make()
+        let viewController = MockPDFViewController(document: MockPDFDocument(url: url))
+        let annotation = PSPDFFreeTextAnnotation(contents: "text")
+        let pageView = MockPDFPageView(frame: .zero)
+        let annotationView = PSPDFFreeTextAnnotationView()
+        let resizableView = PSPDFResizableView()
+        annotationView.resizableView = resizableView
+        pageView.annotationView = annotationView
+        _ = presenter.pdfViewController(
+            viewController,
+            shouldShow: menuItems,
+            atSuggestedTargetRect: .zero,
+            for: [annotation],
+            in: .zero,
+            on: pageView
+        )
+        XCTAssertFalse(resizableView.allowRotating)
+    }
+
     func testShouldShowController() {
         XCTAssertFalse(presenter.pdfViewController(PSPDFViewController(), shouldShow: PSPDFStampViewController(), animated: true))
         XCTAssertTrue(presenter.pdfViewController(PSPDFViewController(), shouldShow: UIViewController(), animated: true))
@@ -221,9 +253,7 @@ extension DocViewerPresenterTests: DocViewerViewProtocol {
         resetted = true
     }
 
-    var navigationController: UINavigationController? {
-        return nil
-    }
+    func showAlert(title: String?, message: String?) {}
 
     func showError(_ error: Error) {
         self.error = error

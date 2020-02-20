@@ -2,6 +2,102 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>conversation_recipients_to</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@audience_size@</string>
+		<key>audience_size</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>one</key>
+			<string>%d آخر</string>
+			<key>other</key>
+			<string>%d أخرى</string>
+			<key>two</key>
+			<string></string>
+			<key>zero</key>
+			<string>%d others</string>
+		</dict>
+	</dict>
+	<key>conversation_unread_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@message_count@</string>
+		<key>message_count</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>one</key>
+			<string>%d unread conversation</string>
+			<key>other</key>
+			<string>%d unread conversations</string>
+			<key>two</key>
+			<string></string>
+			<key>zero</key>
+			<string>%d unread conversations</string>
+		</dict>
+	</dict>
+	<key>d_events</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@events@</string>
+		<key>events</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>%d events</string>
+			<key>many</key>
+			<string>%d events</string>
+			<key>one</key>
+			<string>%d حدث</string>
+			<key>other</key>
+			<string>%d أحداث</string>
+			<key>two</key>
+			<string>%d events</string>
+			<key>zero</key>
+			<string>%d events</string>
+		</dict>
+	</dict>
+	<key>d_needs_grading</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@needs_grading@</string>
+		<key>needs_grading</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>one</key>
+			<string>%d بحاجة إلى تقييم</string>
+			<key>other</key>
+			<string>%d بحاجة إلى تقييم</string>
+			<key>two</key>
+			<string></string>
+			<key>zero</key>
+			<string>%d need grading</string>
+		</dict>
+	</dict>
 	<key>d_questions</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

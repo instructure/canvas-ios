@@ -18,36 +18,23 @@
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import { setSession } from '../../canvas-api'
-import * as templates from '../../__templates__'
+import { Settings } from 'react-native'
 import ExperimentalFeature from '../ExperimentalFeature'
 
 describe('ExperimentalFeature', () => {
-  let allEnabled = ExperimentalFeature.allEnabled
-  afterEach(() => {
-    ExperimentalFeature.allEnabled = allEnabled
+  it('uses the remote config key in the settings key', () => {
+    expect(new ExperimentalFeature('test').settingsKey).toEqual('ExperimentalFeature.test')
   })
 
-  it('calculates isEnabled', () => {
-    ExperimentalFeature.allEnabled = false
-    expect(new ExperimentalFeature(false).isEnabled).toEqual(false)
-    expect(new ExperimentalFeature(true).isEnabled).toEqual(true)
+  it('uses Settings by default', () => {
+    Settings.set({ 'ExperimentalFeature.test': true })
+    expect(new ExperimentalFeature('test').isEnabled).toEqual(true)
+    Settings.set({ 'ExperimentalFeature.test': false })
+  })
 
-    setSession(templates.session({ baseURL: 'https://canvas.beta.instructure.com' }))
-    expect(new ExperimentalFeature('beta').isEnabled).toEqual(true)
-    setSession(templates.session({ baseURL: 'https://canvas.instructure.com' }))
-    expect(new ExperimentalFeature('beta').isEnabled).toEqual(false)
-    setSession(null)
-    expect(new ExperimentalFeature('beta').isEnabled).toEqual(false)
-
-    setSession(templates.session({ baseURL: 'https://a.edu' }))
-    expect(new ExperimentalFeature([ 'a.edu' ]).isEnabled).toEqual(true)
-    expect(new ExperimentalFeature([ 'a.ed' ]).isEnabled).toEqual(false)
-    expect(new ExperimentalFeature([ 'b.edu' ]).isEnabled).toEqual(false)
-    setSession(null)
-    expect(new ExperimentalFeature([ 'a.edu' ]).isEnabled).toEqual(false)
-
-    ExperimentalFeature.allEnabled = true
-    expect(new ExperimentalFeature(false).isEnabled).toEqual(true)
+  it('sets value in Settings', () => {
+    let feature = new ExperimentalFeature('test')
+    feature.isEnabled = true
+    expect(Settings.get('ExperimentalFeature.test')).toEqual(true)
   })
 })

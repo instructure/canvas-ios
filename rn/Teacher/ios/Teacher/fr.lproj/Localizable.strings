@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"Absent" = "Absent";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "Toutes les notes sont actuellement masquées";
 
 /* No comment provided by engineer. */
@@ -11,13 +14,43 @@
 "All Posted" = "Toutes publiées";
 
 /* No comment provided by engineer. */
+"Attendance" = "Présence";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "Erreur de présence";
+
+/* No comment provided by engineer. */
 "Back" = "Retour";
+
+/* No comment provided by engineer. */
+"Cancel" = "Annuler";
+
+/* No comment provided by engineer. */
+"Change Section" = "Modifier la section";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Choisir une section";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Choisir une date";
 
 /* No comment provided by engineer. */
 "Courses" = "Cours";
 
 /* No comment provided by engineer. */
+"Date picker" = "Sélecteur de dates";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Ignorer";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Erreur : Aucune donnée retournée par l’api rollcall.";
+
+/* No comment provided by engineer. */
 "Everyone" = "Tout le monde";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "Échec du lancement de l'outil d'appel nominal LTI.";
 
 /* No comment provided by engineer. */
 "Graded" = "Noté";
@@ -38,6 +71,18 @@
 "Hide Grades" = "Masquer les notes";
 
 /* No comment provided by engineer. */
+"Late" = "En retard";
+
+/* No comment provided by engineer. */
+"Loading more modules..." = "Chargement d'autres modules...";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Marquer tout le monde comme présent";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Marquer les personnes restantes comme présentes";
+
+/* No comment provided by engineer. */
 "Modules" = "Modules";
 
 /* No comment provided by engineer. */
@@ -50,8 +95,20 @@
 "Post to..." = "Publier sur...";
 
 /* No comment provided by engineer. */
+"Present" = "Présent";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Sélectionner pour changer la date d'appel";
+
+/* No comment provided by engineer. */
 "Specific Sections" = "Sections spécifiques";
 
 /* No comment provided by engineer. */
+"This module is empty." = "Ce module est vide.";
+
+/* No comment provided by engineer. */
 "To Do" = "À faire";
+
+/* No comment provided by engineer. */
+"Unmark" = "Retirer marquage";
 

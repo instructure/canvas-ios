@@ -22,14 +22,13 @@ import i18n from 'format-message'
 import React from 'react'
 import {
   Image,
-  StyleSheet,
   TouchableHighlight,
   View,
   LayoutAnimation,
   NativeModules,
 } from 'react-native'
 import images from '../../images'
-import { createStyleSheet } from '../../common/branding'
+import { createStyleSheet } from '../../common/stylesheet'
 import {
   Text,
 } from '../../common/text'
@@ -87,10 +86,7 @@ export default class CourseInvite extends React.Component<Props> {
   render () {
     const { style, courseName, invite } = this.props
     if (invite.hidden) return null
-    let acceptedOrRejected = null
-    if (invite.displayState === 'acted') {
-      acceptedOrRejected = invite.enrollment_state === 'active' ? i18n('Invite accepted!') : i18n('Invite declined!')
-    }
+    let acceptedOrRejected = invite.enrollment_state === 'active' ? i18n('Invite accepted!') : i18n('Invite declined!')
     return (
       <DashboardContent
         style={style}
@@ -103,7 +99,7 @@ export default class CourseInvite extends React.Component<Props> {
           </View>
           { invite.displayState === 'acted' ? (
             <View style={styles.inviteDetails} testID={`CourseInvitation.${invite.id}.acted`}>
-              <Text style={styles.title}>{acceptedOrRejected}</Text>
+              <Text style={styles.acted}>{acceptedOrRejected}</Text>
             </View>
           ) : (
             <View style={styles.inviteDetails}>
@@ -149,13 +145,13 @@ export default class CourseInvite extends React.Component<Props> {
   }
 }
 
-const styles = createStyleSheet(colors => ({
+const styles = createStyleSheet((colors, vars) => ({
   content: {
-    borderColor: colors.checkmarkGreen,
+    borderColor: colors.borderSuccess,
     borderWidth: 1,
   },
   icon: {
-    tintColor: 'white',
+    tintColor: colors.textLightest,
     marginTop: 14,
   },
   rowContent: {
@@ -165,7 +161,7 @@ const styles = createStyleSheet(colors => ({
     width: 40,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    backgroundColor: colors.checkmarkGreen,
+    backgroundColor: colors.backgroundSuccess,
   },
   inviteDetails: {
     flex: 1,
@@ -176,6 +172,12 @@ const styles = createStyleSheet(colors => ({
     margin: 12,
     marginBottom: 0,
     marginTop: 8,
+  },
+  acted: {
+    fontWeight: '600',
+    fontSize: 18,
+    margin: 12,
+    marginVertical: 13,
   },
   names: {
     marginHorizontal: 12,
@@ -193,29 +195,29 @@ const styles = createStyleSheet(colors => ({
     height: 40,
     borderRadius: 4,
     margin: 4,
-    backgroundColor: colors.checkmarkGreen,
+    backgroundColor: colors.backgroundSuccess,
   },
   buttonText: {
-    color: 'white',
+    color: colors.white,
     fontSize: 16,
     fontWeight: '600',
   },
   declineButton: {
-    backgroundColor: 'white',
-    borderColor: colors.grey4,
-    borderWidth: StyleSheet.hairlineWidth,
+    backgroundColor: colors.backgroundLightest,
+    borderColor: colors.borderDark,
+    borderWidth: vars.hairlineWidth,
   },
   declineButtonText: {
-    color: colors.secondaryButton,
+    color: colors.textDark,
   },
   action: {
     position: 'absolute',
     right: 0,
-    top: 0,
+    top: 4,
     padding: 12,
   },
   dismissIcon: {
     width: 16,
-    tintColor: colors.grey4,
+    tintColor: colors.textDark,
   },
 }))

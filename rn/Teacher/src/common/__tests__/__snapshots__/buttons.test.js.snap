@@ -5,7 +5,7 @@ exports[`common buttons <Button> adds additional styles to the base button 1`] =
   containerStyle={
     Array [
       Object {
-        "backgroundColor": "#374A59",
+        "backgroundColor": "#008EE2",
         "borderRadius": 8,
         "overflow": "hidden",
         "padding": 10,
@@ -16,7 +16,7 @@ exports[`common buttons <Button> adds additional styles to the base button 1`] =
   style={
     Array [
       Object {
-        "color": "white",
+        "color": "#FFFFFF",
       },
       42,
     ]
@@ -44,7 +44,7 @@ exports[`common buttons <LinkButton> adds additional styles to the base button 1
       style={
         Array [
           Object {
-            "color": "#374A59",
+            "color": "#008EE2",
             "fontSize": 16,
             "fontWeight": "500",
           },

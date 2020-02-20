@@ -29,8 +29,8 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
 
     var presenter: DashboardPresenter!
 
-    lazy var refreshControl: UIRefreshControl = {
-        let rc = UIRefreshControl()
+    lazy var refreshControl: CircleRefreshControl = {
+        let rc = CircleRefreshControl()
         rc.addTarget(self, action: #selector(DashboardViewController.refreshControlHandler(_:)), for: .valueChanged)
         return rc
     }()
@@ -125,17 +125,17 @@ class DashboardViewController: UIViewController, DashboardViewProtocol {
         case .courses:
             guard let id = presenter.courses[indexPath.item]?.id else { return }
             let route = Route.course(id)
-            router.route(to: route, from: self, options: nil)
+            router.route(to: route, from: self)
         case .groups:
             guard let id = presenter.groups[indexPath.item]?.id else { return }
             let route = Route.group(id)
-            router.route(to: route, from: self, options: nil)
+            router.route(to: route, from: self)
         }
     }
 
     @objc
     func showLogs() {
-        router.route(to: Route.logs, from: self, options: [.modal, .embedInNav])
+        router.route(to: Route.logs, from: self, options: .modal(embedInNav: true))
     }
 
     @objc

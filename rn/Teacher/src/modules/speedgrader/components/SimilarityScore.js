@@ -21,14 +21,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import i18n from 'format-message'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import images from '../../../images'
 import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
 
 import {
   Text,
   TouchableHighlight,
-  StyleSheet,
   View,
   Image,
 } from 'react-native'
@@ -45,14 +44,6 @@ type StateProps = {
 
 export type Props = StateProps
 
-const TURN_IT_IN_COLORS = {
-  PASS: '#008EE2',
-  DECENT: '#00AC18',
-  SKETCHY: '#FFC100',
-  DANGER: '#FC5E13',
-  THREAT_LEVEL_MIDNIGHT: '#EE0612',
-}
-
 export class SimilarityScore extends Component<Props, any> {
   render () {
     const { status, score } = this.props
@@ -62,7 +53,7 @@ export class SimilarityScore extends Component<Props, any> {
 
     return (
       <TouchableHighlight
-        underlayColor='white'
+        underlayColor={colors.backgroundLightest}
         testID='speedgrader.similarity-score.container'
       >
         <View style={style.container}>
@@ -81,22 +72,22 @@ export class SimilarityScore extends Component<Props, any> {
   }
 
   renderScore (score: number) {
-    let color = 'white'
+    let color = colors.textInfo
     switch (true) {
       case (score >= 75):
-        color = TURN_IT_IN_COLORS.THREAT_LEVEL_MIDNIGHT
+        color = colors.textDanger
         break
       case (score >= 50):
-        color = TURN_IT_IN_COLORS.DANGER
+        color = colors.textAlert
         break
       case (score >= 25):
-        color = TURN_IT_IN_COLORS.SKETCHY
+        color = colors.textWarning
         break
       case (score >= 1):
-        color = TURN_IT_IN_COLORS.DECENT
+        color = colors.textSuccess
         break
       default:
-        color = TURN_IT_IN_COLORS.PASS
+        color = colors.textInfo
     }
 
     return (
@@ -120,11 +111,11 @@ export class SimilarityScore extends Component<Props, any> {
   }
 
   renderPending () {
-    return this.renderStatus(images.speedGrader.turnitin.pending, '#72818B')
+    return this.renderStatus(images.speedGrader.turnitin.pending, colors.textDark)
   }
 
   renderError () {
-    return this.renderStatus(images.speedGrader.turnitin.error, '#F30017')
+    return this.renderStatus(images.speedGrader.turnitin.error, colors.textDanger)
   }
 
   renderStatus (icon: any, color: string) {
@@ -143,21 +134,21 @@ export class SimilarityScore extends Component<Props, any> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet((colors, vars) => ({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottomColor: '#D8D8D8',
-    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
+    borderBottomWidth: vars.hairlineWidth,
     borderStyle: 'solid',
     marginHorizontal: 16,
     paddingVertical: 4,
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
   },
   label: {
     fontSize: 14,
-    color: colors.darkText,
+    color: colors.textDarkest,
     fontWeight: '600',
   },
   scoreContainer: {
@@ -167,26 +158,25 @@ const style = StyleSheet.create({
   },
   score: {
     fontSize: 16,
-    color: 'white',
+    color: colors.white,
     fontWeight: '600',
   },
   statusIcon: {
     width: 18,
     height: 18,
-    tintColor: 'white',
+    tintColor: colors.white,
   },
   statusContainer: {
     borderRadius: 4,
     padding: 4,
   },
-})
+}))
 
 export function mapStateToProps (state: AppState, ownProps: OwnProps): StateProps {
   const { submissionID } = ownProps
 
   if (submissionID &&
-    state.entities.submissions[submissionID] &&
-    state.entities.submissions[submissionID].submission) {
+    state.entities.submissions[submissionID]?.submission) {
     // get selected submission
     const submissionData = state.entities.submissions[submissionID]
     const { submission, selectedIndex, selectedAttachmentIndex } = submissionData

@@ -65,7 +65,7 @@ describe('ViewFile', () => {
       fileID: '24',
       file: templates.file({
         id: '24',
-        filename: 'picture%3C%3E%28%29%5B%5D%7B%7D.%3F%25%E6%97%A5%E6%9C%AC.jpg',
+        filename: 'picture%3C%3E%28%29%5B%5D%7B%7D.%3F%25%E6%97%A5%E6%9C%AC%23.jpg',
       }),
       navigator: {
         show: jest.fn(),
@@ -205,7 +205,7 @@ describe('ViewFile', () => {
     await updatedState(tree)
     tree.find(selectors.share).simulate('Press')
     expect(ActionSheetIOS.showShareActionSheetWithOptions).toHaveBeenCalledWith(
-      { url: 'file://tmp/file-24/picture<>()[]{}.?%日本.jpg' },
+      { url: 'file://tmp/file-24/picture<>()[]{}._%日本_.jpg' },
       expect.any(Function),
       expect.any(Function)
     )
@@ -343,7 +343,7 @@ describe('ViewFile', () => {
     await Promise.resolve() // wait for mkdir
     expect(tree.state()).toMatchObject({
       jobID: null,
-      localPath: 'file://tmp/file-24/picture<>()[]{}.?%日本.jpg',
+      localPath: 'file://tmp/file-24/picture<>()[]{}._%日本_.jpg',
       loadingDone: true,
       error: null,
     })

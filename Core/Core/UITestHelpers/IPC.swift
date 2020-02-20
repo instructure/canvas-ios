@@ -20,6 +20,10 @@
 
 import Foundation
 
+struct IPCError: Error {
+    let message: String
+}
+
 class IPCServer {
     let machPortName: String
     let messagePort: CFMessagePort
@@ -30,7 +34,7 @@ class IPCServer {
 
     static var knownIPCServers = [CFMessagePort: IPCServer]()
 
-    init(machPortName: String, queue: DispatchQueue) {
+    init(machPortName: String, runOnMainQueue: Bool) {
         self.machPortName = machPortName
         let handlerWrapper: CFMessagePortCallBack = { port, msgid, data, _ in
             IPCServer.knownIPCServers[port!]!.handler(msgid: msgid, data: data as Data?).map { Unmanaged.passRetained($0 as CFData) }
@@ -40,13 +44,27 @@ class IPCServer {
         }
         messagePort = port
         IPCServer.knownIPCServers[port] = self
-        CFMessagePortSetDispatchQueue(port, queue)
+        if runOnMainQueue {
+            CFMessagePortSetDispatchQueue(port, DispatchQueue.main)
+        } else {
+            let thread = Thread {
+                let loop = CFRunLoopGetCurrent()
+                let source = CFMessagePortCreateRunLoopSource(kCFAllocatorDefault, port, 0)
+                let mode = CFRunLoopMode("com.instructure.ipc-server" as CFString)
+                CFRunLoopAddSource(loop, source, mode)
+                while true {
+                    CFRunLoopRunInMode(mode, 1000, false)
+                }
+            }
+            thread.name = "ipc-server"
+            thread.start()
+        }
     }
 }
 
 class IPCAppServer: IPCServer {
     static func portName(id: String) -> String {
-        return "com.instructure.icanvas.ui-test-app-\(id)"
+        "com.instructure.icanvas.ui-test-app-\(id)"
     }
 
     override func handler(msgid: Int32, data: Data?) -> Data? {
@@ -60,32 +78,32 @@ class IPCAppServer: IPCServer {
     }
 
     init(machPortName: String) {
-        super.init(machPortName: machPortName, queue: .main)
+        super.init(machPortName: machPortName, runOnMainQueue: true)
     }
 }
 
 enum IPCDriverServerMessage {
-    case mockNotFound(reason: String)
+    case urlRequest(_ request: URLRequest)
 }
+
 extension IPCDriverServerMessage: Codable {
     private enum CodingKeys: String, CodingKey {
-        case mockNotFound
+        case request
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        if let reason = try container.decodeIfPresent(String.self, forKey: .mockNotFound) {
-            self = .mockNotFound(reason: reason)
+        if let request = try container.decodeIfPresent(URLRequest.self, forKey: .request) {
+            self = .urlRequest(request)
         } else {
-
             throw DecodingError.typeMismatch(type(of: self), .init(codingPath: container.codingPath, debugDescription: "Couldn't decode \(type(of: self))"))
         }
     }
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
-        case .mockNotFound(let reason):
-            try container.encode(reason, forKey: .mockNotFound)
+        case .urlRequest(let request):
+            try container.encode(request, forKey: .request)
         }
     }
 }
@@ -96,7 +114,7 @@ protocol IPCDriverServerDelegate: class {
 
 class IPCDriverServer: IPCServer {
     static func portName(id: String) -> String {
-        return "com.instructure.icanvas.ui-test-driver-\(id)"
+        "com.instructure.icanvas.ui-test-driver-\(id)"
     }
 
     override func handler(msgid: Int32, data: Data?) -> Data? {
@@ -111,7 +129,7 @@ class IPCDriverServer: IPCServer {
 
     weak var delegate: IPCDriverServerDelegate?
     init (machPortName: String, delegate: IPCDriverServerDelegate?) {
-        super.init(machPortName: machPortName, queue: .global())
+        super.init(machPortName: machPortName, runOnMainQueue: false)
         self.delegate = delegate
     }
 }
@@ -126,7 +144,7 @@ class IPCClient {
         self.openTimeout = timeout
     }
 
-    func openMessagePort() {
+    func openMessagePort() throws {
         let deadline = Date().addingTimeInterval(openTimeout)
         repeat {
             if let port = CFMessagePortCreateRemote(kCFAllocatorDefault, serverPortName as CFString) {
@@ -135,19 +153,20 @@ class IPCClient {
             }
             sleep(1)
         } while Date() < deadline
-        fatalError("client couldn't connect to server port \(serverPortName)")
+        throw IPCError(message: "client couldn't connect to server port \(serverPortName)")
     }
 
-    func requestRemote<R: Codable>(_ request: R) -> Data? {
+    func requestRemote<R: Codable>(_ request: R) throws -> Data? {
         if messagePort == nil || !CFMessagePortIsValid(messagePort) {
-            openMessagePort()
+            try openMessagePort()
         }
 
         var responseData: Unmanaged<CFData>?
         let requestData = (try? JSONEncoder().encode(request))!
-        let status = CFMessagePortSendRequest(messagePort, 0, requestData as CFData, 1000, 1000, CFRunLoopMode.defaultMode.rawValue, &responseData)
+        let mode = "com.instructure.ipc-client" as CFString
+        let status = CFMessagePortSendRequest(messagePort, 0, requestData as CFData, 1000, 1000, mode, &responseData)
         guard status == kCFMessagePortSuccess else {
-            fatalError("IPCClient.requestRemote: error sending IPC request")
+            throw IPCError(message: "IPCClient.requestRemote: error sending IPC request")
         }
         return responseData?.takeRetainedValue() as Data?
     }

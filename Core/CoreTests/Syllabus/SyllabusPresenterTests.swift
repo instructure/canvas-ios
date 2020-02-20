@@ -30,6 +30,7 @@ class SyllabusPresenterTests: CoreTestCase {
         super.setUp()
         html = ""
         htmlExpectation = XCTestExpectation(description: "htmlExpectation")
+        environment.mockStore = false
         presenter = SyllabusPresenter(view: self, courseID: "1", env: environment)
     }
 

@@ -21,7 +21,6 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   ActionSheetIOS,
   Alert,
   LayoutAnimation,
@@ -41,6 +40,7 @@ import localeSort from '../../utils/locale-sort'
 import AccessIcon from '../../common/components/AccessIcon'
 import ListEmptyComponent from '../../common/components/ListEmptyComponent'
 import images from '../../images'
+import instIcon from '../../images/inst-icons'
 import bytes, { unitFor } from '../../utils/locale-bytes'
 import DropView from '../../common/components/DropView'
 import SavingBanner from '../../common/components/SavingBanner'
@@ -49,7 +49,7 @@ import AttachmentPicker from '../attachments/AttachmentPicker'
 import uuid from 'uuid/v1'
 import { wait } from '../../utils/async-wait'
 import { isTeacher } from '../app'
-import color from '../../common/colors'
+import { colors, createStyleSheet, vars } from '../../common/stylesheet'
 import { Text } from '../../common/text'
 import { isRegularDisplayMode } from '../../routing/utils'
 import type { TraitCollection } from '../../routing/Navigator'
@@ -222,6 +222,7 @@ export class FilesList extends Component<Props, State> {
         canSelectFile,
         canEdit,
         canAdd,
+        onChange: this.update,
       })
     }
   }
@@ -250,6 +251,9 @@ export class FilesList extends Component<Props, State> {
   }
 
   handleDeleteFolder = () => {
+    if (this.props.onChange) {
+      this.props.onChange()
+    }
     this.props.navigator.pop()
   }
 
@@ -372,7 +376,7 @@ export class FilesList extends Component<Props, State> {
     let name
     let icon
     let subtitle
-    let tintColor = color.grey5
+    let tintColor = this.props.courseColor || colors.textDark
     let statusOffset = {}
     let selected = false
     if (item.type === 'file') {
@@ -381,22 +385,19 @@ export class FilesList extends Component<Props, State> {
       if (item.mime_class === 'image' && item.thumbnail_url) {
         icon = { uri: item.thumbnail_url }
       } else if (item.mime_class === 'video') {
-        icon = images.files.media
+        icon = instIcon('video', 'line')
       } else {
-        icon = images.document
+        icon = instIcon('document', 'line')
       }
       subtitle = bytes(item.size)
     } else {
       name = item.name
-      icon = images.files.folder
+      icon = instIcon('folder', 'solid')
       subtitle = i18n(`{
         item_count, plural,
           one {# item}
           other {# items}
       }`, { item_count: item.files_count + item.folders_count })
-      if (this.props.courseColor) {
-        tintColor = this.props.courseColor
-      }
     }
     const renderImage = () => {
       return <View style={styles.icon}>
@@ -544,11 +545,10 @@ export class FilesList extends Component<Props, State> {
       <Screen
         customPageViewPath={this.props.customPageViewPath ? this.props.customPageViewPath : null}
         title={title}
-        navBarColor={isCourse ? this.props.courseColor : color.navBarColor}
-        navBarStyle={isCourse ? 'dark' : color.statusBarStyle}
-        navBarButtonColor={isCourse ? 'white' : color.navBarTextColor}
-        navBarTitleColor={isCourse ? 'white' : color.navBarTextColor}
-        statusBarStyle={isCourse ? 'light' : color.statusBarStyle}
+        navBarColor={isCourse ? this.props.courseColor : colors.navBackground}
+        navBarStyle={isCourse ? 'dark' : vars.navBarStyle}
+        navBarButtonColor={isCourse ? colors.white : colors.navTextColor}
+        navBarTitleColor={isCourse ? colors.white : colors.navTextColor}
         rightBarButtons={rightBarButtons}
         onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
       >
@@ -582,7 +582,9 @@ export function mapStateToProps (state: Object, props: FileListNavProps) {
   const key = `${props.context}-${props.contextID}`
   const contextFolders = state.folders[key] || {}
   const contextFiles = state.files[key] || {}
-  const courseColor = (state.entities.courses[props.contextID] || {}).color
+  const courseColor = props.context === 'courses'
+    ? (state.entities.courses[props.contextID] || {}).color
+    : (state.entities.groups[props.contextID] || {}).color
   if (!contextFolders['root'] || !contextFolders['root'][0]) {
     return { data: [], courseColor }
   }
@@ -612,7 +614,7 @@ export function mapStateToProps (state: Object, props: FileListNavProps) {
   return { data, folder: parentFolder, courseColor }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   icon: {
     alignSelf: 'flex-start',
   },
@@ -624,12 +626,12 @@ const styles = StyleSheet.create({
     left: 0,
   },
   queryLength: {
-    marginHorizontal: global.style.defaultPadding,
+    marginHorizontal: vars.padding,
     marginTop: -5,
     fontSize: 13,
-    color: color.grey5,
+    color: colors.textDark,
   },
-})
+}))
 
 let Connected = connect(mapStateToProps, Actions)(FilesList)
 export default (Connected: Component<any, any>)

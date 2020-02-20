@@ -7,7 +7,7 @@ exports[`renders disclosure indiciator correctly 1`] = `
       Object {
         "alignSelf": "center",
         "backgroundColor": "transparent",
-        "borderColor": "#c7c7cc",
+        "borderColor": "#C7CDD1",
         "borderRightWidth": 2,
         "borderTopWidth": 2,
         "height": 10,
@@ -33,7 +33,7 @@ exports[`renders properly in rtl 1`] = `
       Object {
         "alignSelf": "center",
         "backgroundColor": "transparent",
-        "borderColor": "#c7c7cc",
+        "borderColor": "#C7CDD1",
         "borderRightWidth": 2,
         "borderTopWidth": 2,
         "height": 10,

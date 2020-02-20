@@ -26,6 +26,7 @@ class StudentSettingsPresenterTests: ParentTestCase {
     var presenter: StudentSettingsPresenter!
     var expectation = XCTestExpectation(description: "expectation")
     var updateExpectation = XCTestExpectation(description: "expectation")
+    var removeExpectation = XCTestExpectation(description: "expectation")
     let userID = "1"
 
     override func setUp() {
@@ -36,16 +37,12 @@ class StudentSettingsPresenterTests: ParentTestCase {
     }
 
     func testUseCaseFetchesData() {
-        //  given
-        AlertThreshold.make()
+        api.mock(GetAlertThresholdRequest(studentID: userID), value: [.make()])
 
-        //   when
         presenter.viewIsReady()
         wait(for: [expectation], timeout: 0.4)
 
-        //  then
         XCTAssertEqual(presenter.thresholds.first?.type, AlertThresholdType.assignmentGradeHigh)
-
         XCTAssertNotNil(presenter.thresholdForType(.assignmentGradeHigh))
     }
 
@@ -65,51 +62,52 @@ class StudentSettingsPresenterTests: ParentTestCase {
     }
 
     func testUpdateAlert() {
-        expectation.expectedFulfillmentCount = 3
-
-        let a = AlertThreshold.make(from: .make( threshold: "100"))
+        let a = APIAlertThreshold.make(threshold: "100")
+        api.mock(GetAlertThresholdRequest(studentID: userID), value: [a])
         presenter.viewIsReady()
+        wait(for: [expectation], timeout: 5)
 
         let value = "50"
-        let req1 = PutAlertThresholdRequest(thresholdID: a.id, alertType: a.type!, value: value)
+        let req1 = PutAlertThresholdRequest(thresholdID: a.id, alertType: AlertThresholdType(rawValue: a.alert_type)!, value: value)
         let alert = APIAlertThreshold.make(id: "2", observer_id: "5", user_id: userID, alert_type: AlertThresholdType.assignmentGradeHigh.rawValue, threshold: value)
         api.mock(req1, value: alert)
 
         //   when
         presenter.updateAlert(value: value, alertType: .assignmentGradeHigh, thresholdID: a.id)
 
-        wait(for: [expectation, updateExpectation], timeout: 0.4)
+        wait(for: [updateExpectation], timeout: 5)
 
         XCTAssertEqual(presenter.thresholds.first?.type, AlertThresholdType.assignmentGradeHigh)
         XCTAssertEqual(presenter.thresholds.first?.threshold, "50")
     }
 
     func testDeleteAlert() {
-        expectation.expectedFulfillmentCount = 4
-        let a = AlertThreshold.make()
+        removeExpectation.expectedFulfillmentCount = 4
+        api.mock(GetAlertThresholdRequest(studentID: userID), value: [.make(id: "1")])
 
-        let req1 = DeleteAlertThresholdRequest(thresholdID: a.id)
+        let req1 = DeleteAlertThresholdRequest(thresholdID: "1")
         api.mock(req1, value: nil)
 
-        //   when
         presenter.viewIsReady()
-        presenter.removeAlert(alertID: a.id)
-        wait(for: [expectation], timeout: 0.4)
-        //  then
+        wait(for: [expectation], timeout: 5)
+
+        presenter.removeAlert(alertID: "1")
+        wait(for: [removeExpectation], timeout: 5)
         XCTAssertNil(presenter.thresholds.first)
     }
 }
 
 extension StudentSettingsPresenterTests: StudentSettingsViewProtocol {
-    var navigationController: UINavigationController? {
-        return nil
-    }
+    func showAlert(title: String?, message: String?) {}
 
     func didUpdateAlert() {
         updateExpectation.fulfill()
     }
 
     func update() {
-        expectation.fulfill()
+        if presenter.thresholds.pending == false {
+            expectation.fulfill()
+        }
+        removeExpectation.fulfill()
     }
 }

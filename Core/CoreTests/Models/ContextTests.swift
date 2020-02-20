@@ -28,6 +28,15 @@ class ContextTests: XCTestCase {
         XCTAssertEqual(ContextType.section.pathComponent, "sections")
     }
 
+    func testInitTypeWithPathComponent() {
+        XCTAssertEqual(ContextType(pathComponent: "accounts"), .account)
+        XCTAssertEqual(ContextType(pathComponent: "courses"), .course)
+        XCTAssertEqual(ContextType(pathComponent: "groups"), .group)
+        XCTAssertEqual(ContextType(pathComponent: "users"), .user)
+        XCTAssertEqual(ContextType(pathComponent: "sections"), .section)
+        XCTAssertNil(ContextType(pathComponent: "chums"))
+    }
+
     func testCanvasContextID() {
         XCTAssertEqual(ContextModel(.account, id: "1").canvasContextID, "account_1")
         XCTAssertEqual(ContextModel(.course, id: "2").canvasContextID, "course_2")

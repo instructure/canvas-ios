@@ -54,7 +54,7 @@ extension ModuleItem {
     public static func moduleItemSequence(_ session: Session, courseID: String, moduleItemID: String) throws -> SignalProducer<JSONObject, NSError> {
         let path = "api/v1/courses/\(courseID)/module_item_sequence"
         let parameters = ["asset_id": moduleItemID, "asset_type": "ModuleItem"]
-        let request = try session.GET(path, parameters: parameters)
+        let request = try session.GET(path, parameters: parameters, paginated: false)
         return session.JSONSignalProducer(request)
     }
 }

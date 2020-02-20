@@ -93,7 +93,7 @@ class SubmissionTests: CoreTestCase {
         XCTAssertEqual(submission.icon, UIImage.icon(.video))
 
         submission.type = .online_upload
-        submission.attachments = Set([ File.make(from: .make(mime_class: "pdf")) ])
+        submission.attachments = Set([ File.make(from: .make(contentType: "application/pdf", mime_class: "pdf")) ])
         XCTAssertEqual(submission.icon, UIImage.icon(.pdf))
 
         submission.type = .on_paper
@@ -207,5 +207,59 @@ class SubmissionTests: CoreTestCase {
         Submission.save(item, in: databaseClient)
         let submissions: [Submission] = databaseClient.fetch()
         XCTAssertEqual(submissions.count, 1)
+    }
+
+    func testNeedsGrading() {
+        let nilType = Submission.make(from: .make(submission_type: nil))
+        XCTAssertFalse(nilType.needsGrading)
+
+        let pendingReview = Submission.make(from: .make(submission_type: .online_url, workflow_state: .pending_review))
+        XCTAssertTrue(pendingReview.needsGrading)
+
+        let gradedNoScore = Submission.make(from: .make(score: nil, submission_type: .online_url, workflow_state: .graded))
+        XCTAssertTrue(gradedNoScore.needsGrading)
+
+        let gradedScore = Submission.make(from: .make(score: 10, submission_type: .online_url, workflow_state: .graded))
+        XCTAssertFalse(gradedScore.needsGrading)
+
+        let submittedNoScore = Submission.make(from: .make(score: nil, submission_type: .online_url, workflow_state: .submitted))
+        XCTAssertTrue(submittedNoScore.needsGrading)
+
+        let submittedScore = Submission.make(from: .make(score: 10, submission_type: .online_url, workflow_state: .submitted))
+        XCTAssertFalse(submittedScore.needsGrading)
+
+        let regraded = Submission.make(from: .make(score: 10, submission_type: .online_url, workflow_state: .graded, grade_matches_current_submission: false))
+        XCTAssertTrue(regraded.needsGrading)
+
+        let resubmitted = Submission.make(from: .make(score: 10, submission_type: .online_url, workflow_state: .submitted, grade_matches_current_submission: false))
+        XCTAssertTrue(resubmitted.needsGrading)
+    }
+
+    func testIsGraded() {
+        let excused = Submission.make(from: .make(excused: true))
+        XCTAssertTrue(excused.isGraded)
+
+        let gradedNoScore = Submission.make(from: .make(score: nil, workflow_state: .graded))
+        XCTAssertFalse(gradedNoScore.isGraded)
+
+        let scoreNotGraded = Submission.make(from: .make(score: 10, workflow_state: .pending_review))
+        XCTAssertFalse(scoreNotGraded.isGraded)
+
+        let gradedWithScore = Submission.make(from: .make(score: 10, workflow_state: .graded))
+        XCTAssertTrue(gradedWithScore.isGraded)
+    }
+
+    func testSubmissionStatus() {
+        let late = Submission.make(from: .make(late: true))
+        XCTAssertEqual(late.status, .late)
+
+        let missing = Submission.make(from: .make(missing: true))
+        XCTAssertEqual(missing.status, .missing)
+
+        let submitted = Submission.make(from: .make(submitted_at: Date()))
+        XCTAssertEqual(submitted.status, .submitted)
+
+        let notSubmitted = Submission.make(from: .make(submitted_at: nil, late: false, missing: false))
+        XCTAssertEqual(notSubmitted.status, .notSubmitted)
     }
 }

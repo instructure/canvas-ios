@@ -19,7 +19,7 @@
 import Foundation
 
 public class GetGroup: APIUseCase {
-    let groupID: String
+    public let groupID: String
     public typealias Model = Group
 
     public var request: GetGroupRequest {
@@ -37,4 +37,10 @@ public class GetGroup: APIUseCase {
     public init(groupID: String, env: AppEnvironment = .shared) {
         self.groupID = groupID
     }
+}
+
+class GetGroups: CollectionUseCase {
+    typealias Model = Group
+    var cacheKey: String? = "get-users-self-groups"
+    let request = GetGroupsRequest(context: ContextModel.currentUser)
 }

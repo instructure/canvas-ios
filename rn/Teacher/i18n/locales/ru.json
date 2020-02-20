@@ -92,9 +92,6 @@
   "all_in_e5ddaee0": {
     "message": "Все в"
   },
-  "all_people_16d90b41": {
-    "message": "Все люди"
-  },
   "all_submissions_3eedfb97": {
     "message": "Все отправки"
   },
@@ -106,6 +103,9 @@
   },
   "allow_threaded_replies_43b2311e": {
     "message": "Разрешить цепочечные ответы"
+  },
+  "allow_users_to_comment_45b8f753": {
+    "message": "Разрешить пользователям комментирование"
   },
   "allowed_attempts_4e229caa": {
     "message": "Разрешенные Попытки"
@@ -464,9 +464,6 @@
   "description_436c48d7": {
     "message": "Описание"
   },
-  "designer_c458392": {
-    "message": "Дизайнер"
-  },
   "details_98a31b68": {
     "message": "Подробности"
   },
@@ -643,9 +640,6 @@
   },
   "filter_numselected_number_2e4c17e3": {
     "message": "Фильтр ({ numSelected, number })"
-  },
-  "filter_people_b34b567b": {
-    "message": "Фильтрация людей"
   },
   "filter_submissions_numselected_number_selected_177867b3": {
     "message": "Фильтр отправок. ({ numSelected, number }) выбрано."
@@ -932,6 +926,9 @@
   "name_profile_240f0967": {
     "message": "{ name } Профиль"
   },
+  "name_pronouns_8d5a0061": {
+    "message": "{ name } ({ pronouns })"
+  },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } дополнительно"
   },
@@ -1034,9 +1031,6 @@
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# минута}\n few {# минут/минуты}\n many {# минут/минуты}\n other {# минут/минуты}\n}"
   },
-  "observer_248a192e": {
-    "message": "Наблюдатель"
-  },
   "off_5385ef3f": {
     "message": "Выкл"
   },
@@ -1069,6 +1063,9 @@
   },
   "only_available_to_students_with_link_not_available_c12278d2": {
     "message": "Доступно только студентам по ссылке. Не доступно в файлах студентов."
+  },
+  "only_members_232519d6": {
+    "message": "Только участники"
   },
   "only_once_after_each_attempt_cc842738": {
     "message": "Только один раз после каждой попытки"
@@ -1123,9 +1120,6 @@
   },
   "past_enrollments_a846da48": {
     "message": "Прошлые регистрации"
-  },
-  "people_b4ebb13c": {
-    "message": "Люди"
   },
   "percent_d7ddd35b": {
     "message": "Процент (%)"
@@ -1472,9 +1466,6 @@
   "syllabus_f191f65b": {
     "message": "Учебный план"
   },
-  "ta_8d966626": {
-    "message": "Ассистент учителя"
-  },
   "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
     "message": "Прикоснитесь и удерживайте номер рубрики для просмотра ее описания"
   },
@@ -1486,9 +1477,6 @@
   },
   "tap_to_view_submissions_list_5bfe32f3": {
     "message": "Прикоснитесь для просмотра списка отправок."
-  },
-  "teacher_5a73b637": {
-    "message": "Учитель"
   },
   "teachers_52e2423f": {
     "message": "Учителя"

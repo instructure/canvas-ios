@@ -28,18 +28,11 @@
 /* Notification to alert the user that there is only 30 seconds left in the time quiz */
 "30 seconds remaining" = "Preostalo je še 30 sekund.";
 
-/* Mark student absent
-   Student is present in class */
-"Absent" = "Odsoten";
-
 /* Shows the number questions */
 "All %@ Questions" = "Vseh %@ vprašanj";
 
 /* option to view results for all grading periods */
 "All Grading Periods" = "Vsa ocenjevalna obdobja";
-
-/* all pages segmented control title */
-"All Pages" = "Vse strani";
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Dovoljeni poskusi";
@@ -65,12 +58,6 @@
 /* label to be read for visually impaired users with assignment types */
 "assignment" = "naloga";
 
-/* No comment provided by engineer. */
-"Attendance" = "Prisotnost";
-
-/* Error title for attendance app */
-"Attendance Error" = "Napaka pri prisotnosti";
-
 /* label for quiz availability date */
 "Available Until" = "Na voljo do";
 
@@ -91,9 +78,6 @@
    Cancel upload */
 "Cancel" = "Prekliči";
 
-/* No comment provided by engineer. */
-"Change Section" = "Spremeni sekcijo";
-
 /* Choose a file */
 "Choose a File" = "Izberi datoteko";
 
@@ -103,14 +87,8 @@
 /* Pick a photo or video */
 "Choose a Photo or Video" = "Izberi fotografijo ali videoposnetek";
 
-/* No comment provided by engineer. */
-"Choose a Section" = "Izberi sekcijo";
-
 /* Pick a video from library */
 "Choose a Video" = "Izberi videoposnetek";
-
-/* No comment provided by engineer. */
-"Choose Date" = "Izberi datum";
 
 /* No comment provided by engineer. */
 "Collapse" = "Strni";
@@ -120,9 +98,6 @@
 
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Nadaljuj s kvizom";
-
-/* Failure reason for why it couldn't associate a tab with a context */
-"Could not parse context id from URL" = "ID-ja konteksta iz naslova URL ni bilo mogoče razčleniti.";
 
 /* Header label for a screen that customizes a course */
 "Customize" = "Prilagodi po meri";
@@ -135,9 +110,6 @@
 
 /* Error title for a persistence related data failure */
 "Data Error" = "Napaka pri podatkih";
-
-/* No comment provided by engineer. */
-"Date picker" = "Orodje za izbiro podatkov";
 
 /* DeepOrange course color button */
 "DeepOrange" = "DeepOrange";
@@ -160,8 +132,7 @@
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Napaka na disku";
 
-/* Dismiss an error alert
-   Dismiss an error dialog
+/* Dismiss an error dialog
    Dismiss button for error alert
    Dismiss button for error messages */
 "Dismiss" = "Opusti";
@@ -192,25 +163,10 @@
 "Error Loading Quiz" = "Napaka pri nalaganju kviza";
 
 /* No comment provided by engineer. */
-"Error parsing the Roll Call response. Expected (e), received (a)" = "Napaka pri razčlenitvi odziva na preverjanje prisotnosti Pričakovano (e), prejeto (a)";
-
-/* No comment provided by engineer. */
-"Error parsing the Roll Call response. Expected (e), received (a) for key (k)" = "Napaka pri razčlenitvi odziva na preverjanje prisotnosti Pričakovano (e), prejeto (a) za ključ (k)";
-
-/* No comment provided by engineer. */
-"Error parsing the Roll Call response. Key not found: (k)" = "Napaka pri razčlenitvi odziva na preverjanje prisotnosti Ključa ni mogoče najti: (k)";
-
-/* No comment provided by engineer. */
-"Error parsing the Roll Call response. Unexpected null value: (k)" = "Napaka pri razčlenitvi odziva na preverjanje prisotnosti Nepričakovana ničelna vrednost: (k)";
-
-/* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Napaka pri pridobivanju naslova URL za zagon orodja";
 
 /* Error title for parsing assignment data from server */
 "Error Updating Assignment" = "Napaka pri posodobitvi naloge";
-
-/* rollcall status error */
-"Error: No data returned from the rollcall api." = "Napaka: Iz vmesnika API za preverjanje prisotnosti ni vrnjenih podatkov.";
 
 /* Exit button to leave the quiz */
 "Exit" = "Izhod";
@@ -238,9 +194,6 @@
 
 /* State of the flagged question */
 "Flagged" = "Označeno";
-
-/* front page segmented control title */
-"Front Page" = "Prva stran";
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Pridobi ocene za";
@@ -275,10 +228,6 @@
 /* No comment provided by engineer. */
 "Invalid date received from API." = "Neveljaven datum, prejet od API";
 
-/* Mark student late
-   Student is present in class */
-"Late" = "Zamuda";
-
 /* No comment provided by engineer. */
 "Launch External Tool" = "Zaženi zunanje orodje";
 
@@ -303,12 +252,6 @@
 /* Title for when another tool called Lockdown Browser is required to take a quiz */
 "Lockdown Browser Required" = "Zahtevan je brskalnik Lockdown.";
 
-/* No comment provided by engineer. */
-"Mark All as Present" = "Označi vse kot prisotne";
-
-/* No comment provided by engineer. */
-"Mark Remaining as Present" = "Označi preostale kot prisotne";
-
 /* Error alert title for network error
    Title for network errors */
 "Network Error" = "Napaka v omrežju";
@@ -324,9 +267,6 @@
 
 /* Error when push channel cannot be found in notificaitons */
 "No push channel found" = "Ni najdenega kanala potiska.";
-
-/* No comment provided by engineer. */
-"No sections available. Please make sure you are enrolled as a teacher or TA in at least on section of this course." = "Na voljo ni nobenih sekcij. Poskrbite, da boste vsaj pri eni sekciji tega predmeta vpisani kot izvajalec ali demonstrator.";
 
 /* when a quiz has no time limit */
 "No time limit" = "Brez časovne omejitve";
@@ -390,10 +330,6 @@
 
 /* label for number of points in a quiz */
 "Points" = "Točke";
-
-/* Mark student present
-   Student is present in class */
-"Present" = "Trenutno";
 
 /* Purple course color button */
 "Purple" = "Škrlatno";
@@ -485,9 +421,6 @@
 /* Indicates that a matching quiz question needs to have an answer selected */
 "Select Answer" = "Izberi odgovor";
 
-/* No comment provided by engineer. */
-"Select to change the roll call date" = "Izberite, da spremenite datum preverjanja prisotnosti.";
-
 /* when a button is selected */
 "Selected" = "Izbrano";
 
@@ -546,23 +479,14 @@
 /* Description for alert that shows when the quiz hits the due date */
 "The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Rok kviza se izteče čez 1 minuto. Ali želite poslati zdaj in biti pravočasni ali pa želite nadaljevati kviz in morda zamuditi rok?";
 
-/* Error message for interrupted requests marking a to do as done */
-"The request to mark a to do as done was interrupted" = "Zahteva za oznako opravila kot dokončanega je bila prekinjena.";
-
 /* bad url message */
 "The text you entered is not a valid URL" = "Besedilo, ki ste ga vnesli, ni veljavni naslov URL.";
 
 /* Data encoding error message */
 "There was a problem encoding UTF8 Data" = "Prišlo je do težave pri kodiranju podatkov UTF-8.";
 
-/* No comment provided by engineer. */
-"There was a problem fetching the list of course sections." = "Prišlo je do težave pri pridobivanju seznama sekcij predmeta.";
-
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Prišlo je do težav pri tolmačenju odziva strežnika.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the (kitModelName) database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov (kitModelName).";
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov AssignmentKit.";
@@ -662,9 +586,6 @@
 
 /* When a quiz has no limit on the number of attempts */
 "Unlimited" = "Neomejeno";
-
-/* Remove attendance status */
-"Unmark" = "Razveljavi oznako";
 
 /* Upcoming assignments */
 "Upcoming" = "Prihodnje";

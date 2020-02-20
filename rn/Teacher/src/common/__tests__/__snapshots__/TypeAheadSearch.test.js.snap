@@ -25,8 +25,8 @@ exports[`TypeAheadSearch renders a search bar 1`] = `
   showsCancelButtonWhileEditing={true}
   spellCheck={false}
   text=""
-  textColor={null}
-  textFieldBackgroundColor="#F1F1F2"
-  tintColor={null}
+  textColor="#2D3B45"
+  textFieldBackgroundColor="#F5F5F5"
+  tintColor="#8B969E"
 />
 `;

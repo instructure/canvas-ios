@@ -20,7 +20,6 @@ import CanvasCore
 import ReactiveSwift
 import ReactiveCocoa
 import Cartography
-import TechDebt
 
 class ModuleItemDetailViewController: UIViewController {
     @objc let session: Session

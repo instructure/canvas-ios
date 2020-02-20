@@ -33,7 +33,7 @@ import CanvasWebView from '../../common/components/CanvasWebView'
 import DescriptionDefaultView from '../../common/components/DescriptionDefaultView'
 import PublishedIcon from './components/PublishedIcon'
 import AssignmentDates from './components/AssignmentDates'
-import colors from '../../common/colors'
+import { createStyleSheet } from '../../common/stylesheet'
 import { RefreshableScrollView } from '../../common/components/RefreshableList'
 import DisclosureIndicator from '../../common/components/DisclosureIndicator'
 import refresh from '../../utils/refresh'
@@ -48,7 +48,6 @@ import AssignmentDatesParser from '../../common/AssignmentDates'
 
 import {
   View,
-  StyleSheet,
   TouchableOpacity,
   TouchableHighlight,
 } from 'react-native'
@@ -292,14 +291,14 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
   },
   topContainer: {
     paddingTop: 14,
-    paddingLeft: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
+    paddingLeft: vars.padding,
+    paddingRight: vars.padding,
     paddingBottom: 17,
   },
   loadingContainer: {
@@ -322,27 +321,27 @@ const style = StyleSheet.create({
     flexDirection: 'row',
   },
   submission: {
-    marginTop: global.style.defaultPadding / 2,
+    marginTop: vars.padding / 2,
   },
   points: {
     fontWeight: '500',
-    color: colors.grey4,
+    color: colors.textDark,
   },
   header: {
-    color: colors.grey4,
+    color: colors.textDark,
     fontWeight: '500',
     fontSize: 16,
     marginBottom: 4,
   },
   section: {
     flex: 1,
-    paddingTop: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
-    paddingBottom: global.style.defaultPadding,
-    paddingLeft: global.style.defaultPadding,
-    backgroundColor: 'white',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: colors.grey2,
+    paddingTop: vars.padding,
+    paddingRight: vars.padding,
+    paddingBottom: vars.padding,
+    paddingLeft: vars.padding,
+    backgroundColor: colors.backgroundLightest,
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
   },
   notGradedSubmissions: {
     flexDirection: 'row',
@@ -351,26 +350,26 @@ const style = StyleSheet.create({
   },
   launchExternalToolButton: {
     flex: 1,
-    backgroundColor: '#008EE2',
+    backgroundColor: colors.buttonPrimaryBackground,
     height: 51,
     borderRadius: 4,
-    marginTop: global.style.defaultPadding,
-    marginBottom: global.style.defaultPadding,
-    marginLeft: global.style.defaultPadding,
-    marginRight: global.style.defaultPadding,
+    marginTop: vars.padding,
+    marginBottom: vars.padding,
+    marginLeft: vars.padding,
+    marginRight: vars.padding,
   },
   launchExternalToolButtonContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 4,
-    backgroundColor: '#008EE2',
+    backgroundColor: colors.buttonPrimaryBackground,
   },
   launchExternalToolButtonTitle: {
-    color: 'white',
+    color: colors.buttonPrimaryText,
     fontWeight: '600',
   },
-})
+}))
 
 const assignementDetailsShape = PropTypes.shape({
   id: PropTypes.string,

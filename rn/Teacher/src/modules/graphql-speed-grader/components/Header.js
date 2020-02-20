@@ -22,7 +22,6 @@ import React, { Component } from 'react'
 import {
   View,
   Image,
-  StyleSheet,
   TouchableHighlight,
 } from 'react-native'
 import { Text } from '../../../common/text'
@@ -32,7 +31,7 @@ import type {
 } from '../../submissions/list/submission-prop-types'
 import SubmissionStatusLabel from '../../submissions/list/SubmissionStatusLabel'
 import Avatar from '../../../common/components/Avatar'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import icon from '../../../images/inst-icons'
 
 export default class Header extends Component<HeaderProps, State> {
@@ -56,8 +55,8 @@ export default class Header extends Component<HeaderProps, State> {
   renderDoneButton () {
     return (
       <View style={styles.barButton}>
-        <TouchableHighlight onPress={this.props.closeModal} underlayColor='white' testID='header.navigation-done'>
-          <Text style={{ color: '#008EE2', fontSize: 18, fontWeight: '600' }}>
+        <TouchableHighlight onPress={this.props.closeModal} underlayColor={colors.backgroundLightest} testID='header.navigation-done'>
+          <Text style={{ color: colors.linkColor, fontSize: 18, fontWeight: '600' }}>
             {i18n('Done')}
           </Text>
         </TouchableHighlight>
@@ -68,7 +67,7 @@ export default class Header extends Component<HeaderProps, State> {
   renderEyeBall () {
     return (
       <View style={styles.barButton}>
-        <TouchableHighlight onPress={this.navigateToPostPolicies} underlayColor='white' testID='header.navigation-eye'>
+        <TouchableHighlight onPress={this.navigateToPostPolicies} underlayColor={colors.backgroundLightest} testID='header.navigation-eye'>
           <View style={{ paddingLeft: 20 }}>
             <Image source={icon('eye', 'line')} style={styles.eyeIcon} />
           </View>
@@ -104,7 +103,7 @@ export default class Header extends Component<HeaderProps, State> {
         <View style={styles.innerRowContainer}>
           <TouchableHighlight
             onPress={action}
-            underlayColor='white'
+            underlayColor={colors.backgroundLightest}
             testID={testID}
           >
             <View style={styles.innerRowContainer}>
@@ -145,9 +144,9 @@ export default class Header extends Component<HeaderProps, State> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   header: {
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     marginTop: 16,
   },
   profileContainer: {
@@ -155,14 +154,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   innerRowContainer: {
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     flexDirection: 'row',
     alignItems: 'center',
     flex: 1,
   },
   navButtonImage: {
     resizeMode: 'contain',
-    tintColor: '#008EE2',
+    tintColor: colors.textInfo,
   },
   avatar: {
     width: 40,
@@ -182,15 +181,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   barButton: {
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     marginRight: 12,
   },
   eyeIcon: {
     width: 20,
     height: 20,
-    tintColor: colors.grey4,
+    tintColor: colors.textDark,
   },
-})
+}))
 
 type RouterProps = {
   courseID: string,

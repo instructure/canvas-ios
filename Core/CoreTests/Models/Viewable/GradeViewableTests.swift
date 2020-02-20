@@ -63,19 +63,6 @@ class GradeViewableTests: XCTestCase {
         XCTAssertEqual(Model(pointsPossible: 1, viewableScore: 1).scoreOutOfPointsPossibleText, "Scored 1 out of 1 point possible")
     }
 
-    func testGradeText() {
-        XCTAssertNil(Model(gradingType: .letter_grade, viewableGrade: nil).gradeText)
-        XCTAssertEqual(Model(gradingType: .letter_grade, viewableGrade: "B+").gradeText, "B+")
-        XCTAssertEqual(Model(gradingType: .percent, viewableGrade: "80%").gradeText, "80%")
-        XCTAssertEqual(Model(gradingType: .points, viewableGrade: "80").gradeText, "80")
-        XCTAssertNil(Model(gradingType: .not_graded).gradeText)
-        XCTAssertNil(Model(gradingType: .gpa_scale).gradeText)
-        XCTAssertEqual(Model(gradingType: .gpa_scale, viewableGrade: "3.0").gradeText, "3.0 GPA")
-        XCTAssertNil(Model(gradingType: .pass_fail).gradeText)
-        XCTAssertEqual(Model(gradingType: .pass_fail, viewableScore: 0).gradeText, "Incomplete")
-        XCTAssertEqual(Model(gradingType: .pass_fail, viewableScore: 100).gradeText, "Complete")
-    }
-
     func testFinalGradeText() {
         XCTAssertNil(Model(gradingType: .points).finalGradeText)
         XCTAssertEqual(Model(gradingType: .points, viewableScore: 1).finalGradeText, "Final Grade: 1 pt")

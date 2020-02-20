@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(Geen onderwerp)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d van %3$d";
 
@@ -10,11 +13,26 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ begint op %2$@";
 
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@, in %2$@, was het laatste bericht op %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, ongelezen";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
+
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Optreden als gebruiker";
+
+/* No comment provided by engineer. */
+"Add" = "Toevoegen";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "Bijlagen toevoegen";
 
 /* No comment provided by engineer. */
 "Add Student" = "Cursist toevoegen";
@@ -52,6 +70,12 @@
 /* No comment provided by engineer. */
 "Back" = "Terug";
 
+/* Calendar Tab */
+"Calendar" = "Kalender";
+
+/* No comment provided by engineer. */
+"Calendar Event" = "Gebeurtenis op kalender";
+
 /* No comment provided by engineer. */
 "Cancel" = "Annuleren";
 
@@ -65,7 +89,10 @@
 "Caught up on Alerts" = "Waarschuwingen bijgewerkt";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Kies een cursist";
+"Choose a course to message" = "Kies een cursus voor bericht";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Nieuw bericht opstellen";
 
 /* Course Announcement Description */
 "Course announcements" = "Cursusaankondigingen";
@@ -80,13 +107,13 @@
 "Courses" = "Cursussen";
 
 /* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Huidige cursist: %@, tik om van cursist te wisselen";
-
-/* No comment provided by engineer. */
 "Discussion" = "Discussie";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Verwijderen";
+
+/* No comment provided by engineer. */
+"Edit Recipients" = "Ontvangers bewerken";
 
 /* No comment provided by engineer. */
 "Event" = "Gebeurtenis";
@@ -101,6 +128,18 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Laden van (discussionKitModelName) NSManagedObjectModel is mislukt";
 
 /* No comment provided by engineer. */
+"Failed. Tap for options" = "Mislukt. Tik voor opties";
+
+/* No comment provided by engineer. */
+"File" = "Bestand";
+
+/* No comment provided by engineer. */
+"for %@" = "voor %@";
+
+/* No comment provided by engineer. */
+"Front Page" = "Voorpagina";
+
+/* No comment provided by engineer. */
 "Grades" = "Cijfers";
 
 /* High Assignment Grade too Low */
@@ -111,6 +150,12 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "In-Klas";
+
+/* No comment provided by engineer. */
+"Inbox" = "Inbox";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Inbox Zero";
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Voer de koppelingscode cursist in die je gekregen hebt.";
@@ -139,14 +184,26 @@
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "Laag cursuscijfer kan niet hoger zijn dan hoog cursuscijfer";
 
-/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "Kinderen beheren";
+/* No comment provided by engineer. */
+"Message" = "Bericht";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Bericht van %1$@, %2$@, op %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Ontbrekend";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Ontbrekend: (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Ontbreekt: %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Ontbreekt: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Nieuw bericht";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Volgende week";
@@ -159,6 +216,9 @@
 
 /* Empty Students Text */
 "No Students" = "Geen cursisten";
+
+/* No comment provided by engineer. */
+"No Subject" = "Geen onderwerp";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Niets deze week";
@@ -176,7 +236,33 @@
 "Quiz" = "Toets";
 
 /* No comment provided by engineer. */
+"Recipients" = "Geadresseerden";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "Betreffende: %@";
+
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "Betreffende: %1$@, %2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "Antwoord";
+
+/* No comment provided by engineer. */
+"Reply All" = "Allen beantwoorden";
+
+/* No comment provided by engineer. */
+"Retry" = "Opnieuw proberen";
+
+/* No comment provided by engineer. */
+"Send" = "Versturen";
+
+/* No comment provided by engineer. */
 "Settings" = "Instellingen";
+
+/* No comment provided by engineer. */
+"Subject" = "Vak";
 
 /* No comment provided by engineer. */
 "Submitted" = "Ingediend";
@@ -186,6 +272,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "Ingediend: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Samenvatting";
 
 /* Syllabus Button Title */
 "Syllabus" = "Syllabus";
@@ -209,17 +298,23 @@
 "This student's courses may not be published yet." = "De cursussen voor deze cursist zijn mogelijk nog niet gepubliceerd.";
 
 /* No comment provided by engineer. */
+"To" = "Naar";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "Problemen met inloggen";
 
 /* No comment provided by engineer. */
 "Unread" = "Ongelezen";
 
-/* Calendar Tab */
-"Week" = "Week";
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "%1$@ wordt geüpload om %2$@";
 
 /* Header title of admin view */
 "Welcome!" = "Welkom!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Je moet in Instellingen meldingen activeren om herinneringen in te stellen.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Je bent helemaal bij!";
 

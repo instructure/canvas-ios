@@ -27,6 +27,13 @@ private struct Submission {
         return formatter
     }()
 
+    static let gradeNumberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 1
+        formatter.minimumFractionDigits = 0
+        return formatter
+    }()
+
     struct Status: OptionSet {
         let rawValue: Int64
         init(rawValue: Int64) { self.rawValue = rawValue}
@@ -46,13 +53,10 @@ private struct Submission {
     let pastEndDate: Bool
     let type: SubmissionTypes
     let gradePostedAt: Date?
+    let missing: Bool
 
     var onPaper: Bool {
         return type.contains(.onPaper)
-    }
-
-    var missing: Bool {
-        return pastEndDate && !type.contains(.none)
     }
 
     var displayText: String {
@@ -64,8 +68,10 @@ private struct Submission {
             guard let currentScore = currentScore else {
                 if status.contains(.Late) {
                     return NSLocalizedString("Late", comment: "")
-                } else {
+                } else if status.contains(.Submitted) {
                     return NSLocalizedString("Submitted", comment: "")
+                } else {
+                    return NSLocalizedString("Missing", comment: "")
                 }
             }
             let score = currentScore.doubleValue
@@ -79,6 +85,8 @@ private struct Submission {
 
             if status.contains(.Late) {
                 return String(format: NSLocalizedString("Late: %@", comment: ""), grade ?? "")
+            } else if missing {
+                return String(format: NSLocalizedString("Missing: %@", comment: ""), grade ?? "")
             } else {
                 return String(format: NSLocalizedString("Submitted: %@", comment: ""), grade ?? "")
             }
@@ -89,10 +97,10 @@ private struct Submission {
                 return NSLocalizedString("Submitted", comment: "")
             }
         } else {
-            if onPaper {
-                return NSLocalizedString("In-Class", comment: "")
-            } else if missing {
+            if missing {
                 return NSLocalizedString("Missing", comment: "")
+            } else if onPaper {
+                return NSLocalizedString("In-Class", comment: "")
             } else {
                 return ""
             }
@@ -106,17 +114,19 @@ private struct Submission {
 
             if status.contains(.Late) {
                 return String(format: NSLocalizedString("Late: %@ (%@/%@)", comment: ""), percentage ?? "", score, pointsPossible)
+            } else if missing {
+                return String(format: NSLocalizedString("Missing: %@ (%@/%@)", comment: ""), percentage ?? "", score, pointsPossible)
             } else {
-                return String(format: NSLocalizedString("Submitted: %@ (%@/%@)", comment: ""), percentage ?? "", score, pointsPossible)
+                return String(format: NSLocalizedString("Submitted: %@ (%@/%@)", comment: ""), percentage ?? "", Submission.gradeNumberFormatter.string(from: score) ?? score, pointsPossible)
             }
         } else if status.contains(.Submitted) {
             return displayText
         } else {
-            if onPaper {
-                return NSLocalizedString("In-Class", comment: "")
-            } else if missing {
+            if missing {
                 guard let pointsPossible = pointsPossible else { return self.displayText }
                 return String(format: NSLocalizedString("Missing: (-/%@)", comment: ""), pointsPossible)
+            } else if onPaper {
+                return NSLocalizedString("In-Class", comment: "")
             } else {
                 return ""
             }
@@ -128,7 +138,7 @@ private struct Submission {
             return UIImage(named: "icon_alert_fill")
         }
 
-        if status.contains(.Graded) || status.contains(.Submitted) || status.contains(.Excused) {
+        if (status.contains(.Graded) && !missing) || status.contains(.Submitted) || status.contains(.Excused) {
             return UIImage(named: "icon_checkmark_fill")
         }
 
@@ -141,22 +151,22 @@ private struct Submission {
 
     var displayColor: UIColor {
         if status.contains(.Late) {
-            return UIColor.parentYellowColor()
+            return UIColor.named(.textWarning)
         }
 
-        if status.contains(.Graded) || status.contains(.Submitted) || status.contains(.Excused) {
-            return UIColor.parentBlueColor()
-        }
-
-        if onPaper {
-            return UIColor.parentGreenColor()
+        if (status.contains(.Graded) && !missing) || status.contains(.Submitted) || status.contains(.Excused) {
+            return UIColor.named(.textInfo)
         }
 
         if missing {
-            return UIColor.parentRedColor()
+            return UIColor.named(.textDanger)
         }
 
-        return UIColor.parentLightGreyColor()
+        if onPaper {
+            return UIColor.named(.textSuccess)
+        }
+
+        return UIColor.named(.textDark)
     }
 }
 
@@ -170,7 +180,8 @@ extension CalendarEvent {
                           pointsPossible: pointsPossible,
                           pastEndDate: pastEndDate,
                           type: submissionTypes,
-                          gradePostedAt: gradePostedAt)
+                          gradePostedAt: gradePostedAt,
+                          missing: submissionMissing)
     }
 
     @objc var submittedText: String {
@@ -186,7 +197,7 @@ extension CalendarEvent {
     }
 
     @objc var submittedColor: UIColor {
-        return submission?.displayColor ?? UIColor.parentLightGreyColor()
+        return submission?.displayColor ?? UIColor.named(.textDark)
     }
 }
 
@@ -207,7 +218,8 @@ extension Assignment {
                           pointsPossible: NSNumber(value: pointsPossible),
                           pastEndDate: overdue,
                           type: submissionTypes,
-                          gradePostedAt: gradePostedAt)
+                          gradePostedAt: gradePostedAt,
+                          missing: submissionMissing)
     }
 
     @objc var submittedText: String {

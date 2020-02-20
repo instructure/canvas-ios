@@ -92,9 +92,6 @@
   "all_in_e5ddaee0": {
     "message": "Alle i"
   },
-  "all_people_16d90b41": {
-    "message": "Alle deltagere"
-  },
   "all_submissions_3eedfb97": {
     "message": "Alle afleveringer"
   },
@@ -106,6 +103,9 @@
   },
   "allow_threaded_replies_43b2311e": {
     "message": "Tillad trådede svar"
+  },
+  "allow_users_to_comment_45b8f753": {
+    "message": "Tillad brugere at kommentere"
   },
   "allowed_attempts_4e229caa": {
     "message": "Tilladte forsøg"
@@ -464,9 +464,6 @@
   "description_436c48d7": {
     "message": "Beskrivelse"
   },
-  "designer_c458392": {
-    "message": "Designer"
-  },
   "details_98a31b68": {
     "message": "Nærmere oplysninger"
   },
@@ -643,9 +640,6 @@
   },
   "filter_numselected_number_2e4c17e3": {
     "message": "Filtrer ({ numSelected, number })"
-  },
-  "filter_people_b34b567b": {
-    "message": "Filtrer deltagere"
   },
   "filter_submissions_numselected_number_selected_177867b3": {
     "message": "Filtrer afleveringer. ({ numSelected, number }) valgt."
@@ -932,6 +926,9 @@
   "name_profile_240f0967": {
     "message": "{ name } Profil"
   },
+  "name_pronouns_8d5a0061": {
+    "message": "{ name } ({ pronouns })"
+  },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } mere"
   },
@@ -1034,9 +1031,6 @@
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# minut}\n  other {# minutter}\n}"
   },
-  "observer_248a192e": {
-    "message": "Observatør"
-  },
   "off_5385ef3f": {
     "message": "Slået fra"
   },
@@ -1069,6 +1063,9 @@
   },
   "only_available_to_students_with_link_not_available_c12278d2": {
     "message": "Kun tilgængelig for elever med link. Ikke tilgængelig i elevernes filer."
+  },
+  "only_members_232519d6": {
+    "message": "Kun medlemmer"
   },
   "only_once_after_each_attempt_cc842738": {
     "message": "Kun en gang efter hvert forsøg"
@@ -1123,9 +1120,6 @@
   },
   "past_enrollments_a846da48": {
     "message": "Tidligere tilmeldinger"
-  },
-  "people_b4ebb13c": {
-    "message": "Deltagere"
   },
   "percent_d7ddd35b": {
     "message": "Procentdel (%)"
@@ -1472,9 +1466,6 @@
   "syllabus_f191f65b": {
     "message": "Fagplan"
   },
-  "ta_8d966626": {
-    "message": "Undervisningsassistent"
-  },
   "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
     "message": "Tryk på og hold et nummer til et vurderingskriterium nede for at se dets beskrivelse"
   },
@@ -1486,9 +1477,6 @@
   },
   "tap_to_view_submissions_list_5bfe32f3": {
     "message": "Tryk for at se listen over afsendelser."
-  },
-  "teacher_5a73b637": {
-    "message": "Lærer"
   },
   "teachers_52e2423f": {
     "message": "Lærere"

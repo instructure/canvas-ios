@@ -23,7 +23,6 @@ import * as React from 'react'
 import {
   Image,
   LayoutAnimation,
-  StyleSheet,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
@@ -33,11 +32,12 @@ import Hyperlink from 'react-native-hyperlink'
 import { getSession } from '../../../canvas-api'
 import { LinkButton } from '../../../common/buttons'
 import { logEvent } from '../../../common/CanvasAnalytics'
-import color from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import { Text } from '../../../common/text'
 import Avatar from '../../../common/components/Avatar'
 import Video from '../../../common/components/Video'
 import Images from '../../../images'
+import { personDisplayName } from '../../../common/formatters'
 
 type Props = {
   conversation: Conversation,
@@ -62,10 +62,21 @@ export default class ConversationMessageRow extends React.Component<Props, State
     this.props.onReply(this.props.message.id)
   }
 
+  courseID () {
+    let { author_id } = this.props.message
+    let target = this.props.conversation.participants.find(({ id }) => {
+      if (author_id === getSession().user.id) {
+        // current user doesn't have common courses so take from any other participant
+        return id !== getSession().user.id
+      }
+      return id === author_id
+    })
+    return Object.keys(target?.common_courses ?? {})[0]
+  }
+
   handleAvatarPress = () => {
-    let courseID = this.props.conversation.context_code.split('_')[1]
     this.props.navigator.show(
-      `/courses/${courseID}/users/${this.props.message.author_id}`,
+      `/courses/${this.courseID()}/users/${this.props.message.author_id}`,
       { modal: true, modalPresentationStyle: 'currentContext' }
     )
   }
@@ -92,7 +103,6 @@ export default class ConversationMessageRow extends React.Component<Props, State
   author (): ConversationParticipant {
     const convo = this.props.conversation
     const message = this.props.message
-    // $FlowFixMe we know the author will always be in participants
     return convo.participants.find(({ id }) => id === message.author_id)
   }
 
@@ -117,21 +127,25 @@ export default class ConversationMessageRow extends React.Component<Props, State
     const me = getSession().user
     const message = this.props.message
     const author = this.author()
-    let authorName = author.name
+    let authorName = personDisplayName(author.name, author.pronouns)
     let recipientName = ''
     if (me.id === author.id) {
       authorName = i18n('me')
 
       const audience = this.audience()
       if (audience.length === 1) {
-        recipientName = i18n('to {name}', { name: audience[0].name })
+        const name = personDisplayName(audience[0].name, audience[0].pronouns)
+        recipientName = i18n('to {name}', { name })
       } else if (audience.length > 1) {
         recipientName = i18n('to {count} others', { count: audience.length })
       }
     } else {
       const extras = this.extraParicipipantCount()
       if (extras > 0) {
-        authorName = i18n('{name} + {count, plural, one {# other} other {# others}}', { name: authorName, count: extras })
+        authorName = i18n('{name} + {count, plural, one {# other} other {# others}}', {
+          name: authorName,
+          count: extras,
+        })
       }
       recipientName = i18n('to me')
     }
@@ -145,7 +159,7 @@ export default class ConversationMessageRow extends React.Component<Props, State
               height={32}
               avatarURL={author.avatar_url}
               userName={author.name}
-              onPress={this.props.conversation.context_code ? this.handleAvatarPress : undefined}
+              onPress={this.courseID() != null ? this.handleAvatarPress : undefined}
             />
           </View>
           <View style={{ flex: 1 }}>
@@ -169,7 +183,7 @@ export default class ConversationMessageRow extends React.Component<Props, State
           { this.renderHeader() }
           <TouchableWithoutFeedback onPress={this.toggleExpanded}>
             <View style={styles.body}>
-              <Hyperlink linkStyle={ { color: '#2980b9' } } onPress={this.handleLink}>
+              <Hyperlink linkStyle={ { color: colors.linkColor } } onPress={this.handleLink}>
                 <Text style={styles.bodyText} numberOfLines={this.state.expanded ? 0 : 2}>{message.body}</Text>
               </Hyperlink>
             </View>
@@ -225,20 +239,20 @@ export default class ConversationMessageRow extends React.Component<Props, State
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
-    padding: global.style.defaultPadding,
+    padding: vars.padding,
     paddingTop: 12,
-    backgroundColor: 'white',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: color.seperatorColor,
+    backgroundColor: colors.backgroundLightest,
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
   },
   bottomSpacer: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: color.seperatorColor,
+    backgroundColor: colors.backgroundLight,
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
     height: 16,
   },
   header: {
@@ -247,37 +261,37 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: color.seperatorColor,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
   },
   author: {
     fontWeight: '600',
     fontSize: 14,
-    color: color.darkText,
+    color: colors.textDarkest,
   },
   recipient: {
     fontSize: 14,
-    color: color.grey4,
+    color: colors.textDark,
   },
   dateText: {
-    color: color.grey4,
+    color: colors.textDark,
     fontSize: 12,
   },
   body: {
     flex: 1,
-    paddingTop: global.style.defaultPadding,
+    paddingTop: vars.padding,
   },
   bodyText: {
     fontSize: 16,
-    color: color.darkText,
+    color: colors.textDarkest,
   },
   replyButton: {
-    marginTop: global.style.defaultPadding / 2,
+    marginTop: vars.padding / 2,
   },
   avatar: {
     width: 32,
     height: 32,
-    marginRight: global.style.defaultPadding / 2,
+    marginRight: vars.padding / 2,
   },
   kabobButton: {
     justifyContent: 'center',
@@ -289,23 +303,23 @@ const styles = StyleSheet.create({
     width: 18,
     height: 18,
     margin: 3,
-    tintColor: color.grey4,
+    tintColor: colors.textDark,
     transform: [{ rotate: '180deg' }],
   },
   attachment: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: global.style.defaultPadding / 2,
+    marginTop: vars.padding / 2,
   },
   attachmentIcon: {
-    tintColor: color.link,
+    tintColor: colors.linkColor,
     height: 14,
     width: 14,
   },
   attachmentText: {
-    color: color.link,
+    color: colors.linkColor,
     fontWeight: 'bold',
     marginLeft: 4,
     fontSize: 14,
   },
-})
+}))

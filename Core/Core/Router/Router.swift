@@ -18,84 +18,124 @@
 
 import UIKit
 
-public struct RouteOptions: OptionSet {
-    public let rawValue: Int
+public enum RouteOptions: Equatable {
+    case push
+    case detail(embedInNav: Bool = false)
+    case modal(
+        _ style: UIModalPresentationStyle? = nil,
+        isDismissable: Bool = true,
+        embedInNav: Bool = false,
+        addDoneButton: Bool = false
+    )
 
-    public init(rawValue: Int) {
-        self.rawValue = rawValue
+    public var isModal: Bool {
+        if case .modal = self {
+            return true
+        }
+        return false
     }
 
-    public static let modal = RouteOptions(rawValue: 1)
-    public static let embedInNav = RouteOptions(rawValue: 2)
-    public static let addDoneButton = RouteOptions(rawValue: 4)
-    public static let formSheet = RouteOptions(rawValue: 8)
-    public static let detail = RouteOptions(rawValue: 16)
+    public var isDetail: Bool {
+        if case .detail = self {
+            return true
+        }
+        return false
+    }
+
+    public var embedInNav: Bool {
+        switch self {
+        case .detail(embedInNav: true), .modal(_, _, embedInNav: true, _):
+            return true
+        default:
+            return false
+        }
+    }
+
+    public static let noOptions = RouteOptions.push
 }
 
 public protocol RouterProtocol {
     func match(_ url: URLComponents) -> UIViewController?
-    func route(to: Route, from: UIViewController, options: RouteOptions?)
-    func route(to url: URL, from: UIViewController, options: RouteOptions?)
-    func route(to url: String, from: UIViewController, options: RouteOptions?)
-    func route(to url: URLComponents, from: UIViewController, options: RouteOptions?)
-    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions?)
+    func route(to: Route, from: UIViewController, options: RouteOptions)
+    func route(to url: URL, from: UIViewController, options: RouteOptions)
+    func route(to url: String, from: UIViewController, options: RouteOptions)
+    func route(to url: URLComponents, from: UIViewController, options: RouteOptions)
+    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions, completion: (() -> Void)?)
+    func pop(from: UIViewController)
 }
 
 public extension RouterProtocol {
-    func route(to: Route, from: UIViewController, options: RouteOptions? = nil) {
+    func route(to: Route, from: UIViewController, options: RouteOptions = .noOptions) {
         return route(to: to.url, from: from, options: options)
     }
 
-    func route(to url: URL, from: UIViewController, options: RouteOptions? = nil) {
+    func route(to url: URL, from: UIViewController, options: RouteOptions = .noOptions) {
         return route(to: .parse(url), from: from, options: options)
     }
 
-    func route(to url: String, from: UIViewController, options: RouteOptions? = nil) {
+    func route(to url: String, from: UIViewController, options: RouteOptions = .noOptions) {
         return route(to: .parse(url), from: from, options: options)
     }
 
-    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions? = nil) {
+    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions = .noOptions) {
+        show(view, from: from, options: options, completion: nil)
+    }
+
+    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions = .noOptions, completion: (() -> Void)?) {
         if view is UIAlertController { return from.present(view, animated: true) }
 
         if let displayModeButton = from.displayModeButtonItem,
             from.splitViewController?.isCollapsed == false,
-            options?.contains(.detail) == true || from.isInSplitViewDetail,
-            options?.contains(.modal) != true {
+            options.isDetail || from.isInSplitViewDetail,
+            !options.isModal {
             view.addNavigationButton(displayModeButton, side: .left)
             view.navigationItem.leftItemsSupplementBackButton = true
         }
 
-        if options?.contains(.modal) == true {
-            if options?.contains(.embedInNav) == true {
-                if options?.contains(.addDoneButton) == true {
-                    view.addDoneButton(side: .left)
-                }
-                let nav = view as? UINavigationController ?? UINavigationController(rootViewController: view)
-                if options?.contains(.formSheet) == true {
-                    nav.modalPresentationStyle = .formSheet
-                }
-                from.present(nav, animated: true)
-            } else {
-                if options?.contains(.formSheet) == true {
-                    view.modalPresentationStyle = .formSheet
-                }
-                from.present(view, animated: true)
+        var nav: UINavigationController?
+        if options.embedInNav {
+            nav = view as? UINavigationController ?? UINavigationController(rootViewController: view)
+        }
+
+        switch options {
+        case let .modal(modalOptions):
+            if modalOptions.addDoneButton {
+                view.addDoneButton(side: .left)
             }
-        } else if options?.contains(.detail) == true && !from.isInSplitViewDetail {
-            if options?.contains(.embedInNav) == true {
-                from.showDetailViewController(UINavigationController(rootViewController: view), sender: from)
-            } else {
-                from.showDetailViewController(view, sender: from)
+            nav?.navigationBar.useModalStyle()
+            if let presentationStyle = modalOptions.0 {
+                (nav ?? view).modalPresentationStyle = presentationStyle
             }
-        } else {
+            if #available(iOS 13, *), !modalOptions.isDismissable {
+                (nav ?? view).isModalInPresentation = true
+            }
+            from.present(nav ?? view, animated: true, completion: completion)
+        case .detail where from.splitViewController != nil && !from.isInSplitViewDetail:
+            from.showDetailViewController(nav ?? view, sender: from)
+        case .detail:
+            // not in a split view so we can ignore `embedInNav`
+            // and must not `show` `nav` otherwise it will modal
             from.show(view, sender: nil)
+        case .push:
+            from.show(nav ?? view, sender: nil)
+        }
+    }
+
+    func pop(from: UIViewController) {
+        guard let navController = from.navigationController else {
+            return
+        }
+        if navController.viewControllers.count == 1 {
+            navController.viewControllers = [EmptyViewController(nibName: nil, bundle: nil)]
+        } else {
+            navController.popViewController(animated: true)
         }
     }
 }
 
 // The Router stores all routes that can be routed to in the app
 public class Router: RouterProtocol {
-    public typealias FallbackHandler = (URLComponents, UIViewController, RouteOptions?) -> Void
+    public typealias FallbackHandler = (URLComponents, UIViewController, RouteOptions) -> Void
 
     private let handlers: [RouteHandler]
     private let fallback: FallbackHandler
@@ -112,7 +152,7 @@ public class Router: RouterProtocol {
     private func cleanURL(_ url: URLComponents) -> URLComponents {
         // URLComponents does all the encoding we care about except we often have + meaning space in query
         var url = url
-        url.query = url.query?.replacingOccurrences(of: "+", with: " ")
+        url.percentEncodedQuery = url.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%20")
         return url
     }
 
@@ -126,8 +166,11 @@ public class Router: RouterProtocol {
         return nil
     }
 
-    public func route(to url: URLComponents, from: UIViewController, options: RouteOptions? = nil) {
+    public func route(to url: URLComponents, from: UIViewController, options: RouteOptions = .noOptions) {
         let url = cleanURL(url)
+        #if DEBUG
+        DeveloperMenuViewController.recordRouteInHistory(url.url?.absoluteString)
+        #endif
         for route in handlers {
             if let params = route.match(url) {
                 if let view = route.factory(url, params) {

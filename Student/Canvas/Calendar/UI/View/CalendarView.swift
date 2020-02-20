@@ -17,6 +17,7 @@
 //
 
 import UIKit
+import Core
 
 public protocol CalendarViewDelegate {
     func calendarViewShouldHighlightDate(_ calendarView: CalendarView, date: Date) -> Bool
@@ -50,7 +51,7 @@ open class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     
     internal var fromDate = CalendarDate()
     internal var toDate = CalendarDate()
-    @objc internal var today: Date = Date()
+    @objc internal var today: Date = Clock.now
     internal var selectedDate: CalendarDate?
     internal var dateToSelectAfterScrollAnimation: Date?
     @objc internal var daysInWeek: Int {
@@ -67,10 +68,16 @@ open class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataS
 
     private static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMM YYYY", options: 0, locale: Locale.current)
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMM yyyy", options: 0, locale: Locale.current)
         return dateFormatter
     }()
-    
+
+    private static let a11yMonthFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        // Parentheses prevent VO from pronouncing year 2020 as twentieth-twenty
+        dateFormatter.dateFormat = "MMMM (yyyy)"
+        return dateFormatter
+    }()
     
     // ---------------------------------------------
     // MARK: - LifeCycle
@@ -97,10 +104,10 @@ open class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     // Initial time range is 12 months prior and 6 months past the current month
     @objc func initialize () {
         // setup today
-        let todayDateComponents = (calendar as NSCalendar).components([.year, .month, .day], from: Date())
+        let todayDateComponents = (calendar as NSCalendar).components([.year, .month, .day], from: Clock.now)
         self.today = calendar.date(from: todayDateComponents)!
         
-        let nowYearMonthComponents = (calendar as NSCalendar).components([.year, .month], from: Date())
+        let nowYearMonthComponents = (calendar as NSCalendar).components([.year, .month], from: Clock.now)
         let now = calendar.date(from: nowYearMonthComponents)!
         
         resetToDate(now)
@@ -218,7 +225,10 @@ open class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataS
                 date.populate(formattedDate, calendar: calendar)
                 
                 monthHeader.date = date
+
                 monthHeader.dateLabel.text = CalendarView.dateFormatter.string(from: formattedDate).uppercased()
+                monthHeader.dateLabel.accessibilityLabel = CalendarView.a11yMonthFormatter.string(from: formattedDate)
+                monthHeader.dateLabel.accessibilityTraits = [.header]
                 
                 var todayCalDate = CalendarDate()
                 todayCalDate.populate(today, calendar: calendar)
@@ -428,8 +438,8 @@ open class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     
     @objc func frameForHeaderForSection(_ section: Int) -> CGRect {
         let indexPath = IndexPath(row: 0, section: section)
-        let attrs = collectionView!.layoutAttributesForSupplementaryElement(ofKind: UICollectionView.elementKindSectionHeader, at: indexPath)!
-        return attrs.frame
+        let attrs = collectionView?.layoutAttributesForSupplementaryElement(ofKind: UICollectionView.elementKindSectionHeader, at: indexPath)
+        return attrs?.frame ?? CGRect.zero
     }
     
     @objc func frameForItemAtIndexPath(_ indexPath: IndexPath) -> CGRect {
@@ -440,7 +450,7 @@ open class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     // MARK: - Date Helpers
     // ---------------------------------------------
     @objc func significantTimeChange(_ note: Notification) {
-        let todayYearMonthDayComponents = (calendar as NSCalendar).components([.year, .month, .day], from: Date())
+        let todayYearMonthDayComponents = (calendar as NSCalendar).components([.year, .month, .day], from: Clock.now)
         today = calendar.date(from: todayYearMonthDayComponents)!
         
         collectionView!.reloadData()

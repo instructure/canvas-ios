@@ -121,7 +121,22 @@ describe('SpeedGraderHeader', () => {
 
   it('anonymizes the avatar and name', () => {
     let tree = shallow(<Header {...subProps} anonymous />)
-    expect(tree).toMatchSnapshot()
+    expect(tree.find('Avatar').prop('userName')).toEqual('Student')
+    expect(tree.find('[children="Student"]').exists()).toBe(true)
+    expect(tree.find('[testID="header.context.button.4"]').prop('onPress')).toBeUndefined()
+  })
+
+  it('renders avatar and name', () => {
+    let props = _.cloneDeep(subProps)
+    props.submissionProps.name = 'Alice'
+    let tree = shallow(<Header {...props} />)
+    expect(tree.find('Avatar').prop('userName')).toEqual('Alice')
+    expect(tree.find('[children="Alice"]').exists()).toBe(true)
+
+    props.submissionProps.pronouns = 'She/Her'
+    tree = shallow(<Header {...props} />)
+    expect(tree.find('Avatar').prop('userName')).toEqual('Alice')
+    expect(tree.find('[children="Alice (She/Her)"]').exists()).toBe(true)
   })
 
   it('closes the modal', () => {
@@ -132,7 +147,7 @@ describe('SpeedGraderHeader', () => {
 
   it('navigates to the context card when name is pressed', () => {
     let tree = shallow(<Header {...subProps} />)
-    tree.find('[testID="header.context.button"]').simulate('Press')
+    tree.find('[testID="header.context.button.4"]').simulate('Press')
     expect(subProps.navigator.show).toHaveBeenCalledWith(
       `/courses/3/users/4`,
       { modal: true },
@@ -146,7 +161,7 @@ describe('SpeedGraderHeader', () => {
 
   it('opens student list when group is tapped', () => {
     let tree = shallow(<Header {...groupProps} />)
-    tree.find('[testID="header.groupList.button"]').simulate('Press')
+    tree.find('[testID="header.groupList.button.1"]').simulate('Press')
     expect(groupProps.navigator.show).toHaveBeenCalledWith(
       `/groups/1/users`,
       { modal: true },

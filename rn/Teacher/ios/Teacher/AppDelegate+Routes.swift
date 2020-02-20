@@ -22,20 +22,12 @@ import Core
 
 extension AppDelegate {
     @objc func registerNativeRoutes() {
-        HelmManager.shared.registerNativeViewController(for: "/attendance", factory: { props in
-            guard
-                let destinationURL = (props["launchURL"] as? String).flatMap(URL.init(string:)),
-                let courseName = props["courseName"] as? String,
-                let courseID = props["courseID"] as? String,
-                let courseColor = props["courseColor"].flatMap(RCTConvert.uiColor)
-                else { return nil }
-
-            return try? TeacherAttendanceViewController(
-                courseName: courseName,
-                courseColor: courseColor,
-                launchURL: destinationURL,
-                courseID: courseID,
-                date: Date()
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/attendance/:toolID", factory: { props in
+            guard let courseID = props["courseID"] as? String else { return nil }
+            guard let toolID = props["toolID"] as? String else { return nil }
+            return AttendanceViewController(
+                context: ContextModel(.course, id: courseID),
+                toolID: toolID
             )
         })
 
@@ -52,8 +44,27 @@ extension AppDelegate {
 
         HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/pages", factory: { props in
             guard let courseID = props["courseID"] as? String else { return nil }
-            return PageListViewController.create(context: ContextModel(.course, id: courseID), appTraitCollection: UIApplication.shared.keyWindow?.traitCollection)
+            return PageListViewController.create(context: ContextModel(.course, id: courseID), appTraitCollection: UIApplication.shared.keyWindow?.traitCollection, app: .teacher)
         })
+
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/users", factory: { props in
+            guard let courseID = props["courseID"] as? String else { return nil }
+            return PeopleListViewController.create(context: ContextModel(.course, id: courseID))
+        })
+
+        if ExperimentalFeature.newPageDetails.isEnabled {
+            HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/pages/:url", factory: { props in
+                guard let courseID = props["courseID"] as? String else { return nil }
+                guard let pageURL = props["url"] as? String else { return nil }
+                return PageDetailsViewController.create(context: ContextModel(.course, id: courseID), pageURL: pageURL, app: .teacher)
+            })
+
+            HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/wiki/:url", factory: { props in
+                guard let courseID = props["courseID"] as? String else { return nil }
+                guard let pageURL = props["url"] as? String else { return nil }
+                return PageDetailsViewController.create(context: ContextModel(.course, id: courseID), pageURL: pageURL, app: .teacher)
+            })
+        }
 
         HelmManager.shared.registerNativeViewController(for: "/act-as-user", factory: { _ in
             guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
@@ -81,6 +92,14 @@ extension AppDelegate {
 
         HelmManager.shared.registerNativeViewController(for: "/profile/settings", factory: { _ in
             return ProfileSettingsViewController.create()
+        })
+
+        HelmManager.shared.registerNativeViewController(for: "/dev-menu/experimental-features", factory: { _ in
+            let vc = ExperimentalFeaturesViewController()
+            vc.afterToggle = {
+                HelmManager.shared.reload()
+            }
+            return vc
         })
 
         CanvasCore.registerSharedNativeViewControllers()

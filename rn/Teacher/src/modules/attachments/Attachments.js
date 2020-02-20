@@ -22,7 +22,6 @@ import React, { Component } from 'react'
 import {
   View,
   FlatList,
-  StyleSheet,
 } from 'react-native'
 import Screen from '../../routing/Screen'
 import { parseErrorMessage } from '../../redux/middleware/error-handler'
@@ -34,6 +33,7 @@ import EmptyAttachments from './EmptyAttachments'
 import uuid from 'uuid/v1'
 import { uploadAttachment, isAbort, uploadMedia, type Progress } from '../../canvas-api'
 import RowSeparator from '../../common/components/rows/RowSeparator'
+import { createStyleSheet } from '../../common/stylesheet'
 
 type StorageOptions = {
   // If not provided the attachments will not be uploaded
@@ -374,10 +374,10 @@ export default class Attachments extends Component<Props, any> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
-    marginBottom: global.tabBarHeight,
+    marginBottom: vars.tabBarHeight,
   },
   attachmentPicker: {
     position: 'absolute',
@@ -386,4 +386,4 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
   },
-})
+}))

@@ -23,7 +23,7 @@ import XCTest
 class CourseTests: CoreTestCase {
     func testColor() {
         let a = Course.make()
-        _ = Color.make()
+        ContextColor.make()
 
         XCTAssertEqual(a.color, UIColor.red)
     }
@@ -50,6 +50,16 @@ class CourseTests: CoreTestCase {
         XCTAssertNotNil(result?.enrollments)
         XCTAssertNotNil(resultEnrollment)
         XCTAssertEqual(resultEnrollment?.canvasContextID, "course_1")
+    }
+
+    func testDeletesOnlyDanglingEnrollments() {
+        let apiCourse = APICourse.make(id: "1")
+        let course = Course.make(from: apiCourse)
+        Enrollment.make(from: .make(course_id: "1"), course: course, in: databaseClient)
+
+        Course.save(apiCourse, in: databaseClient)
+        let enrollments: [Enrollment] = databaseClient.fetch()
+        XCTAssertEqual(enrollments.count, 2)
     }
 
     func testWidgetDisplayGradeNoEnrollments() {

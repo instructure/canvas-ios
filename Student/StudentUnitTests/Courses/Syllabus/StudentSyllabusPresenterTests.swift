@@ -21,7 +21,7 @@ import Core
 @testable import Student
 import TestsFoundation
 
-class StudentSyllabusPresenterTests: PersistenceTestCase {
+class StudentSyllabusPresenterTests: StudentTestCase {
 
     var presenter: StudentSyllabusPresenter!
     var resultingError: NSError?
@@ -55,7 +55,7 @@ class StudentSyllabusPresenterTests: PersistenceTestCase {
     func testLoadNavBarStuff() {
         //  given
         let course = Course.make(from: .make(course_code: "abc"))
-        Color.make(canvasContextID: course.canvasContextID)
+        ContextColor.make(canvasContextID: course.canvasContextID)
 
         //  when
         presenter.viewIsReady()

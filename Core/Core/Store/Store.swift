@@ -64,9 +64,12 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         return count == 0
     }
 
+    public var hasNextPage: Bool { next != nil }
+
     private var next: GetNextRequest<U.Response>?
 
     public private(set) var pending: Bool = false
+    public private(set) var requested: Bool = false
     public private(set) var error: Error?
 
     public init(env: AppEnvironment, database: NSPersistentContainer? = nil, useCase: U, eventHandler: @escaping EventHandler) {
@@ -104,8 +107,12 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     }
 
     public subscript(indexPath: IndexPath) -> U.Model? {
+        guard let sections = frc.sections, sections.count > indexPath.section, sections[indexPath.section].numberOfObjects > indexPath.row else {
+            return nil
+        }
+
         let object = frc.object(at: indexPath)
-        if object.isDeleted {
+        if frc.managedObjectContext.isObjectDeleted(object) {
             return nil
         }
         return object
@@ -127,8 +134,8 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         request(useCase, force: force, callback: callback)
     }
 
-    public func exhaust(while condition: @escaping (U.Response) -> Bool) {
-        refresh(force: true) { [weak self] response in
+    public func exhaust(force: Bool = true, while condition: @escaping (U.Response) -> Bool = { _ in true }) {
+        refresh(force: force) { [weak self] response in
             if let response = response, condition(response) {
                 self?.exhaustNext(while: condition)
             }
@@ -156,6 +163,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     }
 
     private func request<UC: UseCase>(_ useCase: UC, force: Bool, callback: ((UC.Response?) -> Void)? = nil) {
+        requested = true
         pending = true
         notify()
         useCase.fetch(environment: env, force: force) { [weak self] response, urlResponse, error in
@@ -218,7 +226,7 @@ public struct FetchedResultsControllerGenerator<T: NSManagedObject>: IteratorPro
     }
 
     public mutating func next() -> T? {
-        guard let count = fetchedResultsController.fetchedObjects?.count else { return nil}
+        guard let count = fetchedResultsController.fetchedObjects?.count else { return nil }
         guard index < count else { return nil }
         defer { index += 1 }
         return fetchedResultsController.fetchedObjects?[index]

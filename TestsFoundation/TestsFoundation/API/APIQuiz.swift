@@ -30,7 +30,8 @@ public struct APIQuizQuestion: Codable {
     public let correct_comments: String
     public let incorrect_comments: String
     public let neutral_comments: String
-    // public let answers: [APIQuizAnswer]?
+    public let answers: [APIQuizAnswer]?
+    public let answer: APIQuizAnswerValue?
 }
 
 // https://canvas.instructure.com/doc/api/quiz_submission_questions.html#QuizSubmissionQuestion
@@ -39,6 +40,13 @@ public struct APIQuizSubmissionQuestion: Codable {
     public let flagged: Bool
     public let answer: APIQuizAnswerValue?
     // public let answers: [APIQuizAnswer]?
+}
+
+// Not documented
+public struct APIQuizAnswer: Codable {
+    public let id: String
+    public let text: String
+    public let html: String
 }
 
 // https://canvas.instructure.com/doc/api/quiz_submission_questions.html#Question+Answer+Formats-appendix

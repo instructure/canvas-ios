@@ -20,30 +20,74 @@ import Foundation
 
 public struct GetCalendarEventsRequest: APIRequestable {
     public typealias Response = [APICalendarEvent]
+    public enum Include: String {
+        case submission
+    }
 
     public let path = "calendar_events"
-    public let context: Context
-    public let startDate: Date
-    public let endDate: Date
+    public let contexts: [Context]?
+    public let startDate: Date?
+    public let endDate: Date?
+    public let type: CalendarEventType
+    public let perPage: Int
+    public let include: [Include]
+    public let allEvents: Bool?
     private static let dateFormatter: DateFormatter = {
         let df = DateFormatter()
         df.dateFormat = "YYYY-MM-dd"
         return df
     }()
 
-    init(context: Context, startDate: Date = Clock.now.addYears(-2), endDate: Date = Clock.now.addYears(1)) {
-        self.context = context
+    public init(
+        contexts: [Context]? = nil,
+        startDate: Date = Clock.now.addYears(-2),
+        endDate: Date = Clock.now.addYears(1),
+        type: CalendarEventType = .event,
+        perPage: Int = 100,
+        include: [Include] = [],
+        allEvents: Bool? = nil
+    ) {
+        self.contexts = contexts
         self.startDate = startDate
         self.endDate = endDate
+        self.type = type
+        self.perPage = perPage
+        self.include = include
+        self.allEvents = allEvents
     }
 
     public var query: [APIQueryItem] {
-        return [
-            .array("context_codes", [context.canvasContextID]),
-            .value("type", "event"),
-            .value("start_date", GetCalendarEventsRequest.dateFormatter.string(from: startDate)),
-            .value("end_date", GetCalendarEventsRequest.dateFormatter.string(from: endDate)),
-            .value("per_page", "100"),
+        var query: [APIQueryItem] = [
+            .value("type", type.rawValue),
+            .value("per_page", String(perPage)),
+            .include(include.map { $0.rawValue }),
         ]
+        if let startDate = startDate {
+            query.append(.value("start_date", GetCalendarEventsRequest.dateFormatter.string(from: startDate)))
+        }
+        if let endDate = endDate {
+            query.append(.value("end_date", GetCalendarEventsRequest.dateFormatter.string(from: endDate)))
+        }
+        if let contexts = contexts {
+            query.append(.array("context_codes", contexts.map { $0.canvasContextID }))
+        }
+        if let allEvents = allEvents {
+            query.append(.bool("all_events", allEvents))
+        }
+        return query
+    }
+}
+
+public struct GetCalendarEventRequest: APIRequestable {
+    public typealias Response = APICalendarEvent
+
+    public let id: String
+
+    public init(id: String) {
+        self.id = id
+    }
+
+    public var path: String {
+        return "calendar_events/\(id)"
     }
 }

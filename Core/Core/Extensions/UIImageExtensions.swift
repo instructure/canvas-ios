@@ -21,10 +21,10 @@ import Foundation
 
 extension UIImage {
     public enum IconName: String, CaseIterable {
-        case attendance, cameraSolid, collaborations, conferences
+        case attendance, cameraLine, cameraSolid, collaborations, conferences, dropdown
+        case calendarEmptyLine, calendarEmptySolid
         case todo, todoSolid
         case addAudioLine, addCameraLine, addDocumentLine, addImageLine, addVideoCameraLine
-        case splitCollapse, splitExpand
     }
 
     public static func icon(_ name: IconName) -> UIImage {

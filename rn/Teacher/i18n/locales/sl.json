@@ -92,9 +92,6 @@
   "all_in_e5ddaee0": {
     "message": "Vse v"
   },
-  "all_people_16d90b41": {
-    "message": "Vsi sodelujoči"
-  },
   "all_submissions_3eedfb97": {
     "message": "Vse oddaje"
   },
@@ -106,6 +103,9 @@
   },
   "allow_threaded_replies_43b2311e": {
     "message": "Dovoli odgovore v niti"
+  },
+  "allow_users_to_comment_45b8f753": {
+    "message": "Dovoli uporabnikom, da komentirajo"
   },
   "allowed_attempts_4e229caa": {
     "message": "Dovoljeni poskusi"
@@ -464,9 +464,6 @@
   "description_436c48d7": {
     "message": "Opis"
   },
-  "designer_c458392": {
-    "message": "Snovalec"
-  },
   "details_98a31b68": {
     "message": "Podrobnosti"
   },
@@ -501,16 +498,16 @@
     "message": "Dokončano"
   },
   "due_5d7267be": {
-    "message": "Rok:"
+    "message": "Roki:"
   },
   "due_a73610f6": {
-    "message": "Rok"
+    "message": "Roki"
   },
   "due_date_822625d8": {
     "message": "Rok"
   },
   "due_date_date_mmm_d_yyyy_at_date_time_short_76c5900f": {
-    "message": "Rok { date, date, 'MMM d, YYYY' } ob { date, time, short }."
+    "message": "Roki { date, date, 'MMM d, YYYY' } ob { date, time, short }."
   },
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
     "message": "»Rok« mora biti med datumoma »Na voljo od« in »Na voljo do«."
@@ -519,7 +516,7 @@
     "message": "Roki; dvakrat tapnite za podrobnosti."
   },
   "due_datestring_be4410c7": {
-    "message": "Rok { dateString }"
+    "message": "Roki { dateString }"
   },
   "edit_assignment_ebf22a72": {
     "message": "Uredi nalogo"
@@ -644,9 +641,6 @@
   "filter_numselected_number_2e4c17e3": {
     "message": "Filter ({ numSelected, number })"
   },
-  "filter_people_b34b567b": {
-    "message": "Filtriraj sodelujoče"
-  },
   "filter_submissions_numselected_number_selected_177867b3": {
     "message": "Filtriraj oddaje. ({ numSelected, number }) izbranih."
   },
@@ -705,7 +699,7 @@
     "message": "Preglasitev ocene { grade }"
   },
   "grade_post_policy_7fa3ef03": {
-    "message": "Pravila o objavah ocen"
+    "message": "Način sporočanja ocen"
   },
   "graded_25cd3fcd": {
     "message": "Ocenjeno"
@@ -921,7 +915,7 @@
     "message": "Moje datoteke"
   },
   "n_a_d6f6c42f": {
-    "message": "Ni na voljo."
+    "message": "Ni na voljo"
   },
   "name_1aed4a1b": {
     "message": "Ime"
@@ -931,6 +925,9 @@
   },
   "name_profile_240f0967": {
     "message": "Profil { name }"
+  },
+  "name_pronouns_8d5a0061": {
+    "message": "{ name } ({ pronouns })"
   },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } več"
@@ -1017,7 +1014,7 @@
     "message": "brez"
   },
   "not_graded_e027c866": {
-    "message": "Ni ocenjeno."
+    "message": "Ni ocenjeno"
   },
   "not_published_73f7079": {
     "message": "Ni objavljeno."
@@ -1034,9 +1031,6 @@
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# minuta}\n  other {# minut}\n}"
   },
-  "observer_248a192e": {
-    "message": "Skriti bralec"
-  },
   "off_5385ef3f": {
     "message": "Izklopljeno"
   },
@@ -1047,7 +1041,7 @@
     "message": "Olivna"
   },
   "on_8f7190e5": {
-    "message": "Vklopljeno"
+    "message": "Vključeno"
   },
   "on_paper_46d0ba36": {
     "message": "Na papirju"
@@ -1069,6 +1063,9 @@
   },
   "only_available_to_students_with_link_not_available_c12278d2": {
     "message": "Na voljo je le študentom s povezavo. Ni vina voljo v datotekah študentov."
+  },
+  "only_members_232519d6": {
+    "message": "Samo člani"
   },
   "only_once_after_each_attempt_cc842738": {
     "message": "Samo enkrat po vsakem poskusu"
@@ -1124,9 +1121,6 @@
   "past_enrollments_a846da48": {
     "message": "Pretekli vpisi"
   },
-  "people_b4ebb13c": {
-    "message": "Sodelujoči"
-  },
   "percent_d7ddd35b": {
     "message": "Odstotek (%)"
   },
@@ -1161,7 +1155,7 @@
     "message": "Objavi ob ..."
   },
   "practice_quiz_19a8505d": {
-    "message": "Vadi kviz"
+    "message": "Kviz za vajo"
   },
   "practice_quizzes_surveys_do_not_have_detail_views_25ce31b6": {
     "message": "Kvizi in ankete za vajo nimajo podrobnih ogledov."
@@ -1398,7 +1392,7 @@
     "message": "Prikaži pravilne odgovore pri"
   },
   "show_one_question_at_a_time_52f5b1a0": {
-    "message": "Prikaži eno vprašanje naenkrat"
+    "message": "Prikaži po eno vprašanje naenkrat"
   },
   "show_to_hide_2c0b6d39": {
     "message": "{ show } do { hide }"
@@ -1472,9 +1466,6 @@
   "syllabus_f191f65b": {
     "message": "Učni načrt"
   },
-  "ta_8d966626": {
-    "message": "Demonstrator"
-  },
   "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
     "message": "Za ogled opisa tapnite in pridržite številko ocenjevalnega vodnika."
   },
@@ -1486,9 +1477,6 @@
   },
   "tap_to_view_submissions_list_5bfe32f3": {
     "message": "Tapnite za ogled seznama oddaj."
-  },
-  "teacher_5a73b637": {
-    "message": "Izvajalec"
   },
   "teachers_52e2423f": {
     "message": "Izvajalci"

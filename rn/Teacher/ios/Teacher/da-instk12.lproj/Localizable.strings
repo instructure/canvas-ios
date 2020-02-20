@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"Absent" = "Fraværende";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "Alle vurderinger er i øjeblikket skjult.";
 
 /* No comment provided by engineer. */
@@ -11,13 +14,43 @@
 "All Posted" = "Alle slået op";
 
 /* No comment provided by engineer. */
+"Attendance" = "Tilstedeværelse";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "Fejl ved tilstedeværelse";
+
+/* No comment provided by engineer. */
 "Back" = "Tilbage";
+
+/* No comment provided by engineer. */
+"Cancel" = "Annullér";
+
+/* No comment provided by engineer. */
+"Change Section" = "Skift sektion";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Vælg en sektion";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Vælg dato";
 
 /* No comment provided by engineer. */
 "Courses" = "Fag";
 
 /* No comment provided by engineer. */
+"Date picker" = "Datovælger";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Afvis";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Fejl: Ingen data returneret fra navneopkald-api.";
+
+/* No comment provided by engineer. */
 "Everyone" = "Alle";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "Kunne ikke starte navneopkald-LTI-værktøj.";
 
 /* No comment provided by engineer. */
 "Graded" = "Bedømt";
@@ -38,6 +71,18 @@
 "Hide Grades" = "Skjul vurderinger";
 
 /* No comment provided by engineer. */
+"Late" = "Sen";
+
+/* No comment provided by engineer. */
+"Loading more modules..." = "Indlæser flere forløb ...";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Marker alle som tilstedeværende";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Marker de resterende som tilstedeværende";
+
+/* No comment provided by engineer. */
 "Modules" = "Forløb";
 
 /* No comment provided by engineer. */
@@ -50,8 +95,20 @@
 "Post to..." = "Slå op på ...";
 
 /* No comment provided by engineer. */
+"Present" = "Til stede";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Vælg for at ændre dato for navneopkald";
+
+/* No comment provided by engineer. */
 "Specific Sections" = "Specifikke afsnit";
 
 /* No comment provided by engineer. */
+"This module is empty." = "Dette forløb er tomt.";
+
+/* No comment provided by engineer. */
 "To Do" = "Opgaveliste";
+
+/* No comment provided by engineer. */
+"Unmark" = "Fjern markering";
 

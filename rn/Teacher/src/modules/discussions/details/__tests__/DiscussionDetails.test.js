@@ -23,35 +23,23 @@ import {
   ActionSheetIOS,
   Alert,
   NativeModules,
-  I18nManager,
 } from 'react-native'
-import renderer from 'react-test-renderer'
 
 import { DiscussionDetails, mapStateToProps, shouldRefresh, type Props } from '../DiscussionDetails'
-import explore from '../../../../../test/helpers/explore'
-import setProps from '../../../../../test/helpers/setProps'
 import app from '../../../app'
 import { shallow } from 'enzyme'
 import { alertError } from '../../../../redux/middleware/error-handler'
 import * as template from '../../../../__templates__'
 
 jest
-  .mock('Button', () => 'Button')
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
-  .mock('WebView', () => 'WebView')
-  .mock('../../../../common/components/Avatar', () => 'Avatar')
   .mock('../../../../routing')
-  .mock('../../../../routing/Screen')
-  .mock('../../../assignment-details/components/SubmissionBreakdownGraphSection', () => 'SubmissionBreakdownGraphSection')
-  .mock('../../../assignment-details/components/PublishedIcon', () => 'PublishedIcon')
   .mock('LayoutAnimation', () => ({
     easeInEaseOut: jest.fn(),
   }))
   .mock('../../../../redux/middleware/error-handler', () => {
     return { alertError: jest.fn() }
   })
-  .unmock('FlatList')
+  .mock('../../../assignment-details/components/SubmissionBreakdownGraphSection.js', () => 'SubmissionBreakdownGraphSection')
 
 jest.useFakeTimers()
 
@@ -88,573 +76,842 @@ describe('DiscussionDetails', () => {
       refreshSingleDiscussion: jest.fn(),
       markAllAsRead: jest.fn(),
       markEntryAsRead: jest.fn(),
+      markTopicAsRead: jest.fn(),
       unreadEntries: [],
       permissions: { post_to_forum: true },
+      isAnnouncement: false,
     }
   })
 
-  it('renders with no discussion', () => {
-    let newProps = {
+  it('captures trait changes', () => {
+    let horizontal = 'wide'
+    props.navigator.traitCollection = (cb) => {
+      cb({ window: { horizontal } })
+    }
+
+    let tree = shallow(<DiscussionDetails {...props} />)
+    let screen = tree.find('Screen')
+    screen.simulate('traitCollectionChange')
+    expect(tree.state('maxReplyNodeDepth')).toEqual(2)
+
+    horizontal = 'regular'
+    screen.simulate('traitCollectionChange')
+    expect(tree.state('maxReplyNodeDepth')).toEqual(4)
+  })
+
+  it('sets title depending on announcement', () => {
+    let tree = shallow(<DiscussionDetails {...props} isAnnouncement={false} />)
+    expect(tree.find('Screen').prop('title')).toEqual('Discussion Details')
+
+    tree.setProps({
       ...props,
-      discussion: undefined,
+      isAnnouncement: true,
+    })
+    expect(tree.find('Screen').prop('title')).toEqual('Announcement Details')
+  })
+
+  it('renders the navbar color and subtitle from the course', () => {
+    let tree = shallow(
+      <DiscussionDetails
+        {...props}
+        courseColor='#fff'
+        courseName='Course name'
+      />
+    )
+    expect(tree.find('Screen').props()).toMatchObject({
+      navBarColor: '#fff',
+      subtitle: 'Course name',
+    })
+  })
+
+  describe('kabob', () => {
+    function getKabob (tree) {
+      return tree.find('Screen').prop('rightBarButtons')[0]
     }
-    testRender(newProps)
-  })
-
-  it('renders in student app', () => {
-    app.setCurrentApp('student')
-    testRender(props)
-  })
-
-  it('renders section names for section specific announcements', () => {
-    let discussion = template.discussion({
-      replies: [template.discussionReply()],
-      participants: {
-        [template.userDisplay().id]: template.userDisplay(),
-      },
-      is_section_specific: true,
-      sections: [template.section({ name: 'A Section' })],
+    it('does not show in student app', () => {
+      app.setCurrentApp('student')
+      let tree = shallow(<DiscussionDetails {...props} />)
+      expect(tree.find('Screen').prop('rightBarButtons')).toBeFalsy()
     })
 
-    let view = shallow(
-      new DiscussionDetails({
-        ...props,
-        discussion,
-      }).renderDetails(discussion)
-    )
-    let subtitle = view.find('SubTitle')
-    expect(subtitle.props().children).toContain('A Section')
+    it('right bar button shows options', () => {
+      ActionSheetIOS.showActionSheetWithOptions = jest.fn()
+      let tree = shallow(<DiscussionDetails {...props} />)
+      let kabob = getKabob(tree)
+      kabob.action()
+      expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalledWith(
+        {
+          options: ['Edit', 'Mark All as Read', 'Delete', 'Cancel'],
+          destructiveButtonIndex: 2,
+          cancelButtonIndex: 3,
+        },
+        expect.any(Function)
+      )
+    })
+
+    it('edit announcement', () => {
+      ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(0))
+      let discussion = template.discussion({ id: '2' })
+      let tree = shallow(
+        <DiscussionDetails
+          {...props}
+          isAnnouncement
+          discussion={discussion}
+          discussionID = '2'
+        />
+      )
+      let kabob = getKabob(tree)
+      kabob.action()
+      expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/announcements/2/edit', { modal: true, modalPresentationStyle: 'formsheet' })
+    })
+
+    it('edit discussion', () => {
+      ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(0))
+      let discussion = template.discussion({ id: '2' })
+      let tree = shallow(
+        <DiscussionDetails
+          {...props}
+          discussion={discussion}
+          discussionID = '2'
+        />
+      )
+      let kabob = getKabob(tree)
+      kabob.action()
+      expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/2/edit', { modal: true, modalPresentationStyle: 'formsheet' })
+    })
+
+    it('calls markAllAsRead when that option is selected', () => {
+      ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(1))
+      let tree = shallow(<DiscussionDetails {...props} />)
+      let kabob = getKabob(tree)
+      kabob.action()
+      expect(props.markAllAsRead).toHaveBeenCalledWith('courses', '1', '1', 1)
+    })
+
+    it('alerts to confirm delete discussion', () => {
+      Alert.alert = jest.fn()
+      ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(2))
+
+      let tree = shallow(<DiscussionDetails {...props} />)
+      let kabob = getKabob(tree)
+      kabob.action()
+      expect(Alert.alert).toHaveBeenCalledWith(
+        'Are you sure you want to delete this discussion?',
+        null,
+        [
+          { text: 'Cancel', style: 'cancel' },
+          { text: 'OK', onPress: expect.any(Function) },
+        ],
+      )
+    })
+
+    it('deletes discussion', () => {
+      ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(2))
+      Alert.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
+      let tree = shallow(
+        <DiscussionDetails
+          {...props}
+          courseID='1'
+          discussionID='2'
+        />
+      )
+      let kabob = getKabob(tree)
+      kabob.action()
+      expect(props.deleteDiscussion).toHaveBeenCalledWith('courses', '1', '2')
+    })
   })
 
-  it('renders closed discussion as student', () => {
-    app.setCurrentApp('student')
-    props.discussion.locked_for_user = true
-    testRender(props)
+  it('FlatList refreshes', () => {
+    let tree = shallow(<DiscussionDetails {...props} />)
+    tree.find('FlatList').simulate('refresh')
+    expect(props.refresh).toHaveBeenCalled()
   })
 
-  it('renders with replies', () => {
-    testRender(props)
-  })
-
-  it('renders no replies', () => {
-    props.discussion = template.discussion({ id: '1' })
-    testRender(props)
-  })
-
-  it('renders with nested replies selected', () => {
+  it('has the right data', () => {
     let aaaaa = template.discussionReply({ id: '5' })
     let aaaa = template.discussionReply({ id: '4', replies: [aaaaa] })
     let aaa = template.discussionReply({ id: '3', replies: [aaaa] })
     let aa = template.discussionReply({ id: '2', replies: [aaa] })
     let a = template.discussionReply({ id: '1', replies: [aa] })
     let discussion = { ...props.discussion, replies: [a] }
-    const tree = render({ ...props, discussion })
-    const instance = tree.getInstance()
-    instance._onPressMoreReplies([0, 0, 0, 0])
-    expect(tree.toJSON()).toMatchSnapshot()
-    expect(instance.state).toMatchObject({
-      deletePending: false,
-      rootNodePath: [0, 0, 0, 0],
-      maxReplyNodeDepth: 2,
-      unread_entries: [],
-    })
-
-    let rootNodes = instance.rootRepliesData(discussion, [0, 0, 0, 0], props)
-    let expected = [{
-      ...aaaa,
-      depth: 0,
-      readState: 'read',
+    let tree = shallow(<DiscussionDetails {...props} discussion={discussion} />)
+    expect(tree.find('FlatList').prop('data')).toMatchObject([{
+      id: '1',
       myPath: [0],
-      rating: undefined,
     }, {
-      ...aaaaa,
-      depth: 1,
-      readState: 'read',
+      id: '2',
       myPath: [0, 0],
-      rating: undefined,
-    },
-    ]
-    expect(rootNodes).toEqual(expected)
+    }, {
+      id: '3',
+      myPath: [0, 0, 0],
+    }])
   })
 
-  it('sets title depending on announcement', () => {
-    const title = (component) => {
-      const screen: any = explore(render(props).toJSON()).query(({ type }) => type === 'Screen')[0]
-      return screen.props.title
-    }
-    props.isAnnouncement = false
-    expect(title(render(props))).toEqual('Discussion Details')
+  it('does not render the ListHeaderComponent with no discussion', () => {
+    let tree = shallow(<DiscussionDetails {...props} discussion={null} />)
+    expect(tree.find('FlatList').prop('ListHeaderComponent')).toBeFalsy()
 
-    props.isAnnouncement = true
-    expect(title(render(props))).toEqual('Announcement Details')
-  })
-
-  it('renders without a discussion', () => {
-    testRender({ ...props, discussion: null })
-  })
-
-  it('calls refresh on refresh', () => {
-    props.refresh = jest.fn()
-    const tree = render(props).toJSON()
-    const refresher: any = explore(tree).query(({ type }) => type === 'RCTScrollView')[0]
-    refresher.props.onRefresh()
-    expect(props.refresh).toHaveBeenCalled()
-  })
-
-  it('touches the reply button', () => {
-    const navigator = template.navigator({
-      show: jest.fn(),
+    tree.setProps({
+      ...props,
+      discussion: template.discussion(),
     })
-    const tree = renderer.create(<DiscussionDetails {...props} navigator={navigator} />).toJSON()
-    const discussionReply: any = explore(tree).selectByID('discussion-reply')
-    discussionReply.props.onPress()
-    expect(navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/reply', { modal: true }, {
-      indexPath: [],
-      lastReplyAt: props.discussion && props.discussion.last_reply_at,
-      permissions: props.discussion && props.discussion.permissions,
+    expect(tree.find('FlatList').prop('ListHeaderComponent')).not.toBeFalsy()
+  })
+
+  describe('mark entry as read', () => {
+    it('marks unread entry as read when viewable', () => {
+      let a = template.discussionReply({ id: '0', readState: 'unread' })
+      let discussion = { ...props.discussion, replies: [a] }
+      let tree = shallow(<DiscussionDetails { ...props } discussion={discussion} />)
+      tree.setState({ unread_entries: ['0'] })
+
+      let info = {
+        viewableItems: [{
+          isViewable: true,
+          index: 0,
+          item: a,
+        }],
+        changed: [{
+          isViewable: true,
+          index: 0,
+          item: a,
+        }],
+      }
+      tree.instance()._markViewableAsRead(info)
+      jest.runAllTimers()
+      expect(props.markEntryAsRead).toHaveBeenCalledWith('courses', '1', '1', '0')
+    })
+
+    it('does not marks unread entry as read when not in view', () => {
+      let a = template.discussionReply({ id: '0', readState: 'unread' })
+      let discussion = { ...props.discussion, replies: [a] }
+      let tree = shallow(<DiscussionDetails { ...props } discussion={discussion} />)
+      tree.setState({ unread_entries: ['0'] })
+
+      let info = {
+        viewableItems: [{
+          isViewable: false,
+          index: 0,
+          item: a,
+        }],
+        changed: [{
+          isViewable: false,
+          index: 0,
+          item: a,
+        }],
+      }
+      tree.instance()._markViewableAsRead(info)
+      jest.runAllTimers()
+      expect(props.markEntryAsRead).toHaveBeenCalledTimes(0)
+    })
+
+    it('does not call markEntryAsRead action if it has already been read', () => {
+      let a = template.discussionReply({ id: '0', readState: 'read' })
+      let discussion = { ...props.discussion, replies: [a] }
+      const tree = shallow(<DiscussionDetails { ...props } discussion={discussion} />)
+      tree.setState({ unread_entries: ['2', '3'] })
+
+      let info = {
+        viewableItems: [{
+          isViewable: true,
+          index: 0,
+          item: a,
+        }],
+        changed: [{
+          isViewable: true,
+          index: 0,
+          item: a,
+        }],
+      }
+      tree.instance()._markViewableAsRead(info)
+      jest.runAllTimers()
+      expect(props.markEntryAsRead).toHaveBeenCalledTimes(0)
+    })
+
+    it('catches the discussion details section when on screen so it doesnt try to mark as read', () => {
+      let a = template.discussionReply({ id: '1', readState: 'unread' })
+      let discussion = { ...props.discussion, replies: [a] }
+      let tree = shallow(<DiscussionDetails { ...props } discussion={discussion} />)
+      tree.setState({ unread_entries: ['0'] })
+
+      let info = {
+        viewableItems: [{
+          isViewable: true,
+          index: 0,
+          item: a,
+        }],
+        changed: [{
+          isViewable: true,
+          index: 0,
+          item: a,
+        }],
+      }
+      tree.instance()._markViewableAsRead(info)
+      jest.runAllTimers()
+      expect(props.markEntryAsRead).toHaveBeenCalledTimes(0)
     })
   })
 
-  it('shows publish information', () => {
-    expect(
-      explore(render(props).toJSON()).selectByType('PublishedIcon')
-    ).toBeDefined()
-  })
+  describe('details', () => {
+    function renderDetails (props) {
+      return shallow(new DiscussionDetails(props).renderDetails(props.discussion))
+    }
 
-  it('hides publish information for announcements', () => {
-    props.isAnnouncement = true
-    expect(
-      explore(render(props).toJSON()).selectByType('PublishedIcon')
-    ).not.toBeDefined()
-  })
+    test('title', () => {
+      let tree = renderDetails({
+        ...props,
+        discussion: template.discussion({ title: null }),
+      })
+      expect(tree.find('[testID="DiscussionDetails.titleLabel"]').prop('children')).toEqual('No Title')
 
-  it('routes to the right place when due dates details is requested', () => {
-    props.assignment = template.assignment({ id: '1', course_id: '1' })
-    let navigator = template.navigator({
-      show: jest.fn(),
+      tree = renderDetails(props)
+      expect(tree.find('[testID="DiscussionDetails.titleLabel"]').prop('children')).toEqual(props.discussion.title)
     })
-    let details = renderer.create(
-      <DiscussionDetails {...props} navigator={navigator} />
-    ).getInstance()
-    details.viewDueDateDetails()
-    expect(navigator.show).toHaveBeenCalledWith(
-      `/courses/${props.contextID}/assignments/1/due_dates`,
-      { modal: false },
-      { onEditPressed: expect.any(Function) }
-    )
+
+    test('points_possible', () => {
+      let tree = renderDetails({ ...props, isAnnouncement: true })
+      expect(tree.find('[testID="DiscussionDetails.pointsLabel"]').exists()).toEqual(false)
+
+      tree = renderDetails({
+        ...props,
+        isAnnouncement: false,
+        discussion: template.discussion({ assignment: null }),
+      })
+      expect(tree.find('[testID="DiscussionDetails.pointsLabel"]').exists()).toEqual(false)
+
+      tree = renderDetails({
+        ...props,
+        isAnnouncement: false,
+        discussion: template.discussion({
+          assignment: template.assignment({ points_possible: 50 }),
+        }),
+      })
+      expect(tree.find('[testID="DiscussionDetails.pointsLabel"]').prop('children')).toEqual('50 pts')
+    })
+
+    test('published', () => {
+      let tree = renderDetails({ ...props, isAnnouncement: true })
+      expect(tree.find('PublishedIcon').exists()).toEqual(false)
+
+      app.setCurrentApp('student')
+      tree = renderDetails({
+        ...props,
+        isAnnouncement: false,
+      })
+      expect(tree.find('PublishedIcon').exists()).toEqual(false)
+      app.setCurrentApp('teacher')
+      tree = renderDetails({
+        ...props,
+        isAnnouncement: false,
+      })
+      expect(tree.find('PublishedIcon').prop('published')).toEqual(props.discussion.published)
+    })
+
+    it('renders section names for section specific announcements', () => {
+      let discussion = template.discussion({
+        replies: [template.discussionReply()],
+        participants: {
+          [template.userDisplay().id]: template.userDisplay(),
+        },
+        is_section_specific: true,
+        sections: [template.section({ name: 'A Section' })],
+      })
+
+      let view = renderDetails({
+        ...props,
+        discussion,
+      })
+      let subtitle = view.find('SubTitle')
+      expect(subtitle.props().children).toContain('A Section')
+    })
+
+    test('due dates', () => {
+      app.setCurrentApp('student')
+      let tree = renderDetails({ ...props, assignment: null })
+      expect(tree.find('[testID="DiscussionDetails.dueDates"]').exists()).toEqual(false)
+
+      app.setCurrentApp('teacher')
+      tree = renderDetails({ ...props, assignment: null })
+      expect(tree.find('[testID="DiscussionDetails.dueDates"]').exists()).toEqual(false)
+
+      tree = renderDetails({ ...props, assignment: template.assignment() })
+      expect(tree.find('[testID="DiscussionDetails.dueDates"]').exists()).toEqual(true)
+    })
+
+    it('routes to the right place when due dates details is requested', () => {
+      let tree = shallow(
+        <DiscussionDetails {...props} assignment={template.assignment({ id: '1', course_id: '1' })} />
+      )
+
+      let details = shallow(tree.instance().renderDetails(props.discussion))
+      details.find('[testID="DiscussionDetails.dueDates"]').simulate('press')
+      expect(props.navigator.show).toHaveBeenCalledWith(
+        `/courses/${props.contextID}/assignments/1/due_dates`,
+        { modal: false },
+        { onEditPressed: tree.instance()._editDiscussion }
+      )
+    })
+
+    test('submission graphs', () => {
+      app.setCurrentApp('student')
+      let tree = renderDetails(props)
+      expect(tree.find('[testID="DiscussionDetails.submissionGraphs"]').exists()).toEqual(false)
+
+      app.setCurrentApp('teacher')
+      tree = renderDetails({
+        ...props,
+        assignment: null,
+      })
+      expect(tree.find('[testID="DiscussionDetails.submissionGraphs"]').exists()).toEqual(false)
+
+      tree = renderDetails({
+        ...props,
+        assignment: template.assignment(),
+        discussion: template.discussion({ group_topic_children: 0 }),
+      })
+      expect(tree.find('[testID="DiscussionDetails.submissionGraphs"]').exists()).toEqual(true)
+    })
+
+    it('routes to the right place when submissions is tapped (via onPress)', () => {
+      let tree = renderDetails({
+        ...props,
+        assignment: template.assignment({ id: '1', course_id: '22' }),
+      })
+      tree.find('[testID="DiscussionDetails.submissionGraphs"]').simulate('press')
+
+      expect(props.navigator.show).toHaveBeenCalledWith(
+        `/courses/22/assignments/1/submissions`
+      )
+    })
+
+    it('routes to the right place when submissions dial is tapped', () => {
+      let tree = renderDetails({
+        ...props,
+        assignment: template.assignment({ id: '1', course_id: '85' }),
+      })
+
+      tree.find('SubmissionBreakdownGraphSection').simulate('press', 'graded')
+      expect(props.navigator.show).toHaveBeenCalledWith(
+        `/courses/85/assignments/1/submissions`,
+        { modal: false },
+        { filterType: 'graded' }
+      )
+    })
+
+    test('avatar', () => {
+      let tree = renderDetails({
+        ...props,
+        discussion: template.discussion({ author: null }),
+      })
+      expect(tree.find('Avatar').exists()).toEqual(false)
+
+      tree = renderDetails({
+        ...props,
+        discussion: template.discussion({ author: template.user({ display_name: null }) }),
+      })
+      expect(tree.find('Avatar').exists()).toEqual(false)
+
+      let user = template.userDisplay()
+      tree = renderDetails({
+        ...props,
+        discussion: template.discussion({
+          author: user,
+        }),
+      })
+      let avatar = tree.find('Avatar')
+      expect(avatar.props()).toMatchObject({
+        avatarURL: user.avatar_image_url,
+        userName: user.display_name,
+      })
+    })
+
+    test('author', () => {
+      let tree = renderDetails({
+        ...props,
+        discussion: template.discussion({ author: null }),
+      })
+      expect(tree.find('[testID="DiscussionDetails.authorName"]').exists()).toEqual(false)
+
+      tree = renderDetails({
+        ...props,
+        discussion: template.discussion({ author: template.user({ display_name: null }) }),
+      })
+      expect(tree.find('[testID="DiscussionDetails.authorName"]').exists()).toEqual(false)
+
+      let user = template.userDisplay({ display_name: 'Eve' })
+      tree = renderDetails({
+        ...props,
+        discussion: template.discussion({
+          author: user,
+        }),
+      })
+      expect(tree.find('[testID="DiscussionDetails.authorName"]').prop('children')).toEqual('Eve')
+
+      user = template.userDisplay({ display_name: 'Eve', pronouns: 'She/Her' })
+      tree = renderDetails({
+        ...props,
+        discussion: template.discussion({
+          author: user,
+        }),
+      })
+      expect(tree.find('[testID="DiscussionDetails.authorName"]').prop('children')).toEqual('Eve (She/Her)')
+    })
+
+    it('navigates to context card when pressing the avatar', () => {
+      let tree = renderDetails(props)
+      let avatar = tree.find('[testID="DiscussionDetails.avatar"]')
+      avatar.simulate('press')
+      expect(props.navigator.show).toHaveBeenCalledWith(
+        `/courses/1/users/1`,
+        { modal: true },
+      )
+    })
+
+    it('displays delayed post at date', () => {
+      props.discussion = template.discussion({
+        delayed_post_at: '3019-10-28T14:16:00-07:00',
+        posted_at: '2017-10-27T14:16:00-07:00',
+      })
+      const label = renderDetails(props).find('[testID="DiscussionDetails.postDateLabel"]')
+      expect(label.prop('children')).toEqual('Oct 28 at 3:16 PM')
+    })
+
+    it('displays post date', () => {
+      props.discussion = template.discussion({
+        delayed_post_at: null,
+        posted_at: '2017-10-27T14:16:00-07:00',
+      })
+      const label = renderDetails(props).find('[testID="DiscussionDetails.postDateLabel"]')
+      expect(label.prop('children')).toEqual('Oct 27 at 3:16 PM')
+    })
+
+    it('displays no post date', () => {
+      props.discussion = template.discussion({
+        delayed_post_at: null,
+        posted_at: null,
+      })
+      const label = renderDetails(props).find('[testID="DiscussionDetails.postDateLabel"]')
+      expect(label.exists()).toEqual(false)
+    })
+
+    test('CanvasWebView', () => {
+      let tree = renderDetails(props)
+      expect(tree.find('CanvasWebView').prop('html')).toEqual(props.discussion.message)
+    })
+
+    test('attachment', () => {
+      let tree = renderDetails({
+        ...props,
+        discussion: template.discussion({ attachments: null }),
+      })
+      expect(tree.find('[testID="DiscussionDetails.attachmentButton"]').exists()).toEqual(false)
+
+      tree = renderDetails({
+        ...props,
+        discussion: template.discussion({ attachments: [] }),
+      })
+      expect(tree.find('[testID="DiscussionDetails.attachmentButton"]').exists()).toEqual(false)
+
+      tree = renderDetails({
+        ...props,
+        discussion: template.discussion({ attachments: [template.attachment()] }),
+      })
+      expect(tree.find('[testID="DiscussionDetails.attachmentButton"]').exists()).toEqual(true)
+    })
+
+    it('navigates to attachment', () => {
+      let attachment = template.attachment()
+      let tree = renderDetails({
+        ...props,
+        discussion: template.discussion({ attachments: [attachment] }),
+      })
+      tree.find('[testID="DiscussionDetails.attachmentButton"]').simulate('press')
+      expect(props.navigator.show).toHaveBeenCalledWith(
+        '/attachment',
+        { modal: true },
+        { attachment },
+      )
+    })
+
+    test('reply button', () => {
+      let tree = renderDetails({
+        ...props,
+        discussion: template.discussion({ locked_for_user: true }),
+        permissions: { post_to_forum: false },
+      })
+      expect(tree.find('[testID="DiscussionDetails.replyButton"]').exists()).toEqual(false)
+
+      tree = renderDetails({
+        ...props,
+        discussion: template.discussion({ locked_for_user: false }),
+        permissions: { post_to_forum: false },
+      })
+      expect(tree.find('[testID="DiscussionDetails.replyButton"]').exists()).toEqual(false)
+
+      tree = renderDetails({
+        ...props,
+        discussion: template.discussion({ locked_for_user: false }),
+        permissions: { post_to_forum: true },
+      })
+      expect(tree.find('[testID="DiscussionDetails.replyButton"]').exists()).toEqual(true)
+    })
+
+    it('touches the reply button', () => {
+      const tree = renderDetails(props)
+      const discussionReply = tree.find('[testID="DiscussionDetails.replyButton"]')
+      discussionReply.simulate('press')
+      expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/reply', { modal: true, disableSwipeDownToDismissModal: true }, {
+        indexPath: [],
+        lastReplyAt: props.discussion && props.discussion.last_reply_at,
+        permissions: props.discussion && props.discussion.permissions,
+      })
+    })
+
+    describe('GroupTopicChildren', () => {
+      beforeEach(() => {
+        app.setCurrentApp('teacher')
+        props.context = 'courses'
+        props.discussion.group_topic_children = [{ id: '1', group_id: '2' }]
+        props.groups = {}
+      })
+
+      it('renders GroupTopicChildren', () => {
+        const details = shallow(new DiscussionDetails(props).renderDetails(props.discussion))
+        expect(details.find('GroupTopicChildren')).not.toBeNull()
+      })
+
+      it('does not render GroupTopicChildren in groups context', () => {
+        props.context = 'groups'
+        const details = shallow(new DiscussionDetails(props).renderDetails(props.discussion))
+        expect(details.find('GroupTopicChildren')).toHaveLength(0)
+      })
+
+      it('does not render GroupTopicChildren if student', () => {
+        app.setCurrentApp('student')
+        const details = shallow(new DiscussionDetails(props).renderDetails(props.discussion))
+        expect(details.find('GroupTopicChildren')).toHaveLength(0)
+      })
+
+      it('does not render GroupTopicChildren if there are no children', () => {
+        props.discussion.group_topic_children = []
+        const details = shallow(new DiscussionDetails(props).renderDetails(props.discussion))
+        expect(details.find('GroupTopicChildren')).toHaveLength(0)
+      })
+    })
+
+    test('replies heading', () => {
+      let tree = renderDetails({
+        ...props,
+        discussion: template.discussion({ replies: null }),
+      })
+      expect(tree.find('[testID="DiscussionDetails.repliesHeading"]').exists()).toEqual(false)
+
+      tree = renderDetails({
+        ...props,
+        discussion: template.discussion({ replies: [] }),
+      })
+      expect(tree.find('[testID="DiscussionDetails.repliesHeading"]').exists()).toEqual(false)
+
+      tree = renderDetails({
+        ...props,
+        discussion: template.discussion({ replies: [template.discussionReply()] }),
+      })
+      expect(tree.find('[testID="DiscussionDetails.repliesHeading"]').exists()).toEqual(true)
+    })
+
+    it('doesnt show the pop reply button with no replies', () => {
+      let discussion = template.discussion({ replies: [] })
+      let tree = shallow(<DiscussionDetails {...props} discussion={discussion} />)
+      let details = shallow(tree.instance().renderDetails(discussion))
+      expect(details.find('[testID="discussion.popToLastDiscussionList"]').exists()).toEqual(false)
+    })
+
+    test('popReply', () => {
+      let aaaaaaaaa = template.discussionReply({ id: '9' })
+      let aaaaaaaa = template.discussionReply({ id: '8', replies: [aaaaaaaaa] })
+      let aaaaaaa = template.discussionReply({ id: '7', replies: [aaaaaaaa] })
+      let aaaaaa = template.discussionReply({ id: '6', replies: [aaaaaaa] })
+      let aaaaa = template.discussionReply({ id: '5', replies: [aaaaaa] })
+      let aaaa = template.discussionReply({ id: '4', replies: [aaaaa] })
+      let aaa = template.discussionReply({ id: '3', replies: [aaaa] })
+      let aa = template.discussionReply({ id: '2', replies: [aaa] })
+      let a = template.discussionReply({ id: '1', replies: [aa] })
+      let discussion = template.discussion({ replies: [a] })
+
+      let tree = shallow(<DiscussionDetails {...props} discussion={discussion} />)
+      tree.instance()._onPressMoreReplies([0, 0, 0, 0, 0, 0, 0])
+      expect(tree.state()).toMatchObject({ deletePending: false, rootNodePath: [0, 0, 0, 0, 0, 0, 0], maxReplyNodeDepth: 2, unread_entries: [] })
+
+      let details = shallow(tree.instance().renderDetails(discussion))
+      let pop = details.find('[testID="discussion.popToLastDiscussionList"]')
+
+      pop.simulate('press')
+      expect(tree.state()).toMatchObject({ deletePending: false, rootNodePath: [0, 0, 0, 0, 0], maxReplyNodeDepth: 2, unread_entries: [] })
+
+      pop.simulate('press')
+      expect(tree.state()).toMatchObject({ deletePending: false, rootNodePath: [0, 0, 0], maxReplyNodeDepth: 2, unread_entries: [] })
+
+      pop.simulate('press')
+      expect(tree.state()).toMatchObject({ deletePending: false, rootNodePath: [], maxReplyNodeDepth: 2, unread_entries: [] })
+    })
+
+    it('does not show require_initial_post message on render', () => {
+      const details = renderDetails({
+        ...props,
+        requireInitialPost: false,
+      })
+      expect(details.find('[testID="discussions.details.require_initial_post.message"]')).toHaveLength(0)
+    })
+
+    it('shows require_initial_post message', () => {
+      const details = renderDetails({
+        ...props,
+        initialPostRequired: true,
+      })
+      expect(details.find('[testID="discussions.details.require_initial_post.message"]')).toHaveLength(1)
+    })
   })
 
-  it('routes to announcement edit', () => {
-    // $FlowFixMe
-    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(0))
-    props.isAnnouncement = true
-    props.navigator.show = jest.fn()
-    props.courseID = '1'
-    props.discussion = template.discussion({ id: '2' })
-    props.discussionID = '2'
-    const editButton: any = explore(render(props).toJSON()).selectRightBarButton('discussions.details.edit.button')
-    editButton.action()
-    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/announcements/2/edit', { modal: true, modalPresentationStyle: 'formsheet' })
-  })
+  describe('reply', () => {
+    beforeEach(() => {
+      props = {
+        ...props,
+        discussion: template.discussion({
+          participants: [template.userDisplay()],
+          replies: [template.discussionReply({
+            myPath: [0],
+          })],
+        }),
+      }
+    })
 
-  it('right bar button shows options', () => {
-    const mock = jest.fn()
-    // $FlowFixMe
-    ActionSheetIOS.showActionSheetWithOptions = mock
-    const kabob: any = explore(render(props).toJSON()).selectRightBarButton('discussions.details.edit.button')
-    kabob.action()
-    expect(mock).toHaveBeenCalledWith(
-      {
-        options: ['Edit', 'Mark All as Read', 'Delete', 'Cancel'],
-        destructiveButtonIndex: 2,
-        cancelButtonIndex: 3,
-      },
-      expect.any(Function)
-    )
-  })
-
-  it('calls markAllAsRead when that option is selected', () => {
-    // $FlowFixMe
-    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(1))
-
-    const kabob: any = explore(render(props).toJSON()).selectRightBarButton('discussions.details.edit.button')
-    kabob.action()
-    expect(props.markAllAsRead).toHaveBeenCalledWith('courses', '1', '1', 1)
-  })
-
-  it('alerts to confirm delete discussion', () => {
-    // $FlowFixMe
-    Alert.alert = jest.fn()
-    // $FlowFixMe
-    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(2))
-    const kabob: any = explore(render(props).toJSON()).selectRightBarButton('discussions.details.edit.button')
-    kabob.action()
-    expect(Alert.alert).toHaveBeenCalledWith(
-      'Are you sure you want to delete this discussion?',
-      null,
-      [
-        { text: 'Cancel', style: 'cancel' },
-        { text: 'OK', onPress: expect.any(Function) },
-      ],
-    )
-  })
-
-  it('alerts to confirm delete reply', () => {
-    // $FlowFixMe
-    Alert.alert = jest.fn()
-    // $FlowFixMe
-    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(1))
-    const tree = render(props).getInstance()
-    tree._confirmDeleteReply('1', '1', '1')
-    expect(Alert.alert).toHaveBeenCalledWith(
-      'Are you sure you want to delete this reply?',
-      null,
-      [
-        { text: 'Cancel', style: 'cancel' },
-        { text: 'OK', onPress: expect.any(Function) },
-      ],
-    )
-  })
-
-  it('deletes discussion reply', () => {
-    props.deleteDiscussionEntry = jest.fn()
-    // $FlowFixMe
-    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(1))
-    // $FlowFixMe
-    Alert.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
-    const tree = render(props).getInstance()
-    tree._confirmDeleteReply('1', '1', '1', [0, 1])
-    expect(props.deleteDiscussionEntry).toHaveBeenCalledWith('1', '1', '1', [0, 1])
-  })
-
-  it('marks unread entry as read when viewable', () => {
-    let a = template.discussionReply({ id: '0', readState: 'unread' })
-    let discussion = { ...props.discussion, replies: [a] }
-    const tree = render({ ...props, discussion })
-    const instance = tree.getInstance()
-    instance.setState({ unread_entries: ['0'] })
-
-    let info = {
-      viewableItems: [{
-        isViewable: true,
-        index: 0,
-        item: a,
-      }],
-      changed: [{
-        isViewable: true,
-        index: 0,
-        item: a,
-      }],
+    function renderReply (props) {
+      return shallow(new DiscussionDetails(props).renderReply({ item: props.discussion.replies[0], index: 0 }))
     }
-    instance._markViewableAsRead(info)
-    jest.runAllTimers()
-    expect(props.markEntryAsRead).toHaveBeenCalledWith('courses', '1', '1', '0')
-  })
 
-  it('does not marks unread entry as read when not in view', () => {
-    let a = template.discussionReply({ id: '0', readState: 'unread' })
-    let discussion = { ...props.discussion, replies: [a] }
-    const tree = render({ ...props, discussion })
-    const instance = tree.getInstance()
-    instance.setState({ unread_entries: ['0'] })
+    test('renders', () => {
+      let reply = renderReply(props).find('Reply')
+      let replyProps = reply.props()
 
-    let info = {
-      viewableItems: [{
-        isViewable: false,
-        index: 0,
-        item: a,
-      }],
-      changed: [{
-        isViewable: false,
-        index: 0,
-        item: a,
-      }],
-    }
-    instance._markViewableAsRead(info)
-    jest.runAllTimers()
-    expect(props.markEntryAsRead).toHaveBeenCalledTimes(0)
-  })
+      expect(replyProps.context).toEqual(props.context)
+      expect(replyProps.contextID).toEqual(props.contextID)
+      expect(replyProps.discussionID).toEqual(props.discussionID)
+      expect(replyProps.reply).toEqual(props.discussion.replies[0])
+      expect(replyProps.readState).toEqual(props.discussion.replies[0].readState)
+      expect(replyProps.depth).toEqual(props.discussion.replies[0].depth)
+      expect(replyProps.myPath).toEqual([0])
+      expect(replyProps.participants).toEqual(props.discussion.participants)
+      expect(replyProps.discussionLockedForUser).toEqual(props.discussion.locked_for_user)
+      expect(replyProps.userCanReply).toEqual(props.permissions.post_to_forum)
+      expect(replyProps.rating).toEqual(props.discussion.replies[0].rating)
+      expect(replyProps.canRate).toEqual(props.canRate)
+      expect(replyProps.showRating).toEqual(props.discussion.allow_rating)
+      expect(replyProps.isAnnouncement).toEqual(props.isAnnouncement)
+    })
 
-  it('does not call markEntryAsRead action if it has already been read', () => {
-    let a = template.discussionReply({ id: '0', readState: 'read' })
-    let discussion = { ...props.discussion, replies: [a] }
-    const tree = render({ ...props, discussion })
-    const instance = tree.getInstance()
-    instance.setState({ unread_entries: ['2', '3'] })
+    it('alerts to confirm delete reply', () => {
+      Alert.alert = jest.fn()
+      ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(1))
+      let tree = renderReply(props)
+      let reply = tree.find('Reply')
+      reply.prop('deleteDiscussionEntry')('1', '1', '1')
+      expect(Alert.alert).toHaveBeenCalledWith(
+        'Are you sure you want to delete this reply?',
+        null,
+        [
+          { text: 'Cancel', style: 'cancel' },
+          { text: 'OK', onPress: expect.any(Function) },
+        ],
+      )
+    })
 
-    let info = {
-      viewableItems: [{
-        isViewable: true,
-        index: 0,
-        item: a,
-      }],
-      changed: [{
-        isViewable: true,
-        index: 0,
-        item: a,
-      }],
-    }
-    instance._markViewableAsRead(info)
-    jest.runAllTimers()
-    expect(props.markEntryAsRead).toHaveBeenCalledTimes(0)
-  })
+    it('deletes discussion reply', () => {
+      ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(1))
+      Alert.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
+      let tree = renderReply(props)
+      let reply = tree.find('Reply')
+      reply.prop('deleteDiscussionEntry')('1', '1', '1', [0, 1])
+      expect(props.deleteDiscussionEntry).toHaveBeenCalledWith('1', '1', '1', [0, 1])
+    })
 
-  it('catches the discussion details section when on screen so it doesnt try to mark as read', () => {
-    let a = template.discussionReply({ id: '1', readState: 'unread' })
-    let discussion = { ...props.discussion, replies: [a] }
-    const tree = render({ ...props, discussion })
-    const instance = tree.getInstance()
-    instance.setState({ unread_entries: ['0'] })
+    it('routes to discussion edit on entry reply', () => {
+      let tree = renderReply({
+        ...props,
+        isAnnouncement: false,
+        courseID: '1',
+        discussion: template.discussion({
+          id: '2',
+          replies: [template.discussionReply({
+            myPath: [0],
+          })],
+        }),
+      })
+      let reply = tree.find('Reply')
+      reply.prop('replyToEntry')('3', [1, 0])
 
-    let info = {
-      viewableItems: [{
-        isViewable: true,
-        index: 0,
-        item: a,
-      }],
-      changed: [{
-        isViewable: true,
-        index: 0,
-        item: a,
-      }],
-    }
-    instance._markViewableAsRead(info)
-    jest.runAllTimers()
-    expect(props.markEntryAsRead).toHaveBeenCalledTimes(0)
+      expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/entries/3/replies', { modal: true, disableSwipeDownToDismissModal: true }, {
+        'entryID': '3',
+        'indexPath': [1, 0],
+        lastReplyAt: props.discussion.last_reply_at,
+        permissions: props.discussion.permissions,
+      })
+    })
+
+    it('presses more replies', () => {
+      let aaaaaaaaa = template.discussionReply({ id: '9' })
+      let aaaaaaaa = template.discussionReply({ id: '8', replies: [aaaaaaaaa] })
+      let aaaaaaa = template.discussionReply({ id: '7', replies: [aaaaaaaa] })
+      let aaaaaa = template.discussionReply({ id: '6', replies: [aaaaaaa] })
+      let aaaaa = template.discussionReply({ id: '5', replies: [aaaaaa] })
+      let aaaa = template.discussionReply({ id: '4', replies: [aaaaa] })
+      let aaa = template.discussionReply({ id: '3', replies: [aaaa] })
+      let aa = template.discussionReply({ id: '2', replies: [aaa] })
+      let a = template.discussionReply({ id: '1', replies: [aa] })
+      let discussion = template.discussion({ replies: [a] })
+
+      let tree = shallow(<DiscussionDetails {...props} discussion={discussion} />)
+      let reply = shallow(tree.instance().renderReply({ item: discussion.replies[0], index: 0 })).find('Reply')
+      reply.simulate('pressMoreReplies', [0, 0, 0])
+      expect(tree.state('rootNodePath')).toEqual([0, 0, 0])
+    })
   })
 
   it('calls refreshSingleDiscussion on unmount to update unread count', () => {
-    props.refreshSingleDiscussion = jest.fn()
-    render(props).getInstance().componentWillUnmount()
+    let tree = shallow(<DiscussionDetails {...props} />)
+    tree.unmount()
     expect(props.refreshSingleDiscussion).toHaveBeenCalledWith(props.context, props.contextID, props.discussionID)
   })
 
   it('does not call refreshSingleDiscussion on unmount if no discussion (was deleted)', () => {
-    let newProps = {
-      ...props,
-      discussion: null,
-    }
-    newProps.refreshSingleDiscussion = jest.fn()
-    render(newProps).getInstance().componentWillUnmount()
-    expect(newProps.refreshSingleDiscussion).not.toHaveBeenCalledWith()
-  })
-
-  it('_onPopReplyRootPath pops to correct set of replies', () => {
-    let aaaaaaaaa = template.discussionReply({ id: '9' })
-    let aaaaaaaa = template.discussionReply({ id: '8', replies: [aaaaaaaaa] })
-    let aaaaaaa = template.discussionReply({ id: '7', replies: [aaaaaaaa] })
-    let aaaaaa = template.discussionReply({ id: '6', replies: [aaaaaaa] })
-    let aaaaa = template.discussionReply({ id: '5', replies: [aaaaaa] })
-    let aaaa = template.discussionReply({ id: '4', replies: [aaaaa] })
-    let aaa = template.discussionReply({ id: '3', replies: [aaaa] })
-    let aa = template.discussionReply({ id: '2', replies: [aaa] })
-    let a = template.discussionReply({ id: '1', replies: [aa] })
-    let discussion = { ...props.discussion, replies: [a] }
-    const tree = render({ ...props, discussion })
-    const instance = tree.getInstance()
-    instance._onPressMoreReplies([0, 0, 0, 0])
-    instance._onPressMoreReplies([0, 0, 0, 0, 0, 0, 0])
-    expect(instance.state).toMatchObject({ deletePending: false, rootNodePath: [0, 0, 0, 0, 0, 0, 0], maxReplyNodeDepth: 2, unread_entries: [] })
-    instance._onPopReplyRootPath()
-    expect(instance.state).toMatchObject({ deletePending: false, rootNodePath: [0, 0, 0, 0, 0], maxReplyNodeDepth: 2, unread_entries: [] })
-    instance._onPopReplyRootPath()
-    expect(instance.state).toMatchObject({ deletePending: false, rootNodePath: [0, 0, 0], maxReplyNodeDepth: 2, unread_entries: [] })
-    instance._onPopReplyRootPath()
-    expect(instance.state).toMatchObject({ deletePending: false, rootNodePath: [], maxReplyNodeDepth: 2, unread_entries: [] })
-  })
-
-  it('deletes discussion', () => {
-    props.deleteDiscussion = jest.fn()
-    // $FlowFixMe
-    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(2))
-    // $FlowFixMe
-    Alert.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
-    props.courseID = '1'
-    props.discussionID = '2'
-    const kabob: any = explore(render(props).toJSON()).selectRightBarButton('discussions.details.edit.button')
-    kabob.action()
-    expect(props.deleteDiscussion).toHaveBeenCalledWith('courses', '1', '2')
-  })
-
-  it('routes to discussion edit', () => {
-    // $FlowFixMe
-    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(0))
-    props.isAnnouncement = false
-    props.navigator.show = jest.fn()
-    props.courseID = '1'
-    props.discussion = template.discussion({ id: '2' })
-    props.discussionID = '2'
-    const editButton: any = explore(render(props).toJSON()).selectRightBarButton('discussions.details.edit.button')
-    editButton.action()
-    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/2/edit', { modal: true, modalPresentationStyle: 'formsheet' })
-  })
-
-  it('routes to discussion edit on entry reply', () => {
-    props.isAnnouncement = false
-    props.navigator.show = jest.fn()
-    props.courseID = '1'
-    props.discussion = template.discussion({ id: '2' })
-
-    let tree = render(props)
-    tree.getInstance()._onPressReplyToEntry('3', [1, 0])
-
-    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/entries/3/replies', { modal: true }, {
-      'entryID': '3',
-      'indexPath': [1, 0],
-      lastReplyAt: props.discussion && props.discussion.last_reply_at,
-      permissions: props.discussion && props.discussion.permissions,
-    })
-  })
-
-  it('shows attachment', () => {
-    // Appease flow
-    if (props.discussion) {
-      props.discussion = Object.assign(props.discussion, { attachments: [{}] })
-    }
-    let tree = render(props)
-
-    tree.getInstance().showAttachment()
-
-    expect(props.navigator.show).toHaveBeenCalledWith(
-      '/attachment',
-      { modal: true },
-      {
-        // $FlowFixMe
-        attachment: props.discussion.attachments[0],
-      },
-    )
+    let tree = shallow(<DiscussionDetails {...props} discussion={null} />)
+    tree.unmount()
+    expect(props.refreshSingleDiscussion).not.toHaveBeenCalledWith()
   })
 
   it('routes to the right place when submissions is tapped', () => {
-    props.assignment = template.assignment({ id: '1', course_id: props.contextID })
-    let navigator = template.navigator({
-      push: jest.fn(),
-    })
-    let details = render({ ...props, navigator }).getInstance()
-    details.viewAllSubmissions()
-    expect(navigator.show).toHaveBeenCalledWith(
+    let tree = shallow(<DiscussionDetails {...props} assignment={template.assignment({ id: '1', course_id: props.contextID })} />)
+    tree.instance().viewAllSubmissions()
+    expect(props.navigator.show).toHaveBeenCalledWith(
       `/courses/${props.contextID}/assignments/1/submissions`
     )
   })
 
-  it('routes to the right place when submissions is tapped (via onPress)', () => {
-    props.assignment = template.assignment({ id: '1', course_id: '22' })
-    let navigator = template.navigator({
-      push: jest.fn(),
-    })
-    let tree = render({ ...props, navigator }).toJSON()
-    const doneButton = explore(tree).selectByID('discussions.submission-graphs') || {}
-    doneButton.props.onPress()
-
-    expect(navigator.show).toHaveBeenCalledWith(
-      `/courses/22/assignments/1/submissions`
-    )
-  })
-
-  it('routes to the right place when submissions dial is tapped', () => {
-    props.assignment = template.assignment({ id: '1', course_id: '85' })
-    let navigator = template.navigator({
-      push: jest.fn(),
-    })
-    let details = render({ ...props, navigator }).getInstance()
-    details.onSubmissionDialPress('graded')
-    expect(navigator.show).toHaveBeenCalledWith(
-      `/courses/85/assignments/1/submissions`,
-      { modal: false },
-      { filterType: 'graded' }
-    )
-  })
-
-  it('routes to the right place when edit is tapped from the due dates screen', () => {
-    props.assignment = template.assignment({ id: '1', course_id: props.contextID })
-    let navigator = template.navigator({
-      push: jest.fn(),
-    })
-    let details = render({ ...props, navigator }).getInstance()
-    details._editDiscussion()
-    expect(navigator.show).toHaveBeenCalledWith(
-      `/courses/${props.contextID}/discussion_topics/1/edit`,
-      { modal: true, modalPresentationStyle: 'formsheet' },
-    )
-  })
-
-  it('renders a non-assignment discussion', () => {
-    let nonAssgProps = {
-      ...props,
-      discussion: {
-        ...props.discussion,
-        assignment: null,
-      },
-    }
-    testRender(nonAssgProps)
-  })
-
   it('pops after delete without refresh', () => {
-    props.navigator.pop = jest.fn()
-    props.refreshSingleDiscussion = jest.fn()
-    // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(2))
-    // $FlowFixMe
     Alert.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
-    const screen = render(props)
-    const deleteDiscussion = jest.fn(() => {
-      setProps(screen, { pending: 0, discussion: null })
-    })
-    screen.update(<DiscussionDetails {...props} deleteDiscussion={deleteDiscussion} />)
-    const kabob: any = explore(screen.toJSON()).selectRightBarButton('discussions.details.edit.button')
+    let deleteDiscussion = jest.fn()
+    let tree = shallow(<DiscussionDetails {...props} deleteDiscussion={deleteDiscussion} />)
+    let kabob = tree.find('Screen').prop('rightBarButtons')[0]
     kabob.action()
+    expect(deleteDiscussion).toHaveBeenCalledWith(props.context, props.contextID, props.discussionID)
+
+    tree.setProps({
+      ...props,
+      pending: false,
+      discussion: null,
+    })
     expect(props.navigator.pop).toHaveBeenCalled()
     expect(props.refreshSingleDiscussion).not.toHaveBeenCalled()
-  })
-
-  it('displays delayed post at date', () => {
-    props.discussion = template.discussion({
-      delayed_post_at: '3019-10-28T14:16:00-07:00',
-      posted_at: '2017-10-27T14:16:00-07:00',
-    })
-    const label: any = explore(render(props).toJSON()).selectByID('discussion.details.post-date-lbl')
-    expect(label.children).toEqual(['Oct 28 at 3:16 PM'])
-  })
-
-  it('displays post date', () => {
-    props.discussion = template.discussion({
-      delayed_post_at: null,
-      posted_at: '2017-10-27T14:16:00-07:00',
-    })
-    const label: any = explore(render(props).toJSON()).selectByID('discussion.details.post-date-lbl')
-    expect(label.children).toEqual(['Oct 27 at 3:16 PM'])
-  })
-
-  it('displays no post date', () => {
-    props.discussion = template.discussion({
-      delayed_post_at: null,
-      posted_at: null,
-    })
-    const label: any = explore(render(props).toJSON()).selectByID('discussion.details.post-date-lbl')
-    expect(label).toEqual(null)
-  })
-
-  it('navigates to context card when pressing the avatar', () => {
-    let avatar = explore(render(props).toJSON()).selectByID('discussion.details.avatar') || {}
-    avatar.props.onPress()
-    expect(props.navigator.show).toHaveBeenCalledWith(
-      `/courses/1/users/1`,
-      { modal: true },
-    )
-  })
-
-  it('does not show require_initial_post message on render', () => {
-    props.requireInitialPost = false
-    const details = shallow(new DiscussionDetails(props).renderDetails(props.discussion))
-    expect(details.find('[testID="discussions.details.require_initial_post.message"]')).toHaveLength(0)
-  })
-
-  it('shows require_initial_post message', () => {
-    props.initialPostRequired = true
-    props.discussion = template.discussion()
-    const screen = shallow(<DiscussionDetails {...props} />)
-    const details = shallow(screen.instance().renderDetails(props.discussion))
-    expect(details.find('[testID="discussions.details.require_initial_post.message"]')).toHaveLength(1)
   })
 
   it('alerts error', () => {
@@ -750,60 +1007,14 @@ describe('DiscussionDetails', () => {
     expect(props.navigator.replace).toHaveBeenCalledTimes(1)
   })
 
-  it('renders properly in rtl', () => {
-    I18nManager.isRTL = true
-    testRender(props)
-    I18nManager.isRTL = false
+  it('marks topic as read', () => {
+    props.markTopicAsRead = jest.fn()
+    props.context = 'courses'
+    props.contextID = '1'
+    props.discussionID = '2'
+    shallow(<DiscussionDetails {...props} />)
+    expect(props.markTopicAsRead).toHaveBeenCalledWith('courses', '1', '2')
   })
-
-  it('doesnt render the reply button when the permission is disabled', () => {
-    testRender({
-      ...props,
-      permissions: { post_to_forum: false },
-    })
-  })
-
-  describe('GroupTopicChildren', () => {
-    beforeEach(() => {
-      app.setCurrentApp('teacher')
-      props.context = 'courses'
-      props.discussion.group_topic_children = [{ id: '1', group_id: '2' }]
-      props.groups = {}
-    })
-
-    it('renders GroupTopicChildren', () => {
-      const details = shallow(new DiscussionDetails(props).renderDetails(props.discussion))
-      expect(details.find('GroupTopicChildren')).not.toBeNull()
-    })
-
-    it('does not render GroupTopicChildren in groups context', () => {
-      props.context = 'groups'
-      const details = shallow(new DiscussionDetails(props).renderDetails(props.discussion))
-      expect(details.find('GroupTopicChildren')).toHaveLength(0)
-    })
-
-    it('does not render GroupTopicChildren if student', () => {
-      app.setCurrentApp('student')
-      const details = shallow(new DiscussionDetails(props).renderDetails(props.discussion))
-      expect(details.find('GroupTopicChildren')).toHaveLength(0)
-    })
-
-    it('does not render GroupTopicChildren if there are no children', () => {
-      props.discussion.group_topic_children = []
-      const details = shallow(new DiscussionDetails(props).renderDetails(props.discussion))
-      expect(details.find('GroupTopicChildren')).toHaveLength(0)
-    })
-  })
-
-  function testRender (props: any) {
-    expect(render(props).toJSON()).toMatchSnapshot()
-  }
-
-  function render (props: any) {
-    return renderer.create(
-      <DiscussionDetails {...props} />
-    )
-  }
 })
 
 describe('mapStateToProps', () => {

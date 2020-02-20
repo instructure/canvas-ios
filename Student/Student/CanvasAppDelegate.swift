@@ -18,7 +18,6 @@
 
 import AVKit
 import UIKit
-import TechDebt
 import PSPDFKit
 import CanvasKit
 import Fabric
@@ -45,14 +44,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     let hasFirebase = FirebaseOptions.defaultOptions()?.apiKey != nil
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        Logger.shared.log()
         setupCrashlytics()
+        CacheManager.resetAppIfNecessary()
         #if DEBUG
             UITestHelpers.setup(self)
         #endif
-        CacheManager.resetAppIfNecessary()
         if hasFirebase {
             FirebaseApp.configure()
+            configureRemoteConfig()
         }
         DocViewerViewController.setup(.studentPSPDFKitLicense)
         prepareReactNative()
@@ -77,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         return true
     }
 
-    func setup(session: LoginSession, wasReload: Bool = false) {
+    func setup(session: LoginSession) {
         environment.userDidLogin(session: session)
         CoreWebView.keepCookieAlive(for: environment)
         if Locale.current.regionCode != "CA" {
@@ -123,11 +122,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
                 ModuleItem.beginObservingProgress(legacySession)
             }
             PageViewEventController.instance.userDidChange()
-            CKCanvasAPI.updateCurrentAPI()
+            DispatchQueue.main.async { self.refreshNotificationTab() }
             GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
                 DispatchQueue.main.async {
                     Brand.setCurrent(Brand(core: Core.Brand.shared), applyInWindow: self.window)
-                    NativeLoginManager.login(as: session, wasReload: wasReload)
+                    NativeLoginManager.login(as: session)
                 }
             }
         }
@@ -169,6 +168,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
             }
         }
         manager.createSession()
+    }
+
+    // similar methods exist in all other app delegates
+    // please be sure to update there as well
+    // We can't move this to Core as it would require setting up
+    // Cocoapods for Core to pull in Firebase
+    func configureRemoteConfig() {
+        let remoteConfig = RemoteConfig.remoteConfig()
+        remoteConfig.activate { error in
+            guard error == nil else {
+                return
+            }
+            let keys = remoteConfig.allKeys(from: RemoteConfigSource.remote)
+            for key in keys {
+                guard let feature = ExperimentalFeature(rawValue: key) else { continue }
+                let value = remoteConfig.configValue(forKey: key).boolValue
+                feature.isEnabled = value
+                Crashlytics.sharedInstance().setBoolValue(value, forKey: feature.userDefaultsKey)
+                Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
+            }
+        }
+        remoteConfig.fetch(completionHandler: nil)
     }
 }
 
@@ -213,11 +234,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         StartupManager.shared.enqueueTask { [weak self] in
             PushNotifications.recordUserInfo(userInfo)
             // Handle local notifications we know about first
-            if let assignmentURL = userInfo[CBILocalNotificationAssignmentURLKey] as? String,
-                let url = URL(string: assignmentURL) {
-                self?.openCanvasURL(url)
-                return
-            } else if let routerURL = userInfo[NotificationManager.RouteURLKey] as? String,
+            if let routerURL = userInfo[NotificationManager.RouteURLKey] as? String,
                 let url = URL(string: routerURL) {
                 self?.openCanvasURL(url)
                 return
@@ -277,7 +294,10 @@ extension AppDelegate {
 extension AppDelegate {
 
     @objc func setupCrashlytics() {
-        guard !uiTesting else { return }
+        guard !uiTesting else {
+            setupDebugCrashLogging()
+            return
+        }
         guard hasFabric else {
             NSLog("WARNING: Crashlytics was not properly initialized.")
             return
@@ -285,6 +305,16 @@ extension AppDelegate {
 
         Fabric.with([Crashlytics.self])
         CanvasCrashlytics.setupForReactNative()
+    }
+
+    func setupDebugCrashLogging() {
+        NSSetUncaughtExceptionHandler { exception in
+            print("CRASH: \(exception)")
+            print("Stack Trace:")
+            for symbol in exception.callStackSymbols {
+                print("  \(symbol)")
+            }
+        }
     }
 }
 
@@ -349,7 +379,9 @@ extension AppDelegate {
                     finish()
                 }
             } else if let from = self.topViewController {
-                AppEnvironment.shared.router.route(to: url, from: from, options: [.modal, .embedInNav, .addDoneButton])
+                var comps = URLComponents(url: url, resolvingAgainstBaseURL: true)
+                comps?.originIsNotification = true
+                AppEnvironment.shared.router.route(to: comps?.url ?? url, from: from, options: .modal(embedInNav: true, addDoneButton: true))
             }
         }
         return true
@@ -400,6 +432,7 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
 
     func userDidLogout(session: LoginSession) {
         let wasCurrent = environment.currentSession == session
+        environment.api.makeRequest(DeleteLoginOAuthRequest(session: session)) { _, _, _ in }
         userDidStopActing(as: session)
         if wasCurrent { changeUser() }
     }
@@ -426,5 +459,17 @@ extension AppDelegate {
             return true
         }
         return false
+    }
+}
+
+// MARK: - Tabs
+extension AppDelegate {
+    func refreshNotificationTab() {
+        if let tabs = window?.rootViewController as? UITabBarController,
+            tabs.viewControllers?.count ?? 0 > 3,
+            let nav = tabs.viewControllers?[3] as? UINavigationController,
+            let activities = nav.viewControllers.first as? ActivityStreamViewController {
+            activities.refreshData(force: true)
+        }
     }
 }

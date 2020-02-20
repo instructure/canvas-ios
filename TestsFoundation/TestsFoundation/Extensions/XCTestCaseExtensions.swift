@@ -21,8 +21,14 @@ import XCTest
 
 public extension XCTestCase {
     // make sure anything sitting on the main queue is run before returning
-    func drainMainQueue() {
-        while (CFRunLoopRunInMode(.defaultMode, 0, true) == .handledSource) {
+    func drainMainQueue(thoroughness: UInt = 10) {
+        assert(Thread.current.isMainThread)
+        for _ in 0..<thoroughness {
+            let expectation = XCTestExpectation()
+            DispatchQueue.main.async {
+                expectation.fulfill()
+            }
+            wait(for: [expectation], timeout: 30)
         }
     }
 }

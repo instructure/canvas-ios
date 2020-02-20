@@ -19,12 +19,13 @@
 // @flow
 
 import React, { Component } from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
 import i18n from 'format-message'
 import Navigator from '../../routing/Navigator'
 import Screen from '../../routing/Screen'
 import CanvasWebView from '../../common/components/CanvasWebView'
+import { createStyleSheet } from '../../common/stylesheet'
 
 export class RubricDescription extends Component<*> {
   renderLongDescription () {
@@ -54,7 +55,7 @@ export class RubricDescription extends Component<*> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   container: {
     paddingTop: 24,
     paddingHorizontal: 16,
@@ -67,12 +68,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
   },
   emptyStateText: {
-    color: '#2D3B45',
+    color: colors.textDarkest,
     fontSize: 16,
     lineHeight: 19,
     textAlign: 'center',
   },
-})
+}))
 
 export function mapStateToProps (state: AppState, ownProps: RubricDescriptionOwnProps): RubricDescriptionDataProps {
   let rubric = state.entities.assignments[ownProps.assignmentID].data.rubric

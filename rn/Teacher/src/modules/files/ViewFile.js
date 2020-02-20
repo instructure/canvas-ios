@@ -21,7 +21,6 @@ import React, { Component } from 'react'
 import {
   View,
   Image,
-  StyleSheet,
   Text,
   ActionSheetIOS,
   ActivityIndicator,
@@ -42,7 +41,7 @@ import i18n from 'format-message'
 
 import api from '../../canvas-api'
 import Screen from '../../routing/Screen'
-import Colors from '../../common/colors'
+import { colors, createStyleSheet } from '../../common/stylesheet'
 import Images from '../../images'
 import icon from '../../images/inst-icons'
 import Navigator from '../../routing/Navigator'
@@ -128,7 +127,9 @@ export default class ViewFile extends Component<Props, State> {
 
     const directoryPath = `${TemporaryDirectoryPath}/file-${file.id}`
     await mkdir(directoryPath)
-    const toFile = `${directoryPath}/${decodeURIComponent(file.filename)}`
+    const filename = decodeURIComponent(file.filename)
+      .replace(/\?/g, '_').replace(/#/g, '_')
+    const toFile = `${directoryPath}/${filename}`
     let fileExists = await exists(toFile)
     if (fileExists && !forceRefresh) {
       this.setState({ loadingDone: true, jobID: null, localPath: `file://${toFile}`, error: null })
@@ -307,7 +308,7 @@ export default class ViewFile extends Component<Props, State> {
       case 'flash':
         return (
           <View style={styles.centeredContainer}>
-            <Text style={{ textAlign: 'center', color: Colors.darkText, fontSize: 14 }}>
+            <Text style={{ textAlign: 'center', color: colors.textDarkest, fontSize: 14 }}>
               {i18n('Previewing this file type is not supported')}
             </Text>
           </View>
@@ -413,7 +414,7 @@ export default class ViewFile extends Component<Props, State> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
   },
@@ -427,7 +428,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
-    backgroundColor: '#fff',
+    backgroundColor: colors.backgroundLightest,
   },
   image: {
     top: 0,
@@ -440,23 +441,23 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   errorText: {
-    padding: global.style.defaultPadding,
+    padding: vars.padding,
   },
   bottomToolbar: {
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: Colors.grey3,
-    backgroundColor: Colors.grey1,
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
+    backgroundColor: colors.backgroundLight,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   toolbarButton: {
-    paddingLeft: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
+    paddingLeft: vars.padding,
+    paddingRight: vars.padding,
     paddingTop: 10,
     paddingBottom: 10,
   },
   toolbarIcon: {
-    tintColor: Colors.link,
+    tintColor: colors.linkColor,
     width: 24,
     height: 24,
     resizeMode: 'contain',
@@ -465,4 +466,4 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 24,
   },
-})
+}))

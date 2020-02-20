@@ -22,59 +22,47 @@ import TestsFoundation
 
 class AssignmentPostPolicyTests: TeacherUITestCase {
     func testPostPolicySettings() {
-        let courseID = "263"
-        let assignmentID = "5431"
-        let sectionID = "U2VjdGlvbi0yMjE="
+        mockBaseRequests()
+        mock(assignment: .make())
 
-        show("/courses/\(courseID)/assignments/\(assignmentID)/submissions")
+        show("/courses/1/assignments/1/submissions")
+
+        mockGraphQL(GetAssignmentPostPolicyInfoRequest(courseID: "1", assignmentID: "1"),
+                    value: .make())
+
+        mockGraphQL(operationName: "SubmissionList", SubmissionListFixture.submissionList)
 
         SubmissionsList.postpolicy.tap()
 
-        func checkPost() {
-            XCTAssertEqual(PostPolicy.postToValue.label(), "Everyone")
-            PostPolicy.postTo.tap()
-            PostToSelection.graded.tap()
-            app.find(label: "Back").tap()
+        XCTAssertEqual(PostPolicy.postToValue.label(), "Everyone")
+        PostPolicy.postTo.tap()
+        PostToSelection.graded.tap()
+        app.find(label: "Back").tap()
 
-            XCTAssertEqual(PostPolicy.postToValue.label(), "Graded")
+        XCTAssertEqual(PostPolicy.postToValue.label(), "Graded")
 
-            PostPolicy.togglePostToSections.tap()
+        PostPolicy.togglePostToSections.toggleOn()
+        PostPolicy.postToSectionToggle(id: "1").toggleOn()
 
-            PostPolicy.postToSectionToggle(id: sectionID).tap()
-            PostPolicy.postGradesButton.tap()
+        mockGraphQL(operationName: "PostAssignmentGrades", [
+            "data": [ "postAssignmentGradesForSections": [ "assignment": [ "id": "1" ] ] ],
+        ])
+        mockGraphQL(GetAssignmentPostPolicyInfoRequest(courseID: "1", assignmentID: "1"),
+                    value: .make(submissions: [.make(postedAt: Date())]))
+        PostPolicy.postGradesButton.tap()
 
-            SubmissionsList.postpolicy.waitToExist()
-        }
+        SubmissionsList.postpolicy.waitToExist()
+        SubmissionsList.postpolicy.tap()
+        app.find(id: "PostSettings.hideMenuItem").tap()
 
-        func checkHide() {
-            PostPolicy.toggleHideGradeSections.tap()
-            let hideSectionToggle = PostPolicy.hideSectionToggle(id: sectionID)
-            hideSectionToggle.tap()
-            PostPolicy.hideGradesButton.tap()
-            SubmissionsList.postpolicy.waitToExist()
-        }
+        PostPolicy.toggleHideGradeSections.toggleOn()
+        PostPolicy.hideSectionToggle(id: "1").toggleOn()
 
-        let waitForAPI: UInt32 = 10
+        mockGraphQL(operationName: "HideAssignmentGrades", [
+            "data": [ "hideAssignmentGradesForSections": [ "assignment": [ "id": "1" ] ] ],
+        ])
+        PostPolicy.hideGradesButton.tap()
 
-        let timeout = Date() + 30
-        while Date() < timeout {
-            if PostPolicy.allGradesPosted.exists {
-                app.find(id: "PostSettings.hideMenuItem").tap()
-                checkHide()
-                sleep(waitForAPI)
-                SubmissionsList.postpolicy.tap()
-                checkPost()
-                return
-            } else if PostPolicy.postTo.isVisible {
-                checkPost()
-                sleep(waitForAPI)
-                SubmissionsList.postpolicy.tap()
-                app.find(id: "PostSettings.hideMenuItem").tap()
-                checkHide()
-                return
-            }
-            sleep(1)
-        }
-        XCTFail("timeout")
+        SubmissionsList.postpolicy.waitToExist()
     }
 }

@@ -21,16 +21,16 @@
 import React, { Component } from 'react'
 import {
   View,
-  Text,
-  StyleSheet,
   Image,
   TouchableOpacity,
 } from 'react-native'
 import i18n from 'format-message'
 
-import Images from '../../../images'
-import colors from '../../../common/colors'
+import { Text } from '../../../common/text'
+import icon from '../../../images/inst-icons'
+import { createStyleSheet } from '../../../common/stylesheet'
 import Avatar from '../../../common/components/Avatar'
+import { personDisplayName } from '../../../common/formatters'
 
 type Props = {
   item: AddressBookResult,
@@ -48,28 +48,39 @@ export default class AddressBookToken extends Component<Props, any> {
   }
 
   render () {
+    const { name, pronouns } = this.props.item
     const recipientAccessibilityLabel = i18n('Recipient: { recipient }', {
-      recipient: this.props.item.name,
+      recipient: name,
     })
     const deleteButtonAccessibilityLabel = i18n('Delete recipient { recipient }', {
-      recipient: this.props.item.name,
+      recipient: name,
     })
-    let leftTextPadding = this.props.item.avatar_url ? TOKEN_SUBVIEW_SPACING : 8
     return (
       <View style={styles.token} accessibilityLabel={recipientAccessibilityLabel}>
         { this.props.item.avatar_url &&
-          <Avatar avatarURL={this.props.item.avatar_url} userName={this.props.item.name} height={TOKEN_HEIGHT - 6}/>
+          <Avatar
+            avatarURL={this.props.item.avatar_url}
+            userName={this.props.item.name}
+            height={TOKEN_HEIGHT - 6}
+          />
         }
-        <Text key={this.props.item.id} style={{ marginLeft: leftTextPadding }}>{this.props.item.name}</Text>
+        <Text
+          key={this.props.item.id}
+          style={{ marginLeft: TOKEN_SUBVIEW_SPACING }}
+          testID={`message-recipient.${this.props.item.id}.label`}
+        >
+          {personDisplayName(name, pronouns)}
+        </Text>
         {this.props.canDelete &&
           <TouchableOpacity
             onPress={this._delete}
             accessible={true}
             accessibilityLabel={deleteButtonAccessibilityLabel}
             accessibilityTraits={['button']}
+            style={styles.deleteButton}
             testID={`message-recipient.${this.props.item.id}.delete-btn`}
           >
-            <Image source={Images.x} style={styles.deleteIcon} />
+            <Image source={icon('x', 'line')} style={styles.deleteIcon} />
           </TouchableOpacity>
         }
       </View>
@@ -79,7 +90,7 @@ export default class AddressBookToken extends Component<Props, any> {
 
 const TOKEN_HEIGHT = 30
 const TOKEN_SUBVIEW_SPACING = 8
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   token: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -90,12 +101,15 @@ const styles = StyleSheet.create({
     paddingLeft: 2,
     height: TOKEN_HEIGHT,
     borderRadius: TOKEN_HEIGHT / 2,
-    backgroundColor: '#EBEDEE',
+    backgroundColor: colors.backgroundLight,
+  },
+  deleteButton: {
+    padding: TOKEN_SUBVIEW_SPACING,
+    marginRight: -TOKEN_SUBVIEW_SPACING,
   },
   deleteIcon: {
-    marginLeft: TOKEN_SUBVIEW_SPACING,
-    tintColor: colors.darkText,
+    tintColor: colors.textDarkest,
     width: 12,
     height: 12,
   },
-})
+}))

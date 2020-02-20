@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "（件名なし）";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%3$d 中 %1$@ %2$d";
 
@@ -10,11 +13,26 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@（）に開始します%2$@";
 
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@、%2$@での最終メッセージ日：%3$@%4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@、未読";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
+
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
 /* Label for button that allows admin to Act as User */
 "Act as User" = "ユーザーとして行動する";
+
+/* No comment provided by engineer. */
+"Add" = "追加";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "添付を追加";
 
 /* No comment provided by engineer. */
 "Add Student" = "受講生を追加";
@@ -52,6 +70,12 @@
 /* No comment provided by engineer. */
 "Back" = "戻る";
 
+/* Calendar Tab */
+"Calendar" = "予定表";
+
+/* No comment provided by engineer. */
+"Calendar Event" = "予定表のイベント";
+
 /* No comment provided by engineer. */
 "Cancel" = "キャンセル";
 
@@ -65,7 +89,10 @@
 "Caught up on Alerts" = "アラートにこだわる";
 
 /* No comment provided by engineer. */
-"Choose a student" = "受講生を選択";
+"Choose a course to message" = "メッサージを送るコースを選択する";
+
+/* No comment provided by engineer. */
+"Compose new message" = "新規メッセージを作成";
 
 /* Course Announcement Description */
 "Course announcements" = "コースのアナウンスメント";
@@ -80,13 +107,13 @@
 "Courses" = "コース";
 
 /* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "現在の受講生：%@、タップして受講生を切り替える";
-
-/* No comment provided by engineer. */
 "Discussion" = "ディスカッション";
 
 /* No comment provided by engineer. */
 "Dismiss" = "棄却する";
+
+/* No comment provided by engineer. */
+"Edit Recipients" = "受信者を編集する";
 
 /* No comment provided by engineer. */
 "Event" = "イベント";
@@ -101,6 +128,18 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "(discussionKitModelName) NSManagedObjectModelの読込に失敗しました";
 
 /* No comment provided by engineer. */
+"Failed. Tap for options" = "失敗しました。タップしてオプションを表示";
+
+/* No comment provided by engineer. */
+"File" = "ファイル";
+
+/* No comment provided by engineer. */
+"for %@" = "ための%@";
+
+/* No comment provided by engineer. */
+"Front Page" = "フロントページ";
+
+/* No comment provided by engineer. */
 "Grades" = "成績";
 
 /* High Assignment Grade too Low */
@@ -111,6 +150,12 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "教室内";
+
+/* No comment provided by engineer. */
+"Inbox" = "受信トレイ";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "受信トレイゼロ";
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "提供されている受講生ペアリングコードを入力します。";
@@ -139,14 +184,26 @@
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "低いコース成績は、高いコース成績より高くしないでください";
 
-/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "「子」を管理する";
+/* No comment provided by engineer. */
+"Message" = "メッセージ";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "%1$@からの%2$@、%3$@日のメッセージ、%4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "紛失";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "紛失: (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "欠如：%@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "欠如：%1$@(%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "新しいメッセージ";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "次週";
@@ -159,6 +216,9 @@
 
 /* Empty Students Text */
 "No Students" = "受講生なし";
+
+/* No comment provided by engineer. */
+"No Subject" = "件名なし";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "今週はありません";
@@ -176,7 +236,33 @@
 "Quiz" = "クイズ";
 
 /* No comment provided by engineer. */
+"Recipients" = "受信者";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "対象：%@";
+
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "対象：%1$@,%2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "返信";
+
+/* No comment provided by engineer. */
+"Reply All" = "すべてに返信";
+
+/* No comment provided by engineer. */
+"Retry" = "再試行";
+
+/* No comment provided by engineer. */
+"Send" = "送信";
+
+/* No comment provided by engineer. */
 "Settings" = "設定";
+
+/* No comment provided by engineer. */
+"Subject" = "件名";
 
 /* No comment provided by engineer. */
 "Submitted" = "提出済み";
@@ -186,6 +272,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "提出済み: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "概要";
 
 /* Syllabus Button Title */
 "Syllabus" = "シラバス";
@@ -209,17 +298,23 @@
 "This student's courses may not be published yet." = "この受講生のコースはまだ公開されていないかもしれません。";
 
 /* No comment provided by engineer. */
+"To" = "変更後";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "ログインできません";
 
 /* No comment provided by engineer. */
 "Unread" = "未読";
 
-/* Calendar Tab */
-"Week" = "週";
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "%1$@のアップロードが%2$@";
 
 /* Header title of admin view */
 "Welcome!" = "どういたしまして！";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "[設定]で通知を許可して、リマインダを設定しなければなりません。";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "これで完了です";
 

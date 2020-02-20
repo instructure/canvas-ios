@@ -19,7 +19,6 @@
 import Foundation
 import UIKit
 import ReactiveSwift
-import TechDebt
 import CanvasCore
 import Core
 
@@ -32,7 +31,7 @@ func rootViewController(_ session: Session) -> UIViewController {
             UINavigationController(rootViewController: CalendarTabViewController(session: session) { vc, url in
                 AppEnvironment.shared.router.route(to: url, from: vc)
             }),
-            try ToDoTabViewController(session: session),
+            todoTab(),
             try NotificationsTab(session: session),
             inboxTab(),
         ]
@@ -64,4 +63,25 @@ func dashboardTab(session: Session) -> UIViewController {
     dashboardSplit.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
     dashboardSplit.navigationItem.titleView = Brand.current.navBarTitleView()
     return dashboardSplit
+}
+
+func todoTab() -> UIViewController {
+    let list = TodoListViewController.create()
+
+    let split = HelmSplitViewController()
+    split.preferredDisplayMode = .allVisible
+    let masterNav = UINavigationController(rootViewController: list)
+    let detailNav = UINavigationController()
+    detailNav.view.backgroundColor = .named(.backgroundLightest)
+    masterNav.navigationBar.useGlobalNavStyle()
+    detailNav.navigationBar.useGlobalNavStyle()
+    split.viewControllers = [masterNav, detailNav]
+
+    let title = NSLocalizedString("To Do", comment: "Title of the Todo screen")
+    list.navigationItem.title = title
+    split.tabBarItem.title = title
+    split.tabBarItem.image = .icon(.todo)
+    split.tabBarItem.selectedImage = .icon(.todoSolid)
+    split.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
+    return split
 }

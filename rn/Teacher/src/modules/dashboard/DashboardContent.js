@@ -21,8 +21,8 @@
 import * as React from 'react'
 import {
   View,
-  StyleSheet,
 } from 'react-native'
+import { createStyleSheet } from '../../common/stylesheet'
 
 export default ({ children, style, contentStyle, hideShadow, ...props }: {
   children?: React.Node,
@@ -37,7 +37,7 @@ export default ({ children, style, contentStyle, hideShadow, ...props }: {
   </View>
 )
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   shadow: {
     shadowColor: '#000',
     shadowRadius: 1,
@@ -46,14 +46,13 @@ const styles = StyleSheet.create({
       width: 0,
       height: 1,
     },
-    backgroundColor: '#ffffff01',
   },
   content: {
-    borderColor: '#e3e3e3',
-    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.borderLight,
+    borderWidth: vars.hairlineWidth,
     borderRadius: 4,
     overflow: 'hidden',
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
   },
-})
+}))

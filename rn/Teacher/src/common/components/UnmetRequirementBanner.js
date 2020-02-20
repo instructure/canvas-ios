@@ -21,10 +21,10 @@
 import React, { PureComponent } from 'react'
 import {
   View,
-  StyleSheet,
   LayoutAnimation,
 } from 'react-native'
 import { UnmetRequirementBannerText } from '../text'
+import { colors, createStyleSheet } from '../stylesheet'
 
 type Props = {
   visible: boolean,
@@ -37,7 +37,7 @@ export default class UnmetRequirementBanner extends PureComponent<Props, any> {
   static defaultProps = {
     visible: false,
     text: 'Unmet Requirements',
-    backgroundColor: '#EE0612',
+    backgroundColor: colors.backgroundDanger,
   }
 
   componentWillUpdate () {
@@ -57,12 +57,12 @@ export default class UnmetRequirementBanner extends PureComponent<Props, any> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   visible: {
     flex: 0.04,
     alignItems: 'stretch',
     flexDirection: 'column',
-    backgroundColor: '#EE0612',
+    backgroundColor: colors.backgroundDanger,
   },
   hidden: {
     flex: 0,
@@ -77,4 +77,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center',
   },
-})
+}))

@@ -38,7 +38,7 @@ extension APIQuiz {
         one_question_at_a_time: Bool = false,
         points_possible: Double? = 11.1,
         question_count: Int = 5,
-        question_types: [QuizQuestionType] = [],
+        question_types: [QuizQuestionType]? = nil,
         quiz_type: QuizType = .survey,
         require_lockdown_browser_for_results: Bool = false,
         require_lockdown_browser: Bool = false,
@@ -47,7 +47,7 @@ extension APIQuiz {
         title: String = "What kind of pokemon are you?",
         unlock_at: Date? = nil
     ) -> APIQuiz {
-        return APIQuiz(
+        APIQuiz(
             access_code: access_code,
             allowed_attempts: allowed_attempts,
             cant_go_back: cant_go_back,
@@ -89,10 +89,10 @@ extension APIQuizSubmission {
         started_at: Date? = nil,
         submission_id: ID = "1",
         user_id: ID = "1",
-        validation_token: String? = nil,
+        validation_token: String? = "token",
         workflow_state: QuizSubmissionWorkflowState = .untaken
     ) -> APIQuizSubmission {
-        return APIQuizSubmission(
+        APIQuizSubmission(
             attempt: attempt,
             attempts_left: attempts_left,
             end_at: end_at,
@@ -105,6 +105,52 @@ extension APIQuizSubmission {
             user_id: user_id,
             validation_token: validation_token,
             workflow_state: workflow_state
+        )
+    }
+}
+
+extension APIQuizQuestion {
+    public static func make(
+        id: String = "1",
+        quiz_id: String = "1",
+        position: Int? = nil,
+        question_name: String = "",
+        question_type: QuizQuestionType = .multiple_choice_question,
+        question_text: String = "A Question",
+        points_possible: Int = 1,
+        correct_comments: String = "",
+        incorrect_comments: String = "",
+        neutral_comments: String = "",
+        answers: [APIQuizAnswer]? = [],
+        answer: APIQuizAnswerValue? = nil
+    ) -> APIQuizQuestion {
+        APIQuizQuestion(
+            id: id,
+            quiz_id: quiz_id,
+            position: position,
+            question_name: question_name,
+            question_type: question_type,
+            question_text: question_text,
+            points_possible: points_possible,
+            correct_comments: correct_comments,
+            incorrect_comments: incorrect_comments,
+            neutral_comments: neutral_comments,
+            answers: answers,
+            answer: answer
+        )
+    }
+}
+
+extension APIQuizAnswer {
+    public static func make(
+        id: String = "1",
+        text: String = "Answer",
+        html: String = ""
+    ) -> APIQuizAnswer {
+        APIQuizAnswer(
+            id: id,
+            text: text,
+            html: html
         )
     }
 }

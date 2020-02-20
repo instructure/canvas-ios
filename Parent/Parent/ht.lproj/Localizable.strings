@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(Okenn Sijè)";
+
 /* <String> <Int> of <Int> */
 "%@ %d of %d" = "%1$@ %2$d de %3$d";
 
@@ -10,11 +13,26 @@
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ ap kòmanse a %2$@";
 
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@, nan %2$@, dènye mesaj la se te nan dat %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, poko li";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
+
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Aji tankou Itilizatè";
+
+/* No comment provided by engineer. */
+"Add" = "Ajoute";
+
+/* No comment provided by engineer. */
+"Add Attachments" = "Ajoute Atachman";
 
 /* No comment provided by engineer. */
 "Add Student" = "Ajoute Elèv";
@@ -52,6 +70,12 @@
 /* No comment provided by engineer. */
 "Back" = "Retounen";
 
+/* Calendar Tab */
+"Calendar" = "Kalandriye";
+
+/* No comment provided by engineer. */
+"Calendar Event" = "Kalandriye Aktivite";
+
 /* No comment provided by engineer. */
 "Cancel" = "Anile";
 
@@ -65,7 +89,10 @@
 "Caught up on Alerts" = "Pran nan Avètisman";
 
 /* No comment provided by engineer. */
-"Choose a student" = "Chwazi yon elèv";
+"Choose a course to message" = "Chwazi yon kou pou voye mesaj";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Ekri nouvo mesaj";
 
 /* Course Announcement Description */
 "Course announcements" = "Anons kou";
@@ -80,13 +107,13 @@
 "Courses" = "Kou";
 
 /* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Elèv aktyèl: %@, tape pou chanje elèv yo";
-
-/* No comment provided by engineer. */
 "Discussion" = "Diskisyon";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Rejte";
+
+/* No comment provided by engineer. */
+"Edit Recipients" = "Chanje Destinatè";
 
 /* No comment provided by engineer. */
 "Event" = "Aktivite";
@@ -101,6 +128,18 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Echèk chajman (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
+"Failed. Tap for options" = "Echwe. Tape pou opsyon yo";
+
+/* No comment provided by engineer. */
+"File" = "Fichye";
+
+/* No comment provided by engineer. */
+"for %@" = "pou %@";
+
+/* No comment provided by engineer. */
+"Front Page" = "Premye Paj";
+
+/* No comment provided by engineer. */
 "Grades" = "Nòt";
 
 /* High Assignment Grade too Low */
@@ -111,6 +150,12 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "Nan Klas";
+
+/* No comment provided by engineer. */
+"Inbox" = "Bwat resepsyon";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Bwat Resepsyon Zewo";
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Antre kòd kouplaj elèv yo ba ou a.";
@@ -139,14 +184,26 @@
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "Klas kou fèb pa kapab siperyè a klas kou elve";
 
-/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
-"Manage Children" = "Jere Timoun yo";
+/* No comment provided by engineer. */
+"Message" = "Mesaj";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Mesaj de %1$@, %2$@, nan dat %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Manke";
 
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Manke: (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Manke: %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Manke: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Nouvo Mesaj";
 
 /* Next Week Button Accessibility Label */
 "Next Week" = "Semenn Pwochen";
@@ -159,6 +216,9 @@
 
 /* Empty Students Text */
 "No Students" = "Pa gen Elèv";
+
+/* No comment provided by engineer. */
+"No Subject" = "Pa gen Sijè";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Pa gen anyen pou semenn sa a";
@@ -176,7 +236,33 @@
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
+"Recipients" = "Destinatè";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "Konsènan: %@";
+
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, < assignment url >
+   Regarding <John Doe>, <Grades | Syllabus> */
+"Regarding: %@, %@" = "Konsènan: %1$@, %2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "Reponn";
+
+/* No comment provided by engineer. */
+"Reply All" = "Reponn Tout";
+
+/* No comment provided by engineer. */
+"Retry" = "Re eseye";
+
+/* No comment provided by engineer. */
+"Send" = "Voye";
+
+/* No comment provided by engineer. */
 "Settings" = "Paramèt";
+
+/* No comment provided by engineer. */
+"Subject" = "Sijè";
 
 /* No comment provided by engineer. */
 "Submitted" = "Soumèt";
@@ -186,6 +272,9 @@
 
 /* No comment provided by engineer. */
 "Submitted: %@ (%@/%@)" = "Soumèt: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Rezime";
 
 /* Syllabus Button Title */
 "Syllabus" = "Pwogram";
@@ -209,17 +298,23 @@
 "This student's courses may not be published yet." = "Kou elèv sa a poko ka pibliye.";
 
 /* No comment provided by engineer. */
+"To" = "Pou";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "Difikilte pou konekte";
 
 /* No comment provided by engineer. */
 "Unread" = "Poko li";
 
-/* Calendar Tab */
-"Week" = "Semenn";
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "Transfere %1$@ nan %2$@";
 
 /* Header title of admin view */
 "Welcome!" = "Bienveni!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Ou dwe otorize notifikasyon nan Paramèt yo pou ka regle èd memwa yo.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Yo pran w";
 

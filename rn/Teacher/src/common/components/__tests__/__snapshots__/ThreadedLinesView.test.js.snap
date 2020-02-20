@@ -15,7 +15,7 @@ exports[`renders correctly with depth 1 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#f5f5f5",
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
         "width": 1,
       }
@@ -47,7 +47,7 @@ exports[`renders correctly with depth 2 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#f5f5f5",
+          "backgroundColor": "#F5F5F5",
           "flex": 1,
           "width": 1,
         }
@@ -68,7 +68,7 @@ exports[`renders correctly with depth 2 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#f5f5f5",
+          "backgroundColor": "#F5F5F5",
           "flex": 1,
           "width": 1,
         }
@@ -101,7 +101,7 @@ exports[`renders correctly with depth 5 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#f5f5f5",
+          "backgroundColor": "#F5F5F5",
           "flex": 1,
           "width": 1,
         }
@@ -122,7 +122,7 @@ exports[`renders correctly with depth 5 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#f5f5f5",
+          "backgroundColor": "#F5F5F5",
           "flex": 1,
           "width": 1,
         }
@@ -143,7 +143,7 @@ exports[`renders correctly with depth 5 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#f5f5f5",
+          "backgroundColor": "#F5F5F5",
           "flex": 1,
           "width": 1,
         }
@@ -164,7 +164,7 @@ exports[`renders correctly with depth 5 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#f5f5f5",
+          "backgroundColor": "#F5F5F5",
           "flex": 1,
           "width": 1,
         }
@@ -185,7 +185,7 @@ exports[`renders correctly with depth 5 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#f5f5f5",
+          "backgroundColor": "#F5F5F5",
           "flex": 1,
           "width": 1,
         }

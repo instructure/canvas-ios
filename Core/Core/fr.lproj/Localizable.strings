@@ -7,12 +7,6 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Moyenne cumulative";
 
-/* No comment provided by engineer. */
-"%@ out of %@" = "%1$@ sur %2$@";
-
-/* No comment provided by engineer. */
-"%@ out of %@ (%@)" = "%1$@ sur %2$@ (%3$@)";
-
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "un parent";
 
@@ -26,10 +20,43 @@
 "Act as User" = "Agir en tant qu'utilisateur";
 
 /* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "Êtes-vous sûr de vouloir supprimer ce commentaire ?";
+"Added To Conversation" = "Ajouté à la conversation";
 
 /* No comment provided by engineer. */
-"Assignment" = "Devoirs";
+"Administrative Notifications" = "Notifications administratives";
+
+/* No comment provided by engineer. */
+"Alerts" = "Alertes";
+
+/* No comment provided by engineer. */
+"All Grading Periods" = "Toutes les périodes de notation";
+
+/* No comment provided by engineer. */
+"All People" = "Toutes les personnes";
+
+/* No comment provided by engineer. */
+"All Submissions" = "Tous les envois";
+
+/* No comment provided by engineer. */
+"Announcement" = "Annonce";
+
+/* No comment provided by engineer. */
+"Announcement Created By You" = "Annonces crées par vous-même";
+
+/* No comment provided by engineer. */
+"Appointment Availability" = "Disponibilité des rendez-vous";
+
+/* No comment provided by engineer. */
+"Appointment Cancellations" = "Annulations de rendez-vous";
+
+/* No comment provided by engineer. */
+"Appointment Signups" = "Inscriptions aux rendez-vous";
+
+/* No comment provided by engineer. */
+"Are you sure you want to delete this page?" = "Êtes-vous sûr de vouloir supprimer cette page ?";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "Êtes-vous sûr de vouloir supprimer ce commentaire ?";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Tentative %d";
@@ -38,7 +65,13 @@
 "Audio" = "Audio";
 
 /* No comment provided by engineer. */
+"Augment Reality" = "Augmenter Réalité";
+
+/* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Échec de l'authentification L’utilisateur a probablement refusé la demande d'accès.";
+
+/* No comment provided by engineer. */
+"Availability: Closed" = "Disponibilité : Fermé";
 
 /* No comment provided by engineer. */
 "black" = "noir";
@@ -51,6 +84,9 @@
 
 /* No comment provided by engineer. */
 "Bold" = "Gras";
+
+/* No comment provided by engineer. */
+"Calendar" = "Agenda";
 
 /* No comment provided by engineer. */
 "Camera" = "Caméra";
@@ -71,6 +107,9 @@
 "Canvas Network" = "Canvas Network";
 
 /* No comment provided by engineer. */
+"Canvas on GitHub" = "Canvas sur GitHub";
+
+/* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
@@ -88,6 +127,9 @@
 /* No comment provided by engineer. */
 "Change User" = "Changer d'utilisateur";
 
+/* Description for Chat communication channel */
+"Chat Notifications" = "Notifications de Chat";
+
 /* No comment provided by engineer. */
 "Check network and try again!" = "Vérifiez l’état du réseau, puis réessayez !";
 
@@ -96,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "Choisir une photo de profil";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Effacer le filtre";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Effacer l’enregistrement";
@@ -125,13 +170,49 @@
 "Complete" = "Terminé";
 
 /* No comment provided by engineer. */
-"Course" = "Cours";
+"Conferences" = "Conférences";
+
+/* No comment provided by engineer. */
+"Content Link Error" = "Erreur de lien de contenu";
+
+/* No comment provided by engineer. */
+"Conversation Created By Me" = "Conversation créée par moi";
+
+/* No comment provided by engineer. */
+"Conversation Message" = "Message de conversation";
+
+/* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
+"Conversations" = "Conversations";
+
+/* No comment provided by engineer. */
+"Could not save notification preference" = "Impossible d'enregistrer la préférence de notification";
+
+/* No comment provided by engineer. */
+"Course Activities" = "Activités du cours";
+
+/* No comment provided by engineer. */
+"Course Content" = "Contenu du cours";
+
+/* No comment provided by engineer. */
+"Courses" = "Cours";
 
 /* No comment provided by engineer. */
 "Current position" = "Fonction actuelle";
 
 /* No comment provided by engineer. */
+"d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
 "d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Daily" = "Tous les jours";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Tableau de bord";
 
 /* No comment provided by engineer. */
 "Delete" = "Supprimer";
@@ -152,13 +233,28 @@
 "Designer" = "Concepteur";
 
 /* No comment provided by engineer. */
+"Designers" = "Concepteurs";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "Menu Développeur";
+
+/* No comment provided by engineer. */
+"Discussion" = "Discussion";
 
 /* No comment provided by engineer. */
 "Discussion Comment" = "Commentaire discussion";
 
 /* No comment provided by engineer. */
+"Discussion Post" = "Message de discussion";
+
+/* No comment provided by engineer. */
+"Discussions" = "Discussions";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Ignorer";
+
+/* No comment provided by engineer. */
+"Do not send me anything" = "Ne rien m’envoyer";
 
 /* No comment provided by engineer. */
 "Domain" = "Domaine";
@@ -166,11 +262,32 @@
 /* No comment provided by engineer. */
 "Done" = "Terminé";
 
+/* i.e. Due <Jan 10, 2020 at 9:00 PM> */
+"Due %@" = "À rendre le %@";
+
+/* No comment provided by engineer. */
+"Due Date" = "Date limite de rendu";
+
+/* No comment provided by engineer. */
+"Due: %@" = "À rendre le : %@";
+
+/* No comment provided by engineer. */
+"Edit" = "Modifier";
+
+/* Description for email communication channel */
+"Email Notifications" = "Notifications par courriel";
+
 /* No comment provided by engineer. */
 "Emergency" = "Urgence";
 
 /* No comment provided by engineer. */
+"Enable Push Notifications" = "Activer les notifications Push";
+
+/* No comment provided by engineer. */
 "End Act as User" = "Terminer Agir en tant qu'utilisateur";
+
+/* No comment provided by engineer. */
+"Enrollment not found." = "L'inscription n'a pas été trouvée.";
 
 /* No comment provided by engineer. */
 "Error" = "Erreur";
@@ -180,6 +297,9 @@
 
 /* No comment provided by engineer. */
 "Expand" = "Développer";
+
+/* No comment provided by engineer. */
+"Experimental Features" = "Fonctions expérimentales";
 
 /* No comment provided by engineer. */
 "External Tool" = "Outil externe";
@@ -197,10 +317,19 @@
 "Failed Upload" = "Échec de l’envoi";
 
 /* No comment provided by engineer. */
+"File" = "Fichier";
+
+/* No comment provided by engineer. */
 "File Upload" = "Envoi de fichier";
 
 /* No comment provided by engineer. */
 "Files" = "Fichiers";
+
+/* No comment provided by engineer. */
+"Filter" = "Filtre";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Filtrer par :";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Note finale : %@";
@@ -224,10 +353,19 @@
 "g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
+"Grading" = "Notation";
+
+/* No comment provided by engineer. */
+"Grading Policies" = "Politiques de notation";
+
+/* No comment provided by engineer. */
 "green" = "vert";
 
 /* No comment provided by engineer. */
 "grey" = "gris";
+
+/* No comment provided by engineer. */
+"Groups" = "Groupes";
 
 /* No comment provided by engineer. */
 "Help" = "Aide";
@@ -245,13 +383,22 @@
 "Image" = "Image";
 
 /* No comment provided by engineer. */
+"Immediately" = "Immédiatement";
+
+/* No comment provided by engineer. */
 "Impact" = "Impact";
 
 /* No comment provided by engineer. */
 "Impact Level" = "Niveau d'impact";
 
 /* No comment provided by engineer. */
+"Inbox" = "Boîte de réception";
+
+/* No comment provided by engineer. */
 "Incomplete" = "Incomplet";
+
+/* No comment provided by engineer. */
+"Invitation" = "Invitation";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Il semblerait que vous ne soyez pas inscrit à des cours comme %@. Une de nos autres applications pourrait être mieux adaptée. Cliquez sur l'un d'entre-eux pour visiter l'App Store.";
@@ -260,13 +407,22 @@
 "Italic" = "Italique";
 
 /* No comment provided by engineer. */
+"Landing Page" = "Page de renvoi";
+
+/* No comment provided by engineer. */
 "Late" = "En retard";
+
+/* No comment provided by engineer. */
+"Late Grading" = "Notation tardive";
 
 /* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Lancer l'outil externe";
+
+/* No comment provided by engineer. */
+"Legal" = "Légal";
 
 /* No comment provided by engineer. */
 "Library" = "Bibliothèque";
@@ -311,19 +467,31 @@
 "Log Out" = "Se déconnecter";
 
 /* No comment provided by engineer. */
-"Manage Children" = "Gérer les enfants";
+"Login" = "S’identifier";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "Connexion manuelle OAuth";
 
 /* No comment provided by engineer. */
+"me" = "moi";
+
+/* No comment provided by engineer. */
+"me & %@" = "moi et %@";
+
+/* No comment provided by engineer. */
 "Media Recording" = "Enregistrement média";
+
+/* No comment provided by engineer. */
+"Membership Update" = "Mise à jour de l’inscription";
 
 /* No comment provided by engineer. */
 "Missing" = "Manquant";
 
 /* No comment provided by engineer. */
 "N/A" = "S/O";
+
+/* No comment provided by engineer. */
+"Never" = "Jamais";
 
 /* No comment provided by engineer. */
 "No Content" = "Pas de contenu";
@@ -333,6 +501,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Aucune image trouvée dans le sélecteur d’image";
+
+/* No comment provided by engineer. */
+"No results" = "Aucun résultat";
 
 /* No comment provided by engineer. */
 "No Submission" = "Aucune soumission";
@@ -350,7 +521,19 @@
 "Not Urgent" = "Pas urgent";
 
 /* No comment provided by engineer. */
+"Notifications" = "Notifications";
+
+/* No comment provided by engineer. */
+"Notifications are currently disabled in Settings. Tap to enable them again." = "Les notifications sont actuellement désactivées dans Paramètres. Cliquez pour les activer à nouveau.";
+
+/* No comment provided by engineer. */
+"Notify me right away" = "Me notifier immédiatement";
+
+/* No comment provided by engineer. */
 "Observer" = "Observateur";
+
+/* No comment provided by engineer. */
+"Observers" = "Observateurs";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -368,13 +551,25 @@
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
+"Page" = "Page";
+
+/* No comment provided by engineer. */
 "Pages" = "Pages";
+
+/* No comment provided by engineer. */
+"Password" = "Mot de passe";
 
 /* No comment provided by engineer. */
 "Pause" = "Mettre en pause";
 
 /* No comment provided by engineer. */
+"People" = "Personnes";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Autorisation requise";
+
+/* No comment provided by engineer. */
+"Photo Library" = "Photothèque";
 
 /* No comment provided by engineer. */
 "Play" = "Lecture";
@@ -383,13 +578,25 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Preferences" = "Préférences";
+
+/* No comment provided by engineer. */
 "Previous Logins" = "Identifiants précédents";
+
+/* No comment provided by engineer. */
+"Privacy Policy" = "Politique de confidentialité";
 
 /* No comment provided by engineer. */
 "purple" = "violet";
 
+/* Description for Push Notification channel */
+"Push Notifications" = "Notifications push";
+
 /* No comment provided by engineer. */
 "Quiz" = "Questionnaire";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Enregistrer de l’audio";
 
 /* No comment provided by engineer. */
 "red" = "rouge";
@@ -422,19 +629,16 @@
 "Retry" = "Réessayer";
 
 /* No comment provided by engineer. */
+"Scheduling" = "Planification";
+
+/* No comment provided by engineer. */
+"Search" = "Rechercher";
+
+/* No comment provided by engineer. */
 "See attached files." = "Voir les fichiers joints.";
 
 /* No comment provided by engineer. */
 "See what's new." = "Voir les nouveautés";
-
-/* No comment provided by engineer. */
-"Select Account" = "Sélectionner un compte";
-
-/* No comment provided by engineer. */
-"Select Assignment" = "Sélectionner des travaux";
-
-/* No comment provided by engineer. */
-"Select Course" = "Sélectionner un cours";
 
 /* No comment provided by engineer. */
 "Select One" = "Sélectionner un élément";
@@ -444,6 +648,12 @@
 
 /* No comment provided by engineer. */
 "Send comment" = "Envoyer commentaire";
+
+/* No comment provided by engineer. */
+"Send daily summary" = "Envoyer un résumé quotidien";
+
+/* No comment provided by engineer. */
+"Send weekly summary" = "Envoyer un résumé hebdomadaire";
 
 /* No comment provided by engineer. */
 "Set text color" = "Régler couleur de texte";
@@ -456,6 +666,12 @@
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Connexion admin du site";
+
+/* Description for Slack communication channel */
+"Slack Notifications" = "Notifications Slack";
+
+/* Description for SMS communication channel */
+"SMS Notifications" = "Notifications SMS";
 
 /* No comment provided by engineer. */
 "Something is broken but I can work around it" = "Quelquechose ne fonctionne plus mais je peux quand même travailler sans";
@@ -482,22 +698,31 @@
 "Student" = "Élève";
 
 /* No comment provided by engineer. */
+"Student Appointment Signups" = "Inscriptions aux rendez-vous élèves";
+
+/* No comment provided by engineer. */
+"Students" = "Élèves";
+
+/* No comment provided by engineer. */
 "Style" = "Style";
 
 /* No comment provided by engineer. */
 "Subject" = "Sujet";
 
 /* No comment provided by engineer. */
-"Submit" = "Soumettre";
+"Submission Comment" = "Commentaire de soumission";
 
 /* No comment provided by engineer. */
-"Submit Assignment" = "Soumettre le devoir";
+"Submit" = "Soumettre";
 
 /* No comment provided by engineer. */
 "Submitted" = "Soumis";
 
 /* Submitted date */
 "Submitted %@" = "Soumis %@";
+
+/* No comment provided by engineer. */
+"Subscribe to Calendar Feed" = "S'abonner au fil RSS du calendrier";
 
 /* No comment provided by engineer. */
 "Success!" = "Succès !";
@@ -513,6 +738,12 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "Enseignant";
+
+/* No comment provided by engineer. */
+"Teachers" = "Enseignants";
+
+/* No comment provided by engineer. */
+"Teaching Assistants" = "Assistants d’enseignement";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Conditions d’utilisation";
@@ -557,7 +788,16 @@
 "Time elapsed" = "Temps écoulé";
 
 /* No comment provided by engineer. */
+"to %@" = "à %@";
+
+/* No comment provided by engineer. */
+"To Do" = "À faire";
+
+/* No comment provided by engineer. */
 "Total time" = "Durée totale";
+
+/* Description for Twitter communication channel */
+"Twitter Notifications" = "Notifications Twitter";
 
 /* No comment provided by engineer. */
 "Undo" = "Annuler";
@@ -572,6 +812,9 @@
 "Updated Language Settings" = "Mise à jour des paramètres de langue";
 
 /* No comment provided by engineer. */
+"Upload File" = "Envoyer fichier";
+
+/* No comment provided by engineer. */
 "Uploading %@ of %@" = "Envoi de %1$@ sur %2$@";
 
 /* No comment provided by engineer. */
@@ -581,16 +824,34 @@
 "URL" = "URL";
 
 /* No comment provided by engineer. */
+"Use Camera" = "Utiliser l’appareil photo";
+
+/* No comment provided by engineer. */
 "User ID" = "ID utilisateur";
+
+/* Name and pronouns - John (He/Him) */
+"User.displayName" = "%1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Username" = "Nom d'utilisateur";
 
 /* No comment provided by engineer. */
 "Video" = "Vidéo";
+
+/* No comment provided by engineer. */
+"View Modules" = "Affichage Modules";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Nous avons fait quelques changements.";
 
 /* No comment provided by engineer. */
 "Website URL" = "URL du site web";
+
+/* No comment provided by engineer. */
+"Weekly" = "Toutes les semaines";
+
+/* No comment provided by engineer. */
+"Well Done!" = "Bravo !";
 
 /* No comment provided by engineer. */
 "What’s your school’s name?" = "Quel est le nom de votre école ?";
@@ -607,11 +868,11 @@
 /* No comment provided by engineer. */
 "yellow" = "jaune";
 
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Vous devez activer les permissions du microphone dans les paramètres.";
+/* Description for Yo communication channel */
+"Yo Notifications" = "Notifications Yo";
 
 /* No comment provided by engineer. */
-"You will need to log into at least one Canvas account from the Student app first." = "Vous devrez d’abord vous connecter à au moins un compte Canvas depuis l'app Étudiant.";
+"You must enable Microphone permissions in Settings." = "Vous devez activer les permissions du microphone dans les paramètres.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Vous cesserez d'agir en tant que %@ et retournerez sur votre compte.";
@@ -621,4 +882,7 @@
 
 /* No comment provided by engineer. */
 "Your Email" = "Votre email";
+
+/* No comment provided by engineer. */
+"Your to do list is empty. Time to recharge." = "Votre liste de tâches est vide. Il est temps de vous ressourcer.";
 

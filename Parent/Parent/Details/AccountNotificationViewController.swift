@@ -87,13 +87,14 @@ class AccountNotificationViewController: UITableViewController {
         tableView.dataSource = self
         AnnouncementDetailsCellViewModel.tableViewDidLoad(tableView)
         tableView.reloadData()
+        navigationController?.isNavigationBarHidden = false
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let studentID = currentStudentID {
-            let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
-            navigationController?.navigationBar.useContextColor(scheme.mainColor)
+            let scheme = ColorScheme.observee(studentID)
+            navigationController?.navigationBar.useContextColor(scheme.color)
         }
     }
 

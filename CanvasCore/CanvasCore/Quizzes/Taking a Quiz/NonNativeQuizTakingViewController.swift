@@ -48,6 +48,7 @@ class NonNativeQuizTakingViewController: UIViewController, CoreWebViewLinkDelega
         super.viewDidLoad()
 
         webView.linkDelegate = self
+        webView.uiDelegate = self
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: NSLocalizedString("Exit", bundle: .core, comment: "Exit button to leave the quiz"),
@@ -84,6 +85,18 @@ class NonNativeQuizTakingViewController: UIViewController, CoreWebViewLinkDelega
 
     func refreshCoreQuiz() {
         GetQuiz(courseID: contextID.id, quizID: quiz.id).fetch(force: true) { _, _, _ in }
-        GetQuizSubmission(courseID: contextID.id, quizID: quiz.id).fetch(force: true) { _, _, _ in }
+    }
+}
+
+extension NonNativeQuizTakingViewController: WKUIDelegate {
+    func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+            completionHandler(false)
+        })
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { _ in
+            completionHandler(true)
+        })
+        present(alert, animated: true, completion: nil)
     }
 }

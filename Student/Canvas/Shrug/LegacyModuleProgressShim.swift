@@ -17,15 +17,14 @@
 //
 
 import Foundation
-import TechDebt
 import CanvasKit
 import CanvasCore
 
-/** Keeps TechDebt Modules and Assignments UI up to date course progress
+/** Keeps Modules and Assignments UI up to date course progress
  */
 open class LegacyModuleProgressShim: NSObject {
     @objc public static func observeProgress(_ session: Session) {
-        NotificationCenter.default.addObserver(session, selector: #selector(Session.legacyModuleItemProgressUpdated(_:)), name: NSNotification.Name.CBIModuleItemProgressUpdated, object: nil)
+        NotificationCenter.default.addObserver(session, selector: #selector(Session.legacyModuleItemProgressUpdated(_:)), name: NSNotification.Name(rawValue: "CBIModuleItemProgressUpdated"), object: nil)
     }
 }
 
@@ -40,8 +39,8 @@ extension Session {
 extension CanvasCore.Progress {
     init?(contextID: ContextID, notification: NSNotification) {
         guard let
-            id = notification.userInfo?[CBIUpdatedModuleItemIDStringKey] as? String,
-            let noteKind = notification.userInfo?[CBIUpdatedModuleItemTypeKey] as? String
+            id = notification.userInfo?["CBIUpdatedModuleItemIDStringKey"] as? String,
+            let noteKind = notification.userInfo?["CBIUpdatedModuleItemTypeKey"] as? String
         else {
             return nil
         }

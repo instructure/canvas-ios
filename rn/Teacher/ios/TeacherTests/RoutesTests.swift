@@ -18,11 +18,13 @@
 
 import Foundation
 import XCTest
+import Core
 @testable import Teacher
 
 class RoutesTests: XCTestCase {
-    func testRouteSendsNotification() {
-        let route = URLComponents(string: "https://canvas.instructure.com/api/v1/courses/1")!
+    let route = URLComponents(string: "https://canvas.instructure.com/api/v1/courses/1")!
+
+    func userInfoFromRoute(options: RouteOptions) -> [AnyHashable: Any]? {
         let expectation = self.expectation(description: "route notification")
         let name = NSNotification.Name("route")
         var userInfo: [AnyHashable: Any]?
@@ -30,10 +32,31 @@ class RoutesTests: XCTestCase {
             userInfo = note.userInfo
             expectation.fulfill()
         }
-        router.route(to: route, from: UIViewController(), options: nil)
+        router.route(to: route, from: UIViewController(), options: options)
         wait(for: [expectation], timeout: 0.5)
-        XCTAssertNotNil(userInfo)
-        XCTAssertEqual(userInfo?["url"] as? String, route.url!.absoluteString)
         NotificationCenter.default.removeObserver(observer)
+        XCTAssertNotNil(userInfo)
+        return userInfo
+    }
+
+    func testRouteSendsNotification() {
+        let userInfo = userInfoFromRoute(options: .noOptions)
+        XCTAssertEqual(userInfo?["url"] as? String, route.url!.absoluteString)
+        XCTAssertEqual(userInfo?["modal"] as? Bool, false)
+        XCTAssertEqual(userInfo?["detail"] as? Bool, false)
+    }
+
+    func testModalOption() {
+        let userInfo = userInfoFromRoute(options: .modal())
+        XCTAssertEqual(userInfo?["url"] as? String, route.url!.absoluteString)
+        XCTAssertEqual(userInfo?["modal"] as? Bool, true)
+        XCTAssertEqual(userInfo?["detail"] as? Bool, false)
+    }
+
+    func testDetailOption() {
+        let userInfo = userInfoFromRoute(options: .detail())
+        XCTAssertEqual(userInfo?["url"] as? String, route.url!.absoluteString)
+        XCTAssertEqual(userInfo?["modal"] as? Bool, false)
+        XCTAssertEqual(userInfo?["detail"] as? Bool, true)
     }
 }

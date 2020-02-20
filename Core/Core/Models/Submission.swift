@@ -44,6 +44,7 @@ final public class Submission: NSManagedObject {
     @NSManaged public var previewUrl: URL?
     @NSManaged public var url: URL?
     @NSManaged public var gradedAt: Date?
+    @NSManaged public var gradeMatchesCurrentSubmission: Bool
 
     @NSManaged public var rubricAssesmentRaw: Set<RubricAssessment>?
     @NSManaged public var mediaComment: MediaComment?
@@ -125,6 +126,7 @@ extension Submission: WriteableModel {
         model.url = item.url
         model.previewUrl = item.preview_url
         model.gradedAt = item.graded_at
+        model.gradeMatchesCurrentSubmission = item.grade_matches_current_submission
 
         model.attachments = Set(item.attachments?.map { attachment in
             return File.save(attachment, in: client)
@@ -208,6 +210,8 @@ extension Submission {
             return attachments?.first?.icon
         case .online_url:
             return UIImage.icon(.link)
+        case .wiki_page:
+            return UIImage.icon(.document)
         case .none, .not_graded, .on_paper:
             return nil
         }
@@ -235,8 +239,60 @@ extension Submission {
             }
         case .online_url:
             return url?.absoluteString
-        case .none, .not_graded, .on_paper:
+        case .none, .not_graded, .on_paper, .wiki_page:
             return nil
+        }
+    }
+
+    /// See canvas-lms submission.rb `def needs_grading?`
+    public var needsGrading: Bool {
+        return type != nil &&
+            (workflowState == .pending_review ||
+                ([.graded, .submitted].contains(workflowState) &&
+                    (score == nil || !gradeMatchesCurrentSubmission)
+                )
+            )
+    }
+
+    public var isGraded: Bool {
+        return excused == true || (score != nil && workflowState == .graded)
+    }
+
+    public var status: SubmissionStatus {
+        if late { return .late }
+        if missing { return .missing }
+        if submittedAt != nil { return .submitted}
+        return .notSubmitted
+    }
+}
+
+public enum SubmissionStatus {
+    case late
+    case missing
+    case submitted
+    case notSubmitted
+
+    var text: String {
+        switch self {
+        case .late:
+            return NSLocalizedString("Late", bundle: .core, comment: "")
+        case .missing:
+            return NSLocalizedString("Missing", bundle: .core, comment: "")
+        case .submitted:
+            return NSLocalizedString("Submitted", bundle: .core, comment: "")
+        case .notSubmitted:
+            return NSLocalizedString("Not Submitted", bundle: .core, comment: "")
+        }
+    }
+
+    var color: UIColor {
+        switch self {
+        case .late:
+            return .named(.fire)
+        case .missing:
+            return .named(.crimson)
+        case .submitted, .notSubmitted:
+            return .named(.textDark)
         }
     }
 }

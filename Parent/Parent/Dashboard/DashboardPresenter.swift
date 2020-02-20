@@ -26,7 +26,7 @@ class DashboardPresenter {
     lazy var permissions: Store<GetContextPermissions> = {
         let useCase = GetContextPermissions(context: ContextModel(.account, id: "self"), permissions: [.becomeUser])
         return env.subscribe(useCase, { [weak self] in
-            self?.view?.updateMainView()
+            self?.view?.update()
         })
     }()
 
@@ -43,13 +43,13 @@ class DashboardPresenter {
         guard let view = view else {
             return
         }
-        env.router.route(to: .actAsUser, from: view, options: [.modal, .embedInNav])
+        env.router.route(to: .actAsUser, from: view, options: .modal(embedInNav: true))
     }
 
     func showWrongAppScreen() {
         guard let view = view else {
             return
         }
-        env.router.route(to: .wrongApp, from: view, options: [.modal, .embedInNav])
+        env.router.route(to: .wrongApp, from: view, options: .modal(isDismissable: false, embedInNav: true))
     }
 }

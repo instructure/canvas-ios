@@ -7,12 +7,6 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ المعدل التراكمي";
 
-/* No comment provided by engineer. */
-"%@ out of %@" = "%1$@ من إجمالي %2$@";
-
-/* No comment provided by engineer. */
-"%@ out of %@ (%@)" = "%1$@ من إجمالي %2$@ (%3$@)";
-
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "ولي أمر";
 
@@ -26,10 +20,43 @@
 "Act as User" = "تصرف كمستخدم";
 
 /* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "هل أنت متأكد من أنك ترغب في حذف هذا التعليق؟";
+"Added To Conversation" = "تمت الإضافة إلى المحادثة";
 
 /* No comment provided by engineer. */
-"Assignment" = "المهمة";
+"Administrative Notifications" = "الإعلامات الإدارية";
+
+/* No comment provided by engineer. */
+"Alerts" = "التنبيهات";
+
+/* No comment provided by engineer. */
+"All Grading Periods" = "جميع فترات تقييم الدرجات";
+
+/* No comment provided by engineer. */
+"All People" = "جميع الأشخاص";
+
+/* No comment provided by engineer. */
+"All Submissions" = "كل الإرسالات";
+
+/* No comment provided by engineer. */
+"Announcement" = "الإعلان";
+
+/* No comment provided by engineer. */
+"Announcement Created By You" = "الإعلان الذي قمت بإنشائه";
+
+/* No comment provided by engineer. */
+"Appointment Availability" = "توفر الموعد";
+
+/* No comment provided by engineer. */
+"Appointment Cancellations" = "إلغاءات المواعيد";
+
+/* No comment provided by engineer. */
+"Appointment Signups" = "مواعيد التسجيل";
+
+/* No comment provided by engineer. */
+"Are you sure you want to delete this page?" = "هل تريد بالتأكيد حذف هذه الصفحة؟";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "هل أنت متأكد من أنك ترغب في حذف هذا التعليق؟";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "المحاولة %d";
@@ -38,7 +65,13 @@
 "Audio" = "صوت";
 
 /* No comment provided by engineer. */
+"Augment Reality" = "الواقع المعزز";
+
+/* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "فشلت المصادقة. رفض المستخدم على الأغلب طلب الوصول.";
+
+/* No comment provided by engineer. */
+"Availability: Closed" = "الإتاحة: مغلق";
 
 /* No comment provided by engineer. */
 "black" = "أسود";
@@ -51,6 +84,9 @@
 
 /* No comment provided by engineer. */
 "Bold" = "غامق";
+
+/* No comment provided by engineer. */
+"Calendar" = "التقويم";
 
 /* No comment provided by engineer. */
 "Camera" = "الكاميرا";
@@ -71,6 +107,9 @@
 "Canvas Network" = "Canvas Network";
 
 /* No comment provided by engineer. */
+"Canvas on GitHub" = "Canvas على GitHub";
+
+/* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
@@ -88,6 +127,9 @@
 /* No comment provided by engineer. */
 "Change User" = "تغيير المستخدم";
 
+/* Description for Chat communication channel */
+"Chat Notifications" = "إعلامات الدردشة";
+
 /* No comment provided by engineer. */
 "Check network and try again!" = "تحقق من الشبكة وحاول مرة أخرى!";
 
@@ -96,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Choose Profile Picture" = "اختيار صورة الملف التعريفي";
+
+/* No comment provided by engineer. */
+"Clear filter" = "مسح عامل التصفية";
 
 /* No comment provided by engineer. */
 "Clear recording" = "مسح التسجيل";
@@ -125,13 +170,49 @@
 "Complete" = "مكتمل";
 
 /* No comment provided by engineer. */
-"Course" = "المساق";
+"Conferences" = "المؤتمرات";
+
+/* No comment provided by engineer. */
+"Content Link Error" = "خطأ في ارتباط المحتوى";
+
+/* No comment provided by engineer. */
+"Conversation Created By Me" = "المحادثة التي قمتُ بإنشائها";
+
+/* No comment provided by engineer. */
+"Conversation Message" = "رسالة المحادثة";
+
+/* No comment provided by engineer. */
+"conversation_recipients_to" = "conversation_recipients_to";
+
+/* No comment provided by engineer. */
+"Conversations" = "المحادثات";
+
+/* No comment provided by engineer. */
+"Could not save notification preference" = "تعذر حفظ تفضيل الإخطار";
+
+/* No comment provided by engineer. */
+"Course Activities" = "أنشطة المساق";
+
+/* No comment provided by engineer. */
+"Course Content" = "محتوى المساق";
+
+/* No comment provided by engineer. */
+"Courses" = "المساقات";
 
 /* No comment provided by engineer. */
 "Current position" = "المركز الحالي";
 
 /* No comment provided by engineer. */
+"d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
 "d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Daily" = "يوميًا";
+
+/* No comment provided by engineer. */
+"Dashboard" = "لوحة المعلومات";
 
 /* No comment provided by engineer. */
 "Delete" = "حذف";
@@ -152,13 +233,28 @@
 "Designer" = "المصمم";
 
 /* No comment provided by engineer. */
+"Designers" = "المصممون";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "قائمة المطورين";
+
+/* No comment provided by engineer. */
+"Discussion" = "النقاش";
 
 /* No comment provided by engineer. */
 "Discussion Comment" = "تعليق على النقاش";
 
 /* No comment provided by engineer. */
+"Discussion Post" = "منشور النقاش";
+
+/* No comment provided by engineer. */
+"Discussions" = "النقاشات";
+
+/* No comment provided by engineer. */
 "Dismiss" = "تجاهل";
+
+/* No comment provided by engineer. */
+"Do not send me anything" = "عدم إرسال أي شيء لي";
 
 /* No comment provided by engineer. */
 "Domain" = "المجال";
@@ -166,11 +262,32 @@
 /* No comment provided by engineer. */
 "Done" = "تم";
 
+/* i.e. Due <Jan 10, 2020 at 9:00 PM> */
+"Due %@" = "الاستحقاق %@";
+
+/* No comment provided by engineer. */
+"Due Date" = "تاريخ الاستحقاق";
+
+/* No comment provided by engineer. */
+"Due: %@" = "تاريخ الاستحقاق: %@";
+
+/* No comment provided by engineer. */
+"Edit" = "تحرير";
+
+/* Description for email communication channel */
+"Email Notifications" = "إعلامات البريد الإلكتروني";
+
 /* No comment provided by engineer. */
 "Emergency" = "الطوارئ";
 
 /* No comment provided by engineer. */
+"Enable Push Notifications" = "تمكين الإعلامات الفورية";
+
+/* No comment provided by engineer. */
 "End Act as User" = "إنهاء التصرف كمستخدم";
+
+/* No comment provided by engineer. */
+"Enrollment not found." = "لم يتم العثور على التسجيل.";
 
 /* No comment provided by engineer. */
 "Error" = "خطأ";
@@ -180,6 +297,9 @@
 
 /* No comment provided by engineer. */
 "Expand" = "توسيع";
+
+/* No comment provided by engineer. */
+"Experimental Features" = "ميزات تجريبية";
 
 /* No comment provided by engineer. */
 "External Tool" = "أداة خارجية";
@@ -197,10 +317,19 @@
 "Failed Upload" = "تعذر التحميل";
 
 /* No comment provided by engineer. */
+"File" = "الملف";
+
+/* No comment provided by engineer. */
 "File Upload" = "تحميل ملف";
 
 /* No comment provided by engineer. */
 "Files" = "الملفات";
+
+/* No comment provided by engineer. */
+"Filter" = "عامل تصفية";
+
+/* No comment provided by engineer. */
+"Filter by:" = "التصفية حسب:";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "الدرجة النهائية: %@";
@@ -224,10 +353,19 @@
 "g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
+"Grading" = "تقييم الدرجات";
+
+/* No comment provided by engineer. */
+"Grading Policies" = "سياسات تقييم الدرجات";
+
+/* No comment provided by engineer. */
 "green" = "أخضر";
 
 /* No comment provided by engineer. */
 "grey" = "رمادي";
+
+/* No comment provided by engineer. */
+"Groups" = "المجموعات";
 
 /* No comment provided by engineer. */
 "Help" = "المساعدة";
@@ -245,13 +383,22 @@
 "Image" = "صورة";
 
 /* No comment provided by engineer. */
+"Immediately" = "فورًا";
+
+/* No comment provided by engineer. */
 "Impact" = "التأثير";
 
 /* No comment provided by engineer. */
 "Impact Level" = "مستوى التأثير";
 
 /* No comment provided by engineer. */
+"Inbox" = "علبة الوارد";
+
+/* No comment provided by engineer. */
 "Incomplete" = "غير مكتمل";
+
+/* No comment provided by engineer. */
+"Invitation" = "دعوة";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "يبدو أنك غير مسجل في أي مساقات بصفة %@. قد يكون أحد تطبيقاتنا الأخرى ملائمة لك بشكل أكبر. اضغط على أحد التطبيقات لزيارة App Store.";
@@ -260,13 +407,22 @@
 "Italic" = "مائل";
 
 /* No comment provided by engineer. */
+"Landing Page" = "الصفحة المنتقل إليها";
+
+/* No comment provided by engineer. */
 "Late" = "متأخر";
+
+/* No comment provided by engineer. */
+"Late Grading" = "تقييم متأخر";
 
 /* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "تشغيل الأداة الخارجية";
+
+/* No comment provided by engineer. */
+"Legal" = "القانوني";
 
 /* No comment provided by engineer. */
 "Library" = "المكتبة";
@@ -311,19 +467,31 @@
 "Log Out" = "تسجيل الخروج";
 
 /* No comment provided by engineer. */
-"Manage Children" = "إدارة الأطفال";
+"Login" = "تسجيل الدخول";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "تسجيل دخول OAuth يدوي ";
 
 /* No comment provided by engineer. */
+"me" = "أنا";
+
+/* No comment provided by engineer. */
+"me & %@" = "أنا و %@";
+
+/* No comment provided by engineer. */
 "Media Recording" = "تسجيل الوسائط";
+
+/* No comment provided by engineer. */
+"Membership Update" = "تحديث العضوية";
 
 /* No comment provided by engineer. */
 "Missing" = "مفقود";
 
 /* No comment provided by engineer. */
 "N/A" = "لا يوجد";
+
+/* No comment provided by engineer. */
+"Never" = "أبدًا";
 
 /* No comment provided by engineer. */
 "No Content" = "لا يوجد محتوى";
@@ -333,6 +501,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "لم يتم العثور على صورة من منتقي الصور";
+
+/* No comment provided by engineer. */
+"No results" = "بلا نتائج";
 
 /* No comment provided by engineer. */
 "No Submission" = "لا يوجد إرسال";
@@ -350,7 +521,19 @@
 "Not Urgent" = "ليس عاجلاً";
 
 /* No comment provided by engineer. */
+"Notifications" = "الإعلامات";
+
+/* No comment provided by engineer. */
+"Notifications are currently disabled in Settings. Tap to enable them again." = "الإعلامات معطلة حاليًا في الإعدادات. اضغط لتمكينها مرة أخرى.";
+
+/* No comment provided by engineer. */
+"Notify me right away" = "إعلامي على الفور";
+
+/* No comment provided by engineer. */
 "Observer" = "المراقب";
+
+/* No comment provided by engineer. */
+"Observers" = "المراقبون";
 
 /* No comment provided by engineer. */
 "OK" = "موافق";
@@ -368,13 +551,25 @@
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
+"Page" = "صفحة";
+
+/* No comment provided by engineer. */
 "Pages" = "الصفحات";
+
+/* No comment provided by engineer. */
+"Password" = "كلمة المرور";
 
 /* No comment provided by engineer. */
 "Pause" = "إيقاف مؤقت";
 
 /* No comment provided by engineer. */
+"People" = "الأشخاص";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "مطلوب إذن";
+
+/* No comment provided by engineer. */
+"Photo Library" = "مكتبة الصور";
 
 /* No comment provided by engineer. */
 "Play" = "تشغيل";
@@ -383,13 +578,25 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Preferences" = "التفضيلات";
+
+/* No comment provided by engineer. */
 "Previous Logins" = "عمليات تسجيل الدخول السابقة";
+
+/* No comment provided by engineer. */
+"Privacy Policy" = "سياسة الخصوصية";
 
 /* No comment provided by engineer. */
 "purple" = "أرجواني";
 
+/* Description for Push Notification channel */
+"Push Notifications" = "الإعلامات الفورية";
+
 /* No comment provided by engineer. */
 "Quiz" = "الاختبار الموجز";
+
+/* No comment provided by engineer. */
+"Record Audio" = "تسجيل الصوت";
 
 /* No comment provided by engineer. */
 "red" = "أحمر";
@@ -422,19 +629,16 @@
 "Retry" = "إعادة المحاولة";
 
 /* No comment provided by engineer. */
+"Scheduling" = "الجدولة";
+
+/* No comment provided by engineer. */
+"Search" = "بحث";
+
+/* No comment provided by engineer. */
 "See attached files." = "انظر الملفات المرفقة.";
 
 /* No comment provided by engineer. */
 "See what's new." = "تعرف على الجديد.";
-
-/* No comment provided by engineer. */
-"Select Account" = "تحديد حساب";
-
-/* No comment provided by engineer. */
-"Select Assignment" = "تحديد مهمة";
-
-/* No comment provided by engineer. */
-"Select Course" = "تحديد مساق";
 
 /* No comment provided by engineer. */
 "Select One" = "حدد واحدًا";
@@ -444,6 +648,12 @@
 
 /* No comment provided by engineer. */
 "Send comment" = "إرسال تعليق";
+
+/* No comment provided by engineer. */
+"Send daily summary" = "إرسال ملخص يومي";
+
+/* No comment provided by engineer. */
+"Send weekly summary" = "إرسال ملخص أسبوعي";
 
 /* No comment provided by engineer. */
 "Set text color" = "تعيين لون النص";
@@ -456,6 +666,12 @@
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "تسجيل دخول مسؤول الموقع";
+
+/* Description for Slack communication channel */
+"Slack Notifications" = "إعلامات Slack";
+
+/* Description for SMS communication channel */
+"SMS Notifications" = "إعلامات الرسائل النصية القصيرة";
 
 /* No comment provided by engineer. */
 "Something is broken but I can work around it" = "شيء ما معطل لكن أستطيع تدبير أموري";
@@ -482,22 +698,31 @@
 "Student" = "الطالب";
 
 /* No comment provided by engineer. */
+"Student Appointment Signups" = "مواعيد التسجيل للطالب";
+
+/* No comment provided by engineer. */
+"Students" = "الطلاب";
+
+/* No comment provided by engineer. */
 "Style" = "النمط";
 
 /* No comment provided by engineer. */
 "Subject" = "الموضوع";
 
 /* No comment provided by engineer. */
-"Submit" = "إرسال";
+"Submission Comment" = "تعليق الإرسال";
 
 /* No comment provided by engineer. */
-"Submit Assignment" = "إرسال المهمة";
+"Submit" = "إرسال";
 
 /* No comment provided by engineer. */
 "Submitted" = "تم الإرسال";
 
 /* Submitted date */
 "Submitted %@" = "تم الإرسال %@";
+
+/* No comment provided by engineer. */
+"Subscribe to Calendar Feed" = "الاشتراك في تغذية التقويم";
 
 /* No comment provided by engineer. */
 "Success!" = "نجاح!";
@@ -513,6 +738,12 @@
 
 /* No comment provided by engineer. */
 "Teacher" = "المعلم";
+
+/* No comment provided by engineer. */
+"Teachers" = "المعلمون";
+
+/* No comment provided by engineer. */
+"Teaching Assistants" = "مساعدو المعلمين";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "شروط الاستخدام";
@@ -557,7 +788,16 @@
 "Time elapsed" = "الوقت المنقضي";
 
 /* No comment provided by engineer. */
+"to %@" = "إلى %@";
+
+/* No comment provided by engineer. */
+"To Do" = "قائمة المهام";
+
+/* No comment provided by engineer. */
 "Total time" = "الوقت الإجمالي";
+
+/* Description for Twitter communication channel */
+"Twitter Notifications" = "إعلامات Twitter";
 
 /* No comment provided by engineer. */
 "Undo" = "تراجع";
@@ -572,6 +812,9 @@
 "Updated Language Settings" = "إعدادات اللغة المحدثة";
 
 /* No comment provided by engineer. */
+"Upload File" = "تحميل ملف";
+
+/* No comment provided by engineer. */
 "Uploading %@ of %@" = "جارٍ تحميل %1$@ من %2$@";
 
 /* No comment provided by engineer. */
@@ -581,16 +824,34 @@
 "URL" = "URL";
 
 /* No comment provided by engineer. */
+"Use Camera" = "استخدام الكاميرا";
+
+/* No comment provided by engineer. */
 "User ID" = "معرف المستخدم";
+
+/* Name and pronouns - John (He/Him) */
+"User.displayName" = "%1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Username" = "اسم المستخدم";
 
 /* No comment provided by engineer. */
 "Video" = "فيديو";
+
+/* No comment provided by engineer. */
+"View Modules" = "عرض الوحدات المنطقية";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "لقد أجرينا بعض التغييرات.";
 
 /* No comment provided by engineer. */
 "Website URL" = "عنوان URL لموقع ويب";
+
+/* No comment provided by engineer. */
+"Weekly" = "أسبوعيًا";
+
+/* No comment provided by engineer. */
+"Well Done!" = "أحسنت!";
 
 /* No comment provided by engineer. */
 "What’s your school’s name?" = "ما اسم مدرستك؟";
@@ -607,11 +868,11 @@
 /* No comment provided by engineer. */
 "yellow" = "أصفر";
 
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "يجب أن تقوم بتمكين أذونات الميكروفون في الإعدادات.";
+/* Description for Yo communication channel */
+"Yo Notifications" = "لا توجد إعلامات";
 
 /* No comment provided by engineer. */
-"You will need to log into at least one Canvas account from the Student app first." = "يجب عليك تسجيل الدخول في حساب Canvas واحد على الأقل من تطبيق الطالب أولاً.";
+"You must enable Microphone permissions in Settings." = "يجب أن تقوم بتمكين أذونات الميكروفون في الإعدادات.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "ستتوقف عن التصرف باعتبارك %@ وستعود إلى حسابك.";
@@ -621,4 +882,7 @@
 
 /* No comment provided by engineer. */
 "Your Email" = "بريدك الإلكتروني";
+
+/* No comment provided by engineer. */
+"Your to do list is empty. Time to recharge." = "قائمة المهام الخاصة بك فارغة. حان وقت إعادة الشحن.";
 

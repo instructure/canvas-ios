@@ -20,9 +20,9 @@ import Foundation
 import CoreData
 
 public class GetSubmission: APIUseCase {
-    let context: Context
-    let assignmentID: String
-    let userID: String
+    public let context: Context
+    public let assignmentID: String
+    public let userID: String
 
     public typealias Model = Submission
 

@@ -25,7 +25,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
   View,
-  StyleSheet,
   ActionSheetIOS,
   SectionList,
   NativeModules,
@@ -50,6 +49,7 @@ import ActivityIndicatorView from '../../common/components/ActivityIndicatorView
 import ListEmptyComponent from '../../common/components/ListEmptyComponent'
 import { getGradesForGradingPeriod } from '../../canvas-api'
 import { logEvent } from '../../common/CanvasAnalytics'
+import { createStyleSheet } from '../../common/stylesheet'
 
 type State = {
   currentFilter: {
@@ -73,6 +73,7 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
 
   static defaultProps = {
     ListRow: AssignmentListRowView,
+    getGradesForGradingPeriod,
   }
 
   state = {
@@ -177,7 +178,6 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
     let selected = this.isRegularScreenDisplayMode && this.state.selectedRowID === item.id
     let ListRow = this.props.ListRow
     return (
-      // $FlowFixMe - for some reason flow doesn't like the default prop
       <ListRow
         assignment={item}
         tintColor={this.props.courseColor}
@@ -207,7 +207,7 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
   updateGradeForGradingPeriod = async (gradingPeriod: GradingPeriod) => {
     try {
       this.setState({ loadingGrade: true, gradeError: false })
-      let grades = await getGradesForGradingPeriod(this.props.courseID, 'self', gradingPeriod.id)
+      let grades = await this.props.getGradesForGradingPeriod(this.props.courseID, 'self', gradingPeriod.id)
       this.setState({ loadingGrade: false, currentScore: grades.current_score })
     } catch (err) {
       console.error('Error loading grade', err)
@@ -337,16 +337,16 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
   },
   header: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'lightgrey',
-    paddingTop: global.style.defaultPadding,
-    paddingBottom: global.style.defaultPadding / 2,
-    paddingHorizontal: global.style.defaultPadding,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
+    paddingTop: vars.padding,
+    paddingBottom: vars.padding / 2,
+    paddingHorizontal: vars.padding,
   },
   gradingPeriodHeader: {
     flexDirection: 'row',
@@ -364,7 +364,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'space-between',
   },
-})
+}))
 
 const Refreshed = refresh(
   props => {

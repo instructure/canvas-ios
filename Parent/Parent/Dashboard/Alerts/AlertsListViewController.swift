@@ -34,7 +34,7 @@ class AlertsListViewController: FetchedTableViewController<Alert> {
 
         let emptyView = TableEmptyView.nibView()
         emptyView.textLabel.text = NSLocalizedString("Caught up on Alerts", comment: "Empty Alerts Text")
-        emptyView.imageView?.image = UIImage(named: "empty_alerts")
+        emptyView.imageView?.image = UIImage(named: "PandaNoAlerts", in: .core, compatibleWith: nil)
         emptyView.accessibilityLabel = emptyView.textLabel.text
         emptyView.accessibilityIdentifier = "alerts_empty_view"
 
@@ -43,9 +43,8 @@ class AlertsListViewController: FetchedTableViewController<Alert> {
         let collection = try Alert.collectionOfObserveeAlerts(session, observeeID: observeeID)
         let refresher = try Alert.refresher(session, observeeID: observeeID)
 
-        let scheme = ColorCoordinator.colorSchemeForStudentID(observeeID)
         prepare(collection, refresher: refresher, viewModelFactory: { alert in
-            AlertCellViewModel(alert: alert, highlightColor: scheme.highlightCellColor, session: session)
+            AlertCellViewModel(alert: alert, highlightColor: .named(.backgroundLight), session: session)
         })
     }
 
@@ -57,13 +56,13 @@ class AlertsListViewController: FetchedTableViewController<Alert> {
         super.viewDidLoad()
 
         tableView.tableFooterView = UIView()
-        tableView.backgroundColor = UIColor.defaultTableViewBackgroundColor()
+        tableView.backgroundColor = UIColor.named(.backgroundLightest)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let scheme = ColorCoordinator.colorSchemeForStudentID(observeeID)
-        navigationController?.navigationBar.useContextColor(scheme.mainColor)
+        let scheme = ColorScheme.observee(observeeID)
+        navigationController?.navigationBar.useContextColor(scheme.color)
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -82,10 +81,12 @@ class AlertsListViewController: FetchedTableViewController<Alert> {
         alert.markAsRead(session)
         self.tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
 
-        if let assetPath = alert.assetPath {
-            AppEnvironment.shared.router.route(to: assetPath, from: self, options: [.modal, .embedInNav, .addDoneButton])
+        if [.courseGradeLow, .courseGradeHigh].contains(alert.type) {
+            AppEnvironment.shared.router.route(to: .courseGrades(alert.courseID ?? alert.contextID ?? ""), from: self)
+        } else if let assetPath = alert.assetPath {
+            AppEnvironment.shared.router.route(to: assetPath, from: self)
         } else if alert.type == .institutionAnnouncement, let announcementID = alert.contextID {
-            AppEnvironment.shared.router.route(to: .accountNotification(announcementID), from: self, options: [.modal, .embedInNav, .addDoneButton])
+            AppEnvironment.shared.router.route(to: .accountNotification(announcementID), from: self)
         }
     }
 }

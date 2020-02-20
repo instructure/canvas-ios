@@ -16,16 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-// @flow
-
 import { NativeModules, NativeEventEmitter } from 'react-native'
-import { type TraitCollection } from '../routing/Navigator'
 
-const Manager = NativeModules.WindowTraitsManager
-
-export type WindowTraits = $PropertyType<TraitCollection, 'window'>
-
-let windowTraits: WindowTraits = {
+let windowTraits = {
+  style: 'light',
+  contrast: 'normal',
   horizontal: 'compact',
   vertical: 'regular',
 }
@@ -37,6 +32,7 @@ const updater = (traits) => {
   windowTraits = traits.window
 }
 
+const Manager = NativeModules.WindowTraitsManager
 const emitter = new NativeEventEmitter(Manager)
 emitter.addListener('Update', updater)
 Manager.currentWindowTraits(updater)

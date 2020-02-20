@@ -21,7 +21,6 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   Image,
   TouchableHighlight,
   Alert,
@@ -35,6 +34,7 @@ import {
 } from 'react-native-fs'
 import Images from '../../../images'
 import { Text } from '../../../common/text'
+import { createStyleSheet } from '../../../common/stylesheet'
 import i18n from 'format-message'
 import Sound from 'react-native-sound'
 import OnLayout from 'react-native-on-layout'
@@ -228,7 +228,7 @@ async function loadAudio (path: string): Promise<Sound> {
   })
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet(colors => ({
   container: {
     flex: 1,
     flexDirection: 'row',
@@ -236,13 +236,13 @@ const style = StyleSheet.create({
     marginTop: 4,
   },
   icon: {
-    tintColor: 'grey',
+    tintColor: colors.textDark,
     width: 18,
     height: 18,
     marginRight: 6,
   },
   text: {
-    color: '#73818B',
+    color: colors.textDark,
     fontSize: 14,
     fontWeight: '400',
   },
@@ -257,37 +257,37 @@ const style = StyleSheet.create({
   scrubLine: {
     flex: 1,
     maxHeight: 5,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: colors.backgroundLight,
   },
   scrubber: {
     position: 'absolute',
     top: 2,
     bottom: 2,
     width: 3,
-    backgroundColor: '#1790DF',
+    backgroundColor: colors.primary,
     borderRadius: 1,
   },
   stopContainer: {
     width: 25,
     height: 25,
     borderRadius: 12.5,
-    borderColor: '#C7CDD1',
+    borderColor: colors.borderMedium,
     borderWidth: 2,
     marginLeft: 8,
   },
   stop: {
     flex: 1,
     margin: 6,
-    backgroundColor: '#EB0F21',
+    backgroundColor: colors.textDanger,
   },
   startPlayingButton: {
     paddingHorizontal: 6,
     paddingVertical: 3,
     borderWidth: 1,
-    borderColor: '#73818B',
+    borderColor: colors.borderDark,
     borderRadius: 3,
   },
-})
+}))
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => ({
   ...stateProps,

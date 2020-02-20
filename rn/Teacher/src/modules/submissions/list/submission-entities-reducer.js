@@ -41,7 +41,7 @@ export const submissions: Reducer<SubmissionsState, any> = handleActions({
             selectedAttachmentIndex: 0,
           },
         }), {})
-      return { ...state, ...incoming }
+      return incoming
     },
   }),
 
@@ -128,6 +128,7 @@ export const submissions: Reducer<SubmissionsState, any> = handleActions({
         grade_matches_current_submission,
         late,
         points_deducted,
+        posted_at,
       } = result.data
 
       return {
@@ -144,6 +145,7 @@ export const submissions: Reducer<SubmissionsState, any> = handleActions({
             late,
             points_deducted,
             excused: false,
+            posted_at,
           },
           pending: submissionState.pending - 1,
           lastGradedAt: Date.now(),

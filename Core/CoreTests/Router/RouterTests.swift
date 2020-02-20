@@ -20,6 +20,11 @@ import XCTest
 @testable import Core
 
 class RouterTests: XCTestCase {
+    class MockNavigationController: UINavigationController {
+        override func popViewController(animated: Bool) -> UIViewController? {
+            return viewControllers.popLast()
+        }
+    }
     class MockViewController: UIViewController {
         var shown: UIViewController?
         override func show(_ vc: UIViewController, sender: Any?) {
@@ -60,7 +65,7 @@ class RouterTests: XCTestCase {
     func testRouteNoMatch() {
         let mockView = MockViewController()
         let router = Router(routes: []) { _, _, _ in }
-        router.route(to: URLComponents(string: "/")!, from: mockView, options: .modal)
+        router.route(to: URLComponents(string: "/")!, from: mockView, options: .modal())
         XCTAssertNil(mockView.presented)
     }
 
@@ -71,9 +76,23 @@ class RouterTests: XCTestCase {
                 return UIViewController()
             },
         ]) { _, _, _ in }
-        router.route(to: URLComponents(string: "/modal")!, from: mockView, options: .modal)
+        router.route(to: URLComponents(string: "/modal")!, from: mockView, options: .modal())
         XCTAssertNotNil(mockView.presented)
         XCTAssert(mockView.presented?.isKind(of: UINavigationController.self) == false)
+    }
+
+    func testRouteCleanURL() {
+        var clean: URLComponents?
+        let router = Router(routes: [
+            RouteHandler("/match") { components, _ in
+                clean = components
+                return nil
+            },
+        ]) { _, _, _ in }
+        router.route(to: .parse("/match?q=a+b&u=a%26b"), from: MockViewController())
+        XCTAssertNotNil(clean)
+        XCTAssertEqual(clean?.queryItems?[0], URLQueryItem(name: "q", value: "a b"))
+        XCTAssertEqual(clean?.queryItems?[1], URLQueryItem(name: "u", value: "a&b"))
     }
 
     func testAddDoneButton() throws {
@@ -83,7 +102,7 @@ class RouterTests: XCTestCase {
                 return UIViewController()
             },
         ]) { _, _, _ in }
-        router.route(to: URLComponents(string: "/modal")!, from: mockView, options: [.modal, .embedInNav, .addDoneButton])
+        router.route(to: URLComponents(string: "/modal")!, from: mockView, options: .modal(embedInNav: true, addDoneButton: true))
         let nav = mockView.presented as? UINavigationController
         XCTAssertEqual(nav?.viewControllers.first?.navigationItem.leftBarButtonItems?.count, 1)
     }
@@ -95,7 +114,7 @@ class RouterTests: XCTestCase {
                 return UIViewController()
             },
         ]) { _, _, _ in }
-        router.route(to: URLComponents(string: "/formSheet")!, from: mockView, options: [.modal, .formSheet])
+        router.route(to: URLComponents(string: "/formSheet")!, from: mockView, options: .modal(.formSheet))
         XCTAssertNotNil(mockView.presented)
         XCTAssertEqual(mockView.presented?.modalPresentationStyle, .formSheet)
     }
@@ -107,33 +126,50 @@ class RouterTests: XCTestCase {
                 return UIViewController()
             },
         ]) { _, _, _ in }
-        router.route(to: URLComponents(string: "/modalEmbed")!, from: mockView, options: [.modal, .embedInNav])
+        router.route(to: URLComponents(string: "/modalEmbed")!, from: mockView, options: .modal(embedInNav: true))
         XCTAssertNotNil(mockView.presented)
         XCTAssert(mockView.presented?.isKind(of: UINavigationController.self) == true)
     }
 
     func testRouteDetail() {
         let mockView = MockViewController()
+        let split = UISplitViewController()
+        split.viewControllers = [UINavigationController(rootViewController: mockView)]
         let router = Router(routes: [
             RouteHandler("/detail") { _, _ in
                 return UIViewController()
             },
         ]) { _, _, _ in }
-        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: [.detail])
+        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail())
         XCTAssertNotNil(mockView.detail)
         XCTAssert(mockView.detail?.isKind(of: UIViewController.self) == true)
     }
 
     func testRouteDetailEmbedInNav() {
         let mockView = MockViewController()
+        let split = UISplitViewController()
+        split.viewControllers = [UINavigationController(rootViewController: mockView)]
         let router = Router(routes: [
             RouteHandler("/detail") { _, _ in
                 return UIViewController()
             },
         ]) { _, _, _ in }
-        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: [.detail, .embedInNav])
+        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail(embedInNav: true))
         XCTAssertNotNil(mockView.detail)
         XCTAssert(mockView.detail?.isKind(of: UINavigationController.self) == true)
+    }
+
+    func testRouteDetailNotInSplitViewDoesAShow() {
+        let mockView = MockViewController()
+        let router = Router(routes: [
+            RouteHandler("/detail") { _, _ in
+                return UIViewController()
+            },
+        ]) { _, _, _ in }
+        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail(embedInNav: true))
+        XCTAssertNotNil(mockView.shown)
+        XCTAssert(mockView.shown?.isKind(of: UIViewController.self) == true)
+        XCTAssert(mockView.shown?.isKind(of: UINavigationController.self) == false)
     }
 
     func testRouteDetailFromDetailDoesAShow() {
@@ -145,7 +181,8 @@ class RouterTests: XCTestCase {
                 return UIViewController()
             },
         ]) { _, _, _ in }
-        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: [.detail, .embedInNav])
+        router.route(to: URLComponents(string: "/detail")!, from: mockView, options:
+            .detail(embedInNav: true))
         XCTAssertNil(mockView.detail)
         XCTAssertNotNil(mockView.shown)
         XCTAssert(mockView.shown?.isKind(of: UIViewController.self) == true)
@@ -162,7 +199,7 @@ class RouterTests: XCTestCase {
         ]) { _, _, _ in }
 
         // not detail
-        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: nil)
+        router.route(to: URLComponents(string: "/detail")!, from: mockView)
         XCTAssertNil(mockView.navigationItem.leftBarButtonItems?.first)
         XCTAssertFalse(mockView.navigationItem.leftItemsSupplementBackButton)
 
@@ -170,26 +207,26 @@ class RouterTests: XCTestCase {
         split.viewControllers = [UIViewController(), UINavigationController(rootViewController: mockView)]
 
         // to detail
-        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: [.detail])
+        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail())
         XCTAssertNotNil(mockView.shown?.navigationItem.leftBarButtonItems?.first)
         XCTAssert(mockView.shown?.navigationItem.leftItemsSupplementBackButton == true)
 
         // from detail
         mockView.navigationItem.leftBarButtonItems = nil
         mockView.navigationItem.leftItemsSupplementBackButton = false
-        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: nil)
+        router.route(to: URLComponents(string: "/detail")!, from: mockView)
         XCTAssertNotNil(mockView.shown?.navigationItem.leftBarButtonItems?.first)
         XCTAssert(mockView.shown?.navigationItem.leftItemsSupplementBackButton == true)
 
         // compact
         split.mockCollapsed = true
-        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: nil)
+        router.route(to: URLComponents(string: "/detail")!, from: mockView)
         XCTAssertNil(mockView.shown?.navigationItem.leftBarButtonItems?.first)
         XCTAssert(mockView.shown?.navigationItem.leftItemsSupplementBackButton == false)
 
         // modal
         split.mockCollapsed = false
-        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: [.modal])
+        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .modal())
         XCTAssertNil(mockView.presented?.navigationItem.leftBarButtonItems?.first)
         XCTAssert(mockView.presented?.navigationItem.leftItemsSupplementBackButton == false)
     }
@@ -285,8 +322,50 @@ class RouterTests: XCTestCase {
     func testShowAlertController() {
         let mockView = MockViewController()
         let router = Router(routes: []) { _, _, _ in }
-        router.show(UIAlertController(title: nil, message: nil, preferredStyle: .alert), from: mockView, options: nil)
+        router.show(UIAlertController(title: nil, message: nil, preferredStyle: .alert), from: mockView)
         XCTAssertNil(mockView.shown)
         XCTAssert(mockView.presented is UIAlertController)
+    }
+
+    func testPopViewController() {
+        let router = Router(routes: []) { _, _, _ in }
+        let rootViewController = UIViewController()
+        let navController = MockNavigationController(rootViewController: rootViewController)
+
+        let childViewController = UIViewController()
+        navController.viewControllers.append(childViewController)
+        XCTAssertEqual(navController.viewControllers.count, 2)
+
+        router.pop(from: childViewController)
+        XCTAssertEqual(navController.viewControllers.count, 1)
+
+        router.pop(from: rootViewController)
+        XCTAssertEqual(navController.viewControllers.count, 1)
+        XCTAssert(navController.viewControllers.first is EmptyViewController)
+    }
+
+    @available(iOS 13, *)
+    func testIsDismissable() {
+        let mockView = MockViewController()
+        let router = Router(routes: []) { _, _, _ in }
+        router.show(mockView, from: UIViewController(), options: .modal())
+        XCTAssertFalse(mockView.isModalInPresentation)
+        router.show(mockView, from: UIViewController(), options: .modal(isDismissable: false))
+        XCTAssertTrue(mockView.isModalInPresentation)
+        router.show(mockView, from: UIViewController(), options: .modal(isDismissable: false, embedInNav: true))
+        XCTAssertNotNil(mockView.navigationController)
+        XCTAssertEqual(mockView.navigationController?.isModalInPresentation, true)
+    }
+
+    func testFullScreen() {
+        let mockView = MockViewController()
+        let router = Router(routes: []) { _, _, _ in }
+        router.show(mockView, from: UIViewController(), options: .modal())
+        XCTAssertNotEqual(mockView.modalPresentationStyle, .fullScreen)
+        router.show(mockView, from: UIViewController(), options: .modal(.fullScreen))
+        XCTAssertEqual(mockView.modalPresentationStyle, .fullScreen)
+        router.show(mockView, from: UIViewController(), options: .modal(.fullScreen, embedInNav: true))
+        XCTAssertNotNil(mockView.navigationController)
+        XCTAssertEqual(mockView.navigationController?.modalPresentationStyle, .fullScreen)
     }
 }

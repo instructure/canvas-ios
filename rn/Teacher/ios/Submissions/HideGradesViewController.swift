@@ -44,6 +44,7 @@ class HideGradesViewController: UIViewController {
         setupTableView()
         setupSections()
 
+        allGradesHiddenView.backgroundColor = .named(.backgroundLightest)
         allGradesHiddenView.isHidden = true
         allHiddenLabel.text = NSLocalizedString("All Hidden", comment: "")
         allHiddenSubHeader.text = NSLocalizedString("All grades are currently hidden.", comment: "")
@@ -54,6 +55,7 @@ class HideGradesViewController: UIViewController {
     }
 
     func setupTableView() {
+        tableView.backgroundColor = .named(.backgroundGrouped)
         tableView.registerCell(PostGradesViewController.SectionCell.self)
     }
 
@@ -75,7 +77,6 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PostGradesViewController.SectionCell = tableView.dequeue(for: indexPath)
-        cell.textLabel?.font = UIFont.scaledNamedFont(.semibold16)
         cell.toggle.onTintColor = Brand.shared.buttonPrimaryBackground
 
         if indexPath.row == 0 {

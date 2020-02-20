@@ -38,20 +38,6 @@ extension UIView {
     }
 }
 
-// swift should just provide these...
-private func == <T>(lhs: T?, rhs: T?) -> Bool where T: Equatable {
-    switch (lhs, rhs) {
-    case (.none, .none):            return true
-    case (.none, _), (_, .none):    return false
-    case let (.some(l), .some(r)):  return l == r
-    default:                        return false
-    }
-}
-
-private func != <T>(lhs: T?, rhs: T?) -> Bool where T: Equatable {
-    return !(lhs == rhs)
-}
-
 public class CanvadocView: UIView {
     
     @objc weak var pdfViewController: PSPDFViewController?
