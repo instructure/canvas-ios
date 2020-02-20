@@ -29,7 +29,7 @@ public struct APIPlannable: Codable, Equatable {
     let context_name: String?
     let title: String?
     let plannable: plannable?
-    let plannable_date: Date
+    public let plannable_date: Date
     //  swiftlint:disable:next type_name
     public struct plannable: Codable, Equatable {
         let title: String?

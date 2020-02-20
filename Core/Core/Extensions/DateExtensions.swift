@@ -76,6 +76,10 @@ public extension Date {
         return Cal.currentCalendar.date(byAdding: DateComponents(month: 1, day: -1), to: startOfMonth()) ?? Date()
     }
 
+    func removeTime() -> Date {
+        Cal.currentCalendar.date(from: Cal.currentCalendar.dateComponents([.year, .month, .day], from: self)) ?? Date()
+    }
+
     static var dateOnlyFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.setLocalizedDateFormatFromTemplate("MMMd")

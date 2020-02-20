@@ -96,6 +96,12 @@ class DateExtensionsTests: XCTestCase {
         XCTAssertEqual(a.endOfWeek(), b)
     }
 
+    func testRemoveTime() {
+        let a = Date(fromISOString: "2019-12-25T14:24:37Z")!
+        let b = Date(fromISOString: "2019-12-25T07:00:00Z")!
+        XCTAssertEqual(a.removeTime(), b)
+    }
+
     func testDateMediumString() {
         Clock.mockNow(DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 12, day: 25).date!)
         XCTAssertEqual(DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 1, day: 1).date?.dateMediumString, "Jan 1")

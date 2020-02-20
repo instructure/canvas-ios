@@ -54,5 +54,4 @@ public class GetPlannables: CollectionUseCase {
             Plannable.save(p, in: client, userID: userID)
         }
     }
-
 }

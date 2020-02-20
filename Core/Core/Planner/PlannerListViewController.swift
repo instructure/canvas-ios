@@ -18,6 +18,8 @@
 
 import UIKit
 
+public typealias DailyCalendarActivityData = [Date: Int]
+
 public class PlannerListViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyStateViewContainer: UIView!
@@ -73,6 +75,29 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
         }
 
         plannables.refresh(force: true)
+    }
+
+    private var cachedMonthlyActivityStartDate: Date?
+    private var cachedMonthlyActivityData: DailyCalendarActivityData?
+
+    public func getDailyActivityForMonth(forDate: Date, handler: @escaping (DailyCalendarActivityData?) -> Void) {
+
+        if forDate.startOfMonth().removeTime() == cachedMonthlyActivityStartDate, let data = cachedMonthlyActivityData {
+            handler(data)
+            return
+        }
+
+        var data: DailyCalendarActivityData = [:]
+        let request = GetPlannablesRequest(userID: studentID, startDate: forDate.startOfMonth(), endDate: forDate.endOfMonth(), contextCodes: [], filter: "")
+        env.api.exhaust(request) { [weak self] response, _, _ in
+            for p in response ?? [] {
+                let date = p.plannable_date.removeTime()
+                data[date] = (data[date] ?? 0) + 1
+            }
+            self?.cachedMonthlyActivityData = data
+            self?.cachedMonthlyActivityStartDate = forDate.startOfMonth().removeTime()
+            handler(data)
+        }
     }
 }
 
