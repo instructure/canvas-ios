@@ -33,5 +33,6 @@ class RoutesTests: ParentTestCase {
         XCTAssertNil(Parent.router.match(.parse("/calendar")))
 
         XCTAssert(Parent.router.match(.parse("/calendar?event_id=1")) is CalendarEventDetailsViewController)
+        XCTAssert(Parent.router.match(Route.submission(forCourse: "1", assignment: "1", user: "1").url) is AssignmentDetailsViewController)
     }
 }
