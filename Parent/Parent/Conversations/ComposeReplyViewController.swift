@@ -67,7 +67,9 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
 
         addCancelButton(side: .left)
         attachButton.accessibilityLabel = NSLocalizedString("Add Attachments", comment: "")
+        attachButton.accessibilityIdentifier = "ComposeReply.attachButton"
         sendButton.isEnabled = false
+        sendButton.accessibilityIdentifier = "ComposeReply.sendButton"
         navigationItem.rightBarButtonItems = [ sendButton, attachButton ]
 
         embed(attachmentsController, in: attachmentsContainer)

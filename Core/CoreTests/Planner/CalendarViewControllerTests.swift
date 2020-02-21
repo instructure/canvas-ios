@@ -18,10 +18,9 @@
 
 import XCTest
 @testable import Core
-@testable import Parent
 import TestsFoundation
 
-class CalendarViewControllerTests: ParentTestCase {
+class CalendarViewControllerTests: CoreTestCase {
     lazy var controller = CalendarViewController.create(studentID: "1")
 
     func testLayout() {

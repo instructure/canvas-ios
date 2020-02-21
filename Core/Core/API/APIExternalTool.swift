@@ -54,4 +54,14 @@ extension APIGetSessionlessLaunchResponse {
         APIGetSessionlessLaunchResponse(name: name, url: url)
     }
 }
+
+extension APIExternalToolLaunch {
+    static func make(
+        definition_id: ID = "1",
+        domain: String? = nil,
+        placements: [String: APIExternalToolLaunchPlacement] = ["1": .init(title: "Studio", url: URL(string: "/studio")!)]
+    ) -> Self {
+        return Self(definition_id: definition_id, domain: domain, placements: placements)
+    }
+}
 #endif
