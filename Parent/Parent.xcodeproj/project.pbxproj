@@ -163,6 +163,7 @@
 		B11A2CF720E42D9500A2DBDD /* AccountNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11A2CF620E42D9500A2DBDD /* AccountNotificationViewController.swift */; };
 		B18F80E423463A060001A666 /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F80E323463A060001A666 /* RoutesTests.swift */; };
 		B1AA55D0235785A200DFD184 /* SettingsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AA55CF235785A200DFD184 /* SettingsViewControllerTests.swift */; };
+		B1BAD29523FEEB40004ED99E /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BAD29423FEEB40004ED99E /* InboxTests.swift */; };
 		B1F4061522E6393D008FAFE6 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4061022E6393C008FAFE6 /* ReactiveObjC.framework */; };
 		B1F4061622E6393D008FAFE6 /* ReactiveMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4061122E6393C008FAFE6 /* ReactiveMapKit.framework */; };
 		B1F4061722E6393D008FAFE6 /* ReactiveObjCBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4061222E6393C008FAFE6 /* ReactiveObjCBridge.framework */; };
@@ -964,6 +965,7 @@
 		B11A2CF620E42D9500A2DBDD /* AccountNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotificationViewController.swift; sourceTree = "<group>"; };
 		B18F80E323463A060001A666 /* RoutesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTests.swift; sourceTree = "<group>"; };
 		B1AA55CF235785A200DFD184 /* SettingsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerTests.swift; sourceTree = "<group>"; };
+		B1BAD29423FEEB40004ED99E /* InboxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxTests.swift; sourceTree = "<group>"; };
 		B1F4061022E6393C008FAFE6 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjC.framework; path = ../Carthage/Build/iOS/ReactiveObjC.framework; sourceTree = "<group>"; };
 		B1F4061122E6393C008FAFE6 /* ReactiveMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveMapKit.framework; path = ../Carthage/Build/iOS/ReactiveMapKit.framework; sourceTree = "<group>"; };
 		B1F4061222E6393C008FAFE6 /* ReactiveObjCBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjCBridge.framework; path = ../Carthage/Build/iOS/ReactiveObjCBridge.framework; sourceTree = "<group>"; };
@@ -1589,6 +1591,7 @@
 				E8E1BE4C23C6891F000E3A76 /* ParentUITestCase.swift */,
 				E8E1BE4E23C6891F000E3A76 /* Info.plist */,
 				E8E1BE6023C69418000E3A76 /* ExampleTests.swift */,
+				B1BAD29423FEEB40004ED99E /* InboxTests.swift */,
 			);
 			path = ParentUITests;
 			sourceTree = "<group>";
@@ -2059,6 +2062,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8E1BE6123C69418000E3A76 /* ExampleTests.swift in Sources */,
+				B1BAD29523FEEB40004ED99E /* InboxTests.swift in Sources */,
 				E8E1BE4D23C6891F000E3A76 /* ParentUITestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -24,7 +24,7 @@ public struct APIPlannable: Codable, Equatable {
     let planner_override: APIPlannerOverride?
     let plannable_id: ID
     let plannable_type: String
-    let html_url: URL?
+    let html_url: APIURL
     let context_image: URL?
     let context_name: String?
     let title: String?
@@ -77,7 +77,7 @@ extension APIPlannable {
             planner_override: planner_override,
             plannable_id: plannable_id,
             plannable_type: plannable_type,
-            html_url: html_url,
+            html_url: APIURL(rawValue: html_url),
             context_image: context_image,
             context_name: context_name,
             title: title,

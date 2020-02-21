@@ -379,7 +379,6 @@
 		7DA2606A23F722D9005D2121 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F84595D228F34200031034E /* UserSettings.swift */; };
 		7DA2606B23F722D9005D2121 /* UTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6F070219A1F2800C1575D /* UTI.swift */; };
 		7DA2606C23F722D9005D2121 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FCA29237F56210011F11A /* Activity.swift */; };
-		7DA2606D23F722D9005D2121 /* Plannable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C3D23F20304009622E3 /* Plannable.swift */; };
 		7DA2606E23F722E9005D2121 /* APICommunicationChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9E80BE233C5693003C608B /* APICommunicationChannel.swift */; };
 		7DA2606F23F722E9005D2121 /* APINotificationPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9E80CB233D2399003C608B /* APINotificationPreferences.swift */; };
 		7DA2607023F722E9005D2121 /* CommunicationChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9E80C3233C64E4003C608B /* CommunicationChannel.swift */; };
@@ -590,12 +589,15 @@
 		7DFD5F7C23FF158700D988E0 /* PlannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFD5F7923FF158700D988E0 /* PlannerViewController.swift */; };
 		7DFD5F7D23FF158700D988E0 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFD5F7A23FF158700D988E0 /* CalendarViewController.swift */; };
 		7DFD5F7E23FF160100D988E0 /* CalendarViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DFD5F7823FF158700D988E0 /* CalendarViewController.storyboard */; };
+		7DFD5F7523FEF38100D988E0 /* PlannerListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C4923F34DB1009622E3 /* PlannerListViewControllerTests.swift */; };
+		7DFD5F7623FEF4A800D988E0 /* Plannable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C3D23F20304009622E3 /* Plannable.swift */; };
 		7DFFAB1A219DDB22003E71F8 /* CommentListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DFFAB19219DDB22003E71F8 /* CommentListViewController.storyboard */; };
 		9727093B23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9727093A23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift */; };
 		977921A123E11C3F0082696B /* UIBarButtonItemExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977921A023E11C3F0082696B /* UIBarButtonItemExtensionTests.swift */; };
 		97A486C42397826300084499 /* ProfileViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A486C32397826300084499 /* ProfileViewControllerTests.swift */; };
 		97A486CB239AB2ED00084499 /* SyllabusViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A486CA239AB2ED00084499 /* SyllabusViewControllerTests.swift */; };
 		97F69C3823F1F9A6009622E3 /* APIPlannableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C3723F1F9A6009622E3 /* APIPlannableTests.swift */; };
+		97F69C3823F1F9A6009622E3 /* PlannableRequestablesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C3723F1F9A6009622E3 /* PlannableRequestablesTests.swift */; };
 		97F69C4023F209DB009622E3 /* PlannableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C3F23F209DB009622E3 /* PlannableTests.swift */; };
 		97F69C4423F2208E009622E3 /* GetPlannablesUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C4323F2208D009622E3 /* GetPlannablesUseCaseTests.swift */; };
 		9F09A4CF22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F09A4CE22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift */; };
@@ -1873,8 +1875,6 @@
 		2C964830211E2F1A002C3255 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				97F69C3A23F1FD94009622E3 /* Planner */,
-				3B4D86112329521F005126A5 /* Grades */,
 				9FBFE6D122412B71002B3796 /* ActAsUser */,
 				3BC3E01B2315A0B300E15C6D /* Analytics */,
 				7D8262E9212B1A4F00BD268D /* API */,
@@ -1891,6 +1891,7 @@
 				7D80AC06212B46D500C40ECE /* Extensions */,
 				7D08B1D02371E9C70075623A /* Files */,
 				3B47227E2137972200BF6FF3 /* Frameworks */,
+				3B4D86112329521F005126A5 /* Grades */,
 				2C964832211E2F1A002C3255 /* Info.plist */,
 				5BF786A8218599B600471A5F /* InfoPlist.strings */,
 				7DCF1ECE216BFE5D003AF358 /* Localizable.strings */,
@@ -1903,6 +1904,7 @@
 				EE584C7822F2043300D1E201 /* Pages */,
 				3B13D45922E1060300D23007 /* PageViewAnalytics */,
 				7D8E820C23C8E09500A8DA2C /* People */,
+				97F69C3A23F1FD94009622E3 /* Planner */,
 				3B3467CE2135022E00F9BC2E /* Presenter */,
 				9FAA58FE223A987600FEC3F8 /* Profile */,
 				7D101945215E87B80058FDD1 /* Resources */,
@@ -1923,9 +1925,6 @@
 		2C96483B211E2F1A002C3255 /* CoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				97F69C3923F1FD78009622E3 /* Planner */,
-				E8997904234F7DBA00CA7D9B /* MetaTests */,
-				3B6043A6232AB80500757B93 /* Grades */,
 				3BC3E01E2315A2A700E15C6D /* Analytics */,
 				7D3A1EED227BEFB20094531E /* ActAsUser */,
 				7D80AC13212B659300C40ECE /* API */,
@@ -1938,15 +1937,18 @@
 				7DE6A7072319B03600A5B796 /* ErrorReports */,
 				7D80AC59212DB09300C40ECE /* Extensions */,
 				7D08B1D5237205C00075623A /* Files */,
+				3B6043A6232AB80500757B93 /* Grades */,
 				3B34675F2130554C00F9BC2E /* Helpers */,
 				B1E789B321B1AD720087FE4A /* Logger */,
 				3B3467512130527000F9BC2E /* Login */,
 				7D4C3D57222D9E22001B1198 /* LTI */,
+				E8997904234F7DBA00CA7D9B /* MetaTests */,
 				7D062AF521249E5800677F66 /* Models */,
 				B1911CEA21C849AE00F42F91 /* Notifications */,
 				EE6CB48322F8C8410013D9A5 /* Pages */,
 				3B158CAD22E152F60039A568 /* PageViewAnalytics */,
 				7D8E820F23C8E0AE00A8DA2C /* People */,
+				97F69C3923F1FD78009622E3 /* Planner */,
 				3BE2C76D219335FA004B8E5E /* Presenter */,
 				3B22E4FA23469C4B000D9B91 /* Protocols */,
 				7DBED015232FDD8000392F3C /* Profile */,
@@ -2262,7 +2264,6 @@
 				9F84595D228F34200031034E /* UserSettings.swift */,
 				B1B6F070219A1F2800C1575D /* UTI.swift */,
 				3B3FCA29237F56210011F11A /* Activity.swift */,
-				97F69C3D23F20304009622E3 /* Plannable.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3032,6 +3033,11 @@
 				97F69C4723F3475E009622E3 /* PlannerListViewController.storyboard */,
 				97F69C4523F34734009622E3 /* PlannerListViewController.swift */,
 				7DFD5F7923FF158700D988E0 /* PlannerViewController.swift */,
+				97F69C3B23F1FE64009622E3 /* GetPlannablesUseCase.swift */,
+				97F69C3D23F20304009622E3 /* Plannable.swift */,
+				97F69BBE23F1F286009622E3 /* PlannablesRequestable.swift */,
+				97F69C4723F3475E009622E3 /* PlannerListViewController.storyboard */,
+				97F69C4523F34734009622E3 /* PlannerListViewController.swift */,
 			);
 			path = Planner;
 			sourceTree = "<group>";
@@ -4289,6 +4295,7 @@
 				7D2DC2F82199F774008FE29A /* DocViewerAnnotationProviderTests.swift in Sources */,
 				B14D55612130B6740066D275 /* TestOperationQueue.swift in Sources */,
 				7D37BE9121C849D10063FAAC /* DocViewerPresenterTests.swift in Sources */,
+				7DFD5F7523FEF38100D988E0 /* PlannerListViewControllerTests.swift in Sources */,
 				7DC23092213D710000318ED0 /* UIImageViewExtensionsTests.swift in Sources */,
 				7DB0A1B621BF168A009ABB40 /* LoginDelegateTests.swift in Sources */,
 				3B158CB322E16D0E0039A568 /* PageViewEventRequestManagerTests.swift in Sources */,
@@ -4419,6 +4426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DA260F623F72397005D2121 /* FilePickerViewController.swift in Sources */,
+				7DFD5F7623FEF4A800D988E0 /* Plannable.swift in Sources */,
 				7DA2601A23F7227A005D2121 /* UITableViewExtensions.swift in Sources */,
 				7DA2601623F7227A005D2121 /* UINavigationBarExtensions.swift in Sources */,
 				7DA2604A23F722D9005D2121 /* GradeFormatter.swift in Sources */,
@@ -4455,7 +4463,6 @@
 				7DA260AB23F72352005D2121 /* GetCalendarEvents.swift in Sources */,
 				7DA2605D23F722D9005D2121 /* QuizSubmissionWorkflowState.swift in Sources */,
 				7DA2601F23F7227A005D2121 /* URLResponseExtensions.swift in Sources */,
-				7DA2606D23F722D9005D2121 /* Plannable.swift in Sources */,
 				7DA25F9223F72128005D2121 /* Grades.swift in Sources */,
 				7DA2602423F722B3005D2121 /* LogEventListViewController.swift in Sources */,
 				7DA25FAA23F72136005D2121 /* APIDiscussionRequestable.swift in Sources */,
