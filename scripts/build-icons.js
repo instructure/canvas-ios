@@ -133,15 +133,7 @@ for (const icon of whitelist) {
     let slug = (overrides[icon] || {})[type] || icon
     const filepath = `tmp/${name}${type}.svg`
     const folder = `${assetsFolder}/${name}${type}.imageset`
-    try {
-      run(`curl -sSL https://raw.githubusercontent.com/instructure/instructure-ui/master/packages/ui-icons/svg/${type}/${slug}.svg > ${filepath}`)
-    } catch (e) {
-      try {
-        run(`curl -sSL https://raw.githubusercontent.com/instructure/instructure-ui/master/packages/ui-icons/svg/${type}/${slug}.svg > ${filepath}`)
-      } catch (e) {
-        run(`curl -sSL https://raw.githubusercontent.com/instructure/instructure-ui/master/packages/ui-icons/svg/${type}/${slug}.svg > ${filepath}`)
-      }
-    }
+    run(`curl -sSL https://raw.githubusercontent.com/instructure/instructure-ui/master/packages/ui-icons/svg/${type}/${slug}.svg > ${filepath}`)
     run(`mkdir -p ${folder}`)
     // Icons in tab & nav bar need intrinsic size of 24x24 with 2px internal padding
     convert(filepath, `${folder}/${name}.pdf`, [ 24, 24 ], 2)

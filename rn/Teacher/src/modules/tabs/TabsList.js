@@ -38,9 +38,8 @@ import OnLayout from 'react-native-on-layout'
 import { isStudent } from '../app'
 import i18n from 'format-message'
 import Images from '../../images'
-import colors from '../../common/colors'
 import { Text } from '../../common/text'
-import { createStyleSheet } from '../../common/stylesheet'
+import { colors, createStyleSheet } from '../../common/stylesheet'
 
 type TabsListProps = {
   tabs: Array<Tab>,
@@ -313,7 +312,6 @@ const styles = createStyleSheet(colors => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
-<<<<<<< HEAD
   studentView: {
     flex: 0,
     flexDirection: 'row',
@@ -324,7 +322,4 @@ const styles = createStyleSheet(colors => ({
     borderRadius: 8,
     borderWidth: 1.5,
   },
-})
-=======
 }))
->>>>>>> master

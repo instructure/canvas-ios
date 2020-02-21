@@ -91,7 +91,6 @@ export function parseErrorMessage (error: any): string {
   if (error && error.data && error.data.message) {
     return error.data.message
   } else if (error && error.data && error.data.errors && error.data.errors.length > 0) {
-    console.log('errors', error.data.errors)
     if (typeof error.data.errors === 'string') {
       return error.data.errors
     }
