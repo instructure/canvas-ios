@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -118,3 +118,43 @@ extension APIPlannerOverride {
 }
 
 #endif
+
+// https://canvas.instructure.com/doc/api/planner.html#method.planner.index
+public struct GetPlannablesRequest: APIRequestable {
+    public typealias Response = [APIPlannable]
+
+    var userID: String?
+    var startDate: Date?
+    var endDate: Date?
+    var contextCodes: [String] = []
+    var filter: String = ""
+
+    public var path: String {
+        if let userID = userID {
+            return "users/\(userID)/planner/items"
+        } else {
+            return "planner/items"
+        }
+    }
+
+    public var query: [APIQueryItem] {
+        var values: [APIQueryItem] = []
+        if let startDate = startDate {
+            values.append( .value("start_date", startDate.isoString()) )
+        }
+
+        if let endDate = endDate {
+            values.append( .value("end_date", endDate.isoString()) )
+        }
+
+        if !contextCodes.isEmpty {
+            values.append( .array("context_codes", contextCodes) )
+        }
+
+        if !filter.isEmpty {
+            values.append( .value("filter", filter) )
+        }
+
+        return values
+    }
+}

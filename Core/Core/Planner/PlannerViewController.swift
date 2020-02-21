@@ -17,21 +17,20 @@
 //
 
 import UIKit
-import Core
 
-class CalendarContainerViewController: UIViewController {
+public class PlannerViewController: UIViewController {
 
     var calendar: CalendarViewController!
     var plannerList: PlannerListViewController!
     var studentID: String!
 
-    static func create(studentID: String) -> CalendarContainerViewController {
-        let vc = CalendarContainerViewController()
+    public static func create(studentID: String) -> PlannerViewController {
+        let vc = PlannerViewController()
         vc.studentID = studentID
         return vc
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         calendar = CalendarViewController.create(studentID: studentID)
