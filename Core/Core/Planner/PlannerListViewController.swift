@@ -84,12 +84,13 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
         plannables.refresh(force: true)
     }
 
-    private var cachedMonthlyActivityStartDate: Date?
+    private var cachedMonth: Int?
     private var cachedMonthlyActivityData: DailyCalendarActivityData?
 
     public func getDailyActivityForMonth(forDate: Date, handler: @escaping (DailyCalendarActivityData?) -> Void) {
 
-        if forDate.startOfMonth().removeTime() == cachedMonthlyActivityStartDate, let data = cachedMonthlyActivityData {
+        let month = Calendar.current.dateComponents([.month], from: forDate).month
+        if cachedMonth == month, let data = cachedMonthlyActivityData {
             handler(data)
             return
         }
@@ -102,7 +103,7 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
                 data[date] = (data[date] ?? 0) + 1
             }
             self?.cachedMonthlyActivityData = data
-            self?.cachedMonthlyActivityStartDate = forDate.startOfMonth().removeTime()
+            self?.cachedMonth = month
             handler(data)
         }
     }

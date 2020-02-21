@@ -139,7 +139,7 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
     private func createCalanderDaysViewController(fromDate: Date, selectedDate: Date) -> CalendarDaysViewController {
         let vc = CalendarDaysViewController.create(fromDate, selectedDate: selectedDate, delegate: self)
         delegate?.dailyActivityCount(forDate: selectedDate, handler: { data in
-            performUIUpdate { vc.placeDailyActivityCounts(data: data) }
+            performUIUpdate { vc.loadViewIfNeeded(); vc.placeDailyActivityCounts(data: data) }
         })
         return vc
     }
