@@ -121,8 +121,8 @@ extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate 
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let plannable = plannables[indexPath] else { return }
-        env.router.route(to: plannable.htmlURL, from: self, options: .detail(embedInNav: true))
+        guard let plannable = plannables[indexPath], let htmlURL = plannable.htmlURL else { return }
+        env.router.route(to: htmlURL, from: self, options: .detail(embedInNav: true))
     }
 }
 

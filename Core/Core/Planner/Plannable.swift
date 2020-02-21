@@ -31,7 +31,7 @@ public final class Plannable: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var typeRaw: String
     @NSManaged public var title: String?
-    @NSManaged public var htmlURL: URL
+    @NSManaged public var htmlURL: URL?
     @NSManaged public var contextImage: URL?
     @NSManaged public var canvasContextIDRaw: String?
     @NSManaged public var contextName: String?
@@ -60,7 +60,7 @@ public final class Plannable: NSManagedObject {
         let model: Plannable = client.fetch(predicate).first ?? client.insert()
         model.id = item.plannable_id.value
         model.typeRaw = item.plannable_type
-        model.htmlURL = item.html_url.rawValue
+        model.htmlURL = item.html_url?.rawValue
         model.contextImage = item.context_image
         model.contextName = item.context_name
         model.title = item.plannable?.title
