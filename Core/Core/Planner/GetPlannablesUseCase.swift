@@ -38,7 +38,11 @@ public class GetPlannables: CollectionUseCase {
     public var cacheKey: String? { nil }
 
     public var scope: Scope {
-        if let userID = userID {
+        if let userID = userID, let start = startDate, let end = endDate {
+            //  https://instructure.atlassian.net/browse/KNO-292
+            let p = NSPredicate(format: "%K >= %@ && %K < %@ && %K == %@", #keyPath(Plannable.date), start as NSDate, #keyPath(Plannable.date), end as NSDate, #keyPath(Plannable.userID), userID)
+            return Scope(predicate: p, order: [NSSortDescriptor(key: #keyPath(Plannable.date), ascending: true)])
+        } else if let userID = userID {
             return Scope.where(#keyPath(Plannable.userID), equals: userID, orderBy: #keyPath(Plannable.date))
         } else {
             return .all(orderBy: #keyPath(Plannable.date))

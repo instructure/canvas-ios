@@ -48,7 +48,7 @@ class PlannerListViewControllerTests: CoreTestCase {
 
         vc.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
         vc.tableView.delegate?.tableView?(vc.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
-        XCTAssertTrue(router.lastRoutedTo(assignment.html_url.rawValue))
+        XCTAssertTrue(router.lastRoutedTo(assignment.html_url!.rawValue))
         vc.viewWillAppear(false)
         XCTAssertNil(vc.tableView.indexPathForSelectedRow)
     }
