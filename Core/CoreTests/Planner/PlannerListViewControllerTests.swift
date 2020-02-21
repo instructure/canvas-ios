@@ -35,7 +35,7 @@ class PlannerListViewControllerTests: CoreTestCase {
     func testLayout() {
         let date = Clock.now
         let assignment = APIPlannable.make(plannable_date: date)
-        api.mock(GetPlannables(userID: studentID, startDate: Clock.now.startOfDay(), endDate: Clock.now.endOfDay()), value: [assignment])
+        api.mock(GetPlannables(userID: studentID, startDate: Clock.now.startOfDay(), endDate: Clock.now.endOfDay().addSeconds(1)), value: [assignment])
         vc.view.layoutIfNeeded()
         vc.updateListForDates(start: Clock.now.startOfDay(), end: Clock.now.endOfDay())
 

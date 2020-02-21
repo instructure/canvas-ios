@@ -110,7 +110,7 @@ class DateExtensionsTests: XCTestCase {
 
     func testlocalToUTC() {
         let local = Date(fromISOString: "2020-02-20T23:59:59Z")!
-        let expectedUTClTime = Date(fromISOString: "2020-02-20T23:59:59Z")!
+        let expectedUTClTime = Date(fromISOString: "2020-02-20T16:59:59Z")!
         XCTAssertEqual(local.utcToLocal(), expectedUTClTime)
     }
 
