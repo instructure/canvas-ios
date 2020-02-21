@@ -41,6 +41,10 @@ public extension Date {
         return endDate ?? Date()
     }
 
+    func addSeconds(_ seconds: Int) -> Date {
+        Cal.currentCalendar.date(byAdding: .second, value: seconds, to: self) ?? Date()
+    }
+
     func addDays(_ days: Int) -> Date {
         let endDate = Calendar.current.date(byAdding: .day, value: days, to: self)
         return endDate ?? Date()
@@ -78,6 +82,18 @@ public extension Date {
 
     func removeTime() -> Date {
         Cal.currentCalendar.date(from: Cal.currentCalendar.dateComponents([.year, .month, .day], from: self)) ?? Date()
+    }
+
+    func utcToLocal() -> Date {
+        let timezone = Cal.currentCalendar.timeZone
+        let seconds = TimeInterval(timezone.secondsFromGMT(for: self))
+        return Date(timeInterval: seconds, since: self)
+    }
+
+    func localToUTC() -> Date {
+        let timezone = Cal.currentCalendar.timeZone
+        let seconds = -TimeInterval(timezone.secondsFromGMT(for: self))
+        return Date(timeInterval: seconds, since: self)
     }
 
     static var dateOnlyFormatter: DateFormatter = {

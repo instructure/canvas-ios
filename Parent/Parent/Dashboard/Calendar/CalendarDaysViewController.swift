@@ -108,7 +108,7 @@ class CalendarDaysViewController: UIViewController {
         for svs in weeksStackView.arrangedSubviews {
             if let week = svs as? UIStackView {
                 for button in week.arrangedSubviews {
-                    if let b = button as? CalendarDayButton, let count = data?[b.date.removeTime()] {
+                    if let b = button as? CalendarDayButton, let count = data?[DateFormatter.localizedString(from: b.date, dateStyle: .short, timeStyle: .none)] {
                         b.activityDotCount = count
                     }
                 }

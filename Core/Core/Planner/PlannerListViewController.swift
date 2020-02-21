@@ -18,7 +18,7 @@
 
 import UIKit
 
-public typealias DailyCalendarActivityData = [Date: Int]
+public typealias DailyCalendarActivityData = [String: Int]
 
 public class PlannerListViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -32,7 +32,7 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
     var start: Date = Clock.now.startOfDay()
     var end: Date = Clock.now.endOfDay()
 
-    lazy var plannables: Store<GetPlannables> = env.subscribe(GetPlannables(userID: studentID, startDate: start, endDate: end)) { [weak self] in
+    lazy var plannables: Store<GetPlannables> = env.subscribe(GetPlannables(userID: studentID, startDate: start, endDate: end.addSeconds(1))) { [weak self] in
         self?.updatePlannables()
     }
 
@@ -70,7 +70,7 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
         self.start = start
         self.end = end
 
-        plannables = env.subscribe(GetPlannables(userID: studentID, startDate: start, endDate: end, contextCodes: [], filter: "")) { [weak self] in
+        plannables = env.subscribe(GetPlannables(userID: studentID, startDate: start, endDate: end.addSeconds(1), contextCodes: [], filter: "")) { [weak self] in
             self?.updatePlannables()
         }
 
@@ -91,7 +91,7 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
         let request = GetPlannablesRequest(userID: studentID, startDate: forDate.startOfMonth(), endDate: forDate.endOfMonth(), contextCodes: [], filter: "")
         env.api.exhaust(request) { [weak self] response, _, _ in
             for p in response ?? [] {
-                let date = p.plannable_date.removeTime()
+                let date = DateFormatter.localizedString(from: p.plannable_date, dateStyle: .short, timeStyle: .none)
                 data[date] = (data[date] ?? 0) + 1
             }
             self?.cachedMonthlyActivityData = data

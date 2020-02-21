@@ -27,7 +27,6 @@ public struct APIPlannable: Codable, Equatable {
     let html_url: URL?
     let context_image: URL?
     let context_name: String?
-    let title: String?
     let plannable: plannable?
     public let plannable_date: Date
     //  swiftlint:disable:next type_name
@@ -67,7 +66,6 @@ extension APIPlannable {
         html_url: URL = URL(string: "http://localhost")!,
         context_image: URL = URL(string: "https://live.staticflickr.com/1449/24823655706_a46286c12e.jpg")!,
         context_name: String? = "Assignment Grades",
-        title: String? = "plannable #1",
         plannable: APIPlannable.plannable? = APIPlannable.plannable(title: "assignment a"),
         plannable_date: Date = Clock.now
     ) -> APIPlannable {
@@ -80,7 +78,6 @@ extension APIPlannable {
             html_url: html_url,
             context_image: context_image,
             context_name: context_name,
-            title: title,
             plannable: plannable,
             plannable_date: plannable_date
         )

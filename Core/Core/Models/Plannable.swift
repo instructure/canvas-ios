@@ -49,11 +49,6 @@ public final class Plannable: NSManagedObject {
         set { typeRaw = newValue.rawValue }
     }
 
-    public var type: ActivityType {
-        get { return ActivityType(rawValue: typeRaw) ?? ActivityType.submission }
-        set { typeRaw = newValue.rawValue }
-    }
-
     public var context: Context? {
         get { return ContextModel(canvasContextID: canvasContextIDRaw ?? "") }
         set { canvasContextIDRaw = newValue?.canvasContextID }
