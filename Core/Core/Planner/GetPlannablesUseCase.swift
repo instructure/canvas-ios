@@ -22,12 +22,12 @@ public class GetPlannables: CollectionUseCase {
     public typealias Model = Plannable
 
     var userID: String?
-    var startDate: Date?
-    var endDate: Date?
+    var startDate: Date
+    var endDate: Date
     var contextCodes: [String] = []
     var filter: String = ""
 
-    public init(userID: String? = nil, startDate: Date? = nil, endDate: Date? = nil, contextCodes: [String] = [], filter: String = "") {
+    public init(userID: String? = nil, startDate: Date, endDate: Date, contextCodes: [String] = [], filter: String = "") {
         self.userID = userID
         self.startDate = startDate
         self.endDate = endDate
@@ -38,11 +38,17 @@ public class GetPlannables: CollectionUseCase {
     public var cacheKey: String? { nil }
 
     public var scope: Scope {
+        var predicate = NSPredicate(format: "%K < %@ AND %@ <= %K",
+            #keyPath(Plannable.date), endDate as CVarArg,
+            startDate as CVarArg, #keyPath(Plannable.date)
+        )
         if let userID = userID {
-            return Scope.where(#keyPath(Plannable.userID), equals: userID, orderBy: #keyPath(Plannable.date))
-        } else {
-            return .all(orderBy: #keyPath(Plannable.date))
+            predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                predicate,
+                NSPredicate(key: #keyPath(Plannable.userID), equals: userID),
+            ])
         }
+        return Scope(predicate: predicate, orderBy: #keyPath(Plannable.date))
     }
 
     public var request: GetPlannablesRequest {

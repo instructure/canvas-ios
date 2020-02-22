@@ -24,7 +24,7 @@ public struct APIPlannable: Codable, Equatable {
     let planner_override: APIPlannerOverride?
     let plannable_id: ID
     let plannable_type: String
-    let html_url: APIURL
+    let html_url: APIURL?
     let context_image: URL?
     let context_name: String?
     let title: String?
@@ -64,7 +64,7 @@ extension APIPlannable {
         planner_override: APIPlannerOverride? = nil,
         plannable_id: ID = "1",
         plannable_type: String = "Assignment",
-        html_url: URL = URL(string: "http://localhost")!,
+        html_url: URL? = URL(string: "http://localhost")!,
         context_image: URL = URL(string: "https://live.staticflickr.com/1449/24823655706_a46286c12e.jpg")!,
         context_name: String? = "Assignment Grades",
         title: String? = "plannable #1",

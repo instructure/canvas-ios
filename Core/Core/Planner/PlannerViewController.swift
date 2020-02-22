@@ -19,43 +19,121 @@
 import UIKit
 
 public class PlannerViewController: UIViewController {
-
-    var calendar: CalendarViewController!
-    var plannerList: PlannerListViewController!
-    var studentID: String!
+    lazy var calendar = CalendarViewController.create(studentID: studentID, delegate: self)
+    lazy var calendarTop = calendar.view.topAnchor.constraint(equalTo: view.topAnchor)
+    let listPageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+    var list: PlannerListViewController! {
+        listPageController.viewControllers?.first as? PlannerListViewController
+    }
+    var studentID = ""
 
     public static func create(studentID: String) -> PlannerViewController {
-        let vc = PlannerViewController()
-        vc.studentID = studentID
-        return vc
+        let controller = PlannerViewController()
+        controller.studentID = studentID
+        return controller
     }
 
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        calendar = CalendarViewController.create(studentID: studentID)
-        plannerList = PlannerListViewController.create(studentID: studentID)
-        calendar.delegate = plannerList
+        embed(listPageController, in: view)
+        listPageController.dataSource = self
+        listPageController.delegate = self
+        listPageController.setViewControllers([
+            PlannerListViewController.create(
+                studentID: studentID,
+                start: Clock.now.startOfDay(),
+                end: Clock.now.endOfDay(),
+                delegate: self
+            ),
+        ], direction: .forward, animated: false)
+        for view in listPageController.view.subviews {
+            if let scroll = view as? UIScrollView {
+                scroll.canCancelContentTouches = true
+            }
+        }
 
-        embed(calendar, in: view, constraintHandler: { child, container in
+        embed(calendar, in: view) { child, container in
             child.view.pinToLeftAndRightOfSuperview()
-            child.view.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
-            child.view.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
-        })
+        }
+        calendarTop.isActive = true
 
-        embed(plannerList, in: view, constraintHandler: { [weak self] child, container in
-            guard let ss = self else { return }
-            child.view.pinToLeftAndRightOfSuperview()
-            NSLayoutConstraint.activate([
-                child.view.topAnchor.constraint(equalTo: ss.calendar.daysContainer.bottomAnchor),
-                child.view.bottomAnchor.constraint(equalTo: container.bottomAnchor),
-            ])
-        })
+        let divider = DividerView()
+        divider.tintColor = .named(.borderMedium)
+        divider.isOpaque = false
+        view.addSubview(divider)
+        divider.pinToLeftAndRightOfSuperview()
+        divider.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        divider.topAnchor.constraint(equalTo: calendar.view.bottomAnchor).isActive = true
+
+        list.tableView.contentInset.top = calendar.minHeight
     }
 }
 
-extension PlannerListViewController: CalendarViewControllerDelegate {
-    func selectedDateDidChange(_ date: Date) {
-        updateListForDates(start: date.startOfDay(), end: date.endOfDay())
+extension PlannerViewController: CalendarViewControllerDelegate {
+    func calendarDidSelectDate(_ date: Date) {
+        calendar.updateSelectedDate(date)
+        let newList = PlannerListViewController.create(
+            studentID: studentID,
+            start: date.startOfDay(),
+            end: date.endOfDay(),
+            delegate: self
+        )
+        newList.loadViewIfNeeded()
+        newList.tableView.contentInset = list.tableView.contentInset
+        listPageController.setViewControllers([ newList ], direction: date < list.start ? .reverse : .forward, animated: true)
+    }
+
+    func calendarDidResize(height: CGFloat, animated: Bool) {
+        list.tableView.contentInset.top = height
+        view.layoutIfNeeded()
+        clearPageCache()
+    }
+}
+
+extension PlannerViewController: UIScrollViewDelegate {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let topSpace = -scrollView.contentOffset.y
+        let height = max(calendar.minHeight, min(calendar.maxHeight, topSpace))
+        scrollView.contentInset.top = height
+        calendar.setHeight(height)
+        calendarTop.constant = max(0, topSpace - height) // overscroll at top
+    }
+
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let topSpace = -scrollView.contentOffset.y
+        guard calendar.minHeight < topSpace, topSpace < calendar.maxHeight else { return }
+        calendar.setExpanded(calendar.isExpanded)
+    }
+}
+
+extension PlannerViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+    func clearPageCache() {
+        listPageController.dataSource = nil
+        listPageController.dataSource = self
+    }
+
+    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        return listPageDelta(-1, from: (viewController as? PlannerListViewController)!)
+    }
+
+    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        return listPageDelta(1, from: (viewController as? PlannerListViewController)!)
+    }
+
+    func listPageDelta(_ delta: Int, from list: PlannerListViewController) -> PlannerListViewController {
+        let newList = PlannerListViewController.create(
+            studentID: studentID,
+            start: list.start.addDays(delta),
+            end: list.end.addDays(delta),
+            delegate: self
+        )
+        newList.loadViewIfNeeded()
+        newList.tableView.contentInset = list.tableView.contentInset
+        return newList
+    }
+
+    public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        calendar.updateSelectedDate(list.start)
     }
 }

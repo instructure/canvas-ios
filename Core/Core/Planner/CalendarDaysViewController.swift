@@ -19,10 +19,6 @@
 import Foundation
 import UIKit
 
-protocol CalendarDaysDelegate: class {
-    func setSelectedDate(_ date: Date)
-}
-
 class CalendarDaysViewController: UIViewController {
     static let calendar = Calendar.autoupdatingCurrent
     static let numberOfDaysInWeek = calendar.maximumRange(of: .weekday)!.count
@@ -32,14 +28,14 @@ class CalendarDaysViewController: UIViewController {
     let weekGap: CGFloat = 12
 
     var calendar: Calendar { CalendarDaysViewController.calendar }
-    weak var delegate: CalendarDaysDelegate?
+    weak var delegate: CalendarViewControllerDelegate?
     var fromDate = Clock.now
     var selectedDate = Clock.now
     private var selectedWeekIndex = 0
     let weeksStackView = UIStackView()
     lazy var topOffset = weeksStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
 
-    static func create(_ fromDate: Date, selectedDate: Date, delegate: CalendarDaysDelegate?) -> CalendarDaysViewController {
+    static func create(_ fromDate: Date, selectedDate: Date, delegate: CalendarViewControllerDelegate?) -> CalendarDaysViewController {
         let controller = CalendarDaysViewController()
         controller.delegate = delegate
         controller.fromDate = fromDate
@@ -64,7 +60,6 @@ class CalendarDaysViewController: UIViewController {
 
             for _ in 0..<CalendarDaysViewController.numberOfDaysInWeek {
                 let day = CalendarDayButton(date: currentDate, selectedDate: selectedDate, calendar: calendar)
-                day.tag = weeksStackView.arrangedSubviews.count - 1
                 day.addTarget(self, action: #selector(selectDate(_:)), for: .primaryActionTriggered)
                 week.addArrangedSubview(day)
                 currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
@@ -85,12 +80,15 @@ class CalendarDaysViewController: UIViewController {
     }
 
     @objc func selectDate(_ button: CalendarDayButton) {
-        selectedDate = button.date
-        selectedWeekIndex = button.tag
-        delegate?.setSelectedDate(selectedDate)
-        for week in weeksStackView.arrangedSubviews {
+        delegate?.calendarDidSelectDate(button.date)
+    }
+
+    func updateSelectedDate(_ date: Date) {
+        selectedDate = date
+        for (w, week) in weeksStackView.arrangedSubviews.enumerated() {
             for day in week.subviews.compactMap({ $0 as? CalendarDayButton }) {
                 day.isSelected = calendar.isDate(day.date, inSameDayAs: selectedDate)
+                if day.isSelected { selectedWeekIndex = w }
             }
         }
     }
@@ -101,6 +99,16 @@ class CalendarDaysViewController: UIViewController {
             : weeksStackView.arrangedSubviews[selectedWeekIndex]
         let button = week.subviews[week.subviews.count / 2] as? CalendarDayButton
         return button!.date
+    }
+
+    func hasDate(_ date: Date, isExpanded: Bool) -> Bool {
+        for (w, week) in weeksStackView.arrangedSubviews.enumerated() {
+            guard isExpanded || w == selectedWeekIndex else { continue }
+            for day in week.subviews.compactMap({ $0 as? CalendarDayButton }) {
+                if calendar.isDate(day.date, inSameDayAs: date) { return true }
+            }
+        }
+        return false
     }
 }
 

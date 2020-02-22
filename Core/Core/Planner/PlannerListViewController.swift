@@ -21,23 +21,27 @@ import UIKit
 public class PlannerListViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyStateViewContainer: UIView!
-    @IBOutlet weak var emptyStateHeader: DynamicLabel!
-    @IBOutlet weak var emptyStateSubHeader: DynamicLabel!
-    @IBOutlet weak var emptytStateImageView: UIImageView!
+    @IBOutlet weak var emptyStateHeader: UILabel!
+    @IBOutlet weak var emptyStateSubHeader: UILabel!
+    @IBOutlet weak var emptyStateTop: NSLayoutConstraint!
 
+    weak var delegate: UIScrollViewDelegate?
     let env = AppEnvironment.shared
     var studentID: String?
     var start: Date = Clock.now.startOfDay()
     var end: Date = Clock.now.endOfDay()
 
-    lazy var plannables: Store<GetPlannables> = env.subscribe(GetPlannables(userID: studentID, startDate: start, endDate: end)) { [weak self] in
+    lazy var plannables = env.subscribe(GetPlannables(userID: studentID, startDate: start, endDate: end)) { [weak self] in
         self?.updatePlannables()
     }
 
-    public static func create(studentID: String?) -> PlannerListViewController {
-        let vc = loadFromStoryboard()
-        vc.studentID = studentID ?? ""
-        return vc
+    public static func create(studentID: String? = nil, start: Date, end: Date, delegate: UIScrollViewDelegate?) -> PlannerListViewController {
+        let controller = loadFromStoryboard()
+        controller.delegate = delegate
+        controller.studentID = studentID
+        controller.start = start
+        controller.end = end
+        return controller
     }
 
     public override func viewDidLoad() {
@@ -47,7 +51,6 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
 
         emptyStateHeader.text = NSLocalizedString("No Assignments", comment: "")
         emptyStateSubHeader.text = NSLocalizedString("It looks like assignments haven’t been created in this space yet.", comment: "")
-        emptytStateImageView.image = UIImage(named: "PandaNoEvents", in: .core, compatibleWith: nil)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -70,17 +73,6 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
             emptyStateViewContainer.isHidden = plannables.count > 0
         }
     }
-
-    public func updateListForDates(start: Date, end: Date) {
-        self.start = start
-        self.end = end
-
-        plannables = env.subscribe(GetPlannables(userID: studentID, startDate: start, endDate: end, contextCodes: [], filter: "")) { [weak self] in
-            self?.updatePlannables()
-        }
-
-        plannables.refresh(force: true)
-    }
 }
 
 extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate {
@@ -96,8 +88,17 @@ extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate 
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let plannable = plannables[indexPath] else { return }
-        env.router.route(to: plannable.htmlURL, from: self, options: .detail(embedInNav: true))
+        guard let url = plannables[indexPath]?.htmlURL else { return }
+        env.router.route(to: url, from: self, options: .detail(embedInNav: true))
+    }
+
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        delegate?.scrollViewDidScroll?(scrollView)
+        emptyStateTop.constant = max(scrollView.contentInset.top, -scrollView.contentOffset.y)
+    }
+
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        delegate?.scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate)
     }
 }
 
