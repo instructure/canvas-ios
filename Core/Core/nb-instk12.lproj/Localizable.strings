@@ -269,9 +269,6 @@
 "Due Date" = "Forfallsdato";
 
 /* No comment provided by engineer. */
-"Due: %@" = "Frist: %@";
-
-/* No comment provided by engineer. */
 "Edit" = "Rediger";
 
 /* Description for email communication channel */

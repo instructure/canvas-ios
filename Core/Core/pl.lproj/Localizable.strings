@@ -269,9 +269,6 @@
 "Due Date" = "Termin";
 
 /* No comment provided by engineer. */
-"Due: %@" = "Termin: %@";
-
-/* No comment provided by engineer. */
 "Edit" = "Edytuj";
 
 /* Description for email communication channel */

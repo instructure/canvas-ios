@@ -269,9 +269,6 @@
 "Due Date" = "Afleveringsdato";
 
 /* No comment provided by engineer. */
-"Due: %@" = "Forfalder: %@";
-
-/* No comment provided by engineer. */
 "Edit" = "Redigér";
 
 /* Description for email communication channel */

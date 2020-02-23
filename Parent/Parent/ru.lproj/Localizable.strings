@@ -242,8 +242,8 @@
 "Regarding: %@" = "Касательно: %@";
 
 /* Regarding <John Doe>, [link to grades or syllabus]
-   Regarding <John Doe>, < assignment url >
-   Regarding <John Doe>, <Grades | Syllabus> */
+   Regarding <John Doe>, <Grades | Syllabus>
+   Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "Касательно: %1$@, %2$@";
 
 /* No comment provided by engineer. */
