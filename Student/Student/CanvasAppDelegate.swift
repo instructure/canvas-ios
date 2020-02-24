@@ -139,8 +139,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
             let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
             components.path == "student_view",
             let fakeStudent = LoginSession.mostRecent(in: .shared, forKey: .fakeStudents) {
-            logout()
-            setup(session: fakeStudent)
+            userDidLogin(session: fakeStudent)
             return true
         }
         return openCanvasURL(url)
