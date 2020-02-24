@@ -72,17 +72,12 @@ public struct GetCoursesRequest: APIRequestable {
 
     public let path = "courses"
     public var query: [APIQueryItem] {
-        var query: [APIQueryItem] = [
+        [
             .include(include.map { $0.rawValue }),
-            .value("per_page", String(perPage)),
+            .perPage(perPage),
+            .optionalValue("enrollment_state", enrollmentState?.rawValue),
+            .array("state", (state ?? []).map { $0.rawValue }),
         ]
-        if let enrollmentState = enrollmentState {
-            query.append(.value("enrollment_state", enrollmentState.rawValue))
-        }
-        if let state = state {
-            query.append(.array("state", state.map { $0.rawValue }))
-        }
-        return query
     }
 }
 
@@ -127,12 +122,7 @@ public struct GetCourseRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        var query: [APIQueryItem] = []
-
-        if !include.isEmpty {
-            query.append(.array("include", include.map { $0.rawValue }))
-        }
-        return query
+        [ .include(include.map { $0.rawValue }) ]
     }
 }
 

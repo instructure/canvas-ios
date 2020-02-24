@@ -22,7 +22,7 @@ import XCTest
 class APIAccountNotificationTests: XCTestCase {
     func testGetAccountNotificationsRequest() {
         XCTAssertEqual(GetAccountNotificationsRequest().path, "accounts/self/users/self/account_notifications")
-        XCTAssertEqual(GetAccountNotificationsRequest().query, [ .value("per_page", "99") ])
+        XCTAssertEqual(GetAccountNotificationsRequest().queryItems, [ URLQueryItem(name: "per_page", value: "99") ])
     }
 
     func testDeleteAccountNotificationRequest() {

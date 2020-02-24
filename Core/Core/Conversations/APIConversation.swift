@@ -194,16 +194,11 @@ public struct GetConversationsRequest: APIRequestable {
     let scope: Scope?
 
     public var query: [APIQueryItem] {
-        var query: [APIQueryItem] = [
+        [
             .include(include.map { $0.rawValue }),
+            .perPage(perPage),
+            .optionalValue("scope", scope?.rawValue),
         ]
-        if let perPage = perPage {
-            query.append(.value("per_page", String(perPage)))
-        }
-        if let scope = scope {
-            query.append(.value("scope", scope.rawValue))
-        }
-        return query
     }
 }
 

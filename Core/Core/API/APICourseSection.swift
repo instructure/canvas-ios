@@ -46,6 +46,6 @@ public struct GetCourseSectionsRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        return [ APIQueryItem.value("per_page", "\(perPage)") ]
+        [ .perPage(perPage) ]
     }
 }

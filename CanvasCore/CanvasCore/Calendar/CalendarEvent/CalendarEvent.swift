@@ -50,7 +50,7 @@ public final class CalendarEvent: NSManagedObject {
 
     @objc public static var dayDateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter
     }()
 

@@ -22,9 +22,9 @@ import XCTest
 class APIAccountRequestableTests: XCTestCase {
     func testGetAccountsSearchRequest() {
         XCTAssertEqual(GetAccountsSearchRequest(searchTerm: "").path, "https://canvas.instructure.com/api/v1/accounts/search")
-        XCTAssertEqual(GetAccountsSearchRequest(searchTerm: "abcd").query, [
-            APIQueryItem.value("per_page", "50"),
-            APIQueryItem.value("search_term", "abcd"),
+        XCTAssertEqual(GetAccountsSearchRequest(searchTerm: "abcd").queryItems, [
+            URLQueryItem(name: "per_page", value: "50"),
+            URLQueryItem(name: "search_term", value: "abcd"),
         ])
         XCTAssertEqual(GetAccountsSearchRequest(searchTerm: "").headers, [
             HttpHeader.authorization: nil,

@@ -56,10 +56,6 @@ public struct GetActivitiesRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        var query: [APIQueryItem] = []
-        if let perPage = perPage {
-            query.append(.value("per_page", String(perPage)))
-        }
-        return query
+        [ .perPage(perPage) ]
     }
 }
