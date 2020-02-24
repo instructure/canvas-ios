@@ -100,7 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         legacyClient.originalIDOfMasqueradingUser = session.originalUserID
         legacyClient.originalBaseURL = session.originalBaseURL
         let getProfile = GetUserProfileRequest(userID: "self")
-        environment.api.makeRequest(getProfile) { response, urlResponse, error in
+        environment.api.makeRequest(getProfile) { response, urlResponse, _ in
             if urlResponse?.isUnauthorized == true, !session.isFakeStudent {
                 DispatchQueue.main.async { self.userDidLogout(session: session) }
             }
