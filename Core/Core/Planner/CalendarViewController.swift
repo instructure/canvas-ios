@@ -34,6 +34,8 @@ class CalendarViewController: UIViewController {
         daysPageController.viewControllers?.first as? CalendarDaysViewController
     }
     @IBOutlet weak var daysHeight: NSLayoutConstraint!
+    lazy var panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPan(_:)))
+    var panOffset: CGFloat = 0
     @IBOutlet weak var weekdayRow: UIStackView!
     @IBOutlet weak var yearLabel: UILabel!
     weak var delegate: CalendarViewControllerDelegate?
@@ -68,6 +70,7 @@ class CalendarViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addGestureRecognizer(panRecognizer)
         view.backgroundColor = .named(.backgroundLightest)
 
         let isRTL = view.effectiveUserInterfaceLayoutDirection == .rightToLeft
@@ -105,6 +108,22 @@ class CalendarViewController: UIViewController {
         updateSelectedDate(selectedDate)
     }
 
+    @objc func didPan(_ recognizer: UIPanGestureRecognizer) {
+        switch recognizer.state {
+        case .began:
+            panOffset = height
+        case .changed:
+            let height = max(minHeight, min(maxHeight, panOffset + recognizer.translation(in: view).y))
+            setHeight(height)
+            delegate?.calendarDidResize(height: height, animated: false)
+        case .ended:
+            setExpanded(isExpanded)
+        default:
+            break
+        }
+    }
+
+
     @IBAction func toggleExpanded() {
         setExpanded(!isExpanded)
     }
@@ -119,9 +138,10 @@ class CalendarViewController: UIViewController {
     func updateExpanded() {
         daysHeight.constant = isExpanded ? days.maxHeight : days.minHeight
         dropdownView.transform = CGAffineTransform(rotationAngle: isExpanded ? -.pi : 0)
-        delegate?.calendarDidResize(height: daysContainer.frame.minY + daysHeight.constant, animated: true)
+        delegate?.calendarDidResize(height: height, animated: true)
     }
 
+    var height: CGFloat { daysContainer.frame.minY + daysHeight.constant }
     var minHeight: CGFloat { daysContainer.frame.minY + days.minHeight }
     var maxHeight: CGFloat { daysContainer.frame.minY + days.maxHeight }
     func setHeight(_ height: CGFloat) {
@@ -129,7 +149,6 @@ class CalendarViewController: UIViewController {
         isExpanded = ratio > 0.5
         daysHeight.constant = height - daysContainer.frame.minY
         dropdownView.transform = CGAffineTransform(rotationAngle: -ratio * .pi)
-        clearPageCache()
     }
 
     @IBAction func filter(_ sender: UIButton) {
@@ -197,6 +216,6 @@ extension CalendarViewController: UIPageViewControllerDataSource, UIPageViewCont
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         guard let days = pendingViewControllers.first as? CalendarDaysViewController, isExpanded else { return }
         daysHeight.constant = max(days.maxHeight, self.days.maxHeight)
-        delegate?.calendarDidResize(height: daysContainer.frame.minY + daysHeight.constant, animated: false)
+        delegate?.calendarDidResize(height: height, animated: false)
     }
 }

@@ -20,13 +20,11 @@ import UIKit
 
 public class PlannerViewController: UIViewController {
     lazy var calendar = CalendarViewController.create(studentID: studentID, delegate: self)
-    lazy var calendarPan = UIPanGestureRecognizer(target: self, action: #selector(calendarPan(_:)))
-    var calendarPanOffset: CGFloat = 0
-    lazy var calendarTop = calendar.view.topAnchor.constraint(equalTo: view.topAnchor)
     let listPageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
     var list: PlannerListViewController! {
         listPageController.viewControllers?.first as? PlannerListViewController
     }
+    var listContentOffsetY: CGFloat = 0
     var studentID = ""
 
     public static func create(studentID: String) -> PlannerViewController {
@@ -55,11 +53,10 @@ public class PlannerViewController: UIViewController {
             }
         }
 
-        embed(calendar, in: view) { child, _ in
+        embed(calendar, in: view) { child, container in
             child.view.pinToLeftAndRightOfSuperview()
+            child.view.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
         }
-        calendarTop.isActive = true
-        calendar.view.addGestureRecognizer(calendarPan)
 
         let divider = DividerView()
         divider.tintColor = .named(.borderMedium)
@@ -69,6 +66,7 @@ public class PlannerViewController: UIViewController {
         divider.heightAnchor.constraint(equalToConstant: 1).isActive = true
         divider.topAnchor.constraint(equalTo: calendar.view.bottomAnchor).isActive = true
 
+        calendar.view.layoutIfNeeded()
         list.tableView.contentInset.top = calendar.minHeight
     }
 }
@@ -95,31 +93,19 @@ extension PlannerViewController: CalendarViewControllerDelegate {
 }
 
 extension PlannerViewController: UIScrollViewDelegate {
-    @objc func calendarPan(_ pan: UIPanGestureRecognizer) {
-        switch pan.state {
-        case .began:
-            calendarPanOffset = list.tableView.contentOffset.y
-        case .changed:
-            list.tableView.contentOffset.y = calendarPanOffset - pan.translation(in: view).y
-            scrollViewDidScroll(list.tableView)
-        case .ended:
-            calendar.setExpanded(calendar.isExpanded)
-        default:
-            break
-        }
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        listContentOffsetY = scrollView.contentInset.top + scrollView.contentOffset.y
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let topSpace = -scrollView.contentOffset.y
+        guard scrollView.contentInset.top > calendar.minHeight else { return }
+        let topSpace = -scrollView.contentOffset.y - listContentOffsetY
         let height = max(calendar.minHeight, min(calendar.maxHeight, topSpace))
         scrollView.contentInset.top = height
         calendar.setHeight(height)
-        calendarTop.constant = max(0, topSpace - height) // overscroll at top
     }
 
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        let topSpace = -scrollView.contentOffset.y
-        guard calendar.minHeight < topSpace, topSpace < calendar.maxHeight else { return }
         calendar.setExpanded(calendar.isExpanded)
     }
 }

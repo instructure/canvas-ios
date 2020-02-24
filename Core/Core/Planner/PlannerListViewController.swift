@@ -92,6 +92,10 @@ extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate 
         env.router.route(to: url, from: self, options: .detail(embedInNav: true))
     }
 
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        delegate?.scrollViewWillBeginDragging?(scrollView)
+    }
+
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         delegate?.scrollViewDidScroll?(scrollView)
         emptyStateTop.constant = max(scrollView.contentInset.top, -scrollView.contentOffset.y)
