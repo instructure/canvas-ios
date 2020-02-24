@@ -269,9 +269,6 @@
 "Due Date" = "Sista inlämningsdatum";
 
 /* No comment provided by engineer. */
-"Due: %@" = "Förfallodatum: %@";
-
-/* No comment provided by engineer. */
 "Edit" = "Redigera";
 
 /* Description for email communication channel */

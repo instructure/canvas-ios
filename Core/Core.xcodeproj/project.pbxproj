@@ -585,19 +585,18 @@
 		7DF4FFC121700BCE007E5F81 /* TabViewableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4FFC021700BCE007E5F81 /* TabViewableTests.swift */; };
 		7DF9BF082152AEF10099026B /* UIColorExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9BF072152AEF10099026B /* UIColorExtensionsTests.swift */; };
 		7DFB2CF921C978D40077DEEE /* GetCustomColorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB2CF821C978D40077DEEE /* GetCustomColorsTests.swift */; };
+		7DFD5F7523FEF38100D988E0 /* PlannerListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C4923F34DB1009622E3 /* PlannerListViewControllerTests.swift */; };
+		7DFD5F7623FEF4A800D988E0 /* Plannable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C3D23F20304009622E3 /* Plannable.swift */; };
 		7DFD5F7B23FF158700D988E0 /* CalendarDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFD5F7723FF158700D988E0 /* CalendarDaysViewController.swift */; };
 		7DFD5F7C23FF158700D988E0 /* PlannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFD5F7923FF158700D988E0 /* PlannerViewController.swift */; };
 		7DFD5F7D23FF158700D988E0 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFD5F7A23FF158700D988E0 /* CalendarViewController.swift */; };
 		7DFD5F7E23FF160100D988E0 /* CalendarViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DFD5F7823FF158700D988E0 /* CalendarViewController.storyboard */; };
-		7DFD5F7523FEF38100D988E0 /* PlannerListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C4923F34DB1009622E3 /* PlannerListViewControllerTests.swift */; };
-		7DFD5F7623FEF4A800D988E0 /* Plannable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C3D23F20304009622E3 /* Plannable.swift */; };
 		7DFFAB1A219DDB22003E71F8 /* CommentListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DFFAB19219DDB22003E71F8 /* CommentListViewController.storyboard */; };
 		9727093B23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9727093A23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift */; };
 		977921A123E11C3F0082696B /* UIBarButtonItemExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977921A023E11C3F0082696B /* UIBarButtonItemExtensionTests.swift */; };
 		97A486C42397826300084499 /* ProfileViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A486C32397826300084499 /* ProfileViewControllerTests.swift */; };
 		97A486CB239AB2ED00084499 /* SyllabusViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A486CA239AB2ED00084499 /* SyllabusViewControllerTests.swift */; };
 		97F69C3823F1F9A6009622E3 /* APIPlannableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C3723F1F9A6009622E3 /* APIPlannableTests.swift */; };
-		97F69C3823F1F9A6009622E3 /* PlannableRequestablesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C3723F1F9A6009622E3 /* PlannableRequestablesTests.swift */; };
 		97F69C4023F209DB009622E3 /* PlannableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C3F23F209DB009622E3 /* PlannableTests.swift */; };
 		97F69C4423F2208E009622E3 /* GetPlannablesUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C4323F2208D009622E3 /* GetPlannablesUseCaseTests.swift */; };
 		9F09A4CF22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F09A4CE22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift */; };
@@ -3029,13 +3028,9 @@
 				7DFD5F7723FF158700D988E0 /* CalendarDaysViewController.swift */,
 				7DFD5F7823FF158700D988E0 /* CalendarViewController.storyboard */,
 				7DFD5F7A23FF158700D988E0 /* CalendarViewController.swift */,
-				97F69C3B23F1FE64009622E3 /* GetPlannablesUseCase.swift */,
-				97F69C4723F3475E009622E3 /* PlannerListViewController.storyboard */,
-				97F69C4523F34734009622E3 /* PlannerListViewController.swift */,
 				7DFD5F7923FF158700D988E0 /* PlannerViewController.swift */,
 				97F69C3B23F1FE64009622E3 /* GetPlannablesUseCase.swift */,
 				97F69C3D23F20304009622E3 /* Plannable.swift */,
-				97F69BBE23F1F286009622E3 /* PlannablesRequestable.swift */,
 				97F69C4723F3475E009622E3 /* PlannerListViewController.storyboard */,
 				97F69C4523F34734009622E3 /* PlannerListViewController.swift */,
 			);
