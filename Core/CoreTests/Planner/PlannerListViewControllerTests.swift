@@ -35,7 +35,7 @@ class PlannerListViewControllerTests: CoreTestCase {
     func testLayout() {
         let date = Clock.now
         let assignment = APIPlannable.make(plannable_date: date)
-        api.mock(GetPlannables(userID: studentID, startDate: Clock.now.startOfDay(), endDate: Clock.now.endOfDay()), value: [assignment])
+        api.mock(GetPlannables(userID: studentID, startDate: Clock.now.startOfDay(), endDate: Clock.now.endOfDay().addSeconds(1)), value: [assignment])
         vc.view.layoutIfNeeded()
         vc.updateListForDates(start: Clock.now.startOfDay(), end: Clock.now.endOfDay())
 
@@ -48,7 +48,7 @@ class PlannerListViewControllerTests: CoreTestCase {
 
         vc.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
         vc.tableView.delegate?.tableView?(vc.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
-        XCTAssertTrue(router.lastRoutedTo(assignment.html_url.rawValue))
+        XCTAssertTrue(router.lastRoutedTo(assignment.html_url!.rawValue))
         vc.viewWillAppear(false)
         XCTAssertNil(vc.tableView.indexPathForSelectedRow)
     }

@@ -55,6 +55,10 @@ public class PlannerViewController: UIViewController {
 }
 
 extension PlannerListViewController: CalendarViewControllerDelegate {
+    func dailyActivityCount(forDate: Date, handler: @escaping (DailyCalendarActivityData?) -> Void) {
+        getDailyActivityForMonth(forDate: forDate, handler: handler)
+    }
+
     func selectedDateDidChange(_ date: Date) {
         updateListForDates(start: date.startOfDay(), end: date.endOfDay())
     }

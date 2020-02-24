@@ -18,6 +18,8 @@
 
 import UIKit
 
+public typealias DailyCalendarActivityData = [String: Int]
+
 public class PlannerListViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyStateViewContainer: UIView!
@@ -30,7 +32,7 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
     var start: Date = Clock.now.startOfDay()
     var end: Date = Clock.now.endOfDay()
 
-    lazy var plannables: Store<GetPlannables> = env.subscribe(GetPlannables(userID: studentID, startDate: start, endDate: end)) { [weak self] in
+    lazy var plannables: Store<GetPlannables> = env.subscribe(GetPlannables(userID: studentID, startDate: start, endDate: end.addSeconds(1))) { [weak self] in
         self?.updatePlannables()
     }
 
@@ -75,11 +77,35 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
         self.start = start
         self.end = end
 
-        plannables = env.subscribe(GetPlannables(userID: studentID, startDate: start, endDate: end, contextCodes: [], filter: "")) { [weak self] in
+        plannables = env.subscribe(GetPlannables(userID: studentID, startDate: start, endDate: end.addSeconds(1), contextCodes: [], filter: "")) { [weak self] in
             self?.updatePlannables()
         }
 
         plannables.refresh(force: true)
+    }
+
+    private var cachedMonth: Int?
+    private var cachedMonthlyActivityData: DailyCalendarActivityData?
+
+    public func getDailyActivityForMonth(forDate: Date, handler: @escaping (DailyCalendarActivityData?) -> Void) {
+
+        let month = Calendar.current.dateComponents([.month], from: forDate).month
+        if cachedMonth == month, let data = cachedMonthlyActivityData {
+            handler(data)
+            return
+        }
+
+        var data: DailyCalendarActivityData = [:]
+        let request = GetPlannablesRequest(userID: studentID, startDate: forDate.startOfMonth().addDays(-7), endDate: forDate.endOfMonth().addDays(7), contextCodes: [], filter: "")
+        env.api.exhaust(request) { [weak self] response, _, _ in
+            for p in response ?? [] {
+                let date = DateFormatter.localizedString(from: p.plannable_date, dateStyle: .short, timeStyle: .none)
+                data[date] = (data[date] ?? 0) + 1
+            }
+            self?.cachedMonthlyActivityData = data
+            self?.cachedMonth = month
+            handler(data)
+        }
     }
 }
 
@@ -96,8 +122,8 @@ extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate 
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let plannable = plannables[indexPath] else { return }
-        env.router.route(to: plannable.htmlURL, from: self, options: .detail(embedInNav: true))
+        guard let plannable = plannables[indexPath], let htmlURL = plannable.htmlURL else { return }
+        env.router.route(to: htmlURL, from: self, options: .detail(embedInNav: true))
     }
 }
 
