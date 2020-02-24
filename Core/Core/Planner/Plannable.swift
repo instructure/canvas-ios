@@ -22,7 +22,7 @@ import CoreData
 public final class Plannable: NSManagedObject {
 
     public enum PlannableType: String {
-        case announcement, assignment, discussion_topic, quiz, wiki_page, planner_note, calendar_event
+        case announcement, assignment, discussion_topic, quiz, wiki_page, planner_note, calendar_event, assessment_request
         case other
     }
 
@@ -98,6 +98,8 @@ extension Plannable {
             return UIImage.icon(.document, .line)
         case .calendar_event:
             return UIImage.icon(.calendarMonth, .line)
+        case .assessment_request:
+            return UIImage.icon(.peerReview, .line)
         case .other:
             return UIImage.icon(.warning, .line)
         }

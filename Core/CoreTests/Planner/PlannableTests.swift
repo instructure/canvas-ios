@@ -67,5 +67,8 @@ class PlannableTests: CoreTestCase {
 
         p = Plannable.make(from: .make(plannable_type: "calendar_event"))
         XCTAssertEqual(p.icon(), UIImage.icon(.calendarMonth, .line))
+        
+        p = Plannable.make(from: .make(plannable_type: "assessment_request"))
+        XCTAssertEqual(p.icon(), UIImage.icon(.peerReview, .line))
     }
 }
