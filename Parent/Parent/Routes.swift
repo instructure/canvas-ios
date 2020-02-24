@@ -27,9 +27,13 @@ let router = Router(routes: [
         return try? AccountNotificationViewController(session: session, announcementID: id)
     },
 
-    RouteHandler("/calendar") { _, _ in
+    RouteHandler("/calendar") { url, _ in
+        if let eventID = url.queryItems?.first(where: { $0.name == "event_id" })?.value {
+            guard let session = legacySession, let studentID = currentStudentID else { return nil }
+            return try? CalendarEventDetailsViewController(session: session, studentID: studentID, calendarEventID: eventID)
+        }
         guard let studentID = currentStudentID, ExperimentalFeature.parentCalendar.isEnabled else { return nil }
-        return CalendarContainerViewController.create(studentID: studentID)
+        return PlannerViewController.create(studentID: studentID)
     },
 
     RouteHandler(.conversations) { _, _ in
@@ -52,6 +56,12 @@ let router = Router(routes: [
         if assignmentID == "syllabus" {
             return CourseSyllabusViewController(courseID: courseID, studentID: studentID, session: session)
         }
+        return try? AssignmentDetailsViewController(session: session, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
+    },
+
+    RouteHandler(.submission(forCourse: ":courseID", assignment: ":assignmentID", user: ":userID")) { _, params in
+        guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let studentID = params["userID"] else { return nil }
+        guard let session = legacySession else { return nil }
         return try? AssignmentDetailsViewController(session: session, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
     },
 
@@ -80,7 +90,7 @@ let router = Router(routes: [
     },
 
     RouteHandler(.actionableItemCalendarEvent(eventID: ":eventID")) { _, params in
-        guard  let eventID = params["eventID"] else { return nil }
+        guard let eventID = params["eventID"] else { return nil }
         guard let session = legacySession, let studentID = currentStudentID else { return nil }
         return try? CalendarEventDetailsViewController(session: session, studentID: studentID, calendarEventID: eventID)
     },

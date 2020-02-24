@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -24,12 +24,11 @@ public struct APIPlannable: Codable, Equatable {
     let planner_override: APIPlannerOverride?
     let plannable_id: ID
     let plannable_type: String
-    let html_url: URL?
+    let html_url: APIURL?
     let context_image: URL?
     let context_name: String?
-    let title: String?
     let plannable: plannable?
-    let plannable_date: Date
+    public let plannable_date: Date
     //  swiftlint:disable:next type_name
     public struct plannable: Codable, Equatable {
         let title: String?
@@ -67,7 +66,6 @@ extension APIPlannable {
         html_url: URL = URL(string: "http://localhost")!,
         context_image: URL = URL(string: "https://live.staticflickr.com/1449/24823655706_a46286c12e.jpg")!,
         context_name: String? = "Assignment Grades",
-        title: String? = "plannable #1",
         plannable: APIPlannable.plannable? = APIPlannable.plannable(title: "assignment a"),
         plannable_date: Date = Clock.now
     ) -> APIPlannable {
@@ -77,10 +75,9 @@ extension APIPlannable {
             planner_override: planner_override,
             plannable_id: plannable_id,
             plannable_type: plannable_type,
-            html_url: html_url,
+            html_url: APIURL(rawValue: html_url),
             context_image: context_image,
             context_name: context_name,
-            title: title,
             plannable: plannable,
             plannable_date: plannable_date
         )
@@ -118,3 +115,43 @@ extension APIPlannerOverride {
 }
 
 #endif
+
+// https://canvas.instructure.com/doc/api/planner.html#method.planner.index
+public struct GetPlannablesRequest: APIRequestable {
+    public typealias Response = [APIPlannable]
+
+    var userID: String?
+    var startDate: Date?
+    var endDate: Date?
+    var contextCodes: [String] = []
+    var filter: String = ""
+
+    public var path: String {
+        if let userID = userID {
+            return "users/\(userID)/planner/items"
+        } else {
+            return "planner/items"
+        }
+    }
+
+    public var query: [APIQueryItem] {
+        var values: [APIQueryItem] = []
+        if let startDate = startDate {
+            values.append( .value("start_date", startDate.isoString()) )
+        }
+
+        if let endDate = endDate {
+            values.append( .value("end_date", endDate.isoString()) )
+        }
+
+        if !contextCodes.isEmpty {
+            values.append( .array("context_codes", contextCodes) )
+        }
+
+        if !filter.isEmpty {
+            values.append( .value("filter", filter) )
+        }
+
+        return values
+    }
+}

@@ -34,8 +34,9 @@ class PlannerListViewControllerTests: CoreTestCase {
 
     func testLayout() {
         let date = Clock.now
-        api.mock(GetPlannables(userID: studentID, startDate: Clock.now.startOfDay(), endDate: Clock.now.endOfDay()), value: [APIPlannable.make(plannable_date: date)])
-        vc.viewDidLoad()
+        let assignment = APIPlannable.make(plannable_date: date)
+        api.mock(GetPlannables(userID: studentID, startDate: Clock.now.startOfDay(), endDate: Clock.now.endOfDay().addSeconds(1)), value: [assignment])
+        vc.view.layoutIfNeeded()
         vc.updateListForDates(start: Clock.now.startOfDay(), end: Clock.now.endOfDay())
 
         vc.emptyStateViewContainer.isHidden = true
@@ -44,6 +45,12 @@ class PlannerListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.courseCode.text, "Assignment Grades")
         XCTAssertEqual(cell?.dueDate.text, DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .short) )
         XCTAssertEqual(cell?.points.text, nil)
+
+        vc.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
+        vc.tableView.delegate?.tableView?(vc.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        XCTAssertTrue(router.lastRoutedTo(assignment.html_url!.rawValue))
+        vc.viewWillAppear(false)
+        XCTAssertNil(vc.tableView.indexPathForSelectedRow)
     }
 
     func testEmptyState() {

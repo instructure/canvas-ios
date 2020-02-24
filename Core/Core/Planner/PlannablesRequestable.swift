@@ -27,6 +27,14 @@ public struct GetPlannablesRequest: APIRequestable {
     var contextCodes: [String] = []
     var filter: String = ""
 
+    public init(userID: String? = nil, startDate: Date? = nil, endDate: Date? = nil, contextCodes: [String] = [], filter: String = "") {
+        self.userID = userID
+        self.startDate = startDate
+        self.endDate = endDate
+        self.contextCodes = contextCodes
+        self.filter = filter
+    }
+
 	public var path: String {
         if let userID = userID {
             return "users/\(userID)/planner/items"

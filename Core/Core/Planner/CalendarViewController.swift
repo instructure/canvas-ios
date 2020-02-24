@@ -18,10 +18,10 @@
 
 import Foundation
 import UIKit
-import Core
 
 protocol CalendarViewControllerDelegate: class {
     func selectedDateDidChange(_ date: Date)
+    func dailyActivityCount(forDate: Date, handler: @escaping (DailyCalendarActivityData?) -> Void)
 }
 
 class CalendarViewController: UIViewController, CalendarDaysDelegate {
@@ -67,7 +67,7 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
 
-        let isRTL = UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft
+        let isRTL = view.effectiveUserInterfaceLayoutDirection == .rightToLeft
         monthButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: isRTL ? 28 : 0, bottom: 0, right: isRTL ? 0 : 28)
         monthButton.accessibilityLabel = NSLocalizedString("Show a month at a time", comment: "")
 
@@ -91,7 +91,7 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
         daysPageController.dataSource = self
         daysPageController.delegate = self
         daysPageController.setViewControllers([
-            CalendarDaysViewController.create(selectedDate, selectedDate: selectedDate, delegate: self),
+            createCalanderDaysViewController(fromDate: selectedDate, selectedDate: selectedDate),
         ], direction: .forward, animated: false)
         for view in daysPageController.view.subviews {
             if let scroll = view as? UIScrollView {
@@ -135,6 +135,14 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
         dropdownView.transform = CGAffineTransform(rotationAngle: isExpanded ? .pi : 0)
         view.superview?.layoutIfNeeded()
     }
+
+    private func createCalanderDaysViewController(fromDate: Date, selectedDate: Date) -> CalendarDaysViewController {
+        let vc = CalendarDaysViewController.create(fromDate, selectedDate: selectedDate, delegate: self)
+        delegate?.dailyActivityCount(forDate: selectedDate, handler: { data in
+            performUIUpdate { vc.loadViewIfNeeded(); vc.placeDailyActivityCounts(data: data) }
+        })
+        return vc
+    }
 }
 
 extension CalendarViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
@@ -158,8 +166,7 @@ extension CalendarViewController: UIPageViewControllerDataSource, UIPageViewCont
             midDate = calendar.date(byAdding: .day, value: numberOfDaysInWeek * delta, to: midDate)!
             selectedDate = calendar.date(byAdding: .day, value: numberOfDaysInWeek  * delta, to: selectedDate)!
         }
-        return CalendarDaysViewController.create(midDate, selectedDate: selectedDate, delegate: self)
-
+        return createCalanderDaysViewController(fromDate: midDate, selectedDate: selectedDate)
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {

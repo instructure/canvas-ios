@@ -242,8 +242,8 @@
 "Regarding: %@" = "対象：%@";
 
 /* Regarding <John Doe>, [link to grades or syllabus]
-   Regarding <John Doe>, < assignment url >
-   Regarding <John Doe>, <Grades | Syllabus> */
+   Regarding <John Doe>, <Grades | Syllabus>
+   Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "対象：%1$@,%2$@";
 
 /* No comment provided by engineer. */

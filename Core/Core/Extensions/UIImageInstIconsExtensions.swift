@@ -33,8 +33,8 @@ extension UIImage {
             exitFullScreen, externalLink, eye, folder, forward, fullScreen, gradebook, group,
             hamburger, highlighter, home, image, instructure, italic, link, lock, lti, marker,
             miniArrowDown, miniArrowUp, module, more, no, numberedList, off, outcomes, paint,
-            paperclip, pause, pdf, play, prerequisite, publish, question, quiz, refresh, reply,
-            replyAll, rubric, settings, star, strikethrough, text, textColor, trash, trouble,
+            paperclip, pause, pdf, peerReview, play, prerequisite, publish, question, quiz, refresh,
+            reply, replyAll, rubric, settings, star, strikethrough, text, textColor, trash, trouble,
             unlock, user, video, warning, x
     }
 

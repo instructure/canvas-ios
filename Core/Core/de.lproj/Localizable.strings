@@ -269,9 +269,6 @@
 "Due Date" = "Abgabetermin";
 
 /* No comment provided by engineer. */
-"Due: %@" = "Fällig: %@";
-
-/* No comment provided by engineer. */
 "Edit" = "Ändern";
 
 /* Description for email communication channel */

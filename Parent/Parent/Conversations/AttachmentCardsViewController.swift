@@ -77,6 +77,7 @@ class AttachmentCardsViewController: UIViewController {
             }
             card.button?.addTarget(self, action: #selector(tapAttachment(sender:)), for: .primaryActionTriggered)
             card.tag = index
+            card.accessibilityIdentifier = "AttachmentCardView.\(index)"
             cardIndex += 1
         }
 

@@ -18,7 +18,6 @@
 
 import Foundation
 import UIKit
-import Core
 
 protocol CalendarDaysDelegate: class {
     func setSelectedDate(_ date: Date)
@@ -103,11 +102,38 @@ class CalendarDaysViewController: UIViewController {
         let button = week.subviews[week.subviews.count / 2] as? CalendarDayButton
         return button!.date
     }
+
+    public func placeDailyActivityCounts(data: DailyCalendarActivityData?) {
+        for svs in weeksStackView.arrangedSubviews {
+            if let week = svs as? UIStackView {
+                for button in week.arrangedSubviews {
+                    if let b = button as? CalendarDayButton, let count = data?[DateFormatter.localizedString(from: b.date, dateStyle: .short, timeStyle: .none)] {
+                        b.activityDotCount = count
+                    }
+                }
+            }
+        }
+    }
 }
 
 class CalendarDayButton: UIButton {
     let circleView = UIView()
     let label = UILabel()
+    let dotContainer: UIStackView = {
+        let s = UIStackView()
+        s.axis = .horizontal
+        s.distribution = .equalSpacing
+        s.alignment = .center
+        s.spacing = 4
+        return s
+    }()
+    private let max = 3
+    var activityDotCount = 0 {
+        didSet {
+            if activityDotCount > max { activityDotCount = max }
+            for _ in 0..<activityDotCount { addActivityDot() }
+        }
+    }
 
     let date: Date
     let isToday: Bool
@@ -146,6 +172,12 @@ class CalendarDayButton: UIButton {
         label.font = .scaledNamedFont(.semibold18)
         label.text = CalendarDayButton.dayFormatter.string(from: date)
 
+        addSubview(dotContainer)
+        dotContainer.isUserInteractionEnabled = false
+        dotContainer.translatesAutoresizingMaskIntoConstraints = false
+        dotContainer.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        dotContainer.widthAnchor.constraint(greaterThanOrEqualToConstant: 4).isActive = true
+
         NSLayoutConstraint.activate([
             circleView.centerXAnchor.constraint(equalTo: centerXAnchor),
             circleView.widthAnchor.constraint(equalToConstant: 32),
@@ -155,6 +187,9 @@ class CalendarDayButton: UIButton {
 
             label.centerXAnchor.constraint(equalTo: circleView.centerXAnchor),
             label.centerYAnchor.constraint(equalTo: circleView.centerYAnchor),
+
+            dotContainer.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 8),
+            dotContainer.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
 
         tintColorDidChange()
@@ -170,5 +205,22 @@ class CalendarDayButton: UIButton {
             isWeekend ? UIColor.named(.textDark) :
             UIColor.named(.textDarkest)
         )
+
+        for dot in dotContainer.arrangedSubviews {
+            dot.backgroundColor = tintColor
+        }
+    }
+
+    func addActivityDot() {
+        let size: CGFloat = 4
+        let circle = UIView(frame: CGRect(x: 0, y: 0, width: size, height: size))
+        circle.backgroundColor = tintColor
+        circle.layer.cornerRadius = size / 2
+        circle.layer.masksToBounds = true
+        circle.translatesAutoresizingMaskIntoConstraints = false
+        circle.widthAnchor.constraint(equalToConstant: size).isActive = true
+        circle.heightAnchor.constraint(equalToConstant: size).isActive = true
+        circle.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        dotContainer.addArrangedSubview(circle)
     }
 }
