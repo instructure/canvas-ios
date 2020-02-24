@@ -78,6 +78,7 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
   state = {
     windowTraits: currentWindowTraits(),
     selectedTabId: null,
+    loadingStudentView: false,
   }
 
   homeDidShow: boolean = false
@@ -101,6 +102,7 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
   }
 
   launchStudentView = async () => {
+    this.setState({ loadingStudentView: true })
     try {
       let fakeStudentID = await this.getFakeStudentID()
       if (fakeStudentID == null) {
@@ -127,6 +129,7 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
         ]
       )
     }
+    this.setState({ loadingStudentView: false })
   }
 
   onTraitCollectionChange = () => {
@@ -155,6 +158,8 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
           this.props.navigator.show(url)
         } else if (tab.id === 'collaborations' || tab.id === 'conferences' || tab.id === 'outcomes') {
           this.props.navigator.show(tab.full_url)
+        } else if (tab.id === 'student-view') {
+          this.launchStudentView()
         } else if (isTeacher() || tab.id === 'syllabus') {
           this.props.navigator.show(tab.html_url)
         } else if (tab.id === 'home' && this.props.course && this.props.course.default_view === 'wiki') {
@@ -211,9 +216,6 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
     const courseCode = course.course_code || ''
     const name = course.name || ''
     const termName = (course.term || {}).name || ''
-    const canUseStudentView = isTeacher() &&
-      this.props.permissions &&
-      this.props.permissions.use_student_view
 
     let compactMode = this.state.windowTraits.horizontal === 'compact'
     let screenProps = {}
@@ -256,13 +258,12 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
           defaultView={course.default_view}
           imageURL={course.image_download_url}
           onSelectTab={this.selectTab}
-          onSelectStudentView={this.launchStudentView}
           refreshing={this.props.refreshing}
           onRefresh={this.props.refresh}
           attendanceTabID={this.props.attendanceTabID}
           selectedTabId={this.state.selectedTabId}
           windowTraits={this.state.windowTraits}
-          canUseStudentView={canUseStudentView}
+          loadingStudentView={this.state.loadingStudentView}
         />
       </Screen>
     )
@@ -298,13 +299,23 @@ export function mapStateToProps (state: AppState, { courseID }: RoutingParams): 
   const availableCourseTabs = ['assignments', 'quizzes', 'discussions', 'announcements', 'people', 'pages', 'files', 'modules']
   if (attendanceTabID) availableCourseTabs.push(attendanceTabID)
 
-  const tabs = courseState.tabs.tabs
+  let tabs = courseState.tabs.tabs
     .filter((tab) => {
       if (tab.id === attendanceTabID && tab.hidden) return false
       if (isStudent() || tab.id.includes('external_tool')) return !tab.hidden
       return availableCourseTabs.includes(tab.id)
     })
     .sort((t1, t2) => (t1.position - t2.position))
+
+  if (isTeacher() && permissions?.use_student_view) {
+    tabs.push({
+      id: 'student-view',
+      label: i18n('Student View'),
+      subtitle: i18n('Opens in Student App'),
+      visibility: 'public',
+      position: Math.max(),
+    })
+  }
   const error = state.favoriteCourses.error || courseState.tabs.error
 
   return {

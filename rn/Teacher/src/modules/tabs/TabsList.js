@@ -27,19 +27,13 @@ import {
   Animated,
   RefreshControl,
   DeviceInfo,
-  ActivityIndicator,
-  Image,
-  TouchableOpacity,
 } from 'react-native'
 
 import TabRow from './TabRow'
 import HomeTabRow from './HomeTabRow'
 import OnLayout from 'react-native-on-layout'
 import { isStudent } from '../app'
-import i18n from 'format-message'
-import Images from '../../images'
-import { Text } from '../../common/text'
-import { colors, createStyleSheet } from '../../common/stylesheet'
+import { createStyleSheet } from '../../common/stylesheet'
 
 type TabsListProps = {
   tabs: Array<Tab>,
@@ -62,9 +56,6 @@ export default class TabsList extends Component<TabsListProps, any> {
   animate = Animated.event(
     [{ nativeEvent: { contentOffset: { y: this.animatedValue } } }],
   )
-  state = {
-    loadingStudentView: false,
-  }
 
   onScroll = (event: any) => {
     const offsetY = event.nativeEvent.contentOffset.y
@@ -73,12 +64,6 @@ export default class TabsList extends Component<TabsListProps, any> {
     if (offsetY !== 0) {
       this.animate(event)
     }
-  }
-
-  launchStudentView = async () => {
-    this.setState({ loadingStudentView: true })
-    await this.props.onSelectStudentView()
-    this.setState({ loadingStudentView: false })
   }
 
   renderTab = (tab: Tab) => {
@@ -91,6 +76,7 @@ export default class TabsList extends Component<TabsListProps, any> {
       testID: `courses-details.tab.${tab.id}`,
       selected: this.props.selectedTabId === tab.id,
       defaultView: this.props.defaultView,
+      loadingStudentView: this.props.loadingStudentView,
     }
     if (isStudent() && tab.id === 'home') {
       return <HomeTabRow {...props} />
@@ -152,20 +138,6 @@ export default class TabsList extends Component<TabsListProps, any> {
             >
               <View style={{ minHeight: height - navbarHeight }}>
                 {this.props.tabs.map(this.renderTab)}
-                { this.props.canUseStudentView &&
-                  <TouchableOpacity onPress={this.launchStudentView} style={styles.studentView}>
-                    <View style={{ flex: 1, flexDirection: 'row' }}>
-                      <Image
-                        style={{ tintColor: colors.darkText, marginRight: 12 }}
-                        source={Images.course.studentView}
-                      />
-                      <Text style={{ fontWeight: '500' }}>{i18n('Student View')}</Text>
-                    </View>
-                    { this.state.loadingStudentView &&
-                      <ActivityIndicator />
-                    }
-                  </TouchableOpacity>
-                }
               </View>
             </Animated.ScrollView>
           )}
@@ -311,15 +283,5 @@ const styles = createStyleSheet(colors => ({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  studentView: {
-    flex: 0,
-    flexDirection: 'row',
-    margin: 16,
-    padding: 12,
-    backgroundColor: colors.backgroundLight,
-    borderColor: colors.grey2,
-    borderRadius: 8,
-    borderWidth: 1.5,
   },
 }))

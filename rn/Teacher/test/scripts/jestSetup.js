@@ -95,6 +95,7 @@ NativeModules.NativeLogin = {
   changeUser: jest.fn(),
   stopActing: jest.fn(),
   logout: jest.fn(),
+  actAsFakeStudentWithID: jest.fn(),
 }
 
 NativeModules.WindowTraitsManager = {

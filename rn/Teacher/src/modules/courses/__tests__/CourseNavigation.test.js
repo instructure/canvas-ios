@@ -20,16 +20,17 @@
 
 import { shallow } from 'enzyme'
 import React from 'react'
+import {
+  Linking,
+  NativeModules,
+  Alert,
+} from 'react-native'
 import { CourseNavigation, Refreshed, mapStateToProps } from '../CourseNavigation'
 import App from '../../app'
 import * as LTITools from '../../../common/LTITools'
+import * as template from '../../../__templates__/'
 
-const template = {
-  ...require('../../../__templates__/course'),
-  ...require('../../../__templates__/tab'),
-  ...require('../../../__templates__/helm'),
-  ...require('../../../redux/__templates__/app-state'),
-}
+const { NativeLogin } = NativeModules
 
 jest
   .mock('../../../routing')
@@ -50,6 +51,10 @@ const defaultProps = {
 }
 
 describe('CourseNavigation', () => {
+  beforeEach(() => {
+    App.setCurrentApp('teacher')
+  })
+
   it('renders correctly', () => {
     const tree = shallow(<CourseNavigation {...defaultProps} />)
     expect(tree).toMatchSnapshot()
@@ -60,6 +65,7 @@ describe('CourseNavigation', () => {
     const refreshTabs = jest.fn()
     const refreshLTITools = jest.fn()
     const getUserSettings = jest.fn()
+    const getCoursePermissions = jest.fn()
     const refreshProps = {
       navigator: template.navigator(),
       courseID: course.id,
@@ -68,6 +74,7 @@ describe('CourseNavigation', () => {
       refreshTabs,
       refreshLTITools,
       getUserSettings,
+      getCoursePermissions,
     }
 
     const tree = shallow(<Refreshed {...refreshProps} />)
@@ -75,6 +82,7 @@ describe('CourseNavigation', () => {
     expect(refreshCourse).toHaveBeenCalledWith(course.id)
     expect(refreshTabs).toHaveBeenCalledWith(course.id)
     expect(getUserSettings).toHaveBeenCalled()
+    expect(getCoursePermissions).toHaveBeenCalledWith(course.id)
   })
 
   it('refreshes when props change', () => {
@@ -82,6 +90,7 @@ describe('CourseNavigation', () => {
     const refreshTabs = jest.fn()
     const refreshLTITools = jest.fn()
     const getUserSettings = jest.fn()
+    const getCoursePermissions = jest.fn()
     const refreshProps = {
       navigator: template.navigator(),
       courseID: course.id,
@@ -91,6 +100,7 @@ describe('CourseNavigation', () => {
       refreshTabs,
       refreshLTITools,
       getUserSettings,
+      getCoursePermissions,
     }
 
     const tree = shallow(<Refreshed {...refreshProps} />)
@@ -100,6 +110,7 @@ describe('CourseNavigation', () => {
     expect(refreshCourse).toHaveBeenCalled()
     expect(refreshTabs).toHaveBeenCalledWith(course.id)
     expect(getUserSettings).toHaveBeenCalled()
+    expect(getCoursePermissions).toHaveBeenCalledWith(course.id)
   })
 
   it('renders correctly without tabs', () => {
@@ -390,6 +401,95 @@ describe('CourseNavigation', () => {
       .simulate('Press', tab)
     expect(props.navigator.show).toHaveBeenCalledWith(tab.full_url)
   })
+
+  it('launches Student View', async () => {
+    Linking.canOpenURL = jest.fn(() => Promise.resolve(true))
+    NativeLogin.actAsFakeStudentWithID = jest.fn()
+    let tab = template.tab({ id: 'student-view' })
+    let props = {
+      ...defaultProps,
+      tabs: [ tab ],
+      getFakeStudents: jest.fn(() => Promise.resolve({
+        data: [ template.enrollment({ id: '22' }) ],
+      })),
+    }
+    let tree = shallow(<CourseNavigation {...props} />)
+    await tree
+      .find('TabsList').first().dive()
+      .find('OnLayout').first().dive()
+      .find('[testID="courses-details.tab.student-view"]')
+      .simulate('Press', tab)
+    await new Promise((resolve) => process.nextTick(resolve))
+    expect(NativeLogin.actAsFakeStudentWithID).toHaveBeenCalledWith('22')
+  })
+
+  it('shows alert without fake student when launching student view', async () => {
+    Alert.alert = jest.fn()
+    let tab = template.tab({ id: 'student-view' })
+    let props = {
+      ...defaultProps,
+      tabs: [ tab ],
+      getFakeStudents: jest.fn(() => Promise.resolve({
+        data: [],
+      })),
+    }
+    let tree = shallow(<CourseNavigation {...props} />)
+    await tree
+      .find('TabsList').first().dive()
+      .find('OnLayout').first().dive()
+      .find('[testID="courses-details.tab.student-view"]')
+      .simulate('Press', tab)
+    await new Promise((resolve) => process.nextTick(resolve))
+    expect(Alert.alert).toHaveBeenCalledWith(
+      'Student View Enrollment Not Found',
+      'You must access Student View for this course once from the website before using Student View in the app.',
+      [ { text: 'OK', onPress: null, style: 'cancel' } ]
+    )
+  })
+
+  it('opens App Store url if student app is not installed', async () => {
+    Linking.openURL = jest.fn()
+    Linking.canOpenURL = jest.fn(() => Promise.resolve(false))
+    NativeLogin.actAsFakeStudentWithID = jest.fn()
+    let tab = template.tab({ id: 'student-view' })
+    let props = {
+      ...defaultProps,
+      tabs: [ tab ],
+      getFakeStudents: jest.fn(() => Promise.resolve({
+        data: [ template.enrollment({ id: '22' }) ],
+      })),
+    }
+    let tree = shallow(<CourseNavigation {...props} />)
+    await tree
+      .find('TabsList').first().dive()
+      .find('OnLayout').first().dive()
+      .find('[testID="courses-details.tab.student-view"]')
+      .simulate('Press', tab)
+    await new Promise((resolve) => process.nextTick(resolve))
+    expect(Linking.openURL).toHaveBeenCalledWith('https://apps.apple.com/us/app/canvas-student/id480883488')
+  })
+
+  it('shows alert if fake student request fails', async () => {
+    Alert.alert = jest.fn()
+    let tab = template.tab({ id: 'student-view' })
+    let props = {
+      ...defaultProps,
+      tabs: [ tab ],
+      getFakeStudents: jest.fn(() => Promise.reject({})),
+    }
+    let tree = shallow(<CourseNavigation {...props} />)
+    await tree
+      .find('TabsList').first().dive()
+      .find('OnLayout').first().dive()
+      .find('[testID="courses-details.tab.student-view"]')
+      .simulate('Press', tab)
+    await new Promise((resolve) => process.nextTick(resolve))
+    expect(Alert.alert).toHaveBeenCalledWith(
+      'Error',
+      'Please try again.',
+      [ { text: 'OK', onPress: null, style: 'cancel' } ]
+    )
+  })
 })
 
 describe('mapStateToProps', () => {
@@ -673,5 +773,81 @@ describe('mapStateToProps', () => {
       App.setCurrentApp('teacher')
       assertExternalToolTabs()
     })
+  })
+
+  it('includes Student View tab in teacher with permission', () => {
+    App.setCurrentApp('teacher')
+    let tabs = [ template.tab({ id: 'modules' }) ]
+    const state = template.appState({
+      entities: {
+        courses: {
+          '1': {
+            course,
+            color: '#fff',
+            tabs: { tabs, pending: 0 },
+            attendanceTool: { pending: 0 },
+            permissions: { use_student_view: true },
+          },
+        },
+      },
+      favoriteCourses: {
+        pending: 0,
+        courseRefs: ['1'],
+      },
+    })
+
+    const props = mapStateToProps(state, { courseID: '1' })
+    let studentViewTab = props.tabs.slice(-1)[0] // should be the last item
+    expect(studentViewTab.id).toEqual('student-view')
+  })
+
+  it('does not include Student View in teacher without correct permission', () => {
+    App.setCurrentApp('teacher')
+    let tabs = [ template.tab({ id: 'modules' }) ]
+    const state = template.appState({
+      entities: {
+        courses: {
+          '1': {
+            course,
+            color: '#fff',
+            tabs: { tabs, pending: 0 },
+            attendanceTool: { pending: 0 },
+            permissions: { use_student_view: false },
+          },
+        },
+      },
+      favoriteCourses: {
+        pending: 0,
+        courseRefs: ['1'],
+      },
+    })
+
+    const props = mapStateToProps(state, { courseID: '1' })
+    expect(props.tabs.map(t => t.id)).not.toContain('student-view')
+  })
+
+  it('does not include Student View tab in student', () => {
+    App.setCurrentApp('student')
+    let tabs = [ template.tab({ id: 'modules' }) ]
+    const state = template.appState({
+      entities: {
+        courses: {
+          '1': {
+            course,
+            color: '#fff',
+            tabs: { tabs, pending: 0 },
+            attendanceTool: { pending: 0 },
+            permissions: { use_student_view: true },
+          },
+        },
+      },
+      favoriteCourses: {
+        pending: 0,
+        courseRefs: ['1'],
+      },
+    })
+
+    const props = mapStateToProps(state, { courseID: '1' })
+    expect(props.tabs.map(t => t.id)).not.toContain('student-view')
   })
 })
