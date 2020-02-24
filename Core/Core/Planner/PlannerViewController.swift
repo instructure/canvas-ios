@@ -43,7 +43,7 @@ public class PlannerViewController: UIViewController {
             PlannerListViewController.create(
                 studentID: studentID,
                 start: Clock.now.startOfDay(),
-                end: Clock.now.endOfDay(),
+                end: Clock.now.startOfDay().addDays(1),
                 delegate: self
             ),
         ], direction: .forward, animated: false)
@@ -69,6 +69,10 @@ public class PlannerViewController: UIViewController {
         calendar.view.layoutIfNeeded()
         list.tableView.contentInset.top = calendar.minHeight
     }
+
+    func getPlannables(from: Date, to: Date) -> GetPlannables {
+        return GetPlannables(userID: studentID, startDate: from, endDate: to)
+    }
 }
 
 extension PlannerViewController: CalendarViewControllerDelegate {
@@ -77,7 +81,7 @@ extension PlannerViewController: CalendarViewControllerDelegate {
         let newList = PlannerListViewController.create(
             studentID: studentID,
             start: date.startOfDay(),
-            end: date.endOfDay(),
+            end: date.startOfDay().addDays(1),
             delegate: self
         )
         newList.loadViewIfNeeded()
@@ -92,7 +96,7 @@ extension PlannerViewController: CalendarViewControllerDelegate {
     }
 }
 
-extension PlannerViewController: UIScrollViewDelegate {
+extension PlannerViewController: PlannerListDelegate {
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         listContentOffsetY = scrollView.contentInset.top + scrollView.contentOffset.y
     }

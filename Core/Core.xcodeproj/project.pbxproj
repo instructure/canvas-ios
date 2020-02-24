@@ -3028,6 +3028,7 @@
 				7DFD5F7723FF158700D988E0 /* CalendarDaysViewController.swift */,
 				7DFD5F7823FF158700D988E0 /* CalendarViewController.storyboard */,
 				7DFD5F7A23FF158700D988E0 /* CalendarViewController.swift */,
+				7DFD5F7923FF158700D988E0 /* PlannerViewController.swift */,
 				97F69C3B23F1FE64009622E3 /* GetPlannablesUseCase.swift */,
 				97F69C3D23F20304009622E3 /* Plannable.swift */,
 				97F69C4723F3475E009622E3 /* PlannerListViewController.storyboard */,

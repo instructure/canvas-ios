@@ -38,9 +38,9 @@ public class GetPlannables: CollectionUseCase {
     public var cacheKey: String? { nil }
 
     public var scope: Scope {
-        var predicate = NSPredicate(format: "%K < %@ AND %@ <= %K",
-            #keyPath(Plannable.date), endDate as CVarArg,
-            startDate as CVarArg, #keyPath(Plannable.date)
+        var predicate = NSPredicate(format: "%@ <= %K AND %K < %@",
+            startDate as NSDate, #keyPath(Plannable.date),
+            #keyPath(Plannable.date), endDate as NSDate
         )
         if let userID = userID {
             predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
@@ -60,5 +60,4 @@ public class GetPlannables: CollectionUseCase {
             Plannable.save(p, in: client, userID: userID)
         }
     }
-
 }

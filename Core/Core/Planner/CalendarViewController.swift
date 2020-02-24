@@ -22,6 +22,7 @@ import UIKit
 protocol CalendarViewControllerDelegate: class {
     func calendarDidSelectDate(_ date: Date)
     func calendarDidResize(height: CGFloat, animated: Bool)
+    func getPlannables(from: Date, to: Date) -> GetPlannables
 }
 
 class CalendarViewController: UIViewController {
@@ -123,6 +124,11 @@ class CalendarViewController: UIViewController {
         }
     }
 
+    func refresh() {
+        // TODO: ask delegate for filter button title here
+        clearPageCache()
+        days.refresh()
+    }
 
     @IBAction func toggleExpanded() {
         setExpanded(!isExpanded)
@@ -204,7 +210,6 @@ extension CalendarViewController: UIPageViewControllerDataSource, UIPageViewCont
             selectedDate = calendar.date(byAdding: .day, value: numberOfDaysInWeek  * delta, to: selectedDate)!
         }
         return CalendarDaysViewController.create(midDate, selectedDate: selectedDate, delegate: delegate)
-
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {

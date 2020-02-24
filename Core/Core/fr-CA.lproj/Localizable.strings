@@ -269,9 +269,6 @@
 "Due Date" = "Date d’échéance";
 
 /* No comment provided by engineer. */
-"Due: %@" = "Échéance : %@";
-
-/* No comment provided by engineer. */
 "Edit" = "Modifier";
 
 /* Description for email communication channel */

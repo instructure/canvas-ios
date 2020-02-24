@@ -91,6 +91,7 @@ const whitelist = [
   'paperclip',
   'pause',
   'pdf',
+  'peer-review',
   'play',
   'prerequisite',
   'publish',

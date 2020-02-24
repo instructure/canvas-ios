@@ -18,6 +18,10 @@
 
 import UIKit
 
+protocol PlannerListDelegate: class, UIScrollViewDelegate {
+    func getPlannables(from: Date, to: Date) -> GetPlannables
+}
+
 public class PlannerListViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyStateViewContainer: UIView!
@@ -25,17 +29,15 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var emptyStateSubHeader: UILabel!
     @IBOutlet weak var emptyStateTop: NSLayoutConstraint!
 
-    weak var delegate: UIScrollViewDelegate?
+    weak var delegate: PlannerListDelegate?
     let env = AppEnvironment.shared
     var studentID: String?
     var start: Date = Clock.now.startOfDay()
-    var end: Date = Clock.now.endOfDay()
+    var end: Date = Clock.now.startOfDay().addDays(1)
 
-    lazy var plannables = env.subscribe(GetPlannables(userID: studentID, startDate: start, endDate: end)) { [weak self] in
-        self?.updatePlannables()
-    }
+    var plannables: Store<GetPlannables>?
 
-    public static func create(studentID: String? = nil, start: Date, end: Date, delegate: UIScrollViewDelegate?) -> PlannerListViewController {
+    static func create(studentID: String? = nil, start: Date, end: Date, delegate: PlannerListDelegate?) -> PlannerListViewController {
         let controller = loadFromStoryboard()
         controller.delegate = delegate
         controller.studentID = studentID
@@ -46,11 +48,13 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        configureTableview()
-        plannables.refresh(force: true)
 
         emptyStateHeader.text = NSLocalizedString("No Assignments", comment: "")
         emptyStateSubHeader.text = NSLocalizedString("It looks like assignments haven’t been created in this space yet.", comment: "")
+
+        tableView.separatorColor = .named(.borderMedium)
+
+        refresh()
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -60,35 +64,35 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
         }
     }
 
-    private func configureTableview() {
-        tableView.tableFooterView = UIView()
+    func refresh(force: Bool = false) {
+        plannables = delegate.flatMap { env.subscribe($0.getPlannables(from: start, to: end)) { [weak self] in
+            self?.updatePlannables()
+        } }
+        plannables?.refresh(force: force)
     }
 
     private func updatePlannables() {
-        let pending = plannables.pending
-        if !pending {
-            if let error = plannables.error { showError(error) }
-            tableView.reloadData()
-
-            emptyStateViewContainer.isHidden = plannables.count > 0
-        }
+        guard plannables?.pending == false else { return }
+        if let error = plannables?.error { showError(error) }
+        emptyStateViewContainer.isHidden = plannables?.isEmpty != true
+        tableView.reloadData()
     }
 }
 
 extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return plannables.count
+        return plannables?.count ?? 0
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PlannerListCell = tableView.dequeue(for: indexPath)
-        let p = plannables[indexPath]
+        let p = plannables?[indexPath]
         cell.update(p)
         return cell
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let url = plannables[indexPath]?.htmlURL else { return }
+        guard let url = plannables?[indexPath]?.htmlURL else { return }
         env.router.route(to: url, from: self, options: .detail(embedInNav: true))
     }
 

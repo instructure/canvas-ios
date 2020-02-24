@@ -29,11 +29,16 @@ class CalendarDaysViewController: UIViewController {
 
     var calendar: Calendar { CalendarDaysViewController.calendar }
     weak var delegate: CalendarViewControllerDelegate?
+    var end = Clock.now // exclusive
+    let env = AppEnvironment.shared
     var fromDate = Clock.now
+    var plannables: Store<GetPlannables>?
     var selectedDate = Clock.now
+    var start = Clock.now // inclusive
     private var selectedWeekIndex = 0
     let weeksStackView = UIStackView()
     lazy var topOffset = weeksStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+
 
     static func create(_ fromDate: Date, selectedDate: Date, delegate: CalendarViewControllerDelegate?) -> CalendarDaysViewController {
         let controller = CalendarDaysViewController()
@@ -51,8 +56,9 @@ class CalendarDaysViewController: UIViewController {
         weeksStackView.pin(inside: view, top: nil, bottom: nil)
         topOffset.isActive = true
 
-        var currentDate = calendar.date(byAdding: .day, value: 1 - calendar.component(.day, from: fromDate), to: fromDate)!
+        var currentDate = calendar.date(byAdding: .day, value: 1 - calendar.component(.day, from: fromDate), to: fromDate.startOfDay())!
         currentDate = calendar.date(byAdding: .day, value: calendar.firstWeekday - calendar.component(.weekday, from: currentDate), to: currentDate)!
+        start = currentDate
         while calendar.compare(currentDate, to: fromDate, toGranularity: .month) != .orderedDescending {
             let week = UIStackView()
             week.distribution = .fillEqually
@@ -67,7 +73,9 @@ class CalendarDaysViewController: UIViewController {
             if currentDate < selectedDate {
                 selectedWeekIndex += 1
             }
+            end = currentDate
         }
+        refresh()
     }
 
     override func viewWillLayoutSubviews() {
@@ -76,6 +84,26 @@ class CalendarDaysViewController: UIViewController {
         topOffset.constant = -(1 - ratio) * CGFloat(selectedWeekIndex) * (weekHeight + weekGap)
         for (w, week) in weeksStackView.arrangedSubviews.enumerated() {
             week.alpha = w == selectedWeekIndex ? 1 : ratio
+        }
+    }
+
+    func refresh() {
+        plannables = delegate.flatMap { env.subscribe($0.getPlannables(from: start, to: end)) { [weak self] in
+            self?.updateDots()
+        } }
+        plannables?.exhaust()
+    }
+
+    func updateDots() {
+        let list: [Plannable] = plannables?.all ?? [] // Requirement: ordered by date asc
+        var i = 0
+        for week in weeksStackView.arrangedSubviews {
+            for day in week.subviews.compactMap({ $0 as? CalendarDayButton }) {
+                while i < list.count, list[i].date < day.date { i += 1 }
+                let startIndex = i
+                while i < list.count, calendar.isDate(list[i].date, inSameDayAs: day.date) { i += 1 }
+                day.activityDotCount = i - startIndex
+            }
         }
     }
 
@@ -115,6 +143,14 @@ class CalendarDaysViewController: UIViewController {
 class CalendarDayButton: UIButton {
     let circleView = UIView()
     let label = UILabel()
+    let dotContainer = UIStackView()
+    var activityDotCount = 0 {
+        didSet {
+            for (d, dot) in dotContainer.arrangedSubviews.enumerated() {
+                dot.isHidden = d >= activityDotCount
+            }
+        }
+    }
 
     let date: Date
     let isToday: Bool
@@ -153,6 +189,21 @@ class CalendarDayButton: UIButton {
         label.font = .scaledNamedFont(.semibold18)
         label.text = CalendarDayButton.dayFormatter.string(from: date)
 
+        addSubview(dotContainer)
+        dotContainer.spacing = 4
+        dotContainer.isUserInteractionEnabled = false
+        dotContainer.translatesAutoresizingMaskIntoConstraints = false
+
+        let size: CGFloat = 4
+        for _ in 0..<3 {
+            let dot = UIView(frame: CGRect(x: 0, y: 0, width: size, height: size))
+            dot.isHidden = true
+            dot.layer.cornerRadius = size / 2
+            dot.widthAnchor.constraint(equalToConstant: size).isActive = true
+            dot.heightAnchor.constraint(equalToConstant: size).isActive = true
+            dotContainer.addArrangedSubview(dot)
+        }
+
         NSLayoutConstraint.activate([
             circleView.centerXAnchor.constraint(equalTo: centerXAnchor),
             circleView.widthAnchor.constraint(equalToConstant: 32),
@@ -162,6 +213,9 @@ class CalendarDayButton: UIButton {
 
             label.centerXAnchor.constraint(equalTo: circleView.centerXAnchor),
             label.centerYAnchor.constraint(equalTo: circleView.centerYAnchor),
+
+            bottomAnchor.constraint(equalTo: dotContainer.bottomAnchor),
+            dotContainer.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
 
         tintColorDidChange()
@@ -177,5 +231,8 @@ class CalendarDayButton: UIButton {
             isWeekend ? UIColor.named(.textDark) :
             UIColor.named(.textDarkest)
         )
+        for dot in dotContainer.arrangedSubviews {
+            dot.backgroundColor = tintColor
+        }
     }
 }
