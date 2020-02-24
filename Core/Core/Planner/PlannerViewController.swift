@@ -20,6 +20,8 @@ import UIKit
 
 public class PlannerViewController: UIViewController {
     lazy var calendar = CalendarViewController.create(studentID: studentID, delegate: self)
+    lazy var calendarPan = UIPanGestureRecognizer(target: self, action: #selector(calendarPan(_:)))
+    var calendarPanOffset: CGFloat = 0
     lazy var calendarTop = calendar.view.topAnchor.constraint(equalTo: view.topAnchor)
     let listPageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
     var list: PlannerListViewController! {
@@ -53,10 +55,11 @@ public class PlannerViewController: UIViewController {
             }
         }
 
-        embed(calendar, in: view) { child, container in
+        embed(calendar, in: view) { child, _ in
             child.view.pinToLeftAndRightOfSuperview()
         }
         calendarTop.isActive = true
+        calendar.view.addGestureRecognizer(calendarPan)
 
         let divider = DividerView()
         divider.tintColor = .named(.borderMedium)
@@ -92,6 +95,20 @@ extension PlannerViewController: CalendarViewControllerDelegate {
 }
 
 extension PlannerViewController: UIScrollViewDelegate {
+    @objc func calendarPan(_ pan: UIPanGestureRecognizer) {
+        switch pan.state {
+        case .began:
+            calendarPanOffset = list.tableView.contentOffset.y
+        case .changed:
+            list.tableView.contentOffset.y = calendarPanOffset - pan.translation(in: view).y
+            scrollViewDidScroll(list.tableView)
+        case .ended:
+            calendar.setExpanded(calendar.isExpanded)
+        default:
+            break
+        }
+    }
+
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let topSpace = -scrollView.contentOffset.y
         let height = max(calendar.minHeight, min(calendar.maxHeight, topSpace))
