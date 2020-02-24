@@ -96,7 +96,7 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
         }
 
         var data: DailyCalendarActivityData = [:]
-        let request = GetPlannablesRequest(userID: studentID, startDate: forDate.startOfMonth(), endDate: forDate.endOfMonth(), contextCodes: [], filter: "")
+        let request = GetPlannablesRequest(userID: studentID, startDate: forDate.startOfMonth().addDays(-7), endDate: forDate.endOfMonth().addDays(7), contextCodes: [], filter: "")
         env.api.exhaust(request) { [weak self] response, _, _ in
             for p in response ?? [] {
                 let date = DateFormatter.localizedString(from: p.plannable_date, dateStyle: .short, timeStyle: .none)
