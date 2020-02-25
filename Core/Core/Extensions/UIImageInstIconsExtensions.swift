@@ -31,7 +31,7 @@ extension UIImage {
             assignment, audio, bold, box, bulletList, calendarMonth, check, clock, cloudLock,
             comment, complete, courses, dashboard, discussion, document, email, empty,
             exitFullScreen, externalLink, eye, folder, forward, fullScreen, gradebook, group,
-            hamburger, highlighter, home, image, instructure, italic, link, lock, lti, marker,
+            hamburger, highlighter, home, image, info, instructure, italic, link, lock, lti, marker,
             miniArrowDown, miniArrowUp, module, more, no, numberedList, off, outcomes, paint,
             paperclip, pause, pdf, peerReview, play, prerequisite, publish, question, quiz, refresh,
             reply, replyAll, rubric, settings, star, strikethrough, text, textColor, trash, trouble,
