@@ -42,6 +42,16 @@ class ModulesE2ETests: CoreUITestCase {
         ModulesDetail.moduleItem(index: 0).waitToExist()
     }
 
+    func testLockedModulesDisplayCorrectly() {
+        Dashboard.courseCard(id: "263").tap()
+        CourseNavigation.modules.tap()
+
+        XCTAssertEqual(ModulesDetail.module(index: 8).label(),
+                       "Locked Module. Locked until January 1, 3000. Status: Locked")
+        XCTAssertEqual(ModulesDetail.module(index: 9).label(),
+                       "Previously Locked Module")
+    }
+
     func testLaunchIntoDiscussionModuleItem() {
         Dashboard.courseCard(id: "263").tap()
 
