@@ -154,11 +154,20 @@
                                     <outlet property="delegate" destination="vcb-BA-qgM" id="lLs-Bt-rMT"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8wG-8h-aIj" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="187" y="428" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="1Ea-9b-Dfc"/>
+                                    <constraint firstAttribute="height" constant="40" id="KTo-Ki-oOP"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="z9c-iF-0LB" firstAttribute="leading" secondItem="wnQ-j9-qXD" secondAttribute="leading" id="EwV-9T-dZP"/>
+                            <constraint firstItem="8wG-8h-aIj" firstAttribute="centerY" secondItem="d5k-GK-zzo" secondAttribute="centerY" id="Ff6-QO-Aio"/>
                             <constraint firstItem="wnQ-j9-qXD" firstAttribute="bottom" secondItem="z9c-iF-0LB" secondAttribute="bottom" id="FyK-Ef-WDq"/>
+                            <constraint firstItem="8wG-8h-aIj" firstAttribute="centerX" secondItem="d5k-GK-zzo" secondAttribute="centerX" id="TZa-bm-vjg"/>
                             <constraint firstItem="z9c-iF-0LB" firstAttribute="top" secondItem="wnQ-j9-qXD" secondAttribute="top" id="j2H-pY-Rme"/>
                             <constraint firstItem="5mV-Vn-z8o" firstAttribute="top" secondItem="wnQ-j9-qXD" secondAttribute="top" id="mBg-uA-JeC"/>
                             <constraint firstItem="wnQ-j9-qXD" firstAttribute="trailing" secondItem="5mV-Vn-z8o" secondAttribute="trailing" id="nwj-MF-eCC"/>
@@ -173,6 +182,8 @@
                         <outlet property="emptyStateSubHeader" destination="qCU-lc-Waf" id="r0A-6N-oZR"/>
                         <outlet property="emptyStateTop" destination="mBg-uA-JeC" id="3tP-HV-c3s"/>
                         <outlet property="emptyStateViewContainer" destination="5mV-Vn-z8o" id="gRy-I1-f53"/>
+                        <outlet property="spinnerCenterY" destination="Ff6-QO-Aio" id="3nG-ud-d8e"/>
+                        <outlet property="spinnerView" destination="8wG-8h-aIj" id="gZu-gI-UPE"/>
                         <outlet property="tableView" destination="z9c-iF-0LB" id="rNk-uG-go7"/>
                     </connections>
                 </viewController>

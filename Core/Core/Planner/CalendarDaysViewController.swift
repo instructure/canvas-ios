@@ -86,11 +86,11 @@ class CalendarDaysViewController: UIViewController {
         }
     }
 
-    func refresh() {
+    func refresh(force: Bool = false) {
         plannables = delegate.flatMap { env.subscribe($0.getPlannables(from: start, to: end)) { [weak self] in
             self?.updateDots()
         } }
-        plannables?.exhaust()
+        plannables?.exhaust(force: force)
     }
 
     func updateDots() {

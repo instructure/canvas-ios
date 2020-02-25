@@ -59,6 +59,10 @@ class PlannerViewControllerTests: CoreTestCase {
         controller.list.delegate?.scrollViewDidEndDragging?(mockTable, willDecelerate: false)
         XCTAssertEqual(controller.calendar.isExpanded, false)
 
+        controller.studentID = "changed"
+        controller.list.delegate?.plannerListWillRefresh()
+        XCTAssertEqual(controller.calendar.days.plannables?.useCase.userID, "changed")
+
         let list = controller.list!
         let dataSource = controller.listPageController.dataSource
         let delegate = controller.listPageController.delegate

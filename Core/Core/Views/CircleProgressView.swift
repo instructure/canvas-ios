@@ -32,8 +32,8 @@ public class CircleProgressView: UIView {
     }
 
     @IBInspectable
-    public var color: UIColor = Brand.shared.primary.ensureContrast(against: .named(.backgroundLightest)) {
-        didSet { fill.strokeColor = color.cgColor }
+    public var color: UIColor? = Brand.shared.primary.ensureContrast(against: .named(.backgroundLightest)) {
+        didSet { tintColorDidChange() }
     }
 
     public var progress: CGFloat? = nil {
@@ -80,7 +80,6 @@ public class CircleProgressView: UIView {
         layer.addSublayer(track)
 
         fill.fillColor = UIColor.clear.cgColor
-        fill.strokeColor = color.cgColor
         fill.strokeEnd = 0.1
         layer.addSublayer(fill)
 
@@ -105,6 +104,7 @@ public class CircleProgressView: UIView {
         rotate.duration = 2.25
         rotate.repeatCount = .infinity
 
+        tintColorDidChange()
         updateSize()
         updateProgress()
     }
@@ -117,5 +117,10 @@ public class CircleProgressView: UIView {
             endAngle: 1.5 * .pi,
             clockwise: true
         ).cgPath
+    }
+
+    public override func tintColorDidChange() {
+        super.tintColorDidChange()
+        fill.strokeColor = color?.cgColor ?? tintColor.cgColor
     }
 }

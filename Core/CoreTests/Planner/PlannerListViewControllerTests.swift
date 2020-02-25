@@ -24,6 +24,11 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         return GetPlannables(startDate: from, endDate: to)
     }
 
+    var willRefresh = false
+    func plannerListWillRefresh() {
+        willRefresh = true
+    }
+
     var isDragging = false
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         isDragging = true
@@ -51,7 +56,9 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         api.mock(getPlannables(from: start, to: end), value: [assignment])
         controller.view.layoutIfNeeded()
 
-        controller.emptyStateViewContainer.isHidden = true
+        XCTAssertEqual(controller.emptyStateViewContainer.isHidden, true)
+        XCTAssertEqual(controller.spinnerView.isHidden, true)
+        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, false)
         let index0 = IndexPath(row: 0, section: 0)
         let cell = controller.tableView.cellForRow(at: index0) as? PlannerListCell
         XCTAssertEqual(cell?.title.text, "assignment a")
@@ -64,6 +71,9 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         XCTAssertTrue(router.lastRoutedTo(assignment.html_url!.rawValue))
         controller.viewWillAppear(false)
         XCTAssertNil(controller.tableView.indexPathForSelectedRow)
+
+        controller.tableView.refreshControl?.sendActions(for: .primaryActionTriggered)
+        XCTAssertTrue(willRefresh)
     }
 
     func testEmptyState() {

@@ -97,6 +97,11 @@ extension PlannerViewController: CalendarViewControllerDelegate {
 }
 
 extension PlannerViewController: PlannerListDelegate {
+    func plannerListWillRefresh() {
+        calendar.refresh(force: true)
+        list.refresh(force: true)
+    }
+
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         listContentOffsetY = scrollView.contentOffset.y
     }
