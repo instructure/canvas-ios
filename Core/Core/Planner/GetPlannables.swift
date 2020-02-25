@@ -35,7 +35,9 @@ public class GetPlannables: CollectionUseCase {
         self.filter = filter
     }
 
-    public var cacheKey: String? { nil }
+    public var cacheKey: String? {
+        "get-plannables-\(userID ?? "")-\(startDate)-\(endDate)-\(filter)-\(contextCodes.joined(separator: ","))"
+    }
 
     public var scope: Scope {
         var predicate = NSPredicate(format: "%@ <= %K AND %K < %@",
@@ -44,8 +46,8 @@ public class GetPlannables: CollectionUseCase {
         )
         if let userID = userID {
             predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                predicate,
                 NSPredicate(key: #keyPath(Plannable.userID), equals: userID),
+                predicate,
             ])
         }
         return Scope(predicate: predicate, orderBy: #keyPath(Plannable.date))

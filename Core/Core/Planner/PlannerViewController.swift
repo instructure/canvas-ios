@@ -67,6 +67,7 @@ public class PlannerViewController: UIViewController {
         divider.topAnchor.constraint(equalTo: calendar.view.bottomAnchor).isActive = true
 
         calendar.view.layoutIfNeeded()
+        list.tableView.scrollIndicatorInsets.top = calendar.minHeight
         list.tableView.contentInset.top = calendar.minHeight
     }
 
@@ -90,6 +91,7 @@ extension PlannerViewController: CalendarViewControllerDelegate {
     }
 
     func calendarDidResize(height: CGFloat, animated: Bool) {
+        list.tableView.scrollIndicatorInsets.top = height
         list.tableView.contentInset.top = height
         view.layoutIfNeeded()
         clearPageCache()
@@ -98,13 +100,15 @@ extension PlannerViewController: CalendarViewControllerDelegate {
 
 extension PlannerViewController: PlannerListDelegate {
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        listContentOffsetY = scrollView.contentInset.top + scrollView.contentOffset.y
+        listContentOffsetY = scrollView.contentOffset.y
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard scrollView.contentInset.top > calendar.minHeight else { return }
-        let topSpace = -scrollView.contentOffset.y - listContentOffsetY
+        guard scrollView.isDragging, scrollView.contentInset.top > calendar.minHeight else { return }
+        let topSpace = scrollView.contentInset.top + listContentOffsetY - scrollView.contentOffset.y
+        listContentOffsetY = scrollView.contentOffset.y
         let height = max(calendar.minHeight, min(calendar.maxHeight, topSpace))
+        scrollView.scrollIndicatorInsets.top = height
         scrollView.contentInset.top = height
         calendar.setHeight(height)
     }
@@ -136,6 +140,7 @@ extension PlannerViewController: UIPageViewControllerDataSource, UIPageViewContr
             delegate: self
         )
         newList.loadViewIfNeeded()
+        newList.tableView.scrollIndicatorInsets = list.tableView.scrollIndicatorInsets
         newList.tableView.contentInset = list.tableView.contentInset
         return newList
     }

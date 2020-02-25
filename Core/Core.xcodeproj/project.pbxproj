@@ -155,7 +155,7 @@
 		7D8FDFB82187B92C0067557E /* UINavigationBarExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FDFB72187B92C0067557E /* UINavigationBarExtensionsTests.swift */; };
 		7D979CCA215BDFD500567627 /* DividerViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D979CC9215BDFD500567627 /* DividerViewTests.swift */; };
 		7DA20E932168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA20E922168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift */; };
-		7DA25F8A23F7211E005D2121 /* GetPlannablesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C3B23F1FE64009622E3 /* GetPlannablesUseCase.swift */; };
+		7DA25F8A23F7211E005D2121 /* GetPlannables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C3B23F1FE64009622E3 /* GetPlannables.swift */; };
 		7DA25F8B23F7211E005D2121 /* APIPlannable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69BB623F1F286009622E3 /* APIPlannable.swift */; };
 		7DA25F8E23F72123005D2121 /* SyllabusSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4687B22355109C00F293A5 /* SyllabusSummaryViewController.swift */; };
 		7DA25F8F23F72123005D2121 /* SyllabusPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF34289233D2CA10095D0D3 /* SyllabusPresenter.swift */; };
@@ -1486,7 +1486,7 @@
 		97D9400D23DFEA6A00A9D274 /* UIBarButtonItemExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensions.swift; sourceTree = "<group>"; };
 		97F69BB623F1F286009622E3 /* APIPlannable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIPlannable.swift; sourceTree = "<group>"; };
 		97F69C3723F1F9A6009622E3 /* APIPlannableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIPlannableTests.swift; sourceTree = "<group>"; };
-		97F69C3B23F1FE64009622E3 /* GetPlannablesUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPlannablesUseCase.swift; sourceTree = "<group>"; };
+		97F69C3B23F1FE64009622E3 /* GetPlannables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPlannables.swift; sourceTree = "<group>"; };
 		97F69C3D23F20304009622E3 /* Plannable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plannable.swift; sourceTree = "<group>"; };
 		97F69C3F23F209DB009622E3 /* PlannableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannableTests.swift; sourceTree = "<group>"; };
 		97F69C4323F2208D009622E3 /* GetPlannablesUseCaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPlannablesUseCaseTests.swift; sourceTree = "<group>"; };
@@ -3028,8 +3028,7 @@
 				7DFD5F7723FF158700D988E0 /* CalendarDaysViewController.swift */,
 				7DFD5F7823FF158700D988E0 /* CalendarViewController.storyboard */,
 				7DFD5F7A23FF158700D988E0 /* CalendarViewController.swift */,
-				7DFD5F7923FF158700D988E0 /* PlannerViewController.swift */,
-				97F69C3B23F1FE64009622E3 /* GetPlannablesUseCase.swift */,
+				97F69C3B23F1FE64009622E3 /* GetPlannables.swift */,
 				97F69C3D23F20304009622E3 /* Plannable.swift */,
 				97F69C4723F3475E009622E3 /* PlannerListViewController.storyboard */,
 				97F69C4523F34734009622E3 /* PlannerListViewController.swift */,
@@ -4770,7 +4769,7 @@
 				7DA2604723F722D9005D2121 /* ExternalTool.swift in Sources */,
 				7DA25FB723F72136005D2121 /* APIGroup.swift in Sources */,
 				7DA2604123F722D9005D2121 /* CourseSection.swift in Sources */,
-				7DA25F8A23F7211E005D2121 /* GetPlannablesUseCase.swift in Sources */,
+				7DA25F8A23F7211E005D2121 /* GetPlannables.swift in Sources */,
 				7DA2602C23F722C2005D2121 /* LoginStartSessionCell.swift in Sources */,
 				7DA2607523F722F6005D2121 /* PageListCell.swift in Sources */,
 				7DA2602623F722B3005D2121 /* LogEventListPresenter.swift in Sources */,
