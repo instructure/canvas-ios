@@ -34,7 +34,7 @@ function packages () {
 }
 
 function commitMessage () {
-  const message = danger.github.pr.body
+  const message = danger.git.commits.map(commit => commit.message).join('\n')
   if (!message) {
     return fail('Please add a description for Danger.')
   }
@@ -53,19 +53,30 @@ function commitMessage () {
   handleJira(message)
 }
 
+function execAll (regularExpression, string) {
+  var matches = []
+  while (true) {
+    const match = regularExpression.exec(string)
+    if (match !== null) {
+      matches.push(match)
+    } else {
+      return matches
+    }
+  }
+}
+
 function handleReleaseNotes (message) {
-  var releaseNotes = /release note:(.+)/gi.exec(message)
-  if (!releaseNotes) {
+  var releaseNotes = execAll(/release note:(.+)/gi, message)
+  if (releaseNotes.length === 0) {
     fail('Please add a release note. If no release note is wanted, use `none`. Example: `release note: Fixed a bug that prevented users from enjoying the app.`')
     return
   }
 
-  releaseNotes = releaseNotes || []
-  if (releaseNotes.length > 2) {
+  if (releaseNotes.length > 1) {
     fail('Please add only one release note.')
   }
 
-  const releaseNoteText = (releaseNotes[1] || '').trim()
+  const releaseNoteText = (releaseNotes[0][1] || '').trim()
   if (!releaseNoteText) {
     fail('Trying to be sneaky? You added a release note but left it blank?')
   } else {
@@ -78,13 +89,17 @@ function handleReleaseNotes (message) {
 }
 
 function handleAffects (message) {
-  const affects = /affects:(.+)/gi.exec(message)
-  if (!affects) {
+  const affects = execAll(/affects:(.+)/gi, message)
+  if (affects.length === 0) {
     fail('Please add which apps this change affects. Example: `affects: Teacher, Student` or `affects: none`')
     return
   }
 
-  let apps = affects[1]
+  if (affects.length > 1) {
+    fail('Please add only one affects.')
+  }
+
+  let apps = affects[0][1]
   if (!apps) {
     fail('Did you forget to add app names after `affects:`?')
     return
