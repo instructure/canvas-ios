@@ -57,7 +57,7 @@ class CalendarViewController: UIViewController {
         return formatter
     }()
 
-    static func create(studentID: String, delegate: CalendarViewControllerDelegate?) -> CalendarViewController {
+    static func create(delegate: CalendarViewControllerDelegate?) -> CalendarViewController {
         let controller = loadFromStoryboard()
         controller.delegate = delegate
         return controller

@@ -31,16 +31,14 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
 
     weak var delegate: PlannerListDelegate?
     let env = AppEnvironment.shared
-    var studentID: String?
-    var start: Date = Clock.now.startOfDay()
-    var end: Date = Clock.now.startOfDay().addDays(1)
+    var start: Date = Clock.now.startOfDay() // inclusive
+    var end: Date = Clock.now.startOfDay().addDays(1) // exclusive
 
     var plannables: Store<GetPlannables>?
 
-    static func create(studentID: String? = nil, start: Date, end: Date, delegate: PlannerListDelegate?) -> PlannerListViewController {
+    static func create(start: Date, end: Date, delegate: PlannerListDelegate?) -> PlannerListViewController {
         let controller = loadFromStoryboard()
         controller.delegate = delegate
-        controller.studentID = studentID
         controller.start = start
         controller.end = end
         return controller

@@ -20,24 +20,63 @@ import XCTest
 @testable import Core
 import TestsFoundation
 
-class CalendarDaysViewControllerTests: CoreTestCase, CalendarDaysDelegate {
-    lazy var _selectedDate: Date = Clock.now
-    var selectedDate: Date { _selectedDate }
-    func setSelectedDate(_ date: Date) {
-        _selectedDate = date
+class CalendarDaysViewControllerTests: CoreTestCase, CalendarViewControllerDelegate {
+    var selectedDate = Clock.now
+    func calendarDidSelectDate(_ date: Date) {
+        selectedDate = date
+    }
+
+    func calendarDidResize(height: CGFloat, animated: Bool) {}
+
+    func getPlannables(from: Date, to: Date) -> GetPlannables {
+        return GetPlannables(startDate: from, endDate: to)
     }
 
     lazy var controller = CalendarDaysViewController.create(Clock.now, selectedDate: Clock.now, delegate: self)
 
     func testDates() {
-        Clock.mockNow(DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 2, day: 14).date!)
+        Clock.mockNow(DateComponents(calendar: .current, year: 2020, month: 2, day: 14).date!)
+        environment.mockStore = false
+        api.mock(getPlannables(
+            from: DateComponents(calendar: .current, year: 2020, month: 1, day: 26).date!,
+            to: DateComponents(calendar: .current, year: 2020, month: 3, day: 1).date!
+        ), value: [
+            .make(plannable_id: "1", plannable_date: DateComponents(calendar: .current, year: 2020, month: 2, day: 14).date!),
+            .make(plannable_id: "2", plannable_date: DateComponents(calendar: .current, year: 2020, month: 2, day: 15).date!),
+            .make(plannable_id: "3", plannable_date: DateComponents(calendar: .current, year: 2020, month: 2, day: 15, hour: 12).date!),
+            .make(plannable_id: "4", plannable_date: DateComponents(calendar: .current, year: 2020, month: 2, day: 16, hour: 12).date!),
+            .make(plannable_id: "5", plannable_date: DateComponents(calendar: .current, year: 2020, month: 2, day: 16, hour: 13).date!),
+            .make(plannable_id: "6", plannable_date: DateComponents(calendar: .current, year: 2020, month: 2, day: 16, hour: 23, minute: 59).date!),
+        ])
         controller.view.layoutIfNeeded()
 
-        XCTAssertEqual(controller.midDate(isExpanded: true), DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 2, day: 12).date)
-        XCTAssertEqual(controller.midDate(isExpanded: false), DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 2, day: 12).date)
+        XCTAssertEqual(controller.midDate(isExpanded: true), DateComponents(calendar: .current, year: 2020, month: 2, day: 12).date)
+        XCTAssertEqual(controller.midDate(isExpanded: false), DateComponents(calendar: .current, year: 2020, month: 2, day: 12).date)
+
+        XCTAssertFalse(controller.hasDate(DateComponents(calendar: .current, year: 2020, month: 1, day: 25).date!, isExpanded: true))
+        XCTAssertTrue(controller.hasDate(DateComponents(calendar: .current, year: 2020, month: 1, day: 26).date!, isExpanded: true))
+        XCTAssertTrue(controller.hasDate(DateComponents(calendar: .current, year: 2020, month: 2, day: 29).date!, isExpanded: true))
+        XCTAssertFalse(controller.hasDate(DateComponents(calendar: .current, year: 2020, month: 3, day: 1).date!, isExpanded: true))
+
+        XCTAssertFalse(controller.hasDate(DateComponents(calendar: .current, year: 2020, month: 2, day: 8).date!, isExpanded: false))
+        XCTAssertTrue(controller.hasDate(DateComponents(calendar: .current, year: 2020, month: 2, day: 9).date!, isExpanded: false))
+        XCTAssertTrue(controller.hasDate(DateComponents(calendar: .current, year: 2020, month: 2, day: 15).date!, isExpanded: false))
+        XCTAssertFalse(controller.hasDate(DateComponents(calendar: .current, year: 2020, month: 2, day: 16).date!, isExpanded: false))
+
+        let feb13 = controller.weeksStackView.subviews[2].subviews[4] as? CalendarDayButton
+        XCTAssertEqual(feb13?.activityDotCount, 0)
+        let feb14 = controller.weeksStackView.subviews[2].subviews[5] as? CalendarDayButton
+        XCTAssertEqual(feb14?.activityDotCount, 1)
+        let feb15 = controller.weeksStackView.subviews[2].subviews[6] as? CalendarDayButton
+        XCTAssertEqual(feb15?.activityDotCount, 2)
+        let feb16 = controller.weeksStackView.subviews[3].subviews[0] as? CalendarDayButton
+        XCTAssertEqual(feb16?.activityDotCount, 3)
+        let feb17 = controller.weeksStackView.subviews[3].subviews[1] as? CalendarDayButton
+        XCTAssertEqual(feb17?.activityDotCount, 0)
 
         (controller.weeksStackView.arrangedSubviews.first?.subviews.first as? UIButton)?.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(selectedDate, DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 1, day: 26).date)
+        controller.updateSelectedDate(selectedDate)
         XCTAssertEqual((controller.weeksStackView.arrangedSubviews.first?.subviews.first as? UIButton)?.isSelected, true)
     }
 

@@ -18,48 +18,71 @@
 
 import XCTest
 @testable import Core
-import WebKit
 
-class PlannerListViewControllerTests: CoreTestCase {
+class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
+    func getPlannables(from: Date, to: Date) -> GetPlannables {
+        return GetPlannables(startDate: from, endDate: to)
+    }
 
-    var vc: PlannerListViewController!
-    let studentID = "1"
+    var isDragging = false
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        isDragging = true
+    }
+    var didScroll = false
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        didScroll = true
+    }
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        isDragging = false
+    }
+
+    var start = Clock.now.startOfDay()
+    var end = Clock.now.startOfDay().addDays(1)
+    lazy var controller = PlannerListViewController.create(start: start, end: end, delegate: self)
 
     override func setUp() {
         super.setUp()
         environment.mockStore = false
-        vc = PlannerListViewController.create(studentID: studentID)
-        vc.loadView()
     }
 
     func testLayout() {
         let date = Clock.now
         let assignment = APIPlannable.make(plannable_date: date)
-        api.mock(GetPlannables(userID: studentID, startDate: Clock.now.startOfDay(), endDate: Clock.now.endOfDay().addSeconds(1)), value: [assignment])
-        vc.view.layoutIfNeeded()
-        vc.updateListForDates(start: Clock.now.startOfDay(), end: Clock.now.endOfDay())
+        api.mock(getPlannables(from: start, to: end), value: [assignment])
+        controller.view.layoutIfNeeded()
 
-        vc.emptyStateViewContainer.isHidden = true
-        let cell = vc.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? PlannerListCell
+        controller.emptyStateViewContainer.isHidden = true
+        let index0 = IndexPath(row: 0, section: 0)
+        let cell = controller.tableView.cellForRow(at: index0) as? PlannerListCell
         XCTAssertEqual(cell?.title.text, "assignment a")
         XCTAssertEqual(cell?.courseCode.text, "Assignment Grades")
         XCTAssertEqual(cell?.dueDate.text, DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .short) )
         XCTAssertEqual(cell?.points.text, nil)
 
-        vc.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
-        vc.tableView.delegate?.tableView?(vc.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        controller.tableView.selectRow(at: index0, animated: false, scrollPosition: .none)
+        controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index0)
         XCTAssertTrue(router.lastRoutedTo(assignment.html_url!.rawValue))
-        vc.viewWillAppear(false)
-        XCTAssertNil(vc.tableView.indexPathForSelectedRow)
+        controller.viewWillAppear(false)
+        XCTAssertNil(controller.tableView.indexPathForSelectedRow)
     }
 
     func testEmptyState() {
-        api.mock(GetPlannables(userID: studentID, startDate: Clock.now.startOfDay(), endDate: Clock.now.endOfDay()), value: [])
-        vc.viewDidLoad()
-        vc.updateListForDates(start: Clock.now.startOfDay(), end: Clock.now.endOfDay())
+        api.mock(getPlannables(from: start, to: end), value: [])
+        controller.view.layoutIfNeeded()
 
-        vc.emptyStateViewContainer.isHidden = false
-        XCTAssertEqual(vc.emptyStateHeader.text, "No Assignments")
-        XCTAssertEqual(vc.emptyStateSubHeader.text, "It looks like assignments haven’t been created in this space yet.")
+        controller.emptyStateViewContainer.isHidden = false
+        XCTAssertEqual(controller.emptyStateHeader.text, "No Assignments")
+        XCTAssertEqual(controller.emptyStateSubHeader.text, "It looks like assignments haven’t been created in this space yet.")
+
+        controller.tableView.delegate?.scrollViewWillBeginDragging?(controller.tableView)
+        XCTAssertTrue(isDragging)
+        controller.tableView.contentInset.top = 50
+        controller.tableView.delegate?.scrollViewDidScroll?(controller.tableView)
+        XCTAssertEqual(controller.emptyStateTop.constant, 50)
+        controller.tableView.contentOffset.y = -64
+        controller.tableView.delegate?.scrollViewDidScroll?(controller.tableView)
+        XCTAssertEqual(controller.emptyStateTop.constant, 64)
+        controller.tableView.delegate?.scrollViewDidEndDragging?(controller.tableView, willDecelerate: false)
+        XCTAssertFalse(isDragging)
     }
 }

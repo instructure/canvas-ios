@@ -40,10 +40,12 @@ class APIPlannableTests: XCTestCase {
         let start = Date().addDays(-1)
         let end = Date().addDays(2)
         req = GetPlannablesRequest(startDate: start, endDate: end, contextCodes: ["course_1"], filter: "new_activity")
-        let expected: [APIQueryItem] = [.value("start_date", start.isoString()),
-                                        .value("end_date", end.isoString()),
-                                        .array("context_codes", ["course_1"]),
-                                        .value("filter", "new_activity"),
+        let expected: [APIQueryItem] = [
+            .value("per_page", "100"),
+            .value("start_date", start.isoString()),
+            .value("end_date", end.isoString()),
+            .array("context_codes", ["course_1"]),
+            .value("filter", "new_activity"),
         ]
 		XCTAssertEqual(req.query, expected)
 	}

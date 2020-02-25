@@ -19,15 +19,15 @@
 import UIKit
 
 public class PlannerViewController: UIViewController {
-    lazy var calendar = CalendarViewController.create(studentID: studentID, delegate: self)
+    lazy var calendar = CalendarViewController.create(delegate: self)
     let listPageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
     var list: PlannerListViewController! {
         listPageController.viewControllers?.first as? PlannerListViewController
     }
     var listContentOffsetY: CGFloat = 0
-    var studentID = ""
+    var studentID: String?
 
-    public static func create(studentID: String) -> PlannerViewController {
+    public static func create(studentID: String? = nil) -> PlannerViewController {
         let controller = PlannerViewController()
         controller.studentID = studentID
         return controller
@@ -41,7 +41,6 @@ public class PlannerViewController: UIViewController {
         listPageController.delegate = self
         listPageController.setViewControllers([
             PlannerListViewController.create(
-                studentID: studentID,
                 start: Clock.now.startOfDay(),
                 end: Clock.now.startOfDay().addDays(1),
                 delegate: self
@@ -80,7 +79,6 @@ extension PlannerViewController: CalendarViewControllerDelegate {
     func calendarDidSelectDate(_ date: Date) {
         calendar.updateSelectedDate(date)
         let newList = PlannerListViewController.create(
-            studentID: studentID,
             start: date.startOfDay(),
             end: date.startOfDay().addDays(1),
             delegate: self
@@ -134,7 +132,6 @@ extension PlannerViewController: UIPageViewControllerDataSource, UIPageViewContr
 
     func listPageDelta(_ delta: Int, from list: PlannerListViewController) -> PlannerListViewController {
         let newList = PlannerListViewController.create(
-            studentID: studentID,
             start: list.start.addDays(delta),
             end: list.end.addDays(delta),
             delegate: self

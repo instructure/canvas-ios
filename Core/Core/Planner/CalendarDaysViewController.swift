@@ -39,7 +39,6 @@ class CalendarDaysViewController: UIViewController {
     let weeksStackView = UIStackView()
     lazy var topOffset = weeksStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
 
-
     static func create(_ fromDate: Date, selectedDate: Date, delegate: CalendarViewControllerDelegate?) -> CalendarDaysViewController {
         let controller = CalendarDaysViewController()
         controller.delegate = delegate
@@ -130,13 +129,10 @@ class CalendarDaysViewController: UIViewController {
     }
 
     func hasDate(_ date: Date, isExpanded: Bool) -> Bool {
-        for (w, week) in weeksStackView.arrangedSubviews.enumerated() {
-            guard isExpanded || w == selectedWeekIndex else { continue }
-            for day in week.subviews.compactMap({ $0 as? CalendarDayButton }) {
-                if calendar.isDate(day.date, inSameDayAs: date) { return true }
-            }
-        }
-        return false
+        if isExpanded { return start <= date && date < end }
+        let first = weeksStackView.arrangedSubviews[selectedWeekIndex].subviews.first as? CalendarDayButton
+        let last = weeksStackView.arrangedSubviews[selectedWeekIndex].subviews.last as? CalendarDayButton
+        return first!.date <= date && date < last!.date.addDays(1)
     }
 }
 
