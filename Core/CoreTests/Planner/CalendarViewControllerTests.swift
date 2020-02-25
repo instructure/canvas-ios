@@ -51,7 +51,7 @@ class CalendarViewControllerTests: CoreTestCase, CalendarViewControllerDelegate 
         XCTAssertEqual(controller.monthButton.isSelected, false)
         controller.monthButton.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(controller.monthButton.isSelected, true)
-        XCTAssertEqual(height, 1028)
+        XCTAssertGreaterThanOrEqual(height, 883)
 
         XCTAssertNoThrow(controller.filterButton.sendActions(for: .primaryActionTriggered))
         controller.calendarDidSelectDate(DateComponents(calendar: .current, year: 2020, month: 1, day: 16).date!)

@@ -50,12 +50,12 @@ class PlannerViewControllerTests: CoreTestCase {
         mockTable.contentInset.top = height
         mockTable.contentOffset.y = 200
         controller.list.delegate?.scrollViewDidScroll?(mockTable)
-        XCTAssertLessThan(mockTable.scrollIndicatorInsets.top, 144)
-        XCTAssertLessThan(mockTable.contentInset.top, 144)
+        XCTAssertLessThanOrEqual(mockTable.scrollIndicatorInsets.top, 144)
+        XCTAssertLessThanOrEqual(mockTable.contentInset.top, 144)
         mockTable.contentOffset.y = -200
         controller.list.delegate?.scrollViewDidScroll?(mockTable)
-        XCTAssertLessThan(mockTable.scrollIndicatorInsets.top, 144)
-        XCTAssertLessThan(mockTable.contentInset.top, 144)
+        XCTAssertLessThanOrEqual(mockTable.scrollIndicatorInsets.top, 144)
+        XCTAssertLessThanOrEqual(mockTable.contentInset.top, 144)
         controller.list.delegate?.scrollViewDidEndDragging?(mockTable, willDecelerate: false)
         XCTAssertEqual(controller.calendar.isExpanded, false)
 
