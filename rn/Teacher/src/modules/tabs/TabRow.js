@@ -22,10 +22,9 @@
 */
 
 import React from 'react'
-import { SafeAreaView, Image } from 'react-native'
+import { SafeAreaView, Image, ActivityIndicator } from 'react-native'
 import i18n from 'format-message'
-
-import Images from '../../images'
+import { createStyleSheet } from '../../common/stylesheet'
 import instIcon from '../../images/inst-icons'
 import Row from '../../common/components/rows/Row'
 
@@ -70,8 +69,25 @@ export default class TabRow extends React.Component<Props> {
       case 'settings':       return instIcon('settings')
       case 'syllabus':       return instIcon('rubric')
       case 'tools':          return instIcon('lti')
+      case 'student-view':
       case 'user':           return instIcon('user')
       default:               return instIcon('courses')
+    }
+  }
+
+  accessories = () => {
+    let { tab } = this.props
+    if (tab.hidden) {
+      return (
+        <Image source={instIcon('off')} accessibilityLabel={i18n('Hidden')} />
+      )
+    }
+    switch (tab.id) {
+      case 'student-view':
+        if (this.props.loadingStudentView) return <ActivityIndicator />
+        return (
+          <Image source={instIcon('externalLink')} style={styles.studentViewIcon} />
+        )
     }
   }
 
@@ -80,18 +96,27 @@ export default class TabRow extends React.Component<Props> {
     return (<SafeAreaView>
       <Row
         title={tab.label}
+        subtitle={tab.subtitle}
         image={this.image()}
         imageTint={this.props.color}
         imageSize={{ height: 24, width: 24 }}
         onPress={this.onPress}
-        disclosureIndicator
+        disclosureIndicator={tab.id !== 'student-view'}
         border='bottom'
         selected={this.props.selected}
         testID={`courses-details.${tab.id}-cell`}
-        accessories={tab.hidden &&
-            <Image source={Images.invisible} accessibilityLabel={i18n('Hidden')} />
-        }
+        accessories={this.accessories()}
       />
     </SafeAreaView>)
   }
 }
+
+const styles = createStyleSheet(colors => ({
+  studentViewIcon: {
+    tintColor: colors.textDark,
+    width: 24,
+    height: 24,
+    resizeMode: 'contain',
+
+  },
+}))

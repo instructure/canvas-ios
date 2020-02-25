@@ -21,6 +21,7 @@
 const images = {
   course: {
     settings: require('./course/Settings.png'),
+    studentView: require('./course/student-view.png'),
   },
   dashboard: {
     calendar: require('./dashboard/calendar.png'),

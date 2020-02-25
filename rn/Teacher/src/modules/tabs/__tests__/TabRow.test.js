@@ -19,7 +19,6 @@
 import { shallow } from 'enzyme'
 import React from 'react'
 import TabRow from '../TabRow'
-import Images from '../../../images'
 import instIcon from '../../../images/inst-icons'
 import * as template from '../../../__templates__'
 
@@ -81,7 +80,7 @@ describe('TabRow', () => {
     }
     const tree = shallow(<TabRow {...props} />)
     const accessories = shallow(tree.find('Row').prop('accessories'))
-    expect(accessories.prop('source')).toEqual(Images.invisible)
+    expect(accessories.prop('source')).toEqual(instIcon('off'))
   })
 
   it('does not render hidden icon not hidden', () => {
@@ -91,6 +90,36 @@ describe('TabRow', () => {
     }
     const tree = shallow(<TabRow {...props} />)
     expect(tree.find('Row').prop('accessories')).toBeFalsy()
+  })
+
+  it('renders activity icon if loading student view', () => {
+    let props = {
+      ...defaultProps,
+      tab: template.tab({ id: 'student-view' }),
+      loadingStudentView: true,
+    }
+    let view = shallow(<TabRow {...props} />)
+    let accessories = shallow(view.find('Row').prop('accessories'))
+    expect(accessories.type()).toEqual('ActivityIndicator')
+  })
+
+  it('renders student view', () => {
+    let props = {
+      ...defaultProps,
+      tab: template.tab({
+        id: 'student-view',
+        label: 'Student View',
+        subtitle: 'Opens in Student App',
+      }),
+      loadingStudentView: false,
+    }
+    let view = shallow(<TabRow {...props} />)
+    let row = view.find('Row')
+    expect(row.prop('title')).toEqual('Student View')
+    expect(row.prop('subtitle')).toEqual('Opens in Student App')
+    let accessories = shallow(row.prop('accessories'))
+    expect(accessories.type()).toEqual('Image')
+    expect(accessories.prop('source')).toEqual(instIcon('externalLink'))
   })
 
   it('renders the right icon', () => {
@@ -116,5 +145,6 @@ describe('TabRow', () => {
     expect(iconFor('syllabus')).toEqual(instIcon('rubric'))
     expect(iconFor('tools')).toEqual(instIcon('lti'))
     expect(iconFor('user')).toEqual(instIcon('user'))
+    expect(iconFor('student-view')).toEqual(instIcon('user'))
   })
 })

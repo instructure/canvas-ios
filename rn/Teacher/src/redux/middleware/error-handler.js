@@ -91,6 +91,9 @@ export function parseErrorMessage (error: any): string {
   if (error && error.data && error.data.message) {
     return error.data.message
   } else if (error && error.data && error.data.errors && error.data.errors.length > 0) {
+    if (typeof error.data.errors === 'string') {
+      return error.data.errors
+    }
     return error.data.errors
       .map(error => error.message)
       .map(message => message.replace(/\.+$/, ''))

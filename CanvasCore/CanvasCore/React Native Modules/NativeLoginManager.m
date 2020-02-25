@@ -71,6 +71,11 @@ RCT_EXPORT_METHOD(logout)
     [[NativeLoginManager shared].delegate logout];
 }
 
+RCT_EXPORT_METHOD(actAsFakeStudentWithID:(NSString *)fakeStudentID)
+{
+    [[NativeLoginManager shared].delegate actAsFakeStudentWithID:fakeStudentID];
+}
+
 RCT_EXPORT_METHOD(startObserving)
 {
     self.isObserving = YES;

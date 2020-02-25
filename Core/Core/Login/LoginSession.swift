@@ -45,6 +45,10 @@ public struct LoginSession: Codable, Hashable {
         return masquerader?.host.flatMap { URL(string: "https://\($0)") }
     }
 
+    public var isFakeStudent: Bool {
+        masquerader?.path.split(separator: "/").first == "fake-students"
+    }
+
     public var uniqueID: String {
         return [
             baseURL.host,
@@ -69,7 +73,8 @@ public struct LoginSession: Codable, Hashable {
         userName: String,
         userEmail: String? = nil,
         clientID: String? = nil,
-        clientSecret: String? = nil
+        clientSecret: String? = nil,
+        isFakeStudent: Bool = false
     ) {
         self.accessToken = accessToken
         // remove trailing slash
@@ -142,16 +147,30 @@ public struct LoginSession: Codable, Hashable {
 
     // MARK: Persistence into keychain
 
-    private static let key = "CanvasUsers"
-    static var keychain = Keychain(serviceName: "com.instructure.shared-credentials", accessGroup: Bundle.main.appGroupID())
+    public enum Key: String, CaseIterable {
+        case users = "CanvasUsers"
+        case fakeStudents = "FakeStudents"
+    }
+
+    private static func getSessions(in keychain: Keychain = .app, forKey key: Key = .users) -> Set<LoginSession> {
+        return keychain.getJSON(for: key.rawValue) ?? []
+    }
+
+    private static func setSessions(_ sessions: Set<LoginSession>, in keychain: Keychain = .app, forKey key: Key = .users) {
+        _ = try? keychain.setJSON(sessions, for: key.rawValue)
+    }
 
     public static var sessions: Set<LoginSession> {
-        get { return keychain.getJSON(for: key) ?? [] }
-        set { _ = try? keychain.setJSON(newValue, for: key) }
+        get { return getSessions() }
+        set { setSessions(newValue) }
     }
 
     public static var mostRecent: LoginSession? {
-        return sessions.reduce(nil) { (latest: LoginSession?, session: LoginSession) -> LoginSession? in
+        return mostRecent(in: .app, forKey: .users)
+    }
+
+    public static func mostRecent(in keychain: Keychain, forKey key: Key) -> LoginSession? {
+        return getSessions(in: keychain).reduce(nil) { (latest: LoginSession?, session: LoginSession) -> LoginSession? in
             if let latest = latest, latest.lastUsedAt > session.lastUsedAt {
                 return latest
             }
@@ -159,20 +178,22 @@ public struct LoginSession: Codable, Hashable {
         }
     }
 
-    public static func add(_ session: LoginSession) {
-        var sessions = self.sessions
+    public static func add(_ session: LoginSession, to keychain: Keychain = .app, forKey key: Key = .users) {
+        var sessions = getSessions(in: keychain, forKey: key)
         sessions.remove(session)
         sessions.insert(session)
-        self.sessions = sessions
+        setSessions(sessions, in: keychain)
     }
 
-    public static func remove(_ session: LoginSession) {
-        var sessions = self.sessions
+    public static func remove(_ session: LoginSession, from keychain: Keychain = .app, forKey key: Key = .users) {
+        var sessions = getSessions(in: keychain, forKey: key)
         sessions.remove(session)
-        self.sessions = sessions
+        setSessions(sessions, in: keychain)
     }
 
-    public static func clearAll() {
-        keychain.removeData(for: key)
+    public static func clearAll(in keychain: Keychain = .app) {
+        for key in Key.allCases {
+            keychain.removeData(for: key.rawValue)
+        }
     }
 }

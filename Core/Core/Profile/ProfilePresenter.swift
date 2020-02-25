@@ -127,14 +127,21 @@ public class ProfilePresenter {
                 self?.view?.route(to: .actAsUser, options: .modal(embedInNav: true))
             })
         }
-        cells.append(ProfileViewCell("changeUser", name: NSLocalizedString("Change User", bundle: .core, comment: "")) { [weak self] _ in
-            guard let delegate = self?.env.loginDelegate else { return }
-            self?.view?.dismiss(animated: true, completion: {
-                delegate.changeUser()
+        if env.currentSession?.isFakeStudent != true {
+            // Don't allow Change User in Student View because the user gets destroyed
+            // with each launch of Student View
+            cells.append(ProfileViewCell("changeUser", name: NSLocalizedString("Change User", bundle: .core, comment: "")) { [weak self] _ in
+                guard let delegate = self?.env.loginDelegate else { return }
+                self?.view?.dismiss(animated: true, completion: {
+                    delegate.changeUser()
+                })
             })
-        })
+        }
         if env.currentSession?.actAsUserID != nil {
-            cells.append(ProfileViewCell("logOut", name: NSLocalizedString("Stop Act as User", bundle: .core, comment: "")) { [weak self] _ in
+            let leaveStudentView = NSLocalizedString("Leave Student View", bundle: .core, comment: "")
+            let stopActAsUser = NSLocalizedString("Stop Act as User", bundle: .core, comment: "")
+            let name = env.currentSession?.isFakeStudent == true ? leaveStudentView : stopActAsUser
+            cells.append(ProfileViewCell("logOut", name: name) { [weak self] _ in
                 guard let session = self?.env.currentSession else { return }
                 self?.view?.dismiss(animated: true, completion: {
                     self?.env.loginDelegate?.stopActing(as: session)

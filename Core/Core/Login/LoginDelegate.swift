@@ -58,6 +58,9 @@ extension LoginDelegate {
         if let original = entries.first(where: { $0.baseURL == baseURL && $0.userID == userID && $0.masquerader == nil }) {
             userDidStopActing(as: session)
             userDidLogin(session: original.bumpLastUsedAt())
+        } else if session.isFakeStudent {
+            userDidStopActing(as: session)
+            changeUser()
         } else {
             userDidLogout(session: session)
         }
