@@ -75,6 +75,7 @@ const whitelist = [
   'highlighter',
   'home',
   'image',
+  'info',
   'instructure',
   'italic',
   'link',
