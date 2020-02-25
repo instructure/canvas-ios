@@ -20,11 +20,12 @@ import Foundation
 import UIKit
 
 protocol CalendarViewControllerDelegate: class {
-    func selectedDateDidChange(_ date: Date)
-    func dailyActivityCount(forDate: Date, handler: @escaping (DailyCalendarActivityData?) -> Void)
+    func calendarDidSelectDate(_ date: Date)
+    func calendarDidResize(height: CGFloat, animated: Bool)
+    func getPlannables(from: Date, to: Date) -> GetPlannables
 }
 
-class CalendarViewController: UIViewController, CalendarDaysDelegate {
+class CalendarViewController: UIViewController {
     @IBOutlet weak var dropdownView: UIImageView!
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var monthButton: UIButton!
@@ -34,6 +35,8 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
         daysPageController.viewControllers?.first as? CalendarDaysViewController
     }
     @IBOutlet weak var daysHeight: NSLayoutConstraint!
+    lazy var panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPan(_:)))
+    var panOffset: CGFloat = 0
     @IBOutlet weak var weekdayRow: UIStackView!
     @IBOutlet weak var yearLabel: UILabel!
     weak var delegate: CalendarViewControllerDelegate?
@@ -54,17 +57,21 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
         return formatter
     }()
 
-    static func create(studentID: String) -> CalendarViewController {
-        return loadFromStoryboard()
+    static func create(delegate: CalendarViewControllerDelegate?) -> CalendarViewController {
+        let controller = loadFromStoryboard()
+        controller.delegate = delegate
+        return controller
     }
 
     let calendar = Calendar.autoupdatingCurrent
+    var canClearCache = true
     lazy var numberOfDaysInWeek: Int = calendar.maximumRange(of: .weekday)!.count
     var selectedDate = Clock.now
     var isExpanded = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addGestureRecognizer(panRecognizer)
         view.backgroundColor = .named(.backgroundLightest)
 
         let isRTL = view.effectiveUserInterfaceLayoutDirection == .rightToLeft
@@ -91,7 +98,7 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
         daysPageController.dataSource = self
         daysPageController.delegate = self
         daysPageController.setViewControllers([
-            createCalanderDaysViewController(fromDate: selectedDate, selectedDate: selectedDate),
+            CalendarDaysViewController.create(selectedDate, selectedDate: selectedDate, delegate: delegate),
         ], direction: .forward, animated: false)
         for view in daysPageController.view.subviews {
             if let scroll = view as? UIScrollView {
@@ -99,49 +106,85 @@ class CalendarViewController: UIViewController, CalendarDaysDelegate {
             }
         }
 
-        updatePage()
+        updateSelectedDate(selectedDate)
+    }
+
+    @objc func didPan(_ recognizer: UIPanGestureRecognizer) {
+        switch recognizer.state {
+        case .began:
+            panOffset = height
+        case .changed:
+            let height = max(minHeight, min(maxHeight, panOffset + recognizer.translation(in: view).y))
+            setHeight(height)
+            delegate?.calendarDidResize(height: height, animated: false)
+        case .ended:
+            setExpanded(isExpanded)
+        default:
+            break
+        }
+    }
+
+    func refresh() {
+        // TODO: ask delegate for filter button title here
+        clearPageCache()
+        days.refresh()
     }
 
     @IBAction func toggleExpanded() {
-        isExpanded = !isExpanded
-        monthButton.isSelected = isExpanded
+        setExpanded(!isExpanded)
+    }
+
+    func setExpanded(_ flag: Bool) {
+        isExpanded = flag
+        monthButton.isSelected = flag
         UIView.animate(withDuration: 0.3, animations: updateExpanded)
         clearPageCache()
+    }
+
+    func updateExpanded() {
+        daysHeight.constant = isExpanded ? days.maxHeight : days.minHeight
+        dropdownView.transform = CGAffineTransform(rotationAngle: isExpanded ? -.pi : 0)
+        delegate?.calendarDidResize(height: height, animated: true)
+    }
+
+    var height: CGFloat { daysContainer.frame.minY + daysHeight.constant }
+    var minHeight: CGFloat { daysContainer.frame.minY + days.minHeight }
+    var maxHeight: CGFloat { daysContainer.frame.minY + days.maxHeight }
+    func setHeight(_ height: CGFloat) {
+        let ratio = (height - minHeight) / (maxHeight - minHeight)
+        isExpanded = ratio > 0.5
+        daysHeight.constant = height - daysContainer.frame.minY
+        dropdownView.transform = CGAffineTransform(rotationAngle: -ratio * .pi)
     }
 
     @IBAction func filter(_ sender: UIButton) {
     }
 
-    func setSelectedDate(_ date: Date) {
+    func calendarDidSelectDate(_ date: Date) {
+        delegate?.calendarDidSelectDate(date)
+    }
+
+    func updateSelectedDate(_ date: Date) {
         selectedDate = date
-        updatePage()
+        yearLabel.text = yearFormatter.string(from: selectedDate)
+        monthButton.setTitle(monthFormatter.string(from: selectedDate), for: .normal)
         clearPageCache()
-        delegate?.selectedDateDidChange(selectedDate)
+        if days.hasDate(date, isExpanded: isExpanded) {
+            days.updateSelectedDate(date)
+        } else {
+            let isReverse = date < days.selectedDate
+            // Assumes selected date can't be more than 1 page away
+            let page = daysPageDelta(isReverse ? -1 : 1, from: days)
+            page.loadViewIfNeeded()
+            page.updateSelectedDate(date)
+            daysPageController.setViewControllers([ page ], direction: isReverse ? .reverse : .forward, animated: true)
+        }
     }
 
     func clearPageCache() {
+        guard canClearCache else { return }
         daysPageController.dataSource = nil
         daysPageController.dataSource = self
-    }
-
-    func updatePage() {
-        yearLabel.text = yearFormatter.string(from: selectedDate)
-        monthButton.setTitle(monthFormatter.string(from: selectedDate), for: .normal)
-        updateExpanded()
-    }
-
-    func updateExpanded() {
-        daysHeight.constant = isExpanded ? days.maxHeight : days.minHeight
-        dropdownView.transform = CGAffineTransform(rotationAngle: isExpanded ? .pi : 0)
-        view.superview?.layoutIfNeeded()
-    }
-
-    private func createCalanderDaysViewController(fromDate: Date, selectedDate: Date) -> CalendarDaysViewController {
-        let vc = CalendarDaysViewController.create(fromDate, selectedDate: selectedDate, delegate: self)
-        delegate?.dailyActivityCount(forDate: selectedDate, handler: { data in
-            performUIUpdate { vc.loadViewIfNeeded(); vc.placeDailyActivityCounts(data: data) }
-        })
-        return vc
     }
 }
 
@@ -166,18 +209,18 @@ extension CalendarViewController: UIPageViewControllerDataSource, UIPageViewCont
             midDate = calendar.date(byAdding: .day, value: numberOfDaysInWeek * delta, to: midDate)!
             selectedDate = calendar.date(byAdding: .day, value: numberOfDaysInWeek  * delta, to: selectedDate)!
         }
-        return createCalanderDaysViewController(fromDate: midDate, selectedDate: selectedDate)
+        return CalendarDaysViewController.create(midDate, selectedDate: selectedDate, delegate: delegate)
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        selectedDate = days.selectedDate
-        updatePage()
-        delegate?.selectedDateDidChange(selectedDate)
-        // clearPageCache() // would cause a crash, so don't
+        canClearCache = false
+        delegate?.calendarDidSelectDate(days.selectedDate)
+        canClearCache = true
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         guard let days = pendingViewControllers.first as? CalendarDaysViewController, isExpanded else { return }
         daysHeight.constant = max(days.maxHeight, self.days.maxHeight)
+        delegate?.calendarDidResize(height: height, animated: false)
     }
 }

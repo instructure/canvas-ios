@@ -63,7 +63,7 @@ extension APIPlannable {
         planner_override: APIPlannerOverride? = nil,
         plannable_id: ID = "1",
         plannable_type: String = "Assignment",
-        html_url: URL = URL(string: "http://localhost")!,
+        html_url: URL? = URL(string: "http://localhost")!,
         context_image: URL = URL(string: "https://live.staticflickr.com/1449/24823655706_a46286c12e.jpg")!,
         context_name: String? = "Assignment Grades",
         plannable: APIPlannable.plannable? = APIPlannable.plannable(title: "assignment a"),
@@ -135,7 +135,7 @@ public struct GetPlannablesRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        var values: [APIQueryItem] = []
+        var values: [APIQueryItem] = [ .value("per_page", "100") ]
         if let startDate = startDate {
             values.append( .value("start_date", startDate.isoString()) )
         }

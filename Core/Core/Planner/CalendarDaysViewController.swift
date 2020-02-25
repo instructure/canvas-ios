@@ -19,10 +19,6 @@
 import Foundation
 import UIKit
 
-protocol CalendarDaysDelegate: class {
-    func setSelectedDate(_ date: Date)
-}
-
 class CalendarDaysViewController: UIViewController {
     static let calendar = Calendar.autoupdatingCurrent
     static let numberOfDaysInWeek = calendar.maximumRange(of: .weekday)!.count
@@ -32,14 +28,18 @@ class CalendarDaysViewController: UIViewController {
     let weekGap: CGFloat = 12
 
     var calendar: Calendar { CalendarDaysViewController.calendar }
-    weak var delegate: CalendarDaysDelegate?
+    weak var delegate: CalendarViewControllerDelegate?
+    var end = Clock.now // exclusive
+    let env = AppEnvironment.shared
     var fromDate = Clock.now
+    var plannables: Store<GetPlannables>?
     var selectedDate = Clock.now
+    var start = Clock.now // inclusive
     private var selectedWeekIndex = 0
     let weeksStackView = UIStackView()
     lazy var topOffset = weeksStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
 
-    static func create(_ fromDate: Date, selectedDate: Date, delegate: CalendarDaysDelegate?) -> CalendarDaysViewController {
+    static func create(_ fromDate: Date, selectedDate: Date, delegate: CalendarViewControllerDelegate?) -> CalendarDaysViewController {
         let controller = CalendarDaysViewController()
         controller.delegate = delegate
         controller.fromDate = fromDate
@@ -55,8 +55,9 @@ class CalendarDaysViewController: UIViewController {
         weeksStackView.pin(inside: view, top: nil, bottom: nil)
         topOffset.isActive = true
 
-        var currentDate = calendar.date(byAdding: .day, value: 1 - calendar.component(.day, from: fromDate), to: fromDate)!
+        var currentDate = calendar.date(byAdding: .day, value: 1 - calendar.component(.day, from: fromDate), to: fromDate.startOfDay())!
         currentDate = calendar.date(byAdding: .day, value: calendar.firstWeekday - calendar.component(.weekday, from: currentDate), to: currentDate)!
+        start = currentDate
         while calendar.compare(currentDate, to: fromDate, toGranularity: .month) != .orderedDescending {
             let week = UIStackView()
             week.distribution = .fillEqually
@@ -64,7 +65,6 @@ class CalendarDaysViewController: UIViewController {
 
             for _ in 0..<CalendarDaysViewController.numberOfDaysInWeek {
                 let day = CalendarDayButton(date: currentDate, selectedDate: selectedDate, calendar: calendar)
-                day.tag = weeksStackView.arrangedSubviews.count - 1
                 day.addTarget(self, action: #selector(selectDate(_:)), for: .primaryActionTriggered)
                 week.addArrangedSubview(day)
                 currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
@@ -72,7 +72,9 @@ class CalendarDaysViewController: UIViewController {
             if currentDate < selectedDate {
                 selectedWeekIndex += 1
             }
+            end = currentDate
         }
+        refresh()
     }
 
     override func viewWillLayoutSubviews() {
@@ -84,13 +86,36 @@ class CalendarDaysViewController: UIViewController {
         }
     }
 
-    @objc func selectDate(_ button: CalendarDayButton) {
-        selectedDate = button.date
-        selectedWeekIndex = button.tag
-        delegate?.setSelectedDate(selectedDate)
+    func refresh() {
+        plannables = delegate.flatMap { env.subscribe($0.getPlannables(from: start, to: end)) { [weak self] in
+            self?.updateDots()
+        } }
+        plannables?.exhaust()
+    }
+
+    func updateDots() {
+        let list: [Plannable] = plannables?.all ?? [] // Requirement: ordered by date asc
+        var i = 0
         for week in weeksStackView.arrangedSubviews {
             for day in week.subviews.compactMap({ $0 as? CalendarDayButton }) {
+                while i < list.count, list[i].date < day.date { i += 1 }
+                let startIndex = i
+                while i < list.count, calendar.isDate(list[i].date, inSameDayAs: day.date) { i += 1 }
+                day.activityDotCount = i - startIndex
+            }
+        }
+    }
+
+    @objc func selectDate(_ button: CalendarDayButton) {
+        delegate?.calendarDidSelectDate(button.date)
+    }
+
+    func updateSelectedDate(_ date: Date) {
+        selectedDate = date
+        for (w, week) in weeksStackView.arrangedSubviews.enumerated() {
+            for day in week.subviews.compactMap({ $0 as? CalendarDayButton }) {
                 day.isSelected = calendar.isDate(day.date, inSameDayAs: selectedDate)
+                if day.isSelected { selectedWeekIndex = w }
             }
         }
     }
@@ -103,35 +128,23 @@ class CalendarDaysViewController: UIViewController {
         return button!.date
     }
 
-    public func placeDailyActivityCounts(data: DailyCalendarActivityData?) {
-        for svs in weeksStackView.arrangedSubviews {
-            if let week = svs as? UIStackView {
-                for button in week.arrangedSubviews {
-                    if let b = button as? CalendarDayButton, let count = data?[DateFormatter.localizedString(from: b.date, dateStyle: .short, timeStyle: .none)] {
-                        b.activityDotCount = count
-                    }
-                }
-            }
-        }
+    func hasDate(_ date: Date, isExpanded: Bool) -> Bool {
+        if isExpanded { return start <= date && date < end }
+        let first = weeksStackView.arrangedSubviews[selectedWeekIndex].subviews.first as? CalendarDayButton
+        let last = weeksStackView.arrangedSubviews[selectedWeekIndex].subviews.last as? CalendarDayButton
+        return first!.date <= date && date < last!.date.addDays(1)
     }
 }
 
 class CalendarDayButton: UIButton {
     let circleView = UIView()
     let label = UILabel()
-    let dotContainer: UIStackView = {
-        let s = UIStackView()
-        s.axis = .horizontal
-        s.distribution = .equalSpacing
-        s.alignment = .center
-        s.spacing = 4
-        return s
-    }()
-    private let max = 3
+    let dotContainer = UIStackView()
     var activityDotCount = 0 {
         didSet {
-            if activityDotCount > max { activityDotCount = max }
-            for _ in 0..<activityDotCount { addActivityDot() }
+            for (d, dot) in dotContainer.arrangedSubviews.enumerated() {
+                dot.isHidden = d >= activityDotCount
+            }
         }
     }
 
@@ -173,10 +186,19 @@ class CalendarDayButton: UIButton {
         label.text = CalendarDayButton.dayFormatter.string(from: date)
 
         addSubview(dotContainer)
+        dotContainer.spacing = 4
         dotContainer.isUserInteractionEnabled = false
         dotContainer.translatesAutoresizingMaskIntoConstraints = false
-        dotContainer.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        dotContainer.widthAnchor.constraint(greaterThanOrEqualToConstant: 4).isActive = true
+
+        let size: CGFloat = 4
+        for _ in 0..<3 {
+            let dot = UIView(frame: CGRect(x: 0, y: 0, width: size, height: size))
+            dot.isHidden = true
+            dot.layer.cornerRadius = size / 2
+            dot.widthAnchor.constraint(equalToConstant: size).isActive = true
+            dot.heightAnchor.constraint(equalToConstant: size).isActive = true
+            dotContainer.addArrangedSubview(dot)
+        }
 
         NSLayoutConstraint.activate([
             circleView.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -188,7 +210,7 @@ class CalendarDayButton: UIButton {
             label.centerXAnchor.constraint(equalTo: circleView.centerXAnchor),
             label.centerYAnchor.constraint(equalTo: circleView.centerYAnchor),
 
-            dotContainer.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 8),
+            bottomAnchor.constraint(equalTo: dotContainer.bottomAnchor),
             dotContainer.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
 
@@ -205,22 +227,8 @@ class CalendarDayButton: UIButton {
             isWeekend ? UIColor.named(.textDark) :
             UIColor.named(.textDarkest)
         )
-
         for dot in dotContainer.arrangedSubviews {
             dot.backgroundColor = tintColor
         }
-    }
-
-    func addActivityDot() {
-        let size: CGFloat = 4
-        let circle = UIView(frame: CGRect(x: 0, y: 0, width: size, height: size))
-        circle.backgroundColor = tintColor
-        circle.layer.cornerRadius = size / 2
-        circle.layer.masksToBounds = true
-        circle.translatesAutoresizingMaskIntoConstraints = false
-        circle.widthAnchor.constraint(equalToConstant: size).isActive = true
-        circle.heightAnchor.constraint(equalToConstant: size).isActive = true
-        circle.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        dotContainer.addArrangedSubview(circle)
     }
 }

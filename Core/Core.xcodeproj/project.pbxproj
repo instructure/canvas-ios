@@ -94,6 +94,7 @@
 		7D37BE8D21C837840063FAAC /* SubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D37BE8C21C837840063FAAC /* SubmissionTests.swift */; };
 		7D37BE9121C849D10063FAAC /* DocViewerPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D37BE9021C849D10063FAAC /* DocViewerPresenterTests.swift */; };
 		7D3A1EEF227BEFD00094531E /* ActAsUserPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A1EEE227BEFD00094531E /* ActAsUserPresenterTests.swift */; };
+		7D3E522624059A740092A5F8 /* PlannerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3E522524059A740092A5F8 /* PlannerViewControllerTests.swift */; };
 		7D4C3A772236FFD2007D6792 /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C3A762236FFD2007D6792 /* FileTests.swift */; };
 		7D4C3D59222D9E41001B1198 /* LTIToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C3D58222D9E41001B1198 /* LTIToolsTests.swift */; };
 		7D4D5EB721402CAA0080AC14 /* TestImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4D5EB421402CA90080AC14 /* TestImage.png */; };
@@ -155,7 +156,7 @@
 		7D8FDFB82187B92C0067557E /* UINavigationBarExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FDFB72187B92C0067557E /* UINavigationBarExtensionsTests.swift */; };
 		7D979CCA215BDFD500567627 /* DividerViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D979CC9215BDFD500567627 /* DividerViewTests.swift */; };
 		7DA20E932168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA20E922168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift */; };
-		7DA25F8A23F7211E005D2121 /* GetPlannablesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C3B23F1FE64009622E3 /* GetPlannablesUseCase.swift */; };
+		7DA25F8A23F7211E005D2121 /* GetPlannables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C3B23F1FE64009622E3 /* GetPlannables.swift */; };
 		7DA25F8B23F7211E005D2121 /* APIPlannable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69BB623F1F286009622E3 /* APIPlannable.swift */; };
 		7DA25F8E23F72123005D2121 /* SyllabusSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4687B22355109C00F293A5 /* SyllabusSummaryViewController.swift */; };
 		7DA25F8F23F72123005D2121 /* SyllabusPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF34289233D2CA10095D0D3 /* SyllabusPresenter.swift */; };
@@ -598,7 +599,7 @@
 		97A486CB239AB2ED00084499 /* SyllabusViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A486CA239AB2ED00084499 /* SyllabusViewControllerTests.swift */; };
 		97F69C3823F1F9A6009622E3 /* APIPlannableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C3723F1F9A6009622E3 /* APIPlannableTests.swift */; };
 		97F69C4023F209DB009622E3 /* PlannableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C3F23F209DB009622E3 /* PlannableTests.swift */; };
-		97F69C4423F2208E009622E3 /* GetPlannablesUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C4323F2208D009622E3 /* GetPlannablesUseCaseTests.swift */; };
+		97F69C4423F2208E009622E3 /* GetPlannablesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C4323F2208D009622E3 /* GetPlannablesTests.swift */; };
 		9F09A4CF22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F09A4CE22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift */; };
 		9F10A66B2293191200E3360C /* UserSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F10A66A2293191200E3360C /* UserSettingsTests.swift */; };
 		9F10A66F22931E7900E3360C /* GetUserSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F10A66E22931E7900E3360C /* GetUserSettingsTests.swift */; };
@@ -1210,6 +1211,7 @@
 		7D37BE8C21C837840063FAAC /* SubmissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionTests.swift; sourceTree = "<group>"; };
 		7D37BE9021C849D10063FAAC /* DocViewerPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerPresenterTests.swift; sourceTree = "<group>"; };
 		7D3A1EEE227BEFD00094531E /* ActAsUserPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActAsUserPresenterTests.swift; sourceTree = "<group>"; };
+		7D3E522524059A740092A5F8 /* PlannerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerViewControllerTests.swift; sourceTree = "<group>"; };
 		7D47769B21AF3A0200B441CE /* QuizQuestionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestionType.swift; sourceTree = "<group>"; };
 		7D4C3A762236FFD2007D6792 /* FileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTests.swift; sourceTree = "<group>"; };
 		7D4C3D58222D9E41001B1198 /* LTIToolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIToolsTests.swift; sourceTree = "<group>"; };
@@ -1486,10 +1488,10 @@
 		97D9400D23DFEA6A00A9D274 /* UIBarButtonItemExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensions.swift; sourceTree = "<group>"; };
 		97F69BB623F1F286009622E3 /* APIPlannable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIPlannable.swift; sourceTree = "<group>"; };
 		97F69C3723F1F9A6009622E3 /* APIPlannableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIPlannableTests.swift; sourceTree = "<group>"; };
-		97F69C3B23F1FE64009622E3 /* GetPlannablesUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPlannablesUseCase.swift; sourceTree = "<group>"; };
+		97F69C3B23F1FE64009622E3 /* GetPlannables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPlannables.swift; sourceTree = "<group>"; };
 		97F69C3D23F20304009622E3 /* Plannable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plannable.swift; sourceTree = "<group>"; };
 		97F69C3F23F209DB009622E3 /* PlannableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannableTests.swift; sourceTree = "<group>"; };
-		97F69C4323F2208D009622E3 /* GetPlannablesUseCaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPlannablesUseCaseTests.swift; sourceTree = "<group>"; };
+		97F69C4323F2208D009622E3 /* GetPlannablesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPlannablesTests.swift; sourceTree = "<group>"; };
 		97F69C4523F34734009622E3 /* PlannerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerListViewController.swift; sourceTree = "<group>"; };
 		97F69C4723F3475E009622E3 /* PlannerListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlannerListViewController.storyboard; sourceTree = "<group>"; };
 		97F69C4923F34DB1009622E3 /* PlannerListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerListViewControllerTests.swift; sourceTree = "<group>"; };
@@ -3011,12 +3013,13 @@
 		97F69C3923F1FD78009622E3 /* Planner */ = {
 			isa = PBXGroup;
 			children = (
+				97F69C3723F1F9A6009622E3 /* APIPlannableTests.swift */,
 				7DD4763923FF21B500AB045C /* CalendarDaysViewControllerTests.swift */,
 				7DD4763A23FF21B500AB045C /* CalendarViewControllerTests.swift */,
-				97F69C4323F2208D009622E3 /* GetPlannablesUseCaseTests.swift */,
-				97F69C3723F1F9A6009622E3 /* APIPlannableTests.swift */,
+				97F69C4323F2208D009622E3 /* GetPlannablesTests.swift */,
 				97F69C3F23F209DB009622E3 /* PlannableTests.swift */,
 				97F69C4923F34DB1009622E3 /* PlannerListViewControllerTests.swift */,
+				7D3E522524059A740092A5F8 /* PlannerViewControllerTests.swift */,
 			);
 			path = Planner;
 			sourceTree = "<group>";
@@ -3028,11 +3031,11 @@
 				7DFD5F7723FF158700D988E0 /* CalendarDaysViewController.swift */,
 				7DFD5F7823FF158700D988E0 /* CalendarViewController.storyboard */,
 				7DFD5F7A23FF158700D988E0 /* CalendarViewController.swift */,
-				7DFD5F7923FF158700D988E0 /* PlannerViewController.swift */,
-				97F69C3B23F1FE64009622E3 /* GetPlannablesUseCase.swift */,
+				97F69C3B23F1FE64009622E3 /* GetPlannables.swift */,
 				97F69C3D23F20304009622E3 /* Plannable.swift */,
 				97F69C4723F3475E009622E3 /* PlannerListViewController.storyboard */,
 				97F69C4523F34734009622E3 /* PlannerListViewController.swift */,
+				7DFD5F7923FF158700D988E0 /* PlannerViewController.swift */,
 			);
 			path = Planner;
 			sourceTree = "<group>";
@@ -4216,6 +4219,7 @@
 				3BA9FF752332B05700196A06 /* GradingPeriodRequestableTests.swift in Sources */,
 				7DCF1EAC216BC360003AF358 /* CourseDefaultViewTests.swift in Sources */,
 				B1846D1322EA32F000BC4C4A /* NotificationCenterExtensionsTests.swift in Sources */,
+				7D3E522624059A740092A5F8 /* PlannerViewControllerTests.swift in Sources */,
 				78151DCF21AE7E0500692862 /* APIDiscussionRequestableTests.swift in Sources */,
 				7DF4001B2174FA24007E5F81 /* UITableViewExtensionsTests.swift in Sources */,
 				7DCF1EBE216BC969003AF358 /* SubmissionWorkflowStateTests.swift in Sources */,
@@ -4352,7 +4356,7 @@
 				7D819FF9228C898100C61EDD /* APIErrorTests.swift in Sources */,
 				3BDB8F3722E6389F003D81C3 /* PresenterPageViewLoggerTests.swift in Sources */,
 				B150C63E2298E6410096D58C /* GetArcTests.swift in Sources */,
-				97F69C4423F2208E009622E3 /* GetPlannablesUseCaseTests.swift in Sources */,
+				97F69C4423F2208E009622E3 /* GetPlannablesTests.swift in Sources */,
 				B14B7055229468BC00B568D6 /* FilePickerViewControllerTests.swift in Sources */,
 				7DCF203E216D5C4C003AF358 /* LockStatusViewable.swift in Sources */,
 				7D71807B233FCD0A0053FC7A /* UserProfileTests.swift in Sources */,
@@ -4769,7 +4773,7 @@
 				7DA2604723F722D9005D2121 /* ExternalTool.swift in Sources */,
 				7DA25FB723F72136005D2121 /* APIGroup.swift in Sources */,
 				7DA2604123F722D9005D2121 /* CourseSection.swift in Sources */,
-				7DA25F8A23F7211E005D2121 /* GetPlannablesUseCase.swift in Sources */,
+				7DA25F8A23F7211E005D2121 /* GetPlannables.swift in Sources */,
 				7DA2602C23F722C2005D2121 /* LoginStartSessionCell.swift in Sources */,
 				7DA2607523F722F6005D2121 /* PageListCell.swift in Sources */,
 				7DA2602623F722B3005D2121 /* LogEventListPresenter.swift in Sources */,

@@ -22,12 +22,12 @@ public class GetPlannables: CollectionUseCase {
     public typealias Model = Plannable
 
     var userID: String?
-    var startDate: Date?
-    var endDate: Date?
+    var startDate: Date
+    var endDate: Date
     var contextCodes: [String] = []
     var filter: String = ""
 
-    public init(userID: String? = nil, startDate: Date? = nil, endDate: Date? = nil, contextCodes: [String] = [], filter: String = "") {
+    public init(userID: String? = nil, startDate: Date, endDate: Date, contextCodes: [String] = [], filter: String = "") {
         self.userID = userID
         self.startDate = startDate
         self.endDate = endDate
@@ -35,18 +35,22 @@ public class GetPlannables: CollectionUseCase {
         self.filter = filter
     }
 
-    public var cacheKey: String? { nil }
+    public var cacheKey: String? {
+        "get-plannables-\(userID ?? "")-\(startDate)-\(endDate)-\(filter)-\(contextCodes.joined(separator: ","))"
+    }
 
     public var scope: Scope {
-        if let userID = userID, let start = startDate, let end = endDate {
-            //  https://instructure.atlassian.net/browse/KNO-292
-            let p = NSPredicate(format: "%K >= %@ && %K < %@ && %K == %@", #keyPath(Plannable.date), start as NSDate, #keyPath(Plannable.date), end as NSDate, #keyPath(Plannable.userID), userID)
-            return Scope(predicate: p, order: [NSSortDescriptor(key: #keyPath(Plannable.date), ascending: true)])
-        } else if let userID = userID {
-            return Scope.where(#keyPath(Plannable.userID), equals: userID, orderBy: #keyPath(Plannable.date))
-        } else {
-            return .all(orderBy: #keyPath(Plannable.date))
+        var predicate = NSPredicate(format: "%@ <= %K AND %K < %@",
+            startDate as NSDate, #keyPath(Plannable.date),
+            #keyPath(Plannable.date), endDate as NSDate
+        )
+        if let userID = userID {
+            predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                NSPredicate(key: #keyPath(Plannable.userID), equals: userID),
+                predicate,
+            ])
         }
+        return Scope(predicate: predicate, orderBy: #keyPath(Plannable.date))
     }
 
     public var request: GetPlannablesRequest {
