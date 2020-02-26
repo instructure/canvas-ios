@@ -104,19 +104,19 @@ extension PlannerViewController: PlannerListDelegate {
 
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         listContentOffsetY = scrollView.contentOffset.y
+        scrollView.contentInset.bottom = max(0, scrollView.frame.height - scrollView.contentSize.height - calendar.minHeight)
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard scrollView.isDragging, scrollView.contentInset.top > calendar.minHeight else { return }
         let topSpace = scrollView.contentInset.top + listContentOffsetY - scrollView.contentOffset.y
-        listContentOffsetY = scrollView.contentOffset.y
         let height = max(calendar.minHeight, min(calendar.maxHeight, topSpace))
         scrollView.scrollIndicatorInsets.top = height
-        scrollView.contentInset.top = height
         calendar.setHeight(height)
     }
 
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        scrollView.contentInset.bottom = 0
         calendar.setExpanded(calendar.isExpanded)
     }
 }

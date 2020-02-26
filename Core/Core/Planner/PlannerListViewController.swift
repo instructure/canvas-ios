@@ -109,7 +109,7 @@ extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate 
     }
 
     public func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView) {
-        emptyStateTop.constant = max(scrollView.contentInset.top, -scrollView.contentOffset.y)
+        emptyStateTop.constant = -scrollView.contentOffset.y
         spinnerCenterY.constant = emptyStateTop.constant / 2
     }
 
