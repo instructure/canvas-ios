@@ -17,7 +17,7 @@
 //
 
 import Foundation
-import Core
+@testable import Core
 import XCTest
 
 class UTITests: XCTestCase {
@@ -70,5 +70,15 @@ class UTITests: XCTestCase {
 
     func testFileURL() {
         XCTAssertEqual(UTI.fileURL.rawValue, "public.file-url")
+    }
+
+    func testIWork() {
+        let result = UTI.from(extensions: ["pages", "key", "numbers"])
+        XCTAssert(result.contains(.pagesBundle))
+        XCTAssert(result.contains(.pagesSingleFile))
+        XCTAssert(result.contains(.keynoteBundle))
+        XCTAssert(result.contains(.keynoteSingleFile))
+        XCTAssert(result.contains(.numbersBundle))
+        XCTAssert(result.contains(.numbersSingleFile))
     }
 }

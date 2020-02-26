@@ -19,7 +19,14 @@
 import Foundation
 import MobileCoreServices
 
-public struct UTI: Equatable {
+public struct UTI: Equatable, Hashable {
+    static let pagesBundleIdentifier = "com.apple.iwork.pages.pages"
+    static let pagesSingleFileIdentifier = "com.apple.iwork.pages.sffpages"
+    static let keynoteBundleIdentifier = "com.apple.iwork.keynote.key"
+    static let keynoteSingleFileIdentifier = "com.apple.iwork.keynote.sffkey"
+    static let numbersBundleIdentifier = "com.apple.iwork.numbers.numbers"
+    static let numbersSingleFileIdentifier = "com.apple.iwork.numbers.sffnumbers"
+
     public let rawValue: String
 
     public init?(extension: String) {
@@ -36,6 +43,19 @@ public struct UTI: Equatable {
 
     private init(rawValue: String) {
         self.rawValue = rawValue
+    }
+
+    public static func from(extensions: [String]) -> Set<UTI> {
+        var utis = Set(extensions.compactMap(UTI.init))
+
+        // iWork has types for bundles and single files
+        // Make sure the single file equivalent to the bundles are included
+        // Bundles are typically present on iCloud Drive whereas singe files are "On My Device"
+        if utis.contains(.pagesBundle) { utis.insert(.pagesSingleFile) }
+        if utis.contains(.keynoteBundle) { utis.insert(.keynoteSingleFile) }
+        if utis.contains(.numbersBundle) { utis.insert(.numbersSingleFile) }
+
+        return utis
     }
 
     public static var any: UTI {
@@ -64,6 +84,30 @@ public struct UTI: Equatable {
 
     public static var fileURL: UTI {
         return UTI(rawValue: kUTTypeFileURL as String)
+    }
+
+    public static var pagesBundle: UTI {
+        return UTI(rawValue: UTI.pagesBundleIdentifier)
+    }
+
+    public static var pagesSingleFile: UTI {
+        return UTI(rawValue: UTI.pagesSingleFileIdentifier)
+    }
+
+    public static var keynoteBundle: UTI {
+        return UTI(rawValue: UTI.keynoteBundleIdentifier)
+    }
+
+    public static var keynoteSingleFile: UTI {
+        return UTI(rawValue: UTI.keynoteSingleFileIdentifier)
+    }
+
+    public static var numbersBundle: UTI {
+        return UTI(rawValue: UTI.numbersBundleIdentifier)
+    }
+
+    public static var numbersSingleFile: UTI {
+        return UTI(rawValue: UTI.numbersSingleFileIdentifier)
     }
 
     public var isVideo: Bool {
