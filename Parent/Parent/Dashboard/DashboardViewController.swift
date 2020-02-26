@@ -201,6 +201,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
 
         tabBar.tintColor = ColorScheme.observer.color
         tabBar.barTintColor = .named(.backgroundLightest)
+        tabBar.isTranslucent = false
 
         selectCoursesTab()
     }
