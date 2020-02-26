@@ -29,7 +29,7 @@ public class CircleRefreshControl: UIRefreshControl {
         case ready, refreshing, complete
     }
 
-    public var color: UIColor {
+    public var color: UIColor? {
         get { progressView.color }
         set {
             tintColor = newValue
@@ -60,8 +60,9 @@ public class CircleRefreshControl: UIRefreshControl {
     }
 
     func updateProgress(_ scrollView: UIScrollView) {
-        let y = scrollView.contentOffset.y
-        progressView.transform = CGAffineTransform(translationX: 0, y: (-y / 2) - 16)
+        let inset = scrollView.adjustedContentInset.top
+        let y = inset + scrollView.contentOffset.y
+        progressView.transform = CGAffineTransform(translationX: 0, y: inset + (-y / 2) - 16)
         switch refreshState {
         case .ready:
             if scrollView.isDragging, y < snappingPoint {
@@ -74,10 +75,10 @@ public class CircleRefreshControl: UIRefreshControl {
             }
         case .refreshing:
             if y != 0, y > snappingPoint { // keep open if already open
-                scrollView.contentOffset.y = snappingPoint
+                scrollView.contentOffset.y = floor(snappingPoint - inset)
             }
         case .complete:
-            if y >= -4 {
+            if y > -1 {
                 refreshState = .ready
             }
         }

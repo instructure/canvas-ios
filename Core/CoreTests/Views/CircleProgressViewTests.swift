@@ -43,6 +43,9 @@ class CircleProgressViewTests: CoreTestCase {
 
         view.color = .red
         XCTAssertEqual(view.fill.strokeColor, UIColor.red.cgColor)
+        view.color = nil
+        view.tintColor = UIColor.orange
+        XCTAssertEqual(view.fill.strokeColor, UIColor.orange.cgColor)
 
         XCTAssertNotNil(view.layer.animation(forKey: view.rotateKey))
         XCTAssertNotNil(view.fill.animation(forKey: view.morphKey))

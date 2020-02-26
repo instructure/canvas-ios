@@ -124,10 +124,10 @@ class CalendarViewController: UIViewController {
         }
     }
 
-    func refresh() {
+    func refresh(force: Bool = false) {
         // TODO: ask delegate for filter button title here
         clearPageCache()
-        days.refresh()
+        days.refresh(force: force)
     }
 
     @IBAction func toggleExpanded() {

@@ -33,7 +33,9 @@ let router = Router(routes: [
             return try? CalendarEventDetailsViewController(session: session, studentID: studentID, calendarEventID: eventID)
         }
         guard let studentID = currentStudentID, ExperimentalFeature.parentCalendar.isEnabled else { return nil }
-        return PlannerViewController.create(studentID: studentID)
+        let controller = PlannerViewController.create(studentID: studentID)
+        controller.view.tintColor = ColorScheme.observee(studentID).color
+        return controller
     },
 
     RouteHandler(.conversations) { _, _ in
