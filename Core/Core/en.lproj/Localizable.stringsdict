@@ -18,6 +18,22 @@
 			<string>%d events</string>
 		</dict>
 	</dict>
+	<key>date_d_events</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%@, %#@events@</string>
+		<key>events</key>
+		<dict>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>one</key>
+			<string>%d event</string>
+			<key>other</key>
+			<string>%d events</string>
+		</dict>
+	</dict>
 	<key>final_grade_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -226,27 +242,27 @@
 			<string>%d others</string>
 		</dict>
 	</dict>
-    <key>conversation_unread_messages</key>
-    <dict>
-        <key>NSStringLocalizedFormatKey</key>
-        <string>%#@message_count@</string>
-        <key>message_count</key>
-        <dict>
-            <key>NSStringFormatSpecTypeKey</key>
-            <string>NSStringPluralRuleType</string>
-            <key>NSStringFormatValueTypeKey</key>
-            <string>d</string>
-            <key>one</key>
-            <string>%d unread conversation</string>
-            <key>two</key>
-            <string></string>
-            <key>few</key>
-            <string></string>
-            <key>many</key>
-            <string></string>
-            <key>other</key>
-            <string>%d unread conversations</string>
-        </dict>
-    </dict>
+	<key>conversation_unread_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@message_count@</string>
+		<key>message_count</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d unread conversation</string>
+			<key>two</key>
+			<string></string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>other</key>
+			<string>%d unread conversations</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

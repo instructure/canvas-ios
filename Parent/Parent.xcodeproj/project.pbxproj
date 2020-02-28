@@ -141,6 +141,7 @@
 		7D85FFEA23E1F9F30055851D /* AttachmentCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D85FFE923E1F9F30055851D /* AttachmentCardsViewController.swift */; };
 		7D88EA2E23A9A1CB00D5F8FD /* ColorSchemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D88EA2D23A9A1CB00D5F8FD /* ColorSchemeTests.swift */; };
 		7DBED00A2328282200392F3C /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED0092328282200392F3C /* Routes.swift */; };
+		7DC5F49224097C12000256E3 /* PlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC5F49124097C12000256E3 /* PlannerTests.swift */; };
 		7DEE3E3D2335790A0009D8DC /* IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE3E3C2335790A0009D8DC /* IBDesignables.swift */; };
 		7DFDB43223A3EDFB00B28DED /* ConversationListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFDB43123A3EDFB00B28DED /* ConversationListViewControllerTests.swift */; };
 		7DFDB43423A4393D00B28DED /* ConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFDB43323A4393D00B28DED /* ConversationListCell.swift */; };
@@ -916,6 +917,7 @@
 		7D85FFE923E1F9F30055851D /* AttachmentCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCardsViewController.swift; sourceTree = "<group>"; };
 		7D88EA2D23A9A1CB00D5F8FD /* ColorSchemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeTests.swift; sourceTree = "<group>"; };
 		7DBED0092328282200392F3C /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
+		7DC5F49124097C12000256E3 /* PlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerTests.swift; sourceTree = "<group>"; };
 		7DE74EFD22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7DE74EFE22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7DE74EFF22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/EmptyCalendarEventCell.strings"; sourceTree = "<group>"; };
@@ -1581,6 +1583,7 @@
 				E80763D623E08DA10085DAFB /* Info.plist */,
 				E80763E123E08F420085DAFB /* InboxTests.swift */,
 				E81B573823E1EEC5002A0C38 /* GradesListTests.swift */,
+				7DC5F49124097C12000256E3 /* PlannerTests.swift */,
 			);
 			path = ParentE2ETests;
 			sourceTree = "<group>";
@@ -2054,6 +2057,7 @@
 			files = (
 				E81B573923E1EEC5002A0C38 /* GradesListTests.swift in Sources */,
 				E80763E223E08F420085DAFB /* InboxTests.swift in Sources */,
+				7DC5F49224097C12000256E3 /* PlannerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
