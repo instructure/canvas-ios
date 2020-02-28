@@ -51,8 +51,10 @@ class PlannerViewControllerTests: CoreTestCase {
         filter.tableView.delegate?.tableView?(filter.tableView!, didSelectRowAt: IndexPath(row: 0, section: 0))
         router.dismiss()
         XCTAssertEqual(controller.calendar.filterButton.title(for: .normal), "Calendars (1)")
-        XCTAssertEqual(controller.calendar.days.plannables?.useCase.contextCodes, ["course_2"])
-        XCTAssertEqual(controller.list.plannables?.useCase.contextCodes, ["course_2"])
+        XCTAssert(controller.calendar.days.plannables?.useCase.contextCodes.contains("course_2") == true)
+        XCTAssert(controller.list.plannables?.useCase.contextCodes.contains("course_2") == true)
+        XCTAssert(controller.calendar.days.plannables?.useCase.contextCodes.contains("user_1") == true)
+        XCTAssert(controller.list.plannables?.useCase.contextCodes.contains("user_1") == true)
 
         let height: CGFloat = controller.calendar.maxHeight
         controller.calendar.delegate?.calendarDidResize(height: height, animated: false)

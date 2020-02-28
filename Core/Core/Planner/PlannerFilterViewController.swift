@@ -55,8 +55,6 @@ public class PlannerFilterViewController: UIViewController, ErrorViewController 
         tableView.refreshControl = refresh
         tableView.registerHeaderFooterView(SectionHeaderView.self)
         headerLabel.text = NSLocalizedString("Tap to select the courses you want to see on the calendar.", bundle: .core, comment: "")
-        headerLabel.font = .scaledNamedFont(.medium12)
-        headerLabel.textColor = .named(.textDarkest)
 
         emptyStateHeader.text = NSLocalizedString("No Courses", bundle: .core, comment: "")
         emptyStateSubHeader.text = NSLocalizedString("Your child's courses might not be published yet.", bundle: .core, comment: "")
@@ -157,24 +155,5 @@ class PlannerFilterCell: UITableViewCell {
         checkboxView.layer.borderColor = UIColor.named(.borderDark).cgColor
         checkmark.tintColor = .named(.backgroundInfo)
         selectionStyle = .none
-    }
-}
-
-class LoadingCell: UITableViewCell {
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        let indicator = UIActivityIndicatorView(style: .gray)
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(indicator)
-        NSLayoutConstraint.activate([
-            indicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            indicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-        ])
-        indicator.startAnimating()
-        separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
