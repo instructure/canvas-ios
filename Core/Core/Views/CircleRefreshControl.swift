@@ -86,8 +86,12 @@ public class CircleRefreshControl: UIRefreshControl {
 
     public override func beginRefreshing() {
         guard #available(iOS 13, *) else { return super.beginRefreshing() }
-        if let scrollView = superview as? UIScrollView, scrollView.contentOffset.y > snappingPoint {
-            scrollView.setContentOffset(CGPoint(x: 0, y: snappingPoint), animated: true)
+        if let scrollView = superview as? UIScrollView {
+            let inset = scrollView.adjustedContentInset.top
+            let y = inset + scrollView.contentOffset.y
+            if y > snappingPoint {
+                scrollView.setContentOffset(CGPoint(x: 0, y: floor(snappingPoint - inset)), animated: true)
+            }
         }
         refreshState = .refreshing
         progressView.alpha = 1
