@@ -54,22 +54,31 @@ class PlannerViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.calendar.days.plannables?.useCase.contextCodes, ["course_2"])
         XCTAssertEqual(controller.list.plannables?.useCase.contextCodes, ["course_2"])
 
-        let height: CGFloat = 264
+        let height: CGFloat = controller.calendar.maxHeight
         controller.calendar.delegate?.calendarDidResize(height: height, animated: false)
         XCTAssertEqual(controller.list.tableView.scrollIndicatorInsets.top, height)
         XCTAssertEqual(controller.list.tableView.contentInset.top, height)
 
+        controller.calendar.setExpanded(true)
         let mockTable = MockTableView()
+        mockTable.contentInset.top = controller.calendar.height
+        mockTable.contentOffset.y = 0
         controller.list.delegate?.scrollViewWillBeginDragging?(mockTable)
-        mockTable.contentInset.top = height
-        mockTable.contentOffset.y = 200
+        mockTable.contentOffset.y = 500 // push to collapse
         controller.list.delegate?.scrollViewDidScroll?(mockTable)
-        XCTAssertLessThanOrEqual(mockTable.scrollIndicatorInsets.top, 144)
-        XCTAssertLessThanOrEqual(mockTable.contentInset.top, 144)
-        mockTable.contentOffset.y = -200
+        XCTAssertEqual(controller.calendar.height, controller.calendar.minHeight)
+        mockTable.contentOffset.y = -500 // reverse to pull back open
         controller.list.delegate?.scrollViewDidScroll?(mockTable)
-        XCTAssertLessThanOrEqual(mockTable.scrollIndicatorInsets.top, 144)
-        XCTAssertLessThanOrEqual(mockTable.contentInset.top, 144)
+        XCTAssertEqual(controller.calendar.height, controller.calendar.maxHeight)
+        controller.list.delegate?.scrollViewDidEndDragging?(mockTable, willDecelerate: false)
+        XCTAssertEqual(controller.calendar.isExpanded, true)
+
+        controller.calendar.setExpanded(false)
+        mockTable.contentInset.top = controller.calendar.height
+        controller.list.delegate?.scrollViewWillBeginDragging?(mockTable)
+        mockTable.contentOffset.y = -500 // pull should not open if starting at collapsed
+        controller.list.delegate?.scrollViewDidScroll?(mockTable)
+        XCTAssertEqual(controller.calendar.height, controller.calendar.minHeight)
         controller.list.delegate?.scrollViewDidEndDragging?(mockTable, willDecelerate: false)
         XCTAssertEqual(controller.calendar.isExpanded, false)
 

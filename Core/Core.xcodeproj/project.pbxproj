@@ -127,6 +127,9 @@
 		7D71807B233FCD0A0053FC7A /* UserProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D71807A233FCD0A0053FC7A /* UserProfileTests.swift */; };
 		7D7472D6218CC4B200CE1430 /* APIDocViewerRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7472D5218CC4B200CE1430 /* APIDocViewerRequestableTests.swift */; };
 		7D7472D9218CD77C00CE1430 /* PSPDFAnnotationExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7472D8218CD77C00CE1430 /* PSPDFAnnotationExtensionTests.swift */; };
+		7D75FF1424081E42000544E7 /* ListErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D75FF1324081E42000544E7 /* ListErrorView.swift */; };
+		7D75FF1624081F57000544E7 /* ListErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D75FF1524081F57000544E7 /* ListErrorView.xib */; };
+		7D75FF1824085E95000544E7 /* ListBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D75FF1724085E95000544E7 /* ListBackgroundView.swift */; };
 		7D80AC15212B67E100C40ECE /* APIUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC14212B67E100C40ECE /* APIUserTests.swift */; };
 		7D80AC17212B689E00C40ECE /* APITabRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC16212B689E00C40ECE /* APITabRequestableTests.swift */; };
 		7D80AC19212B697600C40ECE /* APIGroupRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC18212B697600C40ECE /* APIGroupRequestableTests.swift */; };
@@ -1273,6 +1276,9 @@
 		7D71807A233FCD0A0053FC7A /* UserProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileTests.swift; sourceTree = "<group>"; };
 		7D7472D5218CC4B200CE1430 /* APIDocViewerRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDocViewerRequestableTests.swift; sourceTree = "<group>"; };
 		7D7472D8218CD77C00CE1430 /* PSPDFAnnotationExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSPDFAnnotationExtensionTests.swift; sourceTree = "<group>"; };
+		7D75FF1324081E42000544E7 /* ListErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListErrorView.swift; sourceTree = "<group>"; };
+		7D75FF1524081F57000544E7 /* ListErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListErrorView.xib; sourceTree = "<group>"; };
+		7D75FF1724085E95000544E7 /* ListBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBackgroundView.swift; sourceTree = "<group>"; };
 		7D765023215AEDDD00BB4F38 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 		7D765025215AEDE300BB4F38 /* DynamicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabel.swift; sourceTree = "<group>"; };
 		7D798A2023DF6F8C007EE831 /* FilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePicker.swift; sourceTree = "<group>"; };
@@ -2452,6 +2458,9 @@
 				7DA057512193A30E00A3CFBB /* IconView.swift */,
 				7DAFBE73231871F500E9A37D /* ItemPickerViewController.swift */,
 				7D1219232243340200D3BF5C /* KeyboardTransitioning.swift */,
+				7D75FF1724085E95000544E7 /* ListBackgroundView.swift */,
+				7D75FF1324081E42000544E7 /* ListErrorView.swift */,
+				7D75FF1524081F57000544E7 /* ListErrorView.xib */,
 				7D1758C0215A8F5600F88613 /* ListFormatter.swift */,
 				7DD6CC6C21BD6DCD004C4BB6 /* LoadingViewController.storyboard */,
 				7DD6CC6A21BD6DB1004C4BB6 /* LoadingViewController.swift */,
@@ -3999,6 +4008,7 @@
 				7D101949215E8E5F0058FDD1 /* Assets.xcassets in Resources */,
 				7DD6CC6D21BD6DCD004C4BB6 /* LoadingViewController.storyboard in Resources */,
 				3BF3428E233D2D010095D0D3 /* SyllabusViewController.storyboard in Resources */,
+				7D75FF1624081F57000544E7 /* ListErrorView.xib in Resources */,
 				7D101947215E87D40058FDD1 /* defaultHeaderImage.png in Resources */,
 				7DCF1ECF216BFE61003AF358 /* Localizable.stringsdict in Resources */,
 				9F4D246F233150DE00EDFCFE /* PageDetailsViewController.storyboard in Resources */,
@@ -4706,6 +4716,7 @@
 				7DA260E623F72359005D2121 /* RightDetailTableViewCell.swift in Sources */,
 				7DA2600823F7227A005D2121 /* NotificationCenterExtensions.swift in Sources */,
 				7DA2606723F722D9005D2121 /* TabType.swift in Sources */,
+				7D75FF1824085E95000544E7 /* ListBackgroundView.swift in Sources */,
 				7DA2604223F722D9005D2121 /* CourseWorkflowState.swift in Sources */,
 				7DA25F9A23F72136005D2121 /* APIAccountRequestable.swift in Sources */,
 				7DA2607223F722E9005D2121 /* NotificationManager.swift in Sources */,
@@ -4783,6 +4794,7 @@
 				7DA2604823F722D9005D2121 /* FeatureFlag.swift in Sources */,
 				7DA2609E23F72348005D2121 /* APITodo.swift in Sources */,
 				7DA2605F23F722D9005D2121 /* Role.swift in Sources */,
+				7D75FF1424081E42000544E7 /* ListErrorView.swift in Sources */,
 				7DA25FF423F72260005D2121 /* ExperimentalFeaturesViewController.swift in Sources */,
 				7DA260D023F72359005D2121 /* CircleProgressView.swift in Sources */,
 				7DA25FA523F72136005D2121 /* APICourse.swift in Sources */,
