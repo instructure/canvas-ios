@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Planner Filter View Controller-->
+        <scene sceneID="R3k-5O-o9u">
+            <objects>
+                <viewController storyboardIdentifier="PlannerFilterViewController" id="WQp-rG-X6V" customClass="PlannerFilterViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jqp-l7-Co0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MEg-Dg-caP" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="186" y="437" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n7L-ZC-mbk">
+                                <rect key="frame" x="0.0" y="76.5" width="414" height="785.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlannerFilterCell" id="WTs-tm-ubq" customClass="PlannerFilterCell" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="64"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WTs-tm-ubq" id="7Vj-S3-utd">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="onQ-KF-Jfi">
+                                                    <rect key="frame" x="16" y="22" width="382" height="21"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yHF-Le-Bv1">
+                                                            <rect key="frame" x="0.0" y="0.5" width="20" height="20"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="20" id="8E8-fR-Pzr"/>
+                                                                <constraint firstAttribute="height" constant="20" id="iAp-rr-HRS"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AE7-tL-tjB" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                            <rect key="frame" x="36" y="0.5" width="346" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="filter-checkbox" translatesAutoresizingMaskIntoConstraints="NO" id="vTf-1D-jk1">
+                                                    <rect key="frame" x="14" y="20.5" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="3dQ-L3-4qk"/>
+                                                        <constraint firstAttribute="height" constant="24" id="vU5-g1-Mpe"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="textLightest"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="checkSolid"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="onQ-KF-Jfi" firstAttribute="top" secondItem="7Vj-S3-utd" secondAttribute="top" constant="22" id="XWo-1m-35X"/>
+                                                <constraint firstItem="vTf-1D-jk1" firstAttribute="centerY" secondItem="yHF-Le-Bv1" secondAttribute="centerY" id="YDe-xi-XOh"/>
+                                                <constraint firstItem="vTf-1D-jk1" firstAttribute="centerX" secondItem="yHF-Le-Bv1" secondAttribute="centerX" id="dVC-PP-xXM"/>
+                                                <constraint firstItem="onQ-KF-Jfi" firstAttribute="leading" secondItem="7Vj-S3-utd" secondAttribute="leading" constant="16" id="dWV-5g-UoZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="onQ-KF-Jfi" secondAttribute="bottom" constant="21" id="gjy-Jq-e19"/>
+                                                <constraint firstAttribute="trailing" secondItem="onQ-KF-Jfi" secondAttribute="trailing" constant="16" id="zWc-bg-lZI"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="fullDivider" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="checkboxView" destination="yHF-Le-Bv1" id="34c-Dy-suJ"/>
+                                            <outlet property="checkmark" destination="vTf-1D-jk1" id="huQ-X9-UCf"/>
+                                            <outlet property="courseNameLabel" destination="AE7-tL-tjB" id="z8i-fH-bwg"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="WQp-rG-X6V" id="UYl-kI-FUP"/>
+                                    <outlet property="delegate" destination="WQp-rG-X6V" id="KRN-MC-eJd"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="vgZ-Zu-fC4" firstAttribute="trailing" secondItem="n7L-ZC-mbk" secondAttribute="trailing" id="98v-PY-3oS"/>
+                            <constraint firstItem="MEg-Dg-caP" firstAttribute="top" secondItem="vgZ-Zu-fC4" secondAttribute="top" constant="12" id="Ixu-La-meI"/>
+                            <constraint firstItem="MEg-Dg-caP" firstAttribute="leading" secondItem="vgZ-Zu-fC4" secondAttribute="leading" constant="16" id="LB8-iY-5Oe"/>
+                            <constraint firstItem="vgZ-Zu-fC4" firstAttribute="bottom" secondItem="n7L-ZC-mbk" secondAttribute="bottom" id="O2i-Zn-GjX"/>
+                            <constraint firstItem="n7L-ZC-mbk" firstAttribute="top" secondItem="MEg-Dg-caP" secondAttribute="bottom" constant="12" id="mi2-tA-sE3"/>
+                            <constraint firstItem="vgZ-Zu-fC4" firstAttribute="trailing" secondItem="MEg-Dg-caP" secondAttribute="trailing" constant="16" id="pfs-SP-WE9"/>
+                            <constraint firstItem="n7L-ZC-mbk" firstAttribute="leading" secondItem="vgZ-Zu-fC4" secondAttribute="leading" id="qMw-Eh-rGE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vgZ-Zu-fC4"/>
+                    </view>
+                    <connections>
+                        <outlet property="headerLabel" destination="MEg-Dg-caP" id="bkl-h7-0iE"/>
+                        <outlet property="tableView" destination="n7L-ZC-mbk" id="2Kj-NQ-PRg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tei-rc-eEa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="94"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="filter-checkbox" width="24" height="24"/>
+    </resources>
+</document>

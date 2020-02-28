@@ -19,11 +19,10 @@
 import Foundation
 import CoreData
 
-public struct GetFrontPage: APIUseCase {
+public struct GetFrontPage: CollectionUseCase {
     public typealias Model = Page
 
     public let context: Context
-    public let clearsBeforeWrite: Bool = true
 
     public init(context: Context) {
         self.context = context

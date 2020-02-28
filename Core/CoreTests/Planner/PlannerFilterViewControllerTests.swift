@@ -1,0 +1,75 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2020-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import Foundation
+import XCTest
+@testable import Core
+import TestsFoundation
+
+class PlannerFilterViewControllerTests: CoreTestCase {
+    var studentID: String? = "1"
+    lazy var controller = PlannerFilterViewController.create(studentID: studentID)
+
+    lazy var course1 = APICourse.make(
+        id: "1",
+        course_code: "BIO 101",
+        enrollments: [
+            .make(type: "observer", associated_user_id: studentID),
+        ]
+    )
+    lazy var course2 = APICourse.make(
+        id: "2",
+        course_code: "BIO 102",
+        enrollments: [
+            .make(type: "observer", associated_user_id: studentID),
+        ]
+    )
+
+    override func setUp() {
+        super.setUp()
+        environment.mockStore = false
+    }
+
+    func testLayout() {
+        api.mock(controller.courses, value: [course1])
+        controller.view.layoutIfNeeded()
+        let tableView = controller.tableView!
+        XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 1)
+        var cell1 = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0)) as! PlannerFilterCell
+        XCTAssertEqual(cell1.courseNameLabel.text, "BIO 101")
+        XCTAssertTrue(cell1.isChecked)
+        tableView.delegate?.tableView?(tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        cell1 = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0)) as! PlannerFilterCell
+        XCTAssertFalse(cell1.isChecked)
+    }
+
+    func testPaginatedRefresh() {
+        controller.view.layoutIfNeeded()
+        let next = HTTPURLResponse(next: "/courses?page=2")
+        api.mock(controller.courses, value: [course1], response: next)
+        api.mock(GetNextRequest(path: "/courses?page=2"), value: [course2])
+        let tableView = controller.tableView!
+        tableView.refreshControl?.sendActions(for: .valueChanged)
+        XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 2)
+        let loading = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)) as? LoadingCell
+        XCTAssertNotNil(loading)
+        XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 2)
+        let cell = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)) as! PlannerFilterCell
+        XCTAssertEqual(cell.courseNameLabel.text, course2.course_code)
+    }
+}
