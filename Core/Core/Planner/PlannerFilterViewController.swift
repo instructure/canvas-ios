@@ -22,6 +22,11 @@ import UIKit
 public class PlannerFilterViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var headerLabel: DynamicLabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var emptyStateView: UIView!
+    @IBOutlet weak var emptyStateHeader: UILabel!
+    @IBOutlet weak var emptyStateSubHeader: UILabel!
+    @IBOutlet weak var errorView: ListErrorView!
+    @IBOutlet weak var spinnerView: UIView!
 
     let env = AppEnvironment.shared
     var studentID: String?
@@ -44,34 +49,32 @@ public class PlannerFilterViewController: UIViewController, ErrorViewController 
     public override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = NSLocalizedString("Calendars", bundle: .core, comment: "")
+
         let refresh = CircleRefreshControl()
         refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView.refreshControl = refresh
         tableView.registerHeaderFooterView(SectionHeaderView.self)
-        tableView.tableFooterView = UIView(frame: .zero)
         headerLabel.text = NSLocalizedString("Tap to select the courses you want to see on the calendar.", bundle: .core, comment: "")
         headerLabel.font = .scaledNamedFont(.medium12)
         headerLabel.textColor = .named(.textDarkest)
+
+        emptyStateHeader.text = NSLocalizedString("No Courses", bundle: .core, comment: "")
+        emptyStateSubHeader.text = NSLocalizedString("Your child's courses might not be published yet.", bundle: .core, comment: "")
+        errorView.messageLabel.text = NSLocalizedString("There was an error loading courses. Pull to refresh to try again.", bundle: .core, comment: "")
+        errorView.retryButton.addTarget(self, action: #selector(refresh(_:)), for: .primaryActionTriggered)
+        emptyStateView.isHidden = true
+        errorView.isHidden = true
+
         planners.refresh()
         courses.refresh(force: true) // TODO: store next page info in cache and don't force
     }
 
-    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        performUIUpdate {
-            self.tableView.tableHeaderView?.layoutIfNeeded()
-            self.tableView.tableHeaderView = self.tableView.tableHeaderView
-        }
-    }
-
     func update() {
-        if !courses.pending {
-            tableView.refreshControl?.endRefreshing()
-        }
-        if courses.error != nil {
-            // TODO: show error
-            print(courses.error!)
-        }
+        guard courses.requested, courses.pending == false else { return }
+        tableView.refreshControl?.endRefreshing()
+        spinnerView.isHidden = true
+        emptyStateView.isHidden = courses.error != nil || !courses.isEmpty
+        errorView.isHidden = courses.error == nil
         tableView.reloadData()
     }
 

@@ -72,4 +72,26 @@ class PlannerFilterViewControllerTests: CoreTestCase {
         let cell = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)) as! PlannerFilterCell
         XCTAssertEqual(cell.courseNameLabel.text, course2.course_code)
     }
+
+    func testLoadingState() {
+        let task = api.mock(controller.courses, value: [])
+        task.paused = true
+        controller.view.layoutIfNeeded()
+        XCTAssertFalse(controller.spinnerView.isHidden)
+        task.paused = false
+        XCTAssertTrue(controller.spinnerView.isHidden)
+    }
+
+    func testErrorAndEmptyState() {
+        api.mock(controller.courses, error: NSError.instructureError("fail"))
+        controller.view.layoutIfNeeded()
+        XCTAssertFalse(controller.errorView.isHidden)
+        XCTAssertEqual(controller.errorView.messageLabel.text, "There was an error loading courses. Pull to refresh to try again.")
+        api.mock(controller.courses, value: [])
+        controller.errorView.retryButton.sendActions(for: .primaryActionTriggered)
+        XCTAssertTrue(controller.errorView.isHidden)
+        XCTAssertFalse(controller.emptyStateView.isHidden)
+        XCTAssertEqual(controller.emptyStateHeader.text, "No Courses")
+        XCTAssertEqual(controller.emptyStateSubHeader.text, "Your child's courses might not be published yet.")
+    }
 }
