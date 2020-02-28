@@ -23,13 +23,12 @@ protocol PlannerListDelegate: class, UIScrollViewDelegate {
     func getPlannables(from: Date, to: Date) -> GetPlannables
 }
 
-public class PlannerListViewController: UIViewController, ErrorViewController {
+public class PlannerListViewController: UIViewController {
     @IBOutlet weak var emptyStateHeader: UILabel!
     @IBOutlet weak var emptyStateSubHeader: UILabel!
-    @IBOutlet weak var emptyStateTop: NSLayoutConstraint!
-    @IBOutlet weak var emptyStateViewContainer: UIView!
+    @IBOutlet weak var emptyStateView: UIView!
+    @IBOutlet weak var errorView: ListErrorView!
     let refreshControl = CircleRefreshControl()
-    @IBOutlet weak var spinnerCenterY: NSLayoutConstraint!
     @IBOutlet weak var spinnerView: CircleProgressView!
     @IBOutlet weak var tableView: UITableView!
 
@@ -51,8 +50,10 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        emptyStateHeader.text = NSLocalizedString("No Assignments", comment: "")
-        emptyStateSubHeader.text = NSLocalizedString("It looks like assignments haven’t been created in this space yet.", comment: "")
+        emptyStateHeader.text = NSLocalizedString("No Assignments", bundle: .core, comment: "")
+        emptyStateSubHeader.text = NSLocalizedString("It looks like assignments haven’t been created in this space yet.", bundle: .core, comment: "")
+        errorView.messageLabel.text = NSLocalizedString("There was an error loading events. Pull to refresh to try again.", bundle: .core, comment: "")
+        errorView.retryButton.addTarget(self, action: #selector(retryAfterError), for: .primaryActionTriggered)
 
         refreshControl.addTarget(self, action: #selector(plannerListWillRefresh), for: .primaryActionTriggered)
         refreshControl.color = nil
@@ -70,11 +71,17 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
         }
     }
 
+    @objc func retryAfterError() {
+        refreshControl.beginRefreshing()
+        delegate?.plannerListWillRefresh()
+    }
+
     @objc func plannerListWillRefresh() {
         delegate?.plannerListWillRefresh()
     }
 
     func refresh(force: Bool = false) {
+        errorView.isHidden = true
         plannables = delegate.flatMap { env.subscribe($0.getPlannables(from: start, to: end)) { [weak self] in
             self?.updatePlannables()
         } }
@@ -85,8 +92,8 @@ public class PlannerListViewController: UIViewController, ErrorViewController {
         guard plannables?.requested == true, plannables?.pending == false else { return }
         refreshControl.endRefreshing()
         spinnerView.isHidden = true
-        if let error = plannables?.error { showError(error) }
-        emptyStateViewContainer.isHidden = plannables?.isEmpty != true
+        emptyStateView.isHidden = plannables?.error != nil || plannables?.isEmpty != true
+        errorView.isHidden = plannables?.error == nil
         tableView.reloadData()
     }
 }
@@ -108,18 +115,12 @@ extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate 
         env.router.route(to: url, from: self, options: .detail(embedInNav: true))
     }
 
-    public func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView) {
-        emptyStateTop.constant = -scrollView.contentOffset.y
-        spinnerCenterY.constant = emptyStateTop.constant / 2
-    }
-
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         delegate?.scrollViewWillBeginDragging?(scrollView)
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         delegate?.scrollViewDidScroll?(scrollView)
-        scrollViewDidChangeAdjustedContentInset(scrollView)
     }
 
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
