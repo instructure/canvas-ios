@@ -4186,17 +4186,15 @@
 			files = (
 			);
 			inputFileListPaths = (
+				"$(SRCROOT)/../scripts/carthage/input.xcfilelist",
 			);
 			inputPaths = (
-				"$(SRCROOT)/../Carthage/Build/iOS/PSPDFKit.framework",
-				"$(SRCROOT)/../Carthage/Build/iOS/PSPDFKitUI.framework",
 			);
 			name = "Carthage Copy Frameworks";
 			outputFileListPaths = (
+				"$(SRCROOT)/../scripts/carthage/output.xcfilelist",
 			);
 			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PSPDFKit.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PSPDFKitUI.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;

@@ -47,7 +47,6 @@
 		3B92109C231F02D500820CC3 /* StudentSettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B92109B231F02D500820CC3 /* StudentSettingsViewController.storyboard */; };
 		3BA9FF6D2332999900196A06 /* CourseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FF6C2332999900196A06 /* CourseDetailsViewController.swift */; };
 		3BD0CD732327026400B3341E /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD0CD722327026400B3341E /* Core.framework */; };
-		3BD0CD752327027000B3341E /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD0CD742327027000B3341E /* Core.framework */; };
 		3BD0CD762327027000B3341E /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD0CD742327027000B3341E /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4948BE691F915D330035BAFD /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4948BE681F915D330035BAFD /* BundleExtensions.swift */; };
 		4948BE6A1F915F4B0035BAFD /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49952C3B1F7477C300A11404 /* CanvasCore.framework */; };
@@ -1022,7 +1021,6 @@
 				3BD0CD732327026400B3341E /* Core.framework in Frameworks */,
 				B1F4061522E6393D008FAFE6 /* ReactiveObjC.framework in Frameworks */,
 				B1F4061622E6393D008FAFE6 /* ReactiveMapKit.framework in Frameworks */,
-				3BD0CD752327027000B3341E /* Core.framework in Frameworks */,
 				B1F4061722E6393D008FAFE6 /* ReactiveObjCBridge.framework in Frameworks */,
 				B1F4061822E6393D008FAFE6 /* ReactiveCocoa.framework in Frameworks */,
 				B1F4061922E6393D008FAFE6 /* ReactiveSwift.framework in Frameworks */,
@@ -1699,7 +1697,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "Instructure Inc";
 				TargetAttributes = {
 					3B36A2DE2322C26A00599A1E = {
