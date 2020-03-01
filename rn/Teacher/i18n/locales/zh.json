@@ -1598,6 +1598,9 @@
   "this_criterion_will_not_impact_the_score_94adf77b": {
     "message": "此标准不会影响分数。"
   },
+  "this_file_is_currently_locked_6dc6635f": {
+    "message": "此文件当前锁定。"
+  },
   "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
     "message": "此文件必须先设置使用权限后才能发布。"
   },

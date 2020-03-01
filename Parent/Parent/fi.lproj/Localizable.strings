@@ -92,7 +92,13 @@
 "Choose a course to message" = "Valitse kurssi, jolle lähetetään viesti";
 
 /* No comment provided by engineer. */
+"Compose Message" = "Luo viesti";
+
+/* No comment provided by engineer. */
 "Compose new message" = "Luo uusi viesti";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
 
 /* Course Announcement Description */
 "Course announcements" = "Kurssin ilmoitukset";
@@ -105,6 +111,9 @@
 
 /* Courses Tab */
 "Courses" = "Kurssit";
+
+/* No comment provided by engineer. */
+"Current student: %@. Tap to switch students" = "Kurssin opiskelija %@. Napauta vaihtaaksesi opiskelijoita";
 
 /* No comment provided by engineer. */
 "Discussion" = "Keskustelu";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Tiedosto";
+
+/* No comment provided by engineer. */
+"Find School" = "Etsi koulu";
 
 /* No comment provided by engineer. */
 "for %@" = "- %@";
@@ -185,6 +197,9 @@
 "Low course grade cannot be higher than high course grade" = "Alhainen kurssin arvosana ei voi olla suurempi kuin korkea kurssin arvosana";
 
 /* No comment provided by engineer. */
+"Manage Students" = "Hallitse opiskelijoita";
+
+/* No comment provided by engineer. */
 "Message" = "Viesti";
 
 /* No comment provided by engineer. */
@@ -201,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Missing: %@ (%@/%@)" = "Puuttuu %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"n/a" = "ei mitään";
 
 /* No comment provided by engineer. */
 "New Message" = "Uusi viesti";
@@ -260,6 +278,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "Asetukset";
+
+/* No comment provided by engineer. */
+"Settings. %@" = "Asetukset. %@";
 
 /* No comment provided by engineer. */
 "Subject" = "Aihe";

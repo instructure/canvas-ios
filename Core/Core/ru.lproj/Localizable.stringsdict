@@ -37,9 +37,9 @@
 			<key>many</key>
 			<string></string>
 			<key>one</key>
-			<string>%d unread conversation</string>
+			<string>%d непрочтенное обсуждение</string>
 			<key>other</key>
-			<string>%d unread conversations</string>
+			<string>%d непрочтенные обсуждения</string>
 		</dict>
 	</dict>
 	<key>d_events</key>

@@ -92,7 +92,13 @@
 "Choose a course to message" = "Kōwhiri he akoranga hei karare";
 
 /* No comment provided by engineer. */
+"Compose Message" = "Tito Karere";
+
+/* No comment provided by engineer. */
 "Compose new message" = "Titoa karere hōu";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
 
 /* Course Announcement Description */
 "Course announcements" = "Kōrerorero akoranga";
@@ -105,6 +111,9 @@
 
 /* Courses Tab */
 "Courses" = "Akoranga";
+
+/* No comment provided by engineer. */
+"Current student: %@. Tap to switch students" = "Te ākonga o nāianei: %@. Pātō ki te huri ngā ākonga";
 
 /* No comment provided by engineer. */
 "Discussion" = "Kōrerorero";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Kōnae";
+
+/* No comment provided by engineer. */
+"Find School" = "Kimihia taku kura";
 
 /* No comment provided by engineer. */
 "for %@" = "hoki %@";
@@ -185,6 +197,9 @@
 "Low course grade cannot be higher than high course grade" = "e kore e taea raro iho te kōeke akoranga kia tiketike ake kōeke akoranga teitei";
 
 /* No comment provided by engineer. */
+"Manage Students" = "Whakahaere ngā ākonga";
+
+/* No comment provided by engineer. */
 "Message" = "Karere";
 
 /* No comment provided by engineer. */
@@ -201,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Missing: %@ (%@/%@)" = "Ngaro: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"n/a" = "N/A";
 
 /* No comment provided by engineer. */
 "New Message" = "Karere Hōu";
@@ -260,6 +278,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "Ngā Tautuhinga";
+
+/* No comment provided by engineer. */
+"Settings. %@" = "Ngā Tautuhinga. %@";
 
 /* No comment provided by engineer. */
 "Subject" = "Kaupapa";

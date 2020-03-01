@@ -292,6 +292,8 @@
 		5BAE6B8C20DF7FF2006311D2 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = Teacher/cy.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5BAE6B8D20DF7FF2006311D2 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = Teacher/cy.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5BAE6B8E20DF7FF2006311D2 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5BCF9F7B240B9B7A00A32C47 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5BCF9F7C240B9B7A00A32C47 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = Teacher/is.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5BEA4877203179E300E25A15 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = Teacher/ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5BF25FF121BCFBF400A07D16 /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "Teacher/en-CY.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5BF25FF221BCFBF400A07D16 /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -850,6 +852,7 @@
 				fi,
 				sl,
 				"en-AU-unimelb",
+				is,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -1162,6 +1165,7 @@
 				5B0510E022ACECCF00382590 /* fi */,
 				5B6D96C222BD6F5100E15B3D /* sl */,
 				7D5D1DFD22BD7DE100371C2F /* en-AU-unimelb */,
+				5BCF9F7B240B9B7A00A32C47 /* is */,
 			);
 			name = InfoPlist.strings;
 			path = Teacher;
@@ -1233,6 +1237,7 @@
 				5B0510DF22ACECCF00382590 /* fi */,
 				5B6D96C122BD6F5100E15B3D /* sl */,
 				7D5D1DFC22BD7DE100371C2F /* en-AU-unimelb */,
+				5BCF9F7C240B9B7A00A32C47 /* is */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

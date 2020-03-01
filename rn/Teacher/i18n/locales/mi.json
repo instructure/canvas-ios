@@ -1598,6 +1598,9 @@
   "this_criterion_will_not_impact_the_score_94adf77b": {
     "message": "Kaore tēnei tohu e pā ki te kaute"
   },
+  "this_file_is_currently_locked_6dc6635f": {
+    "message": "Kei te rakaina tēnei kōnae i tēnei wā."
+  },
   "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
     "message": "Me whai mana tēnei kōnae i te mana whakamahi i mua i te whakaputa."
   },

@@ -1,0 +1,114 @@
+/* No comment provided by engineer. */
+"Absent" = "Fjarverandi";
+
+/* No comment provided by engineer. */
+"All grades are currently hidden." = "Allar einkunnir eru faldar í augnablikinu.";
+
+/* No comment provided by engineer. */
+"All grades are currently posted." = "Allar einkunnir eru birtar í augnablikinu.";
+
+/* No comment provided by engineer. */
+"All Hidden" = "Allar faldar";
+
+/* No comment provided by engineer. */
+"All Posted" = "Allar birtar";
+
+/* No comment provided by engineer. */
+"Attendance" = "Mæting";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "Mætingarvilla";
+
+/* No comment provided by engineer. */
+"Back" = "Til baka";
+
+/* No comment provided by engineer. */
+"Cancel" = "Hætta við";
+
+/* No comment provided by engineer. */
+"Change Section" = "Breyta hluta";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Velja hluta";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Velja dagsetningu";
+
+/* No comment provided by engineer. */
+"Courses" = "Námskeið";
+
+/* No comment provided by engineer. */
+"Date picker" = "Dagsetningaval";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Sleppa";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Villa: Engin gögn komu frá nafnakalls api.";
+
+/* No comment provided by engineer. */
+"Everyone" = "Allir";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "Ekki tókst að ræsa nafnakalls LTI verkfæri.";
+
+/* No comment provided by engineer. */
+"Graded" = "Metið";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to all students" = "Einkunnir verða gerðar sýnilegar öllum nemendum";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to students with graded submissions" = "Einkunnir verða gerðar sýnilegar öllum nemendum með innsendingar sem er búið að gefa einkunn";
+
+/* number of grades hidden */
+"grades_currently_hidden" = "grades_currently_hidden";
+
+/* number of grades hidden */
+"grades_currently_posted" = "grades_currently_posted";
+
+/* No comment provided by engineer. */
+"Hide Grades" = "Fela einkunnir";
+
+/* No comment provided by engineer. */
+"Late" = "Seint";
+
+/* No comment provided by engineer. */
+"Loading more modules..." = "Hleð inn fleiri einingum…";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Merkja mætt við alla";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Merkja mætt við alla sem eftir eru";
+
+/* No comment provided by engineer. */
+"Modules" = "Námsefni";
+
+/* No comment provided by engineer. */
+"Post Grades" = "Birta einkunnir";
+
+/* No comment provided by engineer. */
+"Post Settings" = "Birta stillingar";
+
+/* No comment provided by engineer. */
+"Post to..." = "Birta á…";
+
+/* No comment provided by engineer. */
+"Present" = "Mætt(ur)";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Veldu til að breyta dagsetningu nafnakalls";
+
+/* No comment provided by engineer. */
+"Specific Sections" = "Sérstakir hlutar";
+
+/* No comment provided by engineer. */
+"This module is empty." = "Þessi eining er tóm.";
+
+/* No comment provided by engineer. */
+"To Do" = "Verkefni";
+
+/* No comment provided by engineer. */
+"Unmark" = "Afmerkja";
+

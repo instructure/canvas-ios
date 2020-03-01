@@ -92,7 +92,13 @@
 "Choose a course to message" = "Välj en kurs att skicka meddelande till";
 
 /* No comment provided by engineer. */
+"Compose Message" = "Skriv meddelande";
+
+/* No comment provided by engineer. */
 "Compose new message" = "Skriv nytt meddelande";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
 
 /* Course Announcement Description */
 "Course announcements" = "Anslag";
@@ -105,6 +111,9 @@
 
 /* Courses Tab */
 "Courses" = "Kurser";
+
+/* No comment provided by engineer. */
+"Current student: %@. Tap to switch students" = "Aktuell elev: %@. Tryck för att växla elev";
 
 /* No comment provided by engineer. */
 "Discussion" = "Diskussion";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Fil";
+
+/* No comment provided by engineer. */
+"Find School" = "Sök skola";
 
 /* No comment provided by engineer. */
 "for %@" = "för %@";
@@ -185,6 +197,9 @@
 "Low course grade cannot be higher than high course grade" = "Låg kursomdöme kan inte vara högre än hög kursomdöme";
 
 /* No comment provided by engineer. */
+"Manage Students" = "Hantera elever";
+
+/* No comment provided by engineer. */
 "Message" = "Meddelande";
 
 /* No comment provided by engineer. */
@@ -201,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Missing: %@ (%@/%@)" = "Saknas: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"n/a" = "n/a";
 
 /* No comment provided by engineer. */
 "New Message" = "Nytt kursmeddelande";
@@ -260,6 +278,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "Inställningar";
+
+/* No comment provided by engineer. */
+"Settings. %@" = "Inställningar. %@";
 
 /* No comment provided by engineer. */
 "Subject" = "Ämne";

@@ -1598,6 +1598,9 @@
   "this_criterion_will_not_impact_the_score_94adf77b": {
     "message": "Este critério não afetará a pontuação."
   },
+  "this_file_is_currently_locked_6dc6635f": {
+    "message": "Este ficheiro está bloqueado de momento."
+  },
   "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
     "message": "Este ficheiro deve ter direitos de uso definidos antes de ser publicado."
   },
