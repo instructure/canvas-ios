@@ -23,8 +23,8 @@ extension APIUser {
     public static func make(
         id: ID = "1",
         name: String = "Bob",
-        sortable_name: String = "Bob",
-        short_name: String = "Bob",
+        sortable_name: String? = nil,
+        short_name: String? = nil,
         login_id: String? = nil,
         avatar_url: URL? = nil,
         enrollments: [APIEnrollment]? = nil,
@@ -38,8 +38,8 @@ extension APIUser {
         return APIUser(
             id: id,
             name: name,
-            sortable_name: sortable_name,
-            short_name: short_name,
+            sortable_name: sortable_name ?? name,
+            short_name: short_name ?? name,
             login_id: login_id,
             avatar_url: avatar_url.flatMap(APIURL.make(rawValue:)),
             enrollments: enrollments,
@@ -49,6 +49,19 @@ extension APIUser {
             bio: bio,
             pronouns: pronouns,
             permissions: permissions
+        )
+    }
+
+    public static func makeUser(role: String, id: Int) -> APIUser {
+        APIUser.make(
+            id: ID(integerLiteral: id),
+            name: "\(role) \(id)",
+            short_name: "\(role.first ?? "u")\(id)",
+
+            avatar_url: URL(string: "https://avatars.dicebear.com/v2/bottts/\(role)\(id).svg")!,
+            email: "\(role)\(id)@example.com",
+            bio: "I'm \(role) \(id)",
+            pronouns: ["Pro/Noun", nil][id % 2]
         )
     }
 }

@@ -96,6 +96,8 @@
 		B1E789BA21B1D0D30087FE4A /* LogEventFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */; };
 		B1F13296224BFE03002C0555 /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */; };
 		B1F428DC228B5C3C00EC8C37 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F428DB228B5C3C00EC8C37 /* MockURLSession.swift */; };
+		E8104C492406F5EC0077D207 /* MiniCanvasServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8104C482406F5EC0077D207 /* MiniCanvasServer.swift */; };
+		E8104C542406FB580077D207 /* Swifter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8104C532406FB580077D207 /* Swifter.framework */; };
 		E818EF21234652A20035613A /* XCTestCaseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818EF20234652A20035613A /* XCTestCaseExtensions.swift */; };
 		E81B575B23E243CA002A0C38 /* ConversationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B575223E23DAA002A0C38 /* ConversationList.swift */; };
 		E81B575C23E243CA002A0C38 /* ConversationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B575323E23DAA002A0C38 /* ConversationDetail.swift */; };
@@ -206,6 +208,8 @@
 		B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEventFixture.swift; sourceTree = "<group>"; };
 		B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemFixture.swift; sourceTree = "<group>"; };
 		B1F428DB228B5C3C00EC8C37 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
+		E8104C482406F5EC0077D207 /* MiniCanvasServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniCanvasServer.swift; sourceTree = "<group>"; };
+		E8104C532406FB580077D207 /* Swifter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swifter.framework; path = ../Carthage/Build/iOS/Swifter.framework; sourceTree = "<group>"; };
 		E818EF20234652A20035613A /* XCTestCaseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtensions.swift; sourceTree = "<group>"; };
 		E81B575223E23DAA002A0C38 /* ConversationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationList.swift; sourceTree = "<group>"; };
 		E81B575323E23DAA002A0C38 /* ConversationDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationDetail.swift; sourceTree = "<group>"; };
@@ -227,6 +231,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8104C542406FB580077D207 /* Swifter.framework in Frameworks */,
 				E839146523102F9200D772E0 /* XCTest.framework in Frameworks */,
 				3B0CEB6821503B5A00D07CFA /* Core.framework in Frameworks */,
 			);
@@ -255,6 +260,7 @@
 		3B032CFD215037AA00B570F7 /* TestsFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				E8104C472406F57C0077D207 /* MiniCanvas */,
 				9F5C92FF23730D01005105BB /* Helpers */,
 				7D47769621AF354400B441CE /* API */,
 				3B0CEB782150429300D07CFA /* Database */,
@@ -290,6 +296,7 @@
 		3B032D1E2150380200B570F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E8104C532406FB580077D207 /* Swifter.framework */,
 				7DAC287D22B19D5C00C0B692 /* XCTest.framework */,
 				3B0CEB6721503B5A00D07CFA /* Core.framework */,
 			);
@@ -486,6 +493,14 @@
 			path = Logger;
 			sourceTree = "<group>";
 		};
+		E8104C472406F57C0077D207 /* MiniCanvas */ = {
+			isa = PBXGroup;
+			children = (
+				E8104C482406F5EC0077D207 /* MiniCanvasServer.swift */,
+			);
+			path = MiniCanvas;
+			sourceTree = "<group>";
+		};
 		E81B575623E23DAA002A0C38 /* Conversations */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,7 +593,7 @@
 		3B032CF2215037AA00B570F7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
@@ -697,6 +712,7 @@
 				7DC4A557222EF9A800FA03DC /* APIDiscussionEntryFixture.swift in Sources */,
 				B1A32BDE2159A1D70071B41E /* APIAssignmentFixture.swift in Sources */,
 				7DB0A1D421C1C90D009ABB40 /* APIAccountResultsFixture.swift in Sources */,
+				E8104C492406F5EC0077D207 /* MiniCanvasServer.swift in Sources */,
 				B1F428DC228B5C3C00EC8C37 /* MockURLSession.swift in Sources */,
 				B1D5EF622358E01200B3ACD3 /* URLAuthenticationChallengeExtensions.swift in Sources */,
 				3BAA4177218A361100701E03 /* EnrollmentFixture.swift in Sources */,
