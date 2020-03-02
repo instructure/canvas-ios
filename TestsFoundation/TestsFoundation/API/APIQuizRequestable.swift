@@ -76,7 +76,7 @@ public struct ListQuizzesRequest: APIRequestable {
 
     public var path: String { "\(ContextModel(.course, id: courseID).pathComponent)/quizzes" }
     public var query: [APIQueryItem] {
-        perPage.map { [.perPage($0)] } ?? []
+        [ .perPage(perPage) ]
     }
 }
 
