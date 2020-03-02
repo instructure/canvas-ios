@@ -21,6 +21,7 @@ import UIKit
 
 protocol CalendarViewControllerDelegate: class {
     func calendarDidSelectDate(_ date: Date)
+    func calendarDidTransitionToDate(_ date: Date)
     func calendarDidResize(height: CGFloat, animated: Bool)
     func calendarWillFilter()
     func getPlannables(from: Date, to: Date) -> GetPlannables
@@ -100,7 +101,7 @@ class CalendarViewController: UIViewController {
         daysPageController.dataSource = self
         daysPageController.delegate = self
         daysPageController.setViewControllers([
-            CalendarDaysViewController.create(selectedDate, selectedDate: selectedDate, delegate: delegate),
+            CalendarDaysViewController.create(selectedDate: selectedDate, delegate: delegate),
         ], direction: .forward, animated: false)
         for view in daysPageController.view.subviews {
             if let scroll = view as? UIScrollView {
@@ -183,13 +184,19 @@ class CalendarViewController: UIViewController {
         clearPageCache()
         if days.hasDate(date, isExpanded: isExpanded) {
             days.updateSelectedDate(date)
-        } else {
-            let isReverse = date < days.selectedDate
-            // Assumes selected date can't be more than 1 page away
-            let page = daysPageDelta(isReverse ? -1 : 1, from: days)
-            page.loadViewIfNeeded()
-            page.updateSelectedDate(date)
-            daysPageController.setViewControllers([ page ], direction: isReverse ? .reverse : .forward, animated: true)
+        }
+    }
+
+    func showDate(_ date: Date) {
+        let isReverse = date < days.selectedDate
+        let animated = isExpanded
+            ? calendar.compare(date, to: days.selectedDate, toGranularity: .month) != .orderedSame
+            : days.hasDate(date, isExpanded: isExpanded) == false
+        let page = CalendarDaysViewController.create(selectedDate: date, delegate: delegate)
+        canClearCache = false
+        daysPageController.setViewControllers([ page ], direction: isReverse ? .reverse : .forward, animated: animated) { _ in
+            self.updateSelectedDate(date)
+            self.canClearCache = true
         }
     }
 
@@ -210,23 +217,21 @@ extension CalendarViewController: UIPageViewControllerDataSource, UIPageViewCont
     }
 
     func daysPageDelta(_ delta: Int, from days: CalendarDaysViewController) -> CalendarDaysViewController {
-        var midDate = days.midDate(isExpanded: isExpanded)
         var selectedDate = days.selectedDate
         if isExpanded {
-            midDate = calendar.date(byAdding: .month, value: 1 * delta, to: midDate)!
+            let midDate = calendar.date(byAdding: .month, value: 1 * delta, to: days.midDate(isExpanded: isExpanded))!
             if calendar.compare(selectedDate, to: midDate, toGranularity: .month) != .orderedSame {
                 selectedDate = calendar.date(byAdding: .month, value: 1 * delta, to: selectedDate)!
             }
         } else {
-            midDate = calendar.date(byAdding: .day, value: numberOfDaysInWeek * delta, to: midDate)!
             selectedDate = calendar.date(byAdding: .day, value: numberOfDaysInWeek  * delta, to: selectedDate)!
         }
-        return CalendarDaysViewController.create(midDate, selectedDate: selectedDate, delegate: delegate)
+        return CalendarDaysViewController.create(selectedDate: selectedDate, delegate: delegate)
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         canClearCache = false
-        delegate?.calendarDidSelectDate(days.selectedDate)
+        delegate?.calendarDidTransitionToDate(days.selectedDate)
         canClearCache = true
     }
 

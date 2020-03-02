@@ -25,6 +25,9 @@ class CalendarDaysViewControllerTests: CoreTestCase, CalendarViewControllerDeleg
     func calendarDidSelectDate(_ date: Date) {
         selectedDate = date
     }
+    func calendarDidTransitionToDate(_ date: Date) {
+        selectedDate = date
+    }
 
     func calendarDidResize(height: CGFloat, animated: Bool) {}
 
@@ -37,7 +40,7 @@ class CalendarDaysViewControllerTests: CoreTestCase, CalendarViewControllerDeleg
         return nil
     }
 
-    lazy var controller = CalendarDaysViewController.create(Clock.now, selectedDate: Clock.now, delegate: self)
+    lazy var controller = CalendarDaysViewController.create(selectedDate: Clock.now, delegate: self)
 
     func testDates() {
         Clock.mockNow(DateComponents(calendar: .current, year: 2020, month: 2, day: 14).date!)
