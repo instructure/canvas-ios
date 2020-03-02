@@ -54,20 +54,20 @@ class PlannerTests: CoreUITestCase {
 
     func testPlanner() {
         PlannerList.event(id: "2233").waitToExist()
-        XCTAssert(PlannerCalendar.dayButton(year: y, month: m, day: 1).label().contains("1, \(y), 1 event"))
+        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 1).label(), "March 1, \(y), 1 event")
 
         PlannerCalendar.dayButton(year: y, month: m, day: 2).tap()
         PlannerList.event(id: "2234").waitToExist() // second
-        XCTAssert(PlannerCalendar.dayButton(year: y, month: m, day: 2).label().contains("2, \(y), 2 events"))
+        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 2).label(), "March 2, \(y), 2 events")
 
         PlannerCalendar.dayButton(year: y, month: m, day: 3).tap()
         PlannerList.event(id: "2236").waitToExist() // third
-        XCTAssert(PlannerCalendar.dayButton(year: y, month: m, day: 3).label().contains("3, \(y), 3 events"))
+        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 3 events")
 
         PlannerCalendar.dayButton(year: y, month: m, day: 4).tap()
         PlannerList.emptyTitle.waitToExist()
         XCTAssertEqual(PlannerList.emptyTitle.label(), "No Assignments")
         XCTAssertEqual(PlannerList.emptyLabel.label(), "It looks like assignments haven’t been created in this space yet.")
-        XCTAssert(PlannerCalendar.dayButton(year: y, month: m, day: 4).label().contains("4, \(y), 0 events"))
+        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 4).label(), "March 4, \(y), 0 events")
     }
 }
