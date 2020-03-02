@@ -26,6 +26,11 @@ public class PlannerViewController: UIViewController {
     }
     var listContentOffsetY: CGFloat = 0
     var studentID: String?
+    let env = AppEnvironment.shared
+    lazy var planners: Store<LocalUseCase<Planner>> = env.subscribe(scope: .where(#keyPath(Planner.studentID), equals: studentID)) { [weak self] in
+        self?.plannerListWillRefresh()
+    }
+    var planner: Planner? { planners.first }
 
     public static func create(studentID: String? = nil) -> PlannerViewController {
         let controller = PlannerViewController()
@@ -68,10 +73,16 @@ public class PlannerViewController: UIViewController {
         calendar.view.layoutIfNeeded()
         list.tableView.scrollIndicatorInsets.top = calendar.minHeight
         list.tableView.contentInset.top = calendar.minHeight
+
+        planners.refresh()
     }
 
     func getPlannables(from: Date, to: Date) -> GetPlannables {
-        return GetPlannables(userID: studentID, startDate: from, endDate: to)
+        var contextCodes = Set(planner?.selectedCourses.map { $0.canvasContextID } ?? [])
+        if let studentID = studentID {
+            contextCodes.insert("user_\(studentID)")
+        }
+        return GetPlannables(userID: studentID, startDate: from, endDate: to, contextCodes: Array(contextCodes))
     }
 }
 
@@ -93,6 +104,18 @@ extension PlannerViewController: CalendarViewControllerDelegate {
         list.tableView.contentInset.top = height
         view.layoutIfNeeded()
         clearPageCache()
+    }
+
+    func calendarWillFilter() {
+        let filter = PlannerFilterViewController.create(studentID: studentID)
+        env.router.show(filter, from: self, options: .modal(embedInNav: true, addDoneButton: true))
+    }
+
+    func numberOfCalendars() -> Int? {
+        if planner?.allSelected == true {
+            return nil
+        }
+        return planner?.selectedCourses.count
     }
 }
 

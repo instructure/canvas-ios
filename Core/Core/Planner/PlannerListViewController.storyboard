@@ -44,8 +44,8 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="PandaNoEvents"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Assignments" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWT-oI-47b" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="32" y="192.5" width="350" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Assignments" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWT-oI-47b" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                    <rect key="frame" x="32" y="191.5" width="350" height="24"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="PlannerList.emptyTitle"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -69,6 +69,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="qCU-lc-Waf" firstAttribute="leading" secondItem="5mV-Vn-z8o" secondAttribute="leading" constant="32" id="3CI-PZ-M47"/>
+                                                <constraint firstItem="EGK-kT-erl" firstAttribute="top" secondItem="5mV-Vn-z8o" secondAttribute="top" constant="9.5" id="KF8-7G-L3Z"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="qCU-lc-Waf" secondAttribute="bottom" priority="500" id="MD0-Ce-1kz"/>
                                                 <constraint firstItem="oWT-oI-47b" firstAttribute="leading" secondItem="5mV-Vn-z8o" secondAttribute="leading" constant="32" id="R2T-Hz-s4X"/>
                                                 <constraint firstItem="EGK-kT-erl" firstAttribute="centerY" secondItem="5mV-Vn-z8o" secondAttribute="centerY" multiplier="0.8" priority="250" constant="1" id="S5N-Rx-o2J"/>

@@ -92,7 +92,13 @@
 "Choose a course to message" = "Выбрать курс для сообщения";
 
 /* No comment provided by engineer. */
+"Compose Message" = "Написать сообщение";
+
+/* No comment provided by engineer. */
 "Compose new message" = "Написать новое сообщение";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
 
 /* Course Announcement Description */
 "Course announcements" = "Объявления курса";
@@ -105,6 +111,9 @@
 
 /* Courses Tab */
 "Courses" = "Курсы";
+
+/* No comment provided by engineer. */
+"Current student: %@. Tap to switch students" = "Текущий студент: %@. Нажмите для переключения студентов";
 
 /* No comment provided by engineer. */
 "Discussion" = "Обсуждение";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Файл";
+
+/* No comment provided by engineer. */
+"Find School" = "Найти школу";
 
 /* No comment provided by engineer. */
 "for %@" = "для %@";
@@ -185,6 +197,9 @@
 "Low course grade cannot be higher than high course grade" = "Низкая оценка за курс не может быть выше высокой оценки за курс";
 
 /* No comment provided by engineer. */
+"Manage Students" = "Управление студентами";
+
+/* No comment provided by engineer. */
 "Message" = "Сообщение";
 
 /* No comment provided by engineer. */
@@ -201,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Missing: %@ (%@/%@)" = "Отсутствует: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"n/a" = "нет данных";
 
 /* No comment provided by engineer. */
 "New Message" = "Новое сообщение";
@@ -260,6 +278,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "Настройки";
+
+/* No comment provided by engineer. */
+"Settings. %@" = "Настройки. %@";
 
 /* No comment provided by engineer. */
 "Subject" = "Тема";

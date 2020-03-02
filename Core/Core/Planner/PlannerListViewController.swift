@@ -85,7 +85,7 @@ public class PlannerListViewController: UIViewController {
         plannables = delegate.flatMap { env.subscribe($0.getPlannables(from: start, to: end)) { [weak self] in
             self?.updatePlannables()
         } }
-        plannables?.refresh(force: force)
+         plannables?.refresh(force: force)
     }
 
     private func updatePlannables() {
