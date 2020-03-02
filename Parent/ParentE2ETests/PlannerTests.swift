@@ -42,30 +42,35 @@ class PlannerTests: CoreUITestCase {
         var shown = Date()
         while calendar.compare(shown, to: reference, toGranularity: .month) != .orderedSame {
             let isPast = calendar.compare(shown, to: reference, toGranularity: .month) == .orderedAscending
-            let halfScreen = UIScreen.main.bounds.width / 2
-            let daysCenter = PlannerCalendar.monthButton.relativeCoordinate(x: 0, y: 1)
-                .withOffset(CGVector(dx: halfScreen, dy: 50))
-            let dragTo = daysCenter.withOffset(CGVector(dx: isPast ? -halfScreen : halfScreen, dy: 0))
-            daysCenter.press(forDuration: 0, thenDragTo: dragTo)
+            if isPast {
+                PlannerCalendar.dayButton(for: shown).swipeLeft()
+            } else {
+                PlannerCalendar.dayButton(for: shown).swipeRight()
+            }
             shown = shown.addMonths(isPast ? 1 : -1)
         }
         PlannerCalendar.dayButton(for: reference).tap()
     }
 
-    func testActivityDots() {
-        XCTAssert(PlannerCalendar.dayButton(year: y, month: m, day: 1).label().contains("1, \(y), 1 event"))
-        XCTAssert(PlannerCalendar.dayButton(year: y, month: m, day: 2).label().contains("2, \(y), 2 events"))
-        XCTAssert(PlannerCalendar.dayButton(year: y, month: m, day: 3).label().contains("3, \(y), 3 events"))
-        XCTAssert(PlannerCalendar.dayButton(year: y, month: m, day: 4).label().contains("4, \(y), 0 events"))
-    }
-
-    func testList() {
+    func testPlanner() {
         PlannerList.event(id: "2233").waitToExist()
+        XCTAssert(PlannerCalendar.dayButton(year: y, month: m, day: 1).label().contains("1, \(y), 1 event"))
+
         PlannerCalendar.dayButton(year: y, month: m, day: 2).tap()
         PlannerList.event(id: "2234").waitToExist() // second
-        XCTAssert(PlannerList.event(id: "2235").exists()) // second 2
+        PlannerList.event(id: "2235").waitToExist() // second 2
+        XCTAssert(PlannerCalendar.dayButton(year: y, month: m, day: 2).label().contains("2, \(y), 2 events"))
+
+        PlannerCalendar.dayButton(year: y, month: m, day: 3).tap()
+        PlannerList.event(id: "2236").waitToExist() // third
+        PlannerList.event(id: "2237").waitToExist() // third 2
+        PlannerList.event(id: "2238").waitToExist() // third 3
+        XCTAssert(PlannerCalendar.dayButton(year: y, month: m, day: 3).label().contains("3, \(y), 3 events"))
+
         PlannerCalendar.dayButton(year: y, month: m, day: 4).tap()
+        PlannerList.emptyTitle.waitToExist()
         XCTAssertEqual(PlannerList.emptyTitle.label(), "No Assignments")
         XCTAssertEqual(PlannerList.emptyLabel.label(), "It looks like assignments haven’t been created in this space yet.")
+        XCTAssert(PlannerCalendar.dayButton(year: y, month: m, day: 4).label().contains("4, \(y), 0 events"))
     }
 }
