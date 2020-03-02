@@ -58,13 +58,10 @@ class PlannerTests: CoreUITestCase {
 
         PlannerCalendar.dayButton(year: y, month: m, day: 2).tap()
         PlannerList.event(id: "2234").waitToExist() // second
-        PlannerList.event(id: "2235").waitToExist() // second 2
         XCTAssert(PlannerCalendar.dayButton(year: y, month: m, day: 2).label().contains("2, \(y), 2 events"))
 
         PlannerCalendar.dayButton(year: y, month: m, day: 3).tap()
         PlannerList.event(id: "2236").waitToExist() // third
-        PlannerList.event(id: "2237").waitToExist() // third 2
-        PlannerList.event(id: "2238").waitToExist() // third 3
         XCTAssert(PlannerCalendar.dayButton(year: y, month: m, day: 3).label().contains("3, \(y), 3 events"))
 
         PlannerCalendar.dayButton(year: y, month: m, day: 4).tap()
