@@ -498,6 +498,7 @@ open class CoreUITestCase: XCTestCase {
             .sections,
             .term,
         ]), value: course)
+        mockData(GetContextPermissionsRequest(context: course), value: .make())
         mockData(GetEnabledFeatureFlagsRequest(context: ContextModel(.course, id: course.id)), value: [
             "rce_enhancements",
             "new_gradebook",
