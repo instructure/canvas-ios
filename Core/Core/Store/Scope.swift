@@ -36,8 +36,13 @@ public struct Scope: Equatable {
 
     /// Returns a scope where all `key`s match `value`
     /// Adds a default `order` using the `key` ascending
-    public static func `where`(_ key: String, equals value: Any, orderBy order: String? = nil, ascending: Bool = true, naturally: Bool = false) -> Scope {
-        let predicate = NSPredicate(format: "%K == %@", argumentArray: [key, value])
+    public static func `where`(_ key: String, equals value: Any?, orderBy order: String? = nil, ascending: Bool = true, naturally: Bool = false) -> Scope {
+        let predicate: NSPredicate
+        if let value = value {
+            predicate = NSPredicate(format: "%K == %@", argumentArray: [key, value])
+        } else {
+            predicate = NSPredicate(format: "%K == nil", key)
+        }
         let sort = NSSortDescriptor(key: order ?? key, ascending: ascending, naturally: naturally)
         return Scope(predicate: predicate, order: [sort])
     }

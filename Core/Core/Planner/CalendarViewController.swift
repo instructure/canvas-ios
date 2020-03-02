@@ -22,7 +22,9 @@ import UIKit
 protocol CalendarViewControllerDelegate: class {
     func calendarDidSelectDate(_ date: Date)
     func calendarDidResize(height: CGFloat, animated: Bool)
+    func calendarWillFilter()
     func getPlannables(from: Date, to: Date) -> GetPlannables
+    func numberOfCalendars() -> Int? // nil = all
 }
 
 class CalendarViewController: UIViewController {
@@ -125,9 +127,18 @@ class CalendarViewController: UIViewController {
     }
 
     func refresh(force: Bool = false) {
-        // TODO: ask delegate for filter button title here
+        updateFilterButton()
         clearPageCache()
         days.refresh(force: force)
+    }
+
+    func updateFilterButton() {
+        var title = NSLocalizedString("Calendars", bundle: .core, comment: "")
+        if let count = delegate?.numberOfCalendars() {
+            let template = NSLocalizedString("Calendars (%d)", bundle: .core, comment: "")
+            title = String.localizedStringWithFormat(template, count)
+        }
+        filterButton.setTitle(title, for: .normal)
     }
 
     @IBAction func toggleExpanded() {
@@ -158,6 +169,7 @@ class CalendarViewController: UIViewController {
     }
 
     @IBAction func filter(_ sender: UIButton) {
+        delegate?.calendarWillFilter()
     }
 
     func calendarDidSelectDate(_ date: Date) {

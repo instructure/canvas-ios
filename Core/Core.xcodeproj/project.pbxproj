@@ -643,9 +643,15 @@
 		B119B4BD2307208200A74062 /* GetEnabledFeatureFlagsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B119B4BC2307208200A74062 /* GetEnabledFeatureFlagsTests.swift */; };
 		B11AAC3B237A1EB4002BC41F /* APIURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AAC3A237A1EB4002BC41F /* APIURLTests.swift */; };
 		B11AEBB32405D31C00B736D6 /* CoreWebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AEBB22405D31C00B736D6 /* CoreWebViewControllerTests.swift */; };
+		B11AEBB524070F9400B736D6 /* PlannerFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AEBB424070F9400B736D6 /* PlannerFilterViewController.swift */; };
+		B11AEBB724070FF100B736D6 /* PlannerFilterViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B11AEBB624070FF100B736D6 /* PlannerFilterViewController.storyboard */; };
+		B11AEBB9240724FA00B736D6 /* Planner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AEBB8240724FA00B736D6 /* Planner.swift */; };
+		B11AEBBB240727AE00B736D6 /* GetPlannerCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AEBBA240727AE00B736D6 /* GetPlannerCourses.swift */; };
+		B11AEBBD24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AEBBC24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift */; };
 		B12A763821914059000693DE /* fileupload.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A763721914059000693DE /* fileupload.txt */; };
 		B12A763A2191459F000693DE /* file-post-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A76392191459F000693DE /* file-post-body.txt */; };
 		B133A78A221F59A3000E393E /* ContextColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B133A789221F59A3000E393E /* ContextColorTests.swift */; };
+		B147CCD72409CC6C0064BD3F /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B147CCD62409CC6C0064BD3F /* LoadingCell.swift */; };
 		B149098C23D9154C0051D961 /* LTIViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B149098B23D9154B0051D961 /* LTIViewControllerTests.swift */; };
 		B14B7055229468BC00B568D6 /* FilePickerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B7054229468BC00B568D6 /* FilePickerViewControllerTests.swift */; };
 		B14B70572294758600B568D6 /* UploadFileCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B70562294758600B568D6 /* UploadFileCommentTests.swift */; };
@@ -1585,12 +1591,18 @@
 		B11AAC3A237A1EB4002BC41F /* APIURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIURLTests.swift; sourceTree = "<group>"; };
 		B11AAC3C237A2428002BC41F /* APIURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIURL.swift; sourceTree = "<group>"; };
 		B11AEBB22405D31C00B736D6 /* CoreWebViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWebViewControllerTests.swift; sourceTree = "<group>"; };
+		B11AEBB424070F9400B736D6 /* PlannerFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerFilterViewController.swift; sourceTree = "<group>"; };
+		B11AEBB624070FF100B736D6 /* PlannerFilterViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlannerFilterViewController.storyboard; sourceTree = "<group>"; };
+		B11AEBB8240724FA00B736D6 /* Planner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planner.swift; sourceTree = "<group>"; };
+		B11AEBBA240727AE00B736D6 /* GetPlannerCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlannerCourses.swift; sourceTree = "<group>"; };
+		B11AEBBC24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerFilterViewControllerTests.swift; sourceTree = "<group>"; };
 		B11D321621E464AB00F37ABF /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		B12A763721914059000693DE /* fileupload.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = fileupload.txt; sourceTree = "<group>"; };
 		B12A76392191459F000693DE /* file-post-body.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "file-post-body.txt"; sourceTree = "<group>"; };
 		B12D462B23D754CF0000ED55 /* GoogleCloudAssignmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCloudAssignmentViewController.swift; sourceTree = "<group>"; };
 		B133A789221F59A3000E393E /* ContextColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextColorTests.swift; sourceTree = "<group>"; };
 		B1445300212E5B6E0009D848 /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
+		B147CCD62409CC6C0064BD3F /* LoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
 		B149098923D8FC240051D961 /* LTIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIViewController.swift; sourceTree = "<group>"; };
 		B149098B23D9154B0051D961 /* LTIViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIViewControllerTests.swift; sourceTree = "<group>"; };
 		B14B704C228F30A100B568D6 /* UploadFileComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFileComment.swift; sourceTree = "<group>"; };
@@ -2455,6 +2467,7 @@
 				7D75FF1324081E42000544E7 /* ListErrorView.swift */,
 				7D75FF1524081F57000544E7 /* ListErrorView.xib */,
 				7D1758C0215A8F5600F88613 /* ListFormatter.swift */,
+				B147CCD62409CC6C0064BD3F /* LoadingCell.swift */,
 				7DD6CC6C21BD6DCD004C4BB6 /* LoadingViewController.storyboard */,
 				7DD6CC6A21BD6DB1004C4BB6 /* LoadingViewController.swift */,
 				B183F99C225297F2000A6930 /* PublishedIconView.swift */,
@@ -3033,6 +3046,7 @@
 				7DD4763A23FF21B500AB045C /* CalendarViewControllerTests.swift */,
 				97F69C4323F2208D009622E3 /* GetPlannablesTests.swift */,
 				97F69C3F23F209DB009622E3 /* PlannableTests.swift */,
+				B11AEBBC24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift */,
 				97F69C4923F34DB1009622E3 /* PlannerListViewControllerTests.swift */,
 				7D3E522524059A740092A5F8 /* PlannerViewControllerTests.swift */,
 			);
@@ -3047,7 +3061,11 @@
 				7DFD5F7823FF158700D988E0 /* CalendarViewController.storyboard */,
 				7DFD5F7A23FF158700D988E0 /* CalendarViewController.swift */,
 				97F69C3B23F1FE64009622E3 /* GetPlannables.swift */,
+				B11AEBBA240727AE00B736D6 /* GetPlannerCourses.swift */,
 				97F69C3D23F20304009622E3 /* Plannable.swift */,
+				B11AEBB8240724FA00B736D6 /* Planner.swift */,
+				B11AEBB424070F9400B736D6 /* PlannerFilterViewController.swift */,
+				B11AEBB624070FF100B736D6 /* PlannerFilterViewController.storyboard */,
 				97F69C4723F3475E009622E3 /* PlannerListViewController.storyboard */,
 				97F69C4523F34734009622E3 /* PlannerListViewController.swift */,
 				7DFD5F7923FF158700D988E0 /* PlannerViewController.swift */,
@@ -3987,6 +4005,7 @@
 				7D1758B621598CA400F88613 /* TitleSubtitleView.xib in Resources */,
 				7DA260FF23F773DC005D2121 /* PlannerListViewController.storyboard in Resources */,
 				7D85D8EF226E6901002DBF63 /* SectionHeaderView.xib in Resources */,
+				B11AEBB724070FF100B736D6 /* PlannerFilterViewController.storyboard in Resources */,
 				9FBFE6E1224289A6002B3796 /* WrongAppViewController.storyboard in Resources */,
 				9FCF1540227B6BC1009D35F6 /* GradeCircleView.xib in Resources */,
 				7DD752A321BEFA8F00E26260 /* LoginManualOAuthViewController.storyboard in Resources */,
@@ -4283,6 +4302,7 @@
 				7D70DEA4233EB07300F5C3D4 /* NotificationCategoryTests.swift in Sources */,
 				9FE84DE2215037A000B95A68 /* GetContextTabsTest.swift in Sources */,
 				9FE84DDC214FE5C500B95A68 /* GetGroupTest.swift in Sources */,
+				B11AEBBD24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift in Sources */,
 				B1A32BE22159A3100071B41E /* APIAssignmentRequestableTests.swift in Sources */,
 				E86CFBD823A2F7CD00EAE487 /* APIDashboardTests.swift in Sources */,
 				3B8F23CD23274FC500788730 /* AlertThresholdTests.swift in Sources */,
@@ -4605,6 +4625,7 @@
 				7DA260D823F72359005D2121 /* EmptyViewController.swift in Sources */,
 				7DA25FE223F721DA005D2121 /* UserAgent.swift in Sources */,
 				7DA260A923F72352005D2121 /* GetAssignments.swift in Sources */,
+				B11AEBB524070F9400B736D6 /* PlannerFilterViewController.swift in Sources */,
 				7DA2602323F722AF005D2121 /* Logger.swift in Sources */,
 				7DA25FDB23F72148005D2121 /* LocalizationManager.swift in Sources */,
 				7DA260F323F72397005D2121 /* FilePicker.swift in Sources */,
@@ -4696,6 +4717,7 @@
 				7DA2606A23F722D9005D2121 /* UserSettings.swift in Sources */,
 				7DA2600123F72272005D2121 /* APIErrorReport.swift in Sources */,
 				7DA2607B23F722FA005D2121 /* PageViewEventController.swift in Sources */,
+				B11AEBBB240727AE00B736D6 /* GetPlannerCourses.swift in Sources */,
 				7DA2600023F7226E005D2121 /* PSPDFAnnotationExtension.swift in Sources */,
 				7DA2608423F72303005D2121 /* User.swift in Sources */,
 				7DA260E623F72359005D2121 /* RightDetailTableViewCell.swift in Sources */,
@@ -4766,6 +4788,7 @@
 				7DA25F8E23F72123005D2121 /* SyllabusSummaryViewController.swift in Sources */,
 				7DA2606123F722D9005D2121 /* Submission.swift in Sources */,
 				7DA260BF23F72352005D2121 /* GetUserGroups.swift in Sources */,
+				B11AEBB9240724FA00B736D6 /* Planner.swift in Sources */,
 				7DA2601C23F7227A005D2121 /* UIViewExtensions.swift in Sources */,
 				7DA25FA123F72136005D2121 /* APIBrandVariables.swift in Sources */,
 				7DA2603223F722C9005D2121 /* LTIViewController.swift in Sources */,
@@ -4778,6 +4801,7 @@
 				7DA2604823F722D9005D2121 /* FeatureFlag.swift in Sources */,
 				7DA2609E23F72348005D2121 /* APITodo.swift in Sources */,
 				7DA2605F23F722D9005D2121 /* Role.swift in Sources */,
+				B147CCD72409CC6C0064BD3F /* LoadingCell.swift in Sources */,
 				7D75FF1424081E42000544E7 /* ListErrorView.swift in Sources */,
 				7DA25FF423F72260005D2121 /* ExperimentalFeaturesViewController.swift in Sources */,
 				7DA260D023F72359005D2121 /* CircleProgressView.swift in Sources */,

@@ -245,30 +245,6 @@ extension ModuleListViewController: UITableViewDelegate {
 }
 
 extension ModuleListViewController {
-    class LoadingCell: UITableViewCell {
-        let activity: UIActivityIndicatorView
-
-        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-            activity = UIActivityIndicatorView(style: .gray)
-            activity.startAnimating()
-            activity.translatesAutoresizingMaskIntoConstraints = false
-            super.init(style: .default, reuseIdentifier: reuseIdentifier)
-            contentView.addSubview(activity)
-            activity.pin(inside: contentView)
-            activity.heightAnchor.constraint(equalToConstant: 44).isActive = true
-            fullDivider = true
-        }
-
-        override func prepareForReuse() {
-            super.prepareForReuse()
-            activity.startAnimating()
-        }
-
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-    }
-
     class EmptyCell: UITableViewCell {
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: .default, reuseIdentifier: reuseIdentifier)

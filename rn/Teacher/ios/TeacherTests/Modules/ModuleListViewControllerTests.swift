@@ -81,7 +81,7 @@ class ModuleListViewControllerTests: TeacherTestCase {
         let task = api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details]), value: [.make()])
         task.paused = true
         viewController.view.layoutIfNeeded()
-        XCTAssertNotNil(viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ModuleListViewController.LoadingCell)
+        XCTAssertNotNil(viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? LoadingCell)
         task.paused = false
         XCTAssertNotNil(viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ModuleItemCell)
     }
