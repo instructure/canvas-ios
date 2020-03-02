@@ -38,14 +38,25 @@ public struct APICourseSection: Codable, Equatable {
 public struct GetCourseSectionsRequest: APIRequestable {
     public typealias Response = [APICourseSection]
 
+    public enum Include: String {
+        case total_students
+    }
+
     let courseID: String
+    let include: [Include]
     let perPage: Int
+
+    init(courseID: String, include: [Include] = [], perPage: Int = 99) {
+        self.courseID = courseID
+        self.include = include
+        self.perPage = perPage
+    }
 
     public var path: String {
         return "\(ContextModel(.course, id: courseID).pathComponent)/sections"
     }
 
     public var query: [APIQueryItem] {
-        [ .perPage(perPage) ]
+        [ .perPage(perPage), .include(include.map { $0.rawValue }) ]
     }
 }

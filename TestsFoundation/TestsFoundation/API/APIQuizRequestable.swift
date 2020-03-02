@@ -61,6 +61,25 @@ struct PostQuizRequest: APIRequestable {
     let method = APIMethod.post
 }
 
+// https://canvas.instructure.com/doc/api/quizzes.html#method.quizzes/quizzes_api.index
+public struct ListQuizzesRequest: APIRequestable {
+    public typealias Response = [APIQuiz]
+
+    public let courseID: String
+    // let public searchTerm: String?
+    public let perPage: Int?
+
+    public init(courseID: String, perPage: Int? = 99) {
+        self.courseID = courseID
+        self.perPage = perPage
+    }
+
+    public var path: String { "\(ContextModel(.course, id: courseID).pathComponent)/quizzes" }
+    public var query: [APIQueryItem] {
+        perPage.map { [.perPage($0)] } ?? []
+    }
+}
+
 // https://canvas.instructure.com/doc/api/quiz_questions.html#method.quizzes/quiz_questions.create
 public struct PostQuizQuestionRequest: APIRequestable {
     public typealias Response = APIQuizQuestion

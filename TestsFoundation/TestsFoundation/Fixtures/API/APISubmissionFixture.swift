@@ -141,6 +141,16 @@ extension APISubmissionUser {
             pronouns: pronouns
         )
     }
+
+    public static func make(from user: APIUser) -> APISubmissionUser {
+        APISubmissionUser(
+            id: user.id,
+            name: user.name,
+            short_name: user.short_name,
+            avatar_url: user.avatar_url?.rawValue,
+            pronouns: user.pronouns
+        )
+    }
 }
 
 extension APISubmissionCommentMedia {
@@ -155,6 +165,20 @@ extension APISubmissionCommentMedia {
             media_id: media_id,
             media_type: media_type,
             display_name: display_name
+        )
+    }
+}
+
+extension APISubmissionSummary {
+    public static func make(
+        graded: Int = 1,
+        ungraded: Int = 2,
+        not_submitted: Int = 3
+    ) -> APISubmissionSummary {
+        APISubmissionSummary(
+            graded: graded,
+            ungraded: ungraded,
+            not_submitted: not_submitted
         )
     }
 }

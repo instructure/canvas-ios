@@ -22,15 +22,16 @@ import TestsFoundation
 @testable import CoreUITests
 
 class SpeedGraderTests: TeacherUITestCase {
+    let mockHelper = SpeedGraderUIMocks()
+
     func testSubmissionCommentAttachments() {
         mockBaseRequests()
         mockData(GetAssignmentRequest(courseID: "1", assignmentID: "1", allDates: true, include: [.overrides]), value: .make(id: "1"))
         mockData(GetGroupsRequest(context: ContextModel(.course, id: "1")), value: [])
-        let image = UIImage.icon(.paperclip)
         let attachment = APIFile.make(
             id: "1",
             display_name: "screenshot.png",
-            url: URL(string: "data:image/png;base64,\(image.pngData()!.base64EncodedString())")!
+            url: UIImage.icon(.paperclip).asDataUrl!
         )
         mockURL(attachment.url!.rawValue, data: UIImage.icon(.paperclip).pngData())
         mockData(
@@ -65,5 +66,41 @@ class SpeedGraderTests: TeacherUITestCase {
         app.find(label: "Attachment").waitToExist()
         NavBar.dismissButton.tap()
         app.find(id: "AttachmentView.image").waitToVanish()
+    }
+
+    func testNavigateToSpeedGrader() {
+        mockHelper.mock(for: self)
+        logIn()
+        Dashboard.courseCard(id: "1").tap()
+        CourseNavigation.assignments.tap()
+        AssignmentsList.assignment(id: "1").tap()
+        AssignmentDetails.viewAllSubmissionsButton.tap()
+        SubmissionsList.row(contextID: "1").tap()
+        SpeedGrader.dismissTutorial()
+    }
+
+    func inProgressTestQuizLoadsWebView() {
+        mockHelper.mock(for: self)
+
+        let quiz = APIQuiz.make(quiz_type: .assignment)
+        let quizSubmissions: [APIQuizSubmission] = [
+            .make(quiz_id: quiz.id, workflow_state: .complete),
+        ]
+
+        mockData(ListQuizzesRequest(courseID: "1"), value: [quiz])
+        mockData(GetQuizRequest(courseID: "1", quizID: quiz.id.value), value: quiz)
+        mockData(GetAllQuizSubmissionsRequest(courseID: "1", quizID: quiz.id.value, includes: [.submission], perPage: 99),
+                 value: .init(quiz_submissions: quizSubmissions))
+        mockData(GetAllQuizSubmissionsRequest(courseID: "1", quizID: quiz.id.value),
+                 value: .init(quiz_submissions: quizSubmissions))
+        mockData(GetCourseSectionsRequest(courseID: "1", include: [.total_students], perPage: 99),
+                 value: [.make()])
+
+        logIn()
+        Dashboard.courseCard(id: "1").tap()
+        CourseNavigation.quizzes.tap()
+
+        app.find(id: "quiz-row-0").tap()
+        app.find(id: "quizzes.details.viewAllSubmissionsRow").tap()
     }
 }

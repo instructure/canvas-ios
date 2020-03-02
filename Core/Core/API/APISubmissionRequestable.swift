@@ -191,3 +191,15 @@ public struct GetRecentlyGradedSubmissionsRequest: APIRequestable {
         ]
     }
 }
+
+// https://canvas.instructure.com/doc/api/submissions.html#method.submissions_api.submission_summary
+public struct GetSubmissionSummaryRequest: APIRequestable {
+    public typealias Response = APISubmissionSummary
+
+    public let context: Context
+    public let assignmentID: String
+
+    public var path: String {
+        "\(context.pathComponent)/assignments/\(assignmentID)/submission_summary"
+    }
+}
