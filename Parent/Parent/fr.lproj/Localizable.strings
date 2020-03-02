@@ -92,7 +92,13 @@
 "Choose a course to message" = "Sélectionnez un cours à envoyer en message";
 
 /* No comment provided by engineer. */
+"Compose Message" = "Composer un message";
+
+/* No comment provided by engineer. */
 "Compose new message" = "Composer un nouveau message";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
 
 /* Course Announcement Description */
 "Course announcements" = "Annonces de cours";
@@ -105,6 +111,9 @@
 
 /* Courses Tab */
 "Courses" = "Cours";
+
+/* No comment provided by engineer. */
+"Current student: %@. Tap to switch students" = "Élève actuel : %@. Appuyez pour changer d'élève";
 
 /* No comment provided by engineer. */
 "Discussion" = "Discussion";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Fichier";
+
+/* No comment provided by engineer. */
+"Find School" = "Trouver une école";
 
 /* No comment provided by engineer. */
 "for %@" = "pour %@";
@@ -185,6 +197,9 @@
 "Low course grade cannot be higher than high course grade" = "La note 'basse' du cours ne peut pas être supérieure à la note 'élevée' du cours";
 
 /* No comment provided by engineer. */
+"Manage Students" = "Gérer les élèves";
+
+/* No comment provided by engineer. */
 "Message" = "Message";
 
 /* No comment provided by engineer. */
@@ -201,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Missing: %@ (%@/%@)" = "Manquant : %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"n/a" = "n/a";
 
 /* No comment provided by engineer. */
 "New Message" = "Nouveau message";
@@ -242,8 +260,8 @@
 "Regarding: %@" = "À propos : %@";
 
 /* Regarding <John Doe>, [link to grades or syllabus]
-   Regarding <John Doe>, < assignment url >
-   Regarding <John Doe>, <Grades | Syllabus> */
+   Regarding <John Doe>, <Grades | Syllabus>
+   Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "À propos : %1$@, %2$@";
 
 /* No comment provided by engineer. */
@@ -260,6 +278,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "Paramètres";
+
+/* No comment provided by engineer. */
+"Settings. %@" = "Paramètres. %@";
 
 /* No comment provided by engineer. */
 "Subject" = "Sujet";

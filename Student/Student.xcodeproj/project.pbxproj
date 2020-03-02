@@ -256,6 +256,7 @@
 		B1F405E722E23C02008FAFE6 /* ReactiveObjCBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405E122E23C01008FAFE6 /* ReactiveObjCBridge.framework */; };
 		B1F405E822E23C02008FAFE6 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405E222E23C01008FAFE6 /* ReactiveObjC.framework */; };
 		B1F405E922E23C02008FAFE6 /* ReactiveMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405E322E23C02008FAFE6 /* ReactiveMapKit.framework */; };
+		B1FF02D02404353E004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02CF2404353E004B7B1C /* KeychainTests.swift */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
 		B5F122C91D8C4D6C0045063A /* Student.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 49642BCA1CF4C66200238B3F /* Student.entitlements */; };
 		DA5C72BF38BB22F39F7FB893 /* Pods_defaults_StudentUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DEFAEF2C9B9DFE5512CC77 /* Pods_defaults_StudentUnitTests.framework */; };
@@ -503,6 +504,12 @@
 		5BCDD3C222ACE6DA00219BFE /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5BD3112822ED806500E4446B /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5BD3112922ED806500E4446B /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5BD433A3240B9BE4002A7864 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5BD433A4240B9BE4002A7864 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5BD433A5240B9BE4002A7864 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5BD433A6240B9BE4002A7864 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5BD433A7240B9BE4002A7864 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5BD433A8240B9BE4002A7864 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5BDA130022ED80E700D60D91 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5BDA130122ED80E700D60D91 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5BE7DC1922ED8070000DBE58 /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -840,6 +847,7 @@
 		B1F405E122E23C01008FAFE6 /* ReactiveObjCBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjCBridge.framework; path = ../Carthage/Build/iOS/ReactiveObjCBridge.framework; sourceTree = "<group>"; };
 		B1F405E222E23C01008FAFE6 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjC.framework; path = ../Carthage/Build/iOS/ReactiveObjC.framework; sourceTree = "<group>"; };
 		B1F405E322E23C02008FAFE6 /* ReactiveMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveMapKit.framework; path = ../Carthage/Build/iOS/ReactiveMapKit.framework; sourceTree = "<group>"; };
+		B1FF02CF2404353E004B7B1C /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		B1FF7EDE1D8758720069C9BE /* ModuleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleViewModel.swift; sourceTree = "<group>"; };
 		B5E212D41D88856B009D8C07 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5E212D91D8885AA009D8C07 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1741,6 +1749,7 @@
 				7DCF0F3622F8A096000AACCE /* Info.plist */,
 				7DCF0F3722F8A096000AACCE /* RoutesTests.swift */,
 				7DCF0F3822F8A096000AACCE /* StudentTestCase.swift */,
+				B1FF02CF2404353E004B7B1C /* KeychainTests.swift */,
 			);
 			path = StudentUnitTests;
 			sourceTree = "<group>";
@@ -2375,6 +2384,7 @@
 				"ru-RU",
 				"sv-SE",
 				"zh-CN",
+				is,
 			);
 			mainGroup = 4927046A1CF4AF7100C631C6;
 			productRefGroup = 492704741CF4AF7100C631C6 /* Products */;
@@ -2801,6 +2811,7 @@
 				7DE1162322F8AB5C005BFE98 /* UrlSubmissionPresenterTests.swift in Sources */,
 				7DE1161922F8AB5C005BFE98 /* UIImageStudentExtensionTests.swift in Sources */,
 				7DE1161522F8AB5C005BFE98 /* CourseNavigationPresenterTests.swift in Sources */,
+				B1FF02D02404353E004B7B1C /* KeychainTests.swift in Sources */,
 				7DE1161F22F8AB5C005BFE98 /* RubricPresenterTests.swift in Sources */,
 				7DE1162022F8AB5C005BFE98 /* SubmissionCommentsPresenterTests.swift in Sources */,
 				7DE1162122F8AB5C005BFE98 /* SubmissionDetailsPresenterTests.swift in Sources */,
@@ -2920,6 +2931,7 @@
 				5BCDD3BF22ACE6DA00219BFE /* fi */,
 				5B60C57422BD68EF001094C6 /* sl */,
 				7D62F50322BD75B90060DE4C /* en-AU-unimelb */,
+				5BD433A4240B9BE4002A7864 /* is */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2988,6 +3000,7 @@
 				5B531F5622ED812400A2B6FB /* sv */,
 				5B67E0F822ED812E00D58341 /* zh-HK */,
 				5B7B99DF22ED813800787B69 /* zh */,
+				5BD433A5240B9BE4002A7864 /* is */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -3023,6 +3036,7 @@
 				5B531F5722ED812400A2B6FB /* sv */,
 				5B67E0F922ED812E00D58341 /* zh-HK */,
 				5B7B99E022ED813800787B69 /* zh */,
+				5BD433A6240B9BE4002A7864 /* is */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -3059,6 +3073,7 @@
 				5BCDD3C022ACE6DA00219BFE /* fi */,
 				5B60C57522BD68EF001094C6 /* sl */,
 				7D62F50222BD75B90060DE4C /* en-AU-unimelb */,
+				5BD433A7240B9BE4002A7864 /* is */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -3095,6 +3110,7 @@
 				5BE7DC1922ED8070000DBE58 /* en-CY */,
 				5B24408222ED808D000A099F /* fi */,
 				5B2BFDBC22ED811000D9DDAB /* sl */,
+				5BD433A3240B9BE4002A7864 /* is */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -3140,6 +3156,7 @@
 				5BCDD3C222ACE6DA00219BFE /* fi */,
 				5B60C57722BD68F0001094C6 /* sl */,
 				7D62F50522BD75B90060DE4C /* en-AU-unimelb */,
+				5BD433A8240B9BE4002A7864 /* is */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

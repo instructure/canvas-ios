@@ -881,6 +881,9 @@
 		5B1FFAA722BD70940019BAC8 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B1FFAA822BD70940019BAC8 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
 		5B1FFAA922BD70940019BAC8 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
+		5B2F8DFC240B9C90001087B2 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B2F8DFD240B9C90001087B2 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
+		5B2F8DFE240B9C90001087B2 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
 		5B5262B522ACEDAA00E14EB0 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B5262B622ACEDAA00E14EB0 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
 		5B5262B722ACEDAA00E14EB0 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
@@ -2570,6 +2573,7 @@
 				fi,
 				sl,
 				"en-AU-unimelb",
+				is,
 			);
 			mainGroup = 2CAF1B0A1F72AEDB007225DF;
 			productRefGroup = 2CAF1B151F72AEDB007225DF /* Products */;
@@ -3077,6 +3081,7 @@
 				5B5262B722ACEDAA00E14EB0 /* fi */,
 				5B1FFAA922BD70940019BAC8 /* sl */,
 				7D9DF28D22BD7F4D003110B9 /* en-AU-unimelb */,
+				5B2F8DFE240B9C90001087B2 /* is */,
 			);
 			name = SubmissionConfirmationViewController.xib;
 			sourceTree = "<group>";
@@ -3145,6 +3150,7 @@
 				5B5262B622ACEDAA00E14EB0 /* fi */,
 				5B1FFAA822BD70940019BAC8 /* sl */,
 				7D9DF28C22BD7F4D003110B9 /* en-AU-unimelb */,
+				5B2F8DFD240B9C90001087B2 /* is */,
 			);
 			name = TimedQuizViewController.xib;
 			sourceTree = "<group>";
@@ -3213,6 +3219,7 @@
 				5B5262B522ACEDAA00E14EB0 /* fi */,
 				5B1FFAA722BD70940019BAC8 /* sl */,
 				7D9DF28B22BD7F4D003110B9 /* en-AU-unimelb */,
+				5B2F8DFC240B9C90001087B2 /* is */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

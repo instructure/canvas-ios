@@ -18,74 +18,113 @@
 
 import UIKit
 
-public class PlannerListViewController: UIViewController, ErrorViewController {
+protocol PlannerListDelegate: class, UIScrollViewDelegate {
+    func plannerListWillRefresh()
+    func getPlannables(from: Date, to: Date) -> GetPlannables
+}
+
+public class PlannerListViewController: UIViewController {
+    @IBOutlet weak var emptyStateHeader: UILabel!
+    @IBOutlet weak var emptyStateSubHeader: UILabel!
+    @IBOutlet weak var emptyStateView: UIView!
+    @IBOutlet weak var errorView: ListErrorView!
+    let refreshControl = CircleRefreshControl()
+    @IBOutlet weak var spinnerView: CircleProgressView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var emptyStateViewContainer: UIView!
-    @IBOutlet weak var emptyStateHeader: DynamicLabel!
-    @IBOutlet weak var emptyStateSubHeader: DynamicLabel!
-    @IBOutlet weak var emptytStateImageView: UIImageView!
 
+    weak var delegate: PlannerListDelegate?
     let env = AppEnvironment.shared
-    var studentID: String?
-    var start: Date = Clock.now.startOfDay()
-    var end: Date = Clock.now.endOfDay()
+    var start: Date = Clock.now.startOfDay() // inclusive
+    var end: Date = Clock.now.startOfDay().addDays(1) // exclusive
 
-    lazy var plannables: Store<GetPlannables> = env.subscribe(GetPlannables(userID: studentID, startDate: start, endDate: end)) { [weak self] in
-        self?.updatePlannables()
+    var plannables: Store<GetPlannables>?
+
+    static func create(start: Date, end: Date, delegate: PlannerListDelegate?) -> PlannerListViewController {
+        let controller = loadFromStoryboard()
+        controller.delegate = delegate
+        controller.start = start
+        controller.end = end
+        return controller
     }
 
-    public static func create(studentID: String?) -> PlannerListViewController {
-        let vc = loadFromStoryboard()
-        vc.studentID = studentID ?? ""
-        return vc
-    }
-
-    override public func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
-        configureTableview()
-        plannables.refresh(force: true)
 
-        emptyStateHeader.text = NSLocalizedString("No Assignments", comment: "")
-        emptyStateSubHeader.text = NSLocalizedString("It looks like assignments haven’t been created in this space yet.", comment: "")
-        emptytStateImageView.image = UIImage(named: "PandaNoEvents", in: .core, compatibleWith: nil)
+        emptyStateHeader.text = NSLocalizedString("No Assignments", bundle: .core, comment: "")
+        emptyStateSubHeader.text = NSLocalizedString("It looks like assignments haven’t been created in this space yet.", bundle: .core, comment: "")
+        errorView.messageLabel.text = NSLocalizedString("There was an error loading events. Pull to refresh to try again.", bundle: .core, comment: "")
+        errorView.retryButton.addTarget(self, action: #selector(retryAfterError), for: .primaryActionTriggered)
+
+        refreshControl.addTarget(self, action: #selector(plannerListWillRefresh), for: .primaryActionTriggered)
+        refreshControl.color = nil
+        spinnerView.color = nil
+        tableView.refreshControl = refreshControl
+        tableView.separatorColor = .named(.borderMedium)
+
+        refresh()
     }
 
-    private func configureTableview() {
-        tableView.tableFooterView = UIView()
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let selected = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selected, animated: true)
+        }
+    }
+
+    @objc func retryAfterError() {
+        refreshControl.beginRefreshing()
+        delegate?.plannerListWillRefresh()
+    }
+
+    @objc func plannerListWillRefresh() {
+        delegate?.plannerListWillRefresh()
+    }
+
+    func refresh(force: Bool = false) {
+        errorView.isHidden = true
+        plannables = delegate.flatMap { env.subscribe($0.getPlannables(from: start, to: end)) { [weak self] in
+            self?.updatePlannables()
+        } }
+         plannables?.refresh(force: force)
     }
 
     private func updatePlannables() {
-        let pending = plannables.pending
-        if !pending {
-            if let error = plannables.error { showError(error) }
-            tableView.reloadData()
-
-            emptyStateViewContainer.isHidden = plannables.count > 0
-        }
-    }
-
-    public func updateListForDates(start: Date, end: Date) {
-        self.start = start
-        self.end = end
-
-        plannables = env.subscribe(GetPlannables(userID: studentID, startDate: start, endDate: end, contextCodes: [], filter: "")) { [weak self] in
-            self?.updatePlannables()
-        }
-
-        plannables.refresh(force: true)
+        guard plannables?.requested == true, plannables?.pending == false else { return }
+        refreshControl.endRefreshing()
+        spinnerView.isHidden = true
+        emptyStateView.isHidden = plannables?.error != nil || plannables?.isEmpty != true
+        errorView.isHidden = plannables?.error == nil
+        tableView.reloadData()
     }
 }
 
-extension PlannerListViewController: UITableViewDataSource {
+extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return plannables.count
+        return plannables?.count ?? 0
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PlannerListCell = tableView.dequeue(for: indexPath)
-        let p = plannables[indexPath]
+        let p = plannables?[indexPath]
         cell.update(p)
         return cell
+    }
+
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let url = plannables?[indexPath]?.htmlURL else { return }
+        env.router.route(to: url, from: self, options: .detail(embedInNav: true))
+    }
+
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        delegate?.scrollViewWillBeginDragging?(scrollView)
+    }
+
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        delegate?.scrollViewDidScroll?(scrollView)
+    }
+
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        delegate?.scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate)
     }
 }
 

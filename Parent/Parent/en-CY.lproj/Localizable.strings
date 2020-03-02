@@ -92,7 +92,13 @@
 "Choose a course to message" = "Choose a module to message";
 
 /* No comment provided by engineer. */
+"Compose Message" = "Compose message";
+
+/* No comment provided by engineer. */
 "Compose new message" = "Compose new message";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
 
 /* Course Announcement Description */
 "Course announcements" = "Module announcements";
@@ -105,6 +111,9 @@
 
 /* Courses Tab */
 "Courses" = "Modules";
+
+/* No comment provided by engineer. */
+"Current student: %@. Tap to switch students" = "Current student: %@. Tap to switch students";
 
 /* No comment provided by engineer. */
 "Discussion" = "Discussion";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "File" = "File";
+
+/* No comment provided by engineer. */
+"Find School" = "Find School";
 
 /* No comment provided by engineer. */
 "for %@" = "for %@";
@@ -185,6 +197,9 @@
 "Low course grade cannot be higher than high course grade" = "Low module mark cannot be higher than high module mark";
 
 /* No comment provided by engineer. */
+"Manage Students" = "Manage Students";
+
+/* No comment provided by engineer. */
 "Message" = "Message";
 
 /* No comment provided by engineer. */
@@ -201,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Missing: %@ (%@/%@)" = "Missing: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"n/a" = "n/a";
 
 /* No comment provided by engineer. */
 "New Message" = "New message";
@@ -242,8 +260,8 @@
 "Regarding: %@" = "Regarding: %@";
 
 /* Regarding <John Doe>, [link to grades or syllabus]
-   Regarding <John Doe>, < assignment url >
-   Regarding <John Doe>, <Grades | Syllabus> */
+   Regarding <John Doe>, <Grades | Syllabus>
+   Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "Regarding: %1$@, %2$@";
 
 /* No comment provided by engineer. */
@@ -260,6 +278,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "Settings";
+
+/* No comment provided by engineer. */
+"Settings. %@" = "Settings. %@";
 
 /* No comment provided by engineer. */
 "Subject" = "Subject";

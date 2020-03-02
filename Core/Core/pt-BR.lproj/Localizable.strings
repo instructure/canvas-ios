@@ -269,9 +269,6 @@
 "Due Date" = "Data de vencimento";
 
 /* No comment provided by engineer. */
-"Due: %@" = "Vencimento: %@";
-
-/* No comment provided by engineer. */
 "Edit" = "Editar";
 
 /* Description for email communication channel */
@@ -401,6 +398,9 @@
 "Invitation" = "Convite";
 
 /* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "Parece que tarefas ainda não foram criadas nesse espaço.";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Parece que você não está matriculado em quaisquer cursos como %@. Um dos nossos outros aplicativos pode ser uma escolha melhor. Toque em um para visitar o App Store.";
 
 /* No comment provided by engineer. */
@@ -470,6 +470,9 @@
 "Login" = "Login";
 
 /* No comment provided by engineer. */
+"Manage Students" = "Gerenciar alunos";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "Login manual OAuth";
 
 /* No comment provided by engineer. */
@@ -492,6 +495,9 @@
 
 /* No comment provided by engineer. */
 "Never" = "Nunca";
+
+/* No comment provided by engineer. */
+"No Assignments" = "Sem tarefas";
 
 /* No comment provided by engineer. */
 "No Content" = "Sem conteúdo";

@@ -269,9 +269,6 @@
 "Due Date" = "Määräpäivä";
 
 /* No comment provided by engineer. */
-"Due: %@" = "Määräpäivä: %@";
-
-/* No comment provided by engineer. */
 "Edit" = "Muokkaa";
 
 /* Description for email communication channel */
@@ -401,6 +398,9 @@
 "Invitation" = "Kutsu";
 
 /* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "Näyttää siltä kuin tehtäviä ei vielä olisi luotu tässä tilassa.";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Näyttää siltä, että et ole rekisteröitynyt millekään kurssille nimellä %@. Yksi sovelluksistamme saattaa sopia paremmin. Käy App Storessa napauttamalla.";
 
 /* No comment provided by engineer. */
@@ -470,6 +470,9 @@
 "Login" = "Sisäänkirjautuminen";
 
 /* No comment provided by engineer. */
+"Manage Students" = "Hallitse opiskelijoita";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "Manuaalinen OAuth-sisäänkirjautuminen";
 
 /* No comment provided by engineer. */
@@ -492,6 +495,9 @@
 
 /* No comment provided by engineer. */
 "Never" = "Ei koskaan";
+
+/* No comment provided by engineer. */
+"No Assignments" = "Ei tehtäviä";
 
 /* No comment provided by engineer. */
 "No Content" = "Ei sisältöä";

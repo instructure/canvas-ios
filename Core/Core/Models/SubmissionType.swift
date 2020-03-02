@@ -87,7 +87,7 @@ extension Array where Element == SubmissionType {
             if allowedExtensions.isEmpty {
                 utis += [.any]
             } else {
-                utis += allowedExtensions.compactMap(UTI.init)
+                utis += UTI.from(extensions: allowedExtensions)
             }
         }
 

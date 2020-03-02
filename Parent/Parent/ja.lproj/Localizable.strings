@@ -92,7 +92,13 @@
 "Choose a course to message" = "メッサージを送るコースを選択する";
 
 /* No comment provided by engineer. */
+"Compose Message" = "メッセージを作成";
+
+/* No comment provided by engineer. */
 "Compose new message" = "新規メッセージを作成";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
 
 /* Course Announcement Description */
 "Course announcements" = "コースのアナウンスメント";
@@ -105,6 +111,9 @@
 
 /* Courses Tab */
 "Courses" = "コース";
+
+/* No comment provided by engineer. */
+"Current student: %@. Tap to switch students" = "現在の受講生：%@. タップして受講生を切り替える";
 
 /* No comment provided by engineer. */
 "Discussion" = "ディスカッション";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "File" = "ファイル";
+
+/* No comment provided by engineer. */
+"Find School" = "学校を探す";
 
 /* No comment provided by engineer. */
 "for %@" = "ための%@";
@@ -185,6 +197,9 @@
 "Low course grade cannot be higher than high course grade" = "低いコース成績は、高いコース成績より高くしないでください";
 
 /* No comment provided by engineer. */
+"Manage Students" = "受講生を管理";
+
+/* No comment provided by engineer. */
 "Message" = "メッセージ";
 
 /* No comment provided by engineer. */
@@ -201,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Missing: %@ (%@/%@)" = "欠如：%1$@(%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"n/a" = "該当せず";
 
 /* No comment provided by engineer. */
 "New Message" = "新しいメッセージ";
@@ -242,8 +260,8 @@
 "Regarding: %@" = "対象：%@";
 
 /* Regarding <John Doe>, [link to grades or syllabus]
-   Regarding <John Doe>, < assignment url >
-   Regarding <John Doe>, <Grades | Syllabus> */
+   Regarding <John Doe>, <Grades | Syllabus>
+   Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "対象：%1$@,%2$@";
 
 /* No comment provided by engineer. */
@@ -260,6 +278,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "設定";
+
+/* No comment provided by engineer. */
+"Settings. %@" = "設定。%@";
 
 /* No comment provided by engineer. */
 "Subject" = "件名";

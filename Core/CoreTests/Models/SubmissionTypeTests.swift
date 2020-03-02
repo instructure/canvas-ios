@@ -66,9 +66,9 @@ class SubmissionTypeTests: XCTestCase {
         let allowedExtensions = ["png", "mov", "mp3"]
         let result = submissionTypes.allowedUTIs(allowedExtensions: allowedExtensions)
         XCTAssertEqual(result.count, 3)
-        XCTAssertTrue(result[0].isImage)
-        XCTAssertTrue(result[1].isVideo)
-        XCTAssertTrue(result[2].isAudio)
+        XCTAssertTrue(result.contains { $0.isImage })
+        XCTAssertTrue(result.contains { $0.isVideo })
+        XCTAssertTrue(result.contains { $0.isAudio })
     }
 
     func testAllowedUTIsAllowedExtensionsVideo() {
@@ -81,7 +81,9 @@ class SubmissionTypeTests: XCTestCase {
 
     func testAllowedUTIsMediaRecording() {
         let submissionTypes: [SubmissionType] = [.media_recording]
-        XCTAssertEqual(submissionTypes.allowedUTIs(allowedExtensions: []), [.video, .audio])
+        let result = submissionTypes.allowedUTIs(allowedExtensions: [])
+        XCTAssertTrue(result.contains(.video))
+        XCTAssertTrue(result.contains(.audio))
     }
 
     func testAllowedUTIsText() {
@@ -102,7 +104,7 @@ class SubmissionTypeTests: XCTestCase {
         let allowedExtensions = ["jpeg"]
         let result = submissionTypes.allowedUTIs(allowedExtensions: allowedExtensions)
         XCTAssertEqual(result.count, 2)
-        XCTAssertTrue(result[0].isImage)
-        XCTAssertEqual(result[1], .text)
+        XCTAssertTrue(result.contains { $0.isImage })
+        XCTAssertTrue(result.contains(.text))
     }
 }

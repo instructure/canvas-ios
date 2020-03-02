@@ -100,22 +100,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         legacyClient.originalIDOfMasqueradingUser = session.originalUserID
         legacyClient.originalBaseURL = session.originalBaseURL
         let getProfile = GetUserProfileRequest(userID: "self")
-        environment.api.makeRequest(getProfile) { response, urlResponse, error in
-            guard let profile = response, error == nil else {
-                if urlResponse?.isUnauthorized == true {
-                    DispatchQueue.main.async { self.userDidLogout(session: session) }
-                }
-                return
+        environment.api.makeRequest(getProfile) { response, urlResponse, _ in
+            if urlResponse?.isUnauthorized == true, !session.isFakeStudent {
+                DispatchQueue.main.async { self.userDidLogout(session: session) }
             }
             let legacyUser = CKIUser()
             legacyUser?.id = session.userID
             legacyUser?.name = session.userName
             legacyUser?.sortableName = session.userName
             legacyUser?.shortName = session.userName
-            legacyUser?.avatarURL = profile.avatar_url?.rawValue
-            legacyUser?.loginID = profile.login_id
-            legacyUser?.email = profile.primary_email
-            legacyUser?.calendar = profile.calendar?.ics
+            legacyUser?.avatarURL = response?.avatar_url?.rawValue ?? session.userAvatarURL
+            legacyUser?.loginID = response?.login_id
+            legacyUser?.email = response?.primary_email ?? session.userEmail
+            legacyUser?.calendar = response?.calendar?.ics
             legacyUser?.sisUserID = ""
             legacyClient.setValue(legacyUser, forKey: "currentUser")
             CKIClient.current = legacyClient
@@ -137,6 +134,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        if
+            options[.sourceApplication] as? String == Bundle.teacherBundleID,
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
+            components.path == "student_view",
+            let fakeStudent = LoginSession.mostRecent(in: .shared, forKey: .fakeStudents) {
+            userDidLogin(session: fakeStudent)
+            return true
+        }
         return openCanvasURL(url)
     }
 
@@ -430,6 +435,8 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         userDidStopActing(as: session)
         if wasCurrent { changeUser() }
     }
+
+    func actAsFakeStudent(withID fakeStudentID: String) {}
 }
 
 // MARK: - Handle siri notifications

@@ -269,9 +269,6 @@
 "Due Date" = "Forfallsdato";
 
 /* No comment provided by engineer. */
-"Due: %@" = "Frist: %@";
-
-/* No comment provided by engineer. */
 "Edit" = "Rediger";
 
 /* Description for email communication channel */
@@ -401,6 +398,9 @@
 "Invitation" = "Invitasjon";
 
 /* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "Det ser ut som ingen oppgaver er laget i dette området ennå.";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Det virker som du ikke er registrert i noen emner for %@. En av våre andre apper passer kanskje bedre for deg. Trykk på en for å gå til App Store.";
 
 /* No comment provided by engineer. */
@@ -470,6 +470,9 @@
 "Login" = "Innlogging";
 
 /* No comment provided by engineer. */
+"Manage Students" = "Administrer studenter";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "Manuell OAuth-innlogging";
 
 /* No comment provided by engineer. */
@@ -492,6 +495,9 @@
 
 /* No comment provided by engineer. */
 "Never" = "Aldri";
+
+/* No comment provided by engineer. */
+"No Assignments" = "Ingen oppgaver";
 
 /* No comment provided by engineer. */
 "No Content" = "Uten innhold";

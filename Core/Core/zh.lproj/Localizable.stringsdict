@@ -27,7 +27,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d unread conversations</string>
+			<string>%d未读的对话</string>
 		</dict>
 	</dict>
 	<key>d_events</key>

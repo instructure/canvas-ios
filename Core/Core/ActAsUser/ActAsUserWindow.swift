@@ -141,12 +141,17 @@ class ActAsUserOverlay: UIView {
 
     @objc func stopActing() {
         guard let viewController = window?.rootViewController?.topMostViewController() else { return }
-        var message = NSLocalizedString("You will stop acting as this user and return to your account.", bundle: .core, comment: "")
-        if let name = AppEnvironment.shared.currentSession?.userName {
+        let session = AppEnvironment.shared.currentSession
+        var message: String? = NSLocalizedString("You will stop acting as this user and return to your account.", bundle: .core, comment: "")
+        if let name = session?.userName, session?.isFakeStudent != true {
             let template = NSLocalizedString("You will stop acting as %@ and return to your account.", bundle: .core, comment: "")
             message = String.localizedStringWithFormat(template, name)
         }
-        let title = NSLocalizedString("Stop acting as...", bundle: .core, comment: "")
+        var title = NSLocalizedString("Stop acting as...", bundle: .core, comment: "")
+        if session?.isFakeStudent == true {
+            title = NSLocalizedString("Leave Student View", comment: "")
+            message = NSLocalizedString("You will be logged out of this student account.", comment: "")
+        }
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: NSLocalizedString("OK", bundle: .core, comment: ""), style: .default) { _ in
             if let loginDelegate = self.loginDelegate, let session = AppEnvironment.shared.currentSession {

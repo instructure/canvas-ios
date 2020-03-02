@@ -24,6 +24,15 @@ export function getCustomColors (): ApiPromise<CustomColors> {
   return httpClient.get('users/self/colors')
 }
 
+export function getFakeStudents (courseID) {
+  return httpClient.get(`courses/${courseID}/users`, {
+    params: {
+      include: ['test_student'],
+      enrollment_type: ['student_view'],
+    },
+  })
+}
+
 export function getUserProfile (userID: string): ApiPromise<User> {
   return httpClient.get(`/users/${userID}/profile`)
 }

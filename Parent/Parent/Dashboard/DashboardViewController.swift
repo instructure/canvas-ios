@@ -201,6 +201,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
 
         tabBar.tintColor = ColorScheme.observer.color
         tabBar.barTintColor = .named(.backgroundLightest)
+        tabBar.isTranslucent = false
 
         selectCoursesTab()
     }
@@ -311,7 +312,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     func calendarViewController(_ session: Session, startDate: Date = Date()) -> UIViewController? {
         guard let currentStudent = currentStudent else { return nil }
         if ExperimentalFeature.parentCalendar.isEnabled {
-            return CalendarContainerViewController.create(studentID: currentStudent.id)
+            return PlannerViewController.create(studentID: currentStudent.id)
         }
         return CalendarEventWeekPageViewController.create(session: session, studentID: currentStudent.id, initialReferenceDate: startDate)
     }

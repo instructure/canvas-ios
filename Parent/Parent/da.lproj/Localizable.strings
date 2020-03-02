@@ -92,7 +92,13 @@
 "Choose a course to message" = "Vælg et fag at sende en meddelelse til";
 
 /* No comment provided by engineer. */
+"Compose Message" = "Skriv besked";
+
+/* No comment provided by engineer. */
 "Compose new message" = "Skriv en ny besked";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
 
 /* Course Announcement Description */
 "Course announcements" = "Kursusbekendtgørelser";
@@ -105,6 +111,9 @@
 
 /* Courses Tab */
 "Courses" = "Fag";
+
+/* No comment provided by engineer. */
+"Current student: %@. Tap to switch students" = "Nuværende studerende: %@. Tryk for at skifte studerende";
 
 /* No comment provided by engineer. */
 "Discussion" = "Diskussion";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Fil";
+
+/* No comment provided by engineer. */
+"Find School" = "Find skole";
 
 /* No comment provided by engineer. */
 "for %@" = "til %@";
@@ -185,6 +197,9 @@
 "Low course grade cannot be higher than high course grade" = "Lav kursuskarakter kan ikke være højere end høj kursuskarakter";
 
 /* No comment provided by engineer. */
+"Manage Students" = "Administrer studerende";
+
+/* No comment provided by engineer. */
 "Message" = "Besked";
 
 /* No comment provided by engineer. */
@@ -201,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Missing: %@ (%@/%@)" = "Mangler: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"n/a" = "Gælder ikke";
 
 /* No comment provided by engineer. */
 "New Message" = "Ny besked";
@@ -242,8 +260,8 @@
 "Regarding: %@" = "Vedrørende: %@";
 
 /* Regarding <John Doe>, [link to grades or syllabus]
-   Regarding <John Doe>, < assignment url >
-   Regarding <John Doe>, <Grades | Syllabus> */
+   Regarding <John Doe>, <Grades | Syllabus>
+   Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "Vedrørende: %1$@. %2$@";
 
 /* No comment provided by engineer. */
@@ -260,6 +278,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "Indstillinger";
+
+/* No comment provided by engineer. */
+"Settings. %@" = "Indstillinger. %@";
 
 /* No comment provided by engineer. */
 "Subject" = "Emne";

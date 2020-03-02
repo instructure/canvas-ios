@@ -175,22 +175,22 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
         XCTAssert(view.embedded is DocViewerViewController)
     }
 
-    func testEmbedQuiz() {
+    func testEmbedQuiz() throws {
         Assignment.make(from: .make(quiz_id: "1"))
         Submission.make(from: .make(submission_type: .online_quiz, attempt: 2))
         presenter.update()
 
-        XCTAssert(view.embedded is CoreWebViewController)
-        XCTAssertEqual(view.embedded?.view.accessibilityIdentifier, "SubmissionDetails.onlineQuizWebView")
+        let embedded = try XCTUnwrap(view.embedded as? CoreWebViewController)
+        XCTAssertEqual(embedded.webView.accessibilityIdentifier, "SubmissionDetails.onlineQuizWebView")
     }
 
-    func testEmbedTextEntry() {
+    func testEmbedTextEntry() throws {
         Assignment.make()
         Submission.make(from: .make(submission_type: .online_text_entry))
         presenter.update()
 
-        XCTAssert(view.embedded is CoreWebViewController)
-        XCTAssertEqual(view.embedded?.view.accessibilityIdentifier, "SubmissionDetails.onlineTextEntryWebView")
+        let embedded = try XCTUnwrap(view.embedded as? CoreWebViewController)
+        XCTAssertEqual(embedded.webView.accessibilityIdentifier, "SubmissionDetails.onlineTextEntryWebView")
     }
 
     func testEmbedUpload() {
@@ -238,13 +238,13 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
         XCTAssert(view.embedded?.view is UIImageView)
     }
 
-    func testEmbedDiscussion() {
+    func testEmbedDiscussion() throws {
         Assignment.make()
         Submission.make(from: .make(submission_type: .discussion_topic, preview_url: URL(string: "preview")))
         presenter.update()
 
-        XCTAssert(view.embedded is CoreWebViewController)
-        XCTAssertEqual(view.embedded?.view.accessibilityIdentifier, "SubmissionDetails.discussionWebView")
+        let embedded = try XCTUnwrap(view.embedded as? CoreWebViewController)
+        XCTAssertEqual(embedded.webView.accessibilityIdentifier, "SubmissionDetails.discussionWebView")
     }
 
     func testEmbedURL() {

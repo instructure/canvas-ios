@@ -76,6 +76,7 @@ export default class TabsList extends Component<TabsListProps, any> {
       testID: `courses-details.tab.${tab.id}`,
       selected: this.props.selectedTabId === tab.id,
       defaultView: this.props.defaultView,
+      loadingStudentView: this.props.loadingStudentView,
     }
     if (isStudent() && tab.id === 'home') {
       return <HomeTabRow {...props} />

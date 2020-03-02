@@ -269,9 +269,6 @@
 "Due Date" = "期日";
 
 /* No comment provided by engineer. */
-"Due: %@" = "期限：%@";
-
-/* No comment provided by engineer. */
 "Edit" = "編集";
 
 /* Description for email communication channel */
@@ -401,6 +398,9 @@
 "Invitation" = "招待状";
 
 /* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "このスペースにはまだ課題が作成されていないようです。";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "あなたは %@ としてコースに在籍していないようです。他に適したアプリがある可能性があります。1つをタップして、App Store をご覧ください。";
 
 /* No comment provided by engineer. */
@@ -470,6 +470,9 @@
 "Login" = "ログイン";
 
 /* No comment provided by engineer. */
+"Manage Students" = "受講生を管理";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "手動 O承認ログイン";
 
 /* No comment provided by engineer. */
@@ -492,6 +495,9 @@
 
 /* No comment provided by engineer. */
 "Never" = "まったくしない";
+
+/* No comment provided by engineer. */
+"No Assignments" = "課題なし";
 
 /* No comment provided by engineer. */
 "No Content" = "コンテンツなし";

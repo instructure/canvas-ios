@@ -57,6 +57,8 @@ NS_ASSUME_NONNULL_BEGIN
 // Called when logout is called from React Native
 - (void)logout;
 
+- (void)actAsFakeStudentWithID:(NSString *)fakeStudentID;
+
 @end
 
 NS_ASSUME_NONNULL_END

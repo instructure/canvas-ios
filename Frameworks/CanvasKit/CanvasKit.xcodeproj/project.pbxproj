@@ -462,6 +462,7 @@
 		499D197E1C8644A3005A86D2 /* CKIClient+CKILiveAssessmentResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKIClient+CKILiveAssessmentResult.m"; sourceTree = "<group>"; };
 		499D1BB81C864835005A86D2 /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
 		499D1BB91C864835005A86D2 /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
+		5B3932FF240B9D0A002D62C3 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B3DFCF020DF8291004D771E /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B3DFCF320DF8292004D771E /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B4D043B22ACEEA200968336 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1088,6 +1089,7 @@
 				fi,
 				sl,
 				"en-AU-unimelb",
+				is,
 			);
 			mainGroup = 499D187D1C8643E6005A86D2;
 			productRefGroup = 499D18881C8643E6005A86D2 /* Products */;
@@ -1318,6 +1320,7 @@
 				5B4D043B22ACEEA200968336 /* fi */,
 				5BA4F5BA22BD7154002A9464 /* sl */,
 				7D7959F222BD810C00B79BF4 /* en-AU-unimelb */,
+				5B3932FF240B9D0A002D62C3 /* is */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

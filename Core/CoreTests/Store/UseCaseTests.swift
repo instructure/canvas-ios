@@ -32,6 +32,8 @@ class UseCaseTests: CoreTestCase {
         }
         func write(response: APICourse?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         }
+        func reset(context: NSManagedObjectContext) {
+        }
     }
 
     func testTTL() {
@@ -104,6 +106,7 @@ class UseCaseTests: CoreTestCase {
         class UseCase: TestUseCase {
             let makeRequestExpectation = XCTestExpectation(description: "makeRequest was called")
             let writeExpectation = XCTestExpectation(description: "write was called")
+            let resetExpectation = XCTestExpectation(description: "reset was called")
             var course: APICourse?
 
             override func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
@@ -113,6 +116,10 @@ class UseCaseTests: CoreTestCase {
 
             override func write(response: APICourse?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
                 writeExpectation.fulfill()
+            }
+
+            override func reset(context: NSManagedObjectContext) {
+                resetExpectation.fulfill()
             }
         }
         let useCase = UseCase()
@@ -125,7 +132,7 @@ class UseCaseTests: CoreTestCase {
             fetchExpectation.fulfill()
         }
 
-        wait(for: [useCase.makeRequestExpectation, useCase.writeExpectation, fetchExpectation], timeout: 1)
+        wait(for: [useCase.makeRequestExpectation, useCase.writeExpectation, fetchExpectation, useCase.resetExpectation], timeout: 1)
     }
 
     func testFetchMakeRequestError() {

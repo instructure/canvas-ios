@@ -269,9 +269,6 @@
 "Due Date" = "rā e tika ana";
 
 /* No comment provided by engineer. */
-"Due: %@" = "E tika ana: %@";
-
-/* No comment provided by engineer. */
 "Edit" = "Whakatika";
 
 /* Description for email communication channel */
@@ -401,6 +398,9 @@
 "Invitation" = "pōwhiri";
 
 /* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "Ko te āhua nei kaore ngā whakataunga i hāngaia i roto i tēnei wāhi.";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Ko te titiro kaore koe i whakaurutis ki rot o ngā akoranga hei %@. Ko tētahi o a mātau taupānga he pai ake pea.n Pāt tētahi ki te haere ki te Toa Taupānga.";
 
 /* No comment provided by engineer. */
@@ -470,6 +470,9 @@
 "Login" = "Takiuru";
 
 /* No comment provided by engineer. */
+"Manage Students" = "Whakahaere ngā ākonga";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "Mahi ā ringa OAuth Takiuru";
 
 /* No comment provided by engineer. */
@@ -492,6 +495,9 @@
 
 /* No comment provided by engineer. */
 "Never" = "Kaua rawa";
+
+/* No comment provided by engineer. */
+"No Assignments" = "Kaore ngā whakataunga";
 
 /* No comment provided by engineer. */
 "No Content" = "Kaore Ihirangi";

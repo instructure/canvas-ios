@@ -27,9 +27,9 @@ public protocol UseCase {
     var scope: Scope { get }
     var cacheKey: String? { get }
     var ttl: TimeInterval { get }
-    var clearsBeforeWrite: Bool { get }
 
     func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback)
+    func reset(context: NSManagedObjectContext)
     func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext)
     func getNext(from response: URLResponse) -> GetNextRequest<Response>?
 }
@@ -43,12 +43,12 @@ extension UseCase {
         return 60 * 60 * 2 // 2 hours
     }
 
-    public var clearsBeforeWrite: Bool {
-        return false
-    }
-
     public func getNext(from response: URLResponse) -> GetNextRequest<Response>? {
         return nil
+    }
+
+    public func reset(context: NSManagedObjectContext) {
+        // no-op
     }
 
     public func hasExpired(in client: NSManagedObjectContext) -> Bool {
@@ -84,10 +84,7 @@ extension UseCase {
                 }
                 database.performBackgroundTask { client in
                     do {
-                        if self.clearsBeforeWrite {
-                            let all: [Model] = client.fetch(self.scope.predicate)
-                            client.delete(all)
-                        }
+                        self.reset(context: client)
                         self.write(response: response, urlResponse: urlResponse, to: client)
                         self.updateTTL(in: client)
                         try client.save()
@@ -120,8 +117,9 @@ extension APIUseCase where Response == Request.Response {
 
 public protocol CollectionUseCase: APIUseCase {}
 extension CollectionUseCase where Response == Request.Response {
-    public var clearsBeforeWrite: Bool {
-        return true
+    public func reset(context: NSManagedObjectContext) {
+        let all: [Model] = context.fetch(self.scope.predicate)
+        context.delete(all)
     }
 }
 

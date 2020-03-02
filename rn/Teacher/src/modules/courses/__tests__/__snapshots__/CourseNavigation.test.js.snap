@@ -3,6 +3,22 @@
 exports[`CourseNavigation refreshes courses and tabs 1`] = `
 <CourseNavigation
   courseID="1"
+  getCoursePermissions={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "1",
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  getFakeStudents={[MockFunction]}
   getUserSettings={
     [MockFunction] {
       "calls": Array [
@@ -129,6 +145,22 @@ exports[`CourseNavigation refreshes when props change 1`] = `
     }
   }
   courseID="1"
+  getCoursePermissions={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "1",
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  getFakeStudents={[MockFunction]}
   getUserSettings={
     [MockFunction] {
       "calls": Array [
@@ -244,6 +276,7 @@ exports[`CourseNavigation renders correctly 1`] = `
   <TabsList
     defaultView="wiki"
     imageURL="https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg"
+    loadingStudentView={false}
     onSelectTab={[Function]}
     refreshing={false}
     selectedTabId={null}
@@ -302,6 +335,7 @@ exports[`CourseNavigation renders correctly without tabs 1`] = `
   <TabsList
     defaultView="wiki"
     imageURL="https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg"
+    loadingStudentView={false}
     onSelectTab={[Function]}
     refreshing={false}
     selectedTabId={null}
@@ -348,6 +382,7 @@ exports[`CourseNavigation renders with empty image url 1`] = `
   <TabsList
     defaultView="wiki"
     imageURL=""
+    loadingStudentView={false}
     onSelectTab={[Function]}
     refreshing={false}
     selectedTabId={null}
@@ -406,6 +441,7 @@ exports[`CourseNavigation renders with image url 1`] = `
   <TabsList
     defaultView="wiki"
     imageURL="http://www.fillmurray.com/100/100"
+    loadingStudentView={false}
     onSelectTab={[Function]}
     refreshing={false}
     selectedTabId={null}
@@ -466,6 +502,7 @@ exports[`CourseNavigation renders without image url 1`] = `
   <TabsList
     defaultView="wiki"
     imageURL={null}
+    loadingStudentView={false}
     onSelectTab={[Function]}
     refreshing={false}
     selectedTabId={null}

@@ -29,17 +29,13 @@ class ModuleViewModel {
     // Output
     let name: Property<String?>
     let prerequisiteModuleIDs: Property<[String]>
-    lazy var unlockDate: Property<String?> = {
-        return self.module
-            .map { $0?.unlockDate }
-            .map { $0.flatMap(self.unlockDateFormatter.string) }
-            .map {
-                $0.flatMap {
-                    let template = NSLocalizedString("Locked until %@", comment: "locked date")
-                    return String.localizedStringWithFormat(template, $0)
-                }
-        }
-    }()
+    lazy var unlockDate: Property<String?> = module.map { [weak self] module in
+        guard module?.state == .locked,
+            let unlockDate = module?.unlockDate,
+            let formatter = self?.unlockDateFormatter else { return nil }
+        let template = NSLocalizedString("Locked until %@", comment: "locked date")
+        return String.localizedStringWithFormat(template, formatter.string(from: unlockDate))
+    }
 
     // Private
     fileprivate let module: Property<Module?>

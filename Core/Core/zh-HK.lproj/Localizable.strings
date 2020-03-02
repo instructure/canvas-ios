@@ -269,9 +269,6 @@
 "Due Date" = "截止日期";
 
 /* No comment provided by engineer. */
-"Due: %@" = "截止日期：%@";
-
-/* No comment provided by engineer. */
 "Edit" = "編輯";
 
 /* Description for email communication channel */
@@ -401,6 +398,9 @@
 "Invitation" = "邀請";
 
 /* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "看來此空間中尚未建立任何作業。";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "您尚未註冊任何課程為 %@。我們的其中一個其他應用程式可能較適合。點選一個以造訪 App Store。";
 
 /* No comment provided by engineer. */
@@ -470,6 +470,9 @@
 "Login" = "登入";
 
 /* No comment provided by engineer. */
+"Manage Students" = "管理學生";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "手動 OAuth 登入";
 
 /* No comment provided by engineer. */
@@ -492,6 +495,9 @@
 
 /* No comment provided by engineer. */
 "Never" = "永不";
+
+/* No comment provided by engineer. */
+"No Assignments" = "無作業";
 
 /* No comment provided by engineer. */
 "No Content" = "無內容";
