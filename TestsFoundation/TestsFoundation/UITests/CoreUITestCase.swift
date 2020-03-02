@@ -513,20 +513,21 @@ open class CoreUITestCase: XCTestCase {
 
     @discardableResult
     open func mock(assignment: APIAssignment) -> APIAssignment {
-        var allDates: Bool?
-        var include: [GetAssignmentRequest.GetAssignmentInclude] = []
-        if Bundle.main.isStudentApp {
-            include = [ .submission ]
-        } else if Bundle.main.isTeacherApp {
-            allDates = true
-            include = [ .overrides ]
+        func mock(include: [GetAssignmentRequest.GetAssignmentInclude], allDates: Bool? = nil) {
+            mockData(GetAssignmentRequest(
+                courseID: assignment.course_id.value,
+                assignmentID: assignment.id.value,
+                allDates: allDates,
+                include: include
+            ), value: assignment)
         }
-        mockData(GetAssignmentRequest(
-            courseID: assignment.course_id.value,
-            assignmentID: assignment.id.value,
-            allDates: allDates,
-            include: include
-        ), value: assignment)
+        if Bundle.main.isStudentApp {
+            mock(include: [ .submission ])
+            mock(include: [])
+        } else if Bundle.main.isTeacherApp {
+            mock(include: [ .overrides ], allDates: true)
+        }
+
         for submission in assignment.submission?.values ?? [] {
             for userId in ["1", "self"] {
                 mockData(GetSubmissionRequest(
