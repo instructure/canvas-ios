@@ -1598,6 +1598,9 @@
   "this_criterion_will_not_impact_the_score_94adf77b": {
     "message": "Detta kriterium påverkar inte resultatet."
   },
+  "this_file_is_currently_locked_6dc6635f": {
+    "message": "Den här filen är låst."
+  },
   "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
     "message": "Den här filen måste ha användningsrättigheter inställda innan den kan publiceras."
   },

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>conversation_recipients_to</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@audience_size@</string>
+		<key>audience_size</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d annar</string>
+			<key>other</key>
+			<string>%d aðrir</string>
+		</dict>
+	</dict>
+	<key>conversation_unread_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@message_count@</string>
+		<key>message_count</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d ólesið samtal</string>
+			<key>other</key>
+			<string>%d ólesin samtöl</string>
+		</dict>
+	</dict>
+	<key>d_events</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@viðburðir@</string>
+		<key>events</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d viðburður</string>
+			<key>other</key>
+			<string>%d viðburðir</string>
+		</dict>
+	</dict>
+	<key>d_needs_grading</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@needs_grading@</string>
+		<key>needs_grading</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d þarf einkunnagjöf</string>
+			<key>other</key>
+			<string>%d þarf einkunnargjöf</string>
+		</dict>
+	</dict>
+	<key>d_questions</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@spurningar@</string>
+		<key>questions</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d Spurning</string>
+			<key>other</key>
+			<string>%d Spurningar</string>
+		</dict>
+	</dict>
+	<key>final_grade_g_pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Lokaeinkunn: %#@punktar@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>one</key>
+			<string>%g punktur</string>
+			<key>other</key>
+			<string>%g punktar</string>
+		</dict>
+	</dict>
+	<key>g_out_of_g_points_possible</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Skoraði %g af mögulegum %#@punktum@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>one</key>
+			<string>%g punktar</string>
+			<key>other</key>
+			<string>%g punktar</string>
+		</dict>
+	</dict>
+	<key>g_points</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@punktar@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d punktar</string>
+			<key>other</key>
+			<string>%d punktar</string>
+		</dict>
+	</dict>
+	<key>g_pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@punktar@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>one</key>
+			<string>%g punktur</string>
+			<key>other</key>
+			<string>%g punktar</string>
+		</dict>
+	</dict>
+	<key>late_penalty_g_pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Viðurlög vegna of seinna skila (%#@punktar@)</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>one</key>
+			<string>%g punktur</string>
+			<key>other</key>
+			<string>%g punktar</string>
+		</dict>
+	</dict>
+	<key>out_of_g_pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Af %#@punktum@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>one</key>
+			<string>%g punktur</string>
+			<key>other</key>
+			<string>%g punktar</string>
+		</dict>
+	</dict>
+	<key>plural_points</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@punktar@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>one</key>
+			<string>Punktur</string>
+			<key>other</key>
+			<string>Punktar</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

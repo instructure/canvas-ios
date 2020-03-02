@@ -398,6 +398,9 @@
 "Invitation" = "Gwahoddiad";
 
 /* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "Mae’n ymddangos nad oes aseiniadau wedi cael eu creu yn y gofod hwn eto.";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Mae'n ymddangos nad ydych chi wedi ymrestru ar unrhyw gyrsiau fel %@. Efallai y byddai un o'n apiau eraill yn eich siwtio'n well. Tapiwch un i fynd i'r App Store.";
 
 /* No comment provided by engineer. */
@@ -467,6 +470,9 @@
 "Login" = "Mewngofnodi";
 
 /* No comment provided by engineer. */
+"Manage Students" = "Rheoli Myfyrwyr";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "OAuth Login sydd ddim yn awtomatig";
 
 /* No comment provided by engineer. */
@@ -489,6 +495,9 @@
 
 /* No comment provided by engineer. */
 "Never" = "Byth";
+
+/* No comment provided by engineer. */
+"No Assignments" = "Dim Aseiniadau";
 
 /* No comment provided by engineer. */
 "No Content" = "Dim Cynnwys";

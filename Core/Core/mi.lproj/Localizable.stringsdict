@@ -41,9 +41,9 @@
 			<key>many</key>
 			<string></string>
 			<key>one</key>
-			<string>%d unread conversation</string>
+			<string>%d kōrerorero kaore anō i pānuitia</string>
 			<key>other</key>
-			<string>%d unread conversations</string>
+			<string>%d ngā kōrerorero kaore anō i pānuitia</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>

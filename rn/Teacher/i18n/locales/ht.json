@@ -1598,6 +1598,9 @@
   "this_criterion_will_not_impact_the_score_94adf77b": {
     "message": "Kritè sa a pa p fè okenn efè sou rezilta a."
   },
+  "this_file_is_currently_locked_6dc6635f": {
+    "message": "Fichye sa a bloke pou kounye a."
+  },
   "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
     "message": "Fichye sa a dwe genyen dwa itiizasyon ki defini anvan li ka pibliye."
   },

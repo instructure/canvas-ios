@@ -92,7 +92,13 @@
 "Choose a course to message" = "Einen Kurs zur Benachrichtigung wählen";
 
 /* No comment provided by engineer. */
+"Compose Message" = "Nachricht verfassen";
+
+/* No comment provided by engineer. */
 "Compose new message" = "Neue Nachricht verfassen";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
 
 /* Course Announcement Description */
 "Course announcements" = "Kursankündigungen";
@@ -105,6 +111,9 @@
 
 /* Courses Tab */
 "Courses" = "Kurse";
+
+/* No comment provided by engineer. */
+"Current student: %@. Tap to switch students" = "Aktueller Student: %@. Antippen, um den Teilnehmer zu wechseln";
 
 /* No comment provided by engineer. */
 "Discussion" = "Diskussion";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Datei";
+
+/* No comment provided by engineer. */
+"Find School" = "Schule suchen";
 
 /* No comment provided by engineer. */
 "for %@" = "für %@";
@@ -185,6 +197,9 @@
 "Low course grade cannot be higher than high course grade" = "Schlechte Kursnote kann nicht besser sein als gute Kursnote";
 
 /* No comment provided by engineer. */
+"Manage Students" = "Teilnehmer verwalten";
+
+/* No comment provided by engineer. */
 "Message" = "Nachricht";
 
 /* No comment provided by engineer. */
@@ -201,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Missing: %@ (%@/%@)" = "Fehlt: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"n/a" = "n/a";
 
 /* No comment provided by engineer. */
 "New Message" = "Neue Nachricht";
@@ -260,6 +278,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "Einstellungen";
+
+/* No comment provided by engineer. */
+"Settings. %@" = "Einstellungen. %@";
 
 /* No comment provided by engineer. */
 "Subject" = "Betreff";

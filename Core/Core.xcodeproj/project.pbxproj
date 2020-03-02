@@ -1061,6 +1061,9 @@
 		5B7B201E21859A1C009B0ACE /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = mi; path = mi.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		5B7B201F21859A1D009B0ACE /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Main.strings; sourceTree = "<group>"; };
 		5B7B202121859A1D009B0ACE /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B82DB1D240B95F3000625B7 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = is; path = is.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		5B82DB1E240B95F3000625B7 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B82DB1F240B95F3000625B7 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/Main.strings; sourceTree = "<group>"; };
 		5B8769F322ACE7AE005AE7A0 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fi; path = fi.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		5B8769F422ACE7AE005AE7A0 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B8769F522ACE7AE005AE7A0 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Main.strings; sourceTree = "<group>"; };
@@ -3932,6 +3935,7 @@
 				fi,
 				sl,
 				"en-AU-unimelb",
+				is,
 			);
 			mainGroup = 2C964824211E2F1A002C3255;
 			productRefGroup = 2C96482F211E2F1A002C3255 /* Products */;
@@ -5000,6 +5004,7 @@
 				5B8769F422ACE7AE005AE7A0 /* fi */,
 				5BCDCB5122BD69AF00638ED0 /* sl */,
 				7D846E1F22BD775200B7FA62 /* en-AU-unimelb */,
+				5B82DB1E240B95F3000625B7 /* is */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -5036,6 +5041,7 @@
 				5B8769F322ACE7AE005AE7A0 /* fi */,
 				5BCDCB5022BD69AF00638ED0 /* sl */,
 				7D846E1E22BD775200B7FA62 /* en-AU-unimelb */,
+				5B82DB1D240B95F3000625B7 /* is */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -5073,6 +5079,7 @@
 				5B8769F522ACE7AE005AE7A0 /* fi */,
 				5BCDCB5222BD69AF00638ED0 /* sl */,
 				7D846E2022BD775200B7FA62 /* en-AU-unimelb */,
+				5B82DB1F240B95F3000625B7 /* is */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

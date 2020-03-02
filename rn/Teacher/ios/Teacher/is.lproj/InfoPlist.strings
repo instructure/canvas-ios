@@ -1,0 +1,18 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Kennari";
+
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Festa myndir og myndbönd við athugasemdir við innsendingu.";
+
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Festa hljóðupptökur við athugasemdir við innsendingu.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Festa myndir og myndbönd við athugasemdir við innsendingu.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Hlaða upp efni í námskeið.";
+

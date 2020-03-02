@@ -92,7 +92,13 @@
 "Choose a course to message" = "Velg et emne du vil sende melding til";
 
 /* No comment provided by engineer. */
+"Compose Message" = "Skriv melding";
+
+/* No comment provided by engineer. */
 "Compose new message" = "Skriv ny melding";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
 
 /* Course Announcement Description */
 "Course announcements" = "Kunngjøringer for emne";
@@ -105,6 +111,9 @@
 
 /* Courses Tab */
 "Courses" = "Emner";
+
+/* No comment provided by engineer. */
+"Current student: %@. Tap to switch students" = "Nåværende studenter: %@. Trykk for å bytte mellom studenter";
 
 /* No comment provided by engineer. */
 "Discussion" = "Diskusjon";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Fil";
+
+/* No comment provided by engineer. */
+"Find School" = "Finne skole";
 
 /* No comment provided by engineer. */
 "for %@" = "for %@";
@@ -185,6 +197,9 @@
 "Low course grade cannot be higher than high course grade" = "Lav emnevurdering kan ikke være høyere enn høy emnevurdering";
 
 /* No comment provided by engineer. */
+"Manage Students" = "Administrer studenter";
+
+/* No comment provided by engineer. */
 "Message" = "Melding";
 
 /* No comment provided by engineer. */
@@ -201,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Missing: %@ (%@/%@)" = "Mangler: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"n/a" = "n/a";
 
 /* No comment provided by engineer. */
 "New Message" = "Ny melding";
@@ -260,6 +278,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "Innstillinger";
+
+/* No comment provided by engineer. */
+"Settings. %@" = "Innstillinger. %@";
 
 /* No comment provided by engineer. */
 "Subject" = "Tittel";

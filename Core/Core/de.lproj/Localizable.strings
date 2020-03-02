@@ -398,6 +398,9 @@
 "Invitation" = "Einladung";
 
 /* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "Wie es aussieht, wurden in diesem Raum noch keine Aufgaben erstellt.";
+
+/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Wie es aussieht, sind Sie in keinem Kurs als %@ angemeldet. Eine unserer anderen Apps passt möglicherweise besser. Antippen, um den APP-Store zu besuchen.";
 
 /* No comment provided by engineer. */
@@ -467,6 +470,9 @@
 "Login" = "Anmelden";
 
 /* No comment provided by engineer. */
+"Manage Students" = "Studenten verwalten";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "Manuelle OAuth-Anmeldung";
 
 /* No comment provided by engineer. */
@@ -489,6 +495,9 @@
 
 /* No comment provided by engineer. */
 "Never" = "Nie";
+
+/* No comment provided by engineer. */
+"No Assignments" = "Keine Aufgaben";
 
 /* No comment provided by engineer. */
 "No Content" = "Kein Content";

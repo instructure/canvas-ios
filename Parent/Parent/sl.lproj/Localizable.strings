@@ -92,7 +92,13 @@
 "Choose a course to message" = "Izberite predmet za pošiljanje sporočila";
 
 /* No comment provided by engineer. */
+"Compose Message" = "Sestavi sporočilo";
+
+/* No comment provided by engineer. */
 "Compose new message" = "Sestavi novo sporočilo";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
 
 /* Course Announcement Description */
 "Course announcements" = "Obvestila o predmetu";
@@ -105,6 +111,9 @@
 
 /* Courses Tab */
 "Courses" = "Predmeti";
+
+/* No comment provided by engineer. */
+"Current student: %@. Tap to switch students" = "Trenutni študent: %@. Tapnite za preklop študentov";
 
 /* No comment provided by engineer. */
 "Discussion" = "Razprava";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Datoteka";
+
+/* No comment provided by engineer. */
+"Find School" = "Poišči šolo";
 
 /* No comment provided by engineer. */
 "for %@" = "za %@";
@@ -185,6 +197,9 @@
 "Low course grade cannot be higher than high course grade" = "Nizka ocena predmeta ne more biti višja od visoke ocene predmeta.";
 
 /* No comment provided by engineer. */
+"Manage Students" = "Uredi študente";
+
+/* No comment provided by engineer. */
 "Message" = "Sporočilo";
 
 /* No comment provided by engineer. */
@@ -201,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Missing: %@ (%@/%@)" = "Manjkajoče: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"n/a" = "Ni na voljo";
 
 /* No comment provided by engineer. */
 "New Message" = "Novo sporočilo";
@@ -260,6 +278,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "Nastavitve";
+
+/* No comment provided by engineer. */
+"Settings. %@" = "Nastavitve. %@";
 
 /* No comment provided by engineer. */
 "Subject" = "Kratek opis predmeta";

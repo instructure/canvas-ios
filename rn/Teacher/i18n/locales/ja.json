@@ -1598,6 +1598,9 @@
   "this_criterion_will_not_impact_the_score_94adf77b": {
     "message": "この基準はスコアに影響を与えません。"
   },
+  "this_file_is_currently_locked_6dc6635f": {
+    "message": "このファイルは現在ロックされています。"
+  },
   "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
     "message": "このファイルは、公開する前に使用権が設定されていなければなりません。"
   },
