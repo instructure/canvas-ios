@@ -13,11 +13,14 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_courses" translatesAutoresizingMaskIntoConstraints="NO" id="v4P-rq-e0u">
-                    <rect key="frame" x="53.5" y="157" width="268" height="233"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PandaBook" translatesAutoresizingMaskIntoConstraints="NO" id="v4P-rq-e0u" customClass="IconView" customModule="Parent" customModuleProvider="target">
+                    <rect key="frame" x="137.5" y="207" width="100" height="133"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="PandaBook"/>
+                    </userDefinedRuntimeAttributes>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Empty Text Goes Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4k-OS-Bmk" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                    <rect key="frame" x="86.5" y="454" width="202" height="24"/>
+                    <rect key="frame" x="86.5" y="404" width="202" height="24"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -27,7 +30,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="subtitle" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLZ-4r-d4I" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                    <rect key="frame" x="16" y="485.5" width="343" height="19.5"/>
+                    <rect key="frame" x="16" y="435.5" width="343" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -58,6 +61,6 @@
         </view>
     </objects>
     <resources>
-        <image name="empty_courses" width="268" height="233"/>
+        <image name="PandaBook" width="100" height="133"/>
     </resources>
 </document>

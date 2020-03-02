@@ -32,7 +32,7 @@ public class ListBackgroundView: UIView {
         if subviews.allSatisfy({ $0.isHidden }) {
             frame.size.height = 0
         } else {
-            frame.size.height = tableView.frame.height - tableView.adjustedContentInset.top
+            frame.size.height = tableView.frame.height - tableView.adjustedContentInset.top - frame.minY
         }
         // tableView caches the size of the header & footer views, this busts the cache
         if tableView.tableHeaderView == self { tableView.tableHeaderView = self }
