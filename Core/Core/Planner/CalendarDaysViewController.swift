@@ -145,6 +145,11 @@ class CalendarDayButton: UIButton {
             for (d, dot) in dotContainer.arrangedSubviews.enumerated() {
                 dot.isHidden = d >= activityDotCount
             }
+            accessibilityLabel = String.localizedStringWithFormat(
+                NSLocalizedString("date_d_events", bundle: .core, comment: ""),
+                DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .none),
+                activityDotCount
+            )
         }
     }
 
@@ -170,6 +175,10 @@ class CalendarDayButton: UIButton {
         super.init(frame: .zero)
         isSelected = calendar.isDate(date, inSameDayAs: selectedDate)
 
+        let year = String(calendar.component(.year, from: date))
+        let month = String(calendar.component(.month, from: date))
+        let day = String(calendar.component(.day, from: date))
+        accessibilityIdentifier = "PlannerCalendar.dayButton.\(year)-\(month)-\(day)"
         accessibilityLabel = DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .none)
 
         translatesAutoresizingMaskIntoConstraints = false

@@ -87,3 +87,9 @@ public struct APISubmissionCommentMedia: Codable, Equatable {
     let media_type: MediaCommentType
     let display_name: String?
 }
+
+public struct APISubmissionSummary: Codable, Equatable {
+    let graded: Int
+    let ungraded: Int
+    let not_submitted: Int
+}

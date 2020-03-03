@@ -126,6 +126,20 @@ public extension Element {
     }
 
     @discardableResult
+    func swipeLeft(file: StaticString = #file, line: UInt = #line) -> Element {
+        waitToExist(file: file, line: line)
+        rawElement.swipeLeft()
+        return self
+    }
+
+    @discardableResult
+    func swipeRight(file: StaticString = #file, line: UInt = #line) -> Element {
+        waitToExist(file: file, line: line)
+        rawElement.swipeRight()
+        return self
+    }
+
+    @discardableResult
     func swipeDown(file: StaticString = #file, line: UInt = #line) -> Element {
         waitToExist(file: file, line: line)
         rawElement.swipeDown()

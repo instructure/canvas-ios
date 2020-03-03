@@ -32,6 +32,11 @@ class CalendarDaysViewControllerTests: CoreTestCase, CalendarViewControllerDeleg
         return GetPlannables(startDate: from, endDate: to)
     }
 
+    func calendarWillFilter() {}
+    func numberOfCalendars() -> Int? {
+        return nil
+    }
+
     lazy var controller = CalendarDaysViewController.create(Clock.now, selectedDate: Clock.now, delegate: self)
 
     func testDates() {

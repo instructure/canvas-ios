@@ -41,7 +41,7 @@ export function getQuizSubmissions (courseID: string, quizID: string): ApiPromis
   const url = `courses/${courseID}/quizzes/${quizID}/submissions`
   let options = {
     params: {
-      include: 'submission',
+      include: [ 'submission' ],
       per_page: 99,
     },
   }

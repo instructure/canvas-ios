@@ -24,7 +24,7 @@ class PlannerViewControllerTests: CoreTestCase {
 
     func testLayout() {
         Clock.mockNow(DateComponents(calendar: .current, year: 2020, month: 2, day: 14).date!)
-        environment.mockStore = true
+        environment.mockStore = false
         controller.view.layoutIfNeeded()
 
         XCTAssertGreaterThan(controller.list.tableView.scrollIndicatorInsets.top, 143)
@@ -40,22 +40,47 @@ class PlannerViewControllerTests: CoreTestCase {
         controller.calendar.delegate?.calendarDidSelectDate(Clock.now)
         XCTAssertEqual(controller.calendar.selectedDate, Clock.now)
 
-        let height: CGFloat = 264
+        api.mock(GetCoursesRequest(enrollmentState: .active, state: [.available], include: [.observed_users], perPage: 100), value: [
+            .make(id: "1", course_code: "BIO 101", enrollments: [.make(associated_user_id: "1")]),
+            .make(id: "2", course_code: "BIO 102", enrollments: [.make(associated_user_id: "1")]),
+        ])
+        XCTAssertEqual(controller.calendar.filterButton.title(for: .normal), "Calendars")
+        controller.calendar.delegate?.calendarWillFilter()
+        let filter = router.presented as! PlannerFilterViewController
+        filter.view.layoutIfNeeded()
+        filter.tableView.delegate?.tableView?(filter.tableView!, didSelectRowAt: IndexPath(row: 0, section: 0))
+        router.dismiss()
+        XCTAssertEqual(controller.calendar.filterButton.title(for: .normal), "Calendars (1)")
+        XCTAssert(controller.calendar.days.plannables?.useCase.contextCodes.contains("course_2") == true)
+        XCTAssert(controller.list.plannables?.useCase.contextCodes.contains("course_2") == true)
+        XCTAssert(controller.calendar.days.plannables?.useCase.contextCodes.contains("user_1") == true)
+        XCTAssert(controller.list.plannables?.useCase.contextCodes.contains("user_1") == true)
+
+        let height: CGFloat = controller.calendar.maxHeight
         controller.calendar.delegate?.calendarDidResize(height: height, animated: false)
         XCTAssertEqual(controller.list.tableView.scrollIndicatorInsets.top, height)
         XCTAssertEqual(controller.list.tableView.contentInset.top, height)
 
+        controller.calendar.setExpanded(true)
         let mockTable = MockTableView()
+        mockTable.contentInset.top = controller.calendar.height
+        mockTable.contentOffset.y = 0
         controller.list.delegate?.scrollViewWillBeginDragging?(mockTable)
-        mockTable.contentInset.top = height
-        mockTable.contentOffset.y = 200
+        mockTable.contentOffset.y = 500 // push to collapse
         controller.list.delegate?.scrollViewDidScroll?(mockTable)
-        XCTAssertLessThanOrEqual(mockTable.scrollIndicatorInsets.top, 144)
-        XCTAssertLessThanOrEqual(mockTable.contentInset.top, 144)
-        mockTable.contentOffset.y = -200
+        XCTAssertEqual(controller.calendar.height, controller.calendar.minHeight)
+        mockTable.contentOffset.y = -500 // reverse to pull back open
         controller.list.delegate?.scrollViewDidScroll?(mockTable)
-        XCTAssertLessThanOrEqual(mockTable.scrollIndicatorInsets.top, 144)
-        XCTAssertLessThanOrEqual(mockTable.contentInset.top, 144)
+        XCTAssertEqual(controller.calendar.height, controller.calendar.maxHeight)
+        controller.list.delegate?.scrollViewDidEndDragging?(mockTable, willDecelerate: false)
+        XCTAssertEqual(controller.calendar.isExpanded, true)
+
+        controller.calendar.setExpanded(false)
+        mockTable.contentInset.top = controller.calendar.height
+        controller.list.delegate?.scrollViewWillBeginDragging?(mockTable)
+        mockTable.contentOffset.y = -500 // pull should not open if starting at collapsed
+        controller.list.delegate?.scrollViewDidScroll?(mockTable)
+        XCTAssertEqual(controller.calendar.height, controller.calendar.minHeight)
         controller.list.delegate?.scrollViewDidEndDragging?(mockTable, willDecelerate: false)
         XCTAssertEqual(controller.calendar.isExpanded, false)
 

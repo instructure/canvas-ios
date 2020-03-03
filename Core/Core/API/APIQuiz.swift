@@ -137,13 +137,39 @@ public struct GetQuizSubmissionRequest: APIRequestable {
 public struct GetAllQuizSubmissionsRequest: APIRequestable {
     public struct Response: Codable {
         let quiz_submissions: [APIQuizSubmission]
+        let submissions: [APISubmission]?
+
+        init(quiz_submissions: [APIQuizSubmission], submissions: [APISubmission]? = nil) {
+            self.quiz_submissions = quiz_submissions
+            self.submissions = submissions
+        }
+    }
+
+    public enum Include: String {
+        case submission
     }
 
     let courseID: String
     let quizID: String
+    let includes: [Include]
+    let perPage: Int?
+
+    init(courseID: String, quizID: String, includes: [Include] = [], perPage: Int? = nil) {
+        self.courseID = courseID
+        self.quizID = quizID
+        self.includes = includes
+        self.perPage = perPage
+    }
 
     public var path: String {
         let context = ContextModel(.course, id: courseID)
         return "\(context.pathComponent)/quizzes/\(quizID)/submissions"
+    }
+
+    public var query: [APIQueryItem] {
+        [
+            .include(includes.map { $0.rawValue }),
+            .perPage(perPage),
+        ]
     }
 }

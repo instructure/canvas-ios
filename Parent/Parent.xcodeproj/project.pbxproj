@@ -141,6 +141,7 @@
 		7D85FFEA23E1F9F30055851D /* AttachmentCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D85FFE923E1F9F30055851D /* AttachmentCardsViewController.swift */; };
 		7D88EA2E23A9A1CB00D5F8FD /* ColorSchemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D88EA2D23A9A1CB00D5F8FD /* ColorSchemeTests.swift */; };
 		7DBED00A2328282200392F3C /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED0092328282200392F3C /* Routes.swift */; };
+		7DC5F49224097C12000256E3 /* PlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC5F49124097C12000256E3 /* PlannerTests.swift */; };
 		7DEE3E3D2335790A0009D8DC /* IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE3E3C2335790A0009D8DC /* IBDesignables.swift */; };
 		7DFDB43223A3EDFB00B28DED /* ConversationListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFDB43123A3EDFB00B28DED /* ConversationListViewControllerTests.swift */; };
 		7DFDB43423A4393D00B28DED /* ConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFDB43323A4393D00B28DED /* ConversationListCell.swift */; };
@@ -700,6 +701,23 @@
 		5B1D4F0D22BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/UserCell.strings; sourceTree = "<group>"; };
 		5B1D4F0E22BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/CourseCell.strings; sourceTree = "<group>"; };
 		5B1D4F0F22BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/StudentSettingsHeaderView.strings; sourceTree = "<group>"; };
+		5B317B72240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5B317B73240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B317B74240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/EmptyCalendarEventCell.strings; sourceTree = "<group>"; };
+		5B317B75240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/CalendarEventWeekPageViewController.strings; sourceTree = "<group>"; };
+		5B317B76240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/AlertCell.strings; sourceTree = "<group>"; };
+		5B317B77240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
+		5B317B78240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
+		5B317B79240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
+		5B317B7A240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/AdminViewController.strings; sourceTree = "<group>"; };
+		5B317B7B240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/CalendarEventCell.strings; sourceTree = "<group>"; };
+		5B317B7C240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/SettingsObserveeCell.strings; sourceTree = "<group>"; };
+		5B317B7D240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
+		5B317B7E240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/DetailsReminderCell.strings; sourceTree = "<group>"; };
+		5B317B7F240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
+		5B317B80240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/UserCell.strings; sourceTree = "<group>"; };
+		5B317B81240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/CourseCell.strings; sourceTree = "<group>"; };
+		5B317B82240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/StudentSettingsHeaderView.strings; sourceTree = "<group>"; };
 		5B7BD3C222ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B7BD3C322ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B7BD3C422ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/EmptyCalendarEventCell.strings; sourceTree = "<group>"; };
@@ -916,6 +934,7 @@
 		7D85FFE923E1F9F30055851D /* AttachmentCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCardsViewController.swift; sourceTree = "<group>"; };
 		7D88EA2D23A9A1CB00D5F8FD /* ColorSchemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeTests.swift; sourceTree = "<group>"; };
 		7DBED0092328282200392F3C /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
+		7DC5F49124097C12000256E3 /* PlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerTests.swift; sourceTree = "<group>"; };
 		7DE74EFD22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7DE74EFE22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7DE74EFF22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/EmptyCalendarEventCell.strings"; sourceTree = "<group>"; };
@@ -1581,6 +1600,7 @@
 				E80763D623E08DA10085DAFB /* Info.plist */,
 				E80763E123E08F420085DAFB /* InboxTests.swift */,
 				E81B573823E1EEC5002A0C38 /* GradesListTests.swift */,
+				7DC5F49124097C12000256E3 /* PlannerTests.swift */,
 			);
 			path = ParentE2ETests;
 			sourceTree = "<group>";
@@ -1754,6 +1774,7 @@
 				fi,
 				sl,
 				"en-AU-unimelb",
+				is,
 			);
 			mainGroup = 5E64417E1C3EE2E0003D7397;
 			productRefGroup = 5E6441881C3EE2E0003D7397 /* Products */;
@@ -2054,6 +2075,7 @@
 			files = (
 				E81B573923E1EEC5002A0C38 /* GradesListTests.swift in Sources */,
 				E80763E223E08F420085DAFB /* InboxTests.swift in Sources */,
+				7DC5F49224097C12000256E3 /* PlannerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2121,6 +2143,7 @@
 				5B7BD3C322ACE9C400FA371B /* fi */,
 				5B1D4F0022BD6E560082F8F0 /* sl */,
 				7DE74EFE22BD7942003C8B44 /* en-AU-unimelb */,
+				5B317B73240B98DF009EE2F9 /* is */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -2158,6 +2181,7 @@
 				5B7BD3D122ACE9C400FA371B /* fi */,
 				5B1D4F0E22BD6E560082F8F0 /* sl */,
 				7DE74F0C22BD7942003C8B44 /* en-AU-unimelb */,
+				5B317B81240B98DF009EE2F9 /* is */,
 			);
 			name = CourseCell.xib;
 			sourceTree = "<group>";
@@ -2195,6 +2219,7 @@
 				5B7BD3C422ACE9C400FA371B /* fi */,
 				5B1D4F0122BD6E560082F8F0 /* sl */,
 				7DE74EFF22BD7942003C8B44 /* en-AU-unimelb */,
+				5B317B74240B98DF009EE2F9 /* is */,
 			);
 			name = EmptyCalendarEventCell.xib;
 			sourceTree = "<group>";
@@ -2232,6 +2257,7 @@
 				5B7BD3CB22ACE9C400FA371B /* fi */,
 				5B1D4F0322BD6E560082F8F0 /* sl */,
 				7DE74F0122BD7942003C8B44 /* en-AU-unimelb */,
+				5B317B7B240B98DF009EE2F9 /* is */,
 			);
 			name = CalendarEventCell.xib;
 			sourceTree = "<group>";
@@ -2269,6 +2295,7 @@
 				5B7BD3C622ACE9C400FA371B /* fi */,
 				5B1D4F0222BD6E560082F8F0 /* sl */,
 				7DE74F0022BD7942003C8B44 /* en-AU-unimelb */,
+				5B317B76240B98DF009EE2F9 /* is */,
 			);
 			name = AlertCell.xib;
 			sourceTree = "<group>";
@@ -2306,6 +2333,7 @@
 				5B7BD3C822ACE9C400FA371B /* fi */,
 				5B1D4F0522BD6E560082F8F0 /* sl */,
 				7DE74F0322BD7942003C8B44 /* en-AU-unimelb */,
+				5B317B78240B98DF009EE2F9 /* is */,
 			);
 			name = DetailsInfoCell.xib;
 			sourceTree = "<group>";
@@ -2343,6 +2371,7 @@
 				5B7BD3CE22ACE9C400FA371B /* fi */,
 				5B1D4F0B22BD6E560082F8F0 /* sl */,
 				7DE74F0922BD7942003C8B44 /* en-AU-unimelb */,
+				5B317B7E240B98DF009EE2F9 /* is */,
 			);
 			name = DetailsReminderCell.xib;
 			sourceTree = "<group>";
@@ -2380,6 +2409,7 @@
 				5B7BD3CD22ACE9C400FA371B /* fi */,
 				5B1D4F0A22BD6E560082F8F0 /* sl */,
 				7DE74F0822BD7942003C8B44 /* en-AU-unimelb */,
+				5B317B7D240B98DF009EE2F9 /* is */,
 			);
 			name = DetailsDateCell.xib;
 			sourceTree = "<group>";
@@ -2417,6 +2447,7 @@
 				5B7BD3C722ACE9C400FA371B /* fi */,
 				5B1D4F0422BD6E560082F8F0 /* sl */,
 				7DE74F0622BD7942003C8B44 /* en-AU-unimelb */,
+				5B317B77240B98DF009EE2F9 /* is */,
 			);
 			name = DetailsLocationCell.xib;
 			sourceTree = "<group>";
@@ -2454,6 +2485,7 @@
 				5B7BD3CC22ACE9C400FA371B /* fi */,
 				5B1D4F0922BD6E560082F8F0 /* sl */,
 				7DE74F0D22BD7942003C8B44 /* en-AU-unimelb */,
+				5B317B7C240B98DF009EE2F9 /* is */,
 			);
 			name = SettingsObserveeCell.xib;
 			sourceTree = "<group>";
@@ -2491,6 +2523,7 @@
 				5B7BD3D022ACE9C400FA371B /* fi */,
 				5B1D4F0D22BD6E560082F8F0 /* sl */,
 				7DE74F0B22BD7942003C8B44 /* en-AU-unimelb */,
+				5B317B80240B98DF009EE2F9 /* is */,
 			);
 			name = UserCell.xib;
 			sourceTree = "<group>";
@@ -2528,6 +2561,7 @@
 				5B7BD3D222ACE9C400FA371B /* fi */,
 				5B1D4F0F22BD6E560082F8F0 /* sl */,
 				7DE74F0722BD7942003C8B44 /* en-AU-unimelb */,
+				5B317B82240B98DF009EE2F9 /* is */,
 			);
 			name = StudentSettingsHeaderView.xib;
 			sourceTree = "<group>";
@@ -2598,6 +2632,7 @@
 				5B7BD3CF22ACE9C400FA371B /* fi */,
 				5B1D4F0C22BD6E560082F8F0 /* sl */,
 				7DE74F0A22BD7942003C8B44 /* en-AU-unimelb */,
+				5B317B7F240B98DF009EE2F9 /* is */,
 			);
 			name = DashboardViewController.storyboard;
 			sourceTree = "<group>";
@@ -2635,6 +2670,7 @@
 				5B7BD3C522ACE9C400FA371B /* fi */,
 				5B1D4F0722BD6E560082F8F0 /* sl */,
 				7DE74F0522BD7942003C8B44 /* en-AU-unimelb */,
+				5B317B75240B98DF009EE2F9 /* is */,
 			);
 			name = CalendarEventWeekPageViewController.storyboard;
 			sourceTree = "<group>";
@@ -2672,6 +2708,7 @@
 				5B7BD3C922ACE9C400FA371B /* fi */,
 				5B1D4F0622BD6E560082F8F0 /* sl */,
 				7DE74F0222BD7942003C8B44 /* en-AU-unimelb */,
+				5B317B79240B98DF009EE2F9 /* is */,
 			);
 			name = DetailsAttachmentCell.xib;
 			sourceTree = "<group>";
@@ -2709,6 +2746,7 @@
 				5B7BD3C222ACE9C400FA371B /* fi */,
 				5B1D4EFF22BD6E560082F8F0 /* sl */,
 				7DE74EFD22BD7942003C8B44 /* en-AU-unimelb */,
+				5B317B72240B98DF009EE2F9 /* is */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2779,6 +2817,7 @@
 				5B7BD3CA22ACE9C400FA371B /* fi */,
 				5B1D4F0822BD6E560082F8F0 /* sl */,
 				7DE74F0422BD7942003C8B44 /* en-AU-unimelb */,
+				5B317B7A240B98DF009EE2F9 /* is */,
 			);
 			name = AdminViewController.storyboard;
 			sourceTree = "<group>";

@@ -86,7 +86,7 @@ public struct GetExternalToolsRequest: APIRequestable {
 
     public var query: [APIQueryItem] {
         var query: [APIQueryItem] = [
-            .value("per_page", String(perPage)),
+            .perPage(perPage),
         ]
         if includeParents {
             query.append(.value("include_parents", "true"))

@@ -35,6 +35,7 @@ final public class Course: NSManagedObject, Context, WriteableModel {
     @NSManaged public var currentGradingPeriodID: String?
     @NSManaged public var grades: Set<Grade>?
     @NSManaged public var hideFinalGrades: Bool
+    @NSManaged var planner: Planner?
 
     public var defaultView: CourseDefaultView? {
         get { return CourseDefaultView(rawValue: defaultViewRaw ?? "") }

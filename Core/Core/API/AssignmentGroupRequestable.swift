@@ -41,15 +41,10 @@ public struct GetAssignmentGroupsRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        var query: [APIQueryItem] = [
+        [
             .include(include.map { $0.rawValue }),
+            .perPage(perPage),
+            .optionalValue("grading_period_id", gradingPeriodID),
         ]
-        if let gradingPeriodID = gradingPeriodID {
-            query.append(.value("grading_period_id", gradingPeriodID))
-        }
-        if let perPage = perPage {
-            query.append(.value("per_page", String(perPage)))
-        }
-        return query
     }
 }

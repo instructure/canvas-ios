@@ -27,8 +27,9 @@ public enum APIQueryItem: Equatable {
     case value(String, String)
     case array(String, [String])
     case include([String])
-    case perPage(Int)
+    case perPage(Int?)
     case bool(String, Bool)
+    case optionalValue(String, String?)
 
     func toURLQueryItems() -> [URLQueryItem] {
         switch self {
@@ -36,11 +37,15 @@ public enum APIQueryItem: Equatable {
             return [URLQueryItem(name: name, value: nil)]
         case .value(let name, let value):
             return [URLQueryItem(name: name, value: value)]
+        case .optionalValue(let name, let value):
+            guard let value = value else { return [] }
+            return [URLQueryItem(name: name, value: value)]
         case .array(let name, let array):
             return array.map({ value in URLQueryItem(name: "\(name)[]", value: value) })
         case .include(let includes):
             return APIQueryItem.array("include", includes).toURLQueryItems()
         case .perPage(let perPage):
+            guard let perPage = perPage else { return [] }
             return APIQueryItem.value("per_page", String(perPage)).toURLQueryItems()
         case .bool(let name, let value):
             return APIQueryItem.value(name, value ? "1" : "0").toURLQueryItems()

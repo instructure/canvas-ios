@@ -56,7 +56,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         api.mock(getPlannables(from: start, to: end), value: [assignment])
         controller.view.layoutIfNeeded()
 
-        XCTAssertEqual(controller.emptyStateViewContainer.isHidden, true)
+        XCTAssertEqual(controller.emptyStateView.isHidden, true)
         XCTAssertEqual(controller.spinnerView.isHidden, true)
         XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, false)
         let index0 = IndexPath(row: 0, section: 0)
@@ -80,7 +80,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         api.mock(getPlannables(from: start, to: end), value: [])
         controller.view.layoutIfNeeded()
 
-        controller.emptyStateViewContainer.isHidden = false
+        XCTAssertEqual(controller.emptyStateView.isHidden, false)
         XCTAssertEqual(controller.emptyStateHeader.text, "No Assignments")
         XCTAssertEqual(controller.emptyStateSubHeader.text, "It looks like assignments haven’t been created in this space yet.")
 
@@ -88,11 +88,23 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         XCTAssertTrue(isDragging)
         controller.tableView.contentInset.top = 50
         controller.tableView.delegate?.scrollViewDidScroll?(controller.tableView)
-        XCTAssertEqual(controller.emptyStateTop.constant, 50)
-        controller.tableView.contentOffset.y = -64
-        controller.tableView.delegate?.scrollViewDidScroll?(controller.tableView)
-        XCTAssertEqual(controller.emptyStateTop.constant, 64)
+        XCTAssertTrue(didScroll)
         controller.tableView.delegate?.scrollViewDidEndDragging?(controller.tableView, willDecelerate: false)
         XCTAssertFalse(isDragging)
+    }
+
+    func testErrorState() {
+        api.mock(getPlannables(from: start, to: end), error: NSError.instructureError("oops"))
+        controller.view.layoutIfNeeded()
+
+        XCTAssertEqual(controller.errorView.isHidden, false)
+        XCTAssertEqual(controller.errorView.messageLabel.text, "There was an error loading events. Pull to refresh to try again.")
+
+        controller.errorView.retryButton.sendActions(for: .primaryActionTriggered)
+        XCTAssertTrue(willRefresh)
+
+        api.mock(getPlannables(from: start, to: end), value: [])
+        controller.refresh(force: true)
+        XCTAssertEqual(controller.errorView.isHidden, true)
     }
 }

@@ -33,8 +33,6 @@ public class GetAssignments: CollectionUseCase {
         return "\(ContextModel(.course, id: courseID).pathComponent)/assignments"
     }
 
-    public var clearsBeforeWrite: Bool { true }
-
     public init(courseID: String, sort: Sort = .position, include: [GetAssignmentsRequest.Include] = [], perPage: Int? = nil) {
         self.courseID = courseID
         self.sort = sort
@@ -98,37 +96,5 @@ public class GetSubmittableAssignments: GetAssignments {
         let a = NSSortDescriptor(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true)
         let b = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare))
         return Scope(predicate: predicate, order: [ a, b ])
-    }
-}
-
-public class GetSyllabusAssignments: GetAssignments {
-    public override var clearsBeforeWrite: Bool { false }
-
-    public override var scope: Scope {
-        let course = NSPredicate(key: #keyPath(Assignment.courseID), equals: courseID)
-        let syllabus = NSPredicate(key: #keyPath(Assignment.syllabus.courseID), equals: courseID)
-        let dueAt = NSSortDescriptor(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true)
-        let name = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare))
-        return Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [course, syllabus]), order: [dueAt, name])
-    }
-
-    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping ([APIAssignment]?, URLResponse?, Error?) -> Void) {
-        environment.database.performBackgroundTask { context in
-            let syllabus: Syllabus = context.first(where: #keyPath(Syllabus.courseID), equals: self.courseID) ?? context.insert()
-            syllabus.courseID = self.courseID
-            syllabus.assignments = []
-            try? context.save()
-            super.makeRequest(environment: environment, completionHandler: completionHandler)
-        }
-    }
-
-    public override func write(response: [APIAssignment]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let response = response else { return }
-        let syllabus: Syllabus = client.first(where: #keyPath(Syllabus.courseID), equals: courseID) ?? client.insert()
-        syllabus.courseID = courseID
-        for item in response {
-            let assignment = Assignment.save(item, in: client, updateSubmission: include.contains(.submission))
-            assignment.syllabus = syllabus
-        }
     }
 }
