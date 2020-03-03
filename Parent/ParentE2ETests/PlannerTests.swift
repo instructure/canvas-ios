@@ -92,18 +92,20 @@ class PlannerTests: CoreUITestCase {
         PlannerList.event(id: "2233").swipeRight()
         PlannerCalendar.dayButton(for: reference.addDays(-1)).waitToExist()
         XCTAssert(PlannerCalendar.dayButton(for: reference.addDays(-1)).isSelected)
+        PlannerCalendar.monthButton.tap() // collapse
         PlannerList.emptyTitle.swipeDown() // pull to refresh
         PlannerList.emptyTitle.swipeLeft()
         PlannerList.event(id: "2233").swipeDown() // more pull to refresh
+        PlannerCalendar.monthButton.tap() // expand
 
         PlannerCalendar.dayButton(year: y, month: m, day: 8).tap()
         PlannerCalendar.dayButton(year: y, month: m, day: 22).center
             .press(forDuration: 0, thenDragTo: PlannerCalendar.monthButton.center) // collapse
         PlannerCalendar.dayButton(year: y, month: m, day: 15).waitToVanish()
-        PlannerCalendar.dayButton(year: y, month: m, day: 8).center
+        PlannerCalendar.monthButton.center
             .press(forDuration: 0, thenDragTo: PlannerList.emptyTitle.center) // expand
         PlannerCalendar.dayButton(year: y, month: m, day: 15).waitToExist()
-        PlannerList.emptyTitle.center
+        PlannerList.emptyTitle.center.withOffset(CGVector(dx: 0, dy: -100))
             .press(forDuration: 0, thenDragTo: PlannerCalendar.monthButton.center) // collapse
         PlannerCalendar.dayButton(year: y, month: m, day: 15).waitToVanish()
 
