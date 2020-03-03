@@ -33,19 +33,21 @@ class GetAssignmentGroupRequestTests: XCTestCase {
     }
 
     func testQuery() {
-        XCTAssertEqual(req.query, [.include([])])
+        XCTAssertEqual(req.queryItems, [])
     }
 
     func testQueryWithInclude() {
         req = GetAssignmentGroupsRequest(courseID: courseID, include: [.assignments])
-        let expected: [APIQueryItem] = [.include(["assignments"])]
-        XCTAssertEqual(req.query, expected)
+        XCTAssertEqual(req.queryItems, [URLQueryItem(name: "include[]", value: "assignments")])
     }
 
     func testQueryWithIncludeWithGradingPeriodID() {
         req = GetAssignmentGroupsRequest(courseID: courseID, gradingPeriodID: "1", include: [.assignments])
-        let expected: [APIQueryItem] = [.include(["assignments"]), .value("grading_period_id", "1")]
-        XCTAssertEqual(req.query, expected)
+        let expected = [
+            URLQueryItem(name: "include[]", value: "assignments"),
+            URLQueryItem(name: "grading_period_id", value: "1"),
+        ]
+        XCTAssertEqual(req.queryItems, expected)
     }
 
     func testModel() {

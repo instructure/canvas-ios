@@ -34,7 +34,7 @@ struct GetAccountNotificationsRequest: APIRequestable {
     typealias Response = [APIAccountNotification]
 
     let path = "accounts/self/users/self/account_notifications"
-    let query: [APIQueryItem] = [ .value("per_page", "99") ]
+    let query: [APIQueryItem] = [ .perPage(99) ]
 }
 
 // https://canvas.instructure.com/doc/api/account_notifications.html#method.account_notifications.user_close_notification

@@ -82,7 +82,7 @@ class GetFullTopicRequestsTests: XCTestCase {
 
     func testQuery() {
         let request = GetFullTopicRequests(context: ContextModel(.course, id: "1"), topicID: "2", includeNewEntries: true)
-        XCTAssertEqual(request.query, [.value("include_new_entries", "1")])
+        XCTAssertEqual(request.queryItems, [URLQueryItem(name: "include_new_entries", value: "1")])
     }
 }
 
@@ -93,10 +93,13 @@ class ListDiscussionTopicsRequestTests: XCTestCase {
     }
 
     func testQuery() {
-        let request = ListDiscussionTopicsRequest(context: ContextModel(.course, id: "1"), perPage: "25", include: [.allDates, .overrides, .sections, .sectionsUserCount])
-        XCTAssertEqual(request.query, [
-            .value("per_page", "25"),
-            .array("include", ["all_dates", "overrides", "sections", "section_user_count"]),
+        let request = ListDiscussionTopicsRequest(context: ContextModel(.course, id: "1"), perPage: 25, include: [.allDates, .overrides, .sections, .sectionsUserCount])
+        XCTAssertEqual(request.queryItems, [
+            URLQueryItem(name: "per_page", value: "25"),
+            URLQueryItem(name: "include[]", value: "all_dates"),
+            URLQueryItem(name: "include[]", value: "overrides"),
+            URLQueryItem(name: "include[]", value: "sections"),
+            URLQueryItem(name: "include[]", value: "section_user_count"),
         ])
     }
 }

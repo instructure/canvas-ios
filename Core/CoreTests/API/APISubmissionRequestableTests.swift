@@ -106,4 +106,9 @@ class APISubmissionRequestableTests: CoreTestCase {
             .bool("only_current_submissions", true),
         ])
     }
+
+    func testGetSubmissionSummaryRequest() {
+        let req = GetSubmissionSummaryRequest(context: ContextModel(.course, id: "1"), assignmentID: "2")
+        XCTAssertEqual(req.path, "courses/1/assignments/2/submission_summary")
+    }
 }

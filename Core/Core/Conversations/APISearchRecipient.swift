@@ -81,14 +81,12 @@ public struct GetSearchRecipientsRequest: APIRequestable {
             context.append("_\(qualifier.rawValue)")
         }
         var items: [APIQueryItem] = [
-            .value("per_page", String(perPage)),
+            .perPage(perPage),
             .value("context", context),
             .value("search", search),
             .value("synthetic_contexts", "1"),
+            .optionalValue("user_id", userID),
         ]
-        if let userID = userID {
-            items.append(.value("user_id", userID))
-        }
         if skipVisibilityChecks {
             items.append(.value("skip_visibility_checks", "1"))
         }

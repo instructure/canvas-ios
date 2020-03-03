@@ -19,13 +19,13 @@
 import Foundation
 
 //  swiftlint:disable type_name
-public struct ID: Codable, Equatable, Hashable, CustomStringConvertible {
+public struct ID: Codable, Equatable, Hashable, CustomStringConvertible, RawRepresentable {
 //  swiftlint:enable type_name
+    public typealias RawValue = String
 
     public let value: String
-    public var description: String {
-        return value
-    }
+    public var rawValue: String { value }
+    public var description: String { value }
 
     public init(from decoder: Decoder) throws {
         if let int = try? decoder.singleValueContainer().decode(Int.self) {
@@ -43,6 +43,10 @@ public struct ID: Codable, Equatable, Hashable, CustomStringConvertible {
 
     public init(_ string: String) {
         self.init(stringLiteral: string)
+    }
+
+    public init(rawValue: String) {
+        self.init(stringLiteral: rawValue)
     }
 
     public func encode(to encoder: Encoder) throws {

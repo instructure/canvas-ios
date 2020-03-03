@@ -82,4 +82,9 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return image ?? self
     }
+
+    public var asDataUrl: URL? {
+        guard let data = pngData() else { return nil }
+        return URL(string: "data:image/png;base64,\(data.base64EncodedString())")
+    }
 }

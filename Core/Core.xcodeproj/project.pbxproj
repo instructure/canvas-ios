@@ -548,6 +548,7 @@
 		7DC4A555222EF87300FA03DC /* DiscussionEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4A554222EF87300FA03DC /* DiscussionEntryTests.swift */; };
 		7DC4A559222EFC9900FA03DC /* Int64ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4A558222EFC9900FA03DC /* Int64ExtensionsTests.swift */; };
 		7DC4A55B222EFE0E00FA03DC /* NSErrorExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4A55A222EFE0E00FA03DC /* NSErrorExtensionsTests.swift */; };
+		7DC5F49524097FCC000256E3 /* Planner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC5F49424097FCC000256E3 /* Planner.swift */; };
 		7DCE0C8E22B015DC00BA549F /* QuizSubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE0C8D22B015DC00BA549F /* QuizSubmissionTests.swift */; };
 		7DCF1EA2216BB7E4003AF358 /* SubmissionTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF1EA1216BB7E4003AF358 /* SubmissionTypeTests.swift */; };
 		7DCF1EA4216BBCFB003AF358 /* GradingTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF1EA3216BBCFB003AF358 /* GradingTypeTests.swift */; };
@@ -1399,6 +1400,7 @@
 		7DC4A554222EF87300FA03DC /* DiscussionEntryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEntryTests.swift; sourceTree = "<group>"; };
 		7DC4A558222EFC9900FA03DC /* Int64ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int64ExtensionsTests.swift; sourceTree = "<group>"; };
 		7DC4A55A222EFE0E00FA03DC /* NSErrorExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSErrorExtensionsTests.swift; sourceTree = "<group>"; };
+		7DC5F49424097FCC000256E3 /* Planner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planner.swift; sourceTree = "<group>"; };
 		7DCE0C8722AEFE0C00BA549F /* QuizSubmissionWorkflowState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionWorkflowState.swift; sourceTree = "<group>"; };
 		7DCE0C8922AF040200BA549F /* QuizSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmission.swift; sourceTree = "<group>"; };
 		7DCE0C8D22B015DC00BA549F /* QuizSubmissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionTests.swift; sourceTree = "<group>"; };
@@ -2977,6 +2979,14 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		7DC5F49324097FB4000256E3 /* Planner */ = {
+			isa = PBXGroup;
+			children = (
+				7DC5F49424097FCC000256E3 /* Planner.swift */,
+			);
+			path = Planner;
+			sourceTree = "<group>";
+		};
 		7DCF1EC3216BE0C3003AF358 /* Viewable */ = {
 			isa = PBXGroup;
 			children = (
@@ -3411,6 +3421,7 @@
 				E819193523034C2D0039616A /* Inbox */,
 				B107F6C9234BB81C000DAC83 /* ItemPicker */,
 				E8C6F52323D6363C0086B865 /* Modules */,
+				7DC5F49324097FB4000256E3 /* Planner */,
 				E819193D23034C2D0039616A /* Profile */,
 				E8C6F52223D635D20086B865 /* Quizzes */,
 				7D14864F230EF691003944A2 /* RichContentEditor */,
@@ -4879,6 +4890,7 @@
 				7D5C089C2305F39B0022E0DB /* DiscussionEditTests.swift in Sources */,
 				B107F6CB234BB847000DAC83 /* ItemPickerElement.swift in Sources */,
 				7D5C08962305F0CC0022E0DB /* DiscussionEdit.swift in Sources */,
+				7DC5F49524097FCC000256E3 /* Planner.swift in Sources */,
 				58595ECB6194A295709A98F7 /* Attachments.swift in Sources */,
 				5859503A27B333221FD6E835 /* DiscussionReply.swift in Sources */,
 				58595B6A6EAAE22DA53C92C0 /* DiscussionEditReply.swift in Sources */,

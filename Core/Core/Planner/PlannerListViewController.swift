@@ -137,14 +137,15 @@ class PlannerListCell: UITableViewCell {
     @IBOutlet weak var icon: UIImageView!
 
     func update(_ p: Plannable?) {
-        guard let p = p else { return }
-        courseCode.text = p.contextName
-        title.text = p.title
-        dueDate.text = DateFormatter.localizedString(from: p.date, dateStyle: .medium, timeStyle: .short)
-        icon.image = p.icon()
-
-        if let value = p.pointsPossible {
-            points.text = GradeFormatter.numberFormatter.string(from: NSNumber(value: value))
-        } else { points.text = nil }
+        accessibilityIdentifier = "PlannerList.event.\(p?.id ?? "")"
+        courseCode.text = p?.contextName
+        title.text = p?.title
+        dueDate.text = (p?.date).flatMap {
+            DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .short)
+        }
+        icon.image = p?.icon()
+        points.text = p?.pointsPossible.flatMap {
+            GradeFormatter.numberFormatter.string(from: NSNumber(value: $0))
+        }
     }
 }

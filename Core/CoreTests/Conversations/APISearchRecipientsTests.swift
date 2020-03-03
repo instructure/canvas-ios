@@ -23,20 +23,20 @@ class APISearchRecipientsTests: XCTestCase {
     func testGetSearchRecipientsRequest() {
         let context = ContextModel(.course, id: "2")
         XCTAssertEqual(GetSearchRecipientsRequest(context: context).path, "search/recipients")
-        XCTAssertEqual(GetSearchRecipientsRequest(context: context).query, [
-            .value("per_page", "50"),
-            .value("context", "course_2"),
-            .value("search", ""),
-            .value("synthetic_contexts", "1"),
-            .value("type", "user"),
+        XCTAssertEqual(GetSearchRecipientsRequest(context: context).queryItems, [
+            URLQueryItem(name: "per_page", value: "50"),
+            URLQueryItem(name: "context", value: "course_2"),
+            URLQueryItem(name: "search", value: ""),
+            URLQueryItem(name: "synthetic_contexts", value: "1"),
+            URLQueryItem(name: "type", value: "user"),
         ])
-        XCTAssertEqual(GetSearchRecipientsRequest(context: context, qualifier: .teachers, search: "q", userID: "5", skipVisibilityChecks: true, includeContexts: true, perPage: 10).query, [
-            .value("per_page", "10"),
-            .value("context", "course_2_teachers"),
-            .value("search", "q"),
-            .value("synthetic_contexts", "1"),
-            .value("user_id", "5"),
-            .value("skip_visibility_checks", "1"),
+        XCTAssertEqual(GetSearchRecipientsRequest(context: context, qualifier: .teachers, search: "q", userID: "5", skipVisibilityChecks: true, includeContexts: true, perPage: 10).queryItems, [
+            URLQueryItem(name: "per_page", value: "10"),
+            URLQueryItem(name: "context", value: "course_2_teachers"),
+            URLQueryItem(name: "search", value: "q"),
+            URLQueryItem(name: "synthetic_contexts", value: "1"),
+            URLQueryItem(name: "user_id", value: "5"),
+            URLQueryItem(name: "skip_visibility_checks", value: "1"),
         ])
     }
 }

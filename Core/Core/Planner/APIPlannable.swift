@@ -135,23 +135,12 @@ public struct GetPlannablesRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        var values: [APIQueryItem] = [ .value("per_page", "100") ]
-        if let startDate = startDate {
-            values.append( .value("start_date", startDate.isoString()) )
-        }
-
-        if let endDate = endDate {
-            values.append( .value("end_date", endDate.isoString()) )
-        }
-
-        if !contextCodes.isEmpty {
-            values.append( .array("context_codes", contextCodes) )
-        }
-
-        if !filter.isEmpty {
-            values.append( .value("filter", filter) )
-        }
-
-        return values
+        [
+            .perPage(100),
+            .optionalValue("start_date", startDate?.isoString()),
+            .optionalValue("end_date", endDate?.isoString()),
+            .array("context_codes", contextCodes),
+            .value("filter", filter),
+        ]
     }
 }
