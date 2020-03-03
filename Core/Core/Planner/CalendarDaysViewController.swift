@@ -31,7 +31,6 @@ class CalendarDaysViewController: UIViewController {
     weak var delegate: CalendarViewControllerDelegate?
     var end = Clock.now // exclusive
     let env = AppEnvironment.shared
-    var fromDate = Clock.now
     var plannables: Store<GetPlannables>?
     var selectedDate = Clock.now
     var start = Clock.now // inclusive
@@ -39,10 +38,9 @@ class CalendarDaysViewController: UIViewController {
     let weeksStackView = UIStackView()
     lazy var topOffset = weeksStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
 
-    static func create(_ fromDate: Date, selectedDate: Date, delegate: CalendarViewControllerDelegate?) -> CalendarDaysViewController {
+    static func create(selectedDate: Date, delegate: CalendarViewControllerDelegate?) -> CalendarDaysViewController {
         let controller = CalendarDaysViewController()
         controller.delegate = delegate
-        controller.fromDate = fromDate
         controller.selectedDate = selectedDate
         return controller
     }
@@ -55,10 +53,10 @@ class CalendarDaysViewController: UIViewController {
         weeksStackView.pin(inside: view, top: nil, bottom: nil)
         topOffset.isActive = true
 
-        var currentDate = calendar.date(byAdding: .day, value: 1 - calendar.component(.day, from: fromDate), to: fromDate.startOfDay())!
+        var currentDate = calendar.date(byAdding: .day, value: 1 - calendar.component(.day, from: selectedDate), to: selectedDate.startOfDay())!
         currentDate = calendar.date(byAdding: .day, value: calendar.firstWeekday - calendar.component(.weekday, from: currentDate), to: currentDate)!
         start = currentDate
-        while calendar.compare(currentDate, to: fromDate, toGranularity: .month) != .orderedDescending {
+        while calendar.compare(currentDate, to: selectedDate, toGranularity: .month) != .orderedDescending {
             let week = UIStackView()
             week.distribution = .fillEqually
             weeksStackView.addArrangedSubview(week)
@@ -69,7 +67,7 @@ class CalendarDaysViewController: UIViewController {
                 week.addArrangedSubview(day)
                 currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
             }
-            if currentDate < selectedDate {
+            if currentDate <= selectedDate {
                 selectedWeekIndex += 1
             }
             end = currentDate
@@ -156,6 +154,7 @@ class CalendarDayButton: UIButton {
     let date: Date
     let isToday: Bool
     let isWeekend: Bool
+    let isOtherMonth: Bool
     override var isSelected: Bool {
         didSet { tintColorDidChange() }
     }
@@ -172,6 +171,7 @@ class CalendarDayButton: UIButton {
         self.date = date
         isToday = calendar.isDateInToday(date)
         isWeekend = calendar.isDateInWeekend(date)
+        isOtherMonth = calendar.compare(date, to: selectedDate, toGranularity: .month) != .orderedSame
         super.init(frame: .zero)
         isSelected = calendar.isDate(date, inSameDayAs: selectedDate)
 
@@ -233,7 +233,7 @@ class CalendarDayButton: UIButton {
         label.textColor = (
             isToday ? UIColor.named(.white) :
             isSelected ? tintColor :
-            isWeekend ? UIColor.named(.textDark) :
+            isWeekend || isOtherMonth ? UIColor.named(.textDark) :
             UIColor.named(.textDarkest)
         )
         for dot in dotContainer.arrangedSubviews {

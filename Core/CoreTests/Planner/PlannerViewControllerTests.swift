@@ -37,6 +37,11 @@ class PlannerViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.calendar.selectedDate, selected)
         XCTAssertEqual(controller.list.start, selected)
         XCTAssertEqual(controller.list.end, selected.addDays(1))
+        controller.calendar.delegate?.calendarDidTransitionToDate(selected.addMonths(1))
+        let transitionTo = selected.addMonths(1)
+        XCTAssertEqual(controller.list.start, transitionTo)
+        XCTAssertEqual(controller.list.end, transitionTo.addDays(1))
+        XCTAssertEqual(controller.calendar.selectedDate, transitionTo)
         controller.calendar.delegate?.calendarDidSelectDate(Clock.now)
         XCTAssertEqual(controller.calendar.selectedDate, Clock.now)
 

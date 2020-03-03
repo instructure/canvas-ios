@@ -84,11 +84,8 @@ public class PlannerViewController: UIViewController {
         }
         return GetPlannables(userID: studentID, startDate: from, endDate: to, contextCodes: Array(contextCodes))
     }
-}
 
-extension PlannerViewController: CalendarViewControllerDelegate {
-    func calendarDidSelectDate(_ date: Date) {
-        calendar.updateSelectedDate(date)
+    func updateList(_ date: Date) {
         let newList = PlannerListViewController.create(
             start: date.startOfDay(),
             end: date.startOfDay().addDays(1),
@@ -97,6 +94,18 @@ extension PlannerViewController: CalendarViewControllerDelegate {
         newList.loadViewIfNeeded()
         newList.tableView.contentInset = list.tableView.contentInset
         listPageController.setViewControllers([ newList ], direction: date < list.start ? .reverse : .forward, animated: true)
+    }
+}
+
+extension PlannerViewController: CalendarViewControllerDelegate {
+    func calendarDidSelectDate(_ date: Date) {
+        calendar.showDate(date)
+        updateList(date)
+    }
+
+    func calendarDidTransitionToDate(_ date: Date) {
+        calendar.updateSelectedDate(date)
+        updateList(date)
     }
 
     func calendarDidResize(height: CGFloat, animated: Bool) {
@@ -171,6 +180,6 @@ extension PlannerViewController: UIPageViewControllerDataSource, UIPageViewContr
     }
 
     public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        calendar.updateSelectedDate(list.start)
+        calendar.showDate(list.start)
     }
 }
