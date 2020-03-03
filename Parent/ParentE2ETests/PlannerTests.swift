@@ -70,4 +70,47 @@ class PlannerTests: CoreUITestCase {
         XCTAssertEqual(PlannerList.emptyLabel.label(), "It looks like assignments haven’t been created in this space yet.")
         XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 4).label(), "March 4, \(y), 0 events")
     }
+
+    func testSwipes() {
+        PlannerCalendar.dayButton(year: y, month: m, day: 1).swipeLeft()
+        PlannerCalendar.monthButton.tap() // collapse
+        PlannerCalendar.dayButton(year: y, month: m, day: 15).waitToVanish()
+        PlannerCalendar.dayButton(year: y, month: m + 1, day: 1).swipeLeft()
+        PlannerCalendar.dayButton(year: y, month: m + 1, day: 8).swipeLeft()
+        PlannerCalendar.dayButton(year: y, month: m + 1, day: 15).waitToExist()
+        PlannerCalendar.monthButton.tap() // expand
+        PlannerCalendar.dayButton(year: y, month: m + 1, day: 15).swipeRight()
+        PlannerCalendar.dayButton(year: y, month: m, day: 15).swipeRight()
+        PlannerCalendar.monthButton.tap() // collapse
+        PlannerCalendar.dayButton(year: y, month: m - 1, day: 28).waitToVanish()
+        PlannerCalendar.dayButton(year: y, month: m - 1, day: 15).waitToExist()
+        PlannerCalendar.monthButton.tap() // expand
+        PlannerCalendar.dayButton(year: y, month: m - 1, day: 15).swipeLeft()
+
+        PlannerCalendar.dayButton(for: reference).tap()
+        PlannerList.event(id: "2233").waitToExist()
+        PlannerList.event(id: "2233").swipeRight()
+        PlannerCalendar.dayButton(for: reference.addDays(-1)).waitToExist()
+        XCTAssert(PlannerCalendar.dayButton(for: reference.addDays(-1)).isSelected)
+        PlannerCalendar.monthButton.tap() // collapse
+        PlannerList.emptyTitle.swipeDown() // pull to refresh
+        PlannerList.emptyTitle.swipeLeft()
+        PlannerList.event(id: "2233").swipeDown() // more pull to refresh
+        PlannerCalendar.monthButton.tap() // expand
+
+        PlannerCalendar.dayButton(year: y, month: m, day: 8).tap()
+        PlannerCalendar.dayButton(year: y, month: m, day: 22).center
+            .press(forDuration: 0, thenDragTo: PlannerCalendar.monthButton.center) // collapse
+        PlannerCalendar.dayButton(year: y, month: m, day: 15).waitToVanish()
+        PlannerCalendar.monthButton.center
+            .press(forDuration: 0, thenDragTo: PlannerList.emptyTitle.center) // expand
+        PlannerCalendar.dayButton(year: y, month: m, day: 15).waitToExist()
+        PlannerList.emptyTitle.center.withOffset(CGVector(dx: 0, dy: -100))
+            .press(forDuration: 0, thenDragTo: PlannerCalendar.monthButton.center) // collapse
+        PlannerCalendar.dayButton(year: y, month: m, day: 15).waitToVanish()
+
+        for _ in 0..<7 { PlannerList.emptyTitle.swipeLeft() }
+        PlannerCalendar.dayButton(year: y, month: m, day: 8).waitToVanish()
+        PlannerCalendar.dayButton(year: y, month: m, day: 15).waitToExist()
+    }
 }
