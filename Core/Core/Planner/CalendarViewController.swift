@@ -184,6 +184,13 @@ class CalendarViewController: UIViewController {
         clearPageCache()
         if days.hasDate(date, isExpanded: isExpanded) {
             days.updateSelectedDate(date)
+        } else {
+            let isReverse = date < days.selectedDate
+            // Assumes selected date can't be more than 1 page away
+            let page = daysPageDelta(isReverse ? -1 : 1, from: days)
+            page.loadViewIfNeeded()
+            page.updateSelectedDate(date)
+            daysPageController.setViewControllers([ page ], direction: isReverse ? .reverse : .forward, animated: true)
         }
     }
 
