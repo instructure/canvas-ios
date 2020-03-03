@@ -53,11 +53,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
     func testLayout() {
         let date = Clock.now
         let assignment = APIPlannable.make(plannable_date: date)
-        let note = APIPlannable.make(plannable_id: "2",
-                                     plannable_type: "planner_note",
-                                     plannable: APIPlannable.plannable(title: "to do title", details: "hello world"),
-                                     plannable_date: date)
-        api.mock(getPlannables(from: start, to: end), value: [assignment, note])
+        api.mock(getPlannables(from: start, to: end), value: [assignment])
         controller.view.layoutIfNeeded()
 
         XCTAssertEqual(controller.emptyStateView.isHidden, true)
@@ -78,11 +74,19 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
 
         controller.tableView.refreshControl?.sendActions(for: .primaryActionTriggered)
         XCTAssertTrue(willRefresh)
+    }
 
-        router.resetExpectations()
-        let index1 = IndexPath(row: 1, section: 0)
-        controller.tableView.selectRow(at: index1, animated: false, scrollPosition: .none)
-        controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index1)
+    func testNavigationToTodo() {
+        let date = Clock.now
+        let note = APIPlannable.make(plannable_id: "2",
+                                     plannable_type: "planner_note",
+                                     plannable: APIPlannable.plannable(title: "to do title", details: "hello world"),
+                                     plannable_date: date)
+        api.mock(getPlannables(from: start, to: end), value: [note])
+        controller.view.layoutIfNeeded()
+        let index0 = IndexPath(row: 0, section: 0)
+        controller.tableView.selectRow(at: index0, animated: false, scrollPosition: .none)
+        controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index0)
         let todo = try? XCTUnwrap(router.viewControllerCalls.last?.0 as? PlannerNoteDetailViewController)
         XCTAssert(router.lastRoutedTo(viewController: todo!, from: controller, withOptions: .detail(embedInNav: true)))
     }
