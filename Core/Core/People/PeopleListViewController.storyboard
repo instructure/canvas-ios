@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
@@ -13,49 +13,100 @@
             <objects>
                 <viewController storyboardIdentifier="PeopleListViewController" id="saV-w2-9b6" customClass="PeopleListViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a2n-mZ-b29">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="G6M-0U-L6a">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translucent="NO" id="287-ad-3lu">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="name"/>
                                     <connections>
                                         <outlet property="delegate" destination="saV-w2-9b6" id="dBg-p1-kL5"/>
                                     </connections>
                                 </searchBar>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="apc-fB-yu3">
-                                    <rect key="frame" x="0.0" y="794" width="414" height="100"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="Hgc-lS-V7c" customClass="ListBackgroundView" customModule="Core" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="570" width="375" height="240"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="No results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iHH-Ah-Huh" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                            <rect key="frame" x="168.5" y="40.5" width="77.5" height="19.5"/>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WzT-3F-UcF" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="167.66666666666666" y="100" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="Ikq-N2-zul"/>
+                                                <constraint firstAttribute="height" constant="40" id="QOH-Mf-AMh"/>
+                                            </constraints>
+                                        </view>
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2J8-2D-RzD">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="245.33333333333334"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PandaNoResults" translatesAutoresizingMaskIntoConstraints="NO" id="y1Z-UU-C2B" customClass="IconView" customModule="Core" customModuleProvider="target">
+                                                    <rect key="frame" x="106.66666666666669" y="0.0" width="162" height="162"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="PandaNoResults"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Results" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ss7-O0-HDK" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                    <rect key="frame" x="32" y="194" width="311" height="24"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold20"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We couldn’t find somebody like that." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5LH-eL-fl0" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                    <rect key="frame" x="32" y="226" width="311" height="19.333333333333343"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Ss7-O0-HDK" secondAttribute="trailing" constant="32" id="77U-9v-kcB"/>
+                                                <constraint firstAttribute="trailing" secondItem="5LH-eL-fl0" secondAttribute="trailing" constant="32" id="9RB-Ie-ETn"/>
+                                                <constraint firstItem="5LH-eL-fl0" firstAttribute="leading" secondItem="2J8-2D-RzD" secondAttribute="leading" constant="32" id="Ddj-f5-ARo"/>
+                                                <constraint firstItem="y1Z-UU-C2B" firstAttribute="centerX" secondItem="2J8-2D-RzD" secondAttribute="centerX" id="EsC-gS-HM1"/>
+                                                <constraint firstItem="5LH-eL-fl0" firstAttribute="top" secondItem="Ss7-O0-HDK" secondAttribute="bottom" constant="8" id="OB7-dc-Jq4"/>
+                                                <constraint firstItem="y1Z-UU-C2B" firstAttribute="top" secondItem="2J8-2D-RzD" secondAttribute="top" id="err-lI-6FB"/>
+                                                <constraint firstAttribute="bottom" secondItem="5LH-eL-fl0" secondAttribute="bottom" id="ggP-eM-MCa"/>
+                                                <constraint firstItem="Ss7-O0-HDK" firstAttribute="leading" secondItem="2J8-2D-RzD" secondAttribute="leading" constant="32" id="hrK-m3-09M"/>
+                                                <constraint firstItem="Ss7-O0-HDK" firstAttribute="top" secondItem="y1Z-UU-C2B" secondAttribute="bottom" constant="32" id="mmv-31-1XI"/>
+                                            </constraints>
+                                        </view>
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="809-3C-3Fc" customClass="ListErrorView" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="22.666666666666671" width="375" height="195"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="195" placeholder="YES" id="SDd-6h-hem"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="iHH-Ah-Huh" secondAttribute="trailing" constant="16" id="2hO-ny-nKP"/>
-                                        <constraint firstItem="iHH-Ah-Huh" firstAttribute="centerY" secondItem="apc-fB-yu3" secondAttribute="centerY" id="9JG-aW-njb"/>
-                                        <constraint firstItem="iHH-Ah-Huh" firstAttribute="centerX" secondItem="apc-fB-yu3" secondAttribute="centerX" id="IhT-lV-ThY"/>
-                                        <constraint firstItem="iHH-Ah-Huh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="apc-fB-yu3" secondAttribute="leading" constant="16" id="XsD-un-cH0"/>
+                                        <constraint firstItem="809-3C-3Fc" firstAttribute="leading" secondItem="Hgc-lS-V7c" secondAttribute="leading" id="44h-dr-EHo"/>
+                                        <constraint firstItem="2J8-2D-RzD" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Hgc-lS-V7c" secondAttribute="top" id="D6L-UA-z0s"/>
+                                        <constraint firstItem="2J8-2D-RzD" firstAttribute="leading" secondItem="Hgc-lS-V7c" secondAttribute="leading" id="Iez-vd-23V"/>
+                                        <constraint firstItem="WzT-3F-UcF" firstAttribute="centerY" secondItem="Hgc-lS-V7c" secondAttribute="centerY" id="aoe-sA-FcF"/>
+                                        <constraint firstAttribute="trailing" secondItem="809-3C-3Fc" secondAttribute="trailing" id="av3-Tn-KrX"/>
+                                        <constraint firstItem="809-3C-3Fc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Hgc-lS-V7c" secondAttribute="top" id="b2s-FB-m1P"/>
+                                        <constraint firstItem="809-3C-3Fc" firstAttribute="centerY" secondItem="Hgc-lS-V7c" secondAttribute="centerY" priority="250" id="g2Y-d9-7j6"/>
+                                        <constraint firstItem="WzT-3F-UcF" firstAttribute="centerX" secondItem="Hgc-lS-V7c" secondAttribute="centerX" id="ime-18-7aF"/>
+                                        <constraint firstAttribute="trailing" secondItem="2J8-2D-RzD" secondAttribute="trailing" id="m7Q-Sq-nFD"/>
+                                        <constraint firstItem="2J8-2D-RzD" firstAttribute="centerY" secondItem="Hgc-lS-V7c" secondAttribute="centerY" priority="250" id="z8B-N4-sGu"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PeopleListCell" rowHeight="64" id="pX1-je-57g" customClass="PeopleListCell" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="84" width="414" height="64"/>
+                                        <rect key="frame" x="0.0" y="84" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pX1-je-57g" id="koB-Xt-hdM">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="64"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="349" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ykB-TY-mth" customClass="AvatarView" customModule="Core" customModuleProvider="target">
@@ -69,10 +120,10 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="CVm-vT-K7s">
-                                                    <rect key="frame" x="68" y="12" width="131" height="40"/>
+                                                    <rect key="frame" x="67.999999999999986" y="12" width="130.66666666666663" height="40"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ronnie Matthews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1m-jj-5ou" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="131" height="19.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="130.66666666666666" height="19.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -82,7 +133,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Teacher" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eD-6D-vvu" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="19.5" width="131" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="19.333333333333329" width="130.66666666666666" height="20.666666666666671"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -116,26 +167,24 @@
                                     <outlet property="delegate" destination="saV-w2-9b6" id="145-XW-cEH"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="UrV-hn-mYU">
-                                <rect key="frame" x="197" y="438" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="UrV-hn-mYU" firstAttribute="centerY" secondItem="a2n-mZ-b29" secondAttribute="centerY" id="65G-83-Gv2"/>
                             <constraint firstItem="SCq-AE-dGO" firstAttribute="bottom" secondItem="G6M-0U-L6a" secondAttribute="bottom" id="C1M-7b-yM2"/>
                             <constraint firstItem="G6M-0U-L6a" firstAttribute="leading" secondItem="SCq-AE-dGO" secondAttribute="leading" id="OUS-Sb-raN"/>
-                            <constraint firstItem="UrV-hn-mYU" firstAttribute="centerX" secondItem="a2n-mZ-b29" secondAttribute="centerX" id="YtG-A9-e7e"/>
                             <constraint firstItem="G6M-0U-L6a" firstAttribute="top" secondItem="SCq-AE-dGO" secondAttribute="top" id="muo-A6-QcH"/>
                             <constraint firstItem="SCq-AE-dGO" firstAttribute="trailing" secondItem="G6M-0U-L6a" secondAttribute="trailing" id="yd2-hT-sUw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SCq-AE-dGO"/>
                     </view>
                     <connections>
-                        <outlet property="activityIndicatorView" destination="UrV-hn-mYU" id="mpp-XI-7P7"/>
-                        <outlet property="emptyResultsLabel" destination="iHH-Ah-Huh" id="eY1-IL-mnh"/>
+                        <outlet property="emptyMessageLabel" destination="5LH-eL-fl0" id="8EF-pf-PsI"/>
+                        <outlet property="emptyTitleLabel" destination="Ss7-O0-HDK" id="VPf-Pz-rWu"/>
+                        <outlet property="emptyView" destination="2J8-2D-RzD" id="KJn-zZ-MhI"/>
+                        <outlet property="errorView" destination="809-3C-3Fc" id="hfD-fR-Df2"/>
                         <outlet property="keyboardSpace" destination="C1M-7b-yM2" id="6Oy-vo-Zah"/>
                         <outlet property="searchBar" destination="287-ad-3lu" id="Grf-lF-nAJ"/>
+                        <outlet property="spinnerView" destination="WzT-3F-UcF" id="w6q-8M-YHB"/>
                         <outlet property="tableView" destination="G6M-0U-L6a" id="ybH-cU-zVH"/>
                     </connections>
                 </viewController>
@@ -144,4 +193,7 @@
             <point key="canvasLocation" x="140.57971014492756" y="133.92857142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="PandaNoResults" width="162" height="162"/>
+    </resources>
 </document>

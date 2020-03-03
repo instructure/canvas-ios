@@ -112,14 +112,32 @@ class PeopleListViewControllerTests: CoreTestCase {
         controller.searchBar.delegate?.searchBar?(controller.searchBar, textDidChange: "fred")
         controller.searchBar.delegate?.searchBarSearchButtonClicked?(controller.searchBar)
         controller.searchBar.delegate?.searchBarTextDidEndEditing?(controller.searchBar)
-        XCTAssertEqual(controller.emptyResultsLabel.isHidden, false)
+        XCTAssertEqual(controller.emptyView.isHidden, false)
 
         controller.searchBar.delegate?.searchBarCancelButtonClicked?(controller.searchBar)
-        XCTAssertEqual(controller.emptyResultsLabel.isHidden, true)
+        XCTAssertEqual(controller.emptyView.isHidden, true)
         XCTAssertEqual(controller.searchBar.text, "")
         XCTAssertEqual(controller.tableView.contentOffset.y, controller.searchBar.frame.height)
 
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         XCTAssert(router.lastRoutedTo(.parse("/courses/1/users/1")))
+
+        controller.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
+        controller.viewWillAppear(false)
+        XCTAssertNil(controller.tableView.indexPathForSelectedRow)
+    }
+
+    func testPaginatedRefresh() {
+        controller.view.layoutIfNeeded()
+        api.mock(controller.users, value: [.make()], response: HTTPURLResponse(next: "/courses/1/users?page=2"))
+        api.mock(GetNextRequest(path: "/courses/1/users?page=2"), value: [APIUser.make(id: "2")])
+        let tableView = controller.tableView!
+        tableView.refreshControl?.sendActions(for: .valueChanged)
+        XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 2)
+        let loading = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)) as? LoadingCell
+        XCTAssertNotNil(loading)
+        XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 2)
+        let cell = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)) as! PeopleListCell
+        XCTAssertEqual(cell.nameLabel.text, "Bob")
     }
 }

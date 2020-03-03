@@ -18,11 +18,15 @@
 
 import UIKit
 
-public class PeopleListViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
-    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
-    @IBOutlet weak var emptyResultsLabel: UILabel!
+public class PeopleListViewController: UIViewController, ColoredNavViewProtocol {
+    @IBOutlet weak var emptyMessageLabel: UILabel!
+    @IBOutlet weak var emptyTitleLabel: UILabel!
+    @IBOutlet weak var emptyView: UIView!
+    @IBOutlet weak var errorView: ListErrorView!
     @IBOutlet weak var keyboardSpace: NSLayoutConstraint!
+    let refreshControl = CircleRefreshControl()
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var spinnerView: CircleProgressView!
     @IBOutlet weak var tableView: UITableView!
 
     public var color: UIColor?
@@ -64,14 +68,17 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol,
         view.backgroundColor = .named(.backgroundLightest)
         setupTitleViewInNavbar(title: NSLocalizedString("People", bundle: .core, comment: ""))
 
-        activityIndicatorView.color = Brand.shared.primary
-        emptyResultsLabel.text = NSLocalizedString("No results", bundle: .core, comment: "")
+        emptyMessageLabel.text = NSLocalizedString("We couldn’t find somebody like that.", bundle: .core, comment: "")
+        emptyTitleLabel.text = NSLocalizedString("No Results", bundle: .core, comment: "")
+        errorView.messageLabel.text = NSLocalizedString("There was an error loading people. Pull to refresh to try again.", bundle: .core, comment: "")
+        errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
+
         searchBar.placeholder = NSLocalizedString("Search", bundle: .core, comment: "")
         searchBar.backgroundColor = .named(.backgroundLightest)
 
         tableView.backgroundColor = .named(.backgroundLightest)
-        tableView.refreshControl = CircleRefreshControl()
-        tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
+        refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
+        tableView.refreshControl = refreshControl
         tableView.registerHeaderFooterView(FilterHeaderView.self, fromNib: false)
         tableView.separatorColor = .named(.borderMedium)
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
@@ -110,27 +117,21 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol,
         guard let name = course.first?.name ?? group.first?.name, let color = course.first?.color ?? group.first?.color else {
             return
         }
-        (tableView.refreshControl as? CircleRefreshControl)?.color = color
+        spinnerView.color = color
+        refreshControl.color = color
         updateNavBar(subtitle: name, color: color)
     }
 
     func update() {
-        if users.isEmpty, users.pending, tableView.refreshControl?.isRefreshing != true {
-            activityIndicatorView.startAnimating()
-        } else {
-            activityIndicatorView.stopAnimating()
-        }
-        emptyResultsLabel.isHidden = users.pending || !users.isEmpty
-        tableView.tableFooterView?.frame.size.height = emptyResultsLabel.isHidden ? 0 : 100
+        spinnerView.isHidden = !users.pending || !users.isEmpty || users.error != nil || refreshControl.isRefreshing
+        emptyView.isHidden = users.pending || !users.isEmpty || users.error != nil
+        errorView.isHidden = users.error == nil
         tableView.reloadData()
-        if let error = users.error {
-            showError(error)
-        }
     }
 
     @objc func refresh() {
         users.refresh(force: true) { [weak self] _ in
-            self?.tableView.refreshControl?.endRefreshing()
+            self?.refreshControl.endRefreshing()
         }
     }
 
@@ -208,19 +209,17 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return users.hasNextPage ? users.count + 1 : users.count
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if users.hasNextPage && indexPath.row == users.count {
+            users.getNextPage()
+            return LoadingCell(style: .default, reuseIdentifier: nil)
+        }
         let cell = tableView.dequeue(PeopleListCell.self, for: indexPath)
         cell.update(user: users[indexPath.row])
         return cell
-    }
-
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.isBottomReached() {
-            users.getNextPage()
-        }
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

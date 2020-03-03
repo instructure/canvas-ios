@@ -36,7 +36,6 @@ class CourseListViewController: FetchedTableViewController<CanvasCore.Course> {
         emptyView.textLabel.text = NSLocalizedString("No Courses", comment: "Empty Courses Text")
         emptyView.textLabel.textColor = .black
         emptyView.subtext = NSLocalizedString("This student's courses may not be published yet.", comment: "")
-        emptyView.imageView?.image = UIImage(named: "empty_courses")
         emptyView.accessibilityLabel = emptyView.textLabel.text
         emptyView.accessibilityIdentifier = "courses_empty_view"
         self.emptyView = emptyView
