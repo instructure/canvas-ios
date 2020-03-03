@@ -25,7 +25,7 @@ open class CalendarEventAPI {
 
     private static let dateFormatter: DateFormatter = {
         let df = DateFormatter()
-        df.dateFormat = "YYYY-MM-dd"
+        df.dateFormat = "yyyy-MM-dd"
         return df
     }()
 

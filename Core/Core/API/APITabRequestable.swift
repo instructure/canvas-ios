@@ -31,11 +31,7 @@ public struct GetTabsRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        var queryItems = [APIQueryItem]()
-        if let perPage = perPage {
-            queryItems.append(.value("per_page", "\(perPage)"))
-        }
-        return queryItems
+        [.perPage(perPage)]
     }
 
     public var path: String {

@@ -86,7 +86,7 @@ extension APIConversation {
         starred: Bool = false,
         properties: [ConversationProperties]? = nil,
         audience: [String]? = [ "1" ],
-        avatar_url: URL = URL(string: "https://canvas.instructure.com/avatar/1")!,
+        avatar_url: URL = UIImage.icon(.trash).asDataUrl!,
         visible: Bool = true,
         context_name: String? = "Canvas 101",
         context_code: String? = "course_1",
@@ -194,16 +194,11 @@ public struct GetConversationsRequest: APIRequestable {
     let scope: Scope?
 
     public var query: [APIQueryItem] {
-        var query: [APIQueryItem] = [
+        [
             .include(include.map { $0.rawValue }),
+            .perPage(perPage),
+            .optionalValue("scope", scope?.rawValue),
         ]
-        if let perPage = perPage {
-            query.append(.value("per_page", String(perPage)))
-        }
-        if let scope = scope {
-            query.append(.value("scope", scope.rawValue))
-        }
-        return query
     }
 }
 

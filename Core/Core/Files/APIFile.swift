@@ -338,11 +338,10 @@ public class ListFoldersRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        var query = [ APIQueryItem.include([ "usage_rights" ]) ]
-        if let perPage = perPage {
-            query.append(.value("per_page", "\(perPage)"))
-        }
-        return query
+        [
+            .include([ "usage_rights" ]),
+            .perPage(perPage),
+        ]
     }
 }
 
@@ -363,11 +362,10 @@ public class ListFilesRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        var query = [ APIQueryItem.include([ "usage_rights" ]) ]
-        if let perPage = perPage {
-            query.append(.value("per_page", "\(perPage)"))
-        }
-        return query
+        [
+            .include([ "usage_rights" ]),
+            .perPage(perPage),
+        ]
     }
 }
 

@@ -133,16 +133,11 @@ public struct GetAssignmentsRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        var query: [APIQueryItem] = [.include(include.map { $0.rawValue })]
-        if let orderBy = orderBy {
-            query.append(.value("order_by", orderBy.rawValue))
-        }
-        if let assignmentIDs = assignmentIDs {
-            query.append(.array("assignment_ids", assignmentIDs))
-        }
-        if let perPage = perPage {
-            query.append(.value("per_page", String(perPage)))
-        }
-        return query
+        [
+            .include(include.map { $0.rawValue }),
+            .optionalValue("order_by", orderBy?.rawValue),
+            .array("assignment_ids", assignmentIDs ?? []),
+            .perPage(perPage),
+        ]
     }
 }

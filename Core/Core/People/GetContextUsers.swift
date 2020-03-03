@@ -91,18 +91,13 @@ public struct GetContextUsersRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        var items: [APIQueryItem] = [
+        [
             .value("exclude_inactive", "true"),
             .value("sort", "username"),
-            .value("per_page", "50"),
+            .perPage(50),
             .include(["avatar_url", "enrollments"]),
+            .optionalValue("enrollment_type", enrollment_type?.rawValue),
+            .optionalValue("search_term", search_term),
         ]
-        if let type = enrollment_type?.rawValue {
-            items.append(.value("enrollment_type", type))
-        }
-        if let term = search_term {
-            items.append(.value("search_term", term))
-        }
-        return items
     }
 }

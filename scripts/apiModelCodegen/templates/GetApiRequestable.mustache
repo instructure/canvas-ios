@@ -20,14 +20,14 @@ import Core
 
 public struct Get{{entity}}Request: APIRequestable {
     public typealias Response = API{{entity}}
-	
-	public var path: String {
-		return "/custom_path"
-	}
-	
-	public var query: [APIQueryItem] {
+
+    public var path: String {
+        return "/custom_path"
+    }
+
+    public var query: [APIQueryItem] {
         return [
-            .value("per_page", "99"),
+            .perPage(99),
         ]
     }
 }

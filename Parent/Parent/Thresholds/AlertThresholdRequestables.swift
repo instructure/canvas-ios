@@ -205,7 +205,7 @@ public struct GetAlertThresholdRequest: APIRequestable {
 
     public var query: [APIQueryItem] {
         return [
-            .value("per_page", "99"),
+            .perPage(99),
             .value("student_id", studentID),
         ]
     }

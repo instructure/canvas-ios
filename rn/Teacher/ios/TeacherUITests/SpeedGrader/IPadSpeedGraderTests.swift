@@ -22,117 +22,15 @@ import TestsFoundation
 @testable import CoreUITests
 
 class IPadSpeedGraderTests: CoreUITestCase {
+    let mockHelper = SpeedGraderUIMocks()
+
     func testSpeedGrader() {
+        mockHelper.mock(for: self)
         XCUIDevice.shared.orientation = .landscapeLeft
-        let course = mock(course: APICourse.make())
-        let enrollment1 = APIEnrollment.make(id: "1", user_id: "1", user: .make(id: "1", name: "User 1", sortable_name: "User 1", short_name: "User 1"))
-        let enrollment2 = APIEnrollment.make(id: "2", user_id: "2", user: .make(id: "2", name: "User 2", sortable_name: "User 2", short_name: "User 2"))
-        let enrollment3 = APIEnrollment.make(id: "3", user_id: "3", user: .make(id: "3", name: "User 3", sortable_name: "User 3", short_name: "User 3"))
-        let submissions = [
-            APISubmission.make(id: "1", user_id: "1", user: .make(id: "1", name: "User 1", short_name: "User 1")),
-            APISubmission.make(id: "2", user_id: "2", user: .make(id: "2", name: "User 2", short_name: "User 2")),
-            APISubmission.make(id: "3", user_id: "3", user: .make(id: "3", name: "User 3", short_name: "User 3")),
-        ]
-        mockBaseRequests()
-        mockEncodableRequest("https://canvas.instructure.com/api/v1/courses/1/lti_apps/launch_definitions?per_page=99&placements%5B%5D=course_navigation", value: [String]())
-        mockEncodableRequest("courses/\(course.id)/grading_periods", value: APIGradingPeriodResponse(grading_periods: []))
-        mockData(GetTabsRequest(context: course, perPage: nil), value: [
-            APITab.make(
-                id: ID("assignments"),
-                html_url: URL(string: "/courses/\(course.id)/assignments")!,
-                label: "Assignments"
-            ),
-        ])
-        let assignment = APIAssignment.make(id: ID("1"))
-        mockData(
-            GetAssignmentsRequest(
-                courseID: "1",
-                orderBy: nil,
-                include: [.all_dates, .discussion_topic, .observed_users, .overrides]),
-            value: [assignment]
-        )
-        mockData(
-            GetAssignmentRequest(
-                courseID: course.id.value,
-                assignmentID: assignment.id.value,
-                allDates: true,
-                include: [.overrides]
-            ),
-            value: assignment
-        )
-        mockData(
-            GetAssignmentGroupsRequest(
-                courseID: course.id.value,
-                gradingPeriodID: "undefined",
-                include: [.assignments],
-                perPage: 99
-            ),
-            value: [.make(assignments: [assignment])]
-        )
-        mockData(
-            GetSubmissionsRequest(
-                context: ContextModel(.course, id: course.id.value),
-                assignmentID: assignment.id.value,
-                grouped: true,
-                include: [
-                    .rubric_assessment,
-                    .submission_comments,
-                    .submission_history,
-                    .total_scores,
-                    .user,
-                ]
-            ),
-            value: submissions
-        )
-        mockData(
-            GetSubmissionsRequest(
-                context: ContextModel(.course, id: course.id.value),
-                assignmentID: assignment.id.value,
-                grouped: true,
-                include: [
-                    .rubric_assessment,
-                    .submission_comments,
-                    .submission_history,
-                    .total_scores,
-                    .user,
-                    .group,
-                ]
-            ),
-            value: submissions
-        )
-        mockData(
-            GetSubmissionsRequest(
-                context: ContextModel(.course, id: course.id.value),
-                assignmentID: assignment.id.value,
-                grouped: false,
-                include: [
-                    .rubric_assessment,
-                    .submission_comments,
-                    .submission_history,
-                    .total_scores,
-                    .user,
-                    .group,
-                ]
-            ),
-            value: submissions
-        )
-        mockEncodableRequest(
-            "courses/\(course.id)/assignments/\(assignment.id)/submission_summary",
-            value: APISubmission.make()
-        )
-        let avatarURL = URL(string: "https://canvas.instructure.com/avatar")!
-        mockURL(avatarURL)
-        mockData(
-            GetEnrollmentsRequest(context: ContextModel(.course, id: "1"), userID: nil, gradingPeriodID: nil, includes: [.avatar_url]),
-            value: [enrollment1, enrollment2, enrollment3]
-        )
-        mockData(GetGroupsRequest(context: ContextModel(.course, id: "1")), value: [])
-        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: nil), value: [])
-        mockGraphQL(operationName: "SubmissionList", SubmissionListFixture.submissionList)
         logIn()
         SpringBoard.shared.setupSplitScreenWithSafariOnRight()
         SpringBoard.shared.moveSplit(toFraction: 0.5)
-        Dashboard.courseCard(id: course.id).tap()
+        Dashboard.courseCard(id: "1").tap()
         CourseNavigation.assignments.tap()
         AssignmentsList.assignment(id: "1").tap()
         AssignmentDetails.viewAllSubmissionsButton.tap()

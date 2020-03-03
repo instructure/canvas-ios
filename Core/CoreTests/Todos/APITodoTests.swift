@@ -24,7 +24,7 @@ class APITodoTests: CoreTestCase {
     func testGetTodosRequest() {
         let request = GetTodosRequest()
         XCTAssertEqual(request.path, "users/self/todo")
-        XCTAssertEqual(request.query, [ APIQueryItem.value("per_page", "100") ])
+        XCTAssertEqual(request.queryItems, [ URLQueryItem(name: "per_page", value: "100") ])
     }
 
     func testDeleteTodoRequest() {

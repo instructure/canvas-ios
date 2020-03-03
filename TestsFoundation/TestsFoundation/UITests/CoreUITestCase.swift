@@ -138,11 +138,11 @@ open class CoreUITestCase: XCTestCase {
         public func handler(_ message: IPCDriverServerMessage) -> Data? {
             switch message {
             case .urlRequest(let request):
-                guard let url = request.url,
+                guard let url = request.url?.withCanonicalQueryParams!,
                     let testCase = currentTestCase else {
                     return nil
                 }
-                guard let mock = testCase.httpMocks[url.withCanonicalQueryParams!] else {
+                guard let mock = testCase.httpMocks[url] else {
                     print("installed mocks:")
                     var mockKeys = testCase.httpMocks.map { $0.key.absoluteString }
                     let targetKey = url.absoluteString
@@ -498,19 +498,36 @@ open class CoreUITestCase: XCTestCase {
             .sections,
             .term,
         ]), value: course)
+        mockData(GetContextPermissionsRequest(context: course), value: .make())
         mockData(GetEnabledFeatureFlagsRequest(context: ContextModel(.course, id: course.id)), value: [
             "rce_enhancements",
             "new_gradebook",
         ])
         mockEncodableRequest("courses/\(course.id)/external_tools?include_parents=true&per_page=99", value: [String]())
         mockEncodableRequest("courses/\(course.id)/external_tools?include_parents=true", value: [String]())
+        if Bundle.main.isTeacherApp {
+            mockEncodableRequest("https://canvas.instructure.com/api/v1/courses/\(course.id)/lti_apps/launch_definitions?per_page=99&placements%5B%5D=course_navigation", value: [String]())
+        }
         return course
     }
 
     @discardableResult
     open func mock(assignment: APIAssignment) -> APIAssignment {
-        mockData(GetAssignmentRequest(courseID: assignment.course_id.value, assignmentID: assignment.id.value, include: [ .submission ]), value: assignment)
-        mockData(GetAssignmentRequest(courseID: assignment.course_id.value, assignmentID: assignment.id.value, include: []), value: assignment)
+        func mock(include: [GetAssignmentRequest.GetAssignmentInclude], allDates: Bool? = nil) {
+            mockData(GetAssignmentRequest(
+                courseID: assignment.course_id.value,
+                assignmentID: assignment.id.value,
+                allDates: allDates,
+                include: include
+            ), value: assignment)
+        }
+        if Bundle.main.isStudentApp {
+            mock(include: [ .submission ])
+            mock(include: [])
+        } else if Bundle.main.isTeacherApp {
+            mock(include: [ .overrides ], allDates: true)
+        }
+
         for submission in assignment.submission?.values ?? [] {
             for userId in ["1", "self"] {
                 mockData(GetSubmissionRequest(
@@ -573,6 +590,9 @@ open class CoreUITestCase: XCTestCase {
         mockEncodableRequest("users/self/todo_item_count", value: ["needs_grading_count": 0])
         mockEncodableRequest("users/self/todo", value: [String]())
         mockEncodableRequest("conversations/unread_count", value: ["unread_count": 0])
+        if Bundle.main.isTeacherApp {
+            mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: nil), value: [])
+        }
     }
 
     open func mockURL(
@@ -628,7 +648,12 @@ open class CoreUITestCase: XCTestCase {
         response: @escaping (URLRequest) -> MockHTTPResponse
     ) {
         XCTAssert(useMocks, "Mocks not allowed for E2E tests!")
-        httpMocks[request.url!.withCanonicalQueryParams!] = response
+        let mockUrl = request.url!.withCanonicalQueryParams!
+        if httpMocks[mockUrl] != nil {
+            print("⚠️ Overwriting mock (which is totally a fine thing to do) for:")
+            print("  \(mockUrl)")
+        }
+        httpMocks[mockUrl] = response
     }
 
     open func mockNow(_ date: Date) {

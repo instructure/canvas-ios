@@ -143,9 +143,9 @@ struct ListDiscussionTopicsRequest: APIRequestable {
 
     let context: Context
     let include: [GetTopicRequests.Include]
-    let perPage: String?
+    let perPage: Int?
 
-    init(context: Context, perPage: String? = "99", include: [GetTopicRequests.Include] = GetTopicRequests.defaultIncludes) {
+    init(context: Context, perPage: Int? = 99, include: [GetTopicRequests.Include] = GetTopicRequests.defaultIncludes) {
         self.context = context
         self.include = include
         self.perPage = perPage
@@ -156,14 +156,9 @@ struct ListDiscussionTopicsRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        var query: [APIQueryItem] = []
-
-        if let perPage = perPage {
-            query.append(.value("per_page", perPage))
-        }
-        if !include.isEmpty {
-            query.append(.array("include", include.map { $0.rawValue }))
-        }
-        return query
+        [
+            .perPage(perPage),
+            .include(include.map { $0.rawValue }),
+        ]
     }
 }

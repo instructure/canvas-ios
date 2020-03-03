@@ -37,7 +37,7 @@ public struct APITodo: Codable {
 struct GetTodosRequest: APIRequestable {
     typealias Response = [APITodo]
     let path = "users/self/todo"
-    let query = [ APIQueryItem.value("per_page", "100") ]
+    let query = [ APIQueryItem.perPage(100) ]
 }
 
 struct DeleteTodoRequest: APIRequestable {

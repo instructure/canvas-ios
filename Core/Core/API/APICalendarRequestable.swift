@@ -18,6 +18,7 @@
 
 import Foundation
 
+// https://canvas.instructure.com/doc/api/all_resources.html#method.calendar_events_api.index
 public struct GetCalendarEventsRequest: APIRequestable {
     public typealias Response = [APICalendarEvent]
     public enum Include: String {
@@ -34,7 +35,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
     public let allEvents: Bool?
     private static let dateFormatter: DateFormatter = {
         let df = DateFormatter()
-        df.dateFormat = "YYYY-MM-dd"
+        df.dateFormat = "yyyy-MM-dd"
         return df
     }()
 
@@ -59,15 +60,11 @@ public struct GetCalendarEventsRequest: APIRequestable {
     public var query: [APIQueryItem] {
         var query: [APIQueryItem] = [
             .value("type", type.rawValue),
-            .value("per_page", String(perPage)),
+            .perPage(perPage),
             .include(include.map { $0.rawValue }),
+            .optionalValue("start_date", startDate.map(GetCalendarEventsRequest.dateFormatter.string)),
+            .optionalValue("end_date", endDate.map(GetCalendarEventsRequest.dateFormatter.string)),
         ]
-        if let startDate = startDate {
-            query.append(.value("start_date", GetCalendarEventsRequest.dateFormatter.string(from: startDate)))
-        }
-        if let endDate = endDate {
-            query.append(.value("end_date", GetCalendarEventsRequest.dateFormatter.string(from: endDate)))
-        }
         if let contexts = contexts {
             query.append(.array("context_codes", contexts.map { $0.canvasContextID }))
         }

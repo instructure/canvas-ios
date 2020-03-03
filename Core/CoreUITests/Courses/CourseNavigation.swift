@@ -19,40 +19,16 @@
 import XCTest
 import TestsFoundation
 
-enum CourseNavigation {
-    static var announcements: Element {
-        return app.find(id: "courses-details.announcements-cell")
-    }
+public enum CourseNavigation: String, ElementWrapper, CaseIterable {
+    case announcements
+    case assignments
+    case discussions
+    case files
+    case grades
+    case modules
+    case pages
+    case people
+    case quizzes
 
-    static var assignments: Element {
-        return app.find(id: "courses-details.assignments-cell")
-    }
-
-    static var discussions: Element {
-        return app.find(id: "courses-details.discussions-cell")
-    }
-
-    static var files: Element {
-        return app.find(id: "courses-details.files-cell")
-    }
-
-    static var grades: Element {
-        return app.find(id: "courses-details.grades-cell")
-    }
-
-    static var modules: Element {
-        return app.find(id: "courses-details.modules-cell")
-    }
-
-    static var pages: Element {
-        return app.find(id: "courses-details.pages-cell")
-    }
-
-    static var people: Element {
-        return app.find(id: "courses-details.people-cell")
-    }
-
-    static var quizzes: Element {
-        return app.find(id: "courses-details.quizzes-cell")
-    }
+    public var id: String { "courses-details.\(rawValue)-cell" }
 }

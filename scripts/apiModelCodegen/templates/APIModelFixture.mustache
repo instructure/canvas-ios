@@ -4,13 +4,13 @@ import Foundation
 extension API{{entity}} {
     public static func make(
     {{# properties }}
-    	{{ name }}: {{type}} = "<{{name}}>",
-    {{/ properties }}        
+        {{ name }}: {{type}} = "<{{name}}>",
+    {{/ properties }}
     ) -> API{{entity}} {
         return API{{entity}}(
-	    {{# properties }}
-			{{name}}: {{name}},  
-	    {{/ properties }}        
+        {{# properties }}
+            {{name}}: {{name}},
+        {{/ properties }}
         )
     }
 }
