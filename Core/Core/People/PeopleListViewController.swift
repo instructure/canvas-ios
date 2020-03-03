@@ -71,6 +71,7 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
         emptyMessageLabel.text = NSLocalizedString("We couldn’t find somebody like that.", bundle: .core, comment: "")
         emptyTitleLabel.text = NSLocalizedString("No Results", bundle: .core, comment: "")
         errorView.messageLabel.text = NSLocalizedString("There was an error loading people. Pull to refresh to try again.", bundle: .core, comment: "")
+errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         searchBar.placeholder = NSLocalizedString("Search", bundle: .core, comment: "")
         searchBar.backgroundColor = .named(.backgroundLightest)
