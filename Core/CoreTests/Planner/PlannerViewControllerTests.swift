@@ -40,13 +40,15 @@ class PlannerViewControllerTests: CoreTestCase {
         controller.calendar.delegate?.calendarDidSelectDate(Clock.now)
         XCTAssertEqual(controller.calendar.selectedDate, Clock.now)
 
+        // hide first calendar
         api.mock(GetCoursesRequest(enrollmentState: .active, state: [.available], include: [.observed_users], perPage: 100), value: [
             .make(id: "1", course_code: "BIO 101", enrollments: [.make(associated_user_id: "1")]),
             .make(id: "2", course_code: "BIO 102", enrollments: [.make(associated_user_id: "1")]),
         ])
+        XCTAssertEqual(controller.list.plannables?.useCase.contextCodes, []) // planner nil
         XCTAssertEqual(controller.calendar.filterButton.title(for: .normal), "Calendars")
         controller.calendar.delegate?.calendarWillFilter()
-        let filter = router.presented as! PlannerFilterViewController
+        var filter = router.presented as! PlannerFilterViewController
         filter.view.layoutIfNeeded()
         filter.tableView.delegate?.tableView?(filter.tableView!, didSelectRowAt: IndexPath(row: 0, section: 0))
         router.dismiss()
@@ -55,6 +57,14 @@ class PlannerViewControllerTests: CoreTestCase {
         XCTAssert(controller.list.plannables?.useCase.contextCodes.contains("course_2") == true)
         XCTAssert(controller.calendar.days.plannables?.useCase.contextCodes.contains("user_1") == true)
         XCTAssert(controller.list.plannables?.useCase.contextCodes.contains("user_1") == true)
+
+        // select all calendars
+        controller.calendar.filterButton.sendActions(for: .primaryActionTriggered)
+        filter = router.presented as! PlannerFilterViewController
+        filter.view.layoutIfNeeded()
+        filter.tableView.delegate?.tableView?(filter.tableView!, didSelectRowAt: IndexPath(row: 0, section: 0))
+        router.dismiss()
+        XCTAssertEqual(controller.list.plannables?.useCase.contextCodes, []) // all selected
 
         let height: CGFloat = controller.calendar.maxHeight
         controller.calendar.delegate?.calendarDidResize(height: height, animated: false)
