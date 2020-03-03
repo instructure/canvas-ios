@@ -180,6 +180,6 @@ extension PlannerViewController: UIPageViewControllerDataSource, UIPageViewContr
     }
 
     public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        calendar.updateSelectedDate(list.start)
+        calendar.showDate(list.start)
     }
 }
