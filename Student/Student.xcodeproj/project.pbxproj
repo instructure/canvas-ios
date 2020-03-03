@@ -23,7 +23,6 @@
 		3B8404502360F36B00D39060 /* AssignmentListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B84044F2360F36B00D39060 /* AssignmentListViewController.storyboard */; };
 		492704771CF4AF7100C631C6 /* CanvasAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492704761CF4AF7100C631C6 /* CanvasAppDelegate.swift */; };
 		492706A11CF4B93F00C631C6 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492706A01CF4B93F00C631C6 /* RootViewController.swift */; };
-		49383CE21F848353009C8F8E /* Session+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49383CE11F84834A009C8F8E /* Session+Login.swift */; };
 		495D8BB91CFE17D700D41098 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495D8BBB1CFE17D700D41098 /* LaunchScreen.storyboard */; };
 		49642BC61CF4C4DC00238B3F /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; };
 		49642BC71CF4C4DC00238B3F /* CanvasKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -429,7 +428,6 @@
 		492704761CF4AF7100C631C6 /* CanvasAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasAppDelegate.swift; sourceTree = "<group>"; };
 		492704821CF4AF7100C631C6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		492706A01CF4B93F00C631C6 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		49383CE11F84834A009C8F8E /* Session+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+Login.swift"; sourceTree = "<group>"; };
 		495D8BBA1CFE17D700D41098 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49642BC31CF4C4CD00238B3F /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49642BCA1CF4C66200238B3F /* Student.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Student.entitlements; sourceTree = "<group>"; };
@@ -1080,14 +1078,6 @@
 			path = Student;
 			sourceTree = "<group>";
 		};
-		49383CE01F84834A009C8F8E /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				49383CE11F84834A009C8F8E /* Session+Login.swift */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
 		496D31221CF7528500A3B11E /* Shrug */ = {
 			isa = PBXGroup;
 			children = (
@@ -1252,7 +1242,6 @@
 			isa = PBXGroup;
 			children = (
 				49A04E721CF64ED90051E1E7 /* Calendar */,
-				49383CE01F84834A009C8F8E /* Login */,
 				B1E3D6DF1D8305B100B4AC11 /* Modules */,
 				49A04E521CF64C320051E1E7 /* Notifications */,
 				7DC1140F22F9E32E000B19AE /* Pages */,
@@ -2731,7 +2720,6 @@
 				7DCF0FB022F8A8D7000AACCE /* RubricCircleView.swift in Sources */,
 				7DCF0FAD22F8A8D7000AACCE /* RubricPresenter.swift in Sources */,
 				7DCF0FB922F8A8D7000AACCE /* SubmissionCommentsViewController.swift in Sources */,
-				49383CE21F848353009C8F8E /* Session+Login.swift in Sources */,
 				7DCF0F8C22F8A84D000AACCE /* StudentSyllabusViewController.swift in Sources */,
 				7DCF0F7B22F8A81B000AACCE /* DashboardPresenter.swift in Sources */,
 				7DCF0F8122F8A82C000AACCE /* AssignmentListViewController.swift in Sources */,

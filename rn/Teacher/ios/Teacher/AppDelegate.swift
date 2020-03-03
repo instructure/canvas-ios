@@ -18,7 +18,6 @@
 
 import AVKit
 import UIKit
-import CanvasKit
 import ReactiveSwift
 import UserNotifications
 import PSPDFKit
@@ -82,37 +81,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
             Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)
         }
-        // Legacy CanvasKit support
-        let legacyClient = CKIClient(
-            baseURL: session.baseURL,
-            token: session.accessToken ?? "",
-            refreshToken: session.refreshToken,
-            clientID: session.clientID,
-            clientSecret: session.clientSecret
-        )!
-        legacyClient.actAsUserID = session.actAsUserID
-        legacyClient.originalIDOfMasqueradingUser = session.originalUserID
-        legacyClient.originalBaseURL = session.originalBaseURL
+
         let getProfile = GetUserProfileRequest(userID: "self")
         environment.api.makeRequest(getProfile) { response, urlResponse, error in
-            guard let profile = response, error == nil else {
+            guard response != nil, error == nil else {
                 if urlResponse?.isUnauthorized == true {
                     DispatchQueue.main.async { self.userDidLogout(session: session) }
                 }
                 return
             }
-            let legacyUser = CKIUser()
-            legacyUser?.id = session.userID
-            legacyUser?.name = session.userName
-            legacyUser?.sortableName = session.userName
-            legacyUser?.shortName = session.userName
-            legacyUser?.avatarURL = profile.avatar_url?.rawValue
-            legacyUser?.loginID = profile.login_id
-            legacyUser?.email = profile.primary_email
-            legacyUser?.calendar = profile.calendar?.ics
-            legacyUser?.sisUserID = ""
-            legacyClient.setValue(legacyUser, forKey: "currentUser")
-            CKIClient.current = legacyClient
             GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
                 Brand.setCurrent(Brand(core: Core.Brand.shared), applyInWindow: self.window)
                 NativeLoginManager.login(as: session)

@@ -17,7 +17,6 @@
 //
 
 import Foundation
-import CanvasKit
 import CanvasCore
 
 /** Keeps Modules and Assignments UI up to date course progress
@@ -47,15 +46,15 @@ extension CanvasCore.Progress {
 
         let kind: CanvasCore.Progress.Kind
         switch noteKind {
-        case CKIModuleItemCompletionRequirementMustView:
+        case "must_view":
             kind = .viewed
-        case CKIModuleItemCompletionRequirementMustSubmit:
+        case "must_submit":
             kind = .submitted
-        case CKIModuleItemCompletionRequirementMustContribute:
+        case "must_contribute":
             kind = .contributed
-        case CKIModuleItemCompletionRequirementMustMarkDone:
+        case "must_mark_done":
             kind = .markedDone
-        case CKIModuleItemCompletionRequirementMinimumScore:
+        case "min_score":
             kind = .minimumScore
         default: fatalError("Unknown completion requirement")
         }

@@ -39,7 +39,6 @@ const thisYear = new Date().getFullYear()
 const ignoreExps = [
   /\.framework\/Headers\//i,
   /\.framework\/Versions\//i,
-  /CanvasKit1\/External Sources\//i,
   /node_modules/i,
   /jquery/i,
 ]
