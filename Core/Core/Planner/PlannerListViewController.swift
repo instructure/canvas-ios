@@ -106,7 +106,7 @@ extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let p = plannables?[indexPath], p.plannableType == .planner_note {
             let noteDetail = PlannerNoteDetailViewController.create(plannable: p)
-            env.router.show(noteDetail, from: self, options: .push)
+            env.router.show(noteDetail, from: self, options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true))
         } else if let url = plannables?[indexPath]?.htmlURL {
             env.router.route(to: url, from: self, options: .detail(embedInNav: true))
         }
