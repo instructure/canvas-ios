@@ -59,6 +59,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         didSet {
             if let student = currentStudent {
                 currentStudentID = student.id
+                env.userDefaults?.parentCurrentStudentID = student.id
                 let color = ColorScheme.observee(student.id).color
                 alertsTabItem.badgeColor = color
                 let displayName = Core.User.displayName(student.shortName, pronouns: student.pronouns)
@@ -416,7 +417,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     }
 
     func displayDefaultStudent() {
-        if let id = currentStudentID, let persistedStudent = students.filter({ $0.id == id }).first {
+        if let id = env.userDefaults?.parentCurrentStudentID, let persistedStudent = students.filter({ $0.id == id }).first {
             currentStudent = persistedStudent
         } else {
             currentStudent = studentAtIndex(0)

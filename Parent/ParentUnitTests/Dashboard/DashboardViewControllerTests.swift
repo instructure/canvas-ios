@@ -84,12 +84,11 @@ class DashboardViewControllerTests: ParentTestCase {
     }
 
     func testPersistedUserIsDefaultSelectedUser() {
-        UserDefaults.standard.set("3", forKey: ParentAppDelegate.currentStudentDefaultsKey)
-        UserDefaults.standard.synchronize()
+        env.userDefaults?.parentCurrentStudentID = "3"
 
         let students: [APIEnrollment] = [
             .make(observed_user: .make(id: "2")),
-            .make(observed_user: .make(id: "1", name: "Full Name", short_name: "User 3")),
+            .make(observed_user: .make(id: "3", name: "Full Name", short_name: "User 3")),
             .make(observed_user: .make(id: "4")),
         ]
         api.mock(GetObservedStudents(observerID: "1"), value: students)
@@ -101,26 +100,20 @@ class DashboardViewControllerTests: ParentTestCase {
         XCTAssertEqual(vc.navbarMenuStackView.arrangedSubviews.count, students.count + 1)
     }
 
-    func testPersistCurrentStudentWhenValueIsSet() {
-        UserDefaults.standard.set(nil, forKey: ParentAppDelegate.currentStudentDefaultsKey)
-        UserDefaults.standard.synchronize()
+    func testNoDefaultSelectedUser() {
+        env.userDefaults?.parentCurrentStudentID = nil
 
-        currentStudentID = "5"
+        let students: [APIEnrollment] = [
+            .make(observed_user: .make(id: "2", name: "Full Name", short_name: "User 2")),
+            .make(observed_user: .make(id: "3")),
+            .make(observed_user: .make(id: "4")),
+        ]
+        api.mock(GetObservedStudents(observerID: "1"), value: students)
 
-        let result = UserDefaults.standard.string(forKey: ParentAppDelegate.currentStudentDefaultsKey)
+        vc.viewDidLoad()
+        vc.viewDidAppear(false)
 
-        XCTAssertEqual(result, "5")
+        XCTAssertEqual(vc.navbarNameButton.titleLabel?.text, "User 2")
+        XCTAssertEqual(vc.navbarMenuStackView.arrangedSubviews.count, students.count + 1)
     }
-
-    func testPersistCurrentStudentClearedOnLogout() {
-        UserDefaults.standard.set("3", forKey: ParentAppDelegate.currentStudentDefaultsKey)
-        UserDefaults.standard.synchronize()
-
-        let appDelegate = UIApplication.shared.delegate as! ParentAppDelegate
-        appDelegate.userDidLogout(session: LoginSession.make())
-
-        let result = UserDefaults.standard.string(forKey: ParentAppDelegate.currentStudentDefaultsKey)
-        XCTAssertNil(result)
-    }
-
 }
