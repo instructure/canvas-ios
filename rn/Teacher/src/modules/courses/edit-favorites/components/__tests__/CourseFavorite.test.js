@@ -19,47 +19,38 @@
 // @flow
 
 import 'react-native'
+import { shallow } from 'enzyme'
 import React from 'react'
 import CourseFavorite from '../CourseFavorite'
-import explore from '../../../../../../test/helpers/explore'
-import * as courseTemplate from '../../../../../__templates__/course'
-
-import renderer from 'react-test-renderer'
-
-jest.mock('TouchableHighlight', () => 'TouchableHighlight')
+import * as template from '../../../../../__templates__'
+import icon from '../../../../../images/inst-icons'
 
 let defaultProps = {
   id: '1',
-  course: courseTemplate.course(),
+  course: template.course(),
   isFavorite: true,
   onPress: () => Promise.resolve(),
 }
 
-test('renders favorited correctly', () => {
-  let tree = renderer.create(
-    <CourseFavorite {...defaultProps} />
-  ).toJSON()
+describe('CourseFavorite', () => {
+  it('renders favorited as selected', () => {
+    const tree = shallow(<CourseFavorite {...defaultProps} />)
+    expect(tree.prop('accessibilityRole')).toBe('button')
+    expect(tree.prop('accessibilityStates')).toEqual([ 'selected' ])
+    expect(tree.find('Image').prop('source')).toEqual(icon('star', 'solid'))
+  })
 
-  expect(tree).toMatchSnapshot()
-})
+  it('renders unfavorited without selected', () => {
+    const tree = shallow(<CourseFavorite {...defaultProps} isFavorite={false} />)
+    expect(tree.prop('accessibilityRole')).toBe('button')
+    expect(tree.prop('accessibilityStates')).toEqual([])
+    expect(tree.find('Image').prop('source')).toEqual(icon('star', 'line'))
+  })
 
-test('renders unfavorited correctly', () => {
-  let tree = renderer.create(
-    <CourseFavorite {...defaultProps} isFavorite={false} />
-  ).toJSON()
-
-  expect(tree).toMatchSnapshot()
-})
-
-test('calls props.onPress with the course id and the toggled favorite value', () => {
-  let onPress = jest.fn()
-  let tree = renderer.create(
-    <CourseFavorite {...defaultProps} onPress={onPress} />
-  ).toJSON()
-
-  let buttonTestID = 'edit-favorites.course-favorite.' + defaultProps.course.id + '-favorited'
-  let button: any = explore(tree).selectByID(buttonTestID)
-  button.props.onPress()
-
-  expect(onPress).toHaveBeenCalledWith(defaultProps.course.id, false)
+  it('calls props.onPress with the course id and the toggled favorite value', () => {
+    const onPress = jest.fn()
+    const tree = shallow(<CourseFavorite {...defaultProps} onPress={onPress} />)
+    tree.simulate('Press')
+    expect(onPress).toHaveBeenCalledWith(defaultProps.course.id, false)
+  })
 })
