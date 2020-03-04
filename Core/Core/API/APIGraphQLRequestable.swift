@@ -42,7 +42,7 @@ extension APIGraphQLRequestable {
     public static var operationName: String {
         "\(self)"
     }
-    public var body: GraphQLBody<Variables> {
+    public var body: GraphQLBody<Variables>? {
         GraphQLBody(query: Self.query, operationName: Self.operationName, variables: variables)
     }
 }

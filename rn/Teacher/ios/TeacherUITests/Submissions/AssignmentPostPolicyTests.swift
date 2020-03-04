@@ -44,7 +44,7 @@ class AssignmentPostPolicyTests: TeacherUITestCase {
         PostPolicy.togglePostToSections.toggleOn()
         PostPolicy.postToSectionToggle(id: "1").toggleOn()
 
-        mockGraphQL(operationName: "PostAssignmentGrades", [
+        mockGraphQL(operationName: PostAssignmentGradesPostPolicyRequest.operationName, [
             "data": [ "postAssignmentGradesForSections": [ "assignment": [ "id": "1" ] ] ],
         ])
         mockGraphQL(GetAssignmentPostPolicyInfoRequest(courseID: "1", assignmentID: "1"),
@@ -58,7 +58,7 @@ class AssignmentPostPolicyTests: TeacherUITestCase {
         PostPolicy.toggleHideGradeSections.toggleOn()
         PostPolicy.hideSectionToggle(id: "1").toggleOn()
 
-        mockGraphQL(operationName: "HideAssignmentGrades", [
+        mockGraphQL(operationName: HideAssignmentGradesPostPolicyRequest.operationName, [
             "data": [ "hideAssignmentGradesForSections": [ "assignment": [ "id": "1" ] ] ],
         ])
         PostPolicy.hideGradesButton.tap()
