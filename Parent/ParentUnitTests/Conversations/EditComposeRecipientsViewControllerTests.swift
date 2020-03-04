@@ -44,13 +44,7 @@ class EditComposeRecipientsViewControllerTests: ParentTestCase {
             full_name: "C",
             common_courses: [courseID: ["TeacherEnrollment"]]
         )
-        let observee = APISearchRecipient.make(
-            id: "1",
-            name: "A",
-            full_name: "A",
-            pronouns: "He/Him",
-            common_courses: [courseID: ["StudentEnrollment"]]
-        )
+
         let ta = APISearchRecipient.make(
             id: "4",
             name: "D",
@@ -59,7 +53,6 @@ class EditComposeRecipientsViewControllerTests: ParentTestCase {
         )
         api.mock(controller.teachers, value: [teacher, teacher2])
         api.mock(controller.tas, value: [ta])
-        api.mock(controller.observee!, value: [observee])
         controller.delegate = self
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.tableView?.numberOfSections, 1)
