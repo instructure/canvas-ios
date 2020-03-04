@@ -116,6 +116,7 @@ extension EditComposeRecipientsViewController: UITableViewDataSource, UITableVie
         cell.avatarView.url = person.avatarURL
         cell.isSelected = selectedRecipients.contains(person)
         cell.selectedView.isHidden = !cell.isSelected
+        cell.selectedView.layoutIfNeeded()
         return cell
     }
 
