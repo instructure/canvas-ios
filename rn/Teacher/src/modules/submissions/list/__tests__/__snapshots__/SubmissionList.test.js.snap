@@ -58,6 +58,7 @@ exports[`SubmissionList loaded 1`] = `
       </View>
       <View
         accessibilityLabel="Filter Submissions. (0) selected."
+        accessibilityRole="button"
         accessible={true}
         hitSlop={
           Object {
@@ -829,6 +830,7 @@ exports[`SubmissionList renders correctly with empty list 1`] = `
       </View>
       <View
         accessibilityLabel="Filter Submissions. (0) selected."
+        accessibilityRole="button"
         accessible={true}
         hitSlop={
           Object {
