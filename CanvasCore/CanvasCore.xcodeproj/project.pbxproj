@@ -110,7 +110,6 @@
 		493020761F902462006BD777 /* NSDate+Marshal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020691F902461006BD777 /* NSDate+Marshal.swift */; };
 		493020781F902462006BD777 /* SessionUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930206B1F902461006BD777 /* SessionUser.swift */; };
 		493020791F902462006BD777 /* ContextID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930206D1F902462006BD777 /* ContextID.swift */; };
-		49383CE61F848652009C8F8E /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49383CDE1F846FCB009C8F8E /* CanvasKit.framework */; };
 		49383CF31F8498DA009C8F8E /* CanvasCore.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49383CF21F8498DA009C8F8E /* CanvasCore.xcassets */; };
 		49383CF61F849933009C8F8E /* inboxTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49383CF51F849933009C8F8E /* inboxTab.swift */; };
 		494AE08A1F8436C1001A8F31 /* NativeLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0881F8436C1001A8F31 /* NativeLoginManager.m */; };
@@ -579,7 +578,6 @@
 		493020691F902461006BD777 /* NSDate+Marshal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Marshal.swift"; sourceTree = "<group>"; };
 		4930206B1F902461006BD777 /* SessionUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionUser.swift; sourceTree = "<group>"; };
 		4930206D1F902462006BD777 /* ContextID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextID.swift; sourceTree = "<group>"; };
-		49383CDE1F846FCB009C8F8E /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49383CF21F8498DA009C8F8E /* CanvasCore.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CanvasCore.xcassets; sourceTree = "<group>"; };
 		49383CF51F849933009C8F8E /* inboxTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inboxTab.swift; sourceTree = "<group>"; };
 		494AE0871F8436C0001A8F31 /* NativeLoginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeLoginManager.h; sourceTree = "<group>"; };
@@ -1058,7 +1056,6 @@
 				B1F405FB22E23D28008FAFE6 /* ReactiveObjC.framework in Frameworks */,
 				F9B946EC221491F00083E660 /* PSPDFKit.framework in Frameworks */,
 				F9B946ED221491F00083E660 /* PSPDFKitUI.framework in Frameworks */,
-				49383CE61F848652009C8F8E /* CanvasKit.framework in Frameworks */,
 				630085E9F4EBC97E435FFE64 /* Pods_defaults_CanvasCore.framework in Frameworks */,
 				7D0215A321BAE703009A8E69 /* Core.framework in Frameworks */,
 			);
@@ -1075,7 +1072,6 @@
 				B1F405F522E23D28008FAFE6 /* ReactiveObjC.framework */,
 				B1F405F222E23D27008FAFE6 /* ReactiveObjCBridge.framework */,
 				B1F405F322E23D28008FAFE6 /* ReactiveSwift.framework */,
-				49383CDE1F846FCB009C8F8E /* CanvasKit.framework */,
 				7D0215A221BAE703009A8E69 /* Core.framework */,
 				801BC15BB71585F55A4CD6C8 /* Pods_defaults_CanvasCore.framework */,
 				0C6ED514BCD5F05D551BC00B /* Pods_defaults_CanvasCoreTests.framework */,

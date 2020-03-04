@@ -24,8 +24,6 @@
 		492704771CF4AF7100C631C6 /* CanvasAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492704761CF4AF7100C631C6 /* CanvasAppDelegate.swift */; };
 		492706A11CF4B93F00C631C6 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492706A01CF4B93F00C631C6 /* RootViewController.swift */; };
 		495D8BB91CFE17D700D41098 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495D8BBB1CFE17D700D41098 /* LaunchScreen.storyboard */; };
-		49642BC61CF4C4DC00238B3F /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; };
-		49642BC71CF4C4DC00238B3F /* CanvasKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		496D31261CF752C600A3B11E /* LegacyModuleProgressShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */; };
 		4976C2001FBB84B900160EE4 /* CalendarEventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4976C1FF1FBB84B900160EE4 /* CalendarEventDetailViewController.swift */; };
 		49A04E541CF64C510051E1E7 /* NotificationsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E531CF64C510051E1E7 /* NotificationsTab.swift */; };
@@ -351,7 +349,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				7DBF920322690E9400710D0F /* CanvasCore.framework in Embed Frameworks */,
-				49642BC71CF4C4DC00238B3F /* CanvasKit.framework in Embed Frameworks */,
 				7D1D7E06213743D300F7CCFE /* Core.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -391,11 +388,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		00A2F765EB4E7EB599C4B4D3 /* Pods_CanvasKit1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasKit1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0140CE78FC9C4BBA05DC4CEE /* Pods-CanvasKit1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasKit1.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-CanvasKit1/Pods-CanvasKit1.debug.xcconfig"; sourceTree = "<group>"; };
-		04620E9714197D5A7E2A2FBF /* Pods_TechDebt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TechDebt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05CB0F553F9954BEE58A730D /* Pods_defaults_Student.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Student.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0DA5C940444CD8D6EE575C91 /* Pods-CanvasKit1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasKit1.release.xcconfig"; path = "../Pods/Target Support Files/Pods-CanvasKit1/Pods-CanvasKit1.release.xcconfig"; sourceTree = "<group>"; };
 		1617CAD552082AC99A178C4E /* Pods_defaults_common_ui_tests_StudentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_ui_tests_StudentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1624D39115A77E2B728908FB /* Pods_defaults_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C250EDA2321EF6AAC5611D3 /* Pods-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-CanvasTests/Pods-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -417,7 +410,6 @@
 		2C8E356D20939C2D0071ED94 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2CE205B720EBF68F002A6A64 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2F60CD48D1AD6AD81369BEFD /* Pods-defaults-PreSubmissionAnnotations.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-PreSubmissionAnnotations.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-PreSubmissionAnnotations/Pods-defaults-PreSubmissionAnnotations.debug.xcconfig"; sourceTree = "<group>"; };
-		3105EE2FF7DE0582A458F38F /* Pods-defaults-TechDebt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TechDebt.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-TechDebt/Pods-defaults-TechDebt.debug.xcconfig"; sourceTree = "<group>"; };
 		3B5542472369F9F4007D3CE0 /* AssignmentListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentListViewControllerTests.swift; sourceTree = "<group>"; };
 		3B6DCCA51FB502CD005EE8D2 /* GradesWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GradesWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B6DCCA61FB502CE005EE8D2 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -429,7 +421,6 @@
 		492704821CF4AF7100C631C6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		492706A01CF4B93F00C631C6 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		495D8BBA1CFE17D700D41098 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		49642BC31CF4C4CD00238B3F /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49642BCA1CF4C66200238B3F /* Student.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Student.entitlements; sourceTree = "<group>"; };
 		496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyModuleProgressShim.swift; sourceTree = "<group>"; };
 		4976C1FF1FBB84B900160EE4 /* CalendarEventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailViewController.swift; sourceTree = "<group>"; };
@@ -564,7 +555,6 @@
 		61CF10AC1DBFF98800B68E45 /* MasteryPathAssignmentInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasteryPathAssignmentInfoCell.swift; sourceTree = "<group>"; };
 		61D7185C1DB7CA070081D56A /* MasteryPathSelectOptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasteryPathSelectOptionViewController.swift; sourceTree = "<group>"; };
 		61F438E21DD4E60B00552D14 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		677E77AB5FD06818BC7C618D /* Pods-defaults-CanvasKit1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKit1.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasKit1/Pods-defaults-CanvasKit1.debug.xcconfig"; sourceTree = "<group>"; };
 		6784CACE8F4CE3D651D62113 /* Pods_defaults_PreSubmissionAnnotations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_PreSubmissionAnnotations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68EB67BC259EAA38000B1E9F /* Pods-defaults-common_ui_tests-StudentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-StudentUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_ui_tests-StudentUITests/Pods-defaults-common_ui_tests-StudentUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A41FB3501A555E20167FCFB /* Pods-defaults-PreSubmissionAnnotations.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-PreSubmissionAnnotations.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-PreSubmissionAnnotations/Pods-defaults-PreSubmissionAnnotations.release.xcconfig"; sourceTree = "<group>"; };
@@ -763,9 +753,7 @@
 		7DF8136B1FE1CCA600006315 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7DF9CAFE1FE1CD26007D97AD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7DF9CB001FE1CD27007D97AD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		84BE025DDD28359B14D38BA4 /* Pods-TechDebt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechDebt.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TechDebt/Pods-TechDebt.debug.xcconfig"; sourceTree = "<group>"; };
 		873A063BCDC8884CD0C89EAD /* Pods-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-CanvasTests/Pods-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
-		962C895A87C658B3F80897FF /* Pods-TechDebt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechDebt.release.xcconfig"; path = "../Pods/Target Support Files/Pods-TechDebt/Pods-TechDebt.release.xcconfig"; sourceTree = "<group>"; };
 		9734351423866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStreamViewControllerTests.swift; sourceTree = "<group>"; };
 		9767F2A12383C741006633CA /* ActivityStreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityStreamViewController.swift; sourceTree = "<group>"; };
 		9767F2A22383C741006633CA /* ActivityStreamViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ActivityStreamViewController.storyboard; sourceTree = "<group>"; };
@@ -868,8 +856,6 @@
 		B5F122D01D8C4E050045063A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B75B05C5859701C8F14179C5 /* Pods-defaults-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasTests/Pods-defaults-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BEDDBB798D4D4EA95C1F9796 /* Pods-defaults-StudentUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-StudentUnitTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-StudentUnitTests/Pods-defaults-StudentUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
-		C2AB6A9FA96CE49682022ACB /* Pods_defaults_CanvasKit1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasKit1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D8523687029A98FE14374D90 /* Pods-defaults-CanvasKit1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKit1.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasKit1/Pods-defaults-CanvasKit1.release.xcconfig"; sourceTree = "<group>"; };
 		E841D89E23D6467900685A63 /* CoreE2ETests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CoreE2ETests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E879CF29230386CD00988DAB /* E2ETestsFromCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = E2ETestsFromCore.swift; sourceTree = "<group>"; };
 		E8AD066723035B0900D498ED /* CoreUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -886,11 +872,9 @@
 		E8EA860D230497AC00E4FD76 /* PeopleE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleE2ETests.swift; sourceTree = "<group>"; };
 		E8EA86122304980000E4FD76 /* QuizzesE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizzesE2ETests.swift; sourceTree = "<group>"; };
 		E8EA86172304A39500E4FD76 /* DashboardEmptyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardEmptyTests.swift; sourceTree = "<group>"; };
-		E95379D1460BDF2C6A9F2EEE /* Pods-defaults-TechDebt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TechDebt.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-TechDebt/Pods-defaults-TechDebt.release.xcconfig"; sourceTree = "<group>"; };
 		F9A705E826B362C3490B4183 /* Pods-defaults-common_tests-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 		F9B946EE221492040083E660 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../Carthage/Build/iOS/PSPDFKit.framework; sourceTree = "<group>"; };
 		F9B946EF221492040083E660 /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = ../Carthage/Build/iOS/PSPDFKitUI.framework; sourceTree = "<group>"; };
-		FB53AA8A26564C052A94E885 /* Pods_defaults_TechDebt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_TechDebt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -915,7 +899,6 @@
 				2C67B0C61E01F05A00DDD191 /* AssetsLibrary.framework in Frameworks */,
 				61F438E31DD4E60B00552D14 /* AVFoundation.framework in Frameworks */,
 				7DBF920222690E9400710D0F /* CanvasCore.framework in Frameworks */,
-				49642BC61CF4C4DC00238B3F /* CanvasKit.framework in Frameworks */,
 				7D1D7E05213743D300F7CCFE /* Core.framework in Frameworks */,
 				2C67B0CC1E01F06800DDD191 /* CoreMedia.framework in Frameworks */,
 				2C67B0C81E01F05F00DDD191 /* CoreTelephony.framework in Frameworks */,
@@ -991,18 +974,10 @@
 		3BFCA4310566C5CB96383521 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				84BE025DDD28359B14D38BA4 /* Pods-TechDebt.debug.xcconfig */,
-				962C895A87C658B3F80897FF /* Pods-TechDebt.release.xcconfig */,
-				0140CE78FC9C4BBA05DC4CEE /* Pods-CanvasKit1.debug.xcconfig */,
-				0DA5C940444CD8D6EE575C91 /* Pods-CanvasKit1.release.xcconfig */,
 				1C250EDA2321EF6AAC5611D3 /* Pods-CanvasTests.debug.xcconfig */,
 				873A063BCDC8884CD0C89EAD /* Pods-CanvasTests.release.xcconfig */,
-				677E77AB5FD06818BC7C618D /* Pods-defaults-CanvasKit1.debug.xcconfig */,
-				D8523687029A98FE14374D90 /* Pods-defaults-CanvasKit1.release.xcconfig */,
 				B75B05C5859701C8F14179C5 /* Pods-defaults-CanvasTests.debug.xcconfig */,
 				99747510483FA8853301B9F5 /* Pods-defaults-CanvasTests.release.xcconfig */,
-				3105EE2FF7DE0582A458F38F /* Pods-defaults-TechDebt.debug.xcconfig */,
-				E95379D1460BDF2C6A9F2EEE /* Pods-defaults-TechDebt.release.xcconfig */,
 				6181E615D15EF2EA5E2642B7 /* Pods-defaults-common_tests-CanvasTests.debug.xcconfig */,
 				F9A705E826B362C3490B4183 /* Pods-defaults-common_tests-CanvasTests.release.xcconfig */,
 				2F60CD48D1AD6AD81369BEFD /* Pods-defaults-PreSubmissionAnnotations.debug.xcconfig */,
@@ -1119,7 +1094,6 @@
 				2C67B0C51E01F05A00DDD191 /* AssetsLibrary.framework */,
 				61F438E21DD4E60B00552D14 /* AVFoundation.framework */,
 				2C6049621F72BB6900252BC5 /* CanvasCore.framework */,
-				49642BC31CF4C4CD00238B3F /* CanvasKit.framework */,
 				B1BB7A9022BADAC1006CA068 /* Core.framework */,
 				7D1D7E04213743D300F7CCFE /* Core.framework */,
 				E841D89E23D6467900685A63 /* CoreE2ETests.framework */,
@@ -1131,17 +1105,13 @@
 				49A04E7C1CF653050051E1E7 /* libc++.tbd */,
 				49A04DAC1CF4F65D0051E1E7 /* libxml2.tbd */,
 				3B6DCCA61FB502CE005EE8D2 /* NotificationCenter.framework */,
-				00A2F765EB4E7EB599C4B4D3 /* Pods_CanvasKit1.framework */,
 				55719F36E10A651448BD4F1C /* Pods_CanvasTests.framework */,
-				C2AB6A9FA96CE49682022ACB /* Pods_defaults_CanvasKit1.framework */,
 				1624D39115A77E2B728908FB /* Pods_defaults_CanvasTests.framework */,
 				A025F6634B44F7120D41717E /* Pods_defaults_common_tests_CanvasTests.framework */,
 				1617CAD552082AC99A178C4E /* Pods_defaults_common_ui_tests_StudentUITests.framework */,
 				6784CACE8F4CE3D651D62113 /* Pods_defaults_PreSubmissionAnnotations.framework */,
 				05CB0F553F9954BEE58A730D /* Pods_defaults_Student.framework */,
 				60DEFAEF2C9B9DFE5512CC77 /* Pods_defaults_StudentUnitTests.framework */,
-				FB53AA8A26564C052A94E885 /* Pods_defaults_TechDebt.framework */,
-				04620E9714197D5A7E2A2FBF /* Pods_TechDebt.framework */,
 				F9B946EE221492040083E660 /* PSPDFKit.framework */,
 				F9B946EF221492040083E660 /* PSPDFKitUI.framework */,
 				2C67B0CF1E01F07800DDD191 /* QuartzCore.framework */,

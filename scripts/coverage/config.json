@@ -9,7 +9,6 @@
     "TabBar.\\w+$",
     "\\/Views\\/",
     "CanvasCore\/",
-    "CanvasKit1\/",
     "Core\/Use Cases\/SubmitFileSubmission",
     "Frameworks\/",
     "Parent\/",
@@ -18,7 +17,6 @@
     "Student\/Courses\/CourseList\/",
     "Student\/Dashboard\/",
     "Student\/GradesWidget\/",
-    "TechDebt\/",
     "UITestHelpers\/",
     "rn/Teacher\/src\/modules\/graphql-speed-grader\/",
     "SubmissionButtonPresenter.swift"
