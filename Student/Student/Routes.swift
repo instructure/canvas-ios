@@ -17,7 +17,6 @@
 //
 
 import CanvasCore
-import CanvasKit
 import Core
 
 public let router: Router = {

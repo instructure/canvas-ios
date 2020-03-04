@@ -64,37 +64,37 @@ static NSString *WebViewKeyPath = @"webView.scrollView.contentSize";
         _webView.frame = self.bounds;
         self.contentSize = CGSizeZero;
         
-        @weakify(self);
+        typeof(self) __weak weakSelf = self;
         _webView.finishedLoading = ^{
-            @strongify(self);
+            typeof(weakSelf) self = weakSelf;
             if (self.onFinishedLoading) {
                 self.onFinishedLoading(@{});
             }
         };
         
         _webView.onMessage = ^(NSDictionary<NSString *,id> * _Nonnull message) {
-            @strongify(self);
+            typeof(weakSelf) self = weakSelf;
             if (self.onMessage) {
                 self.onMessage(message);
             }
         };
         
         _webView.onHeightChange = ^(NSDictionary<NSString *,id> * _Nonnull message) {
-            @strongify(self);
+            typeof(weakSelf) self = weakSelf;
             if (self.onHeightChange) {
                 self.onHeightChange(message);
             }
         };
         
         _webView.onError = ^(NSError * _Nonnull error) {
-            @strongify(self);
+            typeof(weakSelf) self = weakSelf;
             if (self.onError) {
                 self.onError(@{@"error": error.localizedDescription});
             }
         };
 
         _webView.onRefresh = ^{
-            @strongify(self);
+            typeof(weakSelf) self = weakSelf;
             if (self.onRefresh) {
                 self.onRefresh(@{});
             }
@@ -147,9 +147,9 @@ static NSString *WebViewKeyPath = @"webView.scrollView.contentSize";
             if (![baseURL isKindOfClass:[NSURL class]]) {
                 baseURL = [NSURL URLWithString:@"about:blank"];
             }
-            @weakify(self);
+            typeof(self) __weak weakSelf = self;
             [_webView loadWithHtml:html title:nil baseURL:baseURL routeToURL:^(NSURL * _Nonnull url) {
-                @strongify(self);
+                typeof(weakSelf) self = weakSelf;
                 if (self.onNavigation) {
                     self.onNavigation(@{@"url": url.absoluteString});
                 }
@@ -230,9 +230,9 @@ static NSString *WebViewKeyPath = @"webView.scrollView.contentSize";
 
 -(void)setOpenLinksInSafari:(BOOL)openLinksInSafari
 {
-    @weakify(self);
+    typeof(self) __weak weakSelf = self;
     [_webView setNavigationHandlerWithRouteToURL:^(NSURL * _Nonnull url) {
-        @strongify(self);
+        typeof(weakSelf) self = weakSelf;
         if (self.onNavigation) {
             self.onNavigation(@{@"url": url.absoluteString});
         }

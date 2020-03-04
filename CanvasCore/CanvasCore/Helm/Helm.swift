@@ -18,7 +18,6 @@
 
 import UIKit
 import SafariServices
-import CanvasKit
 import React
 import Core
 

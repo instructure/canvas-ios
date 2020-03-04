@@ -56,20 +56,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607531D8125D8B916A7B324EDB16639A"
-               BuildableName = "Pods_defaults_CanvasKit.framework"
-               BlueprintName = "Pods-defaults-CanvasKit"
-               ReferencedContainer = "container:../../../Pods/Pods.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "47CCF1D9F019FFC6546DA481B71A2C4E"
                BuildableName = "Mantle.framework"
                BlueprintName = "Mantle"

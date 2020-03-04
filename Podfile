@@ -111,10 +111,6 @@ abstract_target 'defaults' do
     pod 'Crashlytics', '~> 3.14.0'
   end
 
-  target 'CanvasKit' do
-    project 'Frameworks/CanvasKit/CanvasKit.xcodeproj'
-  end
-
 end
 
 post_install do |installer|

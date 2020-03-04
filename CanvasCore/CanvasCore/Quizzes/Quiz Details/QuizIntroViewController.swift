@@ -18,7 +18,6 @@
 
 import UIKit
 import Cartography
-import CanvasKit
 import Core
 
 open class QuizIntroViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {

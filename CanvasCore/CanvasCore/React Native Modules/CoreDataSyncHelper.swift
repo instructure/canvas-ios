@@ -19,7 +19,6 @@
 import Foundation
 import ReactiveSwift
 import Marshal
-import CanvasKit
 
 private enum ActionType: String {
     case refreshCourses = "courses.refresh"

@@ -19,7 +19,6 @@
 import AVKit
 import UIKit
 import PSPDFKit
-import CanvasKit
 import Fabric
 import Crashlytics
 import CanvasCore
@@ -88,34 +87,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
             Analytics.setUserProperty(session.baseURL.absoluteString, forName: "base_url")
         }
 
-        // Legacy CanvasKit support
-        let legacyClient = CKIClient(
-            baseURL: session.baseURL,
-            token: session.accessToken ?? "",
-            refreshToken: session.refreshToken,
-            clientID: session.clientID,
-            clientSecret: session.clientSecret
-        )!
-        legacyClient.actAsUserID = session.actAsUserID
-        legacyClient.originalIDOfMasqueradingUser = session.originalUserID
-        legacyClient.originalBaseURL = session.originalBaseURL
         let getProfile = GetUserProfileRequest(userID: "self")
-        environment.api.makeRequest(getProfile) { response, urlResponse, _ in
+        environment.api.makeRequest(getProfile) { _, urlResponse, _ in
             if urlResponse?.isUnauthorized == true, !session.isFakeStudent {
                 DispatchQueue.main.async { self.userDidLogout(session: session) }
             }
-            let legacyUser = CKIUser()
-            legacyUser?.id = session.userID
-            legacyUser?.name = session.userName
-            legacyUser?.sortableName = session.userName
-            legacyUser?.shortName = session.userName
-            legacyUser?.avatarURL = response?.avatar_url?.rawValue ?? session.userAvatarURL
-            legacyUser?.loginID = response?.login_id
-            legacyUser?.email = response?.primary_email ?? session.userEmail
-            legacyUser?.calendar = response?.calendar?.ics
-            legacyUser?.sisUserID = ""
-            legacyClient.setValue(legacyUser, forKey: "currentUser")
-            CKIClient.current = legacyClient
             if let legacySession = Session.current {
                 self.session = legacySession
                 LegacyModuleProgressShim.observeProgress(legacySession)

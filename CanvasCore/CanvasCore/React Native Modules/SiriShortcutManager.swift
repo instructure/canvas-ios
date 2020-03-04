@@ -17,7 +17,6 @@
 //
 
 import Foundation
-import CanvasKit
 import ReactiveSwift
 
 public class SiriShortcutManager: NSObject {

@@ -17,7 +17,6 @@
 //
 
 import Foundation
-import CanvasKit
 
 extension String {
     init(deviceToken: Data) {

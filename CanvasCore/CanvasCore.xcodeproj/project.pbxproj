@@ -38,7 +38,6 @@
 		3BA8BE9B1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BA8BE9D1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib */; };
 		3BC3E0212315BC8A00E15C6D /* CanvasAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CE2058F20EAC5BD002A6A64 /* CanvasAnalytics.h */; };
 		3BC3E0222315BC8F00E15C6D /* CanvasAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE2059020EAC5BD002A6A64 /* CanvasAnalytics.m */; };
-		3BC7CEC620113F5B001DFF8C /* CKIClient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7CEC520113F5B001DFF8C /* CKIClient+Extensions.swift */; };
 		3BD3220E2242E2F60036C764 /* SiriShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3220C2242E2F60036C764 /* SiriShortcutManager.swift */; };
 		3BD3220F2242E2F60036C764 /* SiriShortcutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3220D2242E2F60036C764 /* SiriShortcutManager.m */; };
 		3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */; };
@@ -111,7 +110,6 @@
 		493020761F902462006BD777 /* NSDate+Marshal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020691F902461006BD777 /* NSDate+Marshal.swift */; };
 		493020781F902462006BD777 /* SessionUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930206B1F902461006BD777 /* SessionUser.swift */; };
 		493020791F902462006BD777 /* ContextID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930206D1F902462006BD777 /* ContextID.swift */; };
-		49383CE61F848652009C8F8E /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49383CDE1F846FCB009C8F8E /* CanvasKit.framework */; };
 		49383CF31F8498DA009C8F8E /* CanvasCore.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49383CF21F8498DA009C8F8E /* CanvasCore.xcassets */; };
 		49383CF61F849933009C8F8E /* inboxTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49383CF51F849933009C8F8E /* inboxTab.swift */; };
 		494AE08A1F8436C1001A8F31 /* NativeLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0881F8436C1001A8F31 /* NativeLoginManager.m */; };
@@ -508,7 +506,6 @@
 		3BA8BEBF1FE2EDFE003EC4FD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
 		3BA8BEC11FE2EE03003EC4FD /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
 		3BA8BEC31FE2EE09003EC4FD /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
-		3BC7CEC520113F5B001DFF8C /* CKIClient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKIClient+Extensions.swift"; sourceTree = "<group>"; };
 		3BD3220C2242E2F60036C764 /* SiriShortcutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiriShortcutManager.swift; sourceTree = "<group>"; };
 		3BD3220D2242E2F60036C764 /* SiriShortcutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiriShortcutManager.m; sourceTree = "<group>"; };
 		3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
@@ -581,7 +578,6 @@
 		493020691F902461006BD777 /* NSDate+Marshal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Marshal.swift"; sourceTree = "<group>"; };
 		4930206B1F902461006BD777 /* SessionUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionUser.swift; sourceTree = "<group>"; };
 		4930206D1F902462006BD777 /* ContextID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextID.swift; sourceTree = "<group>"; };
-		49383CDE1F846FCB009C8F8E /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49383CF21F8498DA009C8F8E /* CanvasCore.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CanvasCore.xcassets; sourceTree = "<group>"; };
 		49383CF51F849933009C8F8E /* inboxTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inboxTab.swift; sourceTree = "<group>"; };
 		494AE0871F8436C0001A8F31 /* NativeLoginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeLoginManager.h; sourceTree = "<group>"; };
@@ -1060,7 +1056,6 @@
 				B1F405FB22E23D28008FAFE6 /* ReactiveObjC.framework in Frameworks */,
 				F9B946EC221491F00083E660 /* PSPDFKit.framework in Frameworks */,
 				F9B946ED221491F00083E660 /* PSPDFKitUI.framework in Frameworks */,
-				49383CE61F848652009C8F8E /* CanvasKit.framework in Frameworks */,
 				630085E9F4EBC97E435FFE64 /* Pods_defaults_CanvasCore.framework in Frameworks */,
 				7D0215A321BAE703009A8E69 /* Core.framework in Frameworks */,
 			);
@@ -1077,7 +1072,6 @@
 				B1F405F522E23D28008FAFE6 /* ReactiveObjC.framework */,
 				B1F405F222E23D27008FAFE6 /* ReactiveObjCBridge.framework */,
 				B1F405F322E23D28008FAFE6 /* ReactiveSwift.framework */,
-				49383CDE1F846FCB009C8F8E /* CanvasKit.framework */,
 				7D0215A221BAE703009A8E69 /* Core.framework */,
 				801BC15BB71585F55A4CD6C8 /* Pods_defaults_CanvasCore.framework */,
 				0C6ED514BCD5F05D551BC00B /* Pods_defaults_CanvasCoreTests.framework */,
@@ -1153,7 +1147,6 @@
 				2CAF177F1F7AF61100EA2742 /* UIFont+Core.swift */,
 				2CF6DEB52006A039007A5591 /* UIViewController+Core.swift */,
 				3BA0F9B520069CEB00E64448 /* UIView+AutoLayout.swift */,
-				3BC7CEC520113F5B001DFF8C /* CKIClient+Extensions.swift */,
 				2CD7769B200977EC00589D4F /* UIApplicationDelegate+Core.swift */,
 				2C4FAD3120487DD6000551EB /* UINavigationController+Core.swift */,
 				2C4EBB3A204DFC820085D00E /* UITabBarController+Core.swift */,
@@ -2684,7 +2677,6 @@
 				4961F6281F8FB7050093EC86 /* Course+Details.swift in Sources */,
 				49CE96661F8FF41B00121A43 /* QuizService.swift in Sources */,
 				49CE968B1F8FF41B00121A43 /* CanvasTimedQuizSubmissionService.swift in Sources */,
-				3BC7CEC620113F5B001DFF8C /* CKIClient+Extensions.swift in Sources */,
 				49CE96E21F8FFC4400121A43 /* MasteryPathsItem+Details.swift in Sources */,
 				2CCBD44720C0943B0082E616 /* URL+Core.swift in Sources */,
 				4930200E1F901CF5006BD777 /* CommentReplyView.swift in Sources */,

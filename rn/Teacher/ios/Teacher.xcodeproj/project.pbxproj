@@ -32,8 +32,6 @@
 		3BFD1D432311E209003AE3AB /* TeacherUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D422311E209003AE3AB /* TeacherUITestCase.swift */; };
 		3BFD1D4523121ED9003AE3AB /* SubmissionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D4423121ED9003AE3AB /* SubmissionsList.swift */; };
 		3BFD1D4723121FEE003AE3AB /* PostPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D4623121FEE003AE3AB /* PostPolicy.swift */; };
-		4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */; };
-		4943ECB81E5CEFBD001DC5B5 /* CanvasKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		494AE0B91F843CB5001A8F31 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B51F843CB4001A8F31 /* RootTabBarController.swift */; };
 		494AE0BA1F843CB5001A8F31 /* AppDelegate+Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B61F843CB4001A8F31 /* AppDelegate+Routes.swift */; };
 		497CA7331F82AE8D00501613 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; };
@@ -86,8 +84,8 @@
 		B1F4060522E2444D008FAFE6 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405FF22E2444D008FAFE6 /* ReactiveSwift.framework */; };
 		B1F4060622E2444D008FAFE6 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4060022E2444D008FAFE6 /* ReactiveCocoa.framework */; };
 		B1F4060722E2444D008FAFE6 /* ReactiveMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4060122E2444D008FAFE6 /* ReactiveMapKit.framework */; };
-		E83294A323FF0DCE00D3F6F2 /* SpeedGraderUIMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83294A223FF0DCE00D3F6F2 /* SpeedGraderUIMocks.swift */; };
 		B1FF02D2240435B0004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02D1240435B0004B7B1C /* KeychainTests.swift */; };
+		E83294A323FF0DCE00D3F6F2 /* SpeedGraderUIMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83294A223FF0DCE00D3F6F2 /* SpeedGraderUIMocks.swift */; };
 		E841D8B023D6472F00685A63 /* CoreUITests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8F6CFFE23045A01004347D9 /* CoreUITests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E841D8B123D6472F00685A63 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E841D8B223D6472F00685A63 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F6221492580083E660 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -140,7 +138,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				497CA7341F82AE8D00501613 /* CanvasCore.framework in Embed Frameworks */,
-				4943ECB81E5CEFBD001DC5B5 /* CanvasKit.framework in Embed Frameworks */,
 				7D3DA83B2187615E000D828F /* Core.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -263,7 +260,6 @@
 		3BFD1D422311E209003AE3AB /* TeacherUITestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherUITestCase.swift; sourceTree = "<group>"; };
 		3BFD1D4423121ED9003AE3AB /* SubmissionsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsList.swift; sourceTree = "<group>"; };
 		3BFD1D4623121FEE003AE3AB /* PostPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPolicy.swift; sourceTree = "<group>"; };
-		4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Teacher.entitlements; path = Teacher/Teacher.entitlements; sourceTree = "<group>"; };
 		494AE0B51F843CB4001A8F31 /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootTabBarController.swift; path = Teacher/RootTabBarController.swift; sourceTree = "<group>"; };
 		494AE0B61F843CB4001A8F31 /* AppDelegate+Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AppDelegate+Routes.swift"; path = "Teacher/AppDelegate+Routes.swift"; sourceTree = "<group>"; };
@@ -391,7 +387,6 @@
 				2C50EDE11E735CA50096592C /* AssetsLibrary.framework in Frameworks */,
 				2C50EE031E735CBB0096592C /* AVFoundation.framework in Frameworks */,
 				497CA7331F82AE8D00501613 /* CanvasCore.framework in Frameworks */,
-				4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */,
 				7D3DA83A2187615E000D828F /* Core.framework in Frameworks */,
 				2C50EE011E735CB50096592C /* CoreMedia.framework in Frameworks */,
 				2C50EDFD1E735CAC0096592C /* CoreTelephony.framework in Frameworks */,
@@ -470,7 +465,6 @@
 				2C50EDE01E735CA50096592C /* AssetsLibrary.framework */,
 				2C50EE021E735CBB0096592C /* AVFoundation.framework */,
 				497CA7321F82ACF400501613 /* CanvasCore.framework */,
-				4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */,
 				7D3DA83821876142000D828F /* Core.framework */,
 				2C50EE001E735CB50096592C /* CoreMedia.framework */,
 				2C50EDFC1E735CAC0096592C /* CoreTelephony.framework */,

@@ -100,7 +100,7 @@ We don't do any manual QA of our products. We write code that tests our apps for
 
 ### Prune Legacy Code
 
-😬 One day React Native, Cocoapods, CanvasKit and other old frameworks will be fully replaced by the swift architecture in Core. Eventually. Hopefully. 🤞
+😬 One day React Native, Cocoapods, and other old frameworks will be fully replaced by the swift architecture in Core. Eventually. Hopefully. 🤞
 
 
 ## Using the Canvas Apps

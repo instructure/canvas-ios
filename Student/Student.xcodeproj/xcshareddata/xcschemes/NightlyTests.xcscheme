@@ -90,13 +90,6 @@
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "499D18861C8643E6005A86D2"
-            BuildableName = "CanvasKit.framework"
-            BlueprintName = "CanvasKit"
-            ReferencedContainer = "container:../Frameworks/CanvasKit/CanvasKit.xcodeproj">
-         </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
             BlueprintIdentifier = "2C96482D211E2F1A002C3255"
             BuildableName = "Core.framework"
             BlueprintName = "Core"
@@ -108,13 +101,6 @@
             BuildableName = "Parent.app"
             BlueprintName = "Parent"
             ReferencedContainer = "container:../Parent/Parent.xcodeproj">
-         </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "49AA29161CF4D1880055862D"
-            BuildableName = "CanvasKit1.framework"
-            BlueprintName = "CanvasKit1"
-            ReferencedContainer = "container:Student.xcodeproj">
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -135,13 +121,6 @@
             BlueprintIdentifier = "B1BB7A8122BAC820006CA068"
             BuildableName = "SubmitAssignment.appex"
             BlueprintName = "SubmitAssignment"
-            ReferencedContainer = "container:Student.xcodeproj">
-         </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "492704AA1CF4B6D700C631C6"
-            BuildableName = "TechDebt.framework"
-            BlueprintName = "TechDebt"
             ReferencedContainer = "container:Student.xcodeproj">
          </BuildableReference>
          <BuildableReference

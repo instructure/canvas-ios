@@ -17,7 +17,6 @@
 //
 
 import WebKit
-import CanvasKit
 import ReactiveSwift
 import Core
 
