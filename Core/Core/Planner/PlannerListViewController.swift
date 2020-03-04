@@ -111,8 +111,12 @@ extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate 
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let url = plannables?[indexPath]?.htmlURL else { return }
-        env.router.route(to: url, from: self, options: .detail(embedInNav: true))
+        if let p = plannables?[indexPath], p.plannableType == .planner_note {
+            let noteDetail = PlannerNoteDetailViewController.create(plannable: p)
+            env.router.show(noteDetail, from: self, options: .detail(embedInNav: true))
+        } else if let url = plannables?[indexPath]?.htmlURL {
+            env.router.route(to: url, from: self, options: .detail(embedInNav: true))
+        }
     }
 
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

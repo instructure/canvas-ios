@@ -33,10 +33,12 @@ public struct APIPlannable: Codable, Equatable {
     public struct plannable: Codable, Equatable {
         let title: String?
         let points_possible: Double?
+        let details: String?
 
-        public init(title: String? = nil, points_possible: Double? = nil) {
+        public init(title: String? = nil, points_possible: Double? = nil, details: String? = nil) {
             self.title = title
             self.points_possible = points_possible
+            self.details = details
         }
     }
 }
@@ -66,7 +68,7 @@ extension APIPlannable {
         html_url: URL? = URL(string: "http://localhost")!,
         context_image: URL = URL(string: "https://live.staticflickr.com/1449/24823655706_a46286c12e.jpg")!,
         context_name: String? = "Assignment Grades",
-        plannable: APIPlannable.plannable? = APIPlannable.plannable(title: "assignment a"),
+        plannable: APIPlannable.plannable? = APIPlannable.plannable(title: "assignment a", details: "description"),
         plannable_date: Date = Clock.now
     ) -> APIPlannable {
         return APIPlannable(

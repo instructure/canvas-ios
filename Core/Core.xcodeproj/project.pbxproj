@@ -601,6 +601,9 @@
 		977921A123E11C3F0082696B /* UIBarButtonItemExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977921A023E11C3F0082696B /* UIBarButtonItemExtensionTests.swift */; };
 		97A486C42397826300084499 /* ProfileViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A486C32397826300084499 /* ProfileViewControllerTests.swift */; };
 		97A486CB239AB2ED00084499 /* SyllabusViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A486CA239AB2ED00084499 /* SyllabusViewControllerTests.swift */; };
+		97F5520424061AF1005D80FC /* PlannerNoteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F5520324061AF1005D80FC /* PlannerNoteDetailViewController.swift */; };
+		97F5520624061B4B005D80FC /* PlannerNoteDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97F5520524061B4B005D80FC /* PlannerNoteDetailViewController.storyboard */; };
+		97F5520824062199005D80FC /* PlannerNoteDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F5520724062199005D80FC /* PlannerNoteDetailViewControllerTests.swift */; };
 		97F69C3823F1F9A6009622E3 /* APIPlannableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C3723F1F9A6009622E3 /* APIPlannableTests.swift */; };
 		97F69C4023F209DB009622E3 /* PlannableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C3F23F209DB009622E3 /* PlannableTests.swift */; };
 		97F69C4423F2208E009622E3 /* GetPlannablesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69C4323F2208D009622E3 /* GetPlannablesTests.swift */; };
@@ -1504,6 +1507,9 @@
 		97A486C32397826300084499 /* ProfileViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerTests.swift; sourceTree = "<group>"; };
 		97A486CA239AB2ED00084499 /* SyllabusViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusViewControllerTests.swift; sourceTree = "<group>"; };
 		97D9400D23DFEA6A00A9D274 /* UIBarButtonItemExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensions.swift; sourceTree = "<group>"; };
+		97F5520324061AF1005D80FC /* PlannerNoteDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerNoteDetailViewController.swift; sourceTree = "<group>"; };
+		97F5520524061B4B005D80FC /* PlannerNoteDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlannerNoteDetailViewController.storyboard; sourceTree = "<group>"; };
+		97F5520724062199005D80FC /* PlannerNoteDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerNoteDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		97F69BB623F1F286009622E3 /* APIPlannable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIPlannable.swift; sourceTree = "<group>"; };
 		97F69C3723F1F9A6009622E3 /* APIPlannableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIPlannableTests.swift; sourceTree = "<group>"; };
 		97F69C3B23F1FE64009622E3 /* GetPlannables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPlannables.swift; sourceTree = "<group>"; };
@@ -3059,6 +3065,7 @@
 				B11AEBBC24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift */,
 				97F69C4923F34DB1009622E3 /* PlannerListViewControllerTests.swift */,
 				7D3E522524059A740092A5F8 /* PlannerViewControllerTests.swift */,
+				97F5520724062199005D80FC /* PlannerNoteDetailViewControllerTests.swift */,
 			);
 			path = Planner;
 			sourceTree = "<group>";
@@ -3079,6 +3086,8 @@
 				97F69C4723F3475E009622E3 /* PlannerListViewController.storyboard */,
 				97F69C4523F34734009622E3 /* PlannerListViewController.swift */,
 				7DFD5F7923FF158700D988E0 /* PlannerViewController.swift */,
+				97F5520324061AF1005D80FC /* PlannerNoteDetailViewController.swift */,
+				97F5520524061B4B005D80FC /* PlannerNoteDetailViewController.storyboard */,
 			);
 			path = Planner;
 			sourceTree = "<group>";
@@ -3992,6 +4001,7 @@
 				7D8E821223C8E14D00A8DA2C /* PeopleListViewController.storyboard in Resources */,
 				3B4D861523295263005126A5 /* GradesViewController.storyboard in Resources */,
 				7DDC81442242E2B2000DD25A /* AudioRecorderViewController.storyboard in Resources */,
+				97F5520624061B4B005D80FC /* PlannerNoteDetailViewController.storyboard in Resources */,
 				5BF786A6218599B600471A5F /* InfoPlist.strings in Resources */,
 				7DEAD09822789E8A0030C28A /* RichContentEditor.css in Resources */,
 				7DE3D11F225E7058000CAE7C /* RichContentToolbarView.xib in Resources */,
@@ -4361,6 +4371,7 @@
 				7D8B78F8215EC74A005E08F1 /* UIImageExtensionsTests.swift in Sources */,
 				7D016B5F23E8984B00C6E0CA /* BottomSheetPickerViewControllerTests.swift in Sources */,
 				7D148645230B491C003944A2 /* APIAccountNotificationTests.swift in Sources */,
+				97F5520824062199005D80FC /* PlannerNoteDetailViewControllerTests.swift in Sources */,
 				B1AAFFFE226988440088BC20 /* UITableViewCellExtensionsTests.swift in Sources */,
 				B1F3780C22499037000B7CAA /* MockMDMManager.swift in Sources */,
 				7D2DC2FD219A001E008FE29A /* UIViewExtensionsTests.swift in Sources */,
@@ -4752,6 +4763,7 @@
 				7DA25FC823F72136005D2121 /* APIPostPolicyRequestable.swift in Sources */,
 				7DA2604923F722D9005D2121 /* Grade.swift in Sources */,
 				7DA25FAF23F72136005D2121 /* APIError.swift in Sources */,
+				97F5520424061AF1005D80FC /* PlannerNoteDetailViewController.swift in Sources */,
 				7DA2601D23F7227A005D2121 /* URLComponentsExtensions.swift in Sources */,
 				7DA25FFA23F7226E005D2121 /* DocViewerCommentReplyAnnotation.swift in Sources */,
 				7DA260C323F72352005D2121 /* UploadManager.swift in Sources */,
