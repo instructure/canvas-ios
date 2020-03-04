@@ -28,42 +28,50 @@ public struct PostAssignmentGradesInput: Codable, Equatable {
     let sectionIds: [String]?
 }
 
-public struct PostAssignmentGradesPostPolicyRequest: APIGraphQLRequestable {
+public class PostAssignmentGradesPostPolicyRequest: APIGraphQLRequestable {
     public typealias Response = APINoContent
     public struct Variables: Codable, Equatable {
         let input: PostAssignmentGradesInput
     }
     public let variables: Variables
 
-    public init(assignmentId: String, postPolicy: PostGradePolicy) {
-        variables = Variables(input: PostAssignmentGradesInput(gradedOnly: postPolicy == .graded, assignmentId: assignmentId, sectionIds: nil))
+    init(input: PostAssignmentGradesInput) {
+        self.variables = Variables(input: input)
     }
 
-    public static let query = """
+    public convenience init(assignmentID: String, postPolicy: PostGradePolicy) {
+        self.init(input: PostAssignmentGradesInput(
+            gradedOnly: postPolicy == .graded,
+            assignmentId: assignmentID,
+            sectionIds: nil
+        ))
+    }
+
+    public class var query: String { """
         mutation \(operationName)($input: PostAssignmentGradesInput!) {
           postAssignmentGrades(input: $input) {
             assignment { id }
           }
         }
-        """
+        """ }
 }
 
-public class PostAssignmentGradesForSectionsPostPolicyRequest: APIGraphQLRequestable {
-    public typealias Response = APINoContent
-    public typealias Variables = PostAssignmentGradesPostPolicyRequest.Variables
-    public let variables: Variables
-
+public class PostAssignmentGradesForSectionsPostPolicyRequest: PostAssignmentGradesPostPolicyRequest {
     public init(assignmentID: String, postPolicy: PostGradePolicy, sections: [String]) {
-        variables = Variables(input: PostAssignmentGradesInput(gradedOnly: postPolicy == .graded, assignmentId: assignmentID, sectionIds: sections))
+        super.init(input: PostAssignmentGradesInput(
+            gradedOnly: postPolicy == .graded,
+            assignmentId: assignmentID,
+            sectionIds: sections
+        ))
     }
 
-    public static let query = """
+    public override class var query: String { """
         mutation \(operationName)($input: PostAssignmentGradesForSectionInput!) {
           postAssignmentGradesForSection(input: $input) {
             assignment { id }
           }
         }
-        """
+        """ }
 }
 
 public struct HideAssignmentGradesInput: Codable, Equatable {
@@ -71,41 +79,42 @@ public struct HideAssignmentGradesInput: Codable, Equatable {
     public let sectionIds: [String]?
 }
 
-public struct HideAssignmentGradesPostPolicyRequest: APIGraphQLRequestable {
+public class HideAssignmentGradesPostPolicyRequest: APIGraphQLRequestable {
     public typealias Response = APINoContent
     public struct Variables: Codable, Equatable {
         let input: HideAssignmentGradesInput
     }
     public let variables: Variables
 
-    public init(assignmentID: String) {
-        variables = Variables(input: HideAssignmentGradesInput(assignmentId: assignmentID, sectionIds: nil))
+    init(input: HideAssignmentGradesInput) {
+        variables = Variables(input: input)
     }
 
-    public static let query = """
+    public convenience init(assignmentID: String) {
+        self.init(input: HideAssignmentGradesInput(assignmentId: assignmentID, sectionIds: nil))
+    }
+
+    public class var query: String { """
         mutation \(operationName)($input: HideAssignmentGradesInput!) {
           hideAssignmentGrades(input: $input) {
             assignment { id }
           }
         }
-        """
+        """ }
 }
 
-public struct HideAssignmentGradesForSectionsPostPolicyRequest: APIGraphQLRequestable {
-    public typealias Response = APINoContent
-    public typealias Variables = HideAssignmentGradesPostPolicyRequest.Variables
-    public let variables: Variables
-
+public class HideAssignmentGradesForSectionsPostPolicyRequest: HideAssignmentGradesPostPolicyRequest {
     public init(assignmentID: String, sections: [String]) {
-        variables = Variables(input: HideAssignmentGradesInput(assignmentId: assignmentID, sectionIds: sections))
+        super.init(input: HideAssignmentGradesInput(assignmentId: assignmentID, sectionIds: sections))
     }
-    public static let query = """
+
+    public override class var query: String { """
         mutation \(operationName)($input: HideAssignmentGradesForSectionsInput!) {
           hideAssignmentGradesForSections(input: $input) {
             assignment { id }
           }
         }
-        """
+        """ }
 }
 
 public struct GetAssignmentPostPolicyInfoRequest: APIGraphQLRequestable {

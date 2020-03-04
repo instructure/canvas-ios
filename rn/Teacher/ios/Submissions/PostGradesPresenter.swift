@@ -93,7 +93,12 @@ class PostGradesPresenter {
     }
 
     func postGrades(postPolicy: PostGradePolicy, sectionIDs: [String]) {
-        let req = PostAssignmentGradesPostPolicyRequest(assignmentID: assignmentID, postPolicy: postPolicy, sections: sectionIDs)
+        let req: PostAssignmentGradesPostPolicyRequest
+        if sectionIDs.isEmpty {
+            req = PostAssignmentGradesPostPolicyRequest(assignmentID: assignmentID, postPolicy: postPolicy)
+        } else {
+            req = PostAssignmentGradesForSectionsPostPolicyRequest(assignmentID: assignmentID, postPolicy: postPolicy, sections: sectionIDs)
+        }
         env.api.makeRequest(req, callback: { [weak self] _, _, error in
             DispatchQueue.main.async {
                 if let error = error {
@@ -106,7 +111,12 @@ class PostGradesPresenter {
     }
 
     func hideGrades(sectionIDs: [String]) {
-        let req = HideAssignmentGradesPostPolicyRequest(assignmentID: assignmentID, sections: sectionIDs)
+        let req: HideAssignmentGradesPostPolicyRequest
+        if sectionIDs.isEmpty {
+            req = HideAssignmentGradesPostPolicyRequest(assignmentID: assignmentID)
+        } else {
+            req = HideAssignmentGradesForSectionsPostPolicyRequest(assignmentID: assignmentID, sections: sectionIDs)
+        }
         env.api.makeRequest(req, callback: { [weak self] _, _, error in
             DispatchQueue.main.async {
                 if let error = error {
