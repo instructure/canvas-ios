@@ -28,7 +28,11 @@ import SafariServices
 
 let ParentAppRefresherTTL: TimeInterval = 5.minutes
 var legacySession: Session?
-var currentStudentID: String?
+var currentStudentID: String? {
+    didSet {
+        ParentAppDelegate.persistCurrentStudent(id: currentStudentID)
+    }
+}
 
 @UIApplicationMain
 class ParentAppDelegate: UIResponder, UIApplicationDelegate {
@@ -42,6 +46,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         return env
     }()
 
+    static let currentStudentDefaultsKey = "com.instructure.parentapp.currentStudentID"
     let hasFabric = (Bundle.main.object(forInfoDictionaryKey: "Fabric") as? [String: Any])?["APIKey"] != nil
     let hasFirebase = FirebaseOptions.defaultOptions()?.apiKey != nil
 
@@ -202,6 +207,7 @@ extension ParentAppDelegate: LoginDelegate {
         LocalizationManager.localizeForApp(UIApplication.shared, locale: session.locale) {
             setup(session: session)
         }
+        currentStudentID = retrievePersistedCurrentStudent()
     }
 
     func userDidStopActing(as session: LoginSession) {
@@ -213,6 +219,7 @@ extension ParentAppDelegate: LoginDelegate {
     }
 
     func userDidLogout(session: LoginSession) {
+        ParentAppDelegate.persistCurrentStudent(id: nil)
         let wasCurrent = environment.currentSession == session
         environment.api.makeRequest(DeleteLoginOAuthRequest(session: session)) { _, _, _ in }
         userDidStopActing(as: session)
@@ -223,6 +230,15 @@ extension ParentAppDelegate: LoginDelegate {
         if let session = environment.currentSession {
             userDidLogout(session: session)
         }
+    }
+
+    static func persistCurrentStudent(id: String?) {
+        UserDefaults.standard.set(id, forKey: currentStudentDefaultsKey)
+        UserDefaults.standard.synchronize()
+    }
+
+    func retrievePersistedCurrentStudent() -> String? {
+        return UserDefaults.standard.string(forKey: ParentAppDelegate.currentStudentDefaultsKey)
     }
 }
 

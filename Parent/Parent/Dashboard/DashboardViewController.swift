@@ -416,7 +416,11 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     }
 
     func displayDefaultStudent() {
-        currentStudent = studentAtIndex(0)
+        if let id = currentStudentID, let persistedStudent = students.filter({ $0.id == id }).first {
+            currentStudent = persistedStudent
+        } else {
+            currentStudent = studentAtIndex(0)
+        }
     }
 }
 
