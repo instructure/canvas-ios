@@ -18,29 +18,31 @@
 
 import Foundation
 
-public struct GraphQLBody: Codable, Equatable {
+public struct GraphQLBody<Variables: Codable & Equatable>: Codable, Equatable {
     let query: String
     let operationName: String
+    let variables: Variables
 }
 
 protocol APIGraphQLRequestable: APIRequestable {
-    var query: String? { get }
-    var operationName: String { get }
+    associatedtype Variables: Codable & Equatable
+
+    static var query: String { get }
+    static var operationName: String { get }
+    var variables: Variables { get }
 }
 
 extension APIGraphQLRequestable {
     public var method: APIMethod {
-        return .post
+        .post
     }
     public var path: String {
-        return "/api/graphql"
+        "/api/graphql"
     }
-
-    public var body: GraphQLBody? {
-        if let query = query {
-            return GraphQLBody(query: query, operationName: operationName)
-        }
-        return nil
+    public static var operationName: String {
+        "\(self)"
     }
-
+    public var body: GraphQLBody<Variables> {
+        GraphQLBody(query: Self.query, operationName: Self.operationName, variables: variables)
+    }
 }
