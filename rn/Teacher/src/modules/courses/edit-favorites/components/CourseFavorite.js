@@ -45,7 +45,8 @@ export default class CourseFavorite extends Component<Props> {
         style={styles.courseRow}
         testID={'edit-favorites.course-favorite.' + this.props.course.id + (this.props.isFavorite ? '-favorited' : '-not-favorited') }
         onPress={this.onPress}
-        accessibilityTraits={this.props.isFavorite ? ['selected', 'button'] : ['button']}
+        accessibilityRole='button'
+        accessibilityStates={ this.props.isFavorite ? [ 'selected' ] : []}
       >
         <View style={styles.courseWrapper}>
           <Image
