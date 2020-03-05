@@ -26,7 +26,13 @@ enum ColorScheme: String, CaseIterable {
     private static var lastScheme: ColorScheme?
 
     static var observer: ColorScheme {
-        lastScheme ?? ColorScheme.observeeBlue
+        if let id = currentStudentID {
+            return observee(id)
+        } else if let id = AppEnvironment.shared.userDefaults?.parentCurrentStudentID {
+            return observee(id)
+        } else {
+            return lastScheme ?? ColorScheme.observeeBlue
+        }
     }
 
     var color: UIColor {
@@ -41,13 +47,13 @@ enum ColorScheme: String, CaseIterable {
 
     private static let DictionaryKey = "color_scheme_dictionary"
     private static var dictionary: [String: Int]? {
-        get { UserDefaults.standard.object(forKey: DictionaryKey) as? [String: Int] }
-        set { UserDefaults.standard.set(newValue, forKey: DictionaryKey) }
+        get { AppEnvironment.shared.userDefaults?.parentColorScheme }
+        set { AppEnvironment.shared.userDefaults?.parentColorScheme = newValue }
     }
 
     static func clear() {
         UserDefaults.standard.removeObject(forKey: CurrentIndexKey)
-        UserDefaults.standard.removeObject(forKey: DictionaryKey)
+        AppEnvironment.shared.userDefaults?.parentColorScheme = nil
     }
 
     static func observee(_ studentID: String) -> ColorScheme {
