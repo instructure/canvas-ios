@@ -21,7 +21,7 @@ import CoreData
 
 public final class Plannable: NSManagedObject {
 
-    public enum PlannableType: String {
+    public enum PlannableType: String, Codable {
         case announcement, assignment, discussion_topic, quiz, wiki_page, planner_note, calendar_event, assessment_request
         case other
     }

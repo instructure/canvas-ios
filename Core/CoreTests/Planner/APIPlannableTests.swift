@@ -59,13 +59,13 @@ class APIPlannableTests: XCTestCase {
 	}
 }
 
-class APICreatePlannerNoteTests: XCTestCase {
-    var req: CreatePlannerNote!
+class PostPlannerNoteRequestTests: XCTestCase {
+    var req: PostPlannerNoteRequest!
     var date: Date = Clock.now
 
     override func setUp() {
         super.setUp()
-        req = CreatePlannerNote(title: "title", details: "details", todo_date: date, courseID: nil, linked_object_type: .planner_note, linked_object_id: nil)
+        req = PostPlannerNoteRequest(title: "title", details: "details", todo_date: date, courseID: "1", linked_object_type: .planner_note, linked_object_id: "1")
     }
 
     func testMethod() {
@@ -74,5 +74,14 @@ class APICreatePlannerNoteTests: XCTestCase {
 
     func testPath() {
         XCTAssertEqual(req.path, "planner_notes")
+    }
+
+    func testBody() {
+        XCTAssertEqual(req.body?.title, "title")
+        XCTAssertEqual(req.body?.details, "details")
+        XCTAssertEqual(req.body?.todo_date, date)
+        XCTAssertEqual(req.body?.courseID, "1")
+        XCTAssertEqual(req.body?.linked_object_type, .planner_note)
+        XCTAssertEqual(req.body?.linked_object_id, "1")
     }
 }
