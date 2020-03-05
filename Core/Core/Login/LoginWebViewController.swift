@@ -140,7 +140,7 @@ extension LoginWebViewController: WKNavigationDelegate {
             } }
             return decisionHandler(.cancel)
         } else if queryItems?.first(where: { $0.name == "error" }) != nil {
-            let error = NSError.instructureError(NSLocalizedString("Authentication failed. Most likely the user denied the request for access.", comment: ""))
+            let error = NSError.instructureError(NSLocalizedString("Authentication failed. Most likely the user denied the request for access.", bundle: .core, comment: ""))
             self.showError(error)
             return decisionHandler(.cancel)
         }
@@ -164,18 +164,18 @@ extension LoginWebViewController: WKNavigationDelegate {
             return
         }
         performUIUpdate {
-            let alert = UIAlertController(title: NSLocalizedString("Login", comment: ""), message: nil, preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("Login", bundle: .core, comment: ""), message: nil, preferredStyle: .alert)
             alert.addTextField { textField in
-                textField.placeholder = NSLocalizedString("Username", comment: "")
+                textField.placeholder = NSLocalizedString("Username", bundle: .core, comment: "")
             }
             alert.addTextField { textField in
-                textField.placeholder = NSLocalizedString("Password", comment: "")
+                textField.placeholder = NSLocalizedString("Password", bundle: .core, comment: "")
                 textField.isSecureTextEntry = true
             }
-            alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+            alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel) { _ in
                 completionHandler(.performDefaultHandling, nil)
             })
-            alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .default) { _ in
+            alert.addAction(AlertAction(NSLocalizedString("OK", bundle: .core, comment: ""), style: .default) { _ in
                 if let username = alert.textFields?.first?.text, let password = alert.textFields?.last?.text {
                     let credential = URLCredential(user: username, password: password, persistence: .forSession)
                     completionHandler(.useCredential, credential)

@@ -79,10 +79,10 @@ class CalendarViewController: UIViewController {
 
         let isRTL = view.effectiveUserInterfaceLayoutDirection == .rightToLeft
         monthButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: isRTL ? 28 : 0, bottom: 0, right: isRTL ? 0 : 28)
-        monthButton.accessibilityLabel = NSLocalizedString("Show a month at a time", comment: "")
+        monthButton.accessibilityLabel = NSLocalizedString("Show a month at a time", bundle: .core, comment: "")
 
-        filterButton.setTitle(NSLocalizedString("Calendar", comment: ""), for: .normal)
-        filterButton.accessibilityLabel = NSLocalizedString("Filter events", comment: "")
+        filterButton.setTitle(NSLocalizedString("Calendar", bundle: .core, comment: ""), for: .normal)
+        filterButton.accessibilityLabel = NSLocalizedString("Filter events", bundle: .core, comment: "")
 
         for placeholder in weekdayRow.arrangedSubviews { placeholder.removeFromSuperview() }
         for i in 0..<numberOfDaysInWeek {

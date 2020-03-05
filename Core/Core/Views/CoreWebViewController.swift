@@ -77,7 +77,7 @@ public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
 
         let message = UILabel()
         message.translatesAutoresizingMaskIntoConstraints = false
-        message.text = NSLocalizedString("Interactions on this page are limited by your institution.", comment: "")
+        message.text = NSLocalizedString("Interactions on this page are limited by your institution.", bundle: .core, comment: "")
         message.font = .scaledNamedFont(.regular14)
         message.numberOfLines = 0
         container.addSubview(message)

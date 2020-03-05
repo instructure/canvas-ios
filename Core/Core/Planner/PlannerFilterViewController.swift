@@ -118,7 +118,7 @@ extension PlannerFilterViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section == 0 else { return nil }
         let header = tableView.dequeueHeaderFooter(SectionHeaderView.self)
-        header.titleLabel?.text = NSLocalizedString("Courses", comment: "")
+        header.titleLabel?.text = NSLocalizedString("Courses", bundle: .core, comment: "")
         return header
     }
 }

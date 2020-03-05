@@ -70,7 +70,7 @@ class FilePickerProgressView: UIView {
         header.textAlignment = .center
         header.textColor = .named(.electric)
 
-        header.text = NSLocalizedString("Uploading...", comment: "")
+        header.text = NSLocalizedString("Uploading...", bundle: .core, comment: "")
         progressView.backgroundColor = .named(.backgroundLight)
         progress = 0.75
     }

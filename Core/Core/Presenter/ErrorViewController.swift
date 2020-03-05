@@ -27,7 +27,7 @@ public protocol ErrorViewController: class {
 extension ErrorViewController where Self: UIViewController {
     public func showAlert(title: String?, message: String?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", bundle: .core, comment: ""), style: .default))
         AppEnvironment.shared.router.show(alert, from: self, options: .modal())
     }
 }

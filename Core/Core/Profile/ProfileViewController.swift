@@ -265,7 +265,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 
     public func showAlert(title: String?, message: String?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertAction.Style.default, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", bundle: .core, comment: ""), style: UIAlertAction.Style.default, handler: nil))
         present(alert, animated: true)
     }
 }

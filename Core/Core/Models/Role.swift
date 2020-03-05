@@ -57,15 +57,15 @@ public enum Role: RawRepresentable {
     public func description() -> String {
         switch self {
         case .student:
-            return NSLocalizedString("Student", comment: "")
+            return NSLocalizedString("Student", bundle: .core, comment: "")
         case .teacher:
-            return NSLocalizedString("Teacher", comment: "")
+            return NSLocalizedString("Teacher", bundle: .core, comment: "")
         case .ta:
-            return NSLocalizedString("TA", comment: "Teacher's Assistant (abbreviated)")
+            return NSLocalizedString("TA", bundle: .core, comment: "Teacher's Assistant (abbreviated)")
         case .observer:
-            return NSLocalizedString("Observer", comment: "")
+            return NSLocalizedString("Observer", bundle: .core, comment: "")
         case .designer:
-            return NSLocalizedString("Designer", comment: "")
+            return NSLocalizedString("Designer", bundle: .core, comment: "")
         case .custom(let role):
             return role
         }

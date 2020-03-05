@@ -149,8 +149,8 @@ class ActAsUserOverlay: UIView {
         }
         var title = NSLocalizedString("Stop acting as...", bundle: .core, comment: "")
         if session?.isFakeStudent == true {
-            title = NSLocalizedString("Leave Student View", comment: "")
-            message = NSLocalizedString("You will be logged out of this student account.", comment: "")
+            title = NSLocalizedString("Leave Student View", bundle: .core, comment: "")
+            message = NSLocalizedString("You will be logged out of this student account.", bundle: .core, comment: "")
         }
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: NSLocalizedString("OK", bundle: .core, comment: ""), style: .default) { _ in
