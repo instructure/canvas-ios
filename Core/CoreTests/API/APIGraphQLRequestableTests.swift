@@ -19,39 +19,36 @@
 import XCTest
 @testable import Core
 
+extension APIGraphQLRequestable {
+    func assertBodyEquals(_ expected: GraphQLBody<Variables>) {
+        XCTAssertEqual(body, expected)
+    }
+}
+
 class APIGraphQLRequestableTests: XCTestCase {
 
     struct MockRequest: APIGraphQLRequestable {
         typealias Response = APINoContent
-
-        let operationName: String = "Test"
-        var query: String? {
-            return "id name foo"
-        }
+        typealias Variables = [String: String]
+        static let query = "id name foo"
+        let variables: Variables
     }
 
     func testPath() {
-        let mock = MockRequest()
+        let mock = MockRequest(variables: [:])
         XCTAssertEqual(mock.path, "/api/graphql")
     }
 
     func testMethod() {
-        let mock = MockRequest()
+        let mock = MockRequest(variables: [:])
         XCTAssertEqual(mock.method, .post)
     }
 
     func testBody() {
-        let mock = MockRequest()
+        let vars = ["var": "value"]
+        let mock = MockRequest(variables: vars)
         let query = "id name foo"
-        let operationName = "Test"
-        let expectedBody = GraphQLBody(query: query, operationName: operationName)
-        XCTAssertEqual(mock.body, expectedBody)
+        let operationName = "MockRequest"
+        mock.assertBodyEquals(GraphQLBody(query: query, operationName: operationName, variables: vars))
     }
-
-    func testQuery() {
-        let mock = MockRequest()
-        let query = "id name foo"
-        XCTAssertEqual(mock.query, query)
-    }
-
 }

@@ -18,42 +18,65 @@
 
 import Foundation
 
+public enum AssignmentFilter: Equatable {
+    case allGradingPeriods
+    case gradingPeriod(id: String)
+    case currentGradingPeriod
+}
+
+extension AssignmentFilter: Codable {
+    //  `filter: {gradingPeriodId: null}` - will return all assignments regardless of grading period
+    //  `filter: {gradingPeriodId: "<id>"}` - will return all assignments in grading period
+    //  `filter: null` - will return assignments in the current / active grading period, no period id needed
+    private struct CodingRepresentation: Codable, Equatable {
+        let gradingPeriodId: String?
+    }
+
+    public init(from decoder: Decoder) throws {
+        if let representation = try CodingRepresentation?(from: decoder) {
+            if let id = representation.gradingPeriodId {
+                self = .gradingPeriod(id: id)
+            } else {
+                self = .allGradingPeriods
+            }
+        } else {
+            self = .currentGradingPeriod
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        let representation: CodingRepresentation?
+        switch self {
+        case .allGradingPeriods:
+            representation = CodingRepresentation(gradingPeriodId: nil)
+        case .gradingPeriod(let id):
+            representation = CodingRepresentation(gradingPeriodId: id)
+        case .currentGradingPeriod:
+            representation = nil
+        }
+        try representation.encode(to: encoder)
+    }
+}
+
 public struct AssignmentListRequestable: APIGraphQLRequestable {
     public typealias Response = APIAssignmentListResponse
 
-    let courseID: String
-    let gradingPeriodID: String?
-    let filter: Bool
-    let cursor: String?
-    let pageSize: Int
+    public struct Variables: Codable, Equatable {
+        public let courseID: String
+        public let filter: AssignmentFilter
+        public let cursor: String?
+        public let pageSize: Int
+    }
+    public let variables: Variables
 
-    public init(courseID: String, gradingPeriodID: String?, filter: Bool = true, pageSize: Int = 10, cursor: String? = nil) {
-        self.courseID = courseID
-        self.gradingPeriodID = gradingPeriodID
-        self.filter = filter
-        self.cursor = cursor
-        self.pageSize = pageSize
+    public init(courseID: String, filter: AssignmentFilter = .currentGradingPeriod, pageSize: Int = 10, cursor: String? = nil) {
+        variables = Variables(courseID: courseID, filter: filter, cursor: cursor, pageSize: pageSize)
     }
 
-    public let operationName = "AssignmentList"
-    public var query: String? {
-        //  `filter: {gradingPeriodId: null}` - will return all assignments regardless of grading period
-        //  `filter: {gradingPeriodId: "<id>"}` - will return all assignments in grading period
-        //  `filter: {}` - will return assignments in the current / active grading period, no period id needed
-        var gradingPeriodFilter = "gradingPeriodId: null"
-        if let id = gradingPeriodID {
-            gradingPeriodFilter = "gradingPeriodId: \"\(id)\""
-        }
-        if !filter { gradingPeriodFilter = "" }
-
-        var after = ""
-        if let cursor = cursor {
-            after = "after: \"\(cursor)\", "
-        }
-
-        return """
-        query \(operationName) {
-          course(id: "\(courseID)") {
+    static let operationName = "AssignmentList"
+    static let query = """
+        query operationName($courseID: ID!, $pageSize: Int!, $cursor: String, $filter: AssignmentFilter) {
+          course(id: $courseID) {
             name
             gradingPeriods: gradingPeriodsConnection {
               nodes {
@@ -67,7 +90,7 @@ public struct AssignmentListRequestable: APIGraphQLRequestable {
               nodes {
                 id: _id
                 name
-                assignmentNodes: assignmentsConnection(first: \(pageSize), \(after)filter: {\(gradingPeriodFilter)}) {
+                assignmentNodes: assignmentsConnection(first: $pageSize, after: $cursor, filter: $filter) {
                   nodes {
                     id: _id
                     name
@@ -75,7 +98,7 @@ public struct AssignmentListRequestable: APIGraphQLRequestable {
                     htmlUrl
                     submissionTypes
                     quiz {
-                        id: _id
+                      id: _id
                     }
                     lockAt
                     dueAt
@@ -90,7 +113,6 @@ public struct AssignmentListRequestable: APIGraphQLRequestable {
           }
         }
         """
-    }
 }
 
 public struct APIAssignmentListResponse: Codable, Equatable {
