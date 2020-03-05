@@ -78,6 +78,16 @@ public struct SessionDefaults {
         set { self["limitWebAccess"] = newValue }
     }
 
+    public var parentCurrentStudentID: String? {
+        get { self["parentCurrentStudentID"] as? String }
+        set { self["parentCurrentStudentID"] = newValue }
+    }
+
+    public var parentColorScheme: [String: Int]? {
+        get { self["parentColorScheme"] as? [String: Int] }
+        set { self["parentColorScheme"] = newValue }
+    }
+
     public mutating func reset() {
         sessionDefaults = nil
     }

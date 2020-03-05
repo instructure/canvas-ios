@@ -93,9 +93,12 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     func setup(session: LoginSession) {
         environment.userDidLogin(session: session)
         CoreWebView.keepCookieAlive(for: environment)
-        // UX requires that students are given color schemes in a specific order.
-        // The method call below ensures that we always start with the first color scheme.
-        ColorScheme.clear()
+        currentStudentID = environment.userDefaults?.parentCurrentStudentID
+        if currentStudentID == nil {
+            // UX requires that students are given color schemes in a specific order.
+            // The method call below ensures that we always start with the first color scheme.    
+            ColorScheme.clear()
+        }
         if Locale.current.regionCode != "CA" {
             let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
             Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)

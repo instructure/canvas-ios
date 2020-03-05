@@ -82,4 +82,38 @@ class DashboardViewControllerTests: ParentTestCase {
 
         XCTAssertTrue(router.lastRoutedTo(.wrongApp))
     }
+
+    func testPersistedUserIsDefaultSelectedUser() {
+        env.userDefaults?.parentCurrentStudentID = "3"
+
+        let students: [APIEnrollment] = [
+            .make(observed_user: .make(id: "2")),
+            .make(observed_user: .make(id: "3", name: "Full Name", short_name: "User 3")),
+            .make(observed_user: .make(id: "4")),
+        ]
+        api.mock(GetObservedStudents(observerID: "1"), value: students)
+
+        vc.viewDidLoad()
+        vc.viewDidAppear(false)
+
+        XCTAssertEqual(vc.navbarNameButton.titleLabel?.text, "User 3")
+        XCTAssertEqual(vc.navbarMenuStackView.arrangedSubviews.count, students.count + 1)
+    }
+
+    func testNoDefaultSelectedUser() {
+        env.userDefaults?.parentCurrentStudentID = nil
+
+        let students: [APIEnrollment] = [
+            .make(observed_user: .make(id: "2", name: "Full Name", short_name: "User 2")),
+            .make(observed_user: .make(id: "3")),
+            .make(observed_user: .make(id: "4")),
+        ]
+        api.mock(GetObservedStudents(observerID: "1"), value: students)
+
+        vc.viewDidLoad()
+        vc.viewDidAppear(false)
+
+        XCTAssertEqual(vc.navbarNameButton.titleLabel?.text, "User 2")
+        XCTAssertEqual(vc.navbarMenuStackView.arrangedSubviews.count, students.count + 1)
+    }
 }
