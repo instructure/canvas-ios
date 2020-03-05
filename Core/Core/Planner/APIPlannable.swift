@@ -146,3 +146,19 @@ public struct GetPlannablesRequest: APIRequestable {
         ]
     }
 }
+
+// https://canvas.instructure.com/doc/api/planner.html#method.planner_notes.create
+public struct CreatePlannerNote: APIRequestable {
+    public typealias Response = APIPlannable
+
+    var title: String?
+    var details: String?
+    var todo_date: Date
+    var courseID: String?
+    var linked_object_type: Plannable.PlannableType?
+    var linked_object_id: String?
+
+    public var method: APIMethod { return .post }
+
+    public var path: String { return "planner_notes" }
+}

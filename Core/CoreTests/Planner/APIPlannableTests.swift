@@ -58,3 +58,21 @@ class APIPlannableTests: XCTestCase {
         XCTAssertNotNil(override)
 	}
 }
+
+class APICreatePlannerNoteTests: XCTestCase {
+    var req: CreatePlannerNote!
+    var date: Date = Clock.now
+
+    override func setUp() {
+        super.setUp()
+        req = CreatePlannerNote(title: "title", details: "details", todo_date: date, courseID: nil, linked_object_type: .planner_note, linked_object_id: nil)
+    }
+
+    func testMethod() {
+        XCTAssertEqual(req.method, .post)
+    }
+
+    func testPath() {
+        XCTAssertEqual(req.path, "planner_notes")
+    }
+}
