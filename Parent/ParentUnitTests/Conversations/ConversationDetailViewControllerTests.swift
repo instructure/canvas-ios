@@ -31,9 +31,8 @@ class ConversationDetailViewControllerTests: ParentTestCase {
 
         let c = APIConversation.make(
             participants: [
-                .make(id: "1", name: "user 1"),
+                .make(id: "1", name: "user 1", pronouns: "They/Them"),
                 .make(id: "2", name: "user 2"),
-                .make(id: "3", name: "user 3", pronouns: "Them/They"),
                 .make(id: "4", name: "user 4", pronouns: "He/Him"),
             ],
             messages: [
@@ -41,7 +40,7 @@ class ConversationDetailViewControllerTests: ParentTestCase {
                     id: "1",
                     created_at: Clock.now.addDays(-1),
                     body: "hello world",
-                    author_id: "1",
+                    author_id: "2",
                     media_comment: .make(url: URL(string: "data:text/plain,")!),
                     attachments: [
                         .make(id: "1", mime_class: "doc"),
@@ -54,8 +53,8 @@ class ConversationDetailViewControllerTests: ParentTestCase {
                     id: "2",
                     created_at: Clock.now.addDays(-4),
                     body: "foo bar",
-                    author_id: "3",
-                    participating_user_ids: [ "3", "4" ]
+                    author_id: "1",
+                    participating_user_ids: [ "1", "4" ]
                 ),
             ]
         )
@@ -76,13 +75,13 @@ class ConversationDetailViewControllerTests: ParentTestCase {
         XCTAssertEqual((router.presented as? ComposeReplyViewController)?.all, false)
 
         let first = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ConversationDetailCell
-        XCTAssertEqual(first?.fromLabel.text, "user 1")
-        XCTAssertEqual(first?.toLabel.text, "to user 2")
+        XCTAssertEqual(first?.fromLabel.text, "user 2")
+        XCTAssertEqual(first?.toLabel.text, "to me")
         XCTAssertEqual(first?.messageLabel.text, "hello world")
         XCTAssertEqual(first?.dateLabel.text, DateFormatter.localizedString(from: Clock.now.addDays(-1), dateStyle: .medium, timeStyle: .short))
         XCTAssertEqual(first?.attachmentsController.attachments.count, 3)
 
-        let actions = controller.tableView.delegate?.tableView?(
+        var actions = controller.tableView.delegate?.tableView?(
             controller.tableView,
             trailingSwipeActionsConfigurationForRowAt: IndexPath(row: 0, section: 0)
         )?.actions
@@ -93,8 +92,18 @@ class ConversationDetailViewControllerTests: ParentTestCase {
         XCTAssertEqual((router.presented as? ComposeReplyViewController)?.all, false)
 
         let second = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? ConversationDetailCell
-        XCTAssertEqual(second?.fromLabel.text, "user 3 (Them/They)")
+        XCTAssertEqual(second?.fromLabel.text, "user 1 (They/Them)")
         XCTAssertEqual(second?.toLabel.text, "to user 4 (He/Him)")
+
+        actions = controller.tableView.delegate?.tableView?(
+            controller.tableView,
+            trailingSwipeActionsConfigurationForRowAt: IndexPath(row: 0, section: 1)
+        )?.actions
+        XCTAssertEqual(actions?.count, 1)
+        actions?[0].handler(actions![0], UIView()) { complete in
+            XCTAssertTrue(complete)
+        }
+        XCTAssertEqual((router.presented as? ComposeReplyViewController)?.all, true)
     }
 
     func testReplyAll() {
