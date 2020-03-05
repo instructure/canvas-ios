@@ -22,25 +22,24 @@ public enum PostGradePolicy: String, CaseIterable {
     case everyone, graded
 }
 
-public struct PostAssignmentGradesInput: Codable, Equatable {
-    let gradedOnly: Bool
-    let assignmentId: String
-    let sectionIds: [String]?
-}
-
 public class PostAssignmentGradesPostPolicyRequest: APIGraphQLRequestable {
     public typealias Response = APINoContent
+    public struct Input: Codable, Equatable {
+        let gradedOnly: Bool
+        let assignmentId: String
+        let sectionIds: [String]?
+    }
     public struct Variables: Codable, Equatable {
-        let input: PostAssignmentGradesInput
+        let input: Input
     }
     public let variables: Variables
 
-    init(input: PostAssignmentGradesInput) {
+    init(input: Input) {
         self.variables = Variables(input: input)
     }
 
     public convenience init(assignmentID: String, postPolicy: PostGradePolicy) {
-        self.init(input: PostAssignmentGradesInput(
+        self.init(input: Input(
             gradedOnly: postPolicy == .graded,
             assignmentId: assignmentID,
             sectionIds: nil
@@ -58,7 +57,7 @@ public class PostAssignmentGradesPostPolicyRequest: APIGraphQLRequestable {
 
 public class PostAssignmentGradesForSectionsPostPolicyRequest: PostAssignmentGradesPostPolicyRequest {
     public init(assignmentID: String, postPolicy: PostGradePolicy, sections: [String]) {
-        super.init(input: PostAssignmentGradesInput(
+        super.init(input: Input(
             gradedOnly: postPolicy == .graded,
             assignmentId: assignmentID,
             sectionIds: sections
@@ -74,24 +73,23 @@ public class PostAssignmentGradesForSectionsPostPolicyRequest: PostAssignmentGra
         """ }
 }
 
-public struct HideAssignmentGradesInput: Codable, Equatable {
-    public let assignmentId: String
-    public let sectionIds: [String]?
-}
-
 public class HideAssignmentGradesPostPolicyRequest: APIGraphQLRequestable {
     public typealias Response = APINoContent
+    public struct Input: Codable, Equatable {
+        public let assignmentId: String
+        public let sectionIds: [String]?
+    }
     public struct Variables: Codable, Equatable {
-        let input: HideAssignmentGradesInput
+        let input: Input
     }
     public let variables: Variables
 
-    init(input: HideAssignmentGradesInput) {
+    init(input: Input) {
         variables = Variables(input: input)
     }
 
     public convenience init(assignmentID: String) {
-        self.init(input: HideAssignmentGradesInput(assignmentId: assignmentID, sectionIds: nil))
+        self.init(input: Input(assignmentId: assignmentID, sectionIds: nil))
     }
 
     public class var query: String { """
@@ -105,7 +103,7 @@ public class HideAssignmentGradesPostPolicyRequest: APIGraphQLRequestable {
 
 public class HideAssignmentGradesForSectionsPostPolicyRequest: HideAssignmentGradesPostPolicyRequest {
     public init(assignmentID: String, sections: [String]) {
-        super.init(input: HideAssignmentGradesInput(assignmentId: assignmentID, sectionIds: sections))
+        super.init(input: Input(assignmentId: assignmentID, sectionIds: sections))
     }
 
     public override class var query: String { """
