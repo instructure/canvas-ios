@@ -75,15 +75,15 @@ extension ConversationMessage {
         let containsMe = audience.contains(myID)
 
         if audience.count == 1 {
-            user =  containsMe ? NSLocalizedString("me", comment: "") : userMap[ audience[0] ]?.displayName
+            user =  containsMe ? NSLocalizedString("me", bundle: .core, comment: "") : userMap[ audience[0] ]?.displayName
         } else if audience.count > 1 {
             let cnt = containsMe ? audience.count - 1 : audience.count
             let pluralFormat = NSLocalizedString("conversation_recipients_to", bundle: .core, comment: "")
             let othersText = String.localizedStringWithFormat(pluralFormat, cnt)
-            user = containsMe ? String.localizedStringWithFormat( NSLocalizedString("me & %@", comment: ""), othersText) : othersText
+            user = containsMe ? String.localizedStringWithFormat( NSLocalizedString("me & %@", bundle: .core, comment: ""), othersText) : othersText
         }
 
-        let template = NSLocalizedString("to %@", comment: "")
+        let template = NSLocalizedString("to %@", bundle: .core, comment: "")
         return String.localizedStringWithFormat(template, user ?? "")
     }
 }

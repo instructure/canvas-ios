@@ -36,6 +36,7 @@ module.exports = {
   fr: require('./fr.json'),
   'fr-CA': require('./fr-CA.json'),
   ht: require('./ht.json'),
+  is: require('./is.json'),
   ja: require('./ja.json'),
   mi: require('./mi.json'),
   nb: require('./nb.json'),

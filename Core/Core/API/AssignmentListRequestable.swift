@@ -189,11 +189,11 @@ extension Array where Element: APIAssignmentListGradingPeriodDateProtocol {
 extension APIAssignmentListAssignment {
     public var formattedDueDate: String? {
         if let lockAt = lockAt, Clock.now > lockAt {
-            return NSLocalizedString("Availability: Closed", comment: "")
+            return NSLocalizedString("Availability: Closed", bundle: .core, comment: "")
         }
 
         if let lockAt = lockAt, Clock.now > lockAt {
-            return NSLocalizedString("Closed", comment: "")
+            return NSLocalizedString("Closed", bundle: .core, comment: "")
         }
 
         if let dueAt = dueAt {
@@ -202,7 +202,7 @@ extension APIAssignmentListAssignment {
             return String.localizedStringWithFormat(format, dtString)
         }
 
-        return NSLocalizedString("No Due Date", comment: "")
+        return NSLocalizedString("No Due Date", bundle: .core, comment: "")
     }
 
     public var icon: UIImage? {

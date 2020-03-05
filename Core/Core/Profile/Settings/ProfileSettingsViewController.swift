@@ -48,7 +48,7 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = NSLocalizedString("Settings", comment: "")
+        title = NSLocalizedString("Settings", bundle: .core, comment: "")
 
         tableView.backgroundColor = .named(.backgroundGrouped)
         tableView.dataSource = self
@@ -88,10 +88,10 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
         }
         sections = [
             Section(NSLocalizedString("Preferences", bundle: .core, comment: ""), rows: [
-                Row(NSLocalizedString("Landing Page", comment: ""), detail: landingPage.name) { [weak self] in
+                Row(NSLocalizedString("Landing Page", bundle: .core, comment: ""), detail: landingPage.name) { [weak self] in
                     guard let self = self else { return }
                     self.show(ItemPickerViewController.create(
-                        title: NSLocalizedString("Landing Page", comment: ""),
+                        title: NSLocalizedString("Landing Page", bundle: .core, comment: ""),
                         sections: [ ItemPickerSection(items: LandingPage.appCases.map { page in
                             ItemPickerItem(title: page.name)
                         }), ],
@@ -101,7 +101,7 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
                         delegate: self
                     ), sender: self)
                 },
-                Row(NSLocalizedString("Experimental Features", comment: "")) { [weak self] in
+                Row(NSLocalizedString("Experimental Features", bundle: .core, comment: "")) { [weak self] in
                     guard let self = self else { return }
                     let vc = ExperimentalFeaturesViewController()
                     vc.readOnly = true
@@ -123,22 +123,22 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
                     }
                 }
             }).sorted(by: { $0.title < $1.title }) + [
-                Row(NSLocalizedString("Subscribe to Calendar Feed", comment: ""), hasDisclosure: false) { [weak self] in
+                Row(NSLocalizedString("Subscribe to Calendar Feed", bundle: .core, comment: ""), hasDisclosure: false) { [weak self] in
                     guard let url = self?.profile.first?.calendarURL else { return }
                     self?.env.loginDelegate?.openExternalURL(url)
                 },
             ]),
 
             Section(NSLocalizedString("Legal", bundle: .core, comment: ""), rows: [
-                Row(NSLocalizedString("Privacy Policy", comment: "")) { [weak self] in
+                Row(NSLocalizedString("Privacy Policy", bundle: .core, comment: "")) { [weak self] in
                     guard let self = self else { return }
                     self.env.router.route(to: "https://www.instructure.com/policies/privacy/", from: self)
                 },
-                Row(NSLocalizedString("Terms of Use", comment: "")) { [weak self] in
+                Row(NSLocalizedString("Terms of Use", bundle: .core, comment: "")) { [weak self] in
                     guard let self = self else { return }
                     self.env.router.route(to: .termsOfService(), from: self)
                 },
-                Row(NSLocalizedString("Canvas on GitHub", comment: "")) { [weak self] in
+                Row(NSLocalizedString("Canvas on GitHub", bundle: .core, comment: "")) { [weak self] in
                     guard let self = self else { return }
                     self.env.router.route(to: "https://github.com/instructure/canvas-ios", from: self)
                 },

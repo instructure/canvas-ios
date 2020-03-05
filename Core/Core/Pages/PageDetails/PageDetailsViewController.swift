@@ -65,7 +65,7 @@ public class PageDetailsViewController: UIViewController, PageDetailsViewProtoco
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.barButtonItem = sender
 
-        alert.addAction(AlertAction(NSLocalizedString("Edit", comment: ""), style: .default) { [weak self] _ in
+        alert.addAction(AlertAction(NSLocalizedString("Edit", bundle: .core, comment: ""), style: .default) { [weak self] _ in
             guard let vc = self, let page = vc.presenter.page else {
                 return
             }
@@ -73,18 +73,18 @@ public class PageDetailsViewController: UIViewController, PageDetailsViewProtoco
         })
 
         if presenter.canDelete() {
-            alert.addAction(AlertAction(NSLocalizedString("Delete", comment: ""), style: .destructive) { [weak self] _ in
+            alert.addAction(AlertAction(NSLocalizedString("Delete", bundle: .core, comment: ""), style: .destructive) { [weak self] _ in
                 self?.showDeleteConfirmation()
             })
         }
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
         env.router.show(alert, from: self, options: .modal())
     }
 
     func showDeleteConfirmation() {
-        let alert = UIAlertController(title: NSLocalizedString("Are you sure you want to delete this page?", comment: ""), message: nil, preferredStyle: .alert)
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
-        alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .destructive) { [weak self] _ in
+        let alert = UIAlertController(title: NSLocalizedString("Are you sure you want to delete this page?", bundle: .core, comment: ""), message: nil, preferredStyle: .alert)
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
+        alert.addAction(AlertAction(NSLocalizedString("OK", bundle: .core, comment: ""), style: .destructive) { [weak self] _ in
             self?.presenter.deletePage()
         })
         env.router.show(alert, from: self)
