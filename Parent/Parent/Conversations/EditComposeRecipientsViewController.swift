@@ -38,9 +38,6 @@ class EditComposeRecipientsViewController: UIViewController {
     lazy var tas = env.subscribe(GetSearchRecipients(context: context, qualifier: .tas)) { [weak self] in
         self?.update()
     }
-    lazy var observee = observeeID.flatMap { env.subscribe(GetSearchRecipients(context: context, userID: $0)) { [weak self] in
-        self?.update()
-    }}
 
     var recipients: [SearchRecipient] = []
 
@@ -61,7 +58,6 @@ class EditComposeRecipientsViewController: UIViewController {
         titleLabel.text = NSLocalizedString("Recipients", bundle: .parent, comment: "")
         teachers.exhaust(force: false)
         tas.exhaust(force: false)
-        observee?.refresh(force: false)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -71,9 +67,6 @@ class EditComposeRecipientsViewController: UIViewController {
 
     func update() {
         recipients = (teachers.all ?? []) + (tas.all ?? [])
-        if let observee = self.observee?.first {
-            recipients.append(observee)
-        }
         recipients.sort {
             let tieBreaker = $0.fullName.localizedCompare($0.fullName) == .orderedAscending
             let lhs = [
