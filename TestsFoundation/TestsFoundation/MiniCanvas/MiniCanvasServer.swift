@@ -199,7 +199,9 @@ public class MiniCanvasServer {
             // login always works
             return .movedTemporarily("\(redirectUri)?code=t")
         }
-        addApiRoute(PostLoginOAuthRequest(client: verifyClient, code: "")) { _ in APIOAuthToken.make() }
+        addApiRoute(PostLoginOAuthRequest(client: verifyClient, code: "")) { request in
+            return APIOAuthToken.make(user: .from(user: request.state.selfUser))
+        }
         addApiRoute(GetUserProfileRequest(userID: ":userID")) { request in
             var userID = request[":userID"]!
             if userID == "self" {

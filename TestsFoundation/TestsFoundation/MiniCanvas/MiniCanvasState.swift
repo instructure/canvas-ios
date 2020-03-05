@@ -85,6 +85,8 @@ extension MiniCanvasState {
         (students + teachers + observers).first { $0.id == id }
     }
 
+    public var selfUser: APIUser { user(byId: selfId)! }
+
     public func userEnrollments(forId id: String? = nil) -> [APIEnrollment] {
         enrollments.filter { $0.user_id == id ?? selfId }
     }

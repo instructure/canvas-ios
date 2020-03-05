@@ -51,4 +51,13 @@ extension APIOAuthUser {
             email: email
         )
     }
+
+    public static func from(user: APIUser) -> APIOAuthUser {
+        make(
+            id: user.id.value,
+            name: user.name,
+            effectiveLocale: user.effective_locale ?? "en",
+            email: user.email
+        )
+    }
 }
