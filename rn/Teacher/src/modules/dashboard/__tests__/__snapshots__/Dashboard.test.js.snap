@@ -73,7 +73,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
           Courses
         </Text>
         <TouchableOpacity
-          accessibilityTraits="button"
+          accessibilityRole="button"
           hitSlop={
             Object {
               "bottom": 15,
@@ -1499,7 +1499,7 @@ exports[`Dashboard render 1`] = `
           Courses
         </Text>
         <TouchableOpacity
-          accessibilityTraits="button"
+          accessibilityRole="button"
           hitSlop={
             Object {
               "bottom": 15,
@@ -2153,7 +2153,7 @@ exports[`Dashboard render while pending 1`] = `
           Courses
         </Text>
         <TouchableOpacity
-          accessibilityTraits="button"
+          accessibilityRole="button"
           hitSlop={
             Object {
               "bottom": 15,
@@ -2807,7 +2807,7 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
           Courses
         </Text>
         <TouchableOpacity
-          accessibilityTraits="button"
+          accessibilityRole="button"
           hitSlop={
             Object {
               "bottom": 15,
@@ -3040,7 +3040,7 @@ exports[`Dashboard render without favorite courses 1`] = `
           Courses
         </Text>
         <TouchableOpacity
-          accessibilityTraits="button"
+          accessibilityRole="button"
           hitSlop={
             Object {
               "bottom": 15,
@@ -3757,7 +3757,7 @@ exports[`Dashboard renders course invites 1`] = `
           Courses
         </Text>
         <TouchableOpacity
-          accessibilityTraits="button"
+          accessibilityRole="button"
           hitSlop={
             Object {
               "bottom": 15,

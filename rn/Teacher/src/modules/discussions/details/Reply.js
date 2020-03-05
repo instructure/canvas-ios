@@ -169,7 +169,7 @@ export default class Reply extends Component<Props, State> {
           <View style={style.rowA}>
             <Text
               style={style.userName}
-              accessibilityTraits={this.props.isRootReply ? 'header' : 'none'}
+              accessibilityRole={this.props.isRootReply ? 'header' : 'none'}
               testID='DiscussionReply.userName'
             >
               {personDisplayName(user.display_name, user.pronouns)}

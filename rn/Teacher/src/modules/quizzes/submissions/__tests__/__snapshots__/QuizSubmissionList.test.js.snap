@@ -58,6 +58,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
       </View>
       <View
         accessibilityLabel="Filter Submissions. (0) selected."
+        accessibilityRole="button"
         accessible={true}
         hitSlop={
           Object {
@@ -405,6 +406,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
       </View>
       <View
         accessibilityLabel="Filter Submissions. (1) selected."
+        accessibilityRole="button"
         accessible={true}
         hitSlop={
           Object {
@@ -719,6 +721,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
       </View>
       <View
         accessibilityLabel="Filter Submissions. (0) selected."
+        accessibilityRole="button"
         accessible={true}
         hitSlop={
           Object {
