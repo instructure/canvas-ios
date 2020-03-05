@@ -37,17 +37,44 @@ extension HttpResponse {
     }
 }
 
+class MockWriter: HttpResponseBodyWriter {
+    var data = Data()
+
+    func write(_ file: String.File) throws { }
+    func write(_ data: [UInt8]) throws { }
+    func write(_ data: ArraySlice<UInt8>) throws { }
+    func write(_ data: NSData) throws { }
+    func write(_ data: Data) throws { self.data = data }
+}
+
 public class LoggingHttpServer: HttpServer {
+    public var logResponses: Bool = false
+
     public override func dispatch(_ request: HttpRequest) -> ([String: String], (HttpRequest) -> HttpResponse) {
         let (params, handler) = super.dispatch(request)
-        return (params, { request in
+        return (params, { [weak self] request in
             let response = handler(request)
             var queryString = ""
             if !request.queryParams.isEmpty {
                 queryString = " \(request.queryParams)"
             }
             let alert = response.statusCode < 400 ? "" : " ❌"
-            print("\(request.method) \(request.path)\(queryString) \(response.statusCode)\(alert)")
+            var log = "\(request.method) \(request.path)\(queryString) \(response.statusCode)\(alert)"
+            if self?.logResponses == true {
+                if case HttpResponse.raw(_, _, _, let body) = response {
+                    let writer = MockWriter()
+                    try? body?(writer)
+                    let bodyData = writer.data
+                    if let bodyStr = String(data: bodyData, encoding: .utf8) {
+                        log += "\n\(bodyStr)"
+                    } else {
+                        log += "\n\(bodyData)"
+                    }
+                }
+            }
+            DispatchQueue.main.async {
+                print(log)
+            }
             return response
         })
     }
@@ -66,6 +93,11 @@ public class MiniCanvasServer {
     public func reset() {
         state = MiniCanvasState()
     }
+    static let jsonDecoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        return decoder
+    }()
 
     enum APIError: Error {
         case responseError(HttpResponse)
@@ -117,6 +149,10 @@ public class MiniCanvasServer {
         public subscript(_ name: String) -> String? {
             httpRequest.params[name] ?? firstQueryParam(named: name)
         }
+
+        public func mapBody<T: Codable>(_ transform: (Body) throws -> T) rethrows -> APIRequest<T> {
+            APIRequest<T>(state: state, httpRequest: httpRequest, body: try transform(body))
+        }
     }
 
     // expects a requestable with a path including path parameters like "courses/:courseID"
@@ -126,14 +162,19 @@ public class MiniCanvasServer {
     ) {
         let urlRequest = try! routeRequest.urlRequest(relativeTo: baseUrl, accessToken: "", actAsUserID: "")
         addRoute(urlRequest.url!.path, method: routeRequest.method) { request in
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-            let body = try? decoder.decode(R.Body.self, from: request.body)
-            let request = APIRequest(state: request.state, httpRequest: request.httpRequest, body: body)
+            let request = request.mapBody { try? Self.jsonDecoder.decode(R.Body.self, from: $0) }
             guard let response = try handler(request) else {
                 return .notFound
             }
             return .json(response)
+        }
+    }
+
+    private var graphQLRequests: [String: (APIRequest<Data>) throws -> HttpResponse] = [:]
+
+    func addGraphQLQuery<R: APIGraphQLRequestable>(_ : R.Type, handler: @escaping (APIRequest<R.Body>) throws -> R.Response) {
+        graphQLRequests[R.operationName] = { request in
+            .json(try handler(request.mapBody { try Self.jsonDecoder.decode(R.Body.self, from: $0) }))
         }
     }
 
@@ -246,7 +287,34 @@ public class MiniCanvasServer {
             request.state.course(byId: request[":courseID"]!)?.externalTools
         }
 
-//        addRoute("/api/graphql", method: .post, handler: Self.handleGraphQL)
+        addRoute("/api/graphql", method: .post) { [weak self] request in
+            guard let self = self else {
+                throw APIError.internalServerError
+            }
+            return try self.handleGraphQL(request: request)
+        }
+
+        addGraphQLQuery(AssignmentListRequestable.self) { request in
+            let vars = request.body.variables
+            guard let course = request.state.course(byId: vars.courseID) else {
+                throw APIError.notFound
+            }
+
+            let assignments: [APIAssignmentListAssignment] = course.assignments.map { assignment in
+                APIAssignmentListAssignment.make(
+                    id: assignment.id,
+                    name: assignment.name,
+                    dueAt: assignment.due_at,
+                    lockAt: assignment.lock_at,
+                    unlockAt: assignment.unlock_at,
+                    htmlUrl: "\(assignment.html_url)",
+                    submissionTypes: assignment.submission_types,
+                    quizID: assignment.quiz_id
+                )
+            }
+
+            return APIAssignmentListResponse.make(gradingPeriods: [], groups: [.make(assignments: assignments)])
+        }
     }
 
     deinit {
@@ -262,11 +330,12 @@ public class MiniCanvasServer {
         fatalError("Couldn't find port")
     }
 
-//    static func handleGraphQL(request: APIRequest<Data>) throws -> HttpResponse {
-//        let body = try JSONDecoder().decode(GraphQLBody.self, from: request.body)
-//
-//        print(body)
-//
-//        throw APIError.badRequest
-//    }
+    private func handleGraphQL(request: APIRequest<Data>) throws -> HttpResponse {
+        guard let body = try? JSONSerialization.jsonObject(with: request.body) as? [String: Any],
+              let operationName = body["operationName"] as? String,
+              let handler = graphQLRequests[operationName] else {
+            throw APIError.badRequest
+        }
+        return try handler(request)
+    }
 }

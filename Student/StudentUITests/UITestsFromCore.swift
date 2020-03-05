@@ -26,3 +26,4 @@ class StudentDiscussionReplyTests: DiscussionReplyTests {}
 class StudentTodoListTests: TodoListTests {}
 class StudentUserFilesTests: UserFilesTests {}
 class StudentSpringBoardTests: SpringBoardTests {}
+class StudentRunMiniCanvas: RunMiniCanvas {}

@@ -20,11 +20,21 @@ import Foundation
 import TestsFoundation
 @testable import Core
 
-class FigureOutWhereToPutThis: CoreUITestCase {
+class RunMiniCanvas: CoreUITestCase {
+    override var abstractTestClass: CoreUITestCase.Type { RunMiniCanvas.self }
+
     override func setUp() {
     }
 
     func testJustServer() {
+        MiniCanvasServer.shared.server.logResponses = true
+        let state = MiniCanvasServer.shared.state
+        if Bundle.main.isStudentApp {
+            state.selfId = state.students[0].id
+        } else if Bundle.main.isTeacherApp {
+            state.selfId = state.teachers[0].id
+        }
+
         let user = UITestUser(host: "\(MiniCanvasServer.shared.baseUrl)", username: "", password: "")
         launch { app in
             app.launchArguments.append(contentsOf: [

@@ -49,6 +49,10 @@ public class MiniCanvasState: Encodable {
         customColors = [:]
 
         for course in courses {
+            course.assignments = [
+                .make(id: idGenerator.next(), name: "Assignment 1"),
+                .make(id: idGenerator.next(), name: "Assignment 2"),
+            ]
             customColors["course_\(course.id)"] = Self.colorForID(id: course.id)
             for student in students {
                 enroll(student, intoCourse: course, as: "StudentEnrollment")
@@ -95,6 +99,7 @@ extension MiniCanvasState {
 
 public class MiniCourse: Encodable {
     public var api: APICourse
+    public var assignments: [APIAssignment] = []
     public var tabs: [APITab]
     public var externalTools: [APIExternalTool] = []
 
