@@ -158,7 +158,13 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
         // external tools submission may be unsubmitted and the type nil but there could
         // still be a submission inside the tool
         if assignment.requiresLTILaunch(toViewSubmission: submission) {
-            return ExternalToolSubmissionContentViewController.create(env: self.env, assignment: assignment)
+            let tools = LTITools(
+                env: .shared,
+                context: context,
+                launchType: .assessment,
+                assignmentID: assignmentID
+            )
+            return LTIViewController(tools: tools)
         }
 
         switch submission.type {
@@ -228,7 +234,12 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
             controller.view.accessibilityIdentifier = "SubmissionDetails.mediaPlayer"
             return controller
         case .some(.basic_lti_launch):
-            return ExternalToolSubmissionContentViewController.create(env: self.env, assignment: assignment)
+            let tools = LTITools(
+                env: .shared,
+                context: context,
+                url: submission.externalToolURL
+            )
+            return LTIViewController(tools: tools)
         default:
             return nil
         }
