@@ -35,7 +35,7 @@ public final class Plannable: NSManagedObject {
     @NSManaged public var contextImage: URL?
     @NSManaged public var canvasContextIDRaw: String?
     @NSManaged public var contextName: String?
-    @NSManaged public var date: Date
+    @NSManaged public var date: Date?
     @NSManaged public var pointsPossibleRaw: NSNumber?
     @NSManaged public var userID: String?
     @NSManaged public var details: String?

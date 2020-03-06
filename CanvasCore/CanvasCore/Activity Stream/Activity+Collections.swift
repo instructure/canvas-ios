@@ -23,7 +23,7 @@ import CoreData
 
 extension Activity {
     @objc var daySectionTitle: String {
-        return Activity.sectionTitleDateFormatter.string(from: updatedAt as Date)
+        updatedAt.map(Activity.sectionTitleDateFormatter.string) ?? ""
     }
 
     @nonobjc public static var sectionTitleDateFormatter: DateFormatter = {

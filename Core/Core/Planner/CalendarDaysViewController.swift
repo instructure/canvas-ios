@@ -96,9 +96,9 @@ class CalendarDaysViewController: UIViewController {
         var i = 0
         for week in weeksStackView.arrangedSubviews {
             for day in week.subviews.compactMap({ $0 as? CalendarDayButton }) {
-                while i < list.count, list[i].date < day.date { i += 1 }
+                while i < list.count, list[i].date ?? Date.distantFuture < day.date { i += 1 }
                 let startIndex = i
-                while i < list.count, calendar.isDate(list[i].date, inSameDayAs: day.date) { i += 1 }
+                while i < list.count, calendar.isDate(list[i].date ?? Date.distantFuture, inSameDayAs: day.date) { i += 1 }
                 day.activityDotCount = i - startIndex
             }
         }

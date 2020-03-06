@@ -150,7 +150,8 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
                 case "report_a_problem":
                     self?.route(to: .errorReport(for: "problem"), options: .modal(.formSheet, embedInNav: true))
                 default:
-                    self?.route(to: Route(link.url.absoluteString), options: .modal(embedInNav: true))
+                    guard let url = link.url else { return }
+                    self?.route(to: Route(url.absoluteString), options: .modal(embedInNav: true))
                 }
             })
         }

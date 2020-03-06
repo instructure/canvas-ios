@@ -26,8 +26,8 @@ public final class Page: NSManagedObject, LockableModel {
     @NSManaged internal (set) public var url: String // Unique locator for the page, but not unique across courses
     @NSManaged internal (set) public var htmlURL: String
     @NSManaged internal (set) public var title: String
-    @NSManaged internal (set) public var createdAt: Date
-    @NSManaged internal (set) public var updatedAt: Date // Date the page was last updated
+    @NSManaged internal (set) public var createdAt: Date?
+    @NSManaged internal (set) public var updatedAt: Date? // Date the page was last updated
     @NSManaged internal (set) public var editingRoles: String // Roles allowed to edit page
     @NSManaged internal (set) public var body: String? // HTML body of page
     @NSManaged internal (set) public var published: Bool // Page published (true) or in draft state (false)

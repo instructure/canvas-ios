@@ -27,7 +27,7 @@ public final class Tab: NSManagedObject {
     @NSManaged internal (set) public var id: String
     @NSManaged internal (set) public var label: String
     @NSManaged internal (set) public var position: Int32
-    @NSManaged internal (set) public var url: URL
+    @NSManaged internal (set) public var url: URL?
     @NSManaged internal (set) public var hidden: Bool
 
     @NSManaged var rawContextID: String
@@ -117,7 +117,7 @@ extension Tab: SynchronizedModel {
         url         = try (try json <| "url")
             ?? (try json <| "full_url")
 
-        guard let context = ContextID(url: url) else {
+        guard let context = url.flatMap(ContextID.init) else {
             throw NSError(subdomain: "Enrollments", code: 0, sessionID: nil, apiURL: URL(string: "/api/v1/context/tabs"), title: nil, description: contextIDErrorMessage, failureReason: contextIDFailureReason)
         }
 

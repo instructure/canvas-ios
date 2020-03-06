@@ -25,10 +25,10 @@ public class Assignment: NSManagedObject {
     @NSManaged public var quizID: String?
     @NSManaged public var details: String?
     @NSManaged public var dueAt: Date?
-    @NSManaged public var dueAtSortNilsAtBottom: Date
+    @NSManaged public var dueAtSortNilsAtBottom: Date?
     @NSManaged public var gradedIndividually: Bool
     @NSManaged var gradingTypeRaw: String
-    @NSManaged public var htmlURL: URL
+    @NSManaged public var htmlURL: URL?
     @NSManaged public var id: String
     @NSManaged public var name: String
     @NSManaged var pointsPossibleRaw: NSNumber?

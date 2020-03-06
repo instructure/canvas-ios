@@ -186,8 +186,10 @@ class CourseDetailsViewController: HorizontalMenuViewController {
             components.path = "/courses/\(courseID)/grades/\(studentID)"
             return components.url?.absoluteString ?? na
         case .syllabus, .summary:
-            if let syllabusTab = tabs.first(where: { $0.id == "syllabus" }), courses.first?.syllabusBody?.isEmpty == false {
-                components.path = syllabusTab.htmlURL.path
+            if let syllabusTab = tabs.first(where: { $0.id == "syllabus" }),
+                courses.first?.syllabusBody?.isEmpty == false,
+                let htmlURL = syllabusTab.htmlURL {
+                components.path = htmlURL.path
                 return components.url?.absoluteString ?? na
             }
             return na

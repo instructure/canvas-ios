@@ -34,7 +34,7 @@ class SubmissionCommentAudioCell: UITableViewCell {
         accessibilityIdentifier = "SubmissionComments.audioCell.\(comment.id)"
         accessibilityLabel = String.localizedStringWithFormat(
             NSLocalizedString("On %@ %@ left an audio comment", bundle: .student, comment: ""),
-            DateFormatter.localizedString(from: comment.createdAt, dateStyle: .long, timeStyle: .short),
+            comment.createdAtLocalizedString,
             comment.authorName
         )
 

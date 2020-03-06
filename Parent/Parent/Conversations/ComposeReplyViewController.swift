@@ -103,14 +103,18 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
             ? NSLocalizedString("Reply All", comment: "")
             : NSLocalizedString("Reply", comment: "")
 
-        guard let conversation = conversation, let message = message else { return }
+        guard let conversation = conversation,
+            let message = message,
+            let createdAt = message.createdAt else {
+                return
+        }
         let myID = env.currentSession?.userID ?? ""
         let userMap: [String: ConversationParticipant] = conversation.participants
             .reduce(into: [:]) { map, p in map[p.id] = p }
         messageLabel.text = message.body
         toLabel.text = message.localizedAudience(myID: myID, userMap: userMap)
         fromLabel.text = userMap[message.authorID]?.displayName
-        dateLabel.text = DateFormatter.localizedString(from: message.createdAt, dateStyle: .medium, timeStyle: .short)
+        dateLabel.text = DateFormatter.localizedString(from: createdAt, dateStyle: .medium, timeStyle: .short)
         avatarView.url = userMap[message.authorID]?.avatarURL
         avatarView.name = userMap[message.authorID]?.name ?? ""
     }

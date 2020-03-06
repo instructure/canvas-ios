@@ -55,8 +55,9 @@ extension UseCase {
         guard let cacheKey = cacheKey else { return true }
         var expired = true
         let predicate = NSPredicate(format: "%K == %@", #keyPath(TTL.key), cacheKey)
-        if let cache: TTL = client.fetch(predicate).first {
-            expired = cache.lastRefresh + ttl < Clock.now
+        if let cache: TTL = client.fetch(predicate).first,
+            let lastRefresh = cache.lastRefresh {
+            expired = lastRefresh + ttl < Clock.now
         }
         return expired
     }

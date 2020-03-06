@@ -21,5 +21,5 @@ import CoreData
 
 public class TTL: NSManagedObject {
     @NSManaged public var key: String
-    @NSManaged public var lastRefresh: Date
+    @NSManaged public var lastRefresh: Date?
 }

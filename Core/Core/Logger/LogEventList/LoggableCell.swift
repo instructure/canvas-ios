@@ -54,7 +54,7 @@ class LoggableCell: UITableViewCell {
             typeImageView.image = loggable?.icon
             typeImageView.tintColor = loggable?.iconTintColor
             messageLabel.text = loggable?.message
-            timestampLabel.text = loggable.flatMap { LoggableCell.dateFormatter.string(from: $0.timestamp) }
+            timestampLabel.text = loggable?.timestamp.flatMap(LoggableCell.dateFormatter.string)
         }
     }
 }

@@ -46,7 +46,7 @@ class AddMessageTests: CoreTestCase {
         useCase.fetch()
         XCTAssertEqual(conversation.workflowState, .read)
         XCTAssertEqual(conversation.lastMessage, "See-Gee-IN-YOU!")
-        XCTAssertEqual(conversation.lastMessageAt.isoString(), Clock.now.isoString())
+        XCTAssertEqual(conversation.lastMessageAt?.isoString(), Clock.now.isoString())
         XCTAssertEqual(conversation.participants.count, 2)
         XCTAssertEqual(conversation.audience.count, 2)
         XCTAssertEqual(conversation.messages.count, 2)
@@ -68,6 +68,6 @@ class AddMessageTests: CoreTestCase {
 
         useCase.fetch()
         XCTAssertEqual(conversation.lastMessage, "See-Gee-IN-YOU")
-        XCTAssertEqual(conversation.lastMessageAt.isoString(), Clock.now.isoString())
+        XCTAssertEqual(conversation.lastMessageAt?.isoString(), Clock.now.isoString())
     }
 }

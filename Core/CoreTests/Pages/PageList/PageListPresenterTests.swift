@@ -98,14 +98,14 @@ class PageListPresenterTests: CoreTestCase {
         let page = Page.make()
         let router = environment.router as? TestRouter
         XCTAssertNoThrow(coursePresenter.select(page, from: UIViewController()))
-        XCTAssertEqual(router?.calls.last?.0, URLComponents.parse(page.htmlURL))
+        XCTAssertEqual(router?.calls.last?.0, URLComponents.parse(page.htmlURL!))
         XCTAssertEqual(router?.calls.last?.2, .detail(embedInNav: true))
 
         let groupPage = Page.make(from: .make(
             html_url: URL(string: "/groups/42/pages/answers-page")!
         ))
         XCTAssertNoThrow(groupPresenter.select(groupPage, from: UIViewController()))
-        XCTAssertEqual(router?.calls.last?.0, URLComponents.parse(groupPage.htmlURL))
+        XCTAssertEqual(router?.calls.last?.0, URLComponents.parse(groupPage.htmlURL!))
         XCTAssertEqual(router?.calls.last?.2, .detail(embedInNav: true))
     }
 

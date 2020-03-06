@@ -115,7 +115,9 @@ extension GroupNavigationViewController {
         case "wiki", "pages":
             env.router.route(to: "\(context.pathComponent)/pages", from: self)
         default:
-            env.router.route(to: tab.htmlURL, from: self)
+            if let url = tab.htmlURL {
+                env.router.route(to: url, from: self)
+            }
         }
     }
 }

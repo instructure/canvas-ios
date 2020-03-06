@@ -26,9 +26,9 @@ import AVFoundation
 public final class File: FileNode {
     @NSManaged public var contentType: String?
     @NSManaged public var size: Int64 //in bytes
-    @NSManaged public var url: URL
+    @NSManaged public var url: URL?
     @NSManaged public var thumbnailURL: URL?
-    
+
     override public var icon: UIImage {
         iconName = "icon_document"
         if lockedForUser {

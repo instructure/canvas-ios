@@ -146,7 +146,7 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
             let hiddenMessage = String.localizedStringWithFormat(
                 NSLocalizedString("Regarding: %@, %@", comment: "Regarding <Name>, <URL>"),
                 name,
-                a.htmlURL.absoluteString
+                a.htmlURL?.absoluteString ?? ""
             )
             let compose = ComposeViewController.create(
                 context: ContextModel(.course, id: courseID),

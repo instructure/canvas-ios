@@ -23,7 +23,7 @@ public final class ConversationMessage: NSManagedObject, WriteableModel {
     @NSManaged var attachmentsRaw: NSOrderedSet?
     @NSManaged public var authorID: String
     @NSManaged public var body: String
-    @NSManaged public var createdAt: Date
+    @NSManaged public var createdAt: Date?
     @NSManaged var forwardedRaw: NSOrderedSet?
     @NSManaged public var generated: Bool
     @NSManaged public var id: String

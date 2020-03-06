@@ -22,7 +22,7 @@ import CoreData
 public class Tab: NSManagedObject {
     @NSManaged var contextRaw: String
     @NSManaged var hiddenRaw: NSNumber?
-    @NSManaged public var htmlURL: URL
+    @NSManaged public var htmlURL: URL?
     @NSManaged public var id: String
     @NSManaged public var label: String
     @NSManaged public var position: Int

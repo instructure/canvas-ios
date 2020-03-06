@@ -36,7 +36,9 @@ public class PlannerNoteDetailViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
         title = NSLocalizedString("To Do", bundle: .core, comment: "")
         titleLabel.text = plannable.title
-        dateLabel.text = DateFormatter.localizedString(from: plannable.date, dateStyle: .medium, timeStyle: .short)
+        dateLabel.text = plannable.date.map {
+            DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .short)
+        }
         detailsLabel.text = plannable.details
     }
 }
