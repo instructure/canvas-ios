@@ -97,10 +97,10 @@ export class GradeTab extends Component<GradeTabProps, GradeTabState> {
     this.setState({ criterionCommentInput: criterionID })
   }
 
-  submitRubricComment = ({ message }: { message: string }) => {
+  submitRubricComment = ({ comment }) => {
     if (!this.state.criterionCommentInput) return
     const id = this.state.criterionCommentInput
-    this.updateAssessment(id, { comments: message })
+    this.updateAssessment(id, { comments: comment })
   }
 
   cancelRubricComment = () => {
