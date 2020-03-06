@@ -35,7 +35,7 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var daysContainer: UIView!
     let daysPageController = PagesViewController()
     var days: CalendarDaysViewController! {
-        daysPageController.viewController as? CalendarDaysViewController
+        daysPageController.currentPage as? CalendarDaysViewController
     }
     @IBOutlet weak var daysHeight: NSLayoutConstraint!
     lazy var panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPan(_:)))
@@ -52,6 +52,11 @@ class CalendarViewController: UIViewController {
     lazy var monthFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.setLocalizedDateFormatFromTemplate("MMMM")
+        return formatter
+    }()
+    lazy var monthPageTitleFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("MMMM yyyy")
         return formatter
     }()
     lazy var weekdayFormatter: DateFormatter = {
@@ -209,7 +214,14 @@ extension CalendarViewController: PagesViewControllerDataSource, PagesViewContro
         } else {
             selectedDate = calendar.date(byAdding: .day, value: numberOfDaysInWeek  * delta, to: selectedDate)!
         }
-        return CalendarDaysViewController.create(selectedDate: selectedDate, delegate: delegate)
+        let days = CalendarDaysViewController.create(selectedDate: selectedDate, delegate: delegate)
+        // Announced with accessibilityScroll
+        days.title = isExpanded ? monthPageTitleFormatter.string(from: selectedDate)
+            : String.localizedStringWithFormat(
+                NSLocalizedString("Week of %@", comment: ""),
+                DateFormatter.localizedString(from: selectedDate, dateStyle: .long, timeStyle: .none)
+            )
+        return days
     }
 
     func pagesViewController(_ pages: PagesViewController, isShowing list: [UIViewController]) {
@@ -222,5 +234,6 @@ extension CalendarViewController: PagesViewControllerDataSource, PagesViewContro
 
     func pagesViewController(_ pages: PagesViewController, didTransitionTo page: UIViewController) {
         delegate?.calendarDidTransitionToDate(days.selectedDate)
+        UIAccessibility.post(notification: .layoutChanged, argument: page.view)
     }
 }

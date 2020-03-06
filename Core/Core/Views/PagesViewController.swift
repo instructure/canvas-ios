@@ -32,11 +32,12 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
     public weak var dataSource: PagesViewControllerDataSource?
     public weak var delegate: PagesViewControllerDelegate?
     public let scrollView = UIScrollView()
-    private(set) public var viewController = UIViewController()
 
-    var leftPage: UIViewController?
-    var rightPage: UIViewController?
-    var showing: [UIViewController] = []
+    private var leftPage: UIViewController?
+    public private(set) var currentPage = UIViewController()
+    private var rightPage: UIViewController?
+
+    private var showing: [UIViewController] = []
 
     public override func loadView() {
         view = scrollView
@@ -49,7 +50,7 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
 
-        embedPage(viewController, at: 0)
+        embedPage(currentPage, at: 0)
     }
 
     public override func viewDidLayoutSubviews() {
@@ -60,8 +61,8 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
     private func getPage(onLeft: Bool) -> UIViewController? {
         let isBefore = view.effectiveUserInterfaceLayoutDirection == .leftToRight ? onLeft : !onLeft
         return isBefore
-            ? dataSource?.pagesViewController(self, pageBefore: viewController)
-            : dataSource?.pagesViewController(self, pageAfter: viewController)
+            ? dataSource?.pagesViewController(self, pageBefore: currentPage)
+            : dataSource?.pagesViewController(self, pageAfter: currentPage)
     }
 
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -92,8 +93,8 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
         if let left = leftPage, left.view.frame.intersects(visible) {
             newValue.append(left)
         }
-        if viewController.view.frame.intersects(visible) {
-            newValue.append(viewController)
+        if currentPage.view.frame.intersects(visible) {
+            newValue.append(currentPage)
         }
         if let right = rightPage, right.view.frame.intersects(visible) {
             newValue.append(right)
@@ -105,22 +106,43 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
 
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let x = targetContentOffset.pointee.x
-        if x < viewController.view.frame.minX, let left = leftPage {
+        if x < currentPage.view.frame.minX, let left = leftPage {
             rightPage?.unembed()
             leftPage = nil
-            rightPage = viewController
-            viewController = left
-            delegate?.pagesViewController?(self, didTransitionTo: viewController)
-        } else if x >= viewController.view.frame.maxX, let right = rightPage {
+            rightPage = currentPage
+            currentPage = left
+            notifyUpdated()
+        } else if x >= currentPage.view.frame.maxX, let right = rightPage {
             leftPage?.unembed()
             rightPage = nil
-            leftPage = viewController
-            viewController = right
+            leftPage = currentPage
+            currentPage = right
             scrollView.contentOffset.x -= scrollView.frame.width
             targetContentOffset.pointee = CGPoint(x: x - scrollView.frame.width, y: 0)
-            delegate?.pagesViewController?(self, didTransitionTo: viewController)
+            notifyUpdated()
         }
         layout()
+    }
+
+    public override func accessibilityScroll(_ direction: UIAccessibilityScrollDirection) -> Bool {
+        let isLTR = view.effectiveUserInterfaceLayoutDirection == .leftToRight
+        var onLeft: Bool
+        switch direction {
+        case .down, .previous: onLeft = isLTR
+        case .up, .next: onLeft = !isLTR
+        case .left: onLeft = false // swipe to left needs to get new one on right
+        case .right: onLeft = true
+        @unknown default: onLeft = false
+        }
+        guard let page = getPage(onLeft: onLeft) else { return false }
+        setCurrentPage(page)
+        notifyUpdated()
+        return true
+    }
+
+    func notifyUpdated() {
+        UIAccessibility.post(notification: .pageScrolled, argument: currentPage.title)
+        delegate?.pagesViewController?(self, didTransitionTo: currentPage)
     }
 
     func embedPage(_ page: UIViewController, at: Int) {
@@ -144,20 +166,20 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
                 scrollView.contentOffset.x += scrollView.frame.width
             }
             leftPage = nil
-            rightPage = viewController
+            rightPage = currentPage
             embedPage(page, at: 0)
         } else if direction == nil {
             leftPage = nil
             rightPage = nil
-            viewController.unembed()
+            currentPage.unembed()
             embedPage(page, at: 0)
         } else {
             rightPage = nil
-            leftPage = viewController
+            leftPage = currentPage
             embedPage(page, at: 1)
             x = scrollView.frame.width
         }
-        viewController = page
+        currentPage = page
         layout()
         scrollView.setContentOffset(CGPoint(x: x, y: 0), animated: direction != nil)
     }
