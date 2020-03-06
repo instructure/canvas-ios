@@ -18,7 +18,7 @@
 
 import XCTest
 @testable import Student
-import Core
+@testable import Core
 import TestsFoundation
 import AVKit
 
@@ -161,7 +161,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
         Submission.make(from: .make(submission_type: .external_tool))
         presenter.update()
 
-        XCTAssert(view.embedded is ExternalToolSubmissionContentViewController)
+        XCTAssert(view.embedded is LTIViewController)
     }
 
     func testEmbedExternalToolOnlineUploadWithAttachment() {
@@ -263,12 +263,16 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
         XCTAssert(view.embedded is AVPlayerViewController)
     }
 
-    func testEmbedArc() {
+    func testEmbedArc() throws {
         Assignment.make()
-        Submission.make(from: .make(submission_type: .basic_lti_launch))
+        let submission = Submission.make(from: .make(
+            submission_type: .basic_lti_launch,
+            external_tool_url: .make()
+        ))
         presenter.update()
 
-        XCTAssert(view.embedded is ExternalToolSubmissionContentViewController)
+        let ltiController = try XCTUnwrap(view.embedded as? LTIViewController)
+        XCTAssertEqual(ltiController.tools.url, submission.externalToolURL!)
     }
 
     func testEmbedNothing() {

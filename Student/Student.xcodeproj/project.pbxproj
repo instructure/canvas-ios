@@ -182,8 +182,6 @@
 		7DCF0FC422F8A8D7000AACCE /* SubmissionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EF822F8A050000AACCE /* SubmissionDetailsViewController.swift */; };
 		7DCF0FC522F8A8D7000AACCE /* UrlSubmissionContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EF922F8A050000AACCE /* UrlSubmissionContentViewController.swift */; };
 		7DCF0FC622F8A8D7000AACCE /* UrlSubmissionContentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0EFA22F8A050000AACCE /* UrlSubmissionContentViewController.storyboard */; };
-		7DCF0FC722F8A8D7000AACCE /* ExternalToolSubmissionContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EFB22F8A050000AACCE /* ExternalToolSubmissionContentViewController.swift */; };
-		7DCF0FC822F8A8D7000AACCE /* ExternalToolSubmissionContentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0EFC22F8A050000AACCE /* ExternalToolSubmissionContentViewController.storyboard */; };
 		7DCF0FC922F8A8D7000AACCE /* SubmissionFilesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EFE22F8A050000AACCE /* SubmissionFilesCell.swift */; };
 		7DCF0FCA22F8A8D7000AACCE /* SubmissionFilesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0EFF22F8A050000AACCE /* SubmissionFilesViewController.storyboard */; };
 		7DCF0FCB22F8A8D7000AACCE /* SubmissionFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F0022F8A050000AACCE /* SubmissionFilesViewController.swift */; };
@@ -691,8 +689,6 @@
 		7DCF0EF822F8A050000AACCE /* SubmissionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsViewController.swift; sourceTree = "<group>"; };
 		7DCF0EF922F8A050000AACCE /* UrlSubmissionContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSubmissionContentViewController.swift; sourceTree = "<group>"; };
 		7DCF0EFA22F8A050000AACCE /* UrlSubmissionContentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UrlSubmissionContentViewController.storyboard; sourceTree = "<group>"; };
-		7DCF0EFB22F8A050000AACCE /* ExternalToolSubmissionContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalToolSubmissionContentViewController.swift; sourceTree = "<group>"; };
-		7DCF0EFC22F8A050000AACCE /* ExternalToolSubmissionContentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExternalToolSubmissionContentViewController.storyboard; sourceTree = "<group>"; };
 		7DCF0EFE22F8A050000AACCE /* SubmissionFilesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFilesCell.swift; sourceTree = "<group>"; };
 		7DCF0EFF22F8A050000AACCE /* SubmissionFilesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmissionFilesViewController.storyboard; sourceTree = "<group>"; };
 		7DCF0F0022F8A050000AACCE /* SubmissionFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFilesViewController.swift; sourceTree = "<group>"; };
@@ -1469,8 +1465,6 @@
 				7DCF0EF822F8A050000AACCE /* SubmissionDetailsViewController.swift */,
 				7DCF0EF922F8A050000AACCE /* UrlSubmissionContentViewController.swift */,
 				7DCF0EFA22F8A050000AACCE /* UrlSubmissionContentViewController.storyboard */,
-				7DCF0EFB22F8A050000AACCE /* ExternalToolSubmissionContentViewController.swift */,
-				7DCF0EFC22F8A050000AACCE /* ExternalToolSubmissionContentViewController.storyboard */,
 			);
 			path = SubmissionDetails;
 			sourceTree = "<group>";
@@ -2378,7 +2372,6 @@
 			files = (
 				7DCF0F7C22F8A81B000AACCE /* DashboardViewController.storyboard in Resources */,
 				7DCF0FCA22F8A8D7000AACCE /* SubmissionFilesViewController.storyboard in Resources */,
-				7DCF0FC822F8A8D7000AACCE /* ExternalToolSubmissionContentViewController.storyboard in Resources */,
 				2C0CAD751DEF6C33008D90FA /* InfoPlist.strings in Resources */,
 				7DCF0F8722F8A831000AACCE /* AssignmentDetailsSectionContainerView.xib in Resources */,
 				7DCF0F8422F8A831000AACCE /* AssignmentDetailsViewController.storyboard in Resources */,
@@ -2696,7 +2689,6 @@
 				7DCF0FC422F8A8D7000AACCE /* SubmissionDetailsViewController.swift in Sources */,
 				5EB46DF91D21A75C00C859A4 /* CalendarView.swift in Sources */,
 				5EB46DE91D21A75C00C859A4 /* UIColor+Calendar.swift in Sources */,
-				7DCF0FC722F8A8D7000AACCE /* ExternalToolSubmissionContentViewController.swift in Sources */,
 				5EB46DE51D21A75C00C859A4 /* NSDate+DayConvenience.swift in Sources */,
 				7DCF0F9822F8A860000AACCE /* UIViewControllerExtensions.swift in Sources */,
 				7DCF0F9322F8A84D000AACCE /* CourseListPresenter.swift in Sources */,
