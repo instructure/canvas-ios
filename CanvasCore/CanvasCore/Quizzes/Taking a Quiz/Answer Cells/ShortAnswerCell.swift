@@ -20,6 +20,12 @@ import UIKit
 
 
 class ShortAnswerCell: UITableViewCell {
+    static let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 4
+        formatter.roundingMode = .down
+        return formatter
+    }()
     
     @IBOutlet fileprivate var textFieldBox: UIView!
     @IBOutlet var textField: UITextField!
@@ -72,7 +78,11 @@ extension ShortAnswerCell: UITextFieldDelegate {
         var text = textField.text ?? ""
         if textField.keyboardType == .numbersAndPunctuation {
             while text.last == "." { text = String(text.dropLast()) }
+            if let number = NumberFormatter().number(from: text) {
+                text = Self.numberFormatter.string(from: number) ?? text
+            }
         }
+        textField.text = text
         doneEditing(text)
     }
     
