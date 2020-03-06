@@ -19,6 +19,28 @@
 import XCTest
 @testable import Core
 
+class AssignmentFilterTests: XCTestCase {
+    func testEncode() {
+        func asDict(_ filter: AssignmentFilter) -> [String: String?] {
+            try! JSONSerialization.jsonObject(with: JSONEncoder().encode(filter)) as! [String: String?]
+        }
+
+        XCTAssertEqual(asDict(.allGradingPeriods), ["gradingPeriodId": nil])
+        XCTAssertEqual(asDict(.currentGradingPeriod), [:])
+        XCTAssertEqual(asDict(.gradingPeriod(id: "id")), ["gradingPeriodId": "id"])
+    }
+
+    func testDecode() {
+        func fromDict(_ data: [String: String?]) -> AssignmentFilter {
+            try! JSONDecoder().decode(AssignmentFilter.self, from: JSONSerialization.data(withJSONObject: data))
+        }
+
+        XCTAssertEqual(fromDict(["gradingPeriodId": nil]), .allGradingPeriods)
+        XCTAssertEqual(fromDict([:]), .currentGradingPeriod)
+        XCTAssertEqual(fromDict(["gradingPeriodId": "id"]), .gradingPeriod(id: "id"))
+    }
+}
+
 class AssignmentListRequestableTests: XCTestCase {
 
     func testDecode() {
