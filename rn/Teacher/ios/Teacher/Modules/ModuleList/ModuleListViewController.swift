@@ -185,6 +185,10 @@ extension ModuleListViewController: UITableViewDataSource {
             cell.accessoryType = .none
             cell.publishedIconView.published = item.published
             cell.indent = item.indent
+            cell.accessibilityLabel = [
+                item.title,
+                item.published == true ? NSLocalizedString("published", comment: "") : NSLocalizedString("unpublished", comment: ""),
+            ].joined(separator: ", ")
             return cell
         default:
             let cell: ModuleItemCell = tableView.dequeue(for: indexPath)
@@ -212,6 +216,12 @@ extension ModuleListViewController: UITableViewDataSource {
         }
         let expanded = isSectionExpanded(section) == true
         header.collapsableIndicator.setCollapsed(!expanded, animated: true)
+        header.accessibilityLabel = [
+            module.name,
+            module.published == true ? NSLocalizedString("published", comment: "") : NSLocalizedString("unpublished", comment: ""),
+            expanded ? NSLocalizedString("expanded", comment: "") : NSLocalizedString("collapsed", comment: ""),
+        ].joined(separator: ", ")
+        header.accessibilityTraits.insert(.button)
         return header
     }
 }
