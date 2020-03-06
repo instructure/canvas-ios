@@ -537,6 +537,7 @@
 		7DB0A1B621BF168A009ABB40 /* LoginDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B521BF168A009ABB40 /* LoginDelegateTests.swift */; };
 		7DB0A1B821BF175E009ABB40 /* LoginFindSchoolViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B721BF175E009ABB40 /* LoginFindSchoolViewControllerTests.swift */; };
 		7DB0A1BA21BF1904009ABB40 /* LoginStartViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B921BF1904009ABB40 /* LoginStartViewControllerTests.swift */; };
+		7DB3A9E624119C0800274EB8 /* PagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3A9E524119C0800274EB8 /* PagesViewController.swift */; };
 		7DBED00C232C031C00392F3C /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DBED00B232C031C00392F3C /* ProfileViewController.storyboard */; };
 		7DBED017232FDDB700392F3C /* GetAccountHelpLinksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED016232FDDB700392F3C /* GetAccountHelpLinksTests.swift */; };
 		7DBED01D2330332800392F3C /* UploadAvatarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED01C2330332800392F3C /* UploadAvatarTests.swift */; };
@@ -1386,6 +1387,7 @@
 		7DB0A1B521BF168A009ABB40 /* LoginDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDelegateTests.swift; sourceTree = "<group>"; };
 		7DB0A1B721BF175E009ABB40 /* LoginFindSchoolViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchoolViewControllerTests.swift; sourceTree = "<group>"; };
 		7DB0A1B921BF1904009ABB40 /* LoginStartViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartViewControllerTests.swift; sourceTree = "<group>"; };
+		7DB3A9E524119C0800274EB8 /* PagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesViewController.swift; sourceTree = "<group>"; };
 		7DB3C6582285F0C700325B72 /* LoginStartMDMLoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartMDMLoginCell.swift; sourceTree = "<group>"; };
 		7DBED00B232C031C00392F3C /* ProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileViewController.storyboard; sourceTree = "<group>"; };
 		7DBED00D232C252200392F3C /* APIHelpLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelpLinks.swift; sourceTree = "<group>"; };
@@ -2478,6 +2480,7 @@
 				B147CCD62409CC6C0064BD3F /* LoadingCell.swift */,
 				7DD6CC6C21BD6DCD004C4BB6 /* LoadingViewController.storyboard */,
 				7DD6CC6A21BD6DB1004C4BB6 /* LoadingViewController.swift */,
+				7DB3A9E524119C0800274EB8 /* PagesViewController.swift */,
 				B183F99C225297F2000A6930 /* PublishedIconView.swift */,
 				7D70DE8F233E71A600F5C3D4 /* RightDetailTableViewCell.swift */,
 				7D85D8E8226E5DFE002DBF63 /* SectionHeaderView.swift */,
@@ -4815,6 +4818,7 @@
 				7DA2601C23F7227A005D2121 /* UIViewExtensions.swift in Sources */,
 				7DA25FA123F72136005D2121 /* APIBrandVariables.swift in Sources */,
 				7DA2603223F722C9005D2121 /* LTIViewController.swift in Sources */,
+				7DB3A9E624119C0800274EB8 /* PagesViewController.swift in Sources */,
 				7DA2601723F7227A005D2121 /* UIScrollViewExtensions.swift in Sources */,
 				7DA25FA723F72136005D2121 /* APICourseSection.swift in Sources */,
 				7DA2608523F7230F005D2121 /* ColoredNavViewProtocol.swift in Sources */,

@@ -71,16 +71,16 @@ class CalendarViewControllerTests: CoreTestCase, CalendarViewControllerDelegate 
 
         let dataSource = controller.daysPageController.dataSource
         let delegate = controller.daysPageController.delegate
-        let prev = dataSource?.pageViewController(controller.daysPageController, viewControllerBefore: controller.days) as? CalendarDaysViewController
+        let prev = dataSource?.pagesViewController(controller.daysPageController, pageBefore: controller.days) as? CalendarDaysViewController
         XCTAssertEqual(prev?.selectedDate.isoString(), DateComponents(calendar: .current, year: 2019, month: 12, day: 16).date?.isoString())
-        delegate?.pageViewController?(controller.daysPageController, willTransitionTo: [prev!])
-        delegate?.pageViewController?(controller.daysPageController, didFinishAnimating: true, previousViewControllers: [controller.days], transitionCompleted: true)
+        delegate?.pagesViewController?(controller.daysPageController, isShowing: [ prev!, controller.days ])
+        delegate?.pagesViewController?(controller.daysPageController, didTransitionTo: controller.days)
         XCTAssertEqual(controller.daysHeight.constant, 264)
 
         controller.monthButton.sendActions(for: .primaryActionTriggered)
-        let next = dataSource?.pageViewController(controller.daysPageController, viewControllerAfter: controller.days) as? CalendarDaysViewController
+        let next = dataSource?.pagesViewController(controller.daysPageController, pageAfter: controller.days) as? CalendarDaysViewController
         XCTAssertEqual(next?.selectedDate.isoString(), DateComponents(calendar: .current, year: 2020, month: 1, day: 23).date?.isoString())
-        delegate?.pageViewController?(controller.daysPageController, willTransitionTo: [next!])
+        delegate?.pagesViewController?(controller.daysPageController, isShowing: [ controller.days, next! ])
         XCTAssertEqual(controller.daysHeight.constant, 48)
 
         controller.showDate(DateComponents(calendar: .current, year: 2020, month: 2, day: 1).date!)
