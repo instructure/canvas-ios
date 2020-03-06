@@ -35,8 +35,10 @@ class RunMiniCanvas: CoreUITestCase {
             state.selfId = state.teachers[0].id
         }
 
-        let user = UITestUser(host: "\(MiniCanvasServer.shared.baseUrl)", username: "", password: "")
+        let baseUrl = "\(MiniCanvasServer.shared.baseUrl)"
+        let user = UITestUser(host: baseUrl, username: "", password: "")
         launch { app in
+            app.launchEnvironment["OVERRIDE_MOBILE_VERIFY_URL"] = "\(baseUrl)api/v1/mobile_verify.json"
             app.launchArguments.append(contentsOf: [
                 "-com.apple.configuration.managed",
                 user.profile,

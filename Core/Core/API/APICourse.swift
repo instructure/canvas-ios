@@ -35,7 +35,7 @@ public struct APICourse: Codable, Equatable {
     let start_at: Date?
     let end_at: Date?
     let locale: String?
-    let enrollments: [APIEnrollment]?
+    var enrollments: [APIEnrollment]?
     // let total_students: Int? // include[]=total_students
     // let calendar: ?
     let default_view: CourseDefaultView?

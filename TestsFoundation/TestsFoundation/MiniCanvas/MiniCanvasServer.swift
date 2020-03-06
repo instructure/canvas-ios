@@ -317,6 +317,8 @@ public class MiniCanvasServer {
 
             return APIAssignmentListResponse.make(gradingPeriods: [], groups: [.make(assignments: assignments)])
         }
+
+        addApiRoute(GetTodosRequest()) { _ in [] }
     }
 
     deinit {

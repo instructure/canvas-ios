@@ -37,7 +37,7 @@ open class CoreUITestCase: XCTestCase {
 
     open var httpMocks = [URL: (URLRequest) -> MockHTTPResponse]()
     open var graphQLMocks = [String: (URLRequest) -> Data]()
-    var useMocks: Bool {
+    open var useMocks: Bool {
         switch Bundle.main.bundleIdentifier {
         case Bundle.studentUITestsBundleID,
              Bundle.teacherUITestsBundleID,

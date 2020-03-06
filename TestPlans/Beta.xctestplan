@@ -14,6 +14,9 @@
       {
         "key" : "CANVAS_USE_BETA_E2E_SERVERS",
         "value" : "YES"
+      }, {
+        "key" : "OVERRIDE_MOBILE_VERIFY_URL",
+        "value" : "https://canvas.beta.instructure.com/api/v1/mobile_verify.json"
       }
     ],
     "mainThreadCheckerEnabled" : false,

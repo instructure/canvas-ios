@@ -69,7 +69,7 @@ extension MiniCanvasState {
     }
 
     public func enroll(_ user: APIUser, intoCourse course: MiniCourse, as role: String, observing: APIUser? = nil) {
-        enrollments.append(APIEnrollment.make(
+        let enrollment = APIEnrollment.make(
             id: idGenerator.next(),
             course_id: course.id.value,
             type: role,
@@ -78,7 +78,10 @@ extension MiniCanvasState {
             role: role,
             user: user,
             observed_user: observing
-        ))
+        )
+        enrollments.append(enrollment)
+        course.api.enrollments = course.api.enrollments ?? []
+        course.api.enrollments?.append(enrollment)
     }
 
     public func user(byId id: String) -> APIUser? {
