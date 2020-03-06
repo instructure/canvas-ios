@@ -37,7 +37,7 @@
 	<key>d_events</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@viðburðir@</string>
+		<string>%#@events@</string>
 		<key>events</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -69,7 +69,7 @@
 	<key>d_questions</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@spurningar@</string>
+		<string>%#@questions@</string>
 		<key>questions</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -82,10 +82,26 @@
 			<string>%d Spurningar</string>
 		</dict>
 	</dict>
+	<key>date_d_events</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%@, %#@events@</string>
+		<key>events</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d event</string>
+			<key>other</key>
+			<string>%d events</string>
+		</dict>
+	</dict>
 	<key>final_grade_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Lokaeinkunn: %#@punktar@</string>
+		<string>Lokaeinkunn: %#@points@</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -101,7 +117,7 @@
 	<key>g_out_of_g_points_possible</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Skoraði %g af mögulegum %#@punktum@</string>
+		<string>Skoraði %g af mögulegum %#@points@</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -117,7 +133,7 @@
 	<key>g_points</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@punktar@</string>
+		<string>%#@points@</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -133,7 +149,7 @@
 	<key>g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@punktar@</string>
+		<string>%#@points@</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -149,7 +165,7 @@
 	<key>late_penalty_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Viðurlög vegna of seinna skila (%#@punktar@)</string>
+		<string>Viðurlög vegna of seinna skila (%#@points@)</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -165,7 +181,7 @@
 	<key>out_of_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Af %#@punktum@</string>
+		<string>Af %#@points@</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -181,7 +197,7 @@
 	<key>plural_points</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@punktar@</string>
+		<string>%#@points@</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
