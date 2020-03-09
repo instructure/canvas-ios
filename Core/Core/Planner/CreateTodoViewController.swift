@@ -41,6 +41,7 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
     var formattedDate: String {
         DateFormatter.localizedString(from: selectedDate, dateStyle: .medium, timeStyle: .short)
     }
+    var plannables: Store<GetPlannables>?
 
     public static func create() -> CreateTodoViewController {
         let vc = loadFromStoryboard()
@@ -70,7 +71,7 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
             if let error = error {
                  self?.showError(error)
             } else {
-                 self?.dismiss(animated: true, completion: nil)
+                self?.refreshPlannables()
             }
         }
     }
@@ -103,11 +104,15 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
         dateTextField.resignFirstResponder()
     }
 
-    func createPlannerNoteDidUpdate() {
-        if createPlannerNote?.pending == false && createPlannerNote?.error == nil {
+    func refreshPlannables() {
+        let u = GetPlannables(startDate: Clock.now.startOfDay(), endDate: Clock.now.startOfDay().addDays(1))
+        plannables = env.subscribe(u, { [weak self] in self?.plannablesDidUpdate() })
+        plannables?.refresh(force: true)
+    }
+
+    func plannablesDidUpdate() {
+        if plannables?.pending == false {
             dismiss(animated: true, completion: nil)
-        } else if let error = createPlannerNote?.error {
-            showError(error)
         }
     }
 

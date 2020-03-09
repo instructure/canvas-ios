@@ -22,22 +22,31 @@ import XCTest
 class CreateTodoViewControllerTests: CoreTestCase {
 
     var vc = CreateTodoViewController.create()
+    let date = Clock.now
 
     override func setUp() {
         super.setUp()
         environment.mockStore = false
         vc = CreateTodoViewController.create()
+        Clock.mockNow(date)
+    }
+
+    override func tearDown() {
+        Clock.reset()
+        super.tearDown()
     }
 
     func testLayout() {
-        let date = Clock.now
+
         let title = "title"
         let details = "details"
         let course = APICourse.make()
 
         api.mock(GetCourses(), value: [course])
-        let expectation = XCTestExpectation(description: "make sure create post request is made when done button is pressed")
-        let r = PostPlannerNoteRequest(body:
+        let createExpectation = XCTestExpectation(description: "make sure create post request is made when done button is pressed")
+        let refreshExpectation = XCTestExpectation(description: "make sure create post request is made when done button is pressed")
+
+        let createNoteRequest = PostPlannerNoteRequest(body:
             PostPlannerNoteRequest.Body(
                 title: title,
                 details: details,
@@ -45,8 +54,15 @@ class CreateTodoViewControllerTests: CoreTestCase {
                 course_id: course.id.value,
                 linked_object_type: .planner_note,
                 linked_object_id: nil))
-        api.mock(r, data: nil, response: nil, error: nil, baseURL: URL(string: "https://canvas.instructure.com")!, accessToken: nil, dataHandler: {
-            expectation.fulfill()
+        let refreshPlannablesRequest = GetPlannablesRequest(startDate: date.startOfDay(), endDate: date.startOfDay().addDays(1))
+
+        api.mock(createNoteRequest, data: nil, response: nil, error: nil, baseURL: URL(string: "https://canvas.instructure.com")!, accessToken: nil, dataHandler: {
+            createExpectation.fulfill()
+            return (nil, nil, nil)
+        }, taskID: 1)
+
+        api.mock(refreshPlannablesRequest, data: nil, response: nil, error: nil, baseURL: URL(string: "https://canvas.instructure.com")!, accessToken: nil, dataHandler: {
+            refreshExpectation.fulfill()
             return (nil, nil, nil)
         }, taskID: 1)
 
@@ -78,6 +94,6 @@ class CreateTodoViewControllerTests: CoreTestCase {
         let doneButton = vc.navigationItem.rightBarButtonItem
         _ = doneButton?.target?.perform(doneButton?.action)
 
-        wait(for: [expectation], timeout: 0.5)
+        wait(for: [createExpectation, refreshExpectation], timeout: 0.5)
     }
 }
