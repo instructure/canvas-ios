@@ -33,7 +33,7 @@ public class CreatePlannerNote: APIUseCase {
         linkedObjectType: Plannable.PlannableType = .planner_note,
         linkedObjectId: String? = nil
     ) {
-        request = PostPlannerNoteRequest(title: title, details: details, todo_date: todoDate, courseID: courseID, linked_object_type: linkedObjectType, linked_object_id: linkedObjectId)
+        request = PostPlannerNoteRequest(body: PostPlannerNoteRequest.Body(title: title, details: details, todo_date: todoDate, course_id: courseID, linked_object_type: linkedObjectType, linked_object_id: linkedObjectId))
     }
 
     public func write(response: APINoContent?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {

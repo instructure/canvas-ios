@@ -151,8 +151,8 @@ public struct GetPlannablesRequest: APIRequestable {
 public struct PostPlannerNoteRequest: APIRequestable {
     public typealias Response = APINoContent
 
-    public init(title: String? = nil, details: String? = nil, todo_date: Date, courseID: String? = nil, linked_object_type: Plannable.PlannableType = .planner_note, linked_object_id: String? = nil) {
-        self.body = Body(title: title, details: details, todo_date: todo_date, courseID: courseID, linked_object_type: linked_object_type, linked_object_id: linked_object_id)
+    public init(body: Body) {
+        self.body = body
     }
 
     public var method: APIMethod = .post
@@ -165,7 +165,7 @@ public struct PostPlannerNoteRequest: APIRequestable {
         let title: String?
         let details: String?
         let todo_date: Date
-        let courseID: String?
+        let course_id: String?
         let linked_object_type: Plannable.PlannableType?
         let linked_object_id: String?
     }

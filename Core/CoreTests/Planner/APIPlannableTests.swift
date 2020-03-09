@@ -65,7 +65,7 @@ class PostPlannerNoteRequestTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        req = PostPlannerNoteRequest(title: "title", details: "details", todo_date: date, courseID: "1", linked_object_type: .planner_note, linked_object_id: "1")
+        req = PostPlannerNoteRequest(body: PostPlannerNoteRequest.Body(title: "title", details: "details", todo_date: date, course_id: "1", linked_object_type: .planner_note, linked_object_id: "1"))
     }
 
     func testMethod() {
@@ -80,7 +80,7 @@ class PostPlannerNoteRequestTests: XCTestCase {
         XCTAssertEqual(req.body?.title, "title")
         XCTAssertEqual(req.body?.details, "details")
         XCTAssertEqual(req.body?.todo_date, date)
-        XCTAssertEqual(req.body?.courseID, "1")
+        XCTAssertEqual(req.body?.course_id, "1")
         XCTAssertEqual(req.body?.linked_object_type, .planner_note)
         XCTAssertEqual(req.body?.linked_object_id, "1")
     }

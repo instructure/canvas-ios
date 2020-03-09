@@ -89,7 +89,8 @@
                                                             <constraint firstAttribute="height" constant="26" id="kuE-Xi-QlE"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="arrowOpenRight"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="arrowOpenRightSolid"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="borderMedium"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                 </subviews>

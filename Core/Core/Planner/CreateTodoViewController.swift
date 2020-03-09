@@ -34,7 +34,7 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
     var createPlannerNote: Store<CreatePlannerNote>?
     var selectedDate: Date = Clock.now
     var selectedCourseName: String? {
-        guard let c = selectedCourse else { return NSLocalizedString("None", comment: "")  }
+        guard let c = selectedCourse else { return NSLocalizedString("None", bundle: .core, comment: "")  }
         return c.name
     }
     var selectedCourse: Course?
@@ -49,21 +49,19 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        title = NSLocalizedString("New To Do", comment: "")
-        titleLabel.placeholder = NSLocalizedString("Title...", comment: "")
-        dateTitleLabel.text = NSLocalizedString("Date", comment: "")
-        if descTextView.responds(to: #selector(getter: UITextField.placeholder)) {  // without this check, it fails unit tests
-            descTextView.setValue(NSLocalizedString("Description", comment: ""), forKey: "placeholder")
+        title = NSLocalizedString("New To Do", bundle: .core, comment: "")
+        titleLabel.placeholder = NSLocalizedString("Title...", bundle: .core, comment: "")
+        dateTitleLabel.text = NSLocalizedString("Date", bundle: .core, comment: "")
+        if descTextView.responds(to: #selector(setter: UITextField.placeholder)) {  // without this check, it fails unit tests
+            descTextView.setValue(NSLocalizedString("Description", bundle: .core, comment: ""), forKey: "placeholder")
         }
         descTextView.font = UIFont.scaledNamedFont(.regular16)
         dateTextField.text = formattedDate
-        courseChevron.tintColor = UIColor.named(.borderMedium)
-        courseChevron.image = UIImage.icon(.arrowOpenRight, .solid)
         courseSelectionLabel.text = selectedCourseName
         courseSelectionLabel.textColor = UIColor.named(.textDark)
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: #selector(actionCancel))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .plain, target: self, action: #selector(actionDone))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(actionCancel))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(actionDone))
     }
 
     @objc func actionDone() {
@@ -80,9 +78,9 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
         datePicker.datePickerMode = .dateAndTime
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        let done = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .plain, target: self, action: #selector(didPickDate))
+        let done = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(didPickDate))
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancel = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: #selector(cancelDatePicker))
+        let cancel = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancelDatePicker))
         toolbar.setItems([cancel, space, done], animated: false)
 
         dateTextField.inputAccessoryView = toolbar
@@ -145,10 +143,10 @@ class SelectCourseViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = NSLocalizedString("Select Course", comment: "")
+        title = NSLocalizedString("Select Course", bundle: .core, comment: "")
         tableView.registerCell(UITableViewCell.self)
         courses.exhaust()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Clear Course", comment: ""), style: .plain, target: self, action: #selector(clearCourse))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Clear Course", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(clearCourse))
     }
 
     func coursesDidUpdate() {
