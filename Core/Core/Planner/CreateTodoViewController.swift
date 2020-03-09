@@ -66,8 +66,13 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
 
     @objc func actionDone() {
         let u = CreatePlannerNote(title: titleLabel.text, details: descTextView.text, todoDate: selectedDate, courseID: selectedCourse?.id)
-        createPlannerNote = env.subscribe(u, { [weak self] in self?.createPlannerNoteDidUpdate() })
-        createPlannerNote?.refresh(force: true)
+        u.fetch(environment: env) { [weak self]  _, _, error in
+            if let error = error {
+                 self?.showError(error)
+            } else {
+                 self?.dismiss(animated: true, completion: nil)
+            }
+        }
     }
 
     @objc func actionCancel() {
