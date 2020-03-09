@@ -162,12 +162,10 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
         rightPage?.unembed()
         var x: CGFloat = 0
         if direction == leftDir {
-            if leftPage == nil {
-                scrollView.contentOffset.x += scrollView.frame.width
-            }
             leftPage = nil
             rightPage = currentPage
             embedPage(page, at: 0)
+            scrollView.contentOffset.x = scrollView.frame.width
         } else if direction == nil {
             leftPage = nil
             rightPage = nil
@@ -177,6 +175,7 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
             rightPage = nil
             leftPage = currentPage
             embedPage(page, at: 1)
+            scrollView.contentOffset.x = 0
             x = scrollView.frame.width
         }
         currentPage = page
