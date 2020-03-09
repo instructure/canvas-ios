@@ -282,6 +282,78 @@ class AssignmentListViewControllerTests: StudentTestCase {
         }
     }
 
+    func testPaging2() {
+        gradingPeriods = [ APIAssignmentListGradingPeriod.make(title: "grading period a") ]
+        var assignmentsGroupA1 = [APIAssignmentListAssignment]()
+        var assignmentsGroupA2 = [APIAssignmentListAssignment]()
+
+        var assignmentsGroupB1 = [APIAssignmentListAssignment]()
+        var assignmentsGroupB2 = [APIAssignmentListAssignment]()
+
+        let firstCount = 10
+        for i in 0..<firstCount {
+            let a = APIAssignmentListAssignment.make(id: ID("\(i)"), name: "\(i)")
+            assignmentsGroupA1.append(a)
+
+            let b = APIAssignmentListAssignment.make(id: ID("20\(i)"), name: "\(i)B")
+            assignmentsGroupB1.append(b)
+        }
+
+        let count = 20
+        for i in 0..<count {
+            let a = APIAssignmentListAssignment.make(id: ID("10\(i)"), name: "\(firstCount+i)")
+            assignmentsGroupA2.append(a)
+
+            let b = APIAssignmentListAssignment.make(id: ID("300\(i)"), name: "\(firstCount+i)B")
+            assignmentsGroupB2.append(b)
+        }
+
+        groups = [
+            APIAssignmentListGroup.make(id: "1", name: "GroupA", assignments: assignmentsGroupA1, pageInfo: APIPageInfo(endCursor: "MQ", hasNextPage: true)),
+            APIAssignmentListGroup.make(id: "2", name: "GroupB", assignments: assignmentsGroupB1, pageInfo: APIPageInfo(endCursor: "MQ", hasNextPage: true)),
+        ]
+
+        req = AssignmentListRequestable(courseID: courseID, filter: .allGradingPeriods)
+
+        let d1 = data(gradingPeriods: gradingPeriods, groups: groups)
+
+        groups = [
+            APIAssignmentListGroup.make(id: "1", name: "GroupA", assignments: assignmentsGroupA2),
+            APIAssignmentListGroup.make(id: "1", name: "GroupB", assignments: assignmentsGroupB2),
+        ]
+        let d2 = data(gradingPeriods: gradingPeriods, groups: groups)
+        var data: [Data] = [d2, d1]
+        let expect = XCTestExpectation(description: "")
+        expect.expectedFulfillmentCount = 2
+
+        api.mock(req, data: nil, response: nil, error: nil, dataHandler: { () -> MockURLSession.UrlResponseTuple in
+            guard let d = data.popLast() else { XCTFail(); return (nil, nil, nil) }
+            defer { expect.fulfill() }
+            return (d, nil, nil)
+        })
+
+        loadView()
+        vc.view.layoutIfNeeded()
+
+        XCTAssertEqual( vc.gradingPeriodLabel.text, "grading period a" )
+        XCTAssertEqual( vc.filterButton.title(for: .normal), "Clear filter" )
+
+        var rows =  vc.tableView(vc.tableView, numberOfRowsInSection: 0)
+        XCTAssertEqual(rows, 11)
+
+        vc.tableView.prefetchDataSource?.tableView(vc.tableView, prefetchRowsAt: [IndexPath(row: 1, section: 1)])
+
+        for i in 0..<rows - 1 {
+            let cell = vc.tableView(vc.tableView, cellForRowAt: IndexPath(row: i, section: 0))
+            XCTAssertEqual(cell.textLabel?.text, "\(i)")
+        }
+
+        wait(for: [expect], timeout: 1)
+
+        rows = vc.tableView(vc.tableView, numberOfRowsInSection: 1)
+        XCTAssertEqual(rows, 50)
+    }
+
     func testAssignmentForIndexPath() {
         gradingPeriods = [ APIAssignmentListGradingPeriod.make(title: "grading period a") ]
 
