@@ -27,14 +27,13 @@ public enum AssignmentFilter: Equatable {
 extension AssignmentFilter: Codable {
     //  `filter: {gradingPeriodId: null}` - will return all assignments regardless of grading period
     //  `filter: {gradingPeriodId: "<id>"}` - will return all assignments in grading period
-    //  `filter: null` - will return assignments in the current / active grading period, no period id needed
-    private struct CodingRepresentation: Codable, Equatable {
-        let gradingPeriodId: String?
-    }
+    //  `filter: {}` - will return assignments in the current / active grading period, no period id needed
+    typealias CodingRepresentation = [String: String?]
 
     public init(from decoder: Decoder) throws {
-        if let representation = try CodingRepresentation?(from: decoder) {
-            if let id = representation.gradingPeriodId {
+        let representation = try CodingRepresentation(from: decoder)
+        if let index = representation.index(forKey: "gradingPeriodId") {
+            if let id = representation[index].value {
                 self = .gradingPeriod(id: id)
             } else {
                 self = .allGradingPeriods
@@ -45,14 +44,14 @@ extension AssignmentFilter: Codable {
     }
 
     public func encode(to encoder: Encoder) throws {
-        let representation: CodingRepresentation?
+        let representation: CodingRepresentation
         switch self {
         case .allGradingPeriods:
-            representation = CodingRepresentation(gradingPeriodId: nil)
+            representation = ["gradingPeriodId": nil]
         case .gradingPeriod(let id):
-            representation = CodingRepresentation(gradingPeriodId: id)
+            representation = ["gradingPeriodId": id]
         case .currentGradingPeriod:
-            representation = nil
+            representation = [:]
         }
         try representation.encode(to: encoder)
     }
@@ -75,7 +74,7 @@ public struct AssignmentListRequestable: APIGraphQLRequestable {
 
     static let operationName = "AssignmentList"
     static let query = """
-        query operationName($courseID: ID!, $pageSize: Int!, $cursor: String, $filter: AssignmentFilter) {
+        query \(operationName)($courseID: ID!, $pageSize: Int!, $cursor: String, $filter: AssignmentFilter!) {
           course(id: $courseID) {
             name
             gradingPeriods: gradingPeriodsConnection {
