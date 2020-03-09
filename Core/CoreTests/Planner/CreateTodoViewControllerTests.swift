@@ -37,7 +37,14 @@ class CreateTodoViewControllerTests: CoreTestCase {
 
         api.mock(GetCourses(), value: [course])
         let expectation = XCTestExpectation(description: "make sure create post request is made when done button is pressed")
-        let r = PostPlannerNoteRequest(body: PostPlannerNoteRequest.Body(title: title, details: details, todo_date: date, course_id: course.id.value, linked_object_type: .planner_note, linked_object_id: nil))
+        let r = PostPlannerNoteRequest(body:
+            PostPlannerNoteRequest.Body(
+                title: title,
+                details: details,
+                todo_date: date,
+                course_id: course.id.value,
+                linked_object_type: .planner_note,
+                linked_object_id: nil))
         api.mock(r, data: nil, response: nil, error: nil, baseURL: URL(string: "https://canvas.instructure.com")!, accessToken: nil, dataHandler: {
             expectation.fulfill()
             return (nil, nil, nil)
