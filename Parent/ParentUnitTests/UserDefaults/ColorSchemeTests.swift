@@ -21,6 +21,12 @@ import XCTest
 import TestsFoundation
 
 class ColorSchemeTests: ParentTestCase {
+    override func setUp() {
+        super.setUp()
+        env.userDefaults?.reset()
+        ColorScheme.clear()
+    }
+
     func testColor() {
         for scheme in ColorScheme.allCases {
             XCTAssertEqual(scheme.color, UIColor(named: scheme.rawValue, in: .parent, compatibleWith: nil))
@@ -29,7 +35,6 @@ class ColorSchemeTests: ParentTestCase {
     }
 
     func testObservee() {
-        ColorScheme.clear()
         XCTAssertEqual(ColorScheme.observee("5"), ColorScheme.observeeBlue)
         XCTAssertEqual(ColorScheme.observee("54"), ColorScheme.observeePurple)
         XCTAssertEqual(ColorScheme.observee("1"), ColorScheme.observeePink)

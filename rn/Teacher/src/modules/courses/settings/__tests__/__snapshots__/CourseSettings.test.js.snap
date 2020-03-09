@@ -116,6 +116,7 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
         <View
           style={
             Object {
+              "alignItems": "center",
               "flex": 1,
               "flexDirection": "row",
               "justifyContent": "space-between",
@@ -143,7 +144,6 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
                 "color": "#2D3B45",
                 "flex": 3,
                 "fontSize": 16,
-                "lineHeight": 54,
                 "textAlign": "right",
               }
             }
@@ -181,6 +181,7 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
           <View
             style={
               Object {
+                "alignItems": "center",
                 "flex": 1,
                 "flexDirection": "row",
                 "justifyContent": "space-between",
@@ -363,6 +364,7 @@ exports[`CourseSettings renders 1`] = `
         <View
           style={
             Object {
+              "alignItems": "center",
               "flex": 1,
               "flexDirection": "row",
               "justifyContent": "space-between",
@@ -390,7 +392,6 @@ exports[`CourseSettings renders 1`] = `
                 "color": "#2D3B45",
                 "flex": 3,
                 "fontSize": 16,
-                "lineHeight": 54,
                 "textAlign": "right",
               }
             }
@@ -428,6 +429,7 @@ exports[`CourseSettings renders 1`] = `
           <View
             style={
               Object {
+                "alignItems": "center",
                 "flex": 1,
                 "flexDirection": "row",
                 "justifyContent": "space-between",
@@ -610,6 +612,7 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
         <View
           style={
             Object {
+              "alignItems": "center",
               "flex": 1,
               "flexDirection": "row",
               "justifyContent": "space-between",
@@ -637,7 +640,6 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
                 "color": "#2D3B45",
                 "flex": 3,
                 "fontSize": 16,
-                "lineHeight": 54,
                 "textAlign": "right",
               }
             }
@@ -675,6 +677,7 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
           <View
             style={
               Object {
+                "alignItems": "center",
                 "flex": 1,
                 "flexDirection": "row",
                 "justifyContent": "space-between",
@@ -841,6 +844,7 @@ exports[`CourseSettings renders with empty image url 1`] = `
         <View
           style={
             Object {
+              "alignItems": "center",
               "flex": 1,
               "flexDirection": "row",
               "justifyContent": "space-between",
@@ -868,7 +872,6 @@ exports[`CourseSettings renders with empty image url 1`] = `
                 "color": "#2D3B45",
                 "flex": 3,
                 "fontSize": 16,
-                "lineHeight": 54,
                 "textAlign": "right",
               }
             }
@@ -906,6 +909,7 @@ exports[`CourseSettings renders with empty image url 1`] = `
           <View
             style={
               Object {
+                "alignItems": "center",
                 "flex": 1,
                 "flexDirection": "row",
                 "justifyContent": "space-between",
@@ -1088,6 +1092,7 @@ exports[`CourseSettings renders with image url 1`] = `
         <View
           style={
             Object {
+              "alignItems": "center",
               "flex": 1,
               "flexDirection": "row",
               "justifyContent": "space-between",
@@ -1115,7 +1120,6 @@ exports[`CourseSettings renders with image url 1`] = `
                 "color": "#2D3B45",
                 "flex": 3,
                 "fontSize": 16,
-                "lineHeight": 54,
                 "textAlign": "right",
               }
             }
@@ -1153,6 +1157,7 @@ exports[`CourseSettings renders with image url 1`] = `
           <View
             style={
               Object {
+                "alignItems": "center",
                 "flex": 1,
                 "flexDirection": "row",
                 "justifyContent": "space-between",
@@ -1319,6 +1324,7 @@ exports[`CourseSettings renders without image url 1`] = `
         <View
           style={
             Object {
+              "alignItems": "center",
               "flex": 1,
               "flexDirection": "row",
               "justifyContent": "space-between",
@@ -1346,7 +1352,6 @@ exports[`CourseSettings renders without image url 1`] = `
                 "color": "#2D3B45",
                 "flex": 3,
                 "fontSize": 16,
-                "lineHeight": 54,
                 "textAlign": "right",
               }
             }
@@ -1384,6 +1389,7 @@ exports[`CourseSettings renders without image url 1`] = `
           <View
             style={
               Object {
+                "alignItems": "center",
                 "flex": 1,
                 "flexDirection": "row",
                 "justifyContent": "space-between",
@@ -1566,6 +1572,7 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
         <View
           style={
             Object {
+              "alignItems": "center",
               "flex": 1,
               "flexDirection": "row",
               "justifyContent": "space-between",
@@ -1593,7 +1600,6 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
                 "color": "#2D3B45",
                 "flex": 3,
                 "fontSize": 16,
-                "lineHeight": 54,
                 "textAlign": "right",
               }
             }
@@ -1631,6 +1637,7 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
           <View
             style={
               Object {
+                "alignItems": "center",
                 "flex": 1,
                 "flexDirection": "row",
                 "justifyContent": "space-between",

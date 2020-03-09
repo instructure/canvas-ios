@@ -323,7 +323,7 @@ export class DiscussionDetails extends Component<Props, any> {
             // should only ever have 1, blocked by UI, but API returns array of 1 :facepalm:
             <TouchableOpacity
               testID='DiscussionDetails.attachmentButton'
-              accessibilityTraits={['button']}
+              accessibilityRole='button'
               onPress={this.showAttachment}
             >
               <View style={style.attachment}>
@@ -341,7 +341,7 @@ export class DiscussionDetails extends Component<Props, any> {
                 underlayColor={colors.backgroundLightest}
                 onPress={this._onPressReply}
                 testID='DiscussionDetails.replyButton'
-                accessibilityTraits='button'
+                accessibilityRole='button'
               >
                 <View style={style.replyButtonWrapper}>
                   <Image
@@ -392,7 +392,7 @@ export class DiscussionDetails extends Component<Props, any> {
           <TouchableHighlight testID='discussion.popToLastDiscussionList'
             accessibilityLabel={i18n('Back to replies')}
             accessible={true}
-            accessibilityTraits={['button']}
+            accessibilityRole='button'
             onPress={this._onPopReplyRootPath}
             underlayColor={colors.backgroundLightest}>
             <View style={style.popReplyStackContainer}>

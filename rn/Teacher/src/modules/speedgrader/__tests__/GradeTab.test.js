@@ -143,7 +143,7 @@ describe('Rubric', () => {
     )
 
     tree.getInstance().openCommentKeyboard('2')
-    tree.getInstance().submitRubricComment({ message: 'A Message' })
+    tree.getInstance().submitRubricComment({ comment: 'A Message' })
     expect(tree.getInstance().state.ratings['2'].comments).toEqual('A Message')
     expect(defaultProps.updateUnsavedChanges).toHaveBeenCalledWith(
       {

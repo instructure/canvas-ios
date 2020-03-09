@@ -112,7 +112,7 @@ class IPadAssignmentsTest: CoreUITestCase {
                 APIAssignmentListAssignment(apiAssignment: $0)
             }
         )
-        mockData(AssignmentListRequestable(courseID: course.id.value, gradingPeriodID: nil),
+        mockData(AssignmentListRequestable(courseID: course.id.value),
                  value: APIAssignmentListResponse.make(gradingPeriods: [], groups: [group]))
         logIn()
         Dashboard.courseCard(id: course.id).tap()

@@ -41,7 +41,7 @@ exports[`CourseFilter renders correctly 1`] = `
     </Text>
     <TouchableOpacity
       accessibilityLabel="Filter Inbox"
-      accessibilityTraits="button"
+      accessibilityRole="button"
       hitSlop={
         Object {
           "bottom": 15,

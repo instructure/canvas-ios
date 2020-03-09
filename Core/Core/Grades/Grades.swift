@@ -106,7 +106,7 @@ public class Grades {
                     return
                 }
                 guard let enrollment = response.enrollments?.first(where: { $0.user_id == self.userID && $0.type.lowercased().contains("student") && $0.enrollment_state == .active }) else {
-                    self.error = NSError.instructureError(NSLocalizedString("Enrollment not found.", comment: ""))
+                    self.error = NSError.instructureError(NSLocalizedString("Enrollment not found.", bundle: .core, comment: ""))
                     return
                 }
                 do {

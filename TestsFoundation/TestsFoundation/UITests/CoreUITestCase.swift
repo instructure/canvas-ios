@@ -435,7 +435,7 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open func mockGraphQL<R: APIGraphQLRequestable>(_ requestable: R, value: R.Response) {
-        mockGraphQL(operationName: requestable.operationName) { _ in
+        mockGraphQL(operationName: type(of: requestable).operationName) { _ in
             try! Self.encoder.encode(value)
         }
     }

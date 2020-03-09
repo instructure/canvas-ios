@@ -44,13 +44,7 @@ class EditComposeRecipientsViewControllerTests: ParentTestCase {
             full_name: "C",
             common_courses: [courseID: ["TeacherEnrollment"]]
         )
-        let observee = APISearchRecipient.make(
-            id: "1",
-            name: "A",
-            full_name: "A",
-            pronouns: "He/Him",
-            common_courses: [courseID: ["StudentEnrollment"]]
-        )
+
         let ta = APISearchRecipient.make(
             id: "4",
             name: "D",
@@ -59,11 +53,10 @@ class EditComposeRecipientsViewControllerTests: ParentTestCase {
         )
         api.mock(controller.teachers, value: [teacher, teacher2])
         api.mock(controller.tas, value: [ta])
-        api.mock(controller.observee!, value: [observee])
         controller.delegate = self
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.tableView?.numberOfSections, 1)
-        XCTAssertEqual(controller.tableView?.numberOfRows(inSection: 0), 4)
+        XCTAssertEqual(controller.tableView?.numberOfRows(inSection: 0), 3)
         var teacherCell = recipientCell(at: 0)
         XCTAssertEqual(teacherCell.avatarView.name, "B")
         XCTAssertEqual(teacherCell.nameLabel.text, "B")
@@ -79,11 +72,6 @@ class EditComposeRecipientsViewControllerTests: ParentTestCase {
         XCTAssertEqual(taCell.nameLabel.text, "D")
         XCTAssertEqual(taCell.roleLabel.text, "TA")
         XCTAssertTrue(taCell.selectedView.isHidden)
-        let observeeCell = recipientCell(at: 3)
-        XCTAssertEqual(observeeCell.avatarView.name, "A")
-        XCTAssertEqual(observeeCell.nameLabel.text, "A (He/Him)")
-        XCTAssertEqual(observeeCell.roleLabel.text, "Student")
-        XCTAssertTrue(observeeCell.selectedView.isHidden)
         controller.tableView?.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         teacherCell = recipientCell(at: 0)
         XCTAssertTrue(teacherCell.selectedView.isHidden)

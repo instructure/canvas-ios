@@ -67,8 +67,9 @@ class ConversationDetailViewController: UIViewController {
             if refreshControl.isRefreshing { refreshControl.endRefreshing() }
             tableView?.reloadData()
             title = conversations.first?.subject.isEmpty ?? true ? NSLocalizedString("No Subject", comment: "") : conversations.first?.subject
-            let lastParticipantCount = conversations.first?.messages.first?.participantIDs.count ?? 0
-            if lastParticipantCount > 2 {
+            let lastMessage = conversations.first?.messages.first
+            let lastParticipantCount = lastMessage?.participantIDs.count ?? 0
+            if lastMessage?.authorID == myID || lastParticipantCount > 2 {
                 replyButton.setImage(.icon(.replyAll, .solid), for: .normal)
                 replyButton.accessibilityLabel = NSLocalizedString("Reply All", comment: "")
             } else {
@@ -85,7 +86,8 @@ class ConversationDetailViewController: UIViewController {
 
     @IBAction func actionReplyClicked(_ sender: Any) {
         guard let message = conversations.first?.messages.first else { return }
-        showReplyFor(IndexPath(row: 0, section: 0), all: message.participantIDs.count > 2)
+        let all = message.authorID == myID || message.participantIDs.count > 2
+        showReplyFor(IndexPath(row: 0, section: 0), all: all)
     }
 }
 
@@ -110,16 +112,20 @@ extension ConversationDetailViewController: UITableViewDataSource, UITableViewDe
     }
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard let msg = conversations.first?.messages[indexPath.section] else { return nil }
         var actions: [UIContextualAction] = []
-        let reply = UIContextualAction(style: .normal, title: NSLocalizedString("Reply", comment: "")) { [weak self] _, _, success in
-            self?.showReplyFor(indexPath, all: false)
-            success(true)
-        }
-        reply.backgroundColor = .named(.electric)
-        reply.image = .icon(.reply, .solid)
-        actions.append(reply)
 
-        if let msg = conversations.first?.messages[indexPath.section], msg.participantIDs.count > 2 {
+        if msg.authorID != myID {
+            let reply = UIContextualAction(style: .normal, title: NSLocalizedString("Reply", comment: "")) { [weak self] _, _, success in
+                self?.showReplyFor(indexPath, all: false)
+                success(true)
+            }
+            reply.backgroundColor = .named(.electric)
+            reply.image = .icon(.reply, .solid)
+            actions.append(reply)
+        }
+
+        if msg.authorID == myID || msg.participantIDs.count > 2 {
             let replyAll = UIContextualAction(style: .normal, title: NSLocalizedString("Reply All", comment: "")) { [weak self] _, _, success in
                 self?.showReplyFor(indexPath, all: true)
                 success(true)

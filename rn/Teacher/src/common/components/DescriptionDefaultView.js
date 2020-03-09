@@ -18,6 +18,7 @@
 
 // @flow
 
+import i18n from 'format-message'
 import React, { PureComponent } from 'react'
 import {
   View,
@@ -32,7 +33,7 @@ type Props = {
 
 export default class DescriptionDefaultView extends PureComponent<Props, any> {
   static defaultProps = {
-    text: 'Help your students with this assignment by adding instructions.',
+    text: i18n('Help your students with this assignment by adding instructions.'),
   }
 
   render () {

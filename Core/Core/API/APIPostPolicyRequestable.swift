@@ -22,98 +22,131 @@ public enum PostGradePolicy: String, CaseIterable {
     case everyone, graded
 }
 
-public struct PostAssignmentGradesPostPolicyRequest: APIGraphQLRequestable {
+public class PostAssignmentGradesPostPolicyRequest: APIGraphQLRequestable {
     public typealias Response = APINoContent
+    public struct Input: Codable, Equatable {
+        let gradedOnly: Bool
+        let assignmentId: String
+        let sectionIds: [String]?
+    }
+    public struct Variables: Codable, Equatable {
+        let input: Input
+    }
+    public let variables: Variables
 
-    public let postPolicy: PostGradePolicy
-    public let assignmentID: String
-    let sections: [String]
-
-    public init(assignmentID: String, postPolicy: PostGradePolicy, sections: [String] = []) {
-        self.postPolicy = postPolicy
-        self.assignmentID = assignmentID
-        self.sections = sections
+    init(input: Input) {
+        self.variables = Variables(input: input)
     }
 
-    public let operationName = "PostAssignmentGrades"
-    public var query: String? {
-        let mutation = sections.count > 0 ? "postAssignmentGradesForSections" : "postAssignmentGrades"
-        let sectionsAsString = "[ \( sections.map { "\"\($0)\"" }.joined(separator: ",") ) ]"
-        let sectionIDs = sections.count > 0 ? ", sectionIds: \(sectionsAsString)" : ""
-        return """
-        mutation \(operationName)
-            {
-                \(mutation)(input: {assignmentId: "\(assignmentID)", gradedOnly: \(postPolicy == .graded)\(sectionIDs)})
-                {
-                    assignment { id }
-                }
-            }
-        """
+    public convenience init(assignmentID: String, postPolicy: PostGradePolicy) {
+        self.init(input: Input(
+            gradedOnly: postPolicy == .graded,
+            assignmentId: assignmentID,
+            sectionIds: nil
+        ))
     }
+
+    public class var query: String { """
+        mutation \(operationName)($input: PostAssignmentGradesInput!) {
+          postAssignmentGrades(input: $input) {
+            assignment { id }
+          }
+        }
+        """ }
 }
 
-public struct HideAssignmentGradesPostPolicyRequest: APIGraphQLRequestable {
-    public typealias Response = APINoContent
-
-    public let assignmentID: String
-    let sections: [String]
-
-    public init(assignmentID: String, sections: [String] = []) {
-        self.assignmentID = assignmentID
-        self.sections = sections
+public class PostAssignmentGradesForSectionsPostPolicyRequest: PostAssignmentGradesPostPolicyRequest {
+    public init(assignmentID: String, postPolicy: PostGradePolicy, sections: [String]) {
+        super.init(input: Input(
+            gradedOnly: postPolicy == .graded,
+            assignmentId: assignmentID,
+            sectionIds: sections
+        ))
     }
 
-    public let operationName = "HideAssignmentGrades"
-    public var query: String? {
-        let mutation = sections.count > 0 ? "hideAssignmentGradesForSections" : "hideAssignmentGrades"
-        let sectionsAsString = "[ \( sections.map { "\"\($0)\"" }.joined(separator: ",") ) ]"
-        let sectionIDs = sections.count > 0 ? ", sectionIds: \(sectionsAsString)" : ""
-        return """
-        mutation \(operationName)
-        {
-            \(mutation)(input: {assignmentId: "\(assignmentID)"\(sectionIDs)})
-            {
-                assignment { id }
-            }
+    public override class var query: String { """
+        mutation \(operationName)($input: PostAssignmentGradesForSectionInput!) {
+          postAssignmentGradesForSection(input: $input) {
+            assignment { id }
+          }
         }
-        """
+        """ }
+}
+
+public class HideAssignmentGradesPostPolicyRequest: APIGraphQLRequestable {
+    public typealias Response = APINoContent
+    public struct Input: Codable, Equatable {
+        public let assignmentId: String
+        public let sectionIds: [String]?
     }
+    public struct Variables: Codable, Equatable {
+        let input: Input
+    }
+    public let variables: Variables
+
+    init(input: Input) {
+        variables = Variables(input: input)
+    }
+
+    public convenience init(assignmentID: String) {
+        self.init(input: Input(assignmentId: assignmentID, sectionIds: nil))
+    }
+
+    public class var query: String { """
+        mutation \(operationName)($input: HideAssignmentGradesInput!) {
+          hideAssignmentGrades(input: $input) {
+            assignment { id }
+          }
+        }
+        """ }
+}
+
+public class HideAssignmentGradesForSectionsPostPolicyRequest: HideAssignmentGradesPostPolicyRequest {
+    public init(assignmentID: String, sections: [String]) {
+        super.init(input: Input(assignmentId: assignmentID, sectionIds: sections))
+    }
+
+    public override class var query: String { """
+        mutation \(operationName)($input: HideAssignmentGradesForSectionsInput!) {
+          hideAssignmentGradesForSections(input: $input) {
+            assignment { id }
+          }
+        }
+        """ }
 }
 
 public struct GetAssignmentPostPolicyInfoRequest: APIGraphQLRequestable {
     public typealias Response = APIPostPolicyInfo
-
-    public let courseID: String
-    public let assignmentID: String
+    public struct Variables: Codable, Equatable {
+        public let courseID: String
+        public let assignmentID: String
+    }
+    public let variables: Variables
 
     public init(courseID: String, assignmentID: String) {
-        self.courseID = courseID
-        self.assignmentID = assignmentID
+        variables = Variables(courseID: courseID, assignmentID: assignmentID)
     }
 
-    public let operationName = "GetAssignmentPostPolicyInfo"
-    public var query: String? {
-        return """
-        query \(operationName) {
-            course(id: "\(courseID)") {
-                sections: sectionsConnection {
-                  nodes {
-                    id
-                    name
-                  }
-                }
+    public static let query = """
+        query \(operationName)($courseID: ID!, $assignmentID: ID!) {
+          course(id: $courseID) {
+            sections: sectionsConnection {
+              nodes {
+                id
+                name
               }
-              assignment(id: "\(assignmentID)") {
-                submissions: submissionsConnection {
-                  nodes {
-                    score
-                    excused
-                    state
-                    postedAt
-                  }
-                }
+            }
+          }
+          assignment(id: $assignmentID) {
+            submissions: submissionsConnection {
+              nodes {
+                score
+                excused
+                state
+                postedAt
               }
+            }
+          }
         }
         """
-    }
 }

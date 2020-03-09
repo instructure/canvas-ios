@@ -24,27 +24,40 @@ class PostAssignmentGradesPostPolicyRequestTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        req = PostAssignmentGradesPostPolicyRequest(assignmentID: "1", postPolicy: .everyone)
+        req = .init(assignmentID: "1", postPolicy: .everyone)
     }
+
     func testPath() {
         XCTAssertEqual(req.path, "/api/graphql")
     }
 
-    func testQuery() {
-        let expected = """
-        mutation PostAssignmentGrades\n    {\n        postAssignmentGrades(input: {assignmentId: \"1\", gradedOnly: false})\n        {\n            assignment { id }\n        }\n    }
-        """
-        XCTAssertEqual(req.query, expected)
+    func testBody() {
+        req.assertBodyEquals(GraphQLBody(
+            query: PostAssignmentGradesPostPolicyRequest.query,
+            operationName: "PostAssignmentGradesPostPolicyRequest",
+            variables: .init(input: .init(gradedOnly: false, assignmentId: "1", sectionIds: nil))
+        ))
+    }
+}
+
+class PostAssignmentGradesForSectionsPostPolicyRequestTests: XCTestCase {
+    var req: PostAssignmentGradesForSectionsPostPolicyRequest!
+
+    override func setUp() {
+        super.setUp()
+        req = .init(assignmentID: "1", postPolicy: .everyone, sections: [ "2", "3" ])
     }
 
-    func testQueryWithSectionIDs() {
-        let sectionIDReq = PostAssignmentGradesPostPolicyRequest(assignmentID: "1", postPolicy: .everyone, sections: [ "2", "3" ])
-        // swiftlint:disable line_length
-        let expected = """
-        mutation PostAssignmentGrades\n    {\n        postAssignmentGradesForSections(input: {assignmentId: \"1\", gradedOnly: false, sectionIds: [ \"2\",\"3\" ]})\n        {\n            assignment { id }\n        }\n    }
-        """
-        // swiftlint:enable line_length
-        XCTAssertEqual(sectionIDReq.query, expected)
+    func testPath() {
+        XCTAssertEqual(req.path, "/api/graphql")
+    }
+
+    func testBody() {
+        req.assertBodyEquals(GraphQLBody(
+            query: PostAssignmentGradesForSectionsPostPolicyRequest.query,
+            operationName: "PostAssignmentGradesForSectionsPostPolicyRequest",
+            variables: .init(input: .init(gradedOnly: false, assignmentId: "1", sectionIds: [ "2", "3" ]))
+        ))
     }
 }
 
@@ -53,22 +66,40 @@ class HideAssignmentGradesPostPolicyRequestTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        req = HideAssignmentGradesPostPolicyRequest(assignmentID: "1")
+        req = .init(assignmentID: "1")
     }
 
-    func testQuery() {
-        let expected = """
-        mutation HideAssignmentGrades\n{\n    hideAssignmentGrades(input: {assignmentId: \"1\"})\n    {\n        assignment { id }\n    }\n}
-        """
-        XCTAssertEqual(req.query, expected)
+    func testPath() {
+        XCTAssertEqual(req.path, "/api/graphql")
     }
 
-    func testQueryWithSectionIDs() {
-        let sectionIDReq = HideAssignmentGradesPostPolicyRequest(assignmentID: "1", sections: [ "2", "3" ])
-        let expected = """
-        mutation HideAssignmentGrades\n{\n    hideAssignmentGradesForSections(input: {assignmentId: \"1\", sectionIds: [ \"2\",\"3\" ]})\n    {\n        assignment { id }\n    }\n}
-        """
-        XCTAssertEqual(sectionIDReq.query, expected)
+    func testBody() {
+        req.assertBodyEquals(GraphQLBody(
+            query: HideAssignmentGradesPostPolicyRequest.query,
+            operationName: "HideAssignmentGradesPostPolicyRequest",
+            variables: .init(input: .init(assignmentId: "1", sectionIds: nil))
+        ))
+    }
+}
+
+class HideAssignmentGradesForSectionPostPolicyRequestTests: XCTestCase {
+    var req: HideAssignmentGradesForSectionsPostPolicyRequest!
+
+    override func setUp() {
+        super.setUp()
+        req = .init(assignmentID: "1", sections: [ "2", "3" ])
+    }
+
+    func testPath() {
+        XCTAssertEqual(req.path, "/api/graphql")
+    }
+
+    func testBody() {
+        req.assertBodyEquals(GraphQLBody(
+            query: HideAssignmentGradesForSectionsPostPolicyRequest.query,
+            operationName: "HideAssignmentGradesForSectionsPostPolicyRequest",
+            variables: .init(input: .init(assignmentId: "1", sectionIds: [ "2", "3"]))
+        ))
     }
 }
 
@@ -77,18 +108,17 @@ class GetAssignmentPostPolicyInfoRequestTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        req = GetAssignmentPostPolicyInfoRequest(courseID: "1", assignmentID: "1")
+        req = .init(courseID: "1", assignmentID: "2")
     }
     func testPath() {
         XCTAssertEqual(req.path, "/api/graphql")
     }
 
-    func testQuery() {
-        // swiftlint:disable line_length
-        let expected = """
-        query GetAssignmentPostPolicyInfo {\n    course(id: \"1\") {\n        sections: sectionsConnection {\n          nodes {\n            id\n            name\n          }\n        }\n      }\n      assignment(id: \"1\") {\n        submissions: submissionsConnection {\n          nodes {\n            score\n            excused\n            state\n            postedAt\n          }\n        }\n      }\n}
-        """
-        // swiftlint:enable line_length
-        XCTAssertEqual(req.query, expected)
+    func testBody() {
+        req.assertBodyEquals(GraphQLBody(
+            query: GetAssignmentPostPolicyInfoRequest.query,
+            operationName: "GetAssignmentPostPolicyInfoRequest",
+            variables: .init(courseID: "1", assignmentID: "2")
+        ))
     }
 }

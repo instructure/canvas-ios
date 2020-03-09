@@ -20,7 +20,7 @@ exports[`url submission renders correctly 1`] = `
       This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted.
     </Text>
     <TouchableOpacity
-      accessibilityTraits="button"
+      accessibilityRole="button"
       hitSlop={
         Object {
           "bottom": 15,

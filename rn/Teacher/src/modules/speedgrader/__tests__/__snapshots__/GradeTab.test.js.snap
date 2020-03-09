@@ -505,7 +505,7 @@ exports[`Rubric renders a rubric 1`] = `
             }
           >
             <TouchableOpacity
-              accessibilityTraits="button"
+              accessibilityRole="button"
               hitSlop={
                 Object {
                   "bottom": 15,
@@ -873,7 +873,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
             }
           >
             <TouchableOpacity
-              accessibilityTraits="button"
+              accessibilityRole="button"
               hitSlop={
                 Object {
                   "bottom": 15,
@@ -931,7 +931,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               •
             </Text>
             <TouchableOpacity
-              accessibilityTraits="button"
+              accessibilityRole="button"
               hitSlop={
                 Object {
                   "bottom": 15,
@@ -1678,7 +1678,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
             }
           >
             <TouchableOpacity
-              accessibilityTraits="button"
+              accessibilityRole="button"
               hitSlop={
                 Object {
                   "bottom": 15,

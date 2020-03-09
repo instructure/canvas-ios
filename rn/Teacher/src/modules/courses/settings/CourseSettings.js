@@ -137,7 +137,7 @@ export class CourseSettings extends Component<Props, State> {
                 </Text>
                 <TextInput
                   value={this.state.name}
-                  style={styles.actionableText}
+                  style={styles.inputText}
                   onChangeText={(text) => this.setState({ name: text })}
                   testID='course-settings.name-input-textbox'
                 />
@@ -219,6 +219,7 @@ const styles = createStyleSheet((colors, vars) => ({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   primaryText: {
     flex: 2,
@@ -226,6 +227,12 @@ const styles = createStyleSheet((colors, vars) => ({
     fontSize: 16,
     color: colors.textDarkest,
     lineHeight: 54,
+  },
+  inputText: {
+    flex: 3,
+    color: colors.textDarkest,
+    fontSize: 16,
+    textAlign: 'right',
   },
   actionableText: {
     flex: 3,

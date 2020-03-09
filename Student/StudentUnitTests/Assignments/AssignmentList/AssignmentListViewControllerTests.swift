@@ -79,7 +79,7 @@ class AssignmentListViewControllerTests: StudentTestCase {
             APIAssignmentListGroup.make(id: "2", name: "GroupB", assignments: assignmentsGroupB),
         ]
 
-        req = AssignmentListRequestable(courseID: courseID, gradingPeriodID: nil, filter: false)
+        req = AssignmentListRequestable(courseID: courseID, filter: .allGradingPeriods)
         mockNetwork()
 
         //  when
@@ -121,7 +121,7 @@ class AssignmentListViewControllerTests: StudentTestCase {
             APIAssignmentListGroup.make(id: "4", name: "GroupD", assignments: assignmentsGroupB),
         ]
 
-        req = AssignmentListRequestable(courseID: courseID, gradingPeriodID: nil, filter: false)
+        req = AssignmentListRequestable(courseID: courseID, filter: .allGradingPeriods)
         mockNetwork()
 
         //  clear filter
@@ -159,7 +159,7 @@ class AssignmentListViewControllerTests: StudentTestCase {
             APIAssignmentListGroup.make(id: "6", name: "GroupF", assignments: assignmentsGroupB),
         ]
 
-        req = AssignmentListRequestable(courseID: courseID, gradingPeriodID: nil, filter: false)
+        req = AssignmentListRequestable(courseID: courseID, filter: .allGradingPeriods)
         mockNetwork()
 
         // filter by grading period
@@ -221,7 +221,7 @@ class AssignmentListViewControllerTests: StudentTestCase {
             APIAssignmentListGroup.make(id: "2", name: "GroupB", assignments: assignmentsGroupB),
         ]
 
-        req = AssignmentListRequestable(courseID: courseID, gradingPeriodID: nil, filter: false)
+        req = AssignmentListRequestable(courseID: courseID, filter: .allGradingPeriods)
         mockNetwork()
 
         loadView()
@@ -253,7 +253,7 @@ class AssignmentListViewControllerTests: StudentTestCase {
             APIAssignmentListGroup.make(id: "1", name: "GroupA", assignments: assignmentsGroupA1, pageInfo: APIPageInfo(endCursor: "MQ", hasNextPage: true)),
         ]
 
-        req = AssignmentListRequestable(courseID: courseID, gradingPeriodID: nil, filter: false)
+        req = AssignmentListRequestable(courseID: courseID, filter: .allGradingPeriods)
 
         let d1 = data(gradingPeriods: gradingPeriods, groups: groups)
 
@@ -298,7 +298,7 @@ class AssignmentListViewControllerTests: StudentTestCase {
             APIAssignmentListGroup.make(id: "2", name: "GroupB", assignments: assignmentsGroupB),
         ]
 
-        req = AssignmentListRequestable(courseID: courseID, gradingPeriodID: nil, filter: false)
+        req = AssignmentListRequestable(courseID: courseID, filter: .allGradingPeriods)
         mockNetwork()
 
         loadView()

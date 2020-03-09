@@ -103,7 +103,17 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
             performUIUpdate { [weak self] in self?.showSpinner() }
         }
 
-        let requestable = AssignmentListRequestable(courseID: courseID, gradingPeriodID: selectedGradingPeriod?.id.value, filter: shouldFilter, pageSize: 25, cursor: pagingCursor)
+        let filter: AssignmentFilter
+        if shouldFilter {
+            if let id = selectedGradingPeriod?.id {
+                filter = .gradingPeriod(id: id.value)
+            } else {
+                filter = .currentGradingPeriod
+            }
+        } else {
+            filter = .allGradingPeriods
+        }
+        let requestable = AssignmentListRequestable(courseID: courseID, filter: filter, pageSize: 25, cursor: pagingCursor)
 
         if let cursor = pagingCursor {
             guard fetchedRequests[cursor] == nil else { return }

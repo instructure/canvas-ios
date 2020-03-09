@@ -124,7 +124,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
     }
   >
     <TouchableOpacity
-      accessibilityTraits="button"
+      accessibilityRole="button"
       hitSlop={
         Object {
           "bottom": 15,
@@ -290,7 +290,7 @@ exports[`RubricItem renders 1`] = `
     }
   >
     <TouchableOpacity
-      accessibilityTraits="button"
+      accessibilityRole="button"
       hitSlop={
         Object {
           "bottom": 15,
@@ -456,7 +456,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
     }
   >
     <TouchableOpacity
-      accessibilityTraits="button"
+      accessibilityRole="button"
       hitSlop={
         Object {
           "bottom": 15,
@@ -611,7 +611,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
     }
   >
     <TouchableOpacity
-      accessibilityTraits="button"
+      accessibilityRole="button"
       hitSlop={
         Object {
           "bottom": 15,
@@ -723,7 +723,7 @@ exports[`RubricItem renders with free form 1`] = `
     }
   >
     <TouchableOpacity
-      accessibilityTraits="button"
+      accessibilityRole="button"
       hitSlop={
         Object {
           "bottom": 15,
@@ -781,7 +781,7 @@ exports[`RubricItem renders with free form 1`] = `
       •
     </Text>
     <TouchableOpacity
-      accessibilityTraits="button"
+      accessibilityRole="button"
       hitSlop={
         Object {
           "bottom": 15,
@@ -947,7 +947,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
     }
   >
     <TouchableOpacity
-      accessibilityTraits="button"
+      accessibilityRole="button"
       hitSlop={
         Object {
           "bottom": 15,
@@ -1067,7 +1067,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
       </Text>
     </View>
     <TouchableOpacity
-      accessibilityTraits="button"
+      accessibilityRole="button"
       hitSlop={
         Object {
           "bottom": 15,

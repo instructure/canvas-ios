@@ -109,7 +109,9 @@ class PlannerTests: CoreUITestCase {
         PlannerList.emptyTitle.swipeDown() // pull to refresh
         PlannerList.emptyTitle.swipeLeft()
         PlannerList.event(id: "2233").swipeDown() // more pull to refresh
-        PlannerCalendar.monthButton.tap() // expand
+        PlannerCalendar.monthButton.tapUntil {
+            PlannerCalendar.monthButton.isSelected
+        } // expand
 
         PlannerCalendar.dayButton(year: y, month: m, day: 8).tap()
         PlannerCalendar.dayButton(year: y, month: m, day: 22).center

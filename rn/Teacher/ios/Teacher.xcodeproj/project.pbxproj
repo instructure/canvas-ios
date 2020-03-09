@@ -27,7 +27,6 @@
 		3B55FECD22FCB91800FCB7B2 /* PostGradesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B55FECC22FCB91800FCB7B2 /* PostGradesViewController.swift */; };
 		3B55FED422FDE70F00FCB7B2 /* HideGradesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B55FED222FDE70E00FCB7B2 /* HideGradesViewController.storyboard */; };
 		3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B55FED322FDE70F00FCB7B2 /* HideGradesViewController.swift */; };
-		3BC35E42230F1F9F00C0D35D /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 3BC35E41230F1F9F00C0D35D /* Localizable.stringsdict */; };
 		3BFD1D412311DED8003AE3AB /* AssignmentPostPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D402311DED8003AE3AB /* AssignmentPostPolicyTests.swift */; };
 		3BFD1D432311E209003AE3AB /* TeacherUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D422311E209003AE3AB /* TeacherUITestCase.swift */; };
 		3BFD1D4523121ED9003AE3AB /* SubmissionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D4423121ED9003AE3AB /* SubmissionsList.swift */; };
@@ -38,6 +37,7 @@
 		497CA7341F82AE8D00501613 /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */; };
 		78AD913121C8180C0075FBCF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AD913021C8180C0075FBCF /* GoogleService-Info.plist */; };
+		7D344E1B241160D100C052E6 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 7D344E1D241160D100C052E6 /* Localizable.stringsdict */; };
 		7D3DA83A2187615E000D828F /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; };
 		7D3DA83B2187615E000D828F /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7D64A95D23620A27004EAEDF /* AttendanceStatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A9532362092B004EAEDF /* AttendanceStatusController.swift */; };
@@ -255,7 +255,6 @@
 		3B55FECC22FCB91800FCB7B2 /* PostGradesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGradesViewController.swift; sourceTree = "<group>"; };
 		3B55FED222FDE70E00FCB7B2 /* HideGradesViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HideGradesViewController.storyboard; sourceTree = "<group>"; };
 		3B55FED322FDE70F00FCB7B2 /* HideGradesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideGradesViewController.swift; sourceTree = "<group>"; };
-		3BC35E41230F1F9F00C0D35D /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
 		3BFD1D402311DED8003AE3AB /* AssignmentPostPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPostPolicyTests.swift; sourceTree = "<group>"; };
 		3BFD1D422311E209003AE3AB /* TeacherUITestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherUITestCase.swift; sourceTree = "<group>"; };
 		3BFD1D4423121ED9003AE3AB /* SubmissionsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsList.swift; sourceTree = "<group>"; };
@@ -300,6 +299,8 @@
 		61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Teacher/AppDelegate.swift; sourceTree = "<group>"; };
 		7448D73B0E788B7806B47BFC /* Pods-defaults-Teacher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.debug.xcconfig"; sourceTree = "<group>"; };
 		78AD913021C8180C0075FBCF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Teacher/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7D344E1C241160D100C052E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		7D344E1F2411613200C052E6 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "en-AU"; path = "en-AU.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		7D349D0D21430F5E004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349D0E21430F5E004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "Teacher/da-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349D0F21430F5F004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "Teacher/da-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -448,7 +449,7 @@
 				2C96863B1FFE9FC3005127A3 /* LaunchScreen.storyboard */,
 				2CA3473E1F2147290000BB79 /* Localizable.strings */,
 				B15CA23F221DBA940014FB02 /* Routes.swift */,
-				3BC35E41230F1F9F00C0D35D /* Localizable.stringsdict */,
+				7D344E1D241160D100C052E6 /* Localizable.stringsdict */,
 			);
 			name = Teacher;
 			sourceTree = "<group>";
@@ -876,7 +877,7 @@
 				B15CA247221DC5CC0014FB02 /* ModuleListViewController.storyboard in Resources */,
 				3B55FEC922FC871400FCB7B2 /* PostGradesViewController.storyboard in Resources */,
 				2C96863D1FFE9FC4005127A3 /* LaunchScreen.storyboard in Resources */,
-				3BC35E42230F1F9F00C0D35D /* Localizable.stringsdict in Resources */,
+				7D344E1B241160D100C052E6 /* Localizable.stringsdict in Resources */,
 				2C8E35722093AD760071ED94 /* Settings.bundle in Resources */,
 				B1A890BE224F16F900CEE000 /* ModuleSectionHeaderView.xib in Resources */,
 				78AD913121C8180C0075FBCF /* GoogleService-Info.plist in Resources */,
@@ -1238,6 +1239,15 @@
 				5BCF9F7C240B9B7A00A32C47 /* is */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		7D344E1D241160D100C052E6 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D344E1C241160D100C052E6 /* en */,
+				7D344E1F2411613200C052E6 /* en-AU */,
+			);
+			name = Localizable.stringsdict;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -85,6 +85,12 @@ exports[`renders correctly 1`] = `
         </View>
         <item>
           <View
+            accessibilityRole="button"
+            accessibilityStates={
+              Array [
+                "selected",
+              ]
+            }
             accessible={true}
             isTVSelectable={true}
             onResponderGrant={[Function]}
@@ -152,6 +158,12 @@ exports[`renders correctly 1`] = `
         </item>
         <item>
           <View
+            accessibilityRole="button"
+            accessibilityStates={
+              Array [
+                "selected",
+              ]
+            }
             accessible={true}
             isTVSelectable={true}
             onResponderGrant={[Function]}
@@ -308,6 +320,12 @@ exports[`renders correctly as student 1`] = `
         </View>
         <item>
           <View
+            accessibilityRole="button"
+            accessibilityStates={
+              Array [
+                "selected",
+              ]
+            }
             accessible={true}
             isTVSelectable={true}
             onResponderGrant={[Function]}
@@ -375,6 +393,12 @@ exports[`renders correctly as student 1`] = `
         </item>
         <item>
           <View
+            accessibilityRole="button"
+            accessibilityStates={
+              Array [
+                "selected",
+              ]
+            }
             accessible={true}
             isTVSelectable={true}
             onResponderGrant={[Function]}
@@ -485,6 +509,12 @@ exports[`renders correctly as student 1`] = `
         </View>
         <item>
           <View
+            accessibilityRole="button"
+            accessibilityStates={
+              Array [
+                "selected",
+              ]
+            }
             accessible={true}
             isTVSelectable={true}
             onResponderGrant={[Function]}
@@ -552,6 +582,12 @@ exports[`renders correctly as student 1`] = `
         </item>
         <item>
           <View
+            accessibilityRole="button"
+            accessibilityStates={
+              Array [
+                "selected",
+              ]
+            }
             accessible={true}
             isTVSelectable={true}
             onResponderGrant={[Function]}
@@ -708,6 +744,12 @@ exports[`updates when courses prop changes 1`] = `
         </View>
         <item>
           <View
+            accessibilityRole="button"
+            accessibilityStates={
+              Array [
+                "selected",
+              ]
+            }
             accessible={true}
             isTVSelectable={true}
             onResponderGrant={[Function]}
@@ -864,6 +906,12 @@ exports[`updates when courses prop changes 2`] = `
         </View>
         <item>
           <View
+            accessibilityRole="button"
+            accessibilityStates={
+              Array [
+                "selected",
+              ]
+            }
             accessible={true}
             isTVSelectable={true}
             onResponderGrant={[Function]}

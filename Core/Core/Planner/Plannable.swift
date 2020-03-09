@@ -21,7 +21,7 @@ import CoreData
 
 public final class Plannable: NSManagedObject {
 
-    public enum PlannableType: String {
+    public enum PlannableType: String, Codable {
         case announcement, assignment, discussion_topic, quiz, wiki_page, planner_note, calendar_event, assessment_request
         case other
     }
@@ -35,7 +35,7 @@ public final class Plannable: NSManagedObject {
     @NSManaged public var contextImage: URL?
     @NSManaged public var canvasContextIDRaw: String?
     @NSManaged public var contextName: String?
-    @NSManaged public var date: Date
+    @NSManaged public var date: Date?
     @NSManaged public var pointsPossibleRaw: NSNumber?
     @NSManaged public var userID: String?
     @NSManaged public var details: String?

@@ -53,13 +53,14 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     var navbarMenuHeightConstraint: NSLayoutConstraint!
     weak var customNavbarDelegate: CustomNavbarActionDelegate?
     var customNavBarColor: UIColor? {
-        if let id = currentStudentID { return ColorScheme.observee(id).color } else { return ColorScheme.observer.color }
+        if let id = currentStudentID { return ColorScheme.observee(id).color } else { return nil }
     }
     var currentStudent: Core.User? {
         didSet {
             if let student = currentStudent {
                 currentStudentID = student.id
                 let color = ColorScheme.observee(student.id).color
+                env.userDefaults?.parentCurrentStudentID = student.id
                 alertsTabItem.badgeColor = color
                 let displayName = Core.User.displayName(student.shortName, pronouns: student.pronouns)
                 navbarNameButton.setTitle(displayName, for: .normal)
@@ -416,7 +417,11 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     }
 
     func displayDefaultStudent() {
-        currentStudent = studentAtIndex(0)
+        if let id = env.userDefaults?.parentCurrentStudentID, let persistedStudent = students.filter({ $0.id == id }).first {
+            currentStudent = persistedStudent
+        } else {
+            currentStudent = studentAtIndex(0)
+        }
     }
 }
 

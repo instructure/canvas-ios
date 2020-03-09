@@ -94,7 +94,7 @@ public class GradesViewController: UIViewController {
         if grades.gradingPeriodID != nil {
             grades.gradingPeriodID = nil
         } else {
-            let alert = UIAlertController(title: nil, message: NSLocalizedString("Filter by:", comment: ""), preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: nil, message: NSLocalizedString("Filter by:", bundle: .core, comment: ""), preferredStyle: .actionSheet)
             alert.popoverPresentationController?.sourceView = filterButton
             for gp in grades.gradingPeriods {
                 if gp.title?.isEmpty ?? true { continue }
@@ -103,7 +103,7 @@ public class GradesViewController: UIViewController {
                 }
                 alert.addAction(action)
             }
-            let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .destructive, handler: nil)
+            let cancel = UIAlertAction(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .destructive, handler: nil)
             alert.addAction(cancel)
             present(alert, animated: true, completion: nil)
         }

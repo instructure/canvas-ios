@@ -18,10 +18,6 @@
 
 import Foundation
 
-public protocol LTIControllerDelegate: class {
-    func ltiControllerDidLaunchTool()
-}
-
 public class LTIViewController: UIViewController {
     public let tools: LTITools
 
@@ -40,7 +36,7 @@ public class LTIViewController: UIViewController {
         button = UIButton(type: .system)
         button.setTitleColor(Brand.shared.buttonPrimaryText, for: .normal)
         button.backgroundColor = Brand.shared.buttonPrimaryBackground
-        button.setTitle(NSLocalizedString("Launch External Tool", comment: ""), for: .normal)
+        button.setTitle(NSLocalizedString("Launch External Tool", bundle: .core, comment: ""), for: .normal)
         button.titleLabel?.font = .scaledNamedFont(.semibold16)
         button.addTarget(self, action: #selector(launch), for: .primaryActionTriggered)
         button.translatesAutoresizingMaskIntoConstraints = false
