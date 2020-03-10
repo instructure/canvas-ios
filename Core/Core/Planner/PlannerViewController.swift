@@ -89,9 +89,17 @@ public class PlannerViewController: UIViewController {
     }
 
     func updateList(_ date: Date) {
+        let start = date.startOfDay()
+        let end = date.startOfDay().addDays(1)
+
+        if let currentList = listPageController.viewControllers?.first as? PlannerListViewController,
+            start == currentList.start && end == currentList.end {
+            return
+        }
+
         let newList = PlannerListViewController.create(
-            start: date.startOfDay(),
-            end: date.startOfDay().addDays(1),
+            start: start,
+            end: end,
             delegate: self
         )
         newList.loadViewIfNeeded()
