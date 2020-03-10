@@ -28,9 +28,7 @@ func rootViewController(_ session: Session) -> UIViewController {
     do {
         tabs.viewControllers = [
             dashboardTab(session: session),
-            UINavigationController(rootViewController: CalendarTabViewController(session: session) { vc, url in
-                AppEnvironment.shared.router.route(to: url, from: vc)
-            }),
+            calendarTab(session: session),
             todoTab(),
             try NotificationsTab(session: session),
             inboxTab(),
@@ -53,7 +51,6 @@ func dashboardTab(session: Session) -> UIViewController {
     let dashboardNav = HelmNavigationController(rootViewController: dashboardVC)
     let dashboardSplit = EnrollmentSplitViewController()
     let emptyNav = UINavigationController(rootViewController: EmptyViewController())
-    emptyNav.navigationBar.useGlobalNavStyle()
     dashboardNav.delegate = dashboardSplit
     dashboardNav.navigationBar.useGlobalNavStyle()
     dashboardSplit.viewControllers = [dashboardNav, emptyNav]
@@ -61,27 +58,43 @@ func dashboardTab(session: Session) -> UIViewController {
     dashboardSplit.tabBarItem.image = .icon(.dashboard, .line)
     dashboardSplit.tabBarItem.selectedImage = .icon(.dashboard, .solid)
     dashboardSplit.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
-    dashboardSplit.navigationItem.titleView = Brand.current.navBarTitleView()
+    dashboardSplit.navigationItem.titleView = Brand.shared.headerImageView()
     return dashboardSplit
 }
 
+func calendarTab(session: Session) -> UIViewController {
+    let calendar: UIViewController
+    if ExperimentalFeature.studentCalendar.isEnabled {
+        let split = HelmSplitViewController()
+        split.viewControllers = [
+            UINavigationController(rootViewController: PlannerViewController.create()),
+            UINavigationController(rootViewController: EmptyViewController()),
+        ]
+        split.view.tintColor = Brand.shared.primary.ensureContrast(against: .named(.backgroundLightest))
+        calendar = split
+    } else {
+        let month = CalendarMonthViewController.new(session)
+        month.routeToURL = { url in
+            AppEnvironment.shared.router.route(to: url, from: month)
+        }
+        calendar = UINavigationController(rootViewController: month)
+    }
+    calendar.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar page title")
+    calendar.tabBarItem.image = .icon(.calendarMonth, .line)
+    calendar.tabBarItem.selectedImage = .icon(.calendarMonth, .solid)
+    calendar.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
+    return calendar
+}
+
 func todoTab() -> UIViewController {
-    let list = TodoListViewController.create()
-
-    let split = HelmSplitViewController()
-    split.preferredDisplayMode = .allVisible
-    let masterNav = UINavigationController(rootViewController: list)
-    let detailNav = UINavigationController()
-    detailNav.view.backgroundColor = .named(.backgroundLightest)
-    masterNav.navigationBar.useGlobalNavStyle()
-    detailNav.navigationBar.useGlobalNavStyle()
-    split.viewControllers = [masterNav, detailNav]
-
-    let title = NSLocalizedString("To Do", comment: "Title of the Todo screen")
-    list.navigationItem.title = title
-    split.tabBarItem.title = title
-    split.tabBarItem.image = .icon(.todo)
-    split.tabBarItem.selectedImage = .icon(.todoSolid)
-    split.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
-    return split
+    let todo = HelmSplitViewController()
+    todo.viewControllers = [
+        UINavigationController(rootViewController: TodoListViewController.create()),
+        UINavigationController(rootViewController: EmptyViewController()),
+    ]
+    todo.tabBarItem.title = NSLocalizedString("To Do", comment: "Title of the Todo screen")
+    todo.tabBarItem.image = .icon(.todo)
+    todo.tabBarItem.selectedImage = .icon(.todoSolid)
+    todo.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
+    return todo
 }

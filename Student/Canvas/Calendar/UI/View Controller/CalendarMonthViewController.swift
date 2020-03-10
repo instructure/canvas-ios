@@ -111,18 +111,8 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
 
     fileprivate var favCoursesDisposable: Disposable?
     
-    @objc func actionShowAddTodo() {
-        let vc = CreateTodoViewController.create()
-        let nav = UINavigationController(rootViewController: vc)
-        present(nav, animated: true)
-    }
-    
     open override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if ExperimentalFeature.studentCalendar.isEnabled {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(actionShowAddTodo))
-        }
         
         self.navigationController?.navigationBar.useGlobalNavStyle()
         initNavigationButtons()

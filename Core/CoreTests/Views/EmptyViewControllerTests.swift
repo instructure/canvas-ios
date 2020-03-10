@@ -20,26 +20,16 @@ import XCTest
 @testable import Core
 
 class EmptyViewControllerTests: CoreTestCase {
-    var viewController: EmptyViewController!
+    var controller = EmptyViewController()
 
-    override func setUp() {
-        super.setUp()
-        viewController = EmptyViewController()
-    }
+    func testEmptyView() {
+        let nav = UINavigationController(rootViewController: controller)
+        nav.view.layoutIfNeeded()
+        nav.viewWillAppear(false)
 
-    func load() {
-        XCTAssertNotNil(viewController.view)
-    }
+        XCTAssertEqual(nav.navigationBar.barTintColor, Brand.shared.navBackground)
 
-    func testLoadsImage() {
-        load()
-        XCTAssertEqual(viewController.view.subviews.count, 1)
-        XCTAssert(viewController.view.subviews.first is UIImageView)
-    }
-
-    func testDoesNotLoadImage() {
-        viewController.showLogo = false
-        load()
-        XCTAssertEqual(viewController.view.subviews.count, 0)
+        XCTAssertEqual(controller.view.subviews.count, 1)
+        XCTAssert(controller.view.subviews.first is UIImageView)
     }
 }

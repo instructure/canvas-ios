@@ -28,7 +28,6 @@
 		4976C2001FBB84B900160EE4 /* CalendarEventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4976C1FF1FBB84B900160EE4 /* CalendarEventDetailViewController.swift */; };
 		49A04E541CF64C510051E1E7 /* NotificationsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E531CF64C510051E1E7 /* NotificationsTab.swift */; };
 		49A04E571CF64C7F0051E1E7 /* CanvasTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E561CF64C7F0051E1E7 /* CanvasTabBar.swift */; };
-		49A04E741CF64ED90051E1E7 /* CalendarTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E731CF64ED90051E1E7 /* CalendarTabViewController.swift */; };
 		49A04E7D1CF653050051E1E7 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A04E7C1CF653050051E1E7 /* libc++.tbd */; };
 		49F9FA4B1CF7B73100654758 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F9FA4A1CF7B73100654758 /* Assets.xcassets */; };
 		49F9FA6F1CF8FC8500654758 /* AppDelegate+Push.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA6E1CF8FC8500654758 /* AppDelegate+Push.swift */; };
@@ -425,7 +424,6 @@
 		49A04DAC1CF4F65D0051E1E7 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		49A04E531CF64C510051E1E7 /* NotificationsTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTab.swift; sourceTree = "<group>"; };
 		49A04E561CF64C7F0051E1E7 /* CanvasTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasTabBar.swift; sourceTree = "<group>"; };
-		49A04E731CF64ED90051E1E7 /* CalendarTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTabViewController.swift; sourceTree = "<group>"; };
 		49A04E7C1CF653050051E1E7 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		49F9FA4A1CF7B73100654758 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49F9FA6E1CF8FC8500654758 /* AppDelegate+Push.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Push.swift"; sourceTree = "<group>"; };
@@ -1071,7 +1069,6 @@
 			children = (
 				5EB46DBD1D21A75C00C859A4 /* Categories */,
 				5EB46DC71D21A75C00C859A4 /* UI */,
-				49A04E731CF64ED90051E1E7 /* CalendarTabViewController.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -2670,7 +2667,6 @@
 				7DCF0F9C22F8A897000AACCE /* CoreWebView.swift in Sources */,
 				7DCF0FB122F8A8D7000AACCE /* RubricLongDescriptionViewController.swift in Sources */,
 				7DCF0F9922F8A868000AACCE /* GroupNavigationViewController.swift in Sources */,
-				49A04E741CF64ED90051E1E7 /* CalendarTabViewController.swift in Sources */,
 				7DCF0F7822F8A0CC000AACCE /* Routes.swift in Sources */,
 				61592F791DA83C4900552B44 /* ModuleDetailsViewController.swift in Sources */,
 				61A6747E1DB589A3008A27FD /* ModuleViewModel.swift in Sources */,

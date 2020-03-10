@@ -86,7 +86,6 @@ const images = {
   trash: require('./trash.png'),
   share: require('./share.png'),
   relax: require('./relax.png'),
-  hamburger: require('./hamburger.png'),
   invisible: require('./invisible.png'),
   off: require('./off.png'),
 }

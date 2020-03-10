@@ -73,23 +73,12 @@ open class HelmSplitViewController: UISplitViewController {
     private func updateTitleViews() {
         // Recreating the titleView seems to be the most reliable way to get it to draw
         // correctly when the traitCollection changes on iPad
-        if let titleView = masterTopViewController?.navigationItem.titleView as? NavigationSubtitleView {
+        if let titleView = masterTopViewController?.navigationItem.titleView as? TitleSubtitleView {
             masterTopViewController?.navigationItem.titleView = titleView.recreate()
         }
-        if let titleView = detailTopViewController?.navigationItem.titleView as? NavigationSubtitleView {
+        if let titleView = detailTopViewController?.navigationItem.titleView as? TitleSubtitleView {
             detailTopViewController?.navigationItem.titleView = titleView.recreate()
         }
-    }
-}
-
-extension NavigationSubtitleView {
-    func recreate() -> NavigationSubtitleView {
-        let copy = TitleSubtitleView.create()
-        copy.title = titleLabel?.text
-        copy.subtitle = subtitleLabel?.text
-        copy.titleLabel?.textColor = titleLabel?.textColor
-        copy.subtitleLabel?.textColor = subtitleLabel?.textColor
-        return copy
     }
 }
 

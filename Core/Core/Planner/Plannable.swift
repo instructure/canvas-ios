@@ -70,8 +70,16 @@ public final class Plannable: NSManagedObject {
         model.details = item.plannable?.details
         model.userID = userID
 
-        if let itemContextType = item.context_type, let contextType = ContextType(rawValue: itemContextType.lowercased()), let courseID = item.course_id?.value {
-            model.canvasContextIDRaw = ContextModel(contextType, id: courseID).canvasContextID
+        if let type = item.context_type.flatMap({ ContextType(rawValue: $0.lowercased()) }) {
+            if type == .course, let id = item.course_id?.value {
+                model.context = ContextModel(type, id: id)
+            }
+            if type == .group, let id = item.group_id?.value {
+                model.context = ContextModel(type, id: id)
+            }
+            if type == .user, let id = item.user_id?.value {
+                model.context = ContextModel(type, id: id)
+            }
         }
         return model
     }
@@ -100,5 +108,13 @@ extension Plannable {
         case .other:
             return UIImage.icon(.warning, .line)
         }
+    }
+
+    public var color: UIColor {
+        guard let canvasContextID = canvasContextIDRaw else { return .named(.ash) }
+        if let color: ContextColor = managedObjectContext?.first(where: #keyPath(ContextColor.canvasContextID), equals: canvasContextID) {
+            return color.color
+        }
+        return .named(.ash)
     }
 }

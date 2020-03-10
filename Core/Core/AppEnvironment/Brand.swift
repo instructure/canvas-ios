@@ -148,4 +148,14 @@ public struct Brand: Equatable {
             return InstColorName(rawValue: name).flatMap { UIColor.named($0) }
         }
     }
+
+    public func headerImageView() -> UIImageView {
+        let logoView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+        logoView.contentMode = .scaleAspectFit
+        logoView.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        logoView.widthAnchor.constraint(equalToConstant: 44).isActive = true
+        logoView.load(url: Brand.shared.headerImageUrl)
+        logoView.backgroundColor = Brand.shared.headerImageBackground
+        return logoView
+    }
 }

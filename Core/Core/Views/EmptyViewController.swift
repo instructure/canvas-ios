@@ -19,24 +19,25 @@
 import UIKit
 
 public class EmptyViewController: UIViewController {
-    var showLogo: Bool = true
-    override public func viewDidLoad() {
+    let logoImageView = UIImageView(image: .icon(.instructure))
+
+    public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        if(showLogo) { addLogo() }
+        view.backgroundColor = .named(.backgroundLightest)
+
+        view.addSubview(logoImageView)
+        logoImageView.tintColor = .named(.textDark)
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            logoImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.1),
+            logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor),
+        ])
     }
 
-    func addLogo() {
-        let image = UIImage.icon(.instructure)
-        let logoImageView = UIImageView(image: image)
-        logoImageView.tintColor = UIColor.lightGray.ensureContrast(against: UIColor.white)
-
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(logoImageView)
-
-        logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        logoImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.1).isActive = true
-        logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor).isActive = true
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.useGlobalNavStyle()
     }
 }

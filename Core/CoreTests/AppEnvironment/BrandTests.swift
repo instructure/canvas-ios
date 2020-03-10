@@ -39,4 +39,12 @@ class BrandTests: XCTestCase {
         XCTAssertEqual(Brand.shared.color("ash"), .named(.ash))
         XCTAssertNil(Brand.shared.color("not a real name"))
     }
+
+    func testHeaderImageView() {
+        let view = Brand.shared.headerImageView()
+        view.layoutIfNeeded()
+        XCTAssertEqual(view.backgroundColor, Brand.shared.headerImageBackground)
+        XCTAssertEqual(view.frame, CGRect(x: 0, y: 0, width: 44, height: 44))
+        XCTAssertEqual(view.url, Brand.shared.headerImageUrl)
+    }
 }

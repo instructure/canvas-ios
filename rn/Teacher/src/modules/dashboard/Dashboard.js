@@ -48,7 +48,7 @@ import GroupRow, { type GroupRowProps } from './GroupRow'
 import CourseCard from '@modules/courses/components/CourseCard'
 import NoCourses from '@modules/courses/components/NoCourses'
 import { colors, vars } from '@common/stylesheet'
-import Images from '@images'
+import icon from '@images/inst-icons'
 import Navigator from '@routing/Navigator'
 import { getSessionUnsafe, getSession } from '@canvas-api'
 import AccountNotificationActions from './account-notification-actions'
@@ -445,7 +445,8 @@ export class Dashboard extends React.Component<Props, State> {
         }],
         leftBarButtons: [
           {
-            image: Images.hamburger,
+            image: icon('hamburger', 'solid'),
+            width: 24, height: 24,
             testID: 'Dashboard.profileButton',
             action: this.showProfile,
             accessibilityLabel: i18n('Profile Menu'),

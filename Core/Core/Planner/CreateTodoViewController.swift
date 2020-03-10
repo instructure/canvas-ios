@@ -62,7 +62,7 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
         courseSelectionLabel.textColor = UIColor.named(.textDark)
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(actionCancel))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(actionDone))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .done, target: self, action: #selector(actionDone))
     }
 
     @objc func actionDone() {
@@ -145,7 +145,6 @@ protocol SelectCourseProtocol: class {
 }
 
 class SelectCourseViewController: UITableViewController {
-
     lazy var courses = AppEnvironment.shared.subscribe(GetCourses()) { [weak self] in
         self?.coursesDidUpdate()
     }
@@ -154,7 +153,10 @@ class SelectCourseViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = NSLocalizedString("Select Course", bundle: .core, comment: "")
-        tableView.registerCell(UITableViewCell.self)
+        tableView.registerCell(RightDetailTableViewCell.self)
+        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorInset = .zero
+        tableView.tableFooterView = UIView()
         courses.exhaust()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Clear Course", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(clearCourse))
     }
@@ -174,7 +176,7 @@ class SelectCourseViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeue(for: indexPath)
+        let cell: RightDetailTableViewCell = tableView.dequeue(for: indexPath)
         cell.textLabel?.text = courses[indexPath]?.name
         return cell
     }

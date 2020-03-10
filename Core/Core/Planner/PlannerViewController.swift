@@ -19,14 +19,20 @@
 import UIKit
 
 public class PlannerViewController: UIViewController {
+    lazy var profileButton = UIBarButtonItem(image: .icon(.hamburger, .solid), style: .plain, target: self, action: #selector(openProfile))
+    lazy var addNoteButton = UIBarButtonItem(image: .icon(.add, .solid), style: .plain, target: self, action: #selector(addNote))
+    lazy var todayButton = UIBarButtonItem(image: .icon(.calendarTodayLine), style: .plain, target: self, action: #selector(selectToday))
+
     lazy var calendar = CalendarViewController.create(delegate: self)
     let listPageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
     var list: PlannerListViewController! {
         listPageController.viewControllers?.first as? PlannerListViewController
     }
+
+    let env = AppEnvironment.shared
     var listContentOffsetY: CGFloat = 0
     var studentID: String?
-    let env = AppEnvironment.shared
+
     lazy var planners: Store<LocalUseCase<Planner>> = env.subscribe(scope: .where(#keyPath(Planner.studentID), equals: studentID)) { [weak self] in
         self?.plannerListWillRefresh()
     }
@@ -40,6 +46,16 @@ public class PlannerViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationItem.titleView = Brand.shared.headerImageView()
+        navigationItem.leftBarButtonItem = profileButton
+        navigationItem.rightBarButtonItems = [ addNoteButton, todayButton ]
+        profileButton.accessibilityIdentifier = "PlannerCalendar.profileButton"
+        profileButton.accessibilityLabel = NSLocalizedString("Profile Menu", bundle: .core, comment: "")
+        addNoteButton.accessibilityIdentifier = "PlannerCalendar.addNoteButton"
+        addNoteButton.accessibilityLabel = NSLocalizedString("Add Planner Note", bundle: .core, comment: "")
+        todayButton.accessibilityIdentifier = "PlannerCalendar.todayButton"
+        todayButton.accessibilityLabel = NSLocalizedString("Go to today", bundle: .core, comment: "")
 
         embed(listPageController, in: view)
         listPageController.dataSource = self
@@ -77,6 +93,25 @@ public class PlannerViewController: UIViewController {
         planners.refresh()
     }
 
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.useGlobalNavStyle()
+    }
+
+    @objc func openProfile() {
+        env.router.route(to: .profile, from: self, options: .modal())
+    }
+
+    @objc func addNote() {
+        env.router.show(CreateTodoViewController.create(), from: self, options: .modal(embedInNav: true))
+    }
+
+    @objc func selectToday() {
+        let date = Clock.now.startOfDay()
+        calendar.showDate(date)
+        updateList(date)
+    }
+
     func getPlannables(from: Date, to: Date) -> GetPlannables {
         var contextCodes: [String] = []
         if let planner = planner, !planner.allSelected {
@@ -89,6 +124,7 @@ public class PlannerViewController: UIViewController {
     }
 
     func updateList(_ date: Date) {
+        guard !calendar.calendar.isDate(date, inSameDayAs: list.start) else { return }
         let newList = PlannerListViewController.create(
             start: date.startOfDay(),
             end: date.startOfDay().addDays(1),

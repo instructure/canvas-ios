@@ -133,11 +133,11 @@ extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate 
 }
 
 class PlannerListCell: UITableViewCell {
-    @IBOutlet weak var points: DynamicLabel!
-    @IBOutlet weak var dueDate: DynamicLabel!
-    @IBOutlet weak var title: DynamicLabel!
-    @IBOutlet weak var courseCode: DynamicLabel!
-    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var courseCode: UILabel!
+    @IBOutlet weak var dueDate: UILabel!
+    @IBOutlet weak var points: UILabel!
+    @IBOutlet weak var pointsDivider: UIView!
+    @IBOutlet weak var title: UILabel!
     @IBOutlet weak var icon: UIImageView!
 
     func update(_ p: Plannable?) {
@@ -149,7 +149,14 @@ class PlannerListCell: UITableViewCell {
         }
         icon.image = p?.icon()
         points.text = p?.pointsPossible.flatMap {
-            GradeFormatter.numberFormatter.string(from: NSNumber(value: $0))
+            let format = NSLocalizedString("g_points", bundle: .core, comment: "")
+            return String.localizedStringWithFormat(format, $0)
         }
+        pointsDivider.isHidden = dueDate.text == nil || points.text == nil
+        if !Bundle.main.isParentApp, let color = p?.color.ensureContrast(against: .named(.backgroundLightest)) {
+            courseCode.textColor = color
+            icon.tintColor = color
+        }
+        accessoryType = .disclosureIndicator
     }
 }

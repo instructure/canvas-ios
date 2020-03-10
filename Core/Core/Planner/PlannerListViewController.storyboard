@@ -21,7 +21,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="dTW-wT-oRZ" customClass="ListBackgroundView" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="161" width="414" height="273"/>
+                                    <rect key="frame" x="0.0" y="142" width="414" height="273"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8wG-8h-aIj" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
@@ -32,16 +32,16 @@
                                             </constraints>
                                         </view>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5mV-Vn-z8o">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="273.5"/>
+                                            <rect key="frame" x="0.0" y="10" width="414" height="253.5"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PandaNoEvents" translatesAutoresizingMaskIntoConstraints="NO" id="EGK-kT-erl" customClass="IconView" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="78" y="0.0" width="258" height="171"/>
+                                                    <rect key="frame" x="92.5" y="0.0" width="229" height="151"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="PandaNoEvents"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Assignments" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWT-oI-47b" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="32" y="203" width="350" height="24"/>
+                                                    <rect key="frame" x="32" y="183" width="350" height="24"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="PlannerList.emptyTitle"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -52,7 +52,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It looks like assignments haven’t been created in this space yet." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCU-lc-Waf" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="32" y="235" width="350" height="38.5"/>
+                                                    <rect key="frame" x="32" y="215" width="350" height="38.5"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="PlannerList.emptyLabel"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -97,10 +97,10 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlannerListCell" id="nc6-qC-n7j" customClass="PlannerListCell" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="116.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nc6-qC-n7j" id="gQz-yJ-vt1">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="116.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="86"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wqm-ri-CUc">
@@ -111,10 +111,10 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="nvF-o5-JX4">
-                                                    <rect key="frame" x="60" y="16" width="338" height="88.5"/>
+                                                    <rect key="frame" x="60" y="16" width="338" height="58"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AST 101" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HyU-M2-T4c" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="338" height="20.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="AST 101" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HyU-M2-T4c" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="338" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -124,7 +124,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Essay :the rocky planets" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3t-LK-Jry" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="22.5" width="338" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="19" width="338" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -133,26 +133,48 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Apr 6 at 11:59pm" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdg-qH-tTU" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="45" width="338" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="1 out of 10 pts" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rnu-Vo-JB5" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="67.5" width="338" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="electric"/>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tLO-4R-VWa">
+                                                            <rect key="frame" x="0.0" y="41" width="338" height="17"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Apr 6 at 11:59pm" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdg-qH-tTU" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="143" height="17"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="|" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mhc-eL-e4P" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                                    <rect key="frame" x="151" y="0.0" width="5" height="17"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                                        <bool key="isElement" value="NO"/>
+                                                                    </accessibility>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="borderMedium"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rnu-Vo-JB5" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                                    <rect key="frame" x="164" y="0.0" width="60.5" height="17"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                                <view contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="UBn-Qq-9b0">
+                                                                    <rect key="frame" x="232.5" y="0.0" width="105.5" height="17"/>
+                                                                </view>
+                                                            </subviews>
+                                                        </stackView>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
@@ -170,7 +192,7 @@
                                             <outlet property="dueDate" destination="bdg-qH-tTU" id="baU-dm-2kC"/>
                                             <outlet property="icon" destination="wqm-ri-CUc" id="Tut-EC-dO2"/>
                                             <outlet property="points" destination="Rnu-Vo-JB5" id="lLd-rT-wgc"/>
-                                            <outlet property="stackView" destination="nvF-o5-JX4" id="k9l-kN-8fJ"/>
+                                            <outlet property="pointsDivider" destination="Mhc-eL-e4P" id="e9Q-NR-Suv"/>
                                             <outlet property="title" destination="Q3t-LK-Jry" id="7Js-rf-rat"/>
                                         </connections>
                                     </tableViewCell>
@@ -205,6 +227,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="PandaNoEvents" width="258" height="171"/>
+        <image name="PandaNoEvents" width="229" height="151"/>
     </resources>
 </document>

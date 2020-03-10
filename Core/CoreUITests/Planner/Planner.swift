@@ -20,6 +20,7 @@ import Foundation
 @testable import TestsFoundation
 
 enum PlannerCalendar: String, ElementWrapper {
+    case profileButton, addNoteButton, todayButton
     case yearLabel, monthButton, filterButton
 
     static func dayButton(for date: Date) -> Element {

@@ -31,6 +31,17 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
         return ActAsUserViewController.create(loginDelegate: loginDelegate, userID: params["userID"])
     },
 
+    "/calendar": { url, _ in
+        if let eventID = url.queryItems?.first(where: { $0.name == "event_id" })?.value {
+           guard let session = Session.current else { return nil }
+           return try? CalendarEventDetailViewController(forEventWithID: eventID, in: session, route: route)
+       }
+       guard ExperimentalFeature.studentCalendar.isEnabled else { return nil }
+       let controller = PlannerViewController.create()
+       controller.view.tintColor = Brand.shared.primary
+       return controller
+    },
+
     "/calendar_events/:eventID": { _, params in
         guard let eventID = params["eventID"] else { return nil }
         guard let session = Session.current else { return nil }
