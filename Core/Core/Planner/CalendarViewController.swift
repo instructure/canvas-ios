@@ -203,12 +203,12 @@ class CalendarViewController: UIViewController {
         let duration: TimeInterval = 0.185
         UIView.animate(withDuration: duration, animations: {
             self.monthButton.alpha = 0
-        }) { _ in
+        }, completion: { _ in
             self.monthButton.setTitle(title, for: .normal)
             UIView.animate(withDuration: duration, animations: {
                 self.monthButton.alpha = 1
             })
-        }
+        })
     }
 }
 
