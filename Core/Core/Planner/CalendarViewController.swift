@@ -176,7 +176,12 @@ class CalendarViewController: UIViewController {
     func updateSelectedDate(_ date: Date) {
         selectedDate = date
         yearLabel.text = yearFormatter.string(from: selectedDate)
-        monthButton.setTitle(monthFormatter.string(from: selectedDate), for: .normal)
+
+        let monthTitle = monthFormatter.string(from: selectedDate)
+        if monthButton.title(for: .normal) != monthTitle {
+            animateMonthTitle(monthTitle)
+        }
+
         if days.hasDate(date, isExpanded: isExpanded) {
             days.updateSelectedDate(date)
         } else {
@@ -192,6 +197,18 @@ class CalendarViewController: UIViewController {
         let page = CalendarDaysViewController.create(selectedDate: date, delegate: delegate)
         daysPageController.setCurrentPage(page, direction: !animated ? nil : isReverse ? .reverse : .forward)
         updateSelectedDate(date)
+    }
+
+    func animateMonthTitle(_ title: String) {
+        let duration: TimeInterval = 0.185
+        UIView.animate(withDuration: duration, animations: {
+            self.monthButton.alpha = 0
+        }) { _ in
+            self.monthButton.setTitle(title, for: .normal)
+            UIView.animate(withDuration: duration, animations: {
+                self.monthButton.alpha = 1
+            })
+        }
     }
 }
 
