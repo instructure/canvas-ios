@@ -151,7 +151,7 @@ class CalendarViewController: UIViewController {
 
     func updateExpanded() {
         daysHeight.constant = isExpanded ? days.maxHeight : days.minHeight
-        dropdownView.transform = CGAffineTransform(rotationAngle: isExpanded ? -.pi : 0)
+        dropdownView.transform = CGAffineTransform(rotationAngle: isExpanded ? .pi : 180 * .pi)
         delegate?.calendarDidResize(height: height, animated: true)
     }
 
