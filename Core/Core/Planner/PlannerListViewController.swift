@@ -50,8 +50,8 @@ public class PlannerListViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        emptyStateHeader.text = NSLocalizedString("No Assignments", bundle: .core, comment: "")
-        emptyStateSubHeader.text = NSLocalizedString("It looks like assignments haven’t been created in this space yet.", bundle: .core, comment: "")
+        emptyStateHeader.text = NSLocalizedString("No Events Today!", bundle: .core, comment: "")
+        emptyStateSubHeader.text = NSLocalizedString("It looks like a great day to rest, relax, and recharge.", bundle: .core, comment: "")
         errorView.messageLabel.text = NSLocalizedString("There was an error loading events. Pull to refresh to try again.", bundle: .core, comment: "")
         errorView.retryButton.addTarget(self, action: #selector(retryAfterError), for: .primaryActionTriggered)
 
@@ -141,7 +141,6 @@ class PlannerListCell: UITableViewCell {
     @IBOutlet weak var icon: UIImageView!
 
     func update(_ p: Plannable?) {
-        stackView.setCustomSpacing(2, after: courseCode)
         accessibilityIdentifier = "PlannerList.event.\(p?.id ?? "")"
         courseCode.text = p?.contextName
         title.text = p?.title

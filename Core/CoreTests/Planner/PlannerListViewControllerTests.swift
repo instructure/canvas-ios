@@ -116,8 +116,8 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         controller.view.layoutIfNeeded()
 
         XCTAssertEqual(controller.emptyStateView.isHidden, false)
-        XCTAssertEqual(controller.emptyStateHeader.text, "No Assignments")
-        XCTAssertEqual(controller.emptyStateSubHeader.text, "It looks like assignments haven’t been created in this space yet.")
+        XCTAssertEqual(controller.emptyStateHeader.text, "No Events Today!")
+        XCTAssertEqual(controller.emptyStateSubHeader.text, "It looks like a great day to rest, relax, and recharge.")
 
         controller.tableView.delegate?.scrollViewWillBeginDragging?(controller.tableView)
         XCTAssertTrue(isDragging)
