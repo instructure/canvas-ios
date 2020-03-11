@@ -84,6 +84,10 @@ class CalendarViewControllerTests: CoreTestCase, CalendarViewControllerDelegate 
         XCTAssertEqual(controller.daysHeight.constant, 48)
 
         controller.showDate(DateComponents(calendar: .current, year: 2020, month: 2, day: 1).date!)
+
+        //  wait for set month animation
+        RunLoop.current.run(until: Date() + 0.5)
+
         XCTAssertEqual(controller.monthButton.title(for: .normal), "February")
         XCTAssertEqual(controller.yearLabel.text, "2020")
         XCTAssertEqual(controller.days.selectedDate.isoString(), DateComponents(calendar: .current, year: 2020, month: 2, day: 1).date!.isoString())

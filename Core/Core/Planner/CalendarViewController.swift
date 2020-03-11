@@ -88,6 +88,8 @@ class CalendarViewController: UIViewController {
         filterButton.setTitle(NSLocalizedString("Calendar", bundle: .core, comment: ""), for: .normal)
         filterButton.accessibilityLabel = NSLocalizedString("Filter events", bundle: .core, comment: "")
 
+        dropdownView.transform = CGAffineTransform(rotationAngle: 4 * .pi)
+
         for placeholder in weekdayRow.arrangedSubviews { placeholder.removeFromSuperview() }
         for i in 0..<numberOfDaysInWeek {
             let day = calendar.firstWeekday + i - calendar.component(.weekday, from: selectedDate)
@@ -151,7 +153,7 @@ class CalendarViewController: UIViewController {
 
     func updateExpanded() {
         daysHeight.constant = isExpanded ? days.maxHeight : days.minHeight
-        dropdownView.transform = CGAffineTransform(rotationAngle: isExpanded ? -.pi : 0)
+        dropdownView.transform = CGAffineTransform(rotationAngle: isExpanded ? .pi : 4 * .pi)
         delegate?.calendarDidResize(height: height, animated: true)
     }
 
@@ -176,7 +178,12 @@ class CalendarViewController: UIViewController {
     func updateSelectedDate(_ date: Date) {
         selectedDate = date
         yearLabel.text = yearFormatter.string(from: selectedDate)
-        monthButton.setTitle(monthFormatter.string(from: selectedDate), for: .normal)
+
+        let monthTitle = monthFormatter.string(from: selectedDate)
+        if monthButton.title(for: .normal) != monthTitle {
+            animateMonthTitle(monthTitle)
+        }
+
         if days.hasDate(date, isExpanded: isExpanded) {
             days.updateSelectedDate(date)
         } else {
@@ -192,6 +199,18 @@ class CalendarViewController: UIViewController {
         let page = CalendarDaysViewController.create(selectedDate: date, delegate: delegate)
         daysPageController.setCurrentPage(page, direction: !animated ? nil : isReverse ? .reverse : .forward)
         updateSelectedDate(date)
+    }
+
+    func animateMonthTitle(_ title: String) {
+        let duration: TimeInterval = 0.185
+        UIView.animate(withDuration: duration, animations: {
+            self.monthButton.alpha = 0
+        }, completion: { _ in
+            self.monthButton.setTitle(title, for: .normal)
+            UIView.animate(withDuration: duration, animations: {
+                self.monthButton.alpha = 1
+            })
+        })
     }
 }
 
