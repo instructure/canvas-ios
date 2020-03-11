@@ -443,15 +443,14 @@ export class Dashboard extends React.Component<Props, State> {
           action: this.showFavoritesList,
           disabled: !this.props.totalCourseCount || Boolean(this.props.pending),
         }],
-        leftBarButtons: [
-          {
-            image: icon('hamburger', 'solid'),
-            width: 24, height: 24,
-            testID: 'Dashboard.profileButton',
-            action: this.showProfile,
-            accessibilityLabel: i18n('Profile Menu'),
-          },
-        ],
+        leftBarButtons: [{
+          image: icon('hamburger', 'solid'),
+          width: 24,
+          height: 24,
+          testID: 'Dashboard.profileButton',
+          action: this.showProfile,
+          accessibilityLabel: i18n('Profile Menu'),
+        }],
       }
   }
 
