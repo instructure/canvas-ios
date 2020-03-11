@@ -141,6 +141,7 @@ class PlannerListCell: UITableViewCell {
     @IBOutlet weak var icon: UIImageView!
 
     func update(_ p: Plannable?) {
+        stackView.setCustomSpacing(2, after: courseCode)
         accessibilityIdentifier = "PlannerList.event.\(p?.id ?? "")"
         courseCode.text = p?.contextName
         title.text = p?.title
