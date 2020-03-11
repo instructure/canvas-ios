@@ -86,7 +86,8 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
 
         controller.tableView.selectRow(at: index0, animated: false, scrollPosition: .none)
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index0)
-        XCTAssertTrue(router.lastRoutedTo(assignment.html_url!.rawValue))
+        let to = assignment.html_url!.rawValue.appendingQueryItems(URLQueryItem(name: "origin", value: "calendar"))
+        XCTAssertTrue(router.lastRoutedTo(to))
         controller.viewWillAppear(false)
         XCTAssertNil(controller.tableView.indexPathForSelectedRow)
 

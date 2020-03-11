@@ -57,6 +57,13 @@ public extension URLComponents {
         return cleaned
     }
 
+    var originIsCalendar: Bool {
+        if queryItems?.first(where: { $0.name == "origin" })?.value == "calendar" {
+            return true
+        }
+        return false
+    }
+
     var originIsNotification: Bool {
         get {
             if let origin = queryItems?.first(where: { $0.name == "origin" })?.value, origin == "notification" {

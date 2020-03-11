@@ -115,7 +115,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/courses/:courseID/assignments/:assignmentID/submissions/:userID": { url, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let userID = params["userID"] else { return nil }
-        if url.originIsNotification {
+        if url.originIsCalendar || url.originIsNotification {
             return AssignmentDetailsViewController.create(
                 courseID: ID.expandTildeID(courseID),
                 assignmentID: ID.expandTildeID(assignmentID),

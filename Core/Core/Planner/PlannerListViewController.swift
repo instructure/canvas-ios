@@ -115,7 +115,8 @@ extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate 
             let noteDetail = PlannerNoteDetailViewController.create(plannable: p)
             env.router.show(noteDetail, from: self, options: .detail(embedInNav: true))
         } else if let url = plannables?[indexPath]?.htmlURL {
-            env.router.route(to: url, from: self, options: .detail(embedInNav: true))
+            let to = url.appendingQueryItems(URLQueryItem(name: "origin", value: "calendar"))
+            env.router.route(to: to, from: self, options: .detail(embedInNav: true))
         }
     }
 
