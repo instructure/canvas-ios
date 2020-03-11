@@ -5,4 +5,3 @@ $(SRCROOT)/../Carthage/Build/iOS/ReactiveObjCBridge.framework
 $(SRCROOT)/../Carthage/Build/iOS/ReactiveSwift.framework
 $(SRCROOT)/../Carthage/Build/iOS/ReactiveCocoa.framework
 $(SRCROOT)/../Carthage/Build/iOS/ReactiveMapKit.framework
-$(SRCROOT)/../Carthage/Build/iOS/Swifter.framework

@@ -92,7 +92,6 @@
 		E841D8B323D6472F00685A63 /* PSPDFKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F7221492580083E660 /* PSPDFKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E841D8B423D6472F00685A63 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E841D8BC23D6478000685A63 /* E2ETestsFromCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841D8BB23D6478000685A63 /* E2ETestsFromCore.swift */; };
-		E862B32A2410680700BCE8C2 /* Swifter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E862B3292410680700BCE8C2 /* Swifter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E881134922FCA81B00354C59 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E881134B22FCA8AC00354C59 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F6221492580083E660 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E881134C22FCA8B100354C59 /* PSPDFKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F7221492580083E660 /* PSPDFKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -179,7 +178,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E862B32A2410680700BCE8C2 /* Swifter.framework in Embed Frameworks */,
 				E8F6CFFF23045A01004347D9 /* CoreUITests.framework in Embed Frameworks */,
 				E8AA0A9322FCC83B002D0A87 /* Core.framework in Embed Frameworks */,
 				E8AA0A9422FCC83B002D0A87 /* PSPDFKit.framework in Embed Frameworks */,
@@ -369,7 +367,6 @@
 		E841D8B923D6472F00685A63 /* TeacherE2ETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherE2ETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E841D8BA23D6472F00685A63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		E841D8BB23D6478000685A63 /* E2ETestsFromCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = E2ETestsFromCore.swift; sourceTree = "<group>"; };
-		E862B3292410680700BCE8C2 /* Swifter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swifter.framework; path = ../../../Carthage/Build/iOS/Swifter.framework; sourceTree = "<group>"; };
 		E8A2FCAA23048AF80070B732 /* UITestsFromCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestsFromCore.swift; sourceTree = "<group>"; };
 		E8F6CFFE23045A01004347D9 /* CoreUITests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Teacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -547,7 +544,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				E862B3292410680700BCE8C2 /* Swifter.framework */,
 				2C8E35712093AD760071ED94 /* Settings.bundle */,
 				13B07FAE1A68108700A75B9A /* Teacher */,
 				B15CA25E221DDB820014FB02 /* TeacherTests */,
@@ -748,7 +744,6 @@
 				E8315D3422FC9E60003CD27C /* Resources */,
 				E8AA0A9222FCC7C8002D0A87 /* Embed Frameworks */,
 				3F74CB8E3F515307A849AAFC /* Frameworks */,
-				E89DD8CF241051A00040B051 /* Carthage Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1014,27 +1009,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E89DD8CF241051A00040B051 /* Carthage Copy Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"$(SRCROOT)/../../../scripts/carthage/teacher-input.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "Carthage Copy Frameworks";
-			outputFileListPaths = (
-				"$(SRCROOT)/../../../scripts/carthage/output.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "\"${SRCROOT}/../../../scripts/carthage-copy-frameworks.swift\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F9B947072215EA3C0083E660 /* Carthage Copy Frameworks */ = {

@@ -2122,7 +2122,6 @@
 				7DC5716D22F8B16200F2E9BB /* Frameworks */,
 				7DC5716E22F8B16200F2E9BB /* Resources */,
 				7DC5719122F8B39500F2E9BB /* Embed Frameworks */,
-				E8BE43F7240843F6001A993E /* Carthage Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2562,26 +2561,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-defaults-Student/Pods-defaults-Student-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		E8BE43F7240843F6001A993E /* Carthage Copy Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"$(SRCROOT)/../scripts/carthage/input.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "Carthage Copy Frameworks";
-			outputFileListPaths = (
-				"$(SRCROOT)/../scripts/carthage/output.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../scripts/carthage-copy-frameworks.swift\"\n";
 		};
 		F9B947052215E97A0083E660 /* Carthage Copy Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
