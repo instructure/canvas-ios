@@ -28,7 +28,7 @@ class InboxTests: CoreUITestCase {
         XCTAssert(label.contains("Assignments"))
         XCTAssert(label.contains("need to talk"))
         XCTAssert(label.contains("last message was on Jan"))
-        XCTAssert(label.contains("Jeff"))
+        XCTAssert(label.contains("Yeah, whatever"))
         ConversationList.cell(id: "320").waitToExist().tap()
         ConversationDetail.replyButton.tapUntil {
             ComposeReply.body.exists()

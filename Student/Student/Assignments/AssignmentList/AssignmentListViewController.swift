@@ -141,7 +141,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
             let groupID = g.id.value
             var existing = assignments[groupID] ?? []
             //  if it's the first run or hasNextPage == true, then append assignments
-            if existing.count == 0 || sectionHasNext[index] == true {
+            if existing.count == 0 || sectionHasNext(index) == true {
                 existing += g.assignments
                 assignments[groupID] = existing
             }
@@ -244,9 +244,9 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
 extension AssignmentListViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach {
-            let fetchMore = sectionHasNext[$0.section]
+            let fetchMore = sectionHasNext($0.section)
             if fetchMore {
-                DispatchQueue.main.async { [weak self] in
+                performUIUpdate { [weak self] in
                     self?.fetchData()
                 }
                 return
@@ -268,14 +268,14 @@ extension AssignmentListViewController: UITableViewDataSource, UITableViewDelega
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let loadCell = sectionHasNext[section] ? 1 : 0
+        let loadCell = sectionHasNext(section) ? 1 : 0
         let assignmentCnt = assignments[ groups[section].id.value ]?.count ?? 0
         return assignmentCnt + loadCell
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ListCell = tableView.dequeue(for: indexPath)
-        let loadCell = sectionHasNext[indexPath.section]
+        let loadCell = sectionHasNext(indexPath.section)
         if loadCell && indexPath.row == assignments[ groups[indexPath.section].id.value ]?.count ?? 0 {
             cell.textLabel?.text = NSLocalizedString("Loading...", comment: "")
             cell.detailTextLabel?.text = nil
@@ -356,5 +356,9 @@ extension AssignmentListViewController {
         updateLabels()
         showSpinner(show: true)
         fetchData()
+    }
+
+    func sectionHasNext(_ index: Int) -> Bool {
+        return index < sectionHasNext.count ? sectionHasNext[index] : false
     }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,7 +34,7 @@
                     <rect key="frame" x="16" y="25" width="343" height="633.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4NE-AM-KWx" customClass="DynamicLabel" customModule="Teacher" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="306.5" width="306" height="20.5"/>
+                            <rect key="frame" x="0.0" y="302.5" width="294" height="29"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -43,21 +43,21 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="SCs-Vj-oh2">
-                            <rect key="frame" x="306" y="311" width="37" height="12"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="SCs-Vj-oh2">
+                            <rect key="frame" x="294" y="305" width="49" height="24"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gfV-EK-A87" customClass="PublishedIconView" customModule="Core">
-                                    <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="12" id="7Gg-D8-aK5"/>
-                                        <constraint firstAttribute="height" constant="12" id="zty-p2-3gn"/>
+                                        <constraint firstAttribute="width" constant="24" id="7Gg-D8-aK5"/>
+                                        <constraint firstAttribute="height" constant="24" id="zty-p2-3gn"/>
                                     </constraints>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A6B-q1-3Tl" customClass="CollapsableIndicator" customModule="Teacher" customModuleProvider="target">
-                                    <rect key="frame" x="27" y="3.5" width="10" height="5"/>
+                                    <rect key="frame" x="40" y="8.5" width="9" height="7"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="5" id="7Ub-3v-RSH"/>
-                                        <constraint firstAttribute="width" constant="10" id="tTo-Ut-92V"/>
+                                        <constraint firstAttribute="height" constant="7" id="7Ub-3v-RSH"/>
+                                        <constraint firstAttribute="width" constant="9" id="tTo-Ut-92V"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="backgroundDarkest"/>

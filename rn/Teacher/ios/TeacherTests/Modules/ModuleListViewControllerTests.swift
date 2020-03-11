@@ -60,20 +60,25 @@ class ModuleListViewControllerTests: TeacherTestCase {
         api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
             .make(id: "1", name: "B", position: 2, published: true, items: [
                 .make(id: "1", position: 1, title: "B1"),
-                .make(id: "2", position: 2, title: "B2"),
+                .make(id: "2", position: 2, title: "B2", published: true),
             ]),
             .make(id: "2", name: "A", position: 1, published: false, items: [
-                .make(id: "3", position: 3, title: "A1"),
+                .make(id: "3", position: 3, title: "A1", published: false),
             ]),
         ])
         viewController.view.layoutIfNeeded()
         XCTAssertEqual(header(forSection: 0).title, "A")
         XCTAssertEqual(header(forSection: 0).published, false)
+        XCTAssertEqual(header(forSection: 0).accessibilityLabel, "A, unpublished, expanded")
+        XCTAssert(header(forSection: 0).accessibilityTraits.contains(.button))
         XCTAssertEqual(moduleItemCell(at: IndexPath(row: 0, section: 0)).nameLabel.text, "A1")
+        XCTAssertEqual(moduleItemCell(at: IndexPath(row: 0, section: 0)).accessibilityLabel, "A1, unpublished")
         XCTAssertEqual(header(forSection: 1).title, "B")
         XCTAssertEqual(header(forSection: 1).published, true)
+        XCTAssertEqual(header(forSection: 1).accessibilityLabel, "B, published, expanded")
         XCTAssertEqual(moduleItemCell(at: IndexPath(row: 0, section: 1)).nameLabel.text, "B1")
         XCTAssertEqual(moduleItemCell(at: IndexPath(row: 1, section: 1)).nameLabel.text, "B2")
+        XCTAssertEqual(moduleItemCell(at: IndexPath(row: 1, section: 1)).accessibilityLabel, "B2, published")
     }
 
     func testLoadingItems() {
@@ -229,13 +234,15 @@ class ModuleListViewControllerTests: TeacherTestCase {
     }
 
     func testCollapsingSections() throws {
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [.make(id: "3453243")])
+        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [.make(id: "3453243", name: "Module 1")])
         viewController.view.layoutIfNeeded()
         let before = header(forSection: 0)
         XCTAssertFalse(before.collapsableIndicator.isCollapsed)
+        XCTAssertEqual(before.accessibilityLabel, "Module 1, published, expanded")
         before.handleTap(before.tapGestureRecognizer)
         let after = header(forSection: 0)
         XCTAssertTrue(after.collapsableIndicator.isCollapsed)
+        XCTAssertEqual(before.accessibilityLabel, "Module 1, published, expanded")
 
         let viewController = ModuleListViewController.create(courseID: "1")
         viewController.view.layoutIfNeeded()
@@ -247,10 +254,18 @@ class ModuleListViewControllerTests: TeacherTestCase {
         api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
             .make(items: [
                 .make(
+                    id: "1",
                     title: "I am a sub header",
                     indent: 2,
                     content: .subHeader,
                     published: true
+                ),
+                .make(
+                    id: "2",
+                    title: "other subheader",
+                    indent: 2,
+                    content: .subHeader,
+                    published: false
                 ),
             ]),
         ])
@@ -260,6 +275,10 @@ class ModuleListViewControllerTests: TeacherTestCase {
         XCTAssertEqual(cell.indent, 2)
         XCTAssertEqual(cell.publishedIconView.published, true)
         XCTAssertFalse(cell.isUserInteractionEnabled)
+        XCTAssertEqual(cell.accessibilityLabel, "I am a sub header, published")
+        let other = try XCTUnwrap(viewController.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? ModuleItemSubHeaderCell)
+        XCTAssertEqual(other.accessibilityLabel, "other subheader, unpublished")
+
     }
 
     func testSelectExternalTool() throws {

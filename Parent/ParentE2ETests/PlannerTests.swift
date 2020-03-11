@@ -56,13 +56,26 @@ class PlannerTests: CoreUITestCase {
         PlannerList.event(id: "2233").waitToExist()
         XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 1).label(), "March 1, \(y), 1 event")
 
+        PlannerList.event(id: "2233").tap()
+        app.find(label: "first").waitToExist()
+        XCTAssert(app.find(label: "Instructure SLC\n6330 S 3000 E Salt Lake City, UT 84121").exists())
+        NavBar.backButton.tap()
+
         PlannerCalendar.dayButton(year: y, month: m, day: 2).tap()
         PlannerList.event(id: "2234").waitToExist() // second
         XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 2).label(), "March 2, \(y), 2 events")
 
+        PlannerList.event(id: "2234").tap()
+        app.find(label: "second").waitToExist()
+        NavBar.backButton.tap()
+
         PlannerCalendar.dayButton(year: y, month: m, day: 3).tap()
         PlannerList.event(id: "2236").waitToExist() // third
         XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 3 events")
+
+        PlannerList.event(id: "2236").tap()
+        app.find(label: "third").waitToExist()
+        NavBar.backButton.tap()
 
         PlannerCalendar.dayButton(year: y, month: m, day: 4).tap()
         PlannerList.emptyTitle.waitToExist()
@@ -96,7 +109,9 @@ class PlannerTests: CoreUITestCase {
         PlannerList.emptyTitle.swipeDown() // pull to refresh
         PlannerList.emptyTitle.swipeLeft()
         PlannerList.event(id: "2233").swipeDown() // more pull to refresh
-        PlannerCalendar.monthButton.tap() // expand
+        PlannerCalendar.monthButton.tapUntil {
+            PlannerCalendar.monthButton.isSelected
+        } // expand
 
         PlannerCalendar.dayButton(year: y, month: m, day: 8).tap()
         PlannerCalendar.dayButton(year: y, month: m, day: 22).center

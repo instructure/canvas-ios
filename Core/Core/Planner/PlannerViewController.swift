@@ -89,9 +89,17 @@ public class PlannerViewController: UIViewController {
     }
 
     func updateList(_ date: Date) {
+        let start = date.startOfDay()
+        let end = date.startOfDay().addDays(1)
+
+        if let currentList = listPageController.viewControllers?.first as? PlannerListViewController,
+            start == currentList.start && end == currentList.end {
+            return
+        }
+
         let newList = PlannerListViewController.create(
-            start: date.startOfDay(),
-            end: date.startOfDay().addDays(1),
+            start: start,
+            end: end,
             delegate: self
         )
         newList.loadViewIfNeeded()
@@ -115,7 +123,6 @@ extension PlannerViewController: CalendarViewControllerDelegate {
         list.tableView.scrollIndicatorInsets.top = height
         list.tableView.contentInset.top = height
         view.layoutIfNeeded()
-        clearPageCache()
     }
 
     func calendarWillFilter() {
@@ -157,11 +164,6 @@ extension PlannerViewController: PlannerListDelegate {
 }
 
 extension PlannerViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
-    func clearPageCache() {
-        listPageController.dataSource = nil
-        listPageController.dataSource = self
-    }
-
     public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         return listPageDelta(-1, from: (viewController as? PlannerListViewController)!)
     }
@@ -183,6 +185,6 @@ extension PlannerViewController: UIPageViewControllerDataSource, UIPageViewContr
     }
 
     public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        calendar.showDate(list.start)
+        if completed { calendar.showDate(list.start) }
     }
 }

@@ -47,7 +47,8 @@ extension APISubmission {
         submission_history: [APISubmission]? = nil,
         user: APISubmissionUser? = nil,
         assignment: APIAssignmentNoSubmission? = nil,
-        rubric_assessment: APIRubricAssessmentMap? = nil
+        rubric_assessment: APIRubricAssessmentMap? = nil,
+        external_tool_url: APIURL? = nil
     ) -> APISubmission {
         return APISubmission(
             id: id,
@@ -70,6 +71,7 @@ extension APISubmission {
             media_comment: media_comment,
             graded_at: graded_at,
             grade_matches_current_submission: grade_matches_current_submission,
+            external_tool_url: external_tool_url,
             late_policy_status: late_policy_status,
             points_deducted: points_deducted,
             submission_comments: submission_comments,

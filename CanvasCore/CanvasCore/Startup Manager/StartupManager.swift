@@ -29,7 +29,6 @@ import Foundation
 //  This manager makes sense of all that craziness by taking in blocks that need to be executed post app launch. Once a view controller actually appears on the screen,
 //  those blocks are then executed.
 //
-//  Also manages the launch screen placeholder and animations
 
 public typealias StartupManagerTask = () -> ()
 
@@ -56,13 +55,4 @@ public class StartupManager {
         }
         blocks.removeAll()
     }
-}
-
-public func StartupIconAnimation() -> CAAnimation {
-    let animation = CABasicAnimation(keyPath: "transform.rotation.z")
-    animation.fromValue = 0
-    animation.toValue = 2 * Double.pi
-    animation.repeatCount = 100.0
-    animation.duration = 10.0
-    return animation
 }

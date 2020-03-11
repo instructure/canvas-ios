@@ -1028,9 +1028,6 @@
    Masquerade error title */
 "Oops!" = "Ups!";
 
-/* Button to open external tool */
-"Open External Tool" = "Åbn eksternt værktøj";
-
 /* Open a document in the application Safari */
 "Open in Safari" = "Åbn i Safari";
 

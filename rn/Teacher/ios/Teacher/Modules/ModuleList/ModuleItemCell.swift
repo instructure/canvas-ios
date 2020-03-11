@@ -43,6 +43,14 @@ class ModuleItemCell: UITableViewCell {
                     DateFormatter.localizedString(from: $0, dateStyle: .long, timeStyle: .short)
                 )
             }
+            if let item = item {
+                accessibilityLabel = [
+                    item.title,
+                    item.published == true ? NSLocalizedString("published", comment: "") : NSLocalizedString("unpublished", comment: ""),
+                ].joined(separator: ", ")
+            } else {
+                accessibilityLabel = nil
+            }
         }
     }
 

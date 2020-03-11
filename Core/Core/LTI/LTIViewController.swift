@@ -18,10 +18,6 @@
 
 import Foundation
 
-public protocol LTIControllerDelegate: class {
-    func ltiControllerDidLaunchTool()
-}
-
 public class LTIViewController: UIViewController {
     public let tools: LTITools
 

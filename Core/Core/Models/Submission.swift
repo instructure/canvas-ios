@@ -45,6 +45,7 @@ final public class Submission: NSManagedObject {
     @NSManaged public var url: URL?
     @NSManaged public var gradedAt: Date?
     @NSManaged public var gradeMatchesCurrentSubmission: Bool
+    @NSManaged public var externalToolURL: URL?
 
     @NSManaged public var rubricAssesmentRaw: Set<RubricAssessment>?
     @NSManaged public var mediaComment: MediaComment?
@@ -127,6 +128,7 @@ extension Submission: WriteableModel {
         model.previewUrl = item.preview_url
         model.gradedAt = item.graded_at
         model.gradeMatchesCurrentSubmission = item.grade_matches_current_submission
+        model.externalToolURL = item.external_tool_url?.rawValue
 
         model.attachments = Set(item.attachments?.map { attachment in
             return File.save(attachment, in: client)
