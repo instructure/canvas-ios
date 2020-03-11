@@ -17,16 +17,17 @@
 //
 
 import Foundation
-import TestsFoundation
 @testable import Core
 
-class RunMiniCanvas: CoreUITestCase {
-    override var abstractTestClass: CoreUITestCase.Type { RunMiniCanvas.self }
+open class MiniCanvasUITestCase: CoreUITestCase {
+    override open var abstractTestClass: CoreUITestCase.Type { MiniCanvasUITestCase.self }
+    override open var user: UITestUser? { nil }
+    override open var useMocks: Bool { false }
 
-    override func setUp() {
-    }
+    public var mocked: MiniCanvasState { MiniCanvasServer.shared.state }
 
-    func testJustServer() {
+    override open func setUp() {
+        MiniCanvasServer.shared.reset()
         MiniCanvasServer.shared.server.logResponses = true
         let state = MiniCanvasServer.shared.state
         if Bundle.main.isStudentApp {
@@ -35,15 +36,15 @@ class RunMiniCanvas: CoreUITestCase {
             state.selfId = state.teachers[0].id
         }
 
-        let baseUrl = "\(MiniCanvasServer.shared.baseUrl)"
-        let user = UITestUser(host: baseUrl, username: "", password: "")
-        launch { app in
-            app.launchEnvironment["OVERRIDE_MOBILE_VERIFY_URL"] = "\(baseUrl)api/v1/mobile_verify.json"
-            app.launchArguments.append(contentsOf: [
-                "-com.apple.configuration.managed",
-                user.profile,
-            ])
-        }
-        RunLoop.current.run()
+        super.setUp()
+        logInEntry(LoginSession(
+            accessToken: "at",
+            baseURL: MiniCanvasServer.shared.baseUrl,
+            expiresAt: nil,
+            locale: "en",
+            refreshToken: nil,
+            userID: "",
+            userName: ""
+        ))
     }
 }

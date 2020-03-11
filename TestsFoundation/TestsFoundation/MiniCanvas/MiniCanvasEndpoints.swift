@@ -53,7 +53,7 @@ enum MiniCanvasEndpoints {
             }
             let assignments: [APIAssignmentListAssignment] = course.assignments.map { assignment in
                 APIAssignmentListAssignment.make(
-                    id: assignment.id,
+                    id: assignment.api.id,
                     name: assignment.api.name,
                     dueAt: assignment.api.due_at,
                     lockAt: assignment.api.lock_at,
@@ -88,6 +88,15 @@ enum MiniCanvasEndpoints {
         .apiRequest(GetEnrollmentsRequest(context: ContextModel.currentUser)) { request in
             request.state.userEnrollments()
         },
+        .apiRequest(GetEnrollmentsRequest(context: courseRouteContext)) { request in
+            request.state.enrollments.filter { $0.course_id == request[":courseID"]! }
+        },
+
+        // MARK: Feature Flags
+        // https://canvas.instructure.com/doc/api/feature_flags.html
+        .apiRequest(GetEnabledFeatureFlagsRequest(context: courseRouteContext)) { request in
+            request.state.course(byId: request[":courseID"])?.featureFlags
+        },
 
         // MARK: Grading Periods
         // https://canvas.instructure.com/doc/api/grading_periods.html
@@ -98,6 +107,7 @@ enum MiniCanvasEndpoints {
         // MARK: Groups
         // https://canvas.instructure.com/doc/api/groups.html
         .apiRequest(GetGroupsRequest(context: ContextModel.currentUser)) { _ in [] },
+        .apiRequest(GetGroupsRequest(context: courseRouteContext)) { _ in [] },
 
         // MARK: OAuth
         // https://canvas.instructure.com/doc/api/file.oauth_endpoints.html
@@ -120,6 +130,20 @@ enum MiniCanvasEndpoints {
         // https://canvas.instructure.com/doc/api/submissions.html
         .apiRequest(GetSubmissionSummaryRequest(context: courseRouteContext, assignmentID: ":assignmentID")) { request in
             .init(graded: 42, ungraded: 42, not_submitted: 42)
+        },
+        .apiRequest(GetSubmissionRequest(context: courseRouteContext, assignmentID: ":assignmentID", userID: ":userID")) { request in
+            guard let course = request.state.course(byId: request[":courseID"]!),
+                  let assignment = request.state.assignment(byId: request[":assignmentID"]!) else {
+                throw ServerError.notFound
+            }
+            return assignment.submissions.first { $0.user_id.value == request[":userID"]! }
+        },
+        .apiRequest(GetSubmissionsRequest(context: courseRouteContext, assignmentID: ":assignmentID")) { request in
+            guard let course = request.state.course(byId: request[":courseID"]!),
+                  let assignment = request.state.assignment(byId: request[":assignmentID"]!) else {
+                throw ServerError.notFound
+            }
+            return assignment.submissions
         },
         .graphQLAny(operationName: "SubmissionList") { request in
             guard let variables = request.body["variables"] as? [String: Any],

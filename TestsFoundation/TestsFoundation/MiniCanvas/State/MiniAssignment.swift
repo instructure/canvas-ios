@@ -23,7 +23,7 @@ public class MiniAssignment: Encodable {
     public var api: APIAssignment
     public var submissions: [APISubmission] = []
 
-    public var id: ID { api.id }
+    public var id: String { api.id.value }
 
     init(_ assignment: APIAssignment) {
         self.api = assignment
@@ -34,7 +34,7 @@ public class MiniAssignment: Encodable {
         return [
             "data": [
                 "assignment": [
-                    "id": id.value,
+                    "id": id,
                     "name": api.name,
                     "pointsPossible": api.points_possible,
                     "gradeGroupStudentsIndividually": api.grade_group_students_individually,

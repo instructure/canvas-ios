@@ -26,11 +26,12 @@ public class MiniCourse: Encodable {
     public var tabs: [APITab]
     public var externalTools: [APIExternalTool] = []
     public var gradingPeriods: [APIGradingPeriod] = []
+    public var featureFlags: [String] = []
 
-    public var id: ID { api.id }
+    public var id: String { api.id.value }
 
     public func assignment(byId id: String?) -> MiniAssignment? {
-        assignments.first { $0.id.value == id }
+        assignments.first { $0.id == id }
     }
 
     public func add(assignment: MiniAssignment, toGroupAtIndex index: Int) {

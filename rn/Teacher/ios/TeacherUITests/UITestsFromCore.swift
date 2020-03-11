@@ -23,4 +23,3 @@ class TeacherAccountNotificationsTests: AccountNotificationsTests {}
 class TeacherDiscussionEditTests: DiscussionEditTests {}
 class TeacherDiscussionReplyTests: DiscussionReplyTests {}
 class TeacherInboxTests: InboxTests {}
-class TeacherRunMiniCanvas: RunMiniCanvas {}
