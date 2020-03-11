@@ -88,6 +88,8 @@ class CalendarViewController: UIViewController {
         filterButton.setTitle(NSLocalizedString("Calendar", bundle: .core, comment: ""), for: .normal)
         filterButton.accessibilityLabel = NSLocalizedString("Filter events", bundle: .core, comment: "")
 
+        dropdownView.transform = CGAffineTransform(rotationAngle: 4 * .pi)
+
         for placeholder in weekdayRow.arrangedSubviews { placeholder.removeFromSuperview() }
         for i in 0..<numberOfDaysInWeek {
             let day = calendar.firstWeekday + i - calendar.component(.weekday, from: selectedDate)
@@ -151,7 +153,7 @@ class CalendarViewController: UIViewController {
 
     func updateExpanded() {
         daysHeight.constant = isExpanded ? days.maxHeight : days.minHeight
-        dropdownView.transform = CGAffineTransform(rotationAngle: isExpanded ? .pi : 180 * .pi)
+        dropdownView.transform = CGAffineTransform(rotationAngle: isExpanded ? .pi : 4 * .pi)
         delegate?.calendarDidResize(height: height, animated: true)
     }
 
