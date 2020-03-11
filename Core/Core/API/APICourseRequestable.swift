@@ -57,20 +57,30 @@ public struct GetCoursesRequest: APIRequestable {
     let state: [State]?
     let include: [Include]
     let perPage: Int
+    let studentID: String?
 
     public init(
         enrollmentState: EnrollmentState? = .active,
         state: [State]? = nil,
         include: [Include] = Self.defaultIncludes,
-        perPage: Int = 10
+        perPage: Int = 10,
+        studentID: String? = nil
     ) {
         self.enrollmentState = enrollmentState
         self.state = state
         self.include = include
         self.perPage = perPage
+        self.studentID = studentID
     }
 
-    public let path = "courses"
+    public var path: String {
+        var prefix = ""
+        if let studentID = studentID {
+            prefix = "users/\(studentID)/"
+        }
+        return "\(prefix)courses"
+    }
+
     public var query: [APIQueryItem] {
         [
             .include(include.map { $0.rawValue }),

@@ -599,6 +599,7 @@
 		7DFD5F7D23FF158700D988E0 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFD5F7A23FF158700D988E0 /* CalendarViewController.swift */; };
 		7DFD5F7E23FF160100D988E0 /* CalendarViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DFD5F7823FF158700D988E0 /* CalendarViewController.storyboard */; };
 		7DFFAB1A219DDB22003E71F8 /* CommentListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DFFAB19219DDB22003E71F8 /* CommentListViewController.storyboard */; };
+		970862C82419700300112A6A /* GetCoursesRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970862C72419700300112A6A /* GetCoursesRequestTests.swift */; };
 		9727093B23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9727093A23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift */; };
 		977921A123E11C3F0082696B /* UIBarButtonItemExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977921A023E11C3F0082696B /* UIBarButtonItemExtensionTests.swift */; };
 		977EAC432412A2DC005E1290 /* CreatePlannerNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977EAC422412A2DC005E1290 /* CreatePlannerNote.swift */; };
@@ -1508,6 +1509,7 @@
 		7DFFAB19219DDB22003E71F8 /* CommentListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CommentListViewController.storyboard; sourceTree = "<group>"; };
 		7DFFAB1B219DDB8B003E71F8 /* CommentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListViewController.swift; sourceTree = "<group>"; };
 		83EB8A2E566E437B02B04320 /* Pods-defaults-PactTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-PactTests.debug.xcconfig"; path = "Target Support Files/Pods-defaults-PactTests/Pods-defaults-PactTests.debug.xcconfig"; sourceTree = "<group>"; };
+		970862C72419700300112A6A /* GetCoursesRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoursesRequestTests.swift; sourceTree = "<group>"; };
 		9727093A23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalMenuViewControllerTests.swift; sourceTree = "<group>"; };
 		9767F2972383B846006633CA /* TokenLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenLabelView.swift; sourceTree = "<group>"; };
 		976B665723CE288300865549 /* Pages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pages.swift; sourceTree = "<group>"; };
@@ -2782,6 +2784,7 @@
 				B11AAC3A237A1EB4002BC41F /* APIURLTests.swift */,
 				3B3467D52135B99700F9BC2E /* IDTests.swift */,
 				B1EA5AF4212E66B100DABC5F /* Fixtures */,
+				970862C72419700300112A6A /* GetCoursesRequestTests.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -4256,6 +4259,7 @@
 				7D37BE8821C824DA0063FAAC /* UIViewControllerExtensionsTests.swift in Sources */,
 				B17855B3226ABDDD00B30C80 /* UploadMediaTests.swift in Sources */,
 				B14FE5D92134F68800328CD7 /* CoreTestCase.swift in Sources */,
+				970862C82419700300112A6A /* GetCoursesRequestTests.swift in Sources */,
 				B1F3780A22498AF1000B7CAA /* MDMManagerTests.swift in Sources */,
 				3B67BCB821B5E72000055324 /* CreateSubmissionTests.swift in Sources */,
 				B19792F7217697E30000369C /* AssignmentTests.swift in Sources */,

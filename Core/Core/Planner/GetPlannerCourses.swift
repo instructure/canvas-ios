@@ -40,7 +40,7 @@ class GetPlannerCourses: APIUseCase {
     }
 
     var request: GetCoursesRequest {
-        GetCoursesRequest(enrollmentState: .active, state: [.available], include: [.observed_users], perPage: 100)
+        GetCoursesRequest(enrollmentState: .active, state: [.available], include: [.observed_users], perPage: 100, studentID: studentID)
     }
 
     init(studentID: String?) {
@@ -58,12 +58,6 @@ class GetPlannerCourses: APIUseCase {
         let planner: Planner = client.first(where: #keyPath(Planner.studentID), equals: studentID) ?? client.insert()
         planner.studentID = studentID
         for apiCourse in response {
-            if let studentID = studentID {
-                let observedUserIDs = apiCourse.enrollments?.map { $0.associated_user_id }
-                if observedUserIDs?.contains(studentID) != true {
-                    continue
-                }
-            }
             let course = Course.save(apiCourse, in: client)
             planner.courses.insert(course)
         }
