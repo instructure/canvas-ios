@@ -24,28 +24,33 @@
 // Object used to send events to React Native about login
 @interface NativeLogin : RCTEventEmitter
 
+- (instancetype)initActual;
+
 @property (nonatomic) BOOL isObserving;
 @property (nonatomic) NSMutableDictionary *pendingEvents;
 
 @end
 
-static NativeLogin *_sharedInstance;
-
 @implementation NativeLogin
 
-+ (void)setSharedInstance:(NativeLogin *)login {
-    _sharedInstance = login;
-}
-
 + (NativeLogin *)sharedInstance {
+    static dispatch_once_t onceToken;
+    static NativeLogin *_sharedInstance;
+    dispatch_once(&onceToken, ^{
+        _sharedInstance = [[NativeLogin alloc] initActual];
+    });
     return _sharedInstance;
 }
 
 - (instancetype)init {
+    self = [NativeLogin sharedInstance];
+    return self;
+}
+
+- (instancetype)initActual {
     self = [super init];
     self.isObserving = NO;
     self.pendingEvents = [NSMutableDictionary new];
-    [NativeLogin setSharedInstance:self];
     return self;
 }
 

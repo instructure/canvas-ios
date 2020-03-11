@@ -18,9 +18,9 @@ public class MiniCanvasState: Encodable {
     public var accountNotifications: [APIAccountNotification]
     public var customColors: [String: String]
     public var favoriteCourses: Set<ID>
-    let idGenerator = IDGenerator()
+    public let idGenerator = IDGenerator()
 
-    class IDGenerator: Encodable {
+    public class IDGenerator: Encodable {
         private var nextID: Int = 10
 
         public func next<I: ExpressibleByIntegerLiteral>() -> I where I.IntegerLiteralType == Int {
@@ -28,7 +28,8 @@ public class MiniCanvasState: Encodable {
             return I.init(integerLiteral: nextID)
         }
     }
-    init() {
+
+    init(baseUrl: URL) {
         courses = [
             APICourse.make(id: idGenerator.next(), name: "Course One", course_code: "C1", workflow_state: .available, enrollments: []),
             APICourse.make(id: idGenerator.next(), name: "Course Two (unpublished)", course_code: "C2", workflow_state: .unpublished, enrollments: []),
@@ -36,6 +37,7 @@ public class MiniCanvasState: Encodable {
         ].map(MiniCourse.init)
 
         students = [
+            APIUser.makeUser(role: "Student", id: idGenerator.next()),
             APIUser.makeUser(role: "Student", id: idGenerator.next()),
             APIUser.makeUser(role: "Student", id: idGenerator.next()),
         ]
@@ -49,10 +51,33 @@ public class MiniCanvasState: Encodable {
         customColors = [:]
 
         for course in courses {
-            course.assignments = [
-                .make(id: idGenerator.next(), name: "Assignment 1"),
-                .make(id: idGenerator.next(), name: "Assignment 2"),
+            func makeAssignment(name: String) -> MiniAssignment {
+                let id: ID = idGenerator.next()
+                return MiniAssignment(APIAssignment.make(id: id, course_id: course.id, name: name, html_url: URL(string: "\(baseUrl)/courses/\(course.id)/assignments/\(id)")!))
+            }
+
+            course.gradingPeriods = [
+                .make(id: idGenerator.next(), title: "Grading Period 1"),
+                .make(id: idGenerator.next(), title: "Grading Period 2"),
             ]
+            course.assignmentGroups = [
+                .make(id: idGenerator.next(), name: "group 0", position: 0),
+                .make(id: idGenerator.next(), name: "group 1", position: 1),
+            ]
+
+            course.add(assignment: makeAssignment(name: "Assignment 1"), toGroupAtIndex: 0)
+            course.add(assignment: makeAssignment(name: "Assignment 2"), toGroupAtIndex: 0)
+            course.add(assignment: makeAssignment(name: "Assignment 3"), toGroupAtIndex: 1)
+
+            course.assignments[0].submissions = students.map { student in
+                APISubmission.make(
+                    id: idGenerator.next(),
+                    assignment_id: course.assignments[0].id,
+                    user_id: student.id,
+                    body: "A submission from \(student.name)"
+                )
+            }
+
             customColors["course_\(course.id)"] = Self.colorForID(id: course.id)
             for student in students {
                 enroll(student, intoCourse: course, as: "StudentEnrollment")
@@ -64,10 +89,6 @@ public class MiniCanvasState: Encodable {
 }
 
 extension MiniCanvasState {
-    public func course(byId id: String) -> MiniCourse? {
-        courses.first { $0.id.value == id }
-    }
-
     public func enroll(_ user: APIUser, intoCourse course: MiniCourse, as role: String, observing: APIUser? = nil) {
         let enrollment = APIEnrollment.make(
             id: idGenerator.next(),
@@ -84,6 +105,12 @@ extension MiniCanvasState {
         course.api.enrollments?.append(enrollment)
     }
 
+    public func course(byId id: String?) -> MiniCourse? {
+        courses.first { $0.id.value == id }
+    }
+    public func assignment(byId id: String?) -> MiniAssignment? {
+        courses.lazy.compactMap({ $0.assignment(byId: id) }).first
+    }
     public func user(byId id: String) -> APIUser? {
         (students + teachers + observers).first { $0.id == id }
     }
@@ -99,28 +126,5 @@ extension MiniCanvasState {
         // multiply by a very irrational value so that colors are distant
         let color = UIColor(hue: CGFloat(Int(id.value) ?? 0) * phi, saturation: 1, brightness: 0.75, alpha: 1)
         return color.hexString
-    }
-}
-
-public class MiniCourse: Encodable {
-    public var api: APICourse
-    public var assignments: [APIAssignment] = []
-    public var tabs: [APITab]
-    public var externalTools: [APIExternalTool] = []
-
-    public var id: ID { api.id }
-
-    init(_ course: APICourse) {
-        self.api = course
-        tabs = [
-            "announcements", "assignments", "discussions", "files",
-            "grades", "modules", "pages", "people", "quizzes",
-        ].map { tabName in
-            APITab.make(
-                id: ID(tabName),
-                html_url: URL(string: "/courses/\(course.id)/\(tabName)")!,
-                label: "\(tabName.capitalized)"
-            )
-        }
     }
 }

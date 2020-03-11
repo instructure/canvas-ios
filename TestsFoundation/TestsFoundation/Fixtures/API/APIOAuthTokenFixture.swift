@@ -61,3 +61,19 @@ extension APIOAuthUser {
         )
     }
 }
+
+extension APIVerifyClient {
+    public static func make(
+        authorized: Bool = true,
+        base_url: URL? = URL(string: "https://canvas.instructure.com/")!,
+        client_id: String? = "fred",
+        client_secret: String? = "swordfish"
+    ) -> APIVerifyClient {
+        APIVerifyClient(
+            authorized: authorized,
+            base_url: base_url,
+            client_id: client_id,
+            client_secret: client_secret
+        )
+    }
+}

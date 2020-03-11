@@ -20,64 +20,13 @@ import Foundation
 import Swifter
 @testable import Core
 
-extension HttpResponse {
-    static func json<E: Encodable>(_ encodable: E?) -> HttpResponse {
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-        let data: Data
-        do {
-            data = try encoder.encode(encodable)
-        } catch let e {
-            print("internal server error: encoding \(E.self) failed: \(e)")
-            return .internalServerError
-        }
-        return .raw(200, "OK", [HttpHeader.contentType: "application/json"]) { writer in
-            try writer.write(data)
-        }
-    }
-}
+enum ServerError: Error {
+    case responseError(HttpResponse)
 
-class MockWriter: HttpResponseBodyWriter {
-    var data = Data()
-
-    func write(_ file: String.File) throws { }
-    func write(_ data: [UInt8]) throws { }
-    func write(_ data: ArraySlice<UInt8>) throws { }
-    func write(_ data: NSData) throws { }
-    func write(_ data: Data) throws { self.data = data }
-}
-
-public class LoggingHttpServer: HttpServer {
-    public var logResponses: Bool = false
-
-    public override func dispatch(_ request: HttpRequest) -> ([String: String], (HttpRequest) -> HttpResponse) {
-        let (params, handler) = super.dispatch(request)
-        return (params, { [weak self] request in
-            let response = handler(request)
-            var queryString = ""
-            if !request.queryParams.isEmpty {
-                queryString = " \(request.queryParams)"
-            }
-            let alert = response.statusCode < 400 ? "" : " ❌"
-            var log = "\(request.method) \(request.path)\(queryString) \(response.statusCode)\(alert)"
-            if self?.logResponses == true {
-                if case HttpResponse.raw(_, _, _, let body) = response {
-                    let writer = MockWriter()
-                    try? body?(writer)
-                    let bodyData = writer.data
-                    if let bodyStr = String(data: bodyData, encoding: .utf8) {
-                        log += "\n\(bodyStr)"
-                    } else {
-                        log += "\n\(bodyData)"
-                    }
-                }
-            }
-            DispatchQueue.main.async {
-                print(log)
-            }
-            return response
-        })
-    }
+    public static var internalServerError: ServerError { .responseError(.internalServerError) }
+    public static var notFound: ServerError { .responseError(.notFound) }
+    public static var unauthorized: ServerError { .responseError(.unauthorized) }
+    public static var badRequest: ServerError { .responseError(.badRequest(nil)) }
 }
 
 public class MiniCanvasServer {
@@ -89,92 +38,116 @@ public class MiniCanvasServer {
     public var host: String { "\(address):\(port)" }
     public var baseUrl: URL { URL(string: "http://\(host)/")! }
 
-    public var state = MiniCanvasState()
-    public func reset() {
-        state = MiniCanvasState()
-    }
-    static let jsonDecoder: JSONDecoder = {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        return decoder
-    }()
+    public var state: MiniCanvasState
 
-    enum APIError: Error {
-        case responseError(HttpResponse)
+    private var graphQLRequests: [String: (APIRequest<Data>) throws -> HttpResponse] = [:]
 
-        public static var internalServerError: APIError { .responseError(.internalServerError) }
-        public static var notFound: APIError { .responseError(.notFound) }
-        public static var unauthorized: APIError { .responseError(.unauthorized) }
-        public static var badRequest: APIError { .responseError(.badRequest(nil)) }
-    }
-
-    func addRoute(
-        _ route: String,
-        method: APIMethod = .get,
-        handler: @escaping (APIRequest<Data>) throws -> HttpResponse
-    ) {
-        var methodRoute: HttpServer.MethodRoute
-        switch method {
-        case .delete: methodRoute = server.DELETE
-        case .get: methodRoute = server.GET
-        case .post: methodRoute = server.POST
-        case .put: methodRoute = server.PUT
-        }
-        // capture state instead of self to avoid retain cycles
-        methodRoute[route] = { [state] httpRequest in
-            do {
-                return try handler(APIRequest(state: state, httpRequest: httpRequest, body: Data(httpRequest.body)))
-            } catch APIError.responseError(let response) {
-                return response
-            } catch let error {
-                print("internal server error: \(error)")
-                return HttpResponse.internalServerError
-            }
-        }
-    }
-
-    public struct APIRequest<Body: Codable> {
-        public let state: MiniCanvasState
+    public struct APIRequest<Body> {
+        public let server: MiniCanvasServer
         public let httpRequest: HttpRequest
         public let body: Body
+        public var state: MiniCanvasState { server.state }
+        public var baseUrl: URL { server.baseUrl }
 
         public func firstQueryParam(named name: String) -> String? {
-            httpRequest.queryParams.first(where: { $0.0 == name })?.1
+            httpRequest.queryParams.first(where: { $0.0 == name })?.1.removingPercentEncoding
         }
 
         public func allQueryParams(named name: String) -> [String] {
-            httpRequest.queryParams.compactMap { (paramName, value) in paramName == name ? value : nil }
+            httpRequest.queryParams.compactMap { (paramName, value) in paramName == name ? value.removingPercentEncoding : nil }
         }
 
         public subscript(_ name: String) -> String? {
             httpRequest.params[name] ?? firstQueryParam(named: name)
         }
 
-        public func mapBody<T: Codable>(_ transform: (Body) throws -> T) rethrows -> APIRequest<T> {
-            APIRequest<T>(state: state, httpRequest: httpRequest, body: try transform(body))
+        public func mapBody<T>(_ transform: (Body) throws -> T) rethrows -> APIRequest<T> {
+            APIRequest<T>(server: server, httpRequest: httpRequest, body: try transform(body))
         }
     }
 
-    // expects a requestable with a path including path parameters like "courses/:courseID"
-    func addApiRoute<R: APIRequestable>(
-        _ routeRequest: R,
-        handler: @escaping (APIRequest<R.Body?>) throws -> R.Response?
-    ) {
-        let urlRequest = try! routeRequest.urlRequest(relativeTo: baseUrl, accessToken: "", actAsUserID: "")
-        addRoute(urlRequest.url!.path, method: routeRequest.method) { request in
-            let request = request.mapBody { try? Self.jsonDecoder.decode(R.Body.self, from: $0) }
-            guard let response = try handler(request) else {
-                return .notFound
+    public enum Endpoint {
+        case graphQL(
+            operationName: String,
+            handler: (APIRequest<Data>) throws -> HttpResponse
+        )
+        case rest(
+            routeTemplate: String,
+            method: APIMethod,
+            handler: (APIRequest<Data>) throws -> HttpResponse
+        )
+
+        // expects a requestable with a path including path parameters like "courses/:courseID"
+        public static func apiRequest<R: APIRequestable>(
+            _ routeRequest: R,
+            handler: @escaping (APIRequest<R.Body?>) throws -> R.Response?
+        ) -> Endpoint where R.Body: Decodable {
+            let urlRequest = try! routeRequest.urlRequest(relativeTo: URL(string: "/")!, accessToken: "", actAsUserID: "")
+            return .rest(urlRequest.url!.path, method: routeRequest.method) { request in
+                let request = request.mapBody { try? APIJSONDecoder().decode(R.Body.self, from: $0) }
+                guard let response = try handler(request) else {
+                    return .notFound
+                }
+                return .json(data: try routeRequest.encode(response: response))
             }
-            return .json(response)
+        }
+
+        public static func rest(
+            _ template: String,
+            method: APIMethod = .get,
+            handler: @escaping (APIRequest<Data>) throws -> HttpResponse
+        ) -> Endpoint {
+            rest(routeTemplate: template, method: method, handler: handler)
+        }
+
+        public static func graphQLAny(
+            operationName: String,
+            handler: @escaping (APIRequest<[String: Any]>) throws -> [String: Any]
+        ) -> Endpoint {
+            .graphQL(operationName: operationName) { request in
+                guard let body = try JSONSerialization.jsonObject(with: request.body) as? [String: Any] else { throw ServerError.badRequest }
+                let response = try handler(request.mapBody { _ in body })
+                return .json(data: try JSONSerialization.data(withJSONObject: response))
+            }
+        }
+
+        public static func graphQL<R: APIGraphQLRequestable>(
+            _: R.Type,
+            handler: @escaping (APIRequest<R.Body>) throws -> R.Response
+        ) -> Endpoint where R.Body: Decodable {
+            .graphQL(operationName: R.operationName) { request in
+                .json(try handler(request.mapBody { try APIJSONDecoder().decode(R.Body.self, from: $0) }))
+            }
         }
     }
 
-    private var graphQLRequests: [String: (APIRequest<Data>) throws -> HttpResponse] = [:]
+    public func reset() {
+        state = MiniCanvasState(baseUrl: baseUrl)
+    }
 
-    func addGraphQLQuery<R: APIGraphQLRequestable>(_ : R.Type, handler: @escaping (APIRequest<R.Body>) throws -> R.Response) {
-        graphQLRequests[R.operationName] = { request in
-            .json(try handler(request.mapBody { try Self.jsonDecoder.decode(R.Body.self, from: $0) }))
+    private func install(endpoint: Endpoint) {
+        switch endpoint {
+        case let .graphQL(operationName, handler):
+            graphQLRequests[operationName] = handler
+        case let .rest(routeTemplate, method, handler):
+            var methodRoute: HttpServer.MethodRoute
+            switch method {
+            case .delete: methodRoute = server.DELETE
+            case .get: methodRoute = server.GET
+            case .post: methodRoute = server.POST
+            case .put: methodRoute = server.PUT
+            }
+            methodRoute[routeTemplate] = { [weak self] httpRequest in
+                guard let self = self else { return .internalServerError }
+                do {
+                    return try handler(APIRequest(server: self, httpRequest: httpRequest, body: Data(httpRequest.body)))
+                } catch ServerError.responseError(let response) {
+                    return response
+                } catch let error {
+                    print("internal server error: \(error)")
+                    return HttpResponse.internalServerError
+                }
+            }
         }
     }
 
@@ -183,142 +156,10 @@ public class MiniCanvasServer {
         server.listenAddressIPv6 = "::1"
         try server.start(port)
         self.port = port
-        installRoutes()
+        state = MiniCanvasState(baseUrl: URL(string: "http://\(address):\(port)")!)
+        MiniCanvasEndpoints.endpoints.forEach(install)
+        install(endpoint: .rest("/api/graphql", method: .post, handler: handleGraphQL))
         NotificationCenter.default.post(name: .init("miniCanvasServerStart"), object: baseUrl)
-    }
-
-    private func installRoutes() {
-        let verifyClient = APIVerifyClient(authorized: true, base_url: baseUrl, client_id: "i dunno", client_secret: "lol")
-        addApiRoute(GetMobileVerifyRequest(domain: "")) { _ in verifyClient }
-
-        // https://canvas.instructure.com/doc/api/file.oauth_endpoints.html
-        addRoute("/login/oauth2/auth") { request in
-            guard let redirectUri = request.firstQueryParam(named: "redirect_uri" ) else {
-                return .badRequest(nil)
-            }
-            // login always works
-            return .movedTemporarily("\(redirectUri)?code=t")
-        }
-        addApiRoute(PostLoginOAuthRequest(client: verifyClient, code: "")) { request in
-            return APIOAuthToken.make(user: .from(user: request.state.selfUser))
-        }
-        addApiRoute(GetUserProfileRequest(userID: ":userID")) { request in
-            var userID = request[":userID"]!
-            if userID == "self" {
-                userID = request.state.selfId
-            }
-            guard let user = request.state.user(byId: userID) else { return nil }
-            return APIProfile.make(
-                id: user.id,
-                name: user.name,
-                primary_email: user.email,
-                login_id: user.login_id,
-                avatar_url: user.avatar_url?.rawValue,
-                pronouns: user.pronouns
-            )
-        }
-
-        addApiRoute(GetWebSessionRequest(to: nil)) { [baseUrl] request in
-            .init(session_url: request["return_to"].flatMap { URL(string: $0) } ?? baseUrl)
-        }
-
-        addRoute("/users/self") { _ in .ok(.htmlBody("")) }
-        addApiRoute(GetBrandVariablesRequest()) { request in request.state.brandVariables }
-        addApiRoute(GetConversationsUnreadCountRequest()) { request in
-            .init(unread_count: request.state.unreadCount)
-        }
-
-        addApiRoute(GetCoursesRequest()) { request in request.state.courses.map { $0.api } }
-        addApiRoute(GetCourseRequest(courseID: ":courseID")) { request in
-            request.state.course(byId: request[":courseID"]!)?.api
-        }
-        addApiRoute(GetAccountNotificationsRequest()) { request in request.state.accountNotifications }
-        addApiRoute(DeleteAccountNotificationRequest(id: ":id")) { request in
-            let id = ID(request[":id"]!)
-            request.state.accountNotifications.removeAll(where: { $0.id == id })
-            return APINoContent()
-        }
-
-        addApiRoute(GetCustomColorsRequest()) { request in .init(custom_colors: request.state.customColors) }
-        addRoute("/api/v1/users/self/colors/:id", method: .put) { request in
-            let body = try JSONDecoder().decode(UpdateCustomColorRequest.Body.self, from: Data(request.body))
-            request.state.customColors[request[":id"]!] = body.hexcode
-            return .accepted
-        }
-
-        addApiRoute(GetEnrollmentsRequest(context: ContextModel.currentUser)) { request in
-            request.state.userEnrollments()
-        }
-        addApiRoute(GetDashboardCardsRequest()) { request in
-            try request.state.userEnrollments().compactMap { enrollment in
-                guard let course = request.state.course(byId: enrollment.course_id!)?.api else {
-                    throw APIError.notFound
-                }
-                guard request.state.favoriteCourses.contains(course.id) else { return nil }
-                return APIDashboardCard.make(
-                    assetString: course.canvasContextID,
-                    courseCode: course.course_code!,
-                    enrollmentType: enrollment.type,
-                    href: "/courses/\(course.id)",
-                    id: course.id,
-                    longName: course.name!,
-                    originalName: course.name!,
-                    position: Int(course.id),
-                    shortName: course.name!
-                )
-            }
-        }
-        addApiRoute(GetUserSettingsRequest(userID: "self")) { _ in .make() }
-        addRoute("/api/v1/users/self/custom_data/favorites/groups") { _ in .json([String: String]()) }
-        addApiRoute(GetGroupsRequest(context: ContextModel.currentUser)) { _ in [] }
-        addApiRoute(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"))) { _ in .make() }
-
-        let courseRouteContext = ContextModel(.course, id: ":courseID")
-        addApiRoute(GetTabsRequest(context: courseRouteContext)) { request in
-            request.state.course(byId: request[":courseID"]!)?.tabs
-        }
-
-        addApiRoute(GetContextPermissionsRequest(context: courseRouteContext)) { request in
-            guard let course = request.state.course(byId: request[":courseID"]!) else {
-                throw APIError.notFound
-            }
-            let permissions = course.api.permissions ?? APICourse.Permissions(create_announcement: false, create_discussion_topic: false)
-            return try JSONDecoder().decode(APIPermissions.self, from: JSONEncoder().encode(permissions))
-        }
-        addApiRoute(GetExternalToolsRequest(context: courseRouteContext, includeParents: false)) { request in
-            request.state.course(byId: request[":courseID"]!)?.externalTools
-        }
-
-        addRoute("/api/graphql", method: .post) { [weak self] request in
-            guard let self = self else {
-                throw APIError.internalServerError
-            }
-            return try self.handleGraphQL(request: request)
-        }
-
-        addGraphQLQuery(AssignmentListRequestable.self) { request in
-            let vars = request.body.variables
-            guard let course = request.state.course(byId: vars.courseID) else {
-                throw APIError.notFound
-            }
-
-            let assignments: [APIAssignmentListAssignment] = course.assignments.map { assignment in
-                APIAssignmentListAssignment.make(
-                    id: assignment.id,
-                    name: assignment.name,
-                    dueAt: assignment.due_at,
-                    lockAt: assignment.lock_at,
-                    unlockAt: assignment.unlock_at,
-                    htmlUrl: "\(assignment.html_url)",
-                    submissionTypes: assignment.submission_types,
-                    quizID: assignment.quiz_id
-                )
-            }
-
-            return APIAssignmentListResponse.make(gradingPeriods: [], groups: [.make(assignments: assignments)])
-        }
-
-        addApiRoute(GetTodosRequest()) { _ in [] }
     }
 
     deinit {
@@ -336,9 +177,12 @@ public class MiniCanvasServer {
 
     private func handleGraphQL(request: APIRequest<Data>) throws -> HttpResponse {
         guard let body = try? JSONSerialization.jsonObject(with: request.body) as? [String: Any],
-              let operationName = body["operationName"] as? String,
-              let handler = graphQLRequests[operationName] else {
-            throw APIError.badRequest
+              let operationName = body["operationName"] as? String else {
+            throw ServerError.badRequest
+        }
+        guard let handler = graphQLRequests[operationName] else {
+            print("No handler for graphQL request \(operationName)")
+            throw ServerError.notFound
         }
         return try handler(request)
     }

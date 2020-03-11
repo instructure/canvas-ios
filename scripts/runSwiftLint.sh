@@ -38,8 +38,8 @@ if [ "$#" -eq 1 ]; then
 
 fi
 
-declare -a names=("core" "student" "teacher" "parent")
-declare -a paths=("Core" "Student" "rn/Teacher/ios" "Parent")
+declare -a names=("core" "student" "teacher" "parent" "TestsFoundation")
+declare -a paths=("Core" "Student" "rn/Teacher/ios" "Parent" "TestsFoundation")
 arraylength=${#paths[@]}
 
 echo "${COMMAND}"

@@ -393,7 +393,7 @@ open class CoreUITestCase: XCTestCase {
         error: String? = nil,
         noCallback: Bool = false
     ) {
-        let data = value.flatMap { try! Self.encoder.encode($0) }
+        let data = value.flatMap { try! requestable.encode(response: $0) }
         return mockEncodedData(requestable, data: data, response: response, error: error, noCallback: noCallback)
     }
 
