@@ -121,6 +121,7 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
 
     @IBAction func updateSendButton() {
         sendButton.isEnabled = (
+            sendButton.customView == nil &&
             conversation != nil &&
             message != nil &&
             bodyView.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false &&
@@ -130,15 +131,22 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
 
     @objc func send() {
         guard
+            sendButton.isEnabled,
             let conversation = conversation, let message = message,
             let body = bodyView.text?.trimmingCharacters(in: .whitespacesAndNewlines), !body.isEmpty
         else { return }
+        let spinner = CircleProgressView(frame: CGRect(x: 0, y: 0, width: 40, height: 24))
+        spinner.color = nil
+        sendButton.customView = spinner
+        updateSendButton()
         let myID = env.currentSession?.userID ?? ""
         let recipients = !all ? [ message.authorID ]
             : message.participantIDs.filter { $0 != myID }
         let attachmentIDs = attachments.all?.compactMap { $0.id }
         AddMessage(conversationID: conversation.id, attachmentIDs: attachmentIDs, body: body, recipientIDs: recipients).fetch { [weak self] _, _, error in performUIUpdate {
             if let error = error {
+                self?.sendButton.customView = nil
+                self?.updateSendButton()
                 self?.showError(error)
                 return
             }

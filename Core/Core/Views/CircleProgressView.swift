@@ -123,4 +123,9 @@ public class CircleProgressView: UIView {
         super.tintColorDidChange()
         fill.strokeColor = color?.cgColor ?? tintColor.cgColor
     }
+
+    public override func didMoveToWindow() {
+        super.didMoveToWindow()
+        updateProgress() // Make sure animations are re-added once visible
+    }
 }
