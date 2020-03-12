@@ -159,7 +159,7 @@ export class QuizDetails extends Component<Props, any> {
     return (
       <Screen
         navBarColor={this.props.courseColor}
-        navBarStyle='dark'
+        navBarStyle='context'
         title={i18n('Quiz Details')}
         subtitle={this.props.courseName}
         rightBarButtons={[

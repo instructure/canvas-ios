@@ -3,7 +3,7 @@
 exports[`ContextCard formats the last_activity_at properly 1`] = `
 <Screen
   navBarColor="#fff"
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={
     Array [
       Object {
@@ -188,7 +188,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
 exports[`ContextCard renders 1`] = `
 <Screen
   navBarColor="#fff"
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={
     Array [
       Object {
@@ -373,7 +373,7 @@ exports[`ContextCard renders 1`] = `
 exports[`ContextCard renders error if an error occured 1`] = `
 <Screen
   navBarColor="#fff"
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={
     Array [
       Object {
@@ -396,7 +396,7 @@ exports[`ContextCard renders error if an error occured 1`] = `
 exports[`ContextCard renders for a non student 1`] = `
 <Screen
   navBarColor="#fff"
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={
     Array [
       Object {
@@ -419,7 +419,7 @@ exports[`ContextCard renders for a non student 1`] = `
 exports[`ContextCard renders for a user that cannot send messages 1`] = `
 <Screen
   navBarColor="#fff"
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={
     Array [
       Object {
@@ -442,7 +442,7 @@ exports[`ContextCard renders for a user that cannot send messages 1`] = `
 exports[`ContextCard renders for a user that cannot send messages 2`] = `
 <Screen
   navBarColor="#fff"
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={Array []}
   subtitle="Learn React Native"
   title="The Donald"
@@ -616,7 +616,7 @@ exports[`ContextCard renders for a user that cannot send messages 2`] = `
 exports[`ContextCard renders for a user that cannot view analytics 1`] = `
 <Screen
   navBarColor="#fff"
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={
     Array [
       Object {
@@ -639,7 +639,7 @@ exports[`ContextCard renders for a user that cannot view analytics 1`] = `
 exports[`ContextCard renders if there is no enrollment 1`] = `
 <Screen
   navBarColor="#fff"
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={
     Array [
       Object {
@@ -824,7 +824,7 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
 exports[`ContextCard renders if there is no section in the enrollment 1`] = `
 <Screen
   navBarColor="#fff"
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={
     Array [
       Object {
@@ -1009,7 +1009,7 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
 exports[`ContextCard shows points values when there is no grade 1`] = `
 <Screen
   navBarColor="#fff"
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={
     Array [
       Object {
@@ -1194,7 +1194,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
 exports[`ContextCard shows the activity indicator when pending 1`] = `
 <Screen
   navBarColor="#fff"
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={
     Array [
       Object {

@@ -30,9 +30,12 @@ public class BottomSheetPickerViewController: UIViewController {
     public private(set) var actions: [BottomSheetAction] = []
     let stackView = UIStackView()
 
+    public override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
+
     public static func create() -> BottomSheetPickerViewController {
         let controller = BottomSheetPickerViewController()
         controller.modalPresentationStyle = .custom
+        controller.modalPresentationCapturesStatusBarAppearance = true
         controller.transitioningDelegate = BottomSheetTransitioningDelegate.shared
         return controller
     }

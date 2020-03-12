@@ -26,6 +26,8 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
     @IBOutlet var emptyView: UIView!
     @IBOutlet var tableView: UITableView!
 
+    lazy var profileButton = UIBarButtonItem(image: .icon(.hamburger, .solid), style: .plain, target: self, action: #selector(openProfile))
+
     let env = AppEnvironment.shared
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
@@ -49,6 +51,7 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
         navigationItem.title = NSLocalizedString("To Do", bundle: .core, comment: "")
+        navigationItem.leftBarButtonItem = profileButton
 
         activityIndicatorView.color = Brand.shared.primary
 
@@ -91,6 +94,10 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
 
     @objc func refresh() {
         todos.refresh(force: true)
+    }
+
+    @objc func openProfile() {
+        env.router.route(to: .profile, from: self, options: .modal())
     }
 }
 

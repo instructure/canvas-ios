@@ -37,7 +37,7 @@ import { RefreshableScrollView } from '../../../common/components/RefreshableLis
 import { Text, TextInput } from '../../../common/text'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
-import { colors, createStyleSheet } from '../../../common/stylesheet'
+import { createStyleSheet } from '../../../common/stylesheet'
 import { alertError } from '../../../redux/middleware/error-handler'
 import ModalOverlay from '../../../common/components/ModalOverlay'
 
@@ -223,9 +223,6 @@ export class UserCoursePreferences extends Component<Props, any> {
         title={i18n('Customize Course')}
         subtitle={this.state.name}
         drawUnderNavBar={false}
-        navBarButtonColor={colors.linkColor}
-        navBarTitleColor={colors.textDarkest}
-        navBarSubtitleColor={this.props.color}
         rightBarButtons={[{
           title: i18n('Done'),
           style: 'done',

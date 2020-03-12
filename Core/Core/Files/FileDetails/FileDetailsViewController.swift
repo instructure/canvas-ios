@@ -54,10 +54,6 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         return controller
     }
 
-    public override var preferredStatusBarStyle: UIStatusBarStyle {
-        navigationController?.navigationBar.barStyle == .black ? .lightContent : .default
-    }
-
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)

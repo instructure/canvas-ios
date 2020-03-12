@@ -4,16 +4,23 @@ exports[`ToDoList renders items 1`] = `
 <Screen
   customPageViewPath="/"
   drawUnderNavBar={true}
-  navBarButtonColor="#FFFFFF"
-  navBarColor="#394B58"
-  navBarImage={
-    Object {
-      "testUri": "../../../src/images/canvas-logo.png",
-    }
+  leftBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Profile Menu",
+        "action": [Function],
+        "height": 24,
+        "image": Object {
+          "uri": "hamburgerSolid",
+        },
+        "testID": "Todo.profileButton",
+        "width": 24,
+      },
+    ]
   }
-  navBarStyle="light"
+  navBarImage={true}
+  navBarStyle="global"
   showDismissButton={true}
-  statusBarStyle="default"
 >
   <View
     onLayout={[Function]}

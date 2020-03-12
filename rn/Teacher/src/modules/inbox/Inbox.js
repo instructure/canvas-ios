@@ -29,12 +29,11 @@ import { connect } from 'react-redux'
 import refresh from '../../utils/refresh'
 import Actions from './actions'
 import Screen from '../../routing/Screen'
-import { colors, vars } from '../../common/stylesheet'
 import ConversationRow from './components/ConversationRow'
 import CourseFilter from './components/CourseFilter'
 import FilterHeader from './components/FilterHeader'
 import EmptyInbox from './components/EmptyInbox'
-import Images from '../../images'
+import icon from '../../images/inst-icons'
 import i18n from 'format-message'
 import RowSeparator from '../../common/components/rows/RowSeparator'
 import CourseActions from '../courses/actions'
@@ -74,6 +73,10 @@ export class Inbox extends Component<InboxProps, any> {
   addMessage = () => {
     logEvent('new_message_composed')
     this.props.navigator.show('/conversations/compose', { modal: true })
+  }
+
+  showProfile = () => {
+    this.props.navigator.show('/profile', { modal: true, modalPresentationStyle: 'drawer', embedInNavigationController: false })
   }
 
   _renderItem = ({ item, index }) => {
@@ -144,7 +147,6 @@ export class Inbox extends Component<InboxProps, any> {
     const starred = this.props.scope === 'starred'
     return (
       <EmptyInbox
-        image={Images.mail}
         title={starred ? i18n('No Starred Messages') : i18n('No Messages')}
         text={
           starred
@@ -158,16 +160,24 @@ export class Inbox extends Component<InboxProps, any> {
   render () {
     return (
       <Screen
-        navBarColor={colors.navBackground}
-        navBarButtonColor={colors.navTextColor}
-        navBarStyle={vars.navBarStyle}
+        navBarStyle='global'
         drawUnderNavBar
-        navBarImage={vars.headerImageURL}
+        navBarImage
         rightBarButtons={[{
           accessibilityLabel: i18n('New Message'),
           testID: 'inbox.new-message',
-          image: Images.add,
+          image: icon('add', 'solid'),
+          width: 24,
+          height: 24,
           action: this.addMessage,
+        }]}
+        leftBarButtons={[{
+          image: icon('hamburger', 'solid'),
+          width: 24,
+          height: 24,
+          testID: 'Inbox.profileButton',
+          action: this.showProfile,
+          accessibilityLabel: i18n('Profile Menu'),
         }]}
       >
         { this._renderComponent() }

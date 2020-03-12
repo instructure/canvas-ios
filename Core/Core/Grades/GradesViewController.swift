@@ -65,7 +65,9 @@ public class GradesViewController: UIViewController {
         let refresh = CircleRefreshControl()
         refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView.refreshControl = refresh
+        tableView.separatorColor = .named(.borderMedium)
         tableView.tableHeaderView?.sizeToFit()
+        tableView.tableFooterView = UIView()
         tableView.registerHeaderFooterView(SectionHeaderView.self)
         tableView.registerCell(GradesCell.self)
     }

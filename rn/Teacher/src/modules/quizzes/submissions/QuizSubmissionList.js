@@ -202,7 +202,7 @@ export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> 
         title={i18n('Submissions')}
         subtitle={this.props.courseName}
         navBarColor={this.props.courseColor}
-        navBarStyle='dark'
+        navBarStyle='context'
         rightBarButtons={rightBarButtons}
       >
         {this.props.pending && !this.props.refreshing

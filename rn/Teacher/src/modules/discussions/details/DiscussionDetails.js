@@ -480,7 +480,7 @@ export class DiscussionDetails extends Component<Props, any> {
         onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
         title={this.props.isAnnouncement ? i18n('Announcement Details') : i18n('Discussion Details')}
         navBarColor={this.props.courseColor}
-        navBarStyle='dark'
+        navBarStyle='context'
         rightBarButtons={ isTeacher() && [
           {
             image: Images.kabob,

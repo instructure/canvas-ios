@@ -34,10 +34,13 @@ class ConversationCoursesActionSheet: UIViewController, ErrorViewController {
         self?.update()
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
+
     static func create(delegate: ConversationCoursesActionSheetDelegate) -> ConversationCoursesActionSheet {
         let controller = ConversationCoursesActionSheet()
         controller.delegate = delegate
         controller.modalPresentationStyle = .custom
+        controller.modalPresentationCapturesStatusBarAppearance = true
         controller.transitioningDelegate = BottomSheetTransitioningDelegate.shared
         return controller
     }

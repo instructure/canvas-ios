@@ -47,7 +47,7 @@ import CourseInvite from './CourseInvite'
 import GroupRow, { type GroupRowProps } from './GroupRow'
 import CourseCard from '@modules/courses/components/CourseCard'
 import NoCourses from '@modules/courses/components/NoCourses'
-import { colors, vars } from '@common/stylesheet'
+import { colors } from '@common/stylesheet'
 import icon from '@images/inst-icons'
 import Navigator from '@routing/Navigator'
 import { getSessionUnsafe, getSession } from '@canvas-api'
@@ -435,7 +435,7 @@ export class Dashboard extends React.Component<Props, State> {
     return !this.props.isFullDashboard
       ? { title: i18n('All Courses') }
       : {
-        navBarImage: vars.headerImageURL,
+        navBarImage: true,
         rightBarButtons: [{
           title: i18n('Edit'),
           testID: 'dashboard.edit-btn',
@@ -458,10 +458,7 @@ export class Dashboard extends React.Component<Props, State> {
     return (
       <Screen
         { ...this.screenProps() }
-        navBarHidden={false}
-        navBarColor={colors.navBackground}
-        navBarButtonColor={colors.navTextColor}
-        navBarStyle={vars.navBarStyle}
+        navBarStyle='global'
       >
         {this.renderDashboard()}
       </Screen>

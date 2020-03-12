@@ -41,12 +41,15 @@ class EditComposeRecipientsViewController: UIViewController {
 
     var recipients: [SearchRecipient] = []
 
+    override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
+
     static func create(context: Context, observeeID: String?, selectedRecipients: Set<SearchRecipient>) -> EditComposeRecipientsViewController {
         let controller = loadFromStoryboard()
         controller.context = context
         controller.observeeID = observeeID
         controller.selectedRecipients = selectedRecipients
         controller.modalPresentationStyle = .custom
+        controller.modalPresentationCapturesStatusBarAppearance = true
         controller.transitioningDelegate = BottomSheetTransitioningDelegate.shared
         return controller
     }

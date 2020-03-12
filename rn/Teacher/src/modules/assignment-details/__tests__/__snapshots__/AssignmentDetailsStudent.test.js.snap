@@ -2,10 +2,9 @@
 
 exports[`renders a single file type 1`] = `
 <Screen
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={Array []}
   showDismissButton={true}
-  statusBarStyle="default"
   testID="assignment-details"
   title="Assignment Details"
 >
@@ -150,10 +149,9 @@ exports[`renders a single file type 1`] = `
 
 exports[`renders even if there is fake data 1`] = `
 <Screen
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={Array []}
   showDismissButton={true}
-  statusBarStyle="default"
   testID="assignment-details"
   title="Assignment Details"
 >
@@ -290,10 +288,9 @@ exports[`renders even if there is fake data 1`] = `
 
 exports[`renders for a student 1`] = `
 <Screen
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={Array []}
   showDismissButton={true}
-  statusBarStyle="default"
   testID="assignment-details"
   title="Assignment Details"
 >
@@ -430,10 +427,9 @@ exports[`renders for a student 1`] = `
 
 exports[`renders multiple file types 1`] = `
 <Screen
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={Array []}
   showDismissButton={true}
-  statusBarStyle="default"
   testID="assignment-details"
   title="Assignment Details"
 >
@@ -578,10 +574,9 @@ exports[`renders multiple file types 1`] = `
 
 exports[`renders without a due date 1`] = `
 <Screen
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={Array []}
   showDismissButton={true}
-  statusBarStyle="default"
   testID="assignment-details"
   title="Assignment Details"
 >
@@ -718,10 +713,9 @@ exports[`renders without a due date 1`] = `
 
 exports[`renders without description 1`] = `
 <Screen
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={Array []}
   showDismissButton={true}
-  statusBarStyle="default"
   testID="assignment-details"
   title="Assignment Details"
 >

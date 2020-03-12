@@ -874,12 +874,15 @@ exports[`Inbox refreshed component 1`] = `
         <Image
           source={
             Object {
-              "testUri": "../../../src/images/Mail.png",
+              "uri": "emailLine",
             }
           }
           style={
             Object {
-              "marginBottom": 36,
+              "height": 96,
+              "marginBottom": 18,
+              "tintColor": "#C7CDD1",
+              "width": 96,
             }
           }
         />
@@ -2330,12 +2333,15 @@ exports[`Inbox renders the starred empty state 1`] = `
         <Image
           source={
             Object {
-              "testUri": "../../../src/images/Mail.png",
+              "uri": "emailLine",
             }
           }
           style={
             Object {
-              "marginBottom": 36,
+              "height": 96,
+              "marginBottom": 18,
+              "tintColor": "#C7CDD1",
+              "width": 96,
             }
           }
         />
@@ -2736,12 +2742,15 @@ exports[`Inbox renders with an empty state 1`] = `
         <Image
           source={
             Object {
-              "testUri": "../../../src/images/Mail.png",
+              "uri": "emailLine",
             }
           }
           style={
             Object {
-              "marginBottom": 36,
+              "height": 96,
+              "marginBottom": 18,
+              "tintColor": "#C7CDD1",
+              "width": 96,
             }
           }
         />

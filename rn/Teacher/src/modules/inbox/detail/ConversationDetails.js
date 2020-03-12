@@ -31,7 +31,7 @@ import { connect } from 'react-redux'
 import refresh from '../../../utils/refresh'
 import InboxActions from '../actions'
 import Screen from '../../../routing/Screen'
-import { colors, createStyleSheet, vars } from '../../../common/stylesheet'
+import { createStyleSheet } from '../../../common/stylesheet'
 import i18n from 'format-message'
 import ConversationMessageRow from '../components/ConversationMessageRow'
 import { Heading1 } from '../../../common/text'
@@ -150,9 +150,7 @@ export class ConversationDetails extends React.Component <Props, State> {
   render () {
     return (
       <Screen
-        navBarColor={colors.navBackground}
-        navBarButtonColor={colors.navTextColor}
-        navBarStyle={vars.navBarStyle}
+        navBarStyle='global'
         drawUnderNavBar
         customPageViewPath='/conversations'
         title={i18n('Message Details')}

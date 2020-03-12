@@ -20,6 +20,7 @@
 
 import React, { PureComponent } from 'react'
 import { View, Image } from 'react-native'
+import icon from '../../../images/inst-icons'
 import { Text } from '../../../common/text'
 import { createStyleSheet } from '../../../common/stylesheet'
 
@@ -27,7 +28,7 @@ export default class EmptyInbox extends PureComponent<*> {
   render () {
     return (
       <View style={styles.container}>
-        <Image style={styles.image} source={this.props.image} />
+        <Image style={styles.image} source={icon('email', 'line')} />
         <Text style={styles.title}>{this.props.title}</Text>
         <Text style={styles.text}>{this.props.text}</Text>
       </View>
@@ -44,7 +45,10 @@ const styles = createStyleSheet(colors => ({
     height: 400,
   },
   image: {
-    marginBottom: 36,
+    marginBottom: 18,
+    width: 96,
+    height: 96,
+    tintColor: colors.backgroundMedium,
   },
   title: {
     fontSize: 24,

@@ -15,7 +15,6 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
-
 import UIKit
 
 public class TitleSubtitleView: UIView {
@@ -47,7 +46,9 @@ public class TitleSubtitleView: UIView {
     }
 
     public override func tintColorDidChange() {
-        titleLabel.textColor = tintColor
-        subtitleLabel.textColor = tintColor
+        let title = (superview?.superview as? UINavigationBar)?.titleTextAttributes?[.foregroundColor] as? UIColor
+        let color = title ?? tintColor
+        titleLabel.textColor = color
+        subtitleLabel.textColor = color
     }
 }

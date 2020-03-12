@@ -232,7 +232,7 @@ export class SubmissionList extends Component<Props, State> {
         title={i18n('Submissions')}
         subtitle={this.props.assignmentName}
         navBarColor={this.props.courseColor}
-        navBarStyle='dark'
+        navBarStyle='context'
         rightBarButtons={rightBarButtons}
       >
         { this.props.pending && !this.props.refreshing

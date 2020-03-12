@@ -208,7 +208,7 @@ export class DiscussionsList extends Component<Props, any> {
     return (
       <Screen
         navBarColor={this.props.courseColor}
-        navBarStyle='dark'
+        navBarStyle='context'
         drawUnderNavBar
         onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
         rightBarButtons={(this.props.permissions && this.props.permissions.create_discussion_topic) && [

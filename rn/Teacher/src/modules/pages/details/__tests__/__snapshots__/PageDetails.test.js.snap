@@ -3,7 +3,7 @@
 exports[`PageDetails renders 1`] = `
 <Screen
   navBarColor="#fff"
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={
     Array [
       Object {
@@ -17,7 +17,6 @@ exports[`PageDetails renders 1`] = `
     ]
   }
   showDismissButton={true}
-  statusBarStyle="default"
   subtitle="Course 1"
   title="Page 1"
 >
@@ -66,10 +65,9 @@ exports[`PageDetails renders 1`] = `
 exports[`PageDetails renders while loading 1`] = `
 <Screen
   navBarColor="#fff"
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={false}
   showDismissButton={true}
-  statusBarStyle="default"
   title="Page Details"
 >
   <CanvasWebView

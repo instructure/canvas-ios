@@ -87,7 +87,7 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
             self.screenConfig.moduleName = self.moduleName
         }
     }
-    fileprivate var twoLineTitleView: TitleSubtitleView?
+    private let titleSubtitleView = TitleSubtitleView.create()
     public override var title: String?  {
         didSet {
             navigationItem.title = title
@@ -99,23 +99,6 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
             return _navigationItem
         }
     }
-    
-    @objc public var statusBarStyle: UIStatusBarStyle = .default {
-        didSet {
-            if (statusBarStyle != oldValue) {
-                statusBarDirty = true
-            }
-        }
-    }
-    @objc public var statusBarHidden: Bool = false {
-        didSet {
-            if (statusBarHidden != oldValue) {
-                statusBarDirty = true
-            }
-        }
-    }
-    @objc public var statusBarUpdateAnimation: UIStatusBarAnimation = .fade
-    fileprivate var statusBarDirty: Bool = false
     
     @objc private(set) public var isVisible: Bool = false
 
@@ -192,30 +175,6 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         stopTrackingTimeOnViewController(eventName: moduleName, attributes: attributes)
     }
     
-    // MARK: - Status bar
-    
-    @objc func updateStatusBarIfNeeded() {
-        guard (statusBarDirty) else { return }
-        defer { statusBarDirty = false }
-        
-        let duration = statusBarUpdateAnimation != .none ? 0.2 : 0
-        UIView.animate(withDuration: duration) { [weak self] in
-            self?.setNeedsStatusBarAppearanceUpdate()
-        }
-    }
-    
-    override public var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
-        return statusBarUpdateAnimation
-    }
-    
-    override public var prefersStatusBarHidden: Bool {
-        return statusBarHidden
-    }
-    
-    override public var preferredStatusBarStyle: UIStatusBarStyle {
-        return statusBarStyle
-    }
-    
     public override func accessibilityPerformEscape() -> Bool {
         if let presenting = self.presentingViewController {
             presenting.dismiss(animated: true, completion: nil)
@@ -240,41 +199,40 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
     
     // MARK: - Styles
     @objc public func handleStyles() {
-        if let title = screenConfig[PropKeys.title] as? String {
-            if let subtitle = screenConfig[PropKeys.subtitle] as? String, subtitle.count > 0 {
-                if (twoLineTitleView == nil) {
-                    twoLineTitleView = self.titleView(with: title, and: subtitle, given: screenConfig)
-                    twoLineTitleView?.isAccessibilityElement = true
-                    twoLineTitleView?.accessibilityTraits = UIAccessibilityTraits.header
-                    navigationItem.titleView = twoLineTitleView
-                    navigationItem.title = nil
-                }
-                
-                if let titleView = twoLineTitleView, let titleLabel = titleView.titleLabel, let subtitleLabel = titleView.subtitleLabel {
-                    styleTitleViewLabels(titleLabel: titleLabel, subtitleLabel: subtitleLabel)
-                    titleLabel.text = title
-                    subtitleLabel.text = subtitle
-                    titleView.accessibilityLabel = "\(title), \(subtitle)"
-                }
+        switch screenConfig[PropKeys.navBarStyle] as? String {
+        case "context":
+            if let color = screenConfig.navBarColor {
+                navigationController?.navigationBar.useContextColor(color)
             }
+        case "global":
+            navigationController?.navigationBar.useGlobalNavStyle()
+        default:
+            navigationController?.navigationBar.useModalStyle()
+        }
+
+        if let title = screenConfig[PropKeys.title] as? String {
             self.title = title
+            navigationItem.title = title
+            if let subtitle = screenConfig[PropKeys.subtitle] as? String, !subtitle.isEmpty {
+                navigationItem.titleView = titleSubtitleView
+                titleSubtitleView.title = title
+                titleSubtitleView.subtitle = subtitle
+                titleSubtitleView.accessibilityLabel = "\(title), \(subtitle)"
+            } else {
+                navigationItem.titleView = nil
+            }
         }
-        
-        if let navBarImagePath = screenConfig[PropKeys.navBarImage] {
-            self.navigationItem.titleView = HelmManager.narBarTitleViewFromImagePath(navBarImagePath)
+
+        if screenConfig[PropKeys.navBarImage] as? Bool == true {
+            self.navigationItem.titleView = Core.Brand.shared.headerImageView()
         }
-        
-        if let backgroundColor = screenConfig[PropKeys.backgroundColor] {
-            view.backgroundColor = RCTConvert.uiColor(backgroundColor)
-        }
-        
-        // Nav bar props
+
         if (screenConfig.drawUnderNavigationBar) {
             edgesForExtendedLayout.insert(.top)
         } else {
             edgesForExtendedLayout.remove(.top)
         }
-        
+
         if (screenConfig.drawUnderTabBar) {
             edgesForExtendedLayout.insert(.bottom)
         } else {
@@ -286,51 +244,14 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
             navigationController?.navigationBar.shadowImage = UIImage()
             navigationController?.navigationBar.isTranslucent = true
             edgesForExtendedLayout.insert(.top)
-        }
-        else {
+        } else {
             navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
             navigationController?.navigationBar.isTranslucent = false
-        }
-        
-        if let navBarStyle = screenConfig[PropKeys.navBarStyle] as? String {
-            switch navBarStyle {
-            case "dark": navigationController?.navigationBar.barStyle = .black
-            case "light": navigationController?.navigationBar.barStyle = .default
-            default: navigationController?.navigationBar.barStyle = .default
-            }
-        }
-        
-        if screenConfig[PropKeys.hideNavBarShadowImage] as? Bool ?? false {
-            navigationController?.navigationBar.shadowImage = UIImage()
         }
 
         let navBarHidden = screenConfig[PropKeys.navBarHidden] as? Bool ?? false
         if navigationController?.isNavigationBarHidden != navBarHidden {
             navigationController?.setNavigationBarHidden(navBarHidden, animated: true)
-        }
-        
-        if let tint = screenConfig.navBarColor {
-            navigationController?.syncBarTintColor(tint)
-        }
-        
-        if let navBarButtonColor = screenConfig[PropKeys.navBarButtonColor] ?? HelmManager.shared.defaultScreenConfiguration[moduleName]?[PropKeys.navBarButtonColor] {
-            if let navBarButtonColorNone = navBarButtonColor as? String, navBarButtonColorNone == "none" {
-                navigationController?.syncTintColor(nil)
-            } else {
-                navigationController?.syncTintColor(RCTConvert.uiColor(navBarButtonColor))
-            }
-        } else {
-            if screenConfig[PropKeys.navBarStyle] as? String == "dark" {
-                navigationController?.syncTintColor(.white)
-            } else if screenConfig[PropKeys.navBarStyle] as? String == "light" {
-                navigationController?.syncTintColor(Brand.current.linkColor)
-            }
-        }
-
-        if let c = screenConfig["navBarTitleColor"], let titleColor = RCTConvert.uiColor(c) {
-            navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: titleColor]
-        } else {
-            navigationController?.navigationBar.titleTextAttributes = nil
         }
 
         func barButtonItems(fromConfig config: [[String: Any]]) -> [UIBarButtonItem] {
@@ -364,22 +285,6 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
                     }
                     view.addSubview(button)
                     barButtonItem = UIBarButtonItem(customView: view)
-                } else if let imageConfig = buttonConfig["image"], let image = RCTConvert.uiImage(imageConfig), let simulateBackChevron = buttonConfig["simulateBackChevron"] as? Bool, simulateBackChevron {
-                    let button =  UIButton(type: .custom)
-                    button.setImage(image, for: .normal)
-                    var width: CGFloat = 26
-                    let height: CGFloat = 31
-                    if let imageConfig = imageConfig as? [String: Any], let w = imageConfig["width"] as? CGFloat, let scale = imageConfig["scale"] as? CGFloat {
-                        width = w * scale
-                    }
-                    button.frame = CGRect(x: 0, y: 0, width: width, height: height)
-                    button.imageEdgeInsets = UIEdgeInsets.init(top: -1, left: -width, bottom: 1, right: 0)
-                    button.addTarget(self, action: #selector(barButtonTapped(_:)), for: .touchUpInside)
-                    if let action = buttonConfig["action"] as? NSString {
-                        button.setAssociatedObject(action, forKey: &Associated.barButtonAction)
-                    }
-
-                    barButtonItem = UIBarButtonItem(customView: button)
                 } else if let imageConfig = buttonConfig["image"], let image = RCTConvert.uiImage(imageConfig), let badgeConfig = buttonConfig["badge"] as? [String: Any] {
                     let frame = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
                     let button =  UIButton(type: .custom)
@@ -422,8 +327,7 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
                 {
                     let templateImage = image.scaleTo(CGSize(width: width, height: height)).withRenderingMode(.alwaysTemplate)
                     barButtonItem = UIBarButtonItem(image: templateImage, style: style, target: self, action: #selector(barButtonTapped(_:)))
-                }
-                else if let imageConfig = buttonConfig["image"], let image = RCTConvert.uiImage(imageConfig) {
+                } else if let imageConfig = buttonConfig["image"], let image = RCTConvert.uiImage(imageConfig) {
                     barButtonItem = UIBarButtonItem(image: image, style: style, target: self, action: #selector(barButtonTapped(_:)))
                 } else if let title = buttonConfig["title"] as? String {
                     barButtonItem = UIBarButtonItem(title: title, style: style, target: self, action: #selector(barButtonTapped(_:)))
@@ -462,85 +366,16 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
             let dismissTitle = screenConfig[PropKeys.dismissButtonTitle] as? String ?? NSLocalizedString("Done", comment: "")
             addModalDismissButton(buttonTitle: dismissTitle)
         }
-        
-        // Status bar props
-        if let style = screenConfig[PropKeys.statusBarStyle] as? String {
-            if #available(iOS 13, *) {
-                statusBarStyle = style == "light" ? .lightContent : .darkContent
-            } else {
-                statusBarStyle = style == "light" ? .lightContent : .default
-            }
-        }
-        // TODO: According to Wix's code, this can't be set on viewWillAppear, and they do it on initialization separately...
-        statusBarHidden = screenConfig[PropKeys.statusBarHidden] as? Bool ?? false
-        if let animation = screenConfig[PropKeys.statusBarUpdateAnimation] as? String {
-            switch animation {
-            case "none": self.statusBarUpdateAnimation = .none
-            case "fade": self.statusBarUpdateAnimation = .fade
-            case "slide": self.statusBarUpdateAnimation = .slide
-            default: self.statusBarUpdateAnimation = .fade
-            }
-        }
-        updateStatusBarIfNeeded()
+
         if let backButtonTitle = screenConfig[PropKeys.backButtonTitle] as? String {
             self.navigationItem.backBarButtonItem = UIBarButtonItem(title: backButtonTitle, style: .plain, target: nil, action: nil)
         }
+
+        if let backgroundColor = screenConfig[PropKeys.backgroundColor] {
+            view.backgroundColor = RCTConvert.uiColor(backgroundColor)
+        }
         
         self.navigationController?.syncStyles()
-    }
-    
-    private func titleView(with title: String, and subtitle: String, given config: HelmScreenConfig) -> TitleSubtitleView {
-        let titleView = TitleSubtitleView.create()
-        titleView.titleLabel?.text = title
-        titleView.subtitleLabel?.text = subtitle
-        if let testID = screenConfig["testID"] as? String {
-            titleView.accessibilityIdentifier = testID + ".nav-bar-title-view"
-        }
-        return titleView
-    }
-    
-    private func styleTitleViewLabels(titleLabel: UILabel, subtitleLabel: UILabel) {
-        // TODO: support custom fonts, sizes
-        
-        let titleColor: UIColor
-        if let c = screenConfig["navBarTitleColor"] {
-            titleColor = RCTConvert.uiColor(c)
-        } else {
-            if let style = screenConfig[PropKeys.navBarStyle] as? String {
-                if style == "light" {
-                    titleColor = .darkText
-                } else {
-                    titleColor = .white
-                }
-            } else {
-                titleColor = .darkText
-            }
-        }
-        
-        let subtitleColor: UIColor
-        if let c = screenConfig["navBarSubtitleColor"] {
-            subtitleColor = RCTConvert.uiColor(c)
-        } else {
-            if let style = screenConfig[PropKeys.navBarStyle] as? String {
-                if style == "light" {
-                    subtitleColor = .darkText
-                } else {
-                    subtitleColor = .white
-                }
-            } else {
-                subtitleColor = .darkText
-            }
-        }
-        
-        titleLabel.backgroundColor = UIColor.clear
-        titleLabel.textColor = titleColor
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
-        titleLabel.textAlignment = .center
-        
-        subtitleLabel.backgroundColor = UIColor.clear
-        subtitleLabel.textColor = subtitleColor
-        subtitleLabel.font = UIFont.systemFont(ofSize: 12)
-        subtitleLabel.textAlignment = .center
     }
     
     @objc func barButtonTapped(_ barButton: UIBarButtonItem) {
@@ -606,10 +441,4 @@ extension UIViewController {
     @objc func dismissModal(animated: Bool) {
         dismiss(animated: animated, completion: nil)
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
-	guard let input = input else { return nil }
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

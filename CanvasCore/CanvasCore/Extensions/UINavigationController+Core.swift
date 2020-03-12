@@ -26,12 +26,6 @@ public extension UINavigationController {
         syncStyles()
     }
     
-    // Same as above but for tintColor
-    @objc func syncTintColor(_ color: UIColor?) {
-        self.navigationBar.tintColor = color
-        syncStyles()
-    }
-    
     // Looks at what is in the master, if in split view, and applies what master has to detail
     @objc func syncStyles() {
         guard let svc = self.splitViewController else { return }
@@ -42,6 +36,6 @@ public extension UINavigationController {
         detail.navigationBar.shadowImage = master.navigationBar.shadowImage
         detail.navigationBar.isTranslucent = master.navigationBar.isTranslucent
         detail.navigationBar.barStyle = master.navigationBar.barStyle
-        detail.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.named(.textLightest)]
+        detail.navigationBar.titleTextAttributes = master.navigationBar.titleTextAttributes
     }
 }

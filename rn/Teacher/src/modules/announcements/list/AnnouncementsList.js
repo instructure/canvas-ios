@@ -91,7 +91,7 @@ export class AnnouncementsList extends Component<Props, any> {
     return (
       <Screen
         navBarColor={this.props.courseColor}
-        navBarStyle='dark'
+        navBarStyle='context'
         title={i18n('Announcements')}
         subtitle={this.props.courseName}
         onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
@@ -190,10 +190,10 @@ export function mapStateToProps ({ entities }: AppState, { context, contextID }:
     error = entity.announcements.error
     if (context === 'courses' && entity.course) {
       courseName = entity.course.name
-      courseColor = entity.course.color
+      courseColor = entity.color
     } else if (entity.group) {
       courseName = entity.group.name
-      courseColor = entity.group.color
+      courseColor = entity.color
       permissions = { create_announcement: true, create_discussion_topic: true }
     }
 

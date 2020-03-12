@@ -298,14 +298,13 @@ export default class EditItem extends Component<Props, State> {
     return (
       <Screen
         title={isFile ? i18n('Edit File') : i18n('Edit Folder')}
-        navBarTitleColors={colors.textDarkest}
-        navBarButtonColor={colors.linkColor}
         drawUnderNavBar
         dismissButtonTitle={i18n('Cancel')}
         rightBarButtons={[{
           testID: 'edit-item.done-btn',
           title: i18n('Done'),
           action: this.handleDone,
+          style: 'done',
         }]}
       >
         <View style={{ flex: 1 }}>

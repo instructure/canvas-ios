@@ -181,8 +181,6 @@ export default class AttachmentView extends Component<Props, State> {
     return (
       <Screen
         title={i18n('Attachment')}
-        navBarTitleColors={colors.textDarkest}
-        navBarButtonColor={colors.linkColor}
         drawUnderNavBar
         rightBarButtons={[{
           testID: 'attachment-view.share-btn',

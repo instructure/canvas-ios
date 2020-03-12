@@ -98,7 +98,7 @@ export class PageDetails extends Component<Props> {
       <Screen
         {...customPageViewPath}
         navBarColor={courseColor}
-        navBarStyle='dark'
+        navBarStyle='context'
         title={this.props.page ? this.props.page.title : i18n('Page Details')}
         subtitle={course && course.name || undefined}
         rightBarButtons={this.canEdit() && [
