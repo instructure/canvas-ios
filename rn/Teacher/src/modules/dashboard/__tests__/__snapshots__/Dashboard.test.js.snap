@@ -16,7 +16,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
       },
     ]
   }
-  navBarImage={true}
+  navBarLogo={true}
   navBarStyle="global"
   rightBarButtons={
     Array [
@@ -1434,7 +1434,7 @@ exports[`Dashboard render 1`] = `
       },
     ]
   }
-  navBarImage={true}
+  navBarLogo={true}
   navBarStyle="global"
   rightBarButtons={
     Array [
@@ -2083,7 +2083,7 @@ exports[`Dashboard render while pending 1`] = `
       },
     ]
   }
-  navBarImage={true}
+  navBarLogo={true}
   navBarStyle="global"
   rightBarButtons={
     Array [
@@ -2732,7 +2732,7 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
       },
     ]
   }
-  navBarImage={true}
+  navBarLogo={true}
   navBarStyle="global"
   rightBarButtons={
     Array [
@@ -2960,7 +2960,7 @@ exports[`Dashboard render without favorite courses 1`] = `
       },
     ]
   }
-  navBarImage={true}
+  navBarLogo={true}
   navBarStyle="global"
   rightBarButtons={
     Array [
@@ -3188,7 +3188,7 @@ exports[`Dashboard renders course invites 1`] = `
       },
     ]
   }
-  navBarImage={true}
+  navBarLogo={true}
   navBarStyle="global"
   rightBarButtons={
     Array [

@@ -43,7 +43,7 @@ type ScreenProps = {
   navBarStyle?: 'global' | 'context' | 'modal',
   navBarColor?: ?string,
   navBarHidden?: boolean,
-  navBarImage?: ?boolean,
+  navBarLogo?: ?boolean,
   navBarTransparent?: boolean,
   drawUnderNavBar?: boolean,
   drawUnderTabBar?: boolean,

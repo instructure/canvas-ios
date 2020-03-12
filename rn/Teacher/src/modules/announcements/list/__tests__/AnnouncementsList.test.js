@@ -288,8 +288,8 @@ describe('mapStateToProps', () => {
       mapStateToProps(state, { context: 'courses', contextID: '1' })
     ).toEqual({
       announcements: [],
-      courseName: '',
-      courseColor: '',
+      courseName: null,
+      courseColor: null,
       pending: 0,
       error: null,
       permissions: {},
@@ -330,8 +330,8 @@ describe('mapStateToProps', () => {
     ).toEqual({
       announcements: [one, three],
       pending: 1,
-      courseName: '',
-      courseColor: '',
+      courseName: null,
+      courseColor: null,
       error: null,
     })
   })

@@ -18,7 +18,7 @@ exports[`ToDoList renders items 1`] = `
       },
     ]
   }
-  navBarImage={true}
+  navBarLogo={true}
   navBarStyle="global"
   showDismissButton={true}
 >

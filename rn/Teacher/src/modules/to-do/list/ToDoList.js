@@ -98,7 +98,7 @@ export class ToDoList extends Component<Props, State> {
     return (
       <Screen
         navBarStyle='global'
-        navBarImage
+        navBarLogo
         drawUnderNavBar
         customPageViewPath='/'
         leftBarButtons={[{

@@ -162,7 +162,7 @@ export class Inbox extends Component<InboxProps, any> {
       <Screen
         navBarStyle='global'
         drawUnderNavBar
-        navBarImage
+        navBarLogo
         rightBarButtons={[{
           accessibilityLabel: i18n('New Message'),
           testID: 'inbox.new-message',

@@ -199,15 +199,17 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
     
     // MARK: - Styles
     @objc public func handleStyles() {
-        switch screenConfig[PropKeys.navBarStyle] as? String {
-        case "context":
-            if let color = screenConfig.navBarColor {
-                navigationController?.navigationBar.useContextColor(color)
+        if !screenConfig.config.isEmpty {
+            switch screenConfig[PropKeys.navBarStyle] as? String {
+            case "context":
+                if let color = screenConfig.navBarColor {
+                    navigationController?.navigationBar.useContextColor(color)
+                }
+            case "global":
+                navigationController?.navigationBar.useGlobalNavStyle()
+            default:
+                navigationController?.navigationBar.useModalStyle()
             }
-        case "global":
-            navigationController?.navigationBar.useGlobalNavStyle()
-        default:
-            navigationController?.navigationBar.useModalStyle()
         }
 
         if let title = screenConfig[PropKeys.title] as? String {
@@ -223,7 +225,7 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
             }
         }
 
-        if screenConfig[PropKeys.navBarImage] as? Bool == true {
+        if screenConfig[PropKeys.navBarLogo] as? Bool == true {
             self.navigationItem.titleView = Core.Brand.shared.headerImageView()
         }
 

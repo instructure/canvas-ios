@@ -435,7 +435,7 @@ export class Dashboard extends React.Component<Props, State> {
     return !this.props.isFullDashboard
       ? { title: i18n('All Courses') }
       : {
-        navBarImage: true,
+        navBarLogo: true,
         rightBarButtons: [{
           title: i18n('Edit'),
           testID: 'dashboard.edit-btn',

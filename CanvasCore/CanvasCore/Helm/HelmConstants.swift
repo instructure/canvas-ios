@@ -31,7 +31,7 @@ struct PropKeys {
     static let navBarStyle = "navBarStyle"
     static let navBarColor = "navBarColor"
     static let navBarHidden = "navBarHidden"
-    static let navBarImage = "navBarImage"
+    static let navBarLogo = "navBarLogo"
     static let navBarTransparent = "navBarTransparent"
     static let drawUnderNavBar = "drawUnderNavBar"
     static let drawUnderTabBar = "drawUnderTabBar"

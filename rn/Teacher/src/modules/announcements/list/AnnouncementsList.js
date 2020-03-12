@@ -173,8 +173,8 @@ export function mapStateToProps ({ entities }: AppState, { context, contextID }:
   let announcements = []
   let pending = 0
   let error = null
-  let courseName = ''
-  let courseColor = ''
+  let courseName = null
+  let courseColor = null
   let permissions = {}
 
   let origin: DiscussionOriginEntity = (context === 'courses') ? entities.courses : entities.groups
