@@ -167,9 +167,18 @@ public struct GetConversationsUnreadCountRequest: APIRequestable {
             self.unread_count = unread_count
         }
 
+        enum CodingKeys: String, CodingKey {
+            case unread_count
+        }
+
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             unread_count = try UInt(container.decode(String.self, forKey: .unread_count)) ?? 0
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode("\(unread_count)", forKey: .unread_count)
         }
     }
 

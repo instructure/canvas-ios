@@ -30,6 +30,13 @@
 		3BAA4179218A3ACE00701E03 /* APIEnrollmentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAA4178218A3ACE00701E03 /* APIEnrollmentFixture.swift */; };
 		3BD364AD225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD364AC225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift */; };
 		3BDB8F3C22E663A2003D81C3 /* MockPageViewLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB8F3B22E663A2003D81C3 /* MockPageViewLogger.swift */; };
+		585951A0E753164D3759B783 /* MiniAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595226EFFECD5AED310C9B /* MiniAssignment.swift */; };
+		58595231CA9C074F01E0F6A1 /* MiniCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595FA38CCD34FFA0E5AF23 /* MiniCourse.swift */; };
+		5859533CCC74E4410F3A4DE1 /* HttpResponseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595D1B881763C9DDB1E6BD /* HttpResponseExtensions.swift */; };
+		585958355F4CBCAFED71C28A /* MiniCanvasEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595C190F38EE32DEEE62D7 /* MiniCanvasEndpoints.swift */; };
+		58595A4F59ADDF88417FB368 /* LoggingHttpServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585954C9EBB3725770689362 /* LoggingHttpServer.swift */; };
+		58595E26C62900CF858B2B08 /* MiniCanvasUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859560B4512977756206840 /* MiniCanvasUITestCase.swift */; };
+		58595E93BC97CDFF3A1ECF2F /* MiniCanvasState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595BD467533DA0C1043343 /* MiniCanvasState.swift */; };
 		7D148647230B49DC003944A2 /* APIAccountNotificationFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D148646230B49DC003944A2 /* APIAccountNotificationFixture.swift */; };
 		7D26B84723A81D8E00262380 /* ConversationFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D26B84623A81D8E00262380 /* ConversationFixture.swift */; };
 		7D2DC2FF219A0514008FE29A /* APIDocViewerFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC2FE219A0514008FE29A /* APIDocViewerFixture.swift */; };
@@ -96,6 +103,8 @@
 		B1E789BA21B1D0D30087FE4A /* LogEventFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */; };
 		B1F13296224BFE03002C0555 /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */; };
 		B1F428DC228B5C3C00EC8C37 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F428DB228B5C3C00EC8C37 /* MockURLSession.swift */; };
+		E8104C492406F5EC0077D207 /* MiniCanvasServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8104C482406F5EC0077D207 /* MiniCanvasServer.swift */; };
+		E8104C542406FB580077D207 /* Swifter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8104C532406FB580077D207 /* Swifter.framework */; };
 		E818EF21234652A20035613A /* XCTestCaseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818EF20234652A20035613A /* XCTestCaseExtensions.swift */; };
 		E81B575B23E243CA002A0C38 /* ConversationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B575223E23DAA002A0C38 /* ConversationList.swift */; };
 		E81B575C23E243CA002A0C38 /* ConversationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B575323E23DAA002A0C38 /* ConversationDetail.swift */; };
@@ -139,6 +148,13 @@
 		3BAA4178218A3ACE00701E03 /* APIEnrollmentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollmentFixture.swift; sourceTree = "<group>"; };
 		3BD364AC225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDiscussionTopicFixture.swift; sourceTree = "<group>"; };
 		3BDB8F3B22E663A2003D81C3 /* MockPageViewLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPageViewLogger.swift; sourceTree = "<group>"; };
+		58595226EFFECD5AED310C9B /* MiniAssignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniAssignment.swift; sourceTree = "<group>"; };
+		585954C9EBB3725770689362 /* LoggingHttpServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggingHttpServer.swift; sourceTree = "<group>"; };
+		5859560B4512977756206840 /* MiniCanvasUITestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniCanvasUITestCase.swift; sourceTree = "<group>"; };
+		58595BD467533DA0C1043343 /* MiniCanvasState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniCanvasState.swift; sourceTree = "<group>"; };
+		58595C190F38EE32DEEE62D7 /* MiniCanvasEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniCanvasEndpoints.swift; sourceTree = "<group>"; };
+		58595D1B881763C9DDB1E6BD /* HttpResponseExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpResponseExtensions.swift; sourceTree = "<group>"; };
+		58595FA38CCD34FFA0E5AF23 /* MiniCourse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniCourse.swift; sourceTree = "<group>"; };
 		7D148646230B49DC003944A2 /* APIAccountNotificationFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountNotificationFixture.swift; sourceTree = "<group>"; };
 		7D26B84623A81D8E00262380 /* ConversationFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationFixture.swift; sourceTree = "<group>"; };
 		7D2DC2FE219A0514008FE29A /* APIDocViewerFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDocViewerFixture.swift; sourceTree = "<group>"; };
@@ -206,6 +222,8 @@
 		B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEventFixture.swift; sourceTree = "<group>"; };
 		B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemFixture.swift; sourceTree = "<group>"; };
 		B1F428DB228B5C3C00EC8C37 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
+		E8104C482406F5EC0077D207 /* MiniCanvasServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniCanvasServer.swift; sourceTree = "<group>"; };
+		E8104C532406FB580077D207 /* Swifter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swifter.framework; path = ../Carthage/Build/iOS/Swifter.framework; sourceTree = "<group>"; };
 		E818EF20234652A20035613A /* XCTestCaseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtensions.swift; sourceTree = "<group>"; };
 		E81B575223E23DAA002A0C38 /* ConversationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationList.swift; sourceTree = "<group>"; };
 		E81B575323E23DAA002A0C38 /* ConversationDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationDetail.swift; sourceTree = "<group>"; };
@@ -227,6 +245,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8104C542406FB580077D207 /* Swifter.framework in Frameworks */,
 				E839146523102F9200D772E0 /* XCTest.framework in Frameworks */,
 				3B0CEB6821503B5A00D07CFA /* Core.framework in Frameworks */,
 			);
@@ -255,6 +274,7 @@
 		3B032CFD215037AA00B570F7 /* TestsFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				E8104C472406F57C0077D207 /* MiniCanvas */,
 				9F5C92FF23730D01005105BB /* Helpers */,
 				7D47769621AF354400B441CE /* API */,
 				3B0CEB782150429300D07CFA /* Database */,
@@ -290,6 +310,7 @@
 		3B032D1E2150380200B570F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E8104C532406FB580077D207 /* Swifter.framework */,
 				7DAC287D22B19D5C00C0B692 /* XCTest.framework */,
 				3B0CEB6721503B5A00D07CFA /* Core.framework */,
 			);
@@ -405,6 +426,24 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		58595C5E1F191E7004DE2545 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				58595D1B881763C9DDB1E6BD /* HttpResponseExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		58595EB96C4BB8F678729509 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				58595BD467533DA0C1043343 /* MiniCanvasState.swift */,
+				58595226EFFECD5AED310C9B /* MiniAssignment.swift */,
+				58595FA38CCD34FFA0E5AF23 /* MiniCourse.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
 		7D47769621AF354400B441CE /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -486,6 +525,18 @@
 			path = Logger;
 			sourceTree = "<group>";
 		};
+		E8104C472406F57C0077D207 /* MiniCanvas */ = {
+			isa = PBXGroup;
+			children = (
+				E8104C482406F5EC0077D207 /* MiniCanvasServer.swift */,
+				58595C190F38EE32DEEE62D7 /* MiniCanvasEndpoints.swift */,
+				58595C5E1F191E7004DE2545 /* Extensions */,
+				585954C9EBB3725770689362 /* LoggingHttpServer.swift */,
+				58595EB96C4BB8F678729509 /* State */,
+			);
+			path = MiniCanvas;
+			sourceTree = "<group>";
+		};
 		E81B575623E23DAA002A0C38 /* Conversations */ = {
 			isa = PBXGroup;
 			children = (
@@ -535,6 +586,7 @@
 			children = (
 				E8A4887C23AD2E9700671BB6 /* UITestUser.swift */,
 				E8989F1523AD2AE800EF4B2B /* CoreUITestCase.swift */,
+				5859560B4512977756206840 /* MiniCanvasUITestCase.swift */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -561,7 +613,7 @@
 				3B032CF7215037AA00B570F7 /* Frameworks */,
 				3B032CF8215037AA00B570F7 /* Headers */,
 				3B032CF9215037AA00B570F7 /* Resources */,
-				7D52D83922FCA09D00684932 /* Swiftlint */,
+				E8B35A3C241994BF0053C7B2 /* Carthage Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -578,7 +630,7 @@
 		3B032CF2215037AA00B570F7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
@@ -617,7 +669,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7D52D83922FCA09D00684932 /* Swiftlint */ = {
+		E8B35A3C241994BF0053C7B2 /* Carthage Copy Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -625,15 +677,17 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/../Carthage/Build/iOS/Swifter.framework",
 			);
-			name = Swiftlint;
+			name = "Carthage Copy Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Swifter.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint autocorrect --config ../.swiftlint.yml\n    swiftlint --config ../.swiftlint.yml --strict\nelse\n    echo \"warning: SwiftLint not installed, download --> `brew install swfitlint`\"\nfi\n";
+			shellScript = "\"${SRCROOT}/../scripts/carthage-copy-frameworks.swift\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -697,6 +751,7 @@
 				7DC4A557222EF9A800FA03DC /* APIDiscussionEntryFixture.swift in Sources */,
 				B1A32BDE2159A1D70071B41E /* APIAssignmentFixture.swift in Sources */,
 				7DB0A1D421C1C90D009ABB40 /* APIAccountResultsFixture.swift in Sources */,
+				E8104C492406F5EC0077D207 /* MiniCanvasServer.swift in Sources */,
 				B1F428DC228B5C3C00EC8C37 /* MockURLSession.swift in Sources */,
 				B1D5EF622358E01200B3ACD3 /* URLAuthenticationChallengeExtensions.swift in Sources */,
 				3BAA4177218A361100701E03 /* EnrollmentFixture.swift in Sources */,
@@ -743,6 +798,13 @@
 				B1E789BA21B1D0D30087FE4A /* LogEventFixture.swift in Sources */,
 				7D903C0C22BC132E009D9E9E /* LoginWeb.swift in Sources */,
 				E81B575C23E243CA002A0C38 /* ConversationDetail.swift in Sources */,
+				585958355F4CBCAFED71C28A /* MiniCanvasEndpoints.swift in Sources */,
+				5859533CCC74E4410F3A4DE1 /* HttpResponseExtensions.swift in Sources */,
+				58595A4F59ADDF88417FB368 /* LoggingHttpServer.swift in Sources */,
+				58595E93BC97CDFF3A1ECF2F /* MiniCanvasState.swift in Sources */,
+				585951A0E753164D3759B783 /* MiniAssignment.swift in Sources */,
+				58595231CA9C074F01E0F6A1 /* MiniCourse.swift in Sources */,
+				58595E26C62900CF858B2B08 /* MiniCanvasUITestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

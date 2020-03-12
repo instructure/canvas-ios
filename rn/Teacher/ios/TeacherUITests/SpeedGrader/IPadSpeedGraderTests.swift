@@ -21,29 +21,29 @@ import TestsFoundation
 @testable import Core
 @testable import CoreUITests
 
-class IPadSpeedGraderTests: CoreUITestCase {
-    let mockHelper = SpeedGraderUIMocks()
-
+class IPadSpeedGraderTests: MiniCanvasUITestCase {
     func testSpeedGrader() {
-        mockHelper.mock(for: self)
         XCUIDevice.shared.orientation = .landscapeLeft
-        logIn()
         SpringBoard.shared.setupSplitScreenWithSafariOnRight()
         SpringBoard.shared.moveSplit(toFraction: 0.5)
-        Dashboard.courseCard(id: "1").tap()
+
+        let course = mocked.courses[0]
+        let assignment = course.assignments[0]
+        let students = mocked.students
+
+        Dashboard.courseCard(id: course.id).tap()
         CourseNavigation.assignments.tap()
-        AssignmentsList.assignment(id: "1").tap()
+        AssignmentsList.assignment(id: assignment.id).tap()
         AssignmentDetails.viewAllSubmissionsButton.tap()
-        app.find(labelContaining: "User 1").waitToExist()
-        app.find(labelContaining: "User 2").waitToExist()
-        app.find(labelContaining: "User 3").waitToExist()
-        SubmissionsList.row(contextID: "2").tap()
+        app.find(labelContaining: students[0].name).waitToExist()
+        app.find(labelContaining: students[1].name).waitToExist()
+        app.find(labelContaining: students[2].name).waitToExist()
+        SubmissionsList.row(contextID: students[1].id).tap()
         SpeedGrader.dismissTutorial()
         SpeedGrader.doneButton.waitToExist()
-        SpeedGrader.userName(userID: "2").waitToExist()
-        XCTAssertTrue(SpeedGrader.userName(userID: "2").isVisible)
-        XCTAssertFalse(SpeedGrader.userName(userID: "1").isVisible)
-        XCTAssertFalse(SpeedGrader.userName(userID: "3").isVisible)
+        SpeedGrader.userName(userID: students[1].id).waitToExist()
+        XCTAssertFalse(SpeedGrader.userName(userID: students[0].id).isVisible)
+        XCTAssertTrue(SpeedGrader.userName(userID: students[1].id).isVisible)
+        XCTAssertFalse(SpeedGrader.userName(userID: students[2].id).isVisible)
     }
-
 }

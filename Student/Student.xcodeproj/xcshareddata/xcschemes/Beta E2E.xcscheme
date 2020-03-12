@@ -236,6 +236,11 @@
             value = "YES"
             isEnabled = "YES">
          </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "OVERRIDE_MOBILE_VERIFY_URL"
+            value = "https://canvas.beta.instructure.com/api/v1/mobile_verify.json"
+            isEnabled = "YES">
+         </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction

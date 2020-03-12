@@ -48,6 +48,13 @@ public struct GetSubmissionsRequest: APIRequestable {
     let grouped: Bool?
     let include: [Include]
 
+    init(context: Context, assignmentID: String, grouped: Bool? = nil, include: [Include] = []) {
+        self.context = context
+        self.assignmentID = assignmentID
+        self.grouped = grouped
+        self.include = include
+    }
+
     public var path: String {
         return "\(context.pathComponent)/assignments/\(assignmentID)/submissions"
     }

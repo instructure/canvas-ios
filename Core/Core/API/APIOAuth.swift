@@ -49,11 +49,10 @@ struct GetMobileVerifyRequest: APIRequestable {
     let domain: String
 
     var path: String {
-        var server = "canvas.instructure.com"
-        if ProcessInfo.processInfo.environment["CANVAS_USE_BETA_E2E_SERVERS"] == "YES" {
-            server = "canvas.beta.instructure.com"
+        if let overrideUrl = ProcessInfo.processInfo.environment["OVERRIDE_MOBILE_VERIFY_URL"] {
+            return overrideUrl
         }
-        return "https://\(server)/api/v1/mobile_verify.json"
+        return "https://canvas.instructure.com/api/v1/mobile_verify.json"
     }
 
     var query: [APIQueryItem] {
