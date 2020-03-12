@@ -172,7 +172,7 @@ export class QuizzesList extends Component<Props, any> {
     return (
       <Screen
         navBarColor={this.props.courseColor}
-        navBarStyle='dark'
+        navBarStyle='context'
         drawUnderNavBar
         title={i18n('Quizzes')}
         onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}

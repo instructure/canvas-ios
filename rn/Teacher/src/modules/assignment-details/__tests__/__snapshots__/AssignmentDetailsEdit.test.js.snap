@@ -11,8 +11,6 @@ exports[`error occurs when done pressed 1`] = `
       },
     ]
   }
-  navBarButtonColor="#008EE2"
-  navBarTitleColor="#2D3B45"
   rightBarButtons={
     Array [
       Object {
@@ -827,8 +825,6 @@ exports[`modal saving is shown on assignment update 1`] = `
       },
     ]
   }
-  navBarButtonColor="#008EE2"
-  navBarTitleColor="#2D3B45"
   rightBarButtons={
     Array [
       Object {
@@ -1643,8 +1639,6 @@ exports[`renders 1`] = `
       },
     ]
   }
-  navBarButtonColor="#008EE2"
-  navBarTitleColor="#2D3B45"
   rightBarButtons={
     Array [
       Object {
@@ -2459,8 +2453,6 @@ exports[`saving invalid dates displays banner 1`] = `
       },
     ]
   }
-  navBarButtonColor="#008EE2"
-  navBarTitleColor="#2D3B45"
   rightBarButtons={
     Array [
       Object {
@@ -3279,8 +3271,6 @@ exports[`saving invalid name displays banner 1`] = `
       },
     ]
   }
-  navBarButtonColor="#008EE2"
-  navBarTitleColor="#2D3B45"
   rightBarButtons={
     Array [
       Object {
@@ -4126,8 +4116,6 @@ exports[`saving invalid points possible displays banner 1`] = `
       },
     ]
   }
-  navBarButtonColor="#008EE2"
-  navBarTitleColor="#2D3B45"
   rightBarButtons={
     Array [
       Object {
@@ -4973,8 +4961,6 @@ exports[`saving negative points possible displays banner 1`] = `
       },
     ]
   }
-  navBarButtonColor="#008EE2"
-  navBarTitleColor="#2D3B45"
   rightBarButtons={
     Array [
       Object {

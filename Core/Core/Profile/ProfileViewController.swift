@@ -84,6 +84,7 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
     public static func create(enrollment: HelpLinkEnrollment) -> ProfileViewController {
         let controller = loadFromStoryboard()
         controller.modalPresentationStyle = .custom
+        controller.modalPresentationCapturesStatusBarAppearance = true
         controller.transitioningDelegate = DrawerTransitioningDelegate.shared
         controller.presenter = ProfilePresenter(enrollment: enrollment, view: controller)
         return controller

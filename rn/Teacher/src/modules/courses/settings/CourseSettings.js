@@ -108,8 +108,6 @@ export class CourseSettings extends Component<Props, State> {
       <Screen
         title={i18n('Course Settings')}
         drawUnderNavBar={false}
-        navBarTitleColor={colors.textDarkest}
-        navBarButtonColor={colors.linkColor}
         rightBarButtons={[{
           style: 'done',
           testID: 'course-settings.done-btn',

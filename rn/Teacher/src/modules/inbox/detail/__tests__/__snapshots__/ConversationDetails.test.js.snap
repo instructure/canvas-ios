@@ -4,9 +4,7 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
 <Screen
   customPageViewPath="/conversations"
   drawUnderNavBar={true}
-  navBarButtonColor="#FFFFFF"
-  navBarColor="#394B58"
-  navBarStyle="light"
+  navBarStyle="global"
   rightBarButtons={
     Array [
       Object {
@@ -20,7 +18,6 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
     ]
   }
   showDismissButton={true}
-  statusBarStyle="default"
   title="Message Details"
 >
   <View
@@ -101,9 +98,7 @@ exports[`ConversationDetails renders correctly 1`] = `
 <Screen
   customPageViewPath="/conversations"
   drawUnderNavBar={true}
-  navBarButtonColor="#FFFFFF"
-  navBarColor="#394B58"
-  navBarStyle="light"
+  navBarStyle="global"
   rightBarButtons={
     Array [
       Object {
@@ -117,7 +112,6 @@ exports[`ConversationDetails renders correctly 1`] = `
     ]
   }
   showDismissButton={true}
-  statusBarStyle="default"
   title="Message Details"
 >
   <View
@@ -198,9 +192,7 @@ exports[`ConversationDetails renders correctly with no conversation 1`] = `
 <Screen
   customPageViewPath="/conversations"
   drawUnderNavBar={true}
-  navBarButtonColor="#FFFFFF"
-  navBarColor="#394B58"
-  navBarStyle="light"
+  navBarStyle="global"
   rightBarButtons={
     Array [
       Object {
@@ -214,7 +206,6 @@ exports[`ConversationDetails renders correctly with no conversation 1`] = `
     ]
   }
   showDismissButton={true}
-  statusBarStyle="default"
   title="Message Details"
 >
   <View
@@ -245,9 +236,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
 <Screen
   customPageViewPath="/conversations"
   drawUnderNavBar={true}
-  navBarButtonColor="#FFFFFF"
-  navBarColor="#394B58"
-  navBarStyle="light"
+  navBarStyle="global"
   rightBarButtons={
     Array [
       Object {
@@ -261,7 +250,6 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
     ]
   }
   showDismissButton={true}
-  statusBarStyle="default"
   title="Message Details"
 >
   <View
@@ -433,9 +421,7 @@ exports[`ConversationDetails renders with alternate data 1`] = `
 <Screen
   customPageViewPath="/conversations"
   drawUnderNavBar={true}
-  navBarButtonColor="#FFFFFF"
-  navBarColor="#394B58"
-  navBarStyle="light"
+  navBarStyle="global"
   rightBarButtons={
     Array [
       Object {
@@ -449,7 +435,6 @@ exports[`ConversationDetails renders with alternate data 1`] = `
     ]
   }
   showDismissButton={true}
-  statusBarStyle="default"
   title="Message Details"
 >
   <View

@@ -123,7 +123,7 @@ export class AssignmentDueDates extends Component<AssignmentDueDatesProps, any> 
     return (
       <Screen
         navBarColor={this.props.courseColor}
-        navBarStyle='dark'
+        navBarStyle='context'
         rightBarButtons={[
           {
             title: i18n('Edit'),

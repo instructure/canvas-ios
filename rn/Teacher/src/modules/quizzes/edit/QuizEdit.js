@@ -143,8 +143,6 @@ export class QuizEdit extends Component<Props, any> {
     return (
       <Screen
         title={i18n('Edit Quiz Details')}
-        navBarTitleColor={colors.textDarkest}
-        navBarButtonColor={colors.linkColor}
         rightBarButtons={[
           {
             title: i18n('Done'),

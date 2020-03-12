@@ -52,13 +52,14 @@ export class ConferenceList extends Component<Props, State> {
   }
 
   render () {
-    const { course, isLoading, conferences, refresh } = this.props
+    const { course, color, isLoading, conferences, refresh } = this.props
     let subtitle = course.name || ''
     return (
       <Screen
         title={i18n('Conferences')}
         subtitle={subtitle}
-        navBarStyle='dark'
+        navBarColor={color}
+        navBarStyle='context'
       >
         <View style={style.container}>
           <FlatList

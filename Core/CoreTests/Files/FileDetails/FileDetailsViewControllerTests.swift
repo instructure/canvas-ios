@@ -51,10 +51,6 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertFalse(controller.spinnerView.isHidden)
         XCTAssertFalse(controller.progressView.isHidden)
 
-        XCTAssertEqual(controller.preferredStatusBarStyle, .default)
-        navigation.navigationBar.barStyle = .black
-        XCTAssertEqual(controller.preferredStatusBarStyle, .lightContent)
-
         XCTAssertEqual(controller.title, file.display_name)
     }
 

@@ -3,10 +3,9 @@
 exports[`SpeedGrader defaults current page to 0 if userID is not in submissions 1`] = `
 <Screen
   navBarHidden={true}
-  navBarStyle="light"
+  navBarStyle="modal"
   noRotationInVerticallyCompact={true}
   showDismissButton={true}
-  statusBarStyle="default"
 >
   <View
     style={
@@ -53,10 +52,9 @@ exports[`SpeedGrader defaults current page to 0 if userID is not in submissions 
 exports[`SpeedGrader defaults current page to 0 without studentIndex 1`] = `
 <Screen
   navBarHidden={true}
-  navBarStyle="light"
+  navBarStyle="modal"
   noRotationInVerticallyCompact={true}
   showDismissButton={true}
-  statusBarStyle="default"
 >
   <View
     style={
@@ -103,10 +101,9 @@ exports[`SpeedGrader defaults current page to 0 without studentIndex 1`] = `
 exports[`SpeedGrader only sets submissions once 1`] = `
 <Screen
   navBarHidden={true}
-  navBarStyle="light"
+  navBarStyle="modal"
   noRotationInVerticallyCompact={true}
   showDismissButton={true}
-  statusBarStyle="default"
 >
   <View
     style={
@@ -179,10 +176,9 @@ exports[`SpeedGrader only sets submissions once 1`] = `
 exports[`SpeedGrader renders 1`] = `
 <Screen
   navBarHidden={true}
-  navBarStyle="light"
+  navBarStyle="modal"
   noRotationInVerticallyCompact={true}
   showDismissButton={true}
-  statusBarStyle="default"
 >
   <View
     style={
@@ -450,10 +446,9 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "_renderPhaseUpdates": null,
                 "_rendered": <Screen
                   navBarHidden={true}
-                  navBarStyle="light"
+                  navBarStyle="modal"
                   noRotationInVerticallyCompact={true}
                   showDismissButton={true}
-                  statusBarStyle="default"
                 >
                   <View
                     style={

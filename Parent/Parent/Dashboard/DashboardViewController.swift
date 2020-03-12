@@ -22,6 +22,11 @@ import ReactiveSwift
 import CanvasCore
 import Core
 
+/// Always uses the nav bar style to update status bar, even if hidden
+class DashboardNavigationController: UINavigationController {
+    override var childForStatusBarStyle: UIViewController? { nil }
+}
+
 class DashboardViewController: UIViewController, CustomNavbarProtocol {
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var coursesTabItem: UITabBarItem!
@@ -122,7 +127,10 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.navigationBar.useContextColor(currentStudentID.map {
+            ColorScheme.observee($0).color
+        })
+        navigationController?.setNavigationBarHidden(true, animated: true)
         updateBadge()
         refreshNavbarColor()
     }

@@ -24,7 +24,7 @@ import {
   Image,
 } from 'react-native'
 import Screen from '../../routing/Screen'
-import { colors, createStyleSheet } from '../stylesheet'
+import { createStyleSheet } from '../stylesheet'
 import icon from '../../images/inst-icons'
 import Row from './rows/Row'
 
@@ -41,8 +41,6 @@ export default class PickerPage extends Component<Props> {
     return (
       <Screen
         title={title}
-        navBarTitleColors={colors.textDarkest}
-        navBarButtonColor={colors.linkColor}
         drawUnderNavBar
       >
         <FlatList

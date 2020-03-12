@@ -45,6 +45,8 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
     @IBOutlet weak var emptyStateHeader: DynamicLabel!
     @IBOutlet weak var emptyStateSubHeader: DynamicLabel!
 
+    lazy var profileButton = UIBarButtonItem(image: .icon(.hamburger, .solid), style: .plain, target: self, action: #selector(openProfile))
+
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMd", options: 0, locale: NSLocale.current)
@@ -59,6 +61,8 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
     }
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.leftBarButtonItem = profileButton
         view.backgroundColor = .named(.backgroundLightest)
         setupTableView()
         emptyStateHeader.text = NSLocalizedString("No Notifications", comment: "")
@@ -113,6 +117,10 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
         if colors.pending || courses.pending { return }
         courses.forEach { [weak self] in self?.courseCache[ $0.id ] = Info(name: $0.name, courseCode: $0.courseCode, color: $0.color) }
         update()
+    }
+
+    @objc func openProfile() {
+        env.router.route(to: .profile, from: self, options: .modal())
     }
 }
 

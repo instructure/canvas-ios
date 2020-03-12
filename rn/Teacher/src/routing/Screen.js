@@ -34,22 +34,16 @@ const Helm = NativeModules.Helm
 type ScreenProps = {
   title?: string,
   subtitle?: string,
-  statusBarStyle?: 'light' | 'default',
-  statusBarHidden?: boolean,
-  statusBarUpdateAnimation?: any,
   automaticallyAdjustsScrollViewInsets?: boolean,
   supportedOrientations?: any,
   noRotationInVerticallyCompact?: boolean,
   backgroundColor?: string,
 
   // Nav bar stuff
-  navBarStyle?: 'light' | 'dark',
-  navBarButtonColor?: ?string,
+  navBarStyle?: 'global' | 'context' | 'modal',
   navBarColor?: ?string,
   navBarHidden?: boolean,
-  navBarTranslucent?: boolean,
-  navBarImage?: ?string,
-  hideNavBarShadowImage?: boolean,
+  navBarLogo?: ?boolean,
   navBarTransparent?: boolean,
   drawUnderNavBar?: boolean,
   drawUnderTabBar?: boolean,
@@ -77,8 +71,7 @@ export default class Screen extends React.Component<ScreenProps, State> {
   deviceEventEmitterSubscriptions: Object = {}
 
   static defaultProps = {
-    navBarStyle: 'light',
-    statusBarStyle: 'default',
+    navBarStyle: 'modal',
     showDismissButton: true,
   }
 
@@ -118,7 +111,6 @@ export default class Screen extends React.Component<ScreenProps, State> {
       return key
     })
     configFRD.backButtonTitle = configFRD.backButtonTitle || i18n('Back') // cannot resolve locale staticly
-    if (configFRD.navBarStyle === 'dark') configFRD.statusBarStyle = 'light'
     Helm.setScreenConfig(configFRD, id, hasRendered)
   }
 

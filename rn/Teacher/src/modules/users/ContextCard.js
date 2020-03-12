@@ -223,7 +223,7 @@ export class ContextCard extends Component {
         testID: 'context-card.email-contact',
         accessibilityLabel: i18n('Send message'),
       }] : [],
-      navBarStyle: this.props.navigator.isModal ? undefined : 'dark',
+      navBarStyle: this.props.navigator.isModal ? 'modal' : 'context',
       navBarColor: this.props.navigator.isModal ? undefined : this.props.courseColor,
     }
 

@@ -254,7 +254,7 @@ exports[`CourseNavigation renders correctly 1`] = `
   automaticallyAdjustsScrollViewInsets={false}
   disableGlobalSafeArea={true}
   drawUnderNavBar={true}
-  navBarStyle="dark"
+  navBarStyle="context"
   navBarTransparent={true}
   onTraitCollectionChange={[Function]}
   rightBarButtons={
@@ -270,7 +270,6 @@ exports[`CourseNavigation renders correctly 1`] = `
     ]
   }
   showDismissButton={true}
-  statusBarStyle="default"
   title="rn 101"
 >
   <TabsList
@@ -313,7 +312,7 @@ exports[`CourseNavigation renders correctly without tabs 1`] = `
   automaticallyAdjustsScrollViewInsets={false}
   disableGlobalSafeArea={true}
   drawUnderNavBar={true}
-  navBarStyle="dark"
+  navBarStyle="context"
   navBarTransparent={true}
   onTraitCollectionChange={[Function]}
   rightBarButtons={
@@ -329,7 +328,6 @@ exports[`CourseNavigation renders correctly without tabs 1`] = `
     ]
   }
   showDismissButton={true}
-  statusBarStyle="default"
   title="rn 101"
 >
   <TabsList
@@ -360,7 +358,7 @@ exports[`CourseNavigation renders with empty image url 1`] = `
   automaticallyAdjustsScrollViewInsets={false}
   disableGlobalSafeArea={true}
   drawUnderNavBar={true}
-  navBarStyle="dark"
+  navBarStyle="context"
   navBarTransparent={true}
   onTraitCollectionChange={[Function]}
   rightBarButtons={
@@ -376,7 +374,6 @@ exports[`CourseNavigation renders with empty image url 1`] = `
     ]
   }
   showDismissButton={true}
-  statusBarStyle="default"
   title="rn 101"
 >
   <TabsList
@@ -419,7 +416,7 @@ exports[`CourseNavigation renders with image url 1`] = `
   automaticallyAdjustsScrollViewInsets={false}
   disableGlobalSafeArea={true}
   drawUnderNavBar={true}
-  navBarStyle="dark"
+  navBarStyle="context"
   navBarTransparent={true}
   onTraitCollectionChange={[Function]}
   rightBarButtons={
@@ -435,7 +432,6 @@ exports[`CourseNavigation renders with image url 1`] = `
     ]
   }
   showDismissButton={true}
-  statusBarStyle="default"
   title="rn 101"
 >
   <TabsList
@@ -480,7 +476,7 @@ exports[`CourseNavigation renders without image url 1`] = `
   automaticallyAdjustsScrollViewInsets={false}
   disableGlobalSafeArea={true}
   drawUnderNavBar={true}
-  navBarStyle="dark"
+  navBarStyle="context"
   navBarTransparent={true}
   onTraitCollectionChange={[Function]}
   rightBarButtons={
@@ -496,7 +492,6 @@ exports[`CourseNavigation renders without image url 1`] = `
     ]
   }
   showDismissButton={true}
-  statusBarStyle="default"
   title="rn 101"
 >
   <TabsList

@@ -38,9 +38,11 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
     fileprivate var calendar: Calendar = Calendar.current
     @objc internal var calendarView: CalendarView!
     fileprivate var toastManager: ToastManager?
+    lazy var profileButton = UIBarButtonItem(image: .icon(.hamburger, .solid), style: .plain, target: self, action: #selector(openProfile))
 
     // Data Variables
     fileprivate var session: Session!
+    let env = AppEnvironment.shared
 
     var allCoursesCollection: FetchedCollection<Course>?
     var favCoursesCollection: FetchedCollection<Course>?
@@ -190,6 +192,10 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
         self.refresher?.refresh(true)
     }
 
+    @objc func openProfile() {
+        env.router.route(to: .profile, from: self, options: .modal())
+    }
+
     // ---------------------------------------------
     // MARK: - Selection
     // ---------------------------------------------
@@ -251,6 +257,7 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
             navigationButtons.append(todayButton)
         }
 
+        navigationItem.leftBarButtonItem = profileButton
         navigationItem.rightBarButtonItems = navigationButtons
     }
 

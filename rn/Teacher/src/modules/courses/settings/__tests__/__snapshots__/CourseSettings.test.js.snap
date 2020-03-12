@@ -3,9 +3,7 @@
 exports[`CourseSettings dismisses modal activity upon save error 1`] = `
 <Screen
   drawUnderNavBar={false}
-  navBarButtonColor="#008EE2"
-  navBarStyle="light"
-  navBarTitleColor="#2D3B45"
+  navBarStyle="modal"
   rightBarButtons={
     Array [
       Object {
@@ -17,7 +15,6 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
     ]
   }
   showDismissButton={false}
-  statusBarStyle="default"
   title="Course Settings"
 >
   <View
@@ -251,9 +248,7 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
 exports[`CourseSettings renders 1`] = `
 <Screen
   drawUnderNavBar={false}
-  navBarButtonColor="#008EE2"
-  navBarStyle="light"
-  navBarTitleColor="#2D3B45"
+  navBarStyle="modal"
   rightBarButtons={
     Array [
       Object {
@@ -265,7 +260,6 @@ exports[`CourseSettings renders 1`] = `
     ]
   }
   showDismissButton={false}
-  statusBarStyle="default"
   title="Course Settings"
 >
   <View
@@ -499,9 +493,7 @@ exports[`CourseSettings renders 1`] = `
 exports[`CourseSettings renders a modal activity when saving 1`] = `
 <Screen
   drawUnderNavBar={false}
-  navBarButtonColor="#008EE2"
-  navBarStyle="light"
-  navBarTitleColor="#2D3B45"
+  navBarStyle="modal"
   rightBarButtons={
     Array [
       Object {
@@ -513,7 +505,6 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
     ]
   }
   showDismissButton={false}
-  statusBarStyle="default"
   title="Course Settings"
 >
   <View
@@ -747,9 +738,7 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
 exports[`CourseSettings renders with empty image url 1`] = `
 <Screen
   drawUnderNavBar={false}
-  navBarButtonColor="#008EE2"
-  navBarStyle="light"
-  navBarTitleColor="#2D3B45"
+  navBarStyle="modal"
   rightBarButtons={
     Array [
       Object {
@@ -761,7 +750,6 @@ exports[`CourseSettings renders with empty image url 1`] = `
     ]
   }
   showDismissButton={false}
-  statusBarStyle="default"
   title="Course Settings"
 >
   <View
@@ -979,9 +967,7 @@ exports[`CourseSettings renders with empty image url 1`] = `
 exports[`CourseSettings renders with image url 1`] = `
 <Screen
   drawUnderNavBar={false}
-  navBarButtonColor="#008EE2"
-  navBarStyle="light"
-  navBarTitleColor="#2D3B45"
+  navBarStyle="modal"
   rightBarButtons={
     Array [
       Object {
@@ -993,7 +979,6 @@ exports[`CourseSettings renders with image url 1`] = `
     ]
   }
   showDismissButton={false}
-  statusBarStyle="default"
   title="Course Settings"
 >
   <View
@@ -1227,9 +1212,7 @@ exports[`CourseSettings renders with image url 1`] = `
 exports[`CourseSettings renders without image url 1`] = `
 <Screen
   drawUnderNavBar={false}
-  navBarButtonColor="#008EE2"
-  navBarStyle="light"
-  navBarTitleColor="#2D3B45"
+  navBarStyle="modal"
   rightBarButtons={
     Array [
       Object {
@@ -1241,7 +1224,6 @@ exports[`CourseSettings renders without image url 1`] = `
     ]
   }
   showDismissButton={false}
-  statusBarStyle="default"
   title="Course Settings"
 >
   <View
@@ -1459,9 +1441,7 @@ exports[`CourseSettings renders without image url 1`] = `
 exports[`CourseSettings shows home view picker when home row tapped 1`] = `
 <Screen
   drawUnderNavBar={false}
-  navBarButtonColor="#008EE2"
-  navBarStyle="light"
-  navBarTitleColor="#2D3B45"
+  navBarStyle="modal"
   rightBarButtons={
     Array [
       Object {
@@ -1473,7 +1453,6 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
     ]
   }
   showDismissButton={false}
-  statusBarStyle="default"
   title="Course Settings"
 >
   <View

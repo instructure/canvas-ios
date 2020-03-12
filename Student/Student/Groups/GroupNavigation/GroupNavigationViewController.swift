@@ -41,10 +41,6 @@ class GroupNavigationViewController: UITableViewController, ColoredNavViewProtoc
         return controller
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return navigationController?.navigationBar.barStyle == .black ? .lightContent : .default
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTitleViewInNavbar(title: groups.first?.name ?? "")

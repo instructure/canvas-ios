@@ -49,7 +49,7 @@ import AttachmentPicker from '../attachments/AttachmentPicker'
 import uuid from 'uuid/v1'
 import { wait } from '../../utils/async-wait'
 import { isTeacher } from '../app'
-import { colors, createStyleSheet, vars } from '../../common/stylesheet'
+import { colors, createStyleSheet } from '../../common/stylesheet'
 import { Text } from '../../common/text'
 import { isRegularDisplayMode } from '../../routing/utils'
 import type { TraitCollection } from '../../routing/Navigator'
@@ -545,10 +545,8 @@ export class FilesList extends Component<Props, State> {
       <Screen
         customPageViewPath={this.props.customPageViewPath ? this.props.customPageViewPath : null}
         title={title}
-        navBarColor={isCourse ? this.props.courseColor : colors.navBackground}
-        navBarStyle={isCourse ? 'dark' : vars.navBarStyle}
-        navBarButtonColor={isCourse ? colors.white : colors.navTextColor}
-        navBarTitleColor={isCourse ? colors.white : colors.navTextColor}
+        navBarColor={this.props.courseColor}
+        navBarStyle={isCourse ? 'context' : 'global'}
         rightBarButtons={rightBarButtons}
         onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
       >

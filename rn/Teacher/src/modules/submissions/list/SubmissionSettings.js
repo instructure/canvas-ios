@@ -27,7 +27,6 @@ import Screen from '../../../routing/Screen'
 import i18n from 'format-message'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
-import { colors } from '../../../common/stylesheet'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
@@ -75,7 +74,6 @@ export class SubmissionSettings extends PureComponent<SubmissionSettingsProps> {
     return (
       <Screen
         title={i18n('Submission Settings')}
-        navBarButtonColor={colors.linkColor}
       >
         <ScrollView style={style.container}>
           <RowSeparator />

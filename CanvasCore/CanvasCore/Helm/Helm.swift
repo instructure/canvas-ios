@@ -506,27 +506,6 @@ extension UIViewController {
     }
 }
 
-extension HelmManager {
-    @objc static func narBarTitleViewFromImagePath(_ imagePath: Any) -> UIView? {
-        var titleView: UIView? = nil
-        if let path = imagePath as? String {
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
-            imageView.load(url: URL(string: path))
-            titleView = imageView
-        } else if let image = RCTConvert.uiImage(imagePath) {
-            let imageView = UIImageView(image: image)
-            titleView = imageView
-        }
-        guard let view = titleView else { return nil }
-
-        view.contentMode = .scaleAspectFit
-        view.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        view.widthAnchor.constraint(equalToConstant: 44).isActive = true
-        view.backgroundColor = Core.Brand.shared.headerImageBackground
-        return view
-    }
-}
-
 extension HelmManager: UIAdaptivePresentationControllerDelegate {
     public func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
         return false

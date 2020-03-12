@@ -31,7 +31,7 @@ import GroupFavoriteActions from '../../groups/favorites/actions'
 import mapStateToProps from './map-state-to-props'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
-import { colors, createStyleSheet } from '../../../common/stylesheet'
+import { createStyleSheet } from '../../../common/stylesheet'
 import SectionHeader from '../../../common/components/rows/SectionHeader'
 import ExperimentalFeature from '../../../common/ExperimentalFeature'
 
@@ -143,10 +143,8 @@ export class FavoritesList extends Component<Props> {
 
     return (
       <Screen
-        navBarTitleColor={colors.textDarkest}
-        navBarButtonColor={colors.linkColor}
         title={i18n('Edit Dashboard')}
-        customPageViewPath={'/courses'}
+        customPageViewPath='/courses'
       >
         <SafeAreaView style={styles.container}>
           <View style={styles.header}>

@@ -24,26 +24,24 @@ import CanvasCore
 @testable import Parent
 
 class ParentTestCase: XCTestCase {
-    var database: NSPersistentContainer {
-        return TestsFoundation.singleSharedTestDatabase
-    }
-    var databaseClient: NSManagedObjectContext {
-        return database.viewContext
-    }
+    var database: NSPersistentContainer { TestsFoundation.singleSharedTestDatabase }
+    var databaseClient: NSManagedObjectContext { database.viewContext }
 
     var api = MockURLSession.self
-    var queue = OperationQueue()
-    var router: TestRouter { env.router as! TestRouter }
-    var env = TestEnvironment()
-    var logger: TestLogger { env.logger as! TestLogger }
+    let router = TestRouter()
+    lazy var env: TestEnvironment = {
+        let env = TestEnvironment()
+        env.router = router
+        env.logger = logger
+        env.mockStore = false
+        return env
+    }()
+    let logger = TestLogger()
     var currentSession: LoginSession? { env.currentSession }
 
     override func setUp() {
         super.setUp()
-        queue = OperationQueue()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
-        env = TestEnvironment()
-        env.mockStore = false
         AppEnvironment.shared = env
         MockURLSession.reset()
         MockUploadManager.reset()

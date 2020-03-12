@@ -3,10 +3,7 @@
 exports[`FilesList progress function should update the UI correctly 1`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#FFFFFF"
-  navBarColor="#394B58"
-  navBarStyle="light"
-  navBarTitleColor="#FFFFFF"
+  navBarStyle="global"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -816,10 +813,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
 exports[`FilesList progress function should update the UI correctly 2`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#FFFFFF"
-  navBarColor="#394B58"
-  navBarStyle="light"
-  navBarTitleColor="#FFFFFF"
+  navBarStyle="global"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -1629,10 +1623,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
 exports[`FilesList progress function should update the UI correctly 3`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#FFFFFF"
-  navBarColor="#394B58"
-  navBarStyle="light"
-  navBarTitleColor="#FFFFFF"
+  navBarStyle="global"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -2442,10 +2433,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
 exports[`FilesList sending weird data into the progress update function should not break all the things 1`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#FFFFFF"
-  navBarColor="#394B58"
-  navBarStyle="light"
-  navBarTitleColor="#FFFFFF"
+  navBarStyle="global"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -3262,10 +3250,7 @@ exports[`FilesList sending weird data into the progress update function should n
 exports[`FilesList should render 1`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#FFFFFF"
-  navBarColor="#394B58"
-  navBarStyle="light"
-  navBarTitleColor="#FFFFFF"
+  navBarStyle="global"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -3949,10 +3934,8 @@ exports[`FilesList should render 1`] = `
 exports[`FilesList should render for course files 1`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#FFFFFF"
   navBarColor="red"
-  navBarStyle="dark"
-  navBarTitleColor="#FFFFFF"
+  navBarStyle="context"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -4643,10 +4626,7 @@ exports[`FilesList should render for course files 1`] = `
 exports[`FilesList should render for user files 1`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#FFFFFF"
-  navBarColor="#394B58"
-  navBarStyle="light"
-  navBarTitleColor="#FFFFFF"
+  navBarStyle="global"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -5344,10 +5324,7 @@ exports[`FilesList should render for user files 1`] = `
 exports[`FilesList should render with folders 1`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#FFFFFF"
-  navBarColor="#394B58"
-  navBarStyle="light"
-  navBarTitleColor="#FFFFFF"
+  navBarStyle="global"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -6052,10 +6029,7 @@ exports[`FilesList should render with folders 1`] = `
 exports[`FilesList should render with no data at all 1`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#FFFFFF"
-  navBarColor="#394B58"
-  navBarStyle="light"
-  navBarTitleColor="#FFFFFF"
+  navBarStyle="global"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [

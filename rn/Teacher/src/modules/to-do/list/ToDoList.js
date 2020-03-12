@@ -26,8 +26,9 @@ import {
   Image,
 } from 'react-native'
 import Screen from '../../../routing/Screen'
-import { colors, createStyleSheet, vars } from '../../../common/stylesheet'
+import { createStyleSheet } from '../../../common/stylesheet'
 import images from '../../../images'
+import icon from '../../../images/inst-icons'
 import {
   fetchPropsFor,
   ToDoModel,
@@ -89,15 +90,25 @@ export class ToDoList extends Component<Props, State> {
     return this.props.refresh()
   }
 
+  showProfile = () => {
+    this.props.navigator.show('/profile', { modal: true, modalPresentationStyle: 'drawer', embedInNavigationController: false })
+  }
+
   render () {
     return (
       <Screen
-        navBarColor={colors.navBackground}
-        navBarButtonColor={colors.navTextColor}
-        navBarStyle={vars.navBarStyle}
+        navBarStyle='global'
+        navBarLogo
         drawUnderNavBar
-        navBarImage={vars.headerImageURL}
-        customPageViewPath={'/'}
+        customPageViewPath='/'
+        leftBarButtons={[{
+          image: icon('hamburger', 'solid'),
+          width: 24,
+          height: 24,
+          testID: 'Todo.profileButton',
+          action: this.showProfile,
+          accessibilityLabel: i18n('Profile Menu'),
+        }]}
       >
         <View style={styles.container} onLayout={this.handleLayout}>
           <FlatList

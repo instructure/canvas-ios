@@ -16,15 +16,8 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
       },
     ]
   }
-  navBarButtonColor="#FFFFFF"
-  navBarColor="#394B58"
-  navBarHidden={false}
-  navBarImage={
-    Object {
-      "testUri": "../../../src/images/canvas-logo.png",
-    }
-  }
-  navBarStyle="light"
+  navBarLogo={true}
+  navBarStyle="global"
   rightBarButtons={
     Array [
       Object {
@@ -658,10 +651,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
 
 exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
 <Screen
-  navBarButtonColor="#FFFFFF"
-  navBarColor="#394B58"
-  navBarHidden={false}
-  navBarStyle="light"
+  navBarStyle="global"
   title="All Courses"
 >
   <list>
@@ -1444,15 +1434,8 @@ exports[`Dashboard render 1`] = `
       },
     ]
   }
-  navBarButtonColor="#FFFFFF"
-  navBarColor="#394B58"
-  navBarHidden={false}
-  navBarImage={
-    Object {
-      "testUri": "../../../src/images/canvas-logo.png",
-    }
-  }
-  navBarStyle="light"
+  navBarLogo={true}
+  navBarStyle="global"
   rightBarButtons={
     Array [
       Object {
@@ -2100,15 +2083,8 @@ exports[`Dashboard render while pending 1`] = `
       },
     ]
   }
-  navBarButtonColor="#FFFFFF"
-  navBarColor="#394B58"
-  navBarHidden={false}
-  navBarImage={
-    Object {
-      "testUri": "../../../src/images/canvas-logo.png",
-    }
-  }
-  navBarStyle="light"
+  navBarLogo={true}
+  navBarStyle="global"
   rightBarButtons={
     Array [
       Object {
@@ -2756,15 +2732,8 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
       },
     ]
   }
-  navBarButtonColor="#FFFFFF"
-  navBarColor="#394B58"
-  navBarHidden={false}
-  navBarImage={
-    Object {
-      "testUri": "../../../src/images/canvas-logo.png",
-    }
-  }
-  navBarStyle="light"
+  navBarLogo={true}
+  navBarStyle="global"
   rightBarButtons={
     Array [
       Object {
@@ -2991,15 +2960,8 @@ exports[`Dashboard render without favorite courses 1`] = `
       },
     ]
   }
-  navBarButtonColor="#FFFFFF"
-  navBarColor="#394B58"
-  navBarHidden={false}
-  navBarImage={
-    Object {
-      "testUri": "../../../src/images/canvas-logo.png",
-    }
-  }
-  navBarStyle="light"
+  navBarLogo={true}
+  navBarStyle="global"
   rightBarButtons={
     Array [
       Object {
@@ -3226,15 +3188,8 @@ exports[`Dashboard renders course invites 1`] = `
       },
     ]
   }
-  navBarButtonColor="#FFFFFF"
-  navBarColor="#394B58"
-  navBarHidden={false}
-  navBarImage={
-    Object {
-      "testUri": "../../../src/images/canvas-logo.png",
-    }
-  }
-  navBarStyle="light"
+  navBarLogo={true}
+  navBarStyle="global"
   rightBarButtons={
     Array [
       Object {

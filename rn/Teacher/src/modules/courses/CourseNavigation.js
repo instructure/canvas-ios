@@ -243,7 +243,7 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
       <Screen
         title={courseCode}
         navBarColor={courseColor}
-        navBarStyle='dark'
+        navBarStyle='context'
         onTraitCollectionChange={this.onTraitCollectionChange}
         {...screenProps}
         disableGlobalSafeArea

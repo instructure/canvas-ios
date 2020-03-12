@@ -2,7 +2,7 @@
 
 exports[`renders 1`] = `
 <Screen
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={
     Array [
       Object {
@@ -37,7 +37,7 @@ exports[`renders 1`] = `
 
 exports[`renders with overrides 1`] = `
 <Screen
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={
     Array [
       Object {
