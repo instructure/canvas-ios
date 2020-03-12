@@ -48,7 +48,6 @@ class PeopleListViewControllerTests: CoreTestCase {
     }
 
     func testLayout() {
-        let navigation = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
 
