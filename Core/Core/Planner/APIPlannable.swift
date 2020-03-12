@@ -20,6 +20,8 @@ import Foundation
 
 public struct APIPlannable: Codable, Equatable {
     let course_id: ID?
+    let group_id: ID?
+    let user_id: ID?
     let context_type: String?
     let planner_override: APIPlannerOverride?
     let plannable_id: ID
@@ -61,7 +63,9 @@ public struct APIPlannerOverride: Codable, Equatable {
 extension APIPlannable {
     public static func make(
         course_id: ID? = "1",
-        context_type: String = "course",
+        group_id: ID? = nil,
+        user_id: ID? = nil,
+        context_type: String? = "Course",
         planner_override: APIPlannerOverride? = nil,
         plannable_id: ID = "1",
         plannable_type: String = "Assignment",
@@ -73,6 +77,8 @@ extension APIPlannable {
     ) -> APIPlannable {
         return APIPlannable(
             course_id: course_id,
+            group_id: group_id,
+            user_id: user_id,
             context_type: context_type,
             planner_override: planner_override,
             plannable_id: plannable_id,

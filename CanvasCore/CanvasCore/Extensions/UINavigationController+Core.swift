@@ -43,14 +43,5 @@ public extension UINavigationController {
         detail.navigationBar.isTranslucent = master.navigationBar.isTranslucent
         detail.navigationBar.barStyle = master.navigationBar.barStyle
         detail.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.named(.textLightest)]
-        
-        if let titleView = detail.topViewController?.navigationItem.titleView as? TitleSubtitleView {
-            var color: UIColor = master.navigationBar.tintColor
-            if (master.navigationBar.barStyle != .default) {
-                color = .white
-            }
-            titleView.titleLabel?.textColor = color
-            titleView.subtitleLabel?.textColor = color
-        }
     }
 }

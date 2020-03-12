@@ -50,8 +50,8 @@ public class PlannerListViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        emptyStateHeader.text = NSLocalizedString("No Assignments", bundle: .core, comment: "")
-        emptyStateSubHeader.text = NSLocalizedString("It looks like assignments haven’t been created in this space yet.", bundle: .core, comment: "")
+        emptyStateHeader.text = NSLocalizedString("No Events Today!", bundle: .core, comment: "")
+        emptyStateSubHeader.text = NSLocalizedString("It looks like a great day to rest, relax, and recharge.", bundle: .core, comment: "")
         errorView.messageLabel.text = NSLocalizedString("There was an error loading events. Pull to refresh to try again.", bundle: .core, comment: "")
         errorView.retryButton.addTarget(self, action: #selector(retryAfterError), for: .primaryActionTriggered)
 
@@ -115,7 +115,8 @@ extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate 
             let noteDetail = PlannerNoteDetailViewController.create(plannable: p)
             env.router.show(noteDetail, from: self, options: .detail(embedInNav: true))
         } else if let url = plannables?[indexPath]?.htmlURL {
-            env.router.route(to: url, from: self, options: .detail(embedInNav: true))
+            let to = url.appendingQueryItems(URLQueryItem(name: "origin", value: "calendar"))
+            env.router.route(to: to, from: self, options: .detail(embedInNav: true))
         }
     }
 
@@ -133,15 +134,14 @@ extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate 
 }
 
 class PlannerListCell: UITableViewCell {
-    @IBOutlet weak var points: DynamicLabel!
-    @IBOutlet weak var dueDate: DynamicLabel!
-    @IBOutlet weak var title: DynamicLabel!
-    @IBOutlet weak var courseCode: DynamicLabel!
-    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var courseCode: UILabel!
+    @IBOutlet weak var dueDate: UILabel!
+    @IBOutlet weak var points: UILabel!
+    @IBOutlet weak var pointsDivider: UIView!
+    @IBOutlet weak var title: UILabel!
     @IBOutlet weak var icon: UIImageView!
 
     func update(_ p: Plannable?) {
-        stackView.setCustomSpacing(2, after: courseCode)
         accessibilityIdentifier = "PlannerList.event.\(p?.id ?? "")"
         courseCode.text = p?.contextName
         title.text = p?.title
@@ -150,7 +150,14 @@ class PlannerListCell: UITableViewCell {
         }
         icon.image = p?.icon()
         points.text = p?.pointsPossible.flatMap {
-            GradeFormatter.numberFormatter.string(from: NSNumber(value: $0))
+            let format = NSLocalizedString("g_points", bundle: .core, comment: "")
+            return String.localizedStringWithFormat(format, $0)
         }
+        pointsDivider.isHidden = dueDate.text == nil || points.text == nil
+        if !Bundle.main.isParentApp, let color = p?.color.ensureContrast(against: .named(.backgroundLightest)) {
+            courseCode.textColor = color
+            icon.tintColor = color
+        }
+        accessoryType = .disclosureIndicator
     }
 }

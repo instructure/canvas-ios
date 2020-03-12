@@ -52,8 +52,18 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
 
     func testLayout() {
         let date = Clock.now
-        let assignment = APIPlannable.make(plannable_date: date)
-        api.mock(getPlannables(from: start, to: end), value: [assignment])
+        ContextColor.make()
+        let assignment = APIPlannable.make(
+            plannable: .init(title: "assignment a", points_possible: 1),
+            plannable_date: date
+        )
+        let note = APIPlannable.make(
+            course_id: nil, context_type: nil,
+            plannable_id: "2", plannable_type: "planner_note",
+            plannable: .init(title: "note", details: "deets"),
+            plannable_date: date.addMinutes(60)
+        )
+        api.mock(getPlannables(from: start, to: end), value: [ assignment, note ])
         controller.view.layoutIfNeeded()
 
         XCTAssertEqual(controller.emptyStateView.isHidden, true)
@@ -63,12 +73,21 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         let cell = controller.tableView.cellForRow(at: index0) as? PlannerListCell
         XCTAssertEqual(cell?.title.text, "assignment a")
         XCTAssertEqual(cell?.courseCode.text, "Assignment Grades")
+        XCTAssertEqual(cell?.courseCode.textColor, .red)
         XCTAssertEqual(cell?.dueDate.text, DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .short) )
-        XCTAssertEqual(cell?.points.text, nil)
+        XCTAssertEqual(cell?.points.text, "1 point")
+        XCTAssertEqual(cell?.pointsDivider.isHidden, false)
+
+        let index1 = IndexPath(row: 1, section: 0)
+        let cell1 = controller.tableView.cellForRow(at: index1) as? PlannerListCell
+        XCTAssertEqual(cell1?.title.text, "note")
+        XCTAssertEqual(cell1?.points.text, nil)
+        XCTAssertEqual(cell1?.pointsDivider.isHidden, true)
 
         controller.tableView.selectRow(at: index0, animated: false, scrollPosition: .none)
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index0)
-        XCTAssertTrue(router.lastRoutedTo(assignment.html_url!.rawValue))
+        let to = assignment.html_url!.rawValue.appendingQueryItems(URLQueryItem(name: "origin", value: "calendar"))
+        XCTAssertTrue(router.lastRoutedTo(to))
         controller.viewWillAppear(false)
         XCTAssertNil(controller.tableView.indexPathForSelectedRow)
 
@@ -78,10 +97,12 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
 
     func testNavigationToTodo() {
         let date = Clock.now
-        let note = APIPlannable.make(plannable_id: "2",
-                                     plannable_type: "planner_note",
-                                     plannable: APIPlannable.plannable(title: "to do title", details: "hello world"),
-                                     plannable_date: date)
+        let note = APIPlannable.make(
+            plannable_id: "2",
+            plannable_type: "planner_note",
+            plannable: APIPlannable.plannable(title: "to do title", details: "hello world"),
+            plannable_date: date
+        )
         api.mock(getPlannables(from: start, to: end), value: [note])
         controller.view.layoutIfNeeded()
         let index0 = IndexPath(row: 0, section: 0)
@@ -96,8 +117,8 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         controller.view.layoutIfNeeded()
 
         XCTAssertEqual(controller.emptyStateView.isHidden, false)
-        XCTAssertEqual(controller.emptyStateHeader.text, "No Assignments")
-        XCTAssertEqual(controller.emptyStateSubHeader.text, "It looks like assignments haven’t been created in this space yet.")
+        XCTAssertEqual(controller.emptyStateHeader.text, "No Events Today!")
+        XCTAssertEqual(controller.emptyStateSubHeader.text, "It looks like a great day to rest, relax, and recharge.")
 
         controller.tableView.delegate?.scrollViewWillBeginDragging?(controller.tableView)
         XCTAssertTrue(isDragging)

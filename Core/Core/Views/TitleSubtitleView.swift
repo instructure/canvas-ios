@@ -18,32 +18,36 @@
 
 import UIKit
 
-public protocol NavigationSubtitleView: UIView {
-    static func create() -> Self
-    var titleLabel: UILabel? { get set }
-    var subtitleLabel: UILabel? { get set }
-}
-
-open class TitleSubtitleView: UIView, NavigationSubtitleView {
-    @IBOutlet public weak var titleLabel: UILabel?
-    @IBOutlet public weak var subtitleLabel: UILabel?
+public class TitleSubtitleView: UIView {
+    @IBOutlet public weak var titleLabel: UILabel!
+    @IBOutlet public weak var subtitleLabel: UILabel!
 
     public var title: String? {
-        get { return titleLabel?.text }
-        set { titleLabel?.text = newValue }
+        get { return titleLabel.text }
+        set { titleLabel.text = newValue }
     }
 
     public var subtitle: String? {
-        get { return subtitleLabel?.text }
-        set { subtitleLabel?.text = newValue }
+        get { return subtitleLabel.text }
+        set { subtitleLabel.text = newValue }
     }
 
     public static func create() -> Self {
         let view = loadFromXib()
-        view.titleLabel?.text = ""
-        view.titleLabel?.textColor = .named(.white)
-        view.subtitleLabel?.text = ""
-        view.subtitleLabel?.textColor = .named(.white)
+        view.titleLabel.text = ""
+        view.subtitleLabel.text = ""
         return view
+    }
+
+    public func recreate() -> TitleSubtitleView {
+        let copy = TitleSubtitleView.create()
+        copy.title = title
+        copy.subtitle = subtitle
+        return copy
+    }
+
+    public override func tintColorDidChange() {
+        titleLabel.textColor = tintColor
+        subtitleLabel.textColor = tintColor
     }
 }

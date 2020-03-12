@@ -7,10 +7,12 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
       Object {
         "accessibilityLabel": "Profile Menu",
         "action": [Function],
+        "height": 24,
         "image": Object {
-          "testUri": "../../../src/images/hamburger.png",
+          "uri": "hamburgerSolid",
         },
         "testID": "Dashboard.profileButton",
+        "width": 24,
       },
     ]
   }
@@ -1433,10 +1435,12 @@ exports[`Dashboard render 1`] = `
       Object {
         "accessibilityLabel": "Profile Menu",
         "action": [Function],
+        "height": 24,
         "image": Object {
-          "testUri": "../../../src/images/hamburger.png",
+          "uri": "hamburgerSolid",
         },
         "testID": "Dashboard.profileButton",
+        "width": 24,
       },
     ]
   }
@@ -2087,10 +2091,12 @@ exports[`Dashboard render while pending 1`] = `
       Object {
         "accessibilityLabel": "Profile Menu",
         "action": [Function],
+        "height": 24,
         "image": Object {
-          "testUri": "../../../src/images/hamburger.png",
+          "uri": "hamburgerSolid",
         },
         "testID": "Dashboard.profileButton",
+        "width": 24,
       },
     ]
   }
@@ -2741,10 +2747,12 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
       Object {
         "accessibilityLabel": "Profile Menu",
         "action": [Function],
+        "height": 24,
         "image": Object {
-          "testUri": "../../../src/images/hamburger.png",
+          "uri": "hamburgerSolid",
         },
         "testID": "Dashboard.profileButton",
+        "width": 24,
       },
     ]
   }
@@ -2974,10 +2982,12 @@ exports[`Dashboard render without favorite courses 1`] = `
       Object {
         "accessibilityLabel": "Profile Menu",
         "action": [Function],
+        "height": 24,
         "image": Object {
-          "testUri": "../../../src/images/hamburger.png",
+          "uri": "hamburgerSolid",
         },
         "testID": "Dashboard.profileButton",
+        "width": 24,
       },
     ]
   }
@@ -3207,10 +3217,12 @@ exports[`Dashboard renders course invites 1`] = `
       Object {
         "accessibilityLabel": "Profile Menu",
         "action": [Function],
+        "height": 24,
         "image": Object {
-          "testUri": "../../../src/images/hamburger.png",
+          "uri": "hamburgerSolid",
         },
         "testID": "Dashboard.profileButton",
+        "width": 24,
       },
     ]
   }

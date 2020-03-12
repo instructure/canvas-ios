@@ -62,6 +62,14 @@ class URLComponentsExtensionsTests: XCTestCase {
         XCTAssertEqual(URLComponents.parse("").path, "")
     }
 
+    func testOriginIsCalendar() {
+        var url = URLComponents.parse("https://foobar.com/courses/165/assignments/900/submissions/1")
+        XCTAssertFalse(url.originIsCalendar)
+
+        url = URLComponents.parse("/submissions/1?origin=calendar&origin=bogus")
+        XCTAssertTrue(url.originIsCalendar)
+    }
+
     func testOriginIsNotification() {
         var url = URLComponents.parse("https://foobar.com/courses/165/assignments/900/submissions/1")
         XCTAssertFalse(url.originIsNotification)

@@ -43,11 +43,6 @@ open class Brand: NSObject {
         let navBarAppearance = UINavigationBar.appearance()
         navBarAppearance.tintColor = linkColor
     }
-    
-    @objc open func navBarTitleView() -> UIView? {
-        guard headerImageURL.count > 0 else { return nil }
-        return HelmManager.narBarTitleViewFromImagePath(headerImageURL)
-    }
 }
 
 extension Brand {

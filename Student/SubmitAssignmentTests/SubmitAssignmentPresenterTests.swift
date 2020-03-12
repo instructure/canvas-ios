@@ -158,7 +158,7 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
         let attachment = NSItemProvider(item: UIImage.icon(.addImageLine), typeIdentifier: UTI.image.rawValue)
         let item = TestExtensionItem(mockAttachments: [attachment])
         presenter.load(items: [item])
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 5)
     }
 
     func testLoadItemsFileURL() throws {
@@ -191,10 +191,10 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
         let attachment = NSItemProvider(item: Data() as NSSecureCoding, typeIdentifier: UTI.any.rawValue)
         let item = TestExtensionItem(mockAttachments: [attachment])
         presenter.load(items: [item])
-        wait(for: [expectation], timeout: 0.5)
+        wait(for: [expectation], timeout: 5)
         let callback = XCTestExpectation(description: "callback was called")
         presenter.submit(comment: nil) { callback.fulfill() }
-        wait(for: [callback], timeout: 1)
+        wait(for: [callback], timeout: 5)
         XCTAssertTrue(uploadManager.cancelWasCalled)
         XCTAssertTrue(uploadManager.uploadWasCalled)
     }

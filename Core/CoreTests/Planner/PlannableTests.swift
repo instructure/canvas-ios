@@ -21,7 +21,6 @@ import XCTest
 @testable import Core
 
 class PlannableTests: CoreTestCase {
-
     func testPlannable() {
         let p = Plannable.make(from: .make())
         XCTAssertEqual(p.id, "1")
@@ -30,7 +29,7 @@ class PlannableTests: CoreTestCase {
     func testAPIPlannable() {
         let p = APIPlannable.make()
         XCTAssertEqual(p.plannable_id, "1")
-        XCTAssertEqual(p.context_type, "course")
+        XCTAssertEqual(p.context_type, "Course")
         XCTAssertEqual(p.course_id, "1")
         XCTAssertEqual(p.plannable_type, "Assignment")
         XCTAssertNil(p.planner_override)
@@ -69,5 +68,16 @@ class PlannableTests: CoreTestCase {
         XCTAssertEqual(p.icon(), UIImage.icon(.calendarMonth, .line))
         p = Plannable.make(from: .make(plannable_type: "assessment_request"))
         XCTAssertEqual(p.icon(), UIImage.icon(.peerReview, .line))
+    }
+
+    func testColor() {
+        ContextColor.make(canvasContextID: "course_2", color: .blue)
+        ContextColor.make(canvasContextID: "group_7", color: .red)
+        ContextColor.make(canvasContextID: "user_3", color: .brown)
+
+        XCTAssertEqual(Plannable.make(from: .make(course_id: "2", context_type: "Course")).color, .blue)
+        XCTAssertEqual(Plannable.make(from: .make(group_id: "7", context_type: "Group")).color, .red)
+        XCTAssertEqual(Plannable.make(from: .make(user_id: "3", context_type: "User")).color, .brown)
+        XCTAssertEqual(Plannable.make(from: .make(course_id: "0", context_type: "Course")).color, .named(.ash))
     }
 }

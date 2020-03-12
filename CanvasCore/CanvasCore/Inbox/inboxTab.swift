@@ -19,13 +19,14 @@
 import UIKit
 import ReactiveSwift
 import ReactiveCocoa
+import Core
 
 public func inboxTab() -> UIViewController {
     let inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
     let inboxNav = HelmNavigationController(rootViewController: inboxVC)
     
     inboxNav.navigationBar.useGlobalNavStyle()
-    inboxVC.navigationItem.titleView = Brand.current.navBarTitleView()
+    inboxVC.navigationItem.titleView = Core.Brand.shared.headerImageView()
     
     let inboxSplit = HelmSplitViewController()
     

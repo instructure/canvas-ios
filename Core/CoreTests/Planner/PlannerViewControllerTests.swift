@@ -25,7 +25,17 @@ class PlannerViewControllerTests: CoreTestCase {
     func testLayout() {
         Clock.mockNow(DateComponents(calendar: .current, year: 2020, month: 2, day: 14).date!)
         environment.mockStore = false
+        let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        XCTAssertEqual(nav.navigationBar.barTintColor, Brand.shared.navBackground)
+
+        _ = controller.profileButton.target?.perform(controller.profileButton.action)
+        XCTAssert(router.lastRoutedTo(.profile, withOptions: .modal()))
+
+        _ = controller.addNoteButton.target?.perform(controller.addNoteButton.action)
+        XCTAssert(router.presented is CreateTodoViewController)
 
         XCTAssertGreaterThan(controller.list.tableView.scrollIndicatorInsets.top, 143)
         XCTAssertGreaterThan(controller.list.tableView.contentInset.top, 143)
@@ -121,6 +131,10 @@ class PlannerViewControllerTests: CoreTestCase {
         controller.listPageController.setViewControllers([next!], direction: .reverse, animated: false)
         delegate?.pageViewController?(controller.listPageController, didFinishAnimating: true, previousViewControllers: [list], transitionCompleted: true)
         XCTAssertEqual(controller.calendar.selectedDate, next?.start)
+
+        _ = controller.todayButton.target?.perform(controller.todayButton.action)
+        XCTAssertEqual(controller.calendar.selectedDate, Clock.now.startOfDay())
+        XCTAssertEqual(controller.list.start, Clock.now.startOfDay())
     }
 
     class MockTableView: UITableView {

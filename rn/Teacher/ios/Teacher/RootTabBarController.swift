@@ -61,7 +61,7 @@ class RootTabBarController: UITabBarController {
 
         let enrollmentsVC = HelmViewController(moduleName: "/", props: [:])
         enrollmentsVC.view.accessibilityIdentifier = "favorited-course-list.view1"
-        enrollmentsVC.navigationItem.titleView = Brand.current.navBarTitleView()
+        enrollmentsVC.navigationItem.titleView = Brand.shared.headerImageView()
 
         let masterNav = HelmNavigationController(rootViewController: enrollmentsVC)
         masterNav.view.backgroundColor = .white
@@ -82,7 +82,7 @@ class RootTabBarController: UITabBarController {
         toDoVC.tabBarItem = UITabBarItem(title: NSLocalizedString("To Do", comment: ""), image: .icon(.todo), selectedImage: .icon(.todoSolid))
         toDoVC.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
         toDoVC.tabBarItem.reactive.badgeValue <~ TabBarBadgeCounts.todoListCountString
-        toDoVC.navigationItem.titleView = Brand.current.navBarTitleView()
+        toDoVC.navigationItem.titleView = Brand.shared.headerImageView()
         let navigation = HelmNavigationController(rootViewController: toDoVC)
         navigation.navigationBar.useGlobalNavStyle()
         return navigation

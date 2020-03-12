@@ -22,10 +22,17 @@ import XCTest
 class TitleSubtitleViewTests: XCTestCase {
     func testCreate() {
         let view = TitleSubtitleView.create()
-        XCTAssertEqual(view.titleLabel?.text, "")
-        XCTAssertEqual(view.titleLabel?.textColor, .named(.white))
-        XCTAssertEqual(view.subtitleLabel?.text, "")
-        XCTAssertEqual(view.subtitleLabel?.textColor, .named(.white))
+        XCTAssertEqual(view.titleLabel.text, "")
+        XCTAssertEqual(view.subtitleLabel.text, "")
+    }
+
+    func testRecreate() {
+        let view = TitleSubtitleView.create()
+        view.title = "t"
+        view.subtitle = "s"
+        let copy = view.recreate()
+        XCTAssertEqual(copy.title, "t")
+        XCTAssertEqual(copy.subtitle, "s")
     }
 
     func testTitle() {
@@ -42,5 +49,13 @@ class TitleSubtitleViewTests: XCTestCase {
         view.subtitle = "subtitle"
         XCTAssertEqual(view.subtitle, "subtitle")
         XCTAssertEqual(view.subtitleLabel?.text, "subtitle")
+    }
+
+    func testTintColorDidChange() {
+        let view = TitleSubtitleView.create()
+        view.tintColor = .red
+        view.tintColorDidChange()
+        XCTAssertEqual(view.titleLabel.textColor, .red)
+        XCTAssertEqual(view.subtitleLabel.textColor, .red)
     }
 }
