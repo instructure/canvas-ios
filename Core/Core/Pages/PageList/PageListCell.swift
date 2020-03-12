@@ -31,8 +31,7 @@ class PageListCell: UITableViewCell {
     }()
 
     func update(page: Page, color: UIColor?) {
-        guard !page.isDeleted else { return }
-        dateLabel?.text = PageListCell.dateFormatter.string(from: page.lastUpdated)
+        dateLabel?.text = page.lastUpdated.map(PageListCell.dateFormatter.string)
         titleLabel?.text = page.title
         accessIconView?.icon = UIImage.icon(.document, .line)
         accessIconView?.tintColor = color

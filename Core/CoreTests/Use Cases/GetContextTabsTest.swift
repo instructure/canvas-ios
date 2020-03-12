@@ -51,7 +51,7 @@ class GetContextTabsTest: CoreTestCase {
         let tabs: [Tab] = databaseClient.fetch()
         XCTAssertEqual(tabs.count, 1)
         XCTAssertEqual(tabs.first?.label, "Home")
-        XCTAssertEqual(tabs.first?.htmlURL.absoluteString, "https://twilson.instructure.com/groups/16")
+        XCTAssertEqual(tabs.first?.htmlURL?.absoluteString, "https://twilson.instructure.com/groups/16")
     }
 
     func testItCreatesTabsMultipleRequests() {
@@ -71,7 +71,7 @@ class GetContextTabsTest: CoreTestCase {
         let home = tabs.filter { $0.id == "home" }.first
         let assignments = tabs.filter { $0.id == "assignments" }.first
         XCTAssertEqual(tabs.count, 2)
-        XCTAssertEqual(home?.htmlURL.absoluteString, "https://twilson.instructure.com/groups/1")
-        XCTAssertEqual(assignments?.htmlURL.absoluteString, "https://twilson.instructure.com/groups/2")
+        XCTAssertEqual(home?.htmlURL?.absoluteString, "https://twilson.instructure.com/groups/1")
+        XCTAssertEqual(assignments?.htmlURL?.absoluteString, "https://twilson.instructure.com/groups/2")
     }
 }

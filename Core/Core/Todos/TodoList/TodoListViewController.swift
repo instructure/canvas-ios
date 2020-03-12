@@ -114,9 +114,12 @@ extension TodoListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let todo = todos[indexPath] else { return }
+        guard let todo = todos[indexPath],
+            let assignmentURL = todo.assignment.htmlURL else {
+                return
+        }
         Analytics.shared.logEvent("todo_selected")
-        env.router.route(to: todo.assignment.htmlURL, from: self, options: .detail(embedInNav: true))
+        env.router.route(to: assignmentURL, from: self, options: .detail(embedInNav: true))
     }
 
     public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -132,7 +135,8 @@ extension TodoListViewController: UITableViewDataSource, UITableViewDelegate {
         guard let todo = todos[indexPath] else { return }
         let id = todo.id
         Analytics.shared.logEvent("todo_ignored")
-        env.api.makeRequest(DeleteTodoRequest(ignoreURL: todo.ignoreURL)) { [weak self] (_, _, error) in
+        guard let ignoreURL = todo.ignoreURL else { return }
+        env.api.makeRequest(DeleteTodoRequest(ignoreURL: ignoreURL)) { [weak self] (_, _, error) in
             if let error = error {
                 self?.showError(error)
             }

@@ -75,7 +75,8 @@ public class ProfilePresenter {
             })
             for tool in tools {
                 cells.append(ProfileViewCell("lti.\(tool.domain ?? "").\(tool.definitionID)", name: tool.title) { [weak self] _ in
-                    self?.view?.launchLTI(url: tool.url)
+                    guard let url = tool.url else { return }
+                    self?.view?.launchLTI(url: url)
                 })
             }
         }

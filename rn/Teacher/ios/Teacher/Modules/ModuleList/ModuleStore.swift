@@ -65,8 +65,9 @@ class ModuleStore: NSObject {
     }
 
     var shouldRefresh: Bool {
-        if let ttl: TTL = database.viewContext.first(where: #keyPath(TTL.key), equals: cacheKey) {
-            return ttl.lastRefresh + cacheTTL < Clock.now
+        if let ttl: TTL = database.viewContext.first(where: #keyPath(TTL.key), equals: cacheKey),
+            let lastRefresh = ttl.lastRefresh {
+            return lastRefresh + cacheTTL < Clock.now
         }
         return true
     }

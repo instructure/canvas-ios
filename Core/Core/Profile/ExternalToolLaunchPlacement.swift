@@ -27,7 +27,7 @@ public class ExternalToolLaunchPlacement: NSManagedObject {
     @NSManaged public var domain: String?
     @NSManaged public var locationRaw: String
     @NSManaged public var title: String
-    @NSManaged public var url: URL
+    @NSManaged public var url: URL?
 
     public var location: ExternalToolLaunchPlacementLocation {
         get { return ExternalToolLaunchPlacementLocation(rawValue: locationRaw) ?? .account_navigation }

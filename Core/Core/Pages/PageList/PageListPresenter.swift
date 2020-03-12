@@ -88,7 +88,8 @@ class PageListPresenter: PageViewLoggerPresenterProtocol {
     }
 
     func select(_ page: Page, from view: UIViewController) {
-        env.router.route(to: page.htmlURL, from: view, options: .detail(embedInNav: true))
+        guard let url = page.htmlURL else { return }
+        env.router.route(to: url, from: view, options: .detail(embedInNav: true))
     }
 
     func newPage(from view: UIViewController) {

@@ -24,7 +24,7 @@ public class HelpLink: NSManagedObject {
     @NSManaged public var position: Int
     @NSManaged public var subtext: String?
     @NSManaged public var text: String
-    @NSManaged public var url: URL
+    @NSManaged public var url: URL?
 
     public var availableTo: [HelpLinkEnrollment] {
         get { return availableToRaw.components(separatedBy: ",").compactMap { HelpLinkEnrollment(rawValue: $0) } }

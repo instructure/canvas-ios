@@ -33,7 +33,7 @@ class SubmissionCommentAttemptCell: UITableViewCell {
         accessibilityIdentifier = "SubmissionComments.attemptCell.\(comment.id)"
         accessibilityLabel = String.localizedStringWithFormat(
             NSLocalizedString("On %@ %@ submitted the following", bundle: .student, comment: ""),
-            DateFormatter.localizedString(from: comment.createdAt, dateStyle: .long, timeStyle: .short),
+            comment.createdAtLocalizedString,
             comment.authorName
         )
         self.onFileTap = onFileTap

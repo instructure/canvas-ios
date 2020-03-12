@@ -33,8 +33,8 @@ public final class Todo: NSManagedObject, WriteableModel {
     @NSManaged public var assignment: Assignment
     @NSManaged var contextRaw: String
     @NSManaged public var id: String
-    @NSManaged public var ignoreURL: URL
-    @NSManaged public var ignorePermanentlyURL: URL
+    @NSManaged public var ignoreURL: URL?
+    @NSManaged public var ignorePermanentlyURL: URL?
     @NSManaged public var needsGradingCount: UInt
     @NSManaged var typeRaw: String
 

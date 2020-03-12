@@ -33,13 +33,13 @@ class ConversationDetailCell: UITableViewCell {
     var parent: ConversationDetailViewController?
 
     func update(_ message: ConversationMessage?, myID: String, userMap: [String: ConversationParticipant], parent: ConversationDetailViewController) {
-        guard let m = message else { return }
+        guard let m = message, let createdAt = m.createdAt else { return }
         self.message = m
         self.parent = parent
         messageLabel.text = m.body
         toLabel.text = m.localizedAudience(myID: myID, userMap: userMap)
         fromLabel.text = userMap[ m.authorID ]?.displayName
-        dateLabel.text = DateFormatter.localizedString(from: m.createdAt, dateStyle: .medium, timeStyle: .short)
+        dateLabel.text = DateFormatter.localizedString(from: createdAt, dateStyle: .medium, timeStyle: .short)
         avatar.url = userMap[ m.authorID ]?.avatarURL
         avatar.name = userMap[ m.authorID ]?.name ?? ""
 

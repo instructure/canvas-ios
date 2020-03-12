@@ -28,13 +28,13 @@ public class Quiz: NSManagedObject {
     @NSManaged public var dueAt: Date?
     @NSManaged public var hasAccessCode: Bool
     @NSManaged var hideResultsRaw: String?
-    @NSManaged public var htmlURL: URL
+    @NSManaged public var htmlURL: URL?
     @NSManaged public var id: String
     @NSManaged public var ipFilter: String?
     @NSManaged public var lockAt: Date?
     @NSManaged public var lockExplanation: String?
     @NSManaged public var lockedForUser: Bool
-    @NSManaged public var mobileURL: URL
+    @NSManaged public var mobileURL: URL?
     @NSManaged public var oneQuestionAtATime: Bool
     @NSManaged public var order: String?
     @NSManaged var pointsPossibleRaw: NSNumber?

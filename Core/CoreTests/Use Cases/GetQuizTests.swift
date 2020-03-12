@@ -61,7 +61,7 @@ class GetQuizTest: CoreTestCase {
         XCTAssertEqual(quizzes.count, 1)
         XCTAssertEqual(quizzes.first?.title, "What kind of pokemon are you?")
         XCTAssertEqual(quizzes.first?.quizType, .survey)
-        XCTAssertEqual(quizzes.first?.htmlURL.path, "/courses/1/quizzes/123")
+        XCTAssertEqual(quizzes.first?.htmlURL?.path, "/courses/1/quizzes/123")
         XCTAssertNotNil(quizzes.first?.submission)
     }
 }

@@ -88,8 +88,8 @@ public final class CalendarEvent: NSManagedObject {
     @NSManaged internal (set) public var htmlURL: URL?
     @NSManaged internal (set) public var allDayDate: String
     @NSManaged internal (set) public var allDay: Bool
-    @NSManaged internal (set) public var createdAt: Date
-    @NSManaged internal (set) public var updatedAt: Date
+    @NSManaged internal (set) public var createdAt: Date?
+    @NSManaged internal (set) public var updatedAt: Date?
     @NSManaged internal var rawType: String
     @NSManaged internal (set) public var hasSubmitted: Bool
 
