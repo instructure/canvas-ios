@@ -23,19 +23,13 @@ import TestsFoundation
 @testable import Parent
 
 class AddStudentControllerTests: ParentTestCase {
+    let mock = UIViewController()
+    lazy var controller = AddStudentController(presentingViewController: mock) { _ in }
 
-    var mock = AddStudentMockViewController()
-    override func setUp() {
-        super.setUp()
-        mock = AddStudentMockViewController()
-    }
-
-    func testLayout() {
-        let controller = AddStudentController(presentingViewController: mock) { _ in }
+    func testLayout() throws {
         controller.actionAddStudent()
 
-        let (shown, _, _) = router.viewControllerCalls.last!
-        let alert = shown as! UIAlertController
+        let alert = try XCTUnwrap(router.presented as? UIAlertController)
 
         var action = alert.actions[1] as! AlertAction
         XCTAssertEqual(action.title, "Add")
@@ -51,34 +45,26 @@ class AddStudentControllerTests: ParentTestCase {
 
     func testAddPairingCode() throws {
         api.mock(PostObserveesRequest(userID: "self", pairingCode: "abc"), value: .make())
-        let controller = AddStudentController(presentingViewController: mock) { _ in }
         controller.actionAddStudent()
-        drainMainQueue()
         let alert = try XCTUnwrap(router.presented as? UIAlertController)
         router.dismiss()
         let textField = try XCTUnwrap(alert.textFields?.first)
         textField.text = "abc"
         let add = try XCTUnwrap(alert.actions.first { $0.title == "Add" } as? AlertAction)
         add.handler?(add)
-        drainMainQueue()
         XCTAssertNil(router.presented, "Nothing presented so no error alert shown")
     }
 
     func testAddPairingCodeError() throws {
         api.mock(PostObserveesRequest(userID: "self", pairingCode: "abc"), error: NSError.instructureError("Oops!"))
-        let controller = AddStudentController(presentingViewController: mock) { _ in }
         controller.actionAddStudent()
-        drainMainQueue()
         let alert = try XCTUnwrap(router.presented as? UIAlertController)
         router.dismiss()
         let textField = try XCTUnwrap(alert.textFields?.first)
         textField.text = "abc"
         let add = try XCTUnwrap(alert.actions.first { $0.title == "Add" } as? AlertAction)
         add.handler?(add)
-        drainMainQueue()
         let error = try XCTUnwrap(router.presented as? UIAlertController)
         XCTAssertEqual(error.message, "Oops!")
     }
 }
-
-class AddStudentMockViewController: UIViewController {}
