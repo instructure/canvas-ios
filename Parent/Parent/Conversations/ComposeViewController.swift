@@ -146,9 +146,10 @@ class ComposeViewController: UIViewController, ErrorViewController {
     }
 
     @objc func send() {
-        let activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        activityIndicator.startAnimating()
-        sendButton.customView = activityIndicator
+        guard sendButton.isEnabled else { return }
+        let spinner = CircleProgressView(frame: CGRect(x: 0, y: 0, width: 40, height: 24))
+        spinner.color = nil
+        sendButton.customView = spinner
         updateSendButton()
         let subject = subjectField.text ?? ""
         let recipientIDs = recipientsView.recipients.map({ $0.id })

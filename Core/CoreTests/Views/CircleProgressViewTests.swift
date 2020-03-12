@@ -68,5 +68,12 @@ class CircleProgressViewTests: CoreTestCase {
             endAngle: pi * 1.5,
             clockwise: true
         ).cgPath)
+
+        view.progress = nil
+        view.layer.removeAllAnimations()
+        view.fill.removeAllAnimations()
+        view.didMoveToWindow()
+        XCTAssertNotNil(view.layer.animation(forKey: view.rotateKey))
+        XCTAssertNotNil(view.fill.animation(forKey: view.morphKey))
     }
 }
