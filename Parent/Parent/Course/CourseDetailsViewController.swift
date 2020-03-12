@@ -89,6 +89,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
 
     func configureGrades() {
         gradesViewController = GradesViewController.create(courseID: courseID, userID: studentID, colorDelegate: self)
+        gradesViewController.gradesCellIconDelegate = self
         viewControllers.append(gradesViewController)
     }
 
@@ -241,6 +242,18 @@ extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
             }
         case .summary:
             return NSLocalizedString("Summary", comment: "")
+        }
+    }
+}
+
+extension CourseDetailsViewController: GradesCellIconIconProviderProtocol {
+    public func iconImage(forAssignment assignment: Assignment?) -> UIImage? {
+        //  all quizzes in parent come back as `lockedForUser` so it's always
+        //  showing the lock icon rather than the quiz icon
+        if assignment?.quizID != nil {
+            return  .icon(.quiz, .line)
+        } else {
+            return assignment?.icon
         }
     }
 }
