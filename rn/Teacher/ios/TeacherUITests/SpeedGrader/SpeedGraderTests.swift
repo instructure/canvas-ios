@@ -61,7 +61,7 @@ class SpeedGraderTests: MiniCanvasUITestCase {
         let student = mocked.students[1]
         SubmissionsList.row(contextID: student.id.value).tap()
         SpeedGrader.dismissTutorial()
-        XCTAssertFalse(app.find(label: "submission from \(student.name)").waitToExist().isOffscreen())
+        XCTAssertFalse(app.find(label: "A webview submission from \(student.name)").waitToExist().isOffscreen())
     }
 
     func testUpdateScores() {
