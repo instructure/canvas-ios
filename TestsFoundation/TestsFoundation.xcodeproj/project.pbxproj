@@ -35,7 +35,9 @@
 		5859533CCC74E4410F3A4DE1 /* HttpResponseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595D1B881763C9DDB1E6BD /* HttpResponseExtensions.swift */; };
 		585958355F4CBCAFED71C28A /* MiniCanvasEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595C190F38EE32DEEE62D7 /* MiniCanvasEndpoints.swift */; };
 		58595A4F59ADDF88417FB368 /* LoggingHttpServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585954C9EBB3725770689362 /* LoggingHttpServer.swift */; };
+		58595A570E0930B6EE1E451A /* MiniSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585952FE07B37EF55C948ACC /* MiniSubmission.swift */; };
 		58595E26C62900CF858B2B08 /* MiniCanvasUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859560B4512977756206840 /* MiniCanvasUITestCase.swift */; };
+		58595E42B4831A7E2BE0102B /* MiniQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859504AB00EC6E2602C144A /* MiniQuiz.swift */; };
 		58595E93BC97CDFF3A1ECF2F /* MiniCanvasState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595BD467533DA0C1043343 /* MiniCanvasState.swift */; };
 		7D148647230B49DC003944A2 /* APIAccountNotificationFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D148646230B49DC003944A2 /* APIAccountNotificationFixture.swift */; };
 		7D26B84723A81D8E00262380 /* ConversationFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D26B84623A81D8E00262380 /* ConversationFixture.swift */; };
@@ -148,7 +150,9 @@
 		3BAA4178218A3ACE00701E03 /* APIEnrollmentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollmentFixture.swift; sourceTree = "<group>"; };
 		3BD364AC225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDiscussionTopicFixture.swift; sourceTree = "<group>"; };
 		3BDB8F3B22E663A2003D81C3 /* MockPageViewLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPageViewLogger.swift; sourceTree = "<group>"; };
+		5859504AB00EC6E2602C144A /* MiniQuiz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniQuiz.swift; sourceTree = "<group>"; };
 		58595226EFFECD5AED310C9B /* MiniAssignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniAssignment.swift; sourceTree = "<group>"; };
+		585952FE07B37EF55C948ACC /* MiniSubmission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniSubmission.swift; sourceTree = "<group>"; };
 		585954C9EBB3725770689362 /* LoggingHttpServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggingHttpServer.swift; sourceTree = "<group>"; };
 		5859560B4512977756206840 /* MiniCanvasUITestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniCanvasUITestCase.swift; sourceTree = "<group>"; };
 		58595BD467533DA0C1043343 /* MiniCanvasState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniCanvasState.swift; sourceTree = "<group>"; };
@@ -440,6 +444,8 @@
 				58595BD467533DA0C1043343 /* MiniCanvasState.swift */,
 				58595226EFFECD5AED310C9B /* MiniAssignment.swift */,
 				58595FA38CCD34FFA0E5AF23 /* MiniCourse.swift */,
+				5859504AB00EC6E2602C144A /* MiniQuiz.swift */,
+				585952FE07B37EF55C948ACC /* MiniSubmission.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -805,6 +811,8 @@
 				585951A0E753164D3759B783 /* MiniAssignment.swift in Sources */,
 				58595231CA9C074F01E0F6A1 /* MiniCourse.swift in Sources */,
 				58595E26C62900CF858B2B08 /* MiniCanvasUITestCase.swift in Sources */,
+				58595E42B4831A7E2BE0102B /* MiniQuiz.swift in Sources */,
+				58595A570E0930B6EE1E451A /* MiniSubmission.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

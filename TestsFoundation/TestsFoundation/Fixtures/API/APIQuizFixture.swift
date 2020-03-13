@@ -19,10 +19,12 @@
 import Foundation
 @testable import Core
 
+// https://canvas.instructure.com/doc/api/quizzes.html
 extension APIQuiz {
     public static func make(
         access_code: String? = nil,
         allowed_attempts: Int = 1,
+        assignment_id: ID? = nil,
         cant_go_back: Bool? = nil,
         description: String? = nil,
         due_at: Date? = nil,
@@ -50,6 +52,7 @@ extension APIQuiz {
         APIQuiz(
             access_code: access_code,
             allowed_attempts: allowed_attempts,
+            assignment_id: assignment_id,
             cant_go_back: cant_go_back,
             description: description,
             due_at: due_at,
@@ -77,6 +80,7 @@ extension APIQuiz {
     }
 }
 
+// https://canvas.instructure.com/doc/api/quiz_submissions.html
 extension APIQuizSubmission {
     public static func make(
         attempt: Int = 1,

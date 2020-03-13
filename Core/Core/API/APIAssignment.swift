@@ -40,7 +40,7 @@ public struct APIAssignment: Codable, Equatable {
     let url: URL?
     let discussion_topic: APIDiscussionTopic?
     let rubric: [APIRubric]?
-    let submission: APIList<APISubmission>?
+    var submission: APIList<APISubmission>?
     let use_rubric_for_grading: Bool?
     let rubric_settings: APIRubricSettings?
     let assignment_group_id: ID?

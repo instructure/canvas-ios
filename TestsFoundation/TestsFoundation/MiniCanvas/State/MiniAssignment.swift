@@ -19,11 +19,15 @@
 import Foundation
 @testable import Core
 
-public class MiniAssignment: Encodable {
+public class MiniAssignment {
     public var api: APIAssignment
-    public var submissions: [APISubmission] = []
+    public var submissions: [MiniSubmission] = []
 
     public var id: String { api.id.value }
+
+    public func submission(byUserId id: String?) -> MiniSubmission? {
+        submissions.first { $0.api.user_id.value == id }
+    }
 
     init(_ assignment: APIAssignment) {
         self.api = assignment
@@ -56,19 +60,19 @@ public class MiniAssignment: Encodable {
                         "__typename": "Course",
                     ] as [String: Any?],
                     "submissions": [
-                        "edges": submissions.map { (submission: APISubmission) -> [String: Any?] in
-                            let user = state.user(byId: submission.user_id.value)
+                        "edges": submissions.map { (submission: MiniSubmission) -> [String: Any?] in
+                            let user = state.user(byId: submission.api.user_id.value)
                             return [
                                 "submission": [
-                                    "grade": submission.grade,
-                                    "score": submission.score,
-                                    "late": submission.late,
-                                    "missing": submission.missing,
-                                    "excused": submission.excused,
-                                    "submittedAt": submission.submitted_at?.isoString(),
+                                    "grade": submission.api.grade,
+                                    "score": submission.api.score,
+                                    "late": submission.api.late,
+                                    "missing": submission.api.missing,
+                                    "excused": submission.api.excused,
+                                    "submittedAt": submission.api.submitted_at?.isoString(),
                                     "gradingStatus": "needs_grading",
-                                    "gradeMatchesCurrentSubmission": submission.grade_matches_current_submission,
-                                    "state": submission.workflow_state.rawValue,
+                                    "gradeMatchesCurrentSubmission": submission.api.grade_matches_current_submission,
+                                    "state": submission.api.workflow_state.rawValue,
                                     "postedAt": nil,
                                     "user": [
                                         "id": user?.id.value,

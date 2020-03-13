@@ -24,8 +24,8 @@ public struct APISubmission: Codable, Equatable {
     let assignment_id: ID
     let user_id: ID
     let body: String?
-    let grade: String?
-    let score: Double?
+    var grade: String?
+    var score: Double?
     let submission_type: SubmissionType?
     let submitted_at: Date?
     let late: Bool
@@ -38,7 +38,7 @@ public struct APISubmission: Codable, Equatable {
     let preview_url: URL?
     let url: URL?
     let media_comment: APIMediaComment?
-    let graded_at: Date?
+    var graded_at: Date?
     let grade_matches_current_submission: Bool
     let external_tool_url: APIURL?
 
@@ -46,7 +46,7 @@ public struct APISubmission: Codable, Equatable {
     let late_policy_status: LatePolicyStatus?
     let points_deducted: Double?
 
-    let submission_comments: [APISubmissionComment]? // include[]=submission_comments
+    var submission_comments: [APISubmissionComment]? // include[]=submission_comments
     let submission_history: [APISubmission]? // include[]=submission_history
     var user: APISubmissionUser? // include[]=user
     let assignment: APIAssignmentNoSubmission? // include[]=assignment

@@ -25,10 +25,11 @@ open class MiniCanvasUITestCase: CoreUITestCase {
     override open var useMocks: Bool { false }
 
     public var mocked: MiniCanvasState { MiniCanvasServer.shared.state }
+    public var firstCourse: MiniCourse! { mocked.courses.first }
+    public var firstAssignment: MiniAssignment! { mocked.courses.first?.assignments.first }
 
     override open func setUp() {
         MiniCanvasServer.shared.reset()
-        MiniCanvasServer.shared.server.logResponses = true
         let state = MiniCanvasServer.shared.state
         if Bundle.main.isStudentApp {
             state.selfId = state.students[0].id
