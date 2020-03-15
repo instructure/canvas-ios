@@ -282,7 +282,7 @@
     "message": "Tyhjennä suodatin"
   },
   "clear_filter_inbox_9465e74c": {
-    "message": "Tyhjennä suodattimen tulevien laatikko"
+    "message": "Tyhjennä suodattimen saapuneet"
   },
   "clear_recording_5a97b475": {
     "message": "Tyhjennä nauhoitus"
@@ -636,7 +636,7 @@
     "message": "Suodatin"
   },
   "filter_inbox_dae0ff8f": {
-    "message": "Suodata tulevien laatikko"
+    "message": "Suodata saapuneet"
   },
   "filter_numselected_number_2e4c17e3": {
     "message": "Suodatin ({ numSelected, number })"
@@ -1182,7 +1182,7 @@
     "message": "Julkaise"
   },
   "published_4bb5209e": {
-    "message": "Julkaistut"
+    "message": "Julkaistu"
   },
   "pumpkin_904428d5": {
     "message": "Kurpitsa"
@@ -1413,7 +1413,7 @@
     "message": "Merkitse viestit tähdellä napauttamalla tähteä viestissä."
   },
   "starred_5a9efa8a": {
-    "message": "Merkitty tähdellä"
+    "message": "Tähdellä merkityt"
   },
   "start_recording_189496b9": {
     "message": "Aloita nauhoitus"
@@ -1641,7 +1641,7 @@
     "message": "Otsikko"
   },
   "to_51406be9": {
-    "message": "Johonkin"
+    "message": "Vastaanottaja"
   },
   "to_count_others_853f5dc8": {
     "message": "{ count } muille"

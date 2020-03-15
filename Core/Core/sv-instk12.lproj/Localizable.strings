@@ -398,9 +398,6 @@
 "Invitation" = "Inbjudan";
 
 /* No comment provided by engineer. */
-"It looks like assignments haven’t been created in this space yet." = "Det verkar som om inga uppgifter har skapats för den här platsen än.";
-
-/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Du verkar inte vara registrerad för några kurser som %@. Någon av våra andra appar kan vara bättre lämpade. Tryck på en för att gå till App Store.";
 
 /* No comment provided by engineer. */
@@ -495,9 +492,6 @@
 
 /* No comment provided by engineer. */
 "Never" = "Aldrig";
-
-/* No comment provided by engineer. */
-"No Assignments" = "Inga uppgifter";
 
 /* No comment provided by engineer. */
 "No Content" = "Inget innehåll";

@@ -398,9 +398,6 @@
 "Invitation" = "Uitnodiging";
 
 /* No comment provided by engineer. */
-"It looks like assignments haven’t been created in this space yet." = "Het lijkt erop dat er in deze ruimte nog geen opdrachten zijn gemaakt.";
-
-/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Het lijkt erop dat je voor geen enkele cursus bent ingeschreven als %@. Wellicht is een van onze andere apps hiervoor beter geschikt. Tik op een ervan om naar de App Store te gaan.";
 
 /* No comment provided by engineer. */
@@ -495,9 +492,6 @@
 
 /* No comment provided by engineer. */
 "Never" = "Nooit";
-
-/* No comment provided by engineer. */
-"No Assignments" = "Geen opdrachten";
 
 /* No comment provided by engineer. */
 "No Content" = "Geen inhoud";
