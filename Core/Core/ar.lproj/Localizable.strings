@@ -398,9 +398,6 @@
 "Invitation" = "دعوة";
 
 /* No comment provided by engineer. */
-"It looks like assignments haven’t been created in this space yet." = "يبدو أنه لم يتم إنشاء مهام في هذه المساحة حتى الآن.";
-
-/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "يبدو أنك غير مسجل في أي مساقات بصفة %@. قد يكون أحد تطبيقاتنا الأخرى ملائمة لك بشكل أكبر. اضغط على أحد التطبيقات لزيارة App Store.";
 
 /* No comment provided by engineer. */
@@ -495,9 +492,6 @@
 
 /* No comment provided by engineer. */
 "Never" = "أبدًا";
-
-/* No comment provided by engineer. */
-"No Assignments" = "لا توجد أي مهام";
 
 /* No comment provided by engineer. */
 "No Content" = "لا يوجد محتوى";

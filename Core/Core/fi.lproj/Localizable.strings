@@ -20,7 +20,7 @@
 "Act as User" = "Toimi käyttäjänä";
 
 /* No comment provided by engineer. */
-"Added To Conversation" = "Lisätty keskusteluun";
+"Added To Conversation" = "Lisätty viestiketjuun";
 
 /* No comment provided by engineer. */
 "Administrative Notifications" = "Pääkäyttäjän ilmoitukset";
@@ -185,7 +185,7 @@
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
-"Conversations" = "Keskustelut";
+"Conversations" = "Viestit";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "Ilmoitusasetuksien tallennus ei onnistunut";
@@ -389,16 +389,13 @@
 "Impact Level" = "Vaikutustaso";
 
 /* No comment provided by engineer. */
-"Inbox" = "Tulevien laatikko";
+"Inbox" = "Saapuneet";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Keskeneräinen";
 
 /* No comment provided by engineer. */
 "Invitation" = "Kutsu";
-
-/* No comment provided by engineer. */
-"It looks like assignments haven’t been created in this space yet." = "Näyttää siltä kuin tehtäviä ei vielä olisi luotu tässä tilassa.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Näyttää siltä, että et ole rekisteröitynyt millekään kurssille nimellä %@. Yksi sovelluksistamme saattaa sopia paremmin. Käy App Storessa napauttamalla.";
@@ -495,9 +492,6 @@
 
 /* No comment provided by engineer. */
 "Never" = "Ei koskaan";
-
-/* No comment provided by engineer. */
-"No Assignments" = "Ei tehtäviä";
 
 /* No comment provided by engineer. */
 "No Content" = "Ei sisältöä";

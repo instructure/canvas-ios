@@ -164,7 +164,7 @@
 "In-Class" = "Luokassa";
 
 /* No comment provided by engineer. */
-"Inbox" = "Tulevien laatikko";
+"Inbox" = "Saapuneet";
 
 /* No comment provided by engineer. */
 "Inbox Zero" = "Saapuvia posteja nolla!";
@@ -319,7 +319,7 @@
 "This student's courses may not be published yet." = "Tämän opiskelijan kursseja ei ehkä vielä julkaista.";
 
 /* No comment provided by engineer. */
-"To" = "Johonkin";
+"To" = "Vastaanottaja";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "Ongelmia sisään kirjautumisessa";

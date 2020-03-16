@@ -398,9 +398,6 @@
 "Invitation" = "Boð";
 
 /* No comment provided by engineer. */
-"It looks like assignments haven’t been created in this space yet." = "Það virðast ekki vera nein verkefni búin til í þessu rými enn.";
-
-/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Þú virðist ekki vera innritaður í nein námskeið sem %@. Eitthvað að hinum öppunum okkar gæti hentað betur. Smelltu á eitt þeirra til að fara í App Store.";
 
 /* No comment provided by engineer. */
@@ -495,9 +492,6 @@
 
 /* No comment provided by engineer. */
 "Never" = "Aldrei";
-
-/* No comment provided by engineer. */
-"No Assignments" = "Engin verkefni";
 
 /* No comment provided by engineer. */
 "No Content" = "Ekkert efni";
