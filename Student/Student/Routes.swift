@@ -133,6 +133,15 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     // No native support, fall back to web
     // "/:context/:contextID/collaborations": { url, _ in },
 
+    "/:context/:contextID/conferences": { url, _ in
+        guard ExperimentalFeature.conferences.isEnabled else {
+            open(url: url)
+            return nil
+        }
+        guard let context = ContextModel(path: url.path) else { return nil }
+        return ConferenceListViewController.create(context: context)
+    },
+
     "/:context/:contextID/discussions": nil,
     "/:context/:contextID/discussion_topics": nil,
 
@@ -388,6 +397,11 @@ HelmManager.shared.registerNativeViewController(for: "/native-route/*route", fac
 HelmManager.shared.registerNativeViewController(for: "/native-route-master/*route", factory: nativeFactory)
 
 return Router(routes: routes) { url, _, _ in
+    open(url: url)
+}
+}()
+
+private func open(url: URLComponents) {
     var components = url
     if components.scheme?.hasPrefix("http") == false {
         components.scheme = "https"
@@ -400,7 +414,6 @@ return Router(routes: routes) { url, _, _ in
         }
     }
 }
-}()
 
 private func route(_ view: UIViewController, url: URL) {
     router.route(to: url, from: view)

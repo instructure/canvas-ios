@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -101,6 +101,9 @@
 		7D4D5EB721402CAA0080AC14 /* TestImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4D5EB421402CA90080AC14 /* TestImage.png */; };
 		7D4D5EB821402CAA0080AC14 /* TestImage.svg in Resources */ = {isa = PBXBuildFile; fileRef = 7D4D5EB521402CA90080AC14 /* TestImage.svg */; };
 		7D4D5EB921402CAA0080AC14 /* TestImage.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7D4D5EB621402CA90080AC14 /* TestImage.gif */; };
+		7D4F44FA241BF26700233B92 /* APIConference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4F44F9241BF26700233B92 /* APIConference.swift */; };
+		7D4F44FD241BFB2300233B92 /* APIConferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4F44FC241BFB2300233B92 /* APIConferenceTests.swift */; };
+		7D4F44FF241BFCF300233B92 /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4F44FE241BFCF300233B92 /* Conference.swift */; };
 		7D52D8AD2301C0A400684932 /* ExperimentalFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52D8AC2301C0A400684932 /* ExperimentalFeatureTests.swift */; };
 		7D5762A023849D46001F980D /* APITodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D57629F23849D46001F980D /* APITodoTests.swift */; };
 		7D58FBCA2141B43400705CDF /* APIAccountResults.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D58FBC92141B43300705CDF /* APIAccountResults.json */; };
@@ -131,6 +134,12 @@
 		7D75FF1424081E42000544E7 /* ListErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D75FF1324081E42000544E7 /* ListErrorView.swift */; };
 		7D75FF1624081F57000544E7 /* ListErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D75FF1524081F57000544E7 /* ListErrorView.xib */; };
 		7D75FF1824085E95000544E7 /* ListBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D75FF1724085E95000544E7 /* ListBackgroundView.swift */; };
+		7D7F71D6241C2A5A00D6F9CB /* ConferenceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7F71D5241C2A5A00D6F9CB /* ConferenceListViewController.swift */; };
+		7D7F71D8241C35C900D6F9CB /* ConferenceListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7F71D7241C35C900D6F9CB /* ConferenceListViewController.storyboard */; };
+		7D7F71DA241C41BC00D6F9CB /* APIDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7F71D9241C41BC00D6F9CB /* APIDate.swift */; };
+		7D7F71DC241FD90600D6F9CB /* APIDateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7F71DB241FD90600D6F9CB /* APIDateTests.swift */; };
+		7D7F71DE241FDDDB00D6F9CB /* ConferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7F71DD241FDDDB00D6F9CB /* ConferenceTests.swift */; };
+		7D7F71E224200AB100D6F9CB /* ConferenceListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7F71E124200AB100D6F9CB /* ConferenceListViewControllerTests.swift */; };
 		7D80AC15212B67E100C40ECE /* APIUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC14212B67E100C40ECE /* APIUserTests.swift */; };
 		7D80AC17212B689E00C40ECE /* APITabRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC16212B689E00C40ECE /* APITabRequestableTests.swift */; };
 		7D80AC19212B697600C40ECE /* APIGroupRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC18212B697600C40ECE /* APIGroupRequestableTests.swift */; };
@@ -1244,6 +1253,9 @@
 		7D4D5EB421402CA90080AC14 /* TestImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TestImage.png; sourceTree = "<group>"; };
 		7D4D5EB521402CA90080AC14 /* TestImage.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestImage.svg; sourceTree = "<group>"; };
 		7D4D5EB621402CA90080AC14 /* TestImage.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TestImage.gif; sourceTree = "<group>"; };
+		7D4F44F9241BF26700233B92 /* APIConference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConference.swift; sourceTree = "<group>"; };
+		7D4F44FC241BFB2300233B92 /* APIConferenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConferenceTests.swift; sourceTree = "<group>"; };
+		7D4F44FE241BFCF300233B92 /* Conference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conference.swift; sourceTree = "<group>"; };
 		7D52D8AA2301BA5100684932 /* ExperimentalFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalFeature.swift; sourceTree = "<group>"; };
 		7D52D8AC2301C0A400684932 /* ExperimentalFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalFeatureTests.swift; sourceTree = "<group>"; };
 		7D57629F23849D46001F980D /* APITodoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITodoTests.swift; sourceTree = "<group>"; };
@@ -1300,6 +1312,12 @@
 		7D798A2023DF6F8C007EE831 /* FilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePicker.swift; sourceTree = "<group>"; };
 		7D798A2223DF7A9F007EE831 /* BottomSheetTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetTransitioning.swift; sourceTree = "<group>"; };
 		7D7EA2E123CD013F0021B34E /* FilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
+		7D7F71D5241C2A5A00D6F9CB /* ConferenceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceListViewController.swift; sourceTree = "<group>"; };
+		7D7F71D7241C35C900D6F9CB /* ConferenceListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConferenceListViewController.storyboard; sourceTree = "<group>"; };
+		7D7F71D9241C41BC00D6F9CB /* APIDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDate.swift; sourceTree = "<group>"; };
+		7D7F71DB241FD90600D6F9CB /* APIDateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDateTests.swift; sourceTree = "<group>"; };
+		7D7F71DD241FDDDB00D6F9CB /* ConferenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceTests.swift; sourceTree = "<group>"; };
+		7D7F71E124200AB100D6F9CB /* ConferenceListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceListViewControllerTests.swift; sourceTree = "<group>"; };
 		7D80AC04212B461F00C40ECE /* APIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUser.swift; sourceTree = "<group>"; };
 		7D80AC09212B4A8D00C40ECE /* APIGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGroup.swift; sourceTree = "<group>"; };
 		7D80AC0B212B4C6F00C40ECE /* APITab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITab.swift; sourceTree = "<group>"; };
@@ -1894,11 +1912,11 @@
 			isa = PBXGroup;
 			children = (
 				2C964830211E2F1A002C3255 /* Core */,
-				E861489E23D7557A00ABFA5D /* PactTests */,
 				2C96483B211E2F1A002C3255 /* CoreTests */,
 				DFE1FF26212F69B3003F27AA /* CoreTester */,
 				E81918E5230348440039616A /* CoreUITests */,
 				E8C6F56A23D63EC90086B865 /* CoreE2ETests */,
+				E861489E23D7557A00ABFA5D /* PactTests */,
 				2C96482F211E2F1A002C3255 /* Products */,
 				3B47228F213798CA00BF6FF3 /* Frameworks */,
 				3D8675B50DFC3BE9139D5E8C /* Pods */,
@@ -1927,6 +1945,7 @@
 				2C96485C211E36FF002C3255 /* AppEnvironment */,
 				7D101948215E8E5F0058FDD1 /* Assets.xcassets */,
 				7DDC81422242E269000DD25A /* AudioVideo */,
+				7D4F44F8241BF24200233B92 /* Conferences */,
 				3B3467C52134953800F9BC2E /* Constants */,
 				7D26B84423A7F27E00262380 /* Conversations */,
 				2C964831211E2F1A002C3255 /* Core.h */,
@@ -1975,6 +1994,7 @@
 				7D3A1EED227BEFB20094531E /* ActAsUser */,
 				7D80AC13212B659300C40ECE /* API */,
 				7D8B78F9215EC999005E08F1 /* AppEnvironment */,
+				7D4F44FB241BFB0800233B92 /* Conferences */,
 				7D37BE8421C81C700063FAAC /* Constants */,
 				7D26B84523A8043900262380 /* Conversations */,
 				7D148642230B48E7003944A2 /* Dashboard */,
@@ -2659,6 +2679,27 @@
 			path = Fixtures;
 			sourceTree = "<group>";
 		};
+		7D4F44F8241BF24200233B92 /* Conferences */ = {
+			isa = PBXGroup;
+			children = (
+				7D4F44F9241BF26700233B92 /* APIConference.swift */,
+				7D4F44FE241BFCF300233B92 /* Conference.swift */,
+				7D7F71D7241C35C900D6F9CB /* ConferenceListViewController.storyboard */,
+				7D7F71D5241C2A5A00D6F9CB /* ConferenceListViewController.swift */,
+			);
+			path = Conferences;
+			sourceTree = "<group>";
+		};
+		7D4F44FB241BFB0800233B92 /* Conferences */ = {
+			isa = PBXGroup;
+			children = (
+				7D4F44FC241BFB2300233B92 /* APIConferenceTests.swift */,
+				7D7F71E124200AB100D6F9CB /* ConferenceListViewControllerTests.swift */,
+				7D7F71DD241FDDDB00D6F9CB /* ConferenceTests.swift */,
+			);
+			path = Conferences;
+			sourceTree = "<group>";
+		};
 		7D57629D23849CF7001F980D /* Todos */ = {
 			isa = PBXGroup;
 			children = (
@@ -2755,6 +2796,7 @@
 				7D80AC1C212B6B6200C40ECE /* APICourseRequestableTests.swift */,
 				7D64A97623676025004EAEDF /* APICourseSectionTests.swift */,
 				E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */,
+				7D7F71DB241FD90600D6F9CB /* APIDateTests.swift */,
 				78151DCE21AE7E0500692862 /* APIDiscussionRequestableTests.swift */,
 				7D7472D5218CC4B200CE1430 /* APIDocViewerRequestableTests.swift */,
 				B1A6BC89218A977D000515E3 /* APIEnrollmentRequestableTests.swift */,
@@ -2845,6 +2887,7 @@
 				7D8262EE212B228F00BD268D /* APICourseRequestable.swift */,
 				7D8262F8212B3B2000BD268D /* APICourseSection.swift */,
 				E88EA0182385B0B4008A587A /* APIDashboard.swift */,
+				7D7F71D9241C41BC00D6F9CB /* APIDate.swift */,
 				78151DCA21AE75D400692862 /* APIDiscussion.swift */,
 				78151DCC21AE75F600692862 /* APIDiscussionRequestable.swift */,
 				7D29D306218A592B0036437C /* APIDocViewer.swift */,
@@ -4018,6 +4061,7 @@
 			files = (
 				7DA260F923F723AE005D2121 /* FileDetailsViewController.storyboard in Resources */,
 				7D0215A721BB1750009A8E69 /* LoginStartViewController.storyboard in Resources */,
+				7D7F71D8241C35C900D6F9CB /* ConferenceListViewController.storyboard in Resources */,
 				B1B4C1C9219631AC00FA9E0E /* EmptyView.xib in Resources */,
 				7D8E821223C8E14D00A8DA2C /* PeopleListViewController.storyboard in Resources */,
 				3B4D861523295263005126A5 /* GradesViewController.storyboard in Resources */,
@@ -4346,8 +4390,10 @@
 				7D70DEA4233EB07300F5C3D4 /* NotificationCategoryTests.swift in Sources */,
 				9FE84DE2215037A000B95A68 /* GetContextTabsTest.swift in Sources */,
 				9FE84DDC214FE5C500B95A68 /* GetGroupTest.swift in Sources */,
+				7D7F71E224200AB100D6F9CB /* ConferenceListViewControllerTests.swift in Sources */,
 				B11AEBBD24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift in Sources */,
 				B1A32BE22159A3100071B41E /* APIAssignmentRequestableTests.swift in Sources */,
+				7D4F44FD241BFB2300233B92 /* APIConferenceTests.swift in Sources */,
 				E86CFBD823A2F7CD00EAE487 /* APIDashboardTests.swift in Sources */,
 				3B8F23CD23274FC500788730 /* AlertThresholdTests.swift in Sources */,
 				7DA20E932168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift in Sources */,
@@ -4413,6 +4459,7 @@
 				7D08B1D92372084B0075623A /* GetFileTests.swift in Sources */,
 				7D8B78FB215EC9BE005E08F1 /* BrandTests.swift in Sources */,
 				E8997906234F7E0600CA7D9B /* XCTestCaseTests.swift in Sources */,
+				7D7F71DC241FD90600D6F9CB /* APIDateTests.swift in Sources */,
 				B11AAC3B237A1EB4002BC41F /* APIURLTests.swift in Sources */,
 				7D016B5D23E883AC00C6E0CA /* FilePickerTests.swift in Sources */,
 				B1A464BD225669B50052F8DF /* DispatchExtensionsTests.swift in Sources */,
@@ -4473,6 +4520,7 @@
 				7DCF1EA4216BBCFB003AF358 /* GradingTypeTests.swift in Sources */,
 				7DCF203A216D5712003AF358 /* QuizTypeTests.swift in Sources */,
 				7D64A97B23676179004EAEDF /* GetCourseSectionsTests.swift in Sources */,
+				7D7F71DE241FDDDB00D6F9CB /* ConferenceTests.swift in Sources */,
 				7D1758C8215A9A7800F88613 /* TitleSubtitleViewTests.swift in Sources */,
 				9FCD79DA2188E3CD0054293A /* GetSubmissionTest.swift in Sources */,
 				9F5C93032375F682005105BB /* GetPage.swift in Sources */,
@@ -4615,6 +4663,7 @@
 				7DA25FF523F72268005D2121 /* CommentListCell.swift in Sources */,
 				7DA25FD323F72136005D2121 /* GradingPeriodRequestables.swift in Sources */,
 				7DA2609B23F7233D005D2121 /* UseCase.swift in Sources */,
+				7D4F44FA241BF26700233B92 /* APIConference.swift in Sources */,
 				7DA2607F23F722FA005D2121 /* Persistency.swift in Sources */,
 				7DA25FD023F72136005D2121 /* APITabRequestable.swift in Sources */,
 				7DA25F9B23F72136005D2121 /* APIActivity.swift in Sources */,
@@ -4636,6 +4685,7 @@
 				7DA25F9123F72128005D2121 /* GradesViewController.swift in Sources */,
 				7DA260A123F7234C005D2121 /* MockMessage.swift in Sources */,
 				7DA260B023F72352005D2121 /* GetCourseSections.swift in Sources */,
+				7D7F71D6241C2A5A00D6F9CB /* ConferenceListViewController.swift in Sources */,
 				7DA25FC523F72136005D2121 /* APIPermissions.swift in Sources */,
 				7DA25FF023F721DE005D2121 /* SearchRecipient.swift in Sources */,
 				7DA2603E23F722D9005D2121 /* ContextModel.swift in Sources */,
@@ -4853,6 +4903,7 @@
 				B147CCD72409CC6C0064BD3F /* LoadingCell.swift in Sources */,
 				7D75FF1424081E42000544E7 /* ListErrorView.swift in Sources */,
 				7DA25FF423F72260005D2121 /* ExperimentalFeaturesViewController.swift in Sources */,
+				7D7F71DA241C41BC00D6F9CB /* APIDate.swift in Sources */,
 				7DA260D023F72359005D2121 /* CircleProgressView.swift in Sources */,
 				7DA25FA523F72136005D2121 /* APICourse.swift in Sources */,
 				7DA25FBD23F72136005D2121 /* APIMediaComment.swift in Sources */,
@@ -4872,6 +4923,7 @@
 				7DA2602623F722B3005D2121 /* LogEventListPresenter.swift in Sources */,
 				7DA25FCF23F72136005D2121 /* APITab.swift in Sources */,
 				7DA260D523F72359005D2121 /* DynamicLabel.swift in Sources */,
+				7D4F44FF241BFCF300233B92 /* Conference.swift in Sources */,
 				7DA260AF23F72352005D2121 /* GetCourses.swift in Sources */,
 				7DA2603C23F722D9005D2121 /* Context.swift in Sources */,
 				7DA25FB923F72136005D2121 /* APILatePolicy.swift in Sources */,
@@ -5309,7 +5361,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -5336,7 +5389,11 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = Core/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.Core;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -5366,7 +5423,11 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = Core/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.Core;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -5386,7 +5447,11 @@
 				);
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = CoreTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.CoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -5406,7 +5471,11 @@
 				);
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = CoreTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.CoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -5429,7 +5498,10 @@
 				);
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = CoreTester/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CoreTester;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5452,7 +5524,10 @@
 				);
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = CoreTester/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CoreTester;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5477,7 +5552,11 @@
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				INFOPLIST_FILE = CoreUITests/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CoreUITests;
@@ -5504,7 +5583,11 @@
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				INFOPLIST_FILE = CoreUITests/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CoreUITests;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -5526,7 +5609,11 @@
 				);
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = PactTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.PactTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -5547,7 +5634,11 @@
 				);
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = PactTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.PactTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -5571,7 +5662,11 @@
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				INFOPLIST_FILE = CoreE2ETests/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CoreE2ETests;
@@ -5596,7 +5691,11 @@
 				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
 				INFOPLIST_FILE = CoreE2ETests/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CoreE2ETests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
