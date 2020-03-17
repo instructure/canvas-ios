@@ -114,8 +114,7 @@ public class ConferenceDetailsViewController: UIViewController, ColoredNavViewPr
         spinnerView.isHidden = !conferences.pending || refreshControl.isRefreshing
         let conference = self.conference
         titleLabel.text = conference?.title
-        statusLabel.text = conference?.statusLongText
-        statusLabel.textColor = conference?.statusColor
+        statusLabel.attributedText = conference?.statusLongText
         if let description = conference?.details, !description.isEmpty {
             detailsLabel.text = description
         } else {

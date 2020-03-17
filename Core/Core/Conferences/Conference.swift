@@ -65,15 +65,19 @@ final class Conference: NSManagedObject {
         return NSLocalizedString("Not Started", bundle: .core, comment: "")
     }
 
-    var statusLongText: String {
+    var statusLongText: NSAttributedString {
         if let date = startedAt, endedAt == nil {
-            return String.localizedStringWithFormat(
-                NSLocalizedString("In Progress - Started %@ at %@", bundle: .core, comment: "started date at time"),
+            let status = NSMutableAttributedString()
+            status.append(NSAttributedString(string: statusText, attributes: [.foregroundColor: statusColor]))
+            status.append(NSAttributedString(string: " | "))
+            status.append(NSAttributedString(string: String.localizedStringWithFormat(
+                NSLocalizedString("Started %@ at %@", bundle: .core, comment: "started date at time"),
                 date.dateMediumString,
                 DateFormatter.localizedString(from: date, dateStyle: .none, timeStyle: .short)
-            )
+            )))
+            return status
         }
-        return statusText
+        return NSAttributedString(string: statusText, attributes: [.foregroundColor: statusColor])
     }
 
     var statusColor: UIColor {
