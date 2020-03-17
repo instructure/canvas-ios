@@ -60,50 +60,50 @@ abstract_target 'defaults' do
 
   target 'Parent' do
     project 'Parent/Parent.xcodeproj'
-    pod 'Fabric', '~> 1.10.2'
-    pod 'Firebase/Core', '~> 6.13'
-    pod 'Firebase/RemoteConfig', '~> 6.13'
-    pod 'Firebase/Analytics', '~> 6.13'
+    pod 'Fabric'
+    pod 'Firebase/Core'
+    pod 'Firebase/RemoteConfig'
+    pod 'Firebase/Analytics'
   end
 
   target 'ParentUnitTests' do
     project 'Parent/Parent.xcodeproj'
-    pod 'Fabric', '~> 1.10.2'
-    pod 'Firebase/Core', '~> 6.13'
-    pod 'Firebase/RemoteConfig', '~> 6.13'
-    pod 'Firebase/Analytics', '~> 6.13'
+    pod 'Fabric'
+    pod 'Firebase/Core'
+    pod 'Firebase/RemoteConfig'
+    pod 'Firebase/Analytics'
   end
 
   target 'Teacher' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
-    pod 'Fabric', '~> 1.10.2'
-    pod 'Firebase/Core', '~> 6.13'
-    pod 'Firebase/RemoteConfig', '~> 6.13'
-    pod 'Firebase/Analytics', '~> 6.13'
+    pod 'Fabric'
+    pod 'Firebase/Core'
+    pod 'Firebase/RemoteConfig'
+    pod 'Firebase/Analytics'
   end
 
   target 'TeacherTests' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
-    pod 'Fabric', '~> 1.10.2'
-    pod 'Firebase/Core', '~> 6.13'
-    pod 'Firebase/RemoteConfig', '~> 6.13'
-    pod 'Firebase/Analytics', '~> 6.13'
+    pod 'Fabric'
+    pod 'Firebase/Core'
+    pod 'Firebase/RemoteConfig'
+    pod 'Firebase/Analytics'
   end
 
   target 'Student' do
     project 'Student/Student.xcodeproj'
-    pod 'Fabric', '~> 1.10.2'
-    pod 'Firebase/Core', '~> 6.13'
-    pod 'Firebase/RemoteConfig', '~> 6.13'
-    pod 'Firebase/Analytics', '~> 6.13'
+    pod 'Fabric'
+    pod 'Firebase/Core'
+    pod 'Firebase/RemoteConfig'
+    pod 'Firebase/Analytics'
   end
 
   target 'StudentUnitTests' do
     project 'Student/Student.xcodeproj'
-    pod 'Fabric', '~> 1.10.2'
-    pod 'Firebase/Core', '~> 6.13'
-    pod 'Firebase/RemoteConfig', '~> 6.13'
-    pod 'Firebase/Analytics', '~> 6.13'
+    pod 'Fabric'
+    pod 'Firebase/Core'
+    pod 'Firebase/RemoteConfig'
+    pod 'Firebase/Analytics'
   end
 
   target 'CanvasCore' do
