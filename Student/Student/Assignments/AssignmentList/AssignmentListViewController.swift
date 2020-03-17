@@ -18,6 +18,8 @@
 
 import UIKit
 import Core
+import Firebase
+import Crashlytics
 
 class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
 
@@ -206,6 +208,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
     }
 
     @IBAction func actionFilterClicked(_ sender: UIButton) {
+        Crashlytics.sharedInstance().crash()
         if selectedGradingPeriod != nil {
             filterByGradingPeriod(nil)
         } else {
@@ -304,6 +307,9 @@ extension AssignmentListViewController: UITableViewDataSource, UITableViewDelega
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let arr = ["a", "b"]
+        let value = arr[3]
+        print(value)
         let a = assignment(for: indexPath)
         guard let url = a?.htmlUrl else { return }
         env.router.route(to: url, from: self, options: .detail(embedInNav: true))
