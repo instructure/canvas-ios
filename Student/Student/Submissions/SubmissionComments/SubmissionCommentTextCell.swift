@@ -39,7 +39,7 @@ class SubmissionCommentTextCell: UITableViewCell {
         accessibilityIdentifier = "SubmissionComments.textCell.\(comment.id)"
         accessibilityLabel = String.localizedStringWithFormat(
             NSLocalizedString("On %@ %@ commented \"%@\"", bundle: .student, comment: ""),
-            DateFormatter.localizedString(from: comment.createdAt, dateStyle: .long, timeStyle: .short),
+            comment.createdAtLocalizedString,
             comment.authorName,
             comment.comment
         )

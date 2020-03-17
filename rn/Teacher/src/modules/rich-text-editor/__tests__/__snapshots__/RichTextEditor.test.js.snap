@@ -12,9 +12,8 @@ exports[`RichTextEditor renders 1`] = `
       },
     ]
   }
-  navBarStyle="light"
+  navBarStyle="modal"
   showDismissButton={false}
-  statusBarStyle="default"
 >
   <RichTextEditor
     navigator={

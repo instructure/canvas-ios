@@ -70,6 +70,9 @@ private func colorfulActivity(session: Session) -> ((CanvasCore.Activity) -> Col
 }
 
 class ActivityStreamTableViewController: FetchedTableViewController<CanvasCore.Activity> {
+    let env = AppEnvironment.shared
+    lazy var profileButton = UIBarButtonItem(image: .icon(.hamburger, .solid), style: .plain, target: self, action: #selector(openProfile))
+
     init(session: Session, context: ContextID = .currentUser) throws {
         super.init()
 
@@ -78,6 +81,11 @@ class ActivityStreamTableViewController: FetchedTableViewController<CanvasCore.A
 
         prepare(try Activity.collection(session: session, context: context), refresher: try Activity.refresher(session: session, context: context), viewModelFactory: colorfulActivity(session: session))
     }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.leftBarButtonItem = profileButton
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -85,7 +93,11 @@ class ActivityStreamTableViewController: FetchedTableViewController<CanvasCore.A
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         Analytics.shared.logEvent("notification_selected")
-        let activity = collection[indexPath]
-        router.route(to: activity.url, from: self, options: .detail(embedInNav: true))
+        guard let activityUrl = collection[indexPath].url else { return }
+        router.route(to: activityUrl, from: self, options: .detail(embedInNav: true))
+    }
+
+    @objc func openProfile() {
+        env.router.route(to: .profile, from: self, options: .modal())
     }
 }

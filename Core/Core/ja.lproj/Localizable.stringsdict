@@ -123,9 +123,9 @@
 			<key>NSStringFormatSpecTypeKey</key>
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
+			<string>g</string>
 			<key>other</key>
-			<string>%d 点</string>
+			<string>%g points</string>
 		</dict>
 	</dict>
 	<key>g_pts</key>

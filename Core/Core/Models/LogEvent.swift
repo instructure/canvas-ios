@@ -20,7 +20,7 @@ import Foundation
 import CoreData
 
 public class LogEvent: NSManagedObject {
-    @NSManaged public var timestamp: Date
+    @NSManaged public var timestamp: Date?
     @NSManaged public var typeRaw: String
     @NSManaged public var message: String
 }

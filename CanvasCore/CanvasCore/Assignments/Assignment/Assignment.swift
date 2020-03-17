@@ -39,8 +39,8 @@ public final class Assignment: NSManagedObject, LockableModel {
     @NSManaged internal (set) public var name: String
     @NSManaged internal (set) public var due: Date?
     @NSManaged internal (set) public var details: String
-    @NSManaged internal (set) public var url: URL
-    @NSManaged internal (set) public var htmlURL: URL
+    @NSManaged internal (set) public var url: URL?
+    @NSManaged internal (set) public var htmlURL: URL?
     @NSManaged internal (set) public var rawSubmissionTypes: Int32
     @NSManaged internal (set) public var rawDueStatus: String
     @NSManaged internal (set) public var hasSubmitted: Bool

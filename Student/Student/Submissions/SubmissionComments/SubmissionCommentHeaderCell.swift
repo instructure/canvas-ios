@@ -37,7 +37,7 @@ class SubmissionCommentHeaderCell: UITableViewCell {
         authorAvatarView?.name = comment.authorName
         authorAvatarView?.url = comment.authorAvatarURL
         authorNameLabel?.text = User.displayName(comment.authorName, pronouns: comment.authorPronouns)
-        createdAtLabel?.text = DateFormatter.localizedString(from: comment.createdAt, dateStyle: .long, timeStyle: .short)
+        createdAtLabel?.text = comment.createdAtLocalizedString
         chatBubbleView?.isHidden = comment.attempt != nil || comment.mediaURL != nil
     }
 }

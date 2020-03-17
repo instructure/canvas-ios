@@ -398,9 +398,6 @@
 "Invitation" = "Invitation";
 
 /* No comment provided by engineer. */
-"It looks like assignments haven’t been created in this space yet." = "Il semble qu'aucun travail n’a été créé à cet endroit pour le moment.";
-
-/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Il semblerait que vous ne soyez pas inscrit à des cours comme %@. Une de nos autres applications pourrait être mieux adaptée. Cliquez sur l'un d'entre-eux pour visiter l'App Store.";
 
 /* No comment provided by engineer. */
@@ -495,9 +492,6 @@
 
 /* No comment provided by engineer. */
 "Never" = "Jamais";
-
-/* No comment provided by engineer. */
-"No Assignments" = "Aucun travail";
 
 /* No comment provided by engineer. */
 "No Content" = "Pas de contenu";

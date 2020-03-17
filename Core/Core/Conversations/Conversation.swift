@@ -26,7 +26,7 @@ final public class Conversation: NSManagedObject, WriteableModel {
     @NSManaged public var contextName: String?
     @NSManaged public var id: String
     @NSManaged public var lastMessage: String
-    @NSManaged public var lastMessageAt: Date
+    @NSManaged public var lastMessageAt: Date?
     @NSManaged public var messageCount: Int
     @NSManaged var messagesRaw: NSOrderedSet?
     @NSManaged public var participants: Set<ConversationParticipant>

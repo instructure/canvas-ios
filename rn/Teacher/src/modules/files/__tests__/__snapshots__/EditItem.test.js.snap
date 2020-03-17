@@ -4,20 +4,18 @@ exports[`EditItem file renders usage rights editing when feature is enabled 1`] 
 <Screen
   dismissButtonTitle="Cancel"
   drawUnderNavBar={true}
-  navBarButtonColor="#008EE2"
-  navBarStyle="light"
-  navBarTitleColors="#2D3B45"
+  navBarStyle="modal"
   rightBarButtons={
     Array [
       Object {
         "action": [Function],
+        "style": "done",
         "testID": "edit-item.done-btn",
         "title": "Done",
       },
     ]
   }
   showDismissButton={true}
-  statusBarStyle="default"
   title="Edit File"
 >
   <View
@@ -136,20 +134,18 @@ exports[`EditItem folder should render 1`] = `
 <Screen
   dismissButtonTitle="Cancel"
   drawUnderNavBar={true}
-  navBarButtonColor="#008EE2"
-  navBarStyle="light"
-  navBarTitleColors="#2D3B45"
+  navBarStyle="modal"
   rightBarButtons={
     Array [
       Object {
         "action": [Function],
+        "style": "done",
         "testID": "edit-item.done-btn",
         "title": "Done",
       },
     ]
   }
   showDismissButton={true}
-  statusBarStyle="default"
   title="Edit Folder"
 >
   <View
@@ -236,20 +232,18 @@ exports[`EditItem folder shows availability when there is a lock_at date 1`] = `
 <Screen
   dismissButtonTitle="Cancel"
   drawUnderNavBar={true}
-  navBarButtonColor="#008EE2"
-  navBarStyle="light"
-  navBarTitleColors="#2D3B45"
+  navBarStyle="modal"
   rightBarButtons={
     Array [
       Object {
         "action": [Function],
+        "style": "done",
         "testID": "edit-item.done-btn",
         "title": "Done",
       },
     ]
   }
   showDismissButton={true}
-  statusBarStyle="default"
   title="Edit Folder"
 >
   <View
@@ -380,20 +374,18 @@ exports[`EditItem folder shows availability when there is an unlock_at date 1`] 
 <Screen
   dismissButtonTitle="Cancel"
   drawUnderNavBar={true}
-  navBarButtonColor="#008EE2"
-  navBarStyle="light"
-  navBarTitleColors="#2D3B45"
+  navBarStyle="modal"
   rightBarButtons={
     Array [
       Object {
         "action": [Function],
+        "style": "done",
         "testID": "edit-item.done-btn",
         "title": "Done",
       },
     ]
   }
   showDismissButton={true}
-  statusBarStyle="default"
   title="Edit Folder"
 >
   <View
@@ -524,20 +516,18 @@ exports[`EditItem folder shows the type of restriction when hidden 1`] = `
 <Screen
   dismissButtonTitle="Cancel"
   drawUnderNavBar={true}
-  navBarButtonColor="#008EE2"
-  navBarStyle="light"
-  navBarTitleColors="#2D3B45"
+  navBarStyle="modal"
   rightBarButtons={
     Array [
       Object {
         "action": [Function],
+        "style": "done",
         "testID": "edit-item.done-btn",
         "title": "Done",
       },
     ]
   }
   showDismissButton={true}
-  statusBarStyle="default"
   title="Edit Folder"
 >
   <View

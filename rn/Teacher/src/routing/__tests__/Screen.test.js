@@ -55,8 +55,7 @@ describe('Screen component', () => {
 
   const defaultScreenConfig = {
     backButtonTitle: 'Back',
-    navBarStyle: 'light',
-    statusBarStyle: 'default',
+    navBarStyle: 'modal',
     showDismissButton: true,
   }
 
@@ -107,15 +106,6 @@ describe('Screen component', () => {
   it('does not talk to helm if no screenInstanceID is in context', () => {
     shallow(<Screen />)
     expect(NativeModules.Helm.setScreenConfig).not.toHaveBeenCalled()
-  })
-
-  it('tries to match the statusBarStyle to the navBarStyle', () => {
-    shallow(<Screen navBarStyle='dark' />, { context })
-    expect(NativeModules.Helm.setScreenConfig).toHaveBeenCalledWith({
-      ...defaultScreenConfig,
-      navBarStyle: 'dark',
-      statusBarStyle: 'light',
-    }, context.screenInstanceID, true)
   })
 
   it('subscribes to device event emitter for bar button callbacks', () => {

@@ -40,7 +40,7 @@ public enum UserEnrollmentRole: String {
 
 open class UserEnrollment: NSManagedObject {
     @NSManaged fileprivate(set) public var id: String
-    @NSManaged fileprivate(set) public var url: URL
+    @NSManaged fileprivate(set) public var url: URL?
     @NSManaged fileprivate(set) public var user: User?
     @NSManaged fileprivate(set) public var courseID: String
     @NSManaged fileprivate(set) internal var roleOrder: Int16

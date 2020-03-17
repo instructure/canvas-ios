@@ -32,6 +32,7 @@ public class GradesViewController: UIViewController {
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     public weak var colorDelegate: ColorDelegate?
+    public weak var gradesCellIconDelegate: GradesCellIconIconProviderProtocol?
 
     let env = AppEnvironment.shared
     var courseID: String!
@@ -65,7 +66,9 @@ public class GradesViewController: UIViewController {
         let refresh = CircleRefreshControl()
         refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView.refreshControl = refresh
+        tableView.separatorColor = .named(.borderMedium)
         tableView.tableHeaderView?.sizeToFit()
+        tableView.tableFooterView = UIView()
         tableView.registerHeaderFooterView(SectionHeaderView.self)
         tableView.registerCell(GradesCell.self)
     }
@@ -159,6 +162,7 @@ extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
         cell.nameLabel.text = a?.name
         cell.typeImage.tintColor = colorDelegate?.iconColor ?? Brand.shared.buttonPrimaryBackground
         cell.accessibilityIdentifier = "grades-list.grades-list-row.cell-\(a?.id ?? "nil")"
+        if let iconDelegate = gradesCellIconDelegate { cell.iconDelegate = iconDelegate }
         return cell
     }
 
@@ -196,17 +200,19 @@ extension GradesViewController: HorizontalPagedMenuItem {
     }
 }
 
-public class GradesCell: UITableViewCell {
+public class GradesCell: UITableViewCell, GradesCellIconIconProviderProtocol {
     @IBOutlet weak var nameLabel: DynamicLabel!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var typeImage: UIImageView!
     @IBOutlet weak var dueLabel: DynamicLabel!
     @IBOutlet weak var gradeLabel: DynamicLabel!
     @IBOutlet weak var statusLabel: DynamicLabel!
+    weak var iconDelegate: GradesCellIconIconProviderProtocol?
 
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         loadFromXib()
+        iconDelegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -217,7 +223,7 @@ public class GradesCell: UITableViewCell {
     func update(_ assignment: Assignment?, userID: String?) {
         let submission = assignment?.submissions?.first { $0.userID == userID }
         fullDivider = true
-        typeImage.image = assignment?.icon
+        typeImage.image = iconDelegate?.iconImage(forAssignment: assignment)
         nameLabel.text = assignment?.name
         gradeLabel.text = assignment.flatMap { GradeFormatter.string(from: $0, userID: userID, style: .medium) }
         dueLabel.text = assignment?.dueText
@@ -225,4 +231,12 @@ public class GradesCell: UITableViewCell {
         statusLabel.text = submission?.status.text
         statusLabel.textColor = submission?.status.color
     }
+}
+
+public protocol GradesCellIconIconProviderProtocol: class {
+    func iconImage(forAssignment: Assignment?) -> UIImage?
+}
+
+extension GradesCellIconIconProviderProtocol {
+    public func iconImage(forAssignment: Assignment?) -> UIImage? { forAssignment?.icon }
 }

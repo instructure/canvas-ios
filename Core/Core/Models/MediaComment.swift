@@ -24,7 +24,7 @@ final public class MediaComment: NSManagedObject {
     @NSManaged public var displayName: String?
     @NSManaged public var mediaID: String
     @NSManaged public var mediaTypeRaw: String
-    @NSManaged public var url: URL
+    @NSManaged public var url: URL?
 
     public var mediaType: MediaCommentType {
         get { return MediaCommentType(rawValue: mediaTypeRaw) ?? .video }

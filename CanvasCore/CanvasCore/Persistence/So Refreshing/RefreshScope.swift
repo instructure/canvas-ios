@@ -23,7 +23,7 @@ import CoreData
 
 final class Refresh: NSManagedObject {
     @NSManaged fileprivate var key: String
-    @NSManaged fileprivate var date: Date
+    @NSManaged fileprivate var date: Date?
 }
 
 

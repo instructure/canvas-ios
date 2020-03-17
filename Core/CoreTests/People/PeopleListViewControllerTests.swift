@@ -48,14 +48,8 @@ class PeopleListViewControllerTests: CoreTestCase {
     }
 
     func testLayout() {
-        let navigation = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-
-        navigation.navigationBar.barStyle = .default
-        XCTAssertEqual(controller.preferredStatusBarStyle, .default)
-        navigation.navigationBar.barStyle = .black
-        XCTAssertEqual(controller.preferredStatusBarStyle, .lightContent)
 
         XCTAssertEqual(controller.titleSubtitleView.title, "People")
         XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")

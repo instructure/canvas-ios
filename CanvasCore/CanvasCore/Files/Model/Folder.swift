@@ -23,8 +23,8 @@ import CoreData
 import ReactiveSwift
 
 public final class Folder: FileNode {
-    @NSManaged public var foldersUrl: URL
-    @NSManaged public var filesUrl: URL
+    @NSManaged public var foldersUrl: URL?
+    @NSManaged public var filesUrl: URL?
     @NSManaged public var filesCount: Int32
     @NSManaged public var foldersCount: Int32
     override public var icon: UIImage {

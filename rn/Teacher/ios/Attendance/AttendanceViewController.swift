@@ -178,10 +178,6 @@ class AttendanceViewController: UIViewController, ColoredNavViewProtocol {
         }
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
     @objc func markRemainingPresent(_ sender: Any?) {
         for sc in statuses where sc.status.attendance == nil {
             sc.update(attendance: .present)

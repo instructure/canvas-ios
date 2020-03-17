@@ -48,10 +48,6 @@ public class HelmNavigationController: UINavigationController {
     public override var prefersStatusBarHidden: Bool {
         return topViewController?.prefersStatusBarHidden ?? super.prefersStatusBarHidden
     }
-    
-    public override var preferredStatusBarStyle: UIStatusBarStyle {
-        return topViewController?.preferredStatusBarStyle ?? super.preferredStatusBarStyle
-    }
 }
 
 extension HelmNavigationController: UIGestureRecognizerDelegate {

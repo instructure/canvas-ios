@@ -90,8 +90,8 @@ describe('AssignmentList mapStateToProps', () => {
 
     let result = mapStateToProps(state, defaultProps)
     expect(result).toMatchObject({
-      courseName: '',
-      courseColor: '',
+      courseName: null,
+      courseColor: null,
       assignmentGroups: [],
       pending: 0,
     })

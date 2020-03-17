@@ -398,9 +398,6 @@
 "Invitation" = "Приглашение";
 
 /* No comment provided by engineer. */
-"It looks like assignments haven’t been created in this space yet." = "Похоже, что в этом разделе пока что не было создано ни одного задания.";
-
-/* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Похоже, вы не зачислены ни на какие курсы в качестве %@. Вам может подойти одно из наших других приложений. Нажмите, чтобы посетить App Store.";
 
 /* No comment provided by engineer. */
@@ -495,9 +492,6 @@
 
 /* No comment provided by engineer. */
 "Never" = "Никогда";
-
-/* No comment provided by engineer. */
-"No Assignments" = "Задания отсутствуют";
 
 /* No comment provided by engineer. */
 "No Content" = "Нет контента";

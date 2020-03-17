@@ -41,10 +41,6 @@ class GroupNavigationViewController: UITableViewController, ColoredNavViewProtoc
         return controller
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return navigationController?.navigationBar.barStyle == .black ? .lightContent : .default
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTitleViewInNavbar(title: groups.first?.name ?? "")
@@ -115,7 +111,9 @@ extension GroupNavigationViewController {
         case "wiki", "pages":
             env.router.route(to: "\(context.pathComponent)/pages", from: self)
         default:
-            env.router.route(to: tab.htmlURL, from: self)
+            if let url = tab.htmlURL {
+                env.router.route(to: url, from: self)
+            }
         }
     }
 }

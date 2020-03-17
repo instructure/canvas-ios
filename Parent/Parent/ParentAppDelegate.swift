@@ -117,7 +117,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
                 guard let self = self, let window = self.window else { return }
                 self.studentsRefresher = nil
 
-                let controller = UINavigationController(rootViewController: DashboardViewController.create(session: session))
+                let controller = DashboardNavigationController(rootViewController: DashboardViewController.create(session: session))
                 controller.view.layoutIfNeeded()
                 UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
                     window.rootViewController = controller

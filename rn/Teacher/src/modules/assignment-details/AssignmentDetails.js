@@ -213,7 +213,7 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
     return (
       <Screen
         navBarColor={this.props.courseColor}
-        navBarStyle='dark'
+        navBarStyle='context'
         title={i18n('Assignment Details')}
         subtitle={this.props.courseName}
         testID='assignment-details'

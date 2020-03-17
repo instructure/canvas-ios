@@ -53,8 +53,11 @@ class ComposeReplyViewControllerTests: ParentTestCase {
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "Oops")
 
         controller.all = true
-        api.mock(AddMessage(conversationID: conversation.id, body: "").request, value: .make())
+        let task = api.mock(AddMessage(conversationID: conversation.id, body: "").request, value: .make())
+        task.paused = true
         XCTAssertNoThrow(sendButton.target?.perform(sendButton.action))
+        XCTAssert(sendButton.customView is CircleProgressView)
+        task.resume()
     }
 
     func testAttachments() {

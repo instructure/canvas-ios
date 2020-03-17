@@ -68,7 +68,7 @@ test('map state to props should work', async () => {
     users: {},
     refreshUsers: jest.fn(),
     navigator: template.navigator(),
-    courseColor: '',
+    courseColor: null,
     onEditPressed: jest.fn(),
   }
 

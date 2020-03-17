@@ -35,7 +35,7 @@ final public class CalendarEventItem: NSManagedObject, WriteableModel {
     @NSManaged public var startAt: Date?
     @NSManaged public var endAt: Date?
     @NSManaged public var typeRaw: String
-    @NSManaged public var htmlUrl: URL
+    @NSManaged public var htmlUrl: URL?
     @NSManaged public var contextRaw: String
     @NSManaged public var hasStartAt: Bool
 

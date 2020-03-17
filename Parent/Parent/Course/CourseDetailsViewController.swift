@@ -89,6 +89,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
 
     func configureGrades() {
         gradesViewController = GradesViewController.create(courseID: courseID, userID: studentID, colorDelegate: self)
+        gradesViewController.gradesCellIconDelegate = self
         viewControllers.append(gradesViewController)
     }
 
@@ -186,8 +187,10 @@ class CourseDetailsViewController: HorizontalMenuViewController {
             components.path = "/courses/\(courseID)/grades/\(studentID)"
             return components.url?.absoluteString ?? na
         case .syllabus, .summary:
-            if let syllabusTab = tabs.first(where: { $0.id == "syllabus" }), courses.first?.syllabusBody?.isEmpty == false {
-                components.path = syllabusTab.htmlURL.path
+            if let syllabusTab = tabs.first(where: { $0.id == "syllabus" }),
+                courses.first?.syllabusBody?.isEmpty == false,
+                let htmlURL = syllabusTab.htmlURL {
+                components.path = htmlURL.path
                 return components.url?.absoluteString ?? na
             }
             return na
@@ -239,6 +242,18 @@ extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
             }
         case .summary:
             return NSLocalizedString("Summary", comment: "")
+        }
+    }
+}
+
+extension CourseDetailsViewController: GradesCellIconIconProviderProtocol {
+    public func iconImage(forAssignment assignment: Assignment?) -> UIImage? {
+        //  all quizzes in parent come back as `lockedForUser` so it's always
+        //  showing the lock icon rather than the quiz icon
+        if assignment?.quizID != nil {
+            return  .icon(.quiz, .line)
+        } else {
+            return assignment?.icon
         }
     }
 }

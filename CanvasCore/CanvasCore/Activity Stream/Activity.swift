@@ -24,10 +24,10 @@ public class Activity: NSManagedObject {
     @NSManaged internal(set) public var id: String
     @NSManaged internal(set) public var title: String
     @NSManaged internal(set) public var message: String
-    @NSManaged internal(set) public var url: URL
-    
-    @NSManaged internal(set) public var createdAt: Date
-    @NSManaged internal(set) public var updatedAt: Date
+    @NSManaged internal(set) public var url: URL?
+
+    @NSManaged internal(set) public var createdAt: Date?
+    @NSManaged internal(set) public var updatedAt: Date?
 
     @NSManaged private var primitiveContext: String
     

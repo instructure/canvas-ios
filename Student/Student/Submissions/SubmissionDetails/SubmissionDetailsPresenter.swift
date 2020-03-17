@@ -225,10 +225,10 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
         case .some(.online_url):
             return UrlSubmissionContentViewController.create(submission: submission)
         case .some(.media_recording):
-            guard let mediaComment = submission.mediaComment else {
+            guard let mediaUrl = submission.mediaComment?.url else {
                 return nil
             }
-            let player = AVPlayer(url: mediaComment.url)
+            let player = AVPlayer(url: mediaUrl)
             let controller = AVPlayerViewController()
             controller.player = player
             controller.view.accessibilityIdentifier = "SubmissionDetails.mediaPlayer"

@@ -356,6 +356,6 @@ describe('ViewFile', () => {
     await Promise.resolve() // wait for file download.
     await updatedState(tree)
     tree.update()
-    expect(tree.find('Screen').props().navBarStyle).toBe('light')
+    expect(tree.find('Screen').props().navBarStyle).toBe('modal')
   })
 })

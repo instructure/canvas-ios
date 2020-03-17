@@ -22,8 +22,8 @@ import CoreData
 public final class DueDateOverride: NSManagedObject {
     @NSManaged fileprivate (set) public var id: String
     @NSManaged fileprivate (set) public var title: String
-    @NSManaged fileprivate (set) public var due: Date
-    
+    @NSManaged fileprivate (set) public var due: Date?
+
     @NSManaged var assignment: Assignment?
 }
 

@@ -20,7 +20,7 @@ import CoreData
 
 
 open class SubmissionEvent: NSManagedObject {
-    @NSManaged var date: Date
+    @NSManaged var date: Date?
 
     @NSManaged var assignment: Assignment?
 }

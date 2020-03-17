@@ -345,7 +345,8 @@ extension QuizIntroViewController {
     public static func takeController(contextID: ContextID, quizID: String) -> UIViewController {
         guard let legacySession = Session.current else { return UIViewController() }
         let service = CanvasQuizService(session: legacySession, context: contextID, quizID: quizID)
-        guard let model: Core.Quiz = AppEnvironment.shared.database.viewContext.first(where: #keyPath(Core.Quiz.id), equals: quizID) else {
+        guard let model: Core.Quiz = AppEnvironment.shared.database.viewContext.first(where: #keyPath(Core.Quiz.id), equals: quizID),
+            let mobileURL = model.mobileURL else {
             return QuizIntroViewController(quizController: QuizController(service: service, quiz: nil))
         }
         let quiz = Quiz(
@@ -365,7 +366,7 @@ extension QuizIntroViewController {
             lockedForUser: model.lockedForUser,
             lockExplanation: model.lockExplanation,
             ipFilter: model.ipFilter,
-            mobileURL: model.mobileURL,
+            mobileURL: mobileURL,
             shuffleAnswers: model.shuffleAnswers,
             hasAccessCode: model.hasAccessCode,
             requiresLockdownBrowser: model.requireLockdownBrowser,

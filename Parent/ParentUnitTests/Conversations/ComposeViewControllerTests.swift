@@ -99,7 +99,7 @@ class ComposeViewControllerTests: ParentTestCase {
         task.paused = true
         let sendButton = controller.sendButton
         XCTAssertNoThrow(sendButton.target?.perform(sendButton.action))
-        XCTAssert(controller.sendButton.customView is UIActivityIndicatorView)
+        XCTAssert(controller.sendButton.customView is CircleProgressView)
         task.resume()
     }
 

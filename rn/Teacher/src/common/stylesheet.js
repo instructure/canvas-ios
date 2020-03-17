@@ -50,8 +50,6 @@ export const vars = {
   absoluteFill: StyleSheet.absoluteFill,
   absoluteFillObject: StyleSheet.absoluteFillObject,
   hairlineWidth: StyleSheet.hairlineWidth,
-  headerImageURL: require('../images/canvas-logo.png'),
-  navBarStyle: 'light',
   padding: 16,
   tabBarHeight: 49,
 }
@@ -68,8 +66,6 @@ export function isDark (color) {
 
 export function setupBranding (brand) {
   Object.assign(colors, brand)
-  vars.headerImageURL = brand.headerImageUrl || vars.headerImageURL
-  vars.navBarStyle = isDark(colors.navBackground) ? 'dark' : 'light'
   updateStyleSheets()
 }
 

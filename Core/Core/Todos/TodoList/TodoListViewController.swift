@@ -26,6 +26,8 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
     @IBOutlet var emptyView: UIView!
     @IBOutlet var tableView: UITableView!
 
+    lazy var profileButton = UIBarButtonItem(image: .icon(.hamburger, .solid), style: .plain, target: self, action: #selector(openProfile))
+
     let env = AppEnvironment.shared
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
@@ -49,6 +51,7 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
         navigationItem.title = NSLocalizedString("To Do", bundle: .core, comment: "")
+        navigationItem.leftBarButtonItem = profileButton
 
         activityIndicatorView.color = Brand.shared.primary
 
@@ -92,6 +95,10 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
     @objc func refresh() {
         todos.refresh(force: true)
     }
+
+    @objc func openProfile() {
+        env.router.route(to: .profile, from: self, options: .modal())
+    }
 }
 
 extension TodoListViewController: UITableViewDataSource, UITableViewDelegate {
@@ -114,9 +121,12 @@ extension TodoListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let todo = todos[indexPath] else { return }
+        guard let todo = todos[indexPath],
+            let assignmentURL = todo.assignment.htmlURL else {
+                return
+        }
         Analytics.shared.logEvent("todo_selected")
-        env.router.route(to: todo.assignment.htmlURL, from: self, options: .detail(embedInNav: true))
+        env.router.route(to: assignmentURL, from: self, options: .detail(embedInNav: true))
     }
 
     public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -132,7 +142,8 @@ extension TodoListViewController: UITableViewDataSource, UITableViewDelegate {
         guard let todo = todos[indexPath] else { return }
         let id = todo.id
         Analytics.shared.logEvent("todo_ignored")
-        env.api.makeRequest(DeleteTodoRequest(ignoreURL: todo.ignoreURL)) { [weak self] (_, _, error) in
+        guard let ignoreURL = todo.ignoreURL else { return }
+        env.api.makeRequest(DeleteTodoRequest(ignoreURL: ignoreURL)) { [weak self] (_, _, error) in
             if let error = error {
                 self?.showError(error)
             }

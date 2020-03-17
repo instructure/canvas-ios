@@ -360,7 +360,7 @@ export default class ViewFile extends Component<Props, State> {
     return (
       <Screen
         title={name}
-        navBarStyle={this.props.navigator.isModal ? 'light' : 'dark'}
+        navBarStyle={this.props.navigator.isModal ? 'modal' : 'context'}
         subtitle={course && course.name || undefined}
         drawUnderNavBar
         disableGlobalSafeArea

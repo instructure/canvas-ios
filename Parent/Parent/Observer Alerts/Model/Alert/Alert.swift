@@ -54,7 +54,7 @@ public final class Alert: NSManagedObject {
     @NSManaged internal (set) public var title: String
     @NSManaged internal (set) public var read: Bool
     @NSManaged internal (set) public var dismissed: Bool
-    @NSManaged internal (set) public var actionDate: Date
+    @NSManaged internal (set) public var actionDate: Date?
     @NSManaged internal (set) public var assetPath: String?
 }
 

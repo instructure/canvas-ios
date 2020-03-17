@@ -21,12 +21,12 @@ import CoreData
 
 final public class Page: NSManagedObject {
     @NSManaged public var url: String
-    @NSManaged public var lastUpdated: Date
+    @NSManaged public var lastUpdated: Date?
     @NSManaged public var isFrontPage: Bool
     @NSManaged public var contextID: String
     @NSManaged public var id: String
     @NSManaged public var title: String
-    @NSManaged public var htmlURL: URL
+    @NSManaged public var htmlURL: URL?
     @NSManaged public var published: Bool
     @NSManaged public var body: String
     @NSManaged public var editingRoles: [String]

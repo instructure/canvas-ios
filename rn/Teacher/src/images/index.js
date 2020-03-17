@@ -81,7 +81,6 @@ const images = {
   document: require('./Document.png'),
   paperclip: require('./paperclip-icon.png'),
   attachment80: require('./attachment-80.png'),
-  mail: require('./Mail.png'),
   smallMail: require('./mail-small.png'),
   trash: require('./trash.png'),
   share: require('./share.png'),

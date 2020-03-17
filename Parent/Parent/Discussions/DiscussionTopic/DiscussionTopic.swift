@@ -26,13 +26,13 @@ public enum DiscussionTopicType: String {
 }
 
 public final class DiscussionTopic: NSManagedObject, LockableModel {
-    @NSManaged internal (set) public var id: String          // The ID of this topic
-    @NSManaged internal (set) public var title: String       // The topic title
-    @NSManaged internal (set) public var message: String     // The HTML content of the message body
-    @NSManaged internal (set) public var username: String?   // The username of the topic creator
-    @NSManaged internal (set) public var htmlURL: URL      // The URL to the discussion topic in canvas
-    @NSManaged internal (set) public var postedAt: Date?   // The datetime if the topic was posted.
-    @NSManaged internal (set) public var isAnnouncement: Bool   // Announcements are just discussions in disguise
+    @NSManaged internal (set) public var id: String            // The ID of this topic
+    @NSManaged internal (set) public var title: String         // The topic title
+    @NSManaged internal (set) public var message: String       // The HTML content of the message body
+    @NSManaged internal (set) public var username: String?     // The username of the topic creator
+    @NSManaged internal (set) public var htmlURL: URL?         // The URL to the discussion topic in canvas
+    @NSManaged internal (set) public var postedAt: Date?       // The datetime if the topic was posted.
+    @NSManaged internal (set) public var isAnnouncement: Bool  // Announcements are just discussions in disguise
 
     @NSManaged fileprivate var primitiveType: String
     internal (set) public var type: DiscussionTopicType {

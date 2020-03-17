@@ -25,7 +25,7 @@ public final class GradingPeriod: NSManagedObject {
     @NSManaged internal (set) public var id: String
     @NSManaged internal (set) public var title: String
     @NSManaged internal (set) public var courseID: String
-    @NSManaged internal (set) public var startDate: Date
+    @NSManaged internal (set) public var startDate: Date?
 }
 
 extension GradingPeriod: SynchronizedModel {

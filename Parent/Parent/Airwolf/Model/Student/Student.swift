@@ -29,7 +29,7 @@ public final class Student: NSManagedObject {
     @NSManaged fileprivate (set) public var shortName: String
     @NSManaged fileprivate (set) public var sortableName: String
     @NSManaged fileprivate (set) public var avatarURL: URL?
-    @NSManaged fileprivate (set) public var domain: URL
+    @NSManaged fileprivate (set) public var domain: URL?
     @NSManaged fileprivate (set) public var pronouns: String?
 }
 

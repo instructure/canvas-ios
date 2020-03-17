@@ -103,20 +103,25 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
             ? NSLocalizedString("Reply All", comment: "")
             : NSLocalizedString("Reply", comment: "")
 
-        guard let conversation = conversation, let message = message else { return }
+        guard let conversation = conversation,
+            let message = message,
+            let createdAt = message.createdAt else {
+                return
+        }
         let myID = env.currentSession?.userID ?? ""
         let userMap: [String: ConversationParticipant] = conversation.participants
             .reduce(into: [:]) { map, p in map[p.id] = p }
         messageLabel.text = message.body
         toLabel.text = message.localizedAudience(myID: myID, userMap: userMap)
         fromLabel.text = userMap[message.authorID]?.displayName
-        dateLabel.text = DateFormatter.localizedString(from: message.createdAt, dateStyle: .medium, timeStyle: .short)
+        dateLabel.text = DateFormatter.localizedString(from: createdAt, dateStyle: .medium, timeStyle: .short)
         avatarView.url = userMap[message.authorID]?.avatarURL
         avatarView.name = userMap[message.authorID]?.name ?? ""
     }
 
     @IBAction func updateSendButton() {
         sendButton.isEnabled = (
+            sendButton.customView == nil &&
             conversation != nil &&
             message != nil &&
             bodyView.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false &&
@@ -126,15 +131,22 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
 
     @objc func send() {
         guard
+            sendButton.isEnabled,
             let conversation = conversation, let message = message,
             let body = bodyView.text?.trimmingCharacters(in: .whitespacesAndNewlines), !body.isEmpty
         else { return }
+        let spinner = CircleProgressView(frame: CGRect(x: 0, y: 0, width: 40, height: 24))
+        spinner.color = nil
+        sendButton.customView = spinner
+        updateSendButton()
         let myID = env.currentSession?.userID ?? ""
         let recipients = !all ? [ message.authorID ]
             : message.participantIDs.filter { $0 != myID }
         let attachmentIDs = attachments.all?.compactMap { $0.id }
         AddMessage(conversationID: conversation.id, attachmentIDs: attachmentIDs, body: body, recipientIDs: recipients).fetch { [weak self] _, _, error in performUIUpdate {
             if let error = error {
+                self?.sendButton.customView = nil
+                self?.updateSendButton()
                 self?.showError(error)
                 return
             }

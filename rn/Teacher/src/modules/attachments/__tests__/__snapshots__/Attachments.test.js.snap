@@ -13,7 +13,7 @@ exports[`Attachments renders attachments 1`] = `
       },
     ]
   }
-  navBarStyle="light"
+  navBarStyle="modal"
   rightBarButtons={
     Array [
       Object {
@@ -27,7 +27,6 @@ exports[`Attachments renders attachments 1`] = `
     ]
   }
   showDismissButton={false}
-  statusBarStyle="default"
   title="Attachments"
 >
   <View
@@ -157,7 +156,7 @@ exports[`Attachments renders empty state 1`] = `
       },
     ]
   }
-  navBarStyle="light"
+  navBarStyle="modal"
   rightBarButtons={
     Array [
       Object {
@@ -171,7 +170,6 @@ exports[`Attachments renders empty state 1`] = `
     ]
   }
   showDismissButton={false}
-  statusBarStyle="default"
   title="Attachments"
 >
   <View

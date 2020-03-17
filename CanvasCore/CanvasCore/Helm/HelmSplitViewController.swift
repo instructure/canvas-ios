@@ -32,22 +32,6 @@ open class HelmSplitViewController: UISplitViewController {
         delegate = self
         preferredDisplayMode = .allVisible
     }
-
-    override open var preferredStatusBarStyle: UIStatusBarStyle {
-        if let firstNav = viewControllers.first as? UINavigationController {
-            if let presented = firstNav.presentedViewController, presented.isBeingDismissed == false {
-                return presented.preferredStatusBarStyle
-            } else {
-                if #available(iOS 13, *) {
-                    return firstNav.navigationBar.barStyle == .black ? .lightContent : .darkContent
-                }
-                return firstNav.navigationBar.barStyle == .black ? .lightContent : .default
-            }
-        } else {
-            guard let first = viewControllers.first else { return .default }
-            return first.preferredStatusBarStyle
-        }
-    }
     
     override open var prefersStatusBarHidden: Bool {
         return viewControllers.first?.prefersStatusBarHidden ?? false

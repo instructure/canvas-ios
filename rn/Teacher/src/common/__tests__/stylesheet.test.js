@@ -69,7 +69,6 @@ describe('setupBranding', () => {
     })
 
     expect(colors).toMatchObject(expected)
-    expect(vars.headerImageURL).toBe('./src/images/canvas-logo.png')
   })
 
   it('updates created StyleSheet', () => {

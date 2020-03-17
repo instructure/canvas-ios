@@ -4,7 +4,7 @@ exports[`ViewFile renders loading while fetching the file 1`] = `
 <Screen
   disableGlobalSafeArea={true}
   drawUnderNavBar={true}
-  navBarStyle="dark"
+  navBarStyle="context"
   rightBarButtons={
     Array [
       Object {
@@ -15,7 +15,6 @@ exports[`ViewFile renders loading while fetching the file 1`] = `
     ]
   }
   showDismissButton={false}
-  statusBarStyle="default"
   title="Book Report"
 >
   <View

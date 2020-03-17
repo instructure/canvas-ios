@@ -25,7 +25,7 @@ public enum LoggableType: String, Hashable, CaseIterable {
 }
 
 public protocol Loggable {
-    var timestamp: Date { get }
+    var timestamp: Date? { get }
     var type: LoggableType { get }
     var message: String { get }
 }

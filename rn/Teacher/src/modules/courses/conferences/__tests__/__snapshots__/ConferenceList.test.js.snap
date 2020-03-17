@@ -2,9 +2,9 @@
 
 exports[`ConferenceList List renders 1`] = `
 <Screen
-  navBarStyle="dark"
+  navBarColor="#F00"
+  navBarStyle="context"
   showDismissButton={true}
-  statusBarStyle="default"
   subtitle="Learn React Native"
   title="Conferences"
 >
@@ -35,9 +35,9 @@ exports[`ConferenceList List renders 1`] = `
 
 exports[`ConferenceList List renders with rows 1`] = `
 <Screen
-  navBarStyle="dark"
+  navBarColor="#F00"
+  navBarStyle="context"
   showDismissButton={true}
-  statusBarStyle="default"
   subtitle="Learn React Native"
   title="Conferences"
 >

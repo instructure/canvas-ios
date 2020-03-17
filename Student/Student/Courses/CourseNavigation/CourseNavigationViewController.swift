@@ -26,7 +26,7 @@ protocol CourseNavigationViewProtocol: ErrorViewController {
 
 protocol CourseNavigationViewModel: TabViewable {
     var label: String { get }
-    var htmlURL: URL { get }
+    var htmlURL: URL? { get }
 }
 
 class CourseNavigationViewController: UITableViewController {
@@ -82,7 +82,9 @@ extension CourseNavigationViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard indexPath.row < presenter?.tabs.count ?? 0, let tab = presenter?.tabs[indexPath.row] else { return }
-        router.route(to: tab.htmlURL, from: self)
+        guard indexPath.row < presenter?.tabs.count ?? 0,
+            let tab = presenter?.tabs[indexPath.row],
+            let htmlURL = tab.htmlURL else { return }
+        router.route(to: htmlURL, from: self)
     }
 }

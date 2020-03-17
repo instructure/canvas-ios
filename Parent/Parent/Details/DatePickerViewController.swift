@@ -60,10 +60,6 @@ class DatePickerViewController: UIViewController {
         navigationItem.rightBarButtonItem = doneButton
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
     @objc func cancel(_ button: UIBarButtonItem) {
         dismiss(animated: true, completion: { [unowned self] in
             self.cancelAction()

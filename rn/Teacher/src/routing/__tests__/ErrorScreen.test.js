@@ -31,8 +31,8 @@ describe('ErrorScreen', () => {
 
   it('sets nav to dark unless in a modal', () => {
     const tree = shallow(<ErrorScreen navigator={template.navigator()} />)
-    expect(tree.find('Screen').prop('navBarStyle')).toBe('dark')
+    expect(tree.find('Screen').prop('navBarStyle')).toBe('global')
     tree.setProps({ navigator: template.navigator({ isModal: true }) })
-    expect(tree.find('Screen').prop('navBarStyle')).toBe('light')
+    expect(tree.find('Screen').prop('navBarStyle')).toBe('modal')
   })
 })

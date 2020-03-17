@@ -50,7 +50,9 @@ extension File {
             super.viewDidLoad()
 
             let webView = CanvasWebView()
-            webView.load(source: .url(file.url))
+            if let url = file.url {
+                webView.load(source: .url(url))
+            }
             webView.backgroundColor = .named(.backgroundLightest)
             self.view = webView
             self.edgesForExtendedLayout = UIRectEdge()

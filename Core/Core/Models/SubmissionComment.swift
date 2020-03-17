@@ -27,7 +27,7 @@ final public class SubmissionComment: NSManagedObject {
     @NSManaged public var authorName: String
     @NSManaged public var authorPronouns: String?
     @NSManaged public var comment: String
-    @NSManaged public var createdAt: Date
+    @NSManaged public var createdAt: Date?
     @NSManaged public var editedAt: Date?
     @NSManaged public var mediaID: String?
     @NSManaged public var mediaName: String?
@@ -39,6 +39,11 @@ final public class SubmissionComment: NSManagedObject {
     public var mediaType: MediaCommentType? {
         get { return mediaTypeRaw.flatMap { MediaCommentType(rawValue: $0) } }
         set { mediaTypeRaw = newValue?.rawValue }
+    }
+
+    public var createdAtLocalizedString: String {
+        guard let createdAt = createdAt else { return "" }
+        return DateFormatter.localizedString(from: createdAt, dateStyle: .long, timeStyle: .short)
     }
 
     /// If set, this comment represents an actual submission attempt
