@@ -280,6 +280,7 @@ extension AppDelegate {
 
         Fabric.with([Crashlytics.self])
         CanvasCrashlytics.setupForReactNative()
+        Fabric.sharedSDK().debug = true
     }
 
     func setupDebugCrashLogging() {
