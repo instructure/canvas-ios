@@ -106,6 +106,7 @@
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="duration" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="playbackURL" optional="YES" attributeType="URI"/>
+        <attribute name="recordingID" attributeType="String" defaultValueString=""/>
         <attribute name="title" attributeType="String"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="conference" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Conference" inverseName="recordingsRaw" inverseEntity="Conference"/>
@@ -637,7 +638,7 @@
         <element name="CommonCourse" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="CommunicationChannel" positionX="-531" positionY="-9" width="128" height="133"/>
         <element name="Conference" positionX="-540" positionY="-18" width="128" height="268"/>
-        <element name="ConferenceRecording" positionX="-531" positionY="-9" width="128" height="133"/>
+        <element name="ConferenceRecording" positionX="-531" positionY="-9" width="128" height="148"/>
         <element name="ContextColor" positionX="-177.3046875" positionY="-36" width="128" height="73"/>
         <element name="Conversation" positionX="-540" positionY="-18" width="128" height="238"/>
         <element name="ConversationMessage" positionX="-522" positionY="0" width="128" height="178"/>
