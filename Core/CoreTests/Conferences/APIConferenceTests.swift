@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2017-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,11 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-// @flow
+import XCTest
+@testable import Core
 
-export type Conference = {
-    id: string,
-    title: string,
-    description: string,
-    join_url: ?string,
+class APIConferenceTests: CoreTestCase {
+    func testGetConferencesRequest() {
+        let request = GetConferencesRequest(context: ContextModel(.course, id: "2"), perPage: 42)
+        XCTAssertEqual(request.path, "courses/2/conferences")
+        XCTAssertEqual(request.query, [.perPage(42)])
+    }
 }

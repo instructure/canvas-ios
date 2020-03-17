@@ -52,6 +52,7 @@
 		7D70DE9C233EAB3500F5C3D4 /* APICommunicationChannelFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D70DE9B233EAB3500F5C3D4 /* APICommunicationChannelFixture.swift */; };
 		7D70DE9E233EAB5500F5C3D4 /* APINotificationPreferencesFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D70DE9D233EAB5500F5C3D4 /* APINotificationPreferencesFixture.swift */; };
 		7D70DEA0233EACF200F5C3D4 /* CommunicationChannelFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D70DE9F233EACF200F5C3D4 /* CommunicationChannelFixture.swift */; };
+		7D7F71E0241FDE2F00D6F9CB /* ConferenceFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7F71DF241FDE2F00D6F9CB /* ConferenceFixture.swift */; };
 		7D903C0A22BC1329009D9E9E /* LoginStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C0922BC1329009D9E9E /* LoginStart.swift */; };
 		7D903C0C22BC132E009D9E9E /* LoginWeb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C0B22BC132E009D9E9E /* LoginWeb.swift */; };
 		7D903C0E22BC133B009D9E9E /* LoginFindSchool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C0D22BC133B009D9E9E /* LoginFindSchool.swift */; };
@@ -170,6 +171,7 @@
 		7D70DE9B233EAB3500F5C3D4 /* APICommunicationChannelFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommunicationChannelFixture.swift; sourceTree = "<group>"; };
 		7D70DE9D233EAB5500F5C3D4 /* APINotificationPreferencesFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APINotificationPreferencesFixture.swift; sourceTree = "<group>"; };
 		7D70DE9F233EACF200F5C3D4 /* CommunicationChannelFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationChannelFixture.swift; sourceTree = "<group>"; };
+		7D7F71DF241FDE2F00D6F9CB /* ConferenceFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceFixture.swift; sourceTree = "<group>"; };
 		7D903C0922BC1329009D9E9E /* LoginStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStart.swift; sourceTree = "<group>"; };
 		7D903C0B22BC132E009D9E9E /* LoginWeb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWeb.swift; sourceTree = "<group>"; };
 		7D903C0D22BC133B009D9E9E /* LoginFindSchool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchool.swift; sourceTree = "<group>"; };
@@ -372,6 +374,7 @@
 				3B6043A9232AB93900757B93 /* AssignmentGroupsFixture.swift */,
 				3B635B34225CDFB1001F353D /* CalendarEventFixture.swift */,
 				7D70DE9F233EACF200F5C3D4 /* CommunicationChannelFixture.swift */,
+				7D7F71DF241FDE2F00D6F9CB /* ConferenceFixture.swift */,
 				B19792F421767B830000369C /* ContextColorFixture.swift */,
 				7D26B84623A81D8E00262380 /* ConversationFixture.swift */,
 				3B032D18215037CA00B570F7 /* CourseFixture.swift */,
@@ -707,6 +710,7 @@
 				E81B575E23E243CA002A0C38 /* Compose.swift in Sources */,
 				7D70DE9E233EAB5500F5C3D4 /* APINotificationPreferencesFixture.swift in Sources */,
 				B1A32BE02159A28D0071B41E /* APISubmissionFixture.swift in Sources */,
+				7D7F71E0241FDE2F00D6F9CB /* ConferenceFixture.swift in Sources */,
 				B150C6382298D6F20096D58C /* APIExternalToolFixture.swift in Sources */,
 				3B0CEBA321504C2500D07CFA /* APITabFixture.swift in Sources */,
 				7D6C8C6B22EA0C5900E5ADD8 /* APIActivityFixture.swift in Sources */,

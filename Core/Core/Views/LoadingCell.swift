@@ -22,14 +22,16 @@ import UIKit
 public class LoadingCell: UITableViewCell {
     override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        let indicator = UIActivityIndicatorView(style: .gray)
+        let indicator = CircleProgressView()
+        indicator.color = .named(.textDark)
         indicator.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(indicator)
         NSLayoutConstraint.activate([
+            indicator.widthAnchor.constraint(equalToConstant: 24),
+            indicator.heightAnchor.constraint(equalToConstant: 24),
             indicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             indicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
         ])
-        indicator.startAnimating()
         separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
     }
 

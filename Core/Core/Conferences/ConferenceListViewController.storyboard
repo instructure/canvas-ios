@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Conferences-->
+        <scene sceneID="6G5-Pk-OQx">
+            <objects>
+                <viewController storyboardIdentifier="ConferenceListViewController" title="Conferences" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4rZ-PW-jpD" customClass="ConferenceListViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iYt-fI-nHi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="g3K-FX-L4M">
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="KLU-tr-jrd" customClass="ListBackgroundView" customModule="Core" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="166.33333587646484" width="375" height="240.00000000000006"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0lr-GQ-yY7" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="167.66666666666666" y="100" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="Scu-fs-1pW"/>
+                                                <constraint firstAttribute="height" constant="40" id="zYC-6n-C8R"/>
+                                            </constraints>
+                                        </view>
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q1R-6w-V5C">
+                                            <rect key="frame" x="0.0" y="18.333333333333329" width="375" height="203.33333333333337"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PandaAtLaptop" translatesAutoresizingMaskIntoConstraints="NO" id="Zco-WG-yCy" customClass="IconView" customModule="Core" customModuleProvider="target">
+                                                    <rect key="frame" x="93.666666666666686" y="0.0" width="188" height="120"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="PandaAtLaptop"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Conferences" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9iq-BH-els" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                    <rect key="frame" x="32" y="152" width="311" height="24"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="ConferenceList.emptyTitleLabel"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold20"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no conferences to display yet." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adb-Iq-iVf" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                    <rect key="frame" x="32" y="184" width="311" height="19.333333333333343"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="ConferenceList.emptyMessageLabel"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Zco-WG-yCy" firstAttribute="top" secondItem="Q1R-6w-V5C" secondAttribute="top" id="4WV-Rq-qJx"/>
+                                                <constraint firstItem="adb-Iq-iVf" firstAttribute="leading" secondItem="Q1R-6w-V5C" secondAttribute="leading" constant="32" id="6XN-e1-RhH"/>
+                                                <constraint firstItem="9iq-BH-els" firstAttribute="leading" secondItem="Q1R-6w-V5C" secondAttribute="leading" constant="32" id="8B4-dh-6e8"/>
+                                                <constraint firstAttribute="trailing" secondItem="adb-Iq-iVf" secondAttribute="trailing" constant="32" id="LI0-W6-Bf8"/>
+                                                <constraint firstItem="adb-Iq-iVf" firstAttribute="top" secondItem="9iq-BH-els" secondAttribute="bottom" constant="8" id="LIY-8e-nK7"/>
+                                                <constraint firstItem="Zco-WG-yCy" firstAttribute="centerX" secondItem="Q1R-6w-V5C" secondAttribute="centerX" id="WKj-mw-9vY"/>
+                                                <constraint firstAttribute="trailing" secondItem="9iq-BH-els" secondAttribute="trailing" constant="32" id="f4U-Jl-SN5"/>
+                                                <constraint firstAttribute="bottom" secondItem="adb-Iq-iVf" secondAttribute="bottom" id="nZQ-xW-SD8"/>
+                                                <constraint firstItem="9iq-BH-els" firstAttribute="top" secondItem="Zco-WG-yCy" secondAttribute="bottom" constant="32" id="s5L-aE-PfS"/>
+                                            </constraints>
+                                        </view>
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQJ-zt-Fxf" customClass="ListErrorView" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="22.666666666666671" width="375" height="195"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="195" placeholder="YES" id="WpU-p1-3J7"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Q1R-6w-V5C" firstAttribute="top" relation="greaterThanOrEqual" secondItem="KLU-tr-jrd" secondAttribute="top" id="7Re-iH-Bw1"/>
+                                        <constraint firstItem="XQJ-zt-Fxf" firstAttribute="centerY" secondItem="KLU-tr-jrd" secondAttribute="centerY" priority="250" id="Biq-yl-xte"/>
+                                        <constraint firstItem="0lr-GQ-yY7" firstAttribute="centerX" secondItem="KLU-tr-jrd" secondAttribute="centerX" id="EvK-nf-CaC"/>
+                                        <constraint firstItem="0lr-GQ-yY7" firstAttribute="centerY" secondItem="KLU-tr-jrd" secondAttribute="centerY" id="Jel-tc-WaV"/>
+                                        <constraint firstItem="Q1R-6w-V5C" firstAttribute="centerY" secondItem="KLU-tr-jrd" secondAttribute="centerY" priority="250" id="KhE-mp-yZP"/>
+                                        <constraint firstAttribute="trailing" secondItem="XQJ-zt-Fxf" secondAttribute="trailing" id="Pj8-dj-zew"/>
+                                        <constraint firstItem="XQJ-zt-Fxf" firstAttribute="leading" secondItem="KLU-tr-jrd" secondAttribute="leading" id="d8a-Oq-ogQ"/>
+                                        <constraint firstItem="Q1R-6w-V5C" firstAttribute="leading" secondItem="KLU-tr-jrd" secondAttribute="leading" id="dKh-jB-SNs"/>
+                                        <constraint firstAttribute="trailing" secondItem="Q1R-6w-V5C" secondAttribute="trailing" id="jNC-gq-bO1"/>
+                                        <constraint firstItem="XQJ-zt-Fxf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="KLU-tr-jrd" secondAttribute="top" id="oQz-Ok-NSW"/>
+                                    </constraints>
+                                </view>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConferenceListCell" id="nnd-eX-t1R" customClass="ConferenceListCell" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="110.33333587646484"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nnd-eX-t1R" id="jl1-at-GKW">
+                                            <rect key="frame" x="0.0" y="0.0" width="349" height="110.33333587646484"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dqX-jH-TWY" customClass="AccessIconView" customModule="Core" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="16" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="B8m-wS-Ytx"/>
+                                                        <constraint firstAttribute="width" constant="24" id="CXM-qY-NRp"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COVID-19 Conference" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHk-3R-2Pl" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                    <rect key="frame" x="56" y="15.999999999999998" width="277" height="19.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                    <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In Progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBm-ca-OYs" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                    <rect key="frame" x="56" y="39.333333333333336" width="277" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.67450980392156867" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textSuccess"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We will continue to conference from home until the COVID-19 pandemic has been resolved." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHN-qz-xOZ" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                    <rect key="frame" x="56" y="60.333333333333343" width="277" height="33.666666666666657"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                    <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ZHN-qz-xOZ" firstAttribute="top" secondItem="kBm-ca-OYs" secondAttribute="bottom" constant="4" id="3qu-wV-TVk"/>
+                                                <constraint firstAttribute="trailing" secondItem="kBm-ca-OYs" secondAttribute="trailing" constant="16" id="6gz-2Q-znk"/>
+                                                <constraint firstAttribute="trailing" secondItem="AHk-3R-2Pl" secondAttribute="trailing" constant="16" id="BaH-6S-6le"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ZHN-qz-xOZ" secondAttribute="bottom" constant="16" id="LdU-PQ-u3R"/>
+                                                <constraint firstItem="kBm-ca-OYs" firstAttribute="leading" secondItem="dqX-jH-TWY" secondAttribute="trailing" constant="16" id="NyG-5k-jlt"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dqX-jH-TWY" secondAttribute="bottom" id="Q3n-5v-LvZ"/>
+                                                <constraint firstItem="AHk-3R-2Pl" firstAttribute="leading" secondItem="dqX-jH-TWY" secondAttribute="trailing" constant="16" id="dZq-u8-3tH"/>
+                                                <constraint firstItem="dqX-jH-TWY" firstAttribute="top" secondItem="jl1-at-GKW" secondAttribute="top" constant="16" id="dkg-rX-UkZ"/>
+                                                <constraint firstItem="dqX-jH-TWY" firstAttribute="leading" secondItem="jl1-at-GKW" secondAttribute="leading" constant="16" id="eWD-Ph-niX"/>
+                                                <constraint firstItem="AHk-3R-2Pl" firstAttribute="top" secondItem="jl1-at-GKW" secondAttribute="top" constant="16" id="jZ2-Kb-ZrT"/>
+                                                <constraint firstItem="ZHN-qz-xOZ" firstAttribute="leading" secondItem="dqX-jH-TWY" secondAttribute="trailing" constant="16" id="thi-OT-AMe"/>
+                                                <constraint firstAttribute="trailing" secondItem="ZHN-qz-xOZ" secondAttribute="trailing" constant="16" id="vfF-jW-mPU"/>
+                                                <constraint firstItem="kBm-ca-OYs" firstAttribute="top" secondItem="AHk-3R-2Pl" secondAttribute="bottom" constant="4" id="xz0-6c-QTk"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="detailsLabel" destination="ZHN-qz-xOZ" id="syx-pe-u1X"/>
+                                            <outlet property="iconView" destination="dqX-jH-TWY" id="Bwz-Kf-mOe"/>
+                                            <outlet property="statusLabel" destination="kBm-ca-OYs" id="bHw-yD-i9n"/>
+                                            <outlet property="titleLabel" destination="AHk-3R-2Pl" id="rtk-dH-TBa"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="4rZ-PW-jpD" id="gS0-nO-nRu"/>
+                                    <outlet property="delegate" destination="4rZ-PW-jpD" id="DaB-6j-k5W"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="YjM-lM-spc" firstAttribute="bottom" secondItem="g3K-FX-L4M" secondAttribute="bottom" id="ZDR-qR-3CC"/>
+                            <constraint firstItem="YjM-lM-spc" firstAttribute="trailing" secondItem="g3K-FX-L4M" secondAttribute="trailing" id="gnH-ZX-une"/>
+                            <constraint firstItem="g3K-FX-L4M" firstAttribute="leading" secondItem="YjM-lM-spc" secondAttribute="leading" id="ihi-0r-cRR"/>
+                            <constraint firstItem="g3K-FX-L4M" firstAttribute="top" secondItem="YjM-lM-spc" secondAttribute="top" id="xAL-oW-Wu7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YjM-lM-spc"/>
+                    </view>
+                    <connections>
+                        <outlet property="emptyMessageLabel" destination="adb-Iq-iVf" id="vNX-gn-F7z"/>
+                        <outlet property="emptyTitleLabel" destination="9iq-BH-els" id="1r4-0Z-lOR"/>
+                        <outlet property="emptyView" destination="Q1R-6w-V5C" id="3rh-MP-Vs4"/>
+                        <outlet property="errorView" destination="XQJ-zt-Fxf" id="Pu7-lp-Q9l"/>
+                        <outlet property="spinnerView" destination="0lr-GQ-yY7" id="fFA-c0-y7e"/>
+                        <outlet property="tableView" destination="g3K-FX-L4M" id="2Lw-5W-9Rq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MSB-EJ-ADS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-10" y="89"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="PandaAtLaptop" width="188" height="120"/>
+    </resources>
+</document>
