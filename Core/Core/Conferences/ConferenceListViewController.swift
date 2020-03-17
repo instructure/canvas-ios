@@ -81,6 +81,9 @@ public class ConferenceListViewController: UIViewController, ColoredNavViewProto
         if let selected = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selected, animated: true)
         }
+        if let color = color {
+            navigationController?.navigationBar.useContextColor(color)
+        }
     }
 
     func updateNavBar() {
@@ -142,9 +145,9 @@ extension ConferenceListViewController: UITableViewDataSource, UITableViewDelega
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // guard let conference = conferences[indexPath] else { return }
-        // let controller = ConferenceDetailsViewController.create(conference)
-        // env.router.show(controller, from: self, options: .detail(embedInNav: true))
+        guard let conference = conferences[indexPath] else { return }
+        let controller = ConferenceDetailsViewController.create(context: context, conferenceID: conference.id)
+        env.router.show(controller, from: self, options: .detail(embedInNav: true))
     }
 }
 

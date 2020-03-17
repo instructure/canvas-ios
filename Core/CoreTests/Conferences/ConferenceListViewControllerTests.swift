@@ -39,16 +39,19 @@ class ConferenceListViewControllerTests: CoreTestCase {
     }
 
     func testLayout() {
+        let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
 
         XCTAssertEqual(controller.titleSubtitleView.title, "Conferences")
         XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+        XCTAssertEqual(nav.navigationBar.barTintColor, UIColor(hexString: "#f00"))
 
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 3)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 1), 1)
 
-        var cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ConferenceListCell
+        let index0 = IndexPath(row: 0, section: 0)
+        var cell = controller.tableView.cellForRow(at: index0) as? ConferenceListCell
         XCTAssertEqual(cell?.titleLabel.text, "test conference")
         XCTAssertEqual(cell?.statusLabel.text, "In Progress")
         XCTAssertEqual(cell?.statusLabel.textColor, .named(.textSuccess))
@@ -62,12 +65,21 @@ class ConferenceListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.statusLabel.text, "Concluded Mar 14 at 12:00 AM")
         XCTAssertEqual(cell?.statusLabel.textColor, .named(.textDark))
 
-        api.mock(controller.conferences, value: .init(conferences: [.make(title: "Pandemic playthrough") ]))
+        api.mock(controller.conferences, value: .init(conferences: [ .make(title: "Pandemic playthrough") ]))
         controller.tableView.refreshControl?.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, false) // stops refreshing
 
-        cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ConferenceListCell
+        cell = controller.tableView.cellForRow(at: index0) as? ConferenceListCell
         XCTAssertEqual(cell?.titleLabel.text, "Pandemic playthrough")
+
+        controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index0)
+        let details = router.viewControllerCalls.last?.0 as? ConferenceDetailsViewController
+        XCTAssertEqual(details?.context.canvasContextID, "course_1")
+        XCTAssertEqual(details?.conferenceID, "1")
+
+        controller.tableView.selectRow(at: index0, animated: false, scrollPosition: .none)
+        controller.viewWillAppear(false)
+        XCTAssertNil(controller.tableView.indexPathForSelectedRow)
     }
 
     func testPaginatedRefresh() {

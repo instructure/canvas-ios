@@ -65,6 +65,17 @@ final class Conference: NSManagedObject {
         return NSLocalizedString("Not Started", bundle: .core, comment: "")
     }
 
+    var statusLongText: String {
+        if let date = startedAt, endedAt == nil {
+            return String.localizedStringWithFormat(
+                NSLocalizedString("In Progress - Started %@ at %@", bundle: .core, comment: "started date at time"),
+                date.dateMediumString,
+                DateFormatter.localizedString(from: date, dateStyle: .none, timeStyle: .short)
+            )
+        }
+        return statusText
+    }
+
     var statusColor: UIColor {
         if startedAt != nil, endedAt == nil {
             return .named(.textSuccess)
@@ -106,15 +117,17 @@ final class ConferenceRecording: NSManagedObject, WriteableModel {
     @NSManaged var createdAt: Date?
     @NSManaged var duration: Double
     @NSManaged var playbackURL: URL?
+    @NSManaged var recordingID: String
     @NSManaged var title: String
     @NSManaged var updatedAt: Date?
 
     @discardableResult
     static func save(_ item: APIConferenceRecording, in context: NSManagedObjectContext) -> ConferenceRecording {
-        let model: ConferenceRecording = context.insert()
+        let model: ConferenceRecording = context.first(where: #keyPath(ConferenceRecording.recordingID), equals: item.recording_id.value) ?? context.insert()
         model.createdAt = item.created_at.rawValue
         model.duration = item.duration_minutes
-        model.playbackURL = item.playback_url?.rawValue
+        model.playbackURL = item.playback_url?.rawValue ?? item.playback_formats.first?.url.rawValue
+        model.recordingID = item.recording_id.value
         model.title = item.title
         model.updatedAt = item.updated_at?.rawValue
         return model
