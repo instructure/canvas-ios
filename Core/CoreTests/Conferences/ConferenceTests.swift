@@ -42,15 +42,15 @@ class ConferenceTests: CoreTestCase {
         conference.startedAt = nil
         conference.endedAt = nil
         XCTAssertEqual(conference.statusText, "Not Started")
-        XCTAssertEqual(conference.statusLongText, "Not Started")
+        XCTAssertEqual(conference.statusLongText.string, "Not Started")
         XCTAssertEqual(conference.statusColor, .named(.textDark))
         conference.startedAt = DateComponents(calendar: .current, year: 2020, month: 3, day: 14, hour: 13).date
         XCTAssertEqual(conference.statusText, "In Progress")
-        XCTAssertEqual(conference.statusLongText, "In Progress - Started Mar 14 at 1:00 PM")
+        XCTAssertEqual(conference.statusLongText.string, "In Progress | Started Mar 14 at 1:00 PM")
         XCTAssertEqual(conference.statusColor, .named(.textSuccess))
         conference.endedAt = DateComponents(calendar: .current, year: 2020, month: 3, day: 14, hour: 13).date
         XCTAssertEqual(conference.statusText, "Concluded Mar 14 at 1:00 PM")
-        XCTAssertEqual(conference.statusLongText, "Concluded Mar 14 at 1:00 PM")
+        XCTAssertEqual(conference.statusLongText.string, "Concluded Mar 14 at 1:00 PM")
         XCTAssertEqual(conference.statusColor, .named(.textDark))
     }
 
