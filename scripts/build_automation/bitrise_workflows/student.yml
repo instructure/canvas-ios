@@ -65,6 +65,7 @@ workflows:
             #!/usr/bin/env bash
             set -e
             set -x
+            cat "$BITRISE_SOURCE_DIR/Student/Student/GoogleService-Info.plist"
             ./Pods/Fabric/upload-symbols -gsp "$BITRISE_SOURCE_DIR/Student/Student/GoogleService-Info.plist" -p ios "$BITRISE_DSYM_PATH"
     - cache-push:
         inputs:
