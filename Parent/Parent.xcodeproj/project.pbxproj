@@ -3029,6 +3029,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.1;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.parentapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3062,6 +3063,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.1;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.parentapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

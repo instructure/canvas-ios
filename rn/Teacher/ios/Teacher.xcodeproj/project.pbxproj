@@ -1320,6 +1320,7 @@
 					"\"$(SRCROOT)/Teacher\"",
 					"\"$(SRCROOT)/Teacher\"",
 				);
+				MARKETING_VERSION = 0.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1382,6 +1383,7 @@
 					"\"$(SRCROOT)/Teacher\"",
 					"\"$(SRCROOT)/Teacher\"",
 				);
+				MARKETING_VERSION = 0.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
