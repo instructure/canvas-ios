@@ -4,6 +4,16 @@ workspace 'Canvas.xcworkspace'
 inhibit_all_warnings!
 platform :ios, '12.0'
 
+
+def firebase_pods
+  # pod 'Fabric'
+  # pod 'Firebase/Core'
+  pod 'Firebase/RemoteConfig'
+  # pod 'Firebase/Analytics'
+  
+  pod 'Firebase/Crashlytics'
+end
+
 abstract_target 'defaults' do
   use_frameworks!
 
@@ -60,55 +70,38 @@ abstract_target 'defaults' do
 
   target 'Parent' do
     project 'Parent/Parent.xcodeproj'
-    pod 'Fabric'
-    pod 'Firebase/Core'
-    pod 'Firebase/RemoteConfig'
-    pod 'Firebase/Analytics'
+    firebase_pods
   end
 
   target 'ParentUnitTests' do
     project 'Parent/Parent.xcodeproj'
-    pod 'Fabric'
-    pod 'Firebase/Core'
-    pod 'Firebase/RemoteConfig'
-    pod 'Firebase/Analytics'
+    firebase_pods
   end
 
   target 'Teacher' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
-    pod 'Fabric'
-    pod 'Firebase/Core'
-    pod 'Firebase/RemoteConfig'
-    pod 'Firebase/Analytics'
+    firebase_pods
   end
-
+  
   target 'TeacherTests' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
-    pod 'Fabric'
-    pod 'Firebase/Core'
-    pod 'Firebase/RemoteConfig'
-    pod 'Firebase/Analytics'
+    firebase_pods
   end
-
+  
   target 'Student' do
     project 'Student/Student.xcodeproj'
-    pod 'Fabric'
-    pod 'Firebase/Core'
-    pod 'Firebase/RemoteConfig'
-    pod 'Firebase/Analytics'
+    firebase_pods
   end
-
+  
   target 'StudentUnitTests' do
     project 'Student/Student.xcodeproj'
-    pod 'Fabric'
-    pod 'Firebase/Core'
-    pod 'Firebase/RemoteConfig'
-    pod 'Firebase/Analytics'
+    firebase_pods
   end
-
+  
   target 'CanvasCore' do
     project 'CanvasCore/CanvasCore.xcodeproj'
-    pod 'Crashlytics', '~> 3.14.0'
+    # pod 'Crashlytics', '~> 3.14.0'
+    pod 'Firebase/Crashlytics'
   end
 
 end

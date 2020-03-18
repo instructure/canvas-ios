@@ -18,7 +18,8 @@
 
 // Modified from https://github.com/corymsmith/react-native-fabric
 #import "CanvasCrashlytics.h"
-#import <Crashlytics/Crashlytics.h>
+//#import <Crashlytics/Crashlytics.h>
+#import <Firebase/Firebase.h>
 #import <os/log.h>
 #import "RCTLog.h"
 
@@ -33,7 +34,7 @@ RCT_EXPORT_MODULE();
 + (void)setupForReactNative {
     // Handle notification from Developer Menu "Force Native Crash" action
     [[NSNotificationCenter defaultCenter] addObserverForName:@"FakeCrash" object:nil queue:nil usingBlock:^(NSNotification *note) {
-        [[Crashlytics sharedInstance] throwException];
+        assert(NO);
     }];
 
     RCTSetLogThreshold(RCTLogLevelInfo);
@@ -78,7 +79,7 @@ RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(log:(NSString *)message)
 {
-    CLS_LOG(@"%@", message);
+    [[FIRCrashlytics crashlytics] logWithFormat:@"%@", message];
 }
 
 RCT_EXPORT_METHOD(recordError:(NSDictionary *)error)
@@ -96,42 +97,50 @@ RCT_EXPORT_METHOD(recordError:(NSDictionary *)error)
         domain = DefaultDomain;
 
     NSError *error2 = [NSError errorWithDomain:domain code:code userInfo:error];
-    [[Crashlytics sharedInstance] recordError:error2];
+    [FIRCrashlytics.crashlytics recordError:error2];
 }
 
 RCT_EXPORT_METHOD(crash)
 {
-    [[Crashlytics sharedInstance] crash];
+    assert(NO);
 }
 
 RCT_EXPORT_METHOD(throwException)
 {
-    [[Crashlytics sharedInstance] throwException];
+    assert(NO);
 }
 
 RCT_EXPORT_METHOD(setUserIdentifier:(NSString *)userIdentifier)
 {
-    [[Crashlytics sharedInstance] setUserIdentifier:userIdentifier];
+    [[FIRCrashlytics crashlytics] setUserID:userIdentifier];
 }
 
 RCT_EXPORT_METHOD(setUserName:(NSString *)userName)
 {
-    [[Crashlytics sharedInstance] setUserName:userName];
+    // this has been deprecated in firebase and discouraged
+    /*
+     We adopted the method name setUserID to be consistent with other Firebase APIs and removed setUserName and setUserEmail to discourage logging PII through Crashlytics.
+     */
+    //[[Crashlytics sharedInstance] setUserName:userName];
 }
 
 RCT_EXPORT_METHOD(setUserEmail:(NSString *)email)
 {
-    [[Crashlytics sharedInstance] setUserEmail:email];
+    // this has been deprecated in firebase and discouraged
+    /*
+     We adopted the method name setUserID to be consistent with other Firebase APIs and removed setUserName and setUserEmail to discourage logging PII through Crashlytics.
+     */
+//    [[Crashlytics sharedInstance] setUserEmail:email];
 }
 
 RCT_EXPORT_METHOD(setBool:(NSString *)key value:(BOOL)boolValue)
 {
-    [[Crashlytics sharedInstance] setBoolValue:boolValue forKey:key];
+    [[FIRCrashlytics crashlytics] setCustomValue:[NSNumber numberWithBool:boolValue] forKey:key];
 }
 
 RCT_EXPORT_METHOD(setString:(NSString *)key value:(NSString *)stringValue)
 {
-    [[Crashlytics sharedInstance] setObjectValue:stringValue forKey:key];
+    [[FIRCrashlytics crashlytics] setCustomValue:stringValue forKey:key];
 }
 
 @end

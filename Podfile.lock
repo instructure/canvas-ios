@@ -18,17 +18,12 @@ PODS:
   - BVLinearGradient (2.5.6):
     - React
   - Cartography (3.1.0)
-  - Crashlytics (3.14.0):
-    - Fabric (~> 1.10.2)
   - DoubleConversion (1.1.6)
-  - Fabric (1.10.2)
-  - Firebase/Analytics (6.20.0):
-    - Firebase/Core
-  - Firebase/Core (6.20.0):
-    - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.3.1)
   - Firebase/CoreOnly (6.20.0):
     - FirebaseCore (= 6.6.4)
+  - Firebase/Crashlytics (6.20.0):
+    - Firebase/CoreOnly
+    - FirebaseCrashlytics (~> 4.0.0-beta.5)
   - Firebase/RemoteConfig (6.20.0):
     - Firebase/CoreOnly
     - FirebaseRemoteConfig (~> 4.4.9)
@@ -36,15 +31,6 @@ PODS:
     - FirebaseAnalyticsInterop (~> 1.3)
     - FirebaseCore (~> 6.1)
     - Protobuf (>= 3.9.2, ~> 3.9)
-  - FirebaseAnalytics (6.3.1):
-    - FirebaseCore (~> 6.6)
-    - FirebaseInstallations (~> 1.1)
-    - GoogleAppMeasurement (= 6.3.1)
-    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
-    - GoogleUtilities/MethodSwizzler (~> 6.0)
-    - GoogleUtilities/Network (~> 6.0)
-    - "GoogleUtilities/NSData+zlib (~> 6.0)"
-    - nanopb (= 0.3.9011)
   - FirebaseAnalyticsInterop (1.5.0)
   - FirebaseCore (6.6.4):
     - FirebaseCoreDiagnostics (~> 1.2)
@@ -58,6 +44,11 @@ PODS:
     - GoogleUtilities/Logger (~> 6.5)
     - nanopb (~> 0.3.901)
   - FirebaseCoreDiagnosticsInterop (1.2.0)
+  - FirebaseCrashlytics (4.0.0-beta.5):
+    - FirebaseAnalyticsInterop (~> 1.2)
+    - FirebaseCore (~> 6.6)
+    - FirebaseInstallations (~> 1.1)
+    - PromisesObjC (~> 1.2)
   - FirebaseInstallations (1.1.0):
     - FirebaseCore (~> 6.6)
     - GoogleUtilities/UserDefaults (~> 6.5)
@@ -80,32 +71,14 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - GoogleAppMeasurement (6.3.1):
-    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
-    - GoogleUtilities/MethodSwizzler (~> 6.0)
-    - GoogleUtilities/Network (~> 6.0)
-    - "GoogleUtilities/NSData+zlib (~> 6.0)"
-    - nanopb (= 0.3.9011)
   - GoogleDataTransport (5.0.0)
   - GoogleDataTransportCCTSupport (2.0.0):
     - GoogleDataTransport (~> 5.0)
     - nanopb (~> 0.3.901)
-  - GoogleUtilities/AppDelegateSwizzler (6.5.2):
-    - GoogleUtilities/Environment
-    - GoogleUtilities/Logger
-    - GoogleUtilities/Network
   - GoogleUtilities/Environment (6.5.2)
   - GoogleUtilities/Logger (6.5.2):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (6.5.2):
-    - GoogleUtilities/Logger
-  - GoogleUtilities/Network (6.5.2):
-    - GoogleUtilities/Logger
-    - "GoogleUtilities/NSData+zlib"
-    - GoogleUtilities/Reachability
   - "GoogleUtilities/NSData+zlib (6.5.2)"
-  - GoogleUtilities/Reachability (6.5.2):
-    - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.5.2):
     - GoogleUtilities/Logger
   - Interactable (0.0.9):
@@ -208,11 +181,8 @@ DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - BVLinearGradient (from `./rn/Teacher/node_modules/react-native-linear-gradient`)
   - Cartography (~> 3.1)
-  - Crashlytics (~> 3.14.0)
   - DoubleConversion (from `./rn/Teacher/node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
-  - Fabric
-  - Firebase/Analytics
-  - Firebase/Core
+  - Firebase/Crashlytics
   - Firebase/RemoteConfig
   - Folly (from `./rn/Teacher/node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `./rn/Teacher/node_modules/react-native/third-party-podspecs/glog.podspec`)
@@ -251,19 +221,16 @@ SPEC REPOS:
     - AFNetworking
     - boost-for-react-native
     - Cartography
-    - Crashlytics
-    - Fabric
     - Firebase
     - FirebaseABTesting
-    - FirebaseAnalytics
     - FirebaseAnalyticsInterop
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCoreDiagnosticsInterop
+    - FirebaseCrashlytics
     - FirebaseInstallations
     - FirebaseInstanceID
     - FirebaseRemoteConfig
-    - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
@@ -320,22 +287,19 @@ SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
   Cartography: 1988b7578871a56c036e7af17195cb2190edf18c
-  Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
-  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   Firebase: fe7f74012742ab403451dd283e6909b8f1fb348a
   FirebaseABTesting: 821a3a3e4a145987e80fee3657c4de1cb9adf693
-  FirebaseAnalytics: 572e467f3d977825266e8ccd52674aa3e6f47eac
   FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
   FirebaseCore: ed0a24c758a57c2b88c5efa8e6a8195e868af589
   FirebaseCoreDiagnostics: e9b4cd8ba60dee0f2d13347332e4b7898cca5b61
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
+  FirebaseCrashlytics: 7c95218730d1debf493e987233c7b41dd7ba1329
   FirebaseInstallations: 575cd32f2aec0feeb0e44f5d0110a09e5e60b47b
   FirebaseInstanceID: 7ee0d6777013bb952f377b41965bf132b6a075be
   FirebaseRemoteConfig: 47abf7a04a9082091955ea555aa79cfdd249b19c
   Folly: de497beb10f102453a1afa9edbf8cf8a251890de
   glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
-  GoogleAppMeasurement: c29d405ff76e18551b5d158eaba6753fda8c7542
   GoogleDataTransport: a857c6a002d201b524dd4bc2ed7e7355ed07e785
   GoogleDataTransportCCTSupport: 32f75fbe904c82772fcbb6b6bd4525bfb6f2a862
   GoogleUtilities: ad0f3b691c67909d03a3327cc205222ab8f42e0e
@@ -359,6 +323,6 @@ SPEC CHECKSUMS:
   RNSound: a1d01988e043aed5dbb476c2152b5ffb02446750
   yoga: 03ff42a6f223fb88deeaed60249020d80c3091ee
 
-PODFILE CHECKSUM: 16f3edfb52cc9b6347a407765aa88b3c8f27decb
+PODFILE CHECKSUM: 06a299fde20388c54422757c78bbf8d4feca8ed5
 
 COCOAPODS: 1.8.3

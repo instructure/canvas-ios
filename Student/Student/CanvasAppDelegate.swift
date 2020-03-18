@@ -19,8 +19,8 @@
 import AVKit
 import UIKit
 import PSPDFKit
-import Fabric
-import Crashlytics
+//import Fabric
+//import Crashlytics
 import CanvasCore
 import ReactiveSwift
 import UserNotifications
@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     }()
 
     let hasFabric = (Bundle.main.object(forInfoDictionaryKey: "Fabric") as? [String: Any])?["APIKey"] != nil
-    let hasFirebase = FirebaseOptions.defaultOptions()?.apiKey != nil
+    let hasFirebase = true //FirebaseOptions.defaultOptions()?.apiKey != nil
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupCrashlytics()
@@ -80,11 +80,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         CoreWebView.keepCookieAlive(for: environment)
         if Locale.current.regionCode != "CA" {
             let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
-            Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)
+//            Firebase.Crashlytics.setUserID(crashlyticsUserId)
+            Firebase.Crashlytics.crashlytics().setUserID(crashlyticsUserId)
+
         }
         if hasFirebase {
-            Analytics.setUserID(session.userID)
-            Analytics.setUserProperty(session.baseURL.absoluteString, forName: "base_url")
+//            Analytics.setUserID(session.userID)
+//            Analytics.setUserProperty(session.baseURL.absoluteString, forName: "base_url")
         }
 
         let getProfile = GetUserProfileRequest(userID: "self")
@@ -160,8 +162,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
                 guard let feature = ExperimentalFeature(rawValue: key) else { continue }
                 let value = remoteConfig.configValue(forKey: key).boolValue
                 feature.isEnabled = value
-                Crashlytics.sharedInstance().setBoolValue(value, forKey: feature.userDefaultsKey)
-                Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
+                Firebase.Crashlytics.crashlytics().setCustomValue(value, forKey: feature.userDefaultsKey)
+//                Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
             }
         }
         remoteConfig.fetch(completionHandler: nil)
@@ -195,7 +197,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 
     @objc func handlePushNotificationRegistrationError(_ error: NSError) {
-        Crashlytics.sharedInstance().recordError(error, withAdditionalUserInfo: ["source": "push_notification_registration"])
+        Firebase.Crashlytics.crashlytics().log("source: push_notification_registration")
+        Firebase.Crashlytics.crashlytics().record(error: error)
     }
 
     func handleLaunchOptionsNotifications(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
@@ -224,7 +227,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 extension AppDelegate: Core.AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
         if hasFirebase {
-            Analytics.logEvent(name, parameters: parameters)
+//            Analytics.logEvent(name, parameters: parameters)
         }
     }
 }
@@ -253,7 +256,7 @@ extension AppDelegate {
             self.alertUser(of: error, from: presentingViewController)
 
             if error.shouldRecordInCrashlytics {
-                Crashlytics.sharedInstance().recordError(error, withAdditionalUserInfo: nil)
+                Firebase.Crashlytics.crashlytics().record(error: error)
             }
         })
     }
@@ -278,10 +281,10 @@ extension AppDelegate {
             return
         }
 
-        Fabric.with([Crashlytics.self])
+//        Fabric.with([Crashlytics.self])
         CanvasCrashlytics.setupForReactNative()
-        Fabric.sharedSDK().debug = true
-        Crashlytics.sharedInstance().debugMode = true
+//        Fabric.sharedSDK().debug = true
+//        Crashlytics.sharedInstance().debugMode = true
     }
 
     func setupDebugCrashLogging() {
