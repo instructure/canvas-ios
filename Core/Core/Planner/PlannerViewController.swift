@@ -24,9 +24,9 @@ public class PlannerViewController: UIViewController {
     lazy var todayButton = UIBarButtonItem(image: .icon(.calendarTodayLine), style: .plain, target: self, action: #selector(selectToday))
 
     lazy var calendar = CalendarViewController.create(delegate: self)
-    let listPageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+    let listPageController = PagesViewController()
     var list: PlannerListViewController! {
-        listPageController.viewControllers?.first as? PlannerListViewController
+        listPageController.currentPage as? PlannerListViewController
     }
 
     let env = AppEnvironment.shared
@@ -60,18 +60,12 @@ public class PlannerViewController: UIViewController {
         embed(listPageController, in: view)
         listPageController.dataSource = self
         listPageController.delegate = self
-        listPageController.setViewControllers([
-            PlannerListViewController.create(
-                start: Clock.now.startOfDay(),
-                end: Clock.now.startOfDay().addDays(1),
-                delegate: self
-            ),
-        ], direction: .forward, animated: false)
-        for view in listPageController.view.subviews {
-            if let scroll = view as? UIScrollView {
-                scroll.canCancelContentTouches = true
-            }
-        }
+        listPageController.setCurrentPage(PlannerListViewController.create(
+            start: Clock.now.startOfDay(),
+            end: Clock.now.startOfDay().addDays(1),
+            delegate: self
+        ))
+        listPageController.scrollView.canCancelContentTouches = true
 
         embed(calendar, in: view) { child, container in
             child.view.pinToLeftAndRightOfSuperview()
@@ -132,7 +126,7 @@ public class PlannerViewController: UIViewController {
         )
         newList.loadViewIfNeeded()
         newList.tableView.contentInset = list.tableView.contentInset
-        listPageController.setViewControllers([ newList ], direction: date < list.start ? .reverse : .forward, animated: true)
+        listPageController.setCurrentPage(newList, direction: date < list.start ? .reverse : .forward)
     }
 }
 
@@ -191,13 +185,13 @@ extension PlannerViewController: PlannerListDelegate {
     }
 }
 
-extension PlannerViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
-    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        return listPageDelta(-1, from: (viewController as? PlannerListViewController)!)
+extension PlannerViewController: PagesViewControllerDataSource, PagesViewControllerDelegate {
+    public func pagesViewController(_ pages: PagesViewController, pageBefore page: UIViewController) -> UIViewController? {
+        return listPageDelta(-1, from: (page as? PlannerListViewController)!)
     }
 
-    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        return listPageDelta(1, from: (viewController as? PlannerListViewController)!)
+    public func pagesViewController(_ pages: PagesViewController, pageAfter page: UIViewController) -> UIViewController? {
+        return listPageDelta(1, from: (page as? PlannerListViewController)!)
     }
 
     func listPageDelta(_ delta: Int, from list: PlannerListViewController) -> PlannerListViewController {
@@ -209,10 +203,11 @@ extension PlannerViewController: UIPageViewControllerDataSource, UIPageViewContr
         newList.loadViewIfNeeded()
         newList.tableView.scrollIndicatorInsets = list.tableView.scrollIndicatorInsets
         newList.tableView.contentInset = list.tableView.contentInset
+        newList.title = DateFormatter.localizedString(from: newList.start, dateStyle: .long, timeStyle: .none)
         return newList
     }
 
-    public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if completed { calendar.showDate(list.start) }
+    public func pagesViewController(_ pages: PagesViewController, didTransitionTo page: UIViewController) {
+        calendar.showDate(list.start)
     }
 }
