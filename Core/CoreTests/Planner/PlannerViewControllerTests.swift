@@ -116,20 +116,20 @@ class PlannerViewControllerTests: CoreTestCase {
         let list = controller.list!
         let dataSource = controller.listPageController.dataSource
         let delegate = controller.listPageController.delegate
-        let prev = dataSource?.pageViewController(controller.listPageController, viewControllerBefore: list) as? PlannerListViewController
+        let prev = dataSource?.pagesViewController(controller.listPageController, pageBefore: list) as? PlannerListViewController
         XCTAssertEqual(prev?.start, DateComponents(calendar: .current, year: 2020, month: 2, day: 13).date)
         XCTAssertEqual(prev?.end, DateComponents(calendar: .current, year: 2020, month: 2, day: 14).date)
-        delegate?.pageViewController?(controller.listPageController, willTransitionTo: [prev!])
-        controller.listPageController.setViewControllers([prev!], direction: .reverse, animated: false)
-        delegate?.pageViewController?(controller.listPageController, didFinishAnimating: true, previousViewControllers: [list], transitionCompleted: true)
+        delegate?.pagesViewController?(controller.listPageController, isShowing: [ prev!, list ])
+        controller.listPageController.setCurrentPage(prev!)
+        delegate?.pagesViewController?(controller.listPageController, didTransitionTo: prev!)
         XCTAssertEqual(controller.calendar.selectedDate, prev?.start)
 
-        let next = dataSource?.pageViewController(controller.listPageController, viewControllerAfter: list) as? PlannerListViewController
+        let next = dataSource?.pagesViewController(controller.listPageController, pageAfter: list) as? PlannerListViewController
         XCTAssertEqual(next?.start, DateComponents(calendar: .current, year: 2020, month: 2, day: 15).date)
         XCTAssertEqual(next?.end, DateComponents(calendar: .current, year: 2020, month: 2, day: 16).date)
-        delegate?.pageViewController?(controller.listPageController, willTransitionTo: [next!])
-        controller.listPageController.setViewControllers([next!], direction: .reverse, animated: false)
-        delegate?.pageViewController?(controller.listPageController, didFinishAnimating: true, previousViewControllers: [list], transitionCompleted: true)
+        delegate?.pagesViewController?(controller.listPageController, isShowing: [ list, next! ])
+        controller.listPageController.setCurrentPage(next!)
+        delegate?.pagesViewController?(controller.listPageController, didTransitionTo: next!)
         XCTAssertEqual(controller.calendar.selectedDate, next?.start)
 
         _ = controller.todayButton.target?.perform(controller.todayButton.action)
