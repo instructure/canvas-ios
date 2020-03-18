@@ -706,6 +706,7 @@
 				4943ECC51E5CEFBD001DC5B5 /* Embed Frameworks */,
 				B714E89FBF87F7C6C1A4CBF2 /* [CP] Embed Pods Frameworks */,
 				F9B947072215EA3C0083E660 /* Carthage Copy Frameworks */,
+				3BA649CB242289290047D8DC /* FirebaseCrashlytics */,
 			);
 			buildRules = (
 			);
@@ -908,6 +909,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3BA649CB242289290047D8DC /* FirebaseCrashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = FirebaseCrashlytics;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\" || echo \"FirebaseCrashlytics build phase script failed!\"\n";
+		};
 		4931EB6B1F731BD700715EF2 /* Start the Packager */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1299,6 +1320,7 @@
 					"\"$(SRCROOT)/Teacher\"",
 					"\"$(SRCROOT)/Teacher\"",
 				);
+				MARKETING_VERSION = 0.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1361,6 +1383,7 @@
 					"\"$(SRCROOT)/Teacher\"",
 					"\"$(SRCROOT)/Teacher\"",
 				);
+				MARKETING_VERSION = 0.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
