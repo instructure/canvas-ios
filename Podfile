@@ -4,6 +4,17 @@ workspace 'Canvas.xcworkspace'
 inhibit_all_warnings!
 platform :ios, '12.0'
 
+
+def firebase_pods
+  pod 'Firebase/Crashlytics', '~> 6.20.0'
+  pod 'Firebase/RemoteConfig', '~> 6.20.0'
+  pod 'Firebase/Analytics', '~> 6.20.0'
+end
+
+def canvas_crashlytics_rn_firebase_pods
+  pod 'Firebase/Crashlytics', '~> 6.20.0'
+end
+
 abstract_target 'defaults' do
   use_frameworks!
 
@@ -52,6 +63,7 @@ abstract_target 'defaults' do
   pod 'Cartography', '~> 3.1'
   pod 'AFNetworking', '~> 3.0'
   pod 'Mantle', '~> 1.5.5'
+  pod 'GoogleUtilities', '~> 6.0'
 
   target 'PactTests' do
     project 'Core/Core.xcodeproj'
@@ -60,57 +72,38 @@ abstract_target 'defaults' do
 
   target 'Parent' do
     project 'Parent/Parent.xcodeproj'
-    pod 'Fabric', '~> 1.10.2'
-    pod 'Firebase/Core', '~> 6.13'
-    pod 'Firebase/RemoteConfig', '~> 6.13'
-    pod 'Firebase/Analytics', '~> 6.13'
+    firebase_pods
   end
 
   target 'ParentUnitTests' do
     project 'Parent/Parent.xcodeproj'
-    pod 'Fabric', '~> 1.10.2'
-    pod 'Firebase/Core', '~> 6.13'
-    pod 'Firebase/RemoteConfig', '~> 6.13'
-    pod 'Firebase/Analytics', '~> 6.13'
+    firebase_pods
   end
 
   target 'Teacher' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
-    pod 'Fabric', '~> 1.10.2'
-    pod 'Firebase/Core', '~> 6.13'
-    pod 'Firebase/RemoteConfig', '~> 6.13'
-    pod 'Firebase/Analytics', '~> 6.13'
+    firebase_pods
   end
-
+  
   target 'TeacherTests' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
-    pod 'Fabric', '~> 1.10.2'
-    pod 'Firebase/Core', '~> 6.13'
-    pod 'Firebase/RemoteConfig', '~> 6.13'
-    pod 'Firebase/Analytics', '~> 6.13'
+    firebase_pods
   end
-
+  
   target 'Student' do
     project 'Student/Student.xcodeproj'
-    pod 'Fabric', '~> 1.10.2'
-    pod 'Firebase/Core', '~> 6.13'
-    pod 'Firebase/RemoteConfig', '~> 6.13'
-    pod 'Firebase/Analytics', '~> 6.13'
+    firebase_pods
   end
-
+  
   target 'StudentUnitTests' do
     project 'Student/Student.xcodeproj'
-    pod 'Fabric', '~> 1.10.2'
-    pod 'Firebase/Core', '~> 6.13'
-    pod 'Firebase/RemoteConfig', '~> 6.13'
-    pod 'Firebase/Analytics', '~> 6.13'
+    firebase_pods
   end
-
+  
   target 'CanvasCore' do
     project 'CanvasCore/CanvasCore.xcodeproj'
-    pod 'Crashlytics', '~> 3.14.0'
+    canvas_crashlytics_rn_firebase_pods
   end
-
 end
 
 post_install do |installer|

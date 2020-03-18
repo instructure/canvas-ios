@@ -18,6 +18,7 @@
 
 import UIKit
 import Core
+import Firebase
 
 class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
 
@@ -206,6 +207,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
     }
 
     @IBAction func actionFilterClicked(_ sender: UIButton) {
+        fatalError()
         if selectedGradingPeriod != nil {
             filterByGradingPeriod(nil)
         } else {
