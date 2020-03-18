@@ -49,9 +49,9 @@
                                     <constraint firstAttribute="height" constant="49" id="WhA-En-3PW"/>
                                 </constraints>
                                 <items>
-                                    <tabBarItem title="Courses" image="icon_courses" id="BPk-vK-62u"/>
-                                    <tabBarItem title="Week" image="icon_calendar" id="W2P-Wd-gLR"/>
-                                    <tabBarItem title="Alerts" image="icon_notification" id="nta-AM-F42"/>
+                                    <tabBarItem title="Courses" image="coursesLine" id="BPk-vK-62u"/>
+                                    <tabBarItem title="Week" image="calendarMonthLine" id="W2P-Wd-gLR"/>
+                                    <tabBarItem title="Alerts" image="alertsLine" id="nta-AM-F42"/>
                                 </items>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tabBar>
@@ -103,9 +103,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon_calendar" width="34" height="34"/>
-        <image name="icon_courses" width="34" height="34"/>
-        <image name="icon_notification" width="34" height="34"/>
+        <image name="alertsLine" width="24" height="24"/>
+        <image name="calendarMonthLine" width="24" height="24"/>
+        <image name="coursesLine" width="24" height="24"/>
         <namedColor name="borderDark">
             <color red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -270,7 +270,7 @@ extension ParentAppDelegate {
 // MARK: Crashlytics
 extension ParentAppDelegate {
     @objc func setupFirebase() {
-        guard !testing else { return }
+        guard !testing, FirebaseOptions.defaultOptions()?.apiKey != nil else { return }
         FirebaseApp.configure()
         CanvasCrashlytics.setupForReactNative()
         configureRemoteConfig()

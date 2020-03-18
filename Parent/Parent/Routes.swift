@@ -32,7 +32,7 @@ let router = Router(routes: [
             guard let session = legacySession, let studentID = currentStudentID else { return nil }
             return try? CalendarEventDetailsViewController(session: session, studentID: studentID, calendarEventID: eventID)
         }
-        guard let studentID = currentStudentID, ExperimentalFeature.parentCalendar.isEnabled else { return nil }
+        guard let studentID = currentStudentID else { return nil }
         let controller = PlannerViewController.create(studentID: studentID)
         controller.view.tintColor = ColorScheme.observee(studentID).color
         return controller
@@ -71,12 +71,6 @@ let router = Router(routes: [
         guard let courseID = params["courseID"] else { return nil }
         guard let studentID = currentStudentID else { return nil }
         return CourseDetailsViewController.create(courseID: courseID, studentID: studentID)
-    },
-
-    RouteHandler(.courseCalendar(courseID: ":courseID")) { _, params in
-        guard let courseID = params["courseID"] else { return nil }
-        guard let session = legacySession, let studentID = currentStudentID else { return nil }
-        return CalendarEventWeekPageViewController.create(session: session, studentID: studentID, courseID: courseID)
     },
 
     RouteHandler(.courseCalendarEvent(courseID: ":courseID", eventID: ":eventID")) { _, params in

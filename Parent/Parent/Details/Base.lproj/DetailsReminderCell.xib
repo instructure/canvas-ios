@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,41 +13,44 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Se-mV-tEK" id="pox-ZI-xdw">
-                <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_notification" translatesAutoresizingMaskIntoConstraints="NO" id="thg-z7-ubt">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alertsLine" translatesAutoresizingMaskIntoConstraints="NO" id="thg-z7-ubt" customClass="IconView" customModule="Parent" customModuleProvider="target">
                         <rect key="frame" x="12" y="10" width="31" height="28"/>
-                        <color key="tintColor" red="0.70588235294117641" green="0.70588235294117641" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="31" id="BkF-cM-c8q"/>
                             <constraint firstAttribute="height" constant="28" id="cRk-KC-BEv"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="alertsLine"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="textDark"/>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="UOY-BH-cVv">
-                        <rect key="frame" x="536" y="8" width="51" height="31"/>
+                        <rect key="frame" x="536" y="8.6666666666666643" width="51" height="31"/>
                         <connections>
                             <action selector="toggledReminder:" destination="5Se-mV-tEK" eventType="valueChanged" id="PkL-QY-oJy"/>
                         </connections>
                     </switch>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9/18/15, 11:00 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0L6-C4-tpu">
-                        <rect key="frame" x="456" y="47" width="129" height="19"/>
+                        <rect key="frame" x="449.33333333333331" y="46" width="135.66666666666669" height="20.333333333333329"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                        <color key="textColor" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Bw-w1-Rfh">
-                        <rect key="frame" x="51" y="46" width="36" height="20"/>
+                        <rect key="frame" x="51" y="46" width="38" height="20"/>
                         <accessibility key="accessibilityConfiguration" identifier="time_label"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Reminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHa-wa-8Mq">
                         <rect key="frame" x="51" y="14" width="477" height="20"/>
                         <accessibility key="accessibilityConfiguration" identifier="set_reminder_label"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -75,6 +80,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon_notification" width="34" height="34"/>
+        <image name="alertsLine" width="24" height="24"/>
     </resources>
 </document>

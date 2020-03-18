@@ -259,7 +259,7 @@ extension AppDelegate {
 extension AppDelegate {
 
     @objc func setupFirebase() {
-        guard !testing else {
+        guard !testing, FirebaseOptions.defaultOptions()?.apiKey != nil else {
             setupDebugCrashLogging()
             return
         }

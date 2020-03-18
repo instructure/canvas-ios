@@ -18,6 +18,7 @@
 
 import Foundation
 import CanvasCore
+import Core
 
 private struct Submission {
 
@@ -135,15 +136,15 @@ private struct Submission {
 
     var displayImage: UIImage? {
         if status.contains(.Late) && !onPaper {
-            return UIImage(named: "icon_alert_fill")
+            return UIImage.icon(.warning, .solid)
         }
 
         if (status.contains(.Graded) && !missing) || status.contains(.Submitted) || status.contains(.Excused) {
-            return UIImage(named: "icon_checkmark_fill")
+            return UIImage.icon(.check, .solid)
         }
 
         if missing {
-            return UIImage(named: "icon_alert_fill")
+            return UIImage.icon(.warning, .solid)
         }
 
         return nil
@@ -192,16 +193,12 @@ extension CalendarEvent {
         return submission?.displayVerboseText ?? ""
     }
 
-    @objc var submittedImage: UIImage? {
-        return submission?.displayImage ?? type.image()
-    }
-
     @objc var submittedColor: UIColor {
         return submission?.displayColor ?? UIColor.named(.textDark)
     }
 }
 
-extension Assignment {
+extension CanvasCore.Assignment {
 
     fileprivate var overdue: Bool {
         if let dueDate = due {
@@ -228,10 +225,6 @@ extension Assignment {
 
     @objc var submittedVerboseText: String {
         return submission.displayVerboseText
-    }
-
-    @objc var submittedImage: UIImage? {
-        return submission.displayImage
     }
 
     @objc var submittedColor: UIColor {
