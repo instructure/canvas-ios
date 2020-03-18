@@ -134,11 +134,13 @@ public class PlannerViewController: UIViewController {
 
 extension PlannerViewController: CalendarViewControllerDelegate {
     func calendarDidSelectDate(_ date: Date) {
+        selectedDate = date
         calendar.showDate(date)
         updateList(date)
     }
 
     func calendarDidTransitionToDate(_ date: Date) {
+        selectedDate = date
         calendar.updateSelectedDate(date)
         updateList(date)
     }
@@ -210,6 +212,7 @@ extension PlannerViewController: PagesViewControllerDataSource, PagesViewControl
     }
 
     public func pagesViewController(_ pages: PagesViewController, didTransitionTo page: UIViewController) {
+        selectedDate = list.start
         calendar.showDate(list.start)
     }
 }
