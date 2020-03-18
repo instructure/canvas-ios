@@ -60,7 +60,7 @@ class UserFilesTests: CoreUITestCase {
         wait(for: [uploadExpectation], timeout: 30)
     }
 
-    func testAddFileAudio() {
+    func xtestAddFileAudio() {
         FilesList.addButton.tap()
         app.find(label: "Add File").tap()
         allowAccessToMicrophone {
