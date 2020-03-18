@@ -69,16 +69,8 @@ export const Crashlytics = {
     CanvasCrashlytics.log(message)
   },
 
-  setUserEmail: function (email: string | null) {
-    CanvasCrashlytics.setUserEmail(email)
-  },
-
   setUserIdentifier: function (userIdentifier: string | null) {
     CanvasCrashlytics.setUserIdentifier(userIdentifier)
-  },
-
-  setUserName: function (userName: string | null) {
-    CanvasCrashlytics.setUserName(userName)
   },
 
   setBool: function (key: string, value: boolean) {

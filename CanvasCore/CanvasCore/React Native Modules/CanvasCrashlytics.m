@@ -114,26 +114,6 @@ RCT_EXPORT_METHOD(setUserIdentifier:(NSString *)userIdentifier)
     [[FIRCrashlytics crashlytics] setUserID:userIdentifier];
 }
 
-RCT_EXPORT_METHOD(setUserName:(NSString *)userName)
-{
-    //      this has been deprecated in firebase and discouraged
-    //      https://firebase.google.com/docs/crashlytics/upgrade-sdk?authuser=1#switch-pods
-    /*
-     We adopted the method name setUserID to be consistent with other Firebase APIs and removed setUserName and setUserEmail to discourage logging PII through Crashlytics.
-     */
-    //[[Crashlytics sharedInstance] setUserName:userName];
-}
-
-RCT_EXPORT_METHOD(setUserEmail:(NSString *)email)
-{
-    //      this has been deprecated in firebase and discouraged
-    //      https://firebase.google.com/docs/crashlytics/upgrade-sdk?authuser=1#switch-pods
-    /*
-     We adopted the method name setUserID to be consistent with other Firebase APIs and removed setUserName and setUserEmail to discourage logging PII through Crashlytics.
-     */
-//    [[Crashlytics sharedInstance] setUserEmail:email];
-}
-
 RCT_EXPORT_METHOD(setBool:(NSString *)key value:(BOOL)boolValue)
 {
     [[FIRCrashlytics crashlytics] setCustomValue:[NSNumber numberWithBool:boolValue] forKey:key];

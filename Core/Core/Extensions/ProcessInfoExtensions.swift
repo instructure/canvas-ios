@@ -40,4 +40,3 @@ public var uiTesting: Bool {
 public var testing: Bool {
     return unitTesting || uiTesting
 }
-
