@@ -259,7 +259,7 @@ extension AppDelegate {
 extension AppDelegate {
 
     @objc func setupFirebase() {
-        guard !uiTesting else {
+        guard !testing else {
             setupDebugCrashLogging()
             return
         }
