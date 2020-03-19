@@ -258,7 +258,7 @@ class LoginStartViewController: UIViewController {
 
     func showQRCodeError() {
         showAlert(
-            title: NSLocalizedString("There was an error logging in", bundle: .core, comment: ""),
+            title: NSLocalizedString("Login Error", bundle: .core, comment: ""),
             message: NSLocalizedString("Please generate another QR Code and try again.", bundle: .core, comment: "")
         )
     }
