@@ -181,6 +181,7 @@ class QROverlayView: UIView {
         arc.lineWidth = 8
         arc.fillColor = UIColor.clear.cgColor
         arc.strokeColor = UIColor.named(.borderLightest).cgColor
+        arc.lineCap = .round
         layer.addSublayer(arc)
     }
 
@@ -190,7 +191,6 @@ class QROverlayView: UIView {
 
     override func draw(_ rect: CGRect) {
         let path = UIBezierPath()
-        path.lineCapStyle = .round
 
         // top left
         path.move(to: CGPoint(x: 0, y: curveLength))

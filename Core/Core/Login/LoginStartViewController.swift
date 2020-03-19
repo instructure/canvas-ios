@@ -78,7 +78,6 @@ class LoginStartViewController: UIViewController {
         if loginDelegate?.supportsQRCodeLogin == false {
             useQRCodeButton.isHidden = true
             useQRCodeDivider.isHidden = true
-            canvasNetworkButton.contentHorizontalAlignment = .center
         }
 
         if MDMManager.shared.host != nil {
