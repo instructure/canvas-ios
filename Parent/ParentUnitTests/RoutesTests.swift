@@ -26,12 +26,7 @@ class RoutesTests: ParentTestCase {
         XCTAssert(Parent.router.match(.parse("/courses/1/grades")) is CourseDetailsViewController)
         XCTAssert(Parent.router.match(Route.conversations.url) is ConversationListViewController)
         XCTAssert(Parent.router.match(Route.conversation("1").url) is ConversationDetailViewController)
-
-        ExperimentalFeature.parentCalendar.isEnabled = true
         XCTAssert(Parent.router.match(.parse("/calendar")) is PlannerViewController)
-        ExperimentalFeature.parentCalendar.isEnabled = false
-        XCTAssertNil(Parent.router.match(.parse("/calendar")))
-
         XCTAssert(Parent.router.match(.parse("/calendar?event_id=1")) is CalendarEventDetailsViewController)
         XCTAssert(Parent.router.match(Route.submission(forCourse: "1", assignment: "1", user: "1").url) is AssignmentDetailsViewController)
     }
