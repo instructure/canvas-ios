@@ -23,8 +23,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXQ-4T-DWz" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to select the courses you want to see on the calendar." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXQ-4T-DWz" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="16" y="12" width="382" height="20"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="PlannerFilter.headerLabel"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -58,15 +59,15 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jGj-E4-EVP">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PandaBook" translatesAutoresizingMaskIntoConstraints="NO" id="3rq-Gc-TcY">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PandaBook" translatesAutoresizingMaskIntoConstraints="NO" id="3rq-Gc-TcY" customClass="IconView" customModule="Core" customModuleProvider="target">
                                                     <rect key="frame" x="157" y="40" width="100" height="48"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="131" id="Zu2-BQ-npB"/>
-                                                        <constraint firstAttribute="width" constant="100" id="knZ-Dx-hBa"/>
-                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="PandaBook"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Courses" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1iH-S2-U4d" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                     <rect key="frame" x="32" y="120" width="350" height="0.0"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="PlannerFilter.emptyTitleLabel"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -77,6 +78,7 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your child's courses might not be published yet." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBS-km-9uq" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                     <rect key="frame" x="32" y="128" width="350" height="0.0"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="PlannerFilter.emptyMessageLabel"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -123,7 +125,7 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlannerFilterCell" id="WTs-tm-ubq" customClass="PlannerFilterCell" customModule="Core" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlannerFilterCell" id="WTs-tm-ubq" customClass="PlannerFilterCell" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="414" height="63.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WTs-tm-ubq" id="7Vj-S3-utd">
@@ -135,15 +137,22 @@
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yHF-Le-Bv1">
                                                             <rect key="frame" x="0.0" y="0.5" width="20" height="20"/>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="20" id="8E8-fR-Pzr"/>
                                                                 <constraint firstAttribute="height" constant="20" id="iAp-rr-HRS"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="3"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                                    <integer key="value" value="1"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AE7-tL-tjB" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AE7-tL-tjB" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                             <rect key="frame" x="36" y="0.5" width="346" height="19.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
@@ -174,6 +183,9 @@
                                                 <constraint firstAttribute="trailing" secondItem="onQ-KF-Jfi" secondAttribute="trailing" constant="16" id="zWc-bg-lZI"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" button="YES"/>
+                                        </accessibility>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="fullDivider" value="YES"/>
                                         </userDefinedRuntimeAttributes>
@@ -200,9 +212,9 @@
                         <viewLayoutGuide key="safeArea" id="vgZ-Zu-fC4"/>
                     </view>
                     <connections>
-                        <outlet property="emptyStateHeader" destination="1iH-S2-U4d" id="ob6-pE-kYn"/>
-                        <outlet property="emptyStateSubHeader" destination="UBS-km-9uq" id="R6l-mK-XzA"/>
+                        <outlet property="emptyMessageLabel" destination="UBS-km-9uq" id="R6l-mK-XzA"/>
                         <outlet property="emptyStateView" destination="jGj-E4-EVP" id="LBx-7r-mJh"/>
+                        <outlet property="emptyTitleLabel" destination="1iH-S2-U4d" id="ob6-pE-kYn"/>
                         <outlet property="errorView" destination="smp-Fu-4ao" id="33b-kB-TP4"/>
                         <outlet property="headerLabel" destination="lXQ-4T-DWz" id="IPe-DA-4F3"/>
                         <outlet property="spinnerView" destination="2Vg-sR-X8x" id="egI-Kt-R26"/>

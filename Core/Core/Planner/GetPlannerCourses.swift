@@ -33,7 +33,7 @@ class GetPlannerCourses: APIUseCase {
         .where(
             #keyPath(Course.planner.studentID),
             equals: studentID,
-            orderBy: #keyPath(Course.courseCode),
+            orderBy: #keyPath(Course.name),
             ascending: true,
             naturally: true
         )

@@ -23,8 +23,8 @@ public class PlannerFilterViewController: UIViewController, ErrorViewController 
     @IBOutlet weak var headerLabel: DynamicLabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyStateView: UIView!
-    @IBOutlet weak var emptyStateHeader: UILabel!
-    @IBOutlet weak var emptyStateSubHeader: UILabel!
+    @IBOutlet weak var emptyTitleLabel: UILabel!
+    @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var errorView: ListErrorView!
     @IBOutlet weak var spinnerView: UIView!
 
@@ -56,8 +56,8 @@ public class PlannerFilterViewController: UIViewController, ErrorViewController 
         tableView.registerHeaderFooterView(SectionHeaderView.self)
         headerLabel.text = NSLocalizedString("Tap to select the courses you want to see on the calendar.", bundle: .core, comment: "")
 
-        emptyStateHeader.text = NSLocalizedString("No Courses", bundle: .core, comment: "")
-        emptyStateSubHeader.text = NSLocalizedString("Your child's courses might not be published yet.", bundle: .core, comment: "")
+        emptyTitleLabel.text = NSLocalizedString("No Courses", bundle: .core, comment: "")
+        emptyMessageLabel.text = NSLocalizedString("Your child's courses might not be published yet.", bundle: .core, comment: "")
         errorView.messageLabel.text = NSLocalizedString("There was an error loading courses. Pull to refresh to try again.", bundle: .core, comment: "")
         errorView.retryButton.addTarget(self, action: #selector(refresh(_:)), for: .primaryActionTriggered)
         emptyStateView.isHidden = true
@@ -110,8 +110,10 @@ extension PlannerFilterViewController: UITableViewDataSource {
         }
         let cell = tableView.dequeue(for: indexPath) as PlannerFilterCell
         let course = courses[indexPath]
-        cell.courseNameLabel.text = course?.courseCode
-        cell.isChecked = course.flatMap { planner?.selectedCourses.contains($0) } ?? false
+        cell.accessibilityIdentifier = "PlannerFilter.section.\(indexPath.section).row.\(indexPath.row)"
+        cell.accessibilityLabel = course?.name
+        cell.courseNameLabel.text = course?.name
+        cell.isSelected = course.flatMap { planner?.selectedCourses.contains($0) } == true
         return cell
     }
 
@@ -140,20 +142,21 @@ class PlannerFilterCell: UITableViewCell {
     @IBOutlet weak var courseNameLabel: UILabel!
     @IBOutlet weak var checkmark: UIImageView!
 
-    var isChecked: Bool = false {
+    override var isSelected: Bool {
         didSet {
-            checkboxView.layer.borderWidth = isChecked ? 0 : 1
-            checkmark.isHidden = !isChecked
+            checkboxView.layer.borderWidth = isSelected ? 0 : 1
+            checkmark.isHidden = !isSelected
+            if isSelected {
+                accessibilityTraits.insert(.selected)
+            } else {
+                accessibilityTraits.remove(.selected)
+            }
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        checkboxView.backgroundColor = .clear
-        checkboxView.layer.cornerRadius = 3
-        checkboxView.layer.borderWidth = 1
         checkboxView.layer.borderColor = UIColor.named(.borderDark).cgColor
         checkmark.tintColor = .named(.backgroundInfo)
-        selectionStyle = .none
     }
 }
