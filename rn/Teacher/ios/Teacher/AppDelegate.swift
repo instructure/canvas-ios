@@ -296,9 +296,9 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
 // MARK: Crashlytics
 extension AppDelegate {
     @objc func setupFirebase() {
-        guard !uiTesting, FirebaseOptions.defaultOptions()?.apiKey != nil else { return }
+        guard !testing else { return }
 
-        FirebaseApp.configure()
+        if FirebaseOptions.defaultOptions()?.apiKey != nil { FirebaseApp.configure() }
         CanvasCrashlytics.setupForReactNative()
         configureRemoteConfig()
     }

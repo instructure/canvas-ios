@@ -259,12 +259,12 @@ extension AppDelegate {
 extension AppDelegate {
 
     @objc func setupFirebase() {
-        guard !testing, FirebaseOptions.defaultOptions()?.apiKey != nil else {
+        guard !testing else {
             setupDebugCrashLogging()
             return
         }
 
-        FirebaseApp.configure()
+        if FirebaseOptions.defaultOptions()?.apiKey != nil { FirebaseApp.configure() }
         CanvasCrashlytics.setupForReactNative()
         configureRemoteConfig()
     }
