@@ -271,7 +271,7 @@ extension ParentAppDelegate {
 extension ParentAppDelegate {
     @objc func setupFirebase() {
         guard !testing else { return }
-        FirebaseApp.configure()
+        if FirebaseOptions.defaultOptions()?.apiKey != nil { FirebaseApp.configure() }
         CanvasCrashlytics.setupForReactNative()
         configureRemoteConfig()
     }

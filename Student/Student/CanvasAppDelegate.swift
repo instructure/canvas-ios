@@ -264,7 +264,7 @@ extension AppDelegate {
             return
         }
 
-        FirebaseApp.configure()
+        if FirebaseOptions.defaultOptions()?.apiKey != nil { FirebaseApp.configure() }
         CanvasCrashlytics.setupForReactNative()
         configureRemoteConfig()
     }

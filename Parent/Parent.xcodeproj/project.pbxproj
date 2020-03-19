@@ -1863,7 +1863,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\" || echo \"FirebaseCrashlytics build phase script failed!\"\n";
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ] ; then\n    \"${PODS_ROOT}/FirebaseCrashlytics/run\" || echo \"FirebaseCrashlytics build phase script failed!\"\nfi\n";
 		};
 		81618D31A0BD56EE9423C713 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

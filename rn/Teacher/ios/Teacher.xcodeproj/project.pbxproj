@@ -927,7 +927,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\" || echo \"FirebaseCrashlytics build phase script failed!\"\n";
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ] ; then\n    \"${PODS_ROOT}/FirebaseCrashlytics/run\" || echo \"FirebaseCrashlytics build phase script failed!\"\nfi\n";
 		};
 		4931EB6B1F731BD700715EF2 /* Start the Packager */ = {
 			isa = PBXShellScriptBuildPhase;
