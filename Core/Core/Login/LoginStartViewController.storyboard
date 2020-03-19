@@ -84,7 +84,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="Bkg-T4-H3b">
-                                <rect key="frame" x="68.666666666666686" y="466.66666666666669" width="238" height="32"/>
+                                <rect key="frame" x="71.666666666666686" y="466.66666666666669" width="238" height="32"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6NX-gC-CQL" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="92" height="32"/>
@@ -102,10 +102,10 @@
                                         <rect key="frame" x="102.99999999999999" y="0.0" width="2" height="32"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Brq-Xm-d3G">
-                                                <rect key="frame" x="0.0" y="7" width="2" height="18"/>
+                                                <rect key="frame" x="0.0" y="10" width="2" height="12"/>
                                                 <color key="backgroundColor" name="backgroundMedium"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="12" id="a3m-SS-k75"/>
+                                                    <constraint firstAttribute="height" constant="18" id="a3m-SS-k75"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -353,7 +353,7 @@
                             <constraint firstItem="g3X-Rb-xXO" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="040-0l-bYr"/>
                             <constraint firstItem="Al6-ev-ond" firstAttribute="leading" secondItem="1pX-Al-xWp" secondAttribute="trailing" constant="8" id="05N-Iw-HQD"/>
                             <constraint firstAttribute="bottom" secondItem="xBc-5O-QU6" secondAttribute="bottom" id="AcQ-O0-5EB"/>
-                            <constraint firstItem="Bkg-T4-H3b" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="BIP-F4-TSn"/>
+                            <constraint firstItem="Bkg-T4-H3b" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" constant="3" id="BIP-F4-TSn"/>
                             <constraint firstItem="xBc-5O-QU6" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="Duc-2p-Av2"/>
                             <constraint firstItem="K3D-iK-gpK" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="FpS-ol-ufb"/>
                             <constraint firstItem="g3X-Rb-xXO" firstAttribute="top" secondItem="Bkg-T4-H3b" secondAttribute="bottom" id="LRR-1E-AR7"/>
