@@ -223,7 +223,45 @@ class LoginStartViewController: UIViewController {
             return
         }
         let scanner = ScannerViewController()
+        scanner.delegate = self
         self.env.router.show(scanner, from: self, options: .modal(.fullScreen))
+    }
+
+    func logIn(withCode code: String) {
+        guard let url = URL(string: code), let login = GetSSOLogin(url: url) else {
+            showQRCodeError()
+            return
+        }
+        var cancelled = false
+        let loading = UIAlertController(
+            title: NSLocalizedString("Logging you in", bundle: .core, comment: ""),
+            message: NSLocalizedString("Please wait, this might take a minute.", bundle: .core, comment: ""),
+            preferredStyle: .alert
+        )
+        loading.addAction(UIAlertAction(
+            title: NSLocalizedString("Cancel", bundle: .core, comment: ""),
+            style: .cancel,
+            handler: { _ in cancelled = true }
+        ))
+        env.router.show(loading, from: self) {
+            login.fetch { [weak self, weak loading] session, error in
+                if cancelled { return }
+                loading?.dismiss(animated: true) {
+                    guard let session = session, error == nil else {
+                        self?.showQRCodeError()
+                        return
+                    }
+                    AppEnvironment.shared.loginDelegate?.userDidLogin(session: session)
+                }
+            }
+        }
+    }
+
+    func showQRCodeError() {
+        showAlert(
+            title: NSLocalizedString("There was an error logging in", bundle: .core, comment: ""),
+            message: NSLocalizedString("Please generate another QR Code and try again.", bundle: .core, comment: "")
+        )
     }
 
     @IBAction func helpTapped(_ sender: UIButton) {
@@ -306,40 +344,9 @@ extension LoginStartViewController: UITableViewDataSource, UITableViewDelegate, 
 
 extension LoginStartViewController: ScannerDelegate, ErrorViewController {
     func scanner(_ scanner: ScannerViewController, didScanCode code: String) {
-        guard let url = URL(string: code), let login = GetSSOLogin(url: url) else {
-            showQRCodeError()
-            return
+        scanner.dismiss(animated: true) {
+            self.logIn(withCode: code)
         }
-        var cancelled = false
-        let loading = UIAlertController(
-            title: NSLocalizedString("Logging you in", bundle: .core, comment: ""),
-            message: NSLocalizedString("Please wait, this might take a minute.", bundle: .core, comment: ""),
-            preferredStyle: .alert
-        )
-        loading.addAction(UIAlertAction(
-            title: NSLocalizedString("Cancel", bundle: .core, comment: ""),
-            style: .cancel,
-            handler: { _ in cancelled = true }
-        ))
-        env.router.show(loading, from: self) {
-            login.fetch { [weak self, weak loading] session, error in
-                if cancelled { return }
-                loading?.dismiss(animated: true) {
-                    guard let session = session, error == nil else {
-                        self?.showQRCodeError()
-                        return
-                    }
-                    AppEnvironment.shared.loginDelegate?.userDidLogin(session: session)
-                }
-            }
-        }
-    }
-
-    func showQRCodeError() {
-        showAlert(
-            title: NSLocalizedString("Failed to log in", bundle: .core, comment: ""),
-            message: NSLocalizedString("Try generating the QR code again.", bundle: .core, comment: "")
-        )
     }
 }
 
