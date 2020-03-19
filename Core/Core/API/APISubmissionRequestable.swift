@@ -172,6 +172,13 @@ struct PutSubmissionGradeRequest: APIRequestable {
     let assignmentID: String
     let userID: String
 
+    init(courseID: String, assignmentID: String, userID: String, body: Body? = nil) {
+        self.courseID = courseID
+        self.assignmentID = assignmentID
+        self.userID = userID
+        self.body = body
+    }
+
     let body: Body?
     let method = APIMethod.put
     var path: String {

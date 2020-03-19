@@ -19,6 +19,10 @@
 import Foundation
 import Swifter
 
+public protocol LoggingHttpServerDelegate: AnyObject {
+    func didHandle(request: HttpRequest)
+}
+
 public class LoggingHttpServer: HttpServer {
     class MockWriter: HttpResponseBodyWriter {
         var data = Data()
@@ -31,11 +35,13 @@ public class LoggingHttpServer: HttpServer {
     }
 
     public var logResponses: Bool = false
+    public weak var postHandleDelegate: LoggingHttpServerDelegate?
 
     public override func dispatch(_ request: HttpRequest) -> ([String: String], (HttpRequest) -> HttpResponse) {
         let (params, handler) = super.dispatch(request)
         return (params, { [weak self] request in
             let response = handler(request)
+            self?.postHandleDelegate?.didHandle(request: request)
             var queryString = ""
             if !request.queryParams.isEmpty {
                 queryString = " \(request.queryParams)"

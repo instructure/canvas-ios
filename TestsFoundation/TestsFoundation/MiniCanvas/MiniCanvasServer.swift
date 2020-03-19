@@ -40,6 +40,8 @@ public class MiniCanvasServer {
 
     public var state: MiniCanvasState
 
+    private var expectationHooks: [String: XCTestExpectation] = [:]
+
     private var graphQLRequests: [String: (APIRequest<Data>) throws -> HttpResponse] = [:]
 
     public struct APIRequest<Body> {
@@ -121,8 +123,20 @@ public class MiniCanvasServer {
         }
     }
 
+    public func expectationForRequest(_ path: String, method: APIMethod = .get) -> XCTestExpectation {
+        let expectation = XCTestExpectation(description: "waiting for \(method) \(path)")
+        expectationHooks[path] = expectation
+        return expectation
+    }
+
+    public func expectationFor<R: APIRequestable>(request: R) -> XCTestExpectation {
+        let urlRequest = try! request.urlRequest(relativeTo: URL(string: "/")!, accessToken: "", actAsUserID: "")
+        return expectationForRequest(urlRequest.url!.path, method: request.method)
+    }
+
     public func reset() {
         state = MiniCanvasState(baseUrl: baseUrl)
+        expectationHooks = [:]
     }
 
     private func install(endpoint: Endpoint) {
@@ -159,6 +173,7 @@ public class MiniCanvasServer {
         state = MiniCanvasState(baseUrl: URL(string: "http://\(address):\(port)")!)
         MiniCanvasEndpoints.endpoints.forEach(install)
         install(endpoint: .rest("/api/graphql", method: .post, handler: handleGraphQL))
+        server.postHandleDelegate = self
         NotificationCenter.default.post(name: .init("miniCanvasServerStart"), object: baseUrl)
     }
 
@@ -185,5 +200,11 @@ public class MiniCanvasServer {
             throw ServerError.notFound
         }
         return try handler(request)
+    }
+}
+
+extension MiniCanvasServer: LoggingHttpServerDelegate {
+    public func didHandle(request: HttpRequest) {
+        expectationHooks[request.path]?.fulfill()
     }
 }

@@ -27,13 +27,11 @@ class IPadSpeedGraderTests: MiniCanvasUITestCase {
         SpringBoard.shared.setupSplitScreenWithSafariOnRight()
         SpringBoard.shared.moveSplit(toFraction: 0.5)
 
-        let course = mocked.courses[0]
-        let assignment = course.assignments[0]
         let students = mocked.students
 
-        Dashboard.courseCard(id: course.id).tap()
+        Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.assignments.tap()
-        AssignmentsList.assignment(id: assignment.id).tap()
+        AssignmentsList.assignment(id: firstAssignment.id).tap()
         AssignmentDetails.viewAllSubmissionsButton.tap()
         app.find(labelContaining: students[0].name).waitToExist()
         app.find(labelContaining: students[1].name).waitToExist()

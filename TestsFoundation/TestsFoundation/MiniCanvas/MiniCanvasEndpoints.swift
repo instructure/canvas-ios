@@ -20,7 +20,52 @@ import Foundation
 @testable import Core
 
 enum MiniCanvasEndpoints {
-    private static let courseRouteContext = ContextModel(.course, id: ":courseID")
+    private enum Pattern {
+        static let courseID = ":courseID"
+        static let assignmentID = ":assignmentID"
+        static let quizID = ":quizID"
+        static let userID = ":userID"
+        static let courseContext = ContextModel(ContextType.course, id: courseID)
+    }
+
+    private static func lookupCourse<T>(forRequest request: MiniCanvasServer.APIRequest<T>) throws -> MiniCourse {
+        guard let course = request.state.course(byId: request[Pattern.courseID]!) else {
+            throw ServerError.notFound
+        }
+        return course
+    }
+
+    private static func lookupAssignment<T>(forRequest request: MiniCanvasServer.APIRequest<T>) throws -> MiniAssignment {
+        guard let assignment = try lookupCourse(forRequest: request).assignment(byId: request[Pattern.assignmentID]!) else {
+            throw ServerError.notFound
+        }
+        return assignment
+    }
+
+    private static func lookupSubmission<T>(forRequest request: MiniCanvasServer.APIRequest<T>) throws -> MiniSubmission {
+        guard let submission = try lookupAssignment(forRequest: request).submission(byUserId: request[Pattern.userID]!) else {
+            throw ServerError.notFound
+        }
+        return submission
+    }
+
+    private static func lookupQuiz<T>(forRequest request: MiniCanvasServer.APIRequest<T>) throws -> MiniQuiz {
+        guard let quiz = try lookupCourse(forRequest: request).quiz(byId: request[Pattern.quizID]!) else {
+            throw ServerError.notFound
+        }
+        return quiz
+    }
+
+    private static func lookupUser<T>(forRequest request: MiniCanvasServer.APIRequest<T>) throws -> APIUser {
+        var id = request[Pattern.userID]!
+        if id == "self" {
+            id = request.state.selfId
+        }
+        guard let user = request.state.user(byId: id) else {
+            throw ServerError.notFound
+        }
+        return user
+    }
 
     public static let endpoints: [MiniCanvasServer.Endpoint] = [
         // MARK: Account Notifications
@@ -34,24 +79,21 @@ enum MiniCanvasEndpoints {
 
         // MARK: Assignment Groups
         // https://canvas.instructure.com/doc/api/assignment_groups.html
-        .apiRequest(GetAssignmentGroupsRequest(courseID: ":courseID")) { request in
-            request.state.course(byId: request[":courseID"])?.assignmentGroups
+        .apiRequest(GetAssignmentGroupsRequest(courseID: Pattern.courseID)) { request in
+            try lookupCourse(forRequest: request).assignmentGroups
         },
 
         // MARK: Assignments
         // https://canvas.instructure.com/doc/api/assignments.html
-        .apiRequest(GetAssignmentsRequest(courseID: ":courseID")) { request in
-            request.state.course(byId: request[":courseID"])?.assignments.map { $0.api }
+        .apiRequest(GetAssignmentsRequest(courseID: Pattern.courseID)) { request in
+            try lookupCourse(forRequest: request).assignments.map { $0.api }
         },
-        .apiRequest(GetAssignmentRequest(courseID: ":courseID", assignmentID: ":assignmentID", include: [])) { request in
-            request.state.course(byId: request[":courseID"])?.assignment(byId: request[":assignmentID"])?.api
+        .apiRequest(GetAssignmentRequest(courseID: Pattern.courseID, assignmentID: Pattern.assignmentID, include: [])) { request in
+            try lookupAssignment(forRequest: request).api
         },
         .graphQL(AssignmentListRequestable.self) { request in
             let vars = request.body.variables
-            guard let course = request.state.course(byId: vars.courseID) else {
-                throw ServerError.notFound
-            }
-            let assignments: [APIAssignmentListAssignment] = course.assignments.map { assignment in
+            let assignments: [APIAssignmentListAssignment] = try lookupCourse(forRequest: request).assignments.map { assignment in
                 APIAssignmentListAssignment.make(
                     id: assignment.api.id,
                     name: assignment.api.name,
@@ -79,8 +121,8 @@ enum MiniCanvasEndpoints {
         // MARK: Courses
         // https://canvas.instructure.com/doc/api/conversations.html
         .apiRequest(GetCoursesRequest()) { request in request.state.courses.map { $0.api } },
-        .apiRequest(GetCourseRequest(courseID: ":courseID")) { request in
-            request.state.course(byId: request[":courseID"]!)?.api
+        .apiRequest(GetCourseRequest(courseID: Pattern.courseID)) { request in
+            try lookupCourse(forRequest: request).api
         },
 
         // MARK: Enrollments
@@ -88,26 +130,26 @@ enum MiniCanvasEndpoints {
         .apiRequest(GetEnrollmentsRequest(context: ContextModel.currentUser)) { request in
             request.state.userEnrollments()
         },
-        .apiRequest(GetEnrollmentsRequest(context: courseRouteContext)) { request in
-            request.state.enrollments.filter { $0.course_id == request[":courseID"]! }
+        .apiRequest(GetEnrollmentsRequest(context: Pattern.courseContext)) { request in
+            request.state.enrollments.filter { $0.course_id == request[Pattern.courseID]! }
         },
 
         // MARK: Feature Flags
         // https://canvas.instructure.com/doc/api/feature_flags.html
-        .apiRequest(GetEnabledFeatureFlagsRequest(context: courseRouteContext)) { request in
-            request.state.course(byId: request[":courseID"])?.featureFlags
+        .apiRequest(GetEnabledFeatureFlagsRequest(context: Pattern.courseContext)) { request in
+            try lookupCourse(forRequest: request).featureFlags
         },
 
         // MARK: Grading Periods
         // https://canvas.instructure.com/doc/api/grading_periods.html
-        .apiRequest(GetGradingPeriodsRequest(courseID: ":courseID")) { request in
-            request.state.course(byId: request[":courseID"])?.gradingPeriods
+        .apiRequest(GetGradingPeriodsRequest(courseID: Pattern.courseID)) { request in
+            try lookupCourse(forRequest: request).gradingPeriods
         },
 
         // MARK: Groups
         // https://canvas.instructure.com/doc/api/groups.html
         .apiRequest(GetGroupsRequest(context: ContextModel.currentUser)) { _ in [] },
-        .apiRequest(GetGroupsRequest(context: courseRouteContext)) { _ in [] },
+        .apiRequest(GetGroupsRequest(context: Pattern.courseContext)) { _ in [] },
 
         // MARK: OAuth
         // https://canvas.instructure.com/doc/api/file.oauth_endpoints.html
@@ -126,24 +168,62 @@ enum MiniCanvasEndpoints {
             .init(session_url: request["return_to"].flatMap { URL(string: $0) } ?? request.baseUrl)
         },
 
+        // MARK: Quiz Submissions
+        // https://canvas.instructure.com/doc/api/quiz_submissions.html
+        .apiRequest(GetAllQuizSubmissionsRequest(courseID: Pattern.courseID, quizID: Pattern.quizID)) { request in
+            let quiz = try lookupQuiz(forRequest: request)
+            return GetAllQuizSubmissionsRequest.Response(
+                quiz_submissions: quiz.submissions.compactMap { $0.associatedQuizSubmission },
+                submissions: quiz.submissions.map { $0.api }
+            )
+        },
+
+        // MARK: Quizzes
+        // https://canvas.instructure.com/doc/api/quizzes.html
+        .apiRequest(GetQuizzesRequest(courseID: Pattern.courseID)) { request in
+            try lookupCourse(forRequest: request).quizzes.map { $0.api }
+        },
+        .apiRequest(GetQuizRequest(courseID: Pattern.courseID, quizID: Pattern.quizID)) { request in
+            try lookupQuiz(forRequest: request).api
+        },
+
+        // MARK: Sections
+        // https://canvas.instructure.com/doc/api/sections.html
+        .apiRequest(GetCourseSectionsRequest(courseID: Pattern.courseID)) { _ in [] },
+
         // MARK: Submissions
         // https://canvas.instructure.com/doc/api/submissions.html
-        .apiRequest(GetSubmissionSummaryRequest(context: courseRouteContext, assignmentID: ":assignmentID")) { request in
+        .apiRequest(GetSubmissionSummaryRequest(context: Pattern.courseContext, assignmentID: Pattern.assignmentID)) { request in
             .init(graded: 42, ungraded: 42, not_submitted: 42)
         },
-        .apiRequest(GetSubmissionRequest(context: courseRouteContext, assignmentID: ":assignmentID", userID: ":userID")) { request in
-            guard let course = request.state.course(byId: request[":courseID"]!),
-                  let assignment = request.state.assignment(byId: request[":assignmentID"]!) else {
-                throw ServerError.notFound
-            }
-            return assignment.submissions.first { $0.user_id.value == request[":userID"]! }
+        .apiRequest(GetSubmissionRequest(context: Pattern.courseContext, assignmentID: Pattern.assignmentID, userID: Pattern.userID)) { request in
+            try lookupSubmission(forRequest: request).api
         },
-        .apiRequest(GetSubmissionsRequest(context: courseRouteContext, assignmentID: ":assignmentID")) { request in
-            guard let course = request.state.course(byId: request[":courseID"]!),
-                  let assignment = request.state.assignment(byId: request[":assignmentID"]!) else {
-                throw ServerError.notFound
+        .apiRequest(GetSubmissionsRequest(context: Pattern.courseContext, assignmentID: Pattern.assignmentID)) { request in
+            try lookupAssignment(forRequest: request).submissions.map { $0.api }
+        },
+        .apiRequest(PutSubmissionGradeRequest(courseID: Pattern.courseID, assignmentID: Pattern.assignmentID, userID: Pattern.userID)) { request in
+            let submission = try lookupSubmission(forRequest: request)
+            guard let body: PutSubmissionGradeRequest.Body = request.body else { return nil }
+            if let comment = body.comment {
+                if submission.api.submission_comments == nil {
+                    submission.api.submission_comments = []
+                }
+                submission.api.submission_comments!.append(APISubmissionComment.make(
+                    id: request.state.nextId().value,
+                    author_id: request.state.selfId,
+                    author_name: request.state.selfUser.name,
+                    author: .make(from: request.state.selfUser),
+                    comment: comment.text_comment ?? "",
+                    attachments: []
+                ))
             }
-            return assignment.submissions
+            if let newSubmission = body.submission {
+                submission.api.grade = newSubmission.posted_grade
+                submission.api.score = Double(newSubmission.posted_grade ?? "0") ?? 0
+                submission.api.graded_at = newSubmission.posted_grade.map { _ in Date() }
+            }
+            return submission.api
         },
         .graphQLAny(operationName: "SubmissionList") { request in
             guard let variables = request.body["variables"] as? [String: Any],
@@ -156,18 +236,14 @@ enum MiniCanvasEndpoints {
 
         // MARK: Tabs
         // https://canvas.instructure.com/doc/api/tabs.html
-        .apiRequest(GetTabsRequest(context: courseRouteContext)) { request in
-            request.state.course(byId: request[":courseID"]!)?.tabs
+        .apiRequest(GetTabsRequest(context: Pattern.courseContext)) { request in
+            try lookupCourse(forRequest: request).tabs
         },
 
         // MARK: Users
         // https://canvas.instructure.com/doc/api/users.html
-        .apiRequest(GetUserProfileRequest(userID: ":userID")) { request in
-            var userID = request[":userID"]!
-            if userID == "self" {
-                userID = request.state.selfId
-            }
-            guard let user = request.state.user(byId: userID) else { return nil }
+        .apiRequest(GetUserProfileRequest(userID: Pattern.userID)) { request in
+            let user = try lookupUser(forRequest: request)
             return APIProfile.make(
                 id: user.id,
                 name: user.name,
@@ -192,11 +268,11 @@ enum MiniCanvasEndpoints {
         },
         .rest("/users/self") { _ in .ok(.htmlBody("")) },
         .apiRequest(GetDashboardCardsRequest()) { request in
-            try request.state.userEnrollments().compactMap { enrollment in
+                try request.state.userEnrollments().compactMap { enrollment in
                 guard let course = request.state.course(byId: enrollment.course_id!)?.api else {
                     throw ServerError.notFound
                 }
-                guard request.state.favoriteCourses.contains(course.id) else { return nil }
+                guard request.state.favoriteCourses.isEmpty || request.state.favoriteCourses.contains(course.id) else { return nil }
                 return APIDashboardCard.make(
                     assetString: course.canvasContextID,
                     courseCode: course.course_code!,
@@ -211,15 +287,13 @@ enum MiniCanvasEndpoints {
             }
         },
         .apiRequest(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"))) { _ in .make() },
-        .apiRequest(GetContextPermissionsRequest(context: courseRouteContext)) { request in
-            guard let course = request.state.course(byId: request[":courseID"]!) else {
-                throw ServerError.notFound
-            }
-            let permissions = course.api.permissions ?? APICourse.Permissions(create_announcement: false, create_discussion_topic: false)
+        .apiRequest(GetContextPermissionsRequest(context: Pattern.courseContext)) { request in
+            let permissions = try lookupCourse(forRequest: request).api.permissions ??
+                APICourse.Permissions(create_announcement: false, create_discussion_topic: false)
             return try APIJSONDecoder().decode(APIPermissions.self, from: APIJSONEncoder().encode(permissions))
         },
-        .apiRequest(GetExternalToolsRequest(context: courseRouteContext, includeParents: false)) { request in
-            request.state.course(byId: request[":courseID"]!)?.externalTools
+        .apiRequest(GetExternalToolsRequest(context: Pattern.courseContext, includeParents: false)) { request in
+            try lookupCourse(forRequest: request).externalTools
         },
         .apiRequest(GetTodosRequest()) { _ in [] },
         .rest("/api/v1/users/self/todo_item_count") { _ in

@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct APIList<T>: Codable, Equatable where T: Codable, T: Equatable {
+public struct APIList<T>: Codable, Equatable, ExpressibleByArrayLiteral where T: Codable, T: Equatable {
     public let values: [T]
 
     public init(_ values: T...) {
@@ -27,6 +27,10 @@ public struct APIList<T>: Codable, Equatable where T: Codable, T: Equatable {
 
     public init(values: [T]) {
         self.values = values
+    }
+
+    public init(arrayLiteral elements: T...) {
+        self.values = elements
     }
 
     public init(from decoder: Decoder) throws {

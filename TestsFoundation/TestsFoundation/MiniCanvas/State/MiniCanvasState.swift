@@ -19,8 +19,8 @@
 import Foundation
 @testable import Core
 
-public class MiniCanvasState: Encodable {
-    public var courses: [MiniCourse]
+public class MiniCanvasState {
+    public var courses: [MiniCourse] = []
     public var enrollments: [APIEnrollment] = []
     public var students: [APIUser]
     public var teachers: [APIUser]
@@ -29,9 +29,10 @@ public class MiniCanvasState: Encodable {
     public var brandVariables = APIBrandVariables.make()
     public var unreadCount: UInt = 3
     public var accountNotifications: [APIAccountNotification]
-    public var customColors: [String: String]
-    public var favoriteCourses: Set<String>
+    public var customColors: [String: String] = [:]
+    public var favoriteCourses: Set<String> = []
     public let idGenerator = IDGenerator()
+    public let baseUrl: URL
 
     public class IDGenerator: Encodable {
         private var nextID: Int = 10
@@ -43,11 +44,7 @@ public class MiniCanvasState: Encodable {
     }
 
     init(baseUrl: URL) {
-        courses = [
-            APICourse.make(id: idGenerator.next(), name: "Course One", course_code: "C1", workflow_state: .available, enrollments: []),
-            APICourse.make(id: idGenerator.next(), name: "Course Two (unpublished)", course_code: "C2", workflow_state: .unpublished, enrollments: []),
-            APICourse.make(id: idGenerator.next(), name: "Course Three (completed)", course_code: "C3", workflow_state: .completed, enrollments: []),
-        ].map(MiniCourse.init)
+        self.baseUrl = baseUrl
 
         students = [
             APIUser.makeUser(role: "Student", id: idGenerator.next()),
@@ -60,51 +57,19 @@ public class MiniCanvasState: Encodable {
         accountNotifications = [.make(id: idGenerator.next())]
 
         selfId = students[0].id
-        favoriteCourses = Set(courses.map { $0.id })
-        customColors = [:]
 
-        for course in courses {
-            func makeAssignment(name: String) -> MiniAssignment {
-                let id: ID = idGenerator.next()
-                return MiniAssignment(APIAssignment.make(id: id, course_id: course.api.id, name: name, html_url: URL(string: "\(baseUrl)/courses/\(course.id)/assignments/\(id)")!))
-            }
-
-            course.gradingPeriods = [
-                .make(id: idGenerator.next(), title: "Grading Period 1"),
-                .make(id: idGenerator.next(), title: "Grading Period 2"),
-            ]
-            course.assignmentGroups = [
-                .make(id: idGenerator.next(), name: "group 0", position: 0),
-                .make(id: idGenerator.next(), name: "group 1", position: 1),
-            ]
-
-            course.add(assignment: makeAssignment(name: "Assignment 1"), toGroupAtIndex: 0)
-            course.add(assignment: makeAssignment(name: "Assignment 2"), toGroupAtIndex: 0)
-            course.add(assignment: makeAssignment(name: "Assignment 3"), toGroupAtIndex: 1)
-
-            course.assignments[0].submissions = students.map { student in
-                APISubmission.make(
-                    id: idGenerator.next(),
-                    assignment_id: course.assignments[0].api.id,
-                    user_id: student.id,
-                    body: "A submission from \(student.name)"
-                )
-            }
-
-            customColors["course_\(course.id)"] = Self.colorForID(id: course.id)
-            for student in students {
-                enroll(student, intoCourse: course, as: "StudentEnrollment")
-            }
-            enroll(teachers[0], intoCourse: course, as: "TeacherEnrollment")
-            enroll(observers[0], intoCourse: course, as: "ObserverEnrollment", observing: students[0])
-        }
+        [
+            APICourse.make(id: nextId(), name: "Course One", course_code: "C1", workflow_state: .available, enrollments: []),
+            APICourse.make(id: nextId(), name: "Course Two (unpublished)", course_code: "C2", workflow_state: .unpublished, enrollments: []),
+            APICourse.make(id: nextId(), name: "Course Three (completed)", course_code: "C3", workflow_state: .completed, enrollments: []),
+        ].forEach { MiniCourse.create($0, populatingState: self) }
     }
 }
 
 extension MiniCanvasState {
     public func enroll(_ user: APIUser, intoCourse course: MiniCourse, as role: String, observing: APIUser? = nil) {
         let enrollment = APIEnrollment.make(
-            id: idGenerator.next(),
+            id: nextId(),
             course_id: course.id,
             type: role,
             user_id: user.id,
@@ -134,7 +99,11 @@ extension MiniCanvasState {
         enrollments.filter { $0.user_id == id ?? selfId }
     }
 
-    static func colorForID(id: String) -> String {
+    public func nextId() -> ID {
+        idGenerator.next()
+    }
+
+    public func colorForId(id: String) -> String {
         let phi: CGFloat = (1 + sqrt(5)) / 2
         // multiply by a very irrational value so that colors are distant
         let color = UIColor(hue: CGFloat(Int(id) ?? 0) * phi, saturation: 1, brightness: 0.75, alpha: 1)

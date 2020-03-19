@@ -21,45 +21,21 @@ import TestsFoundation
 @testable import Core
 @testable import CoreUITests
 
-class SpeedGraderTests: TeacherUITestCase {
-    let mockHelper = SpeedGraderUIMocks()
-
+class SpeedGraderTests: MiniCanvasUITestCase {
     func testSubmissionCommentAttachments() {
-        mockBaseRequests()
-        mockData(GetAssignmentRequest(courseID: "1", assignmentID: "1", allDates: true, include: [.overrides]), value: .make(id: "1"))
-        mockData(GetGroupsRequest(context: ContextModel(.course, id: "1")), value: [])
         let attachment = APIFile.make(
             id: "1",
             display_name: "screenshot.png",
             url: UIImage.icon(.paperclip).asDataUrl!
         )
-        mockURL(attachment.url!.rawValue, data: UIImage.icon(.paperclip).pngData())
-        mockData(
-            GetSubmissionsRequest(
-                context: ContextModel(.course, id: "1"),
-                assignmentID: "1",
-                grouped: true,
-                include: [.group, .rubric_assessment, .submission_comments, .submission_history, .total_scores, .user]
-            ),
-            value: [.make(user_id: "1", submission_comments: [.make(attachments: [attachment])])]
-        )
-        mockData(
-            GetSubmissionsRequest(
-                context: ContextModel(.course, id: "1"),
-                assignmentID: "1",
-                grouped: false,
-                include: [.group, .rubric_assessment, .submission_comments, .submission_history, .total_scores, .user]
-            ),
-            value: [.make(user_id: "1", submission_comments: [.make(attachments: [attachment])])]
-        )
-        mockEncodableRequest("courses/1/enrollments?include[]=avatar_url", value: [
-            APIEnrollment.make(user_id: "1", user: .make(id: "1")),
-        ])
-        mockEncodableRequest("courses/1/assignments/1/submission_summary", value: APISubmission.make())
-        show("/courses/1/assignments/1/submissions/1")
+        let student = mocked.students.first!
+        let submission = firstAssignment.submission(byUserId: student.id)!
+        submission.api.submission_comments = [ .make(attachments: [attachment]) ]
+
+        show("/courses/\(firstCourse.id)/assignments/\(firstAssignment.id)/submissions/\(submission.api.id)")
         SpeedGrader.dismissTutorial()
         app.find(id: "speedgrader.segment-control").waitToExist()
-        app.segmentedControls.buttons["Comments"].tap()
+        app.segmentedControls.firstMatch.buttons["Comments"].tap()
         app.find(id: "CommentAttachment-1").tap()
         app.find(id: "AttachmentView.image").waitToExist()
         app.find(id: "attachment-view.share-btn").waitToExist()
@@ -69,38 +45,47 @@ class SpeedGraderTests: TeacherUITestCase {
     }
 
     func testNavigateToSpeedGrader() {
-        mockHelper.mock(for: self)
-        logIn()
-        Dashboard.courseCard(id: "1").tap()
+        Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.assignments.tap()
-        AssignmentsList.assignment(id: "1").tap()
+        AssignmentsList.assignment(id: firstAssignment.id).tap()
         AssignmentDetails.viewAllSubmissionsButton.tap()
-        SubmissionsList.row(contextID: "1").tap()
+        SubmissionsList.row(contextID: mocked.students[1].id.value).tap()
         SpeedGrader.dismissTutorial()
     }
 
-    func inProgressTestQuizLoadsWebView() {
-        mockHelper.mock(for: self)
-
-        let quiz = APIQuiz.make(quiz_type: .assignment)
-        let quizSubmissions: [APIQuizSubmission] = [
-            .make(quiz_id: quiz.id, workflow_state: .complete),
-        ]
-
-        mockData(ListQuizzesRequest(courseID: "1"), value: [quiz])
-        mockData(GetQuizRequest(courseID: "1", quizID: quiz.id.value), value: quiz)
-        mockData(GetAllQuizSubmissionsRequest(courseID: "1", quizID: quiz.id.value, includes: [.submission], perPage: 99),
-                 value: .init(quiz_submissions: quizSubmissions))
-        mockData(GetAllQuizSubmissionsRequest(courseID: "1", quizID: quiz.id.value),
-                 value: .init(quiz_submissions: quizSubmissions))
-        mockData(GetCourseSectionsRequest(courseID: "1", include: [.total_students], perPage: 99),
-                 value: [.make()])
-
-        logIn()
-        Dashboard.courseCard(id: "1").tap()
+    func testQuizLoadsWebView() {
+        Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.quizzes.tap()
-
         app.find(id: "quiz-row-0").tap()
         app.find(id: "quizzes.details.viewAllSubmissionsRow").tap()
+        let student = mocked.students[1]
+        SubmissionsList.row(contextID: student.id.value).tap()
+        SpeedGrader.dismissTutorial()
+        XCTAssertFalse(app.find(label: "A webview submission from \(student.name)").waitToExist().isOffscreen())
+    }
+
+    func testUpdateScores() {
+        let quiz = firstCourse.quizzes[0]
+        let student = mocked.students[0]
+        let submission = quiz.submission(byUserId: student.id)!
+
+        Dashboard.courseCard(id: firstCourse.id).tap()
+        CourseNavigation.quizzes.tap()
+        app.find(id: "quiz-row-0").tap()
+        app.find(id: "quizzes.details.viewAllSubmissionsRow").tap()
+        SubmissionsList.row(contextID: student.id.value).tap()
+        app.segmentedControls.firstMatch.buttons["Grades"].tap()
+        SpeedGrader.gradePickerButton.tap()
+        app.textFields.firstElement.typeText("6")
+
+        let expectation = MiniCanvasServer.shared.expectationFor(request: PutSubmissionGradeRequest(
+            courseID: firstCourse.id,
+            assignmentID: quiz.api.assignment_id!.value,
+            userID: student.id
+        ))
+        app.buttons["OK"].tap()
+        wait(for: [expectation], timeout: 3)
+
+        XCTAssertEqual(submission.api.grade, "6")
     }
 }

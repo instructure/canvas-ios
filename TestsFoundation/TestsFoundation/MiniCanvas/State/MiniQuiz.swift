@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,29 +17,19 @@
 //
 
 import Foundation
-import TestsFoundation
-import XCTest
-@testable import CoreUITests
+@testable import Core
 
-enum SpeedGrader {
-    static var doneButton: Element {
-        return app.find(id: "header.navigation-done")
+public class MiniQuiz {
+    public var api: APIQuiz
+    public var submissions: [MiniSubmission] = []
+
+    public var id: String { api.id.value }
+
+    public func submission(byUserId id: String?) -> MiniSubmission? {
+        submissions.first { $0.api.user_id.value == id }
     }
 
-    static func userName(userID: String) -> Element {
-        return app.find(id: "header.context.button.\(userID)")
-    }
-
-    static func dismissTutorial() {
-        let button = app.find(id: "tutorial.button-swipe-tutorial")
-        let exists = button.rawElement.waitForExistence(timeout: 3)
-        if exists {
-            button.tap()
-            button.waitToVanish()
-        }
-    }
-
-    static var gradePickerButton: Element {
-        app.find(id: "grade-picker.button")
+    init(_ quiz: APIQuiz) {
+        self.api = quiz
     }
 }

@@ -22,6 +22,7 @@ import Foundation
 public struct APIQuiz: Codable, Equatable {
     let access_code: String?
     let allowed_attempts: Int
+    let assignment_id: ID?
     let cant_go_back: Bool?
     let description: String?
     let due_at: Date?
