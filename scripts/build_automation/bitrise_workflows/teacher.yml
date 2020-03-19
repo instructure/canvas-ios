@@ -54,7 +54,7 @@ workflows:
     - set-xcode-build-number:
         inputs:
         - plist_path: rn/Teacher/ios/Teacher/Info.plist
-    - bitrise-step-stamp-appicon-with-version-number:
+    - git::git@github.com:ollitapa/bitrise-step-stamp-appicon-with-version-number.git@master:
         title: Stamp AppIcon with version number if ad-hoc
         run_if: '{{enveq "BITRISE_EXPORT_METHOD" "ad-hoc"}}'
         inputs:
