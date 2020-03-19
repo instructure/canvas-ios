@@ -55,10 +55,13 @@ workflows:
         inputs:
         - plist_path: Parent/Parent/Info.plist
     - bitrise-step-stamp-appicon-with-version-number:
+        title: Stamp AppIcon with version number if ad-hoc
         run_if: '{{enveq "BITRISE_EXPORT_METHOD" "ad-hoc"}}'
         inputs:
         - stamp_path_to_icons: Parent/Parent/Assets.xcassets/AppIcon.appiconset
         - stamp_version: PR
+        - background_color: "#008EE2"
+        - foreground_color: "white"
     - xcode-archive:
         inputs:
         - configuration: "$BITRISE_CONFIGURATION"
