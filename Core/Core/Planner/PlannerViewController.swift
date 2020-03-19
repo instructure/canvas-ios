@@ -23,7 +23,7 @@ public class PlannerViewController: UIViewController {
     lazy var addNoteButton = UIBarButtonItem(image: .icon(.add, .solid), style: .plain, target: self, action: #selector(addNote))
     lazy var todayButton = UIBarButtonItem(image: .icon(.calendarTodayLine), style: .plain, target: self, action: #selector(selectToday))
 
-    lazy var calendar = CalendarViewController.create(delegate: self)
+    lazy var calendar = CalendarViewController.create(delegate: self, selectedDate: selectedDate)
     let listPageController = PagesViewController()
     var list: PlannerListViewController! {
         listPageController.currentPage as? PlannerListViewController
@@ -31,6 +31,7 @@ public class PlannerViewController: UIViewController {
 
     let env = AppEnvironment.shared
     var listContentOffsetY: CGFloat = 0
+    public var selectedDate: Date = Clock.now
     var studentID: String?
 
     lazy var planners: Store<LocalUseCase<Planner>> = env.subscribe(scope: .where(#keyPath(Planner.studentID), equals: studentID)) { [weak self] in
@@ -38,9 +39,10 @@ public class PlannerViewController: UIViewController {
     }
     var planner: Planner? { planners.first }
 
-    public static func create(studentID: String? = nil) -> PlannerViewController {
+    public static func create(studentID: String? = nil, selectedDate: Date = Clock.now) -> PlannerViewController {
         let controller = PlannerViewController()
         controller.studentID = studentID
+        controller.selectedDate = selectedDate
         return controller
     }
 
@@ -61,8 +63,8 @@ public class PlannerViewController: UIViewController {
         listPageController.dataSource = self
         listPageController.delegate = self
         listPageController.setCurrentPage(PlannerListViewController.create(
-            start: Clock.now.startOfDay(),
-            end: Clock.now.startOfDay().addDays(1),
+            start: selectedDate.startOfDay(),
+            end: selectedDate.startOfDay().addDays(1),
             delegate: self
         ))
         listPageController.scrollView.canCancelContentTouches = true
@@ -132,11 +134,13 @@ public class PlannerViewController: UIViewController {
 
 extension PlannerViewController: CalendarViewControllerDelegate {
     func calendarDidSelectDate(_ date: Date) {
+        selectedDate = date
         calendar.showDate(date)
         updateList(date)
     }
 
     func calendarDidTransitionToDate(_ date: Date) {
+        selectedDate = date
         calendar.updateSelectedDate(date)
         updateList(date)
     }
@@ -208,6 +212,7 @@ extension PlannerViewController: PagesViewControllerDataSource, PagesViewControl
     }
 
     public func pagesViewController(_ pages: PagesViewController, didTransitionTo page: UIViewController) {
+        selectedDate = list.start
         calendar.showDate(list.start)
     }
 }
