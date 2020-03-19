@@ -162,6 +162,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
 extension ParentAppDelegate: LoginDelegate {
     var supportsCanvasNetwork: Bool { false }
+    var supportsQRCodeLogin: Bool { false }
     var findSchoolButtonTitle: String { NSLocalizedString("Find School", bundle: .core, comment: "") }
 
     func openSupportTicket() {

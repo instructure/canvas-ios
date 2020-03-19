@@ -33,6 +33,8 @@ class LoginStartViewController: UIViewController {
     @IBOutlet weak var whatsNewLabel: UILabel!
     @IBOutlet weak var whatsNewLink: UIButton!
     @IBOutlet weak var wordmarkLabel: UILabel!
+    @IBOutlet weak var useQRCodeButton: UIButton!
+    @IBOutlet weak var useQRCodeDivider: UIView!
 
     let env = AppEnvironment.shared
     weak var loginDelegate: LoginDelegate?
@@ -73,6 +75,11 @@ class LoginStartViewController: UIViewController {
             : "STUDENT"
         ), attributes: [.kern: 2])
         wordmarkLabel.textColor = .currentLogoColor()
+        if loginDelegate?.supportsQRCodeLogin == false {
+            useQRCodeButton.isHidden = true
+            useQRCodeDivider.isHidden = true
+            canvasNetworkButton.contentHorizontalAlignment = .center
+        }
 
         if MDMManager.shared.host != nil {
             canvasNetworkButton.isHidden = true
