@@ -84,11 +84,15 @@ class CalendarDaysViewController: UIViewController {
         }
     }
 
-    func refresh(force: Bool = false) {
+    func refresh(force: Bool = false, complete: @escaping () -> Void = {}) {
         plannables = delegate.flatMap { env.subscribe($0.getPlannables(from: start, to: end)) { [weak self] in
             self?.updateDots()
         } }
-        plannables?.exhaust(force: force)
+        plannables?.exhaust(force: force) { [weak self] _ in
+            if self?.plannables?.hasNextPage == true { return true }
+            performUIUpdate { complete() }
+            return false
+        }
     }
 
     func updateDots() {

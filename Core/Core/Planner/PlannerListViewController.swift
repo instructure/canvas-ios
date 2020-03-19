@@ -19,8 +19,10 @@
 import UIKit
 
 protocol PlannerListDelegate: class, UIScrollViewDelegate {
-    func plannerListWillRefresh()
+    func plannerListWillRefresh(complete: @escaping () -> Void)
     func getPlannables(from: Date, to: Date) -> GetPlannables
+    var isLoading: Bool { get }
+    var loadError: Error? { get }
 }
 
 public class PlannerListViewController: UIViewController {
@@ -73,11 +75,15 @@ public class PlannerListViewController: UIViewController {
 
     @objc func retryAfterError() {
         refreshControl.beginRefreshing()
-        delegate?.plannerListWillRefresh()
+        delegate?.plannerListWillRefresh() { [weak self] in
+            self?.refreshControl.endRefreshing()
+        }
     }
 
     @objc func plannerListWillRefresh() {
-        delegate?.plannerListWillRefresh()
+        delegate?.plannerListWillRefresh() { [weak self] in
+            self?.refreshControl.endRefreshing()
+        }
     }
 
     func refresh(force: Bool = false) {
@@ -85,15 +91,18 @@ public class PlannerListViewController: UIViewController {
         plannables = delegate.flatMap { env.subscribe($0.getPlannables(from: start, to: end)) { [weak self] in
             self?.updatePlannables()
         } }
-         plannables?.refresh(force: force)
+        // This is a local use case only
+        // plannables?.refresh(force: force)
+        updatePlannables()
     }
 
     private func updatePlannables() {
-        guard plannables?.requested == true, plannables?.pending == false else { return }
-        refreshControl.endRefreshing()
-        spinnerView.isHidden = true
-        emptyStateView.isHidden = plannables?.error != nil || plannables?.isEmpty != true
-        errorView.isHidden = plannables?.error == nil
+        let isEmpty = plannables?.isEmpty == true
+        let isLoading = delegate?.isLoading == true
+        let error = delegate?.loadError
+        spinnerView.isHidden = !isLoading || !isEmpty || error != nil || refreshControl.isRefreshing
+        emptyStateView.isHidden = isLoading || !isEmpty || error != nil
+        errorView.isHidden = error == nil
         tableView.reloadData()
     }
 }

@@ -128,9 +128,9 @@ class CalendarViewController: UIViewController {
         }
     }
 
-    func refresh(force: Bool = false) {
+    func refresh(force: Bool = false, complete: @escaping () -> Void) {
         updateFilterButton()
-        days.refresh(force: force)
+        days.refresh(force: force, complete: complete)
     }
 
     func updateFilterButton() {

@@ -35,9 +35,12 @@ public class PlannerViewController: UIViewController {
     var studentID: String?
 
     lazy var planners: Store<LocalUseCase<Planner>> = env.subscribe(scope: .where(#keyPath(Planner.studentID), equals: studentID)) { [weak self] in
-        self?.plannerListWillRefresh()
+        self?.list.plannerListWillRefresh()
     }
     var planner: Planner? { planners.first }
+
+    var isLoading: Bool { calendar.days?.plannables?.pending == true }
+    var loadError: Error? { calendar.days?.plannables?.error }
 
     public static func create(studentID: String? = nil, selectedDate: Date = Clock.now) -> PlannerViewController {
         let controller = PlannerViewController()
@@ -165,8 +168,8 @@ extension PlannerViewController: CalendarViewControllerDelegate {
 }
 
 extension PlannerViewController: PlannerListDelegate {
-    func plannerListWillRefresh() {
-        calendar.refresh(force: true)
+    func plannerListWillRefresh(complete: @escaping () -> Void) {
+        calendar.refresh(force: true, complete: complete)
         list.refresh(force: true)
     }
 
