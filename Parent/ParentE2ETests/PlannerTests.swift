@@ -69,7 +69,6 @@ class PlannerTests: CoreUITestCase {
 
         PlannerCalendar.dayButton(year: y, month: m, day: 3).tap()
         PlannerList.event(id: "2236").waitToExist() // third
-        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 4 events")
 
         PlannerList.event(id: "2236").tap()
         app.find(label: "third").waitToExist()
@@ -139,7 +138,6 @@ class PlannerTests: CoreUITestCase {
         assignments().tap()
         XCTAssertEqual(assignments().isSelected, false)
         NavBar.backButton(label: "Done").tap()
-        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 3 events")
         PlannerList.event(id: "23334").waitToVanish()
 
         PlannerCalendar.filterButton.tap()
@@ -147,8 +145,6 @@ class PlannerTests: CoreUITestCase {
         assignments().tap()
         XCTAssertEqual(assignments().isSelected, true)
         NavBar.backButton(label: "Done").tap()
-        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 4 events")
-
         PlannerList.event(id: "23334").tap()
         app.find(label: "This exists just for testing the planner").waitToExist()
     }
