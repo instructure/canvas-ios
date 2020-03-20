@@ -141,11 +141,11 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
 
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        captureSession.stopRunning()
 
         if let metadataObject = metadataObjects.first {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
+            captureSession.stopRunning()
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
             found(code: stringValue)
         }
@@ -209,9 +209,5 @@ class QROverlayView: UIView {
         path.addQuadCurve(to: CGPoint(x: 0, y: rect.height - curveLength), controlPoint: CGPoint(x: 0, y: rect.height))
 
         arc.path = path.cgPath
-    }
-
-    func updateSize() {
-//        arc.frame = bounds
     }
 }
