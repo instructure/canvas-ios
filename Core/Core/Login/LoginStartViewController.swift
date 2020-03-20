@@ -243,16 +243,18 @@ class LoginStartViewController: UIViewController {
             handler: { _ in cancelled = true }
         ))
         env.router.show(loading, from: self) {
-            login.fetch { [weak self, weak loading] session, error in
+            login.fetch { [weak self, weak loading] session, error in performUIUpdate {
                 if cancelled { return }
-                loading?.dismiss(animated: true) {
-                    guard let session = session, error == nil else {
+                guard let session = session, error == nil else {
+                    loading?.dismiss(animated: true) {
                         self?.showQRCodeError()
-                        return
                     }
-                    AppEnvironment.shared.loginDelegate?.userDidLogin(session: session)
+                    return
                 }
-            }
+                // don't dismiss loading here
+                // it will eventually be dismissed once userDidLogin api calls are finished
+                AppEnvironment.shared.loginDelegate?.userDidLogin(session: session)
+            } }
         }
     }
 
