@@ -55,7 +55,7 @@ public class GetPlannables: CollectionUseCase {
         }
         let order = [
             NSSortDescriptor(key: #keyPath(Plannable.date), ascending: true),
-            NSSortDescriptor(key: #keyPath(Plannable.title), ascending: true),
+            NSSortDescriptor(key: #keyPath(Plannable.title), ascending: true, naturally: true),
         ]
         return Scope(predicate: predicate, order: order)
     }
