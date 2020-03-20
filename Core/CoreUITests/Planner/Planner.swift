@@ -41,3 +41,11 @@ enum PlannerList: String, ElementWrapper {
         return app.find(id: "PlannerList.event.\(id)")
     }
 }
+
+enum PlannerFilter: String, ElementWrapper {
+    case headerLabel, emptyTitleLabel, emptyMessageLabel
+
+    static func cell(section: Int, row: Int) -> Element {
+        return app.find(id: "PlannerFilter.section.\(section).row.\(row)")
+    }
+}

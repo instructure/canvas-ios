@@ -86,8 +86,7 @@ class CalendarViewController: UIViewController {
         monthButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: isRTL ? 28 : 0, bottom: 0, right: isRTL ? 0 : 28)
         monthButton.accessibilityLabel = NSLocalizedString("Show a month at a time", bundle: .core, comment: "")
 
-        filterButton.setTitle(NSLocalizedString("Calendar", bundle: .core, comment: ""), for: .normal)
-        filterButton.accessibilityLabel = NSLocalizedString("Filter events", bundle: .core, comment: "")
+        updateFilterButton()
 
         dropdownView.transform = CGAffineTransform(rotationAngle: 4 * .pi)
 
@@ -134,12 +133,15 @@ class CalendarViewController: UIViewController {
     }
 
     func updateFilterButton() {
-        var title = NSLocalizedString("Calendars", bundle: .core, comment: "")
         if let count = delegate?.numberOfCalendars() {
             let template = NSLocalizedString("Calendars (%d)", bundle: .core, comment: "")
-            title = String.localizedStringWithFormat(template, count)
+            filterButton.setTitle(String.localizedStringWithFormat(template, count), for: .normal)
+            let a11y = NSLocalizedString("filter_events_d_calendars_selected", bundle: .core, comment: "")
+            filterButton.accessibilityLabel = String.localizedStringWithFormat(a11y, count)
+        } else {
+            filterButton.setTitle(NSLocalizedString("Calendars", bundle: .core, comment: ""), for: .normal)
+            filterButton.accessibilityLabel = NSLocalizedString("Filter events", bundle: .core, comment: "")
         }
-        filterButton.setTitle(title, for: .normal)
     }
 
     @IBAction func toggleExpanded() {

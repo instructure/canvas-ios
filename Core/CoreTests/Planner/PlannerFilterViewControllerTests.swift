@@ -27,14 +27,14 @@ class PlannerFilterViewControllerTests: CoreTestCase {
 
     lazy var course1 = APICourse.make(
         id: "1",
-        course_code: "BIO 101",
+        name: "BIO 101",
         enrollments: [
             .make(type: "observer", associated_user_id: studentID),
         ]
     )
     lazy var course2 = APICourse.make(
         id: "2",
-        course_code: "BIO 102",
+        name: "BIO 102",
         enrollments: [
             .make(type: "observer", associated_user_id: studentID),
         ]
@@ -52,10 +52,10 @@ class PlannerFilterViewControllerTests: CoreTestCase {
         XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 1)
         var cell1 = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0)) as! PlannerFilterCell
         XCTAssertEqual(cell1.courseNameLabel.text, "BIO 101")
-        XCTAssertTrue(cell1.isChecked)
+        XCTAssertTrue(cell1.isSelected)
         tableView.delegate?.tableView?(tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         cell1 = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0)) as! PlannerFilterCell
-        XCTAssertFalse(cell1.isChecked)
+        XCTAssertFalse(cell1.isSelected)
     }
 
     func testPaginatedRefresh() {
@@ -70,7 +70,7 @@ class PlannerFilterViewControllerTests: CoreTestCase {
         XCTAssertNotNil(loading)
         XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 2)
         let cell = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)) as! PlannerFilterCell
-        XCTAssertEqual(cell.courseNameLabel.text, course2.course_code)
+        XCTAssertEqual(cell.courseNameLabel.text, course2.name)
     }
 
     func testLoadingState() {
@@ -91,7 +91,7 @@ class PlannerFilterViewControllerTests: CoreTestCase {
         controller.errorView.retryButton.sendActions(for: .primaryActionTriggered)
         XCTAssertTrue(controller.errorView.isHidden)
         XCTAssertFalse(controller.emptyStateView.isHidden)
-        XCTAssertEqual(controller.emptyStateHeader.text, "No Courses")
-        XCTAssertEqual(controller.emptyStateSubHeader.text, "Your child's courses might not be published yet.")
+        XCTAssertEqual(controller.emptyTitleLabel.text, "No Courses")
+        XCTAssertEqual(controller.emptyMessageLabel.text, "Your child's courses might not be published yet.")
     }
 }

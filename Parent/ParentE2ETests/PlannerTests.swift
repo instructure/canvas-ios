@@ -26,8 +26,6 @@ class PlannerTests: CoreUITestCase {
     let m = 3
     lazy var reference = DateComponents(calendar: .current, year: y, month: m, day: 1).date!
 
-    override var experimentalFeatures: [ExperimentalFeature] { [.parentCalendar] }
-
     override func setUp() {
         super.setUp()
         Courses.course(id: "263").waitToExist()
@@ -71,7 +69,7 @@ class PlannerTests: CoreUITestCase {
 
         PlannerCalendar.dayButton(year: y, month: m, day: 3).tap()
         PlannerList.event(id: "2236").waitToExist() // third
-        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 3 events")
+        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 4 events")
 
         PlannerList.event(id: "2236").tap()
         app.find(label: "third").waitToExist()
@@ -127,5 +125,32 @@ class PlannerTests: CoreUITestCase {
         for _ in 0..<7 { PlannerList.emptyTitle.swipeLeft() }
         PlannerCalendar.dayButton(year: y, month: m, day: 8).waitToVanish()
         PlannerCalendar.dayButton(year: y, month: m, day: 15).waitToExist()
+    }
+
+    func testCalendarFilter() {
+        PlannerCalendar.dayButton(year: y, month: m, day: 3).tap()
+        PlannerCalendar.monthButton.tap() // collapse
+        PlannerCalendar.filterButton.tap()
+        XCTAssertEqual(PlannerFilter.headerLabel.label(), "Tap to select the courses you want to see on the calendar.")
+
+        let assignments = { PlannerFilter.cell(section: 0, row: 1) }
+        XCTAssertEqual(assignments().label(), "Assignments")
+        XCTAssertEqual(assignments().isSelected, true)
+        assignments().tap()
+        XCTAssertEqual(assignments().isSelected, false)
+        NavBar.backButton(label: "Done").tap()
+        PlannerList.event(id: "23334").waitToVanish()
+        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 3 events")
+
+        PlannerCalendar.filterButton.tap()
+        XCTAssertEqual(assignments().isSelected, false)
+        assignments().tap()
+        XCTAssertEqual(assignments().isSelected, true)
+        NavBar.backButton(label: "Done").tap()
+        PlannerList.event(id: "23334").waitToExist()
+        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 4 events")
+
+        PlannerList.event(id: "23334").tap()
+        app.find(label: "This exists just for testing the planner").waitToExist()
     }
 }

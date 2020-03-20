@@ -57,8 +57,8 @@ class PlannerViewControllerTests: CoreTestCase {
 
         // hide first calendar
         api.mock(GetCoursesRequest(enrollmentState: .active, state: [.available], include: [.observed_users], perPage: 100, studentID: "1"), value: [
-            .make(id: "1", course_code: "BIO 101", enrollments: [.make(associated_user_id: "1")]),
-            .make(id: "2", course_code: "BIO 102", enrollments: [.make(associated_user_id: "1")]),
+            .make(id: "1", name: "BIO 101", enrollments: [.make(associated_user_id: "1")]),
+            .make(id: "2", name: "BIO 102", enrollments: [.make(associated_user_id: "1")]),
         ])
         XCTAssertEqual(controller.list.plannables?.useCase.contextCodes, []) // planner nil
         XCTAssertEqual(controller.calendar.filterButton.title(for: .normal), "Calendars")
