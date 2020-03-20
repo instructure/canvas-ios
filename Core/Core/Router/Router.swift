@@ -62,6 +62,7 @@ public protocol RouterProtocol {
     func route(to url: URLComponents, from: UIViewController, options: RouteOptions)
     func show(_ view: UIViewController, from: UIViewController, options: RouteOptions, completion: (() -> Void)?)
     func pop(from: UIViewController)
+    func dismiss(_ view: UIViewController, completion: (() -> Void)?)
 }
 
 public extension RouterProtocol {
@@ -82,7 +83,7 @@ public extension RouterProtocol {
     }
 
     func show(_ view: UIViewController, from: UIViewController, options: RouteOptions = .noOptions, completion: (() -> Void)?) {
-        if view is UIAlertController { return from.present(view, animated: true) }
+        if view is UIAlertController { return from.present(view, animated: true, completion: completion) }
 
         if let displayModeButton = from.displayModeButtonItem,
             from.splitViewController?.isCollapsed == false,
@@ -130,6 +131,14 @@ public extension RouterProtocol {
         } else {
             navController.popViewController(animated: true)
         }
+    }
+
+    func dismiss(_ view: UIViewController) {
+        dismiss(view, completion: nil)
+    }
+
+    func dismiss(_ view: UIViewController, completion: (() -> Void)?) {
+        view.dismiss(animated: true, completion: completion)
     }
 }
 

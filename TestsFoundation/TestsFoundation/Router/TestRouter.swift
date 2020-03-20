@@ -48,6 +48,8 @@ public class TestRouter: RouterProtocol {
 
     public var showExpectation = XCTestExpectation(description: "show")
     public func show(_ view: UIViewController, from: UIViewController, options: RouteOptions, completion: (() -> Void)?) {
+        var options = options
+        if view is UIAlertController { options = .modal() }
         viewControllerCalls.append((view, from, options))
         showExpectation.fulfill()
         completion?()
@@ -56,6 +58,11 @@ public class TestRouter: RouterProtocol {
     public var popExpectation = XCTestExpectation(description: "pop")
     public func pop(from: UIViewController) {
         popExpectation.fulfill()
+    }
+
+    public func dismiss(_ view: UIViewController, completion: (() -> Void)?) {
+        dismiss()
+        completion?()
     }
 
     public func lastRoutedTo(_ route: Route) -> Bool {

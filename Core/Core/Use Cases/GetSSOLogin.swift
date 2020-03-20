@@ -40,7 +40,7 @@ public class GetSSOLogin {
         let api = environment.api
         let code = self.code
         let done = { (session: LoginSession?, error: Error?) in
-            DispatchQueue.main.async { callback(session, error) }
+            performUIUpdate { callback(session, error) }
         }
         api.makeRequest(GetMobileVerifyRequest(domain: domain)) { (response, _, error) in
             guard let client = response, let baseURL = client.base_url, error == nil else { return done(nil, error) }

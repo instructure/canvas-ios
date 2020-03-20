@@ -33,6 +33,8 @@ class LoginStartViewController: UIViewController {
     @IBOutlet weak var whatsNewLabel: UILabel!
     @IBOutlet weak var whatsNewLink: UIButton!
     @IBOutlet weak var wordmarkLabel: UILabel!
+    @IBOutlet weak var useQRCodeButton: UIButton!
+    @IBOutlet weak var useQRCodeDivider: UIView!
 
     let env = AppEnvironment.shared
     weak var loginDelegate: LoginDelegate?
@@ -73,6 +75,10 @@ class LoginStartViewController: UIViewController {
             : "STUDENT"
         ), attributes: [.kern: 2])
         wordmarkLabel.textColor = .currentLogoColor()
+        if loginDelegate?.supportsQRCodeLogin == false {
+            useQRCodeButton.isHidden = true
+            useQRCodeDivider.isHidden = true
+        }
 
         if MDMManager.shared.host != nil {
             canvasNetworkButton.isHidden = true
@@ -201,6 +207,64 @@ class LoginStartViewController: UIViewController {
         env.router.show(controller, from: self)
     }
 
+    @IBAction func scanQRCode(_ sender: UIButton) {
+        let tutorial = LoginQRCodeTutorialViewController.create()
+        tutorial.delegate = self
+        env.router.show(tutorial, from: self, options: .modal(embedInNav: true))
+    }
+
+    func launchQRScanner() {
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            showAlert(
+                title: NSLocalizedString("Camera not available", bundle: .core, comment: ""),
+                message: NSLocalizedString("Make sure you enable camera permissions in Settings", bundle: .core, comment: "")
+            )
+            return
+        }
+        let scanner = ScannerViewController()
+        scanner.delegate = self
+        self.env.router.show(scanner, from: self, options: .modal(.fullScreen))
+    }
+
+    func logIn(withCode code: String) {
+        guard let url = URL(string: code), let login = GetSSOLogin(url: url) else {
+            showQRCodeError()
+            return
+        }
+        var cancelled = false
+        let loading = UIAlertController(
+            title: NSLocalizedString("Logging you in", bundle: .core, comment: ""),
+            message: NSLocalizedString("Please wait, this might take a minute.", bundle: .core, comment: ""),
+            preferredStyle: .alert
+        )
+        loading.addAction(UIAlertAction(
+            title: NSLocalizedString("Cancel", bundle: .core, comment: ""),
+            style: .cancel,
+            handler: { _ in cancelled = true }
+        ))
+        env.router.show(loading, from: self, options: .noOptions) {
+            login.fetch { [weak self, weak loading] session, error in
+                if cancelled { return }
+                guard let session = session, error == nil else {
+                    loading?.dismiss(animated: true) {
+                        self?.showQRCodeError()
+                    }
+                    return
+                }
+                // don't dismiss loading here
+                // it will eventually be dismissed once userDidLogin api calls are finished
+                self?.loginDelegate?.userDidLogin(session: session)
+            }
+        }
+    }
+
+    func showQRCodeError() {
+        showAlert(
+            title: NSLocalizedString("Login Error", bundle: .core, comment: ""),
+            message: NSLocalizedString("Please generate another QR Code and try again.", bundle: .core, comment: "")
+        )
+    }
+
     @IBAction func helpTapped(_ sender: UIButton) {
         loginDelegate?.openSupportTicket()
     }
@@ -275,6 +339,22 @@ extension LoginStartViewController: UITableViewDataSource, UITableViewDelegate, 
                 self.previousLoginsBottom?.constant = -self.previousLoginsView.frame.height
                 self.view.layoutIfNeeded()
             }
+        }
+    }
+}
+
+extension LoginStartViewController: ScannerDelegate, ErrorViewController {
+    func scanner(_ scanner: ScannerViewController, didScanCode code: String) {
+        env.router.dismiss(scanner) {
+            self.logIn(withCode: code)
+        }
+    }
+}
+
+extension LoginStartViewController: LoginQRCodeTutorialDelegate {
+    func loginQRCodeTutorialDidFinish(_ controller: LoginQRCodeTutorialViewController) {
+        env.router.dismiss(controller) {
+            self.launchQRScanner()
         }
     }
 }

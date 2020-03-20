@@ -53,4 +53,19 @@ open class DynamicButton: UIButton {
             titleLabel?.adjustsFontForContentSizeCategory = true
         }
     }
+
+    @IBInspectable
+    public var highlightColorName: String = "" {
+        didSet {
+            if let color = Brand.shared.color(highlightColorName) {
+                setTitleColor(color, for: .highlighted)
+            }
+        }
+    }
+
+    open override var isHighlighted: Bool {
+        didSet {
+            tintColor = titleColor(for: state)
+        }
+    }
 }

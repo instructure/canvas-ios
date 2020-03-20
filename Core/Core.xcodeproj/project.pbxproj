@@ -688,6 +688,9 @@
 		B15CA275221DE8E50014FB02 /* APIModuleRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA274221DE8E50014FB02 /* APIModuleRequestableTests.swift */; };
 		B15CA284221E00870014FB02 /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA283221E00870014FB02 /* ModuleTests.swift */; };
 		B164DC1F22DE2AB30037FA86 /* APIAccountResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164DC1E22DE2AB30037FA86 /* APIAccountResultTests.swift */; };
+		B16E05E02423D770006B6ADB /* LoginQRCodeTutorialViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B16E05DF2423D770006B6ADB /* LoginQRCodeTutorialViewController.storyboard */; };
+		B16E05E22423DF83006B6ADB /* LoginQRCodeTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16E05E12423DF83006B6ADB /* LoginQRCodeTutorialViewController.swift */; };
+		B16E05E4242529D4006B6ADB /* ScannerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16E05E3242529D4006B6ADB /* ScannerViewControllerTests.swift */; };
 		B175D61E23A9694E00F8E696 /* SpringBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B175D61D23A9694E00F8E696 /* SpringBoard.swift */; };
 		B175D62023A9696200F8E696 /* SpringBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B175D61F23A9696200F8E696 /* SpringBoardTests.swift */; };
 		B17855B3226ABDDD00B30C80 /* UploadMediaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17855B2226ABDDD00B30C80 /* UploadMediaTests.swift */; };
@@ -710,6 +713,7 @@
 		B1A6BC88218A94FA000515E3 /* APIAssignmentOverrideRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC87218A94FA000515E3 /* APIAssignmentOverrideRequestableTests.swift */; };
 		B1A6BC8A218A977D000515E3 /* APIEnrollmentRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC89218A977D000515E3 /* APIEnrollmentRequestableTests.swift */; };
 		B1A6BC8C218A9843000515E3 /* APILatePolicyRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC8B218A9843000515E3 /* APILatePolicyRequestableTests.swift */; };
+		B1A76AC024227027000820A8 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A76ABF24227027000820A8 /* ScannerViewController.swift */; };
 		B1A890BA224ED6A300CEE000 /* UIScrollViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A890B9224ED6A300CEE000 /* UIScrollViewExtensionsTests.swift */; };
 		B1AAFFFE226988440088BC20 /* UITableViewCellExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AAFFFD226988440088BC20 /* UITableViewCellExtensionsTests.swift */; };
 		B1B42C1622403AFD0087399A /* UploadManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B42C1522403AFD0087399A /* UploadManagerTests.swift */; };
@@ -1672,6 +1676,9 @@
 		B15CA283221E00870014FB02 /* ModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTests.swift; sourceTree = "<group>"; };
 		B15E4B86238C4DC2002119CF /* Syllabus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syllabus.swift; sourceTree = "<group>"; };
 		B164DC1E22DE2AB30037FA86 /* APIAccountResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountResultTests.swift; sourceTree = "<group>"; };
+		B16E05DF2423D770006B6ADB /* LoginQRCodeTutorialViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginQRCodeTutorialViewController.storyboard; sourceTree = "<group>"; };
+		B16E05E12423DF83006B6ADB /* LoginQRCodeTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginQRCodeTutorialViewController.swift; sourceTree = "<group>"; };
+		B16E05E3242529D4006B6ADB /* ScannerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewControllerTests.swift; sourceTree = "<group>"; };
 		B175D61D23A9694E00F8E696 /* SpringBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringBoard.swift; sourceTree = "<group>"; };
 		B175D61F23A9696200F8E696 /* SpringBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringBoardTests.swift; sourceTree = "<group>"; };
 		B17855B0226ABDB100B30C80 /* UploadMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMedia.swift; sourceTree = "<group>"; };
@@ -1722,6 +1729,7 @@
 		B1A6BC87218A94FA000515E3 /* APIAssignmentOverrideRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignmentOverrideRequestableTests.swift; sourceTree = "<group>"; };
 		B1A6BC89218A977D000515E3 /* APIEnrollmentRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollmentRequestableTests.swift; sourceTree = "<group>"; };
 		B1A6BC8B218A9843000515E3 /* APILatePolicyRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILatePolicyRequestableTests.swift; sourceTree = "<group>"; };
+		B1A76ABF24227027000820A8 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		B1A890B7224ED64B00CEE000 /* UIScrollViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensions.swift; sourceTree = "<group>"; };
 		B1A890B9224ED6A300CEE000 /* UIScrollViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensionsTests.swift; sourceTree = "<group>"; };
 		B1A8CD3622375D6400E2242D /* FileUploadTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadTarget.swift; sourceTree = "<group>"; };
@@ -2127,6 +2135,8 @@
 				7D0215AA21BB18C6009A8E69 /* LoginDelegate.swift */,
 				7DD6CC6821BCCE20004C4BB6 /* LoginFindSchoolViewController.storyboard */,
 				7DD6CC6621BCC597004C4BB6 /* LoginFindSchoolViewController.swift */,
+				B16E05DF2423D770006B6ADB /* LoginQRCodeTutorialViewController.storyboard */,
+				B16E05E12423DF83006B6ADB /* LoginQRCodeTutorialViewController.swift */,
 				7DD752A221BEFA8F00E26260 /* LoginManualOAuthViewController.storyboard */,
 				7DD752A021BEFA7C00E26260 /* LoginManualOAuthViewController.swift */,
 				7DD6CC6421BCC101004C4BB6 /* LoginNavigationController.swift */,
@@ -2521,6 +2531,7 @@
 				7DB3A9E524119C0800274EB8 /* PagesViewController.swift */,
 				B183F99C225297F2000A6930 /* PublishedIconView.swift */,
 				7D70DE8F233E71A600F5C3D4 /* RightDetailTableViewCell.swift */,
+				B1A76ABF24227027000820A8 /* ScannerViewController.swift */,
 				7D85D8E8226E5DFE002DBF63 /* SectionHeaderView.swift */,
 				7D85D8EE226E6901002DBF63 /* SectionHeaderView.xib */,
 				7D70DE95233E917E00F5C3D4 /* SubtitleTableViewCell.swift */,
@@ -2553,6 +2564,7 @@
 				7DD6947A21949DC900BA4984 /* IconViewTests.swift */,
 				7D1758C3215A995200F88613 /* ListFormatterTests.swift */,
 				7D303DE72412F9AB001F5F36 /* PagesViewControllerTests.swift */,
+				B16E05E3242529D4006B6ADB /* ScannerViewControllerTests.swift */,
 				7D1758C7215A9A7800F88613 /* TitleSubtitleViewTests.swift */,
 			);
 			path = Views;
@@ -4116,6 +4128,7 @@
 				7D101947215E87D40058FDD1 /* defaultHeaderImage.png in Resources */,
 				7DCF1ECF216BFE61003AF358 /* Localizable.stringsdict in Resources */,
 				9F4D246F233150DE00EDFCFE /* PageDetailsViewController.storyboard in Resources */,
+				B16E05E02423D770006B6ADB /* LoginQRCodeTutorialViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4495,6 +4508,7 @@
 				B11AEBB32405D31C00B736D6 /* CoreWebViewControllerTests.swift in Sources */,
 				7DCF1ED6216C05FE003AF358 /* GradeViewableTests.swift in Sources */,
 				7D81A001228DC1F000C61EDD /* GetQuizTests.swift in Sources */,
+				B16E05E4242529D4006B6ADB /* ScannerViewControllerTests.swift in Sources */,
 				7D0215A121B88BDC009A8E69 /* UITabBarExtensionsTests.swift in Sources */,
 				7DC4A559222EFC9900FA03DC /* Int64ExtensionsTests.swift in Sources */,
 				B10E89072384807B00E7684E /* GradesViewControllerTests.swift in Sources */,
@@ -4526,6 +4540,7 @@
 				7DA260F623F72397005D2121 /* FilePickerViewController.swift in Sources */,
 				7DFD5F7623FEF4A800D988E0 /* Plannable.swift in Sources */,
 				7DA2601A23F7227A005D2121 /* UITableViewExtensions.swift in Sources */,
+				B1A76AC024227027000820A8 /* ScannerViewController.swift in Sources */,
 				7DA2601623F7227A005D2121 /* UINavigationBarExtensions.swift in Sources */,
 				7DA2604A23F722D9005D2121 /* GradeFormatter.swift in Sources */,
 				7DA2602723F722C2005D2121 /* LoginDelegate.swift in Sources */,
@@ -4750,6 +4765,7 @@
 				7DA2601823F7227A005D2121 /* UITabBarExtensions.swift in Sources */,
 				7DA2610E23FCD907005D2121 /* CircleRefreshControl.swift in Sources */,
 				7DA2609723F72338005D2121 /* RouteHandler.swift in Sources */,
+				B16E05E22423DF83006B6ADB /* LoginQRCodeTutorialViewController.swift in Sources */,
 				7DA2600E23F7227A005D2121 /* ProcessInfoExtensions.swift in Sources */,
 				7DA2604423F722D9005D2121 /* DiscussionTopic.swift in Sources */,
 				7DA2603123F722C9005D2121 /* LTITools.swift in Sources */,
