@@ -57,7 +57,7 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
         XCTAssertEqual( cell?.textLabel?.text, "Email Notifications")
         vc.tableView(vc.tableView, didSelectRowAt: IndexPath(row: 2, section: 0))
         wait(for: [router.showExpectation], timeout: 1)
-        let (routedVC, _, _) = router.viewControllerCalls.last!
+        var (routedVC, _, _) = router.viewControllerCalls.last!
         XCTAssert(routedVC is NotificationCategoriesViewController)
         if let catViewController = routedVC as? NotificationCategoriesViewController {
             XCTAssertEqual(catViewController.channelType, CommunicationChannelType.email)
@@ -66,11 +66,17 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
         cell = vc.tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? RightDetailTableViewCell
         XCTAssertEqual( cell?.textLabel?.text, "Push Notifications")
 
+        cell = vc.tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? RightDetailTableViewCell
+        XCTAssertEqual( cell?.textLabel?.text, "Pair with Observer")
+        vc.tableView(vc.tableView, didSelectRowAt: IndexPath(row: 4, section: 0))
+        (routedVC, _, _) = router.viewControllerCalls.last!
+        XCTAssert(routedVC is PairWithObserverViewController)
+
         let previousDelegate = environment.loginDelegate
         environment.loginDelegate = self
-        cell = vc.tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? RightDetailTableViewCell
+        cell = vc.tableView.cellForRow(at: IndexPath(row: 5, section: 0)) as? RightDetailTableViewCell
         XCTAssertEqual( cell?.textLabel?.text, "Subscribe to Calendar Feed")
-        vc.tableView(vc.tableView, didSelectRowAt: IndexPath(row: 4, section: 0))
+        vc.tableView(vc.tableView, didSelectRowAt: IndexPath(row: 5, section: 0))
         environment.loginDelegate = previousDelegate
         XCTAssertEqual(externalURLOpened, URL(string: "https://calendar.url"))
 

@@ -21,7 +21,7 @@ import UIKit
 public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
     public let webView = CoreWebView()
 
-    var limitedInteractionView: UIView?
+    var limitedInteractionView: NotificationView?
 
     public var isInteractionLimited: Bool = false {
         didSet {
@@ -45,73 +45,26 @@ public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
         webView.pin(inside: view)
 
         if isInteractionLimited {
-            addLimitedInteractionExplanation()
+            setupLimitedInteractionNotification()
         }
     }
 
-    func addLimitedInteractionExplanation() {
-        let background = UIView()
-        background.translatesAutoresizingMaskIntoConstraints = false
-        background.layer.shadowColor =  UIColor.black.cgColor
-        background.layer.shadowOpacity = 0.15
-        background.layer.shadowOffset = CGSize(width: 0, height: 4)
-        background.layer.shadowRadius = 12
-        view.addSubview(background)
-        limitedInteractionView = background
+    func setupLimitedInteractionNotification() {
+        let n = NotificationView()
+        n.messageLabel.text = NSLocalizedString("Interactions on this page are limited by your institution.", bundle: .core, comment: "")
+        n.showDismiss = true
+        n.dismissHandler = { [weak self] in
+            self?.limitedInteractionView?.removeFromSuperview()
+        }
+        n.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(n)
 
-        let container = UIView()
-        container.translatesAutoresizingMaskIntoConstraints = false
-        container.backgroundColor = .named(.backgroundLightest)
-        container.layer.cornerRadius = 8
-        container.layer.borderWidth = 1
-        container.layer.borderColor = UIColor.named(.backgroundInfo).cgColor
-        container.layer.masksToBounds = true
-        background.addSubview(container)
-
-        let icon = UIImageView(image: .icon(.info, .solid))
-        icon.translatesAutoresizingMaskIntoConstraints = false
-        icon.contentMode = .center
-        icon.backgroundColor = .named(.backgroundInfo)
-        icon.tintColor = .named(.textLightest)
-        container.addSubview(icon)
-
-        let message = UILabel()
-        message.translatesAutoresizingMaskIntoConstraints = false
-        message.text = NSLocalizedString("Interactions on this page are limited by your institution.", bundle: .core, comment: "")
-        message.font = .scaledNamedFont(.regular14)
-        message.numberOfLines = 0
-        container.addSubview(message)
-
-        let dismiss = UIImageView(image: .icon(.x))
-        dismiss.translatesAutoresizingMaskIntoConstraints = false
-        dismiss.tintColor = .named(.textDark)
-        dismiss.contentMode = .center
-        dismiss.isUserInteractionEnabled = true
-        let dismissGesture = UITapGestureRecognizer(target: self, action: #selector(dismissLimitedInteraction(_:)))
-        dismiss.addGestureRecognizer(dismissGesture)
-        container.addSubview(dismiss)
-
-        container.pin(inside: background)
         NSLayoutConstraint.activate([
-            background.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            background.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            background.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
-            icon.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-            icon.topAnchor.constraint(equalTo: container.topAnchor),
-            icon.widthAnchor.constraint(equalToConstant: 48),
-            icon.bottomAnchor.constraint(equalTo: container.bottomAnchor),
-            message.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 12),
-            message.topAnchor.constraint(equalTo: container.topAnchor, constant: 12),
-            message.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -12),
-            dismiss.leadingAnchor.constraint(equalTo: message.trailingAnchor, constant: 12),
-            dismiss.widthAnchor.constraint(equalToConstant: 40),
-            dismiss.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            dismiss.topAnchor.constraint(equalTo: container.topAnchor),
-            dismiss.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+            n.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            n.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            n.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            n.heightAnchor.constraint(greaterThanOrEqualToConstant: 78),
         ])
-    }
-
-    @objc func dismissLimitedInteraction(_ sender: UIGestureRecognizer) {
-        limitedInteractionView?.removeFromSuperview()
+        limitedInteractionView = n
     }
 }

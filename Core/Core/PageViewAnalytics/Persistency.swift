@@ -18,7 +18,7 @@
 
 import Foundation
 
-typealias EmptyHandler = () -> Void
+public typealias EmptyHandler = () -> Void
 
 class Persistency {
     static var persistencyFileName = "PageViewEvents.dat"

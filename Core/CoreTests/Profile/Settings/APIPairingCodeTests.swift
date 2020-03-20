@@ -16,20 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-@testable import Core
-import TestsFoundation
 import XCTest
+@testable import Core
 
-class CoreWebViewControllerTests: CoreTestCase {
-    lazy var controller = CoreWebViewController()
+class APIPairingCodeTests: CoreTestCase {
+    func testPostObserverPairingCodes() {
+        let r = PostObserverPairingCodes()
+        XCTAssertEqual(r.path, "users/self/observer_pairing_codes")
+        XCTAssertEqual(r.method, .post)
+    }
 
-    func testLimitedInteraction() {
-        controller.isInteractionLimited = true
-        controller.view.layoutIfNeeded()
-        weak var limitedView = controller.limitedInteractionView
-        XCTAssert(limitedView?.isDescendant(of: controller.view) == true)
-        controller.limitedInteractionView?.dismiss.sendActions(for: .primaryActionTriggered)
-        XCTAssert(limitedView?.isDescendant(of: controller.view) == false)
+    func testObject() {
+        let model = APIPairingCode.make()
+        XCTAssertEqual(model.code, "code")
     }
 }
