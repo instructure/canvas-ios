@@ -38,6 +38,7 @@ public class PlannerViewController: UIViewController {
         self?.plannerListWillRefresh()
     }
     var planner: Planner? { planners.first }
+    lazy var syncContext = env.database.newBackgroundContext()
 
     public static func create(studentID: String? = nil, selectedDate: Date = Clock.now) -> PlannerViewController {
         let controller = PlannerViewController()
@@ -116,7 +117,7 @@ public class PlannerViewController: UIViewController {
                 contextCodes.append(ContextModel(.user, id: studentID).canvasContextID)
             }
         }
-        return GetPlannables(userID: studentID, startDate: from, endDate: to, contextCodes: Array(contextCodes))
+        return GetPlannables(userID: studentID, startDate: from, endDate: to, contextCodes: Array(contextCodes), syncContext: syncContext)
     }
 
     func updateList(_ date: Date) {

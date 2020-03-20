@@ -139,7 +139,7 @@ class UploadManagerTests: CoreTestCase {
         let tasks = MockURLSession.dataMocks.values
         XCTAssertEqual(tasks.count, 2) // target and upload
         XCTAssertTrue(tasks.allSatisfy { $0.resumed })
-        context.refresh(file, mergeChanges: false)
+        context.refresh(file, mergeChanges: true)
         XCTAssertEqual(file.taskID, 1)
     }
 
@@ -155,7 +155,7 @@ class UploadManagerTests: CoreTestCase {
         let data = try encoder.encode(APIFile.make(id: "1"))
         manager.urlSession(backgroundSession, dataTask: task, didReceive: data)
         manager.urlSession(backgroundSession, task: task, didCompleteWithError: nil)
-        context.refresh(file, mergeChanges: false)
+        context.refresh(file, mergeChanges: true)
         XCTAssertNil(file.taskID)
         XCTAssertNil(file.uploadError)
         XCTAssertFalse(file.isUploading)
@@ -261,7 +261,7 @@ class UploadManagerTests: CoreTestCase {
             totalBytesSent: 10,
             totalBytesExpectedToSend: 100
         )
-        context.refresh(file, mergeChanges: false)
+        context.refresh(file, mergeChanges: true)
         XCTAssertEqual(file.size, 100)
         XCTAssertEqual(file.bytesSent, 10)
     }
