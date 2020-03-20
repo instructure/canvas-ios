@@ -27,6 +27,7 @@ public protocol UseCase {
     var scope: Scope { get }
     var cacheKey: String? { get }
     var ttl: TimeInterval { get }
+    var syncContext: NSManagedObjectContext? { get }
 
     func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback)
     func reset(context: NSManagedObjectContext)
@@ -42,6 +43,8 @@ extension UseCase {
     public var ttl: TimeInterval {
         return 60 * 60 * 2 // 2 hours
     }
+
+    public var syncContext: NSManagedObjectContext? { nil }
 
     public func getNext(from response: URLResponse) -> GetNextRequest<Response>? {
         return nil
@@ -83,12 +86,13 @@ extension UseCase {
                     callback?(response, urlResponse, error)
                     return
                 }
-                database.performBackgroundTask { client in
+                let context = self.syncContext ?? database.newBackgroundContext()
+                context.performAndWait {
                     do {
-                        self.reset(context: client)
-                        self.write(response: response, urlResponse: urlResponse, to: client)
-                        self.updateTTL(in: client)
-                        try client.save()
+                        self.reset(context: context)
+                        self.write(response: response, urlResponse: urlResponse, to: context)
+                        self.updateTTL(in: context)
+                        try context.save()
                         callback?(response, urlResponse, error)
                     } catch {
                         callback?(response, urlResponse, error)

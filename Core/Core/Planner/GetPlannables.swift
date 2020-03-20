@@ -27,12 +27,15 @@ public class GetPlannables: CollectionUseCase {
     var contextCodes: [String] = []
     var filter: String = ""
 
-    public init(userID: String? = nil, startDate: Date, endDate: Date, contextCodes: [String] = [], filter: String = "") {
+    public let syncContext: NSManagedObjectContext?
+
+    public init(userID: String? = nil, startDate: Date, endDate: Date, contextCodes: [String] = [], filter: String = "", syncContext: NSManagedObjectContext? = nil) {
         self.userID = userID
         self.startDate = startDate
         self.endDate = endDate
         self.contextCodes = contextCodes
         self.filter = filter
+        self.syncContext = syncContext
     }
 
     public var cacheKey: String? {
