@@ -65,9 +65,10 @@ class CalendarViewController: UIViewController {
         return formatter
     }()
 
-    static func create(delegate: CalendarViewControllerDelegate?) -> CalendarViewController {
+    static func create(delegate: CalendarViewControllerDelegate?, selectedDate: Date = Clock.now) -> CalendarViewController {
         let controller = loadFromStoryboard()
         controller.delegate = delegate
+        controller.selectedDate = selectedDate
         return controller
     }
 

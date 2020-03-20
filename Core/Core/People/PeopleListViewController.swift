@@ -31,7 +31,7 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
 
     public var color: UIColor?
     let env = AppEnvironment.shared
-    public var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
+    public var titleSubtitleView = TitleSubtitleView.create()
     var context: Context = ContextModel.currentUser
     var enrollmentType: BaseEnrollmentType?
     var enrollmentTypes = BaseEnrollmentType.allCases.sorted {
@@ -107,10 +107,16 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
         if let selected = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selected, animated: true)
         }
+        if let color = color {
+            navigationController?.navigationBar.useContextColor(color)
+        }
     }
 
     func updateNavBar() {
-        guard let name = course.first?.name ?? group.first?.name, let color = course.first?.color ?? group.first?.color else {
+        guard
+            let name = context.contextType == .course ? course.first?.name : group.first?.name,
+            let color = context.contextType == .course ? course.first?.color : group.first?.color
+        else {
             return
         }
         spinnerView.color = color

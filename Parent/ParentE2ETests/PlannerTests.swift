@@ -79,8 +79,8 @@ class PlannerTests: CoreUITestCase {
 
         PlannerCalendar.dayButton(year: y, month: m, day: 4).tap()
         PlannerList.emptyTitle.waitToExist()
-        XCTAssertEqual(PlannerList.emptyTitle.label(), "No Assignments")
-        XCTAssertEqual(PlannerList.emptyLabel.label(), "It looks like assignments haven’t been created in this space yet.")
+        XCTAssertEqual(PlannerList.emptyTitle.label(), "No Events Today!")
+        XCTAssertEqual(PlannerList.emptyLabel.label(), "It looks like a great day to rest, relax, and recharge.")
         XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 4).label(), "March 4, \(y), 0 events")
     }
 

@@ -66,18 +66,18 @@ struct AlertCellViewModel: TableViewCellViewModel {
             cell.dateLabel.textColor = UIColor.prettyGray()
         }
 
-        let imageName: String
+        let iconName: UIImage.InstIconName
         let color: UIColor
 
         switch alert.type {
         case .institutionAnnouncement, .courseAnnouncement:
-            imageName = "icon_announcements_fill"
+            iconName = .announcement
             color = UIColor.named(.textInfo)
         case .assignmentMissing, .assignmentGradeLow, .courseGradeLow:
-            imageName = "icon_alert_fill"
+            iconName = .warning
             color = UIColor.named(.textDanger)
         case .assignmentGradeHigh, .courseGradeHigh:
-            imageName = "icon_favorite_fill"
+            iconName = .star
             color = UIColor.named(.textInfo)
         }
 
@@ -88,8 +88,8 @@ struct AlertCellViewModel: TableViewCellViewModel {
             cell.selectionStyle = .default
         }
 
-        let image = UIImage(named: imageName, in: Bundle(for: AlertCell.self), compatibleWith: nil)
-        cell.iconImageView.image = image?.imageScaledToSize(CGSize(width: AlertCell.iconImageDiameter-15, height: AlertCell.iconImageDiameter-15)).withRenderingMode(.alwaysTemplate)
+        let image = UIImage.icon(iconName, .solid)
+        cell.iconImageView.image = image.imageScaledToSize(CGSize(width: AlertCell.iconImageDiameter-15, height: AlertCell.iconImageDiameter-15)).withRenderingMode(.alwaysTemplate)
         cell.iconImageView.backgroundColor = color
         cell.iconImageView.tintColor = UIColor.white
         cell.iconImageView.contentMode = .center

@@ -38,4 +38,8 @@ enum SpeedGrader {
             button.waitToVanish()
         }
     }
+
+    static var gradePickerButton: Element {
+        app.find(id: "grade-picker.button")
+    }
 }

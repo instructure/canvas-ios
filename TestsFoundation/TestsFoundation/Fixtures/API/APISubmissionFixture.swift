@@ -125,6 +125,16 @@ extension APISubmissionCommentAuthor {
             pronouns: pronouns
         )
     }
+
+    public static func make(from user: APIUser) -> APISubmissionCommentAuthor {
+        APISubmissionCommentAuthor(
+            id: user.id,
+            display_name: user.name,
+            avatar_image_url: user.avatar_url?.rawValue,
+            html_url: URL(string: "/users/\(user.id)")!,
+            pronouns: user.pronouns
+        )
+    }
 }
 
 extension APISubmissionUser {

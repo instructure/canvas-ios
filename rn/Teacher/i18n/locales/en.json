@@ -320,9 +320,6 @@
   "compose_message_8abd180a": {
     "message": "Compose Message"
   },
-  "conferences_a0a8984b": {
-    "message": "Conferences"
-  },
   "conversation_options_8be926f3": {
     "message": "Conversation options"
   },
@@ -1528,9 +1525,6 @@
   },
   "there_are_no_comments_to_display_bde58f70": {
     "message": "There are no comments to display."
-  },
-  "there_are_no_conferences_to_display_400a0413": {
-    "message": "There are no conferences to display."
   },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "There are no discussions to display."

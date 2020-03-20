@@ -21,8 +21,6 @@ import UIKit
 import ReactiveSwift
 import UserNotifications
 import PSPDFKit
-import Fabric
-import Crashlytics
 import Firebase
 import CanvasCore
 import Core
@@ -31,9 +29,6 @@ import React
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     lazy var window: UIWindow? = ActAsUserWindow(frame: UIScreen.main.bounds, loginDelegate: self)
-
-    let hasFabric = (Bundle.main.object(forInfoDictionaryKey: "Fabric") as? [String: Any])?["APIKey"] != nil
-    let hasFirebase = FirebaseOptions.defaultOptions()?.apiKey != nil
 
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
@@ -44,15 +39,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if NSClassFromString("XCTestCase") != nil { return true }
-        setupCrashlytics()
+        setupFirebase()
         CacheManager.resetAppIfNecessary()
         #if DEBUG
             UITestHelpers.setup(self)
         #endif
-        if hasFirebase {
-            FirebaseApp.configure()
-            configureRemoteConfig()
-        }
         Core.Analytics.shared.handler = self
         DocViewerViewController.setup(.teacherPSPDFKitLicense)
         prepareReactNative()
@@ -79,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         CoreWebView.keepCookieAlive(for: environment)
         if Locale.current.regionCode != "CA" {
             let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
-            Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)
+            Firebase.Crashlytics.crashlytics().setUserID(crashlyticsUserId)
         }
 
         let getProfile = GetUserProfileRequest(userID: "self")
@@ -208,7 +199,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 guard let feature = ExperimentalFeature(rawValue: key) else { continue }
                 let value = remoteConfig.configValue(forKey: key).boolValue
                 feature.isEnabled = value
-                Crashlytics.sharedInstance().setBoolValue(value, forKey: feature.userDefaultsKey)
+                Firebase.Crashlytics.crashlytics().setCustomValue(value, forKey: feature.userDefaultsKey)
                 Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
             }
         }
@@ -218,9 +209,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
 extension AppDelegate: AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
-        if hasFirebase {
-            Analytics.logEvent(name, parameters: parameters)
-        }
+        Analytics.logEvent(name, parameters: parameters)
     }
 }
 
@@ -306,14 +295,11 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
 
 // MARK: Crashlytics
 extension AppDelegate {
-    @objc func setupCrashlytics() {
-        guard !uiTesting else { return }
-        guard hasFabric else {
-            NSLog("WARNING: Crashlytics was not properly initialized.")
-            return
-        }
+    @objc func setupFirebase() {
+        guard !testing else { return }
 
-        Fabric.with([Crashlytics.self, Answers.self])
+        if FirebaseOptions.defaultOptions()?.apiKey != nil { FirebaseApp.configure() }
         CanvasCrashlytics.setupForReactNative()
+        configureRemoteConfig()
     }
 }

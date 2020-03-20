@@ -36,7 +36,7 @@ class DetailsDescriptionCell: WhizzyWigTableViewCell {
     }
 
     fileprivate func setupIcon() {
-        let icon = UIImage(named: "icon_document")
+        let icon = UIImage.icon(.document)
         let iconImageView = UIImageView(image: icon)
         iconImageView.contentMode = .scaleAspectFit
         iconImageView.tintColor = UIColor(r: 180.0, g: 180.0, b: 180.0)

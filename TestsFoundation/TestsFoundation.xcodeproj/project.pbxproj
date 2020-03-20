@@ -35,7 +35,9 @@
 		5859533CCC74E4410F3A4DE1 /* HttpResponseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595D1B881763C9DDB1E6BD /* HttpResponseExtensions.swift */; };
 		585958355F4CBCAFED71C28A /* MiniCanvasEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595C190F38EE32DEEE62D7 /* MiniCanvasEndpoints.swift */; };
 		58595A4F59ADDF88417FB368 /* LoggingHttpServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585954C9EBB3725770689362 /* LoggingHttpServer.swift */; };
+		58595A570E0930B6EE1E451A /* MiniSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585952FE07B37EF55C948ACC /* MiniSubmission.swift */; };
 		58595E26C62900CF858B2B08 /* MiniCanvasUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859560B4512977756206840 /* MiniCanvasUITestCase.swift */; };
+		58595E42B4831A7E2BE0102B /* MiniQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859504AB00EC6E2602C144A /* MiniQuiz.swift */; };
 		58595E93BC97CDFF3A1ECF2F /* MiniCanvasState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595BD467533DA0C1043343 /* MiniCanvasState.swift */; };
 		7D148647230B49DC003944A2 /* APIAccountNotificationFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D148646230B49DC003944A2 /* APIAccountNotificationFixture.swift */; };
 		7D26B84723A81D8E00262380 /* ConversationFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D26B84623A81D8E00262380 /* ConversationFixture.swift */; };
@@ -52,6 +54,7 @@
 		7D70DE9C233EAB3500F5C3D4 /* APICommunicationChannelFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D70DE9B233EAB3500F5C3D4 /* APICommunicationChannelFixture.swift */; };
 		7D70DE9E233EAB5500F5C3D4 /* APINotificationPreferencesFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D70DE9D233EAB5500F5C3D4 /* APINotificationPreferencesFixture.swift */; };
 		7D70DEA0233EACF200F5C3D4 /* CommunicationChannelFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D70DE9F233EACF200F5C3D4 /* CommunicationChannelFixture.swift */; };
+		7D7F71E0241FDE2F00D6F9CB /* ConferenceFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7F71DF241FDE2F00D6F9CB /* ConferenceFixture.swift */; };
 		7D903C0A22BC1329009D9E9E /* LoginStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C0922BC1329009D9E9E /* LoginStart.swift */; };
 		7D903C0C22BC132E009D9E9E /* LoginWeb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C0B22BC132E009D9E9E /* LoginWeb.swift */; };
 		7D903C0E22BC133B009D9E9E /* LoginFindSchool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C0D22BC133B009D9E9E /* LoginFindSchool.swift */; };
@@ -148,7 +151,9 @@
 		3BAA4178218A3ACE00701E03 /* APIEnrollmentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollmentFixture.swift; sourceTree = "<group>"; };
 		3BD364AC225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDiscussionTopicFixture.swift; sourceTree = "<group>"; };
 		3BDB8F3B22E663A2003D81C3 /* MockPageViewLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPageViewLogger.swift; sourceTree = "<group>"; };
+		5859504AB00EC6E2602C144A /* MiniQuiz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniQuiz.swift; sourceTree = "<group>"; };
 		58595226EFFECD5AED310C9B /* MiniAssignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniAssignment.swift; sourceTree = "<group>"; };
+		585952FE07B37EF55C948ACC /* MiniSubmission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniSubmission.swift; sourceTree = "<group>"; };
 		585954C9EBB3725770689362 /* LoggingHttpServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggingHttpServer.swift; sourceTree = "<group>"; };
 		5859560B4512977756206840 /* MiniCanvasUITestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniCanvasUITestCase.swift; sourceTree = "<group>"; };
 		58595BD467533DA0C1043343 /* MiniCanvasState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniCanvasState.swift; sourceTree = "<group>"; };
@@ -170,6 +175,7 @@
 		7D70DE9B233EAB3500F5C3D4 /* APICommunicationChannelFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommunicationChannelFixture.swift; sourceTree = "<group>"; };
 		7D70DE9D233EAB5500F5C3D4 /* APINotificationPreferencesFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APINotificationPreferencesFixture.swift; sourceTree = "<group>"; };
 		7D70DE9F233EACF200F5C3D4 /* CommunicationChannelFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationChannelFixture.swift; sourceTree = "<group>"; };
+		7D7F71DF241FDE2F00D6F9CB /* ConferenceFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceFixture.swift; sourceTree = "<group>"; };
 		7D903C0922BC1329009D9E9E /* LoginStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStart.swift; sourceTree = "<group>"; };
 		7D903C0B22BC132E009D9E9E /* LoginWeb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWeb.swift; sourceTree = "<group>"; };
 		7D903C0D22BC133B009D9E9E /* LoginFindSchool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchool.swift; sourceTree = "<group>"; };
@@ -372,6 +378,7 @@
 				3B6043A9232AB93900757B93 /* AssignmentGroupsFixture.swift */,
 				3B635B34225CDFB1001F353D /* CalendarEventFixture.swift */,
 				7D70DE9F233EACF200F5C3D4 /* CommunicationChannelFixture.swift */,
+				7D7F71DF241FDE2F00D6F9CB /* ConferenceFixture.swift */,
 				B19792F421767B830000369C /* ContextColorFixture.swift */,
 				7D26B84623A81D8E00262380 /* ConversationFixture.swift */,
 				3B032D18215037CA00B570F7 /* CourseFixture.swift */,
@@ -440,6 +447,8 @@
 				58595BD467533DA0C1043343 /* MiniCanvasState.swift */,
 				58595226EFFECD5AED310C9B /* MiniAssignment.swift */,
 				58595FA38CCD34FFA0E5AF23 /* MiniCourse.swift */,
+				5859504AB00EC6E2602C144A /* MiniQuiz.swift */,
+				585952FE07B37EF55C948ACC /* MiniSubmission.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -707,6 +716,7 @@
 				E81B575E23E243CA002A0C38 /* Compose.swift in Sources */,
 				7D70DE9E233EAB5500F5C3D4 /* APINotificationPreferencesFixture.swift in Sources */,
 				B1A32BE02159A28D0071B41E /* APISubmissionFixture.swift in Sources */,
+				7D7F71E0241FDE2F00D6F9CB /* ConferenceFixture.swift in Sources */,
 				B150C6382298D6F20096D58C /* APIExternalToolFixture.swift in Sources */,
 				3B0CEBA321504C2500D07CFA /* APITabFixture.swift in Sources */,
 				7D6C8C6B22EA0C5900E5ADD8 /* APIActivityFixture.swift in Sources */,
@@ -805,6 +815,8 @@
 				585951A0E753164D3759B783 /* MiniAssignment.swift in Sources */,
 				58595231CA9C074F01E0F6A1 /* MiniCourse.swift in Sources */,
 				58595E26C62900CF858B2B08 /* MiniCanvasUITestCase.swift in Sources */,
+				58595E42B4831A7E2BE0102B /* MiniQuiz.swift in Sources */,
+				58595A570E0930B6EE1E451A /* MiniSubmission.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

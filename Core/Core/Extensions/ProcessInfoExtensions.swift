@@ -28,3 +28,15 @@ extension ProcessInfo {
         return processInfo.environment["IS_UI_TEST"] != nil
     }
 }
+
+public var unitTesting: Bool {
+    return ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
+}
+
+public var uiTesting: Bool {
+    return ProcessInfo.isUITest
+}
+
+public var testing: Bool {
+    return unitTesting || uiTesting
+}

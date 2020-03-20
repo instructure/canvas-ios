@@ -95,14 +95,3 @@ export class ToDoModel extends Model<ToDoItem> {
   courseID = this.raw.course_id
   groupID = this.raw.group_id
 }
-
-export class ConferenceModel extends Model<Conference> {
-  static keyExtractor (conference: ConferenceModel) {
-    return conference.id
-  }
-
-  id = this.raw.id
-  title = this.raw.title
-  description = this.raw.description
-  join_url = this.raw.join_url
-}

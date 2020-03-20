@@ -48,7 +48,7 @@ public struct GetPageRequest: APIRequestable {
     let url: String
 
     public var path: String {
-        return "\(context.pathComponent)/pages/\(url)"
+        return "\(context.pathComponent)/pages/\(url)".addingPercentEncoding(withAllowedCharacters: .urlSafe) ?? ""
     }
 }
 
@@ -62,6 +62,6 @@ public struct DeletePageRequest: APIRequestable {
     public let method = APIMethod.delete
 
     public var path: String {
-        return "\(context.pathComponent)/pages/\(url)"
+        return "\(context.pathComponent)/pages/\(url)".addingPercentEncoding(withAllowedCharacters: .urlSafe) ?? ""
     }
 }

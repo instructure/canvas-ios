@@ -93,7 +93,7 @@ workflows:
             #!/usr/bin/env bash
             set -e
             set -x
-            ./Pods/Fabric/upload-symbols -gsp "$BITRISE_SOURCE_DIR/Parent/Parent/GoogleService-Info.plist" -p ios "$BITRISE_DSYM_PATH"
+            ./Pods/FirebaseCrashlytics/upload-symbols -gsp "$BITRISE_SOURCE_DIR/Parent/Parent/GoogleService-Info.plist" -p ios "$BITRISE_DSYM_PATH"
     - cache-push:
         inputs:
         - cache_paths: "$BITRISE_SOURCE_DIR/Carthage/Build/iOS/"

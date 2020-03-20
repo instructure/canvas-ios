@@ -40,7 +40,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     var pageViewController: UIPageViewController!
     var context: NSManagedObjectContext!
     var coursesViewController: CourseListViewController?
-    var calendarViewController: UIViewController?
+    var calendarViewController: PlannerViewController?
     var alertsViewController: UIViewController?
     var viewControllers: [UIViewController]!
     var badgeCount: UInt = 0
@@ -238,14 +238,11 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     // MARK: - Data Methods
     // ---------------------------------------------
     func reloadObserveeData() {
-        var calendarStartDate: Date = Date()
-        if let calendarVC = calendarViewController as? CalendarEventWeekPageViewController, let currentStart = calendarVC.currentStartDate {
-            calendarStartDate = currentStart
-        }
-
         coursesViewController = coursesViewController(session)
         coursesViewController?.refresher?.refresh(false)
-        calendarViewController = calendarViewController(session, startDate: calendarStartDate)
+        calendarViewController = calendarViewController(
+            calendarViewController?.selectedDate ?? Clock.now
+        )
         alertsViewController = alertsViewController(session)
 
         guard let coursesViewController = coursesViewController, let calendarViewController = calendarViewController, let alertsViewController = alertsViewController else {
@@ -318,12 +315,9 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         return try? CourseListViewController(session: session, studentID: currentStudent.id)
     }
 
-    func calendarViewController(_ session: Session, startDate: Date = Date()) -> UIViewController? {
+    func calendarViewController(_ selectedDate: Date) -> PlannerViewController? {
         guard let currentStudent = currentStudent else { return nil }
-        if ExperimentalFeature.parentCalendar.isEnabled {
-            return PlannerViewController.create(studentID: currentStudent.id)
-        }
-        return CalendarEventWeekPageViewController.create(session: session, studentID: currentStudent.id, initialReferenceDate: startDate)
+        return PlannerViewController.create(studentID: currentStudent.id, selectedDate: selectedDate)
     }
 
     func alertsViewController(_ session: Session) -> UIViewController? {

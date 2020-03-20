@@ -80,7 +80,6 @@
 		493020451F902364006BD777 /* AppStoreReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020281F902360006BD777 /* AppStoreReview.swift */; };
 		493020461F902364006BD777 /* NSError+Categorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020291F902360006BD777 /* NSError+Categorization.swift */; };
 		493020471F902364006BD777 /* NSObject+AssociatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930202B1F902361006BD777 /* NSObject+AssociatedObject.swift */; };
-		493020491F902364006BD777 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930202D1F902361006BD777 /* Environment.swift */; };
 		4930204A1F902364006BD777 /* Uncollect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020301F902361006BD777 /* Uncollect.swift */; };
 		4930204B1F902364006BD777 /* Concat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020311F902361006BD777 /* Concat.swift */; };
 		4930204C1F902364006BD777 /* Accumulate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020321F902361006BD777 /* Accumulate.swift */; };
@@ -548,7 +547,6 @@
 		493020281F902360006BD777 /* AppStoreReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoreReview.swift; sourceTree = "<group>"; };
 		493020291F902360006BD777 /* NSError+Categorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+Categorization.swift"; sourceTree = "<group>"; };
 		4930202B1F902361006BD777 /* NSObject+AssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+AssociatedObject.swift"; sourceTree = "<group>"; };
-		4930202D1F902361006BD777 /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		493020301F902361006BD777 /* Uncollect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uncollect.swift; sourceTree = "<group>"; };
 		493020311F902361006BD777 /* Concat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Concat.swift; sourceTree = "<group>"; };
 		493020321F902361006BD777 /* Accumulate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accumulate.swift; sourceTree = "<group>"; };
@@ -1318,7 +1316,6 @@
 			isa = PBXGroup;
 			children = (
 				493020391F902362006BD777 /* Array+SoLazy.swift */,
-				4930202D1F902361006BD777 /* Environment.swift */,
 				493020371F902361006BD777 /* ErrorReporter.swift */,
 				493020381F902362006BD777 /* GCD+SoLazy.swift */,
 				4930203A1F902362006BD777 /* Marshal+SoLazy.swift */,
@@ -2735,7 +2732,6 @@
 				497CA7761F82D19600501613 /* PushAnimatedTransitioning.swift in Sources */,
 				7DD89E8B20AB626600650227 /* AppStoreReview.m in Sources */,
 				4961F68A1F8FB9620093EC86 /* Upload.swift in Sources */,
-				493020491F902364006BD777 /* Environment.swift in Sources */,
 				49CE96DB1F8FFC4400121A43 /* ModuleItem+Progression.swift in Sources */,
 				493020511F902364006BD777 /* ErrorReporter.swift in Sources */,
 				49CE96E41F8FFC4400121A43 /* MasteryPathsItem.swift in Sources */,

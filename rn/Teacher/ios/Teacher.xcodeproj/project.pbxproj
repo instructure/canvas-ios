@@ -85,7 +85,6 @@
 		B1F4060622E2444D008FAFE6 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4060022E2444D008FAFE6 /* ReactiveCocoa.framework */; };
 		B1F4060722E2444D008FAFE6 /* ReactiveMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4060122E2444D008FAFE6 /* ReactiveMapKit.framework */; };
 		B1FF02D2240435B0004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02D1240435B0004B7B1C /* KeychainTests.swift */; };
-		E83294A323FF0DCE00D3F6F2 /* SpeedGraderUIMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83294A223FF0DCE00D3F6F2 /* SpeedGraderUIMocks.swift */; };
 		E841D8B023D6472F00685A63 /* CoreUITests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8F6CFFE23045A01004347D9 /* CoreUITests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E841D8B123D6472F00685A63 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E841D8B223D6472F00685A63 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F6221492580083E660 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -364,7 +363,6 @@
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		E8315D3622FC9E60003CD27C /* TeacherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8315D3A22FC9E60003CD27C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E83294A223FF0DCE00D3F6F2 /* SpeedGraderUIMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderUIMocks.swift; sourceTree = "<group>"; };
 		E841D8B923D6472F00685A63 /* TeacherE2ETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherE2ETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E841D8BA23D6472F00685A63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		E841D8BB23D6478000685A63 /* E2ETestsFromCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = E2ETestsFromCore.swift; sourceTree = "<group>"; };
@@ -629,7 +627,6 @@
 				B175D62523A96B0F00F8E696 /* IPadSpeedGraderTests.swift */,
 				B175D62323A96AE400F8E696 /* SpeedGrader.swift */,
 				B17E1DB4238DA8550022EE0E /* SpeedGraderTests.swift */,
-				E83294A223FF0DCE00D3F6F2 /* SpeedGraderUIMocks.swift */,
 			);
 			path = SpeedGrader;
 			sourceTree = "<group>";
@@ -706,6 +703,7 @@
 				4943ECC51E5CEFBD001DC5B5 /* Embed Frameworks */,
 				B714E89FBF87F7C6C1A4CBF2 /* [CP] Embed Pods Frameworks */,
 				F9B947072215EA3C0083E660 /* Carthage Copy Frameworks */,
+				3BA649CB242289290047D8DC /* FirebaseCrashlytics */,
 			);
 			buildRules = (
 			);
@@ -908,6 +906,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3BA649CB242289290047D8DC /* FirebaseCrashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = FirebaseCrashlytics;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ] ; then\n    \"${PODS_ROOT}/FirebaseCrashlytics/run\" || echo \"FirebaseCrashlytics build phase script failed!\"\nfi\n";
+		};
 		4931EB6B1F731BD700715EF2 /* Start the Packager */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1098,7 +1116,6 @@
 				B175D62623A96B0F00F8E696 /* IPadSpeedGraderTests.swift in Sources */,
 				3BFD1D432311E209003AE3AB /* TeacherUITestCase.swift in Sources */,
 				3BFD1D4723121FEE003AE3AB /* PostPolicy.swift in Sources */,
-				E83294A323FF0DCE00D3F6F2 /* SpeedGraderUIMocks.swift in Sources */,
 				3BFD1D4523121ED9003AE3AB /* SubmissionsList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1299,6 +1316,7 @@
 					"\"$(SRCROOT)/Teacher\"",
 					"\"$(SRCROOT)/Teacher\"",
 				);
+				MARKETING_VERSION = 0.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1361,6 +1379,7 @@
 					"\"$(SRCROOT)/Teacher\"",
 					"\"$(SRCROOT)/Teacher\"",
 				);
+				MARKETING_VERSION = 0.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
