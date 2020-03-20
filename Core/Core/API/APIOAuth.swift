@@ -28,10 +28,16 @@ struct APIVerifyClient: Codable, Equatable {
 
 // https://canvas.instructure.com/doc/api/file.oauth_endpoints.html#post-login-oauth2-token
 public struct APIOAuthToken: Codable, Equatable {
+    public struct RealUser: Codable, Equatable {
+        let id: ID
+        let name: String
+    }
+
     let access_token: String
     let refresh_token: String?
     let token_type: String
     let user: APIOAuthUser
+    let real_user: RealUser?
     let expires_in: TimeInterval?
 }
 
