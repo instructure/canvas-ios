@@ -101,7 +101,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         cancel.tintColor = .named(.textLightest)
         cancel.addTarget(self, action: #selector(cancelTapped(_:)), for: .primaryActionTriggered)
         cancel.layer.cornerRadius = 25
-        
         view.addSubview(cancel)
         NSLayoutConstraint.activate([
             cancel.widthAnchor.constraint(equalToConstant: 50),
