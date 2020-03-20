@@ -24,9 +24,10 @@ extension Plannable {
     @discardableResult
     public static func make(
         from api: APIPlannable = .make(),
+        userID: String? = "1",
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> Plannable {
-        let model = Plannable.save(api, in: context, userID: "1")
+        let model = Plannable.save(api, in: context, userID: userID)
         try! context.save()
         return model
     }

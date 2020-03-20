@@ -29,21 +29,39 @@ class GetPlannablesTests: CoreTestCase {
     }
 
     func testScope() {
-        XCTAssertEqual(useCase.scope, Scope(predicate: NSPredicate(format: "%@ <= %K AND %K < %@",
-            start as NSDate, #keyPath(Plannable.date),
-            #keyPath(Plannable.date), end as NSDate
-        ), orderBy: #keyPath(Plannable.date)))
+        let first = Plannable.make(from: .make(
+            plannable_id: "1",
+            plannable: APIPlannable.plannable(title: "a", details: ""),
+            plannable_date: start
+        ))
+        let second = Plannable.make(from: .make(
+            plannable_id: "2",
+            plannable: APIPlannable.plannable(title: "b", details: ""),
+            plannable_date: start
+        ))
+        let third = Plannable.make(from: .make(
+            plannable_id: "3",
+            plannable: APIPlannable.plannable(title: "c", details: ""),
+            plannable_date: start.addMinutes(1)
+        ))
+        let other = Plannable.make(from: .make(
+            plannable_id: "4",
+            plannable: APIPlannable.plannable(title: "d", details: ""),
+            plannable_date: end.addDays(1)
+        ))
+        XCTAssertTrue([first, second, third].allSatisfy(useCase.scope.predicate.evaluate(with:)))
+        XCTAssertFalse(useCase.scope.predicate.evaluate(with: other))
+        let plannables: [Plannable] = databaseClient.fetch(scope: useCase.scope)
+        XCTAssertEqual(plannables, [first, second, third])
     }
 
     func testScopeWithUserID() {
+        let yes = Plannable.make(from: .make(plannable_id: "1"), userID: "1")
+        Plannable.make(from: .make(plannable_id: "2"), userID: nil)
+        Plannable.make(from: .make(plannable_id: "3"), userID: "2")
         useCase = GetPlannables(userID: "1", startDate: start, endDate: end)
-        XCTAssertEqual(useCase.scope, Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
-            NSPredicate(key: #keyPath(Plannable.userID), equals: "1"),
-            NSPredicate(format: "%@ <= %K AND %K < %@",
-                start as NSDate, #keyPath(Plannable.date),
-                #keyPath(Plannable.date), end as NSDate
-            ),
-        ]), orderBy: #keyPath(Plannable.date)))
+        let plannables: [Plannable] = databaseClient.fetch(scope: useCase.scope)
+        XCTAssertEqual(plannables, [yes])
     }
 
     func testRequest() {
