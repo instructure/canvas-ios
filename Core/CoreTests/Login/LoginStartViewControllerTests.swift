@@ -26,6 +26,7 @@ class LoginStartViewControllerTests: CoreTestCase {
     var opened: URL?
     var hasOpenedSupportTicket = false
     var supportsCanvasNetwork = true
+    var supportsQRCodeLogin: Bool = true
 
     var helpURL: URL?
     var whatsNewURL = URL(string: "whats-new")
@@ -131,6 +132,13 @@ class LoginStartViewControllerTests: CoreTestCase {
 
         controller.whatsNewLink.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(opened, whatsNewURL)
+    }
+
+    func testQRCode() throws {
+        controller.view.layoutIfNeeded()
+        XCTAssertFalse(controller.useQRCodeButton.isHidden)
+        XCTAssertFalse(controller.useQRCodeDivider.isHidden)
+        controller.useQRCodeButton.sendActions(for: .primaryActionTriggered)
     }
 }
 

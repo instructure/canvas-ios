@@ -172,10 +172,6 @@ class QROverlayView: UIView {
     let arc = CAShapeLayer()
     var curveLength: CGFloat = 50
 
-    override var bounds: CGRect {
-        didSet { updateSize() }
-    }
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         arc.lineWidth = 8
