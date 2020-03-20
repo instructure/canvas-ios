@@ -42,8 +42,9 @@ class CalendarViewControllerTests: CoreTestCase, CalendarViewControllerDelegate 
     func calendarWillFilter() {
         willFilter = true
     }
+    var calendarCount: Int?
     func numberOfCalendars() -> Int? {
-        return nil
+        calendarCount
     }
 
     lazy var controller = CalendarViewController.create(delegate: self)
@@ -64,8 +65,19 @@ class CalendarViewControllerTests: CoreTestCase, CalendarViewControllerDelegate 
         XCTAssertEqual(controller.monthButton.isSelected, true)
         XCTAssertGreaterThanOrEqual(height, 883)
 
+        XCTAssertEqual(controller.filterButton.accessibilityLabel, "Filter events")
+        XCTAssertEqual(controller.filterButton.title(for: .normal), "Calendars")
         controller.filterButton.sendActions(for: .primaryActionTriggered)
         XCTAssertTrue(willFilter)
+        calendarCount = 1
+        controller.refresh()
+        XCTAssertEqual(controller.filterButton.accessibilityLabel, "Filter events, 1 calendar selected")
+        XCTAssertEqual(controller.filterButton.title(for: .normal), "Calendars (1)")
+        calendarCount = 7
+        controller.refresh()
+        XCTAssertEqual(controller.filterButton.accessibilityLabel, "Filter events, 7 calendars selected")
+        XCTAssertEqual(controller.filterButton.title(for: .normal), "Calendars (7)")
+
         controller.calendarDidSelectDate(DateComponents(calendar: .current, year: 2020, month: 1, day: 16).date!)
         controller.updateSelectedDate(selectedDate)
 
