@@ -46,6 +46,13 @@ public func resetSingleSharedTestDatabase() -> NSPersistentContainer {
 }
 
 class TestDatabase: NSPersistentContainer {
+    override func newBackgroundContext() -> NSManagedObjectContext {
+        // create a new view context to avoid recursive saves
+        let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        context.parent = viewContext
+        return context
+    }
+
     override  func performBackgroundTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
         self.viewContext.performAndWait {
             block(self.viewContext)
