@@ -28,6 +28,7 @@ workflows:
             #!/bin/zsh
             set -exo pipefail
 
+            sudo systemsetup -settimezone America/Denver
             if printf "%s\n" "$BITRISE_GIT_MESSAGE" | grep -iE "\[run.nightly\]"; then
                 envman add --key RUN_NIGHTLY --value YES
             fi
@@ -327,6 +328,7 @@ workflows:
             #!/bin/zsh
             set -exo pipefail
 
+            sudo systemsetup -settimezone America/Denver
             case $BITRISE_GIT_BRANCH in
                 release/student|release/teacher|release/parent|master)
                     envman add --key NOTIFY_SLACK --value YES
