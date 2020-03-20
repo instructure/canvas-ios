@@ -242,8 +242,8 @@ class LoginStartViewController: UIViewController {
             style: .cancel,
             handler: { _ in cancelled = true }
         ))
-        env.router.show(loading, from: self) {
-            login.fetch { [weak self, weak loading] session, error in performUIUpdate {
+        env.router.show(loading, from: self, options: .noOptions) {
+            login.fetch { [weak self, weak loading] session, error in
                 if cancelled { return }
                 guard let session = session, error == nil else {
                     loading?.dismiss(animated: true) {
@@ -253,8 +253,8 @@ class LoginStartViewController: UIViewController {
                 }
                 // don't dismiss loading here
                 // it will eventually be dismissed once userDidLogin api calls are finished
-                AppEnvironment.shared.loginDelegate?.userDidLogin(session: session)
-            } }
+                self?.loginDelegate?.userDidLogin(session: session)
+            }
         }
     }
 
@@ -345,7 +345,7 @@ extension LoginStartViewController: UITableViewDataSource, UITableViewDelegate, 
 
 extension LoginStartViewController: ScannerDelegate, ErrorViewController {
     func scanner(_ scanner: ScannerViewController, didScanCode code: String) {
-        scanner.dismiss(animated: true) {
+        env.router.dismiss(scanner) {
             self.logIn(withCode: code)
         }
     }
@@ -353,7 +353,7 @@ extension LoginStartViewController: ScannerDelegate, ErrorViewController {
 
 extension LoginStartViewController: LoginQRCodeTutorialDelegate {
     func loginQRCodeTutorialDidFinish(_ controller: LoginQRCodeTutorialViewController) {
-        controller.dismiss(animated: true) {
+        env.router.dismiss(controller) {
             self.launchQRScanner()
         }
     }

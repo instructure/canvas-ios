@@ -678,6 +678,7 @@
 		B164DC1F22DE2AB30037FA86 /* APIAccountResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164DC1E22DE2AB30037FA86 /* APIAccountResultTests.swift */; };
 		B16E05E02423D770006B6ADB /* LoginQRCodeTutorialViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B16E05DF2423D770006B6ADB /* LoginQRCodeTutorialViewController.storyboard */; };
 		B16E05E22423DF83006B6ADB /* LoginQRCodeTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16E05E12423DF83006B6ADB /* LoginQRCodeTutorialViewController.swift */; };
+		B16E05E4242529D4006B6ADB /* ScannerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16E05E3242529D4006B6ADB /* ScannerViewControllerTests.swift */; };
 		B175D61E23A9694E00F8E696 /* SpringBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B175D61D23A9694E00F8E696 /* SpringBoard.swift */; };
 		B175D62023A9696200F8E696 /* SpringBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B175D61F23A9696200F8E696 /* SpringBoardTests.swift */; };
 		B17855B3226ABDDD00B30C80 /* UploadMediaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17855B2226ABDDD00B30C80 /* UploadMediaTests.swift */; };
@@ -1653,6 +1654,7 @@
 		B164DC1E22DE2AB30037FA86 /* APIAccountResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountResultTests.swift; sourceTree = "<group>"; };
 		B16E05DF2423D770006B6ADB /* LoginQRCodeTutorialViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginQRCodeTutorialViewController.storyboard; sourceTree = "<group>"; };
 		B16E05E12423DF83006B6ADB /* LoginQRCodeTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginQRCodeTutorialViewController.swift; sourceTree = "<group>"; };
+		B16E05E3242529D4006B6ADB /* ScannerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewControllerTests.swift; sourceTree = "<group>"; };
 		B175D61D23A9694E00F8E696 /* SpringBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringBoard.swift; sourceTree = "<group>"; };
 		B175D61F23A9696200F8E696 /* SpringBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringBoardTests.swift; sourceTree = "<group>"; };
 		B17855B0226ABDB100B30C80 /* UploadMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMedia.swift; sourceTree = "<group>"; };
@@ -2536,6 +2538,7 @@
 				7DD6947A21949DC900BA4984 /* IconViewTests.swift */,
 				7D1758C3215A995200F88613 /* ListFormatterTests.swift */,
 				7D303DE72412F9AB001F5F36 /* PagesViewControllerTests.swift */,
+				B16E05E3242529D4006B6ADB /* ScannerViewControllerTests.swift */,
 				7D1758C7215A9A7800F88613 /* TitleSubtitleViewTests.swift */,
 			);
 			path = Views;
@@ -4489,6 +4492,7 @@
 				B11AEBB32405D31C00B736D6 /* CoreWebViewControllerTests.swift in Sources */,
 				7DCF1ED6216C05FE003AF358 /* GradeViewableTests.swift in Sources */,
 				7D81A001228DC1F000C61EDD /* GetQuizTests.swift in Sources */,
+				B16E05E4242529D4006B6ADB /* ScannerViewControllerTests.swift in Sources */,
 				7D0215A121B88BDC009A8E69 /* UITabBarExtensionsTests.swift in Sources */,
 				7DC4A559222EFC9900FA03DC /* Int64ExtensionsTests.swift in Sources */,
 				B10E89072384807B00E7684E /* GradesViewControllerTests.swift in Sources */,

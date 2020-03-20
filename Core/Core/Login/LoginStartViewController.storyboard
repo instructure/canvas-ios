@@ -97,7 +97,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="highlightColorName" value="textLight"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="scanQRCode:" destination="QZA-SV-u24" eventType="touchUpInside" id="PUe-sz-OdB"/>
+                                            <action selector="scanQRCode:" destination="QZA-SV-u24" eventType="primaryActionTriggered" id="qI6-UM-bOB"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ds0-Rb-5d6">
