@@ -25,6 +25,7 @@ extension APIOAuthToken {
         refreshToken: String? = nil,
         tokenType: String = "token-type",
         user: APIOAuthUser = .make(),
+        realUser: APIOAuthToken.RealUser? = nil,
         expiresIn: TimeInterval? = nil
     ) -> APIOAuthToken {
         return APIOAuthToken(
@@ -32,6 +33,7 @@ extension APIOAuthToken {
             refresh_token: refreshToken,
             token_type: tokenType,
             user: user,
+            real_user: realUser,
             expires_in: expiresIn
         )
     }

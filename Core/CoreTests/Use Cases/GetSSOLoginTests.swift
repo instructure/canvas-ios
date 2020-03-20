@@ -69,12 +69,12 @@ class GetSSOLoginTest: CoreTestCase {
         XCTAssertNil(entry)
         XCTAssertNotNil(error)
 
-        api.mock(PostLoginOAuthRequest(client: client, code: "code"), value: .init(
-            access_token: "t",
-            refresh_token: nil,
-            token_type: "type",
+        api.mock(PostLoginOAuthRequest(client: client, code: "code"), value: .make(
+            accessToken: "t",
+            refreshToken: nil,
+            tokenType: "type",
             user: APIOAuthUser.init(id: "1", name: "u", effective_locale: "en", email: nil),
-            expires_in: 10
+            expiresIn: 10
         ))
         login.fetch(callback)
         waitForMainAsync()
@@ -82,6 +82,34 @@ class GetSSOLoginTest: CoreTestCase {
         XCTAssertEqual(entry?.userID, "1")
         XCTAssertEqual(entry?.clientID, "id")
         XCTAssertEqual(entry?.clientSecret, "sec")
+        XCTAssertNil(error)
+    }
+
+    func testFetchWithMasqueradeResponse() {
+        let client = APIVerifyClient(
+            authorized: true,
+            base_url: URL(string: "https://canvas.instructure.com"),
+            client_id: "id",
+            client_secret: "sec"
+        )
+        api.mock(GetMobileVerifyRequest(domain: "canvas"), value: client)
+        api.mock(PostLoginOAuthRequest(client: client, code: "code"), value: .make(
+            accessToken: "t",
+            refreshToken: nil,
+            tokenType: "type",
+            user: APIOAuthUser.init(id: "1", name: "u", effective_locale: "en", email: nil),
+            realUser: APIOAuthToken.RealUser(id: "2", name: "real user"),
+            expiresIn: 10
+        ))
+        let login = GetSSOLogin(url: URL(string: "https://sso.canvaslms.com/canvas/login?code=code&domain=canvas")!)!
+        var session: LoginSession?
+        var error: Error?
+        login.fetch {
+            session = $0
+            error = $1
+        }
+        XCTAssertEqual(session?.actAsUserID, "1")
+        XCTAssertEqual(session?.originalUserID, "2")
         XCTAssertNil(error)
     }
 }

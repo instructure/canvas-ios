@@ -51,6 +51,11 @@ public class GetSSOLogin {
                     baseURL: baseURL,
                     expiresAt: model.expires_in.flatMap { Date().addingTimeInterval($0) },
                     locale: model.user.effective_locale,
+                    masquerader: model.real_user.flatMap { realUser in
+                        baseURL
+                            .appendingPathComponent("users")
+                            .appendingPathComponent(realUser.id.rawValue)
+                    },
                     refreshToken: model.refresh_token,
                     userID: model.user.id.value,
                     userName: model.user.name,
