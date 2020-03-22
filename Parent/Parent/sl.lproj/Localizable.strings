@@ -8,9 +8,6 @@
 "%@ is due at %@" = "%1$@ ima rok ob %2$@";
 
 /* No comment provided by engineer. */
-"%@ to %@" = "%1$@ naslovnik %2$@";
-
-/* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ se začne ob %2$@";
 
 /* label for conversation row with context, subject, & last message date & text */
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Announcement" = "Obvestilo";
-
-/* No comment provided by engineer. */
-"Assignment" = "Naloga";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Ocena pri nalogi višja od";
@@ -116,16 +110,10 @@
 "Current student: %@. Tap to switch students" = "Trenutni študent: %@. Tapnite za preklop študentov";
 
 /* No comment provided by engineer. */
-"Discussion" = "Razprava";
-
-/* No comment provided by engineer. */
 "Dismiss" = "Opusti";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Uredi prejemnike";
-
-/* No comment provided by engineer. */
-"Event" = "Dogodek";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Opozorilo o dogodku";
@@ -178,9 +166,6 @@
 /* Title for an alert view */
 "Invalid Input" = "Neveljaven vnos";
 
-/* Last Week Button Accessibility Label */
-"Last Week" = "Prejšnji teden";
-
 /* No comment provided by engineer. */
 "Late" = "Zamuda";
 
@@ -223,9 +208,6 @@
 /* No comment provided by engineer. */
 "New Message" = "Novo sporočilo";
 
-/* Next Week Button Accessibility Label */
-"Next Week" = "Naslednji teden";
-
 /* Empty Courses Text */
 "No Courses" = "Ni predmetov.";
 
@@ -238,9 +220,6 @@
 /* No comment provided by engineer. */
 "No Subject" = "Ni kratkega opisa predmeta.";
 
-/* Empty Calendar Events Text */
-"Nothing this week" = "Ta teden ni ničesar.";
-
 /* OK Button Title */
 "OK" = "V redu";
 
@@ -249,9 +228,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Potrebno je dovoljenje.";
-
-/* No comment provided by engineer. */
-"Quiz" = "Kviz";
 
 /* No comment provided by engineer. */
 "Recipients" = "Prejemniki";
@@ -263,6 +239,9 @@
    Regarding <John Doe>, <Grades | Syllabus>
    Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "Zadeva: %1$@, %2$@";
+
+/* Regarding <Name>, Assignment - <Assignment Name> */
+"Regarding: %@, Assignment - %@" = "Zadeva: %1$@, Naloga – %2$@";
 
 /* No comment provided by engineer. */
 "Reply" = "Odgovori";
@@ -297,7 +276,7 @@
 /* No comment provided by engineer. */
 "Summary" = "Povzetek";
 
-/* Syllabus Button Title */
+/* No comment provided by engineer. */
 "Syllabus" = "Učni načrt";
 
 /* Directions in the admin view */

@@ -89,6 +89,12 @@
 "Calendar" = "Kalandriye";
 
 /* No comment provided by engineer. */
+"Calendars" = "Kalandriye";
+
+/* No comment provided by engineer. */
+"Calendars (%d)" = "Kalandriye (%d)";
+
+/* No comment provided by engineer. */
 "Camera" = "Kamera";
 
 /* No comment provided by engineer. */
@@ -215,6 +221,9 @@
 "Dashboard" = "Tablo";
 
 /* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
 "Delete" = "Efase";
 
 /* No comment provided by engineer. */
@@ -329,6 +338,9 @@
 "Filter by:" = "Filtre pa:";
 
 /* No comment provided by engineer. */
+"Filter events" = "Flitre aktivite";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Nòt Final: %@";
 
 /* No comment provided by engineer. */
@@ -395,6 +407,9 @@
 "Incomplete" = "Enkonplè";
 
 /* No comment provided by engineer. */
+"Interactions on this page are limited by your institution." = "Enstitisyon ou an limite entèaksyon sou paj sa a.";
+
+/* No comment provided by engineer. */
 "Invitation" = "Envitasyon";
 
 /* No comment provided by engineer. */
@@ -417,6 +432,9 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Lanse Zouti Eksteryè";
+
+/* No comment provided by engineer. */
+"Leave Student View" = "Soti nan Afichaj Elèv";
 
 /* No comment provided by engineer. */
 "Legal" = "Legal";
@@ -497,10 +515,16 @@
 "No Content" = "Pa gen Kontni";
 
 /* No comment provided by engineer. */
+"No Courses" = "Pa gen Kou";
+
+/* No comment provided by engineer. */
 "No Due Date" = "San Delè";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "No image found from image pickerimaj";
+
+/* No comment provided by engineer. */
+"No Results" = "Okenn Rezilta";
 
 /* No comment provided by engineer. */
 "No Submission" = "Pa gen Soumisyon";
@@ -659,6 +683,9 @@
 "Settings" = "Paramèt";
 
 /* No comment provided by engineer. */
+"Show a month at a time" = "Afiche pa mwa";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Afiche Klas";
 
 /* No comment provided by engineer. */
@@ -734,6 +761,9 @@
 "Tap here for help." = "Tape la pou èd.";
 
 /* No comment provided by engineer. */
+"Tap to select the courses you want to see on the calendar." = "Tape pou ka seleksyone kou ou vle wè nan kalandriye a.";
+
+/* No comment provided by engineer. */
 "Teacher" = "Pwofesè";
 
 /* No comment provided by engineer. */
@@ -765,6 +795,15 @@
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Gen yon pwoblèm ki pase pandan rekiperasyon Kondisyon Itilizasyon an";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Te gen yon erè nan chajman kou yo. Rale pou aktyalize pou ka eseye ankò.";
+
+/* No comment provided by engineer. */
+"There was an error loading events. Pull to refresh to try again." = "Te gen yon erè nan chajman aktivite yo. Rale pou aktyalize pou ka eseye ankò.";
+
+/* No comment provided by engineer. */
+"There was an error loading people. Pull to refresh to try again." = "Te gen yon erè nan chajman kontak yo. Rale pou aktyalize pou ka eseye ankò.";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Te gen yon erè nan Aji tankou Itilizatè. Tanpri eseye ankò.";
@@ -839,6 +878,9 @@
 "View Modules" = "Afiche Modil";
 
 /* No comment provided by engineer. */
+"We couldn’t find somebody like that." = "Nou pa kapab jwenn moun konsa.";
+
+/* No comment provided by engineer. */
 "We've made a few changes." = "Nou te fè kèk chanjman.";
 
 /* No comment provided by engineer. */
@@ -872,10 +914,16 @@
 "You must enable Microphone permissions in Settings." = "Ou dwe aktive pèmisyon Mikwofòn nan Paramèt.";
 
 /* No comment provided by engineer. */
+"You will be logged out of this student account." = "Y ap dekonekte w sou kont elèv li a.";
+
+/* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Ou pral sispann aji tankou %@ epi sou kont ou.";
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Ou pral sispann aji tankou yon itilizatè epi retounen sou kont ou.";
+
+/* No comment provided by engineer. */
+"Your child's courses might not be published yet." = "Kou pitit ou a gendwa poko pibliye.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Imèl Ou";

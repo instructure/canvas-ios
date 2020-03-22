@@ -8,9 +8,6 @@
 "%@ is due at %@" = "%1$@ mija %2$@";
 
 /* No comment provided by engineer. */
-"%@ to %@" = "%1$@ do %2$@";
-
-/* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ rozpocznie się o %2$@";
 
 /* label for conversation row with context, subject, & last message date & text */
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Announcement" = "Ogłoszenie";
-
-/* No comment provided by engineer. */
-"Assignment" = "Zadanie";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Ocena za zadanie powyżej";
@@ -116,16 +110,10 @@
 "Current student: %@. Tap to switch students" = "Obecny uczestnik: %@. Stuknij, aby przełącznik uczestników";
 
 /* No comment provided by engineer. */
-"Discussion" = "Dyskusja";
-
-/* No comment provided by engineer. */
 "Dismiss" = "Odwołaj";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Edytuj odbiorców";
-
-/* No comment provided by engineer. */
-"Event" = "Wydarzenie";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Przypomnienie o zdarzeniu";
@@ -178,9 +166,6 @@
 /* Title for an alert view */
 "Invalid Input" = "Nieważne dane";
 
-/* Last Week Button Accessibility Label */
-"Last Week" = "Poprzedni tydzień";
-
 /* No comment provided by engineer. */
 "Late" = "Spóźnione";
 
@@ -223,9 +208,6 @@
 /* No comment provided by engineer. */
 "New Message" = "Nowa wiadomość";
 
-/* Next Week Button Accessibility Label */
-"Next Week" = "Następny tydzień";
-
 /* Empty Courses Text */
 "No Courses" = "Brak kursów";
 
@@ -238,9 +220,6 @@
 /* No comment provided by engineer. */
 "No Subject" = "Brak tematu";
 
-/* Empty Calendar Events Text */
-"Nothing this week" = "Nic w tym tygodniu";
-
 /* OK Button Title */
 "OK" = "OK";
 
@@ -249,9 +228,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Wymagane uprawnienia";
-
-/* No comment provided by engineer. */
-"Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
 "Recipients" = "Odbiorcy";
@@ -263,6 +239,9 @@
    Regarding <John Doe>, <Grades | Syllabus>
    Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "W odniesieniu do: %1$@, %2$@";
+
+/* Regarding <Name>, Assignment - <Assignment Name> */
+"Regarding: %@, Assignment - %@" = "W odniesieniu do: %1$@, zadanie- %2$@";
 
 /* No comment provided by engineer. */
 "Reply" = "Odpowiedz";
@@ -297,7 +276,7 @@
 /* No comment provided by engineer. */
 "Summary" = "Podsumowanie";
 
-/* Syllabus Button Title */
+/* No comment provided by engineer. */
 "Syllabus" = "Konspekt";
 
 /* Directions in the admin view */

@@ -8,9 +8,6 @@
 "%@ is due at %@" = "%1$@ määräpäivä on %2$@";
 
 /* No comment provided by engineer. */
-"%@ to %@" = "%1$@ - %2$@";
-
-/* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ alkaa %2$@";
 
 /* label for conversation row with context, subject, & last message date & text */
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Announcement" = "Ilmoitus";
-
-/* No comment provided by engineer. */
-"Assignment" = "Tehtävä";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Tehtävän arvosana yllä";
@@ -116,16 +110,10 @@
 "Current student: %@. Tap to switch students" = "Kurssin opiskelija %@. Napauta vaihtaaksesi opiskelijoita";
 
 /* No comment provided by engineer. */
-"Discussion" = "Keskustelu";
-
-/* No comment provided by engineer. */
 "Dismiss" = "Ohita";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Muokkaa vastaanottajia";
-
-/* No comment provided by engineer. */
-"Event" = "Tapahtuma";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Tapahtuman muistutus";
@@ -178,9 +166,6 @@
 /* Title for an alert view */
 "Invalid Input" = "Virheellinen syöte";
 
-/* Last Week Button Accessibility Label */
-"Last Week" = "Viime viikko";
-
 /* No comment provided by engineer. */
 "Late" = "Myöhään";
 
@@ -223,9 +208,6 @@
 /* No comment provided by engineer. */
 "New Message" = "Uusi viesti";
 
-/* Next Week Button Accessibility Label */
-"Next Week" = "Ensi viikolla";
-
 /* Empty Courses Text */
 "No Courses" = "Ei kursseja";
 
@@ -238,9 +220,6 @@
 /* No comment provided by engineer. */
 "No Subject" = "Ei aihetta";
 
-/* Empty Calendar Events Text */
-"Nothing this week" = "Ei mitään tällä viikolla";
-
 /* OK Button Title */
 "OK" = "OK";
 
@@ -249,9 +228,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Käyttöoikeus tarvitaan";
-
-/* No comment provided by engineer. */
-"Quiz" = "Tietovisa";
 
 /* No comment provided by engineer. */
 "Recipients" = "Vastaanottajat";
@@ -263,6 +239,9 @@
    Regarding <John Doe>, <Grades | Syllabus>
    Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "Koskee: %1$@, %2$@";
+
+/* Regarding <Name>, Assignment - <Assignment Name> */
+"Regarding: %@, Assignment - %@" = "Koskee: %1$@, Tehtävä - %2$@";
 
 /* No comment provided by engineer. */
 "Reply" = "Vastaus";
@@ -297,7 +276,7 @@
 /* No comment provided by engineer. */
 "Summary" = "Yhteenveto";
 
-/* Syllabus Button Title */
+/* No comment provided by engineer. */
 "Syllabus" = "Opinto-ohjelma";
 
 /* Directions in the admin view */

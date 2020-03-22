@@ -1085,6 +1085,9 @@
   "open_for_comments_1810648": {
     "message": "Opna fyrir athugasemdir"
   },
+  "opens_in_student_app_a9571498": {
+    "message": "Opnast í nemendaappi"
+  },
   "options_3ab0ea65": {
     "message": "Valkostir"
   },
@@ -1138,6 +1141,9 @@
   },
   "pinned_discussions_a55c0cea": {
     "message": "Festar umræður"
+  },
+  "please_try_again_5d872e78": {
+    "message": "Vinsamlegast reynið aftur."
   },
   "points_bb475533": {
     "message": "Punktar"
@@ -1426,6 +1432,12 @@
   },
   "student_5da6bfd1": {
     "message": "Nemandi"
+  },
+  "student_view_ac9b672f": {
+    "message": "Nemandasýn"
+  },
+  "student_view_enrollment_not_found_8f9cbdd5": {
+    "message": "Nemandasýnar innritun fannst ekki"
   },
   "students_1b8cd07b": {
     "message": "Nemendur"
@@ -1781,6 +1793,9 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Þér var boðið"
+  },
+  "you_must_access_student_view_for_this_course_once__ae054476": {
+    "message": "Þú þarft að fara inn á nemandasýn fyrir þetta námskeið áður en þú notar nemendasýn í appinu."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Þú þarft að virkja leyfi fyrir myndavél og hljóðnema í stillingum til að nota myndavélina."

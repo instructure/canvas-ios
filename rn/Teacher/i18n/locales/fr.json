@@ -1085,6 +1085,9 @@
   "open_for_comments_1810648": {
     "message": "Ouvert aux commentaires"
   },
+  "opens_in_student_app_a9571498": {
+    "message": "Ouvrez dans l’application Student"
+  },
   "options_3ab0ea65": {
     "message": "Options"
   },
@@ -1138,6 +1141,9 @@
   },
   "pinned_discussions_a55c0cea": {
     "message": "Discussions épinglées"
+  },
+  "please_try_again_5d872e78": {
+    "message": "Veuillez réessayer."
   },
   "points_bb475533": {
     "message": "Points"
@@ -1426,6 +1432,12 @@
   },
   "student_5da6bfd1": {
     "message": "Étudiant"
+  },
+  "student_view_ac9b672f": {
+    "message": "Affichage élève"
+  },
+  "student_view_enrollment_not_found_8f9cbdd5": {
+    "message": "Inscription à l'affichage élève introuvable"
   },
   "students_1b8cd07b": {
     "message": "Étudiants"
@@ -1781,6 +1793,9 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Vous êtes invité"
+  },
+  "you_must_access_student_view_for_this_course_once__ae054476": {
+    "message": "Vous devez activer l’affichage élève pour ce cours une première fois depuis le site Web avant de l’utiliser dans l’application."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Vous devez activer les autorisations « appareil photo et microphone » dans les Paramètres pour utiliser l’appareil photo."

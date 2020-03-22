@@ -8,9 +8,6 @@
 "%@ is due at %@" = "%1$@ is due at %2$@";
 
 /* No comment provided by engineer. */
-"%@ to %@" = "%1$@ to %2$@";
-
-/* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ will begin at %2$@";
 
 /* label for conversation row with context, subject, & last message date & text */
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Announcement" = "Announcement";
-
-/* No comment provided by engineer. */
-"Assignment" = "Assignment";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Assignment grade above";
@@ -116,16 +110,10 @@
 "Current student: %@. Tap to switch students" = "Current student: %@. Tap to switch students";
 
 /* No comment provided by engineer. */
-"Discussion" = "Discussion";
-
-/* No comment provided by engineer. */
 "Dismiss" = "Dismiss";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Edit Recipients";
-
-/* No comment provided by engineer. */
-"Event" = "Event";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Event reminder";
@@ -178,9 +166,6 @@
 /* Title for an alert view */
 "Invalid Input" = "Invalid Input";
 
-/* Last Week Button Accessibility Label */
-"Last Week" = "Last Week";
-
 /* No comment provided by engineer. */
 "Late" = "Late";
 
@@ -223,9 +208,6 @@
 /* No comment provided by engineer. */
 "New Message" = "New Message";
 
-/* Next Week Button Accessibility Label */
-"Next Week" = "Next Week";
-
 /* Empty Courses Text */
 "No Courses" = "No Courses";
 
@@ -238,9 +220,6 @@
 /* No comment provided by engineer. */
 "No Subject" = "No Subject";
 
-/* Empty Calendar Events Text */
-"Nothing this week" = "Nothing this week";
-
 /* OK Button Title */
 "OK" = "OK";
 
@@ -249,9 +228,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Permission Needed";
-
-/* No comment provided by engineer. */
-"Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
 "Recipients" = "Recipients";
@@ -263,6 +239,9 @@
    Regarding <John Doe>, <Grades | Syllabus>
    Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "Regarding: %1$@, %2$@";
+
+/* Regarding <Name>, Assignment - <Assignment Name> */
+"Regarding: %@, Assignment - %@" = "Regarding: %1$@, Assignment - %2$@";
 
 /* No comment provided by engineer. */
 "Reply" = "Reply";
@@ -297,7 +276,7 @@
 /* No comment provided by engineer. */
 "Summary" = "Summary";
 
-/* Syllabus Button Title */
+/* No comment provided by engineer. */
 "Syllabus" = "Syllabus";
 
 /* Directions in the admin view */

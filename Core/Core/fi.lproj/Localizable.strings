@@ -89,6 +89,12 @@
 "Calendar" = "Kalenteri";
 
 /* No comment provided by engineer. */
+"Calendars" = "Kalenterit";
+
+/* No comment provided by engineer. */
+"Calendars (%d)" = "Kalenterit (%d)";
+
+/* No comment provided by engineer. */
 "Camera" = "Kamera";
 
 /* No comment provided by engineer. */
@@ -215,6 +221,9 @@
 "Dashboard" = "Koontinäyttö";
 
 /* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
 "Delete" = "Poista";
 
 /* No comment provided by engineer. */
@@ -329,6 +338,9 @@
 "Filter by:" = "Suodatustapa:";
 
 /* No comment provided by engineer. */
+"Filter events" = "Suodata tapahtumia";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Lopullinen arvosana: %@";
 
 /* No comment provided by engineer. */
@@ -395,6 +407,9 @@
 "Incomplete" = "Keskeneräinen";
 
 /* No comment provided by engineer. */
+"Interactions on this page are limited by your institution." = "Vuorovaikutukset on rajoitettu tällä sivulla laitoksesi puolesta.";
+
+/* No comment provided by engineer. */
 "Invitation" = "Kutsu";
 
 /* No comment provided by engineer. */
@@ -417,6 +432,9 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Käynnistä ulkoinen työkalu";
+
+/* No comment provided by engineer. */
+"Leave Student View" = "Lähde opiskelijanäkymästä";
 
 /* No comment provided by engineer. */
 "Legal" = "Lakitiedot";
@@ -497,10 +515,16 @@
 "No Content" = "Ei sisältöä";
 
 /* No comment provided by engineer. */
+"No Courses" = "Ei kursseja";
+
+/* No comment provided by engineer. */
 "No Due Date" = "Ei määräpäivää";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Kuvaa ei löytynyt kuvan poimintatoiminnosta";
+
+/* No comment provided by engineer. */
+"No Results" = "Ei tuloksia";
 
 /* No comment provided by engineer. */
 "No Submission" = "Ei lähetystä";
@@ -659,6 +683,9 @@
 "Settings" = "Asetukset";
 
 /* No comment provided by engineer. */
+"Show a month at a time" = "Näytä yksi kuukausi kerrallaan";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Näytä arvosanat";
 
 /* No comment provided by engineer. */
@@ -734,6 +761,9 @@
 "Tap here for help." = "Avaa ohje napauttamalla tässä.";
 
 /* No comment provided by engineer. */
+"Tap to select the courses you want to see on the calendar." = "Valitse napauttamalla kurssit, jotka haluat nähdä kalenterissa.";
+
+/* No comment provided by engineer. */
 "Teacher" = "Opettaja";
 
 /* No comment provided by engineer. */
@@ -765,6 +795,15 @@
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Ilmeni ongelma käyttöehtoja noudettaessa.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Kurssien latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
+
+/* No comment provided by engineer. */
+"There was an error loading events. Pull to refresh to try again." = "Tapahtumien latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
+
+/* No comment provided by engineer. */
+"There was an error loading people. Pull to refresh to try again." = "Ihmisten latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Ilmeni virhe toiminnossa Toimi käyttäjänä. Yritä myöhemmin uudelleen.";
@@ -839,6 +878,9 @@
 "View Modules" = "Tarkastele moduuleita";
 
 /* No comment provided by engineer. */
+"We couldn’t find somebody like that." = "Emme löytäneet ketään sellaista.";
+
+/* No comment provided by engineer. */
 "We've made a few changes." = "olemme tehneet muutamia muutoksia.";
 
 /* No comment provided by engineer. */
@@ -872,10 +914,16 @@
 "You must enable Microphone permissions in Settings." = "Mikrofonin käyttöoikeudet täytyy ottaa käyttöön asetuksissa.";
 
 /* No comment provided by engineer. */
+"You will be logged out of this student account." = "Sinut kirjataan ulos tältä opiskelijatililtä.";
+
+/* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Lopetat toimimasta käyttäjänä %@ ja palaat tilillesi.";
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Lopetat toimimasta tänä käyttäjänä ja palaat tilillesi.";
+
+/* No comment provided by engineer. */
+"Your child's courses might not be published yet." = "Tämän lapsen kursseja ei ehkä vielä julkaista.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Sähköpostiosoitteesi";

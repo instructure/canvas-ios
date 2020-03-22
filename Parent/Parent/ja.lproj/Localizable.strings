@@ -8,9 +8,6 @@
 "%@ is due at %@" = "%1$@の期日は（）です%2$@";
 
 /* No comment provided by engineer. */
-"%@ to %@" = "%1$@から%2$@へ";
-
-/* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@（）に開始します%2$@";
 
 /* label for conversation row with context, subject, & last message date & text */
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Announcement" = "発表";
-
-/* No comment provided by engineer. */
-"Assignment" = "課題";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "より上の課題成績";
@@ -116,16 +110,10 @@
 "Current student: %@. Tap to switch students" = "現在の受講生：%@. タップして受講生を切り替える";
 
 /* No comment provided by engineer. */
-"Discussion" = "ディスカッション";
-
-/* No comment provided by engineer. */
 "Dismiss" = "棄却する";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "受信者を編集する";
-
-/* No comment provided by engineer. */
-"Event" = "イベント";
 
 /* No comment provided by engineer. */
 "Event reminder" = "イベントのリマインダ";
@@ -178,9 +166,6 @@
 /* Title for an alert view */
 "Invalid Input" = "無効な入力";
 
-/* Last Week Button Accessibility Label */
-"Last Week" = "先週";
-
 /* No comment provided by engineer. */
 "Late" = "遅滞";
 
@@ -223,9 +208,6 @@
 /* No comment provided by engineer. */
 "New Message" = "新しいメッセージ";
 
-/* Next Week Button Accessibility Label */
-"Next Week" = "次週";
-
 /* Empty Courses Text */
 "No Courses" = "コースなし";
 
@@ -238,9 +220,6 @@
 /* No comment provided by engineer. */
 "No Subject" = "件名なし";
 
-/* Empty Calendar Events Text */
-"Nothing this week" = "今週はありません";
-
 /* OK Button Title */
 "OK" = "OK";
 
@@ -249,9 +228,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "許可が必要";
-
-/* No comment provided by engineer. */
-"Quiz" = "クイズ";
 
 /* No comment provided by engineer. */
 "Recipients" = "受信者";
@@ -263,6 +239,9 @@
    Regarding <John Doe>, <Grades | Syllabus>
    Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "対象：%1$@,%2$@";
+
+/* Regarding <Name>, Assignment - <Assignment Name> */
+"Regarding: %@, Assignment - %@" = "Re：%1$@、課題 - %2$@";
 
 /* No comment provided by engineer. */
 "Reply" = "返信";
@@ -297,7 +276,7 @@
 /* No comment provided by engineer. */
 "Summary" = "概要";
 
-/* Syllabus Button Title */
+/* No comment provided by engineer. */
 "Syllabus" = "シラバス";
 
 /* Directions in the admin view */

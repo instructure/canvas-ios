@@ -89,6 +89,12 @@
 "Calendar" = "行事曆";
 
 /* No comment provided by engineer. */
+"Calendars" = "行事曆";
+
+/* No comment provided by engineer. */
+"Calendars (%d)" = "行事曆 (%d)";
+
+/* No comment provided by engineer. */
 "Camera" = "攝影機";
 
 /* No comment provided by engineer. */
@@ -215,6 +221,9 @@
 "Dashboard" = "控制面板";
 
 /* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
 "Delete" = "刪除";
 
 /* No comment provided by engineer. */
@@ -329,6 +338,9 @@
 "Filter by:" = "篩選條件為：";
 
 /* No comment provided by engineer. */
+"Filter events" = "篩選活動";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "最終評分：%@";
 
 /* No comment provided by engineer. */
@@ -395,6 +407,9 @@
 "Incomplete" = "未完成";
 
 /* No comment provided by engineer. */
+"Interactions on this page are limited by your institution." = "本頁面的互動受您所在機構的限制。";
+
+/* No comment provided by engineer. */
 "Invitation" = "邀請";
 
 /* No comment provided by engineer. */
@@ -417,6 +432,9 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "啟動外部工具";
+
+/* No comment provided by engineer. */
+"Leave Student View" = "離開學生視圖";
 
 /* No comment provided by engineer. */
 "Legal" = "法律事務";
@@ -497,10 +515,16 @@
 "No Content" = "無內容";
 
 /* No comment provided by engineer. */
+"No Courses" = "無課程";
+
+/* No comment provided by engineer. */
 "No Due Date" = "無截止日期";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "從影像選擇器中找不到影像";
+
+/* No comment provided by engineer. */
+"No Results" = "沒有結果";
 
 /* No comment provided by engineer. */
 "No Submission" = "無提交項目";
@@ -659,6 +683,9 @@
 "Settings" = "設定";
 
 /* No comment provided by engineer. */
+"Show a month at a time" = "一次顯示一個月";
+
+/* No comment provided by engineer. */
 "Show Grades" = "顯示成績";
 
 /* No comment provided by engineer. */
@@ -734,6 +761,9 @@
 "Tap here for help." = "點按此處獲取支援。";
 
 /* No comment provided by engineer. */
+"Tap to select the courses you want to see on the calendar." = "點選以選擇您要在行事曆上看到的課程。";
+
+/* No comment provided by engineer. */
 "Teacher" = "教師";
 
 /* No comment provided by engineer. */
@@ -765,6 +795,15 @@
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "取得使用條款時出現問題。";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "載入課程時發生錯誤。提取以進行重新整理以再試一次。";
+
+/* No comment provided by engineer. */
+"There was an error loading events. Pull to refresh to try again." = "載入活動時發生錯誤。提取以進行重新整理以再試一次。";
+
+/* No comment provided by engineer. */
+"There was an error loading people. Pull to refresh to try again." = "載入成員時發生錯誤。提取以進行重新整理以再試一次。";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "作為使用者時出現錯誤。請稍後重試。";
@@ -839,6 +878,9 @@
 "View Modules" = "查看單元";
 
 /* No comment provided by engineer. */
+"We couldn’t find somebody like that." = "我們找不到像那樣的人。";
+
+/* No comment provided by engineer. */
 "We've made a few changes." = "我們作出了一些變更。";
 
 /* No comment provided by engineer. */
@@ -872,10 +914,16 @@
 "You must enable Microphone permissions in Settings." = "您必須在「設定」中啟用麥克風的權限。";
 
 /* No comment provided by engineer. */
+"You will be logged out of this student account." = "您將退出此學生帳戶。";
+
+/* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "您將會停止作為 %@ 並返回到您的帳戶。";
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "您將會停止作為此使用者並返回到您的帳戶。";
+
+/* No comment provided by engineer. */
+"Your child's courses might not be published yet." = "您的子課程可能尚未發佈。";
 
 /* No comment provided by engineer. */
 "Your Email" = "您的電子郵件";

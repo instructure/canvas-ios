@@ -1085,6 +1085,9 @@
   "open_for_comments_1810648": {
     "message": "Huaki mo ngā kōrero"
   },
+  "opens_in_student_app_a9571498": {
+    "message": "Ka huaki i roto i te Taupānga Akonga"
+  },
   "options_3ab0ea65": {
     "message": "Ngā kōwhiringa"
   },
@@ -1138,6 +1141,9 @@
   },
   "pinned_discussions_a55c0cea": {
     "message": "Ngā Kōrerorero kua pinea"
+  },
+  "please_try_again_5d872e78": {
+    "message": "Tēnā koa ngana anō."
   },
   "points_bb475533": {
     "message": "Ngā Kōinga"
@@ -1426,6 +1432,12 @@
   },
   "student_5da6bfd1": {
     "message": "Ākonga"
+  },
+  "student_view_ac9b672f": {
+    "message": "Tirohanga Ākonga"
+  },
+  "student_view_enrollment_not_found_8f9cbdd5": {
+    "message": "Kaore e kitea te Tirohanga Ākonga Whakauru"
   },
   "students_1b8cd07b": {
     "message": "Ngā ākonga"
@@ -1781,6 +1793,9 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Kua tonoa koe"
+  },
+  "you_must_access_student_view_for_this_course_once__ae054476": {
+    "message": "Me whakauru koe te Ākonga Tirohanga mo tēnei ākoranga i te wā kotahi mai i te ipurangi i nua i te whakamahi i te Tirohanga Ākonga i roto i te taupānga."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Me whakahohe e koe te Kamera me ngā whakāetanga Reooro i roto i ngā Tautuhinga hei whakamahi i te kāmera."

@@ -1085,6 +1085,9 @@
   "open_for_comments_1810648": {
     "message": "Öppna för kommentarer"
   },
+  "opens_in_student_app_a9571498": {
+    "message": "Öppnas i elevapp"
+  },
   "options_3ab0ea65": {
     "message": "Alternativ"
   },
@@ -1138,6 +1141,9 @@
   },
   "pinned_discussions_a55c0cea": {
     "message": "Fästa diskussioner"
+  },
+  "please_try_again_5d872e78": {
+    "message": "Försök igen."
   },
   "points_bb475533": {
     "message": "Poäng"
@@ -1426,6 +1432,12 @@
   },
   "student_5da6bfd1": {
     "message": "Elev"
+  },
+  "student_view_ac9b672f": {
+    "message": "Elevens vy"
+  },
+  "student_view_enrollment_not_found_8f9cbdd5": {
+    "message": "Registrering för elevens vy hittades inte"
   },
   "students_1b8cd07b": {
     "message": "Elever"
@@ -1781,6 +1793,9 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Du har blivit inbjuden"
+  },
+  "you_must_access_student_view_for_this_course_once__ae054476": {
+    "message": "Du måste öppna elevens vy för den här kursen en gång från webbplatsen innan du kan använda den i appen."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Du måste aktivera kamera- och mikrofonbehörigheter i Inställningar för att kunna använda kameran."

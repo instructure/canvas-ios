@@ -89,6 +89,12 @@
 "Calendar" = "Kalender";
 
 /* No comment provided by engineer. */
+"Calendars" = "Kalenders";
+
+/* No comment provided by engineer. */
+"Calendars (%d)" = "Kalenders (%d)";
+
+/* No comment provided by engineer. */
 "Camera" = "Camera";
 
 /* No comment provided by engineer. */
@@ -215,6 +221,9 @@
 "Dashboard" = "Dashboard";
 
 /* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
 "Delete" = "Verwijderen";
 
 /* No comment provided by engineer. */
@@ -329,6 +338,9 @@
 "Filter by:" = "Filteren op:";
 
 /* No comment provided by engineer. */
+"Filter events" = "Gebeurtenissen filteren";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Eindcijfer: %@";
 
 /* No comment provided by engineer. */
@@ -395,6 +407,9 @@
 "Incomplete" = "Incompleet";
 
 /* No comment provided by engineer. */
+"Interactions on this page are limited by your institution." = "Interacties op deze pagina zijn beperkt door je organisatie.";
+
+/* No comment provided by engineer. */
 "Invitation" = "Uitnodiging";
 
 /* No comment provided by engineer. */
@@ -417,6 +432,9 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Extern hulpmiddel lanceren";
+
+/* No comment provided by engineer. */
+"Leave Student View" = "Weergave voor cursisten verlaten";
 
 /* No comment provided by engineer. */
 "Legal" = "Juridisch";
@@ -497,10 +515,16 @@
 "No Content" = "Geen inhoud";
 
 /* No comment provided by engineer. */
+"No Courses" = "Geen cursussen";
+
+/* No comment provided by engineer. */
 "No Due Date" = "Geen inleverdatum";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Er is geen afbeelding gevonden van afbeeldingkiezer";
+
+/* No comment provided by engineer. */
+"No Results" = "Geen resultaten";
 
 /* No comment provided by engineer. */
 "No Submission" = "Geen inzending";
@@ -659,6 +683,9 @@
 "Settings" = "Instellingen";
 
 /* No comment provided by engineer. */
+"Show a month at a time" = "Een maand tegelijk tonen";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Cijfers tonen";
 
 /* No comment provided by engineer. */
@@ -734,6 +761,9 @@
 "Tap here for help." = "Tik hier voor hulp.";
 
 /* No comment provided by engineer. */
+"Tap to select the courses you want to see on the calendar." = "Tik om de cursussen te selecteren die je in de kalender wilt zien.";
+
+/* No comment provided by engineer. */
 "Teacher" = "Docent";
 
 /* No comment provided by engineer. */
@@ -765,6 +795,15 @@
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Er is een probleem met het ophalen van de gebruiksvoorwaarden";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van cursussen. Pull om te vernieuwen om het opnieuw te proberen.";
+
+/* No comment provided by engineer. */
+"There was an error loading events. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van gebeurtenissen. Pull om te vernieuwen om het opnieuw te proberen.";
+
+/* No comment provided by engineer. */
+"There was an error loading people. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van personen. Pull om te vernieuwen om het opnieuw te proberen.";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Er is een fout met het instellen van Optreden als gebruiker. Probeer het later opnieuw.";
@@ -839,6 +878,9 @@
 "View Modules" = "Modules weergeven";
 
 /* No comment provided by engineer. */
+"We couldn’t find somebody like that." = "We hebben niemand kunnen vinden die daaraan voldoet.";
+
+/* No comment provided by engineer. */
 "We've made a few changes." = "We hebben enkele wijzigingen aangebracht.";
 
 /* No comment provided by engineer. */
@@ -872,10 +914,16 @@
 "You must enable Microphone permissions in Settings." = "Je moet Microfoon-toestemmingen inschakelen in Instellingen.";
 
 /* No comment provided by engineer. */
+"You will be logged out of this student account." = "Je wordt afgemeld bij dit cursistaccount.";
+
+/* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Je stopt met optreden als %@ en keert terug naar je account.";
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Je stopt met optreden als deze gebruiker en keert terug naar je account.";
+
+/* No comment provided by engineer. */
+"Your child's courses might not be published yet." = "De cursussen van je cursist zijn mogelijk nog niet gepubliceerd.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Je e-mail";

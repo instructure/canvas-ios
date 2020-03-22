@@ -8,9 +8,6 @@
 "%@ is due at %@" = "%1$@ ska vara klar %2$@";
 
 /* No comment provided by engineer. */
-"%@ to %@" = "%1$@ till %2$@";
-
-/* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ börjar %2$@";
 
 /* label for conversation row with context, subject, & last message date & text */
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Announcement" = "Anslag";
-
-/* No comment provided by engineer. */
-"Assignment" = "Uppgift";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Uppgiftsomdöme över";
@@ -116,16 +110,10 @@
 "Current student: %@. Tap to switch students" = "Aktuell elev: %@. Tryck för att växla elev";
 
 /* No comment provided by engineer. */
-"Discussion" = "Diskussion";
-
-/* No comment provided by engineer. */
 "Dismiss" = "Avvisa";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Redigera mottagare";
-
-/* No comment provided by engineer. */
-"Event" = "Händelse";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Påminnelse om händelse";
@@ -167,7 +155,7 @@
 "Inbox" = "Inkorg";
 
 /* No comment provided by engineer. */
-"Inbox Zero" = "Inbox Zero";
+"Inbox Zero" = "Inkorg noll";
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Ange kopplingskoden du fått för elever.";
@@ -177,9 +165,6 @@
 
 /* Title for an alert view */
 "Invalid Input" = "Ogiltig inmatning";
-
-/* Last Week Button Accessibility Label */
-"Last Week" = "Senaste veckan";
 
 /* No comment provided by engineer. */
 "Late" = "Sen";
@@ -223,9 +208,6 @@
 /* No comment provided by engineer. */
 "New Message" = "Nytt kursmeddelande";
 
-/* Next Week Button Accessibility Label */
-"Next Week" = "Nästa vecka";
-
 /* Empty Courses Text */
 "No Courses" = "Inga kurser";
 
@@ -238,9 +220,6 @@
 /* No comment provided by engineer. */
 "No Subject" = "Inget ämne";
 
-/* Empty Calendar Events Text */
-"Nothing this week" = "Inget den här veckan";
-
 /* OK Button Title */
 "OK" = "OK";
 
@@ -249,9 +228,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Tillstånd behövs";
-
-/* No comment provided by engineer. */
-"Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
 "Recipients" = "Mottagare";
@@ -263,6 +239,9 @@
    Regarding <John Doe>, <Grades | Syllabus>
    Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "Angående : %1$@, %2$@";
+
+/* Regarding <Name>, Assignment - <Assignment Name> */
+"Regarding: %@, Assignment - %@" = "Angående : %1$@, uppgift – %2$@";
 
 /* No comment provided by engineer. */
 "Reply" = "Svara";
@@ -297,7 +276,7 @@
 /* No comment provided by engineer. */
 "Summary" = "Sammanfattning";
 
-/* Syllabus Button Title */
+/* No comment provided by engineer. */
 "Syllabus" = "Kursöversikt";
 
 /* Directions in the admin view */

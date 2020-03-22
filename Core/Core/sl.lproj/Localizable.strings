@@ -89,6 +89,12 @@
 "Calendar" = "Koledar";
 
 /* No comment provided by engineer. */
+"Calendars" = "Koledarji";
+
+/* No comment provided by engineer. */
+"Calendars (%d)" = "Koledarji (%d)";
+
+/* No comment provided by engineer. */
 "Camera" = "Fotoaparat";
 
 /* No comment provided by engineer. */
@@ -215,6 +221,9 @@
 "Dashboard" = "Preglednica";
 
 /* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
 "Delete" = "Odstrani";
 
 /* No comment provided by engineer. */
@@ -329,6 +338,9 @@
 "Filter by:" = "Filtriraj glede na:";
 
 /* No comment provided by engineer. */
+"Filter events" = "Filtriraj dogodke";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Končna ocena: %@";
 
 /* No comment provided by engineer. */
@@ -395,6 +407,9 @@
 "Incomplete" = "Nezaključeno";
 
 /* No comment provided by engineer. */
+"Interactions on this page are limited by your institution." = "Interakcije na tej strani omejuje vaša ustanova.";
+
+/* No comment provided by engineer. */
 "Invitation" = "Povabilo";
 
 /* No comment provided by engineer. */
@@ -417,6 +432,9 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Zaženi zunanje orodje";
+
+/* No comment provided by engineer. */
+"Leave Student View" = "Zapusti pogled študenta";
 
 /* No comment provided by engineer. */
 "Legal" = "Pravne informacije";
@@ -497,10 +515,16 @@
 "No Content" = "Ni vsebine.";
 
 /* No comment provided by engineer. */
+"No Courses" = "Ni predmetov";
+
+/* No comment provided by engineer. */
 "No Due Date" = "Ni roka.";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Izbirnik slik ni našel nobene slike";
+
+/* No comment provided by engineer. */
+"No Results" = "Ni rezultatov";
 
 /* No comment provided by engineer. */
 "No Submission" = "Ni oddaj.";
@@ -659,6 +683,9 @@
 "Settings" = "Nastavitve";
 
 /* No comment provided by engineer. */
+"Show a month at a time" = "Prikaži po en mesec naenkrat";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Prikaži ocene";
 
 /* No comment provided by engineer. */
@@ -734,6 +761,9 @@
 "Tap here for help." = "Za pomoč tapnite tukaj.";
 
 /* No comment provided by engineer. */
+"Tap to select the courses you want to see on the calendar." = "Tapnite za izbiro predmetov, ki jih želite prikazane na koledarju.";
+
+/* No comment provided by engineer. */
 "Teacher" = "Izvajalec";
 
 /* No comment provided by engineer. */
@@ -765,6 +795,15 @@
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Prišlo je do težav pri pridobivanju pogojev uporabe.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Pri nalaganju predmetov je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
+
+/* No comment provided by engineer. */
+"There was an error loading events. Pull to refresh to try again." = "Pri nalaganju dogodkov je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
+
+/* No comment provided by engineer. */
+"There was an error loading people. Pull to refresh to try again." = "Pri nalaganju ljudi je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Prišlo je do napake pri prevzemanju vloge uporabnika. Poskusite znova pozneje.";
@@ -839,6 +878,9 @@
 "View Modules" = "Ogled modulov";
 
 /* No comment provided by engineer. */
+"We couldn’t find somebody like that." = "Nikogar takšnega nismo uspeli najti.";
+
+/* No comment provided by engineer. */
 "We've made a few changes." = "Uvedli smo nekaj sprememb.";
 
 /* No comment provided by engineer. */
@@ -872,10 +914,16 @@
 "You must enable Microphone permissions in Settings." = "Za snemanje zvoka morate v možnosti »Nastavitve« omogočiti dovoljenja mikrofona.";
 
 /* No comment provided by engineer. */
+"You will be logged out of this student account." = "Iz tega študentskega računa boste odjavljeni.";
+
+/* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Prenehali boste nastopati v vlogi %@ in vrnili se boste v svoj račun.";
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Prenehali boste nastopati v vlogi tega uporabnika in se boste vrnili v svoj račun.";
+
+/* No comment provided by engineer. */
+"Your child's courses might not be published yet." = "Predmeti vašega otroka morda še niso objavljeni.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Vaš e-poštni naslov";

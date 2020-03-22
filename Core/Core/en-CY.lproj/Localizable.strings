@@ -89,6 +89,12 @@
 "Calendar" = "Calendar";
 
 /* No comment provided by engineer. */
+"Calendars" = "Calendars";
+
+/* No comment provided by engineer. */
+"Calendars (%d)" = "Calendars (%d)";
+
+/* No comment provided by engineer. */
 "Camera" = "Camera";
 
 /* No comment provided by engineer. */
@@ -215,6 +221,9 @@
 "Dashboard" = "Dashboard";
 
 /* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
 "Delete" = "Delete";
 
 /* No comment provided by engineer. */
@@ -329,6 +338,9 @@
 "Filter by:" = "Filter by:";
 
 /* No comment provided by engineer. */
+"Filter events" = "Filter events";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Final grade: %@";
 
 /* No comment provided by engineer. */
@@ -395,6 +407,9 @@
 "Incomplete" = "Incomplete";
 
 /* No comment provided by engineer. */
+"Interactions on this page are limited by your institution." = "Interactions on this page are limited by your institution.";
+
+/* No comment provided by engineer. */
 "Invitation" = "Invitation";
 
 /* No comment provided by engineer. */
@@ -417,6 +432,9 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Launch external tool";
+
+/* No comment provided by engineer. */
+"Leave Student View" = "Leave student view";
 
 /* No comment provided by engineer. */
 "Legal" = "Legal";
@@ -497,10 +515,16 @@
 "No Content" = "No Content";
 
 /* No comment provided by engineer. */
+"No Courses" = "No modules";
+
+/* No comment provided by engineer. */
 "No Due Date" = "No due date";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "No image found from image picker";
+
+/* No comment provided by engineer. */
+"No Results" = "No results";
 
 /* No comment provided by engineer. */
 "No Submission" = "No submission";
@@ -659,6 +683,9 @@
 "Settings" = "Settings";
 
 /* No comment provided by engineer. */
+"Show a month at a time" = "Show a month at a time";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Show marks";
 
 /* No comment provided by engineer. */
@@ -734,6 +761,9 @@
 "Tap here for help." = "Tap here for help.";
 
 /* No comment provided by engineer. */
+"Tap to select the courses you want to see on the calendar." = "Tap to select the modules you want to see on the calendar.";
+
+/* No comment provided by engineer. */
 "Teacher" = "Teacher";
 
 /* No comment provided by engineer. */
@@ -765,6 +795,15 @@
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "There was a problem retrieving the Terms of Use.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "There was an error loading modules. Pull to refresh to try again.";
+
+/* No comment provided by engineer. */
+"There was an error loading events. Pull to refresh to try again." = "There was an error loading events. Pull to refresh to try again.";
+
+/* No comment provided by engineer. */
+"There was an error loading people. Pull to refresh to try again." = "There was an error loading people. Pull to refresh to try again.";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "There was an error with act as user. Please try again later.";
@@ -839,6 +878,9 @@
 "View Modules" = "View Units";
 
 /* No comment provided by engineer. */
+"We couldn’t find somebody like that." = "We couldn’t find somebody like that.";
+
+/* No comment provided by engineer. */
 "We've made a few changes." = "We've made a few changes.";
 
 /* No comment provided by engineer. */
@@ -872,10 +914,16 @@
 "You must enable Microphone permissions in Settings." = "You must enable Microphone permissions in Settings.";
 
 /* No comment provided by engineer. */
+"You will be logged out of this student account." = "You will be logged out of this student account.";
+
+/* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "You will stop acting as %@ and return to your account.";
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "You will stop acting as this user and return to your account.";
+
+/* No comment provided by engineer. */
+"Your child's courses might not be published yet." = "Your child's modules might not be published yet.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Your email";

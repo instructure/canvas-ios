@@ -8,9 +8,6 @@
 "%@ is due at %@" = "%1$@ مستحق في %2$@";
 
 /* No comment provided by engineer. */
-"%@ to %@" = "%1$@ على %2$@";
-
-/* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ سيبدأ في %2$@";
 
 /* label for conversation row with context, subject, & last message date & text */
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Announcement" = "الإعلان";
-
-/* No comment provided by engineer. */
-"Assignment" = "المهمة";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "درجة المهمة أكبر من";
@@ -116,16 +110,10 @@
 "Current student: %@. Tap to switch students" = "الطالب الحالي: %@. اضغط لتبديل الطلاب";
 
 /* No comment provided by engineer. */
-"Discussion" = "النقاش";
-
-/* No comment provided by engineer. */
 "Dismiss" = "رفض";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "تحرير المستلمين";
-
-/* No comment provided by engineer. */
-"Event" = "الحدث";
 
 /* No comment provided by engineer. */
 "Event reminder" = "التذكير بالحدث";
@@ -178,9 +166,6 @@
 /* Title for an alert view */
 "Invalid Input" = "إدخال غير صالح";
 
-/* Last Week Button Accessibility Label */
-"Last Week" = "الأسبوع الماضي";
-
 /* No comment provided by engineer. */
 "Late" = "متأخر";
 
@@ -223,9 +208,6 @@
 /* No comment provided by engineer. */
 "New Message" = "رسالة جديدة";
 
-/* Next Week Button Accessibility Label */
-"Next Week" = "الأسبوع المقبل";
-
 /* Empty Courses Text */
 "No Courses" = "لا يوجد أي مساق";
 
@@ -238,9 +220,6 @@
 /* No comment provided by engineer. */
 "No Subject" = "لا يوجد موضوع";
 
-/* Empty Calendar Events Text */
-"Nothing this week" = "لا شيء هذا الأسبوع";
-
 /* OK Button Title */
 "OK" = "موافق";
 
@@ -249,9 +228,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "مطلوب إذن";
-
-/* No comment provided by engineer. */
-"Quiz" = "الاختبار الموجز";
 
 /* No comment provided by engineer. */
 "Recipients" = "المتلقون";
@@ -263,6 +239,9 @@
    Regarding <John Doe>, <Grades | Syllabus>
    Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "بخصوص: %1$@، %2$@";
+
+/* Regarding <Name>, Assignment - <Assignment Name> */
+"Regarding: %@, Assignment - %@" = "بخصوص: %1$@، المهمة -  %2$@";
 
 /* No comment provided by engineer. */
 "Reply" = "رد";
@@ -297,7 +276,7 @@
 /* No comment provided by engineer. */
 "Summary" = "ملخص";
 
-/* Syllabus Button Title */
+/* No comment provided by engineer. */
 "Syllabus" = "المناهج";
 
 /* Directions in the admin view */

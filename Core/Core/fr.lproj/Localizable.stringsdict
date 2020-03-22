@@ -85,7 +85,7 @@
 	<key>date_d_events</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%@, %#@events@</string>
+		<string>%@, %#@événements@</string>
 		<key>events</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -93,9 +93,25 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d event</string>
+			<string>%d événement</string>
 			<key>other</key>
-			<string>%d events</string>
+			<string>%d événements</string>
+		</dict>
+	</dict>
+	<key>filter_events_d_calendars_selected</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Filter events, %#@calendars@</string>
+		<key>calendars</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d calendar selected</string>
+			<key>other</key>
+			<string>%d calendars selected</string>
 		</dict>
 	</dict>
 	<key>final_grade_g_pts</key>

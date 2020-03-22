@@ -8,9 +8,6 @@
 "%@ is due at %@" = "%1$@ необходимо завершить через %2$@";
 
 /* No comment provided by engineer. */
-"%@ to %@" = "%1$@ до %2$@";
-
-/* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ начнется в %2$@";
 
 /* label for conversation row with context, subject, & last message date & text */
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Announcement" = "Объявление";
-
-/* No comment provided by engineer. */
-"Assignment" = "Задание";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Оценка за задание выше";
@@ -116,16 +110,10 @@
 "Current student: %@. Tap to switch students" = "Текущий студент: %@. Нажмите для переключения студентов";
 
 /* No comment provided by engineer. */
-"Discussion" = "Обсуждение";
-
-/* No comment provided by engineer. */
 "Dismiss" = "Отклонить";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Редактировать получателей";
-
-/* No comment provided by engineer. */
-"Event" = "Событие";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Напоминание о событии";
@@ -178,9 +166,6 @@
 /* Title for an alert view */
 "Invalid Input" = "Некорректный ввод";
 
-/* Last Week Button Accessibility Label */
-"Last Week" = "На прошлой неделе";
-
 /* No comment provided by engineer. */
 "Late" = "Поздно";
 
@@ -223,9 +208,6 @@
 /* No comment provided by engineer. */
 "New Message" = "Новое сообщение";
 
-/* Next Week Button Accessibility Label */
-"Next Week" = "На следующей неделе";
-
 /* Empty Courses Text */
 "No Courses" = "Курсы отсутствуют";
 
@@ -238,9 +220,6 @@
 /* No comment provided by engineer. */
 "No Subject" = "Нет темы";
 
-/* Empty Calendar Events Text */
-"Nothing this week" = "Ничего на этой неделе";
-
 /* OK Button Title */
 "OK" = "OK";
 
@@ -249,9 +228,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Требуется разрешение";
-
-/* No comment provided by engineer. */
-"Quiz" = "Тест";
 
 /* No comment provided by engineer. */
 "Recipients" = "Получатели";
@@ -263,6 +239,9 @@
    Regarding <John Doe>, <Grades | Syllabus>
    Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "Касательно: %1$@, %2$@";
+
+/* Regarding <Name>, Assignment - <Assignment Name> */
+"Regarding: %@, Assignment - %@" = "Касательно: %1$@, задание - %2$@";
 
 /* No comment provided by engineer. */
 "Reply" = "Ответить";
@@ -297,7 +276,7 @@
 /* No comment provided by engineer. */
 "Summary" = "Сводные данные";
 
-/* Syllabus Button Title */
+/* No comment provided by engineer. */
 "Syllabus" = "Учебный план";
 
 /* Directions in the admin view */

@@ -89,6 +89,12 @@
 "Calendar" = "予定表";
 
 /* No comment provided by engineer. */
+"Calendars" = "予定表";
+
+/* No comment provided by engineer. */
+"Calendars (%d)" = "予定表 (%d)";
+
+/* No comment provided by engineer. */
 "Camera" = "カメラ";
 
 /* No comment provided by engineer. */
@@ -215,6 +221,9 @@
 "Dashboard" = "ダッシュボード";
 
 /* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
 "Delete" = "削除";
 
 /* No comment provided by engineer. */
@@ -329,6 +338,9 @@
 "Filter by:" = "フィルター要素：";
 
 /* No comment provided by engineer. */
+"Filter events" = "イベントをフィルタする";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "最終的な成績：%@";
 
 /* No comment provided by engineer. */
@@ -395,6 +407,9 @@
 "Incomplete" = "不完全";
 
 /* No comment provided by engineer. */
+"Interactions on this page are limited by your institution." = "このページでのやり取りは、あなたの教育機関によって制限されています。";
+
+/* No comment provided by engineer. */
 "Invitation" = "招待状";
 
 /* No comment provided by engineer. */
@@ -417,6 +432,9 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "外部ツールを起動する";
+
+/* No comment provided by engineer. */
+"Leave Student View" = "受講生ビューを閉じる";
 
 /* No comment provided by engineer. */
 "Legal" = "法務";
@@ -497,10 +515,16 @@
 "No Content" = "コンテンツなし";
 
 /* No comment provided by engineer. */
+"No Courses" = "コースはありません";
+
+/* No comment provided by engineer. */
 "No Due Date" = "期日なし";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "画像ピッカーに画像が見つかりませんでした";
+
+/* No comment provided by engineer. */
+"No Results" = "結果はありません";
 
 /* No comment provided by engineer. */
 "No Submission" = "提出なし";
@@ -659,6 +683,9 @@
 "Settings" = "設定";
 
 /* No comment provided by engineer. */
+"Show a month at a time" = "一度に 1 か月表示する";
+
+/* No comment provided by engineer. */
 "Show Grades" = "成績を表示";
 
 /* No comment provided by engineer. */
@@ -734,6 +761,9 @@
 "Tap here for help." = "ここをタップしてヘルプを表示します。";
 
 /* No comment provided by engineer. */
+"Tap to select the courses you want to see on the calendar." = "タップして予定表に表示したいコースを選択してください。";
+
+/* No comment provided by engineer. */
 "Teacher" = "講師";
 
 /* No comment provided by engineer. */
@@ -765,6 +795,15 @@
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "利用規約の取得中に問題が発生しました。";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "コースのロード中にエラーが発生しました。プルして更新し、再試行してください。";
+
+/* No comment provided by engineer. */
+"There was an error loading events. Pull to refresh to try again." = "イベントのロード中にエラーが発生しました。プルして更新し、再試行してください。";
+
+/* No comment provided by engineer. */
+"There was an error loading people. Pull to refresh to try again." = "ピープルのロード中にエラーが発生しました。プルして更新し、再試行してください。";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "ユーザーとして行動する際にエラーが発生しました。後ほどもういちど試してください。";
@@ -839,6 +878,9 @@
 "View Modules" = "モジュールの表示";
 
 /* No comment provided by engineer. */
+"We couldn’t find somebody like that." = "そのような人物を見つけることができませんでした。";
+
+/* No comment provided by engineer. */
 "We've made a few changes." = "2、3変更がありました。";
 
 /* No comment provided by engineer. */
@@ -872,10 +914,16 @@
 "You must enable Microphone permissions in Settings." = "「設定」でマイクの許可を有効にしなければなりません。";
 
 /* No comment provided by engineer. */
+"You will be logged out of this student account." = "この受講生アカウントからログアウトされます。";
+
+/* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "%@行動することを止め、自分のアカウントに戻る";
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "このユーザーとして行動することを止め、自分のアカウントに戻る";
+
+/* No comment provided by engineer. */
+"Your child's courses might not be published yet." = "お子様のコースはまだ公開されていない可能性があります。";
 
 /* No comment provided by engineer. */
 "Your Email" = "あなたのメールアドレス";

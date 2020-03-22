@@ -636,6 +636,20 @@
 		5B317B80240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/UserCell.strings; sourceTree = "<group>"; };
 		5B317B81240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/CourseCell.strings; sourceTree = "<group>"; };
 		5B317B82240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/StudentSettingsHeaderView.strings; sourceTree = "<group>"; };
+		5B6A931D242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5B6A931E242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5B6A931F242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/AlertCell.strings"; sourceTree = "<group>"; };
+		5B6A9320242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/DetailsLocationCell.strings"; sourceTree = "<group>"; };
+		5B6A9321242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
+		5B6A9322242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/DetailsAttachmentCell.strings"; sourceTree = "<group>"; };
+		5B6A9323242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
+		5B6A9324242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/SettingsObserveeCell.strings"; sourceTree = "<group>"; };
+		5B6A9325242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
+		5B6A9326242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/DetailsReminderCell.strings"; sourceTree = "<group>"; };
+		5B6A9327242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/DashboardViewController.strings"; sourceTree = "<group>"; };
+		5B6A9328242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/UserCell.strings"; sourceTree = "<group>"; };
+		5B6A9329242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/CourseCell.strings"; sourceTree = "<group>"; };
+		5B6A932A242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/StudentSettingsHeaderView.strings"; sourceTree = "<group>"; };
 		5B7BD3C222ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B7BD3C322ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B7BD3C622ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/AlertCell.strings; sourceTree = "<group>"; };
@@ -1646,6 +1660,7 @@
 				sl,
 				"en-AU-unimelb",
 				is,
+				"en-CA",
 			);
 			mainGroup = 5E64417E1C3EE2E0003D7397;
 			productRefGroup = 5E6441881C3EE2E0003D7397 /* Products */;
@@ -2027,6 +2042,7 @@
 				5B1D4F0022BD6E560082F8F0 /* sl */,
 				7DE74EFE22BD7942003C8B44 /* en-AU-unimelb */,
 				5B317B73240B98DF009EE2F9 /* is */,
+				5B6A931E242746BE0062CC54 /* en-CA */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -2065,6 +2081,7 @@
 				5B1D4F0E22BD6E560082F8F0 /* sl */,
 				7DE74F0C22BD7942003C8B44 /* en-AU-unimelb */,
 				5B317B81240B98DF009EE2F9 /* is */,
+				5B6A9329242746BE0062CC54 /* en-CA */,
 			);
 			name = CourseCell.xib;
 			sourceTree = "<group>";
@@ -2103,6 +2120,7 @@
 				5B1D4F0222BD6E560082F8F0 /* sl */,
 				7DE74F0022BD7942003C8B44 /* en-AU-unimelb */,
 				5B317B76240B98DF009EE2F9 /* is */,
+				5B6A931F242746BE0062CC54 /* en-CA */,
 			);
 			name = AlertCell.xib;
 			sourceTree = "<group>";
@@ -2141,6 +2159,7 @@
 				5B1D4F0522BD6E560082F8F0 /* sl */,
 				7DE74F0322BD7942003C8B44 /* en-AU-unimelb */,
 				5B317B78240B98DF009EE2F9 /* is */,
+				5B6A9321242746BE0062CC54 /* en-CA */,
 			);
 			name = DetailsInfoCell.xib;
 			sourceTree = "<group>";
@@ -2179,6 +2198,7 @@
 				5B1D4F0B22BD6E560082F8F0 /* sl */,
 				7DE74F0922BD7942003C8B44 /* en-AU-unimelb */,
 				5B317B7E240B98DF009EE2F9 /* is */,
+				5B6A9326242746BE0062CC54 /* en-CA */,
 			);
 			name = DetailsReminderCell.xib;
 			sourceTree = "<group>";
@@ -2217,6 +2237,7 @@
 				5B1D4F0A22BD6E560082F8F0 /* sl */,
 				7DE74F0822BD7942003C8B44 /* en-AU-unimelb */,
 				5B317B7D240B98DF009EE2F9 /* is */,
+				5B6A9325242746BE0062CC54 /* en-CA */,
 			);
 			name = DetailsDateCell.xib;
 			sourceTree = "<group>";
@@ -2255,6 +2276,7 @@
 				5B1D4F0422BD6E560082F8F0 /* sl */,
 				7DE74F0622BD7942003C8B44 /* en-AU-unimelb */,
 				5B317B77240B98DF009EE2F9 /* is */,
+				5B6A9320242746BE0062CC54 /* en-CA */,
 			);
 			name = DetailsLocationCell.xib;
 			sourceTree = "<group>";
@@ -2293,6 +2315,7 @@
 				5B1D4F0922BD6E560082F8F0 /* sl */,
 				7DE74F0D22BD7942003C8B44 /* en-AU-unimelb */,
 				5B317B7C240B98DF009EE2F9 /* is */,
+				5B6A9324242746BE0062CC54 /* en-CA */,
 			);
 			name = SettingsObserveeCell.xib;
 			sourceTree = "<group>";
@@ -2331,6 +2354,7 @@
 				5B1D4F0D22BD6E560082F8F0 /* sl */,
 				7DE74F0B22BD7942003C8B44 /* en-AU-unimelb */,
 				5B317B80240B98DF009EE2F9 /* is */,
+				5B6A9328242746BE0062CC54 /* en-CA */,
 			);
 			name = UserCell.xib;
 			sourceTree = "<group>";
@@ -2369,6 +2393,7 @@
 				5B1D4F0F22BD6E560082F8F0 /* sl */,
 				7DE74F0722BD7942003C8B44 /* en-AU-unimelb */,
 				5B317B82240B98DF009EE2F9 /* is */,
+				5B6A932A242746BE0062CC54 /* en-CA */,
 			);
 			name = StudentSettingsHeaderView.xib;
 			sourceTree = "<group>";
@@ -2440,6 +2465,7 @@
 				5B1D4F0C22BD6E560082F8F0 /* sl */,
 				7DE74F0A22BD7942003C8B44 /* en-AU-unimelb */,
 				5B317B7F240B98DF009EE2F9 /* is */,
+				5B6A9327242746BE0062CC54 /* en-CA */,
 			);
 			name = DashboardViewController.storyboard;
 			sourceTree = "<group>";
@@ -2478,6 +2504,7 @@
 				5B1D4F0622BD6E560082F8F0 /* sl */,
 				7DE74F0222BD7942003C8B44 /* en-AU-unimelb */,
 				5B317B79240B98DF009EE2F9 /* is */,
+				5B6A9322242746BE0062CC54 /* en-CA */,
 			);
 			name = DetailsAttachmentCell.xib;
 			sourceTree = "<group>";
@@ -2516,6 +2543,7 @@
 				5B1D4EFF22BD6E560082F8F0 /* sl */,
 				7DE74EFD22BD7942003C8B44 /* en-AU-unimelb */,
 				5B317B72240B98DF009EE2F9 /* is */,
+				5B6A931D242746BE0062CC54 /* en-CA */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2587,6 +2615,7 @@
 				5B1D4F0822BD6E560082F8F0 /* sl */,
 				7DE74F0422BD7942003C8B44 /* en-AU-unimelb */,
 				5B317B7A240B98DF009EE2F9 /* is */,
+				5B6A9323242746BE0062CC54 /* en-CA */,
 			);
 			name = AdminViewController.storyboard;
 			sourceTree = "<group>";

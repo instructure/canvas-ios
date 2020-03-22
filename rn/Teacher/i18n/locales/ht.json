@@ -1085,6 +1085,9 @@
   "open_for_comments_1810648": {
     "message": "Ouvri pou kòmantè"
   },
+  "opens_in_student_app_a9571498": {
+    "message": "Ouvri nan App Student"
+  },
   "options_3ab0ea65": {
     "message": "Opsyon"
   },
@@ -1138,6 +1141,9 @@
   },
   "pinned_discussions_a55c0cea": {
     "message": "Diskisyon Epengle"
+  },
+  "please_try_again_5d872e78": {
+    "message": "Tanpri eseye ankò."
   },
   "points_bb475533": {
     "message": "Pwen"
@@ -1426,6 +1432,12 @@
   },
   "student_5da6bfd1": {
     "message": "Elèv"
+  },
+  "student_view_ac9b672f": {
+    "message": "Afichaj Elèv"
+  },
+  "student_view_enrollment_not_found_8f9cbdd5": {
+    "message": "Pa Jwenn Afichaj Enskripsyon Elèv"
   },
   "students_1b8cd07b": {
     "message": "Elèv"
@@ -1781,6 +1793,9 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Ou jwenn envitasyon"
+  },
+  "you_must_access_student_view_for_this_course_once__ae054476": {
+    "message": "Ou dwe ale sou Afichaj Elèv pou kou sa a yon sèl fwa sou sit entènèt la anvan w itilize Afichaj Elèv nan App la."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Ou dwe aktive pèmisyon Kamera ak Mikwofòn yo nan Paramèt pou w ka itilize kamera a."

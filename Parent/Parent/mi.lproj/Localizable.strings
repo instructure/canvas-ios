@@ -8,9 +8,6 @@
 "%@ is due at %@" = "%1$@ ka tae i te wā ī %2$@";
 
 /* No comment provided by engineer. */
-"%@ to %@" = "%1$@ kī %2$@";
-
-/* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ ka timata ī %2$@";
 
 /* label for conversation row with context, subject, & last message date & text */
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Announcement" = "Pānui";
-
-/* No comment provided by engineer. */
-"Assignment" = "Whakataunga";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "kōeke whakataunga runga";
@@ -116,16 +110,10 @@
 "Current student: %@. Tap to switch students" = "Te ākonga o nāianei: %@. Pātō ki te huri ngā ākonga";
 
 /* No comment provided by engineer. */
-"Discussion" = "Kōrerorero";
-
-/* No comment provided by engineer. */
 "Dismiss" = "Pana";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Whakatika ngā Kaiwhiwhi";
-
-/* No comment provided by engineer. */
-"Event" = "Tauwhāinga";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Tauwhāinga whakamaharatanga";
@@ -178,9 +166,6 @@
 /* Title for an alert view */
 "Invalid Input" = "Tāuru muhu";
 
-/* Last Week Button Accessibility Label */
-"Last Week" = "Wiki Whakamutunga";
-
 /* No comment provided by engineer. */
 "Late" = "Tūreiti";
 
@@ -223,9 +208,6 @@
 /* No comment provided by engineer. */
 "New Message" = "Karere Hōu";
 
-/* Next Week Button Accessibility Label */
-"Next Week" = "Wiki Muri";
-
 /* Empty Courses Text */
 "No Courses" = "Kāore he Akoranga";
 
@@ -238,9 +220,6 @@
 /* No comment provided by engineer. */
 "No Subject" = "Kāore he Kaupapa";
 
-/* Empty Calendar Events Text */
-"Nothing this week" = "Kahore tēnei wiki";
-
 /* OK Button Title */
 "OK" = "Ae";
 
@@ -249,9 +228,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "E hiahiatia ana he whakāetanga";
-
-/* No comment provided by engineer. */
-"Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
 "Recipients" = "Ngā Kaiwhiwhi";
@@ -263,6 +239,9 @@
    Regarding <John Doe>, <Grades | Syllabus>
    Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "E pā ana: %1$@, %2$@";
+
+/* Regarding <Name>, Assignment - <Assignment Name> */
+"Regarding: %@, Assignment - %@" = "E pā ana: %1$@, Whakataunga: %2$@";
 
 /* No comment provided by engineer. */
 "Reply" = "Whakautu";
@@ -297,7 +276,7 @@
 /* No comment provided by engineer. */
 "Summary" = "Whakarāpopototanga";
 
-/* Syllabus Button Title */
+/* No comment provided by engineer. */
 "Syllabus" = "Marautanga";
 
 /* Directions in the admin view */

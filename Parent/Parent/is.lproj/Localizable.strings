@@ -8,9 +8,6 @@
 "%@ is due at %@" = "%1$@ skiladagur er %2$@";
 
 /* No comment provided by engineer. */
-"%@ to %@" = "%1$@ til %2$@";
-
-/* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ mun hefjast þann %2$@";
 
 /* label for conversation row with context, subject, & last message date & text */
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Announcement" = "Tilkynning";
-
-/* No comment provided by engineer. */
-"Assignment" = "Verkefni";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Verkefnaeinkunn fyrir ofan";
@@ -116,16 +110,10 @@
 "Current student: %@. Tap to switch students" = "Núverandi nemandi: %@. Smelltu til að skipta nemendum";
 
 /* No comment provided by engineer. */
-"Discussion" = "Umræða";
-
-/* No comment provided by engineer. */
 "Dismiss" = "Sleppa";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Breyta viðtakendum";
-
-/* No comment provided by engineer. */
-"Event" = "Viðburður";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Áminning um viðburð";
@@ -178,9 +166,6 @@
 /* Title for an alert view */
 "Invalid Input" = "Ógilt inntak";
 
-/* Last Week Button Accessibility Label */
-"Last Week" = "Síðasta vika";
-
 /* No comment provided by engineer. */
 "Late" = "Seint";
 
@@ -223,9 +208,6 @@
 /* No comment provided by engineer. */
 "New Message" = "Ný skilaboð";
 
-/* Next Week Button Accessibility Label */
-"Next Week" = "Næsta vika";
-
 /* Empty Courses Text */
 "No Courses" = "Engin námskeið";
 
@@ -238,9 +220,6 @@
 /* No comment provided by engineer. */
 "No Subject" = "Ekkert efnisheiti";
 
-/* Empty Calendar Events Text */
-"Nothing this week" = "Ekkert þessa vikuna";
-
 /* OK Button Title */
 "OK" = "Í lagi";
 
@@ -249,9 +228,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Leyfis krafist";
-
-/* No comment provided by engineer. */
-"Quiz" = "Próf";
 
 /* No comment provided by engineer. */
 "Recipients" = "Viðtakendur";
@@ -263,6 +239,9 @@
    Regarding <John Doe>, <Grades | Syllabus>
    Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "Varðandi: %1$@, %2$@";
+
+/* Regarding <Name>, Assignment - <Assignment Name> */
+"Regarding: %@, Assignment - %@" = "Varðandi: %1$@, verkefni - %2$@";
 
 /* No comment provided by engineer. */
 "Reply" = "Svara";
@@ -297,7 +276,7 @@
 /* No comment provided by engineer. */
 "Summary" = "Samantekt";
 
-/* Syllabus Button Title */
+/* No comment provided by engineer. */
 "Syllabus" = "Kennsluáætlun";
 
 /* Directions in the admin view */
