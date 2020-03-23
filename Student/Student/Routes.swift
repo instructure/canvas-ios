@@ -134,10 +134,6 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     // "/:context/:contextID/collaborations": { url, _ in },
 
     "/:context/:contextID/conferences": { url, _ in
-        guard ExperimentalFeature.conferences.isEnabled else {
-            open(url: url)
-            return nil
-        }
         guard let context = ContextModel(path: url.path) else { return nil }
         return ConferenceListViewController.create(context: context)
     },
