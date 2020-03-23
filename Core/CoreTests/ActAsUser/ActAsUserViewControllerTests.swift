@@ -47,6 +47,16 @@ class ActAsUserViewControllerTests: CoreTestCase, LoginDelegate {
         controller.actAsUserButton.sendActions(for: .primaryActionTriggered)
         XCTAssertNil(session)
 
+        NotificationCenter.default.post(name: UIResponder.keyboardWillChangeFrameNotification, object: nil, userInfo: [:])
+        XCTAssertEqual(controller.scrollView.contentOffset.y, 0)
+
+        NotificationCenter.default.post(name: UIResponder.keyboardWillChangeFrameNotification, object: nil, userInfo: [
+            UIResponder.keyboardFrameEndUserInfoKey: CGRect(x: 0, y: 100, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 100),
+            UIResponder.keyboardAnimationCurveUserInfoKey: UIView.AnimationOptions.curveEaseOut.rawValue,
+            UIResponder.keyboardAnimationDurationUserInfoKey: TimeInterval(2),
+        ])
+        XCTAssertGreaterThan(controller.scrollView.contentOffset.y, 0)
+
         api.mock(GetUserRequest(userID: "1"), value: .make(), baseURL: URL(string: "https://cgnu.online")!)
         controller.domainTextField.text = "cgnu.online/extra"
         controller.actAsUserButton.sendActions(for: .primaryActionTriggered)

@@ -52,10 +52,10 @@ public class ActAsUserViewController: UIViewController {
         actAsUserButton.titleLabel?.text = NSLocalizedString("Act as User", bundle: .core, comment: "")
         domainTextField.text = env.currentSession?.baseURL.absoluteString
         userIDTextField.text = initialUserID
+        updateActAsUserButtonDisabledStatus()
 
         domainTextField.addTarget(self, action: #selector(updateActAsUserButtonDisabledStatus), for: .editingChanged)
         userIDTextField.addTarget(self, action: #selector(updateActAsUserButtonDisabledStatus), for: .editingChanged)
-        actAsUserButton.isEnabled = false
 
         domainTextField.addTarget(self, action: #selector(actAsUserPressed), for: .editingDidEndOnExit)
         userIDTextField.addTarget(self, action: #selector(actAsUserPressed), for: .editingDidEndOnExit)
