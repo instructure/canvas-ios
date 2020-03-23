@@ -49,7 +49,6 @@ export default class ExperimentalFeature {
 // There is no automatic syncing of individual flags, since they can't be async
 // and should be static.
 ExperimentalFeature.parent3 = new ExperimentalFeature('parent3')
-ExperimentalFeature.conferences = new ExperimentalFeature('conferences')
 ExperimentalFeature.favoriteGroups = new ExperimentalFeature('favorite_groups')
 ExperimentalFeature.simpleDiscussionRenderer = new ExperimentalFeature('simple_discussion_renderer')
 ExperimentalFeature.graphqlSpeedGrader = new ExperimentalFeature('graphql_speed_grader')
