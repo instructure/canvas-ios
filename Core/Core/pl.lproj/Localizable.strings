@@ -89,6 +89,12 @@
 "Calendar" = "Kalendarz";
 
 /* No comment provided by engineer. */
+"Calendars" = "Kalendarze";
+
+/* No comment provided by engineer. */
+"Calendars (%d)" = "Kalendarze (%d)";
+
+/* No comment provided by engineer. */
 "Camera" = "Kamera";
 
 /* No comment provided by engineer. */
@@ -215,6 +221,9 @@
 "Dashboard" = "Panel nawigacyjny";
 
 /* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
 "Delete" = "Usuń";
 
 /* No comment provided by engineer. */
@@ -329,6 +338,9 @@
 "Filter by:" = "Filtruj wg:";
 
 /* No comment provided by engineer. */
+"Filter events" = "Filtruj wydarzenia";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Ocena końcowa: %@";
 
 /* No comment provided by engineer. */
@@ -395,6 +407,9 @@
 "Incomplete" = "Nie ukończono";
 
 /* No comment provided by engineer. */
+"Interactions on this page are limited by your institution." = "Interakcje na tej stronie zostały ograniczone przez Twoją instytucje.";
+
+/* No comment provided by engineer. */
 "Invitation" = "Zaproszenie";
 
 /* No comment provided by engineer. */
@@ -417,6 +432,9 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Uruchom narzędzie zewnętrzne";
+
+/* No comment provided by engineer. */
+"Leave Student View" = "Opuść widok uczestnika";
 
 /* No comment provided by engineer. */
 "Legal" = "Informacje prawne";
@@ -497,10 +515,16 @@
 "No Content" = "Brak zawartości";
 
 /* No comment provided by engineer. */
+"No Courses" = "Brak kursów";
+
+/* No comment provided by engineer. */
 "No Due Date" = "Brak terminu";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Nie odnaleziono obrazu z narzędzia wyboru obrazów";
+
+/* No comment provided by engineer. */
+"No Results" = "Brak wyników";
 
 /* No comment provided by engineer. */
 "No Submission" = "Brak przesłanych zadań";
@@ -659,6 +683,9 @@
 "Settings" = "Ustawienia";
 
 /* No comment provided by engineer. */
+"Show a month at a time" = "Wyświetlaj miesiące po kolei";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Pokaż oceny";
 
 /* No comment provided by engineer. */
@@ -734,6 +761,9 @@
 "Tap here for help." = "Stuknij tutaj, aby uzyskać pomoc.";
 
 /* No comment provided by engineer. */
+"Tap to select the courses you want to see on the calendar." = "Stuknij, aby wybrać kursy, które chcesz zobaczyć w kalendarzu.";
+
+/* No comment provided by engineer. */
 "Teacher" = "Nauczyciel";
 
 /* No comment provided by engineer. */
@@ -765,6 +795,15 @@
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Wystąpił problem z pobraniem Warunków korzystania.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Wystąpił błąd podczas wczytywania kursów. Przeciągnij, aby odświeżyć widok, i spróbuj ponownie.";
+
+/* No comment provided by engineer. */
+"There was an error loading events. Pull to refresh to try again." = "Wystąpił błąd podczas wczytywania wydarzeń. Przeciągnij, aby odświeżyć widok, i spróbuj ponownie.";
+
+/* No comment provided by engineer. */
+"There was an error loading people. Pull to refresh to try again." = "Wystąpił błąd podczas wczytywania osób. Przeciągnij, aby odświeżyć widok, i spróbuj ponownie.";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Wystąpił błąd podczas podszywania. Spróbuj ponownie później.";
@@ -839,6 +878,9 @@
 "View Modules" = "Wyświetl moduły";
 
 /* No comment provided by engineer. */
+"We couldn’t find somebody like that." = "Nie udało się odnaleźć takiej osoby.";
+
+/* No comment provided by engineer. */
 "We've made a few changes." = "Wprowadziliśmy kilka zmian.";
 
 /* No comment provided by engineer. */
@@ -872,10 +914,16 @@
 "You must enable Microphone permissions in Settings." = "Musisz włączyć uprawnienia dla mikrofonu w Ustawieniach.";
 
 /* No comment provided by engineer. */
+"You will be logged out of this student account." = "Zostaniesz wylogowany(a) z tego konta uczestnika.";
+
+/* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Zatrzymasz podszywanie się jako %@ i powrócisz do swojego konta.";
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Zatrzymasz podszywanie się jako ten użytkownik i powrócisz do swojego konta.";
+
+/* No comment provided by engineer. */
+"Your child's courses might not be published yet." = "Kursy Twojego dziecka mogły nie zostać jeszcze opublikowane.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Twój adres e-mail";

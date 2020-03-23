@@ -8,9 +8,6 @@
 "%@ is due at %@" = "%1$@截止於%2$@";
 
 /* No comment provided by engineer. */
-"%@ to %@" = "%1$@ 至 %2$@";
-
-/* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@將開始於%2$@";
 
 /* label for conversation row with context, subject, & last message date & text */
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Announcement" = "通告";
-
-/* No comment provided by engineer. */
-"Assignment" = "作業";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "上方作業評分";
@@ -116,16 +110,10 @@
 "Current student: %@. Tap to switch students" = "目前的學生：%@. 點選以轉換學生";
 
 /* No comment provided by engineer. */
-"Discussion" = "討論";
-
-/* No comment provided by engineer. */
 "Dismiss" = "取消";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "編輯收件人";
-
-/* No comment provided by engineer. */
-"Event" = "活動";
 
 /* No comment provided by engineer. */
 "Event reminder" = "活動提醒";
@@ -178,9 +166,6 @@
 /* Title for an alert view */
 "Invalid Input" = "無效的導入";
 
-/* Last Week Button Accessibility Label */
-"Last Week" = "上週";
-
 /* No comment provided by engineer. */
 "Late" = "遲交";
 
@@ -223,9 +208,6 @@
 /* No comment provided by engineer. */
 "New Message" = "新訊息";
 
-/* Next Week Button Accessibility Label */
-"Next Week" = "下週";
-
 /* Empty Courses Text */
 "No Courses" = "無課程";
 
@@ -238,9 +220,6 @@
 /* No comment provided by engineer. */
 "No Subject" = "無主題";
 
-/* Empty Calendar Events Text */
-"Nothing this week" = "本週無事";
-
 /* OK Button Title */
 "OK" = "是";
 
@@ -249,9 +228,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "需要權限";
-
-/* No comment provided by engineer. */
-"Quiz" = "測驗";
 
 /* No comment provided by engineer. */
 "Recipients" = "收件人";
@@ -263,6 +239,9 @@
    Regarding <John Doe>, <Grades | Syllabus>
    Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "關於：%1$@,%2$@";
+
+/* Regarding <Name>, Assignment - <Assignment Name> */
+"Regarding: %@, Assignment - %@" = "關於：%1$@，作業 - %2$@";
 
 /* No comment provided by engineer. */
 "Reply" = "回覆";
@@ -297,7 +276,7 @@
 /* No comment provided by engineer. */
 "Summary" = "摘要";
 
-/* Syllabus Button Title */
+/* No comment provided by engineer. */
 "Syllabus" = "課程大綱";
 
 /* Directions in the admin view */

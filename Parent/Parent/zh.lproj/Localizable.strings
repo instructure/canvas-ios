@@ -8,9 +8,6 @@
 "%@ is due at %@" = "%1$@截止日期%2$@";
 
 /* No comment provided by engineer. */
-"%@ to %@" = "%1$@ 到 %2$@";
-
-/* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@开始日期%2$@";
 
 /* label for conversation row with context, subject, & last message date & text */
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Announcement" = "公告";
-
-/* No comment provided by engineer. */
-"Assignment" = "作业";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "以上作业成绩";
@@ -116,16 +110,10 @@
 "Current student: %@. Tap to switch students" = "当前学生：%@. 点击以切换学生";
 
 /* No comment provided by engineer. */
-"Discussion" = "讨论";
-
-/* No comment provided by engineer. */
 "Dismiss" = "解散";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "编辑收件人";
-
-/* No comment provided by engineer. */
-"Event" = "活动";
 
 /* No comment provided by engineer. */
 "Event reminder" = "活动提醒";
@@ -178,9 +166,6 @@
 /* Title for an alert view */
 "Invalid Input" = "输入无效";
 
-/* Last Week Button Accessibility Label */
-"Last Week" = "上个星期";
-
 /* No comment provided by engineer. */
 "Late" = "迟到、迟交";
 
@@ -223,9 +208,6 @@
 /* No comment provided by engineer. */
 "New Message" = "新消息";
 
-/* Next Week Button Accessibility Label */
-"Next Week" = "下个星期";
-
 /* Empty Courses Text */
 "No Courses" = "没有课程";
 
@@ -238,9 +220,6 @@
 /* No comment provided by engineer. */
 "No Subject" = "无主题";
 
-/* Empty Calendar Events Text */
-"Nothing this week" = "本周没事";
-
 /* OK Button Title */
 "OK" = "OK";
 
@@ -249,9 +228,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "需要权限";
-
-/* No comment provided by engineer. */
-"Quiz" = "测验";
 
 /* No comment provided by engineer. */
 "Recipients" = "收件人";
@@ -263,6 +239,9 @@
    Regarding <John Doe>, <Grades | Syllabus>
    Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "事由：%1$@，%2$@";
+
+/* Regarding <Name>, Assignment - <Assignment Name> */
+"Regarding: %@, Assignment - %@" = "事由：%1$@，作业 -%2$@";
 
 /* No comment provided by engineer. */
 "Reply" = "回复";
@@ -297,7 +276,7 @@
 /* No comment provided by engineer. */
 "Summary" = "摘要";
 
-/* Syllabus Button Title */
+/* No comment provided by engineer. */
 "Syllabus" = "教学大纲";
 
 /* Directions in the admin view */

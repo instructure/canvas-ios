@@ -8,9 +8,6 @@
 "%@ is due at %@" = "%1$@ vervalt op %2$@";
 
 /* No comment provided by engineer. */
-"%@ to %@" = "%1$@ tot %2$@";
-
-/* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ begint op %2$@";
 
 /* label for conversation row with context, subject, & last message date & text */
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Announcement" = "Aankondiging";
-
-/* No comment provided by engineer. */
-"Assignment" = "Opdracht";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Opdrachtcijfer hoger dan";
@@ -116,16 +110,10 @@
 "Current student: %@. Tap to switch students" = "Huidige cursist: %@. Tik om van cursist te wisselen";
 
 /* No comment provided by engineer. */
-"Discussion" = "Discussie";
-
-/* No comment provided by engineer. */
 "Dismiss" = "Verwijderen";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Ontvangers bewerken";
-
-/* No comment provided by engineer. */
-"Event" = "Gebeurtenis";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Evenementherinnering";
@@ -178,9 +166,6 @@
 /* Title for an alert view */
 "Invalid Input" = "Ongeldige invoer";
 
-/* Last Week Button Accessibility Label */
-"Last Week" = "Vorige week";
-
 /* No comment provided by engineer. */
 "Late" = "Laat";
 
@@ -223,9 +208,6 @@
 /* No comment provided by engineer. */
 "New Message" = "Nieuw bericht";
 
-/* Next Week Button Accessibility Label */
-"Next Week" = "Volgende week";
-
 /* Empty Courses Text */
 "No Courses" = "Geen cursussen";
 
@@ -238,9 +220,6 @@
 /* No comment provided by engineer. */
 "No Subject" = "Geen onderwerp";
 
-/* Empty Calendar Events Text */
-"Nothing this week" = "Niets deze week";
-
 /* OK Button Title */
 "OK" = "OK";
 
@@ -249,9 +228,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Toestemming vereist";
-
-/* No comment provided by engineer. */
-"Quiz" = "Toets";
 
 /* No comment provided by engineer. */
 "Recipients" = "Geadresseerden";
@@ -263,6 +239,9 @@
    Regarding <John Doe>, <Grades | Syllabus>
    Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "Betreffende: %1$@, %2$@";
+
+/* Regarding <Name>, Assignment - <Assignment Name> */
+"Regarding: %@, Assignment - %@" = "Betreffende: %1$@, opdracht -  %2$@";
 
 /* No comment provided by engineer. */
 "Reply" = "Antwoord";
@@ -297,7 +276,7 @@
 /* No comment provided by engineer. */
 "Summary" = "Samenvatting";
 
-/* Syllabus Button Title */
+/* No comment provided by engineer. */
 "Syllabus" = "Syllabus";
 
 /* Directions in the admin view */

@@ -89,6 +89,12 @@
 "Calendar" = "التقويم";
 
 /* No comment provided by engineer. */
+"Calendars" = "التقويمات";
+
+/* No comment provided by engineer. */
+"Calendars (%d)" = "التقويمات (%d)";
+
+/* No comment provided by engineer. */
 "Camera" = "الكاميرا";
 
 /* No comment provided by engineer. */
@@ -215,6 +221,9 @@
 "Dashboard" = "لوحة المعلومات";
 
 /* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
 "Delete" = "حذف";
 
 /* No comment provided by engineer. */
@@ -329,6 +338,9 @@
 "Filter by:" = "التصفية حسب:";
 
 /* No comment provided by engineer. */
+"Filter events" = "تصفية الأحداث";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "الدرجة النهائية: %@";
 
 /* No comment provided by engineer. */
@@ -395,6 +407,9 @@
 "Incomplete" = "غير مكتمل";
 
 /* No comment provided by engineer. */
+"Interactions on this page are limited by your institution." = "التفاعلات الموجودة في هذه الصفحة مقيدة بمؤسستك.";
+
+/* No comment provided by engineer. */
 "Invitation" = "دعوة";
 
 /* No comment provided by engineer. */
@@ -417,6 +432,9 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "تشغيل الأداة الخارجية";
+
+/* No comment provided by engineer. */
+"Leave Student View" = "مغادرة عرض الطالب";
 
 /* No comment provided by engineer. */
 "Legal" = "القانوني";
@@ -497,10 +515,16 @@
 "No Content" = "لا يوجد محتوى";
 
 /* No comment provided by engineer. */
+"No Courses" = "لا يوجد أي مساق";
+
+/* No comment provided by engineer. */
 "No Due Date" = "لا يوجد تاريخ استحقاق";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "لم يتم العثور على صورة من منتقي الصور";
+
+/* No comment provided by engineer. */
+"No Results" = "لا توجد نتائج";
 
 /* No comment provided by engineer. */
 "No Submission" = "لا يوجد إرسال";
@@ -659,6 +683,9 @@
 "Settings" = "إعدادات";
 
 /* No comment provided by engineer. */
+"Show a month at a time" = "أظهر شهراً كل مرة";
+
+/* No comment provided by engineer. */
 "Show Grades" = "عرض التقديرات";
 
 /* No comment provided by engineer. */
@@ -734,6 +761,9 @@
 "Tap here for help." = "اضغط هنا للحصول على المساعدة.";
 
 /* No comment provided by engineer. */
+"Tap to select the courses you want to see on the calendar." = "اضغط لتحديد المساقات التي ترغب في رؤيتها على التقويم.";
+
+/* No comment provided by engineer. */
 "Teacher" = "المعلم";
 
 /* No comment provided by engineer. */
@@ -765,6 +795,15 @@
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "حدثت مشكلة أثناء استرداد شروط الاستخدام.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "حدث خطأ أثناء تحميل المساقات. اسحب للتحديث لإعادة المحاولة.";
+
+/* No comment provided by engineer. */
+"There was an error loading events. Pull to refresh to try again." = "حدث خطأ أثناء تحميل الأحداث. اسحب للتحديث لإعادة المحاولة.";
+
+/* No comment provided by engineer. */
+"There was an error loading people. Pull to refresh to try again." = "حدث خطأ أثناء تحميل الأشخاص. اسحب للتحديث لإعادة المحاولة.";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "حدث خطأ ما في التصرف كمستخدم. الرجاء إعادة المحاولة لاحقًا.";
@@ -839,6 +878,9 @@
 "View Modules" = "عرض الوحدات المنطقية";
 
 /* No comment provided by engineer. */
+"We couldn’t find somebody like that." = "لم نتمكن من العثور على شخص مثلك.";
+
+/* No comment provided by engineer. */
 "We've made a few changes." = "لقد أجرينا بعض التغييرات.";
 
 /* No comment provided by engineer. */
@@ -872,10 +914,16 @@
 "You must enable Microphone permissions in Settings." = "يجب أن تقوم بتمكين أذونات الميكروفون في الإعدادات.";
 
 /* No comment provided by engineer. */
+"You will be logged out of this student account." = "سيتم إخراجك من حساب هذا الطلب.";
+
+/* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "ستتوقف عن التصرف باعتبارك %@ وستعود إلى حسابك.";
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "ستتوقف عن التصرف باعتبارك هذا المستخدم وستعود إلى حسابك.";
+
+/* No comment provided by engineer. */
+"Your child's courses might not be published yet." = "ربما لم يتم نشر مساقات الطالب بعد.";
 
 /* No comment provided by engineer. */
 "Your Email" = "بريدك الإلكتروني";

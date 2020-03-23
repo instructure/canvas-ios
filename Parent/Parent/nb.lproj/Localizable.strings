@@ -8,9 +8,6 @@
 "%@ is due at %@" = "%1$@ har frist %2$@";
 
 /* No comment provided by engineer. */
-"%@ to %@" = "%1$@ to %2$@";
-
-/* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ Vil begynne %2$@";
 
 /* label for conversation row with context, subject, & last message date & text */
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Announcement" = "Kunngjøring";
-
-/* No comment provided by engineer. */
-"Assignment" = "Oppgave";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Oppgavevurdering over";
@@ -116,16 +110,10 @@
 "Current student: %@. Tap to switch students" = "Nåværende studenter: %@. Trykk for å bytte mellom studenter";
 
 /* No comment provided by engineer. */
-"Discussion" = "Diskusjon";
-
-/* No comment provided by engineer. */
 "Dismiss" = "Avvis";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Rediger mottakere";
-
-/* No comment provided by engineer. */
-"Event" = "Hendelse";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Hendelsespåminnelse";
@@ -178,9 +166,6 @@
 /* Title for an alert view */
 "Invalid Input" = "Ugyldig inndata";
 
-/* Last Week Button Accessibility Label */
-"Last Week" = "Siste uke";
-
 /* No comment provided by engineer. */
 "Late" = "Seint";
 
@@ -223,9 +208,6 @@
 /* No comment provided by engineer. */
 "New Message" = "Ny melding";
 
-/* Next Week Button Accessibility Label */
-"Next Week" = "Neste uke";
-
 /* Empty Courses Text */
 "No Courses" = "Ingen emne";
 
@@ -238,9 +220,6 @@
 /* No comment provided by engineer. */
 "No Subject" = "Intet tittel";
 
-/* Empty Calendar Events Text */
-"Nothing this week" = "Ingenting denne uken";
-
 /* OK Button Title */
 "OK" = "OK";
 
@@ -249,9 +228,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Tillatelse kreves";
-
-/* No comment provided by engineer. */
-"Quiz" = "Test";
 
 /* No comment provided by engineer. */
 "Recipients" = "Mottakere";
@@ -263,6 +239,9 @@
    Regarding <John Doe>, <Grades | Syllabus>
    Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "Vedrørende: %1$@, %2$@";
+
+/* Regarding <Name>, Assignment - <Assignment Name> */
+"Regarding: %@, Assignment - %@" = "Vedrørende: %1$@, Oppgave - %2$@";
 
 /* No comment provided by engineer. */
 "Reply" = "Svar";
@@ -297,7 +276,7 @@
 /* No comment provided by engineer. */
 "Summary" = "Sammendrag";
 
-/* Syllabus Button Title */
+/* No comment provided by engineer. */
 "Syllabus" = "Emneoversikt";
 
 /* Directions in the admin view */

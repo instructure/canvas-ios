@@ -89,6 +89,12 @@
 "Calendar" = "Kalender";
 
 /* No comment provided by engineer. */
+"Calendars" = "Kalendrar";
+
+/* No comment provided by engineer. */
+"Calendars (%d)" = "Kalendrar (%d)";
+
+/* No comment provided by engineer. */
 "Camera" = "Kamera";
 
 /* No comment provided by engineer. */
@@ -215,6 +221,9 @@
 "Dashboard" = "Översikt";
 
 /* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
 "Delete" = "Ta bort";
 
 /* No comment provided by engineer. */
@@ -329,6 +338,9 @@
 "Filter by:" = "Filtrerat efter:";
 
 /* No comment provided by engineer. */
+"Filter events" = "Filterhändelser";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Totalt omdöme: %@";
 
 /* No comment provided by engineer. */
@@ -395,6 +407,9 @@
 "Incomplete" = "Ej fullständig";
 
 /* No comment provided by engineer. */
+"Interactions on this page are limited by your institution." = "Interaktioner på den här sidan har begränsats av din institution.";
+
+/* No comment provided by engineer. */
 "Invitation" = "Inbjudan";
 
 /* No comment provided by engineer. */
@@ -417,6 +432,9 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Starta externt verktyg";
+
+/* No comment provided by engineer. */
+"Leave Student View" = "Lämna Elevens vy";
 
 /* No comment provided by engineer. */
 "Legal" = "Juridik";
@@ -497,10 +515,16 @@
 "No Content" = "Inget innehåll";
 
 /* No comment provided by engineer. */
+"No Courses" = "Inga kurser";
+
+/* No comment provided by engineer. */
 "No Due Date" = "Inget inlämningsdatum";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Ingen bild hittades i bildväljaren";
+
+/* No comment provided by engineer. */
+"No Results" = "Inga resultat";
 
 /* No comment provided by engineer. */
 "No Submission" = "Ingen inlämning";
@@ -659,6 +683,9 @@
 "Settings" = "Inställningar";
 
 /* No comment provided by engineer. */
+"Show a month at a time" = "Visa en månad åt gången";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Visa omdömen";
 
 /* No comment provided by engineer. */
@@ -734,6 +761,9 @@
 "Tap here for help." = "Tryck här för hjälp.";
 
 /* No comment provided by engineer. */
+"Tap to select the courses you want to see on the calendar." = "Tryck för att välja som kurser du vill se i kalendern.";
+
+/* No comment provided by engineer. */
 "Teacher" = "Lärare";
 
 /* No comment provided by engineer. */
@@ -765,6 +795,15 @@
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Det gick inte att hämta användningsvillkoren.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Det gick inte att läsa in kurser. Dra för att uppdatera igen.";
+
+/* No comment provided by engineer. */
+"There was an error loading events. Pull to refresh to try again." = "Det gick inte att läsa in händelser. Dra för att uppdatera igen.";
+
+/* No comment provided by engineer. */
+"There was an error loading people. Pull to refresh to try again." = "Det gick inte att läsa in personer. Dra för att uppdatera igen.";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Ett fel uppstod med funktionen Agera som användare. Försök igen senare.";
@@ -839,6 +878,9 @@
 "View Modules" = "Visa moduler";
 
 /* No comment provided by engineer. */
+"We couldn’t find somebody like that." = "Det gick inte att hitta någon med de egenskaperna.";
+
+/* No comment provided by engineer. */
 "We've made a few changes." = "Vi har gjort några ändringar.";
 
 /* No comment provided by engineer. */
@@ -872,10 +914,16 @@
 "You must enable Microphone permissions in Settings." = "Du måste aktivera behörigheter för mikrofon i Inställningar.";
 
 /* No comment provided by engineer. */
+"You will be logged out of this student account." = "Du kommer att loggas ut ur det här studentkontot.";
+
+/* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Du kommer att sluta att agera som %@, och gå tillbaka till ditt konto.";
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Du kommer att sluta att agera som den här användaren och gå tillbaka till ditt konto.";
+
+/* No comment provided by engineer. */
+"Your child's courses might not be published yet." = "Ditt barns kurs kanske inte publicerats än.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Din e-postadress";

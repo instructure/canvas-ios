@@ -1085,6 +1085,9 @@
   "open_for_comments_1810648": {
     "message": "Odpri za komentarje"
   },
+  "opens_in_student_app_a9571498": {
+    "message": "Odpre v aplikaciji Student"
+  },
   "options_3ab0ea65": {
     "message": "Možnosti"
   },
@@ -1138,6 +1141,9 @@
   },
   "pinned_discussions_a55c0cea": {
     "message": "Pripete razprave"
+  },
+  "please_try_again_5d872e78": {
+    "message": "Poskusite znova."
   },
   "points_bb475533": {
     "message": "Točke"
@@ -1426,6 +1432,12 @@
   },
   "student_5da6bfd1": {
     "message": "Študent"
+  },
+  "student_view_ac9b672f": {
+    "message": "Pogled študenta"
+  },
+  "student_view_enrollment_not_found_8f9cbdd5": {
+    "message": "Vpisa za pogled študenta ni bilo mogoče najti"
   },
   "students_1b8cd07b": {
     "message": "Študenti"
@@ -1781,6 +1793,9 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Povabljeni ste."
+  },
+  "you_must_access_student_view_for_this_course_once__ae054476": {
+    "message": "Preden uporabite Pogled študenta v aplikaciji, morate v ta pogled vstopiti pri tem predmetu."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Za uporabo fotoaparata morate v možnosti »Nastavitve« omogočiti nastavitve fotoaparata in mikrofona."

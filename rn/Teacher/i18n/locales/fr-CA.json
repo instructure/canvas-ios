@@ -1085,6 +1085,9 @@
   "open_for_comments_1810648": {
     "message": "Ouvert aux commentaires"
   },
+  "opens_in_student_app_a9571498": {
+    "message": "S’ouvre dans l'application de l’étudiant"
+  },
   "options_3ab0ea65": {
     "message": "Options"
   },
@@ -1138,6 +1141,9 @@
   },
   "pinned_discussions_a55c0cea": {
     "message": "Discussions épinglées"
+  },
+  "please_try_again_5d872e78": {
+    "message": "Veuillez réessayer."
   },
   "points_bb475533": {
     "message": "Points"
@@ -1426,6 +1432,12 @@
   },
   "student_5da6bfd1": {
     "message": "Étudiant"
+  },
+  "student_view_ac9b672f": {
+    "message": "Vue étudiant"
+  },
+  "student_view_enrollment_not_found_8f9cbdd5": {
+    "message": "L’inscription à la Vue étudiant introuvable"
   },
   "students_1b8cd07b": {
     "message": "Étudiants"
@@ -1781,6 +1793,9 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Vous avez été invité"
+  },
+  "you_must_access_student_view_for_this_course_once__ae054476": {
+    "message": "Vous devez accéder à la Vue Étudiant pour ce cours une fois à partir du site Web avant d'utiliser la Vue Étudiant dans l'application."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Vous devez activer les autorisations de caméra et de microphone dans les paramètres pour l'utilisation de cette caméra."

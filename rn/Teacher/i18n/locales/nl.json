@@ -1085,6 +1085,9 @@
   "open_for_comments_1810648": {
     "message": "Openen voor opmerkingen"
   },
+  "opens_in_student_app_a9571498": {
+    "message": "Opent in Student App"
+  },
   "options_3ab0ea65": {
     "message": "Opties"
   },
@@ -1138,6 +1141,9 @@
   },
   "pinned_discussions_a55c0cea": {
     "message": "Gepinde discussies"
+  },
+  "please_try_again_5d872e78": {
+    "message": "Probeer het opnieuw."
   },
   "points_bb475533": {
     "message": "Punten"
@@ -1426,6 +1432,12 @@
   },
   "student_5da6bfd1": {
     "message": "Cursist"
+  },
+  "student_view_ac9b672f": {
+    "message": "Weergave voor cursisten"
+  },
+  "student_view_enrollment_not_found_8f9cbdd5": {
+    "message": "Cursistweergave voor inschrijvingen niet gevonden"
   },
   "students_1b8cd07b": {
     "message": "Cursisten"
@@ -1781,6 +1793,9 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Je bent uitgenodigd"
+  },
+  "you_must_access_student_view_for_this_course_once__ae054476": {
+    "message": "Je moet de Cursistweergave voor deze cursus eenmaal vanaf de website openen voordat je Cursistweergave in de app gebruikt."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Je moet Camera- en Microfoon-toestemming inschakelen bij Instellingen om de camera te gebruiken."

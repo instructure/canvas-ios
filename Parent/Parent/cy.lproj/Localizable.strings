@@ -8,9 +8,6 @@
 "%@ is due at %@" = "%1$@ erbyn %2$@";
 
 /* No comment provided by engineer. */
-"%@ to %@" = "%1$@ i %2$@";
-
-/* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ yn dechrau am %2$@";
 
 /* label for conversation row with context, subject, & last message date & text */
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Announcement" = "Cyhoeddiad";
-
-/* No comment provided by engineer. */
-"Assignment" = "Aseiniad";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Gradd yr aseiniad yn uwch na";
@@ -116,16 +110,10 @@
 "Current student: %@. Tap to switch students" = "Myfyriwr Presennol: %@. Tapiwch i newid myfyrwyr";
 
 /* No comment provided by engineer. */
-"Discussion" = "Trafodaeth";
-
-/* No comment provided by engineer. */
 "Dismiss" = "Diystyru";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Golygu Derbynwyr";
-
-/* No comment provided by engineer. */
-"Event" = "Digwyddiad";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Nodyn atgoffa ar gyfer digwyddiad";
@@ -178,9 +166,6 @@
 /* Title for an alert view */
 "Invalid Input" = "Mewnbwn Annilys";
 
-/* Last Week Button Accessibility Label */
-"Last Week" = "Wythnos Diwethaf";
-
 /* No comment provided by engineer. */
 "Late" = "Yn Hwyr";
 
@@ -223,9 +208,6 @@
 /* No comment provided by engineer. */
 "New Message" = "Neges Newydd";
 
-/* Next Week Button Accessibility Label */
-"Next Week" = "Wythnos Nesaf";
-
 /* Empty Courses Text */
 "No Courses" = "Dim Cyrsiau";
 
@@ -238,9 +220,6 @@
 /* No comment provided by engineer. */
 "No Subject" = "Dim Pwnc";
 
-/* Empty Calendar Events Text */
-"Nothing this week" = "Dim byd yr wythnos hon";
-
 /* OK Button Title */
 "OK" = "Iawn";
 
@@ -249,9 +228,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Angen Caniatâd";
-
-/* No comment provided by engineer. */
-"Quiz" = "Cwis";
 
 /* No comment provided by engineer. */
 "Recipients" = "Derbynwyr";
@@ -263,6 +239,9 @@
    Regarding <John Doe>, <Grades | Syllabus>
    Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "Ynghylch: %1$@, %2$@";
+
+/* Regarding <Name>, Assignment - <Assignment Name> */
+"Regarding: %@, Assignment - %@" = "Ynghylch: %1$@, Aseinaid - %2$@";
 
 /* No comment provided by engineer. */
 "Reply" = "Ateb";
@@ -297,7 +276,7 @@
 /* No comment provided by engineer. */
 "Summary" = "Crynodeb";
 
-/* Syllabus Button Title */
+/* No comment provided by engineer. */
 "Syllabus" = "Maes Llafur";
 
 /* Directions in the admin view */

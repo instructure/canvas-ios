@@ -1085,6 +1085,9 @@
   "open_for_comments_1810648": {
     "message": "Avoin kommenteille"
   },
+  "opens_in_student_app_a9571498": {
+    "message": "Avautuu opiskelijan sovelluksessa"
+  },
   "options_3ab0ea65": {
     "message": "Asetukset"
   },
@@ -1138,6 +1141,9 @@
   },
   "pinned_discussions_a55c0cea": {
     "message": "Merkityt keskustelut"
+  },
+  "please_try_again_5d872e78": {
+    "message": "Yritä uudelleen."
   },
   "points_bb475533": {
     "message": "Pisteitä"
@@ -1426,6 +1432,12 @@
   },
   "student_5da6bfd1": {
     "message": "Opiskelija"
+  },
+  "student_view_ac9b672f": {
+    "message": "Opiskelijanäkymä"
+  },
+  "student_view_enrollment_not_found_8f9cbdd5": {
+    "message": "Opiskelijanäkymän rekisteröitymistä ei näkynyt"
   },
   "students_1b8cd07b": {
     "message": "Opiskelijat"
@@ -1781,6 +1793,9 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Sinut on kutsuttu"
+  },
+  "you_must_access_student_view_for_this_course_once__ae054476": {
+    "message": "Sinun täytyy siirtyä tämän kurssin opiskelijanäkymään kerran verkkosivustolta ennen kuin käytä opiskelijanäkymää sovelluksessa."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Jos haluat käyttää kameraa, sinun täytyy ottaa kameran ja mikrofonin asetukset käytöön kameran käyttöä varten."

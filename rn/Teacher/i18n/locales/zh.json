@@ -1085,6 +1085,9 @@
   "open_for_comments_1810648": {
     "message": "开放评论"
   },
+  "opens_in_student_app_a9571498": {
+    "message": "在学生应用程序中打开"
+  },
   "options_3ab0ea65": {
     "message": "选项"
   },
@@ -1138,6 +1141,9 @@
   },
   "pinned_discussions_a55c0cea": {
     "message": "既定讨论"
+  },
+  "please_try_again_5d872e78": {
+    "message": "请重试。"
   },
   "points_bb475533": {
     "message": "点"
@@ -1426,6 +1432,12 @@
   },
   "student_5da6bfd1": {
     "message": "学生"
+  },
+  "student_view_ac9b672f": {
+    "message": "学生视图"
+  },
+  "student_view_enrollment_not_found_8f9cbdd5": {
+    "message": "找不到学生视图注册"
   },
   "students_1b8cd07b": {
     "message": "学生"
@@ -1781,6 +1793,9 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "您已获得邀请"
+  },
+  "you_must_access_student_view_for_this_course_once__ae054476": {
+    "message": "您必须在网站上访问此课程的学生视图一次后才能在应用程序中使用学生视图。"
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "您必须在“设置”中启用照相机和麦克风权限才能使用照相机。"

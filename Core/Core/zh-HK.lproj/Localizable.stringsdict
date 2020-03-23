@@ -83,7 +83,21 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d events</string>
+			<string>%d活動</string>
+		</dict>
+	</dict>
+	<key>filter_events_d_calendars_selected</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Filter events, %#@calendars@</string>
+		<key>calendars</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d calendars selected</string>
 		</dict>
 	</dict>
 	<key>final_grade_g_pts</key>

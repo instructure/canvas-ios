@@ -1085,6 +1085,9 @@
   "open_for_comments_1810648": {
     "message": "Åpne for kommentarer"
   },
+  "opens_in_student_app_a9571498": {
+    "message": "Åpnes i Student-appen"
+  },
   "options_3ab0ea65": {
     "message": "Valg"
   },
@@ -1138,6 +1141,9 @@
   },
   "pinned_discussions_a55c0cea": {
     "message": "Merkede diskusjoner"
+  },
+  "please_try_again_5d872e78": {
+    "message": "Prøv på nytt."
   },
   "points_bb475533": {
     "message": "Poeng"
@@ -1426,6 +1432,12 @@
   },
   "student_5da6bfd1": {
     "message": "Student"
+  },
+  "student_view_ac9b672f": {
+    "message": "Studentvisning"
+  },
+  "student_view_enrollment_not_found_8f9cbdd5": {
+    "message": "Kan ikke finne studentvisning for påmelding"
   },
   "students_1b8cd07b": {
     "message": "Studenter"
@@ -1781,6 +1793,9 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Du har blitt invitert"
+  },
+  "you_must_access_student_view_for_this_course_once__ae054476": {
+    "message": "Du må først logge deg på studentvisning for dette emnet på nettsiden før du kan bruke studentvisning i appen."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Du må aktivere kamera- og mikrofontillatelser i Innstillinger for å bruke kameraet."

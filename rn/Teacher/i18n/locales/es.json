@@ -1085,6 +1085,9 @@
   "open_for_comments_1810648": {
     "message": "Habilitar comentarios"
   },
+  "opens_in_student_app_a9571498": {
+    "message": "Se abre en la Aplicación del estudiante"
+  },
   "options_3ab0ea65": {
     "message": "Opciones"
   },
@@ -1138,6 +1141,9 @@
   },
   "pinned_discussions_a55c0cea": {
     "message": "Foros de discusión anclados"
+  },
+  "please_try_again_5d872e78": {
+    "message": "Inténtelo de nuevo."
   },
   "points_bb475533": {
     "message": "Puntos"
@@ -1426,6 +1432,12 @@
   },
   "student_5da6bfd1": {
     "message": "Estudiante"
+  },
+  "student_view_ac9b672f": {
+    "message": "Vista del estudiante"
+  },
+  "student_view_enrollment_not_found_8f9cbdd5": {
+    "message": "No se encontró la inscripción en la Vista del estudiante"
   },
   "students_1b8cd07b": {
     "message": "Estudiantes"
@@ -1781,6 +1793,9 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Ha recibido una invitación"
+  },
+  "you_must_access_student_view_for_this_course_once__ae054476": {
+    "message": "Debe acceder una vez a la Vista del estudiante de este curso desde el sitio web antes de usar la Vista del estudiante en la aplicación."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Debes habilitar los permisos de cámara y micrófono en Configuraciones para usar la cámara."

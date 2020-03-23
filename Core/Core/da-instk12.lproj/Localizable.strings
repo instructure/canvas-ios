@@ -89,6 +89,12 @@
 "Calendar" = "Kalender";
 
 /* No comment provided by engineer. */
+"Calendars" = "Kalendere";
+
+/* No comment provided by engineer. */
+"Calendars (%d)" = "Kalendere (%d)";
+
+/* No comment provided by engineer. */
 "Camera" = "Kamera";
 
 /* No comment provided by engineer. */
@@ -215,6 +221,9 @@
 "Dashboard" = "Oversigt";
 
 /* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
 "Delete" = "Slet";
 
 /* No comment provided by engineer. */
@@ -329,6 +338,9 @@
 "Filter by:" = "Filtrer efter:";
 
 /* No comment provided by engineer. */
+"Filter events" = "Filtrer begivenheder";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Endelig vurdering: %@";
 
 /* No comment provided by engineer. */
@@ -395,6 +407,9 @@
 "Incomplete" = "Ufuldstændig";
 
 /* No comment provided by engineer. */
+"Interactions on this page are limited by your institution." = "Interaktioner på denne side er begrænset af din institution.";
+
+/* No comment provided by engineer. */
 "Invitation" = "Invitation";
 
 /* No comment provided by engineer. */
@@ -417,6 +432,9 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Start eksternt værktøj";
+
+/* No comment provided by engineer. */
+"Leave Student View" = "Luk visning for elev";
 
 /* No comment provided by engineer. */
 "Legal" = "Juridisk";
@@ -497,10 +515,16 @@
 "No Content" = "Intet indhold";
 
 /* No comment provided by engineer. */
+"No Courses" = "Ingen fag";
+
+/* No comment provided by engineer. */
 "No Due Date" = "Ingen afleveringsdato";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Intet billede fundet i billedvælgeren";
+
+/* No comment provided by engineer. */
+"No Results" = "Ingen resultater";
 
 /* No comment provided by engineer. */
 "No Submission" = "Ingen aflevering";
@@ -659,6 +683,9 @@
 "Settings" = "Indstillinger";
 
 /* No comment provided by engineer. */
+"Show a month at a time" = "Vis en måned ad gangen";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Vis vurderinger";
 
 /* No comment provided by engineer. */
@@ -734,6 +761,9 @@
 "Tap here for help." = "Tryk her for at få hjælp.";
 
 /* No comment provided by engineer. */
+"Tap to select the courses you want to see on the calendar." = "Tryk for at vælge de fag, du vil se i kalenderen.";
+
+/* No comment provided by engineer. */
 "Teacher" = "Lærer";
 
 /* No comment provided by engineer. */
@@ -765,6 +795,15 @@
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Der opstod et problem ved hentning af Betingelser for brug";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Der opstod en fejl under indlæsning af fagene. Træk for at opdatere for at prøve igen.";
+
+/* No comment provided by engineer. */
+"There was an error loading events. Pull to refresh to try again." = "Der opstod en fejl under indlæsning af begivenheder. Træk for at opdatere for at prøve igen.";
+
+/* No comment provided by engineer. */
+"There was an error loading people. Pull to refresh to try again." = "Der opstod en fejl under indlæsning af deltagere. Træk for at opdatere for at prøve igen.";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Der opstod en fejl ved at fungere som bruger. Prøv igen senere.";
@@ -839,6 +878,9 @@
 "View Modules" = "Vis forløb";
 
 /* No comment provided by engineer. */
+"We couldn’t find somebody like that." = "Vi kunne ikke finde nogen, der var sådan.";
+
+/* No comment provided by engineer. */
 "We've made a few changes." = "Vi har lavet nogle ændringer.";
 
 /* No comment provided by engineer. */
@@ -872,10 +914,16 @@
 "You must enable Microphone permissions in Settings." = "Du skal aktivere mikrofontilladelser i indstillinger.";
 
 /* No comment provided by engineer. */
+"You will be logged out of this student account." = "Du logges ud af denne elevkonto.";
+
+/* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Du vil stoppe med at fungere som %@ og vende tilbage til din konto.";
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Du vil stoppe med at fungere som denne bruger og vende tilbage til din konto.";
+
+/* No comment provided by engineer. */
+"Your child's courses might not be published yet." = "Dit barns fag er måske ikke offentliggjort endnu.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Din e-mail";

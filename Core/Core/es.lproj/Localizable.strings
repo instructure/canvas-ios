@@ -89,6 +89,12 @@
 "Calendar" = "Calendario";
 
 /* No comment provided by engineer. */
+"Calendars" = "Calendarios";
+
+/* No comment provided by engineer. */
+"Calendars (%d)" = "Calendarios (%d)";
+
+/* No comment provided by engineer. */
 "Camera" = "Cámara";
 
 /* No comment provided by engineer. */
@@ -215,6 +221,9 @@
 "Dashboard" = "Tablero";
 
 /* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
 "Delete" = "Eliminar";
 
 /* No comment provided by engineer. */
@@ -329,6 +338,9 @@
 "Filter by:" = "Filtrar por:";
 
 /* No comment provided by engineer. */
+"Filter events" = "Filtrar eventos";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Calificación final: %@";
 
 /* No comment provided by engineer. */
@@ -395,6 +407,9 @@
 "Incomplete" = "Incompleta";
 
 /* No comment provided by engineer. */
+"Interactions on this page are limited by your institution." = "Las interacciones en esta página están limitadas por su institución.";
+
+/* No comment provided by engineer. */
 "Invitation" = "Invitación";
 
 /* No comment provided by engineer. */
@@ -417,6 +432,9 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Iniciar la herramienta externa";
+
+/* No comment provided by engineer. */
+"Leave Student View" = "Abandonar la vista de estudiante";
 
 /* No comment provided by engineer. */
 "Legal" = "Legal";
@@ -497,10 +515,16 @@
 "No Content" = "Sin contenido";
 
 /* No comment provided by engineer. */
+"No Courses" = "Sin cursos";
+
+/* No comment provided by engineer. */
 "No Due Date" = "No hay fecha de entrega";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "No se encontraron imágenes en el selector de imágenes";
+
+/* No comment provided by engineer. */
+"No Results" = "Sin resultados";
 
 /* No comment provided by engineer. */
 "No Submission" = "Sin entregas";
@@ -659,6 +683,9 @@
 "Settings" = "Configuraciones";
 
 /* No comment provided by engineer. */
+"Show a month at a time" = "Mostrar un mes por vez";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Mostrar calificaciones";
 
 /* No comment provided by engineer. */
@@ -734,6 +761,9 @@
 "Tap here for help." = "Presione aquí para obtener ayuda.";
 
 /* No comment provided by engineer. */
+"Tap to select the courses you want to see on the calendar." = "Pulse para seleccionar los cursos que desea ver en el calendario.";
+
+/* No comment provided by engineer. */
 "Teacher" = "Profesor";
 
 /* No comment provided by engineer. */
@@ -765,6 +795,15 @@
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Hubo un problema al intentar acceder a los Términos de uso.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Hubo un error al cargar los cursos. Pulse actualizar para volver a intentarlo.";
+
+/* No comment provided by engineer. */
+"There was an error loading events. Pull to refresh to try again." = "Hubo un error al cargar los eventos. Pulse actualizar para volver a intentarlo.";
+
+/* No comment provided by engineer. */
+"There was an error loading people. Pull to refresh to try again." = "Hubo un error al cargar las personas. Pulse actualizar para volver a intentarlo.";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Ocurrió un error al actuar como usuario. Inténtelo de nuevo más tarde.";
@@ -839,6 +878,9 @@
 "View Modules" = "Ver módulos";
 
 /* No comment provided by engineer. */
+"We couldn’t find somebody like that." = "No pudimos encontrar a ninguna persona con esas características.";
+
+/* No comment provided by engineer. */
 "We've made a few changes." = "Hemos realizado algunos cambios.";
 
 /* No comment provided by engineer. */
@@ -872,10 +914,16 @@
 "You must enable Microphone permissions in Settings." = "Debe habilitar los permisos del micrófono en Configuraciones.";
 
 /* No comment provided by engineer. */
+"You will be logged out of this student account." = "Se cerrará la sesión de esta cuenta de estudiante.";
+
+/* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Usted dejará de actuar en nombre de %@ y volverá a su cuenta.";
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Usted dejará de actuar en nombre de este usuario y volverá a su cuenta.";
+
+/* No comment provided by engineer. */
+"Your child's courses might not be published yet." = "Es posible que los cursos de su hijo aún no estén publicados.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Su correo electrónico";

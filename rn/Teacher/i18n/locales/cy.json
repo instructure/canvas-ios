@@ -1085,6 +1085,9 @@
   "open_for_comments_1810648": {
     "message": "Agor ar gyfer sylwadau"
   },
+  "opens_in_student_app_a9571498": {
+    "message": "Yn Agor yn yr Ap Myfyrwyr"
+  },
   "options_3ab0ea65": {
     "message": "Opsiynau"
   },
@@ -1138,6 +1141,9 @@
   },
   "pinned_discussions_a55c0cea": {
     "message": "Trafodaethau wedi’u Pinio"
+  },
+  "please_try_again_5d872e78": {
+    "message": "Rhowch gynnig arall arni."
   },
   "points_bb475533": {
     "message": "Pwyntiau"
@@ -1426,6 +1432,12 @@
   },
   "student_5da6bfd1": {
     "message": "Myfyriwr"
+  },
+  "student_view_ac9b672f": {
+    "message": "Gwedd Myfyriwr"
+  },
+  "student_view_enrollment_not_found_8f9cbdd5": {
+    "message": "Doedd dim modd dod o hyd i Ymrestriad Gwedd Myfyriwr"
   },
   "students_1b8cd07b": {
     "message": "Myfyrwyr"
@@ -1781,6 +1793,9 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Rydych chi wedi cael gwahoddiad"
+  },
+  "you_must_access_student_view_for_this_course_once__ae054476": {
+    "message": "Rhaid i chi agor y Wedd Myfyriwr ar gyfer y cwrs hwn o wefan cyn defnyddio’r Wedd Myfyriwr yn yr ap."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Rhaid i chi alluogi hawliau'r Camera a'r Microffon yn y Gosodiadau er mwyn defnyddio'r camera."

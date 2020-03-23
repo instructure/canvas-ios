@@ -8,9 +8,6 @@
 "%@ is due at %@" = "%1$@ delè li se %2$@";
 
 /* No comment provided by engineer. */
-"%@ to %@" = "%1$@ a %2$@";
-
-/* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ ap kòmanse a %2$@";
 
 /* label for conversation row with context, subject, & last message date & text */
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Announcement" = "Anons";
-
-/* No comment provided by engineer. */
-"Assignment" = "Sesyon";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Nòt sesyon pi wo a";
@@ -116,16 +110,10 @@
 "Current student: %@. Tap to switch students" = "Elèv aktyèl: %@. Tape pou chanje elèv";
 
 /* No comment provided by engineer. */
-"Discussion" = "Diskisyon";
-
-/* No comment provided by engineer. */
 "Dismiss" = "Rejte";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Chanje Destinatè";
-
-/* No comment provided by engineer. */
-"Event" = "Aktivite";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Rapèl aktivite";
@@ -178,9 +166,6 @@
 /* Title for an alert view */
 "Invalid Input" = "Antre Envalid";
 
-/* Last Week Button Accessibility Label */
-"Last Week" = "Semenn Pase";
-
 /* No comment provided by engineer. */
 "Late" = "Ta";
 
@@ -223,9 +208,6 @@
 /* No comment provided by engineer. */
 "New Message" = "Nouvo Mesaj";
 
-/* Next Week Button Accessibility Label */
-"Next Week" = "Semenn Pwochen";
-
 /* Empty Courses Text */
 "No Courses" = "Pa gen Kou";
 
@@ -238,9 +220,6 @@
 /* No comment provided by engineer. */
 "No Subject" = "Pa gen Sijè";
 
-/* Empty Calendar Events Text */
-"Nothing this week" = "Pa gen anyen pou semenn sa a";
-
 /* OK Button Title */
 "OK" = "OK";
 
@@ -249,9 +228,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Otorizasyon Nesesè";
-
-/* No comment provided by engineer. */
-"Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
 "Recipients" = "Destinatè";
@@ -263,6 +239,9 @@
    Regarding <John Doe>, <Grades | Syllabus>
    Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "Konsènan: %1$@, %2$@";
+
+/* Regarding <Name>, Assignment - <Assignment Name> */
+"Regarding: %@, Assignment - %@" = "Konsènan: %1$@, Devwa - %2$@";
 
 /* No comment provided by engineer. */
 "Reply" = "Reponn";
@@ -297,7 +276,7 @@
 /* No comment provided by engineer. */
 "Summary" = "Rezime";
 
-/* Syllabus Button Title */
+/* No comment provided by engineer. */
 "Syllabus" = "Pwogram";
 
 /* Directions in the admin view */

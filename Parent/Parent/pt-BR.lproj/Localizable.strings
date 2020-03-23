@@ -8,9 +8,6 @@
 "%@ is due at %@" = "%1$@ vence às %2$@";
 
 /* No comment provided by engineer. */
-"%@ to %@" = "%1$@ a %2$@";
-
-/* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ começará às %2$@";
 
 /* label for conversation row with context, subject, & last message date & text */
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Announcement" = "Aviso";
-
-/* No comment provided by engineer. */
-"Assignment" = "Tarefa";
 
 /* Assignment Grade High On Description */
 "Assignment grade above" = "Nota da tarefa acima";
@@ -116,16 +110,10 @@
 "Current student: %@. Tap to switch students" = "Aluno atual: %@. toque para alternar alunos";
 
 /* No comment provided by engineer. */
-"Discussion" = "Fórum";
-
-/* No comment provided by engineer. */
 "Dismiss" = "Descartar";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Editar recipientes";
-
-/* No comment provided by engineer. */
-"Event" = "Evento";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Lembrete do evento";
@@ -178,9 +166,6 @@
 /* Title for an alert view */
 "Invalid Input" = "Entrada inválida";
 
-/* Last Week Button Accessibility Label */
-"Last Week" = "Semana passada";
-
 /* No comment provided by engineer. */
 "Late" = "Atrasado";
 
@@ -223,9 +208,6 @@
 /* No comment provided by engineer. */
 "New Message" = "Nova mensagem";
 
-/* Next Week Button Accessibility Label */
-"Next Week" = "Próxima Semana";
-
 /* Empty Courses Text */
 "No Courses" = "Sem Cursos";
 
@@ -238,9 +220,6 @@
 /* No comment provided by engineer. */
 "No Subject" = "Sem assunto";
 
-/* Empty Calendar Events Text */
-"Nothing this week" = "Nada esta semana";
-
 /* OK Button Title */
 "OK" = "OK";
 
@@ -249,9 +228,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Permissão necessária";
-
-/* No comment provided by engineer. */
-"Quiz" = "Teste";
 
 /* No comment provided by engineer. */
 "Recipients" = "Recipientes";
@@ -263,6 +239,9 @@
    Regarding <John Doe>, <Grades | Syllabus>
    Regarding <Name>, <URL> */
 "Regarding: %@, %@" = "Sobre: %1$@, %2$@";
+
+/* Regarding <Name>, Assignment - <Assignment Name> */
+"Regarding: %@, Assignment - %@" = "Sobre: %1$@, Tarefa - %2$@";
 
 /* No comment provided by engineer. */
 "Reply" = "Responder";
@@ -297,7 +276,7 @@
 /* No comment provided by engineer. */
 "Summary" = "Resumo";
 
-/* Syllabus Button Title */
+/* No comment provided by engineer. */
 "Syllabus" = "Programa";
 
 /* Directions in the admin view */

@@ -89,6 +89,12 @@
 "Calendar" = "Calendr";
 
 /* No comment provided by engineer. */
+"Calendars" = "Calendrau";
+
+/* No comment provided by engineer. */
+"Calendars (%d)" = "Calendrau (%d)";
+
+/* No comment provided by engineer. */
 "Camera" = "Camera";
 
 /* No comment provided by engineer. */
@@ -215,6 +221,9 @@
 "Dashboard" = "Dangosfwrdd";
 
 /* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
 "Delete" = "Dileu";
 
 /* No comment provided by engineer. */
@@ -329,6 +338,9 @@
 "Filter by:" = "Hidlo yn ôl:";
 
 /* No comment provided by engineer. */
+"Filter events" = "Hidlo digwyddiadau";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Gradd Derfynol: %@";
 
 /* No comment provided by engineer. */
@@ -395,6 +407,9 @@
 "Incomplete" = "Heb Gwblhau";
 
 /* No comment provided by engineer. */
+"Interactions on this page are limited by your institution." = "Mae achosion o ryngweithio ar y dudalen hon wedi’u cyfyngu gan eich sefydliad.";
+
+/* No comment provided by engineer. */
 "Invitation" = "Gwahoddiad";
 
 /* No comment provided by engineer. */
@@ -417,6 +432,9 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Lansio Adnodd Allanol";
+
+/* No comment provided by engineer. */
+"Leave Student View" = "Gadael y Wedd Myfyrwyr";
 
 /* No comment provided by engineer. */
 "Legal" = "Cyfreithiol";
@@ -497,10 +515,16 @@
 "No Content" = "Dim Cynnwys";
 
 /* No comment provided by engineer. */
+"No Courses" = "Dim Cyrsiau";
+
+/* No comment provided by engineer. */
 "No Due Date" = "Dim Dyddiad Erbyn";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Heb ddod o hyd i ddelwedd o'r dewisydd delwedd";
+
+/* No comment provided by engineer. */
+"No Results" = "Dim Canlyniadau";
 
 /* No comment provided by engineer. */
 "No Submission" = "Dim cyflwyniad";
@@ -659,6 +683,9 @@
 "Settings" = "Gosodiadau";
 
 /* No comment provided by engineer. */
+"Show a month at a time" = "Dangos un mis ar y tro";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Dangos Graddau";
 
 /* No comment provided by engineer. */
@@ -734,6 +761,9 @@
 "Tap here for help." = "Tapiwch yma i gael help.";
 
 /* No comment provided by engineer. */
+"Tap to select the courses you want to see on the calendar." = "Tapiwch i ddewis y cyrsiau rydych chi am eu gweld ar y calendr.";
+
+/* No comment provided by engineer. */
 "Teacher" = "Athro";
 
 /* No comment provided by engineer. */
@@ -765,6 +795,15 @@
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Problem wrth adfer y Telerau Defnyddio";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Gwall wrth lwytho cyrsiau. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
+
+/* No comment provided by engineer. */
+"There was an error loading events. Pull to refresh to try again." = "Gwall wrth lwytho Digwyddiad myfyrwyr. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
+
+/* No comment provided by engineer. */
+"There was an error loading people. Pull to refresh to try again." = "Gwall wrth lwytho pobl. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Gwall â'r nodwedd Gweithredu fel Defnyddiwr. Rhowch gynnig arall arni rywbryd eto.";
@@ -839,6 +878,9 @@
 "View Modules" = "Gweld Modiwlau";
 
 /* No comment provided by engineer. */
+"We couldn’t find somebody like that." = "Doedd dim modd dod o hyd i rywun fel yna.";
+
+/* No comment provided by engineer. */
 "We've made a few changes." = "Rydyn ni wedi gwneud ychydig o newidiadau.";
 
 /* No comment provided by engineer. */
@@ -872,10 +914,16 @@
 "You must enable Microphone permissions in Settings." = "Rhaid i chi alluogi hawliau Microffon yn y Gosodiadau.";
 
 /* No comment provided by engineer. */
+"You will be logged out of this student account." = "Byddwch chi’n cael eich allgofnodi o’r cyfrif myfyriwn hwn.";
+
+/* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Byddwch yn stopio gweithredu fel %@ ac yn dychwelyd i’ch cyfrif eich hun.";
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Byddwch yn stopio gweithredu fel y defnyddiwr hwn ac yn dychwelyd i’ch cyfrif eich hun.";
+
+/* No comment provided by engineer. */
+"Your child's courses might not be published yet." = "Efallai nad yw cyrsiau eich plentyn wedi cael eu cyhoeddi eto.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Eich E-bost";

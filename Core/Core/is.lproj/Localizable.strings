@@ -89,6 +89,12 @@
 "Calendar" = "Dagatal";
 
 /* No comment provided by engineer. */
+"Calendars" = "Dagatöl";
+
+/* No comment provided by engineer. */
+"Calendars (%d)" = "Dagatöl (%d)";
+
+/* No comment provided by engineer. */
 "Camera" = "Myndavél";
 
 /* No comment provided by engineer. */
@@ -215,6 +221,9 @@
 "Dashboard" = "Skjáborð";
 
 /* No comment provided by engineer. */
+"date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
 "Delete" = "Eyða";
 
 /* No comment provided by engineer. */
@@ -329,6 +338,9 @@
 "Filter by:" = "Sía eftir:";
 
 /* No comment provided by engineer. */
+"Filter events" = "Sía viðburði";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Lokaeinkunn: %@";
 
 /* No comment provided by engineer. */
@@ -395,6 +407,9 @@
 "Incomplete" = "Ólokið";
 
 /* No comment provided by engineer. */
+"Interactions on this page are limited by your institution." = "Samskipti á þessari síðu eru takmörkuð af stofnun þinni.";
+
+/* No comment provided by engineer. */
 "Invitation" = "Boð";
 
 /* No comment provided by engineer. */
@@ -417,6 +432,9 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Nota ytra verkfæri";
+
+/* No comment provided by engineer. */
+"Leave Student View" = "Fara úr nemandasýn";
 
 /* No comment provided by engineer. */
 "Legal" = "Lögfræði";
@@ -497,10 +515,16 @@
 "No Content" = "Ekkert efni";
 
 /* No comment provided by engineer. */
+"No Courses" = "Engin námskeið";
+
+/* No comment provided by engineer. */
 "No Due Date" = "Enginn skiladagur";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Engin mynd fannst í myndavali okkar";
+
+/* No comment provided by engineer. */
+"No Results" = "Engar niðurstöður";
 
 /* No comment provided by engineer. */
 "No Submission" = "Engin skil";
@@ -659,6 +683,9 @@
 "Settings" = "Stillingar";
 
 /* No comment provided by engineer. */
+"Show a month at a time" = "Sýna mánuð í einu";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Sýna einkunnir";
 
 /* No comment provided by engineer. */
@@ -734,6 +761,9 @@
 "Tap here for help." = "Smelltu hér til að fá hjálp.";
 
 /* No comment provided by engineer. */
+"Tap to select the courses you want to see on the calendar." = "Smelltu til að velja námskeiðin sem þú vilt sjá á dagatalinu.";
+
+/* No comment provided by engineer. */
 "Teacher" = "Kennari";
 
 /* No comment provided by engineer. */
@@ -765,6 +795,15 @@
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Vandamál kom upp við að endurheimta notandaskilmála.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Villa kom upp við að sækja námskeiðin. Dragðu til að endurglæða til að reyna aftur.";
+
+/* No comment provided by engineer. */
+"There was an error loading events. Pull to refresh to try again." = "Villa kom upp við að sækja viðburði. Dragðu til að endurglæða til að reyna aftur.";
+
+/* No comment provided by engineer. */
+"There was an error loading people. Pull to refresh to try again." = "Villa kom upp við að sækja fólk. Dragðu til að endurglæða til að reyna aftur.";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Villa kom upp við bregðast við sem notandi. Vinsamlegast reyndu aftur seinna.";
@@ -839,6 +878,9 @@
 "View Modules" = "Skoða einingar";
 
 /* No comment provided by engineer. */
+"We couldn’t find somebody like that." = "Við fundum engan þannig.";
+
+/* No comment provided by engineer. */
 "We've made a few changes." = "Við höfum gert nokkrar breytingar.";
 
 /* No comment provided by engineer. */
@@ -872,10 +914,16 @@
 "You must enable Microphone permissions in Settings." = "Þú þarft að virkja hljóðnemaleyfi í stillingum.";
 
 /* No comment provided by engineer. */
+"You will be logged out of this student account." = "Þú verður skráð(ur) út af þessum nemandareikningi.";
+
+/* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Þú munt hætta að virka sem %@ og fara aftur í þinn reikning.";
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Þú munt hætta að bregðast við sem þessi notandi og fara aftur í þinn reikning.";
+
+/* No comment provided by engineer. */
+"Your child's courses might not be published yet." = "Námskeið barnsins þíns eru ef til vill ekki birt enn.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Netfangið þitt";

@@ -1085,6 +1085,9 @@
   "open_for_comments_1810648": {
     "message": "Открыть для комментариев"
   },
+  "opens_in_student_app_a9571498": {
+    "message": "Открывается в приложении для студентов"
+  },
   "options_3ab0ea65": {
     "message": "Опции"
   },
@@ -1138,6 +1141,9 @@
   },
   "pinned_discussions_a55c0cea": {
     "message": "Закрепленные Дискуссии"
+  },
+  "please_try_again_5d872e78": {
+    "message": "Попробуйте еще раз."
   },
   "points_bb475533": {
     "message": "Баллы"
@@ -1426,6 +1432,12 @@
   },
   "student_5da6bfd1": {
     "message": "Студент"
+  },
+  "student_view_ac9b672f": {
+    "message": "Просмотр студентом"
+  },
+  "student_view_enrollment_not_found_8f9cbdd5": {
+    "message": "Просмотр для студентов, зачисление не найдено"
   },
   "students_1b8cd07b": {
     "message": "Студенты"
@@ -1781,6 +1793,9 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Вам поступило приглашение"
+  },
+  "you_must_access_student_view_for_this_course_once__ae054476": {
+    "message": "Вы должны войти в просмотр для студентов для этого курса один раз с веб-сайта, прежде чем использовать просмотр для студентов в приложении."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Вы должны активировать разрешения для камеры и микрофона в настройках для использования камеры."
