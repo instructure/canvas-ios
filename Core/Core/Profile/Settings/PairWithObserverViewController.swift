@@ -78,7 +78,7 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
 
     @objc func actionShare(sender: UIBarButtonItem) {
         guard let code = codeLabel.text, !code.isEmpty else { return }
-        let template = NSLocalizedString("Use this code to pair with me: %@", bundle: .core, comment: "")
+        let template = NSLocalizedString("Use this code to pair with me in Canvas Parent: %@", bundle: .core, comment: "")
         let message = String.localizedStringWithFormat(template, code)
         let vc = UIActivityViewController(activityItems: [message], applicationActivities: nil)
         let popover = vc.popoverPresentationController
