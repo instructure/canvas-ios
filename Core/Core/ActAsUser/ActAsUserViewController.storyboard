@@ -1,132 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Act As User View Controller-->
         <scene sceneID="VJ5-CH-5dU">
             <objects>
-                <tableViewController storyboardIdentifier="ActAsUserViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ICM-7t-mjc" customClass="ActAsUserViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="600" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lta-zL-Mgb">
+                <viewController storyboardIdentifier="ActAsUserViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ICM-7t-mjc" customClass="ActAsUserViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yHC-jx-Mjk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <sections>
-                            <tableViewSection id="WTK-Fo-WfN">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="Ujf-ZI-lph">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="600"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ujf-ZI-lph" id="yHC-jx-Mjk">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhitePanda" translatesAutoresizingMaskIntoConstraints="NO" id="LKN-2A-NNy">
-                                                    <rect key="frame" x="145.5" y="43" width="84" height="102"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="84" id="o4s-KQ-i72"/>
-                                                        <constraint firstAttribute="height" constant="102" id="rZ8-rG-a4e"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedPanda" translatesAutoresizingMaskIntoConstraints="NO" id="guS-ZP-xtv">
-                                                    <rect key="frame" x="-7.5" y="71" width="150" height="206"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7VT-dD-ZDS" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="40" y="185" width="295" height="162.5"/>
-                                                    <string key="text">"Act as" is essentially logging in as this user without a password. You will be able to take any actions as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user.</string>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User ID" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="q3d-B6-ITy" customClass="DynamicTextField" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="40" y="371.5" width="295" height="50"/>
-                                                    <accessibility key="accessibilityConfiguration" identifier="ActAsUser.userIDField"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="mB5-Hi-Lbx"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </textField>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Domain" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="eC8-Jz-lGK" customClass="DynamicTextField" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="40" y="433.5" width="295" height="50"/>
-                                                    <accessibility key="accessibilityConfiguration" identifier="ActAsUser.domainField"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="NvL-5f-zSp"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDI-G5-vxn" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="40" y="495.5" width="295" height="50"/>
-                                                    <accessibility key="accessibilityConfiguration" identifier="ActAsUser.actAsUserButton"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="nwi-dr-yNw"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Act as User"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="electric"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="white"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="actAsUserPressed:" destination="ICM-7t-mjc" eventType="touchUpInside" id="E8c-Up-xLA"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="LKN-2A-NNy" firstAttribute="leading" secondItem="guS-ZP-xtv" secondAttribute="trailing" constant="3" id="0Ee-Iv-qK7"/>
-                                                <constraint firstItem="eC8-Jz-lGK" firstAttribute="leading" secondItem="yHC-jx-Mjk" secondAttribute="leadingMargin" constant="24" id="2au-Ew-Hhy"/>
-                                                <constraint firstItem="dDI-G5-vxn" firstAttribute="leading" secondItem="yHC-jx-Mjk" secondAttribute="leadingMargin" constant="24" id="C9I-kq-Z3f"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="7VT-dD-ZDS" secondAttribute="trailing" constant="24" id="Iss-ar-8vx"/>
-                                                <constraint firstItem="guS-ZP-xtv" firstAttribute="top" secondItem="yHC-jx-Mjk" secondAttribute="topMargin" constant="60" id="Of2-rZ-1U4"/>
-                                                <constraint firstItem="eC8-Jz-lGK" firstAttribute="top" secondItem="q3d-B6-ITy" secondAttribute="bottom" constant="12" id="PAF-XL-xNi"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="q3d-B6-ITy" secondAttribute="trailing" constant="24" id="Xj2-cO-65A"/>
-                                                <constraint firstItem="7VT-dD-ZDS" firstAttribute="top" secondItem="LKN-2A-NNy" secondAttribute="bottom" constant="40" id="ZSJ-T8-eQr"/>
-                                                <constraint firstItem="7VT-dD-ZDS" firstAttribute="leading" secondItem="yHC-jx-Mjk" secondAttribute="leadingMargin" constant="24" id="aMf-yM-eJ6"/>
-                                                <constraint firstItem="q3d-B6-ITy" firstAttribute="top" secondItem="7VT-dD-ZDS" secondAttribute="bottom" constant="24" id="arq-Rb-fL2"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="dDI-G5-vxn" secondAttribute="trailing" constant="24" id="ck2-a1-Eh6"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="eC8-Jz-lGK" secondAttribute="trailing" constant="24" id="gE1-uc-H4H"/>
-                                                <constraint firstItem="dDI-G5-vxn" firstAttribute="top" secondItem="eC8-Jz-lGK" secondAttribute="bottom" constant="12" id="lp2-zm-MOx"/>
-                                                <constraint firstItem="q3d-B6-ITy" firstAttribute="leading" secondItem="yHC-jx-Mjk" secondAttribute="leadingMargin" constant="24" id="s4y-3v-vqi"/>
-                                                <constraint firstItem="LKN-2A-NNy" firstAttribute="top" secondItem="yHC-jx-Mjk" secondAttribute="topMargin" constant="32" id="w21-9u-sZy"/>
-                                                <constraint firstItem="LKN-2A-NNy" firstAttribute="centerX" secondItem="yHC-jx-Mjk" secondAttribute="centerX" id="wPe-fy-zpR"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="ICM-7t-mjc" id="oVD-gu-Fqh"/>
-                            <outlet property="delegate" destination="ICM-7t-mjc" id="cPA-gL-wVi"/>
-                        </connections>
-                    </tableView>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TcG-Wl-rFx">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhitePanda" translatesAutoresizingMaskIntoConstraints="NO" id="LKN-2A-NNy">
+                                        <rect key="frame" x="145.5" y="20" width="84" height="102"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="84" id="o4s-KQ-i72"/>
+                                            <constraint firstAttribute="height" constant="102" id="rZ8-rG-a4e"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedPanda" translatesAutoresizingMaskIntoConstraints="NO" id="guS-ZP-xtv">
+                                        <rect key="frame" x="112.5" y="18" width="150" height="206"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7VT-dD-ZDS" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="162" width="343" height="142.5"/>
+                                        <string key="text">"Act as" is essentially logging in as this user without a password. You will be able to take any actions as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User ID" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="q3d-B6-ITy" customClass="DynamicTextField" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="328.5" width="343" height="50"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="ActAsUser.userIDField"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="mB5-Hi-Lbx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Domain" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="eC8-Jz-lGK" customClass="DynamicTextField" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="390.5" width="343" height="50"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="ActAsUser.domainField"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="NvL-5f-zSp"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDI-G5-vxn" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="452.5" width="343" height="50"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="ActAsUser.actAsUserButton"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="nwi-dr-yNw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <state key="normal" title="Act as User"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="electric"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="white"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="actAsUserPressed" destination="ICM-7t-mjc" eventType="primaryActionTriggered" id="0gr-NQ-Jl2"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="b09-HQ-Fj9" firstAttribute="trailing" secondItem="dDI-G5-vxn" secondAttribute="trailing" constant="16" id="2QW-CM-Bcv"/>
+                                    <constraint firstItem="3WQ-jI-gRr" firstAttribute="trailing" secondItem="7VT-dD-ZDS" secondAttribute="trailing" constant="16" id="8S4-qY-PBF"/>
+                                    <constraint firstItem="7VT-dD-ZDS" firstAttribute="leading" secondItem="b09-HQ-Fj9" secondAttribute="leading" constant="16" id="AHy-Cd-Qh3"/>
+                                    <constraint firstItem="LKN-2A-NNy" firstAttribute="centerX" secondItem="b09-HQ-Fj9" secondAttribute="centerX" id="Bgi-S7-ADZ"/>
+                                    <constraint firstItem="eC8-Jz-lGK" firstAttribute="leading" secondItem="b09-HQ-Fj9" secondAttribute="leading" constant="16" id="CLM-05-ll9"/>
+                                    <constraint firstItem="guS-ZP-xtv" firstAttribute="top" secondItem="LKN-2A-NNy" secondAttribute="top" constant="-2" id="Ec3-ft-4yt"/>
+                                    <constraint firstItem="LKN-2A-NNy" firstAttribute="centerX" secondItem="guS-ZP-xtv" secondAttribute="centerX" id="Ex8-mn-dhS"/>
+                                    <constraint firstItem="q3d-B6-ITy" firstAttribute="leading" secondItem="b09-HQ-Fj9" secondAttribute="leading" constant="16" id="F1Y-BS-D57"/>
+                                    <constraint firstItem="eC8-Jz-lGK" firstAttribute="top" secondItem="q3d-B6-ITy" secondAttribute="bottom" constant="12" id="Ipk-we-XWa"/>
+                                    <constraint firstItem="b09-HQ-Fj9" firstAttribute="trailing" secondItem="7VT-dD-ZDS" secondAttribute="trailing" constant="16" id="WCZ-se-XoB"/>
+                                    <constraint firstItem="7VT-dD-ZDS" firstAttribute="top" secondItem="LKN-2A-NNy" secondAttribute="bottom" constant="40" id="cbc-gg-r4W"/>
+                                    <constraint firstItem="dDI-G5-vxn" firstAttribute="leading" secondItem="b09-HQ-Fj9" secondAttribute="leading" constant="16" id="dCD-zo-ULq"/>
+                                    <constraint firstItem="b09-HQ-Fj9" firstAttribute="trailing" secondItem="q3d-B6-ITy" secondAttribute="trailing" constant="16" id="eIj-1j-xul"/>
+                                    <constraint firstItem="q3d-B6-ITy" firstAttribute="top" secondItem="7VT-dD-ZDS" secondAttribute="bottom" constant="24" id="hY7-dE-6J1"/>
+                                    <constraint firstItem="LKN-2A-NNy" firstAttribute="top" secondItem="b09-HQ-Fj9" secondAttribute="top" constant="20" id="iX2-yp-zDu"/>
+                                    <constraint firstItem="7VT-dD-ZDS" firstAttribute="leading" secondItem="3WQ-jI-gRr" secondAttribute="leading" constant="16" id="k61-Pc-s2o"/>
+                                    <constraint firstItem="b09-HQ-Fj9" firstAttribute="trailing" secondItem="eC8-Jz-lGK" secondAttribute="trailing" constant="16" id="oqD-PI-nvM"/>
+                                    <constraint firstItem="dDI-G5-vxn" firstAttribute="top" secondItem="eC8-Jz-lGK" secondAttribute="bottom" constant="12" id="t54-g0-woU"/>
+                                    <constraint firstItem="b09-HQ-Fj9" firstAttribute="bottom" secondItem="dDI-G5-vxn" secondAttribute="bottom" id="wUH-Eb-jm6"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="b09-HQ-Fj9"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="3WQ-jI-gRr"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="TcG-Wl-rFx" firstAttribute="leading" secondItem="79p-Wb-9Db" secondAttribute="leading" id="Dy8-R7-eVq"/>
+                            <constraint firstItem="79p-Wb-9Db" firstAttribute="bottom" secondItem="TcG-Wl-rFx" secondAttribute="bottom" id="Gq3-O3-5Pl"/>
+                            <constraint firstItem="79p-Wb-9Db" firstAttribute="trailing" secondItem="TcG-Wl-rFx" secondAttribute="trailing" id="OFM-a2-iYX"/>
+                            <constraint firstItem="TcG-Wl-rFx" firstAttribute="top" secondItem="79p-Wb-9Db" secondAttribute="top" id="dli-6H-7Tw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="79p-Wb-9Db"/>
+                    </view>
                     <connections>
                         <outlet property="actAsUserButton" destination="dDI-G5-vxn" id="A20-Du-aqm"/>
                         <outlet property="actAsUserDescription" destination="7VT-dD-ZDS" id="Pso-Sc-G3s"/>
                         <outlet property="domainTextField" destination="eC8-Jz-lGK" id="vHz-Fi-3Ii"/>
+                        <outlet property="keyboardSpace" destination="Gq3-O3-5Pl" id="gpZ-cY-Qtk"/>
                         <outlet property="redPanda" destination="guS-ZP-xtv" id="ov8-No-qtq"/>
-                        <outlet property="redPandaTopConstraint" destination="Of2-rZ-1U4" id="cfI-I1-Wfx"/>
-                        <outlet property="redPandaTrailingConstraint" destination="0Ee-Iv-qK7" id="wIi-3J-1EB"/>
+                        <outlet property="scrollView" destination="TcG-Wl-rFx" id="mwu-gm-I26"/>
                         <outlet property="userIDTextField" destination="q3d-B6-ITy" id="roV-47-1h5"/>
                     </connections>
-                </tableViewController>
+                </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C0c-QL-u99" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="265" y="79"/>
