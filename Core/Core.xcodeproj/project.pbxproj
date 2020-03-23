@@ -93,7 +93,7 @@
 		7D37BE8621C81C9A0063FAAC /* UserAgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D37BE8521C81C9A0063FAAC /* UserAgentTests.swift */; };
 		7D37BE8821C824DA0063FAAC /* UIViewControllerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D37BE8721C824DA0063FAAC /* UIViewControllerExtensionsTests.swift */; };
 		7D37BE8D21C837840063FAAC /* SubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D37BE8C21C837840063FAAC /* SubmissionTests.swift */; };
-		7D37BE9121C849D10063FAAC /* DocViewerPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D37BE9021C849D10063FAAC /* DocViewerPresenterTests.swift */; };
+		7D37BE9121C849D10063FAAC /* DocViewerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D37BE9021C849D10063FAAC /* DocViewerViewControllerTests.swift */; };
 		7D3A1EEF227BEFD00094531E /* ActAsUserViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A1EEE227BEFD00094531E /* ActAsUserViewControllerTests.swift */; };
 		7D3E522624059A740092A5F8 /* PlannerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3E522524059A740092A5F8 /* PlannerViewControllerTests.swift */; };
 		7D4C3A772236FFD2007D6792 /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C3A762236FFD2007D6792 /* FileTests.swift */; };
@@ -282,7 +282,6 @@
 		7DA25FFA23F7226E005D2121 /* DocViewerCommentReplyAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D29D302218A54CC0036437C /* DocViewerCommentReplyAnnotation.swift */; };
 		7DA25FFB23F7226E005D2121 /* DocViewerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D29D2F8218A2BC60036437C /* DocViewerConstants.swift */; };
 		7DA25FFC23F7226E005D2121 /* DocViewerPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D29D300218A52F00036437C /* DocViewerPointAnnotation.swift */; };
-		7DA25FFD23F7226E005D2121 /* DocViewerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6948A21960EBD00BA4984 /* DocViewerPresenter.swift */; };
 		7DA25FFE23F7226E005D2121 /* DocViewerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC305219C9D36008FE29A /* DocViewerSession.swift */; };
 		7DA25FFF23F7226E005D2121 /* DocViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD694862195F76C00BA4984 /* DocViewerViewController.swift */; };
 		7DA2600023F7226E005D2121 /* PSPDFAnnotationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D29D2FE218A4FEA0036437C /* PSPDFAnnotationExtension.swift */; };
@@ -1251,7 +1250,7 @@
 		7D37BE8521C81C9A0063FAAC /* UserAgentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgentTests.swift; sourceTree = "<group>"; };
 		7D37BE8721C824DA0063FAAC /* UIViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
 		7D37BE8C21C837840063FAAC /* SubmissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionTests.swift; sourceTree = "<group>"; };
-		7D37BE9021C849D10063FAAC /* DocViewerPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerPresenterTests.swift; sourceTree = "<group>"; };
+		7D37BE9021C849D10063FAAC /* DocViewerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerViewControllerTests.swift; sourceTree = "<group>"; };
 		7D3A1EEE227BEFD00094531E /* ActAsUserViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActAsUserViewControllerTests.swift; sourceTree = "<group>"; };
 		7D3E522524059A740092A5F8 /* PlannerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerViewControllerTests.swift; sourceTree = "<group>"; };
 		7D47769B21AF3A0200B441CE /* QuizQuestionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestionType.swift; sourceTree = "<group>"; };
@@ -1486,7 +1485,6 @@
 		7DD6948421951FD700BA4984 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		7DD694862195F76C00BA4984 /* DocViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerViewController.swift; sourceTree = "<group>"; };
 		7DD694882195F7A200BA4984 /* DocViewerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DocViewerViewController.storyboard; sourceTree = "<group>"; };
-		7DD6948A21960EBD00BA4984 /* DocViewerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerPresenter.swift; sourceTree = "<group>"; };
 		7DD6948E2196891200BA4984 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		7DD6CC6421BCC101004C4BB6 /* LoginNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigationController.swift; sourceTree = "<group>"; };
 		7DD6CC6621BCC597004C4BB6 /* LoginFindSchoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchoolViewController.swift; sourceTree = "<group>"; };
@@ -2621,7 +2619,6 @@
 				7D29D302218A54CC0036437C /* DocViewerCommentReplyAnnotation.swift */,
 				7D29D2F8218A2BC60036437C /* DocViewerConstants.swift */,
 				7D29D300218A52F00036437C /* DocViewerPointAnnotation.swift */,
-				7DD6948A21960EBD00BA4984 /* DocViewerPresenter.swift */,
 				7D2DC305219C9D36008FE29A /* DocViewerSession.swift */,
 				7DD694882195F7A200BA4984 /* DocViewerViewController.storyboard */,
 				7DD694862195F76C00BA4984 /* DocViewerViewController.swift */,
@@ -2747,7 +2744,7 @@
 				7D2DC2F72199F774008FE29A /* DocViewerAnnotationProviderTests.swift */,
 				7D2DC300219A16EC008FE29A /* DocViewerConstantsTests.swift */,
 				7D2DC2F52199F27B008FE29A /* DocViewerPointAnnotationTests.swift */,
-				7D37BE9021C849D10063FAAC /* DocViewerPresenterTests.swift */,
+				7D37BE9021C849D10063FAAC /* DocViewerViewControllerTests.swift */,
 				7D2DC31A219CE469008FE29A /* DocViewerSessionTests.swift */,
 				7D7472D8218CD77C00CE1430 /* PSPDFAnnotationExtensionTests.swift */,
 			);
@@ -4402,7 +4399,7 @@
 				9FCD79D62188DE8B0054293A /* APISubmissionRequestableTests.swift in Sources */,
 				7D2DC2F82199F774008FE29A /* DocViewerAnnotationProviderTests.swift in Sources */,
 				B14D55612130B6740066D275 /* TestOperationQueue.swift in Sources */,
-				7D37BE9121C849D10063FAAC /* DocViewerPresenterTests.swift in Sources */,
+				7D37BE9121C849D10063FAAC /* DocViewerViewControllerTests.swift in Sources */,
 				7DFD5F7523FEF38100D988E0 /* PlannerListViewControllerTests.swift in Sources */,
 				7DC23092213D710000318ED0 /* UIImageViewExtensionsTests.swift in Sources */,
 				7DB0A1B621BF168A009ABB40 /* LoginDelegateTests.swift in Sources */,
@@ -4722,7 +4719,6 @@
 				7DA25FB223F72136005D2121 /* APIFavorite.swift in Sources */,
 				7DA25FAE23F72136005D2121 /* APIEnrollmentRequestable.swift in Sources */,
 				7DA25FC123F72136005D2121 /* APIOAuth.swift in Sources */,
-				7DA25FFD23F7226E005D2121 /* DocViewerPresenter.swift in Sources */,
 				7DA2601E23F7227A005D2121 /* URLExtensions.swift in Sources */,
 				7DA25FDA23F72148005D2121 /* Keychain.swift in Sources */,
 				7DA2609323F72315005D2121 /* UserProfile.swift in Sources */,

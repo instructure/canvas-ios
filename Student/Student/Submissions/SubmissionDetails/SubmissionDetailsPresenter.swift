@@ -191,8 +191,7 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
                         filename: filename,
                         previewURL: attachment.previewURL,
                         fallbackURL: url,
-                        navigationItem: view?.navigationItem,
-                        env: env
+                        navigationItem: view?.navigationItem
                     )
                 case "audio", "video":
                     let player = AVPlayer(url: url)

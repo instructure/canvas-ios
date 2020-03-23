@@ -21,12 +21,18 @@ import PSPDFKit
 import PSPDFKitUI
 @testable import Core
 
-class DocViewerPresenterTests: CoreTestCase {
-    var document: PSPDFDocument?
-    var error: Error?
-    var resetted = false
-
-    lazy var url = Bundle(for: DocViewerPresenterTests.self).url(forResource: "instructure", withExtension: "pdf")!
+class DocViewerViewControllerTests: CoreTestCase {
+    lazy var controller: DocViewerViewController = {
+        let controller = DocViewerViewController.create(
+            filename: "instructure.pdf",
+            previewURL: url, fallbackURL: url,
+            navigationItem: navigationItem
+        )
+        controller.session = session
+        return controller
+    }()
+    let navigationItem = UINavigationItem()
+    lazy var url = Bundle(for: Self.self).url(forResource: "instructure", withExtension: "pdf")!
 
     class MockSession: DocViewerSession {
         var requested: URL?
@@ -39,27 +45,28 @@ class DocViewerPresenterTests: CoreTestCase {
             loading = downloadURL
         }
     }
-    lazy var session = MockSession { self.presenter.sessionIsReady() }
+    lazy var session = MockSession { [weak self] in self?.controller.sessionIsReady() }
 
-    lazy var presenter: DocViewerPresenter = {
-        let presenter = DocViewerPresenter(env: environment, view: self, filename: "instructure.pdf", previewURL: url, fallbackURL: url)
-        XCTAssertNoThrow(presenter.session)
-        presenter.session = session
-        return presenter
-    }()
+    func testOriginalSession() {
+        let controller = DocViewerViewController.create(
+            filename: "instructure.pdf",
+            previewURL: url, fallbackURL: url,
+            navigationItem: navigationItem
+        )
+        XCTAssertNoThrow(controller.session.notify())
+    }
 
     func testViewIsReadyErrors() {
         let err = APIDocViewerError.noData
         session.error = err
-        presenter.viewIsReady()
-        wait(for: [expectation(for: .all, evaluatedWith: err) { self.error != nil }], timeout: 5)
-        XCTAssertEqual(error as? APIDocViewerError, .noData)
+        controller.view.layoutIfNeeded()
+        XCTAssertEqual((router.presented as? UIAlertController)?.message, err.localizedDescription)
     }
 
-    func testViewIsReadyNoURL() {
-        presenter.previewURL = nil
-        presenter.viewIsReady()
-        XCTAssertEqual(session.loading, presenter.fallbackURL)
+    func testFallback() {
+        controller.previewURL = nil
+        controller.view.layoutIfNeeded()
+        XCTAssertEqual(session.loading, controller.fallbackURL)
     }
 
     func testSessionIsReady() {
@@ -68,29 +75,28 @@ class DocViewerPresenterTests: CoreTestCase {
         session.sessionURL = URL(string: "session")
         session.localURL = url
         session.metadata = APIDocViewerMetadata.make(rotations: [ "0": 90 ])
-        presenter.sessionIsReady()
-        let providers = document?.documentProviders.first?.annotationManager.annotationProviders
+        controller.view.layoutIfNeeded()
+        let providers = controller.pdf.document?.documentProviders.first?.annotationManager.annotationProviders
         XCTAssertTrue(providers?.contains(where: { $0 is DocViewerAnnotationProvider }) ?? false)
     }
 
     func testLoadFallback() {
         session.localURL = url
-        presenter.loadFallback()
-        XCTAssertEqual(document?.fileURL, url)
+        controller.previewURL = nil
+        controller.view.layoutIfNeeded()
+        XCTAssertEqual(controller.pdf.document?.fileURL, url)
     }
 
     func testLoadFallbackRepeat() {
         session.error = APIDocViewerError.noData
-        presenter.loadFallback()
-        XCTAssertNotNil(error)
-        XCTAssertNil(session.error)
-        XCTAssertEqual(presenter.fallbackUsed, true)
+        controller.view.layoutIfNeeded()
+        XCTAssertNotNil(router.presented)
+        XCTAssertEqual(controller.fallbackUsed, true)
 
         session.error = APIDocViewerError.noData
-        presenter.loadFallback()
-        XCTAssertNotNil(session.error)
-        XCTAssertNil(document)
-        XCTAssertEqual(presenter.fallbackUsed, true)
+        controller.view.layoutIfNeeded()
+        XCTAssertNil(controller.pdf.document)
+        XCTAssertEqual(controller.fallbackUsed, true)
     }
 
     func testShouldShowForSelectedText() {
@@ -98,16 +104,17 @@ class DocViewerPresenterTests: CoreTestCase {
             PSPDFMenuItem(title: "test", block: {}),
             PSPDFMenuItem(title: "test1", block: {}, identifier: PSPDFTextMenu.annotationMenuHighlight.rawValue),
         ]
-        let results = presenter.pdfViewController(
-            PSPDFViewController(),
+        controller.view.layoutIfNeeded()
+        let results = controller.pdf.delegate?.pdfViewController?(
+            controller.pdf,
             shouldShow: menuItems,
             atSuggestedTargetRect: .zero,
             forSelectedText: "",
             in: .zero,
             on: PSPDFPageView(frame: .zero)
         )
-        XCTAssertEqual(results.count, 1)
-        XCTAssertEqual(results[0], menuItems[0])
+        XCTAssertEqual(results?.count, 1)
+        XCTAssertEqual(results?[0], menuItems[0])
     }
 
     class MockPDFViewController: PSPDFViewController {
@@ -144,7 +151,8 @@ class DocViewerPresenterTests: CoreTestCase {
             PSPDFMenuItem(title: "test", block: {}),
             PSPDFMenuItem(title: "", block: {}, identifier: PSPDFTextMenu.annotationMenuOpacity.rawValue),
         ]
-        let results = presenter.pdfViewController(
+        controller.view.layoutIfNeeded()
+        let results = controller.pdf.delegate?.pdfViewController?(
             PSPDFViewController(document: PSPDFDocument(url: url)),
             shouldShow: menuItems,
             atSuggestedTargetRect: .zero,
@@ -161,11 +169,12 @@ class DocViewerPresenterTests: CoreTestCase {
             PSPDFMenuItem(title: "opacity", block: {}, identifier: PSPDFTextMenu.annotationMenuOpacity.rawValue),
             PSPDFMenuItem(title: "inspector", block: {}, identifier: PSPDFTextMenu.annotationMenuInspector.rawValue),
         ]
-        presenter.metadata = APIDocViewerMetadata.make()
+        controller.view.layoutIfNeeded()
+        controller.metadata = APIDocViewerMetadata.make()
         let viewController = MockPDFViewController(document: MockPDFDocument(url: url))
         let annotation = PSPDFNoteAnnotation(contents: "note")
         annotation.isEditable = false
-        let results = presenter.pdfViewController(
+        let results = controller.pdf.delegate?.pdfViewController?(
             viewController,
             shouldShow: menuItems,
             atSuggestedTargetRect: .zero,
@@ -173,15 +182,15 @@ class DocViewerPresenterTests: CoreTestCase {
             in: .zero,
             on: PSPDFPageView(frame: .zero)
         )
-        XCTAssertEqual(results[0].title, "Comments")
-        XCTAssertEqual(results[1].title, "test")
-        XCTAssertEqual(results[2].title, "Style")
-        XCTAssertEqual(results[3].identifier, PSPDFTextMenu.annotationMenuRemove.rawValue)
+        XCTAssertEqual(results?[0].title, "Comments")
+        XCTAssertEqual(results?[1].title, "test")
+        XCTAssertEqual(results?[2].title, "Style")
+        XCTAssertEqual(results?[3].identifier, PSPDFTextMenu.annotationMenuRemove.rawValue)
 
-        results[0].performBlock()
+        results?[0].performBlock()
         XCTAssert(viewController.presented is UINavigationController)
 
-        results[3].performBlock()
+        results?[3].performBlock()
         XCTAssertEqual((viewController.document as? MockPDFDocument)?.removed, [annotation])
     }
 
@@ -191,7 +200,8 @@ class DocViewerPresenterTests: CoreTestCase {
             PSPDFMenuItem(title: "opacity", block: {}, identifier: PSPDFTextMenu.annotationMenuOpacity.rawValue),
             PSPDFMenuItem(title: "inspector", block: {}, identifier: PSPDFTextMenu.annotationMenuInspector.rawValue),
         ]
-        presenter.metadata = APIDocViewerMetadata.make()
+        controller.view.layoutIfNeeded()
+        controller.metadata = APIDocViewerMetadata.make()
         let viewController = MockPDFViewController(document: MockPDFDocument(url: url))
         let annotation = PSPDFFreeTextAnnotation(contents: "text")
         let pageView = MockPDFPageView(frame: .zero)
@@ -199,7 +209,7 @@ class DocViewerPresenterTests: CoreTestCase {
         let resizableView = PSPDFResizableView()
         annotationView.resizableView = resizableView
         pageView.annotationView = annotationView
-        _ = presenter.pdfViewController(
+        _ = controller.pdf.delegate?.pdfViewController?(
             viewController,
             shouldShow: menuItems,
             atSuggestedTargetRect: .zero,
@@ -211,51 +221,42 @@ class DocViewerPresenterTests: CoreTestCase {
     }
 
     func testShouldShowController() {
-        XCTAssertFalse(presenter.pdfViewController(PSPDFViewController(), shouldShow: PSPDFStampViewController(), animated: true))
-        XCTAssertTrue(presenter.pdfViewController(PSPDFViewController(), shouldShow: UIViewController(), animated: true))
+        XCTAssertFalse(controller.pdfViewController(PSPDFViewController(), shouldShow: PSPDFStampViewController(), animated: true))
+        XCTAssertTrue(controller.pdfViewController(PSPDFViewController(), shouldShow: UIViewController(), animated: true))
     }
 
     func testDidTapOn() {
-        XCTAssertFalse(presenter.pdfViewController(PSPDFViewController(), didTapOn: PSPDFPageView(frame: .zero), at: .zero))
+        XCTAssertFalse(controller.pdfViewController(PSPDFViewController(), didTapOn: PSPDFPageView(frame: .zero), at: .zero))
 
-        presenter.metadata = APIDocViewerMetadata.make()
+        controller.view.layoutIfNeeded()
+        controller.metadata = APIDocViewerMetadata.make()
         let viewController = MockPDFViewController(document: MockPDFDocument(url: url))
         viewController.annotationStateManager.state = .stamp
-        XCTAssertTrue(presenter.pdfViewController(viewController, didTapOn: PSPDFPageView(frame: .zero), at: .zero))
+        XCTAssertTrue(controller.pdfViewController(viewController, didTapOn: PSPDFPageView(frame: .zero), at: .zero))
         XCTAssert(viewController.presented is UINavigationController)
         XCTAssertEqual((viewController.document as? MockPDFDocument)?.added?.count, 1)
     }
 
     func testAnnotationDidExceedLimit() {
-        presenter.annotationDidExceedLimit(annotation: APIDocViewerAnnotation.make())
-        XCTAssertFalse(resetted)
-        presenter.annotationDidExceedLimit(annotation: APIDocViewerAnnotation.make(type: .ink))
-        XCTAssertTrue(resetted)
+        controller.pdf.annotationStateManager.toggleState(.ink, variant: .inkPen)
+        controller.annotationDidExceedLimit(annotation: APIDocViewerAnnotation.make())
+        controller.annotationDidExceedLimit(annotation: APIDocViewerAnnotation.make(type: .ink))
+        XCTAssertEqual(controller.pdf.annotationStateManager.variant, .inkPen)
     }
 
     func testAnnotationDidFailToSave() {
-        presenter.annotationDidFailToSave(error: APIDocViewerError.tooBig)
-        // TODO: save status bar
+        controller.view.layoutIfNeeded()
+        controller.annotationDidFailToSave(error: APIDocViewerError.tooBig)
+        XCTAssertEqual(controller.syncAnnotationsButton.isEnabled, true)
+        XCTAssertNoThrow(controller.syncAnnotationsButton.sendActions(for: .primaryActionTriggered))
     }
 
     func testAnnotationSaveStateChanges() {
-        presenter.annotationSaveStateChanges(saving: true)
-        // TODO: save status bar
-    }
-}
-
-extension DocViewerPresenterTests: DocViewerViewProtocol {
-    func load(document: PSPDFDocument) {
-        self.document = document
-    }
-
-    func resetInk() {
-        resetted = true
-    }
-
-    func showAlert(title: String?, message: String?) {}
-
-    func showError(_ error: Error) {
-        self.error = error
+        controller.view.layoutIfNeeded()
+        controller.annotationSaveStateChanges(saving: true)
+        XCTAssertEqual(controller.syncAnnotationsButton.isEnabled, false)
+        XCTAssertEqual(controller.syncAnnotationsButton.title(for: .normal), "Saving...")
+        controller.annotationSaveStateChanges(saving: false)
+        XCTAssertEqual(controller.syncAnnotationsButton.title(for: .normal), "All annotations saved.")
     }
 }

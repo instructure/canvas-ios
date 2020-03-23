@@ -20,17 +20,24 @@ import UIKit
 import PSPDFKit
 import PSPDFKitUI
 
-protocol DocViewerViewProtocol: ErrorViewController {
-    func load(document: PSPDFDocument)
-    func resetInk()
-}
+public class DocViewerViewController: UIViewController {
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var loadingView: CircleProgressView!
+    @IBOutlet weak var syncAnnotationsButton: UIButton!
 
-public class DocViewerViewController: UIViewController, DocViewerViewProtocol {
-    @IBOutlet weak var contentView: UIView?
-    @IBOutlet weak var loadingView: UIActivityIndicatorView?
-    weak var pdfViewController: PSPDFViewController?
-    var presenter: DocViewerPresenter?
+    var annotationProvider: DocViewerAnnotationProvider?
+    let env = AppEnvironment.shared
+    var fallbackURL: URL!
+    var fallbackUsed = false
+    var filename = ""
+    var metadata: APIDocViewerMetadata?
     weak var parentNavigationItem: UINavigationItem?
+    let pdf = PSPDFViewController()
+    var previewURL: URL?
+    lazy var session = DocViewerSession { [weak self] in
+        performUIUpdate { self?.sessionIsReady() }
+    }
+
     public internal(set) static var hasPSPDFKitLicense = false
 
     public static func setup(_ secret: Secret) {
@@ -41,50 +48,210 @@ public class DocViewerViewController: UIViewController, DocViewerViewProtocol {
         stylePSPDFKit()
     }
 
-    public static func create(filename: String, previewURL: URL?, fallbackURL: URL, navigationItem: UINavigationItem? = nil, env: AppEnvironment = .shared) -> DocViewerViewController {
+    public static func create(filename: String, previewURL: URL?, fallbackURL: URL, navigationItem: UINavigationItem? = nil) -> DocViewerViewController {
         let controller = loadFromStoryboard()
         controller.parentNavigationItem = navigationItem
-        controller.presenter = DocViewerPresenter(env: env, view: controller, filename: filename, previewURL: previewURL, fallbackURL: fallbackURL)
+        controller.filename = filename
+        controller.previewURL = previewURL
+        controller.fallbackURL = fallbackURL
+        controller.parentNavigationItem = navigationItem
         return controller
     }
 
-    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "embedPSPDFViewController", let controller = segue.destination as? PSPDFViewController {
-            self.pdfViewController = controller
-            controller.view?.isHidden = true
-            controller.updateConfiguration(builder: docViewerConfigurationBuilder)
-            controller.delegate = presenter
-            let share = UIBarButtonItem(barButtonSystemItem: .action, target: controller.activityButtonItem.target, action: controller.activityButtonItem.action)
-            share.accessibilityIdentifier = "DocViewer.shareButton"
-            let search = UIBarButtonItem(barButtonSystemItem: .search, target: controller.searchButtonItem.target, action: controller.searchButtonItem.action)
-            search.accessibilityIdentifier = "DocViewer.searchButton"
-            parentNavigationItem?.rightBarButtonItems = [ share, search ]
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+
+        loadingView.color = nil
+
+        embed(pdf, in: contentView)
+        pdf.view.isHidden = true
+        pdf.updateConfiguration(builder: docViewerConfigurationBuilder)
+        pdf.delegate = self
+
+        let share = UIBarButtonItem(barButtonSystemItem: .action, target: pdf.activityButtonItem.target, action: pdf.activityButtonItem.action)
+        share.accessibilityIdentifier = "DocViewer.shareButton"
+        let search = UIBarButtonItem(barButtonSystemItem: .search, target: pdf.searchButtonItem.target, action: pdf.searchButtonItem.action)
+        search.accessibilityIdentifier = "DocViewer.searchButton"
+        parentNavigationItem?.rightBarButtonItems = [ share, search ]
+
+        syncAnnotationsButton.isHidden = true
+        syncAnnotationsButton.setTitleColor(.named(.white), for: .normal)
+        syncAnnotationsButton.setTitleColor(.named(.textDark), for: .disabled)
+        annotationSaveStateChanges(saving: false)
+
+        if let url = URL(string: previewURL?.absoluteString ?? "", relativeTo: env.api.baseURL), let loginSession = env.currentSession {
+            session.load(url: url, session: loginSession)
+        } else {
+            loadFallback()
         }
     }
 
-    public override func viewDidLoad() {
-        loadingView?.color = Brand.shared.primary.ensureContrast(against: .named(.backgroundLightest))
-        presenter?.viewIsReady()
+    func sessionIsReady() {
+        guard
+            session.error == nil,
+            let annotations = session.annotations,
+            let localURL = session.localURL,
+            let metadata = session.metadata,
+            let sessionID = session.sessionID
+        else { return loadFallback() }
+
+        self.metadata = metadata
+        let document = PSPDFDocument(url: localURL)
+        if let annotationMeta = metadata.annotations {
+            document.defaultAnnotationUsername = annotationMeta.user_name
+            document.didCreateDocumentProviderBlock = { documentProvider in
+                let provider = DocViewerAnnotationProvider(documentProvider: documentProvider, metadata: annotationMeta, annotations: annotations, api: self.session.api, sessionID: sessionID)
+                provider.docViewerDelegate = self
+                documentProvider.annotationManager.annotationProviders.insert(provider, at: 0)
+                self.annotationProvider = provider
+                for (pageKey, rawRotation) in metadata.rotations ?? [:] {
+                    if let pageIndex = PageIndex(pageKey), let rotation = Rotation(rawValue: rawRotation) {
+                        documentProvider.setRotationOffset(rotation, forPageAt: pageIndex)
+                    }
+                }
+            }
+        }
+        load(document: document)
+    }
+
+    func loadFallback() {
+        if let error = session.error { showError(error) }
+        if let url = session.localURL {
+            return load(document: PSPDFDocument(url: url))
+        }
+
+        guard !fallbackUsed else { return }
+        fallbackUsed = true
+        session.error = nil
+        session.annotations = []
+        session.loadDocument(downloadURL: fallbackURL)
     }
 
     func load(document: PSPDFDocument) {
-        pdfViewController?.document = document
-        pdfViewController?.documentViewController?.scrollToSpread(at: 0, scrollPosition: .start, animated: false)
-        pdfViewController?.view?.isHidden = false
-        loadingView?.stopAnimating()
-    }
-
-    func resetInk() {
-        guard pdfViewController?.annotationStateManager.state == .ink, let variant = pdfViewController?.annotationStateManager.variant else { return }
-        pdfViewController?.annotationStateManager.toggleState(.ink, variant: variant)
-        pdfViewController?.annotationStateManager.toggleState(.ink, variant: variant)
+        pdf.document = document
+        pdf.documentViewController?.scrollToSpread(at: 0, scrollPosition: .start, animated: false)
+        pdf.view.isHidden = false
+        loadingView.isHidden = true
     }
 
     public func showError(_ error: Error) {
-        loadingView?.stopAnimating()
+        loadingView.isHidden = true
         let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
-        let dismiss = NSLocalizedString("Dismiss", bundle: .core, comment: "")
-        alert.addAction(UIAlertAction(title: dismiss, style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
+        alert.addAction(AlertAction(NSLocalizedString("Dismiss", bundle: .core, comment: ""), style: .default))
+        env.router.show(alert, from: self, options: .modal())
+    }
+}
+
+private let disabledMenuItems: [String] = [
+    PSPDFTextMenu.annotationMenuOpacity.rawValue,
+    PSPDFTextMenu.annotationMenuThickness.rawValue,
+]
+
+extension DocViewerViewController: PSPDFViewControllerDelegate {
+    // swiftlint:disable function_parameter_count
+    public func pdfViewController(
+        _ pdfController: PSPDFViewController,
+        shouldShow menuItems: [PSPDFMenuItem],
+        atSuggestedTargetRect rect: CGRect,
+        forSelectedText selectedText: String,
+        in textRect: CGRect,
+        on pageView: PSPDFPageView
+    ) -> [PSPDFMenuItem] {
+        return menuItems.filter { $0.identifier != PSPDFTextMenu.annotationMenuHighlight.rawValue }
+    }
+
+    public func pdfViewController(
+        _ pdfController: PSPDFViewController,
+        shouldShow menuItems: [PSPDFMenuItem],
+        atSuggestedTargetRect rect: CGRect,
+        for annotations: [PSPDFAnnotation]?,
+        in annotationRect: CGRect,
+        on pageView: PSPDFPageView
+    ) -> [PSPDFMenuItem] {
+        annotations?.forEach { (pageView.annotationView(for: $0) as? PSPDFFreeTextAnnotationView)?.resizableView?.allowRotating = false }
+        if annotations?.count == 1, let annotation = annotations?.first, let document = pdfController.document, let metadata = metadata?.annotations {
+            var realMenuItems = [PSPDFMenuItem]()
+            realMenuItems.append(PSPDFMenuItem(title: NSLocalizedString("Comments", bundle: .core, comment: "")) { [weak self] in
+                let comments = self?.annotationProvider?.getReplies(to: annotation) ?? []
+                let view = CommentListViewController.create(comments: comments, inReplyTo: annotation, document: document, metadata: metadata)
+                pdfController.present(UINavigationController(rootViewController: view), options: nil, animated: true, sender: nil, completion: nil)
+            })
+
+            realMenuItems.append(contentsOf: menuItems.filter {
+                guard let identifier = $0.identifier else { return true }
+                if identifier == PSPDFTextMenu.annotationMenuInspector.rawValue {
+                    $0.title = NSLocalizedString("Style", bundle: .core, comment: "")
+                }
+                return (
+                    identifier != PSPDFTextMenu.annotationMenuRemove.rawValue &&
+                    identifier != PSPDFTextMenu.annotationMenuCopy.rawValue &&
+                    identifier != PSPDFTextMenu.annotationMenuNote.rawValue &&
+                    !disabledMenuItems.contains(identifier)
+                )
+            })
+
+            if annotation.isEditable || metadata.permissions == .readwritemanage {
+                realMenuItems.append(PSPDFMenuItem(title: NSLocalizedString("Remove", bundle: .core, comment: ""), image: .icon(.trash, .line), block: {
+                    pdfController.document?.remove([annotation], options: nil)
+                }, identifier: PSPDFTextMenu.annotationMenuRemove.rawValue))
+            }
+            return realMenuItems
+        }
+
+        return menuItems.filter {
+            guard let identifier = $0.identifier else { return true }
+            return !disabledMenuItems.contains(identifier)
+        }
+    }
+
+    public func pdfViewController(_ pdfController: PSPDFViewController, shouldShow controller: UIViewController, options: [String: Any]? = nil, animated: Bool) -> Bool {
+        return !(controller is PSPDFStampViewController)
+    }
+
+    public func pdfViewController(_ pdfController: PSPDFViewController, didTapOn pageView: PSPDFPageView, at viewPoint: CGPoint) -> Bool {
+        let state = pdfController.annotationStateManager
+        guard state.state == .stamp, let document = pdfController.document, let metadata = metadata?.annotations else { return false }
+        let pointAnnotation = DocViewerPointAnnotation()
+        pointAnnotation.user = metadata.user_id
+        pointAnnotation.userName = metadata.user_name
+        pointAnnotation.color = state.drawColor
+        pointAnnotation.boundingBox = CGRect(x: 0, y: 0, width: 9.33, height: 13.33)
+        pointAnnotation.pageIndex = pageView.pageIndex
+
+        pageView.center(pointAnnotation, aroundPDFPoint: pageView.convert(viewPoint, to: pageView.pdfCoordinateSpace))
+        document.add([ pointAnnotation ], options: nil)
+
+        let view = CommentListViewController.create(comments: [], inReplyTo: pointAnnotation, document: document, metadata: metadata)
+        pdfController.present(UINavigationController(rootViewController: view), options: nil, animated: true, sender: nil, completion: nil)
+
+        return true
+    }
+    // swiftlint:enable function_parameter_count
+}
+
+extension DocViewerViewController: DocViewerAnnotationProviderDelegate {
+    func annotationDidExceedLimit(annotation: APIDocViewerAnnotation) {
+        guard annotation.type == .ink, pdf.annotationStateManager.state == .ink, let variant = pdf.annotationStateManager.variant else { return }
+        pdf.annotationStateManager.toggleState(.ink, variant: variant)
+        pdf.annotationStateManager.toggleState(.ink, variant: variant)
+    }
+
+    @IBAction func syncAnnotations() {
+        annotationProvider?.syncAllAnnotations()
+    }
+
+    func annotationDidFailToSave(error: Error) {
+        syncAnnotationsButton.isEnabled = true
+        syncAnnotationsButton.backgroundColor = .named(.backgroundDanger)
+        syncAnnotationsButton.setTitle(NSLocalizedString("Error Saving. Tap to retry.", bundle: .core, comment: ""), for: .normal)
+    }
+
+    func annotationSaveStateChanges(saving: Bool) {
+        syncAnnotationsButton.isEnabled = false
+        syncAnnotationsButton.backgroundColor = .named(.backgroundLight)
+        syncAnnotationsButton.setTitle(saving
+            ? NSLocalizedString("Saving...", bundle: .core, comment: "")
+            : NSLocalizedString("All annotations saved.", bundle: .core, comment: ""),
+        for: .normal)
     }
 }
