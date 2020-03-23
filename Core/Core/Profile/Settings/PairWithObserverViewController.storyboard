@@ -36,7 +36,7 @@
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVC-Xc-ovi" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="24" width="382" height="25"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" priority="750" constant="25" id="c9e-3L-Tlt"/>
+                                                    <constraint firstAttribute="height" priority="750" constant="30" id="c9e-3L-Tlt"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>

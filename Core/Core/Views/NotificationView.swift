@@ -43,9 +43,9 @@ public class NotificationView: UIView {
         let background = UIView()
         background.translatesAutoresizingMaskIntoConstraints = false
         background.layer.shadowColor =  UIColor.black.cgColor
-        background.layer.shadowOpacity = 0.15
+        background.layer.shadowOpacity = 0.12
         background.layer.shadowOffset = CGSize(width: 0, height: 4)
-        background.layer.shadowRadius = 12
+        background.layer.shadowRadius = 10
         addSubview(background)
 
         let container = UIView()
