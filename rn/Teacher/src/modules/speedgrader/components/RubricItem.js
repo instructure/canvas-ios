@@ -165,7 +165,10 @@ export default class RubricItem extends Component<RubricItemProps, RubricItemSta
               accessibilityLabel={`${rating.points} — ${rating.description}`}
               testID={`rubric-item.points-${rating.id}`}
             >
-              {i18n.number(rating.points)}
+              { (this.state.selectedRatingID === rating.id)
+                ? i18n.number(this.state.selectedPoints || rating.points)
+                : i18n.number(rating.points)
+              }
             </CircleToggle>
           ))}
           <CircleToggle

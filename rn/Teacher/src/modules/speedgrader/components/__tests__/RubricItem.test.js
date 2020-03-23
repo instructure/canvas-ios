@@ -16,18 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-// @flow
-
+import { shallow } from 'enzyme'
 import React from 'react'
 import { Alert, AccessibilityInfo, ActionSheetIOS } from 'react-native'
 import RubricItem from '../RubricItem'
-import renderer from 'react-test-renderer'
-import explore from '../../../../../test/helpers/explore'
-import { shallow } from 'enzyme'
 import * as templates from '../../../../__templates__'
 
-jest.mock('../../../../common/components/CircleToggle', () => 'CircleToggle')
-jest.mock('TouchableOpacity', () => 'TouchableOpacity')
 jest.mock('Alert', () => ({
   prompt: jest.fn(),
 }))
@@ -49,10 +43,8 @@ describe('RubricItem', () => {
   beforeEach(() => jest.clearAllMocks())
 
   it('renders', () => {
-    let tree = renderer.create(
-      <RubricItem {...defaultProps} />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    let tree = shallow(<RubricItem {...defaultProps} />)
+    expect(tree.find('Text').first().prop('children')).toBe(defaultProps.rubricItem.description)
   })
 
   it('shows the text for not impacting a score if `ignore_for_scoring` is true', () => {
@@ -69,10 +61,9 @@ describe('RubricItem', () => {
       ...defaultProps,
       freeFormCriterionComments: true,
     }
-    let tree = renderer.create(
-      <RubricItem {...props} />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    let tree = shallow(<RubricItem {...props} />)
+    let button = tree.find(`[testID='rubric-item.add-comment-${props.rubricItem.id}']`)
+    expect(button.prop('children')).toBe('Add Comment')
   })
 
   it('renders an already selected grade', () => {
@@ -84,11 +75,23 @@ describe('RubricItem', () => {
         comments: '',
       },
     }
-    let tree = renderer.create(
-      <RubricItem {...props} />
-    ).toJSON()
+    let tree = shallow(<RubricItem {...props} />)
+    expect(tree.find(`[testID='rubric-item.points-3']`).prop('on')).toBe(true)
+    expect(tree.find(`[testID='rubric-item.points-3']`).prop('children')).toBe('10')
+  })
 
-    expect(tree).toMatchSnapshot()
+  it('renders a custom grade on a selected rating', () => {
+    let props = {
+      ...defaultProps,
+      grade: {
+        points: 8,
+        rating_id: '3',
+        comments: '',
+      },
+    }
+    let tree = shallow(<RubricItem {...props} />)
+    expect(tree.find(`[testID='rubric-item.points-3']`).prop('on')).toBe(true)
+    expect(tree.find(`[testID='rubric-item.points-3']`).prop('children')).toBe('8')
   })
 
   it('renders the selected custom grade', () => {
@@ -99,32 +102,21 @@ describe('RubricItem', () => {
         comments: '',
       },
     }
-    let tree = renderer.create(
-      <RubricItem {...props} />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    let tree = shallow(<RubricItem {...props} />)
+    let button = tree.find(`[testID='rubric-item.customize-grade-${props.rubricItem.id}']`)
+    expect(button.prop('children')).toBe('12')
   })
 
   it('calls showDescription when the button is pressed', () => {
-    let tree = renderer.create(
-      <RubricItem {...defaultProps} />
-    ).toJSON()
-
-    let button = explore(tree).selectByID('rubric-item.description') || {}
-    button.props.onPress()
-
+    let tree = shallow(<RubricItem {...defaultProps} />)
+    tree.find(`[testID='rubric-item.description']`).simulate('Press')
     expect(defaultProps.showDescription).toHaveBeenCalledWith(defaultProps.rubricItem.id)
   })
 
   it('changes the currently selected value when a circle is pressed', () => {
-    let tree = renderer.create(
-      <RubricItem {...defaultProps} />
-    )
-
-    let button = explore(tree.toJSON()).selectByID(`rubric-item.points-${defaultProps.rubricItem.id}`) || {}
-    button.props.onPress()
-
-    expect(tree.toJSON()).toMatchSnapshot()
+    let tree = shallow(<RubricItem {...defaultProps} />)
+    tree.find(`[testID='rubric-item.points-2']`).simulate('Press')
+    expect(defaultProps.changeRating).toHaveBeenCalled()
   })
 
   it('removes a selection when a selected circle is pressed', () => {
@@ -136,37 +128,16 @@ describe('RubricItem', () => {
         comments: '',
       },
     }
-    let tree = renderer.create(
-      <RubricItem {...props} />
-    )
-
-    let button = explore(tree.toJSON()).selectByID(`rubric-item.points-3`) || {}
-    expect(button.props.on).toEqual(true)
-    button.props.onPress()
-
-    button = explore(tree.toJSON()).selectByID(`rubric-item.points-3`) || {}
-    expect(button.props.on).toEqual(false)
-  })
-
-  it('calls changeRating with the id, points, and rating_id', () => {
-    let tree = renderer.create(
-      <RubricItem {...defaultProps} />
-    ).toJSON()
-
-    const { id } = defaultProps.rubricItem.ratings[0]
-    let button = explore(tree).selectByID(`rubric-item.points-${id}`) || {}
-    button.props.onPress(0, id)
-
-    expect(defaultProps.changeRating).toHaveBeenCalledWith('2', 0, id)
+    let tree = shallow(<RubricItem {...props} />)
+    expect(tree.find(`[testID='rubric-item.points-3']`).prop('on')).toBe(true)
+    tree.find(`[testID='rubric-item.points-3']`).simulate('Press')
+    expect(tree.find(`[testID='rubric-item.points-3']`).prop('on')).toBe(false)
   })
 
   it('gets the value from prompting for a custom value', () => {
-    let tree = renderer.create(
-      <RubricItem {...defaultProps} />
-    ).toJSON()
-
-    let button = explore(tree).selectByProp('testID', `rubric-item.customize-grade-${defaultProps.rubricItem.id}`).pop()
-    button.props.onPress()
+    let tree = shallow(<RubricItem {...defaultProps} />)
+    tree.find(`[testID='rubric-item.customize-grade-${defaultProps.rubricItem.id}']`)
+      .simulate('Press')
 
     expect(Alert.prompt).toHaveBeenCalled()
     expect(Alert.prompt.mock.calls[0][5]).toEqual('decimal-pad')
@@ -176,12 +147,9 @@ describe('RubricItem', () => {
   })
 
   it('refocuses the customize button on cancel of the prompt', () => {
-    let tree = renderer.create(
-      <RubricItem {...defaultProps} />
-    ).toJSON()
-
-    let button = explore(tree).selectByProp('testID', `rubric-item.customize-grade-${defaultProps.rubricItem.id}`).pop()
-    button.props.onPress()
+    let tree = shallow(<RubricItem {...defaultProps} />)
+    tree.find(`[testID='rubric-item.customize-grade-${defaultProps.rubricItem.id}']`)
+      .simulate('Press')
 
     expect(Alert.prompt).toHaveBeenCalled()
     Alert.prompt.mock.calls[0][2][0].onPress()
@@ -196,13 +164,10 @@ describe('RubricItem', () => {
         comments: '',
       },
     }
-    let component = renderer.create(
-      <RubricItem {...props} />
-    )
-
-    let button = explore(component.toJSON()).selectByProp('testID', `rubric-item.customize-grade-${defaultProps.rubricItem.id}`).pop()
-    button.props.onPress()
-    expect(component.getInstance().state.selectedPoints).toEqual(null)
+    let tree = shallow(<RubricItem {...props} />)
+    tree.find(`[testID='rubric-item.customize-grade-${props.rubricItem.id}']`)
+      .simulate('Press')
+    expect(tree.state('selectedPoints')).toBe(null)
   })
 
   it('will call openCommentKeyboard when the add comment button is pressed', () => {
@@ -210,13 +175,9 @@ describe('RubricItem', () => {
       ...defaultProps,
       freeFormCriterionComments: true,
     }
-    let tree = renderer.create(
-      <RubricItem {...props} />
-    ).toJSON()
-
-    let button = explore(tree).selectByID(`rubric-item.add-comment-${defaultProps.rubricItem.id}`) || {}
-    button.props.onPress()
-
+    let tree = shallow(<RubricItem {...props} />)
+    tree.find(`[testID='rubric-item.add-comment-${props.rubricItem.id}']`)
+      .simulate('Press')
     expect(defaultProps.openCommentKeyboard).toHaveBeenCalledWith(defaultProps.rubricItem.id)
   })
 
@@ -225,27 +186,19 @@ describe('RubricItem', () => {
       ...defaultProps,
       grade: { comments: 'A comment' },
     }
-
-    let tree = renderer.create(
-      <RubricItem {...props} />
-    ).toJSON()
-
-    expect(tree).toMatchSnapshot()
+    let tree = shallow(<RubricItem {...props} />)
+    let button = tree.find(`[testID='rubric-item.add-comment-${props.rubricItem.id}']`)
+    expect(button.exists()).toBe(false)
   })
 
-  it('Will open an action sheet when a rubric comment is pressed', () => {
+  it('will open an action sheet when a rubric comment is pressed', () => {
     let props = {
       ...defaultProps,
       grade: { comments: 'A comment' },
     }
-
-    let tree = renderer.create(
-      <RubricItem {...props} />
-    ).toJSON()
-
-    let button = explore(tree).selectByID(`rubric-item.edit-comment-${defaultProps.rubricItem.id}`) || {}
-    button.props.onPress()
-
+    let tree = shallow(<RubricItem {...props} />)
+    tree.find(`[testID='rubric-item.edit-comment-${props.rubricItem.id}']`)
+      .simulate('Press')
     expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
   })
 
@@ -254,15 +207,10 @@ describe('RubricItem', () => {
       ...defaultProps,
       grade: { comments: 'A comment' },
     }
+    let tree = shallow(<RubricItem {...props} />)
+    tree.find(`[testID='rubric-item.edit-comment-${props.rubricItem.id}']`)
+      .simulate('Press')
 
-    let tree = renderer.create(
-      <RubricItem {...props} />
-    ).toJSON()
-
-    let button = explore(tree).selectByID(`rubric-item.edit-comment-${defaultProps.rubricItem.id}`) || {}
-    button.props.onPress()
-
-    // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](2)
     expect(defaultProps.deleteComment).not.toHaveBeenCalled()
     expect(defaultProps.openCommentKeyboard).not.toHaveBeenCalled()
@@ -273,15 +221,10 @@ describe('RubricItem', () => {
       ...defaultProps,
       grade: { comments: 'A comment' },
     }
+    let tree = shallow(<RubricItem {...props} />)
+    tree.find(`[testID='rubric-item.edit-comment-${props.rubricItem.id}']`)
+      .simulate('Press')
 
-    let tree = renderer.create(
-      <RubricItem {...props} />
-    ).toJSON()
-
-    let button = explore(tree).selectByID(`rubric-item.edit-comment-${defaultProps.rubricItem.id}`) || {}
-    button.props.onPress()
-
-    // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](1)
     expect(defaultProps.deleteComment).toHaveBeenCalledWith(defaultProps.rubricItem.id)
   })
@@ -291,27 +234,19 @@ describe('RubricItem', () => {
       ...defaultProps,
       grade: { comments: 'A comment' },
     }
+    let tree = shallow(<RubricItem {...props} />)
+    tree.find(`[testID='rubric-item.edit-comment-${props.rubricItem.id}']`)
+      .simulate('Press')
 
-    let tree = renderer.create(
-      <RubricItem {...props} />
-    ).toJSON()
-
-    let button = explore(tree).selectByID(`rubric-item.edit-comment-${defaultProps.rubricItem.id}`) || {}
-    button.props.onPress()
-
-    // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](0)
     expect(defaultProps.openCommentKeyboard).toHaveBeenCalledWith(defaultProps.rubricItem.id)
   })
 
   it('calls show tooltip with the rating description', () => {
     const showToolTip = jest.fn()
-    let tree = renderer.create(
-      <RubricItem {...defaultProps} showToolTip={showToolTip} />
-    ).toJSON()
-
-    let button = explore(tree).selectByID(`rubric-item.points-${defaultProps.rubricItem.ratings[0].id}`) || {}
-    button.props.onLongPress(defaultProps.rubricItem.ratings[0].id, { x: 8, y: 9, width: 10, height: 44 })
+    let tree = shallow(<RubricItem {...defaultProps} showToolTip={showToolTip} />)
+    tree.find(`[testID='rubric-item.points-${defaultProps.rubricItem.ratings[0].id}']`)
+      .simulate('LongPress', defaultProps.rubricItem.ratings[0].id, { x: 8, y: 9, width: 10, height: 44 })
 
     expect(showToolTip).toHaveBeenCalledWith(
       { x: 13, y: 9 },
@@ -321,13 +256,9 @@ describe('RubricItem', () => {
 
   it('calls dismissToolTip onPressOut', () => {
     const dismissToolTip = jest.fn()
-    let tree = renderer.create(
-      <RubricItem {...defaultProps} dismissToolTip={dismissToolTip} />
-    ).toJSON()
-
-    let button = explore(tree).selectByID(`rubric-item.points-${defaultProps.rubricItem.ratings[0].id}`) || {}
-    button.props.onPressOut()
-
+    let tree = shallow(<RubricItem {...defaultProps} dismissToolTip={dismissToolTip} />)
+    tree.find(`[testID='rubric-item.points-${defaultProps.rubricItem.ratings[0].id}']`)
+      .simulate('PressOut')
     expect(dismissToolTip).toHaveBeenCalled()
   })
 })
