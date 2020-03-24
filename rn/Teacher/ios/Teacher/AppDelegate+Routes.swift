@@ -32,7 +32,7 @@ extension AppDelegate {
         })
 
         if ExperimentalFeature.nativeDashboard.isEnabled {
-            HelmManager.shared.registerNativeViewController(for: "/courses", factory: { props in
+            HelmManager.shared.registerNativeViewController(for: "/courses", factory: { _ in
                 return CourseListViewController.create()
             })
         }
