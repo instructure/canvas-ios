@@ -123,6 +123,11 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
                     }
                 }
             }).sorted(by: { $0.title < $1.title }) + [
+                Row(NSLocalizedString("Pair with Observer", bundle: .core, comment: "")) { [weak self] in
+                    guard let sself = self else { return }
+                    let vc = PairWithObserverViewController.create()
+                    sself.env.router.show(vc, from: sself, options: .modal(.formSheet, isDismissable: true, embedInNav: true, addDoneButton: true))
+                },
                 Row(NSLocalizedString("Subscribe to Calendar Feed", bundle: .core, comment: ""), hasDisclosure: false) { [weak self] in
                     guard let url = self?.profile.first?.calendarURL else { return }
                     self?.env.loginDelegate?.openExternalURL(url)

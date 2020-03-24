@@ -17,19 +17,34 @@
 //
 
 import Foundation
-@testable import Core
-import TestsFoundation
-import XCTest
 
-class CoreWebViewControllerTests: CoreTestCase {
-    lazy var controller = CoreWebViewController()
+public struct PostObserverPairingCodes: APIRequestable {
+    public typealias Response = APIPairingCode
+    public var method: APIMethod = .post
+    public var path: String = "users/self/observer_pairing_codes"
+}
 
-    func testLimitedInteraction() {
-        controller.isInteractionLimited = true
-        controller.view.layoutIfNeeded()
-        weak var limitedView = controller.limitedInteractionView
-        XCTAssert(limitedView?.isDescendant(of: controller.view) == true)
-        controller.limitedInteractionView?.dismiss.sendActions(for: .primaryActionTriggered)
-        XCTAssert(limitedView?.isDescendant(of: controller.view) == false)
+public struct APIPairingCode: Codable, Equatable {
+    let user_id: ID?
+    let code: String
+    let expires_at: Date?
+    let workflow_state: String?
+}
+
+#if DEBUG
+extension APIPairingCode {
+    public static func make(
+        user_id: ID? = "1",
+        code: String = "code",
+        expires_at: Date? = Clock.now,
+        workflow_state: String? = "active"
+    ) -> APIPairingCode {
+        return APIPairingCode(
+            user_id: user_id,
+            code: code,
+            expires_at: expires_at,
+            workflow_state: workflow_state
+        )
     }
 }
+#endif

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Pair With Observer View Controller-->
+        <scene sceneID="G3l-Zr-r93">
+            <objects>
+                <viewController storyboardIdentifier="PairWithObserverViewController" id="3nT-fR-RLM" customClass="PairWithObserverViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gBZ-0z-7Ge">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="dp4-DX-snF">
+                                <rect key="frame" x="16" y="60" width="382" height="212"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3MM-LR-o7s" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="61"/>
+                                        <string key="text">Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EH4-JY-Fzl">
+                                        <rect key="frame" x="0.0" y="85" width="382" height="73"/>
+                                        <subviews>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVC-Xc-ovi" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="24" width="382" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" priority="750" constant="30" id="c9e-3L-Tlt"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold24"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="73n-5k-D0c">
+                                                <rect key="frame" x="181" y="26.5" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="s8N-Wr-bSt"/>
+                                                    <constraint firstAttribute="width" constant="20" id="szF-Is-28O"/>
+                                                </constraints>
+                                            </activityIndicatorView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACR-5K-WJ4">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="73"/>
+                                                <connections>
+                                                    <action selector="actionCopyCode:" destination="3nT-fR-RLM" eventType="primaryActionTriggered" id="HaE-o4-Eds"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" name="backgroundLight"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="tVC-Xc-ovi" secondAttribute="bottom" constant="24" id="1v7-sw-umq"/>
+                                            <constraint firstItem="tVC-Xc-ovi" firstAttribute="top" secondItem="EH4-JY-Fzl" secondAttribute="top" constant="24" id="6r0-Ey-kEi"/>
+                                            <constraint firstItem="73n-5k-D0c" firstAttribute="centerY" secondItem="EH4-JY-Fzl" secondAttribute="centerY" id="FlM-Am-urp"/>
+                                            <constraint firstAttribute="trailing" secondItem="ACR-5K-WJ4" secondAttribute="trailing" id="Nbb-NU-lI0"/>
+                                            <constraint firstAttribute="bottom" secondItem="ACR-5K-WJ4" secondAttribute="bottom" id="VhH-8S-3tf"/>
+                                            <constraint firstItem="tVC-Xc-ovi" firstAttribute="leading" secondItem="EH4-JY-Fzl" secondAttribute="leading" id="caP-jN-0ki"/>
+                                            <constraint firstItem="ACR-5K-WJ4" firstAttribute="leading" secondItem="EH4-JY-Fzl" secondAttribute="leading" id="jDw-wG-TPo"/>
+                                            <constraint firstItem="73n-5k-D0c" firstAttribute="centerX" secondItem="EH4-JY-Fzl" secondAttribute="centerX" id="k2o-XY-dCn"/>
+                                            <constraint firstAttribute="trailing" secondItem="tVC-Xc-ovi" secondAttribute="trailing" id="pHm-Ao-IlV"/>
+                                            <constraint firstItem="ACR-5K-WJ4" firstAttribute="top" secondItem="EH4-JY-Fzl" secondAttribute="top" id="pgO-8W-X5R"/>
+                                            <constraint firstAttribute="height" priority="750" constant="72" id="sSm-YY-Tac"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqL-RC-I4s" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="182" width="382" height="30"/>
+                                        <state key="normal" title="Tap to copy"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="actionCopyCode:" destination="3nT-fR-RLM" eventType="primaryActionTriggered" id="Mjz-9r-GgX"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m7p-Jk-zaq" customClass="NotificationView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="954" width="414" height="58"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58" id="swe-Yj-4eL"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="hMf-bc-d56" firstAttribute="trailing" secondItem="m7p-Jk-zaq" secondAttribute="trailing" id="1FC-R8-Wv2"/>
+                            <constraint firstItem="dp4-DX-snF" firstAttribute="top" secondItem="hMf-bc-d56" secondAttribute="top" constant="16" id="Fjm-IK-UMI"/>
+                            <constraint firstItem="hMf-bc-d56" firstAttribute="bottom" secondItem="m7p-Jk-zaq" secondAttribute="bottom" constant="-150" id="QI9-ML-JkL"/>
+                            <constraint firstItem="dp4-DX-snF" firstAttribute="leading" secondItem="hMf-bc-d56" secondAttribute="leading" constant="16" id="aAb-4e-FRs"/>
+                            <constraint firstItem="m7p-Jk-zaq" firstAttribute="leading" secondItem="hMf-bc-d56" secondAttribute="leading" id="dmc-gD-3Z7"/>
+                            <constraint firstItem="hMf-bc-d56" firstAttribute="trailing" secondItem="dp4-DX-snF" secondAttribute="trailing" constant="16" id="yV2-4Z-GDS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hMf-bc-d56"/>
+                    </view>
+                    <connections>
+                        <outlet property="codeContainer" destination="EH4-JY-Fzl" id="f8S-6q-Ayf"/>
+                        <outlet property="codeLabel" destination="tVC-Xc-ovi" id="ufL-7B-U84"/>
+                        <outlet property="notificationView" destination="m7p-Jk-zaq" id="NTS-4B-rA3"/>
+                        <outlet property="notificationViewBottomConstraint" destination="QI9-ML-JkL" id="Kgp-Nw-CxX"/>
+                        <outlet property="spinner" destination="73n-5k-D0c" id="aEP-ic-8De"/>
+                        <outlet property="tapToCopyButton" destination="jqL-RC-I4s" id="aSG-TW-dAd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JMI-jv-djC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="76"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="backgroundLight">
+            <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
