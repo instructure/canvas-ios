@@ -117,8 +117,8 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         guard let assignment = presenter?.assignment.first, let course = presenter?.course.first else {
             return
         }
-        self.updateNavBar(subtitle: assignment.name, color: course.color)
-        self.drawer?.tabs?.tintColor = course.color
+        updateNavBar(subtitle: assignment.name, color: course.color)
+        view.tintColor = course.color
     }
 
     func embed(_ controller: UIViewController?) {
