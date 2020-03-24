@@ -19,7 +19,7 @@
 import XCTest
 @testable import Core
 
-class APIDocViewerRequestableTests: XCTestCase {
+class APIDocViewerTests: XCTestCase {
     func testGetDocViewerMetadataRequest() {
         XCTAssertEqual(GetDocViewerMetadataRequest(path: "/1/sessions/{}").path, "/1/sessions/{}")
         XCTAssertEqual(GetDocViewerMetadataRequest(path: "").headers, [

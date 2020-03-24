@@ -24,7 +24,7 @@ import TestsFoundation
 
 class DashboardViewControllerTests: ParentTestCase {
 
-    var vc: DashboardViewController!
+    var vc: Parent.DashboardViewController!
 
     override func setUp() {
         super.setUp()

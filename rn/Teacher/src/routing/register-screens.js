@@ -95,7 +95,11 @@ function fileListRouter (props: any) {
 export function registerScreens (store: Store): void {
   registerScreen('', wrap(Dashboard), store, { deepLink: true })
   registerScreen('/', wrap(Dashboard), store, { deepLink: true })
-  registerScreen('/courses', wrap(AllCourseList), store, { canBecomeMaster: true, deepLink: true })
+  if (ExperimentalFeature.nativeDashboard.isEnabled) {
+    registerScreen('/courses', null, store, { canBecomeMaster: true, deepLink: true })
+  } else {
+    registerScreen('/courses', wrap(AllCourseList), store, { canBecomeMaster: true, deepLink: true })
+  }
   registerScreen('/course_favorites', wrap(EditFavorites), store, { deepLink: true })
   registerScreen('/courses/:courseID', wrap(CourseNavigation), store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/tabs', wrap(CourseNavigation), store, { canBecomeMaster: true, deepLink: true })

@@ -85,7 +85,10 @@ class RoutesTests: XCTestCase {
     }
 
     func testCourses() {
+        ExperimentalFeature.nativeDashboard.isEnabled = false
         XCTAssertEqual((router.match(Route.courses.url) as? HelmViewController)?.moduleName, "/courses")
+        ExperimentalFeature.nativeDashboard.isEnabled = true
+        XCTAssert(router.match(Route.courses.url) is CourseListViewController)
     }
 
     func testCourseAssignment() {

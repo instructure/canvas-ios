@@ -51,7 +51,12 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/conversations/compose": nil,
     "/conversations/:conversationID": nil,
 
-    "/courses": nil,
+    "/courses": { url, params in
+        guard ExperimentalFeature.nativeDashboard.isEnabled else {
+            return HelmViewController(moduleName: "/courses", props: makeProps(url, params: params))
+        }
+        return CourseListViewController.create()
+    },
 
     "/courses/:courseID": nil,
     "/courses/:courseID/tabs": nil,
@@ -326,6 +331,8 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/courses/:courseID/users/:userID": nil,
     "/groups/:groupID/users/:userID": nil,
+
+    "/courses/:courseID/user_preferences": nil,
 
     "/dev-menu": nil,
 

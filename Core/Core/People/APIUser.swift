@@ -28,7 +28,7 @@ struct APIUserDisplay: Codable, Equatable {
 
 // https://canvas.instructure.com/doc/api/users.html#User
 public struct APIUser: Codable, Equatable {
-    let id: ID
+    public let id: ID
     let name: String
     let sortable_name: String
     let short_name: String
@@ -78,6 +78,115 @@ public struct APIProfile: Codable, Equatable {
     public let calendar: APICalendar?
     public let pronouns: String?
 }
+
+#if DEBUG
+extension APIUser {
+    public static func make(
+        id: ID = "1",
+        name: String = "Bob",
+        sortable_name: String? = nil,
+        short_name: String? = nil,
+        login_id: String? = nil,
+        avatar_url: URL? = nil,
+        enrollments: [APIEnrollment]? = nil,
+        email: String? = nil,
+        locale: String? = "en",
+        effective_locale: String? = nil,
+        bio: String? = nil,
+        pronouns: String? = nil,
+        permissions: Permissions? = .make()
+    ) -> APIUser {
+        return APIUser(
+            id: id,
+            name: name,
+            sortable_name: sortable_name ?? name,
+            short_name: short_name ?? name,
+            login_id: login_id,
+            avatar_url: avatar_url.flatMap(APIURL.make(rawValue:)),
+            enrollments: enrollments,
+            email: email,
+            locale: locale,
+            effective_locale: effective_locale,
+            bio: bio,
+            pronouns: pronouns,
+            permissions: permissions
+        )
+    }
+
+    public static func makeUser(role: String, id: Int) -> APIUser {
+        APIUser.make(
+            id: ID(integerLiteral: id),
+            name: "\(role) \(id)",
+            short_name: "\(role.first ?? "u")\(id)",
+
+            avatar_url: URL(string: "https://avatars.dicebear.com/v2/bottts/\(role)\(id).svg")!,
+            email: "\(role)\(id)@example.com",
+            bio: "I'm \(role) \(id)",
+            pronouns: ["Pro/Noun", nil][id % 2]
+        )
+    }
+}
+
+extension APIUser.Permissions {
+    public static func make(
+        can_update_name: Bool? = true,
+        can_update_avatar: Bool? = true,
+        limit_parent_app_web_access: Bool? = false
+    ) -> APIUser.Permissions {
+        return APIUser.Permissions(
+            can_update_name: can_update_name,
+            can_update_avatar: can_update_avatar,
+            limit_parent_app_web_access: limit_parent_app_web_access
+        )
+    }
+}
+
+extension APIUser: APIContext {
+    public var contextType: ContextType { return .user }
+}
+
+extension APIUserSettings {
+    public static func make(
+        manual_mark_as_read: Bool = false,
+        collapse_global_nav: Bool = false,
+        hide_dashcard_color_overlays: Bool = false
+    ) -> APIUserSettings {
+        return APIUserSettings(
+            manual_mark_as_read: manual_mark_as_read,
+            collapse_global_nav: collapse_global_nav,
+            hide_dashcard_color_overlays: hide_dashcard_color_overlays
+        )
+    }
+}
+
+extension APIProfile {
+    public static func make(
+        id: ID = "1",
+        name: String = "Bob",
+        primary_email: String? = nil,
+        login_id: String? = nil,
+        avatar_url: URL? = nil,
+        calendar: APIProfile.APICalendar? = .make(),
+        pronouns: String? = nil
+    ) -> APIProfile {
+        return APIProfile(
+            id: id,
+            name: name,
+            primary_email: primary_email,
+            login_id: login_id,
+            avatar_url: avatar_url.flatMap(APIURL.make(rawValue:)),
+            calendar: calendar,
+            pronouns: pronouns
+        )
+    }
+}
+
+extension APIProfile.APICalendar {
+    public static func make(ics: URL? = URL(string: "https://calendar.url")) -> APIProfile.APICalendar {
+        return APIProfile.APICalendar(ics: ics)
+    }
+}
+#endif
 
 // https://canvas.instructure.com/doc/api/users.html#method.users.get_custom_color
 public struct GetCustomColorsRequest: APIRequestable {

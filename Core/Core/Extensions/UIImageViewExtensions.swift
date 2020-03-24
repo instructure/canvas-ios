@@ -72,6 +72,7 @@ extension UIImageView: ImageLoadingView {
     }
 
     public func load(url: URL, didCompleteWith loaded: LoadedImage?, error: Error?) {
+        guard self.url == url else { return }
         if let cached = loaded {
             image = cached.image
             if let images = cached.image.images {

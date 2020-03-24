@@ -18,7 +18,7 @@ exports[`renders 1`] = `
         },
       ]
     }
-    testID="course-1"
+    testID="CourseCardCell.1"
     underlayColor="transparent"
   >
     <View
@@ -143,7 +143,7 @@ exports[`renders 1`] = `
         "width": 43,
       }
     }
-    testID="course-card.kabob-1"
+    testID="CourseCardCell.1.optionsButton"
     underlayColor="#ffffff00"
   >
     <View
@@ -195,7 +195,7 @@ exports[`renders with a grade 1`] = `
         },
       ]
     }
-    testID="course-1"
+    testID="CourseCardCell.1"
     underlayColor="transparent"
   >
     <View
@@ -358,7 +358,7 @@ exports[`renders with a grade 1`] = `
         "width": 43,
       }
     }
-    testID="course-card.kabob-1"
+    testID="CourseCardCell.1.optionsButton"
     underlayColor="#ffffff00"
   >
     <View
@@ -410,7 +410,7 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
         },
       ]
     }
-    testID="course-1"
+    testID="CourseCardCell.1"
     underlayColor="transparent"
   >
     <View
@@ -573,7 +573,7 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
         "width": 43,
       }
     }
-    testID="course-card.kabob-1"
+    testID="CourseCardCell.1.optionsButton"
     underlayColor="#ffffff00"
   >
     <View
@@ -625,7 +625,7 @@ exports[`renders with empty image url 1`] = `
         },
       ]
     }
-    testID="course-1"
+    testID="CourseCardCell.1"
     underlayColor="transparent"
   >
     <View
@@ -738,7 +738,7 @@ exports[`renders with empty image url 1`] = `
         "width": 43,
       }
     }
-    testID="course-card.kabob-1"
+    testID="CourseCardCell.1.optionsButton"
     underlayColor="#ffffff00"
   >
     <View
@@ -790,7 +790,7 @@ exports[`renders with image url 1`] = `
         },
       ]
     }
-    testID="course-1"
+    testID="CourseCardCell.1"
     underlayColor="transparent"
   >
     <View
@@ -915,7 +915,7 @@ exports[`renders with image url 1`] = `
         "width": 43,
       }
     }
-    testID="course-card.kabob-1"
+    testID="CourseCardCell.1.optionsButton"
     underlayColor="#ffffff00"
   >
     <View
@@ -967,7 +967,7 @@ exports[`renders without image url 1`] = `
         },
       ]
     }
-    testID="course-1"
+    testID="CourseCardCell.1"
     underlayColor="transparent"
   >
     <View
@@ -1080,7 +1080,7 @@ exports[`renders without image url 1`] = `
         "width": 43,
       }
     }
-    testID="course-card.kabob-1"
+    testID="CourseCardCell.1.optionsButton"
     underlayColor="#ffffff00"
   >
     <View
@@ -1132,7 +1132,7 @@ exports[`renders without the color overlay 1`] = `
         },
       ]
     }
-    testID="course-1"
+    testID="CourseCardCell.1"
     underlayColor="transparent"
   >
     <View
@@ -1257,7 +1257,7 @@ exports[`renders without the color overlay 1`] = `
         "width": 43,
       }
     }
-    testID="course-card.kabob-1"
+    testID="CourseCardCell.1.optionsButton"
     underlayColor="#ffffff00"
   >
     <View

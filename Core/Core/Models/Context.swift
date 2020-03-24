@@ -40,7 +40,7 @@ public protocol APIContext: Context {
     var id: ID { get }
 }
 extension APIContext {
-    var id: String { return id.value }
+    public var id: String { return id.value }
 }
 
 public extension Context {

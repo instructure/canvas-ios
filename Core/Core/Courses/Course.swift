@@ -36,6 +36,7 @@ final public class Course: NSManagedObject, Context, WriteableModel {
     @NSManaged public var grades: Set<Grade>?
     @NSManaged public var hideFinalGrades: Bool
     @NSManaged var planner: Planner?
+    @NSManaged public var isPastEnrollment: Bool
 
     public var defaultView: CourseDefaultView? {
         get { return CourseDefaultView(rawValue: defaultViewRaw ?? "") }
@@ -44,8 +45,7 @@ final public class Course: NSManagedObject, Context, WriteableModel {
 
     @discardableResult
     public static func save(_ item: APICourse, in context: NSManagedObjectContext) -> Course {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(Course.id), item.id.value)
-        let model: Course = context.fetch(predicate).first ?? context.insert()
+        let model: Course = context.first(where: #keyPath(Course.id), equals: item.id.value) ?? context.insert()
         model.id = item.id.value
         model.name = item.name
         model.isFavorite = item.is_favorite ?? false
@@ -62,6 +62,11 @@ final public class Course: NSManagedObject, Context, WriteableModel {
         }
         model.enrollments = nil
         model.hideFinalGrades = item.hide_final_grades ?? false
+        model.isPastEnrollment = (
+            item.workflow_state == .completed ||
+            (item.end_at ?? .distantFuture) < Clock.now ||
+            (item.term?.end_at ?? .distantFuture) < Clock.now
+        )
 
         if let apiEnrollments = item.enrollments {
             let enrollmentModels: [Enrollment] = apiEnrollments.map { apiItem in

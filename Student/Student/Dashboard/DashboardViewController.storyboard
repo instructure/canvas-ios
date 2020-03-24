@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,13 +11,13 @@
         <!--Dashboard View Controller-->
         <scene sceneID="nGz-cP-lCo">
             <objects>
-                <viewController storyboardIdentifier="DashboardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Mnz-qV-poC" customClass="DashboardViewController" customModule="Student" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DashboardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Mnz-qV-poC" customClass="DashboardViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1tL-HS-6c7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CXb-jT-eHO">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ouw-ls-1qa">
                                     <size key="itemSize" width="125" height="103"/>
@@ -27,18 +26,21 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DashboardGroupCell" id="hg0-6E-2ZY" customClass="DashboardGroupCell" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="160" height="92"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DashboardGroupCell" id="hg0-6E-2ZY" customClass="DashboardGroupCell" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="50" width="345" height="92"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="160" height="92"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="92"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shadow" translatesAutoresizingMaskIntoConstraints="NO" id="mqw-8M-50k">
-                                                    <rect key="frame" x="0.0" y="0.0" width="160" height="92"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shadow" translatesAutoresizingMaskIntoConstraints="NO" id="mqw-8M-50k" customClass="IconView" customModule="Core" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="92"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="shadow"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L6h-eU-15p" customClass="CardView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="5" y="5" width="150" height="82"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L6h-eU-15p" customClass="CardView" customModule="Core" customModuleProvider="target">
+                                                    <rect key="frame" x="5" y="5" width="335" height="82"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fHj-wj-FF6">
                                                             <rect key="frame" x="0.0" y="0.0" width="4" height="82"/>
@@ -47,8 +49,8 @@
                                                                 <constraint firstAttribute="width" constant="4" id="eSN-yH-KfY"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Group Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pm-ya-ch0" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                            <rect key="frame" x="12" y="12" width="130" height="19.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pm-ya-ch0" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                            <rect key="frame" x="12" y="12" width="315" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -57,8 +59,8 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Course Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Baq-Qg-psf" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                            <rect key="frame" x="12" y="33.5" width="130" height="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Baq-Qg-psf" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                            <rect key="frame" x="12" y="33.5" width="315" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -67,8 +69,8 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="electric"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="TERM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxG-6r-7ml" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                            <rect key="frame" x="12" y="52.5" width="130" height="14.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TERM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxG-6r-7ml" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                            <rect key="frame" x="12" y="52.5" width="315" height="14.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -107,8 +109,9 @@
                                             <constraint firstItem="mqw-8M-50k" firstAttribute="leading" secondItem="hg0-6E-2ZY" secondAttribute="leading" id="s7Z-hs-VZa"/>
                                             <constraint firstAttribute="trailing" secondItem="L6h-eU-15p" secondAttribute="trailing" constant="5" id="uSo-R7-AZd"/>
                                         </constraints>
-                                        <size key="customSize" width="160" height="92"/>
+                                        <size key="customSize" width="345" height="92"/>
                                         <connections>
+                                            <outlet property="cardView" destination="L6h-eU-15p" id="K1Q-YE-0HC"/>
                                             <outlet property="courseNameLabel" destination="Baq-Qg-psf" id="7fp-8d-ZVJ"/>
                                             <outlet property="groupNameLabel" destination="6pm-ya-ch0" id="rK8-id-KDA"/>
                                             <outlet property="leftColorView" destination="fHj-wj-FF6" id="0zL-4g-WK1"/>
@@ -116,12 +119,12 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="DashboardSectionHeaderView" id="orm-17-Sxi" customClass="DashboardSectionHeaderView" customModule="Student" customModuleProvider="target">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="DashboardSectionHeaderView" id="orm-17-Sxi" customClass="DashboardSectionHeaderView" customModule="Core" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section Header Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdF-Fi-o6d" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                            <rect key="frame" x="16" y="14" width="237" height="29"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section Header Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdF-Fi-o6d" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                            <rect key="frame" x="16" y="14" width="237.5" height="29"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -130,7 +133,7 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="heavy24"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLb-JR-jec" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLb-JR-jec" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="307" y="15.5" width="52" height="32"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <state key="normal" title="See All"/>
@@ -139,7 +142,7 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
-                                                <action selector="rightButtonTapped:" destination="orm-17-Sxi" eventType="touchUpInside" id="V1e-it-79b"/>
+                                                <action selector="rightButtonTapped" destination="orm-17-Sxi" eventType="primaryActionTriggered" id="InV-BT-vDA"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -155,6 +158,10 @@
                                         <outlet property="titleLabel" destination="cdF-Fi-o6d" id="USN-om-h6H"/>
                                     </connections>
                                 </collectionReusableView>
+                                <connections>
+                                    <outlet property="dataSource" destination="Mnz-qV-poC" id="QXa-rm-swK"/>
+                                    <outlet property="delegate" destination="Mnz-qV-poC" id="o1d-pl-nt1"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

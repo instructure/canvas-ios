@@ -19,7 +19,7 @@
 import XCTest
 @testable import Core
 
-class APICourseRequestableTests: XCTestCase {
+class APICourseTests: XCTestCase {
     func testGetCoursesRequest() {
         XCTAssertEqual(GetCoursesRequest().path, "courses")
         XCTAssertEqual(GetCoursesRequest().queryItems, [
