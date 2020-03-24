@@ -142,20 +142,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     // Cocoapods for Core to pull in Firebase
     func configureRemoteConfig() {
         let remoteConfig = RemoteConfig.remoteConfig()
-        remoteConfig.activate { error in
-            guard error == nil else {
-                return
-            }
-            let keys = remoteConfig.allKeys(from: RemoteConfigSource.remote)
-            for key in keys {
-                guard let feature = ExperimentalFeature(rawValue: key) else { continue }
-                let value = remoteConfig.configValue(forKey: key).boolValue
-                feature.isEnabled = value
-                Firebase.Crashlytics.crashlytics().setCustomValue(value, forKey: feature.userDefaultsKey)
-                Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
+        remoteConfig.fetch(withExpirationDuration: 0) { _, _ in
+            remoteConfig.activate { _ in
+                let keys = remoteConfig.allKeys(from: .remote)
+                for key in keys {
+                    guard let feature = ExperimentalFeature(rawValue: key) else { continue }
+                    let value = remoteConfig.configValue(forKey: key).boolValue
+                    feature.isEnabled = value
+                    Firebase.Crashlytics.crashlytics().setCustomValue(value, forKey: feature.userDefaultsKey)
+                    Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
+                }
             }
         }
-        remoteConfig.fetch(completionHandler: nil)
     }
 }
 
@@ -351,6 +349,8 @@ extension AppDelegate {
 }
 
 extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
+    var supportsQRCodeLogin: Bool { true }
+
     func changeUser() {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {

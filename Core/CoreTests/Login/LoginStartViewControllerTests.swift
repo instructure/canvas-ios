@@ -135,6 +135,7 @@ class LoginStartViewControllerTests: CoreTestCase {
     }
 
     func testQRCode() throws {
+        ExperimentalFeature.qrLogin.isEnabled = true
         let domain = "mobiledev"
         let code = "abc123"
         let qrCode = "https://sso.canvaslms.com/canvas/login?domain=\(domain)&code=\(code)"
@@ -172,6 +173,28 @@ class LoginStartViewControllerTests: CoreTestCase {
     func testQRCodeNotSupported() {
         supportsQRCodeLogin = false
         controller.view.layoutIfNeeded()
+        XCTAssertTrue(controller.useQRCodeButton.isHidden)
+        XCTAssertTrue(controller.useQRCodeDivider.isHidden)
+    }
+
+    func testQRLoginFeatureGetsTurnedOn() {
+        supportsQRCodeLogin = true
+        ExperimentalFeature.qrLogin.isEnabled = false
+        controller.view.layoutIfNeeded()
+        XCTAssertTrue(controller.useQRCodeButton.isHidden)
+        XCTAssertTrue(controller.useQRCodeDivider.isHidden)
+        ExperimentalFeature.qrLogin.isEnabled = true
+        XCTAssertFalse(controller.useQRCodeButton.isHidden)
+        XCTAssertFalse(controller.useQRCodeDivider.isHidden)
+    }
+
+    func testQRLoginFeatureGetsTurnedOff() {
+        supportsQRCodeLogin = true
+        ExperimentalFeature.qrLogin.isEnabled = true
+        controller.view.layoutIfNeeded()
+        XCTAssertFalse(controller.useQRCodeButton.isHidden)
+        XCTAssertFalse(controller.useQRCodeDivider.isHidden)
+        ExperimentalFeature.qrLogin.isEnabled = false
         XCTAssertTrue(controller.useQRCodeButton.isHidden)
         XCTAssertTrue(controller.useQRCodeDivider.isHidden)
     }

@@ -75,10 +75,6 @@ class LoginStartViewController: UIViewController {
             : "STUDENT"
         ), attributes: [.kern: 2])
         wordmarkLabel.textColor = .currentLogoColor()
-        if loginDelegate?.supportsQRCodeLogin == false {
-            useQRCodeButton.isHidden = true
-            useQRCodeDivider.isHidden = true
-        }
 
         if MDMManager.shared.host != nil {
             canvasNetworkButton.isHidden = true
@@ -88,8 +84,14 @@ class LoginStartViewController: UIViewController {
             self?.update()
         })
 
+        NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChange(_:)), name: UserDefaults.didChangeNotification, object: nil)
+
         update()
         refreshLogins()
+    }
+
+    @objc func userDefaultsDidChange(_ notification: Notification) {
+        performUIUpdate { self.update() }
     }
 
     func refreshLogins() {
@@ -178,6 +180,10 @@ class LoginStartViewController: UIViewController {
         sessions = LoginSession.sessions.sorted { a, b in a.lastUsedAt > b.lastUsedAt }
         previousLoginsView.isHidden = sessions.isEmpty && MDMManager.shared.logins.isEmpty
         previousLoginsTableView.reloadData()
+
+        let qrCodeEnabled = loginDelegate?.supportsQRCodeLogin == true && ExperimentalFeature.qrLogin.isEnabled
+        useQRCodeButton.isHidden = !qrCodeEnabled
+        useQRCodeDivider.isHidden = !qrCodeEnabled
     }
 
     @IBAction func canvasNetworkTapped(_ sender: UIButton) {
@@ -208,6 +214,7 @@ class LoginStartViewController: UIViewController {
     }
 
     @IBAction func scanQRCode(_ sender: UIButton) {
+        Analytics.shared.logEvent("qr_code_login_clicked")
         let tutorial = LoginQRCodeTutorialViewController.create()
         tutorial.delegate = self
         env.router.show(tutorial, from: self, options: .modal(embedInNav: true))
@@ -253,12 +260,14 @@ class LoginStartViewController: UIViewController {
                 }
                 // don't dismiss loading here
                 // it will eventually be dismissed once userDidLogin api calls are finished
+                Analytics.shared.logEvent("qr_code_login_success")
                 self?.loginDelegate?.userDidLogin(session: session)
             }
         }
     }
 
     func showQRCodeError() {
+        Analytics.shared.logEvent("qr_code_login_failure")
         showAlert(
             title: NSLocalizedString("Login Error", bundle: .core, comment: ""),
             message: NSLocalizedString("Please generate another QR Code and try again.", bundle: .core, comment: "")
