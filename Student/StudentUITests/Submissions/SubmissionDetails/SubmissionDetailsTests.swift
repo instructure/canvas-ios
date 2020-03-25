@@ -360,9 +360,9 @@ class SubmissionDetailsTests: StudentUITestCase {
         XCTAssertEqual(cell1TitleLabel.label(), rubric.description)
         XCTAssertTrue(SubmissionDetails.rubricCellDescButton(id: id).isVisible)
 
-        let button1 = SubmissionDetails.rubricCellRatingButton(rubricID: id, points: ratings[0].points!)
-        let button2 = SubmissionDetails.rubricCellRatingButton(rubricID: id, points: ratings[1].points!)
-        let button3 = SubmissionDetails.rubricCellRatingButton(rubricID: id, points: ratings[2].points!)
+        let button1 = SubmissionDetails.rubricCellRatingButton(rubricID: id, points: ratings[0].points!).waitToExist()
+        let button2 = SubmissionDetails.rubricCellRatingButton(rubricID: id, points: ratings[1].points!).waitToExist()
+        let button3 = SubmissionDetails.rubricCellRatingButton(rubricID: id, points: ratings[2].points!).waitToExist()
         XCTAssertTrue(button1.isVisible)
         XCTAssertTrue(button2.isVisible)
         XCTAssertTrue(button3.isVisible)

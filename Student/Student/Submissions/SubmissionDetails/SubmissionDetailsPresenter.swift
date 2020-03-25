@@ -147,7 +147,7 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
 
     func select(drawerTab: Drawer.Tab?) {
         selectedDrawerTab = drawerTab ?? .comments
-        view?.embedInDrawer(viewControllerForDrawer())
+        update()
     }
 
     func viewControllerForContent() -> UIViewController? {
