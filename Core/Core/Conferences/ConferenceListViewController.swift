@@ -146,8 +146,7 @@ extension ConferenceListViewController: UITableViewDataSource, UITableViewDelega
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let conference = conferences[indexPath] else { return }
-        let controller = ConferenceDetailsViewController.create(context: context, conferenceID: conference.id)
-        env.router.show(controller, from: self, options: .detail(embedInNav: true))
+        env.router.route(to: .parse("/\(context.pathComponent)/conferences/\(conference.id)"), from: self, options: .detail(embedInNav: true))
     }
 }
 

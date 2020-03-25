@@ -16,16 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-/* @flow */
-
 import { accountNotifications as reducer } from '../account-notification-reducer'
-import { default as AccountNotificationActions } from '../account-notification-actions'
+import AccountNotificationActions from '../account-notification-actions'
+import * as template from '../../../__templates__'
 
-const { refreshNotifications, closeNotification } = AccountNotificationActions
-
-const template = {
-  ...require('../../../__templates__/account-notification'),
-}
+const { refreshNotifications, closeNotification, refreshLiveConferences, ignoreLiveConference } = AccountNotificationActions
 
 describe('account notification reducer', () => {
   const defaultState = {
@@ -33,6 +28,10 @@ describe('account notification reducer', () => {
     list: [],
     closing: [],
     error: '',
+    liveConferencesPending: 0,
+    liveConferences: [],
+    liveConferencesError: '',
+    liveConferencesIgnored: [],
   }
 
   it('has an empty defaultState', () => {
@@ -140,6 +139,70 @@ describe('account notification reducer', () => {
         closing: [],
         error: 'There was a problem dismissing the announcement.',
       })
+    })
+  })
+
+  describe('refreshLiveConferences', () => {
+    const data = [
+      template.liveConference({ id: '1' }),
+      template.liveConference({ id: '2' }),
+    ]
+    const pending = {
+      type: refreshLiveConferences.toString(),
+      pending: true,
+    }
+
+    it('handles pending', () => {
+      expect(reducer(undefined, pending)).toEqual({
+        ...defaultState,
+        liveConferencesPending: 1,
+      })
+    })
+
+    it('handles resolved', () => {
+      const beforeState = reducer(undefined, pending)
+      const action = {
+        type: refreshLiveConferences.toString(),
+        payload: { result: { data } },
+      }
+      expect(reducer(beforeState, action)).toEqual({
+        ...beforeState,
+        liveConferencesPending: 0,
+        liveConferences: data,
+      })
+    })
+
+    it('handles errors', () => {
+      const beforeState = reducer(undefined, pending)
+      const action = {
+        type: refreshLiveConferences.toString(),
+        error: true,
+        payload: { error: new Error('Doh!') },
+      }
+      expect(reducer(beforeState, action)).toEqual({
+        ...beforeState,
+        liveConferencesPending: 0,
+        liveConferencesError: 'There was a problem loading the live conferences.\n\nDoh!',
+      })
+      action.payload.error = ''
+      expect(reducer(beforeState, action)).toEqual({
+        ...beforeState,
+        liveConferencesPending: 0,
+        liveConferencesError: 'There was a problem loading the live conferences.',
+      })
+    })
+  })
+
+  describe('ignoreLiveConference', () => {
+    it('adds the id to the ignored list if not already there', () => {
+      const beforeState = reducer(undefined, { type: '' })
+      const action = ignoreLiveConference('1')
+      const afterState = reducer(beforeState, action)
+      expect(afterState).toEqual({
+        ...beforeState,
+        liveConferencesIgnored: [ '1' ],
+      })
+      expect(reducer(afterState, action)).toEqual(afterState)
     })
   })
 })

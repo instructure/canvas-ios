@@ -34,6 +34,10 @@ export function deleteAccountNotification (id: string): ApiPromise<null> {
   return httpClient.delete(`accounts/self/users/self/account_notifications/${id}`)
 }
 
+export function getLiveConferences () {
+  return httpClient.get(`conferences?state=live`)
+}
+
 export function getTermsOfService (): ApiPromise<TermsOfService> {
   return httpClient.get(`accounts/self/terms_of_service`)
 }

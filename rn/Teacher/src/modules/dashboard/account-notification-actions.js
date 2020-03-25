@@ -29,6 +29,13 @@ export let AccountNotificationActions = (api: CanvasApi) => ({
     id,
     promise: api.deleteAccountNotification(id),
   })),
+  refreshLiveConferences: createAction('conferences.live.refresh', () => ({
+    promise: api.getLiveConferences(),
+    handlesError: true, // we ignore the errors
+  })),
+  ignoreLiveConference: createAction('conferences.live.ignore', (id) => ({
+    id,
+  })),
 })
 
 export default AccountNotificationActions(canvas)
