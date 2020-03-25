@@ -23,7 +23,6 @@ import TestsFoundation
 
 class NotificationsListTests: CoreUITestCase {
     func testNotificationItemsDisplayed() {
-        ExperimentalFeature.notifications2.isEnabled = true
         mockBaseRequests()
         mockData(GetActivitiesRequest(perPage: 99), value: [
             APIActivity.make(id: "1", title: "Assignment Created"),
@@ -39,10 +38,6 @@ class NotificationsListTests: CoreUITestCase {
 }
 
 class Notifications2ListTests: CoreUITestCase {
-    override var experimentalFeatures: [ExperimentalFeature] {
-        return [.notifications2]
-    }
-
     func testNotificationItemsDisplayed() {
         mockBaseRequests()
         mockData(GetCoursesRequest(enrollmentState: .active), value: [ baseCourse ])

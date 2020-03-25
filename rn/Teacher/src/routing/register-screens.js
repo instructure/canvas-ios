@@ -231,13 +231,8 @@ export function registerScreens (store: Store): void {
     registerScreen('/native-route-master/*route', null, null, { canBecomeMaster: true })
   }
 
-  if (ExperimentalFeature.newPageDetails.isEnabled) {
-    registerScreen('/courses/:courseID/pages/:url', null, store, { deepLink: true })
-    registerScreen('/courses/:courseID/wiki/:url', null, store, { deepLink: true })
-    registerScreen('/groups/:groupID/pages/:url', null, store, { deepLink: true })
-    registerScreen('/groups/:groupID/wiki/:url', null, store, { deepLink: true })
-  } else {
-    registerScreen('/courses/:courseID/wiki/:url', wrap(PageDetails), store, { deepLink: true })
-    registerScreen('/courses/:courseID/pages/:url', wrap(PageDetails), store, { deepLink: true })
-  }
+  registerScreen('/courses/:courseID/pages/:url', null, store, { deepLink: true })
+  registerScreen('/courses/:courseID/wiki/:url', null, store, { deepLink: true })
+  registerScreen('/groups/:groupID/pages/:url', null, store, { deepLink: true })
+  registerScreen('/groups/:groupID/wiki/:url', null, store, { deepLink: true })
 }

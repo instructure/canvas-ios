@@ -20,7 +20,7 @@ import XCTest
 @testable import Core
 
 class ExperimentalFeatureTests: CoreTestCase {
-    let testFeature = ExperimentalFeature(rawValue: "testing")!
+    let testFeature = ExperimentalFeature(rawValue: "favorite_groups")!
 
     override func setUp() {
         super.setUp()
@@ -28,7 +28,7 @@ class ExperimentalFeatureTests: CoreTestCase {
     }
 
     func testSettingsKey() {
-        XCTAssertEqual(testFeature.userDefaultsKey, "ExperimentalFeature.testing")
+        XCTAssertEqual(testFeature.userDefaultsKey, "ExperimentalFeature.favorite_groups")
     }
 
     func testUsesUserDefaults() {

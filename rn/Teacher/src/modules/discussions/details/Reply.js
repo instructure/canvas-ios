@@ -36,8 +36,6 @@ import Navigator from '../../../routing/Navigator'
 import ThreadedLinesView from '../../../common/components/ThreadedLinesView'
 import { isTeacher } from '../../app'
 import isEqual from 'lodash/isEqual'
-import RichContent from '../../../common/components/RichContent'
-import ExperimentalFeature from '@common/ExperimentalFeature'
 import { logEvent } from '@common/CanvasAnalytics'
 import { personDisplayName } from '../../../common/formatters'
 
@@ -69,20 +67,12 @@ export type Props = {
 }
 
 type State = {
-  useSimpleRenderer: boolean,
 }
 
 export default class Reply extends Component<Props, State> {
   webView: ?CanvasWebView
 
   state: State = {
-    useSimpleRenderer: this.useSimpleRenderer(this.props.reply.message),
-  }
-
-  componentWillReceiveProps (nextProps: Props) {
-    if (this.props.reply.message !== nextProps.reply.message) {
-      this.setState({ useSimpleRenderer: this.useSimpleRenderer(nextProps.reply.message) })
-    }
   }
 
   shouldComponentUpdate (newProps: Props, newState: State) {
@@ -99,15 +89,6 @@ export default class Reply extends Component<Props, State> {
       this.props.userCanReply !== newProps.userCanReply ||
       this.props.rating !== newProps.rating
     )
-  }
-
-  useSimpleRenderer (message: ?string) {
-    if (!message) return true
-    if (!ExperimentalFeature.simpleDiscussionRenderer.isEnabled) return false
-    let regex = new RegExp('<([a-zA-z]+)', 'g')
-    let results = message.match(regex)
-    if (!results) return false
-    return results.every(result => RichContent.supportedTags.includes(result.substring(1)))
   }
 
   showAttachment = () => {
@@ -175,17 +156,15 @@ export default class Reply extends Component<Props, State> {
               {personDisplayName(user.display_name, user.pronouns)}
             </Text>
             <Text style={style.date}>{i18n("{ date, date, 'MMM d' } at { date, time, short }", { date: new Date(reply.updated_at) })}</Text>
-            {this.state.useSimpleRenderer || reply.deleted
-              ? <RichContent html={message} navigator={this.props.navigator} />
-              : <CanvasWebView
-                automaticallySetHeight
-                style={{ flex: 1, margin: -vars.padding }}
-                html={message}
-                navigator={this.props.navigator}
-                ref={(ref) => { this.webView = ref }}
-                heightCacheKey={reply.id}
-              />
-            }
+            <CanvasWebView
+              automaticallySetHeight
+              style={{ flex: 1, margin: -vars.padding }}
+              html={message}
+              navigator={this.props.navigator}
+              ref={(ref) => { this.webView = ref }}
+              heightCacheKey={reply.id}
+            />
+
             {!reply.deleted && reply.attachment &&
               <TouchableOpacity testID={`discussion.reply.${reply.id}.attachment`} onPress={this.showAttachment}>
                 <View style={style.attachment}>

@@ -23,13 +23,7 @@ import Core
 
 func NotificationsTab(session: Session) throws -> UIViewController {
     let title = NSLocalizedString("Notifications", comment: "Notifications tab title")
-    let activityStream: UIViewController
-    if ExperimentalFeature.notifications2.isEnabled {
-        activityStream = ActivityStreamViewController.create()
-    } else {
-        activityStream = try ActivityStreamTableViewController(session: session)
-    }
-    
+    let activityStream: UIViewController = ActivityStreamViewController.create()
     activityStream.title = title
     
     let split = HelmSplitViewController()
