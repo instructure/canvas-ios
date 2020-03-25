@@ -14,8 +14,6 @@
     "Parent\/",
     "Pods\\/",
     "Student\/Canvas\/",
-    "Student\/Courses\/CourseList\/",
-    "Student\/Dashboard\/",
     "Student\/GradesWidget\/",
     "UITestHelpers\/",
     "rn/Teacher\/src\/modules\/graphql-speed-grader\/",

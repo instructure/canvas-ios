@@ -158,6 +158,9 @@ class UIImageViewExtensionsTests: XCTestCase {
         ], duration: 3)!
         view.load(url: pngUrl, didCompleteWith: LoadedImage(image: image, repeatCount: 2), error: nil)
         XCTAssertNil(view.loader)
+        XCTAssertNil(view.animationImages)
+        view.url = pngUrl // requires url to match for load to complete
+        view.load(url: pngUrl, didCompleteWith: LoadedImage(image: image, repeatCount: 2), error: nil)
         XCTAssertEqual(view.animationImages?.count, 1)
         XCTAssertEqual(view.animationRepeatCount, 2)
         XCTAssertEqual(view.animationDuration, 3)

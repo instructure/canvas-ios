@@ -110,31 +110,17 @@
 		7DC912EB1FE1CC9200A76B14 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7DC912ED1FE1CC9200A76B14 /* InfoPlist.strings */; };
 		7DCF0F7822F8A0CC000AACCE /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F7722F8A0CC000AACCE /* Routes.swift */; };
 		7DCF0F7A22F8A0D2000AACCE /* RouterDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F7922F8A0D1000AACCE /* RouterDebugViewController.swift */; };
-		7DCF0F7B22F8A81B000AACCE /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EB622F89FD2000AACCE /* DashboardPresenter.swift */; };
-		7DCF0F7C22F8A81B000AACCE /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0EB722F89FD2000AACCE /* DashboardViewController.storyboard */; };
-		7DCF0F7D22F8A81B000AACCE /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EB822F89FD2000AACCE /* DashboardViewController.swift */; };
-		7DCF0F7E22F8A820000AACCE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EB222F89FD2000AACCE /* CardView.swift */; };
-		7DCF0F7F22F8A820000AACCE /* DashboardGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EB322F89FD2000AACCE /* DashboardGroupCell.swift */; };
-		7DCF0F8022F8A820000AACCE /* DashboardSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EB422F89FD2000AACCE /* DashboardSectionHeaderView.swift */; };
 		7DCF0F8122F8A82C000AACCE /* AssignmentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0E9422F89FB0000AACCE /* AssignmentListViewController.swift */; };
 		7DCF0F8322F8A831000AACCE /* AssignmentDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0E9722F89FB0000AACCE /* AssignmentDetailsPresenter.swift */; };
 		7DCF0F8422F8A831000AACCE /* AssignmentDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0E9822F89FB0000AACCE /* AssignmentDetailsViewController.storyboard */; };
 		7DCF0F8522F8A831000AACCE /* AssignmentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0E9922F89FB0000AACCE /* AssignmentDetailsViewController.swift */; };
 		7DCF0F8622F8A831000AACCE /* AssignmentDetailsSectionContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0E9A22F89FB0000AACCE /* AssignmentDetailsSectionContainerView.swift */; };
 		7DCF0F8722F8A831000AACCE /* AssignmentDetailsSectionContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0E9B22F89FB0000AACCE /* AssignmentDetailsSectionContainerView.xib */; };
-		7DCF0F8822F8A84D000AACCE /* CourseCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0E9E22F89FC2000AACCE /* CourseCardCell.swift */; };
-		7DCF0F8922F8A84D000AACCE /* CourseCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0E9F22F89FC2000AACCE /* CourseCardCell.xib */; };
 		7DCF0F8C22F8A84D000AACCE /* StudentSyllabusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA322F89FC2000AACCE /* StudentSyllabusViewController.swift */; };
 		7DCF0F8D22F8A84D000AACCE /* StudentSyllabusPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA422F89FC2000AACCE /* StudentSyllabusPresenter.swift */; };
 		7DCF0F8F22F8A84D000AACCE /* CourseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA722F89FC2000AACCE /* CourseNavigationViewController.swift */; };
 		7DCF0F9022F8A84D000AACCE /* CourseNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA822F89FC2000AACCE /* CourseNavigationPresenter.swift */; };
-		7DCF0F9122F8A84D000AACCE /* CourseListCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EAA22F89FC2000AACCE /* CourseListCourseCell.swift */; };
-		7DCF0F9222F8A84D000AACCE /* CourseListSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EAB22F89FC2000AACCE /* CourseListSectionHeaderView.swift */; };
-		7DCF0F9322F8A84D000AACCE /* CourseListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EAD22F89FC2000AACCE /* CourseListPresenter.swift */; };
-		7DCF0F9422F8A84D000AACCE /* CourseListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0EAE22F89FC2000AACCE /* CourseListViewController.storyboard */; };
-		7DCF0F9522F8A84D000AACCE /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EAF22F89FC2000AACCE /* CourseListViewController.swift */; };
 		7DCF0F9622F8A860000AACCE /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EBA22F8A001000AACCE /* BundleExtensions.swift */; };
-		7DCF0F9722F8A860000AACCE /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EBB22F8A001000AACCE /* UIImageExtensions.swift */; };
 		7DCF0F9822F8A860000AACCE /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EBC22F8A001000AACCE /* UIViewControllerExtensions.swift */; };
 		7DCF0F9922F8A868000AACCE /* GroupNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EBE22F8A00D000AACCE /* GroupNavigationViewController.swift */; };
 		7DCF0F9B22F8A897000AACCE /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EC222F8A01C000AACCE /* AvatarView.swift */; };
@@ -194,7 +180,6 @@
 		7DE1161522F8AB5C005BFE98 /* CourseNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1322F8A096000AACCE /* CourseNavigationPresenterTests.swift */; };
 		7DE1161622F8AB5C005BFE98 /* GroupNavigationViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1622F8A096000AACCE /* GroupNavigationViewControllerTests.swift */; };
 		7DE1161822F8AB5C005BFE98 /* QuizListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1C22F8A096000AACCE /* QuizListPresenterTests.swift */; };
-		7DE1161922F8AB5C005BFE98 /* UIImageStudentExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2022F8A096000AACCE /* UIImageStudentExtensionTests.swift */; };
 		7DE1161A22F8AB5C005BFE98 /* UIViewControllerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2122F8A096000AACCE /* UIViewControllerExtensionsTests.swift */; };
 		7DE1161D22F8AB5C005BFE98 /* ArcSubmissionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2622F8A096000AACCE /* ArcSubmissionPresenterTests.swift */; };
 		7DE1161E22F8AB5C005BFE98 /* SubmissionButtonPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2822F8A096000AACCE /* SubmissionButtonPresenterTests.swift */; };
@@ -622,25 +607,11 @@
 		7DCF0E9922F89FB0000AACCE /* AssignmentDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsViewController.swift; sourceTree = "<group>"; };
 		7DCF0E9A22F89FB0000AACCE /* AssignmentDetailsSectionContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsSectionContainerView.swift; sourceTree = "<group>"; };
 		7DCF0E9B22F89FB0000AACCE /* AssignmentDetailsSectionContainerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssignmentDetailsSectionContainerView.xib; sourceTree = "<group>"; };
-		7DCF0E9E22F89FC2000AACCE /* CourseCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCardCell.swift; sourceTree = "<group>"; };
-		7DCF0E9F22F89FC2000AACCE /* CourseCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseCardCell.xib; sourceTree = "<group>"; };
 		7DCF0EA322F89FC2000AACCE /* StudentSyllabusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSyllabusViewController.swift; sourceTree = "<group>"; };
 		7DCF0EA422F89FC2000AACCE /* StudentSyllabusPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSyllabusPresenter.swift; sourceTree = "<group>"; };
 		7DCF0EA722F89FC2000AACCE /* CourseNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationViewController.swift; sourceTree = "<group>"; };
 		7DCF0EA822F89FC2000AACCE /* CourseNavigationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationPresenter.swift; sourceTree = "<group>"; };
-		7DCF0EAA22F89FC2000AACCE /* CourseListCourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListCourseCell.swift; sourceTree = "<group>"; };
-		7DCF0EAB22F89FC2000AACCE /* CourseListSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListSectionHeaderView.swift; sourceTree = "<group>"; };
-		7DCF0EAD22F89FC2000AACCE /* CourseListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListPresenter.swift; sourceTree = "<group>"; };
-		7DCF0EAE22F89FC2000AACCE /* CourseListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CourseListViewController.storyboard; sourceTree = "<group>"; };
-		7DCF0EAF22F89FC2000AACCE /* CourseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListViewController.swift; sourceTree = "<group>"; };
-		7DCF0EB222F89FD2000AACCE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		7DCF0EB322F89FD2000AACCE /* DashboardGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardGroupCell.swift; sourceTree = "<group>"; };
-		7DCF0EB422F89FD2000AACCE /* DashboardSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSectionHeaderView.swift; sourceTree = "<group>"; };
-		7DCF0EB622F89FD2000AACCE /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
-		7DCF0EB722F89FD2000AACCE /* DashboardViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashboardViewController.storyboard; sourceTree = "<group>"; };
-		7DCF0EB822F89FD2000AACCE /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		7DCF0EBA22F8A001000AACCE /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
-		7DCF0EBB22F8A001000AACCE /* UIImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		7DCF0EBC22F8A001000AACCE /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		7DCF0EBE22F8A00D000AACCE /* GroupNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationViewController.swift; sourceTree = "<group>"; };
 		7DCF0EC222F8A01C000AACCE /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
@@ -700,7 +671,6 @@
 		7DCF0F1322F8A096000AACCE /* CourseNavigationPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F1622F8A096000AACCE /* GroupNavigationViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationViewControllerTests.swift; sourceTree = "<group>"; };
 		7DCF0F1C22F8A096000AACCE /* QuizListPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListPresenterTests.swift; sourceTree = "<group>"; };
-		7DCF0F2022F8A096000AACCE /* UIImageStudentExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageStudentExtensionTests.swift; sourceTree = "<group>"; };
 		7DCF0F2122F8A096000AACCE /* UIViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
 		7DCF0F2622F8A096000AACCE /* ArcSubmissionPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcSubmissionPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F2822F8A096000AACCE /* SubmissionButtonPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionButtonPresenterTests.swift; sourceTree = "<group>"; };
@@ -1036,7 +1006,6 @@
 				49F9FA4A1CF7B73100654758 /* Assets.xcassets */,
 				7DCF0E9D22F89FB0000AACCE /* Assignments */,
 				7DCF0EB122F89FC2000AACCE /* Courses */,
-				7DCF0EB922F89FD2000AACCE /* Dashboard */,
 				7DCF0EBD22F8A001000AACCE /* Extensions */,
 				7DCF0EC122F8A00D000AACCE /* Groups */,
 				7DCF0ECA22F8A01C000AACCE /* IBDesignables */,
@@ -1252,15 +1221,6 @@
 			path = Assignments;
 			sourceTree = "<group>";
 		};
-		7DCF0EA022F89FC2000AACCE /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				7DCF0E9E22F89FC2000AACCE /* CourseCardCell.swift */,
-				7DCF0E9F22F89FC2000AACCE /* CourseCardCell.xib */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		7DCF0EA622F89FC2000AACCE /* Syllabus */ = {
 			isa = PBXGroup;
 			children = (
@@ -1279,63 +1239,19 @@
 			path = CourseNavigation;
 			sourceTree = "<group>";
 		};
-		7DCF0EAC22F89FC2000AACCE /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				7DCF0EAA22F89FC2000AACCE /* CourseListCourseCell.swift */,
-				7DCF0EAB22F89FC2000AACCE /* CourseListSectionHeaderView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		7DCF0EB022F89FC2000AACCE /* CourseList */ = {
-			isa = PBXGroup;
-			children = (
-				7DCF0EAC22F89FC2000AACCE /* Views */,
-				7DCF0EAD22F89FC2000AACCE /* CourseListPresenter.swift */,
-				7DCF0EAE22F89FC2000AACCE /* CourseListViewController.storyboard */,
-				7DCF0EAF22F89FC2000AACCE /* CourseListViewController.swift */,
-			);
-			path = CourseList;
-			sourceTree = "<group>";
-		};
 		7DCF0EB122F89FC2000AACCE /* Courses */ = {
 			isa = PBXGroup;
 			children = (
-				7DCF0EA022F89FC2000AACCE /* Views */,
 				7DCF0EA622F89FC2000AACCE /* Syllabus */,
 				7DCF0EA922F89FC2000AACCE /* CourseNavigation */,
-				7DCF0EB022F89FC2000AACCE /* CourseList */,
 			);
 			path = Courses;
-			sourceTree = "<group>";
-		};
-		7DCF0EB522F89FD2000AACCE /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				7DCF0EB222F89FD2000AACCE /* CardView.swift */,
-				7DCF0EB322F89FD2000AACCE /* DashboardGroupCell.swift */,
-				7DCF0EB422F89FD2000AACCE /* DashboardSectionHeaderView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		7DCF0EB922F89FD2000AACCE /* Dashboard */ = {
-			isa = PBXGroup;
-			children = (
-				7DCF0EB522F89FD2000AACCE /* Views */,
-				7DCF0EB622F89FD2000AACCE /* DashboardPresenter.swift */,
-				7DCF0EB722F89FD2000AACCE /* DashboardViewController.storyboard */,
-				7DCF0EB822F89FD2000AACCE /* DashboardViewController.swift */,
-			);
-			path = Dashboard;
 			sourceTree = "<group>";
 		};
 		7DCF0EBD22F8A001000AACCE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				7DCF0EBA22F8A001000AACCE /* BundleExtensions.swift */,
-				7DCF0EBB22F8A001000AACCE /* UIImageExtensions.swift */,
 				7DCF0EBC22F8A001000AACCE /* UIViewControllerExtensions.swift */,
 			);
 			path = Extensions;
@@ -1594,17 +1510,9 @@
 			path = Quizzes;
 			sourceTree = "<group>";
 		};
-		7DCF0F1F22F8A096000AACCE /* Dashboard */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Dashboard;
-			sourceTree = "<group>";
-		};
 		7DCF0F2222F8A096000AACCE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				7DCF0F2022F8A096000AACCE /* UIImageStudentExtensionTests.swift */,
 				7DCF0F2122F8A096000AACCE /* UIViewControllerExtensionsTests.swift */,
 			);
 			path = Extensions;
@@ -1689,7 +1597,6 @@
 				7DCF0F0F22F8A096000AACCE /* Assignments */,
 				B1CA3C6123AAA170006DCC48 /* Calendar */,
 				7DCF0F1522F8A096000AACCE /* Courses */,
-				7DCF0F1F22F8A096000AACCE /* Dashboard */,
 				7DCF0F2222F8A096000AACCE /* Extensions */,
 				7DCF0F1822F8A096000AACCE /* Groups */,
 				9734351323866A59002E9CE5 /* Notifications */,
@@ -2368,7 +2275,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DCF0F7C22F8A81B000AACCE /* DashboardViewController.storyboard in Resources */,
 				7DCF0FCA22F8A8D7000AACCE /* SubmissionFilesViewController.storyboard in Resources */,
 				2C0CAD751DEF6C33008D90FA /* InfoPlist.strings in Resources */,
 				7DCF0F8722F8A831000AACCE /* AssignmentDetailsSectionContainerView.xib in Resources */,
@@ -2394,8 +2300,6 @@
 				7DCF0FB522F8A8D7000AACCE /* SubmissionCommentFileView.xib in Resources */,
 				7DCF0FAF22F8A8D7000AACCE /* RubricViewController.storyboard in Resources */,
 				B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */,
-				7DCF0F8922F8A84D000AACCE /* CourseCardCell.xib in Resources */,
-				7DCF0F9422F8A84D000AACCE /* CourseListViewController.storyboard in Resources */,
 				7DCF0FB822F8A8D7000AACCE /* SubmissionCommentsViewController.storyboard in Resources */,
 				49F9FA4B1CF7B73100654758 /* Assets.xcassets in Resources */,
 				7DCF0FA922F8A8D7000AACCE /* ArcSubmissionViewController.storyboard in Resources */,
@@ -2621,7 +2525,6 @@
 				7DCF0FC022F8A8D7000AACCE /* SubmissionDetailsLockedEmptyView.swift in Sources */,
 				4976C2001FBB84B900160EE4 /* CalendarEventDetailViewController.swift in Sources */,
 				5EB46DED1D21A75C00C859A4 /* UIView+Nib.swift in Sources */,
-				7DCF0F7F22F8A820000AACCE /* DashboardGroupCell.swift in Sources */,
 				7DCF0FAC22F8A8D7000AACCE /* RubricViewController.swift in Sources */,
 				7DCF0FCB22F8A8D7000AACCE /* SubmissionFilesViewController.swift in Sources */,
 				5EB46DF41D21A75C00C859A4 /* CalendarDayListCell.swift in Sources */,
@@ -2647,15 +2550,10 @@
 				49A04E541CF64C510051E1E7 /* NotificationsTab.swift in Sources */,
 				7DCF0FD122F8A8D7000AACCE /* UrlSubmissionPresenter.swift in Sources */,
 				5EB46E011D21A75C00C859A4 /* CalendarDayListViewController.swift in Sources */,
-				7DCF0F9222F8A84D000AACCE /* CourseListSectionHeaderView.swift in Sources */,
-				7DCF0F8822F8A84D000AACCE /* CourseCardCell.swift in Sources */,
-				7DCF0F7D22F8A81B000AACCE /* DashboardViewController.swift in Sources */,
 				ACC968801D245768006AEAB1 /* Page+ViewModel.swift in Sources */,
-				7DCF0F9522F8A84D000AACCE /* CourseListViewController.swift in Sources */,
 				7DCF0F8522F8A831000AACCE /* AssignmentDetailsViewController.swift in Sources */,
 				61A6747D1DB58990008A27FD /* ModuleItemViewModel.swift in Sources */,
 				7DCF0FBC22F8A8D7000AACCE /* Drawer.swift in Sources */,
-				7DCF0F7E22F8A820000AACCE /* CardView.swift in Sources */,
 				7DCF0FA722F8A8D7000AACCE /* ArcSubmissionPresenter.swift in Sources */,
 				7DCF0FCE22F8A8D7000AACCE /* TextSubmissionViewController.swift in Sources */,
 				61A6747F1DB589C5008A27FD /* ModulesTableViewController.swift in Sources */,
@@ -2676,7 +2574,6 @@
 				496D31261CF752C600A3B11E /* LegacyModuleProgressShim.swift in Sources */,
 				5EB46DEB1D21A75C00C859A4 /* UIImage+Shapes.swift in Sources */,
 				7DCF0FAA22F8A8D7000AACCE /* SubmissionButtonAlertView.swift in Sources */,
-				7DCF0F9722F8A860000AACCE /* UIImageExtensions.swift in Sources */,
 				61CF10A71DBFB6C200B68E45 /* MasteryPathAssignmentPreviewViewController.swift in Sources */,
 				9767F2A32383C741006633CA /* ActivityStreamViewController.swift in Sources */,
 				5E95954A1D36CA2D00C86F93 /* CalendarEvent+Display.swift in Sources */,
@@ -2696,23 +2593,19 @@
 				5EB46DE81D21A75C00C859A4 /* NSObject+Bundle.swift in Sources */,
 				5EB46DF81D21A75C00C859A4 /* CalendarNoticeView.swift in Sources */,
 				7DCF0FA822F8A8D7000AACCE /* ArcSubmissionViewController.swift in Sources */,
-				7DCF0F9122F8A84D000AACCE /* CourseListCourseCell.swift in Sources */,
 				7DCF0FB022F8A8D7000AACCE /* RubricCircleView.swift in Sources */,
 				7DCF0FAD22F8A8D7000AACCE /* RubricPresenter.swift in Sources */,
 				7DCF0FB922F8A8D7000AACCE /* SubmissionCommentsViewController.swift in Sources */,
 				7DCF0F8C22F8A84D000AACCE /* StudentSyllabusViewController.swift in Sources */,
-				7DCF0F7B22F8A81B000AACCE /* DashboardPresenter.swift in Sources */,
 				7DCF0F8122F8A82C000AACCE /* AssignmentListViewController.swift in Sources */,
 				7DCF0FC422F8A8D7000AACCE /* SubmissionDetailsViewController.swift in Sources */,
 				5EB46DF91D21A75C00C859A4 /* CalendarView.swift in Sources */,
 				5EB46DE91D21A75C00C859A4 /* UIColor+Calendar.swift in Sources */,
 				5EB46DE51D21A75C00C859A4 /* NSDate+DayConvenience.swift in Sources */,
 				7DCF0F9822F8A860000AACCE /* UIViewControllerExtensions.swift in Sources */,
-				7DCF0F9322F8A84D000AACCE /* CourseListPresenter.swift in Sources */,
 				7DCF0F8322F8A831000AACCE /* AssignmentDetailsPresenter.swift in Sources */,
 				7DCF0F8622F8A831000AACCE /* AssignmentDetailsSectionContainerView.swift in Sources */,
 				7DCF0FC922F8A8D7000AACCE /* SubmissionFilesCell.swift in Sources */,
-				7DCF0F8022F8A820000AACCE /* DashboardSectionHeaderView.swift in Sources */,
 				7DCF0FB422F8A8D7000AACCE /* SubmissionCommentFileView.swift in Sources */,
 				7DCF0FAB22F8A8D7000AACCE /* SubmissionButtonPresenter.swift in Sources */,
 				5EB46DF01D21A75C00C859A4 /* CalendarCollectionView.swift in Sources */,
@@ -2776,7 +2669,6 @@
 				7DE1162422F8AB5C005BFE98 /* RoutesTests.swift in Sources */,
 				7DE1161622F8AB5C005BFE98 /* GroupNavigationViewControllerTests.swift in Sources */,
 				7DE1162322F8AB5C005BFE98 /* UrlSubmissionPresenterTests.swift in Sources */,
-				7DE1161922F8AB5C005BFE98 /* UIImageStudentExtensionTests.swift in Sources */,
 				7DE1161522F8AB5C005BFE98 /* CourseNavigationPresenterTests.swift in Sources */,
 				B1FF02D02404353E004B7B1C /* KeychainTests.swift in Sources */,
 				7DE1161F22F8AB5C005BFE98 /* RubricPresenterTests.swift in Sources */,

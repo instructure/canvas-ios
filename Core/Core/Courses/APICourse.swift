@@ -18,6 +18,150 @@
 
 import Foundation
 
+// https://canvas.instructure.com/doc/api/courses.html#Course
+public struct APICourse: Codable, Equatable {
+    public let id: ID
+    // let sis_course_id: String?
+    // let uuid: String?
+    // let integration_id: String?
+    // let sis_import_id: String?
+    let name: String?
+    let course_code: String?
+    let workflow_state: CourseWorkflowState?
+    let account_id: String?
+    // let root_account_id: String?
+    // let enrollment_term_id: String?
+    // let grading_standard_id: String?
+    let start_at: Date?
+    let end_at: Date?
+    let locale: String?
+    var enrollments: [APIEnrollment]?
+    // let total_students: Int? // include[]=total_students
+    // let calendar: ?
+    let default_view: CourseDefaultView?
+    let syllabus_body: String? // include[]=syllabus_body
+    // let needs_grading_count: Int? // include[]=needs_grading_count
+    let term: Term? // include[]=term
+    // let course_progress: ?
+    // let apply_assignment_group_weights: Bool?
+    let permissions: Permissions?
+    // let is_public: Bool?
+    // let is_public_to_auth_users: Bool?
+    // let public_syllabus: Bool?
+    // let public_syllabus_to_auth: Bool?
+    // let public_description: String?
+    // let storage_quota_mb: Double?
+    // let storage_quota_used_mb: Double? // include[]=storage_quota_used_mb
+    let hide_final_grades: Bool?
+    // let license: String?
+    // let allow_student_assignment_edits: Bool?
+    // let allow_wiki_comments: Bool?
+    // let allow_student_forum_attachments: Bool?
+    // let open_enrollment: Bool?
+    // let self_enrollment: Bool?
+    // let restrict_enrollments_to_course_dates: Bool?
+    // let course_format: String?
+    let access_restricted_by_date: Bool?
+    // let time_zone: TimeZone?
+    // let blueprint: Bool?
+    // let blueprint_restrictions: ?
+    // let blueprint_restrictions_by_object_type: ?
+    let image_download_url: String? // include[]=course_image, api sometimes returns an empty string instead of nil so don't use URL
+    let is_favorite: Bool? // include[]=favorites
+    // let sections: [APISection]? // include[]=sections
+
+    // https://canvas.instructure.com/doc/api/courses.html#Term
+    public struct Term: Codable, Equatable {
+        let id: ID
+        let name: String
+        let start_at: Date?
+        let end_at: Date?
+    }
+
+    public struct Permissions: Codable, Equatable {
+        let create_announcement: Bool
+        let create_discussion_topic: Bool
+    }
+}
+
+public enum CourseDefaultView: String, Codable {
+    case assignments, feed, modules, syllabus, wiki
+}
+
+public enum CourseWorkflowState: String, Codable {
+    case available, completed, deleted, unpublished
+}
+
+#if DEBUG
+extension APICourse {
+    public static func make(
+        id: ID = "1",
+        name: String? = "Course One",
+        course_code: String? = "C1",
+        workflow_state: CourseWorkflowState? = nil,
+        account_id: String? = nil,
+        start_at: Date? = nil,
+        end_at: Date? = nil,
+        locale: String? = nil,
+        enrollments: [APIEnrollment]? = [ .make(
+            id: nil,
+            enrollment_state: .active,
+            user_id: "12",
+            role: "StudentEnrollment",
+            role_id: "3"
+        ), ],
+        default_view: CourseDefaultView? = nil,
+        syllabus_body: String? = nil,
+        term: Term? = nil,
+        permissions: Permissions? = nil,
+        hide_final_grades: Bool? = false,
+        access_restricted_by_date: Bool? = nil,
+        image_download_url: String? = nil,
+        is_favorite: Bool? = nil
+    ) -> APICourse {
+        return APICourse(
+            id: id,
+            name: name,
+            course_code: course_code,
+            workflow_state: workflow_state,
+            account_id: account_id,
+            start_at: start_at,
+            end_at: end_at,
+            locale: locale,
+            enrollments: enrollments,
+            default_view: default_view,
+            syllabus_body: syllabus_body,
+            term: term,
+            permissions: permissions,
+            hide_final_grades: hide_final_grades,
+            access_restricted_by_date: access_restricted_by_date,
+            image_download_url: image_download_url,
+            is_favorite: is_favorite
+        )
+    }
+}
+
+extension APICourse.Term {
+    public static func make(
+        id: String = "1",
+        name: String = "Term One",
+        start_at: Date? = nil,
+        end_at: Date? = nil
+    ) -> APICourse.Term {
+        return APICourse.Term(
+            id: ID(id),
+            name: name,
+            start_at: start_at,
+            end_at: end_at
+        )
+    }
+}
+
+extension APICourse: APIContext {
+    public var contextType: ContextType { return .course }
+}
+#endif
+
 // https://canvas.instructure.com/doc/api/courses.html#method.courses.index
 public struct GetCoursesRequest: APIRequestable {
     public typealias Response = [APICourse]

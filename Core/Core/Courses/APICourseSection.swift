@@ -34,6 +34,28 @@ public struct APICourseSection: Codable, Equatable {
     let total_students: Int?
 }
 
+#if DEBUG
+extension APICourseSection {
+    public static func make(
+        id: ID = "1",
+        name: String = "section",
+        course_id: ID = "1",
+        start_at: Date? = nil,
+        end_at: Date? = nil,
+        total_students: Int? = nil
+    ) -> APICourseSection {
+        return APICourseSection(
+            id: id,
+            name: name,
+            course_id: course_id,
+            start_at: start_at,
+            end_at: end_at,
+            total_students: total_students
+        )
+    }
+}
+#endif
+
 // https://canvas.instructure.com/doc/api/sections.html#method.sections.index
 public struct GetCourseSectionsRequest: APIRequestable {
     public typealias Response = [APICourseSection]

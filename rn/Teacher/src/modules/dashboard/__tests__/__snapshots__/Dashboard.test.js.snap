@@ -24,7 +24,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
         "accessibilityLabel": "Edit Dashboard",
         "action": [Function],
         "disabled": false,
-        "testID": "dashboard.edit-btn",
+        "testID": "Dashboard.editFavoritesButton",
         "title": "Edit",
       },
     ]
@@ -126,7 +126,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                 },
               ]
             }
-            testID="course-1"
+            testID="CourseCardCell.1"
             underlayColor="transparent"
           >
             <View
@@ -251,7 +251,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                 "width": 43,
               }
             }
-            testID="course-card.kabob-1"
+            testID="CourseCardCell.1.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -306,7 +306,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                 },
               ]
             }
-            testID="course-2"
+            testID="CourseCardCell.2"
             underlayColor="transparent"
           >
             <View
@@ -431,7 +431,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                 "width": 43,
               }
             }
-            testID="course-card.kabob-2"
+            testID="CourseCardCell.2.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -486,7 +486,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                 },
               ]
             }
-            testID="course-3"
+            testID="CourseCardCell.3"
             underlayColor="transparent"
           >
             <View
@@ -611,7 +611,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                 "width": 43,
               }
             }
-            testID="course-card.kabob-3"
+            testID="CourseCardCell.3.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -678,7 +678,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                 },
               ]
             }
-            testID="course-1"
+            testID="CourseCardCell.1"
             underlayColor="transparent"
           >
             <View
@@ -803,7 +803,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                 "width": 43,
               }
             }
-            testID="course-card.kabob-1"
+            testID="CourseCardCell.1.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -858,7 +858,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                 },
               ]
             }
-            testID="course-2"
+            testID="CourseCardCell.2"
             underlayColor="transparent"
           >
             <View
@@ -983,7 +983,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                 "width": 43,
               }
             }
-            testID="course-card.kabob-2"
+            testID="CourseCardCell.2.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -1038,7 +1038,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                 },
               ]
             }
-            testID="course-3"
+            testID="CourseCardCell.3"
             underlayColor="transparent"
           >
             <View
@@ -1163,7 +1163,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                 "width": 43,
               }
             }
-            testID="course-card.kabob-3"
+            testID="CourseCardCell.3.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -1255,7 +1255,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                 },
               ]
             }
-            testID="course-4"
+            testID="CourseCardCell.4"
             underlayColor="transparent"
           >
             <View
@@ -1380,7 +1380,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                 "width": 43,
               }
             }
-            testID="course-card.kabob-4"
+            testID="CourseCardCell.4.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -1442,7 +1442,7 @@ exports[`Dashboard render 1`] = `
         "accessibilityLabel": "Edit Dashboard",
         "action": [Function],
         "disabled": false,
-        "testID": "dashboard.edit-btn",
+        "testID": "Dashboard.editFavoritesButton",
         "title": "Edit",
       },
     ]
@@ -1544,7 +1544,7 @@ exports[`Dashboard render 1`] = `
                 },
               ]
             }
-            testID="course-1"
+            testID="CourseCardCell.1"
             underlayColor="transparent"
           >
             <View
@@ -1669,7 +1669,7 @@ exports[`Dashboard render 1`] = `
                 "width": 43,
               }
             }
-            testID="course-card.kabob-1"
+            testID="CourseCardCell.1.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -1724,7 +1724,7 @@ exports[`Dashboard render 1`] = `
                 },
               ]
             }
-            testID="course-2"
+            testID="CourseCardCell.2"
             underlayColor="transparent"
           >
             <View
@@ -1849,7 +1849,7 @@ exports[`Dashboard render 1`] = `
                 "width": 43,
               }
             }
-            testID="course-card.kabob-2"
+            testID="CourseCardCell.2.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -1904,7 +1904,7 @@ exports[`Dashboard render 1`] = `
                 },
               ]
             }
-            testID="course-3"
+            testID="CourseCardCell.3"
             underlayColor="transparent"
           >
             <View
@@ -2029,7 +2029,7 @@ exports[`Dashboard render 1`] = `
                 "width": 43,
               }
             }
-            testID="course-card.kabob-3"
+            testID="CourseCardCell.3.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -2091,7 +2091,7 @@ exports[`Dashboard render while pending 1`] = `
         "accessibilityLabel": "Edit Dashboard",
         "action": [Function],
         "disabled": true,
-        "testID": "dashboard.edit-btn",
+        "testID": "Dashboard.editFavoritesButton",
         "title": "Edit",
       },
     ]
@@ -2193,7 +2193,7 @@ exports[`Dashboard render while pending 1`] = `
                 },
               ]
             }
-            testID="course-1"
+            testID="CourseCardCell.1"
             underlayColor="transparent"
           >
             <View
@@ -2318,7 +2318,7 @@ exports[`Dashboard render while pending 1`] = `
                 "width": 43,
               }
             }
-            testID="course-card.kabob-1"
+            testID="CourseCardCell.1.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -2373,7 +2373,7 @@ exports[`Dashboard render while pending 1`] = `
                 },
               ]
             }
-            testID="course-2"
+            testID="CourseCardCell.2"
             underlayColor="transparent"
           >
             <View
@@ -2498,7 +2498,7 @@ exports[`Dashboard render while pending 1`] = `
                 "width": 43,
               }
             }
-            testID="course-card.kabob-2"
+            testID="CourseCardCell.2.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -2553,7 +2553,7 @@ exports[`Dashboard render while pending 1`] = `
                 },
               ]
             }
-            testID="course-3"
+            testID="CourseCardCell.3"
             underlayColor="transparent"
           >
             <View
@@ -2678,7 +2678,7 @@ exports[`Dashboard render while pending 1`] = `
                 "width": 43,
               }
             }
-            testID="course-card.kabob-3"
+            testID="CourseCardCell.3.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -2740,7 +2740,7 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
         "accessibilityLabel": "Edit Dashboard",
         "action": [Function],
         "disabled": true,
-        "testID": "dashboard.edit-btn",
+        "testID": "Dashboard.editFavoritesButton",
         "title": "Edit",
       },
     ]
@@ -2968,7 +2968,7 @@ exports[`Dashboard render without favorite courses 1`] = `
         "accessibilityLabel": "Edit Dashboard",
         "action": [Function],
         "disabled": false,
-        "testID": "dashboard.edit-btn",
+        "testID": "Dashboard.editFavoritesButton",
         "title": "Edit",
       },
     ]
@@ -3196,7 +3196,7 @@ exports[`Dashboard renders course invites 1`] = `
         "accessibilityLabel": "Edit Dashboard",
         "action": [Function],
         "disabled": false,
-        "testID": "dashboard.edit-btn",
+        "testID": "Dashboard.editFavoritesButton",
         "title": "Edit",
       },
     ]
@@ -3782,7 +3782,7 @@ exports[`Dashboard renders course invites 1`] = `
                 },
               ]
             }
-            testID="course-1"
+            testID="CourseCardCell.1"
             underlayColor="transparent"
           >
             <View
@@ -3907,7 +3907,7 @@ exports[`Dashboard renders course invites 1`] = `
                 "width": 43,
               }
             }
-            testID="course-card.kabob-1"
+            testID="CourseCardCell.1.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -3962,7 +3962,7 @@ exports[`Dashboard renders course invites 1`] = `
                 },
               ]
             }
-            testID="course-2"
+            testID="CourseCardCell.2"
             underlayColor="transparent"
           >
             <View
@@ -4087,7 +4087,7 @@ exports[`Dashboard renders course invites 1`] = `
                 "width": 43,
               }
             }
-            testID="course-card.kabob-2"
+            testID="CourseCardCell.2.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -4142,7 +4142,7 @@ exports[`Dashboard renders course invites 1`] = `
                 },
               ]
             }
-            testID="course-3"
+            testID="CourseCardCell.3"
             underlayColor="transparent"
           >
             <View
@@ -4267,7 +4267,7 @@ exports[`Dashboard renders course invites 1`] = `
                 "width": 43,
               }
             }
-            testID="course-card.kabob-3"
+            testID="CourseCardCell.3.optionsButton"
             underlayColor="#ffffff00"
           >
             <View

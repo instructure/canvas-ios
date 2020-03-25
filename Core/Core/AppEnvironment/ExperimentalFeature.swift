@@ -29,6 +29,7 @@ public enum ExperimentalFeature: String, CaseIterable, Codable {
     case simpleDiscussionRenderer = "simple_discussion_renderer"
     case graphqlSpeedGrader = "graphql_speed_grader"
     case refreshTokens = "refresh_tokens"
+    case nativeDashboard = "native_dashboard"
     case newPageDetails = "new_page_details"
     case notifications2
     case studentCalendar = "student_calendar"

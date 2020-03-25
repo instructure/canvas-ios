@@ -438,7 +438,7 @@ export class Dashboard extends React.Component<Props, State> {
         navBarLogo: true,
         rightBarButtons: [{
           title: i18n('Edit'),
-          testID: 'dashboard.edit-btn',
+          testID: 'Dashboard.editFavoritesButton',
           accessibilityLabel: i18n('Edit Dashboard'),
           action: this.showFavoritesList,
           disabled: !this.props.totalCourseCount || Boolean(this.props.pending),

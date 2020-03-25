@@ -45,11 +45,15 @@ public enum Dashboard: String, ElementWrapper {
     }
 
     public static var editButton: Element {
-        app.find(id: "dashboard.edit-btn")
+        app.find(id: "Dashboard.editFavoritesButton")
     }
 
     public static func courseCard(id: String) -> Element {
-        app.find(id: "course-\(id)")
+        app.find(id: "CourseCardCell.\(id)")
+    }
+
+    public static func courseCardOptionsButton(id: String) -> Element {
+        app.find(id: "CourseCardCell.\(id).optionsButton")
     }
 
     public static func courseGrade(percent: String) -> Element {

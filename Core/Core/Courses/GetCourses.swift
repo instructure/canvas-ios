@@ -58,3 +58,21 @@ public class GetCourses: CollectionUseCase {
         self.perPage = perPage
     }
 }
+
+public class GetAllCourses: CollectionUseCase {
+    public typealias Model = Course
+
+    public let cacheKey: String? = "courses"
+
+    public var request: GetCoursesRequest {
+        return GetCoursesRequest(enrollmentState: nil, state: [ .available, .completed ], perPage: 100)
+    }
+
+    public let scope = Scope(predicate: .all, order: [
+        NSSortDescriptor(key: #keyPath(Course.isPastEnrollment), ascending: true),
+        NSSortDescriptor(key: #keyPath(Course.name), ascending: true, naturally: true),
+        NSSortDescriptor(key: #keyPath(Course.id), ascending: true),
+    ], sectionNameKeyPath: #keyPath(Course.isPastEnrollment))
+
+    public init() {}
+}
