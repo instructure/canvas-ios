@@ -74,9 +74,7 @@ public class CircleRefreshControl: UIRefreshControl {
                 progressView.progress = progress
             }
         case .refreshing:
-            if y != 0, y > snappingPoint { // keep open if already open
-                scrollView.contentOffset.y = floor(snappingPoint - inset)
-            }
+            break
         case .complete:
             if y > -1 {
                 refreshState = .ready

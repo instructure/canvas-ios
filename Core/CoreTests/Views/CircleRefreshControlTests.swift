@@ -70,11 +70,6 @@ class CircleRefreshControlTests: CoreTestCase {
         XCTAssertEqual(refreshControl.progressView.alpha, 1)
         XCTAssertEqual(refreshControl.progressView.progress, nil)
 
-        scrollView.contentOffset.y = 0
-        XCTAssertEqual(scrollView.contentOffset.y, 0)
-        scrollView.contentOffset.y = -32
-        XCTAssertEqual(scrollView.contentOffset.y, -64)
-
         refreshControl.endRefreshing()
         XCTAssertEqual(refreshControl.isRefreshing, false)
         scrollView.contentOffset.y = -80
