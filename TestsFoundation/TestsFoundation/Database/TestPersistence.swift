@@ -50,6 +50,7 @@ class TestDatabase: NSPersistentContainer {
         // create a new view context to avoid recursive saves
         let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         context.parent = viewContext
+        context.automaticallyMergesChangesFromParent = true
         return context
     }
 

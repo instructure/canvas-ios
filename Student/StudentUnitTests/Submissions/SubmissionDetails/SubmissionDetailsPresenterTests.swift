@@ -153,7 +153,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
         Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 1, attachments: [ .make(id: "1"), .make(id: "2") ]))
         presenter.select(drawerTab: .rubric)
         XCTAssertEqual(presenter.selectedDrawerTab, .rubric)
-        XCTAssertNil(view.embeddedInDrawer)
+        XCTAssert(view.embeddedInDrawer is RubricViewController)
     }
 
     func testEmbedExternalTool() {
