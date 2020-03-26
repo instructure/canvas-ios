@@ -22,13 +22,13 @@ public class GetSSOLogin {
     let domain: String
     let code: String
 
-    public init?(url: URL) {
+    public init?(url: URL, code codeQueryVariableName: String = "code") {
         let components = URLComponents.parse(url)
         guard
             let host = components.host, [ "sso.canvaslms.com", "sso.beta.canvaslms.com", "sso.test.canvaslms.com" ].contains(host),
             components.path == "/canvas/login",
             let domain = components.queryItems?.first(where: { $0.name == "domain" })?.value, !domain.isEmpty,
-            let code = components.queryItems?.first(where: { $0.name == "code" })?.value, !code.isEmpty
+            let code = components.queryItems?.first(where: { $0.name == codeQueryVariableName })?.value, !code.isEmpty
         else {
             return nil
         }
