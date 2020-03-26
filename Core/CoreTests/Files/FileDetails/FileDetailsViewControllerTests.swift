@@ -162,7 +162,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         mock(APIFile.make(filename: "File.usdz", contentType: "model/vnd.usdz+zip", mime_class: "file"))
         let done = expectation(description: "done")
         var token: NSObjectProtocol?
-        token = NotificationCenter.default.addObserver(forName: .init("CBIModuleItemProgressUpdatedNotification"), object: nil, queue: nil) { _ in
+        token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { _ in
             NotificationCenter.default.removeObserver(token!)
             done.fulfill()
         }
@@ -206,7 +206,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         mock(APIFile.make(filename: "File.svg", contentType: "image/svg+xml", mime_class: "file"))
         let done = expectation(description: "done")
         var token: NSObjectProtocol?
-        token = NotificationCenter.default.addObserver(forName: .init("CBIModuleItemProgressUpdatedNotification"), object: nil, queue: nil) { _ in
+        token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { _ in
             NotificationCenter.default.removeObserver(token!)
             done.fulfill()
         }
