@@ -30,7 +30,7 @@ func rootViewController(_ session: Session) -> UIViewController {
             dashboardTab(session: session),
             calendarTab(session: session),
             todoTab(),
-            try NotificationsTab(session: session),
+            NotificationsTab(),
             inboxTab(),
         ]
     } catch let e as NSError {

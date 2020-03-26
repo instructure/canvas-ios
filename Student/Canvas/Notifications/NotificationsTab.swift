@@ -21,10 +21,9 @@ import Foundation
 import CanvasCore
 import Core
 
-func NotificationsTab(session: Session) throws -> UIViewController {
+func NotificationsTab() -> UIViewController {
     let title = NSLocalizedString("Notifications", comment: "Notifications tab title")
     let activityStream: UIViewController = ActivityStreamViewController.create()
-    activityStream.title = title
     
     let split = HelmSplitViewController()
     split.preferredDisplayMode = .allVisible
