@@ -73,9 +73,7 @@ class ConferenceListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.titleLabel.text, "Pandemic playthrough")
 
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index0)
-        let details = router.viewControllerCalls.last?.0 as? ConferenceDetailsViewController
-        XCTAssertEqual(details?.context.canvasContextID, "course_1")
-        XCTAssertEqual(details?.conferenceID, "1")
+        XCTAssert(router.lastRoutedTo(.parse("/courses/1/conferences/1")))
 
         controller.tableView.selectRow(at: index0, animated: false, scrollPosition: .none)
         controller.viewWillAppear(false)

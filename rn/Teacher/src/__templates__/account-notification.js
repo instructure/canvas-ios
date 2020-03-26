@@ -29,3 +29,16 @@ export const accountNotification: Template<AccountNotification> = template({
   icon: 'information',
   role_ids: [],
 })
+
+export const liveConference = template({
+  id: '1',
+  context_id: '1',
+  context_type: 'Course',
+  conference_type: 'BigBlueButton',
+  description: 'Thursday Lecture fo Intro to Astronomy',
+  duration: 50,
+  ended_at: null,
+  started_at: '2020-03-26T12:00:00.000Z',
+  title: 'Thu 3/26',
+  long_running: false,
+})

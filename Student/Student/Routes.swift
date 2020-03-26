@@ -142,6 +142,10 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
         guard let context = ContextModel(path: url.path) else { return nil }
         return ConferenceListViewController.create(context: context)
     },
+    "/:context/:contextID/conferences/:conferenceID": { url, params in
+        guard let context = ContextModel(path: url.path), let id = params["conferenceID"] else { return nil }
+        return ConferenceDetailsViewController.create(context: context, conferenceID: id)
+    },
 
     "/:context/:contextID/discussions": nil,
     "/:context/:contextID/discussion_topics": nil,

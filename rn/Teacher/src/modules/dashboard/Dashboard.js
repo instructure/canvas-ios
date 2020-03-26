@@ -42,6 +42,7 @@ import {
 import {
   LinkButton,
 } from '@common/buttons'
+import LiveConferenceRow from './LiveConferenceRow'
 import GlobalAnnouncementRow from './GlobalAnnouncementRow'
 import CourseInvite from './CourseInvite'
 import GroupRow, { type GroupRowProps } from './GroupRow'
@@ -189,6 +190,18 @@ export class Dashboard extends React.Component<Props, State> {
     )
   }
 
+  renderLiveConference = ({ item }) => {
+    return (
+      <LiveConferenceRow
+        key={item.id}
+        style={{ width: this.state.contentWidth, padding }}
+        conference={item}
+        onDismiss={this.props.ignoreLiveConference}
+        navigator={this.props.navigator}
+      />
+    )
+  }
+
   renderGlobalAnnouncement = ({ item }: { item: AccountNotification }) => {
     return (
       <GlobalAnnouncementRow
@@ -320,6 +333,14 @@ export class Dashboard extends React.Component<Props, State> {
     }
 
     let sections = []
+
+    // Live Conferences
+    sections.push({
+      sectionID: 'dashboard.conferences',
+      data: this.props.liveConferences,
+      renderItem: this.renderLiveConference,
+      keyExtractor: ({ id }) => `conference-${id}`,
+    })
 
     // Course Invites
     if (this.props.enrollments.length > 0) {
@@ -567,6 +588,15 @@ export function mapStateToProps (isFullDashboard: boolean) {
     const announcements = accountNotifications.list
       .filter(({ id }) => !accountNotifications.closing.includes(id))
 
+    const liveConferences = (accountNotifications.liveConferences || [])
+      .filter(({ id }) => !accountNotifications.liveConferencesIgnored.includes(id))
+      .map((conference) => ({
+        ...conference,
+        contextName: conference.context_type.toLowerCase() === 'group'
+          ? state.entities.groups[conference.context_id]?.group?.name
+          : state.entities.courses[conference.context_id]?.course?.name,
+      }))
+
     const groupFavorites = state.favoriteGroups.groupRefs
     const userHasFavoriteGroups = state.favoriteGroups.userHasFavoriteGroups
     let groups = Object.keys(state.entities.groups)
@@ -607,6 +637,7 @@ export function mapStateToProps (isFullDashboard: boolean) {
     return {
       pending,
       error,
+      liveConferences,
       announcements,
       courses,
       concludedCourses,
@@ -634,6 +665,7 @@ const Refreshed = refresh(
     props.refreshCanActAsUser()
 
     if (isStudent()) {
+      props.refreshLiveConferences()
       props.refreshUsersGroups()
     }
   },

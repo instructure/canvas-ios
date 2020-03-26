@@ -209,6 +209,7 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/assignments/:assignmentID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/assignments/:assignmentID/submissions/:userID', null, store, { deepLink: true })
     registerScreen('/:context/:contextID/conferences', null, store, { canBecomeMaster: true, deepLink: true })
+    registerScreen('/:context/:contextID/conferences/:conferenceID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/quizzes/:quizID/take', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/quizzes/:quizID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/quizzes', null, store, { deepLink: true })
