@@ -151,10 +151,8 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     func doneLoading() {
         spinnerView.isHidden = true
         progressView.isHidden = true
-        NotificationCenter.default.post(name: .init("CBIModuleItemProgressUpdatedNotification"), object: nil, userInfo: [
-            "CBIUpdatedModuleItemIDStringKey": fileID,
-            "CBIUpdatedModuleItemTypeKey": "must_view",
-        ])
+        let courseID = context?.contextType == .course ? context?.id : nil
+        NotificationCenter.default.post(moduleItem: .file(fileID), completedRequirement: .view, courseID: courseID ?? "")
     }
 
     @IBAction func viewModules() {
