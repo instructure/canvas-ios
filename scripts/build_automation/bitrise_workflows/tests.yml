@@ -651,6 +651,6 @@ workflows:
                 --broker-base-url=https://inst-pact-broker.inseng.net/ \
                 --broker-username=$PACT_BROKER_USERNAME \
                 --broker-password=$PACT_BROKER_PASSWORD \
-                --tag=$(BITRISE_GIT_BRANCH) \
+                --tag=$BITRISE_GIT_BRANCH \
                 --verbose
     - deploy-to-bitrise-io: {}
