@@ -349,7 +349,7 @@ extension AppDelegate {
 }
 
 extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
-    var supportsQRCodeLogin: Bool { true }
+    var supportsQRCodeLogin: Bool { ExperimentalFeature.qrLoginStudent.isEnabled }
 
     func changeUser() {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }

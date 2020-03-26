@@ -137,7 +137,6 @@ class LoginStartViewControllerTests: CoreTestCase {
     }
 
     func testQRCode() throws {
-        ExperimentalFeature.qrLogin.isEnabled = true
         let domain = "mobiledev"
         let code = "abc123"
         let qrCode = "https://sso.canvaslms.com/canvas/login?domain=\(domain)&code=\(code)"
@@ -181,7 +180,6 @@ class LoginStartViewControllerTests: CoreTestCase {
 
     func testQRLoginFeatureGetsTurnedOn() {
         supportsQRCodeLogin = true
-        ExperimentalFeature.qrLogin.isEnabled = false
         controller.view.layoutIfNeeded()
         controller.viewDidLoad()
         XCTAssertTrue(controller.useQRCodeButton.isHidden)
@@ -190,7 +188,6 @@ class LoginStartViewControllerTests: CoreTestCase {
 
     func testQRLoginFeatureGetsTurnedOff() {
         supportsQRCodeLogin = true
-        ExperimentalFeature.qrLogin.isEnabled = true
         controller.view.layoutIfNeeded()
         controller.viewDidLoad()
         XCTAssertFalse(controller.useQRCodeButton.isHidden)
@@ -198,7 +195,6 @@ class LoginStartViewControllerTests: CoreTestCase {
     }
 
     func testButtonsBelowLoginButtonWithBothEnabled() {
-        ExperimentalFeature.qrLogin.isEnabled = true
         controller.viewDidLoad()
         controller.view.layoutIfNeeded()
         XCTAssertFalse(controller.canvasNetworkButton.isHidden)
@@ -207,7 +203,6 @@ class LoginStartViewControllerTests: CoreTestCase {
     }
 
     func testButtonsBelowLoginButtonWithQRCodeButtonEnabledOnly() {
-        ExperimentalFeature.qrLogin.isEnabled = true
         supportsCanvasNetwork = false
         controller.viewDidLoad()
         controller.view.layoutIfNeeded()

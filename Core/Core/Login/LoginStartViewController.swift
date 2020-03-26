@@ -92,7 +92,7 @@ class LoginStartViewController: UIViewController {
         canvasNetworkButton.setTitle(NSLocalizedString("Canvas Network", bundle: .core, comment: ""), for: .normal)
         canvasNetworkButton.isHidden = loginDelegate?.supportsCanvasNetwork == false || MDMManager.shared.host != nil
 
-        let qrCodeEnabled = loginDelegate?.supportsQRCodeLogin == true && ExperimentalFeature.qrLogin.isEnabled
+        let qrCodeEnabled = loginDelegate?.supportsQRCodeLogin == true
         useQRCodeButton.isHidden = !qrCodeEnabled
         useQRCodeDivider.isHidden = !qrCodeEnabled || canvasNetworkButton.isHidden
     }

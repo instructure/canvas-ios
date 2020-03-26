@@ -219,7 +219,7 @@ extension AppDelegate: RCTBridgeDelegate {
 }
 
 extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
-    var supportsQRCodeLogin: Bool { false }
+    var supportsQRCodeLogin: Bool { ExperimentalFeature.qrLoginTeacher.isEnabled }
 
     func changeUser() {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
