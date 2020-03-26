@@ -24,7 +24,7 @@ import PactConsumerSwift
 open class PactTestCase: XCTestCase {
     open var providerName: String { "Canvas LMS API" }
 
-    let service = PactVerificationService(url: "http://localhost", allowInsecureCertificates: true)
+    let service = PactVerificationService(url: "http://localhost", port: 1234, allowInsecureCertificates: true)
     lazy var provider = CanvasMockService(provider: providerName, consumer: "canvas-ios", pactVerificationService: service)
     lazy var environment: TestEnvironment = {
         let environment = TestEnvironment()
