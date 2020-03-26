@@ -19,6 +19,7 @@
 import UIKit
 import PSPDFKit
 import PSPDFKitUI
+import Core
 
 // CREDIT: https://stackoverflow.com/a/24590678
 extension UIView {
@@ -72,7 +73,8 @@ public class PSPDFView: UIView {
             let documentURL = documentURL else {
             return
         }
-        
+        stylePSPDFKit()
+
         let doc = PSPDFDocument(url: documentURL)
         let vc = PSPDFViewController(document: doc)
         parentVC.addChild(vc)

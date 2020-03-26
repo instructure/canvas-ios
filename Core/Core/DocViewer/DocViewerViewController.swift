@@ -41,14 +41,14 @@ public class DocViewerViewController: UIViewController {
     public internal(set) static var hasPSPDFKitLicense = false
 
     public static func setup(_ secret: Secret) {
-        if let key = secret.string {
-            PSPDFKitGlobal.setLicenseKey(key)
-            hasPSPDFKitLicense = true
-        }
-        stylePSPDFKit()
+        guard let key = secret.string, !hasPSPDFKitLicense else { return }
+        PSPDFKitGlobal.setLicenseKey(key)
+        hasPSPDFKitLicense = true
     }
 
     public static func create(filename: String, previewURL: URL?, fallbackURL: URL, navigationItem: UINavigationItem? = nil) -> DocViewerViewController {
+        stylePSPDFKit()
+
         let controller = loadFromStoryboard()
         controller.parentNavigationItem = navigationItem
         controller.filename = filename

@@ -88,6 +88,11 @@ public struct SessionDefaults {
         set { self["parentColorScheme"] = newValue }
     }
 
+    public var hasSetPSPDFKitLastUsedValues: Bool {
+        get { return self["hasSetPSPDFKitLastUsedValues"] as? Bool ?? false }
+        set { self["hasSetPSPDFKitLastUsedValues"] = newValue }
+    }
+
     public mutating func reset() {
         sessionDefaults = nil
     }
