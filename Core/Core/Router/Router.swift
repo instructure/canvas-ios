@@ -180,6 +180,7 @@ public class Router: RouterProtocol {
         #if DEBUG
         DeveloperMenuViewController.recordRouteInHistory(url.url?.absoluteString)
         #endif
+        Analytics.shared.logEvent("route", parameters: ["url": String(describing: url)])
         for route in handlers {
             if let params = route.match(url) {
                 if let view = route.factory(url, params) {
