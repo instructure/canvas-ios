@@ -35,8 +35,8 @@ class DiscussionReplyTests: CoreUITestCase {
     @discardableResult
     func mockDiscussion(_ discussion: APIDiscussionTopic = .make(), fullTopic: APIDiscussionFullTopic = .make()) -> APIDiscussionTopic {
         mockData(ListDiscussionTopicsRequest(context: course), value: [discussion])
-        mockData(GetTopicRequests(context: course, topicID: discussion.id.value), value: discussion)
-        mockData(GetFullTopicRequests(context: course, topicID: discussion.id.value), value: fullTopic)
+        mockData(GetTopicRequest(context: course, topicID: discussion.id.value), value: discussion)
+        mockData(GetFullTopicRequest(context: course, topicID: discussion.id.value), value: fullTopic)
         mockData(ListDiscussionEntriesRequest(context: course, topicID: discussion.id.value), value: fullTopic.view)
         let readDiscussionUrl = URL(string: "https://canvas.instructure.com/api/v1/courses/\(course.id)/discussion_topics/\(discussion.id)/read")!
         mockURL(readDiscussionUrl, response: HTTPURLResponse(url: readDiscussionUrl, statusCode: 204, httpVersion: nil, headerFields: [:]))

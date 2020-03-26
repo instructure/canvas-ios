@@ -572,3 +572,85 @@ workflows:
         - title: ''
         - message: ''
         - pretext: "*Beta Tests Succeeded!*"
+
+  publish-pact-contracts:
+    steps:
+    - cache-pull: {}
+    - *set-mtime
+    - *install-tools
+    - script:
+        title: Install pact tools
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            gem install pact_broker-client pact-mock_service
+    - *carthage
+    - *yarn-install-root
+    - *yarn-install
+    - *yarn-global-add-react-native-cli
+    - *cocoapods
+    - script:
+        title: Build Pact Tests
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            export NSUnbufferedIO=YES
+            export CODE_SIGNING_REQUIRED=NO
+            export IgnoreFileSystemDeviceInodeChanges=1
+
+            xcodebuild \
+                -workspace Canvas.xcworkspace \
+                -scheme Pact \
+                -sdk iphonesimulator \
+                -configuration Debug \
+                build-for-testing |
+                tee $BITRISE_DEPLOY_DIR/raw-xcodebuild.log |
+                xcbeautify --quiet
+    - script:
+        title: Run Pact Tests
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            export NSUnbufferedIO=YES
+
+            xcodebuild \
+                -workspace Canvas.xcworkspace \
+                -scheme Pact \
+                -destination 'platform=iOS Simulator,name=iPhone 8' \
+                -resultBundlePath tmp/pact.xcresult \
+                test-without-building 2>&1 | xcbeautify
+    - script:
+        title: Save xcresult
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            zip --quiet -r "$BITRISE_DEPLOY_DIR/citests.xcresult.zip" tmp/pact.xcresult
+        is_always_run: true
+    - script:
+        title: Publish pact contracts
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            pact-broker publish tmp/pacts \
+                --consumer-app-version=1.0.$BITRISE_BUILD_NUMBER \
+                --broker-base-url=https://inst-pact-broker.inseng.net/ \
+                --broker-username=$PACT_BROKER_USERNAME \
+                --broker-password=$PACT_BROKER_PASSWORD \
+                --tag=$(BITRISE_GIT_BRANCH) \
+                --verbose
+    - deploy-to-bitrise-io: {}
