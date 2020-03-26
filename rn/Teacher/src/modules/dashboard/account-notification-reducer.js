@@ -89,7 +89,7 @@ export const accountNotifications = handleActions({
     resolved: (state, { result: { data } }) => ({
       ...state,
       liveConferencesPending: Math.max(0, state.pending - 1),
-      liveConferences: data,
+      liveConferences: data.conferences,
     }),
     rejected: (state, { error }) => {
       let message = i18n('There was a problem loading the live conferences.')

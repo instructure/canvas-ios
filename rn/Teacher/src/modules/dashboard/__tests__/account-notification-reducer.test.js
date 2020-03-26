@@ -143,10 +143,10 @@ describe('account notification reducer', () => {
   })
 
   describe('refreshLiveConferences', () => {
-    const data = [
+    const data = { conferences: [
       template.liveConference({ id: '1' }),
       template.liveConference({ id: '2' }),
-    ]
+    ] }
     const pending = {
       type: refreshLiveConferences.toString(),
       pending: true,
@@ -168,7 +168,7 @@ describe('account notification reducer', () => {
       expect(reducer(beforeState, action)).toEqual({
         ...beforeState,
         liveConferencesPending: 0,
-        liveConferences: data,
+        liveConferences: data.conferences,
       })
     })
 
