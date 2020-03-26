@@ -351,7 +351,7 @@ extension AppDelegate {
 }
 
 extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
-    
+
     func changeUser() {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
