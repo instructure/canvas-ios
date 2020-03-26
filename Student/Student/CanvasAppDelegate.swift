@@ -29,6 +29,7 @@ import Core
 class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     lazy var window: UIWindow? = ActAsUserWindow(frame: UIScreen.main.bounds, loginDelegate: self)
     @objc var session: Session?
+    var supportsQRCodeLogin: Bool = false
 
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
@@ -142,12 +143,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     // Cocoapods for Core to pull in Firebase
     func configureRemoteConfig() {
         let remoteConfig = RemoteConfig.remoteConfig()
-        remoteConfig.fetch(withExpirationDuration: 0) { _, _ in
+        remoteConfig.fetch(withExpirationDuration: 0) { [weak self] _, _ in
             remoteConfig.activate { _ in
                 let keys = remoteConfig.allKeys(from: .remote)
                 for key in keys {
                     guard let feature = ExperimentalFeature(rawValue: key) else { continue }
                     let value = remoteConfig.configValue(forKey: key).boolValue
+                    if feature == .qrLoginStudent { self?.supportsQRCodeLogin = value }
                     feature.isEnabled = value
                     Firebase.Crashlytics.crashlytics().setCustomValue(value, forKey: feature.userDefaultsKey)
                     Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
@@ -349,8 +351,7 @@ extension AppDelegate {
 }
 
 extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
-    var supportsQRCodeLogin: Bool { ExperimentalFeature.qrLoginStudent.isEnabled }
-
+    
     func changeUser() {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {

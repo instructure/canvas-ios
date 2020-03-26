@@ -32,6 +32,7 @@ var currentStudentID: String?
 class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     lazy var window: UIWindow? = ActAsUserWindow(frame: UIScreen.main.bounds, loginDelegate: self)
     var studentsRefresher: Refresher?
+    var supportsQRCodeLogin: Bool = false
 
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
@@ -134,12 +135,13 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     // Cocoapods for Core to pull in Firebase
     func configureRemoteConfig() {
         let remoteConfig = RemoteConfig.remoteConfig()
-        remoteConfig.fetch(withExpirationDuration: 0) { _, _ in
+        remoteConfig.fetch(withExpirationDuration: 0) { [weak self] _, _ in
             remoteConfig.activate { _ in
                 let keys = remoteConfig.allKeys(from: .remote)
                 for key in keys {
                     guard let feature = ExperimentalFeature(rawValue: key) else { continue }
                     let value = remoteConfig.configValue(forKey: key).boolValue
+                    if feature == .qrLoginParent { self?.supportsQRCodeLogin = value }
                     feature.isEnabled = value
                     Firebase.Crashlytics.crashlytics().setCustomValue(value, forKey: feature.userDefaultsKey)
                     Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
@@ -151,7 +153,6 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
 extension ParentAppDelegate: LoginDelegate {
     var supportsCanvasNetwork: Bool { false }
-    var supportsQRCodeLogin: Bool { ExperimentalFeature.qrLoginParent.isEnabled }
     var findSchoolButtonTitle: String { NSLocalizedString("Find School", bundle: .core, comment: "") }
 
     func openSupportTicket() {

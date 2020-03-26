@@ -83,7 +83,6 @@ class LoginStartViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChange(_:)), name: UserDefaults.didChangeNotification, object: nil)
 
-        configureButtons()
         update()
         refreshLogins()
     }
@@ -187,6 +186,7 @@ class LoginStartViewController: UIViewController {
         sessions = LoginSession.sessions.sorted { a, b in a.lastUsedAt > b.lastUsedAt }
         previousLoginsView.isHidden = sessions.isEmpty && MDMManager.shared.logins.isEmpty
         previousLoginsTableView.reloadData()
+        configureButtons()
     }
 
     @IBAction func canvasNetworkTapped(_ sender: UIButton) {

@@ -179,19 +179,31 @@ class LoginStartViewControllerTests: CoreTestCase {
     }
 
     func testQRLoginFeatureGetsTurnedOn() {
-        supportsQRCodeLogin = true
+        ExperimentalFeature.qrLoginParent.isEnabled = false
+        supportsQRCodeLogin = false
         controller.view.layoutIfNeeded()
-        controller.viewDidLoad()
         XCTAssertTrue(controller.useQRCodeButton.isHidden)
         XCTAssertTrue(controller.useQRCodeDivider.isHidden)
+        supportsQRCodeLogin = true
+        //  this just triggers userDefaultsDidChange notification
+        //  doesn't matter which feature is changed
+        ExperimentalFeature.qrLoginParent.isEnabled = true
+        XCTAssertFalse(controller.useQRCodeButton.isHidden)
+        XCTAssertFalse(controller.useQRCodeDivider.isHidden)
     }
 
     func testQRLoginFeatureGetsTurnedOff() {
+        ExperimentalFeature.qrLoginParent.isEnabled = true
         supportsQRCodeLogin = true
         controller.view.layoutIfNeeded()
-        controller.viewDidLoad()
         XCTAssertFalse(controller.useQRCodeButton.isHidden)
         XCTAssertFalse(controller.useQRCodeDivider.isHidden)
+        supportsQRCodeLogin = false
+        //  this just triggers userDefaultsDidChange notification
+        //  doesn't matter which feature is changed
+        ExperimentalFeature.qrLoginParent.isEnabled = false
+        XCTAssertTrue(controller.useQRCodeButton.isHidden)
+        XCTAssertTrue(controller.useQRCodeDivider.isHidden)
     }
 
     func testButtonsBelowLoginButtonWithBothEnabled() {
