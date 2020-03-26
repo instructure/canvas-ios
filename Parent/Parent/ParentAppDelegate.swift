@@ -299,7 +299,7 @@ extension ParentAppDelegate: UNUserNotificationCenterDelegate {
 
 extension ParentAppDelegate {
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL, let login = GetSSOLogin(url: url) {
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL, let login = GetSSOLogin(url: url, code: "code_ios_parent") {
             window?.rootViewController = LoadingViewController.create()
             login.fetch(environment: environment) { [weak self] (session, error) -> Void in
                 guard let session = session, error == nil else {
