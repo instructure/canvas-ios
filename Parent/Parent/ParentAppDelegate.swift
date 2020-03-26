@@ -151,7 +151,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
 extension ParentAppDelegate: LoginDelegate {
     var supportsCanvasNetwork: Bool { false }
-    var supportsQRCodeLogin: Bool { false }
+    var supportsQRCodeLogin: Bool { true }
     var findSchoolButtonTitle: String { NSLocalizedString("Find School", bundle: .core, comment: "") }
 
     func openSupportTicket() {
@@ -299,7 +299,7 @@ extension ParentAppDelegate: UNUserNotificationCenterDelegate {
 
 extension ParentAppDelegate {
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL, let login = GetSSOLogin(url: url, code: "code_ios_parent") {
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL, let login = GetSSOLogin(url: url) {
             window?.rootViewController = LoadingViewController.create()
             login.fetch(environment: environment) { [weak self] (session, error) -> Void in
                 guard let session = session, error == nil else {

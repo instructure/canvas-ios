@@ -55,8 +55,6 @@ class LoginStartViewController: UIViewController {
 
         view.backgroundColor = .named(.backgroundLightest)
 
-        canvasNetworkButton.setTitle(NSLocalizedString("Canvas Network", bundle: .core, comment: ""), for: .normal)
-        canvasNetworkButton.isHidden = loginDelegate?.supportsCanvasNetwork == false
         if let findSchoolButtonTitle = loginDelegate?.findSchoolButtonTitle {
             findSchoolButton.setTitle(findSchoolButtonTitle, for: .normal)
         }
@@ -77,7 +75,6 @@ class LoginStartViewController: UIViewController {
         wordmarkLabel.textColor = .currentLogoColor()
 
         if MDMManager.shared.host != nil {
-            canvasNetworkButton.isHidden = true
             findSchoolButton.setTitle(NSLocalizedString("Log In", bundle: .core, comment: ""), for: .normal)
         }
         mdmObservation = MDMManager.shared.observe(\.loginsRaw, changeHandler: { [weak self] _, _ in
@@ -86,8 +83,18 @@ class LoginStartViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChange(_:)), name: UserDefaults.didChangeNotification, object: nil)
 
+        configureButtons()
         update()
         refreshLogins()
+    }
+
+    func configureButtons() {
+        canvasNetworkButton.setTitle(NSLocalizedString("Canvas Network", bundle: .core, comment: ""), for: .normal)
+        canvasNetworkButton.isHidden = loginDelegate?.supportsCanvasNetwork == false || MDMManager.shared.host != nil
+
+        let qrCodeEnabled = loginDelegate?.supportsQRCodeLogin == true && ExperimentalFeature.qrLogin.isEnabled
+        useQRCodeButton.isHidden = !qrCodeEnabled
+        useQRCodeDivider.isHidden = !qrCodeEnabled || canvasNetworkButton.isHidden
     }
 
     @objc func userDefaultsDidChange(_ notification: Notification) {
@@ -180,10 +187,6 @@ class LoginStartViewController: UIViewController {
         sessions = LoginSession.sessions.sorted { a, b in a.lastUsedAt > b.lastUsedAt }
         previousLoginsView.isHidden = sessions.isEmpty && MDMManager.shared.logins.isEmpty
         previousLoginsTableView.reloadData()
-
-        let qrCodeEnabled = loginDelegate?.supportsQRCodeLogin == true && ExperimentalFeature.qrLogin.isEnabled
-        useQRCodeButton.isHidden = !qrCodeEnabled
-        useQRCodeDivider.isHidden = !qrCodeEnabled
     }
 
     @IBAction func canvasNetworkTapped(_ sender: UIButton) {

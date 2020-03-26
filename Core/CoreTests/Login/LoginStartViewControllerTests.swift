@@ -35,6 +35,8 @@ class LoginStartViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
+        supportsCanvasNetwork = true
+        supportsQRCodeLogin = true
         MDMManager.mockDefaults()
         api.mock(GetUserRequest(userID: "1"), value: .make())
     }
@@ -181,21 +183,36 @@ class LoginStartViewControllerTests: CoreTestCase {
         supportsQRCodeLogin = true
         ExperimentalFeature.qrLogin.isEnabled = false
         controller.view.layoutIfNeeded()
+        controller.viewDidLoad()
         XCTAssertTrue(controller.useQRCodeButton.isHidden)
         XCTAssertTrue(controller.useQRCodeDivider.isHidden)
-        ExperimentalFeature.qrLogin.isEnabled = true
-        XCTAssertFalse(controller.useQRCodeButton.isHidden)
-        XCTAssertFalse(controller.useQRCodeDivider.isHidden)
     }
 
     func testQRLoginFeatureGetsTurnedOff() {
         supportsQRCodeLogin = true
         ExperimentalFeature.qrLogin.isEnabled = true
         controller.view.layoutIfNeeded()
+        controller.viewDidLoad()
         XCTAssertFalse(controller.useQRCodeButton.isHidden)
         XCTAssertFalse(controller.useQRCodeDivider.isHidden)
-        ExperimentalFeature.qrLogin.isEnabled = false
-        XCTAssertTrue(controller.useQRCodeButton.isHidden)
+    }
+
+    func testButtonsBelowLoginButtonWithBothEnabled() {
+        ExperimentalFeature.qrLogin.isEnabled = true
+        controller.viewDidLoad()
+        controller.view.layoutIfNeeded()
+        XCTAssertFalse(controller.canvasNetworkButton.isHidden)
+        XCTAssertFalse(controller.useQRCodeButton.isHidden)
+        XCTAssertFalse(controller.useQRCodeDivider.isHidden)
+    }
+
+    func testButtonsBelowLoginButtonWithQRCodeButtonEnabledOnly() {
+        ExperimentalFeature.qrLogin.isEnabled = true
+        supportsCanvasNetwork = false
+        controller.viewDidLoad()
+        controller.view.layoutIfNeeded()
+        XCTAssertTrue(controller.canvasNetworkButton.isHidden)
+        XCTAssertFalse(controller.useQRCodeButton.isHidden)
         XCTAssertTrue(controller.useQRCodeDivider.isHidden)
     }
 }
