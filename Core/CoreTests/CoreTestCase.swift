@@ -85,7 +85,7 @@ class TestAnalyticsHandler: AnalyticsHandler {
     }
     var events = [Event]()
 
-    func handleEvent(_ name: String, parameters: [String : Any]?) {
+    func handleEvent(_ name: String, parameters: [String: Any]?) {
         events.append(.init(name: name, parameters: parameters))
     }
 }
