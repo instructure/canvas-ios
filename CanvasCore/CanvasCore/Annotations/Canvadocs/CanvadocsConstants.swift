@@ -20,41 +20,6 @@ import UIKit
 import PSPDFKit
 import PSPDFKitUI
 
-let standardCanvadocsColors: [UIColor] = CanvadocsAnnotationColor.allCases.map { $0.color }
-let highlightCanvadocsColors: [UIColor] = CanvadocsHighlightColor.allCases.map { $0.color }
-
-enum CanvadocsAnnotationColor: String, CaseIterable {
-    case red = "#EE0612"
-    case orange = "#FC5E13"
-    case yellow = "#FCB900"
-    case brown = "#8D6437"
-    case green = "#00AC18"
-    case darkBlue = "#234C9F"
-    case blue = "#008EE2"
-    case pink = "#C31FA8"
-    case purple = "#741865"
-    case darkGray = "#363636"
-
-    var color: UIColor {
-        return UIColor.colorFromHexString(self.rawValue)!
-    }
-}
-
-enum CanvadocsHighlightColor: String, CaseIterable {
-    case red = "#FF9999"
-    case orange = "#FFC166"
-    case yellow = "#FCE680"
-    case green = "#99EBA4"
-    case blue = "#80D0FF"
-    case pink = "#FFB9F1"
-
-    var color: UIColor {
-        return UIColor.colorFromHexString(self.rawValue)!
-    }
-}
-
-
-
 @objc public class AppAnnotationsConfiguration: NSObject {
     @objc public class func canvasAndSpeedgraderConfig() -> PSPDFConfiguration {
         return canvasAppConfiguration
