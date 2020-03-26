@@ -260,10 +260,14 @@ class RouterTests: CoreTestCase {
                 return UIViewController()
             },
         ]) { _, _, _ in }
-        router.route(to: URL(string: "https://canvas.instructure.com/somewhere")!, from: mockView)
+        let url = URL(string: "https://canvas.instructure.com/somewhere#fragment?query=yo")!
+        router.route(to: url, from: mockView)
         XCTAssertNotNil(mockView.shown)
         XCTAssertEqual(analytics.events[0].name, "route")
-        XCTAssertEqual(analytics.events[0].parameters!["path"] as! String, "/somewhere")
+        XCTAssertEqual(
+            analytics.events[0].parameters!["url"] as! String,
+            "https://canvas.instructure.com/somewhere#fragment?query=yo"
+        )
     }
 
     func testRouteRoute() {
