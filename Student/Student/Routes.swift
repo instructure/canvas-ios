@@ -101,7 +101,14 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
         if assignmentID == "syllabus" {
             return StudentSyllabusViewController.create(courseID: ID.expandTildeID(courseID))
         }
-        if let controller = moduleItemController(for: url, courseID: courseID) { return controller }
+        if ExperimentalFeature.moduleItemDetails.isEnabled, !url.originIsModuleItemDetails {
+            return ModuleItemSequenceViewController.create(
+                courseID: ID.expandTildeID(courseID),
+                assetType: .assignment,
+                assetID: ID.expandTildeID(assignmentID),
+                url: url
+            )
+        }
         return AssignmentDetailsViewController.create(
             courseID: ID.expandTildeID(courseID),
             assignmentID: ID.expandTildeID(assignmentID),
@@ -150,12 +157,25 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/:context/:contextID/discussions": nil,
     "/:context/:contextID/discussion_topics": nil,
 
-    "/:context/:contextID/discussions/:discussionID": nil,
-    "/:context/:contextID/discussion_topics/:discussionID": nil,
+    "/:context/:contextID/discussions/:discussionID": discussionViewController,
+    "/:context/:contextID/discussion_topics/:discussionID": discussionViewController,
 
-    "/courses/:courseID/external_tools/:toolID": { url, _ in
-        guard let url = url.url, let vc = HelmManager.shared.topMostViewController() else { return nil }
-        guard let session = Session.current else { return nil }
+    "/courses/:courseID/external_tools/:toolID": { url, params in
+        guard let courseID = params["courseID"], let toolID = params["toolID"] else { return nil }
+        if ExperimentalFeature.moduleItemDetails.isEnabled, !url.originIsModuleItemDetails {
+            return ModuleItemSequenceViewController.create(
+                courseID: courseID,
+                assetType: .externalTool,
+                assetID: toolID,
+                url: url
+            )
+        }
+        if url.originIsModuleItemDetails {
+            let tools = LTITools(context: ContextModel(.course, id: courseID), id: toolID)
+            return LTIViewController(tools: tools)
+        }
+        guard let url = url.url, let session = Session.current else { return nil }
+        guard let vc = HelmManager.shared.topMostViewController() else { return nil }
         ExternalToolManager.shared.launch(url, in: session, from: vc, fallbackURL: url)
         return nil
     },
@@ -216,15 +236,31 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
         return try? ModuleDetailsViewController(session: session, courseID: courseID, moduleID: moduleID)
     },
 
-    "/courses/:courseID/modules/items/:itemID": { _, params in
+    "/courses/:courseID/modules/items/:itemID": { url, params in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         guard let session = Session.current else { return nil }
+        if ExperimentalFeature.moduleItemDetails.isEnabled {
+            return ModuleItemSequenceViewController.create(
+                courseID: courseID,
+                assetType: .moduleItem,
+                assetID: itemID,
+                url: url
+            )
+        }
         return try? ModuleItemDetailViewController(session: session, courseID: courseID, moduleItemID: itemID, route: route)
     },
 
-    "/courses/:courseID/modules/:moduleID/items/:itemID": { _, params in
+    "/courses/:courseID/modules/:moduleID/items/:itemID": { url, params in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         guard let session = Session.current else { return nil }
+        if ExperimentalFeature.moduleItemDetails.isEnabled {
+            return ModuleItemSequenceViewController.create(
+                courseID: courseID,
+                assetType: .moduleItem,
+                assetID: itemID,
+                url: url
+            )
+        }
         return try? ModuleItemDetailViewController(session: session, courseID: courseID, moduleItemID: itemID, route: route)
     },
 
@@ -256,50 +292,8 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/:context/:contextID/pages/new": nil,
     "/:context/:contextID/wiki/new": nil,
-
-    "/courses/:courseID/pages/:url": { url, params in
-        guard let courseID = params["courseID"] else { return nil }
-        if let controller = moduleItemController(for: url, courseID: courseID) { return controller }
-        if ExperimentalFeature.newPageDetails.isEnabled {
-            guard let url = params["url"] else { return nil }
-            return PageDetailsViewController.create(context: ContextModel(.course, id: courseID), pageURL: url, app: .student)
-        } else {
-            return HelmViewController(moduleName: "/courses/:courseID/pages/:url", props: makeProps(url, params: params))
-        }
-    },
-    "/courses/:courseID/wiki/:url": { url, params in
-        guard let courseID = params["courseID"] else { return nil }
-        if let controller = moduleItemController(for: url, courseID: courseID) { return controller }
-        if ExperimentalFeature.newPageDetails.isEnabled {
-            guard let url = params["url"] else { return nil }
-            return PageDetailsViewController.create(context: ContextModel(.course, id: courseID), pageURL: url, app: .student)
-        } else {
-            return HelmViewController(moduleName: "/courses/:courseID/wiki/:url", props: makeProps(url, params: params))
-        }
-    },
-    "/groups/:groupID/pages/:url": { url, params in
-        guard let groupID = params["groupID"], let purl = params["url"] else { return nil }
-        // FIXME: confusing groupIDs for courseIDs (carried over from previoud route handler)
-        if let controller = moduleItemController(for: url, courseID: groupID) { return controller }
-        if ExperimentalFeature.newPageDetails.isEnabled {
-            return PageDetailsViewController.create(context: ContextModel(.group, id: groupID), pageURL: purl, app: .student)
-        } else {
-            guard let session = Session.current else { return nil }
-            return try? Page.DetailViewController(session: session, contextID: ContextID(id: groupID, context: .group), url: purl, route: route)
-        }
-    },
-    "/groups/:groupID/wiki/:url": { url, params in
-        guard let groupID = params["groupID"], let purl = params["url"] else { return nil }
-        // FIXME: confusing groupIDs for courseIDs (carried over from previoud route handler)
-        if let controller = moduleItemController(for: url, courseID: groupID) { return controller }
-        if ExperimentalFeature.newPageDetails.isEnabled {
-            return PageDetailsViewController.create(context: ContextModel(.group, id: groupID), pageURL: purl, app: .student)
-        } else {
-            guard let session = Session.current else { return nil }
-            return try? Page.DetailViewController(session: session, contextID: ContextID(id: groupID, context: .group), url: purl, route: route)
-        }
-    },
-
+    "/:context/:contextID/pages/:url": pageViewController,
+    "/:context/:contextID/wiki/:url": pageViewController,
     "/:context/:contextID/pages/:url/edit": nil,
     "/:context/:contextID/wiki/:url/edit": nil,
 
@@ -312,6 +306,14 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
         guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
         guard let session = Session.current else { return nil }
         if let controller = moduleItemController(for: url, courseID: courseID) { return controller }
+        if ExperimentalFeature.moduleItemDetails.isEnabled, !url.originIsModuleItemDetails {
+            return ModuleItemSequenceViewController.create(
+                courseID: courseID,
+                assetType: .quiz,
+                assetID: quizID,
+                url: url
+            )
+        }
         return QuizIntroViewController(session: session, courseID: courseID, quizID: quizID)
     },
 
@@ -448,7 +450,47 @@ private func fileViewController(url: URLComponents, params: [String: String]) ->
         context = ContextModel(.course, id: courseID)
     }
     let assignmentID = url.queryItems?.first(where: { $0.name == "assignmentID" })?.value
+    if ExperimentalFeature.moduleItemDetails.isEnabled, !url.originIsModuleItemDetails, context?.contextType == .course {
+        return ModuleItemSequenceViewController.create(
+            courseID: context!.id,
+            assetType: .file,
+            assetID: fileID,
+            url: url
+        )
+    }
     return FileDetailsViewController.create(context: context, fileID: fileID, assignmentID: assignmentID)
+}
+
+private func pageViewController(url: URLComponents, params: [String: String]) -> UIViewController? {
+    guard let context = ContextModel(path: url.path), let pageURL = params["url"] else { return nil }
+    if ExperimentalFeature.moduleItemDetails.isEnabled, !url.originIsModuleItemDetails, context.contextType == .course {
+        return ModuleItemSequenceViewController.create(
+            courseID: context.id,
+            assetType: .page,
+            assetID: pageURL,
+            url: url
+        )
+    }
+    if context.contextType == .course, let controller = moduleItemController(for: url, courseID: context.id) {
+        return controller
+    }
+    return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .student)
+}
+
+private func discussionViewController(url: URLComponents, params: [String: String]) -> UIViewController? {
+    guard let context = ContextModel(path: url.path), let discussionID = params["discussionID"] else { return nil }
+    if ExperimentalFeature.moduleItemDetails.isEnabled, context.contextType == .course, !url.originIsModuleItemDetails {
+        return ModuleItemSequenceViewController.create(
+            courseID: context.id,
+            assetType: .discussion,
+            assetID: discussionID,
+            url: url
+        )
+    }
+    return HelmViewController(
+        moduleName: "/:context/:contextID/discussion_topics/:discussionID",
+        props: makeProps(url, params: params)
+    )
 }
 
 private func moduleItemController(for url: URLComponents, courseID: String) -> UIViewController? {

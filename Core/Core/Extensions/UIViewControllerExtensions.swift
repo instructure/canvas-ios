@@ -120,6 +120,31 @@ extension UIViewController {
         }
         child.didMove(toParent: self)
     }
+
+    public func syncNavigationBar(with viewController: UIViewController) -> [NSKeyValueObservation] {
+        title = viewController.title
+        navigationItem.title = viewController.title
+        navigationItem.titleView = viewController.navigationItem.titleView
+        navigationItem.rightBarButtonItems = viewController.navigationItem.rightBarButtonItems
+        navigationItem.leftBarButtonItems = viewController.navigationItem.leftBarButtonItems
+        return [
+            viewController.observe(\.title) { [weak self] item, _ in
+                self?.title = item.title
+            },
+            viewController.navigationItem.observe(\.title) { [weak self] item, _ in
+                self?.navigationItem.title = item.title
+            },
+            viewController.navigationItem.observe(\.titleView) { [weak self] item, _ in
+                self?.navigationItem.titleView = item.titleView
+            },
+            viewController.navigationItem.observe(\.rightBarButtonItems) { [weak self] item, _ in
+                self?.navigationItem.rightBarButtonItems = item.rightBarButtonItems
+            },
+            viewController.navigationItem.observe(\.leftBarButtonItems) { [weak self] item, _ in
+                self?.navigationItem.leftBarButtonItems = item.leftBarButtonItems
+            },
+        ]
+    }
 }
 
 public enum PermissionError {

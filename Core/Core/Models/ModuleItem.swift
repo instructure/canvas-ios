@@ -22,6 +22,22 @@ import CoreData
 private let encoder = JSONEncoder()
 private let decoder = JSONDecoder()
 
+public class ModuleItemSequence: NSManagedObject {
+    public typealias AssetType = GetModuleItemSequenceRequest.AssetType
+
+    @NSManaged public var courseID: String
+    @NSManaged public var assetTypeRaw: String
+    @NSManaged public var assetID: String
+    @NSManaged public var prev: ModuleItem?
+    @NSManaged public var current: ModuleItem?
+    @NSManaged public var next: ModuleItem?
+
+    public var assetType: AssetType {
+        get { AssetType(rawValue: assetTypeRaw) ?? .moduleItem }
+        set { assetTypeRaw = newValue.rawValue }
+    }
+}
+
 public class ModuleItem: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var courseID: String
@@ -65,7 +81,7 @@ public class ModuleItem: NSManagedObject {
         model.published = item.published
         model.type = item.content
         model.courseID = courseID
-        model.dueAt = item.content_details.due_at
+        model.dueAt = item.content_details?.due_at
         return model
     }
 }

@@ -85,6 +85,19 @@ public struct GetModuleItemsRequest: APIRequestable {
     }
 }
 
+public struct GetModuleItemRequest: APIRequestable {
+    public typealias Response = APIModuleItem
+
+    public let courseID: String
+    public let moduleID: String
+    public let itemID: String
+
+    public var path: String {
+        let context = ContextModel(.course, id: courseID)
+        return "\(context.pathComponent)/modules/\(moduleID)/items/\(itemID)"
+    }
+}
+
 public struct GetModuleItemSequenceRequest: APIRequestable {
     public typealias Response = APIModuleItemSequence
 

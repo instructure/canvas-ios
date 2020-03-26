@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="18G3020" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Activity" representedClassName=".Activity" syncable="YES">
         <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -343,6 +343,14 @@
         <attribute name="url" optional="YES" attributeType="URI"/>
         <relationship name="module" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Module" inverseName="itemsRaw" inverseEntity="Module"/>
     </entity>
+    <entity name="ModuleItemSequence" representedClassName="Core.ModuleItemSequence" syncable="YES">
+        <attribute name="assetID" attributeType="String"/>
+        <attribute name="assetTypeRaw" attributeType="String"/>
+        <attribute name="courseID" attributeType="String"/>
+        <relationship name="current" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItem"/>
+        <relationship name="next" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItem"/>
+        <relationship name="prev" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItem"/>
+    </entity>
     <entity name="NotificationCategory" representedClassName="Core.NotificationCategory" syncable="YES">
         <attribute name="category" attributeType="String"/>
         <attribute name="channelID" attributeType="String"/>
@@ -681,5 +689,6 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="208"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="ModuleItemSequence" positionX="-540" positionY="-18" width="128" height="133"/>
     </elements>
 </model>

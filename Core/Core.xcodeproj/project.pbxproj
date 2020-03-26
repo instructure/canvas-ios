@@ -671,6 +671,7 @@
 		B107F6CB234BB847000DAC83 /* ItemPickerElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107F6CA234BB847000DAC83 /* ItemPickerElement.swift */; };
 		B109249423CE81C400796903 /* RoleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B109249323CE81C400796903 /* RoleTests.swift */; };
 		B10E89072384807B00E7684E /* GradesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10E89062384807B00E7684E /* GradesViewControllerTests.swift */; };
+		B113112A242D56CF003A79A8 /* GetModuleItemSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1131129242D56CF003A79A8 /* GetModuleItemSequence.swift */; };
 		B119B4BD2307208200A74062 /* GetEnabledFeatureFlagsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B119B4BC2307208200A74062 /* GetEnabledFeatureFlagsTests.swift */; };
 		B11AAC3B237A1EB4002BC41F /* APIURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AAC3A237A1EB4002BC41F /* APIURLTests.swift */; };
 		B11AEBB32405D31C00B736D6 /* CoreWebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AEBB22405D31C00B736D6 /* CoreWebViewControllerTests.swift */; };
@@ -1657,6 +1658,7 @@
 		B10D776F21C2E27200BCE822 /* UITableViewCellExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtensions.swift; sourceTree = "<group>"; };
 		B10E8904238447A700E7684E /* Grade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grade.swift; sourceTree = "<group>"; };
 		B10E89062384807B00E7684E /* GradesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesViewControllerTests.swift; sourceTree = "<group>"; };
+		B1131129242D56CF003A79A8 /* GetModuleItemSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetModuleItemSequence.swift; sourceTree = "<group>"; };
 		B119B4BC2307208200A74062 /* GetEnabledFeatureFlagsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEnabledFeatureFlagsTests.swift; sourceTree = "<group>"; };
 		B11AAC3A237A1EB4002BC41F /* APIURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIURLTests.swift; sourceTree = "<group>"; };
 		B11AAC3C237A2428002BC41F /* APIURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIURL.swift; sourceTree = "<group>"; };
@@ -3357,6 +3359,7 @@
 				B1999AAC2305AA7B00DA97A4 /* GetEnabledFeatureFlags.swift */,
 				EE424B3122E8BBEF00D083EE /* GetFrontPage.swift */,
 				9FE84DD9214FE06300B95A68 /* GetGroup.swift */,
+				B1131129242D56CF003A79A8 /* GetModuleItemSequence.swift */,
 				B15CA270221DE1C80014FB02 /* GetModules.swift */,
 				9F4D24722331648B00EDFCFE /* GetPage.swift */,
 				EEC3EF6822E267BE00799FE2 /* GetPages.swift */,
@@ -4817,6 +4820,7 @@
 				7DA2601823F7227A005D2121 /* UITabBarExtensions.swift in Sources */,
 				7DA2610E23FCD907005D2121 /* CircleRefreshControl.swift in Sources */,
 				7DA2609723F72338005D2121 /* RouteHandler.swift in Sources */,
+				B113112A242D56CF003A79A8 /* GetModuleItemSequence.swift in Sources */,
 				B16E05E22423DF83006B6ADB /* LoginQRCodeTutorialViewController.swift in Sources */,
 				7DA2600E23F7227A005D2121 /* ProcessInfoExtensions.swift in Sources */,
 				7DA2604423F722D9005D2121 /* DiscussionTopic.swift in Sources */,
