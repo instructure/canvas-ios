@@ -42,11 +42,13 @@ class LoginStartViewController: UIViewController {
     var method = AuthenticationMethod.normalLogin
     var sessions: [LoginSession] = []
     var shouldAnimateFromLaunchScreen = false
+    var app: App = .student
 
-    static func create(loginDelegate: LoginDelegate?, fromLaunch: Bool) -> LoginStartViewController {
+    static func create(loginDelegate: LoginDelegate?, fromLaunch: Bool, app: App) -> LoginStartViewController {
         let controller = loadFromStoryboard()
         controller.loginDelegate = loginDelegate
         controller.shouldAnimateFromLaunchScreen = fromLaunch
+        controller.app = app
         return controller
     }
 
@@ -237,7 +239,7 @@ class LoginStartViewController: UIViewController {
     }
 
     func logIn(withCode code: String) {
-        guard let url = URL(string: code), let login = GetSSOLogin(url: url) else {
+        guard let url = URL(string: code), let login = GetSSOLogin(url: url, app: app) else {
             showQRCodeError()
             return
         }

@@ -112,4 +112,13 @@ class GetSSOLoginTest: CoreTestCase {
         XCTAssertEqual(session?.originalUserID, "2")
         XCTAssertNil(error)
     }
+
+    func testCodeForApp() {
+        var code = GetSSOLogin.codeForApp(.student)
+        XCTAssertEqual(code, "code")
+        code = GetSSOLogin.codeForApp(.teacher)
+        XCTAssertEqual(code, "code_ios_teacher")
+        code = GetSSOLogin.codeForApp(.parent)
+        XCTAssertEqual(code, "code")
+    }
 }

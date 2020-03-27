@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
             window?.makeKeyAndVisible()
             userDidLogin(session: session)
         } else {
-            window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true)
+            window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true, app: .student)
             window?.makeKeyAndVisible()
         }
 
@@ -304,7 +304,7 @@ extension AppDelegate {
 extension AppDelegate {
     @objc @discardableResult func openCanvasURL(_ url: URL) -> Bool {
         if LoginSession.mostRecent == nil, let host = url.host {
-            let loginNav = LoginNavigationController.create(loginDelegate: self)
+            let loginNav = LoginNavigationController.create(loginDelegate: self, app: .student)
             loginNav.login(host: host)
             window?.rootViewController = loginNav
         }
@@ -356,7 +356,7 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     func changeUser() {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
-            window.rootViewController = LoginNavigationController.create(loginDelegate: self)
+            window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .student)
         }, completion: nil)
     }
 
@@ -407,7 +407,7 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
 // MARK: - Handle siri notifications
 extension AppDelegate {
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL, let login = GetSSOLogin(url: url) {
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL, let login = GetSSOLogin(url: url, app: .student) {
             window?.rootViewController = LoadingViewController.create()
             login.fetch(environment: environment) { [weak self] (session, error) -> Void in
                 guard let session = session, error == nil else {

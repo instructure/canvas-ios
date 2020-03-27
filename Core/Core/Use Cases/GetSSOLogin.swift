@@ -22,18 +22,29 @@ public class GetSSOLogin {
     let domain: String
     let code: String
 
-    public init?(url: URL, code codeQueryVariableName: String = "code") {
+    public init?(url: URL, app: App) {
         let components = URLComponents.parse(url)
         guard
             let host = components.host, [ "sso.canvaslms.com", "sso.beta.canvaslms.com", "sso.test.canvaslms.com" ].contains(host),
             components.path == "/canvas/login",
             let domain = components.queryItems?.first(where: { $0.name == "domain" })?.value, !domain.isEmpty,
-            let code = components.queryItems?.first(where: { $0.name == codeQueryVariableName })?.value, !code.isEmpty
+            let code = components.queryItems?.first(where: { $0.name == GetSSOLogin.codeForApp(app) })?.value, !code.isEmpty
         else {
             return nil
         }
         self.code = code
         self.domain = domain
+    }
+
+    static func codeForApp(_ app: App) -> String {
+        switch app {
+        case .student:
+            return "code"
+        case .teacher:
+            return "code_ios_teacher"
+        case .parent:
+            return "code" //"code_ios_parent"
+        }
     }
 
     public func fetch(environment: AppEnvironment = .shared, _ callback: @escaping (LoginSession?, Error?) -> Void) {

@@ -20,10 +20,12 @@ import UIKit
 
 public class LoginNavigationController: UINavigationController {
     weak var loginDelegate: LoginDelegate?
+    var app: App = .student
 
-    public static func create(loginDelegate: LoginDelegate, fromLaunch: Bool = false) -> LoginNavigationController {
-        let startView = LoginStartViewController.create(loginDelegate: loginDelegate, fromLaunch: fromLaunch)
+    public static func create(loginDelegate: LoginDelegate, fromLaunch: Bool = false, app: App) -> LoginNavigationController {
+        let startView = LoginStartViewController.create(loginDelegate: loginDelegate, fromLaunch: fromLaunch, app: app)
         let controller = LoginNavigationController(rootViewController: startView)
+        controller.app = app
         controller.loginDelegate = loginDelegate
         return controller
     }
@@ -39,7 +41,7 @@ public class LoginNavigationController: UINavigationController {
 
     public func login(host: String) {
         viewControllers = [
-            LoginStartViewController.create(loginDelegate: loginDelegate, fromLaunch: false),
+            LoginStartViewController.create(loginDelegate: loginDelegate, fromLaunch: false, app: app),
             LoginFindSchoolViewController.create(loginDelegate: loginDelegate, method: .normalLogin),
             LoginWebViewController.create(host: host, loginDelegate: loginDelegate, method: .normalLogin),
         ]

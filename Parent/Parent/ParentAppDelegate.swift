@@ -55,7 +55,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = LoadingViewController.create()
             userDidLogin(session: session)
         } else {
-            window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true)
+            window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true, app: .parent)
         }
         window?.makeKeyAndVisible()
         return true
@@ -166,7 +166,7 @@ extension ParentAppDelegate: LoginDelegate {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         legacySession = nil
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
-            window.rootViewController = LoginNavigationController.create(loginDelegate: self)
+            window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .parent)
         }, completion: nil)
     }
 
@@ -301,7 +301,7 @@ extension ParentAppDelegate: UNUserNotificationCenterDelegate {
 
 extension ParentAppDelegate {
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL, let login = GetSSOLogin(url: url) {
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL, let login = GetSSOLogin(url: url, app: .parent) {
             window?.rootViewController = LoadingViewController.create()
             login.fetch(environment: environment) { [weak self] (session, error) -> Void in
                 guard let session = session, error == nil else {

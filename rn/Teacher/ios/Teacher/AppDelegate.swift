@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             window?.makeKeyAndVisible()
             userDidLogin(session: session)
         } else {
-            window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true)
+            window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true, app: .teacher)
             window?.makeKeyAndVisible()
         }
 
@@ -226,7 +226,7 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     func changeUser() {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
-            window.rootViewController = LoginNavigationController.create(loginDelegate: self)
+            window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .teacher)
         }, completion: nil)
     }
 
@@ -308,7 +308,7 @@ extension AppDelegate {
 
 extension AppDelegate {
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL, let login = GetSSOLogin(url: url, code: "code_ios_teacher") {
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL, let login = GetSSOLogin(url: url, app: .teacher) {
             window?.rootViewController = LoadingViewController.create()
             login.fetch(environment: environment) { [weak self] (session, error) -> Void in
                 guard let session = session, error == nil else {
