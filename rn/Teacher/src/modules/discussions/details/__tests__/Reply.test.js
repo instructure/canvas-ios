@@ -74,7 +74,7 @@ describe('DiscussionReplies', () => {
   it('renders deleted', () => {
     props.reply.deleted = true
     let tree = shallow(<Reply {...props} />)
-    let webview = tree.find('RichContent')
+    let webview = tree.find('CanvasWebView')
     expect(webview.props().html.includes('Deleted this reply.')).toEqual(true)
   })
 

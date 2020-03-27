@@ -51,11 +51,8 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
         XCTAssertEqual( cell?.detailTextLabel?.text, "Dashboard")
 
         cell = vc.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? RightDetailTableViewCell
-        XCTAssertEqual( cell?.textLabel?.text, "Experimental Features")
-
-        cell = vc.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? RightDetailTableViewCell
         XCTAssertEqual( cell?.textLabel?.text, "Email Notifications")
-        vc.tableView(vc.tableView, didSelectRowAt: IndexPath(row: 2, section: 0))
+        vc.tableView(vc.tableView, didSelectRowAt: IndexPath(row: 1, section: 0))
         wait(for: [router.showExpectation], timeout: 1)
         var (routedVC, _, _) = router.viewControllerCalls.last!
         XCTAssert(routedVC is NotificationCategoriesViewController)
@@ -63,20 +60,20 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
             XCTAssertEqual(catViewController.channelType, CommunicationChannelType.email)
         } else { XCTFail() }
 
-        cell = vc.tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? RightDetailTableViewCell
+        cell = vc.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? RightDetailTableViewCell
         XCTAssertEqual( cell?.textLabel?.text, "Push Notifications")
 
-        cell = vc.tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? RightDetailTableViewCell
+        cell = vc.tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? RightDetailTableViewCell
         XCTAssertEqual( cell?.textLabel?.text, "Pair with Observer")
-        vc.tableView(vc.tableView, didSelectRowAt: IndexPath(row: 4, section: 0))
+        vc.tableView(vc.tableView, didSelectRowAt: IndexPath(row: 3, section: 0))
         (routedVC, _, _) = router.viewControllerCalls.last!
         XCTAssert(routedVC is PairWithObserverViewController)
 
         let previousDelegate = environment.loginDelegate
         environment.loginDelegate = self
-        cell = vc.tableView.cellForRow(at: IndexPath(row: 5, section: 0)) as? RightDetailTableViewCell
+        cell = vc.tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as? RightDetailTableViewCell
         XCTAssertEqual( cell?.textLabel?.text, "Subscribe to Calendar Feed")
-        vc.tableView(vc.tableView, didSelectRowAt: IndexPath(row: 5, section: 0))
+        vc.tableView(vc.tableView, didSelectRowAt: IndexPath(row: 4, section: 0))
         environment.loginDelegate = previousDelegate
         XCTAssertEqual(externalURLOpened, URL(string: "https://calendar.url"))
 
