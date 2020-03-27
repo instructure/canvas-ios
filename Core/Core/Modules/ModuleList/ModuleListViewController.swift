@@ -116,7 +116,7 @@ public class ModuleListViewController: UIViewController, ErrorViewController, Co
 
     func reloadCourse() {
         updateNavBar(subtitle: courses.first?.name, color: courses.first?.color)
-        tableView.reloadData() // update icon course colors
+        tableView?.reloadData() // update icon course colors
     }
 
     @objc

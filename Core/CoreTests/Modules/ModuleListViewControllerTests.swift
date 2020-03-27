@@ -109,7 +109,6 @@ class ModuleListViewControllerTests: CoreTestCase {
             .make(id: "9", position: 9),
             .make(id: "10", position: 10),
         ])
-        let viewController = ModuleListViewController.create(courseID: "1", moduleID: nil)
         viewController.view.layoutIfNeeded()
         XCTAssertEqual(viewController.tableView.numberOfSections, 10)
         XCTAssertEqual(viewController.tableView.contentOffset.y, 0)
