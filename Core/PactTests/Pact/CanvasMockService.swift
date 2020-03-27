@@ -22,7 +22,7 @@ import PactConsumerSwift
 import TestsFoundation
 
 class CanvasMockService: MockService {
-    let user = "Student1"
+    var user = "Student1"
     var baseHeaders: [String: String] {
         [
             "Content-Type": "application/json",
@@ -40,10 +40,10 @@ class CanvasMockService: MockService {
         return URLSessionAPI(baseURL: URL(string: baseUrl)!, urlSession: session)
     }
 
-    private func uponReceiving<R: APIRequestable>(
+    @discardableResult
+    func uponReceiving<R: APIRequestable>(
         _ testDescription: String,
-        with apiRequest: R,
-        respondWithDynamic response: Any
+        with apiRequest: R
     ) throws -> Interaction {
         let urlRequest = try apiRequest.urlRequest(relativeTo: api.baseURL, accessToken: "t", actAsUserID: nil)
         let url = urlRequest.url!
@@ -53,27 +53,26 @@ class CanvasMockService: MockService {
             headers[key] = value
         }
 
-        return uponReceiving(testDescription)
-            .withRequest(
-                method: PactHTTPMethod(urlRequest.method),
-                path: url.path,
-                query: url.query,
-                headers: headers,
-                body: try PactEncoder.encodeToJsonObject(apiRequest.body)
-        ).willRespondWith(status: 200, body: response)
+        return uponReceiving(testDescription).withRequest(
+            method: PactHTTPMethod(apiRequest.method),
+            path: url.path,
+            query: url.query,
+            headers: headers,
+            body: try PactEncoder.encodeToJsonObject(apiRequest.body)
+        )
     }
 
     @discardableResult
     func uponReceiving<R: APIRequestable>(
         _ testDescription: String,
         with apiRequest: R,
-        respondWith response: R.Response
+        respondWith response: R.Response,
+        status: Int = 200
     ) throws -> Interaction {
         try uponReceiving(
             testDescription,
-            with: apiRequest,
-            respondWithDynamic: try PactEncoder.encode(response)
-        )
+            with: apiRequest
+        ).willRespondWith(status: status, body: PactEncoder.encodeToJsonObject(response))
     }
 
     @discardableResult
@@ -81,14 +80,14 @@ class CanvasMockService: MockService {
         _ testDescription: String,
         with apiRequest: R,
         respondWithArrayLike response: T,
-        min: Int = 1
+        min: Int = 1,
+        status: Int = 200
     ) throws -> Interaction where R.Response == [T] {
         let element = try PactEncoder.encodeToJsonObject(response)
         return try uponReceiving(
             testDescription,
-            with: apiRequest,
-            respondWithDynamic: Matcher.eachLike(element, min: min)
-        )
+            with: apiRequest
+        ).willRespondWith(status: status, body: Matcher.eachLike(element, min: min))
     }
 }
 

@@ -17,6 +17,7 @@
 //
 
 @testable import Core
+import PactConsumerSwift
 
 extension Date: PactEncodable {
     static let iso8601Regex = #"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z"#
@@ -40,5 +41,27 @@ extension APIEnrollment: PactShapeEncodable { }
 extension APIEnrollment.Grades: PactShapeEncodable { }
 extension APICourse: PactShapeEncodable { }
 extension APIQuiz: PactShapeEncodable { }
+extension QuizType: PactCaseEncodable { }
 extension QuizQuestionType: PactCaseEncodable { }
 extension QuizHideResults: PactCaseEncodable { }
+extension APIDiscussionParticipant: PactShapeEncodable { }
+extension APIDiscussionEntry: PactShapeEncodable { }
+
+extension APIDiscussionTopic: PactSimpleEncodable {
+    var pactFields: [String: PactSimpleFieldHandling] {
+        // Can't pact test for "String?"
+        [ "message": .ignore ]
+    }
+}
+
+extension APIDiscussionFullTopic: PactSimpleEncodable {
+    var pactFields: [String: PactSimpleFieldHandling] {
+        [
+            "participants": .eachLike(),
+            "unread_entries": .eachLike(),
+            "entry_ratings": .ignore, // dynamic-keyed dictionaries can't yet be encoded in pact
+            "forced_entries": .eachLike(min: 0),
+            "view": .eachLike(min: 0),
+        ]
+    }
+}

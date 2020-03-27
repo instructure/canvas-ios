@@ -77,7 +77,7 @@ struct ListDiscussionEntriesRequest: APIRequestable {
 }
 
 // https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.show
-struct GetTopicRequests: APIRequestable {
+struct GetTopicRequest: APIRequestable {
     typealias Response = APIDiscussionTopic
 
     public enum Include: String, CaseIterable {
@@ -111,7 +111,7 @@ struct GetTopicRequests: APIRequestable {
     }
 }
 
-struct GetFullTopicRequests: APIRequestable {
+struct GetFullTopicRequest: APIRequestable {
     typealias Response = APIDiscussionFullTopic
 
     let context: Context
@@ -142,10 +142,10 @@ struct ListDiscussionTopicsRequest: APIRequestable {
     typealias Response = [APIDiscussionTopic]
 
     let context: Context
-    let include: [GetTopicRequests.Include]
+    let include: [GetTopicRequest.Include]
     let perPage: Int?
 
-    init(context: Context, perPage: Int? = 99, include: [GetTopicRequests.Include] = GetTopicRequests.defaultIncludes) {
+    init(context: Context, perPage: Int? = 99, include: [GetTopicRequest.Include] = GetTopicRequest.defaultIncludes) {
         self.context = context
         self.include = include
         self.perPage = perPage

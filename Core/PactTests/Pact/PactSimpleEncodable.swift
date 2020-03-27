@@ -21,13 +21,15 @@ import PactConsumerSwift
 
 enum PactSimpleFieldHandling {
     case exact
+    case ignore
     case matching(regex: String)
     case somethingLike
-    case eachLike
+    case eachLike(min: Int = 1)
 }
 
 protocol PactSimpleEncodable: PactEncodable {
-    /// Keys should be the JSON keys, which might not be the field names
+    /// Keys should be the JSON keys, which might not be the field names.
+    /// Unnamed keys default to somethingLike
     var pactFields: [String: PactSimpleFieldHandling] { get }
 }
 extension PactSimpleEncodable {
@@ -49,6 +51,8 @@ extension PactSimpleEncodable {
         for key in keys {
             switch pactFields[key] {
             case .exact: ()
+            case .ignore:
+                dict.removeObject(forKey: key)
             case .matching(let regex):
                 guard let old = dict[key] as? String else {
                     let context = EncodingError.Context(
@@ -58,7 +62,7 @@ extension PactSimpleEncodable {
                     throw EncodingError.invalidValue(self, context)
                 }
                 dict[key] = Matcher.term(matcher: regex, generate: old)
-            case .eachLike:
+            case .eachLike(let min):
                 guard let old = dict[key] as? NSArray,
                     old.count > 0 else {
                     let context = EncodingError.Context(
@@ -67,7 +71,7 @@ extension PactSimpleEncodable {
                     )
                     throw EncodingError.invalidValue(self, context)
                 }
-                dict[key] = Matcher.eachLike(old[0])
+                dict[key] = Matcher.eachLike(old[0], min: min)
             case .somethingLike, nil:
                 if let old = dict[key] {
                     dict[key] = Matcher.somethingLike(old)
