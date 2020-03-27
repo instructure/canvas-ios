@@ -22,18 +22,18 @@ import XCTest
 
 class GetSSOLoginTest: CoreTestCase {
     func testInit() {
-        XCTAssertNil(GetSSOLogin(url: URL(string: "https://nope.nope/nope")!))
-        XCTAssertNil(GetSSOLogin(url: URL(string: "https://sso.canvaslms.com/nope")!))
-        XCTAssertNil(GetSSOLogin(url: URL(string: "https://sso.canvaslms.com/canvas/login")!))
-        XCTAssertNil(GetSSOLogin(url: URL(string: "https://sso.canvaslms.com/canvas/login?code=&domain=")!))
-        XCTAssertNotNil(GetSSOLogin(url: URL(string: "https://sso.canvaslms.com/canvas/login?code=c&domain=d")!))
-        let login = GetSSOLogin(url: URL(string: "https://sso.beta.canvaslms.com/canvas/login?code=c&domain=d")!)
+        XCTAssertNil(GetSSOLogin(url: URL(string: "https://nope.nope/nope")!, app: .student))
+        XCTAssertNil(GetSSOLogin(url: URL(string: "https://sso.canvaslms.com/nope")!, app: .student))
+        XCTAssertNil(GetSSOLogin(url: URL(string: "https://sso.canvaslms.com/canvas/login")!, app: .student))
+        XCTAssertNil(GetSSOLogin(url: URL(string: "https://sso.canvaslms.com/canvas/login?code=&domain=")!, app: .student))
+        XCTAssertNotNil(GetSSOLogin(url: URL(string: "https://sso.canvaslms.com/canvas/login?code=c&domain=d")!, app: .student))
+        let login = GetSSOLogin(url: URL(string: "https://sso.beta.canvaslms.com/canvas/login?code=c&domain=d")!, app: .student)
         XCTAssertEqual(login?.code, "c")
         XCTAssertEqual(login?.domain, "d")
     }
 
     func testFetch() {
-        let login = GetSSOLogin(url: URL(string: "https://sso.beta.canvaslms.com/canvas/login?code=code&domain=canvas.instructure.com")!)!
+        let login = GetSSOLogin(url: URL(string: "https://sso.beta.canvaslms.com/canvas/login?code=code&domain=canvas.instructure.com")!, app: .student)!
         var entry: LoginSession?
         var error: Error?
         let callback = { (session: LoginSession?, err: Error?) in
@@ -101,7 +101,7 @@ class GetSSOLoginTest: CoreTestCase {
             realUser: APIOAuthToken.RealUser(id: "2", name: "real user"),
             expiresIn: 10
         ))
-        let login = GetSSOLogin(url: URL(string: "https://sso.canvaslms.com/canvas/login?code=code&domain=canvas")!)!
+        let login = GetSSOLogin(url: URL(string: "https://sso.canvaslms.com/canvas/login?code=code&domain=canvas")!, app: .student)!
         var session: LoginSession?
         var error: Error?
         login.fetch {
@@ -111,5 +111,14 @@ class GetSSOLoginTest: CoreTestCase {
         XCTAssertEqual(session?.actAsUserID, "1")
         XCTAssertEqual(session?.originalUserID, "2")
         XCTAssertNil(error)
+    }
+
+    func testCodeForApp() {
+        var code = GetSSOLogin.codeForApp(.student)
+        XCTAssertEqual(code, "code")
+        code = GetSSOLogin.codeForApp(.teacher)
+        XCTAssertEqual(code, "code_ios_teacher")
+        code = GetSSOLogin.codeForApp(.parent)
+        XCTAssertEqual(code, "code")
     }
 }

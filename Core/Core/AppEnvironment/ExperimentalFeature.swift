@@ -30,7 +30,9 @@ public enum ExperimentalFeature: String, CaseIterable, Codable {
     case refreshTokens = "refresh_tokens"
     case nativeDashboard = "native_dashboard"
     case studentCalendar = "student_calendar"
-    case qrLogin = "qr_code_login_enabled"
+    case qrLoginTeacher = "qr_code_login_teacher"
+    case qrLoginParent = "qr_code_login_parent"
+    case qrLoginStudent = "qr_code_login_student"
 
     public var isEnabled: Bool {
         get { UserDefaults.standard.bool(forKey: userDefaultsKey) }
