@@ -17,12 +17,11 @@
 //
 
 import Foundation
-import Core
 import SafariServices
 
 private var collapsedIDs: [String: Set<String>] = [:] // [courseID: [moduleID]]
 
-class ModuleListViewController: UIViewController, ErrorViewController, ColoredNavViewProtocol {
+public class ModuleListViewController: UIViewController, ErrorViewController, ColoredNavViewProtocol {
     @IBOutlet weak var tableView: UITableView!
     struct Section {
         var module: APIModule
@@ -30,12 +29,12 @@ class ModuleListViewController: UIViewController, ErrorViewController, ColoredNa
         var nextItemsPending: Bool = false
     }
 
-    var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
+    public let titleSubtitleView = TitleSubtitleView.create()
 
-    var env: AppEnvironment!
+    let env = AppEnvironment.shared
     var courseID: String!
     var moduleID: String?
-    var color: UIColor?
+    public var color: UIColor?
     var data: [String: Section] = [:]
     var modules: [APIModule] {
         return data.values.map { $0.module }.sorted { $0.position < $1.position }
@@ -52,9 +51,8 @@ class ModuleListViewController: UIViewController, ErrorViewController, ColoredNa
 
     var store: ModuleStore!
 
-    static func create(env: AppEnvironment = .shared, courseID: String, moduleID: String? = nil) -> ModuleListViewController {
+    public static func create(courseID: String, moduleID: String? = nil) -> ModuleListViewController {
         let view = loadFromStoryboard()
-        view.env = env
         view.courseID = courseID
         view.moduleID = moduleID
         let modules = ModuleStore(courseID: courseID)
@@ -63,13 +61,13 @@ class ModuleListViewController: UIViewController, ErrorViewController, ColoredNa
         return view
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         collapsedIDs[courseID] = collapsedIDs[courseID] ?? []
         if let moduleID = moduleID {
             collapsedIDs[courseID]?.remove(moduleID)
         }
-        setupTitleViewInNavbar(title: NSLocalizedString("Modules", bundle: .teacher, comment: ""))
+        setupTitleViewInNavbar(title: NSLocalizedString("Modules", bundle: .core, comment: ""))
         configureTableView()
         configureFooter()
         courses.refresh()
@@ -81,7 +79,7 @@ class ModuleListViewController: UIViewController, ErrorViewController, ColoredNa
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
@@ -107,7 +105,7 @@ class ModuleListViewController: UIViewController, ErrorViewController, ColoredNa
 
     func configureFooter() {
         let footer = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 20))
-        footer.text = NSLocalizedString("Loading more modules...", comment: "")
+        footer.text = NSLocalizedString("Loading more modules...", bundle: .core, comment: "")
         footer.font = .scaledNamedFont(.medium12)
         footer.textColor = .named(.textDark)
         footer.textAlignment = .center
@@ -118,7 +116,7 @@ class ModuleListViewController: UIViewController, ErrorViewController, ColoredNa
 
     func reloadCourse() {
         updateNavBar(subtitle: courses.first?.name, color: courses.first?.color)
-        tableView.reloadData() // update icon course colors
+        tableView?.reloadData() // update icon course colors
     }
 
     @objc
@@ -150,11 +148,11 @@ class ModuleListViewController: UIViewController, ErrorViewController, ColoredNa
 }
 
 extension ModuleListViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         return store.count
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let module = store[section]
         if isSectionExpanded(section) == true {
             if store.isLoadingItemsForModule(module.id) {
@@ -168,7 +166,7 @@ extension ModuleListViewController: UITableViewDataSource {
         return 0
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let module = store[indexPath.section]
         if indexPath.row == module.items.count {
             if store.isLoadingItemsForModule(module.id) {
@@ -187,7 +185,9 @@ extension ModuleListViewController: UITableViewDataSource {
             cell.indent = item.indent
             cell.accessibilityLabel = [
                 item.title,
-                item.published == true ? NSLocalizedString("published", comment: "") : NSLocalizedString("unpublished", comment: ""),
+                item.published == true
+                    ? NSLocalizedString("published", bundle: .core, comment: "")
+                    : NSLocalizedString("unpublished", bundle: .core, comment: ""),
             ].joined(separator: ", ")
             return cell
         default:
@@ -199,7 +199,7 @@ extension ModuleListViewController: UITableViewDataSource {
         }
     }
 
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let module = store[section]
         let header = tableView.dequeueHeaderFooter(ModuleSectionHeaderView.self)
         header.title = module.name
@@ -218,8 +218,12 @@ extension ModuleListViewController: UITableViewDataSource {
         header.collapsableIndicator.setCollapsed(!expanded, animated: true)
         header.accessibilityLabel = [
             module.name,
-            module.published == true ? NSLocalizedString("published", comment: "") : NSLocalizedString("unpublished", comment: ""),
-            expanded ? NSLocalizedString("expanded", comment: "") : NSLocalizedString("collapsed", comment: ""),
+            module.published == true
+                ? NSLocalizedString("published", bundle: .core, comment: "")
+                : NSLocalizedString("unpublished", bundle: .core, comment: ""),
+            expanded
+                ? NSLocalizedString("expanded", bundle: .core, comment: "")
+                : NSLocalizedString("collapsed", bundle: .core, comment: ""),
         ].joined(separator: ", ")
         header.accessibilityTraits.insert(.button)
         return header
@@ -227,7 +231,7 @@ extension ModuleListViewController: UITableViewDataSource {
 }
 
 extension ModuleListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard store.count > indexPath.section, store[indexPath.section].items.count > indexPath.row else { return }
         let item = store[indexPath.section].items[indexPath.row]
         switch item.type {
@@ -249,7 +253,7 @@ extension ModuleListViewController: UITableViewDelegate {
         }
     }
 
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         moduleID = nil // stop auto scrolling
     }
 }
@@ -262,7 +266,7 @@ extension ModuleListViewController {
             fullDivider = true
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
-            label.text = NSLocalizedString("This module is empty.", comment: "")
+            label.text = NSLocalizedString("This module is empty.", bundle: .core, comment: "")
             label.textAlignment = .center
             label.font = .scaledNamedFont(.medium12)
             label.textColor = .named(.textDark)

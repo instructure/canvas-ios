@@ -17,12 +17,11 @@
 //
 
 import Foundation
-@testable import Teacher
-import TestsFoundation
-import Core
 import XCTest
+@testable import Core
+import TestsFoundation
 
-class ModuleStoreTests: TeacherTestCase {
+class ModuleStoreTests: CoreTestCase {
     var onChange: (() -> Void)?
     var onError: ((Error) -> Void)?
 

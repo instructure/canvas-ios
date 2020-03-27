@@ -17,21 +17,20 @@
 //
 
 import Foundation
-@testable import Teacher
+import CoreData
+import SafariServices
+import XCTest
 @testable import Core
 import TestsFoundation
-import XCTest
-import SafariServices
-import CoreData
 
-class ModuleListViewControllerTests: TeacherTestCase {
-    var viewController: ModuleListViewController!
+class ModuleListViewControllerTests: CoreTestCase {
+    lazy var viewController = ModuleListViewController.create(courseID: "1")
     var save: XCTestExpectation?
 
     override func setUp() {
         super.setUp()
-        viewController = ModuleListViewController.create(env: environment, courseID: "1")
-        api.mock(GetCourseRequest(courseID: "1"), value: .make(id: "1", name: "Course 1"))
+        environment.mockStore = false
+        api.mock(viewController.courses, value: .make(id: "1", name: "Course 1"))
         UIView.setAnimationsEnabled(false)
     }
 
@@ -110,7 +109,6 @@ class ModuleListViewControllerTests: TeacherTestCase {
             .make(id: "9", position: 9),
             .make(id: "10", position: 10),
         ])
-        let viewController = ModuleListViewController.create(env: environment, courseID: "1", moduleID: nil)
         viewController.view.layoutIfNeeded()
         XCTAssertEqual(viewController.tableView.numberOfSections, 10)
         XCTAssertEqual(viewController.tableView.contentOffset.y, 0)
@@ -129,13 +127,13 @@ class ModuleListViewControllerTests: TeacherTestCase {
             .make(id: "9", position: 9),
             .make(id: "10", position: 10),
         ])
-        let viewController = ModuleListViewController.create(env: environment, courseID: "1", moduleID: "10")
+        let viewController = ModuleListViewController.create(courseID: "1", moduleID: "10")
         viewController.view.layoutIfNeeded()
         XCTAssertEqual(viewController.tableView.numberOfSections, 10)
         XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 9), 1)
         XCTAssertGreaterThan(viewController.tableView.contentOffset.y, 0)
 
-        let cached = ModuleListViewController.create(env: environment, courseID: "1", moduleID: "10")
+        let cached = ModuleListViewController.create(courseID: "1", moduleID: "10")
         cached.view.layoutIfNeeded()
         XCTAssertGreaterThan(cached.tableView.contentOffset.y, 0)
     }
@@ -157,7 +155,7 @@ class ModuleListViewControllerTests: TeacherTestCase {
             .make(id: "9", position: 9),
             .make(id: "10", position: 10),
         ])
-        let viewController = ModuleListViewController.create(env: environment, courseID: "1", moduleID: "10")
+        let viewController = ModuleListViewController.create(courseID: "1", moduleID: "10")
         viewController.view.layoutIfNeeded()
         XCTAssertEqual(viewController.tableView.numberOfSections, 10)
         XCTAssertGreaterThan(viewController.tableView.contentOffset.y, 0)

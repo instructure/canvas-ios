@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ModuleSectionHeaderView" customModule="Teacher" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ModuleSectionHeaderView" customModule="Core" customModuleProvider="target">
             <connections>
                 <outlet property="collapsableIndicator" destination="A6B-q1-3Tl" id="Hkk-gw-5Fe"/>
                 <outlet property="publishedIconView" destination="gfV-EK-A87" id="IIa-rP-55K"/>
@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xwa-uh-Uxh" customClass="DividerView" customModule="Teacher" customModuleProvider="target">
+                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xwa-uh-Uxh" customClass="DividerView" customModule="Core" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="nGR-mE-hYi"/>
@@ -33,7 +33,7 @@
                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="587-C5-WKa">
                     <rect key="frame" x="16" y="25" width="343" height="633.5"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4NE-AM-KWx" customClass="DynamicLabel" customModule="Teacher" customModuleProvider="target">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4NE-AM-KWx" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="302.5" width="294" height="29"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
@@ -53,7 +53,7 @@
                                         <constraint firstAttribute="height" constant="24" id="zty-p2-3gn"/>
                                     </constraints>
                                 </imageView>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A6B-q1-3Tl" customClass="CollapsableIndicator" customModule="Teacher" customModuleProvider="target">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A6B-q1-3Tl" customClass="CollapsableIndicator" customModule="Core" customModuleProvider="target">
                                     <rect key="frame" x="40" y="8.5" width="9" height="7"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="7" id="7Ub-3v-RSH"/>
@@ -67,7 +67,7 @@
                         </stackView>
                     </subviews>
                 </stackView>
-                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JmO-Tg-r8P" customClass="DividerView" customModule="Teacher" customModuleProvider="target">
+                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JmO-Tg-r8P" customClass="DividerView" customModule="Core" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="666.5" width="375" height="0.5"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="0.5" id="Haw-DN-jMV"/>

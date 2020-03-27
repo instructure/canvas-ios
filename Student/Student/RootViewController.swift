@@ -24,20 +24,13 @@ import Core
 
 func rootViewController(_ session: Session) -> UIViewController {
     let tabs = CanvasTabBarController()
-
-    do {
-        tabs.viewControllers = [
-            dashboardTab(session: session),
-            calendarTab(session: session),
-            todoTab(),
-            NotificationsTab(),
-            inboxTab(),
-        ]
-    } catch let e as NSError {
-        delay(0.1) {
-            ErrorReporter.reportError(e, from: tabs)
-        }
-    }
+    tabs.viewControllers = [
+        dashboardTab(session: session),
+        calendarTab(session: session),
+        todoTab(),
+        NotificationsTab(),
+        inboxTab(),
+    ]
 
     let paths = [ "/", "/calendar", "/to-do", "/notifications", "/conversations" ]
     tabs.selectedIndex = AppEnvironment.shared.userDefaults?.landingPath
