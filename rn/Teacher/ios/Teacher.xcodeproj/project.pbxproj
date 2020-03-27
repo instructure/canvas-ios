@@ -66,11 +66,9 @@
 		B17E1DB5238DA8550022EE0E /* SpeedGraderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E1DB4238DA8550022EE0E /* SpeedGraderTests.swift */; };
 		B18359B2222485E60005A918 /* AccessIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18359B1222485E60005A918 /* AccessIconView.swift */; };
 		B183F99B2252925F000A6930 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B183F99A2252925F000A6930 /* IconView.swift */; };
-		B18B275F236C76B10043EB2B /* ModuleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18B275E236C76B10043EB2B /* ModuleListViewControllerTests.swift */; };
 		B1992AAB2264D51200396A1F /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1992AAA2264D51200396A1F /* RoutesTests.swift */; };
 		B1A5CDE5239581E100BEA196 /* CanvadocsConstantsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A5CDE4239581E100BEA196 /* CanvadocsConstantsTests.swift */; };
 		B1A5CDE62395836600BEA196 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; };
-		B1C0257923732D6D001C87A2 /* ModuleStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C0257823732D6D001C87A2 /* ModuleStoreTests.swift */; };
 		B1D5CFBC224FDEF3004A1361 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D5CFBB224FDEF2004A1361 /* DividerView.swift */; };
 		B1F4060322E2444D008FAFE6 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405FD22E2444D008FAFE6 /* ReactiveObjC.framework */; };
 		B1F4060422E2444D008FAFE6 /* ReactiveObjCBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405FE22E2444D008FAFE6 /* ReactiveObjCBridge.framework */; };
@@ -336,10 +334,8 @@
 		B17E1DB4238DA8550022EE0E /* SpeedGraderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderTests.swift; sourceTree = "<group>"; };
 		B18359B1222485E60005A918 /* AccessIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessIconView.swift; sourceTree = "<group>"; };
 		B183F99A2252925F000A6930 /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
-		B18B275E236C76B10043EB2B /* ModuleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleListViewControllerTests.swift; sourceTree = "<group>"; };
 		B1992AAA2264D51200396A1F /* RoutesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTests.swift; sourceTree = "<group>"; };
 		B1A5CDE4239581E100BEA196 /* CanvadocsConstantsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvadocsConstantsTests.swift; sourceTree = "<group>"; };
-		B1C0257823732D6D001C87A2 /* ModuleStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleStoreTests.swift; sourceTree = "<group>"; };
 		B1D5CFBB224FDEF2004A1361 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 		B1F405FD22E2444D008FAFE6 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjC.framework; path = ../../../Carthage/Build/iOS/ReactiveObjC.framework; sourceTree = "<group>"; };
 		B1F405FE22E2444D008FAFE6 /* ReactiveObjCBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjCBridge.framework; path = ../../../Carthage/Build/iOS/ReactiveObjCBridge.framework; sourceTree = "<group>"; };
@@ -568,22 +564,12 @@
 				B1A5CDE3239581C900BEA196 /* Annotations */,
 				7D64A96B23626C0B004EAEDF /* Attendance */,
 				3B1D37C72310855E0017CCA2 /* Submissions */,
-				B15CA267221DDB8D0014FB02 /* Modules */,
 				B15CA261221DDB820014FB02 /* Info.plist */,
 				B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */,
 				B1992AAA2264D51200396A1F /* RoutesTests.swift */,
 				B1FF02D1240435B0004B7B1C /* KeychainTests.swift */,
 			);
 			path = TeacherTests;
-			sourceTree = "<group>";
-		};
-		B15CA267221DDB8D0014FB02 /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-				B18B275E236C76B10043EB2B /* ModuleListViewControllerTests.swift */,
-				B1C0257823732D6D001C87A2 /* ModuleStoreTests.swift */,
-			);
-			path = Modules;
 			sourceTree = "<group>";
 		};
 		B15CA293221E0F890014FB02 /* IBDesignables */ = {
@@ -1049,13 +1035,11 @@
 				7D64A98123676E36004EAEDF /* RollCallSessionTests.swift in Sources */,
 				7D64A96D23626C22004EAEDF /* StatusCellTests.swift in Sources */,
 				7D64A983236796CC004EAEDF /* AttendanceStatusControllerTests.swift in Sources */,
-				B1C0257923732D6D001C87A2 /* ModuleStoreTests.swift in Sources */,
 				7D64A96F23626F52004EAEDF /* StatusTests.swift in Sources */,
 				7D64A98523689DD5004EAEDF /* DatePickerViewControllerTests.swift in Sources */,
 				3B1D37C9231085830017CCA2 /* PostGradesPresenterTests.swift in Sources */,
 				B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */,
 				B1992AAB2264D51200396A1F /* RoutesTests.swift in Sources */,
-				B18B275F236C76B10043EB2B /* ModuleListViewControllerTests.swift in Sources */,
 				B1FF02D2240435B0004B7B1C /* KeychainTests.swift in Sources */,
 				B1A5CDE5239581E100BEA196 /* CanvadocsConstantsTests.swift in Sources */,
 				7D64A9872368C6C0004EAEDF /* AttendanceViewControllerTests.swift in Sources */,

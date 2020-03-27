@@ -138,6 +138,8 @@
 		7D64A97723676025004EAEDF /* APICourseSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A97623676025004EAEDF /* APICourseSectionTests.swift */; };
 		7D64A979236760A1004EAEDF /* CourseSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A978236760A1004EAEDF /* CourseSectionTests.swift */; };
 		7D64A97B23676179004EAEDF /* GetCourseSectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A97A23676179004EAEDF /* GetCourseSectionsTests.swift */; };
+		7D67C26B242E6BF100BC5CD1 /* ModuleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67C268242E6BE900BC5CD1 /* ModuleListViewControllerTests.swift */; };
+		7D67C26C242E6BF300BC5CD1 /* ModuleStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67C269242E6BE900BC5CD1 /* ModuleStoreTests.swift */; };
 		7D6A2BE4214C538F00DB15C4 /* RouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6A2BE3214C538F00DB15C4 /* RouteTests.swift */; };
 		7D70DE98233E9F3400F5C3D4 /* APICommunicationChannelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D70DE97233E9F3400F5C3D4 /* APICommunicationChannelTests.swift */; };
 		7D70DE9A233EA2D200F5C3D4 /* APINotificationPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D70DE99233EA2D200F5C3D4 /* APINotificationPreferencesTests.swift */; };
@@ -1326,6 +1328,8 @@
 		7D64A97623676025004EAEDF /* APICourseSectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICourseSectionTests.swift; sourceTree = "<group>"; };
 		7D64A978236760A1004EAEDF /* CourseSectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSectionTests.swift; sourceTree = "<group>"; };
 		7D64A97A23676179004EAEDF /* GetCourseSectionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourseSectionsTests.swift; sourceTree = "<group>"; };
+		7D67C268242E6BE900BC5CD1 /* ModuleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleListViewControllerTests.swift; sourceTree = "<group>"; };
+		7D67C269242E6BE900BC5CD1 /* ModuleStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleStoreTests.swift; sourceTree = "<group>"; };
 		7D6A2BE1214C11AD00DB15C4 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		7D6A2BE3214C538F00DB15C4 /* RouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTests.swift; sourceTree = "<group>"; };
 		7D6C8C6822EA0A6E00E5ADD8 /* APIActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIActivity.swift; sourceTree = "<group>"; };
@@ -2060,6 +2064,7 @@
 				7D4C3D57222D9E22001B1198 /* LTI */,
 				E8997904234F7DBA00CA7D9B /* MetaTests */,
 				7D062AF521249E5800677F66 /* Models */,
+				7D67C26A242E6BE900BC5CD1 /* Modules */,
 				B1911CEA21C849AE00F42F91 /* Notifications */,
 				EE6CB48322F8C8410013D9A5 /* Pages */,
 				3B158CAD22E152F60039A568 /* PageViewAnalytics */,
@@ -2814,6 +2819,15 @@
 				7D64A974236759FA004EAEDF /* GetCourseSections.swift */,
 			);
 			path = Courses;
+			sourceTree = "<group>";
+		};
+		7D67C26A242E6BE900BC5CD1 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				7D67C268242E6BE900BC5CD1 /* ModuleListViewControllerTests.swift */,
+				7D67C269242E6BE900BC5CD1 /* ModuleStoreTests.swift */,
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		7D724263242A5616007ED42F /* Courses */ = {
@@ -4540,6 +4554,7 @@
 				97A486CB239AB2ED00084499 /* SyllabusViewControllerTests.swift in Sources */,
 				7D3A1EEF227BEFD00094531E /* ActAsUserViewControllerTests.swift in Sources */,
 				7D062AFB2124A14700677F66 /* ContextTests.swift in Sources */,
+				7D67C26C242E6BF300BC5CD1 /* ModuleStoreTests.swift in Sources */,
 				7DAFB46521A4693B00311275 /* LocalizationManagerTests.swift in Sources */,
 				3B300C852277981100743C59 /* RubricTests.swift in Sources */,
 				9FCF1554227CC927009D35F6 /* GradeCircleViewTests.swift in Sources */,
@@ -4619,6 +4634,7 @@
 				B1E789B521B1AD890087FE4A /* LoggerTests.swift in Sources */,
 				3B383045237F178800B3DF05 /* APIActivityTests.swift in Sources */,
 				3BF5C55321879A430081A858 /* GetAssignmentsTests.swift in Sources */,
+				7D67C26B242E6BF100BC5CD1 /* ModuleListViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
