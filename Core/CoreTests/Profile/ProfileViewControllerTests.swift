@@ -17,83 +17,79 @@
 //
 
 import UIKit
+import SafariServices
 import XCTest
 @testable import Core
 import TestsFoundation
 
-class ProfileViewControllerTests: CoreTestCase {
+class ProfileViewControllerTests: CoreTestCase, LoginDelegate {
+    lazy var controller = ProfileViewController.create(enrollment: .student)
 
-    var vc: ProfileViewController!
     var notificationPayload: [AnyHashable: Any]?
-    var didChangeUser = false
+    func reduxActionCalled(notification: Notification) {
+        notificationPayload = notification.userInfo
+    }
+
+    var externalURL: URL?
+    func openExternalURL(_ url: URL) {
+        externalURL = url
+    }
+
+    func userDidLogin(session: LoginSession) {}
+
     var didLogout = false
+    func userDidLogout(session: LoginSession) {
+         didLogout = true
+    }
+
+    var didChangeUser = false
+    func changeUser() {
+        didChangeUser = true
+    }
 
     override func setUp() {
         super.setUp()
-        vc = ProfileViewController.create(enrollment: .student)
-        notificationPayload = nil
-        didChangeUser = false
-        didLogout = false
         environment.mockStore = false
-    }
-
-    func loadView() {
-        vc.view.frame = CGRect(x: 0, y: 0, width: 300, height: 800)
-        vc.view.layoutIfNeeded()
-    }
-
-    func testRender() {
-        //  given
-        api.mock(GetUserProfileRequest(userID: "self"), value: .make(
+        api.mock(controller.helpLinks, value: nil)
+        api.mock(controller.permissions, value: .make(become_user: true))
+        api.mock(controller.tools, value: [])
+        api.mock(controller.settings, value: .make())
+        api.mock(controller.profile, value: .make(
             name: "Eve",
             primary_email: "automated-test-Eve@instructure.com",
             avatar_url: URL(string: "https://localhost/avatar.png")!,
             pronouns: nil
         ))
-
-        //  when
-        loadView()
-
-        //  then
-        XCTAssertEqual(vc.emailLabel?.text, "automated-test-Eve@instructure.com")
-        XCTAssertEqual(vc.nameLabel?.text, "Eve")
-        XCTAssertEqual(vc.avatarButton?.isHidden, false)
-        XCTAssertEqual(vc.avatarView?.name, "Eve")
-        XCTAssertEqual(vc.avatarView?.url?.absoluteString, "https://localhost/avatar.png")
-
-        XCTAssertEqual(vc.tableView?.numberOfRows(inSection: 0), 7)
-
-        var cell = vc.tableView?.cellForRow(at: IndexPath(row: 0, section: 0)) as? ProfileTableViewCell
-        XCTAssertEqual(cell?.nameLabel?.text, "Files")
-
-        cell = vc.tableView?.cellForRow(at: IndexPath(row: 1, section: 0)) as? ProfileTableViewCell
-        XCTAssertEqual(cell?.nameLabel?.text, "Show Grades")
-
-        cell = vc.tableView?.cellForRow(at: IndexPath(row: 2, section: 0)) as? ProfileTableViewCell
-        XCTAssertEqual(cell?.nameLabel?.text, "Color Overlay")
-
-        cell = vc.tableView?.cellForRow(at: IndexPath(row: 3, section: 0)) as? ProfileTableViewCell
-        XCTAssertEqual(cell?.nameLabel?.text, "Settings")
-
-        cell = vc.tableView?.cellForRow(at: IndexPath(row: 4, section: 0)) as? ProfileTableViewCell
-        XCTAssertEqual(cell?.nameLabel?.text, "Change User")
-
-        cell = vc.tableView?.cellForRow(at: IndexPath(row: 5, section: 0)) as? ProfileTableViewCell
-        XCTAssertEqual(cell?.nameLabel?.text, "Log Out")
-
-        cell = vc.tableView?.cellForRow(at: IndexPath(row: 6, section: 0)) as? ProfileTableViewCell
-        XCTAssertEqual(cell?.nameLabel?.text, "Developer Menu")
-
-        //  files
-        vc.tableView(vc.tableView!, didSelectRowAt: IndexPath(row: 0, section: 0))
-        XCTAssertTrue(router.lastRoutedTo(Route.files()))
+        api.mock(GetUserRequest(userID: "self"), value: .make())
+        api.mock(PutUserSettingsRequest(), value: .make())
 
         let n = NSNotification.Name("redux-action")
         NotificationCenter.default.addObserver(self, selector: #selector(reduxActionCalled(notification:)), name: n, object: nil)
+    }
 
-        //  show grades
+    func testLayout() {
+        controller.view.layoutIfNeeded()
+
+        XCTAssertEqual(controller.emailLabel.text, "automated-test-Eve@instructure.com")
+        XCTAssertEqual(controller.nameLabel.text, "Eve")
+        XCTAssertEqual(controller.avatarButton.isHidden, false)
+        XCTAssertEqual(controller.avatarView.name, "Eve")
+        XCTAssertEqual(controller.avatarView.url?.absoluteString, "https://localhost/avatar.png")
+
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 8)
+
+        var index = IndexPath(row: 0, section: 0)
+        var cell = controller.tableView.cellForRow(at: index) as? ProfileTableViewCell
+        XCTAssertEqual(cell?.nameLabel.text, "Files")
+        controller.tableView(controller.tableView, didSelectRowAt: index)
+        XCTAssertTrue(router.lastRoutedTo(Route.files()))
+
+        index = IndexPath(row: 1, section: 0)
+        cell = controller.tableView.cellForRow(at: index) as? ProfileTableViewCell
+        XCTAssertEqual(cell?.nameLabel.text, "Show Grades")
         let existingValue = environment.userDefaults?.showGradesOnDashboard ?? false
-        vc.tableView(vc.tableView!, didSelectRowAt: IndexPath(row: 1, section: 0))
+        (cell?.accessoryView as? UISwitch)?.isOn = !existingValue
+        (cell?.accessoryView as? UISwitch)?.sendActions(for: .valueChanged)
         XCTAssertEqual(environment.userDefaults?.showGradesOnDashboard, !existingValue)
         XCTAssertNotNil(notificationPayload)
         var type: String? = notificationPayload?["type"] as? String
@@ -101,37 +97,56 @@ class ProfileViewControllerTests: CoreTestCase {
         XCTAssertEqual(type, "userInfo.updateShowGradesOnDashboard")
         XCTAssertEqual(payload?["showsGradesOnCourseCards"], !existingValue)
 
-        //  color overlay
-        vc.tableView(vc.tableView!, didSelectRowAt: IndexPath(row: 2, section: 0))
+        index = IndexPath(row: 2, section: 0)
+        cell = controller.tableView.cellForRow(at: index) as? ProfileTableViewCell
+        XCTAssertEqual(cell?.nameLabel.text, "Color Overlay")
+        controller.tableView(controller.tableView, didSelectRowAt: index)
         type = notificationPayload?["type"] as? String
         payload = notificationPayload?["payload"] as? [String: Bool]
         XCTAssertEqual(type, "userInfo.updateUserSettings")
         XCTAssertEqual(payload?["hideOverlay"], true)
 
-        //  settings
-        vc.tableView(vc.tableView!, didSelectRowAt: IndexPath(row: 3, section: 0))
+        index = IndexPath(row: 3, section: 0)
+        cell = controller.tableView.cellForRow(at: index) as? ProfileTableViewCell
+        XCTAssertEqual(cell?.nameLabel.text, "Settings")
+        controller.tableView(controller.tableView, didSelectRowAt: index)
         XCTAssertTrue(router.lastRoutedTo(Route.profileSettings))
 
-        //  change user
+        index = IndexPath(row: 4, section: 0)
+        cell = controller.tableView.cellForRow(at: index) as? ProfileTableViewCell
+        XCTAssertEqual(cell?.nameLabel.text, "Act as User")
+        controller.tableView(controller.tableView, didSelectRowAt: index)
+        XCTAssertTrue(router.lastRoutedTo(Route.actAsUser))
+
+        index = IndexPath(row: 5, section: 0)
+        cell = controller.tableView.cellForRow(at: index) as? ProfileTableViewCell
+        XCTAssertEqual(cell?.nameLabel.text, "Change User")
         let prevDelegate = environment.loginDelegate
         environment.loginDelegate = self
-        vc.tableView(vc.tableView!, didSelectRowAt: IndexPath(row: 4, section: 0))
+        controller.tableView(controller.tableView, didSelectRowAt: index)
         XCTAssertTrue(didChangeUser)
         environment.loginDelegate = prevDelegate
 
-        // logout
+        index = IndexPath(row: 6, section: 0)
+        cell = controller.tableView.cellForRow(at: index) as? ProfileTableViewCell
+        XCTAssertEqual(cell?.nameLabel.text, "Log Out")
         environment.loginDelegate = self
-        vc.tableView(vc.tableView!, didSelectRowAt: IndexPath(row: 5, section: 0))
+        controller.tableView(controller.tableView, didSelectRowAt: index)
         XCTAssertTrue(didLogout)
         environment.loginDelegate = prevDelegate
 
-        // developer menu
-        vc.tableView(vc.tableView!, didSelectRowAt: IndexPath(row: 6, section: 0))
+        controller.didTapVersion()
+        XCTAssertEqual(UserDefaults.standard.bool(forKey: "showDevMenu"), true)
+        index = IndexPath(row: 7, section: 0)
+        cell = controller.tableView.cellForRow(at: index) as? ProfileTableViewCell
+        XCTAssertEqual(cell?.nameLabel.text, "Developer Menu")
+        controller.tableView(controller.tableView, didSelectRowAt: index)
         XCTAssertTrue(router.lastRoutedTo(Route.developerMenu))
+
     }
 
     func testPronouns() {
-        api.mock(GetUserProfileRequest(userID: "self"), value: .make(
+        api.mock(controller.profile, value: .make(
             name: "Eve",
             primary_email: "automated-test-Eve@instructure.com",
             pronouns: "She/Her")
@@ -140,38 +155,173 @@ class ProfileViewControllerTests: CoreTestCase {
             userAvatarURL: URL(string: "https://localhost/avatar.png")!,
             userEmail: "automated-test-Eve@instructure.com"
         )
-        loadView()
-        XCTAssertEqual(vc.emailLabel?.text, "automated-test-Eve@instructure.com")
-        XCTAssertEqual(vc.nameLabel?.text, "Eve (She/Her)")
-        XCTAssertEqual(vc.avatarView?.name, "Eve")
+        controller.view.layoutIfNeeded()
+        XCTAssertEqual(controller.emailLabel.text, "automated-test-Eve@instructure.com")
+        XCTAssertEqual(controller.nameLabel.text, "Eve (She/Her)")
+        XCTAssertEqual(controller.avatarView.name, "Eve")
     }
 
     func testChangeAvatarDisallowed() {
-        api.mock(GetUserProfileRequest(userID: "self"), value: .make())
         api.mock(GetUserRequest(userID: "self"), value: .make(permissions: .make(can_update_avatar: false)))
-        loadView()
-        XCTAssertEqual(vc.avatarButton?.isHidden, true)
+        controller.view.layoutIfNeeded()
+        XCTAssertEqual(controller.avatarButton.isHidden, true)
     }
 
-    func reduxActionCalled(notification: Notification) {
-        notificationPayload = notification.userInfo
-    }
-}
-
-extension ProfileViewControllerTests: LoginDelegate {
-    func openExternalURL(_ url: URL) {
-
+    func testActAsUserNoPermission() {
+        api.mock(controller.permissions, value: nil)
+        controller.view.layoutIfNeeded()
+        XCTAssertFalse(controller.cells.contains(where: { $0.id == "actAsUser" }))
     }
 
-    func userDidLogin(session: LoginSession) {
-
+    func testActAsUserInSiteadmin() {
+        environment.currentSession = LoginSession.make(baseURL: URL(string: "https://siteadmin.instructure.com")!)
+        api.mock(controller.permissions, value: nil)
+        controller.view.layoutIfNeeded()
+        XCTAssertTrue(controller.cells.contains(where: { $0.id == "actAsUser" }))
     }
 
-    func userDidLogout(session: LoginSession) {
-         didLogout = true
+    func testLogout() {
+        login.session = currentSession
+        controller.view.layoutIfNeeded()
+        controller.cells.first(where: { $0.id == "logOut" })?.block(UITableViewCell())
+        XCTAssertNil(login.session)
+        login.session = currentSession
+        controller.cells.first(where: { $0.id == "changeUser" })?.block(UITableViewCell())
+        XCTAssertTrue(login.userChanged)
+        environment.currentSession = nil
+        XCTAssertNoThrow(controller.cells.first(where: { $0.id == "logOut" })?.block(UITableViewCell()))
+        XCTAssertNoThrow(controller.cells.first(where: { $0.id == "changeUser" })?.block(UITableViewCell()))
     }
 
-    func changeUser() {
-        didChangeUser = true
+    func testStopActing() {
+        currentSession = LoginSession.make(masquerader: URL(string: "https://canvas.instructure.com/users/5"))
+        environment.currentSession = currentSession
+        login.session = currentSession
+        controller.view.layoutIfNeeded()
+        controller.cells.first(where: { $0.id == "logOut" })?.block(UITableViewCell())
+        XCTAssertNil(login.session)
+        environment.currentSession = nil
+        XCTAssertNoThrow(controller.cells.first(where: { $0.id == "logOut" })?.block(UITableViewCell()))
+    }
+
+    func testNoExtras() {
+        controller.view.layoutIfNeeded()
+        XCTAssertFalse(controller.cells.contains(where: { $0.id == "help" }))
+        XCTAssertFalse(controller.cells.contains(where: { $0.id.hasPrefix("lti") }))
+    }
+
+    func testHelp() {
+        api.mock(controller.helpLinks, value: .make())
+        controller.view.layoutIfNeeded()
+        controller.cells.first(where: { $0.id == "help" })?.block(UITableViewCell())
+        let alert = router.presented as? UIAlertController
+        XCTAssertEqual(alert?.title, "Help")
+        XCTAssertEqual(alert?.actions[0].title, "Ask Your Instructor a Question")
+        (alert?.actions[0] as? AlertAction)?.handler?(AlertAction())
+        XCTAssert(router.lastRoutedTo(Route(
+            "/conversations/compose?instructorQuestion=1&canAddRecipients="
+        )))
+        XCTAssertEqual(alert?.actions[1].title, "Search the Canvas Guides")
+        (alert?.actions[1] as? AlertAction)?.handler?(AlertAction())
+        XCTAssert(router.lastRoutedTo(URL(string:
+            "http://community.canvaslms.com/community/answers/guides"
+        )!))
+        XCTAssertEqual(alert?.actions[2].title, "Report a Problem")
+        (alert?.actions[2] as? AlertAction)?.handler?(AlertAction())
+        XCTAssert(router.lastRoutedTo(.errorReport(for: "problem")))
+    }
+
+    func testLTI() {
+        let sessionless = URL(string: "https://canvas.instructure.com/sessionless")!
+        api.mock(controller.tools, value: [
+            APIExternalToolLaunch(definition_id: "1", domain: "arc.instructure.com", placements: [
+                "global_navigation": APIExternalToolLaunchPlacement(title: "Studio", url: URL(string: "/")!),
+            ]),
+        ])
+        api.mock(LTITools(url: URL(string: "/")).request, value: .make(url: sessionless))
+        controller.view.layoutIfNeeded()
+        controller.cells.first(where: { $0.id.hasPrefix("lti") })?.block(UITableViewCell())
+        XCTAssert(router.presented is SFSafariViewController)
+    }
+
+    func testObserver() {
+        controller.enrollment = .observer
+        controller.view.layoutIfNeeded()
+        controller.cells.first(where: { $0.id == "inbox" })?.block(UITableViewCell())
+        XCTAssert(router.lastRoutedTo(Route.conversations))
+        controller.cells.first(where: { $0.id == "manageChildren" })?.block(UITableViewCell())
+        XCTAssert(router.lastRoutedTo(Route.profileObservees()))
+        XCTAssertFalse(controller.cells.contains(where: { $0.id == "files" }))
+        XCTAssertFalse(controller.cells.contains(where: { $0.id == "showGrades" }))
+        XCTAssertFalse(controller.cells.contains(where: { $0.id == "colorOverlay" }))
+        XCTAssertFalse(controller.cells.contains(where: { $0.id == "settings" }))
+        controller.cells.first(where: { $0.id == "developerMenu" })?.block(UITableViewCell())
+        XCTAssert(router.lastRoutedTo(Route.developerMenu))
+    }
+
+    func testStudent() {
+        controller.enrollment = .student
+        controller.view.layoutIfNeeded()
+        XCTAssertFalse(controller.cells.contains(where: { $0.id == "manageChildren" }))
+        controller.cells.first(where: { $0.id == "files" })?.block(UITableViewCell())
+        XCTAssert(router.lastRoutedTo(Route.files()))
+        XCTAssertNoThrow(controller.cells.first(where: { $0.id == "showGrades" })?.block(UITableViewCell()))
+        XCTAssertNoThrow(controller.cells.first(where: { $0.id == "colorOverlay" })?.block(UITableViewCell()))
+        controller.cells.first(where: { $0.id == "settings" })?.block(UITableViewCell())
+        XCTAssert(router.lastRoutedTo(Route.profileSettings))
+        controller.cells.first(where: { $0.id == "developerMenu" })?.block(UITableViewCell())
+        XCTAssert(router.lastRoutedTo(Route.developerMenu))
+    }
+
+    func testTeacher() {
+        controller.enrollment = .teacher
+        controller.view.layoutIfNeeded()
+        XCTAssertFalse(controller.cells.contains(where: { $0.id == "manageChildren" }))
+        controller.cells.first(where: { $0.id == "files" })?.block(UITableViewCell())
+        XCTAssert(router.lastRoutedTo(Route.files()))
+        XCTAssertFalse(controller.cells.contains(where: { $0.id == "showGrades" }))
+        XCTAssertNoThrow(controller.cells.first(where: { $0.id == "colorOverlay" })?.block(UITableViewCell()))
+        controller.cells.first(where: { $0.id == "settings" })?.block(UITableViewCell())
+        XCTAssert(router.lastRoutedTo(Route.profileSettings))
+        controller.cells.first(where: { $0.id == "developerMenu" })?.block(UITableViewCell())
+        XCTAssert(router.lastRoutedTo(Route.developerMenu))
+    }
+
+    func testUpdateAvatar() {
+        controller.view.layoutIfNeeded()
+        controller.avatarButton.sendActions(for: .primaryActionTriggered)
+        let menu = router.presented as? UIAlertController
+        XCTAssertEqual(menu?.title, "Choose Profile Picture")
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            XCTAssertEqual(menu?.actions[0].title, "Take Photo")
+            (menu?.actions[0] as? AlertAction)?.handler?(AlertAction())
+            let picker = router.presented as? UIImagePickerController
+            XCTAssertEqual(picker?.sourceType, .camera)
+        }
+        XCTAssertEqual(menu?.actions[1].title, "Choose Photo")
+        (menu?.actions[1] as? AlertAction)?.handler?(AlertAction())
+        let picker = router.presented as? UIImagePickerController
+        XCTAssertEqual(picker?.sourceType, .photoLibrary)
+
+        api.mock(PostFileUploadTargetRequest(context: .myFiles, body: .init(
+            name: "profile",
+            on_duplicate: .rename,
+            size: 1
+        )), value: .make())
+        api.mock(PostFileUploadRequest(fileURL: Bundle(for: Self.self).url(forResource: "TestImage", withExtension: "png")!, target: .make()), value: .make())
+        api.mock(GetFileRequest(context: ContextModel.currentUser, fileID: "1", include: [ .avatar ]), value: .make(avatar: APIFileToken(token: "t")))
+        api.mock(PutUserAvatarRequest(token: "t"), value: .make())
+        picker?.delegate?.imagePickerController?(picker!, didFinishPickingMediaWithInfo: [
+            .originalImage: UIImage.icon(.instructure),
+        ])
+        XCTAssertEqual((router.presented as? UIAlertController)?.message, "Internal Error")
+
+        api.mock(PutUserAvatarRequest(token: "t"), value: .make(avatar_url: URL(string: "https://c.i.com/newone")))
+        picker?.delegate?.imagePickerController?(picker!, didFinishPickingMediaWithInfo: [
+            .originalImage: UIImage.icon(.instructure),
+        ])
+        XCTAssertEqual(controller.avatarView.url?.absoluteString, "https://c.i.com/newone")
+
+        XCTAssertNoThrow(picker?.delegate?.imagePickerControllerDidCancel?(picker!))
     }
 }

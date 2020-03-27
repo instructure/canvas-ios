@@ -26,15 +26,19 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="name" value="John Doe"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qrg-KS-5Kx" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="28" y="28" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="ZOR-Zz-Tu5"/>
+                                    <constraint firstAttribute="height" constant="32" id="f0Y-t7-agP"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jIy-rc-eoW">
                                 <rect key="frame" x="16" y="16" width="56" height="56"/>
                                 <connections>
                                     <action selector="showAvatarMenuWithSender:" destination="BVD-zW-7jA" eventType="primaryActionTriggered" id="4TS-NA-HAj"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="e9y-t1-9X5">
-                                <rect key="frame" x="34" y="34" width="20" height="20"/>
-                            </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTo-Xx-NrJ" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                 <rect key="frame" x="16" y="80" width="343" height="24"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Profile.userNameLabel"/>
@@ -88,10 +92,10 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SAO-8I-F8u">
-                                                    <rect key="frame" x="338.5" y="22.5" width="20.5" height="20.5"/>
+                                                    <rect key="frame" x="332.5" y="19.5" width="26.5" height="26.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCJ-f1-3Hw" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="6" y="3" width="8.5" height="14.5"/>
+                                                            <rect key="frame" x="6" y="3" width="14.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -156,9 +160,9 @@
                         <constraints>
                             <constraint firstItem="fhp-Ns-WWs" firstAttribute="top" secondItem="gs0-Gp-hxA" secondAttribute="top" constant="16" id="0QN-wv-dY3"/>
                             <constraint firstItem="GwY-LE-3Lp" firstAttribute="leading" secondItem="gs0-Gp-hxA" secondAttribute="leading" id="1ej-95-TQs"/>
-                            <constraint firstItem="e9y-t1-9X5" firstAttribute="centerY" secondItem="fhp-Ns-WWs" secondAttribute="centerY" id="2hj-9K-07O"/>
                             <constraint firstItem="khr-Ui-0Vs" firstAttribute="leading" secondItem="gs0-Gp-hxA" secondAttribute="leading" constant="16" id="3CY-Ch-I60"/>
                             <constraint firstItem="fhp-Ns-WWs" firstAttribute="bottom" secondItem="jIy-rc-eoW" secondAttribute="bottom" id="9MY-lc-yBB"/>
+                            <constraint firstItem="qrg-KS-5Kx" firstAttribute="centerY" secondItem="fhp-Ns-WWs" secondAttribute="centerY" id="Ane-or-68k"/>
                             <constraint firstItem="fhp-Ns-WWs" firstAttribute="trailing" secondItem="jIy-rc-eoW" secondAttribute="trailing" id="DgP-2N-LI9"/>
                             <constraint firstItem="jIy-rc-eoW" firstAttribute="leading" secondItem="fhp-Ns-WWs" secondAttribute="leading" id="FAc-He-E63"/>
                             <constraint firstItem="fTo-Xx-NrJ" firstAttribute="leading" secondItem="gs0-Gp-hxA" secondAttribute="leading" constant="16" id="Kc9-zM-W9G"/>
@@ -166,6 +170,7 @@
                             <constraint firstItem="gs0-Gp-hxA" firstAttribute="trailing" secondItem="GwY-LE-3Lp" secondAttribute="trailing" id="R8Q-mR-4ef"/>
                             <constraint firstItem="fhp-Ns-WWs" firstAttribute="leading" secondItem="gs0-Gp-hxA" secondAttribute="leading" constant="16" id="Vn4-ve-N0M"/>
                             <constraint firstItem="fTo-Xx-NrJ" firstAttribute="top" secondItem="fhp-Ns-WWs" secondAttribute="bottom" constant="8" id="Xbi-fA-L6M"/>
+                            <constraint firstItem="qrg-KS-5Kx" firstAttribute="centerX" secondItem="fhp-Ns-WWs" secondAttribute="centerX" id="YMS-1Q-vwc"/>
                             <constraint firstItem="kc1-NZ-bN4" firstAttribute="top" secondItem="fTo-Xx-NrJ" secondAttribute="bottom" constant="2" id="a5B-kU-cYE"/>
                             <constraint firstItem="gs0-Gp-hxA" firstAttribute="trailing" secondItem="khr-Ui-0Vs" secondAttribute="trailing" constant="16" id="bib-4T-zfc"/>
                             <constraint firstItem="gs0-Gp-hxA" firstAttribute="trailing" secondItem="kc1-NZ-bN4" secondAttribute="trailing" constant="16" id="cYh-NA-Bv4"/>
@@ -174,7 +179,6 @@
                             <constraint firstItem="khr-Ui-0Vs" firstAttribute="top" secondItem="GwY-LE-3Lp" secondAttribute="bottom" constant="12" id="rbY-FR-2Sz"/>
                             <constraint firstItem="gs0-Gp-hxA" firstAttribute="trailing" secondItem="fTo-Xx-NrJ" secondAttribute="trailing" constant="16" id="s0g-cu-Bll"/>
                             <constraint firstItem="jIy-rc-eoW" firstAttribute="top" secondItem="fhp-Ns-WWs" secondAttribute="top" id="yjG-SM-9fW"/>
-                            <constraint firstItem="e9y-t1-9X5" firstAttribute="centerX" secondItem="fhp-Ns-WWs" secondAttribute="centerX" id="ypX-Bk-4SI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gs0-Gp-hxA"/>
                     </view>
@@ -182,7 +186,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="avatarButton" destination="jIy-rc-eoW" id="noK-MB-xdH"/>
-                        <outlet property="avatarLoading" destination="e9y-t1-9X5" id="j1n-T7-mLr"/>
+                        <outlet property="avatarLoading" destination="qrg-KS-5Kx" id="3hk-zS-G1f"/>
                         <outlet property="avatarView" destination="fhp-Ns-WWs" id="C4c-5d-ux8"/>
                         <outlet property="emailLabel" destination="kc1-NZ-bN4" id="r6W-hl-thB"/>
                         <outlet property="nameLabel" destination="fTo-Xx-NrJ" id="IrT-cH-DRe"/>
@@ -192,7 +196,7 @@
                 </viewController>
                 <tapGestureRecognizer numberOfTapsRequired="10" id="yG3-LD-k6I">
                     <connections>
-                        <action selector="didTapVersion:" destination="BVD-zW-7jA" id="9PT-RP-NRf"/>
+                        <action selector="didTapVersion" destination="BVD-zW-7jA" id="ZlW-Fj-BAY"/>
                     </connections>
                 </tapGestureRecognizer>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lxJ-IP-g2Q" userLabel="First Responder" sceneMemberID="firstResponder"/>

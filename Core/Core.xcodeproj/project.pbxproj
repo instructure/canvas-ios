@@ -439,7 +439,6 @@
 		7DA2608D23F72315005D2121 /* GetAccountHelpLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED00F232C2C7500392F3C /* GetAccountHelpLinks.swift */; };
 		7DA2608E23F72315005D2121 /* GetGlobalNavExternalToolsPlacements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED0242331801F00392F3C /* GetGlobalNavExternalToolsPlacements.swift */; };
 		7DA2608F23F72315005D2121 /* HelpLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED011232C32CD00392F3C /* HelpLink.swift */; };
-		7DA2609023F72315005D2121 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED02E2333E0C900392F3C /* ProfilePresenter.swift */; };
 		7DA2609123F72315005D2121 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA58FD223A987600FEC3F8 /* ProfileViewController.swift */; };
 		7DA2609223F72315005D2121 /* UploadAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED01A2330158F00392F3C /* UploadAvatar.swift */; };
 		7DA2609323F72315005D2121 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9E80BC233C1BD6003C608B /* UserProfile.swift */; };
@@ -564,7 +563,6 @@
 		7DBED00C232C031C00392F3C /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DBED00B232C031C00392F3C /* ProfileViewController.storyboard */; };
 		7DBED017232FDDB700392F3C /* GetAccountHelpLinksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED016232FDDB700392F3C /* GetAccountHelpLinksTests.swift */; };
 		7DBED01D2330332800392F3C /* UploadAvatarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED01C2330332800392F3C /* UploadAvatarTests.swift */; };
-		7DBED0312333EC3B00392F3C /* ProfilePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED0302333EC3B00392F3C /* ProfilePresenterTests.swift */; };
 		7DBED03623344EDF00392F3C /* ExternalToolLaunchPlacementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED03523344EDE00392F3C /* ExternalToolLaunchPlacementTests.swift */; };
 		7DBF9235226975B100710D0F /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C96482E211E2F1A002C3255 /* Core.framework */; };
 		7DBF9236226975B100710D0F /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C96482E211E2F1A002C3255 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -1458,8 +1456,6 @@
 		7DBED01C2330332800392F3C /* UploadAvatarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAvatarTests.swift; sourceTree = "<group>"; };
 		7DBED02223317E0F00392F3C /* ExternalToolLaunchPlacement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalToolLaunchPlacement.swift; sourceTree = "<group>"; };
 		7DBED0242331801F00392F3C /* GetGlobalNavExternalToolsPlacements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGlobalNavExternalToolsPlacements.swift; sourceTree = "<group>"; };
-		7DBED02E2333E0C900392F3C /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
-		7DBED0302333EC3B00392F3C /* ProfilePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenterTests.swift; sourceTree = "<group>"; };
 		7DBED03523344EDE00392F3C /* ExternalToolLaunchPlacementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalToolLaunchPlacementTests.swift; sourceTree = "<group>"; };
 		7DC23091213D710000318ED0 /* UIImageViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensionsTests.swift; sourceTree = "<group>"; };
 		7DC4A554222EF87300FA03DC /* DiscussionEntryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEntryTests.swift; sourceTree = "<group>"; };
@@ -3106,7 +3102,6 @@
 				9F4D65B02396A3C200660038 /* Settings */,
 				7DBED03523344EDE00392F3C /* ExternalToolLaunchPlacementTests.swift */,
 				7DBED016232FDDB700392F3C /* GetAccountHelpLinksTests.swift */,
-				7DBED0302333EC3B00392F3C /* ProfilePresenterTests.swift */,
 				97A486C32397826300084499 /* ProfileViewControllerTests.swift */,
 				7DBED01C2330332800392F3C /* UploadAvatarTests.swift */,
 				7D71807A233FCD0A0053FC7A /* UserProfileTests.swift */,
@@ -3264,7 +3259,6 @@
 				7DBED00F232C2C7500392F3C /* GetAccountHelpLinks.swift */,
 				7DBED0242331801F00392F3C /* GetGlobalNavExternalToolsPlacements.swift */,
 				7DBED011232C32CD00392F3C /* HelpLink.swift */,
-				7DBED02E2333E0C900392F3C /* ProfilePresenter.swift */,
 				7DBED00B232C031C00392F3C /* ProfileViewController.storyboard */,
 				9FAA58FD223A987600FEC3F8 /* ProfileViewController.swift */,
 				7DBED01A2330158F00392F3C /* UploadAvatar.swift */,
@@ -4302,7 +4296,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DBED0312333EC3B00392F3C /* ProfilePresenterTests.swift in Sources */,
 				7D5C87212239A99E00D99651 /* SubmissionCommentTests.swift in Sources */,
 				B1A6BC8A218A977D000515E3 /* APIEnrollmentRequestableTests.swift in Sources */,
 				7DA8C37F239EB535004762DD /* LoginNavigationControllerTests.swift in Sources */,
@@ -4619,7 +4612,6 @@
 				7DA2607D23F722FA005D2121 /* PageViewEventViewControllerLoggingProtocol.swift in Sources */,
 				7D7F71E42420147800D6F9CB /* ConferenceDetailsViewController.swift in Sources */,
 				7DA25FA423F72136005D2121 /* APICalendarRequestable.swift in Sources */,
-				7DA2609023F72315005D2121 /* ProfilePresenter.swift in Sources */,
 				7DA25F9923F72136005D2121 /* APIAccount.swift in Sources */,
 				7DA25F9C23F72136005D2121 /* APIAssignment.swift in Sources */,
 				7DA25FD523F72148005D2121 /* AppEnvironment.swift in Sources */,

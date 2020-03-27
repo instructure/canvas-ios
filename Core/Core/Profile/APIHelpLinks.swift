@@ -27,7 +27,7 @@ public struct APIHelpLinks: Codable {
 }
 
 // https://canvas.instructure.com/doc/api/accounts.html#HelpLink
-struct APIHelpLink: Codable {
+public struct APIHelpLink: Codable {
     let id: String
     let text: String
     let subtext: String?
@@ -39,6 +39,64 @@ struct APIHelpLink: Codable {
 public enum HelpLinkEnrollment: String, Codable {
     case admin, observer, student, teacher, unenrolled, user
 }
+
+#if DEBUG
+extension APIHelpLinks {
+    public static func make(
+        help_link_name: String = "Help",
+        help_link_icon: String = "help",
+        default_help_links: [APIHelpLink] = [
+            .instructorQuestion,
+            .searchGuides,
+            .reportProblem,
+        ],
+        custom_help_links: [APIHelpLink] = []
+    ) -> APIHelpLinks {
+        return APIHelpLinks(
+            help_link_name: help_link_name,
+            help_link_icon: help_link_icon,
+            default_help_links: default_help_links,
+            custom_help_links: custom_help_links
+        )
+    }
+}
+
+extension APIHelpLink {
+    public static func make(
+        id: String = "instructor_question",
+        text: String = "Ask Your Instructor a Question",
+        subtext: String? = "Questions are submitted to your instructor",
+        available_to: [HelpLinkEnrollment] = [ .student ],
+        url: URL = URL(string: "#teacher_feedback")!
+    ) -> APIHelpLink {
+        return APIHelpLink(
+            id: id,
+            text: text,
+            subtext: subtext,
+            available_to: available_to,
+            url: url
+        )
+    }
+
+    public static var instructorQuestion = APIHelpLink.make()
+
+    public static var searchGuides = APIHelpLink.make(
+        id: "search_the_canvas_guides",
+        text: "Search the Canvas Guides",
+        subtext: "Find answers to common questions",
+        available_to: [ .user, .student, .teacher, .admin, .observer, .unenrolled ],
+        url: URL(string: "http://community.canvaslms.com/community/answers/guides")!
+    )
+
+    public static var reportProblem = APIHelpLink.make(
+        id: "report_a_problem",
+        text: "Report a Problem",
+        subtext: "If Canvas misbehaves, tell us about it",
+        available_to: [ .user, .student, .teacher, .admin, .observer, .unenrolled ],
+        url: URL(string: "#create_ticket")!
+    )
+}
+#endif
 
 // https://canvas.instructure.com/doc/api/accounts.html#method.accounts.help_links
 public struct GetAccountHelpLinksRequest: APIRequestable {
