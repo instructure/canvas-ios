@@ -232,6 +232,18 @@ class AssignmentListViewControllerTests: StudentTestCase {
         XCTAssertEqual(expected, vc.tableView.indexPathForSelectedRow)
     }
 
+    func testDoesNotSelectFirstUnlessInSplitView() {
+        vc = AssignmentListViewController.create(env: env, courseID: courseID, appTraitCollection: UITraitCollection(horizontalSizeClass: .regular))
+        gradingPeriods = [.make()]
+        groups = [.make(id: "1", name: "GroupA", assignments: [.make()])]
+        req = AssignmentListRequestable(courseID: courseID, filter: .allGradingPeriods)
+        mockNetwork()
+        loadView()
+        let expected = IndexPath(row: 0, section: 0)
+        let cell = vc.tableView.cellForRow(at: expected) as! AssignmentListViewController.ListCell
+        XCTAssertFalse(cell.isSelected)
+    }
+
     func testPaging() {
         gradingPeriods = [ APIAssignmentListGradingPeriod.make(title: "grading period a") ]
         var assignmentsGroupA1 = [APIAssignmentListAssignment]()

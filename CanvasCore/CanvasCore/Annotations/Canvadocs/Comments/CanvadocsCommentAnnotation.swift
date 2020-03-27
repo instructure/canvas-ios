@@ -19,6 +19,7 @@
 import UIKit
 import PSPDFKit
 import PSPDFKitUI
+import Core
 
 class CanvadocsPointAnnotation: PSPDFStampAnnotation {
     override var isResizable: Bool { get { return false } }
@@ -26,7 +27,7 @@ class CanvadocsPointAnnotation: PSPDFStampAnnotation {
 
     override func draw(context: CGContext, options: PSPDFRenderOptions?) {
         context.saveGState()
-        let cgColor = color?.cgColor ?? CanvadocsAnnotationColor.blue.color.cgColor
+        let cgColor = color?.cgColor ?? DocViewerAnnotationColor.blue.color.cgColor
         context.setFillColor(cgColor)
 
         // scale to fit, centered

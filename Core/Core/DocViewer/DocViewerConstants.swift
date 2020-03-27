@@ -20,7 +20,7 @@ import UIKit
 import PSPDFKit
 import PSPDFKitUI
 
-enum DocViewerAnnotationColor: String, CaseIterable {
+public enum DocViewerAnnotationColor: String, CaseIterable {
     case red = "#EE0612"
     case orange = "#FC5E13"
     case yellow = "#FCB900"
@@ -32,12 +32,12 @@ enum DocViewerAnnotationColor: String, CaseIterable {
     case purple = "#741865"
     case darkGray = "#363636"
 
-    var color: UIColor {
+    public var color: UIColor {
         return UIColor(hexString: self.rawValue)!
     }
 }
 
-enum DocViewerHighlightColor: String, CaseIterable {
+public enum DocViewerHighlightColor: String, CaseIterable {
     case red = "#FF9999"
     case orange = "#FFC166"
     case yellow = "#FCE680"
@@ -45,7 +45,7 @@ enum DocViewerHighlightColor: String, CaseIterable {
     case blue = "#80D0FF"
     case pink = "#FFB9F1"
 
-    var color: UIColor {
+    public var color: UIColor {
         return UIColor(hexString: self.rawValue)!
     }
 }
@@ -80,7 +80,7 @@ func docViewerConfigurationBuilder(_ builder: PSPDFConfigurationBuilder) {
     builder.overrideClass(PSPDFAnnotationStateManager.self, with: DocViewerAnnotationStateManager.self)
 }
 
-func stylePSPDFKit() {
+public func stylePSPDFKit() {
     let styleManager = PSPDFKitGlobal.sharedInstance.styleManager
     styleManager.setupDefaultStylesIfNeeded()
 
@@ -89,7 +89,7 @@ func stylePSPDFKit() {
     let textColorPresets = DocViewerAnnotationColor.allCases.map { return PSPDFColorPreset(color: $0.color, fill: .white, alpha: 1) }
     let textFillPresets = DocViewerAnnotationColor.allCases.map { return PSPDFColorPreset(color: $0.color, fill: .clear, alpha: 1) }
     let textPresets = textColorPresets + textFillPresets
-    styleManager.setPresets(highlightPresets, forKey: AnnotationStateVariantID(rawValue: AnnotationString.highlight.rawValue), type: AnnotationStyleType.colorPreset)
+    styleManager.setPresets(highlightPresets, forKey: AnnotationStateVariantID(rawValue: AnnotationString.highlight.rawValue), type: .colorPreset)
     styleManager.setPresets(inkPresets, forKey: AnnotationStateVariantID(rawValue: AnnotationString.ink.rawValue), type: .colorPreset)
     styleManager.setPresets(inkPresets, forKey: AnnotationStateVariantID(rawValue: AnnotationString.square.rawValue), type: .colorPreset)
     styleManager.setPresets(inkPresets, forKey: AnnotationStateVariantID(rawValue: AnnotationString.circle.rawValue), type: .colorPreset)
@@ -98,6 +98,9 @@ func stylePSPDFKit() {
     styleManager.setPresets(inkPresets, forKey: AnnotationStateVariantID(rawValue: AnnotationString.stamp.rawValue), type: .colorPreset)
     styleManager.setPresets(textPresets, forKey: AnnotationStateVariantID(rawValue: AnnotationString.freeText.rawValue), type: .colorPreset)
 
+    var sessionDefaults = AppEnvironment.shared.userDefaults
+    guard sessionDefaults?.hasSetPSPDFKitLastUsedValues != true else { return }
+    sessionDefaults?.hasSetPSPDFKitLastUsedValues = true
     styleManager.setLastUsedValue(DocViewerHighlightColor.yellow.color, forProperty: "color", forKey: AnnotationStateVariantID(rawValue: AnnotationString.highlight.rawValue))
     styleManager.setLastUsedValue(DocViewerAnnotationColor.red.color, forProperty: "color", forKey: AnnotationStateVariantID(rawValue: AnnotationString.ink.rawValue))
     styleManager.setLastUsedValue(DocViewerAnnotationColor.red.color, forProperty: "color", forKey: AnnotationStateVariantID(rawValue: AnnotationString.square.rawValue))
@@ -109,8 +112,8 @@ func stylePSPDFKit() {
     styleManager.setLastUsedValue(UIColor.clear, forProperty: "fillColor", forKey: AnnotationStateVariantID(rawValue: AnnotationString.freeText.rawValue))
     styleManager.setLastUsedValue("Helvetica", forProperty: "fontName", forKey: AnnotationStateVariantID(rawValue: AnnotationString.freeText.rawValue))
     styleManager.setLastUsedValue(14 * 0.9, forProperty: "fontSize", forKey: AnnotationStateVariantID(rawValue: AnnotationString.freeText.rawValue))
-    styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: AnnotationStateVariantID(rawValue: AnnotationString.ink.rawValue))
-    styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: AnnotationStateVariantID(rawValue: AnnotationString.square.rawValue))
-    styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: AnnotationStateVariantID(rawValue: AnnotationString.circle.rawValue))
-    styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: AnnotationStateVariantID(rawValue: AnnotationString.line.rawValue))
+    styleManager.setLastUsedValue(1.0, forProperty: "lineWidth", forKey: AnnotationStateVariantID(rawValue: AnnotationString.ink.rawValue))
+    styleManager.setLastUsedValue(1.0, forProperty: "lineWidth", forKey: AnnotationStateVariantID(rawValue: AnnotationString.square.rawValue))
+    styleManager.setLastUsedValue(1.0, forProperty: "lineWidth", forKey: AnnotationStateVariantID(rawValue: AnnotationString.circle.rawValue))
+    styleManager.setLastUsedValue(1.0, forProperty: "lineWidth", forKey: AnnotationStateVariantID(rawValue: AnnotationString.line.rawValue))
 }

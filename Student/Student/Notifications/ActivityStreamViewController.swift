@@ -62,6 +62,7 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let title = NSLocalizedString("Notifications", comment: "Notifications tab title")
         navigationItem.leftBarButtonItem = profileButton
         view.backgroundColor = .named(.backgroundLightest)
         setupTableView()

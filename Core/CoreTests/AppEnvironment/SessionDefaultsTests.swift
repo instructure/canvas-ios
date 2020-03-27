@@ -36,4 +36,9 @@ class SessionDefaultsTests: XCTestCase {
         XCTAssertEqual(defaults.submitAssignmentCourseID, "1")
         XCTAssertEqual(defaults.submitAssignmentID, "2")
     }
+
+    func testHasSetPSPDFKitLastUsedValues() {
+        defaults.hasSetPSPDFKitLastUsedValues = true
+        XCTAssertTrue(defaults.hasSetPSPDFKitLastUsedValues)
+    }
 }

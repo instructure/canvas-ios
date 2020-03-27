@@ -70,10 +70,8 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
         return GroupNavigationViewController.create(context: context)
     },
 
-    "/:context/:contextID/activity_stream": { url, _ in
-        guard let context = ContextID(path: url.path) else { return nil }
-        guard let session = Session.current else { return nil }
-        return try? ActivityStreamTableViewController(session: session, context: context)
+    "/:context/:contextID/activity_stream": { _, _ in
+        return ActivityStreamViewController.create()
     },
 
     "/:context/:contextID/announcements": nil,
@@ -141,6 +139,10 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/:context/:contextID/conferences": { url, _ in
         guard let context = ContextModel(path: url.path) else { return nil }
         return ConferenceListViewController.create(context: context)
+    },
+    "/:context/:contextID/conferences/:conferenceID": { url, params in
+        guard let context = ContextModel(path: url.path), let id = params["conferenceID"] else { return nil }
+        return ConferenceDetailsViewController.create(context: context, conferenceID: id)
     },
 
     "/:context/:contextID/discussions": nil,
@@ -256,44 +258,26 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/courses/:courseID/pages/:url": { url, params in
         guard let courseID = params["courseID"] else { return nil }
         if let controller = moduleItemController(for: url, courseID: courseID) { return controller }
-        if ExperimentalFeature.newPageDetails.isEnabled {
-            guard let url = params["url"] else { return nil }
-            return PageDetailsViewController.create(context: ContextModel(.course, id: courseID), pageURL: url, app: .student)
-        } else {
-            return HelmViewController(moduleName: "/courses/:courseID/pages/:url", props: makeProps(url, params: params))
-        }
+        guard let url = params["url"] else { return nil }
+        return PageDetailsViewController.create(context: ContextModel(.course, id: courseID), pageURL: url, app: .student)
     },
     "/courses/:courseID/wiki/:url": { url, params in
         guard let courseID = params["courseID"] else { return nil }
         if let controller = moduleItemController(for: url, courseID: courseID) { return controller }
-        if ExperimentalFeature.newPageDetails.isEnabled {
-            guard let url = params["url"] else { return nil }
-            return PageDetailsViewController.create(context: ContextModel(.course, id: courseID), pageURL: url, app: .student)
-        } else {
-            return HelmViewController(moduleName: "/courses/:courseID/wiki/:url", props: makeProps(url, params: params))
-        }
+        guard let url = params["url"] else { return nil }
+        return PageDetailsViewController.create(context: ContextModel(.course, id: courseID), pageURL: url, app: .student)
     },
     "/groups/:groupID/pages/:url": { url, params in
         guard let groupID = params["groupID"], let purl = params["url"] else { return nil }
         // FIXME: confusing groupIDs for courseIDs (carried over from previoud route handler)
         if let controller = moduleItemController(for: url, courseID: groupID) { return controller }
-        if ExperimentalFeature.newPageDetails.isEnabled {
-            return PageDetailsViewController.create(context: ContextModel(.group, id: groupID), pageURL: purl, app: .student)
-        } else {
-            guard let session = Session.current else { return nil }
-            return try? Page.DetailViewController(session: session, contextID: ContextID(id: groupID, context: .group), url: purl, route: route)
-        }
+        return PageDetailsViewController.create(context: ContextModel(.group, id: groupID), pageURL: purl, app: .student)
     },
     "/groups/:groupID/wiki/:url": { url, params in
         guard let groupID = params["groupID"], let purl = params["url"] else { return nil }
         // FIXME: confusing groupIDs for courseIDs (carried over from previoud route handler)
         if let controller = moduleItemController(for: url, courseID: groupID) { return controller }
-        if ExperimentalFeature.newPageDetails.isEnabled {
-            return PageDetailsViewController.create(context: ContextModel(.group, id: groupID), pageURL: purl, app: .student)
-        } else {
-            guard let session = Session.current else { return nil }
-            return try? Page.DetailViewController(session: session, contextID: ContextID(id: groupID, context: .group), url: purl, route: route)
-        }
+        return PageDetailsViewController.create(context: ContextModel(.group, id: groupID), pageURL: purl, app: .student)
     },
 
     "/:context/:contextID/pages/:url/edit": nil,

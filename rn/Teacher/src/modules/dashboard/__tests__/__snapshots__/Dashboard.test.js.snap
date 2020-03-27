@@ -32,6 +32,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
 >
   <list>
     <section />
+    <section />
     <section>
       <View
         accessibitilityTraits="heading"
@@ -1450,6 +1451,7 @@ exports[`Dashboard render 1`] = `
 >
   <list>
     <section />
+    <section />
     <section>
       <View
         accessibitilityTraits="heading"
@@ -2098,6 +2100,7 @@ exports[`Dashboard render while pending 1`] = `
   }
 >
   <list>
+    <section />
     <section />
     <section>
       <View
@@ -2748,6 +2751,7 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
 >
   <list>
     <section />
+    <section />
     <section>
       <View
         accessibitilityTraits="heading"
@@ -2976,6 +2980,7 @@ exports[`Dashboard render without favorite courses 1`] = `
 >
   <list>
     <section />
+    <section />
     <section>
       <View
         accessibitilityTraits="heading"
@@ -3203,6 +3208,7 @@ exports[`Dashboard renders course invites 1`] = `
   }
 >
   <list>
+    <section />
     <section>
       <item>
         <View

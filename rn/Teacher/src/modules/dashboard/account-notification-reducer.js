@@ -29,6 +29,10 @@ const defaultState: AccountNotificationState = {
   list: [],
   closing: [],
   error: '',
+  liveConferencesPending: 0,
+  liveConferences: [],
+  liveConferencesError: '',
+  liveConferencesIgnored: [],
 }
 
 export const accountNotifications = handleActions({
@@ -75,5 +79,33 @@ export const accountNotifications = handleActions({
         error: message,
       }
     },
+  }),
+  [AccountNotificationActions.refreshLiveConferences.toString()]: handleAsync({
+    pending: (state) => ({
+      ...state,
+      liveConferencesPending: state.pending + 1,
+      liveConferencesError: '',
+    }),
+    resolved: (state, { result: { data } }) => ({
+      ...state,
+      liveConferencesPending: Math.max(0, state.pending - 1),
+      liveConferences: data.conferences,
+    }),
+    rejected: (state, { error }) => {
+      let message = i18n('There was a problem loading the live conferences.')
+      let reason = parseErrorMessage(error)
+      if (reason) message += '\n\n' + reason
+      return {
+        ...state,
+        liveConferencesPending: Math.max(0, state.liveConferencesPending - 1),
+        liveConferencesError: message,
+      }
+    },
+  }),
+  [AccountNotificationActions.ignoreLiveConference.toString()]: (state, { payload: { id } }) => ({
+    ...state,
+    liveConferencesIgnored: state.liveConferencesIgnored.includes(id)
+      ? state.liveConferencesIgnored
+      : state.liveConferencesIgnored.concat(id),
   }),
 }, defaultState)

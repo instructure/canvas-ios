@@ -32,6 +32,7 @@ class CoreTestCase: XCTestCase {
     var api = MockURLSession.self
     var router: TestRouter!
     var logger: TestLogger!
+    var analytics = TestAnalyticsHandler()
 
     var environment = TestEnvironment()
     var currentSession: LoginSession!
@@ -62,6 +63,7 @@ class CoreTestCase: XCTestCase {
         MockUploadManager.reset()
         UUID.reset()
         ExperimentalFeature.allEnabled = false
+        Analytics.shared.handler = analytics
     }
 
     override func tearDown() {
@@ -73,5 +75,17 @@ class CoreTestCase: XCTestCase {
         let main = expectation(description: "main.async")
         DispatchQueue.main.async { main.fulfill() }
         wait(for: [main], timeout: 1)
+    }
+}
+
+class TestAnalyticsHandler: AnalyticsHandler {
+    struct Event {
+        let name: String
+        let parameters: [String: Any]?
+    }
+    var events = [Event]()
+
+    func handleEvent(_ name: String, parameters: [String: Any]?) {
+        events.append(.init(name: name, parameters: parameters))
     }
 }

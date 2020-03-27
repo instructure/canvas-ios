@@ -16,8 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import { shallow } from 'enzyme'
 import React from 'react'
 import renderer from 'react-test-renderer'
@@ -134,6 +132,7 @@ let defaultProps = {
   enrollments: [],
   sections: {},
   allCourses: {},
+  liveConferences: [],
   announcements: [],
   customColors: colors,
   refreshCourses: () => {},
@@ -436,7 +435,7 @@ describe('Dashboard', () => {
     screen.find('SectionList').simulate('Layout', { nativeEvent: { layout } })
     await screen.update()
     const sections = screen.find('SectionList').prop('sections')
-    const inviteSection = sections[0]
+    const inviteSection = sections[1]
     expect(inviteSection.data).toHaveLength(1)
     expect(inviteSection.data[0].id).toEqual('2')
 
@@ -506,7 +505,7 @@ describe('Dashboard', () => {
 
     const section = () => {
       const sections = screen.find('SectionList').prop('sections')
-      return shallow(sections[1].renderItem())
+      return shallow(sections[2].renderItem())
     }
 
     screen.instance().noCourses = {
@@ -543,7 +542,7 @@ describe('Dashboard', () => {
 
     const section = () => {
       const sections = screen.find('SectionList').prop('sections')
-      return shallow(sections[1].renderItem())
+      return shallow(sections[2].renderItem())
     }
 
     section().simulate('Layout') // for code coverage
