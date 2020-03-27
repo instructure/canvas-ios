@@ -18,7 +18,6 @@
 
 import Foundation
 import UIKit
-import Core
 
 class ModuleItemCell: UITableViewCell {
     static let IndentMultiplier: CGFloat = 10
@@ -39,14 +38,16 @@ class ModuleItemCell: UITableViewCell {
             dueLabel.isHidden = item?.dueAt == nil
             dueLabel.text = item?.dueAt.flatMap {
                 String.localizedStringWithFormat(
-                    "Due %@",
+                    NSLocalizedString("Due %@", bundle: .core, comment: ""),
                     DateFormatter.localizedString(from: $0, dateStyle: .long, timeStyle: .short)
                 )
             }
             if let item = item {
                 accessibilityLabel = [
                     item.title,
-                    item.published == true ? NSLocalizedString("published", comment: "") : NSLocalizedString("unpublished", comment: ""),
+                    item.published == true
+                        ? NSLocalizedString("published", bundle: .core, comment: "")
+                        : NSLocalizedString("unpublished", bundle: .core, comment: ""),
                 ].joined(separator: ", ")
             } else {
                 accessibilityLabel = nil

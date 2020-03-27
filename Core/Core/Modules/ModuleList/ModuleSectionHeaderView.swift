@@ -17,7 +17,6 @@
 //
 
 import Foundation
-import Core
 
 @IBDesignable
 class CollapsableIndicator: UIControl {

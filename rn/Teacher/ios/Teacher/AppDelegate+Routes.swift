@@ -113,7 +113,7 @@ extension AppDelegate {
 // MARK: - HelmModules
 
 extension ModuleListViewController: HelmModule {
-    var moduleName: String { return "/courses/:courseID/modules" }
+    public var moduleName: String { return "/courses/:courseID/modules" }
 }
 
 extension WrongAppViewController: HelmModule {

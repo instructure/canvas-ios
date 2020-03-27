@@ -17,7 +17,6 @@
 //
 
 import Foundation
-import Core
 import CoreData
 
 protocol ModuleStoreDelegate: class {

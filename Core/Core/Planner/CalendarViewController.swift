@@ -240,7 +240,7 @@ extension CalendarViewController: PagesViewControllerDataSource, PagesViewContro
         // Announced with accessibilityScroll
         days.title = isExpanded ? monthPageTitleFormatter.string(from: selectedDate)
             : String.localizedStringWithFormat(
-                NSLocalizedString("Week of %@", comment: ""),
+                NSLocalizedString("Week of %@", bundle: .core, comment: ""),
                 DateFormatter.localizedString(from: selectedDate, dateStyle: .long, timeStyle: .none)
             )
         return days

@@ -57,12 +57,9 @@
 		840CABA038B02116B1BDA3E0 /* Pods_defaults_TeacherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
 		B15CA240221DBA940014FB02 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA23F221DBA940014FB02 /* Routes.swift */; };
-		B15CA245221DC5BC0014FB02 /* ModuleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA244221DC5BC0014FB02 /* ModuleListViewController.swift */; };
-		B15CA247221DC5CC0014FB02 /* ModuleListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B15CA246221DC5CC0014FB02 /* ModuleListViewController.storyboard */; };
 		B15CA26D221DDEB40014FB02 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; };
 		B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */; };
 		B15CA297221E103B0014FB02 /* DynamicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA296221E103B0014FB02 /* DynamicLabel.swift */; };
-		B15CA299221E10900014FB02 /* ModuleItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA298221E10900014FB02 /* ModuleItemCell.swift */; };
 		B15CA29D221F16C90014FB02 /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA29C221F16C90014FB02 /* BundleExtensions.swift */; };
 		B175D62423A96AE400F8E696 /* SpeedGrader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B175D62323A96AE400F8E696 /* SpeedGrader.swift */; };
 		B175D62623A96B0F00F8E696 /* IPadSpeedGraderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B175D62523A96B0F00F8E696 /* IPadSpeedGraderTests.swift */; };
@@ -73,10 +70,6 @@
 		B1992AAB2264D51200396A1F /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1992AAA2264D51200396A1F /* RoutesTests.swift */; };
 		B1A5CDE5239581E100BEA196 /* CanvadocsConstantsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A5CDE4239581E100BEA196 /* CanvadocsConstantsTests.swift */; };
 		B1A5CDE62395836600BEA196 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; };
-		B1A890AA224D272D00CEE000 /* ModuleItemSubHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A890A9224D272D00CEE000 /* ModuleItemSubHeaderCell.swift */; };
-		B1A890BC224F161100CEE000 /* ModuleSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A890BB224F161100CEE000 /* ModuleSectionHeaderView.swift */; };
-		B1A890BE224F16F900CEE000 /* ModuleSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1A890BD224F16F900CEE000 /* ModuleSectionHeaderView.xib */; };
-		B1C0257723722054001C87A2 /* ModuleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C0257623722054001C87A2 /* ModuleStore.swift */; };
 		B1C0257923732D6D001C87A2 /* ModuleStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C0257823732D6D001C87A2 /* ModuleStoreTests.swift */; };
 		B1D5CFBC224FDEF3004A1361 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D5CFBB224FDEF2004A1361 /* DividerView.swift */; };
 		B1F4060322E2444D008FAFE6 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405FD22E2444D008FAFE6 /* ReactiveObjC.framework */; };
@@ -332,14 +325,11 @@
 		862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_TeacherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
 		B15CA23F221DBA940014FB02 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Routes.swift; path = Teacher/Routes.swift; sourceTree = "<group>"; };
-		B15CA244221DC5BC0014FB02 /* ModuleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleListViewController.swift; sourceTree = "<group>"; };
-		B15CA246221DC5CC0014FB02 /* ModuleListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ModuleListViewController.storyboard; sourceTree = "<group>"; };
 		B15CA25D221DDB820014FB02 /* TeacherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B15CA261221DDB820014FB02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTestCase.swift; sourceTree = "<group>"; };
 		B15CA296221E103B0014FB02 /* DynamicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabel.swift; sourceTree = "<group>"; };
-		B15CA298221E10900014FB02 /* ModuleItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemCell.swift; sourceTree = "<group>"; };
 		B15CA29C221F16C90014FB02 /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
 		B175D62323A96AE400F8E696 /* SpeedGrader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGrader.swift; sourceTree = "<group>"; };
 		B175D62523A96B0F00F8E696 /* IPadSpeedGraderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadSpeedGraderTests.swift; sourceTree = "<group>"; };
@@ -349,10 +339,6 @@
 		B18B275E236C76B10043EB2B /* ModuleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleListViewControllerTests.swift; sourceTree = "<group>"; };
 		B1992AAA2264D51200396A1F /* RoutesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTests.swift; sourceTree = "<group>"; };
 		B1A5CDE4239581E100BEA196 /* CanvadocsConstantsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvadocsConstantsTests.swift; sourceTree = "<group>"; };
-		B1A890A9224D272D00CEE000 /* ModuleItemSubHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemSubHeaderCell.swift; sourceTree = "<group>"; };
-		B1A890BB224F161100CEE000 /* ModuleSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleSectionHeaderView.swift; sourceTree = "<group>"; };
-		B1A890BD224F16F900CEE000 /* ModuleSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModuleSectionHeaderView.xib; sourceTree = "<group>"; };
-		B1C0257623722054001C87A2 /* ModuleStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleStore.swift; sourceTree = "<group>"; };
 		B1C0257823732D6D001C87A2 /* ModuleStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleStoreTests.swift; sourceTree = "<group>"; };
 		B1D5CFBB224FDEF2004A1361 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 		B1F405FD22E2444D008FAFE6 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjC.framework; path = ../../../Carthage/Build/iOS/ReactiveObjC.framework; sourceTree = "<group>"; };
@@ -435,7 +421,6 @@
 				3B55FEC522FC861F00FCB7B2 /* Submissions */,
 				B15CA293221E0F890014FB02 /* IBDesignables */,
 				B15CA241221DC4DA0014FB02 /* Extensions */,
-				B15CA23E221DB3480014FB02 /* Modules */,
 				78AD913021C8180C0075FBCF /* GoogleService-Info.plist */,
 				61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */,
 				494AE0B61F843CB4001A8F31 /* AppDelegate+Routes.swift */,
@@ -568,15 +553,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B15CA23E221DB3480014FB02 /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-				B18359A1222447200005A918 /* ModuleList */,
-			);
-			name = Modules;
-			path = Teacher/Modules;
-			sourceTree = "<group>";
-		};
 		B15CA241221DC4DA0014FB02 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -630,20 +606,6 @@
 				B17E1DB4238DA8550022EE0E /* SpeedGraderTests.swift */,
 			);
 			path = SpeedGrader;
-			sourceTree = "<group>";
-		};
-		B18359A1222447200005A918 /* ModuleList */ = {
-			isa = PBXGroup;
-			children = (
-				B15CA298221E10900014FB02 /* ModuleItemCell.swift */,
-				B1A890A9224D272D00CEE000 /* ModuleItemSubHeaderCell.swift */,
-				B15CA246221DC5CC0014FB02 /* ModuleListViewController.storyboard */,
-				B15CA244221DC5BC0014FB02 /* ModuleListViewController.swift */,
-				B1A890BB224F161100CEE000 /* ModuleSectionHeaderView.swift */,
-				B1A890BD224F16F900CEE000 /* ModuleSectionHeaderView.xib */,
-				B1C0257623722054001C87A2 /* ModuleStore.swift */,
-			);
-			path = ModuleList;
 			sourceTree = "<group>";
 		};
 		B1A5CDE3239581C900BEA196 /* Annotations */ = {
@@ -874,12 +836,10 @@
 				3B55FED422FDE70F00FCB7B2 /* HideGradesViewController.storyboard in Resources */,
 				2C3DE50E1F21498A00AE1D59 /* InfoPlist.strings in Resources */,
 				13B07FBF1A68108700A75B9A /* Assets.xcassets in Resources */,
-				B15CA247221DC5CC0014FB02 /* ModuleListViewController.storyboard in Resources */,
 				3B55FEC922FC871400FCB7B2 /* PostGradesViewController.storyboard in Resources */,
 				2C96863D1FFE9FC4005127A3 /* LaunchScreen.storyboard in Resources */,
 				7D344E1B241160D100C052E6 /* Localizable.stringsdict in Resources */,
 				2C8E35722093AD760071ED94 /* Settings.bundle in Resources */,
-				B1A890BE224F16F900CEE000 /* ModuleSectionHeaderView.xib in Resources */,
 				78AD913121C8180C0075FBCF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1059,9 +1019,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1A890BC224F161100CEE000 /* ModuleSectionHeaderView.swift in Sources */,
 				7D64A96323620A27004EAEDF /* Status.swift in Sources */,
-				B1A890AA224D272D00CEE000 /* ModuleItemSubHeaderCell.swift in Sources */,
 				494AE0BA1F843CB5001A8F31 /* AppDelegate+Routes.swift in Sources */,
 				3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */,
 				3B55FECB22FCB90000FCB7B2 /* PostSettingsViewController.swift in Sources */,
@@ -1070,11 +1028,9 @@
 				B1D5CFBC224FDEF3004A1361 /* DividerView.swift in Sources */,
 				B15CA240221DBA940014FB02 /* Routes.swift in Sources */,
 				B15CA29D221F16C90014FB02 /* BundleExtensions.swift in Sources */,
-				B15CA245221DC5BC0014FB02 /* ModuleListViewController.swift in Sources */,
 				7D64A96023620A27004EAEDF /* DatePickerCollectionView.swift in Sources */,
 				7D64A95E23620A27004EAEDF /* AttendanceViewController.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */,
-				B1C0257723722054001C87A2 /* ModuleStore.swift in Sources */,
 				B15CA297221E103B0014FB02 /* DynamicLabel.swift in Sources */,
 				7D64A96223620A27004EAEDF /* RollCallSession.swift in Sources */,
 				7D64A96423620A27004EAEDF /* StatusCell.swift in Sources */,
@@ -1083,7 +1039,6 @@
 				B183F99B2252925F000A6930 /* IconView.swift in Sources */,
 				7D64A96123620A27004EAEDF /* DatePickerViewController.swift in Sources */,
 				494AE0B91F843CB5001A8F31 /* RootTabBarController.swift in Sources */,
-				B15CA299221E10900014FB02 /* ModuleItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
