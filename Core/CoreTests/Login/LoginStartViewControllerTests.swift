@@ -31,7 +31,7 @@ class LoginStartViewControllerTests: CoreTestCase {
     var helpURL: URL?
     var whatsNewURL = URL(string: "whats-new")
 
-    lazy var controller = LoginStartViewController.create(loginDelegate: self, fromLaunch: false)
+    lazy var controller = LoginStartViewController.create(loginDelegate: self, fromLaunch: false, app: .student)
 
     override func setUp() {
         super.setUp()
@@ -42,7 +42,7 @@ class LoginStartViewControllerTests: CoreTestCase {
     }
 
     func testAnimateIn() {
-        controller = LoginStartViewController.create(loginDelegate: self, fromLaunch: true)
+        controller = LoginStartViewController.create(loginDelegate: self, fromLaunch: true, app: .student)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
         XCTAssertEqual(controller.findSchoolButton.alpha, 0)

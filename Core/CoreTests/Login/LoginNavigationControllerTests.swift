@@ -21,7 +21,7 @@ import XCTest
 import TestsFoundation
 
 class LoginNavigationControllerTests: CoreTestCase {
-    lazy var controller = LoginNavigationController.create(loginDelegate: self, fromLaunch: false)
+    lazy var controller = LoginNavigationController.create(loginDelegate: self, fromLaunch: false, app: .student)
 
     func testLogin() {
         controller.view.layoutIfNeeded()
