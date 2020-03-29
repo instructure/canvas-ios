@@ -1,0 +1,18 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Professor";
+
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Adjunteu fotografies i vídeos als comentaris sobre l'entrega.";
+
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Adjunteu enregistraments de so als comentaris sobre l'entrega.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Adjunteu fotografies i vídeos als comentaris sobre l'entrega.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Pengeu contingut als cursos.";
+

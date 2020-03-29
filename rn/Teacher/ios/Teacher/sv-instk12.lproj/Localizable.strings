@@ -74,16 +74,10 @@
 "Late" = "Sen";
 
 /* No comment provided by engineer. */
-"Loading more modules..." = "Läser in fler moduler...";
-
-/* No comment provided by engineer. */
 "Mark All as Present" = "Markera alla som närvarande";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "Markera återstående som närvarande";
-
-/* No comment provided by engineer. */
-"Modules" = "Moduler";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Publicera omdömen";
@@ -105,9 +99,6 @@
 
 /* No comment provided by engineer. */
 "Test Student" = "Testelev";
-
-/* No comment provided by engineer. */
-"This module is empty." = "Den här modulen är tom.";
 
 /* No comment provided by engineer. */
 "To Do" = "Att göra";

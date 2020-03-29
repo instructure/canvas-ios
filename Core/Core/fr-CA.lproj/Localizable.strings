@@ -20,6 +20,9 @@
 "Act as User" = "Agir en tant qu'utilisateur";
 
 /* No comment provided by engineer. */
+"Add Planner Note" = "Ajouter remarque du planificateur";
+
+/* No comment provided by engineer. */
 "Added To Conversation" = "Ajouté à la conversation";
 
 /* No comment provided by engineer. */
@@ -146,6 +149,9 @@
 "Choose Profile Picture" = "Choisir une photo de profil";
 
 /* No comment provided by engineer. */
+"Clear Course" = "Effacer le cours";
+
+/* No comment provided by engineer. */
 "Clear filter" = "Effacer le filtre";
 
 /* No comment provided by engineer. */
@@ -221,6 +227,9 @@
 "Dashboard" = "Tableau de bord";
 
 /* No comment provided by engineer. */
+"Date" = "Date";
+
+/* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
@@ -237,6 +246,9 @@
 
 /* No comment provided by engineer. */
 "Describe the problem" = "Décrire le problème";
+
+/* No comment provided by engineer. */
+"Description" = "Description";
 
 /* No comment provided by engineer. */
 "Designer" = "Concepteur";
@@ -359,7 +371,13 @@
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go to today" = "Aller à aujourd'hui";
 
 /* No comment provided by engineer. */
 "Grading" = "Notation";
@@ -411,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Invitation";
+
+/* No comment provided by engineer. */
+"It looks like a great day to rest, relax, and recharge." = "C'est une belle journée pour se reposer, se détendre et recharger nos batteries.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Il semblerait que vous ne soyez inscrit à aucun cours sous %@. L'une de nos autres applis pourrait mieux convenir.Appuyez sur l'une d'entre elles pour vous rendre sur l'App Store.";
@@ -512,6 +533,9 @@
 "Never" = "Jamais";
 
 /* No comment provided by engineer. */
+"New To Do" = "Nouvelle action";
+
+/* No comment provided by engineer. */
 "No Content" = "Pas de contenu";
 
 /* No comment provided by engineer. */
@@ -519,6 +543,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "Aucune date d'échéance";
+
+/* No comment provided by engineer. */
+"No Events Today!" = "Aucun événement d'aujourd'hui!";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Aucune image trouvée du sélecteur d’images";
@@ -608,6 +635,9 @@
 "Privacy Policy" = "Politique de confidentialité";
 
 /* No comment provided by engineer. */
+"Profile Menu" = "Menu Profil";
+
+/* No comment provided by engineer. */
 "purple" = "violet";
 
 /* Description for Push Notification channel */
@@ -660,6 +690,9 @@
 
 /* No comment provided by engineer. */
 "See what's new." = "Regardez ce qu'il y a de nouveau";
+
+/* No comment provided by engineer. */
+"Select Course" = "Sélectionner un cours";
 
 /* No comment provided by engineer. */
 "Select One" = "Sélectionner un élément";
@@ -824,6 +857,9 @@
 "Time elapsed" = "Temps écoulé";
 
 /* No comment provided by engineer. */
+"Title..." = "Titre…";
+
+/* No comment provided by engineer. */
 "to %@" = "à %@";
 
 /* No comment provided by engineer. */
@@ -885,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Website URL" = "URL du site Web";
+
+/* No comment provided by engineer. */
+"Week of %@" = "Semaine du %@";
 
 /* No comment provided by engineer. */
 "Weekly" = "Hebdomadaire";

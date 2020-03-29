@@ -74,16 +74,10 @@
 "Late" = "En retard";
 
 /* No comment provided by engineer. */
-"Loading more modules..." = "Chargement de plus de modules";
-
-/* No comment provided by engineer. */
 "Mark All as Present" = "Marquer « Tous comme présent »";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "Marquer comme « Restant comme présent »";
-
-/* No comment provided by engineer. */
-"Modules" = "Modules";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Publier les notes";
@@ -105,9 +99,6 @@
 
 /* No comment provided by engineer. */
 "Test Student" = "Étudiant test";
-
-/* No comment provided by engineer. */
-"This module is empty." = "Ce module est vide.";
 
 /* No comment provided by engineer. */
 "To Do" = "À faire";

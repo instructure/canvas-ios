@@ -209,9 +209,6 @@
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "Bæta viðtakandendum við";
 
-/* All Courses screen title */
-"All Courses" = "Öll námskeið";
-
 /* No comment provided by engineer. */
 "All Grading Periods" = "Öll einkunnatímabil";
 
@@ -549,9 +546,6 @@
 
 /* Button to edit a discussion entry */
 "Edit" = "Breyta";
-
-/* No comment provided by engineer. */
-"Edit Course" = "Breyta námskeiði";
 
 /* Edit course list title
    Edit the items in the course list */
@@ -1064,9 +1058,6 @@
 /* No comment provided by engineer. */
 "Past" = "Fyrri";
 
-/* Past enrollments section title in All Courses screen */
-"Past Enrollments" = "Fyrri innritanir";
-
 /* People list title
    Title for People view controller */
 "People" = "Fólk";
@@ -1211,12 +1202,6 @@
 
 /* Placeholder text in a search bar used to find conversation recipients */
 "Search for recipients" = "Leita að viðtakendum";
-
-/* No comment provided by engineer. */
-"See All" = "Sjá allt";
-
-/* No comment provided by engineer. */
-"See All Courses" = "Sjá öll námskeið";
 
 /* Title for a file picker window */
 "Select file(s)" = "Veldu skrá(r)";

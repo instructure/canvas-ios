@@ -20,6 +20,9 @@
 "Act as User" = "Bregðast við sem notandi";
 
 /* No comment provided by engineer. */
+"Add Planner Note" = "Bæta við skipuleggjara athugasemd";
+
+/* No comment provided by engineer. */
 "Added To Conversation" = "Bætt við samræðu";
 
 /* No comment provided by engineer. */
@@ -146,6 +149,9 @@
 "Choose Profile Picture" = "Veldu upplýsingamynd";
 
 /* No comment provided by engineer. */
+"Clear Course" = "Hreinsa námskeið";
+
+/* No comment provided by engineer. */
 "Clear filter" = "Hreinsa síu";
 
 /* No comment provided by engineer. */
@@ -221,6 +227,9 @@
 "Dashboard" = "Skjáborð";
 
 /* No comment provided by engineer. */
+"Date" = "Dagsetning";
+
+/* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
@@ -237,6 +246,9 @@
 
 /* No comment provided by engineer. */
 "Describe the problem" = "Lýsa vandamálinu";
+
+/* No comment provided by engineer. */
+"Description" = "Lýsing";
 
 /* No comment provided by engineer. */
 "Designer" = "Hönnuður";
@@ -359,7 +371,13 @@
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go to today" = "Fara í daginn í dag";
 
 /* No comment provided by engineer. */
 "Grading" = "Einkunnagjöf";
@@ -411,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Boð";
+
+/* No comment provided by engineer. */
+"It looks like a great day to rest, relax, and recharge." = "Þetta virðist vera góður dagur til að hvílast, slaka á og hlaða batteríin.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Þú virðist ekki vera innritaður í nein námskeið sem %@. Eitthvað að hinum öppunum okkar gæti hentað betur. Smelltu á eitt þeirra til að fara í App Store.";
@@ -512,6 +533,9 @@
 "Never" = "Aldrei";
 
 /* No comment provided by engineer. */
+"New To Do" = "Nýtt að gera";
+
+/* No comment provided by engineer. */
 "No Content" = "Ekkert efni";
 
 /* No comment provided by engineer. */
@@ -519,6 +543,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "Enginn skiladagur";
+
+/* No comment provided by engineer. */
+"No Events Today!" = "Engir viðburðir í dag!";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Engin mynd fannst í myndavali okkar";
@@ -608,6 +635,9 @@
 "Privacy Policy" = "Persónuverndarstefna";
 
 /* No comment provided by engineer. */
+"Profile Menu" = "Uppsetningar valmynd";
+
+/* No comment provided by engineer. */
 "purple" = "fjólublár";
 
 /* Description for Push Notification channel */
@@ -660,6 +690,9 @@
 
 /* No comment provided by engineer. */
 "See what's new." = "Sjáðu hvað er nýtt.";
+
+/* No comment provided by engineer. */
+"Select Course" = "Velja námskeið";
 
 /* No comment provided by engineer. */
 "Select One" = "Velja einn";
@@ -824,6 +857,9 @@
 "Time elapsed" = "Liðinn tími";
 
 /* No comment provided by engineer. */
+"Title..." = "Titill…";
+
+/* No comment provided by engineer. */
 "to %@" = "til %@";
 
 /* No comment provided by engineer. */
@@ -885,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Website URL" = "Slóð vefsvæðis";
+
+/* No comment provided by engineer. */
+"Week of %@" = "Vika %@";
 
 /* No comment provided by engineer. */
 "Weekly" = "Vikulega";

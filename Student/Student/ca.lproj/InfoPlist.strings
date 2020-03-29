@@ -1,0 +1,18 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Estudiant";
+
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Adjunteu fotografies i vídeos als missatges i a les publicacions sobre els debats o entregueu-los com a entregues per a tasques.";
+
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "Ajudeu-nos a trobar escoles a prop vostre.";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Adjunteu enregistraments de so als missatges i a les publicacions sobre els debats o entregueu-los com a entregues per a tasques.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Adjunteu fotografies i vídeos als missatges i a les publicacions sobre els debats o entregueu-los com a entregues per a tasques.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Adjunteu fotografies i vídeos als missatges i a les publicacions sobre els debats o entregueu-los com a entregues per a tasques.";
+

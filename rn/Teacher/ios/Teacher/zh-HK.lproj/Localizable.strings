@@ -74,16 +74,10 @@
 "Late" = "逾期";
 
 /* No comment provided by engineer. */
-"Loading more modules..." = "正在載入更多單元...";
-
-/* No comment provided by engineer. */
 "Mark All as Present" = "全部標記為出席";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "標記剩餘為出席";
-
-/* No comment provided by engineer. */
-"Modules" = "單元";
 
 /* No comment provided by engineer. */
 "Post Grades" = "公佈成績";
@@ -105,9 +99,6 @@
 
 /* No comment provided by engineer. */
 "Test Student" = "測試學生";
-
-/* No comment provided by engineer. */
-"This module is empty." = "此單元為空。";
 
 /* No comment provided by engineer. */
 "To Do" = "待辦";

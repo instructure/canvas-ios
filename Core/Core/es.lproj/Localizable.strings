@@ -20,6 +20,9 @@
 "Act as User" = "Actuar en nombre de Usuario";
 
 /* No comment provided by engineer. */
+"Add Planner Note" = "Agregar nota de planificador";
+
+/* No comment provided by engineer. */
 "Added To Conversation" = "Agregado a la conversación";
 
 /* No comment provided by engineer. */
@@ -146,6 +149,9 @@
 "Choose Profile Picture" = "Elegir imagen de perfil";
 
 /* No comment provided by engineer. */
+"Clear Course" = "Borrar curso";
+
+/* No comment provided by engineer. */
 "Clear filter" = "Borrar filtro";
 
 /* No comment provided by engineer. */
@@ -221,6 +227,9 @@
 "Dashboard" = "Tablero";
 
 /* No comment provided by engineer. */
+"Date" = "Fecha";
+
+/* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
@@ -237,6 +246,9 @@
 
 /* No comment provided by engineer. */
 "Describe the problem" = "Describa el problema";
+
+/* No comment provided by engineer. */
+"Description" = "Descripción";
 
 /* No comment provided by engineer. */
 "Designer" = "Diseñador";
@@ -359,7 +371,13 @@
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go to today" = "Ir a la fecha de hoy";
 
 /* No comment provided by engineer. */
 "Grading" = "Calificación";
@@ -411,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Invitación";
+
+/* No comment provided by engineer. */
+"It looks like a great day to rest, relax, and recharge." = "Este parece ser un día excelente para descansar, relajarse y recargar energías.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Parece que no se inscribió en ningún curso como %@. Una de nuestras otras aplicaciones podría ser más adecuada. Toque una para visitar App Store.";
@@ -512,6 +533,9 @@
 "Never" = "Nunca";
 
 /* No comment provided by engineer. */
+"New To Do" = "Nueva Tarea por hacer";
+
+/* No comment provided by engineer. */
 "No Content" = "Sin contenido";
 
 /* No comment provided by engineer. */
@@ -519,6 +543,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "No hay fecha de entrega";
+
+/* No comment provided by engineer. */
+"No Events Today!" = "¡No hay ningún evento hoy!";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "No se encontraron imágenes en el selector de imágenes";
@@ -608,6 +635,9 @@
 "Privacy Policy" = "Política de privacidad";
 
 /* No comment provided by engineer. */
+"Profile Menu" = "Menú de perfil";
+
+/* No comment provided by engineer. */
 "purple" = "morado";
 
 /* Description for Push Notification channel */
@@ -660,6 +690,9 @@
 
 /* No comment provided by engineer. */
 "See what's new." = "Ver las novedades.";
+
+/* No comment provided by engineer. */
+"Select Course" = "Seleccionar curso";
 
 /* No comment provided by engineer. */
 "Select One" = "Seleccionar uno";
@@ -824,6 +857,9 @@
 "Time elapsed" = "Tiempo transcurrido";
 
 /* No comment provided by engineer. */
+"Title..." = "Título...";
+
+/* No comment provided by engineer. */
 "to %@" = "para %@";
 
 /* No comment provided by engineer. */
@@ -885,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Website URL" = "URL de la página web";
+
+/* No comment provided by engineer. */
+"Week of %@" = "Semana de %@";
 
 /* No comment provided by engineer. */
 "Weekly" = "Semanalmente";

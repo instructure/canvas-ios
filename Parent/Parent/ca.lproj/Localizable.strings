@@ -1,0 +1,249 @@
+/* No comment provided by engineer. */
+"(No subject)" = "(Sense assumpte)";
+
+/* <String> <Int> of <Int> */
+"%@ %d of %d" = "%1$@ %2$d de %3$d";
+
+/* No comment provided by engineer. */
+"%@ is due at %@" = "%1$@ venç a les %2$@";
+
+/* No comment provided by engineer. */
+"%@ will begin at %@" = "%1$@ començarà a les %2$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, sense llegir";
+
+/* Percentage field placeholder */
+"1-100%" = "De l'1 al 100 %";
+
+/* Label for button that allows admin to Act as User */
+"Act as User" = "Actua com a usuari";
+
+/* No comment provided by engineer. */
+"Add" = "Afegeix";
+
+/* No comment provided by engineer. */
+"Add Student" = "Afegeix un estudiant";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "Administrador";
+
+/* Alert Section Header */
+"Alert me when:" = "Aviseu-me quan:";
+
+/* Alerts Tab */
+"Alerts" = "Avisos";
+
+/* No comment provided by engineer. */
+"An Error Occurred" = "S'ha produït un error";
+
+/* No comment provided by engineer. */
+"Announcement" = "Anunci";
+
+/* Assignment Grade High On Description */
+"Assignment grade above" = "Qualificació de la tasca per sobre de";
+
+/* Assignment Grade Low On Description */
+"Assignment grade below" = "Qualificació de la tasca per sota de";
+
+/* Assignment Missing Description */
+"Assignment missing" = "Falta la tasca";
+
+/* No comment provided by engineer. */
+"Assignment reminder" = "Recordatori de tasca";
+
+/* No comment provided by engineer. */
+"Back" = "Enrere";
+
+/* No comment provided by engineer. */
+"Calendar Event" = "Esdeveniment al calendari";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancel·la";
+
+/* Percent value is over 100 */
+"Cannot use percent that is higher than 100" = "No es pot utilitzar un percentatge superior a 100";
+
+/* Percent value is under 0 */
+"Cannot use percent that is less than 0" = "No es pot utilitzar un percentatge inferior a 0";
+
+/* Empty Alerts Text */
+"Caught up on Alerts" = "Esteu al dia amb els avisos";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Redacta un missatge nou";
+
+/* Course Announcement Description */
+"Course announcements" = "Anuncis del curs";
+
+/* Course Grade High On Description */
+"Course grade above" = "Qualificació del curs per sobre de";
+
+/* Course Grade Low On Description */
+"Course grade below" = "Qualificació del curs per sota de";
+
+/* Courses Tab */
+"Courses" = "Cursos";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Descarta";
+
+/* No comment provided by engineer. */
+"Event reminder" = "Recordatori d'esdeveniment";
+
+/* No comment provided by engineer. */
+"Excused" = "Excusat";
+
+/* Error Message when the app can't load an object model from the database */
+"Failed to load (discussionKitModelName) NSManagedObjectModel" = "No s'ha pogut carregar (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"Front Page" = "Pàgina frontal";
+
+/* No comment provided by engineer. */
+"Grades" = "Qualificacions";
+
+/* High Assignment Grade too Low */
+"High assignment grade cannot be lower than low assignment grade" = "La qualificació de tasca alta no pot ser inferior a la qualificació de tasca baixa";
+
+/* High Course Grade too Low */
+"High course grade cannot be lower than low course grade" = "La qualificació de curs alta no pot ser inferior a la qualificació de curs baixa";
+
+/* No comment provided by engineer. */
+"In-Class" = "Presencial";
+
+/* No comment provided by engineer. */
+"Inbox" = "Safata d'entrada";
+
+/* No comment provided by engineer. */
+"Inbox Zero" = "Safata d'entrada buida";
+
+/* No comment provided by engineer. */
+"Input the student pairing code provided to you." = "Introduïu el codi d'aparellament d'estudiants que se us ha proporcionat.";
+
+/* Institution Announcement Description */
+"Institution announcements" = "Anuncis de la institució";
+
+/* Title for an alert view */
+"Invalid Input" = "Entrada no vàlida";
+
+/* No comment provided by engineer. */
+"Late" = "Tardà";
+
+/* No comment provided by engineer. */
+"Late: %@" = "Tardà: %@";
+
+/* No comment provided by engineer. */
+"Late: %@ (%@/%@)" = "Tardà: %1$@ (%2$@/%3$@)";
+
+/* Low Assignment Grade too High */
+"Low assignment grade cannot be higher than high assignment grade" = "La qualificació de tasca baixa no pot ser superior a la qualificació de tasca alta";
+
+/* Low Course Grade too High */
+"Low course grade cannot be higher than high course grade" = "La qualificació de curs baixa no pot ser superior a la qualificació de curs alta";
+
+/* No comment provided by engineer. */
+"Message" = "Missatge";
+
+/* No comment provided by engineer. */
+"Missing" = "Falta";
+
+/* No comment provided by engineer. */
+"Missing: (-/%@)" = "Falta: (-/%@)";
+
+/* No comment provided by engineer. */
+"Missing: %@" = "Falta: %@";
+
+/* No comment provided by engineer. */
+"Missing: %@ (%@/%@)" = "Falta: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"New Message" = "Missatge nou";
+
+/* Empty Courses Text */
+"No Courses" = "No hi ha cap curs";
+
+/* Title for label when no grade has been assigned to the course */
+"No Grade" = "Sense qualificació";
+
+/* Empty Students Text */
+"No Students" = "No hi ha cap estudiant";
+
+/* No comment provided by engineer. */
+"No Subject" = "Sense assumpte";
+
+/* OK Button Title */
+"OK" = "D'acord";
+
+/* No comment provided by engineer. */
+"Pairing Code" = "S'està aparellant el codi";
+
+/* No comment provided by engineer. */
+"Permission Needed" = "Cal permís";
+
+/* No comment provided by engineer. */
+"Reply" = "Respon";
+
+/* No comment provided by engineer. */
+"Reply All" = "Respon a tots";
+
+/* No comment provided by engineer. */
+"Retry" = "Torna a provar-ho";
+
+/* No comment provided by engineer. */
+"Send" = "Envia";
+
+/* No comment provided by engineer. */
+"Settings" = "Configuració";
+
+/* No comment provided by engineer. */
+"Subject" = "Assumpte";
+
+/* No comment provided by engineer. */
+"Submitted" = "Enviat";
+
+/* No comment provided by engineer. */
+"Submitted: %@" = "Enviat: %@";
+
+/* No comment provided by engineer. */
+"Submitted: %@ (%@/%@)" = "Enviat: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Summary" = "Resum";
+
+/* No comment provided by engineer. */
+"Syllabus" = "Temari";
+
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "Toqueu per començar a veure Canvas com una altra persona.";
+
+/* AlertKit Database Load Failure Message */
+"There was a problem loading the AlertKit database file." = "S'ha produït un problema en carregar el fitxer de la base de dades de AlertKit.";
+
+/* Airwolf database error message */
+"There was a problem loading the database." = "S'ha produït un problema en carregar la base de dades.";
+
+/* DiscussionKit Database Load Failure Message */
+"There was a problem loading the DiscussionKit database file." = "S'ha produït un problema en carregar el fitxer de la base de dades de DiscussionKit.";
+
+/* No comment provided by engineer. */
+"This announcement has expired." = "Aquest anunci ha caducat.";
+
+/* No comment provided by engineer. */
+"This student's courses may not be published yet." = "És possible que encara no s'hagin publicat els cursos d'aquest estudiant.";
+
+/* No comment provided by engineer. */
+"Trouble logging in" = "Hi ha problemes per iniciar la sessió";
+
+/* No comment provided by engineer. */
+"Unread" = "Sense llegir";
+
+/* Header title of admin view */
+"Welcome!" = "Benvingut!";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "Per tal d'establir recordatoris, heu de permetre les notificacions a Configuració.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Esteu completament al dia";
+

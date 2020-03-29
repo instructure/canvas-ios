@@ -20,6 +20,9 @@
 "Act as User" = "Aji tankou Itilizatè";
 
 /* No comment provided by engineer. */
+"Add Planner Note" = "Ajoute Mòd Panifikatè";
+
+/* No comment provided by engineer. */
 "Added To Conversation" = "Ajoute nan Konvèsasyon";
 
 /* No comment provided by engineer. */
@@ -146,6 +149,9 @@
 "Choose Profile Picture" = "Chwazi Foto Pwofil";
 
 /* No comment provided by engineer. */
+"Clear Course" = "Netwaye Kou";
+
+/* No comment provided by engineer. */
 "Clear filter" = "Efase Filtè";
 
 /* No comment provided by engineer. */
@@ -221,6 +227,9 @@
 "Dashboard" = "Tablo";
 
 /* No comment provided by engineer. */
+"Date" = "Dat";
+
+/* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
@@ -237,6 +246,9 @@
 
 /* No comment provided by engineer. */
 "Describe the problem" = "Dekri pwoblèm nan";
+
+/* No comment provided by engineer. */
+"Description" = "Deskripsyon";
 
 /* No comment provided by engineer. */
 "Designer" = "Kreyatè";
@@ -359,7 +371,13 @@
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go to today" = "Ale nan jodi a";
 
 /* No comment provided by engineer. */
 "Grading" = "Klasman";
@@ -411,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Envitasyon";
+
+/* No comment provided by engineer. */
+"It looks like a great day to rest, relax, and recharge." = "Sanble yon bon jou pou repoze w, amize w epi mete enèji..";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Ta sanble w pa enskri nan okenn kou antan ke %@. Yonn nan lòt app nou yo kapab pi byen adapte. Tape sou yonn pou w ka vizite App Store la.";
@@ -512,6 +533,9 @@
 "Never" = "Jamè";
 
 /* No comment provided by engineer. */
+"New To Do" = "Nouco Tach";
+
+/* No comment provided by engineer. */
 "No Content" = "Pa gen Kontni";
 
 /* No comment provided by engineer. */
@@ -519,6 +543,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "San Delè";
+
+/* No comment provided by engineer. */
+"No Events Today!" = "Pa gen Aktivite Jodi a!";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "No image found from image pickerimaj";
@@ -608,6 +635,9 @@
 "Privacy Policy" = "Politik Konfidansyalite";
 
 /* No comment provided by engineer. */
+"Profile Menu" = "Meni Pwofil";
+
+/* No comment provided by engineer. */
 "purple" = "mov";
 
 /* Description for Push Notification channel */
@@ -660,6 +690,9 @@
 
 /* No comment provided by engineer. */
 "See what's new." = "Gade kisa ki nouvo.";
+
+/* No comment provided by engineer. */
+"Select Course" = "Seleksyone Kou";
 
 /* No comment provided by engineer. */
 "Select One" = "Seleksyone Yonn";
@@ -824,6 +857,9 @@
 "Time elapsed" = "Tan ki pase";
 
 /* No comment provided by engineer. */
+"Title..." = "Tit...";
+
+/* No comment provided by engineer. */
 "to %@" = "pou %@";
 
 /* No comment provided by engineer. */
@@ -885,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Website URL" = "URL sit Web";
+
+/* No comment provided by engineer. */
+"Week of %@" = "Semenn %@";
 
 /* No comment provided by engineer. */
 "Weekly" = "Chak semenn";

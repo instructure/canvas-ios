@@ -1,0 +1,108 @@
+/* No comment provided by engineer. */
+"Absent" = "Assente";
+
+/* No comment provided by engineer. */
+"All grades are currently hidden." = "Tutti i voi sono attualmente nascosti.";
+
+/* No comment provided by engineer. */
+"All grades are currently posted." = "Tutti i voi sono attualmente pubblicati.";
+
+/* No comment provided by engineer. */
+"All Hidden" = "Tutto nascosto";
+
+/* No comment provided by engineer. */
+"All Posted" = "Tutto pubblicato";
+
+/* No comment provided by engineer. */
+"Attendance" = "Frequenza";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "Errore di frequenza";
+
+/* No comment provided by engineer. */
+"Back" = "Indietro";
+
+/* No comment provided by engineer. */
+"Cancel" = "Annulla";
+
+/* No comment provided by engineer. */
+"Change Section" = "Cambia sezione";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Scegli una sezione";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Scegli data";
+
+/* No comment provided by engineer. */
+"Courses" = "Corsi";
+
+/* No comment provided by engineer. */
+"Date picker" = "Selezione data";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Ignora";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Errore: Nessun dato fornito da API votazione.";
+
+/* No comment provided by engineer. */
+"Everyone" = "Tutti";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "Impossibile avviare strumento LTI di votazione.";
+
+/* No comment provided by engineer. */
+"Graded" = "Valutato";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to all students" = "I voti saranno resi visibili a tutti gli studenti";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to students with graded submissions" = "I voti saranno resi visibili agli studenti con compiti con voti";
+
+/* number of grades hidden */
+"grades_currently_hidden" = "grades_currently_hidden";
+
+/* number of grades hidden */
+"grades_currently_posted" = "grades_currently_posted";
+
+/* No comment provided by engineer. */
+"Hide Grades" = "Nascondi voti";
+
+/* No comment provided by engineer. */
+"Late" = "In ritardo";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Contrassegna tutto come presente";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Contrassegna il resto come presente";
+
+/* No comment provided by engineer. */
+"Post Grades" = "Pubblica voti";
+
+/* No comment provided by engineer. */
+"Post Settings" = "Pubblica impostazioni";
+
+/* No comment provided by engineer. */
+"Post to..." = "Pubblica in...";
+
+/* No comment provided by engineer. */
+"Present" = "Presente";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Seleziona per cambiare la data della votazione";
+
+/* No comment provided by engineer. */
+"Specific Sections" = "Sezioni specifiche";
+
+/* No comment provided by engineer. */
+"Test Student" = "Studente di test";
+
+/* No comment provided by engineer. */
+"To Do" = "Elenco attività";
+
+/* No comment provided by engineer. */
+"Unmark" = "Rimuovi contrassegno";
+
