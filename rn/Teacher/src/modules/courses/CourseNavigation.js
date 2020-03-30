@@ -46,6 +46,7 @@ import TabsList from '../tabs/TabsList'
 import { logEvent } from '@common/CanvasAnalytics'
 import showColorOverlayForCourse from '../../common/show-color-overlay-for-course'
 import { getFakeStudents } from '../../canvas-api'
+import ExperimentalFeature from '../../common/ExperimentalFeature'
 
 type RoutingParams = {
   +courseID: string,
@@ -307,7 +308,7 @@ export function mapStateToProps (state: AppState, { courseID }: RoutingParams): 
     })
     .sort((t1, t2) => (t1.position - t2.position))
 
-  if (isTeacher() && permissions?.use_student_view) {
+  if (isTeacher() && permissions?.use_student_view && ExperimentalFeature.teacherStudentView.isEnabled) {
     tabs.push({
       id: 'student-view',
       label: i18n('Student View'),
