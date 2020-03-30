@@ -18,20 +18,25 @@
 
 import Foundation
 
-public class PublishedIconView: IconView {
+public class PublishedIconView: UIImageView {
+    static var isAutohideEnabled = !Bundle.main.isTeacherApp
+
+    public override func awakeFromNib() {
+        super.awakeFromNib()
+        isHidden = PublishedIconView.isAutohideEnabled
+    }
+
     public var published: Bool? {
         didSet {
             switch published {
-            case true:
+            case .some(true):
                 image = .icon(.publish, .solid)
                 tintColor = UIColor.named(.backgroundSuccess)
-            case false:
+            case .some(false):
                 image = .icon(.no, .solid)
                 tintColor = UIColor.named(.ash)
-            case nil:
+            case .none:
                 image = nil
-            default:
-                break
             }
         }
     }

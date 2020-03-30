@@ -30,6 +30,7 @@ class ModuleListViewControllerTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         environment.mockStore = false
+        PublishedIconView.isAutohideEnabled = false
         api.mock(viewController.courses, value: .make(id: "1", name: "Course 1"))
         UIView.setAnimationsEnabled(false)
     }
@@ -39,7 +40,7 @@ class ModuleListViewControllerTests: CoreTestCase {
     }
 
     func header(forSection section: Int) -> ModuleSectionHeaderView {
-        return viewController.tableView.headerView(forSection: section) as! ModuleSectionHeaderView
+        return viewController.tableView(viewController.tableView, viewForHeaderInSection: section) as! ModuleSectionHeaderView
     }
 
     func testViewDidLoad() throws {
@@ -66,14 +67,14 @@ class ModuleListViewControllerTests: CoreTestCase {
             ]),
         ])
         viewController.view.layoutIfNeeded()
-        XCTAssertEqual(header(forSection: 0).title, "A")
-        XCTAssertEqual(header(forSection: 0).published, false)
+        XCTAssertEqual(header(forSection: 0).titleLabel.text, "A")
+        XCTAssertEqual(header(forSection: 0).publishedIconView.published, false)
         XCTAssertEqual(header(forSection: 0).accessibilityLabel, "A, unpublished, expanded")
         XCTAssert(header(forSection: 0).accessibilityTraits.contains(.button))
         XCTAssertEqual(moduleItemCell(at: IndexPath(row: 0, section: 0)).nameLabel.text, "A1")
         XCTAssertEqual(moduleItemCell(at: IndexPath(row: 0, section: 0)).accessibilityLabel, "A1, unpublished")
-        XCTAssertEqual(header(forSection: 1).title, "B")
-        XCTAssertEqual(header(forSection: 1).published, true)
+        XCTAssertEqual(header(forSection: 1).titleLabel.text, "B")
+        XCTAssertEqual(header(forSection: 1).publishedIconView.published, true)
         XCTAssertEqual(header(forSection: 1).accessibilityLabel, "B, published, expanded")
         XCTAssertEqual(moduleItemCell(at: IndexPath(row: 0, section: 1)).nameLabel.text, "B1")
         XCTAssertEqual(moduleItemCell(at: IndexPath(row: 1, section: 1)).nameLabel.text, "B2")
@@ -93,7 +94,28 @@ class ModuleListViewControllerTests: CoreTestCase {
     func testEmptyItems() {
         api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [.make(id: "1", items: [])])
         viewController.view.layoutIfNeeded()
+        XCTAssertEqual(viewController.emptyView.isHidden, true)
         XCTAssertNotNil(viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ModuleListViewController.EmptyCell)
+    }
+
+    func testNoModules() {
+        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [])
+        viewController.view.layoutIfNeeded()
+        XCTAssertEqual(viewController.emptyView.isHidden, false)
+        XCTAssertEqual(viewController.emptyTitleLabel.text, "No Modules")
+        XCTAssertEqual(viewController.emptyMessageLabel.text, "There are no modules to display yet.")
+    }
+
+    func testError() {
+        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), error: NSError.internalError())
+        viewController.view.layoutIfNeeded()
+        XCTAssertEqual(viewController.errorView.isHidden, false)
+        XCTAssertEqual(viewController.errorView.messageLabel.text, "There was an error loading modules. Pull to refresh to try again.")
+
+        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [])
+        viewController.errorView.retryButton.sendActions(for: .primaryActionTriggered)
+        XCTAssertEqual(viewController.errorView.isHidden, true)
+        XCTAssertEqual(viewController.emptyView.isHidden, false)
     }
 
     func testDoesNotScrollWithoutModuleID() {
@@ -192,9 +214,9 @@ class ModuleListViewControllerTests: CoreTestCase {
         let task = api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [])
         task.paused = true
         viewController.view.layoutIfNeeded()
-        XCTAssertEqual(viewController.tableView.refreshControl?.isRefreshing, true)
+        XCTAssertEqual(viewController.spinnerView.isHidden, false)
         task.paused = false
-        XCTAssertEqual(viewController.tableView.refreshControl?.isRefreshing, false)
+        XCTAssertEqual(viewController.spinnerView.isHidden, true)
     }
 
     func testLoadingNextPage() {
@@ -235,17 +257,19 @@ class ModuleListViewControllerTests: CoreTestCase {
         api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [.make(id: "3453243", name: "Module 1")])
         viewController.view.layoutIfNeeded()
         let before = header(forSection: 0)
-        XCTAssertFalse(before.collapsableIndicator.isCollapsed)
+        XCTAssertTrue(before.isExpanded)
         XCTAssertEqual(before.accessibilityLabel, "Module 1, published, expanded")
-        before.handleTap(before.tapGestureRecognizer)
+        before.handleTap()
         let after = header(forSection: 0)
-        XCTAssertTrue(after.collapsableIndicator.isCollapsed)
+        XCTAssertFalse(after.isExpanded)
         XCTAssertEqual(before.accessibilityLabel, "Module 1, published, expanded")
 
         let viewController = ModuleListViewController.create(courseID: "1")
         viewController.view.layoutIfNeeded()
         let later = viewController.tableView.headerView(forSection: 0) as! ModuleSectionHeaderView
-        XCTAssertTrue(later.collapsableIndicator.isCollapsed)
+        XCTAssertFalse(later.isExpanded)
+        header(forSection: 0).handleTap()
+        XCTAssertTrue(header(forSection: 0).isExpanded)
     }
 
     func testSubHeaders() throws {
@@ -270,7 +294,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         viewController.view.layoutIfNeeded()
         let cell = try XCTUnwrap(viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ModuleItemSubHeaderCell)
         XCTAssertEqual(cell.label.text, "I am a sub header")
-        XCTAssertEqual(cell.indent, 2)
+        XCTAssertEqual(cell.indentConstraint.constant, 20)
         XCTAssertEqual(cell.publishedIconView.published, true)
         XCTAssertFalse(cell.isUserInteractionEnabled)
         XCTAssertEqual(cell.accessibilityLabel, "I am a sub header, published")

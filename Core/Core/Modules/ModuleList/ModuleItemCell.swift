@@ -24,39 +24,31 @@ class ModuleItemCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dueLabel: UILabel!
-    @IBOutlet weak var iconView: IconView!
+    @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var publishedIconView: PublishedIconView!
     @IBOutlet weak var indentConstraint: NSLayoutConstraint!
 
-    var item: ModuleItem? {
-        didSet {
-            backgroundColor = .named(.backgroundLightest)
-            nameLabel.text = item?.title
-            iconView.image = item?.type?.icon
-            publishedIconView.published = item?.published
-            indentConstraint.constant = CGFloat((item?.indent ?? 0)) * ModuleItemCell.IndentMultiplier
-            dueLabel.isHidden = item?.dueAt == nil
-            dueLabel.text = item?.dueAt.flatMap {
-                String.localizedStringWithFormat(
-                    NSLocalizedString("Due %@", bundle: .core, comment: ""),
-                    DateFormatter.localizedString(from: $0, dateStyle: .long, timeStyle: .short)
-                )
-            }
-            if let item = item {
-                accessibilityLabel = [
-                    item.title,
-                    item.published == true
-                        ? NSLocalizedString("published", bundle: .core, comment: "")
-                        : NSLocalizedString("unpublished", bundle: .core, comment: ""),
-                ].joined(separator: ", ")
-            } else {
-                accessibilityLabel = nil
-            }
+    func update(_ item: ModuleItem) {
+        backgroundColor = .named(.backgroundLightest)
+        nameLabel.text = item.title
+        iconView.image = item.type?.icon
+        publishedIconView.published = item.published
+        indentConstraint.constant = CGFloat(item.indent) * ModuleItemCell.IndentMultiplier
+        dueLabel.isHidden = item.dueAt == nil
+        dueLabel.text = item.dueAt.flatMap {
+            String.localizedStringWithFormat(
+                NSLocalizedString("Due %@", bundle: .core, comment: ""),
+                DateFormatter.localizedString(from: $0, dateStyle: .long, timeStyle: .short)
+            )
         }
-    }
-
-    override func tintColorDidChange() {
-        super.tintColorDidChange()
-        iconView.tintColor = tintColor
+        accessibilityLabel = item.title
+        if !publishedIconView.isHidden {
+            accessibilityLabel = [
+                item.title,
+                item.published == true
+                    ? NSLocalizedString("published", bundle: .core, comment: "")
+                    : NSLocalizedString("unpublished", bundle: .core, comment: ""),
+            ].joined(separator: ", ")
+        }
     }
 }

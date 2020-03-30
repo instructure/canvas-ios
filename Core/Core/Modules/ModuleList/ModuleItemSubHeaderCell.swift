@@ -17,16 +17,26 @@
 //
 
 import Foundation
+import UIKit
 
 class ModuleItemSubHeaderCell: UITableViewCell {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var publishedIconView: PublishedIconView!
     @IBOutlet weak var indentConstraint: NSLayoutConstraint!
 
-    var indent: Int = 0 {
-        didSet {
-            backgroundColor = .named(.backgroundLightest)
-            indentConstraint.constant = CGFloat(indent) * ModuleItemCell.IndentMultiplier
+    func update(_ item: ModuleItem) {
+        backgroundColor = .named(.backgroundLightest)
+        label.text = item.title
+        publishedIconView.published = item.published
+        indentConstraint.constant = CGFloat(item.indent) * ModuleItemCell.IndentMultiplier
+        accessibilityLabel = item.title
+        if !publishedIconView.isHidden {
+            accessibilityLabel = [
+                item.title,
+                item.published == true
+                    ? NSLocalizedString("published", bundle: .core, comment: "")
+                    : NSLocalizedString("unpublished", bundle: .core, comment: ""),
+            ].joined(separator: ", ")
         }
     }
 }
