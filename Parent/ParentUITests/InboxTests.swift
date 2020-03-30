@@ -22,15 +22,8 @@ import Foundation
 @testable import TestsFoundation
 
 class InboxTests: ParentUITestCase {
-    override func setUp() {
-        super.setUp()
-        mockBaseRequests()
-        logIn()
-        Dashboard.profileButton.tap()
-        Profile.inboxButton.tap()
-    }
-
     func testReplyWithAttachments() {
+        mockBaseRequests()
         let message = APIConversationMessage.make(
             id: "1",
             body: "Reply to this message"
@@ -63,6 +56,9 @@ class InboxTests: ParentUITestCase {
             id: conversation.id.value,
             messages: [message, newMessage]
         ))
+        logIn()
+        Dashboard.profileButton.tap()
+        Profile.inboxButton.tap()
         ConversationList.cell(id: conversation.id.value).tap()
         ConversationDetail.replyButton.tapUntil {
             ComposeReply.body.exists()
