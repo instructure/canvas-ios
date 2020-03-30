@@ -113,10 +113,10 @@ extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let p = plannables?[indexPath], p.plannableType == .planner_note {
             let noteDetail = PlannerNoteDetailViewController.create(plannable: p)
-            env.router.show(noteDetail, from: self, options: .detail(embedInNav: true))
+            env.router.show(noteDetail, from: self, options: .detail)
         } else if let url = plannables?[indexPath]?.htmlURL {
             let to = url.appendingQueryItems(URLQueryItem(name: "origin", value: "calendar"))
-            env.router.route(to: to, from: self, options: .detail(embedInNav: true))
+            env.router.route(to: to, from: self, options: .detail)
         }
     }
 

@@ -140,7 +140,7 @@ class RouterTests: CoreTestCase {
                 return UIViewController()
             },
         ]) { _, _, _ in }
-        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail())
+        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail)
         XCTAssertNotNil(mockView.detail)
         XCTAssert(mockView.detail?.isKind(of: UIViewController.self) == true)
     }
@@ -154,7 +154,7 @@ class RouterTests: CoreTestCase {
                 return UIViewController()
             },
         ]) { _, _, _ in }
-        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail(embedInNav: true))
+        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail)
         XCTAssertNotNil(mockView.detail)
         XCTAssert(mockView.detail?.isKind(of: UINavigationController.self) == true)
     }
@@ -166,7 +166,7 @@ class RouterTests: CoreTestCase {
                 return UIViewController()
             },
         ]) { _, _, _ in }
-        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail(embedInNav: true))
+        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail)
         XCTAssertNotNil(mockView.shown)
         XCTAssert(mockView.shown?.isKind(of: UIViewController.self) == true)
         XCTAssert(mockView.shown?.isKind(of: UINavigationController.self) == false)
@@ -182,7 +182,7 @@ class RouterTests: CoreTestCase {
             },
         ]) { _, _, _ in }
         router.route(to: URLComponents(string: "/detail")!, from: mockView, options:
-            .detail(embedInNav: true))
+            .detail)
         XCTAssertNil(mockView.detail)
         XCTAssertNotNil(mockView.shown)
         XCTAssert(mockView.shown?.isKind(of: UIViewController.self) == true)
@@ -207,7 +207,7 @@ class RouterTests: CoreTestCase {
         split.viewControllers = [UIViewController(), UINavigationController(rootViewController: mockView)]
 
         // to detail
-        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail())
+        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail)
         XCTAssertNotNil(mockView.shown?.navigationItem.leftBarButtonItems?.first)
         XCTAssert(mockView.shown?.navigationItem.leftItemsSupplementBackButton == true)
 

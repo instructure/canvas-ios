@@ -97,7 +97,7 @@ class ModuleDetailsViewController: CanvasCore.TableViewController, PageViewEvent
                 tableView.deselectRow(at: indexPath, animated: true)
                 return
             }
-            router.route(to: Route.moduleItem(forCourse: courseID, moduleID: moduleItem.moduleID, itemID: moduleItem.id), from: self, options: .detail(embedInNav: true))
+            router.route(to: Route.moduleItem(forCourse: courseID, moduleID: moduleItem.moduleID, itemID: moduleItem.id), from: self, options: .detail)
         default:
             return
         }

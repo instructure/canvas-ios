@@ -226,7 +226,7 @@ extension ModuleListViewController: UITableViewDelegate {
             }
         default:
             if let url = item.url {
-                env.router.route(to: url, from: self, options: .detail(embedInNav: true))
+                env.router.route(to: url, from: self, options: .detail)
             }
         }
     }

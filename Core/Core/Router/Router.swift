@@ -20,7 +20,7 @@ import UIKit
 
 public enum RouteOptions: Equatable {
     case push
-    case detail(embedInNav: Bool = false)
+    case detail
     case modal(
         _ style: UIModalPresentationStyle? = nil,
         isDismissable: Bool = true,
@@ -44,7 +44,7 @@ public enum RouteOptions: Equatable {
 
     public var embedInNav: Bool {
         switch self {
-        case .detail(embedInNav: true), .modal(_, _, embedInNav: true, _):
+        case .detail, .modal(_, _, embedInNav: true, _):
             return true
         default:
             return false
