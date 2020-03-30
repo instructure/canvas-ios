@@ -20,6 +20,9 @@
 "Act as User" = "ユーザーとして行動する";
 
 /* No comment provided by engineer. */
+"Add Planner Note" = "プランナーメモを追加する";
+
+/* No comment provided by engineer. */
 "Added To Conversation" = "会話に追加されました";
 
 /* No comment provided by engineer. */
@@ -146,6 +149,9 @@
 "Choose Profile Picture" = "プロフィール写真を選択する";
 
 /* No comment provided by engineer. */
+"Clear Course" = "コースをクリアする";
+
+/* No comment provided by engineer. */
 "Clear filter" = "フィルターをクリア";
 
 /* No comment provided by engineer. */
@@ -221,6 +227,9 @@
 "Dashboard" = "ダッシュボード";
 
 /* No comment provided by engineer. */
+"Date" = "日付";
+
+/* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
@@ -237,6 +246,9 @@
 
 /* No comment provided by engineer. */
 "Describe the problem" = "問題を説明";
+
+/* No comment provided by engineer. */
+"Description" = "説明";
 
 /* No comment provided by engineer. */
 "Designer" = "設計者";
@@ -359,7 +371,13 @@
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go to today" = "今日に進む";
 
 /* No comment provided by engineer. */
 "Grading" = "採点";
@@ -411,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "招待状";
+
+/* No comment provided by engineer. */
+"It looks like a great day to rest, relax, and recharge." = "休息をとってリラックスし、充電するためにぴったりな日のようです。";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "あなたは %@ としてコースに在籍していないようです。他に適したアプリがある可能性があります。1つをタップして、App Store をご覧ください。";
@@ -512,6 +533,9 @@
 "Never" = "まったくしない";
 
 /* No comment provided by engineer. */
+"New To Do" = "新しい To Do";
+
+/* No comment provided by engineer. */
 "No Content" = "コンテンツなし";
 
 /* No comment provided by engineer. */
@@ -519,6 +543,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "期日なし";
+
+/* No comment provided by engineer. */
+"No Events Today!" = "今日は、イベントはありません！";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "画像ピッカーに画像が見つかりませんでした";
@@ -608,6 +635,9 @@
 "Privacy Policy" = "個人情報保護方針";
 
 /* No comment provided by engineer. */
+"Profile Menu" = "プロフィールメニュー";
+
+/* No comment provided by engineer. */
 "purple" = "パープル";
 
 /* Description for Push Notification channel */
@@ -660,6 +690,9 @@
 
 /* No comment provided by engineer. */
 "See what's new." = "最新情報を見る。";
+
+/* No comment provided by engineer. */
+"Select Course" = "コースの選択";
 
 /* No comment provided by engineer. */
 "Select One" = "1 つを選択";
@@ -824,6 +857,9 @@
 "Time elapsed" = "経過時間";
 
 /* No comment provided by engineer. */
+"Title..." = "タイトル...";
+
+/* No comment provided by engineer. */
 "to %@" = "～へ%@";
 
 /* No comment provided by engineer. */
@@ -885,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Website URL" = "ウェブサイト URL";
+
+/* No comment provided by engineer. */
+"Week of %@" = "＿週目%@";
 
 /* No comment provided by engineer. */
 "Weekly" = "毎週";

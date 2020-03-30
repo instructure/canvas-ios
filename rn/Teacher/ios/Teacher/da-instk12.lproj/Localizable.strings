@@ -74,16 +74,10 @@
 "Late" = "Sen";
 
 /* No comment provided by engineer. */
-"Loading more modules..." = "Indlæser flere forløb ...";
-
-/* No comment provided by engineer. */
 "Mark All as Present" = "Marker alle som tilstedeværende";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "Marker de resterende som tilstedeværende";
-
-/* No comment provided by engineer. */
-"Modules" = "Forløb";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Slå vurderinger op";
@@ -105,9 +99,6 @@
 
 /* No comment provided by engineer. */
 "Test Student" = "Prøveelev";
-
-/* No comment provided by engineer. */
-"This module is empty." = "Dette forløb er tomt.";
 
 /* No comment provided by engineer. */
 "To Do" = "Opgaveliste";

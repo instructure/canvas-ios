@@ -1,0 +1,105 @@
+/* No comment provided by engineer. */
+"Absent" = "Absent";
+
+/* No comment provided by engineer. */
+"All grades are currently hidden." = "Totes les qualificacions estan amagades en aquest moment.";
+
+/* No comment provided by engineer. */
+"All grades are currently posted." = "Totes les qualificacions estan publicades en aquest moment.";
+
+/* No comment provided by engineer. */
+"All Hidden" = "Totes amagades";
+
+/* No comment provided by engineer. */
+"All Posted" = "Totes publicades";
+
+/* No comment provided by engineer. */
+"Attendance" = "Assistència";
+
+/* No comment provided by engineer. */
+"Attendance Error" = "Error d'assistència";
+
+/* No comment provided by engineer. */
+"Back" = "Enrere";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancel·la";
+
+/* No comment provided by engineer. */
+"Change Section" = "Canvia la secció";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Tria una secció";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Tria una data";
+
+/* No comment provided by engineer. */
+"Courses" = "Cursos";
+
+/* No comment provided by engineer. */
+"Date picker" = "Selector de dates";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Descarta";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Error: L'API de passar llista no ha retornat cap data.";
+
+/* No comment provided by engineer. */
+"Everyone" = "Tothom";
+
+/* No comment provided by engineer. */
+"Failed to launch rollcall LTI tool." = "No s'ha pogut iniciar l'eina LTI de passar llista.";
+
+/* No comment provided by engineer. */
+"Graded" = "Qualificat";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to all students" = "Tots els estudiants podran veure les qualificacions";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to students with graded submissions" = "Tots els estudiants amb entregues qualificades podran veure les qualificacions";
+
+/* number of grades hidden */
+"grades_currently_hidden" = "grades_currently_hidden";
+
+/* number of grades hidden */
+"grades_currently_posted" = "grades_currently_posted";
+
+/* No comment provided by engineer. */
+"Hide Grades" = "Amaga les qualificacions";
+
+/* No comment provided by engineer. */
+"Late" = "Tardà";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Marca tots com a Present";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Marca la resta com a Present";
+
+/* No comment provided by engineer. */
+"Post Grades" = "Publica les qualificacions";
+
+/* No comment provided by engineer. */
+"Post Settings" = "Publica la configuració";
+
+/* No comment provided by engineer. */
+"Post to..." = "Publica a…";
+
+/* No comment provided by engineer. */
+"Present" = "Present";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Selecciona per canviar la data de passar llista";
+
+/* No comment provided by engineer. */
+"Specific Sections" = "Seccions específiques";
+
+/* No comment provided by engineer. */
+"To Do" = "Tasques pendents";
+
+/* No comment provided by engineer. */
+"Unmark" = "Desmarca";
+

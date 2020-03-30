@@ -1,0 +1,6 @@
+/* Class = "UILabel"; text = "Attachments aren't currently supported"; ObjectID = "5ch-Fq-szf"; */
+"5ch-Fq-szf.text" = "En aquest moment, no s'admeten fitxers adjunts";
+
+/* Class = "UILabel"; text = "Filename"; ObjectID = "mcg-EI-bgW"; */
+"mcg-EI-bgW.text" = "Nom de fitxer";
+

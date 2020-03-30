@@ -209,9 +209,6 @@
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "Add recipients";
 
-/* All Courses screen title */
-"All Courses" = "All courses";
-
 /* No comment provided by engineer. */
 "All Grading Periods" = "All Grading Periods";
 
@@ -430,7 +427,7 @@
 "Course Syllabus" = "Module syllabus";
 
 /* Courses page title */
-"Courses" = "Courses";
+"Courses" = "Modules";
 
 /* cancel folder creation */
 "Create Folder" = "Create folder";
@@ -549,9 +546,6 @@
 
 /* Button to edit a discussion entry */
 "Edit" = "Edit";
-
-/* No comment provided by engineer. */
-"Edit Course" = "Edit module";
 
 /* Edit course list title
    Edit the items in the course list */
@@ -862,7 +856,7 @@
 "Module Item Not Found" = "Unit Item Not Found";
 
 /* Modules title */
-"Modules" = "Modules";
+"Modules" = "Units";
 
 /* time since creation (less than 1 minute) */
 "moments ago" = "moments ago";
@@ -1064,9 +1058,6 @@
 /* No comment provided by engineer. */
 "Past" = "Past";
 
-/* Past enrollments section title in All Courses screen */
-"Past Enrollments" = "Past enrolments";
-
 /* People list title
    Title for People view controller */
 "People" = "People";
@@ -1102,7 +1093,7 @@
 "Practice Quizzes" = "Practice quizzes";
 
 /* Table header for prerequisite modules */
-"Prerequisite Modules" = "Prerequisite modules";
+"Prerequisite Modules" = "Prerequisite units";
 
 /* Button title for previous module item. */
 "Previous" = "Previous";
@@ -1211,12 +1202,6 @@
 
 /* Placeholder text in a search bar used to find conversation recipients */
 "Search for recipients" = "Search for recipients";
-
-/* No comment provided by engineer. */
-"See All" = "See all";
-
-/* No comment provided by engineer. */
-"See All Courses" = "See All Courses";
 
 /* Title for a file picker window */
 "Select file(s)" = "Select file(s)";

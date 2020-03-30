@@ -20,6 +20,9 @@
 "Act as User" = "作為使用者";
 
 /* No comment provided by engineer. */
+"Add Planner Note" = "添加規劃筆記";
+
+/* No comment provided by engineer. */
 "Added To Conversation" = "添加至交談（Conversation）";
 
 /* No comment provided by engineer. */
@@ -146,6 +149,9 @@
 "Choose Profile Picture" = "選擇個人檔案照片";
 
 /* No comment provided by engineer. */
+"Clear Course" = "清除課程";
+
+/* No comment provided by engineer. */
 "Clear filter" = "清除篩選器";
 
 /* No comment provided by engineer. */
@@ -221,6 +227,9 @@
 "Dashboard" = "控制面板";
 
 /* No comment provided by engineer. */
+"Date" = "日期";
+
+/* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
@@ -237,6 +246,9 @@
 
 /* No comment provided by engineer. */
 "Describe the problem" = "請描述問題";
+
+/* No comment provided by engineer. */
+"Description" = "描述";
 
 /* No comment provided by engineer. */
 "Designer" = "設計師";
@@ -359,7 +371,13 @@
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go to today" = "前往今天";
 
 /* No comment provided by engineer. */
 "Grading" = "等級評分";
@@ -411,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "邀請";
+
+/* No comment provided by engineer. */
+"It looks like a great day to rest, relax, and recharge." = "看來是適合休息、放鬆和充電的一天。";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "您尚未註冊任何課程為 %@。我們的其中一個其他應用程式可能較適合。點選一個以造訪 App Store。";
@@ -512,6 +533,9 @@
 "Never" = "永不";
 
 /* No comment provided by engineer. */
+"New To Do" = "新待辦事項";
+
+/* No comment provided by engineer. */
 "No Content" = "無內容";
 
 /* No comment provided by engineer. */
@@ -519,6 +543,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "無截止日期";
+
+/* No comment provided by engineer. */
+"No Events Today!" = "今天並無活動！";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "從影像選擇器中找不到影像";
@@ -608,6 +635,9 @@
 "Privacy Policy" = "隱私政策";
 
 /* No comment provided by engineer. */
+"Profile Menu" = "個人檔案選單";
+
+/* No comment provided by engineer. */
 "purple" = "紫色";
 
 /* Description for Push Notification channel */
@@ -660,6 +690,9 @@
 
 /* No comment provided by engineer. */
 "See what's new." = "看看有哪些變更。";
+
+/* No comment provided by engineer. */
+"Select Course" = "選擇課程";
 
 /* No comment provided by engineer. */
 "Select One" = "選擇一個";
@@ -824,6 +857,9 @@
 "Time elapsed" = "已用時間";
 
 /* No comment provided by engineer. */
+"Title..." = "標題...";
+
+/* No comment provided by engineer. */
 "to %@" = "至%@";
 
 /* No comment provided by engineer. */
@@ -885,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Website URL" = "網站 URL";
+
+/* No comment provided by engineer. */
+"Week of %@" = "週%@";
 
 /* No comment provided by engineer. */
 "Weekly" = "每週";

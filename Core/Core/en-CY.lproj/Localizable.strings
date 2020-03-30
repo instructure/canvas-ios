@@ -20,6 +20,9 @@
 "Act as User" = "Act as user";
 
 /* No comment provided by engineer. */
+"Add Planner Note" = "Add Planner Note";
+
+/* No comment provided by engineer. */
 "Added To Conversation" = "Added to conversation";
 
 /* No comment provided by engineer. */
@@ -146,6 +149,9 @@
 "Choose Profile Picture" = "Choose profile picture";
 
 /* No comment provided by engineer. */
+"Clear Course" = "Clear Module";
+
+/* No comment provided by engineer. */
 "Clear filter" = "Clear filter";
 
 /* No comment provided by engineer. */
@@ -197,13 +203,13 @@
 "Could not save notification preference" = "Could not save notification preference";
 
 /* No comment provided by engineer. */
-"Course Activities" = "Course activities";
+"Course Activities" = "Module activities";
 
 /* No comment provided by engineer. */
-"Course Content" = "Course content";
+"Course Content" = "Module content";
 
 /* No comment provided by engineer. */
-"Courses" = "Courses";
+"Courses" = "Modules";
 
 /* No comment provided by engineer. */
 "Current position" = "Current position";
@@ -219,6 +225,9 @@
 
 /* No comment provided by engineer. */
 "Dashboard" = "Dashboard";
+
+/* No comment provided by engineer. */
+"Date" = "Date";
 
 /* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
@@ -237,6 +246,9 @@
 
 /* No comment provided by engineer. */
 "Describe the problem" = "Describe the problem";
+
+/* No comment provided by engineer. */
+"Description" = "Description";
 
 /* No comment provided by engineer. */
 "Designer" = "Designer";
@@ -359,7 +371,13 @@
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go to today" = "Go to today";
 
 /* No comment provided by engineer. */
 "Grading" = "Grading";
@@ -411,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Invitation";
+
+/* No comment provided by engineer. */
+"It looks like a great day to rest, relax, and recharge." = "It looks like a great day to rest, relax, and recharge.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "It looks like you aren’t enrolled in any modules as %@. One of our other apps might be a better fit. Tap one to visit the App Store.";
@@ -512,6 +533,9 @@
 "Never" = "Never";
 
 /* No comment provided by engineer. */
+"New To Do" = "New To Do";
+
+/* No comment provided by engineer. */
 "No Content" = "No Content";
 
 /* No comment provided by engineer. */
@@ -519,6 +543,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "No due date";
+
+/* No comment provided by engineer. */
+"No Events Today!" = "No events today!";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "No image found from image picker";
@@ -608,6 +635,9 @@
 "Privacy Policy" = "Privacy Policy";
 
 /* No comment provided by engineer. */
+"Profile Menu" = "Profile menu";
+
+/* No comment provided by engineer. */
 "purple" = "purple";
 
 /* Description for Push Notification channel */
@@ -660,6 +690,9 @@
 
 /* No comment provided by engineer. */
 "See what's new." = "See what's new.";
+
+/* No comment provided by engineer. */
+"Select Course" = "Select Module";
 
 /* No comment provided by engineer. */
 "Select One" = "Select one";
@@ -824,6 +857,9 @@
 "Time elapsed" = "Time elapsed";
 
 /* No comment provided by engineer. */
+"Title..." = "Title...";
+
+/* No comment provided by engineer. */
 "to %@" = "to %@";
 
 /* No comment provided by engineer. */
@@ -885,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Website URL" = "Website URL";
+
+/* No comment provided by engineer. */
+"Week of %@" = "Week of %@";
 
 /* No comment provided by engineer. */
 "Weekly" = "Weekly";

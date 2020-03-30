@@ -74,16 +74,10 @@
 "Late" = "Yn Hwyr";
 
 /* No comment provided by engineer. */
-"Loading more modules..." = "Wrthi’n llwytho mwy o fodiwlau...";
-
-/* No comment provided by engineer. */
 "Mark All as Present" = "Marcio bod y Cyfan yn Bresennol";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "Marcio bod y Gweddill yn Bresennol";
-
-/* No comment provided by engineer. */
-"Modules" = "Modiwlau";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Postio Graddau";
@@ -105,9 +99,6 @@
 
 /* No comment provided by engineer. */
 "Test Student" = "Myfyriwr Prawf";
-
-/* No comment provided by engineer. */
-"This module is empty." = "Mae’r modiwl hwn yn wag.";
 
 /* No comment provided by engineer. */
 "To Do" = "Tasgau i’w Gwneud";

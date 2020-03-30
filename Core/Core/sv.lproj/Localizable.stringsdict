@@ -157,9 +157,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>one</key>
-			<string>%g point</string>
+			<string>%g poäng</string>
 			<key>other</key>
-			<string>%g points</string>
+			<string>%g poäng</string>
 		</dict>
 	</dict>
 	<key>g_pts</key>

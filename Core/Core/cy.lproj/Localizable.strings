@@ -20,6 +20,9 @@
 "Act as User" = "Gweithredu fel Defnyddiwr";
 
 /* No comment provided by engineer. */
+"Add Planner Note" = "Ychwanegu Nodyn gan y Trefnydd";
+
+/* No comment provided by engineer. */
 "Added To Conversation" = "Wedi ychwanegu i sgwrs";
 
 /* No comment provided by engineer. */
@@ -146,6 +149,9 @@
 "Choose Profile Picture" = "Dewiswch Lun Proffil";
 
 /* No comment provided by engineer. */
+"Clear Course" = "Clirio Cwrs";
+
+/* No comment provided by engineer. */
 "Clear filter" = "Clirio’r hidlydd";
 
 /* No comment provided by engineer. */
@@ -221,6 +227,9 @@
 "Dashboard" = "Dangosfwrdd";
 
 /* No comment provided by engineer. */
+"Date" = "Dyddiad";
+
+/* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
@@ -237,6 +246,9 @@
 
 /* No comment provided by engineer. */
 "Describe the problem" = "Disgrifiwch y broblem";
+
+/* No comment provided by engineer. */
+"Description" = "Disgrifiad";
 
 /* No comment provided by engineer. */
 "Designer" = "Dylunydd";
@@ -359,7 +371,13 @@
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go to today" = "Mynd i heddiw";
 
 /* No comment provided by engineer. */
 "Grading" = "Graddio";
@@ -411,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Gwahoddiad";
+
+/* No comment provided by engineer. */
+"It looks like a great day to rest, relax, and recharge." = "Mae’n edrych fel diwrnod gwych i orffwys, ymlacio a dod at eich hun.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Mae'n ymddangos nad ydych chi wedi ymrestru ar unrhyw gyrsiau fel %@. Efallai y byddai un o'n apiau eraill yn eich siwtio'n well. Tapiwch un i fynd i'r App Store.";
@@ -512,6 +533,9 @@
 "Never" = "Byth";
 
 /* No comment provided by engineer. */
+"New To Do" = "Tasg Newydd i’w Gwneud";
+
+/* No comment provided by engineer. */
 "No Content" = "Dim Cynnwys";
 
 /* No comment provided by engineer. */
@@ -519,6 +543,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "Dim Dyddiad Erbyn";
+
+/* No comment provided by engineer. */
+"No Events Today!" = "Dim Digwyddiadau Heddiw!";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Heb ddod o hyd i ddelwedd o'r dewisydd delwedd";
@@ -608,6 +635,9 @@
 "Privacy Policy" = "Polisi Preifatrwydd";
 
 /* No comment provided by engineer. */
+"Profile Menu" = "Dewislen Proffil";
+
+/* No comment provided by engineer. */
 "purple" = "porffor";
 
 /* Description for Push Notification channel */
@@ -660,6 +690,9 @@
 
 /* No comment provided by engineer. */
 "See what's new." = "Dewch i weld beth sy’n newydd.";
+
+/* No comment provided by engineer. */
+"Select Course" = "Dewis Cwrs";
 
 /* No comment provided by engineer. */
 "Select One" = "Dewiswch Un";
@@ -824,6 +857,9 @@
 "Time elapsed" = "Amser wedi mynd heibio";
 
 /* No comment provided by engineer. */
+"Title..." = "Teitl...";
+
+/* No comment provided by engineer. */
 "to %@" = "i %@";
 
 /* No comment provided by engineer. */
@@ -885,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Website URL" = "URL Gwefan";
+
+/* No comment provided by engineer. */
+"Week of %@" = "Wythnos  %@";
 
 /* No comment provided by engineer. */
 "Weekly" = "Pob wythnos";

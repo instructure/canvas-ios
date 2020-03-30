@@ -74,16 +74,10 @@
 "Late" = "Поздно";
 
 /* No comment provided by engineer. */
-"Loading more modules..." = "Загрузка других модулей...";
-
-/* No comment provided by engineer. */
 "Mark All as Present" = "Отметить всех как присутствующих";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "Отметить остальных как присутствующих";
-
-/* No comment provided by engineer. */
-"Modules" = "Модули";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Опубликовать оценки";
@@ -105,9 +99,6 @@
 
 /* No comment provided by engineer. */
 "Test Student" = "Тестовый студент";
-
-/* No comment provided by engineer. */
-"This module is empty." = "Этот модуль пуст.";
 
 /* No comment provided by engineer. */
 "To Do" = "Для выполнения";

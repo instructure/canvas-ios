@@ -74,16 +74,10 @@
 "Late" = "متأخر";
 
 /* No comment provided by engineer. */
-"Loading more modules..." = "تحميل المزيد من الوحدات النمطية...";
-
-/* No comment provided by engineer. */
 "Mark All as Present" = "وضع علامة موجود للجميع";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "وضع علامة موجود للبقية";
-
-/* No comment provided by engineer. */
-"Modules" = "الوحدات النمطية";
 
 /* No comment provided by engineer. */
 "Post Grades" = "نشر الدرجات";
@@ -105,9 +99,6 @@
 
 /* No comment provided by engineer. */
 "Test Student" = "اختبار الطالب";
-
-/* No comment provided by engineer. */
-"This module is empty." = "هذه الوحدة النمطية فارغة.";
 
 /* No comment provided by engineer. */
 "To Do" = "ما يجب القيام به";
