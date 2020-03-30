@@ -24,22 +24,6 @@ import TestsFoundation
 class NotificationsListTests: CoreUITestCase {
     func testNotificationItemsDisplayed() {
         mockBaseRequests()
-        mockData(GetActivitiesRequest(perPage: 99), value: [
-            APIActivity.make(id: "1", title: "Assignment Created"),
-            APIActivity.make(id: "2", title: "Another Notification"),
-        ])
-
-        logIn()
-        TabBar.notificationsTab.tap()
-
-        app.find(labelContaining: "Assignment Created").waitToExist()
-        app.find(labelContaining: "Another Notification").waitToExist()
-    }
-}
-
-class Notifications2ListTests: CoreUITestCase {
-    func testNotificationItemsDisplayed() {
-        mockBaseRequests()
         mockData(GetCoursesRequest(enrollmentState: .active), value: [ baseCourse ])
         mockData(GetActivitiesRequest(), value: [
             APIActivity.make(id: "1", title: "Assignment Created"),
