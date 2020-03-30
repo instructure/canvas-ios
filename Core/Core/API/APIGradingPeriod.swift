@@ -21,6 +21,8 @@ import Foundation
 public struct APIGradingPeriod: Codable, Equatable {
     let id: ID
     let title: String
+    let start_date: Date?
+    let end_date: Date?
 }
 
 public struct APIGradingPeriodResponse: Codable, Equatable {

@@ -21,25 +21,19 @@ import Foundation
 public enum AssignmentFilter: Equatable {
     case allGradingPeriods
     case gradingPeriod(id: String)
-    case currentGradingPeriod
 }
 
 extension AssignmentFilter: Codable {
     //  `filter: {gradingPeriodId: null}` - will return all assignments regardless of grading period
     //  `filter: {gradingPeriodId: "<id>"}` - will return all assignments in grading period
-    //  `filter: {}` - will return assignments in the current / active grading period, no period id needed
     typealias CodingRepresentation = [String: String?]
 
     public init(from decoder: Decoder) throws {
         let representation = try CodingRepresentation(from: decoder)
-        if let index = representation.index(forKey: "gradingPeriodId") {
-            if let id = representation[index].value {
-                self = .gradingPeriod(id: id)
-            } else {
-                self = .allGradingPeriods
-            }
+        if let index = representation.index(forKey: "gradingPeriodId"), let id = representation[index].value {
+            self = .gradingPeriod(id: id)
         } else {
-            self = .currentGradingPeriod
+            self = .allGradingPeriods
         }
     }
 
@@ -50,8 +44,6 @@ extension AssignmentFilter: Codable {
             representation = ["gradingPeriodId": nil]
         case .gradingPeriod(let id):
             representation = ["gradingPeriodId": id]
-        case .currentGradingPeriod:
-            representation = [:]
         }
         try representation.encode(to: encoder)
     }
@@ -68,7 +60,7 @@ public struct AssignmentListRequestable: APIGraphQLRequestable {
     }
     public let variables: Variables
 
-    public init(courseID: String, filter: AssignmentFilter = .currentGradingPeriod, pageSize: Int = 10, cursor: String? = nil) {
+    public init(courseID: String, filter: AssignmentFilter, pageSize: Int = 10, cursor: String? = nil) {
         variables = Variables(courseID: courseID, filter: filter, cursor: cursor, pageSize: pageSize)
     }
 
@@ -77,14 +69,6 @@ public struct AssignmentListRequestable: APIGraphQLRequestable {
         query \(operationName)($courseID: ID!, $pageSize: Int!, $cursor: String, $filter: AssignmentFilter!) {
           course(id: $courseID) {
             name
-            gradingPeriods: gradingPeriodsConnection {
-              nodes {
-                id: _id
-                title
-                endDate
-                startDate
-              }
-            }
             groups: assignmentGroupsConnection {
               nodes {
                 id: _id
@@ -117,9 +101,6 @@ public struct AssignmentListRequestable: APIGraphQLRequestable {
 public struct APIAssignmentListResponse: Codable, Equatable {
     let data: APIAssignmentListResponse.Data
 
-    public var gradingPeriods: [APIAssignmentListGradingPeriod] {
-        return data.course.gradingPeriods.nodes
-    }
     public var groups: [APIAssignmentListGroup] {
         return data.course.groups.nodes
     }
@@ -129,12 +110,7 @@ public struct APIAssignmentListResponse: Codable, Equatable {
     }
 
     struct Course: Codable, Equatable {
-        let gradingPeriods: GPNodes
         let groups: GroupNodes
-    }
-
-    struct GPNodes: Codable, Equatable {
-        let nodes: [APIAssignmentListGradingPeriod]
     }
 
     struct GroupNodes: Codable, Equatable {
@@ -142,10 +118,18 @@ public struct APIAssignmentListResponse: Codable, Equatable {
     }
 }
 
-public struct APIAssignmentListGroup: Codable, Equatable {
+public struct APIAssignmentListGroup: Codable, Equatable, Hashable {
     public let id: ID
     public let name: String
     let assignmentNodes: Nodes
+
+    public static func == (lhs: APIAssignmentListGroup, rhs: APIAssignmentListGroup) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 
     public var pageInfo: APIPageInfo? {
         return assignmentNodes.pageInfo
@@ -166,7 +150,7 @@ public struct APIPageInfo: Codable, Equatable {
     public let hasNextPage: Bool
 }
 
-public struct APIAssignmentListAssignment: Codable, Equatable {
+public struct APIAssignmentListAssignment: Codable, Equatable, Hashable {
     public let id: ID
     public let name: String
     public let inClosedGradingPeriod: Bool
@@ -180,30 +164,16 @@ public struct APIAssignmentListAssignment: Codable, Equatable {
     }
     let quiz: Quiz?
 
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
+    public static func == (lhs: APIAssignmentListAssignment, rhs: APIAssignmentListAssignment) -> Bool {
+        return lhs.id == rhs.id
+    }
+
     struct Quiz: Codable, Equatable {
         let id: ID
-    }
-}
-
-public struct APIAssignmentListGradingPeriod: Codable, Equatable {
-    public let id: ID
-    public let title: String
-    public let startDate: Date
-    public let endDate: Date
-}
-
-public protocol APIAssignmentListGradingPeriodDateProtocol {
-    var startDate: Date { get }
-    var endDate: Date { get }
-}
-extension APIAssignmentListGradingPeriod: APIAssignmentListGradingPeriodDateProtocol {}
-
-extension Array where Element: APIAssignmentListGradingPeriodDateProtocol {
-    public var current: Element? {
-        for d in self.reversed() {
-            if Clock.now >= d.startDate && Clock.now <= d.endDate { return d }
-        }
-        return nil
     }
 }
 
@@ -249,11 +219,9 @@ extension APIAssignmentListAssignment {
 #if DEBUG
 extension APIAssignmentListResponse {
     static func make(
-        gradingPeriods: [APIAssignmentListGradingPeriod],
         groups: [APIAssignmentListGroup]
     ) -> APIAssignmentListResponse {
-        .init(data: .init(course: .init(gradingPeriods: .init(nodes: gradingPeriods),
-                                        groups: .init(nodes: groups))))
+        .init(data: .init(course: .init(groups: .init(nodes: groups))))
     }
 }
 #endif

@@ -20,7 +20,9 @@
 		3B5542482369F9F4007D3CE0 /* AssignmentListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5542472369F9F4007D3CE0 /* AssignmentListViewControllerTests.swift */; };
 		3B6DCCA71FB502CE005EE8D2 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6DCCA61FB502CE005EE8D2 /* NotificationCenter.framework */; };
 		3B6DCCB11FB502CE005EE8D2 /* GradesWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3B6DCCA51FB502CD005EE8D2 /* GradesWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3B72B93E243204FF00197BE6 /* AssignmentListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B978D7C242EF9F700AFC4FF /* AssignmentListModel.swift */; };
 		3B8404502360F36B00D39060 /* AssignmentListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B84044F2360F36B00D39060 /* AssignmentListViewController.storyboard */; };
+		3B978D7B242EF81000AFC4FF /* AssignmentListModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B978D7A242EF80F00AFC4FF /* AssignmentListModelTests.swift */; };
 		492704771CF4AF7100C631C6 /* CanvasAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492704761CF4AF7100C631C6 /* CanvasAppDelegate.swift */; };
 		492706A11CF4B93F00C631C6 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492706A01CF4B93F00C631C6 /* RootViewController.swift */; };
 		495D8BB91CFE17D700D41098 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495D8BBB1CFE17D700D41098 /* LaunchScreen.storyboard */; };
@@ -395,6 +397,8 @@
 		3B6DCCAE1FB502CE005EE8D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B84044F2360F36B00D39060 /* AssignmentListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AssignmentListViewController.storyboard; sourceTree = "<group>"; };
 		3B90C1FF1FBE282F00A32303 /* GradesWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GradesWidget.entitlements; sourceTree = "<group>"; };
+		3B978D7A242EF80F00AFC4FF /* AssignmentListModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentListModelTests.swift; sourceTree = "<group>"; };
+		3B978D7C242EF9F700AFC4FF /* AssignmentListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentListModel.swift; sourceTree = "<group>"; };
 		492704731CF4AF7100C631C6 /* Student.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Student.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		492704761CF4AF7100C631C6 /* CanvasAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasAppDelegate.swift; sourceTree = "<group>"; };
 		492704821CF4AF7100C631C6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1189,6 +1193,7 @@
 			children = (
 				7DCF0E9422F89FB0000AACCE /* AssignmentListViewController.swift */,
 				3B84044F2360F36B00D39060 /* AssignmentListViewController.storyboard */,
+				3B978D7C242EF9F700AFC4FF /* AssignmentListModel.swift */,
 			);
 			path = AssignmentList;
 			sourceTree = "<group>";
@@ -1423,6 +1428,7 @@
 			isa = PBXGroup;
 			children = (
 				3B5542472369F9F4007D3CE0 /* AssignmentListViewControllerTests.swift */,
+				3B978D7A242EF80F00AFC4FF /* AssignmentListModelTests.swift */,
 			);
 			path = AssignmentList;
 			sourceTree = "<group>";
@@ -2593,6 +2599,7 @@
 				7DCF0F8122F8A82C000AACCE /* AssignmentListViewController.swift in Sources */,
 				7DCF0FC422F8A8D7000AACCE /* SubmissionDetailsViewController.swift in Sources */,
 				5EB46DF91D21A75C00C859A4 /* CalendarView.swift in Sources */,
+				3B72B93E243204FF00197BE6 /* AssignmentListModel.swift in Sources */,
 				5EB46DE91D21A75C00C859A4 /* UIColor+Calendar.swift in Sources */,
 				5EB46DE51D21A75C00C859A4 /* NSDate+DayConvenience.swift in Sources */,
 				7DCF0F9822F8A860000AACCE /* UIViewControllerExtensions.swift in Sources */,
@@ -2669,6 +2676,7 @@
 				7DE1162122F8AB5C005BFE98 /* SubmissionDetailsPresenterTests.swift in Sources */,
 				7DE1161822F8AB5C005BFE98 /* QuizListPresenterTests.swift in Sources */,
 				7D0E22B923A19E430075E879 /* SubmissionDetailsViewControllerTests.swift in Sources */,
+				3B978D7B242EF81000AFC4FF /* AssignmentListModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,10 +20,12 @@ import Foundation
 @testable import Core
 
 extension APIGradingPeriod {
-    public static func make( id: ID = "1", title: String = "Grade Period X") -> APIGradingPeriod {
+    public static func make( id: ID = "1", title: String = "Grade Period X", start_date: Date?  = Clock.now.addDays(-7), end_date: Date? = Clock.now.addDays(7)) -> APIGradingPeriod {
         return APIGradingPeriod(
             id: id,
-            title: title
+            title: title,
+            start_date: start_date,
+            end_date: end_date
         )
     }
 }
