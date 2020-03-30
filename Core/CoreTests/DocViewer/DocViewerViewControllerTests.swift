@@ -61,6 +61,7 @@ class DocViewerViewControllerTests: CoreTestCase {
         session.error = err
         controller.view.layoutIfNeeded()
         XCTAssertEqual((router.presented as? UIAlertController)?.message, err.localizedDescription)
+        XCTAssertEqual(navigationItem.rightBarButtonItems, nil)
     }
 
     func testFallback() {
@@ -78,6 +79,7 @@ class DocViewerViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         let providers = controller.pdf.document?.documentProviders.first?.annotationManager.annotationProviders
         XCTAssertTrue(providers?.contains(where: { $0 is DocViewerAnnotationProvider }) ?? false)
+        XCTAssertEqual(navigationItem.rightBarButtonItems?.count, 2)
     }
 
     func testLoadFallback() {
@@ -85,6 +87,7 @@ class DocViewerViewControllerTests: CoreTestCase {
         controller.previewURL = nil
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.pdf.document?.fileURL, url)
+        XCTAssertEqual(navigationItem.rightBarButtonItems?.count, 2)
     }
 
     func testLoadFallbackRepeat() {
@@ -92,6 +95,7 @@ class DocViewerViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         XCTAssertNotNil(router.presented)
         XCTAssertEqual(controller.fallbackUsed, true)
+        XCTAssertEqual(navigationItem.rightBarButtonItems, nil)
 
         session.error = APIDocViewerError.noData
         controller.view.layoutIfNeeded()

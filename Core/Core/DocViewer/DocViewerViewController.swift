@@ -68,12 +68,6 @@ public class DocViewerViewController: UIViewController {
         pdf.updateConfiguration(builder: docViewerConfigurationBuilder)
         pdf.delegate = self
 
-        let share = UIBarButtonItem(barButtonSystemItem: .action, target: pdf.activityButtonItem.target, action: pdf.activityButtonItem.action)
-        share.accessibilityIdentifier = "DocViewer.shareButton"
-        let search = UIBarButtonItem(barButtonSystemItem: .search, target: pdf.searchButtonItem.target, action: pdf.searchButtonItem.action)
-        search.accessibilityIdentifier = "DocViewer.searchButton"
-        parentNavigationItem?.rightBarButtonItems = [ share, search ]
-
         syncAnnotationsButton.isHidden = true
         syncAnnotationsButton.setTitleColor(.named(.white), for: .normal)
         syncAnnotationsButton.setTitleColor(.named(.textDark), for: .disabled)
@@ -132,6 +126,12 @@ public class DocViewerViewController: UIViewController {
         pdf.documentViewController?.scrollToSpread(at: 0, scrollPosition: .start, animated: false)
         pdf.view.isHidden = false
         loadingView.isHidden = true
+
+        let share = UIBarButtonItem(barButtonSystemItem: .action, target: pdf.activityButtonItem.target, action: pdf.activityButtonItem.action)
+        share.accessibilityIdentifier = "DocViewer.shareButton"
+        let search = UIBarButtonItem(barButtonSystemItem: .search, target: pdf.searchButtonItem.target, action: pdf.searchButtonItem.action)
+        search.accessibilityIdentifier = "DocViewer.searchButton"
+        parentNavigationItem?.rightBarButtonItems = [ share, search ]
     }
 
     public func showError(_ error: Error) {
