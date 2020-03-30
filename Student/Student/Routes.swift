@@ -205,13 +205,19 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
             alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""), style: .default))
             return alert
         }
-        return try? ModulesTableViewController(session: session, courseID: courseID)
+        guard ExperimentalFeature.studentModules.isEnabled else {
+            return try? ModulesTableViewController(session: session, courseID: courseID)
+        }
+        return ModuleListViewController.create(courseID: courseID)
     },
 
     "/courses/:courseID/modules/:moduleID": { _, params in
         guard let courseID = params["courseID"], let moduleID = params["moduleID"] else { return nil }
-        guard let session = Session.current else { return nil }
-        return try? ModuleDetailsViewController(session: session, courseID: courseID, moduleID: moduleID)
+        guard ExperimentalFeature.studentModules.isEnabled else {
+            guard let session = Session.current else { return nil }
+            return try? ModuleDetailsViewController(session: session, courseID: courseID, moduleID: moduleID)
+        }
+        return ModuleListViewController.create(courseID: courseID, moduleID: moduleID)
     },
 
     "/courses/:courseID/modules/items/:itemID": { _, params in
