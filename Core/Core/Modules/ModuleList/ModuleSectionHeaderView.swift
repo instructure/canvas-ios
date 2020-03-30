@@ -18,65 +18,12 @@
 
 import Foundation
 
-@IBDesignable
-class CollapsableIndicator: UIControl {
-    @IBInspectable
-    public var backgroundColorName: String = "backgroundDarkest" {
-        didSet {
-            backgroundColor = Brand.shared.color(backgroundColorName) ?? .named(.backgroundDarkest)
-        }
-    }
-
-    public var isCollapsed: Bool = false {
-        didSet {
-            let angle: CGFloat = isCollapsed ? .pi : 0
-            layer.transform = CATransform3DMakeRotation(angle, 0, 0, 1.0)
-        }
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        let path = UIBezierPath()
-        path.move(to: CGPoint(x: bounds.minX, y: bounds.maxY))
-        path.addLine(to: CGPoint(x: bounds.midX, y: bounds.minY))
-        path.addLine(to: CGPoint(x: bounds.maxX, y: bounds.maxY))
-        path.addLine(to: CGPoint(x: bounds.minX, y: bounds.maxY))
-        path.close()
-
-        let layer = CAShapeLayer()
-        layer.path = path.cgPath
-
-        self.layer.mask = layer
-    }
-
-    func setCollapsed(_ collapsed: Bool, animated: Bool) {
-        guard animated else {
-            isCollapsed = collapsed
-            return
-        }
-        UIView.animate(withDuration: 0.5) {
-            self.isCollapsed = collapsed
-        }
-    }
-}
-
 class ModuleSectionHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var publishedIconView: PublishedIconView!
-    @IBOutlet weak var collapsableIndicator: CollapsableIndicator!
-    @IBOutlet weak var tapGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet weak var collapsableIndicator: UIImageView!
 
-    var title: String? {
-        get { return titleLabel.text }
-        set { titleLabel.text = newValue }
-    }
-
-    var published: Bool? {
-        get { return publishedIconView.published }
-        set { publishedIconView.published = newValue }
-    }
-
+    var isExpanded = true
     var onTap: (() -> Void)?
 
     override init(reuseIdentifier: String?) {
@@ -89,8 +36,31 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         loadFromXib().backgroundColor = .named(.backgroundLightest)
     }
 
-    @IBAction
-    func handleTap(_ sender: UITapGestureRecognizer) {
+    func update(_ module: Module, isExpanded: Bool, onTap: @escaping () -> Void) {
+        self.isExpanded = isExpanded
+        self.onTap = onTap
+        titleLabel.text = module.name
+        publishedIconView.published = module.published
+        collapsableIndicator.transform = CGAffineTransform(rotationAngle: isExpanded ? 0 : .pi)
+        accessibilityLabel = [
+            module.name,
+            publishedIconView.isHidden ? "" :
+            module.published == true
+                ? NSLocalizedString("published", bundle: .core, comment: "")
+                : NSLocalizedString("unpublished", bundle: .core, comment: ""),
+            isExpanded
+                ? NSLocalizedString("expanded", bundle: .core, comment: "")
+                : NSLocalizedString("collapsed", bundle: .core, comment: ""),
+        ].joined(separator: ", ")
+        accessibilityTraits.insert(.button)
+    }
+
+    @IBAction func handleTap() {
+        isExpanded = !isExpanded
+        UIView.animate(withDuration: 0.3) {
+            self.collapsableIndicator.transform = CGAffineTransform(rotationAngle: self.isExpanded ? 0 : .pi)
+            self.collapsableIndicator.layoutIfNeeded()
+        }
         onTap?()
     }
 }
