@@ -11,6 +11,7 @@
     "export-translations": "./scripts/translations/export.js",
     "graphql-schema": "./scripts/get-graphql-schema.js",
     "import-translations": "./scripts/translations/import.js",
+    "release": "./scripts/build_automation/release.sh",
     "svg2pdf": "./scripts/svg2pdf.js",
     "test": "./scripts/coverage/coverage.js --test",
     "update-headers": "./scripts/update-headers.js"

@@ -73,7 +73,7 @@ checkInReleaseBranchAndTag() {
 	fi
 
 	git tag $TAG
-	git ls-remote --tags | grep -i 'student-'
+	git ls-remote --tags | grep -i "$APP_NAME-"
 	git push origin $RELEASE_BRANCH
 	git push origin $TAG
 }
