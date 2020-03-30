@@ -28,7 +28,7 @@ func rootViewController(_ session: Session) -> UIViewController {
         dashboardTab(session: session),
         calendarTab(session: session),
         todoTab(),
-        NotificationsTab(),
+        notificationsTab(),
         inboxTab(),
     ]
 
@@ -90,4 +90,17 @@ func todoTab() -> UIViewController {
     todo.tabBarItem.selectedImage = .icon(.todoSolid)
     todo.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
     return todo
+}
+
+func notificationsTab() -> UIViewController {
+    let split = HelmSplitViewController()
+    split.viewControllers = [
+        UINavigationController(rootViewController: ActivityStreamViewController.create()),
+        UINavigationController(rootViewController: EmptyViewController()),
+    ]
+    split.tabBarItem.title = NSLocalizedString("Notifications", comment: "Notifications tab title")
+    split.tabBarItem.image = .icon(.alerts, .line)
+    split.tabBarItem.selectedImage = .icon(.alerts, .solid)
+    split.tabBarItem.accessibilityIdentifier = "TabBar.notificationsTab"
+    return split
 }
