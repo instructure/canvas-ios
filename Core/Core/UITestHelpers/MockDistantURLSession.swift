@@ -114,6 +114,7 @@ public class MockDistantURLSession: URLSession {
             guard self.valid else { return }
             if let data = responseData,
                 let mock = try? JSONDecoder().decode(MockHTTPResponse.self, from: data) {
+                print("  \(mock.data.flatMap { String(data: $0, encoding: .utf8) } ?? "<not json>")")
                 self.processMockResponse(mock, task: task)
             } else {
                 print("No mock response")
