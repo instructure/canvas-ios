@@ -151,7 +151,7 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
     }
 
     func viewControllerForContent() -> UIViewController? {
-        guard let submission = currentSubmission, let assignment = currentAssignment else {
+        guard let submission = currentSubmission, let assignment = currentAssignment, lockedEmptyViewIsHidden() else {
             return nil
         }
 

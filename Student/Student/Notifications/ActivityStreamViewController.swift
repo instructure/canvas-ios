@@ -62,7 +62,7 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let title = NSLocalizedString("Notifications", comment: "Notifications tab title")
+        title = NSLocalizedString("Notifications", comment: "Notifications tab title")
         navigationItem.leftBarButtonItem = profileButton
         view.backgroundColor = .named(.backgroundLightest)
         setupTableView()
@@ -74,6 +74,7 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         startTrackingTimeOnViewController()
+        navigationController?.navigationBar.useGlobalNavStyle()
     }
 
     public override func viewWillDisappear(_ animated: Bool) {
