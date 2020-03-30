@@ -112,7 +112,7 @@ public struct APIModuleItem: Codable, Equatable {
         module_id = try container.decode(ID.self, forKey: .module_id)
         position = try container.decode(Int.self, forKey: .position)
         title = try container.decode(String.self, forKey: .title)
-        indent = try container.decode(Int.self, forKey: .indent)
+        indent = try container.decodeIfPresent(Int.self, forKey: .indent) ?? 0
         html_url = try container.decodeIfPresent(URL.self, forKey: .html_url)
         url = try container.decodeIfPresent(URL.self, forKey: .url)
         published = try container.decodeIfPresent(Bool.self, forKey: .published)
