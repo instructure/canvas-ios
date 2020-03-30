@@ -99,6 +99,7 @@ public class GradesViewController: UIViewController {
         } else {
             let alert = UIAlertController(title: nil, message: NSLocalizedString("Filter by:", bundle: .core, comment: ""), preferredStyle: .actionSheet)
             alert.popoverPresentationController?.sourceView = filterButton
+            alert.popoverPresentationController?.sourceRect = filterButton.bounds
             for gp in grades.gradingPeriods {
                 if gp.title?.isEmpty ?? true { continue }
                 let action = UIAlertAction(title: gp.title, style: .default) { [weak self] _ in
