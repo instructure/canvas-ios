@@ -45,7 +45,7 @@ class ParentUITestCase: CoreUITestCase {
                 ].joined(), value: [baseEnrollment])
         }
         mockData(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: .make())
-        mock(courses: [.make()])
+        mock(courses: [.make(enrollments: [baseEnrollment])])
         mockData(GetConversationsUnreadCountRequest(), value: .init(unread_count: 0))
         mockData(GetAccountHelpLinksRequest(), value: .make())
         mockData(GetUserSettingsRequest(userID: "self"), value: .make())
