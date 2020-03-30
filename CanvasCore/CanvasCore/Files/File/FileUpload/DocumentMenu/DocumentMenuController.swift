@@ -21,7 +21,7 @@ import ReactiveSwift
 
 public protocol DocumentMenuController: UIDocumentPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var documentMenuViewModel: DocumentMenuViewModelType { get }
-    var menuSourceView: UIView? { get }
+    var menuSourceView: UIView { get }
 
     func presentDocumentMenuViewController(_ documentMenu: UIDocumentPickerViewController)
     func documentMenuFinished(error: NSError)
@@ -90,10 +90,8 @@ extension DocumentMenuController where Self: UIViewController {
         }
         alert.addAction(cancel)
 
-        if let sourceView = menuSourceView {
-            alert.popoverPresentationController?.sourceView = sourceView
-            alert.popoverPresentationController?.sourceRect = sourceView.bounds
-        }
+        alert.popoverPresentationController?.sourceView = menuSourceView
+        alert.popoverPresentationController?.sourceRect = menuSourceView.bounds
 
         present(alert, animated: true, completion: nil)
     }

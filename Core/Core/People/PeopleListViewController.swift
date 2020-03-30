@@ -151,6 +151,7 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
         }
         alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
         alert.popoverPresentationController?.sourceView = sender
+        alert.popoverPresentationController?.sourceRect = sender.bounds
         env.router.show(alert, from: self, options: .modal())
     }
 }

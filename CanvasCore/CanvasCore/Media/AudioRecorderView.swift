@@ -387,9 +387,8 @@ extension AudioRecorderView {
             // do nothing!
         })
         
-        if let popover = controller.popoverPresentationController {
-            popover.sourceView = trashButton
-        }
+        controller.popoverPresentationController?.sourceView = trashButton
+        controller.popoverPresentationController?.sourceRect = trashButton.bounds
         
         presentAlert(controller)
     }

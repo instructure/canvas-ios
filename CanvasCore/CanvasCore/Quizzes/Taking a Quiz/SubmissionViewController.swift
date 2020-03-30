@@ -207,8 +207,8 @@ extension SubmissionViewController: DocumentMenuController, UIDocumentPickerDele
         self.documentMenuViewModel.inputs.showDocumentMenuButtonTapped()
     }
 
-    var menuSourceView: UIView? {
-        return currentFileUploadIndexPath.flatMap { tableView.cellForRow(at: $0) }
+    var menuSourceView: UIView {
+        return currentFileUploadIndexPath.flatMap { tableView.cellForRow(at: $0) } ?? tableView
     }
 
     // MARK: DocumentMenuController
