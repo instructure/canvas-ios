@@ -61,9 +61,3 @@ extension APIAssignmentListAssignment {
         )
     }
 }
-
-extension APIAssignmentListGradingPeriod {
-    public static func make(id: ID = "1", title: String = "A", startDate: Date = Date().addDays(-1), endDate: Date = Date().addDays(1)) -> APIAssignmentListGradingPeriod {
-        return APIAssignmentListGradingPeriod(id: id, title: title, startDate: startDate, endDate: endDate)
-    }
-}

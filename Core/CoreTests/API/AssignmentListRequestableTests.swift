@@ -26,7 +26,6 @@ class AssignmentFilterTests: XCTestCase {
         }
 
         XCTAssertEqual(asDict(.allGradingPeriods), ["gradingPeriodId": nil])
-        XCTAssertEqual(asDict(.currentGradingPeriod), [:])
         XCTAssertEqual(asDict(.gradingPeriod(id: "id")), ["gradingPeriodId": "id"])
     }
 
@@ -36,18 +35,20 @@ class AssignmentFilterTests: XCTestCase {
         }
 
         XCTAssertEqual(fromDict(["gradingPeriodId": nil]), .allGradingPeriods)
-        XCTAssertEqual(fromDict([:]), .currentGradingPeriod)
         XCTAssertEqual(fromDict(["gradingPeriodId": "id"]), .gradingPeriod(id: "id"))
     }
 }
 
 class AssignmentListRequestableTests: XCTestCase {
 
+    override func setUp() {
+        super.setUp()
+        Clock.reset()
+    }
+
     func testDecode() {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
-
-        let p1 = APIAssignmentListGradingPeriod.make(id: "1", title: "A", startDate: Date().addDays(-1), endDate: Date().addDays(1))
 
         let assignmentDueDate = Date(fromISOString: "2019-04-18T23:59:59-06:00")
 
@@ -55,7 +56,6 @@ class AssignmentListRequestableTests: XCTestCase {
             APIAssignmentListAssignment.make(dueAt: assignmentDueDate, quizID: "1"),
         ])
 
-        let strGrdPeriods = String(data: try! encoder.encode([p1]), encoding: .utf8)!
         let strGrps = String(data: try! encoder.encode([grp1]), encoding: .utf8)!
 
         let str = """
@@ -63,9 +63,6 @@ class AssignmentListRequestableTests: XCTestCase {
          "data": {
            "course": {
              "name": "CourseName",
-             "gradingPeriods": {
-               "nodes": \(strGrdPeriods)
-             },
              "groups": {
                "nodes": \(strGrps)
              }
@@ -85,7 +82,6 @@ class AssignmentListRequestableTests: XCTestCase {
         }
 
         XCTAssertNotNil(model)
-        XCTAssertEqual(model?.gradingPeriods.count, 1)
         XCTAssertEqual(model?.groups.count, 1)
         XCTAssertEqual(model?.groups.first?.assignments.count, 1)
 
@@ -98,18 +94,6 @@ class AssignmentListRequestableTests: XCTestCase {
         XCTAssertEqual(a?.name, "A")
         XCTAssertEqual(a?.dueAt, assignmentDueDate)
         XCTAssertEqual(a?.quizID, "1")
-
-        let period = model?.gradingPeriods.first
-        XCTAssertEqual(period?.title, "A")
-    }
-
-    func testFilterCurrentGradingPeriod() {
-        Clock.reset()
-        let a = APIAssignmentListGradingPeriod(id: "1", title: "A", startDate: Date().addYears(-2), endDate: Date().addDays(-1))
-        let b = APIAssignmentListGradingPeriod(id: "2", title: "B", startDate: Date().addDays(-2), endDate: Date().addDays(2))
-
-        let periods: [APIAssignmentListGradingPeriod] = [a, b]
-        XCTAssertEqual(periods.current, b)
     }
 
     func testIconForDiscussion() {
@@ -141,7 +125,7 @@ class AssignmentListRequestableTests: XCTestCase {
     }
 
     func testIconForLocked() {
-        let a = APIAssignmentListAssignment.make(lockAt: Date().addDays(-1), submissionTypes: [.external_tool])
+        let a = APIAssignmentListAssignment.make(lockAt: Clock.now.addDays(-1), submissionTypes: [.external_tool])
         let icon = a.icon
         let expected = UIImage.icon(.lock, .line)
         XCTAssertEqual(icon, expected)
@@ -161,7 +145,7 @@ class AssignmentListRequestableTests: XCTestCase {
     }
 
     func testFormattedDueDateAvailabilityClosed() {
-        let lockAt = Date().addDays(-1)
+        let lockAt = Clock.now.addDays(-5)
         let aa = APIAssignmentListAssignment.make(lockAt: lockAt)
         XCTAssertEqual(aa.formattedDueDate, "Availability: Closed")
     }

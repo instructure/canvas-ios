@@ -28,29 +28,30 @@ class AssignmentListViewControllerTests: StudentTestCase {
     let courseID = "1"
     let baseURL = URL(string: "https://canvas.instructure.com/")!
     var req: AssignmentListRequestable!
-    var gradingPeriods: [APIAssignmentListGradingPeriod] = []
+    var gradingPeriods: [APIGradingPeriod] = []
     var groups: [APIAssignmentListGroup] = []
 
     override func setUp() {
+        env.mockStore = false
         vc = AssignmentListViewController.create(env: env, courseID: courseID)
         gradingPeriods = []
         groups = []
     }
 
     func mockNetwork() {
+        api.mock(GetGradingPeriods(courseID: courseID), value: gradingPeriods)
         api.mock(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [ "course_\(courseID)": "#008EE2", ]))
         api.mock(GetCourseRequest(courseID: courseID), value: .make())
-        api.mock(req, data: data(gradingPeriods: gradingPeriods, groups: groups) )
+        api.mock(req, data: data(groups: groups) )
     }
 
-    func data(gradingPeriods: [APIAssignmentListGradingPeriod], groups: [APIAssignmentListGroup]) -> Data {
+    func data(groups: [APIAssignmentListGroup]) -> Data {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
 
         let response = APIAssignmentListResponse(data:
             APIAssignmentListResponse.Data(course:
                 APIAssignmentListResponse.Course(
-                    gradingPeriods: APIAssignmentListResponse.GPNodes(nodes: gradingPeriods),
                     groups: APIAssignmentListResponse.GroupNodes(nodes: groups))))
 
         let data = try! encoder.encode(response)
@@ -64,7 +65,7 @@ class AssignmentListViewControllerTests: StudentTestCase {
 
     func testGeneralViewSetup() {
         //  given
-        gradingPeriods = [ APIAssignmentListGradingPeriod.make(title: "grading period a") ]
+        gradingPeriods = [ .make(title: "grading period a") ]
 
         var assignmentsGroupA = [
             APIAssignmentListAssignment.make(id: "1", name: "ios 101", dueAt: Date().addDays(1)),
@@ -102,11 +103,6 @@ class AssignmentListViewControllerTests: StudentTestCase {
         XCTAssertEqual(cell?.textLabel?.text, "how to cook pizza")
 
         //  prep for clear filter button push
-
-        gradingPeriods = [
-            APIAssignmentListGradingPeriod.make(id: "50", title: "grading period y"),
-            APIAssignmentListGradingPeriod.make(id: "51", title: "grading period z"),
-        ]
 
         assignmentsGroupA = [
             APIAssignmentListAssignment.make(id: "3", name: "ios 202", dueAt: Date().addDays(1)),
@@ -175,7 +171,7 @@ class AssignmentListViewControllerTests: StudentTestCase {
 
         let alert: UIAlertController? = router.presented as? UIAlertController
 
-        guard let action: AlertAction = alert?.actions.filter({ $0.title == "grading period z" }).first as? AlertAction else { XCTFail("could not get alert action or is nil")
+        guard let action: AlertAction = alert?.actions.filter({ $0.title == "grading period a" }).first as? AlertAction else { XCTFail("could not get alert action or is nil")
             return
         }
 
@@ -196,7 +192,7 @@ class AssignmentListViewControllerTests: StudentTestCase {
         cell = vc.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? AssignmentListViewController.ListCell
         XCTAssertEqual(cell?.textLabel?.text, "how to test")
 
-        XCTAssertEqual( vc.gradingPeriodLabel.text, "grading period z" )
+        XCTAssertEqual( vc.gradingPeriodLabel.text, "grading period a" )
         XCTAssertEqual( vc.filterButton.title(for: .normal), "Clear filter" )
     }
 
@@ -206,7 +202,7 @@ class AssignmentListViewControllerTests: StudentTestCase {
         let nav = UINavigationController(rootViewController: vc)
         svc.viewControllers = [nav, UIViewController()]
 
-        gradingPeriods = [ APIAssignmentListGradingPeriod.make(title: "grading period a") ]
+        gradingPeriods = [ .make(title: "grading period a") ]
 
         let assignmentsGroupA = [
             APIAssignmentListAssignment.make(id: "1", name: "ios 101", dueAt: Date().addDays(1)),
@@ -234,7 +230,7 @@ class AssignmentListViewControllerTests: StudentTestCase {
 
     func testDoesNotSelectFirstUnlessInSplitView() {
         vc = AssignmentListViewController.create(env: env, courseID: courseID, appTraitCollection: UITraitCollection(horizontalSizeClass: .regular))
-        gradingPeriods = [.make()]
+        gradingPeriods = [.make(title: "grading period a")]
         groups = [.make(id: "1", name: "GroupA", assignments: [.make()])]
         req = AssignmentListRequestable(courseID: courseID, filter: .allGradingPeriods)
         mockNetwork()
@@ -245,7 +241,7 @@ class AssignmentListViewControllerTests: StudentTestCase {
     }
 
     func testPaging() {
-        gradingPeriods = [ APIAssignmentListGradingPeriod.make(title: "grading period a") ]
+        gradingPeriods = [ .make(title: "grading period a") ]
         var assignmentsGroupA1 = [APIAssignmentListAssignment]()
         var assignmentsGroupA2 = [APIAssignmentListAssignment]()
 
@@ -267,26 +263,31 @@ class AssignmentListViewControllerTests: StudentTestCase {
 
         req = AssignmentListRequestable(courseID: courseID, filter: .allGradingPeriods)
 
-        let d1 = data(gradingPeriods: gradingPeriods, groups: groups)
+        let d1 = data(groups: groups)
 
         groups = [
             APIAssignmentListGroup.make(id: "1", name: "GroupA", assignments: assignmentsGroupA2),
         ]
-        let d2 = data(gradingPeriods: gradingPeriods, groups: groups)
+        let d2 = data(groups: groups)
         var data: [Data] = [d2, d1]
         api.mock(req, data: nil, response: nil, error: nil, dataHandler: { () -> MockURLSession.UrlResponseTuple in
-            guard let d = data.popLast() else { XCTFail(); return (nil, nil, nil) }
+            guard let d = data.popLast() else {
+                XCTFail()
+                return (nil, nil, nil)
+            }
             return (d, nil, nil)
         })
+        api.mock(GetGradingPeriods(courseID: courseID), value: gradingPeriods)
+        api.mock(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [ "course_\(courseID)": "#008EE2", ]))
+        api.mock(GetCourseRequest(courseID: courseID), value: .make())
 
         loadView()
-        vc.view.layoutIfNeeded()
 
         XCTAssertEqual( vc.gradingPeriodLabel.text, "grading period a" )
         XCTAssertEqual( vc.filterButton.title(for: .normal), "Clear filter" )
 
         let rows =  vc.tableView(vc.tableView, numberOfRowsInSection: 0)
-        XCTAssertEqual(rows, 6)
+        XCTAssertEqual(rows, 11)
 
         for i in 0..<rows - 1 {
             let cell = vc.tableView(vc.tableView, cellForRowAt: IndexPath(row: i, section: 0))
@@ -295,14 +296,14 @@ class AssignmentListViewControllerTests: StudentTestCase {
     }
 
     func testPaging2() {
-        gradingPeriods = [ APIAssignmentListGradingPeriod.make(title: "grading period a") ]
+        gradingPeriods = [ .make(title: "grading period a") ]
         var assignmentsGroupA1 = [APIAssignmentListAssignment]()
         var assignmentsGroupA2 = [APIAssignmentListAssignment]()
 
         var assignmentsGroupB1 = [APIAssignmentListAssignment]()
         var assignmentsGroupB2 = [APIAssignmentListAssignment]()
 
-        let firstCount = 10
+        let firstCount = 5
         for i in 0..<firstCount {
             let a = APIAssignmentListAssignment.make(id: ID("\(i)"), name: "\(i)")
             assignmentsGroupA1.append(a)
@@ -311,7 +312,7 @@ class AssignmentListViewControllerTests: StudentTestCase {
             assignmentsGroupB1.append(b)
         }
 
-        let count = 20
+        let count = 6
         for i in 0..<count {
             let a = APIAssignmentListAssignment.make(id: ID("10\(i)"), name: "\(firstCount+i)")
             assignmentsGroupA2.append(a)
@@ -327,25 +328,27 @@ class AssignmentListViewControllerTests: StudentTestCase {
 
         req = AssignmentListRequestable(courseID: courseID, filter: .allGradingPeriods)
 
-        let d1 = data(gradingPeriods: gradingPeriods, groups: groups)
+        let d1 = data(groups: groups)
 
         groups = [
             APIAssignmentListGroup.make(id: "1", name: "GroupA", assignments: assignmentsGroupA2),
-            APIAssignmentListGroup.make(id: "1", name: "GroupB", assignments: assignmentsGroupB2),
+            APIAssignmentListGroup.make(id: "2", name: "GroupB", assignments: assignmentsGroupB2),
         ]
-        let d2 = data(gradingPeriods: gradingPeriods, groups: groups)
+        let d2 = data(groups: groups)
         var data: [Data] = [d2, d1]
         let expect = XCTestExpectation(description: "")
         expect.expectedFulfillmentCount = 2
 
         api.mock(req, data: nil, response: nil, error: nil, dataHandler: { () -> MockURLSession.UrlResponseTuple in
             guard let d = data.popLast() else { XCTFail(); return (nil, nil, nil) }
-            defer { expect.fulfill() }
+
             return (d, nil, nil)
         })
+        api.mock(GetGradingPeriods(courseID: courseID), value: gradingPeriods)
+        api.mock(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [ "course_\(courseID)": "#008EE2", ]))
+        api.mock(GetCourseRequest(courseID: courseID), value: .make())
 
         loadView()
-        vc.view.layoutIfNeeded()
 
         XCTAssertEqual( vc.gradingPeriodLabel.text, "grading period a" )
         XCTAssertEqual( vc.filterButton.title(for: .normal), "Clear filter" )
@@ -353,21 +356,23 @@ class AssignmentListViewControllerTests: StudentTestCase {
         var rows =  vc.tableView(vc.tableView, numberOfRowsInSection: 0)
         XCTAssertEqual(rows, 11)
 
-        vc.tableView.prefetchDataSource?.tableView(vc.tableView, prefetchRowsAt: [IndexPath(row: 1, section: 1)])
-
         for i in 0..<rows - 1 {
             let cell = vc.tableView(vc.tableView, cellForRowAt: IndexPath(row: i, section: 0))
+            print(cell.textLabel?.text ?? "")
             XCTAssertEqual(cell.textLabel?.text, "\(i)")
         }
 
-        wait(for: [expect], timeout: 1)
-
         rows = vc.tableView(vc.tableView, numberOfRowsInSection: 1)
-        XCTAssertEqual(rows, 50)
+        for i in 0..<rows - 1 {
+            let cell = vc.tableView(vc.tableView, cellForRowAt: IndexPath(row: i, section: 1))
+            print(cell.textLabel?.text ?? "")
+            XCTAssertEqual(cell.textLabel?.text, "\(i)B")
+        }
+        XCTAssertEqual(rows, 12)
     }
 
     func testAssignmentForIndexPath() {
-        gradingPeriods = [ APIAssignmentListGradingPeriod.make(title: "grading period a") ]
+        gradingPeriods = [ .make(title: "grading period a") ]
 
         let assignmentsGroupA = [
             APIAssignmentListAssignment.make(id: "1", name: "ios 101", dueAt: Date().addDays(1)),
@@ -386,11 +391,12 @@ class AssignmentListViewControllerTests: StudentTestCase {
         mockNetwork()
 
         loadView()
+        vc.viewDidLoad()
 
         var ip = IndexPath(row: 0, section: 0)
-        XCTAssertNotNil( vc.assignment(for: ip) )
+        XCTAssertNotNil( vc.model.assignment(for: ip) )
 
         ip = IndexPath(row: 100, section: 100)
-        XCTAssertNil( vc.assignment(for: ip) )
+        XCTAssertNil( vc.model.assignment(for: ip) )
     }
 }
