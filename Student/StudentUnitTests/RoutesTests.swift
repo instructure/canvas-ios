@@ -127,6 +127,15 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match(Route.people(forGroup: "1").url) is PeopleListViewController)
     }
 
+    func testModules() {
+        ExperimentalFeature.studentModules.isEnabled = false
+        XCTAssert(router.match(Route.modules(forCourse: "1").url) is ModulesTableViewController)
+        XCTAssert(router.match(Route.module(forCourse: "1", moduleID: "1").url) is ModuleDetailsViewController)
+        ExperimentalFeature.studentModules.isEnabled = true
+        XCTAssert(router.match(Route.modules(forCourse: "1").url) is ModuleListViewController)
+        XCTAssert(router.match(Route.module(forCourse: "1", moduleID: "1").url) is ModuleListViewController)
+    }
+
     func testFallbackNonHTTP() {
         let expected = URL(string: "https://canvas.instructure.com/not-a-native-route")!
         MockURLSession.mock(GetWebSessionRequest(to: expected), value: .init(session_url: expected))
