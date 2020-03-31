@@ -22,7 +22,7 @@ import Foundation
 @testable import TestsFoundation
 
 class InboxTests: ParentUITestCase {
-    func testReplyWithAttachments() {
+    func xtestReplyWithAttachments() {
         mockBaseRequests()
         let message = APIConversationMessage.make(
             id: "1",
