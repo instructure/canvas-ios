@@ -123,7 +123,7 @@ extension CourseListViewController: UICollectionViewDataSource {
 
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let courseID = courses[indexPath]?.id else { return }
-        env.router.route(to: .course(courseID), from: self, options: .detail(embedInNav: true))
+        env.router.route(to: .course(courseID), from: self, options: .detail)
     }
 }
 

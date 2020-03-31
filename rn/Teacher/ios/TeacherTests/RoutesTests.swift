@@ -54,7 +54,7 @@ class RoutesTests: XCTestCase {
     }
 
     func testDetailOption() {
-        let userInfo = userInfoFromRoute(options: .detail())
+        let userInfo = userInfoFromRoute(options: .detail)
         XCTAssertEqual(userInfo?["url"] as? String, route.url!.absoluteString)
         XCTAssertEqual(userInfo?["modal"] as? Bool, false)
         XCTAssertEqual(userInfo?["detail"] as? Bool, true)

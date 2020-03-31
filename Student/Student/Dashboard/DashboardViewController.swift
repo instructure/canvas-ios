@@ -163,10 +163,10 @@ extension DashboardViewController: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if isGroup(indexPath.section) {
             guard let id = groups[indexPath.item]?.id else { return }
-            env.router.route(to: .parse("/groups/\(id)"), from: self, options: .detail(embedInNav: true))
+            env.router.route(to: .parse("/groups/\(id)"), from: self, options: .detail)
         } else {
             guard let id = courses[indexPath.item]?.id else { return }
-            env.router.route(to: .parse("/courses/\(id)"), from: self, options: .detail(embedInNav: true))
+            env.router.route(to: .parse("/courses/\(id)"), from: self, options: .detail)
         }
     }
 }
