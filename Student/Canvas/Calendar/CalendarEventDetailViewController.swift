@@ -174,8 +174,6 @@ class CalendarEventDetailViewController: UIViewController {
     }
 
     override func loadView() {
-        let spacing = CGFloat(16)
-        
         scrollView.backgroundColor = .white
         self.view = scrollView
         
@@ -208,7 +206,7 @@ class CalendarEventDetailViewController: UIViewController {
         NSLayoutConstraint.activate([
             scrollView.readableContentGuide.leadingAnchor.constraint(equalTo: stack.leadingAnchor),
             scrollView.readableContentGuide.trailingAnchor.constraint(equalTo: stack.trailingAnchor),
-            scrollView.topAnchor.constraint(equalTo: stack.topAnchor, constant: -spacing),
+            scrollView.topAnchor.constraint(equalTo: stack.topAnchor),
         ])
     }
 }

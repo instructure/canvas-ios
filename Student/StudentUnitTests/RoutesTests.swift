@@ -62,9 +62,6 @@ class RoutesTests: XCTestCase {
     }
 
     func testCalendar() {
-        ExperimentalFeature.studentCalendar.isEnabled = false
-        XCTAssertNil(router.match(.parse("/calendar")))
-        ExperimentalFeature.studentCalendar.isEnabled = true
         XCTAssert(router.match(.parse("/calendar")) is PlannerViewController)
 
         // XCTAssert(router.match(.parse("/calendar?event_id=7")) is CalendarEventDetailViewController)
