@@ -20,6 +20,16 @@ workflows:
 
   danger:
     steps:
+    - &set-time-zone
+      script:
+        title: Set time zone
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -exo pipefail
+
+            sudo systemsetup -settimezone America/Denver
     - script:
         title: Set up environment variables
         inputs:
@@ -28,7 +38,6 @@ workflows:
             #!/bin/zsh
             set -exo pipefail
 
-            sudo systemsetup -settimezone America/Denver
             if printf "%s\n" "$BITRISE_GIT_MESSAGE" | grep -iE "\[run.nightly\]"; then
                 envman add --key RUN_NIGHTLY --value YES
             fi
@@ -542,6 +551,7 @@ workflows:
 
   beta-tests:
     steps:
+    - *set-time-zone
     - *secrets
     - cache-pull: {}
     - *set-mtime
