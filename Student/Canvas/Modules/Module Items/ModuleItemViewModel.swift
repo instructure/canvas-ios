@@ -147,7 +147,7 @@ class ModuleItemViewModel: NSObject {
         
         let type = self.moduleItem.value?.contentType
         vm.accessoryView <~ SignalProducer.combineLatest(self.completed.producer, self.locked.producer).map { (completed, locked) -> UIView? in
-            if locked && type != .assignment {
+            if locked {
                 let imageView = UIImageView(image: .icon(.lock))
                 imageView.tintColor = .prettyGray()
                 return imageView
