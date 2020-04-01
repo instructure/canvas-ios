@@ -302,31 +302,31 @@ extension FileDetailsViewController: QLPreviewControllerDataSource, QLPreviewCon
     }
 }
 
-extension FileDetailsViewController: PSPDFViewControllerDelegate {
+extension FileDetailsViewController: PDFViewControllerDelegate {
     func embedPDFView(for url: URL) {
         guard DocViewerViewController.hasPSPDFKitLicense else {
             return embedWebView(for: url)
         }
         stylePSPDFKit()
 
-        let document = PSPDFDocument(url: url)
+        let document = Document(url: url)
         document.annotationSaveMode = .embedded
-        let controller = PSPDFViewController(document: document, configuration: PSPDFConfiguration { (builder) -> Void in
+        let controller = PDFViewController(document: document, configuration: PDFConfiguration { (builder) -> Void in
             docViewerConfigurationBuilder(builder)
             builder.editableAnnotationTypes = [ .link, .highlight, .underline, .strikeOut, .squiggly, .freeText, .ink, .square, .circle, .line, .polygon, .eraser ]
             builder.propertiesForAnnotations[.square] = [["color"], ["lineWidth"]]
             builder.propertiesForAnnotations[.circle] = [["color"], ["lineWidth"]]
             builder.propertiesForAnnotations[.line] = [["color"], ["lineWidth"]]
             builder.propertiesForAnnotations[.polygon] = [["color"], ["lineWidth"]]
-            builder.sharingConfigurations = [ PSPDFDocumentSharingConfiguration { builder in
+            builder.sharingConfigurations = [ DocumentSharingConfiguration { builder in
                 builder.annotationOptions = .flatten
                 builder.pageSelectionOptions = .all
             }, ]
 
             // Override the override
-            builder.overrideClass(PSPDFAnnotationToolbar.self, with: PSPDFAnnotationToolbar.self)
+            builder.overrideClass(AnnotationToolbar.self, with: AnnotationToolbar.self)
         })
-        controller.annotationToolbarController?.toolbar.toolbarPosition = .positionLeft
+        controller.annotationToolbarController?.toolbar.toolbarPosition = .left
         if #available(iOS 13, *) {
             let appearance = UIToolbarAppearance()
             appearance.configureWithOpaqueBackground()
@@ -351,32 +351,25 @@ extension FileDetailsViewController: PSPDFViewControllerDelegate {
 
     func saveAnnotations() {
         for child in children {
-            _ = try? (child as? PSPDFViewController)?.document?.save()
+            _ = try? (child as? PDFViewController)?.document?.save()
         }
     }
 
-    public func pdfViewController(
-        _ pdfController: PSPDFViewController,
-        shouldShow menuItems: [PSPDFMenuItem],
-        atSuggestedTargetRect rect: CGRect,
-        for annotations: [PSPDFAnnotation]?,
-        in annotationRect: CGRect,
-        on pageView: PSPDFPageView
-    ) -> [PSPDFMenuItem] {
+    public func pdfViewController(_ pdfController: PDFViewController, shouldShow menuItems: [MenuItem], atSuggestedTargetRect rect: CGRect, forSelectedText selectedText: String, in textRect: CGRect, on pageView: PDFPageView) -> [MenuItem] {
         return menuItems.compactMap { item in
-            guard item.identifier != PSPDFTextMenu.annotationMenuNote.rawValue else { return nil }
-            if item.identifier == PSPDFTextMenu.annotationMenuInspector.rawValue {
+            guard item.identifier != TextMenu.annotationMenuNote.rawValue else { return nil }
+            if item.identifier == TextMenu.annotationMenuInspector.rawValue {
                 item.title = NSLocalizedString("Style", bundle: .core, comment: "")
             }
-            if item.identifier == PSPDFTextMenu.annotationMenuRemove.rawValue {
-                return PSPDFMenuItem(title: item.title, image: .icon(.trash), block: item.actionBlock, identifier: item.identifier)
+            if item.identifier == TextMenu.annotationMenuRemove.rawValue {
+                return MenuItem(title: item.title, image: .icon(.trash), block: item.actionBlock, identifier: item.identifier)
             }
             return item
         }
     }
 
-    public func pdfViewController(_ pdfController: PSPDFViewController, shouldShow controller: UIViewController, options: [String: Any]? = nil, animated: Bool) -> Bool {
-        if controller is PSPDFStampViewController { return false }
+    public func pdfViewController(_ pdfController: PDFViewController, shouldShow controller: UIViewController, options: [String: Any]? = nil, animated: Bool) -> Bool {
+        if controller is StampViewController { return false }
         if controller is UIActivityViewController {
             _ = try? pdfController.document?.save()
         }

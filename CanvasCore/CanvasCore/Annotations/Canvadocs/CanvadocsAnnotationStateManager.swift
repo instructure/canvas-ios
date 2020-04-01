@@ -20,8 +20,8 @@ import UIKit
 import PSPDFKit
 import PSPDFKitUI
 
-public class CanvadocsAnnotationStateManager: PSPDFAnnotationStateManager {
-    override public func stateShowsStylePicker(_ state: AnnotationString?) -> Bool {
+public class CanvadocsAnnotationStateManager: AnnotationStateManager {
+    override public func stateShowsStylePicker(_ state: Annotation.Tool?) -> Bool {
         if state == .stamp {
             return true
         }

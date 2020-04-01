@@ -20,49 +20,49 @@ import UIKit
 import PSPDFKit
 import PSPDFKitUI
 
-public class DocViewerAnnotationToolbar: PSPDFAnnotationToolbar {
+public class DocViewerAnnotationToolbar: AnnotationToolbar {
     public var showDoneButton: Bool = true
 
     override public var doneButton: UIButton? {
         return showDoneButton ? super.doneButton : nil
     }
 
-    public override init(annotationStateManager: PSPDFAnnotationStateManager) {
+    public override init(annotationStateManager: AnnotationStateManager) {
         super.init(annotationStateManager: annotationStateManager)
 
-        let commentGroupItem = PSPDFAnnotationGroupItem(type: .stamp, variant: nil) { (_, _, _) in
+        let commentGroupItem = AnnotationToolConfiguration.ToolItem(type: .stamp, variant: nil) { (_, _, _) in
             return UIImage.icon(.marker, .solid)
         }
-        let commentGroup = PSPDFAnnotationGroup(items: [commentGroupItem])
+        let commentGroup = AnnotationToolConfiguration.ToolGroup(items: [commentGroupItem])
 
-        let highlightGroupItem = PSPDFAnnotationGroupItem(type: .highlight, variant: nil, configurationBlock: { (_, _, _) in
+        let highlightGroupItem = AnnotationToolConfiguration.ToolItem(type: .highlight, variant: nil, configurationBlock: { (_, _, _) in
             return UIImage.icon(.highlighter, .solid)
         })
-        let highlightGroup = PSPDFAnnotationGroup(items: [highlightGroupItem])
+        let highlightGroup = AnnotationToolConfiguration.ToolGroup(items: [highlightGroupItem])
 
-        let freeTextGroupItem = PSPDFAnnotationGroupItem(type: .freeText, variant: nil) { (_, _, _) in
+        let freeTextGroupItem = AnnotationToolConfiguration.ToolItem(type: .freeText, variant: nil) { (_, _, _) in
             return UIImage.icon(.text, .line)
         }
-        let freeTextGroup = PSPDFAnnotationGroup(items: [freeTextGroupItem])
+        let freeTextGroup = AnnotationToolConfiguration.ToolGroup(items: [freeTextGroupItem])
 
-        let strikeoutGroupItem = PSPDFAnnotationGroupItem(type: .strikeOut, variant: nil, configurationBlock: { (_, _, _) in
+        let strikeoutGroupItem = AnnotationToolConfiguration.ToolItem(type: .strikeOut, variant: nil, configurationBlock: { (_, _, _) in
             return UIImage.icon(.strikethrough, .solid)
         })
-        let strikeoutGroup = PSPDFAnnotationGroup(items: [strikeoutGroupItem])
+        let strikeoutGroup = AnnotationToolConfiguration.ToolGroup(items: [strikeoutGroupItem])
 
-        let inkGroupItem = PSPDFAnnotationGroupItem(type: .ink, variant: nil) { (_, _, _) in
+        let inkGroupItem = AnnotationToolConfiguration.ToolItem(type: .ink, variant: nil) { (_, _, _) in
             return UIImage.icon(.paint, .solid)
         }
-        let inkGroup = PSPDFAnnotationGroup(items: [inkGroupItem])
+        let inkGroup = AnnotationToolConfiguration.ToolGroup(items: [inkGroupItem])
 
-        let boxGroupItem = PSPDFAnnotationGroupItem(type: .square, variant: nil) { (_, _, _) in
+        let boxGroupItem = AnnotationToolConfiguration.ToolItem(type: .square, variant: nil) { (_, _, _) in
             return UIImage.icon(.box, .solid)
         }
-        let boxGroup = PSPDFAnnotationGroup(items: [boxGroupItem])
+        let boxGroup = AnnotationToolConfiguration.ToolGroup(items: [boxGroupItem])
 
-        let eraserGroupItem = PSPDFAnnotationGroupItem(type: .eraser, variant: nil)
-        let eraserGroup = PSPDFAnnotationGroup(items: [eraserGroupItem])
+        let eraserGroupItem = AnnotationToolConfiguration.ToolItem(type: .eraser, variant: nil)
+        let eraserGroup = AnnotationToolConfiguration.ToolGroup(items: [eraserGroupItem])
 
-        self.configurations = [PSPDFAnnotationToolbarConfiguration(annotationGroups: [commentGroup, highlightGroup, freeTextGroup, strikeoutGroup, boxGroup, inkGroup, eraserGroup])]
+        self.configurations = [AnnotationToolConfiguration(annotationGroups: [commentGroup, highlightGroup, freeTextGroup, strikeoutGroup, boxGroup, inkGroup, eraserGroup])]
     }
 }

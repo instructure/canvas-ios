@@ -29,16 +29,16 @@ class CommentListViewController: UIViewController {
     @IBOutlet weak var replyViewHeight: NSLayoutConstraint?
     @IBOutlet weak var tableView: UITableView?
 
-    var annotation = PSPDFAnnotation()
+    var annotation = Annotation()
     var comments = [DocViewerCommentReplyAnnotation]()
-    var document: PSPDFDocument?
+    var document: Document?
     var keyboard: KeyboardTransitioning?
     var metadata: APIDocViewerAnnotationsMetadata?
 
     static func create(
         comments: [DocViewerCommentReplyAnnotation],
-        inReplyTo annotation: PSPDFAnnotation,
-        document: PSPDFDocument,
+        inReplyTo annotation: Annotation,
+        document: Document,
         metadata: APIDocViewerAnnotationsMetadata
     ) -> CommentListViewController {
         let controller = loadFromStoryboard()
@@ -89,7 +89,7 @@ class CommentListViewController: UIViewController {
 
     @objc func donePressed(_ sender: UIBarButtonItem) {
         let deleted = comments.filter({ $0.isDeleted })
-        if !deleted.isEmpty { document?.remove(deleted, options: nil) }
+        if !deleted.isEmpty { document?.remove(annotations: deleted, options: nil) }
         dismiss(animated: true, completion: nil)
     }
 
@@ -101,7 +101,7 @@ class CommentListViewController: UIViewController {
         reply.user = metadata?.user_id
         reply.userName = metadata?.user_name
         comments.append(reply)
-        document?.add([reply], options: nil)
+        document?.add(annotations: [reply], options: nil)
         textView.text = ""
         textViewDidChange(textView)
         tableView?.insertRows(at: [ IndexPath(row: comments.count - 1, section: 0) ], with: .automatic)
@@ -134,7 +134,7 @@ extension CommentListViewController: CommentListCellDelegate {
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: NSLocalizedString("Delete", bundle: .core, comment: ""), style: .destructive, handler: { _ in
             guard let index = self.comments.firstIndex(of: comment) else { return }
-            self.document?.remove([comment], options: nil)
+            self.document?.remove(annotations: [comment], options: nil)
             self.comments.remove(at: index)
             self.tableView?.deleteRows(at: [ IndexPath(row: index, section: 0) ], with: .automatic)
         }))
