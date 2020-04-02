@@ -107,7 +107,6 @@ class CalendarViewController: UIViewController {
         daysPageController.dataSource = self
         daysPageController.delegate = self
         daysPageController.setCurrentPage(CalendarDaysViewController.create(selectedDate: selectedDate, delegate: delegate))
-        daysPageController.scrollView.canCancelContentTouches = true
 
         updateSelectedDate(selectedDate)
     }

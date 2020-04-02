@@ -68,7 +68,6 @@ public class PlannerViewController: UIViewController {
             end: selectedDate.startOfDay().addDays(1),
             delegate: self
         ))
-        listPageController.scrollView.canCancelContentTouches = true
 
         embed(calendar, in: view) { child, container in
             child.view.pinToLeftAndRightOfSuperview()
