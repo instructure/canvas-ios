@@ -152,6 +152,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
         arc.refresh()
         onlineUpload.refresh()
 
+        NotificationCenter.default.addObserver(self, selector: #selector(quizRefresh(_:)), name: .quizRefresh, object: nil)
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(uploadSubmitted(notification:)),
@@ -167,6 +168,12 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
 
         submissionButtonPresenter.arcID = .pending
         arc.refresh(force: true)
+    }
+
+    @objc func quizRefresh(_ notification: Notification) {
+        guard notification.userInfo?["quizID"] as? String == assignment?.quizID else { return }
+        assignments.refresh(force: true)
+        quizzes?.refresh(force: true)
     }
 
     @objc func uploadSubmitted(notification: Notification) {
