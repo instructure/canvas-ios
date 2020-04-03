@@ -83,6 +83,8 @@ const whitelist = [
   'lti',
   'marker',
   'mini-arrow-down',
+  'mini-arrow-end',
+  'mini-arrow-start',
   'mini-arrow-up',
   'module',
   'more',

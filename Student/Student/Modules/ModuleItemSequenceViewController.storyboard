@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,33 +18,44 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xc1-o8-iDS">
-                                <rect key="frame" x="0.0" y="44" width="414" height="746"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="762"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iGP-7W-vfy">
-                                <rect key="frame" x="0.0" y="790" width="414" height="72"/>
+                                <rect key="frame" x="0.0" y="806" width="414" height="56"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywu-lr-3Bv">
-                                        <rect key="frame" x="374" y="21" width="32" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywu-lr-3Bv" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                                        <rect key="frame" x="338" y="16" width="60" height="24"/>
                                         <state key="normal" title="Next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="miniArrowEndSolid"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="goNext" destination="lhr-LL-71f" eventType="touchUpInside" id="SWm-HG-aok"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lE8-Sf-NiN">
-                                        <rect key="frame" x="8" y="21" width="59" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lE8-Sf-NiN" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="16" width="90" height="24"/>
                                         <state key="normal" title="Previous"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="miniArrowStartSolid"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="goPrevious" destination="lhr-LL-71f" eventType="touchUpInside" id="Y6q-i1-Qug"/>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" name="backgroundLight"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="ywu-lr-3Bv" secondAttribute="trailing" constant="8" id="G9g-5G-GfF"/>
+                                    <constraint firstAttribute="trailing" secondItem="ywu-lr-3Bv" secondAttribute="trailing" constant="16" id="E8f-HO-IHc"/>
                                     <constraint firstItem="ywu-lr-3Bv" firstAttribute="centerY" secondItem="iGP-7W-vfy" secondAttribute="centerY" id="R3l-h5-iZ9"/>
-                                    <constraint firstAttribute="height" constant="72" id="ZAv-eD-KKl"/>
-                                    <constraint firstItem="lE8-Sf-NiN" firstAttribute="leading" secondItem="iGP-7W-vfy" secondAttribute="leading" constant="8" id="hXK-vS-c1X"/>
+                                    <constraint firstAttribute="height" constant="56" id="ZAv-eD-KKl"/>
                                     <constraint firstItem="lE8-Sf-NiN" firstAttribute="centerY" secondItem="iGP-7W-vfy" secondAttribute="centerY" id="k2t-rq-UuN"/>
+                                    <constraint firstItem="lE8-Sf-NiN" firstAttribute="leading" secondItem="iGP-7W-vfy" secondAttribute="leading" constant="16" id="xCF-9O-iFD"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sjW-dW-Pel" customClass="CircleProgressView" customModule="Core">
@@ -83,4 +95,9 @@
             <point key="canvasLocation" x="-275.36231884057975" y="-218.30357142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="backgroundLight">
+            <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
