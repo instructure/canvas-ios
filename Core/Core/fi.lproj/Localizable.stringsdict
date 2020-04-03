@@ -143,7 +143,7 @@
 			<key>one</key>
 			<string>%g piste</string>
 			<key>other</key>
-			<string>%g pistettä</string>
+			<string>%g pisteet</string>
 		</dict>
 	</dict>
 	<key>g_points</key>
@@ -157,9 +157,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>one</key>
-			<string>%g point</string>
+			<string>%g piste</string>
 			<key>other</key>
-			<string>%g points</string>
+			<string>%g pisteet</string>
 		</dict>
 	</dict>
 	<key>g_pts</key>

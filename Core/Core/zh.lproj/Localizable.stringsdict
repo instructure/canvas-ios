@@ -139,7 +139,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>other</key>
-			<string>%g points</string>
+			<string>%g分值</string>
 		</dict>
 	</dict>
 	<key>g_pts</key>

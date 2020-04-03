@@ -62,9 +62,6 @@ class RoutesTests: XCTestCase {
     }
 
     func testCalendar() {
-        ExperimentalFeature.studentCalendar.isEnabled = false
-        XCTAssertNil(router.match(.parse("/calendar")))
-        ExperimentalFeature.studentCalendar.isEnabled = true
         XCTAssert(router.match(.parse("/calendar")) is PlannerViewController)
 
         // XCTAssert(router.match(.parse("/calendar?event_id=7")) is CalendarEventDetailViewController)
@@ -125,6 +122,15 @@ class RoutesTests: XCTestCase {
 
     func testPeopleListGroup() {
         XCTAssert(router.match(Route.people(forGroup: "1").url) is PeopleListViewController)
+    }
+
+    func testModules() {
+        ExperimentalFeature.studentModules.isEnabled = false
+        XCTAssert(router.match(Route.modules(forCourse: "1").url) is ModulesTableViewController)
+        XCTAssert(router.match(Route.module(forCourse: "1", moduleID: "1").url) is ModuleDetailsViewController)
+        ExperimentalFeature.studentModules.isEnabled = true
+        XCTAssert(router.match(Route.modules(forCourse: "1").url) is ModuleListViewController)
+        XCTAssert(router.match(Route.module(forCourse: "1", moduleID: "1").url) is ModuleListViewController)
     }
 
     func testFallbackNonHTTP() {

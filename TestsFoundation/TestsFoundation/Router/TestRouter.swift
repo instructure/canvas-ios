@@ -41,7 +41,6 @@ public class TestRouter: RouterProtocol {
 
     @discardableResult
     public func dismiss() -> UIViewController? {
-        assert(presented != nil)
         return viewControllerCalls.popLast()?.0
     }
 

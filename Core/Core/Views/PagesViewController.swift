@@ -49,6 +49,7 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
         scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
+        scrollView.canCancelContentTouches = true
 
         embedPage(currentPage, at: 0)
     }
@@ -83,11 +84,12 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let frame = scrollView.frame.inset(by: scrollView.safeAreaInsets)
         let visible = CGRect(
             x: scrollView.contentOffset.x,
             y: 0,
-            width: scrollView.frame.width,
-            height: scrollView.frame.height
+            width: frame.width,
+            height: frame.height
         )
         var newValue: [UIViewController] = []
         if let left = leftPage, left.view.frame.intersects(visible) {
@@ -184,8 +186,9 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
     }
 
     func layout() {
-        let width = scrollView.frame.width
-        let height = scrollView.frame.height
+        let frame = scrollView.frame.inset(by: scrollView.safeAreaInsets)
+        let width = frame.width
+        let height = frame.height
         let views = scrollView.subviews.filter({ $0.tag == 1 })
         for (i, subview) in views.enumerated() {
             subview.frame = CGRect(x: CGFloat(i) * width, y: 0, width: width, height: height)

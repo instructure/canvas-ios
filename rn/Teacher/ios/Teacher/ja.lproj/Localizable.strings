@@ -74,16 +74,10 @@
 "Late" = "遅れている";
 
 /* No comment provided by engineer. */
-"Loading more modules..." = "モジュールをもっと読み込む...";
-
-/* No comment provided by engineer. */
 "Mark All as Present" = "全員を出席としてマークする";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "出席としてマークする";
-
-/* No comment provided by engineer. */
-"Modules" = "モジュール";
 
 /* No comment provided by engineer. */
 "Post Grades" = "成績表の掲示";
@@ -105,9 +99,6 @@
 
 /* No comment provided by engineer. */
 "Test Student" = "受講生をテストする";
-
-/* No comment provided by engineer. */
-"This module is empty." = "このモジュールは空白です。";
 
 /* No comment provided by engineer. */
 "To Do" = "するべきこと";

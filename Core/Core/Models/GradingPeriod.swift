@@ -26,6 +26,8 @@ public final class GradingPeriod: NSManagedObject {
     @NSManaged public var title: String?
     @NSManaged public var courseID: String
     @NSManaged public var assignments: Set<Assignment>
+    @NSManaged public var startDate: Date?
+    @NSManaged public var endDate: Date?
 
     @discardableResult
     public static func save(_ item: APIGradingPeriod, courseID: String, in context: NSManagedObjectContext) -> GradingPeriod {
@@ -34,7 +36,20 @@ public final class GradingPeriod: NSManagedObject {
         model.id = item.id.value
         model.title = item.title
         model.courseID = courseID
+        model.startDate = item.start_date
+        model.endDate = item.end_date
 
         return model
+    }
+}
+
+extension Array where Element: GradingPeriod {
+    public var current: Element? {
+        for e in self {
+            if let start = e.startDate, let end = e.endDate, Clock.now >= start && Clock.now <= end {
+                return e
+            }
+        }
+        return nil
     }
 }

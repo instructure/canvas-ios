@@ -24,20 +24,13 @@ import Core
 
 func rootViewController(_ session: Session) -> UIViewController {
     let tabs = CanvasTabBarController()
-
-    do {
-        tabs.viewControllers = [
-            dashboardTab(session: session),
-            calendarTab(session: session),
-            todoTab(),
-            try NotificationsTab(session: session),
-            inboxTab(),
-        ]
-    } catch let e as NSError {
-        delay(0.1) {
-            ErrorReporter.reportError(e, from: tabs)
-        }
-    }
+    tabs.viewControllers = [
+        dashboardTab(session: session),
+        calendarTab(session: session),
+        todoTab(),
+        notificationsTab(),
+        inboxTab(),
+    ]
 
     let paths = [ "/", "/calendar", "/to-do", "/notifications", "/conversations" ]
     tabs.selectedIndex = AppEnvironment.shared.userDefaults?.landingPath
@@ -63,27 +56,17 @@ func dashboardTab(session: Session) -> UIViewController {
 }
 
 func calendarTab(session: Session) -> UIViewController {
-    let calendar: UIViewController
-    if ExperimentalFeature.studentCalendar.isEnabled {
-        let split = HelmSplitViewController()
-        split.viewControllers = [
-            UINavigationController(rootViewController: PlannerViewController.create()),
-            UINavigationController(rootViewController: EmptyViewController()),
-        ]
-        split.view.tintColor = Brand.shared.primary.ensureContrast(against: .named(.backgroundLightest))
-        calendar = split
-    } else {
-        let month = CalendarMonthViewController.new(session)
-        month.routeToURL = { url in
-            AppEnvironment.shared.router.route(to: url, from: month)
-        }
-        calendar = UINavigationController(rootViewController: month)
-    }
-    calendar.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar page title")
-    calendar.tabBarItem.image = .icon(.calendarMonth, .line)
-    calendar.tabBarItem.selectedImage = .icon(.calendarMonth, .solid)
-    calendar.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
-    return calendar
+    let split = HelmSplitViewController()
+    split.viewControllers = [
+        UINavigationController(rootViewController: PlannerViewController.create()),
+        UINavigationController(rootViewController: EmptyViewController()),
+    ]
+    split.view.tintColor = Brand.shared.primary.ensureContrast(against: .named(.backgroundLightest))
+    split.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar page title")
+    split.tabBarItem.image = .icon(.calendarMonth, .line)
+    split.tabBarItem.selectedImage = .icon(.calendarMonth, .solid)
+    split.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
+    return split
 }
 
 func todoTab() -> UIViewController {
@@ -97,4 +80,17 @@ func todoTab() -> UIViewController {
     todo.tabBarItem.selectedImage = .icon(.todoSolid)
     todo.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
     return todo
+}
+
+func notificationsTab() -> UIViewController {
+    let split = HelmSplitViewController()
+    split.viewControllers = [
+        UINavigationController(rootViewController: ActivityStreamViewController.create()),
+        UINavigationController(rootViewController: EmptyViewController()),
+    ]
+    split.tabBarItem.title = NSLocalizedString("Notifications", comment: "Notifications tab title")
+    split.tabBarItem.image = .icon(.alerts, .line)
+    split.tabBarItem.selectedImage = .icon(.alerts, .solid)
+    split.tabBarItem.accessibilityIdentifier = "TabBar.notificationsTab"
+    return split
 }

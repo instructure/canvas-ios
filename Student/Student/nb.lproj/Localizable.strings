@@ -209,9 +209,6 @@
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "Legg til mottakere";
 
-/* All Courses screen title */
-"All Courses" = "Alle emner";
-
 /* No comment provided by engineer. */
 "All Grading Periods" = "Alle vurderingsperioder";
 
@@ -549,9 +546,6 @@
 
 /* Button to edit a discussion entry */
 "Edit" = "Rediger";
-
-/* No comment provided by engineer. */
-"Edit Course" = "Redigere emne";
 
 /* Edit course list title
    Edit the items in the course list */
@@ -1064,9 +1058,6 @@
 /* No comment provided by engineer. */
 "Past" = "Tidligere";
 
-/* Past enrollments section title in All Courses screen */
-"Past Enrollments" = "Tidligere påmeldinger";
-
 /* People list title
    Title for People view controller */
 "People" = "Personer";
@@ -1211,12 +1202,6 @@
 
 /* Placeholder text in a search bar used to find conversation recipients */
 "Search for recipients" = "Søk etter mottakere";
-
-/* No comment provided by engineer. */
-"See All" = "Se alle";
-
-/* No comment provided by engineer. */
-"See All Courses" = "Se alle emner";
 
 /* Title for a file picker window */
 "Select file(s)" = "Velg fil(er)";

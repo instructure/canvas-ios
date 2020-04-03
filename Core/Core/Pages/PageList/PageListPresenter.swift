@@ -80,16 +80,11 @@ class PageListPresenter: PageViewLoggerPresenterProtocol {
         group?.refresh()
 
         NotificationCenter.default.addObserver(self, selector: #selector(pageCreated), name: Notification.Name("page-created"), object: nil)
-
-        if ExperimentalFeature.newPageDetails.isEnabled == false {
-            NotificationCenter.default.addObserver(self, selector: #selector(refreshPages), name: Notification.Name("refresh-pages"), object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(refreshPages), name: Notification.Name("page-edit"), object: nil)
-        }
     }
 
     func select(_ page: Page, from view: UIViewController) {
         guard let url = page.htmlURL else { return }
-        env.router.route(to: url, from: view, options: .detail(embedInNav: true))
+        env.router.route(to: url, from: view, options: .detail)
     }
 
     func newPage(from view: UIViewController) {

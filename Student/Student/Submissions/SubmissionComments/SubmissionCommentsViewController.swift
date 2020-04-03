@@ -128,6 +128,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         })
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .student, comment: ""), style: .cancel))
         alert.popoverPresentationController?.sourceView = sender
+        alert.popoverPresentationController?.sourceRect = sender.bounds
         present(alert, animated: true)
     }
 

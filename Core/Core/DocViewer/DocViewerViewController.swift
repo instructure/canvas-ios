@@ -41,14 +41,14 @@ public class DocViewerViewController: UIViewController {
     public internal(set) static var hasPSPDFKitLicense = false
 
     public static func setup(_ secret: Secret) {
-        if let key = secret.string {
-            PSPDFKitGlobal.setLicenseKey(key)
-            hasPSPDFKitLicense = true
-        }
-        stylePSPDFKit()
+        guard let key = secret.string, !hasPSPDFKitLicense else { return }
+        PSPDFKitGlobal.setLicenseKey(key)
+        hasPSPDFKitLicense = true
     }
 
     public static func create(filename: String, previewURL: URL?, fallbackURL: URL, navigationItem: UINavigationItem? = nil) -> DocViewerViewController {
+        stylePSPDFKit()
+
         let controller = loadFromStoryboard()
         controller.parentNavigationItem = navigationItem
         controller.filename = filename
@@ -67,12 +67,6 @@ public class DocViewerViewController: UIViewController {
         pdf.view.isHidden = true
         pdf.updateConfiguration(builder: docViewerConfigurationBuilder)
         pdf.delegate = self
-
-        let share = UIBarButtonItem(barButtonSystemItem: .action, target: pdf.activityButtonItem.target, action: pdf.activityButtonItem.action)
-        share.accessibilityIdentifier = "DocViewer.shareButton"
-        let search = UIBarButtonItem(barButtonSystemItem: .search, target: pdf.searchButtonItem.target, action: pdf.searchButtonItem.action)
-        search.accessibilityIdentifier = "DocViewer.searchButton"
-        parentNavigationItem?.rightBarButtonItems = [ share, search ]
 
         syncAnnotationsButton.isHidden = true
         syncAnnotationsButton.setTitleColor(.named(.white), for: .normal)
@@ -132,6 +126,12 @@ public class DocViewerViewController: UIViewController {
         pdf.documentViewController?.scrollToSpread(at: 0, scrollPosition: .start, animated: false)
         pdf.view.isHidden = false
         loadingView.isHidden = true
+
+        let share = UIBarButtonItem(barButtonSystemItem: .action, target: pdf.activityButtonItem.target, action: pdf.activityButtonItem.action)
+        share.accessibilityIdentifier = "DocViewer.shareButton"
+        let search = UIBarButtonItem(barButtonSystemItem: .search, target: pdf.searchButtonItem.target, action: pdf.searchButtonItem.action)
+        search.accessibilityIdentifier = "DocViewer.searchButton"
+        parentNavigationItem?.rightBarButtonItems = [ share, search ]
     }
 
     public func showError(_ error: Error) {

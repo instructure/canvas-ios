@@ -134,6 +134,13 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
         update()
     }
 
+    @objc func quizRefresh(_ notification: Notification) {
+        guard notification.userInfo?["quizID"] as? String == assignment.first?.quizID else { return }
+        assignment.refresh(force: true)
+        submissions.refresh(force: true)
+        quizzes?.refresh(force: true)
+    }
+
     func select(attempt: Int, fileID: String? = nil) {
         selectedAttempt = attempt
         selectedFileID = fileID
@@ -151,7 +158,7 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
     }
 
     func viewControllerForContent() -> UIViewController? {
-        guard let submission = currentSubmission, let assignment = currentAssignment else {
+        guard let submission = currentSubmission, let assignment = currentAssignment, lockedEmptyViewIsHidden() else {
             return nil
         }
 

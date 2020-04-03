@@ -159,7 +159,7 @@
 			<key>one</key>
 			<string>%g point</string>
 			<key>other</key>
-			<string>%g points</string>
+			<string>%g point</string>
 		</dict>
 	</dict>
 	<key>g_pts</key>

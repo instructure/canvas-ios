@@ -20,6 +20,9 @@
 "Act as User" = "Opptre som bruker";
 
 /* No comment provided by engineer. */
+"Add Planner Note" = "Legg til merknad";
+
+/* No comment provided by engineer. */
 "Added To Conversation" = "Lagt til i samtalen";
 
 /* No comment provided by engineer. */
@@ -146,6 +149,9 @@
 "Choose Profile Picture" = "Velg profilbilde";
 
 /* No comment provided by engineer. */
+"Clear Course" = "Slett emne";
+
+/* No comment provided by engineer. */
 "Clear filter" = "Slett filter";
 
 /* No comment provided by engineer. */
@@ -221,6 +227,9 @@
 "Dashboard" = "Dashbord";
 
 /* No comment provided by engineer. */
+"Date" = "Dato";
+
+/* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
@@ -237,6 +246,9 @@
 
 /* No comment provided by engineer. */
 "Describe the problem" = "Beskriv problemet";
+
+/* No comment provided by engineer. */
+"Description" = "Beskrivelse";
 
 /* No comment provided by engineer. */
 "Designer" = "Designer";
@@ -359,7 +371,13 @@
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go to today" = "Gå til idag";
 
 /* No comment provided by engineer. */
 "Grading" = "Karaktersetting";
@@ -411,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Invitasjon";
+
+/* No comment provided by engineer. */
+"It looks like a great day to rest, relax, and recharge." = "Det ser ut som dette er en flott dag til å slappe av og lade batteriene.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Det virker som du ikke er registrert i noen emner for %@. En av våre andre apper passer kanskje bedre for deg. Trykk på en for å gå til App Store.";
@@ -512,6 +533,9 @@
 "Never" = "Aldri";
 
 /* No comment provided by engineer. */
+"New To Do" = "Ny i gjøremål";
+
+/* No comment provided by engineer. */
 "No Content" = "Uten innhold";
 
 /* No comment provided by engineer. */
@@ -519,6 +543,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "Ingen forfallsdato";
+
+/* No comment provided by engineer. */
+"No Events Today!" = "Ingen arrangementer i dag!";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Det ble ikke funnet noen bilder i bildevelger";
@@ -608,6 +635,9 @@
 "Privacy Policy" = "Personvernregler";
 
 /* No comment provided by engineer. */
+"Profile Menu" = "Profil meny";
+
+/* No comment provided by engineer. */
 "purple" = "lilla";
 
 /* Description for Push Notification channel */
@@ -660,6 +690,9 @@
 
 /* No comment provided by engineer. */
 "See what's new." = "Se hva som er nytt.";
+
+/* No comment provided by engineer. */
+"Select Course" = "Velg emne";
 
 /* No comment provided by engineer. */
 "Select One" = "Velg én";
@@ -824,6 +857,9 @@
 "Time elapsed" = "Brukt tid";
 
 /* No comment provided by engineer. */
+"Title..." = "Tittel ...";
+
+/* No comment provided by engineer. */
 "to %@" = "til %@";
 
 /* No comment provided by engineer. */
@@ -885,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Website URL" = "Websidens URL";
+
+/* No comment provided by engineer. */
+"Week of %@" = "Uker med %@";
 
 /* No comment provided by engineer. */
 "Weekly" = "Ukentlig";

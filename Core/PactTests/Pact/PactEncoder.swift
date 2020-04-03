@@ -136,10 +136,18 @@ extension PactEncoder: SingleValueEncodingContainer {
     func encode(_ value: UInt32) throws { storage = value as NSObject }
     func encode(_ value: UInt64) throws { storage = value as NSObject }
 
+    static var nonCustom: Set<String> = []
+
     func encode<T: Encodable>(_ value: T) throws {
         if let value = value as? PactEncodable {
             try value.pactEncode(to: self)
         } else {
+            let typeName = "\(T.self)"
+            if !PactEncoder.nonCustom.contains(typeName) {
+                let path = (codingPath.map { $0.stringValue }).joined(separator: ".")
+                print("no custom pact encoding for type \(typeName) at path \(path)")
+                PactEncoder.nonCustom.insert(typeName)
+            }
             try value.encode(to: self)
         }
     }

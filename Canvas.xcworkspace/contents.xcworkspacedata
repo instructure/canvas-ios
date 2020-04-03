@@ -14,10 +14,49 @@
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
    <Group
-      location = "group:rn"
-      name = "rn">
+      location = "group:rn/Teacher"
+      name = "rn/Teacher">
       <FileRef
-         location = "group:Teacher">
+         location = "group:flow">
+      </FileRef>
+      <FileRef
+         location = "group:i18n">
+      </FileRef>
+      <FileRef
+         location = "group:lib">
+      </FileRef>
+      <FileRef
+         location = "group:src">
+      </FileRef>
+      <FileRef
+         location = "group:test">
+      </FileRef>
+      <FileRef
+         location = "group:app.json">
+      </FileRef>
+      <FileRef
+         location = "group:babel.config.js">
+      </FileRef>
+      <FileRef
+         location = "group:index.ios.js">
+      </FileRef>
+      <FileRef
+         location = "group:launchPackager.command">
+      </FileRef>
+      <FileRef
+         location = "group:metro.config.js">
+      </FileRef>
+      <FileRef
+         location = "group:package.json">
+      </FileRef>
+      <FileRef
+         location = "group:README.md">
+      </FileRef>
+      <FileRef
+         location = "group:rn-mods.sh">
+      </FileRef>
+      <FileRef
+         location = "group:yarn.lock">
       </FileRef>
    </Group>
    <FileRef

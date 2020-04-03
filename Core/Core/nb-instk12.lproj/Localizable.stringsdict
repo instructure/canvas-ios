@@ -233,9 +233,9 @@
 			<key>many</key>
 			<string>%g points</string>
 			<key>one</key>
-			<string>%g point</string>
+			<string>%g peke</string>
 			<key>other</key>
-			<string>%g points</string>
+			<string>%g poeng</string>
 			<key>two</key>
 			<string>%g points</string>
 			<key>zero</key>

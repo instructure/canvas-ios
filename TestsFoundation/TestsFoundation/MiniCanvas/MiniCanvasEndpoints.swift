@@ -105,7 +105,7 @@ enum MiniCanvasEndpoints {
                     quizID: assignment.api.quiz_id
                 )
             }
-            return APIAssignmentListResponse.make(gradingPeriods: [], groups: [.make(assignments: assignments)])
+            return APIAssignmentListResponse.make(groups: [.make(assignments: assignments)])
         },
 
         // MARK: Brand

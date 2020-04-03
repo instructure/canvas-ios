@@ -62,6 +62,7 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = NSLocalizedString("Notifications", comment: "Notifications tab title")
         navigationItem.leftBarButtonItem = profileButton
         view.backgroundColor = .named(.backgroundLightest)
         setupTableView()
@@ -73,6 +74,7 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         startTrackingTimeOnViewController()
+        navigationController?.navigationBar.useGlobalNavStyle()
     }
 
     public override func viewWillDisappear(_ animated: Bool) {
@@ -138,7 +140,7 @@ extension ActivityStreamViewController: UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let a = activities[indexPath], let url = a.htmlURL else { return }
-        env.router.route(to: url, from: self, options: .detail(embedInNav: true))
+        env.router.route(to: url, from: self, options: .detail)
     }
 }
 

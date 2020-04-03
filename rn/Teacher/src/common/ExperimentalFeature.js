@@ -48,13 +48,9 @@ export default class ExperimentalFeature {
 // *** Please stay in sync with Core/AppEnvironment/ExperimentalFlags.swift ***
 // There is no automatic syncing of individual flags, since they can't be async
 // and should be static.
-ExperimentalFeature.parent3 = new ExperimentalFeature('parent3')
 ExperimentalFeature.favoriteGroups = new ExperimentalFeature('favorite_groups')
-ExperimentalFeature.simpleDiscussionRenderer = new ExperimentalFeature('simple_discussion_renderer')
 ExperimentalFeature.graphqlSpeedGrader = new ExperimentalFeature('graphql_speed_grader')
 ExperimentalFeature.refreshTokens = new ExperimentalFeature('refresh_tokens')
 ExperimentalFeature.nativeDashboard = new ExperimentalFeature('native_dashboard')
-ExperimentalFeature.newPageDetails = new ExperimentalFeature('new_page_details')
-ExperimentalFeature.fileDetails = new ExperimentalFeature('file_details')
-ExperimentalFeature.assignmentListGraphQL = new ExperimentalFeature('assignment_list_graphql')
-ExperimentalFeature.testing = new ExperimentalFeature('testing')
+ExperimentalFeature.dashboardConferences = new ExperimentalFeature('dashboard_conferences')
+ExperimentalFeature.teacherStudentView = new ExperimentalFeature('teacher_student_view')

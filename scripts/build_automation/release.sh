@@ -23,7 +23,7 @@ set -e
 # set -x
 
 printHelp() {
-	echo "$0 <app name> <version> <bitrise app slug> <bitrise token>"
+	echo "yarn release <app name> <version> <bitrise app slug> <bitrise token>"
 	echo "    app name - (i.e. Student, Teacher, Parent)"
 	echo "    version - version for the next release"
 	echo "    *bitrise slug - bitrise slug for app url"
@@ -43,7 +43,7 @@ if [ -z ${2} ]; then
     exit 1
 fi
 
-CONFIG_FILE=release.config
+CONFIG_FILE="$(dirname "${BASH_SOURCE[0]}")/release.config"
 if [ -e $CONFIG_FILE ]
 then
 	source $CONFIG_FILE

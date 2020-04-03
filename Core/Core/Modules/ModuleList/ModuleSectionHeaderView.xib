@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ModuleSectionHeaderView" customModule="Core" customModuleProvider="target">
+            <connections>
+                <outlet property="collapsableIndicator" destination="Cc0-w5-zrP" id="WP6-7I-9g1"/>
+                <outlet property="publishedIconView" destination="gfV-EK-A87" id="IIa-rP-55K"/>
+                <outlet property="titleLabel" destination="4NE-AM-KWx" id="rib-Ss-7wW"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xwa-uh-Uxh" customClass="DividerView" customModule="Core" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="nGR-mE-hYi"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="587-C5-WKa">
+                    <rect key="frame" x="16" y="25" width="350" height="31"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Module Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4NE-AM-KWx" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="3.5" width="293" height="24"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold20"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="SCs-Vj-oh2">
+                            <rect key="frame" x="293" y="3.5" width="57" height="24"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="publishSolid" translatesAutoresizingMaskIntoConstraints="NO" id="gfV-EK-A87" customClass="PublishedIconView" customModule="Core">
+                                    <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                    <color key="tintColor" red="0.0" green="0.67450980392156867" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="24" id="7Gg-D8-aK5"/>
+                                        <constraint firstAttribute="height" constant="24" id="zty-p2-3gn"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="miniArrowUpSolid" translatesAutoresizingMaskIntoConstraints="NO" id="Cc0-w5-zrP" customClass="IconView" customModule="Core" customModuleProvider="target">
+                                    <rect key="frame" x="33" y="0.0" width="24" height="24"/>
+                                    <color key="tintColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="24" id="J63-QL-9Lw"/>
+                                        <constraint firstAttribute="height" constant="24" id="wy8-At-73e"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="textDarkest"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="miniArrowUpSolid"/>
+                                    </userDefinedRuntimeAttributes>
+                                </imageView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JmO-Tg-r8P" customClass="DividerView" customModule="Core" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="64" width="375" height="1"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="Haw-DN-jMV"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Xwa-uh-Uxh" secondAttribute="trailing" id="1k3-Wb-XTv"/>
+                <constraint firstItem="JmO-Tg-r8P" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="B1I-Ez-3Yy"/>
+                <constraint firstItem="Xwa-uh-Uxh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Eez-pp-hJa"/>
+                <constraint firstItem="587-C5-WKa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="HZe-Na-ctb"/>
+                <constraint firstItem="Xwa-uh-Uxh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="L4y-Rd-H59"/>
+                <constraint firstItem="JmO-Tg-r8P" firstAttribute="top" secondItem="587-C5-WKa" secondAttribute="bottom" constant="8" id="UOG-kQ-6Xa"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="JmO-Tg-r8P" secondAttribute="trailing" id="VVy-cY-GLL"/>
+                <constraint firstItem="587-C5-WKa" firstAttribute="top" secondItem="Xwa-uh-Uxh" secondAttribute="bottom" constant="24" id="gxG-cl-yzl"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="587-C5-WKa" secondAttribute="trailing" constant="9" id="nFM-eU-9Nx"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="JmO-Tg-r8P" secondAttribute="bottom" id="typ-sy-jo8"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="pvd-le-X6Z" appends="YES" id="RKh-6f-fg4"/>
+            </connections>
+            <point key="canvasLocation" x="138" y="116"/>
+        </view>
+        <tapGestureRecognizer id="pvd-le-X6Z">
+            <connections>
+                <action selector="handleTap" destination="-1" id="RJ0-uG-sG1"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="miniArrowUpSolid" width="24" height="24"/>
+        <image name="publishSolid" width="24" height="24"/>
+    </resources>
+</document>

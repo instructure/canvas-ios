@@ -20,6 +20,9 @@
 "Act as User" = "Optreden als gebruiker";
 
 /* No comment provided by engineer. */
+"Add Planner Note" = "Planneraantekening toevoegen";
+
+/* No comment provided by engineer. */
 "Added To Conversation" = "Toegevoegd aan gesprek";
 
 /* No comment provided by engineer. */
@@ -146,6 +149,9 @@
 "Choose Profile Picture" = "Profielfoto kiezen";
 
 /* No comment provided by engineer. */
+"Clear Course" = "Cursus wissen";
+
+/* No comment provided by engineer. */
 "Clear filter" = "Filter wissen";
 
 /* No comment provided by engineer. */
@@ -221,6 +227,9 @@
 "Dashboard" = "Dashboard";
 
 /* No comment provided by engineer. */
+"Date" = "Datum";
+
+/* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
@@ -237,6 +246,9 @@
 
 /* No comment provided by engineer. */
 "Describe the problem" = "Beschrijf het probleem";
+
+/* No comment provided by engineer. */
+"Description" = "Beschrijving";
 
 /* No comment provided by engineer. */
 "Designer" = "Ontwerper";
@@ -359,7 +371,13 @@
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go to today" = "Ga naar vandaag";
 
 /* No comment provided by engineer. */
 "Grading" = "Beoordeling";
@@ -411,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Uitnodiging";
+
+/* No comment provided by engineer. */
+"It looks like a great day to rest, relax, and recharge." = "Dat lijkt een prima dag om lekker uit te rusten, te relaxen en de batterij op te laden.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Het lijkt erop dat je voor geen enkele cursus bent ingeschreven als %@. Wellicht is een van onze andere apps hiervoor beter geschikt. Tik op een ervan om naar de App Store te gaan.";
@@ -512,6 +533,9 @@
 "Never" = "Nooit";
 
 /* No comment provided by engineer. */
+"New To Do" = "Nieuwe takenlijst";
+
+/* No comment provided by engineer. */
 "No Content" = "Geen inhoud";
 
 /* No comment provided by engineer. */
@@ -519,6 +543,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "Geen inleverdatum";
+
+/* No comment provided by engineer. */
+"No Events Today!" = "Vandaag geen gebeurtenissen!";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Er is geen afbeelding gevonden van afbeeldingkiezer";
@@ -608,6 +635,9 @@
 "Privacy Policy" = "Privacybeleid";
 
 /* No comment provided by engineer. */
+"Profile Menu" = "Menu Profiel";
+
+/* No comment provided by engineer. */
 "purple" = "paars";
 
 /* Description for Push Notification channel */
@@ -660,6 +690,9 @@
 
 /* No comment provided by engineer. */
 "See what's new." = "Wat is er nieuw.";
+
+/* No comment provided by engineer. */
+"Select Course" = "Cursus selecteren";
 
 /* No comment provided by engineer. */
 "Select One" = "Eén selecteren";
@@ -824,6 +857,9 @@
 "Time elapsed" = "Verstreken tijd";
 
 /* No comment provided by engineer. */
+"Title..." = "Titel...";
+
+/* No comment provided by engineer. */
 "to %@" = "tot %@";
 
 /* No comment provided by engineer. */
@@ -885,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Website URL" = "Website-URL";
+
+/* No comment provided by engineer. */
+"Week of %@" = "Week van %@";
 
 /* No comment provided by engineer. */
 "Weekly" = "Wekelijks";

@@ -18,6 +18,6 @@
 
 import Foundation
 
-public enum QuizType: String, Codable {
+public enum QuizType: String, Codable, CaseIterable {
     case assignment, graded_survey, practice_quiz, survey
 }

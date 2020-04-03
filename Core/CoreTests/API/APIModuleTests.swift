@@ -35,4 +35,12 @@ class APIModuleItemTests: XCTestCase {
         let nilCompleted = try! decoder.decode(APIModuleItem.self, from: try! encoder.encode(APIModuleItem.make(completion_requirement: .make(completed: nil))))
         XCTAssertNil(nilCompleted.completion_requirement?.completed)
     }
+
+    func testDecodeNullIndent() {
+        var json = try! JSONSerialization.jsonObject(with: try! encoder.encode(APIModuleItem.make()), options: []) as! [String: Any?]
+        json["indent"] = nil
+        let data = try! JSONSerialization.data(withJSONObject: json, options: [])
+        let item = try! decoder.decode(APIModuleItem.self, from: data)
+        XCTAssertEqual(item.indent, 0)
+    }
 }

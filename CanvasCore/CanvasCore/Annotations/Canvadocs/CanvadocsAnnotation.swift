@@ -168,7 +168,7 @@ struct CanvadocsAnnotation: Codable {
             let rect = try CanvadocsAnnotation.decodeRect(with: decoder, in: container)
             self.type = .freeText(fontInfo: (family: family, size: size), text: text ?? "", rect: rect, color: color)
         case "text": // point
-            let color = try container.decodeIfPresent(String.self, forKey: .color) ?? CanvadocsAnnotationColor.blue.rawValue
+            let color = try container.decodeIfPresent(String.self, forKey: .color) ?? DocViewerAnnotationColor.blue.rawValue
             let rect = try CanvadocsAnnotation.decodeRect(with: decoder, in: container)
             self.type = .point(color: color, rect: rect)
         case "commentReply":
@@ -339,10 +339,10 @@ struct CanvadocsAnnotation: Codable {
             if let commentReplyAnnot = pspdfAnnotation as? CanvadocsCommentReplyAnnotation {
                 self.type = .commentReply(parent: commentReplyAnnot.inReplyToName ?? "", text: commentReplyAnnot.contents ?? "")
             } else if let pointAnnot = pspdfAnnotation as? CanvadocsPointAnnotation {
-                let color = pspdfAnnotation.color?.hex ?? CanvadocsAnnotationColor.blue.rawValue
+                let color = pspdfAnnotation.color?.hex ?? DocViewerAnnotationColor.blue.rawValue
                 self.type = .point(color: color, rect: pointAnnot.boundingBox)
             } else if let noteAnnot = pspdfAnnotation as? PSPDFNoteAnnotation {
-                let color = pspdfAnnotation.color?.hex ?? CanvadocsAnnotationColor.blue.rawValue
+                let color = pspdfAnnotation.color?.hex ?? DocViewerAnnotationColor.blue.rawValue
                 self.type = .point(color: color, rect: noteAnnot.boundingBox)
             } else {
                 return nil

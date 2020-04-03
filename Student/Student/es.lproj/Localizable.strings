@@ -209,9 +209,6 @@
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "Agregar destinatarios";
 
-/* All Courses screen title */
-"All Courses" = "Todos los cursos";
-
 /* No comment provided by engineer. */
 "All Grading Periods" = "Todos los períodos de calificación";
 
@@ -549,9 +546,6 @@
 
 /* Button to edit a discussion entry */
 "Edit" = "Editar";
-
-/* No comment provided by engineer. */
-"Edit Course" = "Editar curso";
 
 /* Edit course list title
    Edit the items in the course list */
@@ -1064,9 +1058,6 @@
 /* No comment provided by engineer. */
 "Past" = "Pasado";
 
-/* Past enrollments section title in All Courses screen */
-"Past Enrollments" = "Inscripciones pasadas";
-
 /* People list title
    Title for People view controller */
 "People" = "Personas";
@@ -1211,12 +1202,6 @@
 
 /* Placeholder text in a search bar used to find conversation recipients */
 "Search for recipients" = "Buscar destinatarios";
-
-/* No comment provided by engineer. */
-"See All" = "Ver todos";
-
-/* No comment provided by engineer. */
-"See All Courses" = "Ver todos los cursos";
 
 /* Title for a file picker window */
 "Select file(s)" = "Seleccionar archivo(s)";

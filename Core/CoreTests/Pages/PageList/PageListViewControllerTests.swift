@@ -56,7 +56,6 @@ class PageListViewControllerTests: CoreTestCase {
 
     func testRender() {
         viewController = PageListViewController.create(env: environment, context: context, appTraitCollection: nil, app: .student)
-        ExperimentalFeature.newPageDetails.isEnabled = true
         environment.mockStore = false
 
         api.mock(viewController.presenter!.course!, value: APICourse.make())

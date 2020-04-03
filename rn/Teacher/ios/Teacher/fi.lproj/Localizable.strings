@@ -74,16 +74,10 @@
 "Late" = "Myöhään";
 
 /* No comment provided by engineer. */
-"Loading more modules..." = "Ladataan lisää moduuleita...";
-
-/* No comment provided by engineer. */
 "Mark All as Present" = "Merkitse kaikki läsnä olevina";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "Merkitse jäljellä olevat läsnä olevina";
-
-/* No comment provided by engineer. */
-"Modules" = "Moduulit";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Lähetä arvosanoja";
@@ -105,9 +99,6 @@
 
 /* No comment provided by engineer. */
 "Test Student" = "Testaa opiskelijaa";
-
-/* No comment provided by engineer. */
-"This module is empty." = "Tämä moduuli on tyhjä.";
 
 /* No comment provided by engineer. */
 "To Do" = "Tehtävä";

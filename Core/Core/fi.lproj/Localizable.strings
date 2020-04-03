@@ -20,6 +20,9 @@
 "Act as User" = "Toimi käyttäjänä";
 
 /* No comment provided by engineer. */
+"Add Planner Note" = "Lisää muistokirjoituksen merkintä";
+
+/* No comment provided by engineer. */
 "Added To Conversation" = "Lisätty viestiketjuun";
 
 /* No comment provided by engineer. */
@@ -146,6 +149,9 @@
 "Choose Profile Picture" = "Valitse profiilikuva";
 
 /* No comment provided by engineer. */
+"Clear Course" = "Tyhjennä kurssi";
+
+/* No comment provided by engineer. */
 "Clear filter" = "Tyhjennä suodatin";
 
 /* No comment provided by engineer. */
@@ -221,6 +227,9 @@
 "Dashboard" = "Koontinäyttö";
 
 /* No comment provided by engineer. */
+"Date" = "Päivämäärä";
+
+/* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
 
 /* No comment provided by engineer. */
@@ -237,6 +246,9 @@
 
 /* No comment provided by engineer. */
 "Describe the problem" = "Kuvaa ongelma";
+
+/* No comment provided by engineer. */
+"Description" = "Kuvaus";
 
 /* No comment provided by engineer. */
 "Designer" = "Suunnittelija";
@@ -359,7 +371,13 @@
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go to today" = "Siirry tähän päivään";
 
 /* No comment provided by engineer. */
 "Grading" = "Arvosanojen anto";
@@ -411,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Kutsu";
+
+/* No comment provided by engineer. */
+"It looks like a great day to rest, relax, and recharge." = "Näyttää olevan hyvä päivä levätä, rentoutua ja latautua.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Näyttää siltä, että et ole rekisteröitynyt millekään kurssille nimellä %@. Yksi sovelluksistamme saattaa sopia paremmin. Käy App Storessa napauttamalla.";
@@ -512,6 +533,9 @@
 "Never" = "Ei koskaan";
 
 /* No comment provided by engineer. */
+"New To Do" = "Uusi tehtävä";
+
+/* No comment provided by engineer. */
 "No Content" = "Ei sisältöä";
 
 /* No comment provided by engineer. */
@@ -519,6 +543,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "Ei määräpäivää";
+
+/* No comment provided by engineer. */
+"No Events Today!" = "Ei tapahtumia tänään!";
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Kuvaa ei löytynyt kuvan poimintatoiminnosta";
@@ -608,6 +635,9 @@
 "Privacy Policy" = "Tietosuojakäytäntö";
 
 /* No comment provided by engineer. */
+"Profile Menu" = "Esikatseluvalikko";
+
+/* No comment provided by engineer. */
 "purple" = "purppura";
 
 /* Description for Push Notification channel */
@@ -660,6 +690,9 @@
 
 /* No comment provided by engineer. */
 "See what's new." = "Katso, mitä uutta on tulossa.";
+
+/* No comment provided by engineer. */
+"Select Course" = "Valitse kurssi";
 
 /* No comment provided by engineer. */
 "Select One" = "Valitse yksi";
@@ -824,6 +857,9 @@
 "Time elapsed" = "Kulunut aika";
 
 /* No comment provided by engineer. */
+"Title..." = "Otsikko...";
+
+/* No comment provided by engineer. */
 "to %@" = "- %@";
 
 /* No comment provided by engineer. */
@@ -885,6 +921,9 @@
 
 /* No comment provided by engineer. */
 "Website URL" = "Verkkosivuston URL";
+
+/* No comment provided by engineer. */
+"Week of %@" = "Vko %@";
 
 /* No comment provided by engineer. */
 "Weekly" = "Viikoittainen";

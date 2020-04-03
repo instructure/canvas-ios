@@ -191,6 +191,10 @@ export function registerScreens (store: Store): void {
 
     registerScreen('/courses/:courseID/modules', null, null, { canBecomeMaster: true, deepLink: true })
     registerScreen('/courses/:courseID/modules/:moduleID', null, null, { canBecomeMaster: true, deepLink: true })
+    registerScreen('/courses/:courseID/pages/:url', null, store, { deepLink: true })
+    registerScreen('/courses/:courseID/wiki/:url', null, store, { deepLink: true })
+    registerScreen('/groups/:groupID/pages/:url', null, store, { deepLink: true })
+    registerScreen('/groups/:groupID/wiki/:url', null, store, { deepLink: true })
 
     if (ExperimentalFeature.graphqlSpeedGrader.isEnabled) {
       registerScreen('/courses/:courseID/assignments/:assignmentID/submissions/:userID', wrap(GraphqlSpeedGrader), store, { deepLink: true })
@@ -212,6 +216,8 @@ export function registerScreens (store: Store): void {
     registerScreen('/:context/:contextID/conferences/:conferenceID', null, store, { deepLink: true })
     registerScreen('/:context/:contextID/discussions/:discussionID', wrap(DiscussionDetails), store, { deepLink: true })
     registerScreen('/:context/:contextID/discussion_topics/:discussionID', wrap(DiscussionDetails), store, { deepLink: true })
+    registerScreen('/:context/:contextID/pages/:url', null, store, { deepLink: true })
+    registerScreen('/:context/:contextID/wiki/:url', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/quizzes/:quizID/take', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/quizzes/:quizID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/quizzes', null, store, { deepLink: true })
@@ -227,8 +233,6 @@ export function registerScreens (store: Store): void {
     registerScreen('/groups/:groupID/users/:userID', wrap(StudentContextCardGroup), store, { deepLink: true })
     registerScreen('/courses/:courseID/users', null, store)
     registerScreen('/groups/:groupID/users', null, store)
-    registerScreen('/:context/:contextID/pages/:url', null, store, { deepLink: true })
-    registerScreen('/:context/:contextID/wiki/:url', null, store, { deepLink: true })
 
     // Calls the old routing method
     registerScreen('/native-route/*route')

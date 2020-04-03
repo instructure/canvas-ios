@@ -102,6 +102,6 @@ class QuizListPresenter: PageViewLoggerPresenterProtocol {
 
     func select(_ quiz: Quiz, from view: UIViewController) {
         guard let htmlURL = quiz.htmlURL else { return }
-        env.router.route(to: htmlURL, from: view, options: .detail(embedInNav: true))
+        env.router.route(to: htmlURL, from: view, options: .detail)
     }
 }

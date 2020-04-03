@@ -85,7 +85,9 @@ class NonNativeQuizTakingViewController: UIViewController {
     }
 
     func refreshCoreQuiz() {
-        GetQuiz(courseID: contextID.id, quizID: quiz.id).fetch(force: true) { _, _, _ in }
+        NotificationCenter.default.post(name: .quizRefresh, object: nil, userInfo: [
+            "quizID": quiz.id,
+        ])
     }
 }
 

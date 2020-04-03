@@ -209,9 +209,6 @@
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "受信者を追加";
 
-/* All Courses screen title */
-"All Courses" = "すべてのコース";
-
 /* No comment provided by engineer. */
 "All Grading Periods" = "すべての採点期間";
 
@@ -549,9 +546,6 @@
 
 /* Button to edit a discussion entry */
 "Edit" = "編集";
-
-/* No comment provided by engineer. */
-"Edit Course" = "コースを編集";
 
 /* Edit course list title
    Edit the items in the course list */
@@ -1064,9 +1058,6 @@
 /* No comment provided by engineer. */
 "Past" = "過去";
 
-/* Past enrollments section title in All Courses screen */
-"Past Enrollments" = "過去の登録";
-
 /* People list title
    Title for People view controller */
 "People" = "メンバー";
@@ -1211,12 +1202,6 @@
 
 /* Placeholder text in a search bar used to find conversation recipients */
 "Search for recipients" = "受信者の検索";
-
-/* No comment provided by engineer. */
-"See All" = "すべてを見る";
-
-/* No comment provided by engineer. */
-"See All Courses" = "すべての コースを表示";
 
 /* Title for a file picker window */
 "Select file(s)" = "ファイルを選択する";

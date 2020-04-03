@@ -49,7 +49,7 @@ public class LogEventListViewController: UIViewController, LogEventListViewProto
     }
 
     @IBAction
-    func filter() {
+    func filter(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Filter", message: nil, preferredStyle: .actionSheet)
         for type in LoggableType.allCases {
             let action = UIAlertAction(title: type.rawValue, style: .default) { _ in
@@ -65,6 +65,7 @@ public class LogEventListViewController: UIViewController, LogEventListViewProto
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(cancel)
+        alert.popoverPresentationController?.barButtonItem = sender
         present(alert, animated: true, completion: nil)
     }
 

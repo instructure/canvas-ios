@@ -151,6 +151,7 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
         }
         alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
         alert.popoverPresentationController?.sourceView = sender
+        alert.popoverPresentationController?.sourceRect = sender.bounds
         env.router.show(alert, from: self, options: .modal())
     }
 }
@@ -226,7 +227,7 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let user = users[indexPath.row] else { return }
-        env.router.route(to: "/\(context.pathComponent)/users/\(user.id)", from: self, options: .detail(embedInNav: true))
+        env.router.route(to: "/\(context.pathComponent)/users/\(user.id)", from: self, options: .detail)
     }
 }
 

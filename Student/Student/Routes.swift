@@ -36,7 +36,6 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
            guard let session = Session.current else { return nil }
            return try? CalendarEventDetailViewController(forEventWithID: eventID, in: session, route: route)
        }
-       guard ExperimentalFeature.studentCalendar.isEnabled else { return nil }
        let controller = PlannerViewController.create()
        controller.view.tintColor = Brand.shared.primary
        return controller
@@ -70,10 +69,8 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
         return GroupNavigationViewController.create(context: context)
     },
 
-    "/:context/:contextID/activity_stream": { url, _ in
-        guard let context = ContextID(path: url.path) else { return nil }
-        guard let session = Session.current else { return nil }
-        return try? ActivityStreamTableViewController(session: session, context: context)
+    "/:context/:contextID/activity_stream": { _, _ in
+        return ActivityStreamViewController.create()
     },
 
     "/:context/:contextID/announcements": nil,
@@ -101,7 +98,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
         if assignmentID == "syllabus" {
             return StudentSyllabusViewController.create(courseID: ID.expandTildeID(courseID))
         }
-        if ExperimentalFeature.moduleItemDetails.isEnabled, !url.originIsModuleItemDetails {
+        if ExperimentalFeature.studentModules.isEnabled, !url.originIsModuleItemDetails {
             return ModuleItemSequenceViewController.create(
                 courseID: ID.expandTildeID(courseID),
                 assetType: .assignment,
@@ -162,7 +159,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/courses/:courseID/external_tools/:toolID": { url, params in
         guard let courseID = params["courseID"], let toolID = params["toolID"] else { return nil }
-        if ExperimentalFeature.moduleItemDetails.isEnabled, !url.originIsModuleItemDetails {
+        if ExperimentalFeature.studentModules.isEnabled, !url.originIsModuleItemDetails {
             return ModuleItemSequenceViewController.create(
                 courseID: courseID,
                 assetType: .externalTool,
@@ -227,19 +224,25 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
             alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""), style: .default))
             return alert
         }
-        return try? ModulesTableViewController(session: session, courseID: courseID)
+        guard ExperimentalFeature.studentModules.isEnabled else {
+            return try? ModulesTableViewController(session: session, courseID: courseID)
+        }
+        return ModuleListViewController.create(courseID: courseID)
     },
 
     "/courses/:courseID/modules/:moduleID": { _, params in
         guard let courseID = params["courseID"], let moduleID = params["moduleID"] else { return nil }
-        guard let session = Session.current else { return nil }
-        return try? ModuleDetailsViewController(session: session, courseID: courseID, moduleID: moduleID)
+        guard ExperimentalFeature.studentModules.isEnabled else {
+            guard let session = Session.current else { return nil }
+            return try? ModuleDetailsViewController(session: session, courseID: courseID, moduleID: moduleID)
+        }
+        return ModuleListViewController.create(courseID: courseID, moduleID: moduleID)
     },
 
     "/courses/:courseID/modules/items/:itemID": { url, params in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         guard let session = Session.current else { return nil }
-        if ExperimentalFeature.moduleItemDetails.isEnabled {
+        if ExperimentalFeature.studentModules.isEnabled {
             return ModuleItemSequenceViewController.create(
                 courseID: courseID,
                 assetType: .moduleItem,
@@ -253,7 +256,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/courses/:courseID/modules/:moduleID/items/:itemID": { url, params in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         guard let session = Session.current else { return nil }
-        if ExperimentalFeature.moduleItemDetails.isEnabled {
+        if ExperimentalFeature.studentModules.isEnabled {
             return ModuleItemSequenceViewController.create(
                 courseID: courseID,
                 assetType: .moduleItem,
@@ -306,7 +309,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
         guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
         guard let session = Session.current else { return nil }
         if let controller = moduleItemController(for: url, courseID: courseID) { return controller }
-        if ExperimentalFeature.moduleItemDetails.isEnabled, !url.originIsModuleItemDetails {
+        if ExperimentalFeature.studentModules.isEnabled, !url.originIsModuleItemDetails {
             return ModuleItemSequenceViewController.create(
                 courseID: courseID,
                 assetType: .quiz,
@@ -450,7 +453,7 @@ private func fileViewController(url: URLComponents, params: [String: String]) ->
         context = ContextModel(.course, id: courseID)
     }
     let assignmentID = url.queryItems?.first(where: { $0.name == "assignmentID" })?.value
-    if ExperimentalFeature.moduleItemDetails.isEnabled, !url.originIsModuleItemDetails, context?.contextType == .course {
+    if ExperimentalFeature.studentModules.isEnabled, !url.originIsModuleItemDetails, context?.contextType == .course {
         return ModuleItemSequenceViewController.create(
             courseID: context!.id,
             assetType: .file,
@@ -463,7 +466,7 @@ private func fileViewController(url: URLComponents, params: [String: String]) ->
 
 private func pageViewController(url: URLComponents, params: [String: String]) -> UIViewController? {
     guard let context = ContextModel(path: url.path), let pageURL = params["url"] else { return nil }
-    if ExperimentalFeature.moduleItemDetails.isEnabled, !url.originIsModuleItemDetails, context.contextType == .course {
+    if ExperimentalFeature.studentModules.isEnabled, !url.originIsModuleItemDetails, context.contextType == .course {
         return ModuleItemSequenceViewController.create(
             courseID: context.id,
             assetType: .page,
@@ -479,7 +482,7 @@ private func pageViewController(url: URLComponents, params: [String: String]) ->
 
 private func discussionViewController(url: URLComponents, params: [String: String]) -> UIViewController? {
     guard let context = ContextModel(path: url.path), let discussionID = params["discussionID"] else { return nil }
-    if ExperimentalFeature.moduleItemDetails.isEnabled, context.contextType == .course, !url.originIsModuleItemDetails {
+    if ExperimentalFeature.studentModules.isEnabled, context.contextType == .course, !url.originIsModuleItemDetails {
         return ModuleItemSequenceViewController.create(
             courseID: context.id,
             assetType: .discussion,

@@ -58,19 +58,29 @@ extension AppDelegate {
             return PeopleListViewController.create(context: ContextModel(.course, id: courseID))
         })
 
-        if ExperimentalFeature.newPageDetails.isEnabled {
-            HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/pages/:url", factory: { props in
-                guard let courseID = props["courseID"] as? String else { return nil }
-                guard let pageURL = props["url"] as? String else { return nil }
-                return PageDetailsViewController.create(context: ContextModel(.course, id: courseID), pageURL: pageURL, app: .teacher)
-            })
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/pages/:url", factory: { props in
+            guard let courseID = props["courseID"] as? String else { return nil }
+            guard let pageURL = props["url"] as? String else { return nil }
+            return PageDetailsViewController.create(context: ContextModel(.course, id: courseID), pageURL: pageURL, app: .teacher)
+        })
 
-            HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/wiki/:url", factory: { props in
-                guard let courseID = props["courseID"] as? String else { return nil }
-                guard let pageURL = props["url"] as? String else { return nil }
-                return PageDetailsViewController.create(context: ContextModel(.course, id: courseID), pageURL: pageURL, app: .teacher)
-            })
-        }
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/wiki/:url", factory: { props in
+            guard let courseID = props["courseID"] as? String else { return nil }
+            guard let pageURL = props["url"] as? String else { return nil }
+            return PageDetailsViewController.create(context: ContextModel(.course, id: courseID), pageURL: pageURL, app: .teacher)
+        })
+
+        HelmManager.shared.registerNativeViewController(for: "/groups/:groupID/pages/:url", factory: { props in
+            guard let groupID = props["groupID"] as? String else { return nil }
+            guard let pageURL = props["url"] as? String else { return nil }
+            return PageDetailsViewController.create(context: ContextModel(.group, id: groupID), pageURL: pageURL, app: .teacher)
+        })
+
+        HelmManager.shared.registerNativeViewController(for: "/groups/:groupID/wiki/:url", factory: { props in
+            guard let groupID = props["groupID"] as? String else { return nil }
+            guard let pageURL = props["url"] as? String else { return nil }
+            return PageDetailsViewController.create(context: ContextModel(.group, id: groupID), pageURL: pageURL, app: .teacher)
+        })
 
         HelmManager.shared.registerNativeViewController(for: "/act-as-user", factory: { _ in
             guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
@@ -115,7 +125,7 @@ extension AppDelegate {
 // MARK: - HelmModules
 
 extension ModuleListViewController: HelmModule {
-    var moduleName: String { return "/courses/:courseID/modules" }
+    public var moduleName: String { return "/courses/:courseID/modules" }
 }
 
 extension WrongAppViewController: HelmModule {

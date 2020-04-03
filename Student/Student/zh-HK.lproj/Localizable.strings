@@ -209,9 +209,6 @@
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "添加收件人";
 
-/* All Courses screen title */
-"All Courses" = "所有課程";
-
 /* No comment provided by engineer. */
 "All Grading Periods" = "所有評分期";
 
@@ -549,9 +546,6 @@
 
 /* Button to edit a discussion entry */
 "Edit" = "編輯";
-
-/* No comment provided by engineer. */
-"Edit Course" = "編輯課程";
 
 /* Edit course list title
    Edit the items in the course list */
@@ -1064,9 +1058,6 @@
 /* No comment provided by engineer. */
 "Past" = "歷史";
 
-/* Past enrollments section title in All Courses screen */
-"Past Enrollments" = "過去的註冊";
-
 /* People list title
    Title for People view controller */
 "People" = "成員";
@@ -1211,12 +1202,6 @@
 
 /* Placeholder text in a search bar used to find conversation recipients */
 "Search for recipients" = "搜尋收件人";
-
-/* No comment provided by engineer. */
-"See All" = "檢視所有";
-
-/* No comment provided by engineer. */
-"See All Courses" = "檢視所有課程";
 
 /* Title for a file picker window */
 "Select file(s)" = "選擇檔案";

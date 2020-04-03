@@ -74,16 +74,10 @@
 "Late" = "Te laat";
 
 /* No comment provided by engineer. */
-"Loading more modules..." = "Meer modules laden...";
-
-/* No comment provided by engineer. */
 "Mark All as Present" = "Allen markeren als aanwezig";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "Rest markeren als aanwezig";
-
-/* No comment provided by engineer. */
-"Modules" = "Modules";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Cijfers posten";
@@ -105,9 +99,6 @@
 
 /* No comment provided by engineer. */
 "Test Student" = "Cursist toetsen";
-
-/* No comment provided by engineer. */
-"This module is empty." = "Deze module is leeg.";
 
 /* No comment provided by engineer. */
 "To Do" = "Te doen";

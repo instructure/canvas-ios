@@ -63,7 +63,6 @@
 		7DAC288622B1AE1700C0B692 /* ElementWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAC288522B1AE1700C0B692 /* ElementWrapper.swift */; };
 		7DB0A1CE21C16D5A009ABB40 /* KeychainEntryFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1CD21C16D5A009ABB40 /* KeychainEntryFixture.swift */; };
 		7DB0A1D421C1C90D009ABB40 /* APIAccountResultsFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1D321C1C90D009ABB40 /* APIAccountResultsFixture.swift */; };
-		7DBED019232FE3B400392F3C /* APIHelpLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED018232FE3B400392F3C /* APIHelpLinks.swift */; };
 		7DBED034233409D900392F3C /* TestLoginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED033233409D900392F3C /* TestLoginDelegate.swift */; };
 		7DC4A557222EF9A800FA03DC /* APIDiscussionEntryFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4A556222EF9A800FA03DC /* APIDiscussionEntryFixture.swift */; };
 		7DCF2048216D6597003AF358 /* APIQuizFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF2047216D6597003AF358 /* APIQuizFixture.swift */; };
@@ -180,7 +179,6 @@
 		7DAC288522B1AE1700C0B692 /* ElementWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementWrapper.swift; sourceTree = "<group>"; };
 		7DB0A1CD21C16D5A009ABB40 /* KeychainEntryFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainEntryFixture.swift; sourceTree = "<group>"; };
 		7DB0A1D321C1C90D009ABB40 /* APIAccountResultsFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountResultsFixture.swift; sourceTree = "<group>"; };
-		7DBED018232FE3B400392F3C /* APIHelpLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelpLinks.swift; sourceTree = "<group>"; };
 		7DBED033233409D900392F3C /* TestLoginDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLoginDelegate.swift; sourceTree = "<group>"; };
 		7DC4A556222EF9A800FA03DC /* APIDiscussionEntryFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDiscussionEntryFixture.swift; sourceTree = "<group>"; };
 		7DCF2047216D6597003AF358 /* APIQuizFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQuizFixture.swift; sourceTree = "<group>"; };
@@ -337,7 +335,6 @@
 				9F4B53AD218100BC0056A557 /* APIFileFixture.swift */,
 				3BA9FF762332B06900196A06 /* APIGradingPeriodFixture.swift */,
 				3B0CEBA121504C2500D07CFA /* APIGroupFixture.swift */,
-				7DBED018232FE3B400392F3C /* APIHelpLinks.swift */,
 				9F6878B222396A7900E559CE /* APIMediaCommentFixture.swift */,
 				B15CA281221DFF240014FB02 /* APIModuleFixture.swift */,
 				7D70DE9D233EAB5500F5C3D4 /* APINotificationPreferencesFixture.swift */,
@@ -775,7 +772,6 @@
 				3B635B35225CDFB1001F353D /* CalendarEventFixture.swift in Sources */,
 				B15DCD57224121FA0044A8A2 /* MockUploadManager.swift in Sources */,
 				7DA667F923845A720062F7B9 /* APITodoFixture.swift in Sources */,
-				7DBED019232FE3B400392F3C /* APIHelpLinks.swift in Sources */,
 				9F4B53AE218100BC0056A557 /* APIFileFixture.swift in Sources */,
 				3B0CEB752150406400D07CFA /* TTLFixture.swift in Sources */,
 				E8989F1623AD2AE800EF4B2B /* CoreUITestCase.swift in Sources */,

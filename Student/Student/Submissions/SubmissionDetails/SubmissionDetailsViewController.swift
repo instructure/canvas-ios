@@ -92,10 +92,11 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         let submission = presenter.currentSubmission
 
         let isSubmitted = submission?.workflowState != .unsubmitted && submission?.submittedAt != nil
+        let isLocked = !presenter.lockedEmptyViewIsHidden()
         contentView?.isHidden = !isSubmitted && !assignment.isExternalToolAssignment
         drawer?.fileCount = submission?.attachments?.count ?? 0
         let title = presenter.submissionButtonText
-        emptyView?.isHidden = isSubmitted || title == nil || assignment.isSubmittable == false
+        emptyView?.isHidden = isSubmitted || title == nil || assignment.isSubmittable == false || isLocked
         emptyView?.dueText = assignment.assignmentDueByText
         emptyView?.submitButtonTitle = title
         pickerButton?.isHidden = !isSubmitted
@@ -109,7 +110,7 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
             picker?.isHidden = true
         }
 
-        lockedEmptyView?.isHidden = presenter.lockedEmptyViewIsHidden()
+        lockedEmptyView?.isHidden = !isLocked
         lockedEmptyView?.headerLabel.text = presenter.lockedEmptyViewHeader()
     }
 
