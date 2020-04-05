@@ -101,6 +101,9 @@
 "Camera" = "Camera";
 
 /* No comment provided by engineer. */
+"Camera not available" = "Dim camera ar gael";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Methu dod o hyd i’ch ysgol? Ceisiwch deipio URL llawn yr ysgol.";
 
 /* No comment provided by engineer. */
@@ -180,6 +183,15 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Cwblhau";
+
+/* concluded date at time */
+"Concluded %@ at %@" = "%1$@ wedi dirwyn i ben am %2$@";
+
+/* No comment provided by engineer. */
+"Concluded Conferences" = "Cynadleddau wedi’u Dirwyn i Ben";
+
+/* No comment provided by engineer. */
+"Conference Details" = "Manylion Cynhadledd";
 
 /* No comment provided by engineer. */
 "Conferences" = "Cynadleddau";
@@ -353,10 +365,16 @@
 "Filter events" = "Hidlo digwyddiadau";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Gradd Derfynol: %@";
 
 /* No comment provided by engineer. */
 "final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find a code to scan" = "Dod o hyd i god i’w sganio";
 
 /* No comment provided by engineer. */
 "Find my school" = "Dod o hyd i fy ysgol";
@@ -419,6 +437,9 @@
 "Impact Level" = "Lefel yr Effaith";
 
 /* No comment provided by engineer. */
+"In Progress" = "Ar y Gweill";
+
+/* No comment provided by engineer. */
 "Inbox" = "Blwch Derbyn";
 
 /* No comment provided by engineer. */
@@ -438,6 +459,9 @@
 
 /* No comment provided by engineer. */
 "Italic" = "Italig";
+
+/* No comment provided by engineer. */
+"Join" = "Ymuno";
 
 /* No comment provided by engineer. */
 "Landing Page" = "Tudalen lanio";
@@ -494,6 +518,9 @@
 "list_or_two" = "%1$@ neu %2$@";
 
 /* No comment provided by engineer. */
+"Locate QR Code" = "Dod o hyd i God QR";
+
+/* No comment provided by engineer. */
 "Log In" = "Mewngofnodi";
 
 /* No comment provided by engineer. */
@@ -503,7 +530,16 @@
 "Log Out" = "Allgofnodi";
 
 /* No comment provided by engineer. */
+"Logging you in" = "Wrthi’n eich mewngofnodi";
+
+/* No comment provided by engineer. */
 "Login" = "Mewngofnodi";
+
+/* No comment provided by engineer. */
+"Login Error" = "Gwall Mewngofnodi";
+
+/* No comment provided by engineer. */
+"Make sure you enable camera permissions in Settings" = "Gwnewch yn siŵr eich bod chi’n galluogi hawliau camera yn y Gosodiadau";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Rheoli Myfyrwyr";
@@ -533,13 +569,25 @@
 "Never" = "Byth";
 
 /* No comment provided by engineer. */
+"New Conferences" = "Cynadleddau Newydd";
+
+/* No comment provided by engineer. */
 "New To Do" = "Tasg Newydd i’w Gwneud";
+
+/* No comment provided by engineer. */
+"Next" = "Nesaf";
+
+/* No comment provided by engineer. */
+"No Conferences" = "Dim Cynadleddau";
 
 /* No comment provided by engineer. */
 "No Content" = "Dim Cynnwys";
 
 /* No comment provided by engineer. */
 "No Courses" = "Dim Cyrsiau";
+
+/* No comment provided by engineer. */
+"No description" = "Dim disgrifiad";
 
 /* No comment provided by engineer. */
 "No Due Date" = "Dim Dyddiad Erbyn";
@@ -561,6 +609,9 @@
 
 /* No comment provided by engineer. */
 "Not Graded" = "Heb eu graddio";
+
+/* No comment provided by engineer. */
+"Not Started" = "Heb ei ddechrau";
 
 /* No comment provided by engineer. */
 "Not Submitted" = "Heb Gyflwyno";
@@ -623,6 +674,12 @@
 "Play" = "Chwarae";
 
 /* No comment provided by engineer. */
+"Please generate another QR Code and try again." = "Crëwch God QR arall a rhoi cynnig arall arni";
+
+/* No comment provided by engineer. */
+"Please wait, this might take a minute." = "Arhoswch funud, gall hyn gymryd ychydig funudau.";
+
+/* No comment provided by engineer. */
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
@@ -648,6 +705,9 @@
 
 /* No comment provided by engineer. */
 "Record Audio" = "Recordio Sain";
+
+/* No comment provided by engineer. */
+"Recordings" = "Recordiad";
 
 /* No comment provided by engineer. */
 "red" = "coch";
@@ -678,6 +738,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "Ailgynnig";
+
+/* No comment provided by engineer. */
+"Scanning not supported" = "Does dim modd delio â sganio";
 
 /* No comment provided by engineer. */
 "Scheduling" = "Trefnu";
@@ -741,6 +804,9 @@
 
 /* No comment provided by engineer. */
 "Start recording" = "Dechrau'r recordiad";
+
+/* started date at time */
+"Started %@ at %@" = "Wedi dechrau %1$@ am %2$@";
 
 /* No comment provided by engineer. */
 "Stop Act as User" = "Stopio Gweithredu fel Defnyddiwr";
@@ -824,10 +890,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Er mwyn defnyddio’r gosodiadau iaith newydd mae angen ailddechrau’r ap. Ail-lansiwch yr ap.";
 
 /* No comment provided by engineer. */
+"There are no conferences to display yet." = "Does dim cynadleddau i’w dangos eto.";
+
+/* No comment provided by engineer. */
 "There are no pages to display." = "Does dim tudalennau i’w dangos.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Problem wrth adfer y Telerau Defnyddio";
+
+/* No comment provided by engineer. */
+"There was an error loading conferences. Pull to refresh to try again." = "Gwall wrth lwytho cynadleddau Tynnwch i adnewyddu a rhoi cynnig arall arni.";
 
 /* No comment provided by engineer. */
 "There was an error loading courses. Pull to refresh to try again." = "Gwall wrth lwytho cyrsiau. Tynnwch i adnewyddu a rhoi cynnig arall arni.";

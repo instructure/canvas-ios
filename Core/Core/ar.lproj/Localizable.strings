@@ -101,6 +101,9 @@
 "Camera" = "الكاميرا";
 
 /* No comment provided by engineer. */
+"Camera not available" = "الكاميرا غير متاحة";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "لا تستطيع العثور على مدرستك؟ حاول كتابة رابط URL الكامل للمدرسة.";
 
 /* No comment provided by engineer. */
@@ -180,6 +183,15 @@
 
 /* No comment provided by engineer. */
 "Complete" = "مكتمل";
+
+/* concluded date at time */
+"Concluded %@ at %@" = "تم الانتهاء من %1$@ في %2$@";
+
+/* No comment provided by engineer. */
+"Concluded Conferences" = "المؤتمرات المنجزة";
+
+/* No comment provided by engineer. */
+"Conference Details" = "تفاصيل المؤتمر";
 
 /* No comment provided by engineer. */
 "Conferences" = "المؤتمرات";
@@ -353,10 +365,16 @@
 "Filter events" = "تصفية الأحداث";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "الدرجة النهائية: %@";
 
 /* No comment provided by engineer. */
 "final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find a code to scan" = "ابحث عن رمز للمسح الضوئي";
 
 /* No comment provided by engineer. */
 "Find my school" = "ابحث عن مدرستي";
@@ -419,6 +437,9 @@
 "Impact Level" = "مستوى التأثير";
 
 /* No comment provided by engineer. */
+"In Progress" = "قيد التقدم";
+
+/* No comment provided by engineer. */
 "Inbox" = "علبة الوارد";
 
 /* No comment provided by engineer. */
@@ -438,6 +459,9 @@
 
 /* No comment provided by engineer. */
 "Italic" = "مائل";
+
+/* No comment provided by engineer. */
+"Join" = "انضم";
 
 /* No comment provided by engineer. */
 "Landing Page" = "الصفحة المنتقل إليها";
@@ -494,6 +518,9 @@
 "list_or_two" = "%1$@ أو %2$@";
 
 /* No comment provided by engineer. */
+"Locate QR Code" = "ابحث عن رمز QR";
+
+/* No comment provided by engineer. */
 "Log In" = "تسجيل الدخول";
 
 /* No comment provided by engineer. */
@@ -503,7 +530,16 @@
 "Log Out" = "تسجيل الخروج";
 
 /* No comment provided by engineer. */
+"Logging you in" = "يتم الآن تسجيل دخولك في";
+
+/* No comment provided by engineer. */
 "Login" = "تسجيل الدخول";
+
+/* No comment provided by engineer. */
+"Login Error" = "خطأ في تسجيل الدخول";
+
+/* No comment provided by engineer. */
+"Make sure you enable camera permissions in Settings" = "تأكد من تمكين أذونات الكاميرا في الإعدادات";
 
 /* No comment provided by engineer. */
 "Manage Students" = "إدارة الطلاب";
@@ -533,13 +569,25 @@
 "Never" = "أبدًا";
 
 /* No comment provided by engineer. */
+"New Conferences" = "مؤتمرات جديدة";
+
+/* No comment provided by engineer. */
 "New To Do" = "قائمة مهمة جديدة";
+
+/* No comment provided by engineer. */
+"Next" = "التالي";
+
+/* No comment provided by engineer. */
+"No Conferences" = "لا توجد مؤتمرات";
 
 /* No comment provided by engineer. */
 "No Content" = "لا يوجد محتوى";
 
 /* No comment provided by engineer. */
 "No Courses" = "لا يوجد أي مساق";
+
+/* No comment provided by engineer. */
+"No description" = "بلا وصف";
 
 /* No comment provided by engineer. */
 "No Due Date" = "لا يوجد تاريخ استحقاق";
@@ -561,6 +609,9 @@
 
 /* No comment provided by engineer. */
 "Not Graded" = "لم يتم التقييم";
+
+/* No comment provided by engineer. */
+"Not Started" = "لم يتم البدء";
 
 /* No comment provided by engineer. */
 "Not Submitted" = "لم يتم الإرسال";
@@ -623,6 +674,12 @@
 "Play" = "تشغيل";
 
 /* No comment provided by engineer. */
+"Please generate another QR Code and try again." = "يرجى إنشاء رمز QR آخر وأعد المحاولة.";
+
+/* No comment provided by engineer. */
+"Please wait, this might take a minute." = "يرجى الانتظار، قد تستغرق هذا الأمر دقيقة.";
+
+/* No comment provided by engineer. */
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
@@ -648,6 +705,9 @@
 
 /* No comment provided by engineer. */
 "Record Audio" = "تسجيل الصوت";
+
+/* No comment provided by engineer. */
+"Recordings" = "التسجيلات";
 
 /* No comment provided by engineer. */
 "red" = "أحمر";
@@ -678,6 +738,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "إعادة المحاولة";
+
+/* No comment provided by engineer. */
+"Scanning not supported" = "المسح الضوئي غير مدعوم";
 
 /* No comment provided by engineer. */
 "Scheduling" = "الجدولة";
@@ -741,6 +804,9 @@
 
 /* No comment provided by engineer. */
 "Start recording" = "بدء تسجيل";
+
+/* started date at time */
+"Started %@ at %@" = "تم البدء في %1$@ في %2$@";
 
 /* No comment provided by engineer. */
 "Stop Act as User" = "إيقاف التصرف كمستخدم";
@@ -824,10 +890,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "يحتاج التطبيق لإعادة التشغيل لاستخدام إعدادات اللغة الجديدة. يرجى إعادة تشغيل التطبيق.";
 
 /* No comment provided by engineer. */
+"There are no conferences to display yet." = "لا توجد أي مؤتمرات للعرض حتى الآن.";
+
+/* No comment provided by engineer. */
 "There are no pages to display." = "لا توجد أي صفحات للعرض.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "حدثت مشكلة أثناء استرداد شروط الاستخدام.";
+
+/* No comment provided by engineer. */
+"There was an error loading conferences. Pull to refresh to try again." = "حدث خطأ أثناء تحميل المؤتمرات. اسحب للتحديث لإعادة المحاولة.";
 
 /* No comment provided by engineer. */
 "There was an error loading courses. Pull to refresh to try again." = "حدث خطأ أثناء تحميل المساقات. اسحب للتحديث لإعادة المحاولة.";

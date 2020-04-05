@@ -101,6 +101,9 @@
 "Camera" = "Camera";
 
 /* No comment provided by engineer. */
+"Camera not available" = "Camera not available";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Can’t find your school? Try typing the school’s full URL.";
 
 /* No comment provided by engineer. */
@@ -180,6 +183,15 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Complete";
+
+/* concluded date at time */
+"Concluded %@ at %@" = "Concluded %1$@ at %2$@";
+
+/* No comment provided by engineer. */
+"Concluded Conferences" = "Concluded conferences";
+
+/* No comment provided by engineer. */
+"Conference Details" = "Conference Details";
 
 /* No comment provided by engineer. */
 "Conferences" = "Conferences";
@@ -353,10 +365,16 @@
 "Filter events" = "Filter events";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Final grade: %@";
 
 /* No comment provided by engineer. */
 "final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find a code to scan" = "Find a code to scan";
 
 /* No comment provided by engineer. */
 "Find my school" = "Find my school";
@@ -419,6 +437,9 @@
 "Impact Level" = "Impact level";
 
 /* No comment provided by engineer. */
+"In Progress" = "In progress";
+
+/* No comment provided by engineer. */
 "Inbox" = "Inbox";
 
 /* No comment provided by engineer. */
@@ -438,6 +459,9 @@
 
 /* No comment provided by engineer. */
 "Italic" = "Italic";
+
+/* No comment provided by engineer. */
+"Join" = "Join";
 
 /* No comment provided by engineer. */
 "Landing Page" = "Landing page";
@@ -494,6 +518,9 @@
 "list_or_two" = "%1$@ or %2$@";
 
 /* No comment provided by engineer. */
+"Locate QR Code" = "Locate QR Code";
+
+/* No comment provided by engineer. */
 "Log In" = "Log in";
 
 /* No comment provided by engineer. */
@@ -503,7 +530,16 @@
 "Log Out" = "Log out";
 
 /* No comment provided by engineer. */
+"Logging you in" = "Logging you in";
+
+/* No comment provided by engineer. */
 "Login" = "Login";
+
+/* No comment provided by engineer. */
+"Login Error" = "Login Error";
+
+/* No comment provided by engineer. */
+"Make sure you enable camera permissions in Settings" = "Make sure you enable camera permissions in Settings";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Manage Students";
@@ -533,13 +569,25 @@
 "Never" = "Never";
 
 /* No comment provided by engineer. */
+"New Conferences" = "New conferences";
+
+/* No comment provided by engineer. */
 "New To Do" = "New To Do";
+
+/* No comment provided by engineer. */
+"Next" = "Next";
+
+/* No comment provided by engineer. */
+"No Conferences" = "No Conferences";
 
 /* No comment provided by engineer. */
 "No Content" = "No Content";
 
 /* No comment provided by engineer. */
 "No Courses" = "No courses";
+
+/* No comment provided by engineer. */
+"No description" = "No description";
 
 /* No comment provided by engineer. */
 "No Due Date" = "No due date";
@@ -561,6 +609,9 @@
 
 /* No comment provided by engineer. */
 "Not Graded" = "Not graded";
+
+/* No comment provided by engineer. */
+"Not Started" = "Not started";
 
 /* No comment provided by engineer. */
 "Not Submitted" = "Not submitted";
@@ -623,6 +674,12 @@
 "Play" = "Play";
 
 /* No comment provided by engineer. */
+"Please generate another QR Code and try again." = "Please generate another QR Code and try again.";
+
+/* No comment provided by engineer. */
+"Please wait, this might take a minute." = "Please wait, this might take a minute.";
+
+/* No comment provided by engineer. */
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
@@ -648,6 +705,9 @@
 
 /* No comment provided by engineer. */
 "Record Audio" = "Record audio";
+
+/* No comment provided by engineer. */
+"Recordings" = "Recordings";
 
 /* No comment provided by engineer. */
 "red" = "red";
@@ -678,6 +738,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "Retry";
+
+/* No comment provided by engineer. */
+"Scanning not supported" = "Scanning not supported";
 
 /* No comment provided by engineer. */
 "Scheduling" = "Scheduling";
@@ -741,6 +804,9 @@
 
 /* No comment provided by engineer. */
 "Start recording" = "Start recording";
+
+/* started date at time */
+"Started %@ at %@" = "Started %1$@ at %2$@";
 
 /* No comment provided by engineer. */
 "Stop Act as User" = "Stop act as user";
@@ -824,10 +890,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "The app needs to restart to use the new language settings. Please relaunch the app.";
 
 /* No comment provided by engineer. */
+"There are no conferences to display yet." = "There are no conferences to display yet.";
+
+/* No comment provided by engineer. */
 "There are no pages to display." = "There are no pages to display.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "There was a problem retrieving the Terms of Use.";
+
+/* No comment provided by engineer. */
+"There was an error loading conferences. Pull to refresh to try again." = "There was an error loading conferences. Pull to refresh to try again.";
 
 /* No comment provided by engineer. */
 "There was an error loading courses. Pull to refresh to try again." = "There was an error loading courses. Pull to refresh to try again.";

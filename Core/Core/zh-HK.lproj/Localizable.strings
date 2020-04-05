@@ -101,6 +101,9 @@
 "Camera" = "攝影機";
 
 /* No comment provided by engineer. */
+"Camera not available" = "未能使用攝影機";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "找不到您的學校？請嘗試輸入學校完整 URL。";
 
 /* No comment provided by engineer. */
@@ -180,6 +183,15 @@
 
 /* No comment provided by engineer. */
 "Complete" = "完成";
+
+/* concluded date at time */
+"Concluded %@ at %@" = "%1$@ 結束於%2$@";
+
+/* No comment provided by engineer. */
+"Concluded Conferences" = "已結束的會議";
+
+/* No comment provided by engineer. */
+"Conference Details" = "會議詳情";
 
 /* No comment provided by engineer. */
 "Conferences" = "會議";
@@ -353,10 +365,16 @@
 "Filter events" = "篩選活動";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "最終評分：%@";
 
 /* No comment provided by engineer. */
 "final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find a code to scan" = "尋找可掃描的條碼";
 
 /* No comment provided by engineer. */
 "Find my school" = "搜尋我的學校";
@@ -419,6 +437,9 @@
 "Impact Level" = "影響程度";
 
 /* No comment provided by engineer. */
+"In Progress" = "進行中";
+
+/* No comment provided by engineer. */
 "Inbox" = "收件匣";
 
 /* No comment provided by engineer. */
@@ -438,6 +459,9 @@
 
 /* No comment provided by engineer. */
 "Italic" = "斜體";
+
+/* No comment provided by engineer. */
+"Join" = "加入";
 
 /* No comment provided by engineer. */
 "Landing Page" = "登入頁面";
@@ -494,6 +518,9 @@
 "list_or_two" = "%1$@或者%2$@";
 
 /* No comment provided by engineer. */
+"Locate QR Code" = "尋找 QR 碼";
+
+/* No comment provided by engineer. */
 "Log In" = "登入";
 
 /* No comment provided by engineer. */
@@ -503,7 +530,16 @@
 "Log Out" = "登出";
 
 /* No comment provided by engineer. */
+"Logging you in" = "您正在登入";
+
+/* No comment provided by engineer. */
 "Login" = "登入";
+
+/* No comment provided by engineer. */
+"Login Error" = "登入錯誤";
+
+/* No comment provided by engineer. */
+"Make sure you enable camera permissions in Settings" = "請確保已在設定內啟用攝影機權限";
 
 /* No comment provided by engineer. */
 "Manage Students" = "管理學生";
@@ -533,13 +569,25 @@
 "Never" = "永不";
 
 /* No comment provided by engineer. */
+"New Conferences" = "新會議";
+
+/* No comment provided by engineer. */
 "New To Do" = "新待辦事項";
+
+/* No comment provided by engineer. */
+"Next" = "下一個";
+
+/* No comment provided by engineer. */
+"No Conferences" = "無會議";
 
 /* No comment provided by engineer. */
 "No Content" = "無內容";
 
 /* No comment provided by engineer. */
 "No Courses" = "無課程";
+
+/* No comment provided by engineer. */
+"No description" = "沒有說明";
 
 /* No comment provided by engineer. */
 "No Due Date" = "無截止日期";
@@ -561,6 +609,9 @@
 
 /* No comment provided by engineer. */
 "Not Graded" = "未評分";
+
+/* No comment provided by engineer. */
+"Not Started" = "未加星號";
 
 /* No comment provided by engineer. */
 "Not Submitted" = "未提交";
@@ -623,6 +674,12 @@
 "Play" = "播放";
 
 /* No comment provided by engineer. */
+"Please generate another QR Code and try again." = "請產生另一個 QR 碼然後重試。";
+
+/* No comment provided by engineer. */
+"Please wait, this might take a minute." = "請稍候，需時約一分鐘。";
+
+/* No comment provided by engineer. */
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
@@ -648,6 +705,9 @@
 
 /* No comment provided by engineer. */
 "Record Audio" = "錄製音訊";
+
+/* No comment provided by engineer. */
+"Recordings" = "記錄";
 
 /* No comment provided by engineer. */
 "red" = "紅色";
@@ -678,6 +738,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "重試";
+
+/* No comment provided by engineer. */
+"Scanning not supported" = "不支援掃描";
 
 /* No comment provided by engineer. */
 "Scheduling" = "排程";
@@ -741,6 +804,9 @@
 
 /* No comment provided by engineer. */
 "Start recording" = "開始錄製";
+
+/* started date at time */
+"Started %@ at %@" = "%1$@ 開始於%2$@";
 
 /* No comment provided by engineer. */
 "Stop Act as User" = "停止作為使用者";
@@ -824,10 +890,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "若要使用新的語言設定，需要重新啟動應用程式。請重新啟動應用程式。";
 
 /* No comment provided by engineer. */
+"There are no conferences to display yet." = "尚未有可顯示的會議。";
+
+/* No comment provided by engineer. */
 "There are no pages to display." = "沒有可顯示的頁面。";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "取得使用條款時出現問題。";
+
+/* No comment provided by engineer. */
+"There was an error loading conferences. Pull to refresh to try again." = "載入會議時發生錯誤。提取以進行重新整理以再試一次。";
 
 /* No comment provided by engineer. */
 "There was an error loading courses. Pull to refresh to try again." = "載入課程時發生錯誤。提取以進行重新整理以再試一次。";

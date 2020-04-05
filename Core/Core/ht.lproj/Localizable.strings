@@ -101,6 +101,9 @@
 "Camera" = "Kamera";
 
 /* No comment provided by engineer. */
+"Camera not available" = "Kemera pa disponib";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Ou paka jwenn lekòl ou a? Eseye tape tout URL lekòl la";
 
 /* No comment provided by engineer. */
@@ -180,6 +183,15 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Fini";
+
+/* concluded date at time */
+"Concluded %@ at %@" = "Fini %1$@ a %2$@";
+
+/* No comment provided by engineer. */
+"Concluded Conferences" = "Konferans Fini";
+
+/* No comment provided by engineer. */
+"Conference Details" = "Detay Konferans";
 
 /* No comment provided by engineer. */
 "Conferences" = "Konferans";
@@ -353,10 +365,16 @@
 "Filter events" = "Flitre aktivite";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Nòt Final: %@";
 
 /* No comment provided by engineer. */
 "final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find a code to scan" = "Jwenn yon kòd pou eskane";
 
 /* No comment provided by engineer. */
 "Find my school" = "Jwenn lekòl mwen an";
@@ -419,6 +437,9 @@
 "Impact Level" = "Nivo Enpak:";
 
 /* No comment provided by engineer. */
+"In Progress" = "Ap Avanse";
+
+/* No comment provided by engineer. */
 "Inbox" = "Bwat resepsyon";
 
 /* No comment provided by engineer. */
@@ -438,6 +459,9 @@
 
 /* No comment provided by engineer. */
 "Italic" = "Italik";
+
+/* No comment provided by engineer. */
+"Join" = "Antre";
 
 /* No comment provided by engineer. */
 "Landing Page" = "Paj Dakèy";
@@ -494,6 +518,9 @@
 "list_or_two" = "%1$@ oswa %2$@";
 
 /* No comment provided by engineer. */
+"Locate QR Code" = "Jwenn Kòd QR";
+
+/* No comment provided by engineer. */
 "Log In" = "Konekte";
 
 /* No comment provided by engineer. */
@@ -503,7 +530,16 @@
 "Log Out" = "Dekonekte";
 
 /* No comment provided by engineer. */
+"Logging you in" = "Konekte";
+
+/* No comment provided by engineer. */
 "Login" = "Koneksyon";
+
+/* No comment provided by engineer. */
+"Login Error" = "Erè Koneksyon";
+
+/* No comment provided by engineer. */
+"Make sure you enable camera permissions in Settings" = "Asire w ou aktive pèmisyon kamera a nan Paramèt.";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Jere Elèv";
@@ -533,7 +569,16 @@
 "Never" = "Jamè";
 
 /* No comment provided by engineer. */
+"New Conferences" = "Nouvo Konferans";
+
+/* No comment provided by engineer. */
 "New To Do" = "Nouco Tach";
+
+/* No comment provided by engineer. */
+"Next" = "Pwochen";
+
+/* No comment provided by engineer. */
+"No Conferences" = "Okenn Konferans";
 
 /* No comment provided by engineer. */
 "No Content" = "Pa gen Kontni";
@@ -542,13 +587,16 @@
 "No Courses" = "Pa gen Kou";
 
 /* No comment provided by engineer. */
+"No description" = "Pa gen deskripsyon";
+
+/* No comment provided by engineer. */
 "No Due Date" = "San Delè";
 
 /* No comment provided by engineer. */
 "No Events Today!" = "Pa gen Aktivite Jodi a!";
 
 /* No comment provided by engineer. */
-"No image found from image picker" = "No image found from image pickerimaj";
+"No image found from image picker" = "Nou pa jwenn okenn imaj apati de selektè imaj la";
 
 /* No comment provided by engineer. */
 "No Results" = "Okenn Rezilta";
@@ -561,6 +609,9 @@
 
 /* No comment provided by engineer. */
 "Not Graded" = "Pa Klase";
+
+/* No comment provided by engineer. */
+"Not Started" = "Pa Kòmanse";
 
 /* No comment provided by engineer. */
 "Not Submitted" = "Pa Soumèt";
@@ -623,6 +674,12 @@
 "Play" = "Jwe";
 
 /* No comment provided by engineer. */
+"Please generate another QR Code and try again." = "Tanpri jenere yon lòt Kòd QR epi eseye ankò.";
+
+/* No comment provided by engineer. */
+"Please wait, this might take a minute." = "Tann, Sa kapab pran yon ti tan.";
+
+/* No comment provided by engineer. */
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
@@ -648,6 +705,9 @@
 
 /* No comment provided by engineer. */
 "Record Audio" = "Anrejistre Son";
+
+/* No comment provided by engineer. */
+"Recordings" = "Anrejistreman";
 
 /* No comment provided by engineer. */
 "red" = "wouj";
@@ -678,6 +738,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "Re eseye";
+
+/* No comment provided by engineer. */
+"Scanning not supported" = "Nimerizasyon an pa posib";
 
 /* No comment provided by engineer. */
 "Scheduling" = "Planifikasyon";
@@ -741,6 +804,9 @@
 
 /* No comment provided by engineer. */
 "Start recording" = "Kòmanse anrejistreman";
+
+/* started date at time */
+"Started %@ at %@" = "Kòmanse %1$@ a %2$@";
 
 /* No comment provided by engineer. */
 "Stop Act as User" = "Sispann Aji tankou Itilizatè";
@@ -824,10 +890,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Aplikasyon an dwe redemare pou l ka itilize nouvo paramèt lang lan. Re lanse aplikasyon an.";
 
 /* No comment provided by engineer. */
+"There are no conferences to display yet." = "Poko gen konferans pou afiche.";
+
+/* No comment provided by engineer. */
 "There are no pages to display." = "Pa gen paj pou afiche.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Gen yon pwoblèm ki pase pandan rekiperasyon Kondisyon Itilizasyon an";
+
+/* No comment provided by engineer. */
+"There was an error loading conferences. Pull to refresh to try again." = "Te gen yon erè nan chajman konferans yo. Rale pou aktyalize pou ka eseye ankò.";
 
 /* No comment provided by engineer. */
 "There was an error loading courses. Pull to refresh to try again." = "Te gen yon erè nan chajman kou yo. Rale pou aktyalize pou ka eseye ankò.";
