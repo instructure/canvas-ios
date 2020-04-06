@@ -18,10 +18,9 @@
 
 import Foundation
 import UIKit
-import Core
 
-class ModuleItemSequenceViewController: UIViewController {
-    typealias AssetType = GetModuleItemSequenceRequest.AssetType
+public class ModuleItemSequenceViewController: UIViewController {
+    public typealias AssetType = GetModuleItemSequenceRequest.AssetType
 
     @IBOutlet weak var pagesContainer: UIView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint?
@@ -35,7 +34,6 @@ class ModuleItemSequenceViewController: UIViewController {
     var assetID: String!
     var url: URLComponents!
 
-    var currentViewController: UIViewController?
     var observations: [NSKeyValueObservation]?
 
     lazy var store = env.subscribe(GetModuleItemSequence(courseID: courseID, assetType: assetType, assetID: assetID)) { [weak self] in
@@ -45,7 +43,7 @@ class ModuleItemSequenceViewController: UIViewController {
 
     let pages = PagesViewController()
 
-    static func create(courseID: String, assetType: AssetType, assetID: String, url: URLComponents) -> Self {
+    public static func create(courseID: String, assetType: AssetType, assetID: String, url: URLComponents) -> Self {
         let controller = loadFromStoryboard()
         controller.courseID = courseID
         controller.assetType = assetType
@@ -54,8 +52,9 @@ class ModuleItemSequenceViewController: UIViewController {
         return controller
     }
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
+        pages.scrollView.isScrollEnabled = false
         embed(pages, in: pagesContainer)
         store.refresh()
     }
@@ -110,6 +109,7 @@ class ModuleItemDetailsViewController: UIViewController {
     var itemID: String!
 
     let container = UIView()
+    let errorView = ListErrorView()
 
     lazy var store = env.subscribe(GetModuleItem(courseID: courseID, moduleID: moduleID, itemID: itemID)) { [weak self] in
         self?.update()
@@ -128,14 +128,21 @@ class ModuleItemDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        Analytics.shared.logEvent("module_item", parameters: ["moduleID": moduleID!, "itemID": itemID!])
         container.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(container)
         container.pin(inside: view)
+        errorView.isHidden = true
+        errorView.retryButton.addTarget(self, action: #selector(retryButtonPressed), for: .primaryActionTriggered)
+        errorView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(errorView)
+        errorView.pin(inside: view)
         store.refresh()
     }
 
     func update() {
         guard store.requested, !store.pending else { return }
+        errorView.isHidden = store.error == nil
         if let viewController = itemViewController() {
             children.forEach { $0.unembed() }
             embed(viewController, in: container)
@@ -148,9 +155,23 @@ class ModuleItemDetailsViewController: UIViewController {
         switch item.type {
         case .externalURL(let url):
             return ExternalURLViewController.create(name: item.title, url: url, courseID: item.courseID)
+        case let .externalTool(toolID, url):
+            let tools = LTITools(
+                context: ContextModel(.course, id: courseID),
+                id: toolID,
+                url: url,
+                launchType: .module_item,
+                moduleID: moduleID,
+                moduleItemID: itemID
+            )
+            return LTIViewController.create(tools: tools, name: item.title)
         default:
             guard let url = item.url else { return nil }
             return env.router.match(.parse(url.appendingOrigin("module_item_details")))
         }
+    }
+
+    @objc func retryButtonPressed() {
+        store.refresh(force: true)
     }
 }

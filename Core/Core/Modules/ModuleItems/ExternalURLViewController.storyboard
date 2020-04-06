@@ -12,13 +12,13 @@
         <!--External URL View Controller-->
         <scene sceneID="f8H-bW-yRq">
             <objects>
-                <viewController storyboardIdentifier="ExternalURLViewController" id="VHM-yc-eLk" customClass="ExternalURLViewController" customModule="Student" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ExternalURLViewController" id="VHM-yc-eLk" customClass="ExternalURLViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s6R-00-Oqh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjS-nD-JHa" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                <rect key="frame" x="16" y="60" width="382" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="External URL" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjS-nD-JHa" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="16" y="60" width="382" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -28,14 +28,14 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VlO-B5-JKy">
-                                <rect key="frame" x="16" y="100" width="382" height="0.5"/>
+                                <rect key="frame" x="16" y="96.5" width="382" height="0.5"/>
                                 <color key="backgroundColor" name="borderMedium"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="0.5" id="gd3-z0-nC3"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This page can only be viewed from a web browser." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8CH-bg-HYz" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                <rect key="frame" x="16" y="116.5" width="382" height="19.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This page can only be viewed from a web browser." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8CH-bg-HYz" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="16" y="113" width="382" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -44,8 +44,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4IL-D3-iVh" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="806" width="414" height="56"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4IL-D3-iVh" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="808" width="414" height="54"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="18" maxX="0.0" maxY="18"/>
                                 <state key="normal" title="Open in Safari"/>
                                 <userDefinedRuntimeAttributes>
@@ -54,7 +54,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="openButtonPressed:" destination="VHM-yc-eLk" eventType="touchUpInside" id="uDt-xr-MbQ"/>
+                                    <action selector="openButtonPressed:" destination="VHM-yc-eLk" eventType="primaryActionTriggered" id="OuE-Vq-32t"/>
                                 </connections>
                             </button>
                         </subviews>

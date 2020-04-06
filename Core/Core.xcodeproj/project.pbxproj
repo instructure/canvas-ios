@@ -690,6 +690,11 @@
 		B12A763821914059000693DE /* fileupload.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A763721914059000693DE /* fileupload.txt */; };
 		B12A763A2191459F000693DE /* file-post-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A76392191459F000693DE /* file-post-body.txt */; };
 		B133A78A221F59A3000E393E /* ContextColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B133A789221F59A3000E393E /* ContextColorTests.swift */; };
+		B14707AC24379FED00CE1DBD /* LTIViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B14707AB24379FED00CE1DBD /* LTIViewController.storyboard */; };
+		B14707B42437BC1C00CE1DBD /* ExternalURLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14707B22437BC1C00CE1DBD /* ExternalURLViewController.swift */; };
+		B14707B52437BC1C00CE1DBD /* ExternalURLViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B14707B32437BC1C00CE1DBD /* ExternalURLViewController.storyboard */; };
+		B14707B82437CC9000CE1DBD /* ModuleItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14707B62437CC9000CE1DBD /* ModuleItemDetailsViewController.swift */; };
+		B14707B92437CC9000CE1DBD /* ModuleItemSequenceViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B14707B72437CC9000CE1DBD /* ModuleItemSequenceViewController.storyboard */; };
 		B147CCD72409CC6C0064BD3F /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B147CCD62409CC6C0064BD3F /* LoadingCell.swift */; };
 		B149098C23D9154C0051D961 /* LTIViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B149098B23D9154B0051D961 /* LTIViewControllerTests.swift */; };
 		B14B7055229468BC00B568D6 /* FilePickerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B7054229468BC00B568D6 /* FilePickerViewControllerTests.swift */; };
@@ -1695,6 +1700,11 @@
 		B12D462B23D754CF0000ED55 /* GoogleCloudAssignmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCloudAssignmentViewController.swift; sourceTree = "<group>"; };
 		B133A789221F59A3000E393E /* ContextColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextColorTests.swift; sourceTree = "<group>"; };
 		B1445300212E5B6E0009D848 /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
+		B14707AB24379FED00CE1DBD /* LTIViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LTIViewController.storyboard; sourceTree = "<group>"; };
+		B14707B22437BC1C00CE1DBD /* ExternalURLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalURLViewController.swift; sourceTree = "<group>"; };
+		B14707B32437BC1C00CE1DBD /* ExternalURLViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ExternalURLViewController.storyboard; sourceTree = "<group>"; };
+		B14707B62437CC9000CE1DBD /* ModuleItemDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleItemDetailsViewController.swift; sourceTree = "<group>"; };
+		B14707B72437CC9000CE1DBD /* ModuleItemSequenceViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ModuleItemSequenceViewController.storyboard; sourceTree = "<group>"; };
 		B147CCD62409CC6C0064BD3F /* LoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
 		B149098923D8FC240051D961 /* LTIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIViewController.swift; sourceTree = "<group>"; };
 		B149098B23D9154B0051D961 /* LTIViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIViewControllerTests.swift; sourceTree = "<group>"; };
@@ -2548,6 +2558,7 @@
 		7D159CE9242E553900A77A15 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				B14707AD2437BB6300CE1DBD /* ModuleItems */,
 				7D159CE8242E553900A77A15 /* ModuleList */,
 			);
 			path = Modules;
@@ -3333,6 +3344,7 @@
 			children = (
 				B12D462B23D754CF0000ED55 /* GoogleCloudAssignmentViewController.swift */,
 				9FAE410921B6D0A600FE7F58 /* LTITools.swift */,
+				B14707AB24379FED00CE1DBD /* LTIViewController.storyboard */,
 				B149098923D8FC240051D961 /* LTIViewController.swift */,
 			);
 			path = LTI;
@@ -3434,6 +3446,17 @@
 				3BE1A6F923E4540D0037CAB1 /* GetObservedStudents.swift */,
 			);
 			path = "Use Cases";
+			sourceTree = "<group>";
+		};
+		B14707AD2437BB6300CE1DBD /* ModuleItems */ = {
+			isa = PBXGroup;
+			children = (
+				B14707B32437BC1C00CE1DBD /* ExternalURLViewController.storyboard */,
+				B14707B22437BC1C00CE1DBD /* ExternalURLViewController.swift */,
+				B14707B62437CC9000CE1DBD /* ModuleItemDetailsViewController.swift */,
+				B14707B72437CC9000CE1DBD /* ModuleItemSequenceViewController.storyboard */,
+			);
+			path = ModuleItems;
 			sourceTree = "<group>";
 		};
 		B14D555F2130B6630066D275 /* Utils */ = {
@@ -4194,6 +4217,7 @@
 				7DDC81442242E2B2000DD25A /* AudioRecorderViewController.storyboard in Resources */,
 				97F5520624061B4B005D80FC /* PlannerNoteDetailViewController.storyboard in Resources */,
 				5BF786A6218599B600471A5F /* InfoPlist.strings in Resources */,
+				B14707AC24379FED00CE1DBD /* LTIViewController.storyboard in Resources */,
 				7DEAD09822789E8A0030C28A /* RichContentEditor.css in Resources */,
 				7DE3D11F225E7058000CAE7C /* RichContentToolbarView.xib in Resources */,
 				7DFFAB1A219DDB22003E71F8 /* CommentListViewController.storyboard in Resources */,
@@ -4201,10 +4225,12 @@
 				7D159CEF242E559600A77A15 /* ModuleSectionHeaderView.xib in Resources */,
 				7D159CF0242E55AD00A77A15 /* ModuleListViewController.storyboard in Resources */,
 				9FBFE6D322412B9E002B3796 /* ActAsUserViewController.storyboard in Resources */,
+				B14707B92437CC9000CE1DBD /* ModuleItemSequenceViewController.storyboard in Resources */,
 				7D2FADC4225BBA5600BCE19E /* RichContentEditor.js in Resources */,
 				7DD6CC6921BCCE20004C4BB6 /* LoginFindSchoolViewController.storyboard in Resources */,
 				7DCF1ECC216BFE5D003AF358 /* Localizable.strings in Resources */,
 				7D7242622429C473007ED42F /* CourseListViewController.storyboard in Resources */,
+				B14707B52437BC1C00CE1DBD /* ExternalURLViewController.storyboard in Resources */,
 				7DBED00C232C031C00392F3C /* ProfileViewController.storyboard in Resources */,
 				7DD694892195F7A200BA4984 /* DocViewerViewController.storyboard in Resources */,
 				7D842A8E22A818C800484B92 /* WrongAppLinkView.xib in Resources */,
@@ -4752,6 +4778,7 @@
 				7DA2608B23F72315005D2121 /* DrawerTransitioning.swift in Sources */,
 				7DA2609D23F72348005D2121 /* TodoListViewController.swift in Sources */,
 				7DA25FE323F721DA005D2121 /* HTTPHeaderConstants.swift in Sources */,
+				B14707B82437CC9000CE1DBD /* ModuleItemDetailsViewController.swift in Sources */,
 				7DA2606923F722D9005D2121 /* TTL.swift in Sources */,
 				7DA260D723F72359005D2121 /* EmptyView.swift in Sources */,
 				7DFD5F7C23FF158700D988E0 /* PlannerViewController.swift in Sources */,
@@ -4896,6 +4923,7 @@
 				7DA260B423F72352005D2121 /* GetGroup.swift in Sources */,
 				7DA2606423F722D9005D2121 /* SubmissionWorkflowState.swift in Sources */,
 				7DA260BD23F72352005D2121 /* GetSubmission.swift in Sources */,
+				B14707B42437BC1C00CE1DBD /* ExternalURLViewController.swift in Sources */,
 				7DA260E223F72359005D2121 /* KeyboardTransitioning.swift in Sources */,
 				7DA2600923F7227A005D2121 /* NSErrorExtensions.swift in Sources */,
 				7DA25FD623F72148005D2121 /* Brand.swift in Sources */,

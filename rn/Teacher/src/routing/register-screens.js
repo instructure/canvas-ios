@@ -191,6 +191,9 @@ export function registerScreens (store: Store): void {
 
     registerScreen('/courses/:courseID/modules', null, null, { canBecomeMaster: true, deepLink: true })
     registerScreen('/courses/:courseID/modules/:moduleID', null, null, { canBecomeMaster: true, deepLink: true })
+    registerScreen('/courses/:courseID/modules/items/:itemID', null, store, { deepLink: true })
+    registerScreen('/courses/:courseID/modules/:moduleID/items/:itemID', null, store, { deepLink: true })
+    registerScreen('/courses/:courseID/module_item_redirect/:itemID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/pages/:url', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/wiki/:url', null, store, { deepLink: true })
     registerScreen('/groups/:groupID/pages/:url', null, store, { deepLink: true })
@@ -223,7 +226,6 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/quizzes', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/modules', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/modules/:moduleID', null, store, { deepLink: true })
-    registerScreen('/courses/:courseID/modules/:moduleID/items/:itemID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/modules/items/:itemID', null, store, { deepLink: true })
     registerScreen('/groups/:groupID', null, store, { canBecomeMaster: true, deepLink: true })
     registerScreen('/groups/:groupID/tabs', null, store, { canBecomeMaster: true, deepLink: true })

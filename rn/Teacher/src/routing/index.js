@@ -24,7 +24,7 @@ import { Store } from 'redux'
 import { Provider } from 'react-redux'
 import URL from 'url-parse'
 import RouteHandler from './RouteHandler'
-import { AppRegistry } from 'react-native'
+import { AppRegistry, NativeModules } from 'react-native'
 import Navigator from './Navigator'
 import { getSession } from '../canvas-api/session'
 import ErrorScreen from './ErrorScreen'
@@ -32,6 +32,8 @@ import app from '../modules/app'
 
 import { ApolloProvider } from 'react-apollo'
 import getClient from '../canvas-api-v2/client'
+
+const { Helm } = NativeModules
 
 export const routes: Map<RouteHandler, RouteConfig> = new Map()
 export const routeProps: Map<string, ?Object> = new Map()
@@ -59,6 +61,7 @@ export function registerScreen (
   }
   const route = new RouteHandler(path)
   routes.set(route, options)
+  Helm.registerRoute(path)
 }
 
 export function wrapComponentInProviders (moduleName: string, generator: (props: any) => any, store: Store): any {

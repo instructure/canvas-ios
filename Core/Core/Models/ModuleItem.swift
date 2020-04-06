@@ -71,17 +71,21 @@ public class ModuleItem: NSManagedObject {
     public static func save(_ item: APIModuleItem, forCourse courseID: String, in context: NSManagedObjectContext) -> ModuleItem {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(ModuleItem.id), item.id.value)
         let model: ModuleItem = context.fetch(predicate).first ?? context.insert()
-        model.id = item.id.value
-        model.moduleID = item.module_id.value
-        model.position = item.position
-        model.title = item.title
-        model.indent = item.indent
-        model.htmlURL = item.html_url
-        model.url = item.url
-        model.published = item.published
-        model.type = item.content
+        model.update(item)
         model.courseID = courseID
-        model.dueAt = item.content_details?.due_at
         return model
+    }
+
+    func update(_ item: APIModuleItem) {
+        id = item.id.value
+        moduleID = item.module_id.value
+        position = item.position
+        title = item.title
+        indent = item.indent
+        htmlURL = item.html_url
+        url = item.url
+        published = item.published
+        type = item.content
+        dueAt = item.content_details?.due_at
     }
 }

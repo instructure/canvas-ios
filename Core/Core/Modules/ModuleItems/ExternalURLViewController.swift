@@ -17,30 +17,29 @@
 //
 
 import Foundation
-import Core
 import UIKit
 import SafariServices
 
-class ExternalURLViewController: UIViewController, ColoredNavViewProtocol {
-    @IBOutlet weak var nameLabel: UILabel!
+public class ExternalURLViewController: UIViewController, ColoredNavViewProtocol {
+    @IBOutlet public weak var nameLabel: UILabel!
 
-    var color: UIColor?
-    var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
+    public var color: UIColor?
+    public var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
 
     let env = AppEnvironment.shared
-    var name: String!
-    var url: URL!
-    var courseID: String?
+    public var name: String!
+    public var url: URL!
+    public var courseID: String?
 
-    lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
+    public lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
     }
 
-    lazy var courses = courseID.flatMap { env.subscribe(GetCourse(courseID: $0, include: [])) { [weak self] in
+    public lazy var courses = courseID.flatMap { env.subscribe(GetCourse(courseID: $0, include: [])) { [weak self] in
         self?.updateNavBar()
     }}
 
-    static func create(name: String, url: URL, courseID: String?) -> Self {
+    public static func create(name: String, url: URL, courseID: String?) -> Self {
         let controller = loadFromStoryboard()
         controller.name = name
         controller.url = url
@@ -48,7 +47,7 @@ class ExternalURLViewController: UIViewController, ColoredNavViewProtocol {
         return controller
     }
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
         nameLabel.text = name
@@ -58,19 +57,19 @@ class ExternalURLViewController: UIViewController, ColoredNavViewProtocol {
         courses?.refresh()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let color = color {
             navigationController?.navigationBar.useContextColor(color)
         }
     }
 
-    func updateNavBar() {
+    public func updateNavBar() {
         let course = courses?.first
         updateNavBar(subtitle: course?.name, color: course?.color)
     }
 
-    @IBAction func openButtonPressed(_ sender: UIButton) {
+    @IBAction public func openButtonPressed(_ sender: UIButton) {
         let safari = SFSafariViewController(url: url)
         env.router.show(safari, from: self, options: .modal(.overFullScreen))
     }

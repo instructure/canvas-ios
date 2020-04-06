@@ -158,19 +158,6 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/:context/:contextID/discussion_topics/:discussionID": discussionViewController,
 
     "/courses/:courseID/external_tools/:toolID": { url, params in
-        guard let courseID = params["courseID"], let toolID = params["toolID"] else { return nil }
-        if ExperimentalFeature.studentModules.isEnabled, !url.originIsModuleItemDetails {
-            return ModuleItemSequenceViewController.create(
-                courseID: courseID,
-                assetType: .externalTool,
-                assetID: toolID,
-                url: url
-            )
-        }
-        if url.originIsModuleItemDetails {
-            let tools = LTITools(context: ContextModel(.course, id: courseID), id: toolID)
-            return LTIViewController(tools: tools)
-        }
         guard let url = url.url, let session = Session.current else { return nil }
         guard let vc = HelmManager.shared.topMostViewController() else { return nil }
         ExternalToolManager.shared.launch(url, in: session, from: vc, fallbackURL: url)
@@ -265,6 +252,20 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
             )
         }
         return try? ModuleItemDetailViewController(session: session, courseID: courseID, moduleItemID: itemID, route: route)
+    },
+
+    "/courses/:courseID/modules/:module_item_redirect/:itemID": { url, params in
+        guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
+        guard let session = Session.current else { return nil }
+        if ExperimentalFeature.studentModules.isEnabled {
+            return ModuleItemSequenceViewController.create(
+                courseID: courseID,
+                assetType: .moduleItem,
+                assetID: itemID,
+                url: url
+            )
+        }
+        return nil
     },
 
     // No native support, fall back to web

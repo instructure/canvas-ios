@@ -12,7 +12,7 @@
         <!--Module Item Sequence View Controller-->
         <scene sceneID="3Xe-tU-2XZ">
             <objects>
-                <viewController storyboardIdentifier="ModuleItemSequenceViewController" id="lhr-LL-71f" customClass="ModuleItemSequenceViewController" customModule="Student" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ModuleItemSequenceViewController" id="lhr-LL-71f" customClass="ModuleItemSequenceViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Qu-yS-mhO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,7 +24,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iGP-7W-vfy">
                                 <rect key="frame" x="0.0" y="806" width="414" height="56"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywu-lr-3Bv" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywu-lr-3Bv" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="338" y="16" width="60" height="24"/>
                                         <state key="normal" title="Next"/>
                                         <userDefinedRuntimeAttributes>
@@ -36,7 +36,7 @@
                                             <action selector="goNext" destination="lhr-LL-71f" eventType="touchUpInside" id="SWm-HG-aok"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lE8-Sf-NiN" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lE8-Sf-NiN" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="16" y="16" width="90" height="24"/>
                                         <state key="normal" title="Previous"/>
                                         <userDefinedRuntimeAttributes>
@@ -58,9 +58,8 @@
                                     <constraint firstItem="lE8-Sf-NiN" firstAttribute="leading" secondItem="iGP-7W-vfy" secondAttribute="leading" constant="16" id="xCF-9O-iFD"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sjW-dW-Pel" customClass="CircleProgressView" customModule="Core">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sjW-dW-Pel" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
                                 <rect key="frame" x="187" y="428" width="40" height="40"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="gza-RI-Dey"/>
                                     <constraint firstAttribute="width" constant="40" id="t4T-UJ-uI7"/>

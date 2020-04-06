@@ -169,13 +169,9 @@
 		9F00A56D22455BD500C0CC32 /* GradesWidgetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F00A56C22455BD500C0CC32 /* GradesWidgetPresenter.swift */; };
 		9F61B52C205985A5009C0B13 /* CanvasAppDelegate+Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F61B52B205985A5009C0B13 /* CanvasAppDelegate+Helm.swift */; };
 		B11028BA23CFC92A00FFAB7E /* SubmissionCommentsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11028B923CFC92A00FFAB7E /* SubmissionCommentsViewControllerTests.swift */; };
-		B1131128242D525D003A79A8 /* ModuleItemSequenceViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1131127242D525D003A79A8 /* ModuleItemSequenceViewController.storyboard */; };
-		B11F1089242BBF6100066438 /* ModuleItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11F1088242BBF6100066438 /* ModuleItemDetailsViewController.swift */; };
 		B11F108C242BEA6000066438 /* ModuleItemDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11F108B242BEA5F00066438 /* ModuleItemDetailsViewControllerTests.swift */; };
 		B12A076622C67BE400A45427 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EE221492040083E660 /* PSPDFKit.framework */; };
 		B12A076722C67BE800A45427 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EF221492040083E660 /* PSPDFKitUI.framework */; };
-		B137C87E243694EB00825370 /* ExternalURLViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B137C87D243694EB00825370 /* ExternalURLViewController.storyboard */; };
-		B137C880243697D800825370 /* ExternalURLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B137C87F243697D800825370 /* ExternalURLViewController.swift */; };
 		B15738001D94C38C00ADBB85 /* ModuleItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */; };
 		B157A60F22BD78E800963E56 /* AssignmentsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B157A60E22BD78E800963E56 /* AssignmentsViewController.storyboard */; };
 		B157A61122BD790200963E56 /* AssignmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157A61022BD790200963E56 /* AssignmentsViewController.swift */; };
@@ -689,11 +685,7 @@
 		A025F6634B44F7120D41717E /* Pods_defaults_common_tests_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_tests_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A13903D63AE70A2926A48F10 /* Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_ui_tests-StudentUITests/Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B11028B923CFC92A00FFAB7E /* SubmissionCommentsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentsViewControllerTests.swift; sourceTree = "<group>"; };
-		B1131127242D525D003A79A8 /* ModuleItemSequenceViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ModuleItemSequenceViewController.storyboard; sourceTree = "<group>"; };
-		B11F1088242BBF6100066438 /* ModuleItemDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleItemDetailsViewController.swift; sourceTree = "<group>"; };
 		B11F108B242BEA5F00066438 /* ModuleItemDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemDetailsViewControllerTests.swift; sourceTree = "<group>"; };
-		B137C87D243694EB00825370 /* ExternalURLViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExternalURLViewController.storyboard; sourceTree = "<group>"; };
-		B137C87F243697D800825370 /* ExternalURLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalURLViewController.swift; sourceTree = "<group>"; };
 		B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleItemDetailViewController.swift; sourceTree = "<group>"; };
 		B15738061D95AA7600ADBB85 /* ModuleItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleItemViewModel.swift; sourceTree = "<group>"; };
 		B157A60E22BD78E800963E56 /* AssignmentsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AssignmentsViewController.storyboard; sourceTree = "<group>"; };
@@ -969,7 +961,6 @@
 				7DCF0EBD22F8A001000AACCE /* Extensions */,
 				7DCF0EC122F8A00D000AACCE /* Groups */,
 				7DCF0ECA22F8A01C000AACCE /* IBDesignables */,
-				B11F1087242BBF3500066438 /* Modules */,
 				9767F2A02383C741006633CA /* Notifications */,
 				7DCF0ED522F8A03D000AACCE /* Quizzes */,
 				7DCF0F0A22F8A050000AACCE /* Submissions */,
@@ -1637,17 +1628,6 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
-		B11F1087242BBF3500066438 /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-				B137C87D243694EB00825370 /* ExternalURLViewController.storyboard */,
-				B137C87F243697D800825370 /* ExternalURLViewController.swift */,
-				B11F1088242BBF6100066438 /* ModuleItemDetailsViewController.swift */,
-				B1131127242D525D003A79A8 /* ModuleItemSequenceViewController.storyboard */,
-			);
-			path = Modules;
-			sourceTree = "<group>";
-		};
 		B11F108A242BEA3F00066438 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -2191,9 +2171,7 @@
 				B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */,
 				7DCF0FB822F8A8D7000AACCE /* SubmissionCommentsViewController.storyboard in Resources */,
 				49F9FA4B1CF7B73100654758 /* Assets.xcassets in Resources */,
-				B1131128242D525D003A79A8 /* ModuleItemSequenceViewController.storyboard in Resources */,
 				7DCF0FA922F8A8D7000AACCE /* ArcSubmissionViewController.storyboard in Resources */,
-				B137C87E243694EB00825370 /* ExternalURLViewController.storyboard in Resources */,
 				7DCF0FC622F8A8D7000AACCE /* UrlSubmissionContentViewController.storyboard in Resources */,
 				7DCF0FBF22F8A8D7000AACCE /* SubmissionDetailsEmptyView.xib in Resources */,
 				7DCF0FCD22F8A8D7000AACCE /* TextSubmissionViewController.storyboard in Resources */,
@@ -2420,8 +2398,6 @@
 				7DCF0FA222F8A897000AACCE /* IconView.swift in Sources */,
 				49A04E571CF64C7F0051E1E7 /* CanvasTabBar.swift in Sources */,
 				7DCF0FA322F8A8A9000AACCE /* QuizListCell.swift in Sources */,
-				B11F1089242BBF6100066438 /* ModuleItemDetailsViewController.swift in Sources */,
-				5EB46E021D21A75C00C859A4 /* CalendarDayPageViewController.swift in Sources */,
 				7DCF0FB222F8A8D7000AACCE /* SubmissionCommentAttemptCell.swift in Sources */,
 				7DCF0FA122F8A897000AACCE /* EmptyView.swift in Sources */,
 				B15738001D94C38C00ADBB85 /* ModuleItemDetailViewController.swift in Sources */,
@@ -2467,10 +2443,6 @@
 				7DCF0F8C22F8A84D000AACCE /* StudentSyllabusViewController.swift in Sources */,
 				7DCF0F8122F8A82C000AACCE /* AssignmentListViewController.swift in Sources */,
 				7DCF0FC422F8A8D7000AACCE /* SubmissionDetailsViewController.swift in Sources */,
-				B137C880243697D800825370 /* ExternalURLViewController.swift in Sources */,
-				5EB46DF91D21A75C00C859A4 /* CalendarView.swift in Sources */,
-				5EB46DE91D21A75C00C859A4 /* UIColor+Calendar.swift in Sources */,
-				5EB46DE51D21A75C00C859A4 /* NSDate+DayConvenience.swift in Sources */,
 				3B72B93E243204FF00197BE6 /* AssignmentListModel.swift in Sources */,
 				7DCF0F9822F8A860000AACCE /* UIViewControllerExtensions.swift in Sources */,
 				7DCF0F8322F8A831000AACCE /* AssignmentDetailsPresenter.swift in Sources */,

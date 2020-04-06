@@ -171,7 +171,7 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
                 launchType: .assessment,
                 assignmentID: assignmentID
             )
-            return LTIViewController(tools: tools)
+            return LTIViewController.create(tools: tools)
         }
 
         switch submission.type {
@@ -245,7 +245,7 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
                 context: context,
                 url: submission.externalToolURL
             )
-            return LTIViewController(tools: tools)
+            return LTIViewController.create(tools: tools)
         default:
             return nil
         }

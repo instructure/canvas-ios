@@ -70,6 +70,48 @@ extension AppDelegate {
             return PageDetailsViewController.create(context: ContextModel(.course, id: courseID), pageURL: pageURL, app: .teacher)
         })
 
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/wiki/:url", factory: { props in
+            guard let courseID = props["courseID"] as? String else { return nil }
+            guard let pageURL = props["url"] as? String else { return nil }
+            return PageDetailsViewController.create(context: ContextModel(.course, id: courseID), pageURL: pageURL, app: .teacher)
+        })
+
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/modules/:moduleID/items/:itemID", factory: { props in
+            guard
+                let courseID = props["courseID"] as? String,
+                let itemID = props["itemID"] as? String,
+                let location = props["location"] as? [String: Any],
+                let url = (location["href"] as? String).flatMap(URLComponents.parse)
+            else {
+                return nil
+            }
+            return ModuleItemSequenceViewController.create(courseID: courseID, assetType: .moduleItem, assetID: itemID, url: url)
+        })
+
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/modules/items/:itemID", factory: { props in
+            guard
+                let courseID = props["courseID"] as? String,
+                let itemID = props["itemID"] as? String,
+                let location = props["location"] as? [String: Any],
+                let url = (location["href"] as? String).flatMap(URLComponents.parse)
+            else {
+                return nil
+            }
+            return ModuleItemSequenceViewController.create(courseID: courseID, assetType: .moduleItem, assetID: itemID, url: url)
+        })
+
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/module_item_redirect/:itemID", factory: { props in
+            guard
+                let courseID = props["courseID"] as? String,
+                let itemID = props["itemID"] as? String,
+                let location = props["location"] as? [String: Any],
+                let url = (location["href"] as? String).flatMap(URLComponents.parse)
+            else {
+                return nil
+            }
+            return ModuleItemSequenceViewController.create(courseID: courseID, assetType: .moduleItem, assetID: itemID, url: url)
+        })
+
         HelmManager.shared.registerNativeViewController(for: "/groups/:groupID/pages/:url", factory: { props in
             guard let groupID = props["groupID"] as? String else { return nil }
             guard let pageURL = props["url"] as? String else { return nil }

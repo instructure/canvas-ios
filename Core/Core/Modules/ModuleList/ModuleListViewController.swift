@@ -212,23 +212,8 @@ extension ModuleListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard store.count > indexPath.section, store[indexPath.section].items.count > indexPath.row else { return }
         let item = store[indexPath.section].items[indexPath.row]
-        switch item.type {
-        case .externalTool(let id, _):
-            let lti = LTITools(context: ContextModel(.course, id: courseID), id: id, launchType: .module_item, moduleItemID: item.id)
-            lti.presentTool(from: self, animated: true) { [weak tableView] _ in
-                tableView?.deselectRow(at: indexPath, animated: true)
-            }
-        case .externalURL(let url):
-            let safari = SFSafariViewController(url: url)
-            safari.modalPresentationStyle = .overFullScreen
-            env.router.show(safari, from: self, options: .modal()) {
-                tableView.deselectRow(at: indexPath, animated: true)
-            }
-        default:
-            if let url = item.url {
-                env.router.route(to: url, from: self, options: .detail)
-            }
-        }
+        guard let htmlURL = item.htmlURL else { return }
+        env.router.route(to: htmlURL, from: self, options: .detail)
     }
 
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
