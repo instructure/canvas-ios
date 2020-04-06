@@ -24,7 +24,6 @@ private var annotationDeletedByKey: UInt8 = 0
 private var annotationDeletedByIDKey: UInt8 = 0
 
 extension Annotation {
-    //  swiftlint:disable implicit_getter
     var userName: String? {
         get { return objc_getAssociatedObject(self, &annotationUserNameKey) as? String }
         set { objc_setAssociatedObject(self, &annotationUserNameKey, newValue, .OBJC_ASSOCIATION_COPY) }
@@ -41,7 +40,6 @@ extension Annotation {
         get { return objc_getAssociatedObject(self, &annotationDeletedByIDKey) as? String }
         set { objc_setAssociatedObject(self, &annotationDeletedByIDKey, newValue, .OBJC_ASSOCIATION_COPY) }
     }
-    //  swiftlint:enable implicit_getter   
 
     var isEmpty: Bool {
         return (self is FreeTextAnnotation || self is DocViewerCommentReplyAnnotation) && contents?.isEmpty != false
