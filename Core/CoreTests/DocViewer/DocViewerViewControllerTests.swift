@@ -124,7 +124,7 @@ class DocViewerViewControllerTests: CoreTestCase {
     class MockPDFViewController: PDFViewController {
         var presented: UIViewController?
 
-        override func present(_ controller: UIViewController, options: [PresentationOption : Any]? = nil, animated: Bool, sender: Any?, completion: (() -> Void)? = nil) -> Bool {
+        override func present(_ controller: UIViewController, options: [PresentationOption: Any]? = nil, animated: Bool, sender: Any?, completion: (() -> Void)? = nil) -> Bool {
             presented = controller
             return false
         }
