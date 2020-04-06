@@ -18,7 +18,7 @@ format_version: '4'
 project_type: other
 workflows:
 
-  danger_xcode_11.4:
+  danger:
     steps:
     - script:
         title: Set up environment variables
