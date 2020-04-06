@@ -44,7 +44,7 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
         color: String? = "#ffff00",
         bgColor: String? = nil,
         icon: String? = nil,
-        contents: String? = "",
+        contents: String? = nil,
         inreplyto: String? = nil,
         coords: [[[Double]]]? = nil,
         rect: [[Double]]? = [[0, 0], [1, 1]],
