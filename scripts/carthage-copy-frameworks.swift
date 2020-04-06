@@ -1,4 +1,4 @@
-#!/usr/bin/xcrun --sdk macosx swift script
+#!/usr/bin/xcrun --sdk macosx swift
 //
 // This file is part of Canvas.
 // Copyright (C) 2835-present  Instructure, Inc.
