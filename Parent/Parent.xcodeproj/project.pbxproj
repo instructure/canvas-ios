@@ -162,7 +162,7 @@
 		E80763DF23E08EC80085DAFB /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F2221492400083E660 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E80763E023E08EC80085DAFB /* PSPDFKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F3221492400083E660 /* PSPDFKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E80763E223E08F420085DAFB /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80763E123E08F420085DAFB /* InboxTests.swift */; };
-		E81B573923E1EEC5002A0C38 /* GradesListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B573823E1EEC5002A0C38 /* GradesListTests.swift */; };
+		E81B573923E1EEC5002A0C38 /* GradeListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B573823E1EEC5002A0C38 /* GradeListTests.swift */; };
 		E81B575023E23CC1002A0C38 /* CoreUITests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8E1BE5823C68A14000E3A76 /* CoreUITests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E81B575123E23CC9002A0C38 /* CoreUITests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8E1BE5823C68A14000E3A76 /* CoreUITests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E81B575923E23EF5002A0C38 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8E1BE5623C68A03000E3A76 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -926,7 +926,7 @@
 		E80763D523E08DA10085DAFB /* ParentE2ETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParentE2ETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80763D623E08DA10085DAFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "/Users/acobb/src/canvas-ios/Parent/Info.plist"; sourceTree = "<absolute>"; };
 		E80763E123E08F420085DAFB /* InboxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxTests.swift; sourceTree = "<group>"; };
-		E81B573823E1EEC5002A0C38 /* GradesListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesListTests.swift; sourceTree = "<group>"; };
+		E81B573823E1EEC5002A0C38 /* GradeListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeListTests.swift; sourceTree = "<group>"; };
 		E8E1BE4A23C6891F000E3A76 /* ParentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8E1BE4C23C6891F000E3A76 /* ParentUITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentUITestCase.swift; sourceTree = "<group>"; };
 		E8E1BE4E23C6891F000E3A76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1511,7 +1511,7 @@
 			children = (
 				E80763D623E08DA10085DAFB /* Info.plist */,
 				E80763E123E08F420085DAFB /* InboxTests.swift */,
-				E81B573823E1EEC5002A0C38 /* GradesListTests.swift */,
+				E81B573823E1EEC5002A0C38 /* GradeListTests.swift */,
 				7DC5F49124097C12000256E3 /* PlannerTests.swift */,
 			);
 			path = ParentE2ETests;
@@ -2001,7 +2001,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E81B573923E1EEC5002A0C38 /* GradesListTests.swift in Sources */,
+				E81B573923E1EEC5002A0C38 /* GradeListTests.swift in Sources */,
 				E80763E223E08F420085DAFB /* InboxTests.swift in Sources */,
 				7DC5F49224097C12000256E3 /* PlannerTests.swift in Sources */,
 			);

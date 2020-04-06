@@ -236,7 +236,9 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         statusLabel?.isHidden = assignment.submissionStatusIsHidden
         statusLabel?.textColor = assignment.submissionStatusColor
         statusLabel?.text = assignment.submissionStatusText
-        dueSection?.subHeader.text = assignment.dueText
+        dueSection?.subHeader.text = assignment.dueAt.flatMap {
+            $0.dateTimeString
+        } ?? NSLocalizedString("No Due Date", bundle: .core, comment: "")
         submissionTypesSection?.subHeader.text = assignment.submissionTypeText
         fileTypesSection?.subHeader.text = assignment.fileTypeText
         fileTypesSection?.isHidden = !assignment.hasFileTypes

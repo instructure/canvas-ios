@@ -189,7 +189,10 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     },
     "/:context/:contextID/files/:fileID/download": fileViewController,
 
-    "/courses/:courseID/grades": nil,
+    "/courses/:courseID/grades": { _, params in
+        guard let courseID = params["courseID"] else { return nil }
+        return GradeListViewController.create(courseID: courseID)
+    },
 
     "/courses/:courseID/modules": { _, params in
         guard let courseID = params["courseID"] else { return nil }
