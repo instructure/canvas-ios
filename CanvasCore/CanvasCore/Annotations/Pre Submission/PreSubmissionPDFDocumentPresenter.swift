@@ -107,7 +107,7 @@ extension PreSubmissionPDFDocumentPresenter: PDFViewControllerDelegate {
                 }
                 return (
                     identifier != TextMenu.annotationMenuRemove.rawValue &&
-                        identifier != TextMenu.annotationMenuNote.rawValue
+                    identifier != TextMenu.annotationMenuNote.rawValue
                 )
             }
             realMenuItems.append(contentsOf: filteredMenuItems)

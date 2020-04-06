@@ -24,6 +24,7 @@ private var annotationDeletedByKey: UInt8 = 0
 private var annotationDeletedByIDKey: UInt8 = 0
 
 extension Annotation {
+    //  swiftlint:disable implicit_getter
     var userName: String? {
         get { return objc_getAssociatedObject(self, &annotationUserNameKey) as? String }
         set { objc_setAssociatedObject(self, &annotationUserNameKey, newValue, .OBJC_ASSOCIATION_COPY) }
@@ -40,6 +41,7 @@ extension Annotation {
         get { return objc_getAssociatedObject(self, &annotationDeletedByIDKey) as? String }
         set { objc_setAssociatedObject(self, &annotationDeletedByIDKey, newValue, .OBJC_ASSOCIATION_COPY) }
     }
+    //  swiftlint:enable implicit_getter   
 
     var isEmpty: Bool {
         return (self is FreeTextAnnotation || self is DocViewerCommentReplyAnnotation) && contents?.isEmpty != false
@@ -126,10 +128,11 @@ extension Annotation {
             let gestures = lines.map { (drawingPoints: [DrawingPoint]) -> [APIDocViewerInkPoint] in
                 simplify(
                     drawingPoints.map {
-                        APIDocViewerInkPoint(x: Double($0.location.x),
-                                             y: Double($0.location.y),
-                                             width: Double(self.lineWidth),
-                                             opacity: 1) },
+                        let x = Double($0.location.x)
+                        let y = Double($0.location.y)
+                        let w = Double(self.lineWidth)
+                        return APIDocViewerInkPoint(x: x, y: y, width: w, opacity: 1)
+                    },
                     within: 0.5)
             }
             inklist = APIDocViewerInklist(gestures: gestures)

@@ -318,7 +318,6 @@ struct CanvadocsAnnotation: Codable {
             var gestures: [CanvadocsInkAnnotationGesture] = []
             for line in inkAnnot.lines ?? [] {
                 let points: [CanvadocsInkAnnotationGesturePoint] = line
-                    .map { $0 }
                     .map { point in
                         return CanvadocsInkAnnotationGesturePoint(
                             x: point.location.x,

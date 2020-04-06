@@ -181,8 +181,8 @@ extension DocViewerViewController: PDFViewControllerDelegate {
                 }
                 return (
                     identifier != TextMenu.annotationMenuRemove.rawValue &&
-                        identifier != TextMenu.annotationMenuCopy.rawValue &&
-                        identifier != TextMenu.annotationMenuNote.rawValue &&
+                    identifier != TextMenu.annotationMenuCopy.rawValue &&
+                    identifier != TextMenu.annotationMenuNote.rawValue &&
                     !disabledMenuItems.contains(identifier)
                 )
             })
