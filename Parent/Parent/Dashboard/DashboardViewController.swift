@@ -47,7 +47,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     var session: Session!
     var presenter: DashboardPresenter?
     var alertTabBadgeCountCoordinator: AlertCountCoordinator?
-    var adminViewController: AdminViewController!
+    lazy var adminViewController = AdminViewController.create()
     var shownNotAParent = false
     var navbarContentContainer: UIView!
     var navbarActionButton: UIButton!
@@ -58,7 +58,9 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     var navbarMenuHeightConstraint: NSLayoutConstraint!
     weak var customNavbarDelegate: CustomNavbarActionDelegate?
     var customNavBarColor: UIColor? {
-        if let id = currentStudentID { return ColorScheme.observee(id).color } else { return nil }
+        currentStudentID.flatMap {
+            ColorScheme.observee($0).color
+        } ?? ColorScheme.observeeBlue.color
     }
     var currentStudent: Core.User? {
         didSet {
@@ -76,7 +78,9 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
                 updateBadgeCount(color: color)
                 navbarAvatar?.name = student.name
                 navbarAvatar?.url = student.avatarURL
-                navbarAvatar?.label.backgroundColor = .white
+                navbarAvatar?.imageView.contentMode = .scaleAspectFill
+                navbarAvatar?.imageView.tintColor = .named(.textDark)
+                navbarAvatar?.label.backgroundColor = .named(.white)
                 tabBar.tintColor = color
                 view.tintColor = color
                 refreshNavbarColor()
@@ -159,9 +163,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
             let isAdmin = (session.isSiteAdmin || presenter?.permissions.first?.becomeUser == true) && students.isEmpty
             let showNotAParentModal = (!isObserver && !isAdmin && presenter?.permissions.first?.becomeUser != true)
 
-            if isAdmin {
-                  showSiteAdminViews()
-            } else if showNotAParentModal || students.isEmpty {
+            if !isAdmin, showNotAParentModal || students.isEmpty {
                 if !shownNotAParent {
                     showNotAParentView()
                     shownNotAParent = true
@@ -171,6 +173,10 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
 
             displayDefaultStudent()
             configureStudentMenu()
+
+            if isAdmin {
+                showSiteAdminViews()
+            }
         }
     }
 
@@ -216,18 +222,23 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
     }
 
     func showSiteAdminViews() {
-        let text = NSLocalizedString("Admin", comment: "Label displayed when logged in as an admin")
-        navbarNameButton.setTitle(text, for: .normal)
-        let storyboard = UIStoryboard(name: "AdminViewController", bundle: nil)
-        adminViewController = storyboard.instantiateViewController(withIdentifier: "vc") as? AdminViewController
-
-        adminViewController.actAsUserHandler = { [weak self] in
-            self?.presenter?.showActAsUserScreen()
-        }
-
-        pageViewController?.setViewControllers([adminViewController], direction: .reverse, animated: false, completion: { _ in })
-        navbarAvatar?.label.text = text
-        navbarAvatar?.label.backgroundColor = .white
+        let color = ColorScheme.observeeBlue.color
+        alertsTabItem.badgeColor = color
+        navbarNameButton.setTitle(NSLocalizedString("Add Student", comment: ""), for: .normal)
+        navbarNameButton.isAccessibilityElement = false
+        navbarActionButton.accessibilityLabel = NSLocalizedString("Add Student", comment: "")
+        navbarActionButton.accessibilityTraits.insert(.header)
+        updateBadgeCount(color: color)
+        navbarAvatar?.label.isHidden = true
+        navbarAvatar?.imageView.image = UIImage.icon(.add, .solid)
+            .scaleTo(CGSize(width: 16, height: 16))
+            .withRenderingMode(.alwaysTemplate)
+        navbarAvatar?.imageView.contentMode = .center
+        navbarAvatar?.imageView.tintColor = color
+        tabBar.tintColor = color
+        view.tintColor = color
+        refreshNavbarColor()
+        pageViewController?.setViewControllers([adminViewController], direction: .reverse, animated: false)
     }
 
     func showNotAParentView() {
@@ -328,6 +339,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
 
     func configureStudentMenu() {
         navbarMenuStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        navbarNameButton.setImage(students.isEmpty ? nil : .icon(.dropdown), for: .normal)
         for (index, student) in students.enumerated() {
             let item = MenuItem()
             item.button.tag = index
@@ -396,12 +408,12 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
         }
 
         // Because we're in the middle we have to figure out which direction to go
-        let viewController = self.pageViewController?.viewControllers?[0]
+        let viewController = self.pageViewController?.viewControllers?.first
         var direction = UIPageViewController.NavigationDirection.forward
         if viewController == alertsViewController {
             direction = UIPageViewController.NavigationDirection.reverse
         }
-        self.pageViewController?.setViewControllers([calendarViewController], direction: direction, animated: false, completion: { _ in })
+        self.pageViewController?.setViewControllers([calendarViewController], direction: direction, animated: false)
     }
 
     func selectAlertsTab() {
@@ -411,7 +423,7 @@ class DashboardViewController: UIViewController, CustomNavbarProtocol {
             return
         }
 
-        self.pageViewController?.setViewControllers([alertsViewController], direction: .forward, animated: false, completion: { _ in })
+        self.pageViewController?.setViewControllers([alertsViewController], direction: .forward, animated: false)
     }
 
     @IBAction func hamburgerMenuPressed(_ sender: Any) {
@@ -456,13 +468,11 @@ extension DashboardViewController: UIPageViewControllerDelegate {
 
 extension DashboardViewController: CustomNavbarActionDelegate {
     func didClickNavbarNameButton(sender: UIButton) {
+        guard !students.isEmpty else {
+            return addStudentController.actionAddStudent()
+        }
         showCustomNavbarMenu(navbarMenuIsHidden)
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-private func convertToUIBackgroundTaskIdentifier(_ input: Int) -> UIBackgroundTaskIdentifier {
-	return UIBackgroundTaskIdentifier(rawValue: input)
 }
 
 class MenuItem: UIView {

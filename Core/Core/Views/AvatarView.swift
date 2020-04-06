@@ -20,7 +20,7 @@ import UIKit
 
 @IBDesignable
 open class AvatarView: UIView {
-    let imageView = UIImageView()
+    public let imageView = UIImageView()
     public let label = UILabel()
 
     open override func layoutSubviews() {
