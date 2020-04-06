@@ -29,6 +29,8 @@ class FileDetailsViewControllerTests: CoreTestCase {
     var context: Context? = ContextModel(.course, id: "2")
     lazy var controller = FileDetailsViewController.create(context: context, fileID: "1", assignmentID: "3")
     var navigation: UINavigationController!
+    var saveWasCalled = false
+    var didSaveExpectation: XCTestExpectation!
 
     override func setUp() {
         super.setUp()
@@ -36,6 +38,8 @@ class FileDetailsViewControllerTests: CoreTestCase {
         navigation = UINavigationController(rootViewController: controller)
         api.mock(controller.files, value: file)
         api.mockDownload(file.url!.rawValue)
+        saveWasCalled = false
+        didSaveExpectation = XCTestExpectation(description: "did save")
     }
 
     override func tearDown() {
@@ -196,11 +200,9 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(results.count, 2)
         XCTAssertEqual(results[0].title, "Style")
         XCTAssertNotNil(results[1].ps_image)
-        let document = MockDocument()
-        pdf.document = document
+        pdf.document?.delegate = self
         controller.viewWillDisappear(false)
-        //  TODO: - this is now broken
-//        XCTAssertTrue(document.saveWasCalled)
+        XCTAssertTrue(saveWasCalled)
     }
 
     func xtestSVG() {
@@ -254,11 +256,12 @@ class FileDetailsViewControllerTests: CoreTestCase {
     }
 }
 
-class MockDocument: Document {
-    var saveWasCalled = false
+extension FileDetailsViewControllerTests: PDFDocumentDelegate {
+    func  pdfDocumentDidSave(_ document: Document) {
+        saveWasCalled = true
+    }
 
-//    func save(options: Set<Document.SaveOption> = []) throws {
-//        saveWasCalled = true
-//    }
-
+    func pdfDocument(_ document: Document, saveDidFailWithError error: Error) {
+        saveWasCalled = true // although it may have failed, it was called
+    }
 }
