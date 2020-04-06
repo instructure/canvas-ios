@@ -444,9 +444,6 @@
 /* label for customizing a course */
 "Customize" = "Sérsníða";
 
-/* No comment provided by engineer. */
-"d_events" = "d_events";
-
 /* dashboard page title */
 "Dashboard" = "Skjáborð";
 
@@ -906,9 +903,6 @@
 /* No comment provided by engineer. */
 "Next 7 Days" = "Næstu 7 dagar";
 
-/* Button to navigate to the next day on the calendar */
-"Next Day" = "Næsti dagur";
-
 /* No comment provided by engineer. */
 "Next item" = "Næsta atriði";
 
@@ -1098,9 +1092,6 @@
 /* Button title for previous module item. */
 "Previous" = "Fyrri";
 
-/* Button to navigate to the previous day on the calendar */
-"Previous Day" = "Fyrri dagur";
-
 /* No comment provided by engineer. */
 "Previous item" = "Fyrra atriði";
 
@@ -1154,9 +1145,6 @@
 
 /* Record video submission comment option */
 "Record Video" = "Taka upp myndband";
-
-/* Button to refresh the calendar events */
-"Refresh" = "Glæða";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Glæða hnappur";
@@ -1516,7 +1504,7 @@
 /* No comment provided by engineer. */
 "To:" = "Til:";
 
-/* Button to scroll to 'today' on the calendar */
+/* No comment provided by engineer. */
 "Today" = "Í dag";
 
 /* No comment provided by engineer. */

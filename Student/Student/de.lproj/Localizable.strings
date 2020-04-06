@@ -444,9 +444,6 @@
 /* label for customizing a course */
 "Customize" = "Personalisieren";
 
-/* No comment provided by engineer. */
-"d_events" = "d_events";
-
 /* dashboard page title */
 "Dashboard" = "Dashboard";
 
@@ -906,9 +903,6 @@
 /* No comment provided by engineer. */
 "Next 7 Days" = "Die nächsten 7 Tage";
 
-/* Button to navigate to the next day on the calendar */
-"Next Day" = "Nächster Tag";
-
 /* No comment provided by engineer. */
 "Next item" = "Nächstes Element";
 
@@ -1098,9 +1092,6 @@
 /* Button title for previous module item. */
 "Previous" = "Vorherige";
 
-/* Button to navigate to the previous day on the calendar */
-"Previous Day" = "Vorheriger Tag";
-
 /* No comment provided by engineer. */
 "Previous item" = "Vorheriges Element";
 
@@ -1154,9 +1145,6 @@
 
 /* Record video submission comment option */
 "Record Video" = "Video aufnehmen";
-
-/* Button to refresh the calendar events */
-"Refresh" = "Aktualisieren";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Aktualisierungs-Button";
@@ -1516,7 +1504,7 @@
 /* No comment provided by engineer. */
 "To:" = "An:";
 
-/* Button to scroll to 'today' on the calendar */
+/* No comment provided by engineer. */
 "Today" = "Heute";
 
 /* No comment provided by engineer. */

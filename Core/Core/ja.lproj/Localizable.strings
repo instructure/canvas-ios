@@ -101,6 +101,9 @@
 "Camera" = "カメラ";
 
 /* No comment provided by engineer. */
+"Camera not available" = "カメラを使用できません";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "学校が見つかりませんか？学校の完全なURLを入力してみてください。";
 
 /* No comment provided by engineer. */
@@ -180,6 +183,15 @@
 
 /* No comment provided by engineer. */
 "Complete" = "完了";
+
+/* concluded date at time */
+"Concluded %@ at %@" = "%1$@ を＿に終了%2$@";
+
+/* No comment provided by engineer. */
+"Concluded Conferences" = "終了した会議";
+
+/* No comment provided by engineer. */
+"Conference Details" = "会議の詳細";
 
 /* No comment provided by engineer. */
 "Conferences" = "会議";
@@ -353,10 +365,16 @@
 "Filter events" = "イベントをフィルタする";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "最終的な成績：%@";
 
 /* No comment provided by engineer. */
 "final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find a code to scan" = "スキャンするコードを探す";
 
 /* No comment provided by engineer. */
 "Find my school" = "私の学校を探す";
@@ -419,6 +437,9 @@
 "Impact Level" = "影響のレベル";
 
 /* No comment provided by engineer. */
+"In Progress" = "進行中";
+
+/* No comment provided by engineer. */
 "Inbox" = "受信トレイ";
 
 /* No comment provided by engineer. */
@@ -438,6 +459,9 @@
 
 /* No comment provided by engineer. */
 "Italic" = "イタリック体";
+
+/* No comment provided by engineer. */
+"Join" = "参加する";
 
 /* No comment provided by engineer. */
 "Landing Page" = "ランディングページ";
@@ -494,6 +518,9 @@
 "list_or_two" = "%1$@または%2$@";
 
 /* No comment provided by engineer. */
+"Locate QR Code" = "QR コードを探す";
+
+/* No comment provided by engineer. */
 "Log In" = "ログイン";
 
 /* No comment provided by engineer. */
@@ -503,7 +530,16 @@
 "Log Out" = "ログアウト";
 
 /* No comment provided by engineer. */
+"Logging you in" = "ログインしています";
+
+/* No comment provided by engineer. */
 "Login" = "ログイン";
+
+/* No comment provided by engineer. */
+"Login Error" = "ログインエラー";
+
+/* No comment provided by engineer. */
+"Make sure you enable camera permissions in Settings" = "設定でカメラ許可を有効にするようにしてください";
 
 /* No comment provided by engineer. */
 "Manage Students" = "受講生を管理";
@@ -533,13 +569,25 @@
 "Never" = "まったくしない";
 
 /* No comment provided by engineer. */
+"New Conferences" = "新しい会議";
+
+/* No comment provided by engineer. */
 "New To Do" = "新しい To Do";
+
+/* No comment provided by engineer. */
+"Next" = "次へ";
+
+/* No comment provided by engineer. */
+"No Conferences" = "会議はありません";
 
 /* No comment provided by engineer. */
 "No Content" = "コンテンツなし";
 
 /* No comment provided by engineer. */
 "No Courses" = "コースはありません";
+
+/* No comment provided by engineer. */
+"No description" = "説明なし";
 
 /* No comment provided by engineer. */
 "No Due Date" = "期日なし";
@@ -561,6 +609,9 @@
 
 /* No comment provided by engineer. */
 "Not Graded" = "採点されていません";
+
+/* No comment provided by engineer. */
+"Not Started" = "始まっていない";
 
 /* No comment provided by engineer. */
 "Not Submitted" = "未提出";
@@ -623,6 +674,12 @@
 "Play" = "再生";
 
 /* No comment provided by engineer. */
+"Please generate another QR Code and try again." = "別の QR コードを生成して、再試行してください。";
+
+/* No comment provided by engineer. */
+"Please wait, this might take a minute." = "お待ちください。これには少し時間がかかる場合があります。";
+
+/* No comment provided by engineer. */
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
@@ -648,6 +705,9 @@
 
 /* No comment provided by engineer. */
 "Record Audio" = "オーディオを録音する";
+
+/* No comment provided by engineer. */
+"Recordings" = "録画";
 
 /* No comment provided by engineer. */
 "red" = "レッド";
@@ -678,6 +738,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "再試行";
+
+/* No comment provided by engineer. */
+"Scanning not supported" = "スキャンはサポートされていません";
 
 /* No comment provided by engineer. */
 "Scheduling" = "スケジュール中";
@@ -741,6 +804,9 @@
 
 /* No comment provided by engineer. */
 "Start recording" = "録画開始";
+
+/* started date at time */
+"Started %@ at %@" = "＿に%1$@を開始しました%2$@";
 
 /* No comment provided by engineer. */
 "Stop Act as User" = "ユーザーとして行動することを止める";
@@ -824,10 +890,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "新しい言語設定を使用するには、アプリの再起動が必要です。アプリを再起動してください。";
 
 /* No comment provided by engineer. */
+"There are no conferences to display yet." = "表示する会議はまだありません。";
+
+/* No comment provided by engineer. */
 "There are no pages to display." = "表示するページはありません。";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "利用規約の取得中に問題が発生しました。";
+
+/* No comment provided by engineer. */
+"There was an error loading conferences. Pull to refresh to try again." = "会議のロード中にエラーが発生しました。プルして更新し、再試行してください。";
 
 /* No comment provided by engineer. */
 "There was an error loading courses. Pull to refresh to try again." = "コースのロード中にエラーが発生しました。プルして更新し、再試行してください。";

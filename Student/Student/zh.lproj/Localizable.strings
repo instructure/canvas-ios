@@ -444,9 +444,6 @@
 /* label for customizing a course */
 "Customize" = "自定义";
 
-/* No comment provided by engineer. */
-"d_events" = "d_events";
-
 /* dashboard page title */
 "Dashboard" = "控制面板";
 
@@ -906,9 +903,6 @@
 /* No comment provided by engineer. */
 "Next 7 Days" = "未来 7 天";
 
-/* Button to navigate to the next day on the calendar */
-"Next Day" = "下一日";
-
 /* No comment provided by engineer. */
 "Next item" = "下一个项目";
 
@@ -1098,9 +1092,6 @@
 /* Button title for previous module item. */
 "Previous" = "上一个";
 
-/* Button to navigate to the previous day on the calendar */
-"Previous Day" = "前一日";
-
 /* No comment provided by engineer. */
 "Previous item" = "先前的项目";
 
@@ -1154,9 +1145,6 @@
 
 /* Record video submission comment option */
 "Record Video" = "录制视频";
-
-/* Button to refresh the calendar events */
-"Refresh" = "刷新";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "刷新按钮";
@@ -1516,7 +1504,7 @@
 /* No comment provided by engineer. */
 "To:" = "至：";
 
-/* Button to scroll to 'today' on the calendar */
+/* No comment provided by engineer. */
 "Today" = "今天";
 
 /* No comment provided by engineer. */

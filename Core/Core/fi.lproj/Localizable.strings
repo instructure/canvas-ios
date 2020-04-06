@@ -101,6 +101,9 @@
 "Camera" = "Kamera";
 
 /* No comment provided by engineer. */
+"Camera not available" = "Kamera ei ole käytettävissä";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Etkö löydä kouluasi? Yritä kirjoittaa koko koulun URL";
 
 /* No comment provided by engineer. */
@@ -180,6 +183,15 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Valmis";
+
+/* concluded date at time */
+"Concluded %@ at %@" = "%1$@ saatettu päätökseen %2$@";
+
+/* No comment provided by engineer. */
+"Concluded Conferences" = "Loppuunviedyt konferenssit";
+
+/* No comment provided by engineer. */
+"Conference Details" = "Konferenssin tiedot";
 
 /* No comment provided by engineer. */
 "Conferences" = "Konferenssit";
@@ -353,10 +365,16 @@
 "Filter events" = "Suodata tapahtumia";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Lopullinen arvosana: %@";
 
 /* No comment provided by engineer. */
 "final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find a code to scan" = "Etsi skannattava koodi";
 
 /* No comment provided by engineer. */
 "Find my school" = "Etsi kouluni";
@@ -419,6 +437,9 @@
 "Impact Level" = "Vaikutustaso";
 
 /* No comment provided by engineer. */
+"In Progress" = "Käynnissä";
+
+/* No comment provided by engineer. */
 "Inbox" = "Saapuneet";
 
 /* No comment provided by engineer. */
@@ -438,6 +459,9 @@
 
 /* No comment provided by engineer. */
 "Italic" = "Kursiivi";
+
+/* No comment provided by engineer. */
+"Join" = "Liity";
 
 /* No comment provided by engineer. */
 "Landing Page" = "Aloitussivu";
@@ -494,6 +518,9 @@
 "list_or_two" = "%1$@ tai %2$@";
 
 /* No comment provided by engineer. */
+"Locate QR Code" = "Etsi viivakoodi";
+
+/* No comment provided by engineer. */
 "Log In" = "Kirjaudu sisään";
 
 /* No comment provided by engineer. */
@@ -503,7 +530,16 @@
 "Log Out" = "Kirjaudu ulos";
 
 /* No comment provided by engineer. */
+"Logging you in" = "Kirjataan sinua sisään";
+
+/* No comment provided by engineer. */
 "Login" = "Sisäänkirjautuminen";
+
+/* No comment provided by engineer. */
+"Login Error" = "Kirjautumisvirhe";
+
+/* No comment provided by engineer. */
+"Make sure you enable camera permissions in Settings" = "Varmista, että otat kameran käyttöoikeuden käyttöön asetuksissa";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Hallitse opiskelijoita";
@@ -533,13 +569,25 @@
 "Never" = "Ei koskaan";
 
 /* No comment provided by engineer. */
+"New Conferences" = "Uudet konferenssit";
+
+/* No comment provided by engineer. */
 "New To Do" = "Uusi tehtävä";
+
+/* No comment provided by engineer. */
+"Next" = "Seuraava";
+
+/* No comment provided by engineer. */
+"No Conferences" = "Ei konferensseja";
 
 /* No comment provided by engineer. */
 "No Content" = "Ei sisältöä";
 
 /* No comment provided by engineer. */
 "No Courses" = "Ei kursseja";
+
+/* No comment provided by engineer. */
+"No description" = "Ei kuvausta";
 
 /* No comment provided by engineer. */
 "No Due Date" = "Ei määräpäivää";
@@ -561,6 +609,9 @@
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ei arvosteltu";
+
+/* No comment provided by engineer. */
+"Not Started" = "Ei aloitettu";
 
 /* No comment provided by engineer. */
 "Not Submitted" = "Ei lähetetty";
@@ -623,6 +674,12 @@
 "Play" = "Toista";
 
 /* No comment provided by engineer. */
+"Please generate another QR Code and try again." = "Luo toinen viivakoodi ja yritä uudelleen.";
+
+/* No comment provided by engineer. */
+"Please wait, this might take a minute." = "Odota, tämä voi kestää hetken.";
+
+/* No comment provided by engineer. */
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
@@ -648,6 +705,9 @@
 
 /* No comment provided by engineer. */
 "Record Audio" = "Nauhoita ääni";
+
+/* No comment provided by engineer. */
+"Recordings" = " Nauhoitukset";
 
 /* No comment provided by engineer. */
 "red" = "punainen";
@@ -678,6 +738,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "Yritä uudelleen";
+
+/* No comment provided by engineer. */
+"Scanning not supported" = "Skannausta ei tueta";
 
 /* No comment provided by engineer. */
 "Scheduling" = "Aikatauluttaminen";
@@ -741,6 +804,9 @@
 
 /* No comment provided by engineer. */
 "Start recording" = "Aloita nauhoitus";
+
+/* started date at time */
+"Started %@ at %@" = "Aloitti %1$@ %2$@";
 
 /* No comment provided by engineer. */
 "Stop Act as User" = "Lopeta toimiminen käyttäjänä";
@@ -824,10 +890,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Sovellus täytyy käynnistää uudelleen, jotta uusia kieliasetuksia voidaan käyttää. Käynnistä sovellus uudelleen.";
 
 /* No comment provided by engineer. */
+"There are no conferences to display yet." = "Näytettäviä konferensseja ei vielä ole.";
+
+/* No comment provided by engineer. */
 "There are no pages to display." = "Näytettäviä sivuja ei ole.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Ilmeni ongelma käyttöehtoja noudettaessa.";
+
+/* No comment provided by engineer. */
+"There was an error loading conferences. Pull to refresh to try again." = "Konferenssien latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
 
 /* No comment provided by engineer. */
 "There was an error loading courses. Pull to refresh to try again." = "Kurssien latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
