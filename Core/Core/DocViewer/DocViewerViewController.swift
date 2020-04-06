@@ -149,7 +149,11 @@ private let disabledMenuItems: [String] = [
 
 extension DocViewerViewController: PDFViewControllerDelegate {
     // swiftlint:disable function_parameter_count
-    public func pdfViewController(_ pdfController: PDFViewController, shouldShow menuItems: [MenuItem], atSuggestedTargetRect rect: CGRect, forSelectedText selectedText: String, in textRect: CGRect, on pageView: PDFPageView) -> [MenuItem] {
+    public func pdfViewController(_ pdfController: PDFViewController,
+                                  shouldShow menuItems: [MenuItem],
+                                  atSuggestedTargetRect rect: CGRect,
+                                  forSelectedText selectedText: String,
+                                  in textRect: CGRect, on pageView: PDFPageView) -> [MenuItem] {
         return menuItems.filter { $0.identifier != TextMenu.annotationMenuHighlight.rawValue }
     }
 

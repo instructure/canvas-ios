@@ -355,7 +355,11 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
         }
     }
 
-    public func pdfViewController(_ pdfController: PDFViewController, shouldShow menuItems: [MenuItem], atSuggestedTargetRect rect: CGRect, forSelectedText selectedText: String, in textRect: CGRect, on pageView: PDFPageView) -> [MenuItem] {
+    public func pdfViewController(_ pdfController: PDFViewController,
+                                  shouldShow menuItems: [MenuItem],
+                                  atSuggestedTargetRect rect: CGRect,
+                                  forSelectedText selectedText: String,
+                                  in textRect: CGRect, on pageView: PDFPageView) -> [MenuItem] {
         return menuItems.compactMap { item in
             guard item.identifier != TextMenu.annotationMenuNote.rawValue else { return nil }
             if item.identifier == TextMenu.annotationMenuInspector.rawValue {
