@@ -1,4 +1,4 @@
-#!/usr/bin/xcrun --sdk macosx swift
+#!/usr/bin/xcrun --sdk macosx swift script
 //
 // This file is part of Canvas.
 // Copyright (C) 2835-present  Instructure, Inc.
@@ -19,6 +19,11 @@
 
 // Wrap "carthage copy-frameworks" in a global lock to avoid build problems
 // see https://github.com/Carthage/Carthage/issues/2835
+
+
+//	https://bugs.swift.org/browse/SR-12403 
+//	with upgrade of xcode 11.4 (swift 5.2), ran into this bug and had to 
+//	use compiled version of script
 
 import Foundation
 import Darwin
