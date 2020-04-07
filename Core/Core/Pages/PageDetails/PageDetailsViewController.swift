@@ -147,6 +147,7 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
                 return self.showError(error)
             }
             self.env.database.viewContext.delete(page)
+            try? self.env.database.viewContext.save()
             self.env.router.pop(from: self)
         } }
     }
