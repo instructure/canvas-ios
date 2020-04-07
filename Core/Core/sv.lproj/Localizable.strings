@@ -101,6 +101,9 @@
 "Camera" = "Kamera";
 
 /* No comment provided by engineer. */
+"Camera not available" = "Kameran är inte tillgänglig";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Hittar du inte din skola? Försök att skriva in skolans fullständiga URL.";
 
 /* No comment provided by engineer. */
@@ -180,6 +183,15 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Färdig";
+
+/* concluded date at time */
+"Concluded %@ at %@" = "Slutförde %1$@ kl. %2$@";
+
+/* No comment provided by engineer. */
+"Concluded Conferences" = "Avslutade konferenser";
+
+/* No comment provided by engineer. */
+"Conference Details" = "Konferensinformation";
 
 /* No comment provided by engineer. */
 "Conferences" = "Konferenser";
@@ -353,10 +365,16 @@
 "Filter events" = "Filterhändelser";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Totalt omdöme: %@";
 
 /* No comment provided by engineer. */
 "final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find a code to scan" = "Sök efter en kod att skanna";
 
 /* No comment provided by engineer. */
 "Find my school" = "Hitta min skola";
@@ -419,6 +437,9 @@
 "Impact Level" = "Inverkansnivå";
 
 /* No comment provided by engineer. */
+"In Progress" = "Pågående";
+
+/* No comment provided by engineer. */
 "Inbox" = "Inkorg";
 
 /* No comment provided by engineer. */
@@ -438,6 +459,9 @@
 
 /* No comment provided by engineer. */
 "Italic" = "Kursiv";
+
+/* No comment provided by engineer. */
+"Join" = "Anslut";
 
 /* No comment provided by engineer. */
 "Landing Page" = "Landningssida";
@@ -494,6 +518,9 @@
 "list_or_two" = "%1$@ eller %2$@";
 
 /* No comment provided by engineer. */
+"Locate QR Code" = "Lokalisera QR-kod";
+
+/* No comment provided by engineer. */
 "Log In" = "Logga in";
 
 /* No comment provided by engineer. */
@@ -503,7 +530,16 @@
 "Log Out" = "Logga ut";
 
 /* No comment provided by engineer. */
+"Logging you in" = "Loggar in dig";
+
+/* No comment provided by engineer. */
 "Login" = "Logga in";
+
+/* No comment provided by engineer. */
+"Login Error" = "Inloggningsfel";
+
+/* No comment provided by engineer. */
+"Make sure you enable camera permissions in Settings" = "Se till att aktivera kamerabehörigheter i inställningarna";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Hantera studenter";
@@ -533,13 +569,25 @@
 "Never" = "Aldrig";
 
 /* No comment provided by engineer. */
+"New Conferences" = "Nya konferenser";
+
+/* No comment provided by engineer. */
 "New To Do" = "Ny att-göra";
+
+/* No comment provided by engineer. */
+"Next" = "Nästa";
+
+/* No comment provided by engineer. */
+"No Conferences" = "Inga konferenser";
 
 /* No comment provided by engineer. */
 "No Content" = "Inget innehåll";
 
 /* No comment provided by engineer. */
 "No Courses" = "Inga kurser";
+
+/* No comment provided by engineer. */
+"No description" = "Ingen beskrivning";
 
 /* No comment provided by engineer. */
 "No Due Date" = "Inget inlämningsdatum";
@@ -561,6 +609,9 @@
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ej bedömd";
+
+/* No comment provided by engineer. */
+"Not Started" = "Inte påbörjad";
 
 /* No comment provided by engineer. */
 "Not Submitted" = "Inte inskickade";
@@ -623,6 +674,12 @@
 "Play" = "Spela upp";
 
 /* No comment provided by engineer. */
+"Please generate another QR Code and try again." = "Generera en annan QR-kod och försök igen.";
+
+/* No comment provided by engineer. */
+"Please wait, this might take a minute." = "Vänta, detta kan ta en minut.";
+
+/* No comment provided by engineer. */
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
@@ -648,6 +705,9 @@
 
 /* No comment provided by engineer. */
 "Record Audio" = "Spela in ljud";
+
+/* No comment provided by engineer. */
+"Recordings" = "Inspelningar";
 
 /* No comment provided by engineer. */
 "red" = "röd";
@@ -678,6 +738,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "Försök igen";
+
+/* No comment provided by engineer. */
+"Scanning not supported" = "Skanning stöds inte";
 
 /* No comment provided by engineer. */
 "Scheduling" = "Schemalägger";
@@ -741,6 +804,9 @@
 
 /* No comment provided by engineer. */
 "Start recording" = "Starta inspelning";
+
+/* started date at time */
+"Started %@ at %@" = "Startade %1$@ kl. %2$@";
 
 /* No comment provided by engineer. */
 "Stop Act as User" = "Sluta agera som användare";
@@ -824,10 +890,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Du måste starta om appen för att använda de nya språkinställningarna. Starta om appen.";
 
 /* No comment provided by engineer. */
+"There are no conferences to display yet." = "Det finns inga konferenser att visa än.";
+
+/* No comment provided by engineer. */
 "There are no pages to display." = "Det finns inga sidor att visa.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Det gick inte att hämta användningsvillkoren.";
+
+/* No comment provided by engineer. */
+"There was an error loading conferences. Pull to refresh to try again." = "Det gick inte att läsa in konferenser. Dra för att uppdatera igen.";
 
 /* No comment provided by engineer. */
 "There was an error loading courses. Pull to refresh to try again." = "Det gick inte att läsa in kurser. Dra för att uppdatera igen.";

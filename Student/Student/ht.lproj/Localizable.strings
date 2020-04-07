@@ -444,9 +444,6 @@
 /* label for customizing a course */
 "Customize" = "Pèsonalize";
 
-/* No comment provided by engineer. */
-"d_events" = "d_events";
-
 /* dashboard page title */
 "Dashboard" = "Tablo";
 
@@ -906,9 +903,6 @@
 /* No comment provided by engineer. */
 "Next 7 Days" = "7 Pwochen Jou";
 
-/* Button to navigate to the next day on the calendar */
-"Next Day" = "Pwochen Jou";
-
 /* No comment provided by engineer. */
 "Next item" = "Pwochen atik";
 
@@ -1098,9 +1092,6 @@
 /* Button title for previous module item. */
 "Previous" = "Anvan";
 
-/* Button to navigate to the previous day on the calendar */
-"Previous Day" = "Jou Anvan";
-
 /* No comment provided by engineer. */
 "Previous item" = "Atik pase";
 
@@ -1154,9 +1145,6 @@
 
 /* Record video submission comment option */
 "Record Video" = "Anrejistre Videyo";
-
-/* Button to refresh the calendar events */
-"Refresh" = "Aktyalize";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Bouton Aktyalizasyon";
@@ -1516,7 +1504,7 @@
 /* No comment provided by engineer. */
 "To:" = "A:";
 
-/* Button to scroll to 'today' on the calendar */
+/* No comment provided by engineer. */
 "Today" = "Jodi a";
 
 /* No comment provided by engineer. */

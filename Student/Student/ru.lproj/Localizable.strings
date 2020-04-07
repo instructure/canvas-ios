@@ -444,9 +444,6 @@
 /* label for customizing a course */
 "Customize" = "Адаптировать";
 
-/* No comment provided by engineer. */
-"d_events" = "d_events";
-
 /* dashboard page title */
 "Dashboard" = "Информационная панель";
 
@@ -906,9 +903,6 @@
 /* No comment provided by engineer. */
 "Next 7 Days" = "Следующие 7 дней";
 
-/* Button to navigate to the next day on the calendar */
-"Next Day" = "Следующий день";
-
 /* No comment provided by engineer. */
 "Next item" = "Следующий элемент";
 
@@ -1098,9 +1092,6 @@
 /* Button title for previous module item. */
 "Previous" = "Предыдущий";
 
-/* Button to navigate to the previous day on the calendar */
-"Previous Day" = "Предыдущий день";
-
 /* No comment provided by engineer. */
 "Previous item" = "Предыдущий элемент";
 
@@ -1154,9 +1145,6 @@
 
 /* Record video submission comment option */
 "Record Video" = "Записать видео";
-
-/* Button to refresh the calendar events */
-"Refresh" = "Обновить";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Кнопка Обновить";
@@ -1516,7 +1504,7 @@
 /* No comment provided by engineer. */
 "To:" = "К:";
 
-/* Button to scroll to 'today' on the calendar */
+/* No comment provided by engineer. */
 "Today" = "Сегодня";
 
 /* No comment provided by engineer. */

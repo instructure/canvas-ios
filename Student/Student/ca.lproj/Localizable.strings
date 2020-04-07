@@ -444,9 +444,6 @@
 /* label for customizing a course */
 "Customize" = "Personalitza";
 
-/* No comment provided by engineer. */
-"d_events" = "d_events";
-
 /* dashboard page title */
 "Dashboard" = "Tauler de control";
 
@@ -906,9 +903,6 @@
 /* No comment provided by engineer. */
 "Next 7 Days" = "Els propers 7 dies";
 
-/* Button to navigate to the next day on the calendar */
-"Next Day" = "El dia següent";
-
 /* No comment provided by engineer. */
 "Next item" = "L'element següent";
 
@@ -1098,9 +1092,6 @@
 /* Button title for previous module item. */
 "Previous" = "Anterior";
 
-/* Button to navigate to the previous day on the calendar */
-"Previous Day" = "El dia abans";
-
 /* No comment provided by engineer. */
 "Previous item" = "L'element anterior";
 
@@ -1154,9 +1145,6 @@
 
 /* Record video submission comment option */
 "Record Video" = "Enregistra vídeo";
-
-/* Button to refresh the calendar events */
-"Refresh" = "Actualitza";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Botó Actualitza";
@@ -1516,7 +1504,7 @@
 /* No comment provided by engineer. */
 "To:" = "Per a:";
 
-/* Button to scroll to 'today' on the calendar */
+/* No comment provided by engineer. */
 "Today" = "Avui";
 
 /* No comment provided by engineer. */

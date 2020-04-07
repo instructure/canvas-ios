@@ -101,6 +101,9 @@
 "Camera" = "Fotoaparat";
 
 /* No comment provided by engineer. */
+"Camera not available" = "Kamera ni na voljo";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Ali svoje šole ne najdete? Poskusite vnesti poln naslov URL šole.";
 
 /* No comment provided by engineer. */
@@ -180,6 +183,15 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Zaključeno";
+
+/* concluded date at time */
+"Concluded %@ at %@" = "Zaključeno %1$@ ob %2$@";
+
+/* No comment provided by engineer. */
+"Concluded Conferences" = "Zaključene konference";
+
+/* No comment provided by engineer. */
+"Conference Details" = "Podrobnosti o konferenci";
 
 /* No comment provided by engineer. */
 "Conferences" = "Konference";
@@ -353,10 +365,16 @@
 "Filter events" = "Filtriraj dogodke";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Končna ocena: %@";
 
 /* No comment provided by engineer. */
 "final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find a code to scan" = "Poiščite kodo, ki jo želite prebrati";
 
 /* No comment provided by engineer. */
 "Find my school" = "Najdi mojo šolo";
@@ -419,6 +437,9 @@
 "Impact Level" = "Raven vpliva";
 
 /* No comment provided by engineer. */
+"In Progress" = "Poteka";
+
+/* No comment provided by engineer. */
 "Inbox" = "Pošta";
 
 /* No comment provided by engineer. */
@@ -438,6 +459,9 @@
 
 /* No comment provided by engineer. */
 "Italic" = "Poševno";
+
+/* No comment provided by engineer. */
+"Join" = "Pridružite se";
 
 /* No comment provided by engineer. */
 "Landing Page" = "Ciljna stran";
@@ -494,6 +518,9 @@
 "list_or_two" = "%1$@ ali %2$@";
 
 /* No comment provided by engineer. */
+"Locate QR Code" = "Poiščite kodo QR";
+
+/* No comment provided by engineer. */
 "Log In" = "Prijava";
 
 /* No comment provided by engineer. */
@@ -503,7 +530,16 @@
 "Log Out" = "Odjava";
 
 /* No comment provided by engineer. */
+"Logging you in" = "Poteka prijava";
+
+/* No comment provided by engineer. */
 "Login" = "Prijava";
+
+/* No comment provided by engineer. */
+"Login Error" = "Napaka pri vpisovanju";
+
+/* No comment provided by engineer. */
+"Make sure you enable camera permissions in Settings" = "V možnosti »Nastavitve« omogočite dovoljenja za kamero.";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Uredi študente";
@@ -533,13 +569,25 @@
 "Never" = "Nikoli";
 
 /* No comment provided by engineer. */
+"New Conferences" = "Nove konference";
+
+/* No comment provided by engineer. */
 "New To Do" = "Nov seznam opravil";
+
+/* No comment provided by engineer. */
+"Next" = "Naprej";
+
+/* No comment provided by engineer. */
+"No Conferences" = "Ni konferenc";
 
 /* No comment provided by engineer. */
 "No Content" = "Ni vsebine.";
 
 /* No comment provided by engineer. */
 "No Courses" = "Ni predmetov";
+
+/* No comment provided by engineer. */
+"No description" = "Brez opisa";
 
 /* No comment provided by engineer. */
 "No Due Date" = "Ni roka.";
@@ -561,6 +609,9 @@
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ni ocenjeno";
+
+/* No comment provided by engineer. */
+"Not Started" = "Ni začeto.";
 
 /* No comment provided by engineer. */
 "Not Submitted" = "Ni oddano.";
@@ -623,6 +674,12 @@
 "Play" = "Predvajaj";
 
 /* No comment provided by engineer. */
+"Please generate another QR Code and try again." = "Ustvarite drugo kodo QR in poskusite znova.";
+
+/* No comment provided by engineer. */
+"Please wait, this might take a minute." = "Počakajte, to lahko traja kakšno minuto.";
+
+/* No comment provided by engineer. */
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
@@ -648,6 +705,9 @@
 
 /* No comment provided by engineer. */
 "Record Audio" = "Posnemi zvok";
+
+/* No comment provided by engineer. */
+"Recordings" = "Snemanja";
 
 /* No comment provided by engineer. */
 "red" = "rdeča";
@@ -678,6 +738,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "Ponovno poskusi";
+
+/* No comment provided by engineer. */
+"Scanning not supported" = "Optično branje ni podprto";
 
 /* No comment provided by engineer. */
 "Scheduling" = "Razporejanje";
@@ -741,6 +804,9 @@
 
 /* No comment provided by engineer. */
 "Start recording" = "Zaženi snemanje";
+
+/* started date at time */
+"Started %@ at %@" = "Se je začelo %1$@ ob %2$@";
 
 /* No comment provided by engineer. */
 "Stop Act as User" = "Opustite vlogo uporabnika";
@@ -824,10 +890,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Aplikacija se mora znova zagnati, da lahko uporabi nove jezikovne nastavitve. Ponovno zaženite aplikacijo.";
 
 /* No comment provided by engineer. */
+"There are no conferences to display yet." = "Zaenkrat ni nobenih konferenc za prikaz.";
+
+/* No comment provided by engineer. */
 "There are no pages to display." = "Ni nobenih strani za prikaz.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Prišlo je do težav pri pridobivanju pogojev uporabe.";
+
+/* No comment provided by engineer. */
+"There was an error loading conferences. Pull to refresh to try again." = "Pri nalaganju vaših konferenc je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
 
 /* No comment provided by engineer. */
 "There was an error loading courses. Pull to refresh to try again." = "Pri nalaganju predmetov je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";

@@ -83,7 +83,7 @@ class UIImageViewExtensionsTests: XCTestCase {
             expectation.fulfill()
         }
         view.load(url: svgUrl)
-        wait(for: [expectation], timeout: 2.0)
+        wait(for: [expectation], timeout: 3.0)
     }
 
     func testDoubleLoadSvg() {

@@ -44,7 +44,7 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
         color: String? = "#ffff00",
         bgColor: String? = nil,
         icon: String? = nil,
-        contents: String? = "",
+        contents: String? = nil,
         inreplyto: String? = nil,
         coords: [[[Double]]]? = nil,
         rect: [[Double]]? = [[0, 0], [1, 1]],
@@ -63,35 +63,35 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
 
     func testHighlight() {
         let apiAnnotation = model(type: .highlight, coords: [[[0, 0], [1, 1]]])
-        let annotation = PSPDFAnnotation.from(apiAnnotation, metadata: metadata)
+        let annotation = Annotation.from(apiAnnotation, metadata: metadata)
         annotation?.lastModified = nil
-        XCTAssert(annotation is PSPDFHighlightAnnotation)
+        XCTAssert(annotation is HighlightAnnotation)
         XCTAssertEqual(annotation?.apiAnnotation(), apiAnnotation)
-        XCTAssertEqual(annotation?.rects, [NSValue(cgRect: CGRect(x: 0, y: 0, width: 1, height: 1))])
+        XCTAssertEqual(annotation?.rects, [ CGRect(x: 0, y: 0, width: 1, height: 1) ])
     }
 
     func testStrikeout() {
         let apiAnnotation = model(type: .strikeout, color: nil, coords: [[[0, 0], [1, 1]]])
-        let annotation = PSPDFAnnotation.from(apiAnnotation, metadata: metadata)
+        let annotation = Annotation.from(apiAnnotation, metadata: metadata)
         annotation?.lastModified = nil
-        XCTAssert(annotation is PSPDFStrikeOutAnnotation)
+        XCTAssert(annotation is StrikeOutAnnotation)
         XCTAssertEqual(annotation?.apiAnnotation(), apiAnnotation)
-        XCTAssertEqual(annotation?.rects, [NSValue(cgRect: CGRect(x: 0, y: 0, width: 1, height: 1))])
+        XCTAssertEqual(annotation?.rects, [ CGRect(x: 0, y: 0, width: 1, height: 1) ])
         XCTAssertNil(annotation?.color)
     }
 
     func testFreetext() {
         let apiAnnotation = model(type: .freetext, bgColor: "#ffffff", contents: "freetext", font: "38pt Helvetica")
-        let annotation = PSPDFAnnotation.from(apiAnnotation, metadata: metadata)
+        let annotation = Annotation.from(apiAnnotation, metadata: metadata)
         annotation?.lastModified = nil
-        XCTAssert(annotation is PSPDFFreeTextAnnotation)
+        XCTAssert(annotation is FreeTextAnnotation)
         XCTAssertEqual(annotation?.apiAnnotation(), apiAnnotation)
         XCTAssertEqual(annotation?.contents, "freetext")
         XCTAssertEqual(annotation?.fontName, "Helvetica")
         XCTAssertEqual(annotation?.fontSize, 38 * 0.9)
 
         let apiEmpty = model(type: .freetext, contents: nil, font: nil)
-        let empty = PSPDFAnnotation.from(apiEmpty, metadata: metadata)
+        let empty = Annotation.from(apiEmpty, metadata: metadata)
         XCTAssertEqual(empty?.contents, "")
         XCTAssertEqual(empty?.fontName, "Helvetica")
         XCTAssertEqual(empty?.fontSize, 14 * 0.9)
@@ -100,7 +100,7 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
 
     func testPoint() {
         let apiAnnotation = model(type: .text, icon: "Comment")
-        let annotation = PSPDFAnnotation.from(apiAnnotation, metadata: metadata)
+        let annotation = Annotation.from(apiAnnotation, metadata: metadata)
         annotation?.lastModified = nil
         XCTAssert(annotation is DocViewerPointAnnotation)
         XCTAssertEqual(annotation?.apiAnnotation(), apiAnnotation)
@@ -108,7 +108,7 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
 
     func testCommentReply() {
         let apiAnnotation = model(type: .commentReply, contents: "comment", inreplyto: "5")
-        let annotation = PSPDFAnnotation.from(apiAnnotation, metadata: metadata)
+        let annotation = Annotation.from(apiAnnotation, metadata: metadata)
         annotation?.lastModified = nil
         XCTAssert(annotation is DocViewerCommentReplyAnnotation)
         XCTAssertEqual(annotation?.apiAnnotation(), apiAnnotation)
@@ -121,35 +121,35 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
             [APIDocViewerInkPoint(x: 1, y: 1, width: 1, opacity: 1), APIDocViewerInkPoint(x: 10, y: 10, width: 3, opacity: 1)],
             [APIDocViewerInkPoint(x: 5, y: 5, width: 1, opacity: 1), APIDocViewerInkPoint(x: 10, y: 10, width: 2, opacity: 1)],
         ]), width: 4.5)
-        let annotation = PSPDFAnnotation.from(apiAnnotation, metadata: metadata)
+        let annotation = Annotation.from(apiAnnotation, metadata: metadata)
         annotation?.lastModified = nil
-        XCTAssert(annotation is PSPDFInkAnnotation)
+        XCTAssert(annotation is InkAnnotation)
         XCTAssertEqual(annotation?.apiAnnotation()?.type, .ink) // float precision makes testing full equality fail
         XCTAssertEqual(annotation?.color?.hexString, "#00ffff")
-        let lines = (annotation as! PSPDFInkAnnotation).lines!
+        let lines = (annotation as! InkAnnotation).lines!
         XCTAssertEqual(lines.count, 2)
-        XCTAssertEqual(lines[0][0].pspdf_drawingPointValue.location, CGPoint(x: 1, y: 1))
-        XCTAssertEqual(lines[0][1].pspdf_drawingPointValue.location, CGPoint(x: 10, y: 10))
-        XCTAssertEqual(lines[1][0].pspdf_drawingPointValue.location, CGPoint(x: 5, y: 5))
-        XCTAssertEqual(lines[1][1].pspdf_drawingPointValue.location, CGPoint(x: 10, y: 10))
+        XCTAssertEqual(lines[0][0].location, CGPoint(x: 1, y: 1))
+        XCTAssertEqual(lines[0][1].location, CGPoint(x: 10, y: 10))
+        XCTAssertEqual(lines[1][0].location, CGPoint(x: 5, y: 5))
+        XCTAssertEqual(lines[1][1].location, CGPoint(x: 10, y: 10))
         XCTAssertEqual(annotation?.lineWidth, 4.5)
     }
 
     func testSquare() {
         let apiAnnotation = model(type: .square, width: 2)
-        let annotation = PSPDFAnnotation.from(apiAnnotation, metadata: metadata)
+        let annotation = Annotation.from(apiAnnotation, metadata: metadata)
         annotation?.lastModified = nil
-        XCTAssert(annotation is PSPDFSquareAnnotation)
+        XCTAssert(annotation is SquareAnnotation)
         XCTAssertEqual(annotation?.apiAnnotation(), apiAnnotation)
         XCTAssertEqual(annotation?.lineWidth, 2)
     }
 
     func testIsEmpty() {
-        XCTAssertTrue(PSPDFFreeTextAnnotation(contents: "").isEmpty)
+        XCTAssertTrue(FreeTextAnnotation(contents: "").isEmpty)
         XCTAssertTrue(DocViewerCommentReplyAnnotation(contents: "").isEmpty)
-        XCTAssertFalse(PSPDFFreeTextAnnotation(contents: "a").isEmpty)
+        XCTAssertFalse(FreeTextAnnotation(contents: "a").isEmpty)
         XCTAssertFalse(DocViewerCommentReplyAnnotation(contents: "b").isEmpty)
-        XCTAssertFalse(PSPDFSquareAnnotation().isEmpty)
+        XCTAssertFalse(SquareAnnotation().isEmpty)
     }
 
     func testSimplify() {

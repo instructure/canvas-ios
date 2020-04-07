@@ -89,7 +89,7 @@
 	<key>filter_events_d_calendars_selected</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Filter events, %#@calendars@</string>
+		<string>筛选器事件，%#@calendars@</string>
 		<key>calendars</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -97,7 +97,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d calendars selected</string>
+			<string>%d选择的日历</string>
 		</dict>
 	</dict>
 	<key>final_grade_g_pts</key>

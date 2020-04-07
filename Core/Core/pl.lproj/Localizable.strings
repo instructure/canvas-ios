@@ -101,6 +101,9 @@
 "Camera" = "Kamera";
 
 /* No comment provided by engineer. */
+"Camera not available" = "Kamera niedostępna";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Nie możesz znaleźć swojej szkoły? Spróbuj wprowadzić pełen adres URL szkoły.";
 
 /* No comment provided by engineer. */
@@ -180,6 +183,15 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Ukończony";
+
+/* concluded date at time */
+"Concluded %@ at %@" = "Zakończono %1$@ o %2$@";
+
+/* No comment provided by engineer. */
+"Concluded Conferences" = "Zakończone konferencje";
+
+/* No comment provided by engineer. */
+"Conference Details" = "Szczegóły konferencji";
 
 /* No comment provided by engineer. */
 "Conferences" = "Konferencje";
@@ -353,10 +365,16 @@
 "Filter events" = "Filtruj wydarzenia";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Ocena końcowa: %@";
 
 /* No comment provided by engineer. */
 "final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find a code to scan" = "Znajdź kod do zeskanowania";
 
 /* No comment provided by engineer. */
 "Find my school" = "Znajdź moją szkołę";
@@ -419,6 +437,9 @@
 "Impact Level" = "Poziom istotności";
 
 /* No comment provided by engineer. */
+"In Progress" = "W toku";
+
+/* No comment provided by engineer. */
 "Inbox" = "Skrzynka odbiorcza";
 
 /* No comment provided by engineer. */
@@ -438,6 +459,9 @@
 
 /* No comment provided by engineer. */
 "Italic" = "Kursywa";
+
+/* No comment provided by engineer. */
+"Join" = "Dołącz";
 
 /* No comment provided by engineer. */
 "Landing Page" = "Strona początkowa";
@@ -494,6 +518,9 @@
 "list_or_two" = "%1$@ lub %2$@";
 
 /* No comment provided by engineer. */
+"Locate QR Code" = "Znajdź kod QR";
+
+/* No comment provided by engineer. */
 "Log In" = "Zaloguj";
 
 /* No comment provided by engineer. */
@@ -503,7 +530,16 @@
 "Log Out" = "Wyloguj";
 
 /* No comment provided by engineer. */
+"Logging you in" = "Logowanie w";
+
+/* No comment provided by engineer. */
 "Login" = "Zaloguj";
+
+/* No comment provided by engineer. */
+"Login Error" = "Błąd logowania";
+
+/* No comment provided by engineer. */
+"Make sure you enable camera permissions in Settings" = "Upewnij się, że włączono uprawnienia kamery w Ustawieniach";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Zarządzaj uczestnikami";
@@ -533,13 +569,25 @@
 "Never" = "Nigdy";
 
 /* No comment provided by engineer. */
+"New Conferences" = "Nowe konferencje";
+
+/* No comment provided by engineer. */
 "New To Do" = "Nowa lista zadań";
+
+/* No comment provided by engineer. */
+"Next" = "Następny";
+
+/* No comment provided by engineer. */
+"No Conferences" = "Brak konferencji";
 
 /* No comment provided by engineer. */
 "No Content" = "Brak zawartości";
 
 /* No comment provided by engineer. */
 "No Courses" = "Brak kursów";
+
+/* No comment provided by engineer. */
+"No description" = "Brak opisu";
 
 /* No comment provided by engineer. */
 "No Due Date" = "Brak terminu";
@@ -561,6 +609,9 @@
 
 /* No comment provided by engineer. */
 "Not Graded" = "Nie oceniono";
+
+/* No comment provided by engineer. */
+"Not Started" = "Nie rozpoczęto";
 
 /* No comment provided by engineer. */
 "Not Submitted" = "Nie wysłano";
@@ -623,6 +674,12 @@
 "Play" = "Odtwórz";
 
 /* No comment provided by engineer. */
+"Please generate another QR Code and try again." = "Wygeneruj nowy kod QR i spróbuj ponownie.";
+
+/* No comment provided by engineer. */
+"Please wait, this might take a minute." = "Proszę czekać, to może potrwać chwilę.";
+
+/* No comment provided by engineer. */
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
@@ -648,6 +705,9 @@
 
 /* No comment provided by engineer. */
 "Record Audio" = "Nagraj dźwięk";
+
+/* No comment provided by engineer. */
+"Recordings" = "Nagrań";
 
 /* No comment provided by engineer. */
 "red" = "czerwony";
@@ -678,6 +738,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "Ponów próbę";
+
+/* No comment provided by engineer. */
+"Scanning not supported" = "Skanowanie nie jest obsługiwane";
 
 /* No comment provided by engineer. */
 "Scheduling" = "Planowanie";
@@ -741,6 +804,9 @@
 
 /* No comment provided by engineer. */
 "Start recording" = "Rozpocznij nagrywanie";
+
+/* started date at time */
+"Started %@ at %@" = "Rozpoczęto %1$@ o %2$@";
 
 /* No comment provided by engineer. */
 "Stop Act as User" = "Zatrzymaj podszywanie się jako użytkownik";
@@ -824,10 +890,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Aby użyć nowych ustawień językowych, aplikację należy uruchomić ponownie. Uruchom aplikację ponownie.";
 
 /* No comment provided by engineer. */
+"There are no conferences to display yet." = "Brak konferencji do wyświetlenia.";
+
+/* No comment provided by engineer. */
 "There are no pages to display." = "Brak stron do wyświetlenia.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Wystąpił problem z pobraniem Warunków korzystania.";
+
+/* No comment provided by engineer. */
+"There was an error loading conferences. Pull to refresh to try again." = "Wystąpił błąd podczas wczytywania konferencji. Przeciągnij, aby odświeżyć widok, i spróbuj ponownie.";
 
 /* No comment provided by engineer. */
 "There was an error loading courses. Pull to refresh to try again." = "Wystąpił błąd podczas wczytywania kursów. Przeciągnij, aby odświeżyć widok, i spróbuj ponownie.";

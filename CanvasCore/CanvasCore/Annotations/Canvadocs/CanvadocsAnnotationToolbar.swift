@@ -20,7 +20,7 @@ import UIKit
 import PSPDFKit
 import PSPDFKitUI
 
-public class CanvadocsAnnotationToolbar: PSPDFAnnotationToolbar {
+public class CanvadocsAnnotationToolbar: AnnotationToolbar {
     
     @objc public var showDoneButton: Bool = true
 
@@ -28,42 +28,42 @@ public class CanvadocsAnnotationToolbar: PSPDFAnnotationToolbar {
         return showDoneButton ? super.doneButton : nil
     }
     
-    public override init(annotationStateManager: PSPDFAnnotationStateManager) {
+    public override init(annotationStateManager: AnnotationStateManager) {
         super.init(annotationStateManager: annotationStateManager)
         
-        let commentGroupItem = PSPDFAnnotationGroupItem(type: .stamp, variant: nil) { (item, container, tintColor) in
+        let commentGroupItem = AnnotationToolConfiguration.ToolItem(type: .stamp, variant: nil) { (item, container, tintColor) in
             return UIImage(named: "pin", in: Bundle(for: CanvadocsAnnotationToolbar.self), compatibleWith: nil)!.withRenderingMode(.alwaysTemplate)
         }
-        let commentGroup = PSPDFAnnotationGroup(items: [commentGroupItem])
+        let commentGroup = AnnotationToolConfiguration.ToolGroup(items: [commentGroupItem])
         
-        let highlightGroupItem = PSPDFAnnotationGroupItem(type: .highlight, variant: nil, configurationBlock: { (item, container, tintColor) in
+        let highlightGroupItem = AnnotationToolConfiguration.ToolItem(type: .highlight, variant: nil, configurationBlock: { (item, container, tintColor) in
             return UIImage(named: "highlight", in: Bundle(for: CanvadocsAnnotationToolbar.self), compatibleWith: nil)!.withRenderingMode(.alwaysTemplate)
         })
-        let highlightGroup = PSPDFAnnotationGroup(items: [highlightGroupItem])
+        let highlightGroup = AnnotationToolConfiguration.ToolGroup(items: [highlightGroupItem])
         
-        let freeTextGroupItem = PSPDFAnnotationGroupItem(type: .freeText, variant: nil) { (item, container, tintColor) in
+        let freeTextGroupItem = AnnotationToolConfiguration.ToolItem(type: .freeText, variant: nil) { (item, container, tintColor) in
             return UIImage(named: "text_box", in: Bundle(for: CanvadocsAnnotationToolbar.self), compatibleWith: nil)!.withRenderingMode(.alwaysTemplate)
         }
-        let freeTextGroup = PSPDFAnnotationGroup(items: [freeTextGroupItem])
+        let freeTextGroup = AnnotationToolConfiguration.ToolGroup(items: [freeTextGroupItem])
         
-        let strikeoutGroupItem = PSPDFAnnotationGroupItem(type: .strikeOut, variant: nil, configurationBlock: { (item, container, tintColor) in
+        let strikeoutGroupItem = AnnotationToolConfiguration.ToolItem(type: .strikeOut, variant: nil, configurationBlock: { (item, container, tintColor) in
             return UIImage(named: "strike_through", in: Bundle(for: CanvadocsAnnotationToolbar.self), compatibleWith: nil)!.withRenderingMode(.alwaysTemplate)
         })
-        let strikeoutGroup = PSPDFAnnotationGroup(items: [strikeoutGroupItem])
+        let strikeoutGroup = AnnotationToolConfiguration.ToolGroup(items: [strikeoutGroupItem])
         
-        let inkGroupItem = PSPDFAnnotationGroupItem(type: .ink, variant: nil) { (item, container, tintColor) in
+        let inkGroupItem = AnnotationToolConfiguration.ToolItem(type: .ink, variant: nil) { (item, container, tintColor) in
             return UIImage(named: "draw", in: Bundle(for: CanvadocsAnnotationToolbar.self), compatibleWith: nil)!.withRenderingMode(.alwaysTemplate)
         }
-        let inkGroup = PSPDFAnnotationGroup(items: [inkGroupItem])
+        let inkGroup = AnnotationToolConfiguration.ToolGroup(items: [inkGroupItem])
         
-        let boxGroupItem = PSPDFAnnotationGroupItem(type: .square, variant: nil) { (item, container, tintColor) in
+        let boxGroupItem = AnnotationToolConfiguration.ToolItem(type: .square, variant: nil) { (item, container, tintColor) in
             return UIImage(named: "rectangle", in: Bundle(for: CanvadocsAnnotationToolbar.self), compatibleWith: nil)!.withRenderingMode(.alwaysTemplate)
         }
-        let boxGroup = PSPDFAnnotationGroup(items: [boxGroupItem])
+        let boxGroup = AnnotationToolConfiguration.ToolGroup(items: [boxGroupItem])
 
-        let eraserGroupItem = PSPDFAnnotationGroupItem(type: .eraser, variant: nil)
-        let eraserGroup = PSPDFAnnotationGroup(items: [eraserGroupItem])
+        let eraserGroupItem = AnnotationToolConfiguration.ToolItem(type: .eraser, variant: nil)
+        let eraserGroup = AnnotationToolConfiguration.ToolGroup(items: [eraserGroupItem])
         
-        self.configurations = [PSPDFAnnotationToolbarConfiguration(annotationGroups: [commentGroup, highlightGroup, freeTextGroup, strikeoutGroup, boxGroup, inkGroup, eraserGroup])]
+        self.configurations = [AnnotationToolConfiguration(annotationGroups: [commentGroup, highlightGroup, freeTextGroup, strikeoutGroup, boxGroup, inkGroup, eraserGroup])]
     }
 }

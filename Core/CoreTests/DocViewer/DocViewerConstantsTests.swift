@@ -32,7 +32,7 @@ class DocViewerConstantsTests: XCTestCase {
     }
 
     func testBuilder() {
-        let config = PSPDFConfiguration(builder: docViewerConfigurationBuilder)
+        let config = PDFConfiguration(builder: docViewerConfigurationBuilder)
         XCTAssertEqual(config.pageMode, .single)
         XCTAssertEqual(config.pageTransition, .scrollContinuous)
         XCTAssertEqual(config.scrollDirection, .vertical)
@@ -40,19 +40,19 @@ class DocViewerConstantsTests: XCTestCase {
 
     func testStyle() {
         stylePSPDFKit()
-        XCTAssertEqual(PSPDFKitGlobal.sharedInstance.styleManager.lastUsedProperty(
+        XCTAssertEqual(SDK.shared.styleManager.lastUsedProperty(
            "color",
-           forKey: AnnotationStateVariantID(rawValue: AnnotationString.ink.rawValue)
+           forKey: Annotation.ToolVariantID(rawValue: Annotation.Tool.ink.rawValue)
         ) as? UIColor, DocViewerAnnotationColor.red.color)
-        XCTAssertEqual(PSPDFKitGlobal.sharedInstance.styleManager.lastUsedProperty(
+        XCTAssertEqual(SDK.shared.styleManager.lastUsedProperty(
             "fillColor",
-            forKey: AnnotationStateVariantID(rawValue: AnnotationString.freeText.rawValue)
+            forKey: Annotation.ToolVariantID(rawValue: Annotation.Tool.freeText.rawValue)
         ) as? UIColor, .clear)
-        XCTAssertEqual(PSPDFKitGlobal.sharedInstance.styleManager.lastUsedProperty(
+        XCTAssertEqual(SDK.shared.styleManager.lastUsedProperty(
             "color",
-            forKey: AnnotationStateVariantID(rawValue: AnnotationString.freeText.rawValue)
+            forKey: Annotation.ToolVariantID(rawValue: Annotation.Tool.freeText.rawValue)
         ) as? UIColor, .black)
-        let textPresets = PSPDFKitGlobal.sharedInstance.styleManager.presets(forKey: AnnotationStateVariantID(rawValue: AnnotationString.freeText.rawValue), type: .colorPreset) as? [PSPDFColorPreset]
+        let textPresets = SDK.shared.styleManager.presets(forKey: Annotation.ToolVariantID(rawValue: Annotation.Tool.freeText.rawValue), type: .colorPreset) as? [ColorPreset]
         XCTAssertNotNil(textPresets)
         XCTAssertEqual(textPresets?.count, DocViewerAnnotationColor.allCases.count * 2)
         for annotationColor in DocViewerAnnotationColor.allCases {

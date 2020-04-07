@@ -101,6 +101,9 @@
 "Camera" = "Камера";
 
 /* No comment provided by engineer. */
+"Camera not available" = "Камера отсутствует";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Не можете найти ваше учебное заведение? Попробуйте набрать полный адрес URL учебного заведения.";
 
 /* No comment provided by engineer. */
@@ -180,6 +183,15 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Завершить";
+
+/* concluded date at time */
+"Concluded %@ at %@" = "Завершено %1$@ в %2$@";
+
+/* No comment provided by engineer. */
+"Concluded Conferences" = "Завершенные конференции";
+
+/* No comment provided by engineer. */
+"Conference Details" = "Данные веб-конференции";
 
 /* No comment provided by engineer. */
 "Conferences" = "Конференции";
@@ -353,10 +365,16 @@
 "Filter events" = "Фильтровать события";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Итоговая оценка: %@";
 
 /* No comment provided by engineer. */
 "final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find a code to scan" = "Поиск кода для сканирования";
 
 /* No comment provided by engineer. */
 "Find my school" = "Найти мою школу";
@@ -419,6 +437,9 @@
 "Impact Level" = "Уровень воздействия";
 
 /* No comment provided by engineer. */
+"In Progress" = "Выполняется";
+
+/* No comment provided by engineer. */
 "Inbox" = "Входящие";
 
 /* No comment provided by engineer. */
@@ -438,6 +459,9 @@
 
 /* No comment provided by engineer. */
 "Italic" = "Курсив";
+
+/* No comment provided by engineer. */
+"Join" = "Присоединиться";
 
 /* No comment provided by engineer. */
 "Landing Page" = "Целевая страница";
@@ -494,6 +518,9 @@
 "list_or_two" = "%1$@ или %2$@";
 
 /* No comment provided by engineer. */
+"Locate QR Code" = "Определить местонахождение кода QR";
+
+/* No comment provided by engineer. */
 "Log In" = "Войти";
 
 /* No comment provided by engineer. */
@@ -503,7 +530,16 @@
 "Log Out" = "Выйти";
 
 /* No comment provided by engineer. */
+"Logging you in" = "Ваша регистрация в";
+
+/* No comment provided by engineer. */
 "Login" = "Вход в систему";
+
+/* No comment provided by engineer. */
+"Login Error" = "Ошибка входа в систему";
+
+/* No comment provided by engineer. */
+"Make sure you enable camera permissions in Settings" = "Убедитесь в том, что вы включили разрешения камеры в \"Настройках\"";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Управление студентами";
@@ -533,13 +569,25 @@
 "Never" = "Никогда";
 
 /* No comment provided by engineer. */
+"New Conferences" = "Новые конференции";
+
+/* No comment provided by engineer. */
 "New To Do" = "Новая задача";
+
+/* No comment provided by engineer. */
+"Next" = "Далее";
+
+/* No comment provided by engineer. */
+"No Conferences" = "Нет веб-конференций";
 
 /* No comment provided by engineer. */
 "No Content" = "Нет контента";
 
 /* No comment provided by engineer. */
 "No Courses" = "Курсы отсутствуют";
+
+/* No comment provided by engineer. */
+"No description" = "Описание отсутствует";
 
 /* No comment provided by engineer. */
 "No Due Date" = "Срок выполнения не задан";
@@ -561,6 +609,9 @@
 
 /* No comment provided by engineer. */
 "Not Graded" = "Оценка не выставлена";
+
+/* No comment provided by engineer. */
+"Not Started" = "Не начато";
 
 /* No comment provided by engineer. */
 "Not Submitted" = "Не отправлено";
@@ -623,6 +674,12 @@
 "Play" = "Воспроизвести";
 
 /* No comment provided by engineer. */
+"Please generate another QR Code and try again." = "Создайте другой код QR и повторите попытку.";
+
+/* No comment provided by engineer. */
+"Please wait, this might take a minute." = "Подождите несколько минут.";
+
+/* No comment provided by engineer. */
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
@@ -648,6 +705,9 @@
 
 /* No comment provided by engineer. */
 "Record Audio" = "Записать аудио";
+
+/* No comment provided by engineer. */
+"Recordings" = "Записи";
 
 /* No comment provided by engineer. */
 "red" = "красный";
@@ -678,6 +738,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "Повторить";
+
+/* No comment provided by engineer. */
+"Scanning not supported" = "Сканирование не поддерживается";
 
 /* No comment provided by engineer. */
 "Scheduling" = "Составление плана";
@@ -741,6 +804,9 @@
 
 /* No comment provided by engineer. */
 "Start recording" = "Запустить запись";
+
+/* started date at time */
+"Started %@ at %@" = "Начало  %1$@ в %2$@";
 
 /* No comment provided by engineer. */
 "Stop Act as User" = "Отключить функцию «Действовать как пользователь»";
@@ -824,10 +890,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Необходимо перезапустить приложение для использования новых языковых настроек. Перезапустите приложение.";
 
 /* No comment provided by engineer. */
+"There are no conferences to display yet." = "Пока нет отображаемых веб-конференций";
+
+/* No comment provided by engineer. */
 "There are no pages to display." = "Нет доступных для отображения страниц.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Возникла проблема при обращении к условиям использования.";
+
+/* No comment provided by engineer. */
+"There was an error loading conferences. Pull to refresh to try again." = "Произошла ошибка при загрузке веб-конференций. Потяните для обновления, чтобы попробовать еще раз.";
 
 /* No comment provided by engineer. */
 "There was an error loading courses. Pull to refresh to try again." = "Произошла ошибка при скачивании курсов. Потяните для обновления, чтобы попробовать еще раз.";
