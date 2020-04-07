@@ -41,7 +41,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
     public var color: UIColor?
     public weak var colorDelegate: ColorDelegate?
     var courseID = ""
-    var enrollment: Enrollment? {
+    var courseEnrollment: Enrollment? {
         return courses.first?.enrollments?.first {
             $0.state == .active &&
             $0.userID == userID &&
@@ -61,6 +61,14 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
     }
     lazy var courses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.updateNavBar()
+    }
+    lazy var enrollments = env.subscribe(GetEnrollments(
+        context: ContextModel(.course, id: courseID),
+        userID: userID,
+        gradingPeriodID: gradingPeriodID,
+        types: [ "StudentEnrollment" ],
+        states: [ .active ]
+    )) { [weak self] in
         self?.update()
     }
     lazy var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in
@@ -101,6 +109,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         colors.refresh()
         courses.refresh()
         gradingPeriods.refresh()
+        enrollments.refresh()
         assignments.refresh()
     }
 
@@ -118,6 +127,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         colors.refresh(force: true)
         courses.refresh(force: true)
         gradingPeriods.refresh(force: true)
+        enrollments.refresh(force: true)
         assignments.refresh(force: true) { [weak self] _ in
             self?.refreshControl.endRefreshing()
         }
@@ -132,11 +142,11 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
     }
 
     func update() {
-        if !gradingPeriodLoaded, gradingPeriodID != enrollment?.currentGradingPeriodID {
-            updateGradingPeriod(id: enrollment?.currentGradingPeriodID)
+        if !gradingPeriodLoaded, gradingPeriodID != courseEnrollment?.currentGradingPeriodID {
+            updateGradingPeriod(id: courseEnrollment?.currentGradingPeriodID)
         }
         gradingPeriodLoaded = gradingPeriodLoaded || (courses.requested && !courses.pending)
-        gradingPeriodView.isHidden = !gradingPeriodLoaded || enrollment?.multipleGradingPeriodsEnabled != true
+        gradingPeriodView.isHidden = !gradingPeriodLoaded || courseEnrollment?.multipleGradingPeriodsEnabled != true
         gradingPeriodLabel.text = gradingPeriodID == nil && gradingPeriodLoaded
             ? NSLocalizedString("All Grading Periods", bundle: .core, comment: "")
             : gradingPeriods.first(where: { $0.id == gradingPeriodID })?.title
@@ -147,7 +157,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
 
         totalGradeLabel.text = courses.first?.hideFinalGrades == true
             ? NSLocalizedString("N/A", bundle: .core, comment: "")
-            : enrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
+            : enrollments.first?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
 
         loadingView.isHidden = assignments.error != nil || !assignments.pending || !assignments.isEmpty || refreshControl.isRefreshing
         emptyView.isHidden = assignments.error != nil || assignments.pending || !assignments.isEmpty
@@ -157,6 +167,16 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
 
     func updateGradingPeriod(id: String?) {
         gradingPeriodID = id
+        enrollments = env.subscribe(GetEnrollments(
+            context: ContextModel(.course, id: courseID),
+            userID: userID,
+            gradingPeriodID: gradingPeriodID,
+            types: [ "StudentEnrollment" ],
+            states: [ .active ]
+        )) { [weak self] in
+            self?.update()
+        }
+        enrollments.refresh()
         // Delete assignment groups immediately, to see a spinner again
         assignments.useCase.reset(context: env.database.viewContext)
         try? env.database.viewContext.save()

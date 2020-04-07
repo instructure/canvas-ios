@@ -155,7 +155,8 @@ class EnrollmentTests: CoreTestCase {
                 current_period_computed_current_score: 10
             )
             let allPeriods = APIEnrollment.make(
-                grades: .make(current_score: 100)
+                grades: .make(current_score: 100),
+                totals_for_all_grading_periods_option: false
             )
             enrollment.update(fromApiModel: currentPeriod, course: nil, in: databaseClient)
             enrollment.update(fromApiModel: allPeriods, course: nil, gradingPeriodID: nil, in: databaseClient)

@@ -69,6 +69,12 @@ class GradeListViewControllerTests: CoreTestCase {
             multiple_grading_periods_enabled: true,
             current_grading_period_id: "1"
         ), ]))
+        api.mock(GetEnrollments(
+            context: ContextModel(.course, id: "1"),
+            gradingPeriodID: "1",
+            types: [ "StudentEnrollment" ],
+            states: [ .active ]
+        ))
         api.mock(controller.gradingPeriods, value: [
             .make(id: "1", title: "One"),
             .make(id: "2", title: "Two"),
