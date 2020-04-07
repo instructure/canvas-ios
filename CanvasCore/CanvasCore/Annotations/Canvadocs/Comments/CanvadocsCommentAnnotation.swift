@@ -21,11 +21,11 @@ import PSPDFKit
 import PSPDFKitUI
 import Core
 
-class CanvadocsPointAnnotation: PSPDFStampAnnotation {
+class CanvadocsPointAnnotation: StampAnnotation {
     override var isResizable: Bool { get { return false } }
     override var shouldMaintainAspectRatio: Bool { get { return true } }
 
-    override func draw(context: CGContext, options: PSPDFRenderOptions?) {
+    override func draw(context: CGContext, options: RenderOptions?) {
         context.saveGState()
         let cgColor = color?.cgColor ?? DocViewerAnnotationColor.blue.color.cgColor
         context.setFillColor(cgColor)
@@ -65,6 +65,6 @@ class CanvadocsPointAnnotation: PSPDFStampAnnotation {
     }
 }
 
-class CanvadocsCommentReplyAnnotation: PSPDFNoteAnnotation {
+class CanvadocsCommentReplyAnnotation: NoteAnnotation {
     @objc var inReplyToName: String?
 }

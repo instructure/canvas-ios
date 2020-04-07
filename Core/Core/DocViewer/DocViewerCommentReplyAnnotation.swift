@@ -18,6 +18,6 @@
 
 import PSPDFKit
 
-class DocViewerCommentReplyAnnotation: PSPDFNoteAnnotation {
+class DocViewerCommentReplyAnnotation: NoteAnnotation {
     var inReplyToName: String?
 }

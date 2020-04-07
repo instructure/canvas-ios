@@ -21,19 +21,19 @@ import PSPDFKit
 import PSPDFKitUI
 
 @objc public class AppAnnotationsConfiguration: NSObject {
-    @objc public class func canvasAndSpeedgraderConfig() -> PSPDFConfiguration {
+    @objc public class func canvasAndSpeedgraderConfig() -> PDFConfiguration {
         return canvasAppConfiguration
     }
     
-    @objc public class func teacherConfig(bottomInset: CGFloat) -> PSPDFConfiguration {
+    @objc public class func teacherConfig(bottomInset: CGFloat) -> PDFConfiguration {
         return teacherAppConfiguration(bottomInset: bottomInset)
     }
 }
 
-func applySharedAppConfiguration(to builder: PSPDFConfigurationBuilder) {
+func applySharedAppConfiguration(to builder: PDFConfigurationBuilder) {
     builder.shouldAskForAnnotationUsername = false
-    builder.pageTransition = PSPDFPageTransition.scrollContinuous
-    builder.scrollDirection = PSPDFScrollDirection.vertical
+    builder.pageTransition = PageTransition.scrollContinuous
+    builder.scrollDirection = ScrollDirection.vertical
     builder.spreadFitting = .fill
     builder.additionalScrollViewFrameInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     builder.pageMode = .single
@@ -43,7 +43,7 @@ func applySharedAppConfiguration(to builder: PSPDFConfigurationBuilder) {
     builder.editableAnnotationTypes = [.stamp, .highlight, .freeText, .strikeOut, .ink, .eraser, .square]
     builder.naturalDrawingAnnotationEnabled = true
 
-    let properties: [AnnotationString: [[AnnotationStyleKey]]] = [
+    let properties: [Annotation.Tool: [[AnnotationStyle.Key]]] = [
         .stamp: [[.color]],
         .highlight: [[.color]],
         .ink: [[.color, .lineWidth]],
@@ -54,18 +54,18 @@ func applySharedAppConfiguration(to builder: PSPDFConfigurationBuilder) {
     ]
     builder.propertiesForAnnotations = properties
 
-    builder.overrideClass(PSPDFAnnotationToolbar.self, with: CanvadocsAnnotationToolbar.self)
-    builder.overrideClass(PSPDFAnnotationStateManager.self, with: CanvadocsAnnotationStateManager.self)
+    builder.overrideClass(AnnotationToolbar.self, with: CanvadocsAnnotationToolbar.self)
+    builder.overrideClass(AnnotationStateManager.self, with: CanvadocsAnnotationStateManager.self)
 }
 
-public let canvasAppConfiguration: PSPDFConfiguration = {
-    return PSPDFConfiguration { (builder) -> Void in
+public let canvasAppConfiguration: PDFConfiguration = {
+    return PDFConfiguration { (builder) -> Void in
         applySharedAppConfiguration(to: builder)
     }
 }()
 
-public func teacherAppConfiguration(bottomInset: CGFloat) -> PSPDFConfiguration {
-    return PSPDFConfiguration { (builder) -> Void in
+public func teacherAppConfiguration(bottomInset: CGFloat) -> PDFConfiguration {
+    return PDFConfiguration { (builder) -> Void in
         applySharedAppConfiguration(to: builder)
         builder.additionalScrollViewFrameInsets.bottom = bottomInset
         builder.backgroundColor = UIColor(red: 165.0/255.0, green: 175.0/255.0, blue: 181.0/255.0, alpha: 1.0)

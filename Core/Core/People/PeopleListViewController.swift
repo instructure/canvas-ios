@@ -172,7 +172,7 @@ extension PeopleListViewController: UISearchBarDelegate {
     }
 
     public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.searchTextField.resignFirstResponder()
+        view.endEditing(true)
         tableView.setContentOffset(CGPoint(x: 0, y: searchBar.frame.height), animated: true)
     }
 

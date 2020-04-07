@@ -104,9 +104,9 @@ class DocViewerViewControllerTests: CoreTestCase {
     }
 
     func testShouldShowForSelectedText() {
-        let menuItems: [PSPDFMenuItem] = [
-            PSPDFMenuItem(title: "test", block: {}),
-            PSPDFMenuItem(title: "test1", block: {}, identifier: PSPDFTextMenu.annotationMenuHighlight.rawValue),
+        let menuItems: [MenuItem] = [
+            MenuItem(title: "test", block: {}),
+            MenuItem(title: "test1", block: {}, identifier: TextMenu.annotationMenuHighlight.rawValue),
         ]
         controller.view.layoutIfNeeded()
         let results = controller.pdf.delegate?.pdfViewController?(
@@ -115,68 +115,69 @@ class DocViewerViewControllerTests: CoreTestCase {
             atSuggestedTargetRect: .zero,
             forSelectedText: "",
             in: .zero,
-            on: PSPDFPageView(frame: .zero)
+            on: PDFPageView(frame: .zero)
         )
         XCTAssertEqual(results?.count, 1)
         XCTAssertEqual(results?[0], menuItems[0])
     }
 
-    class MockPDFViewController: PSPDFViewController {
+    class MockPDFViewController: PDFViewController {
         var presented: UIViewController?
-        override func present(_ viewController: UIViewController, options: [String: Any]? = nil, animated: Bool, sender: Any?, completion: (() -> Void)? = nil) -> Bool {
-            presented = viewController
+
+        override func present(_ controller: UIViewController, options: [PresentationOption: Any]? = nil, animated: Bool, sender: Any?, completion: (() -> Void)? = nil) -> Bool {
+            presented = controller
             return false
         }
     }
 
-    class MockPDFDocument: PSPDFDocument {
-        var added: [PSPDFAnnotation]?
-        override func add(_ annotations: [PSPDFAnnotation], options: [PSPDFAnnotationOption: Any]? = nil) -> Bool {
+    class MockPDFDocument: Document {
+        var added: [Annotation]?
+        override func add(annotations: [Annotation], options: [AnnotationManager.ChangeBehaviorKey: Any]? = nil) -> Bool {
             added = annotations
             return false
         }
 
-        var removed: [PSPDFAnnotation]?
-        override func remove(_ annotations: [PSPDFAnnotation], options: [PSPDFAnnotationOption: Any]? = nil) -> Bool {
+        var removed: [Annotation]?
+        override func remove(annotations: [Annotation], options: [AnnotationManager.ChangeBehaviorKey: Any]? = nil) -> Bool {
             removed = annotations
             return false
         }
     }
 
-    class MockPDFPageView: PSPDFPageView {
-        var annotationView: (UIView & PSPDFAnnotationPresenting)?
-        override func annotationView(for annotation: PSPDFAnnotation) -> (UIView & PSPDFAnnotationPresenting)? {
+    class MockPDFPageView: PDFPageView {
+        var annotationView: (UIView & AnnotationPresenting)?
+        override func annotationView(for annotation: Annotation) -> (UIView & AnnotationPresenting)? {
             return annotationView
         }
     }
 
     func testShouldShowForNoAnnotations() {
         let menuItems = [
-            PSPDFMenuItem(title: "test", block: {}),
-            PSPDFMenuItem(title: "", block: {}, identifier: PSPDFTextMenu.annotationMenuOpacity.rawValue),
+            MenuItem(title: "test", block: {}),
+            MenuItem(title: "", block: {}, identifier: TextMenu.annotationMenuOpacity.rawValue),
         ]
         controller.view.layoutIfNeeded()
         let results = controller.pdf.delegate?.pdfViewController?(
-            PSPDFViewController(document: PSPDFDocument(url: url)),
+            PDFViewController(document: Document(url: url)),
             shouldShow: menuItems,
             atSuggestedTargetRect: .zero,
             for: nil,
             in: .zero,
-            on: PSPDFPageView(frame: .zero)
+            on: PDFPageView(frame: .zero)
         )
         XCTAssertEqual(results, [ menuItems[0] ])
     }
 
     func testShouldShowForAnnotations() {
         let menuItems = [
-            PSPDFMenuItem(title: "test", block: {}),
-            PSPDFMenuItem(title: "opacity", block: {}, identifier: PSPDFTextMenu.annotationMenuOpacity.rawValue),
-            PSPDFMenuItem(title: "inspector", block: {}, identifier: PSPDFTextMenu.annotationMenuInspector.rawValue),
+            MenuItem(title: "test", block: {}),
+            MenuItem(title: "opacity", block: {}, identifier: TextMenu.annotationMenuOpacity.rawValue),
+            MenuItem(title: "inspector", block: {}, identifier: TextMenu.annotationMenuInspector.rawValue),
         ]
         controller.view.layoutIfNeeded()
         controller.metadata = APIDocViewerMetadata.make()
         let viewController = MockPDFViewController(document: MockPDFDocument(url: url))
-        let annotation = PSPDFNoteAnnotation(contents: "note")
+        let annotation = NoteAnnotation(contents: "note")
         annotation.isEditable = false
         let results = controller.pdf.delegate?.pdfViewController?(
             viewController,
@@ -184,12 +185,12 @@ class DocViewerViewControllerTests: CoreTestCase {
             atSuggestedTargetRect: .zero,
             for: [annotation],
             in: .zero,
-            on: PSPDFPageView(frame: .zero)
+            on: PDFPageView(frame: .zero)
         )
         XCTAssertEqual(results?[0].title, "Comments")
         XCTAssertEqual(results?[1].title, "test")
         XCTAssertEqual(results?[2].title, "Style")
-        XCTAssertEqual(results?[3].identifier, PSPDFTextMenu.annotationMenuRemove.rawValue)
+        XCTAssertEqual(results?[3].identifier, TextMenu.annotationMenuRemove.rawValue)
 
         results?[0].performBlock()
         XCTAssert(viewController.presented is UINavigationController)
@@ -200,17 +201,17 @@ class DocViewerViewControllerTests: CoreTestCase {
 
     func testShouldShowForAnnotationsDontAllowRotating() {
         let menuItems = [
-            PSPDFMenuItem(title: "test", block: {}),
-            PSPDFMenuItem(title: "opacity", block: {}, identifier: PSPDFTextMenu.annotationMenuOpacity.rawValue),
-            PSPDFMenuItem(title: "inspector", block: {}, identifier: PSPDFTextMenu.annotationMenuInspector.rawValue),
+            MenuItem(title: "test", block: {}),
+            MenuItem(title: "opacity", block: {}, identifier: TextMenu.annotationMenuOpacity.rawValue),
+            MenuItem(title: "inspector", block: {}, identifier: TextMenu.annotationMenuInspector.rawValue),
         ]
         controller.view.layoutIfNeeded()
         controller.metadata = APIDocViewerMetadata.make()
         let viewController = MockPDFViewController(document: MockPDFDocument(url: url))
-        let annotation = PSPDFFreeTextAnnotation(contents: "text")
+        let annotation = FreeTextAnnotation(contents: "text")
         let pageView = MockPDFPageView(frame: .zero)
-        let annotationView = PSPDFFreeTextAnnotationView()
-        let resizableView = PSPDFResizableView()
+        let annotationView = FreeTextAnnotationView()
+        let resizableView = ResizableView()
         annotationView.resizableView = resizableView
         pageView.annotationView = annotationView
         _ = controller.pdf.delegate?.pdfViewController?(
@@ -225,18 +226,18 @@ class DocViewerViewControllerTests: CoreTestCase {
     }
 
     func testShouldShowController() {
-        XCTAssertFalse(controller.pdfViewController(PSPDFViewController(), shouldShow: PSPDFStampViewController(), animated: true))
-        XCTAssertTrue(controller.pdfViewController(PSPDFViewController(), shouldShow: UIViewController(), animated: true))
+        XCTAssertFalse(controller.pdfViewController(PDFViewController(), shouldShow: StampViewController(), animated: true))
+        XCTAssertTrue(controller.pdfViewController(PDFViewController(), shouldShow: UIViewController(), animated: true))
     }
 
     func testDidTapOn() {
-        XCTAssertFalse(controller.pdfViewController(PSPDFViewController(), didTapOn: PSPDFPageView(frame: .zero), at: .zero))
+        XCTAssertFalse(controller.pdfViewController(PDFViewController(), didTapOn: PDFPageView(frame: .zero), at: .zero))
 
         controller.view.layoutIfNeeded()
         controller.metadata = APIDocViewerMetadata.make()
         let viewController = MockPDFViewController(document: MockPDFDocument(url: url))
         viewController.annotationStateManager.state = .stamp
-        XCTAssertTrue(controller.pdfViewController(viewController, didTapOn: PSPDFPageView(frame: .zero), at: .zero))
+        XCTAssertTrue(controller.pdfViewController(viewController, didTapOn: PDFPageView(frame: .zero), at: .zero))
         XCTAssert(viewController.presented is UINavigationController)
         XCTAssertEqual((viewController.document as? MockPDFDocument)?.added?.count, 1)
     }

@@ -106,7 +106,6 @@
 		61D6A84D1C8F84E400370117 /* AlertsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D6A84C1C8F84E400370117 /* AlertsListViewController.swift */; };
 		61E94C611C873C1A00777B95 /* DetailsDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E94C5F1C873C1A00777B95 /* DetailsDescriptionCell.swift */; };
 		785AC17F20CEDAD300C28E46 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 785AC17E20CEDAD300C28E46 /* Settings.bundle */; };
-		7893BDD120D1A7A200231DF7 /* AdminViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7893BDD320D1A7A200231DF7 /* AdminViewController.storyboard */; };
 		7893BDFD20D1A83F00231DF7 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7893BDFC20D1A83F00231DF7 /* AdminViewController.swift */; };
 		78A84A0E209BB7A000921C9B /* ParentAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835A5E6209B6F4C00C9220B /* ParentAppDelegate.swift */; };
 		78AD913321C8184F0075FBCF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AD913221C8184F0075FBCF /* GoogleService-Info.plist */; };
@@ -116,6 +115,7 @@
 		7D1591BC23AD79B100ED0106 /* ComposeRecipientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1591BB23AD79B100ED0106 /* ComposeRecipientsView.swift */; };
 		7D231BE123AC1E0A005BA31D /* ComposeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D231BE023AC1E0A005BA31D /* ComposeViewControllerTests.swift */; };
 		7D32963923D6574B008ED385 /* TableEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D32963823D6574A008ED385 /* TableEmptyView.xib */; };
+		7D4C6F35243BE099003C1728 /* AdminViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D4C6F34243BE098003C1728 /* AdminViewController.storyboard */; };
 		7D52D8A122FCC89F00684932 /* DiscussionTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D322048745B00F6EDCE /* DiscussionTopic.swift */; };
 		7D52D8A222FCC89F00684932 /* DiscussionTopic+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D332048745B00F6EDCE /* DiscussionTopic+Network.swift */; };
 		7D52D8A322FCC89F00684932 /* DiscussionTopic+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D342048745B00F6EDCE /* DiscussionTopic+Details.swift */; };
@@ -614,7 +614,6 @@
 		5B1D4F0422BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		5B1D4F0522BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		5B1D4F0622BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
-		5B1D4F0822BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/AdminViewController.strings; sourceTree = "<group>"; };
 		5B1D4F0922BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/SettingsObserveeCell.strings; sourceTree = "<group>"; };
 		5B1D4F0A22BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		5B1D4F0B22BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/DetailsReminderCell.strings; sourceTree = "<group>"; };
@@ -628,7 +627,6 @@
 		5B317B77240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		5B317B78240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		5B317B79240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
-		5B317B7A240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/AdminViewController.strings; sourceTree = "<group>"; };
 		5B317B7C240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/SettingsObserveeCell.strings; sourceTree = "<group>"; };
 		5B317B7D240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		5B317B7E240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/DetailsReminderCell.strings; sourceTree = "<group>"; };
@@ -642,7 +640,6 @@
 		5B3F70D0243083280088EF27 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		5B3F70D1243083280088EF27 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		5B3F70D2243083280088EF27 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
-		5B3F70D3243083280088EF27 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AdminViewController.strings; sourceTree = "<group>"; };
 		5B3F70D4243083280088EF27 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SettingsObserveeCell.strings; sourceTree = "<group>"; };
 		5B3F70D5243083280088EF27 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		5B3F70D6243083280088EF27 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DetailsReminderCell.strings; sourceTree = "<group>"; };
@@ -656,7 +653,6 @@
 		5B6A9320242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/DetailsLocationCell.strings"; sourceTree = "<group>"; };
 		5B6A9321242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
 		5B6A9322242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/DetailsAttachmentCell.strings"; sourceTree = "<group>"; };
-		5B6A9323242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
 		5B6A9324242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/SettingsObserveeCell.strings"; sourceTree = "<group>"; };
 		5B6A9325242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
 		5B6A9326242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/DetailsReminderCell.strings"; sourceTree = "<group>"; };
@@ -670,7 +666,6 @@
 		5B7BD3C722ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		5B7BD3C822ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		5B7BD3C922ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
-		5B7BD3CA22ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/AdminViewController.strings; sourceTree = "<group>"; };
 		5B7BD3CC22ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/SettingsObserveeCell.strings; sourceTree = "<group>"; };
 		5B7BD3CD22ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		5B7BD3CE22ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/DetailsReminderCell.strings; sourceTree = "<group>"; };
@@ -688,7 +683,6 @@
 		5B8461DF20DF7C3300EE4100 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		5B8461E220DF7C3300EE4100 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		5B8461E520DF7C3400EE4100 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		5B8461E620DF7C3400EE4100 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/AdminViewController.strings; sourceTree = "<group>"; };
 		5B8461E720DF7C3400EE4100 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B8461E820DF7C3500EE4100 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
 		5B8461EB20DF7C3500EE4100 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
@@ -700,7 +694,6 @@
 		5BBD136F243080DE00019BB7 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		5BBD1370243080DE00019BB7 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		5BBD1371243080DE00019BB7 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
-		5BBD1372243080DE00019BB7 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/AdminViewController.strings; sourceTree = "<group>"; };
 		5BBD1373243080DE00019BB7 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/SettingsObserveeCell.strings; sourceTree = "<group>"; };
 		5BBD1374243080DE00019BB7 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		5BBD1375243080DE00019BB7 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/DetailsReminderCell.strings; sourceTree = "<group>"; };
@@ -714,7 +707,6 @@
 		5BE924A921BCF8750007609A /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/DetailsLocationCell.strings"; sourceTree = "<group>"; };
 		5BE924AA21BCF8750007609A /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
 		5BE924AB21BCF8750007609A /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/DetailsAttachmentCell.strings"; sourceTree = "<group>"; };
-		5BE924AC21BCF8750007609A /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
 		5BE924AE21BCF8750007609A /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/SettingsObserveeCell.strings"; sourceTree = "<group>"; };
 		5BE924AF21BCF8750007609A /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
 		5BE924B021BCF8750007609A /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/DetailsReminderCell.strings"; sourceTree = "<group>"; };
@@ -766,27 +758,6 @@
 		6E6BDD2513908E187E77D0C6 /* Pods-defaults-common_tests-ParentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-ParentTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-ParentTests/Pods-defaults-common_tests-ParentTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7835A5E6209B6F4C00C9220B /* ParentAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentAppDelegate.swift; sourceTree = "<group>"; };
 		785AC17E20CEDAD300C28E46 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		7893BDD220D1A7A200231DF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AdminViewController.storyboard; sourceTree = "<group>"; };
-		7893BDD520D1A7AF00231DF7 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/AdminViewController.strings; sourceTree = "<group>"; };
-		7893BDD720D1A7C100231DF7 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/AdminViewController.strings; sourceTree = "<group>"; };
-		7893BDD920D1A7C600231DF7 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AdminViewController.strings; sourceTree = "<group>"; };
-		7893BDDB20D1A7C900231DF7 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
-		7893BDDD20D1A7CC00231DF7 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
-		7893BDDF20D1A7CE00231DF7 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/AdminViewController.strings; sourceTree = "<group>"; };
-		7893BDE120D1A7D100231DF7 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/AdminViewController.strings; sourceTree = "<group>"; };
-		7893BDE320D1A7D300231DF7 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/AdminViewController.strings; sourceTree = "<group>"; };
-		7893BDE520D1A7D500231DF7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/AdminViewController.strings; sourceTree = "<group>"; };
-		7893BDE720D1A7D700231DF7 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/AdminViewController.strings; sourceTree = "<group>"; };
-		7893BDE920D1A7DA00231DF7 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/AdminViewController.strings; sourceTree = "<group>"; };
-		7893BDEB20D1A7DD00231DF7 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/AdminViewController.strings; sourceTree = "<group>"; };
-		7893BDED20D1A7E000231DF7 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/AdminViewController.strings; sourceTree = "<group>"; };
-		7893BDEF20D1A7E200231DF7 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
-		7893BDF120D1A7E500231DF7 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/AdminViewController.strings; sourceTree = "<group>"; };
-		7893BDF320D1A7E700231DF7 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AdminViewController.strings; sourceTree = "<group>"; };
-		7893BDF520D1A7EB00231DF7 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/AdminViewController.strings; sourceTree = "<group>"; };
-		7893BDF720D1A7ED00231DF7 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
-		7893BDF920D1A7EF00231DF7 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/AdminViewController.strings; sourceTree = "<group>"; };
-		7893BDFB20D1A7F100231DF7 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
 		7893BDFC20D1A83F00231DF7 /* AdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
 		78AD913221C8184F0075FBCF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D016B6223E8C6D100C6E0CA /* AttachmentCardsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCardsViewControllerTests.swift; sourceTree = "<group>"; };
@@ -797,7 +768,6 @@
 		7D231BE023AC1E0A005BA31D /* ComposeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewControllerTests.swift; sourceTree = "<group>"; };
 		7D32963823D6574A008ED385 /* TableEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableEmptyView.xib; sourceTree = "<group>"; };
 		7D349C7D21430D98004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		7D349C7E21430D98004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
 		7D349C7F21430D99004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/CourseCell.strings"; sourceTree = "<group>"; };
 		7D349C8321430D9B004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		7D349C8421430D9C004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/DashboardViewController.strings"; sourceTree = "<group>"; };
@@ -813,7 +783,6 @@
 		7D349C8F21430DA1004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349C9121430DA2004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D349C9521430DE1004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		7D349C9621430DE1004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
 		7D349C9721430DE2004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/CourseCell.strings"; sourceTree = "<group>"; };
 		7D349C9B21430DE5004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		7D349C9C21430DE5004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/DashboardViewController.strings"; sourceTree = "<group>"; };
@@ -829,7 +798,6 @@
 		7D349CA721430DE9004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349CA921430DEA004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D349CAD21430E20004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		7D349CAE21430E21004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
 		7D349CAF21430E22004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/CourseCell.strings"; sourceTree = "<group>"; };
 		7D349CB321430E24004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		7D349CB421430E25004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/DashboardViewController.strings"; sourceTree = "<group>"; };
@@ -845,7 +813,6 @@
 		7D349CBF21430E29004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349CC121430E29004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D349CC521430E5C004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		7D349CC621430E5D004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
 		7D349CC721430E5D004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/CourseCell.strings"; sourceTree = "<group>"; };
 		7D349CCB21430E60004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		7D349CCC21430E60004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/DashboardViewController.strings"; sourceTree = "<group>"; };
@@ -860,6 +827,7 @@
 		7D349CD521430E65004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/StudentSettingsHeaderView.strings"; sourceTree = "<group>"; };
 		7D349CD721430E66004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349CD921430E67004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D4C6F34243BE098003C1728 /* AdminViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AdminViewController.storyboard; sourceTree = "<group>"; };
 		7D57D3CB23AADA0F00EB2CC5 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		7D57D3CD23AADAAC00EB2CC5 /* ComposeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ComposeViewController.storyboard; sourceTree = "<group>"; };
 		7D6F4CE623C66738001C957D /* ComposeReplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeReplyViewController.swift; sourceTree = "<group>"; };
@@ -874,7 +842,6 @@
 		7DE74F0022BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		7DE74F0222BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/DetailsAttachmentCell.strings"; sourceTree = "<group>"; };
 		7DE74F0322BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
-		7DE74F0422BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
 		7DE74F0622BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/DetailsLocationCell.strings"; sourceTree = "<group>"; };
 		7DE74F0722BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/StudentSettingsHeaderView.strings"; sourceTree = "<group>"; };
 		7DE74F0822BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
@@ -1355,7 +1322,7 @@
 		7893BDCE20D1A74700231DF7 /* Admin */ = {
 			isa = PBXGroup;
 			children = (
-				7893BDD320D1A7A200231DF7 /* AdminViewController.storyboard */,
+				7D4C6F34243BE098003C1728 /* AdminViewController.storyboard */,
 				7893BDFC20D1A83F00231DF7 /* AdminViewController.swift */,
 			);
 			path = Admin;
@@ -1719,6 +1686,7 @@
 			files = (
 				974BA7F923A89C5C00E09D5A /* ConversationDetailViewController.storyboard in Resources */,
 				7D57D3CE23AADAAC00EB2CC5 /* ComposeViewController.storyboard in Resources */,
+				7D4C6F35243BE099003C1728 /* AdminViewController.storyboard in Resources */,
 				2CB69BB71D91CDF30059C5A5 /* DetailsReminderCell.xib in Resources */,
 				2CB69BCF1D91CE4A0059C5A5 /* DashboardViewController.storyboard in Resources */,
 				2CB69BC31D91CE140059C5A5 /* UserCell.xib in Resources */,
@@ -1736,7 +1704,6 @@
 				2C61CD091D9311B400196C03 /* Localizable.strings in Resources */,
 				2CB69BC01D91CE100059C5A5 /* SettingsObserveeCell.xib in Resources */,
 				2CB69BB41D91CDF00059C5A5 /* DetailsInfoCell.xib in Resources */,
-				7893BDD120D1A7A200231DF7 /* AdminViewController.storyboard in Resources */,
 				2CB69BCC1D91CE460059C5A5 /* SettingsViewController.storyboard in Resources */,
 				7D32963923D6574B008ED385 /* TableEmptyView.xib in Resources */,
 				785AC17F20CEDAD300C28E46 /* Settings.bundle in Resources */,
@@ -1854,7 +1821,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "\"${SRCROOT}/../scripts/carthage-copy-frameworks.swift\"\n";
+			shellScript = "#\"${SRCROOT}/../scripts/carthage-copy-frameworks.swift\"\n\"${SRCROOT}/../scripts/carthage-copy-frameworks\"\n";
 		};
 		FB24C3360B33F479305651E1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2635,47 +2602,6 @@
 				7D349CD721430E66004C1074 /* sv-instk12 */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		7893BDD320D1A7A200231DF7 /* AdminViewController.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7893BDD220D1A7A200231DF7 /* Base */,
-				7893BDD520D1A7AF00231DF7 /* ar */,
-				7893BDD720D1A7C100231DF7 /* da */,
-				7893BDD920D1A7C600231DF7 /* de */,
-				7893BDDB20D1A7C900231DF7 /* en-AU */,
-				7893BDDD20D1A7CC00231DF7 /* en-GB */,
-				7893BDDF20D1A7CE00231DF7 /* es */,
-				7893BDE120D1A7D100231DF7 /* fr */,
-				7893BDE320D1A7D300231DF7 /* ht */,
-				7893BDE520D1A7D500231DF7 /* ja */,
-				7893BDE720D1A7D700231DF7 /* mi */,
-				7893BDE920D1A7DA00231DF7 /* nb */,
-				7893BDEB20D1A7DD00231DF7 /* nl */,
-				7893BDED20D1A7E000231DF7 /* pl */,
-				7893BDEF20D1A7E200231DF7 /* pt-BR */,
-				7893BDF120D1A7E500231DF7 /* pt */,
-				7893BDF320D1A7E700231DF7 /* ru */,
-				7893BDF520D1A7EB00231DF7 /* sv */,
-				7893BDF720D1A7ED00231DF7 /* zh-HK */,
-				7893BDF920D1A7EF00231DF7 /* zh */,
-				7893BDFB20D1A7F100231DF7 /* fr-CA */,
-				5B8461E620DF7C3400EE4100 /* cy */,
-				7D349C7E21430D98004C1074 /* da-instk12 */,
-				7D349C9621430DE1004C1074 /* en-GB-instukhe */,
-				7D349CAE21430E21004C1074 /* nb-instk12 */,
-				7D349CC621430E5D004C1074 /* sv-instk12 */,
-				5BE924AC21BCF8750007609A /* en-CY */,
-				5B7BD3CA22ACE9C400FA371B /* fi */,
-				5B1D4F0822BD6E560082F8F0 /* sl */,
-				7DE74F0422BD7942003C8B44 /* en-AU-unimelb */,
-				5B317B7A240B98DF009EE2F9 /* is */,
-				5B6A9323242746BE0062CC54 /* en-CA */,
-				5BBD1372243080DE00019BB7 /* ca */,
-				5B3F70D3243083280088EF27 /* it */,
-			);
-			name = AdminViewController.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

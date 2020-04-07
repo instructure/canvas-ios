@@ -19,8 +19,8 @@
 import PSPDFKit
 import PSPDFKitUI
 
-public class DocViewerAnnotationStateManager: PSPDFAnnotationStateManager {
-    override public func stateShowsStylePicker(_ state: AnnotationString?) -> Bool {
+public class DocViewerAnnotationStateManager: AnnotationStateManager {
+    override public func stateShowsStylePicker(_ state: Annotation.Tool?) -> Bool {
         return state == .stamp || super.stateShowsStylePicker(state)
     }
 }

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Admin View Controller-->
+        <scene sceneID="GRG-em-oUj">
+            <objects>
+                <viewController storyboardIdentifier="AdminViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qhe-JY-OUn" customClass="AdminViewController" customModule="Parent" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TmQ-Xi-0Ck">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ada-kN-OkJ">
+                                <rect key="frame" x="32" y="109" width="256" height="350.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PandaWelcome" translatesAutoresizingMaskIntoConstraints="NO" id="Wxe-Gr-sTU" customClass="IconView" customModule="Parent" customModuleProvider="target">
+                                        <rect key="frame" x="43.5" y="0.0" width="169" height="216"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="PandaWelcome"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Welcome, Admin!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0z-1f-3Pv" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
+                                        <rect key="frame" x="46" y="264" width="164" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="18R-6f-XGb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold20"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Add students at the top or visit the global menu to masquerade as a student." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chJ-nt-Qcc" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="293" width="256" height="57.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="NY5-0x-fVj"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="chJ-nt-Qcc" secondAttribute="trailing" id="6An-K6-AzY"/>
+                                    <constraint firstItem="Wxe-Gr-sTU" firstAttribute="top" secondItem="ada-kN-OkJ" secondAttribute="top" id="ZOP-54-tEJ"/>
+                                    <constraint firstItem="chJ-nt-Qcc" firstAttribute="centerX" secondItem="ada-kN-OkJ" secondAttribute="centerX" id="fwu-z5-YE7"/>
+                                    <constraint firstItem="b0z-1f-3Pv" firstAttribute="centerX" secondItem="ada-kN-OkJ" secondAttribute="centerX" id="nz8-ia-Yeh"/>
+                                    <constraint firstAttribute="bottom" secondItem="chJ-nt-Qcc" secondAttribute="bottom" id="q2V-iD-D6M"/>
+                                    <constraint firstItem="chJ-nt-Qcc" firstAttribute="top" secondItem="b0z-1f-3Pv" secondAttribute="bottom" constant="8" id="rBn-iT-U6d"/>
+                                    <constraint firstItem="b0z-1f-3Pv" firstAttribute="top" secondItem="Wxe-Gr-sTU" secondAttribute="bottom" constant="48" id="rhv-na-iME"/>
+                                    <constraint firstItem="Wxe-Gr-sTU" firstAttribute="centerX" secondItem="ada-kN-OkJ" secondAttribute="centerX" id="rlA-1f-Rcs"/>
+                                    <constraint firstItem="chJ-nt-Qcc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ada-kN-OkJ" secondAttribute="leading" id="t5F-cp-YbX"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ada-kN-OkJ" firstAttribute="centerX" secondItem="qIP-lE-4GV" secondAttribute="centerX" id="8ZZ-yf-rzQ"/>
+                            <constraint firstAttribute="trailing" secondItem="ada-kN-OkJ" secondAttribute="trailing" constant="32" id="PJC-5V-UcY"/>
+                            <constraint firstItem="ada-kN-OkJ" firstAttribute="leading" secondItem="TmQ-Xi-0Ck" secondAttribute="leading" constant="32" id="cdH-vd-Lfx"/>
+                            <constraint firstItem="ada-kN-OkJ" firstAttribute="centerY" secondItem="qIP-lE-4GV" secondAttribute="centerY" id="d9z-xC-Tza"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qIP-lE-4GV"/>
+                    </view>
+                    <connections>
+                        <outlet property="directionsLabel" destination="chJ-nt-Qcc" id="Deq-Ai-y9u"/>
+                        <outlet property="welcomeLabel" destination="b0z-1f-3Pv" id="ShQ-Tx-cbb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G5D-hF-Fy6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="135" y="266.19718309859155"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="PandaWelcome" width="169" height="216"/>
+    </resources>
+</document>

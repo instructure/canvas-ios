@@ -99,15 +99,15 @@ public extension RouterProtocol {
         }
 
         switch options {
-        case let .modal(modalOptions):
-            if modalOptions.addDoneButton {
+        case let .modal(style, isDismissable, _, addDoneButton):
+            if addDoneButton {
                 view.addDoneButton(side: .left)
             }
             nav?.navigationBar.useModalStyle()
-            if let presentationStyle = modalOptions.0 {
+            if let presentationStyle = style {
                 (nav ?? view).modalPresentationStyle = presentationStyle
             }
-            if #available(iOS 13, *), !modalOptions.isDismissable {
+            if #available(iOS 13, *), !isDismissable {
                 (nav ?? view).isModalInPresentation = true
             }
             from.present(nav ?? view, animated: true, completion: completion)
