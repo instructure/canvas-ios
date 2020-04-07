@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Activity" representedClassName=".Activity" syncable="YES">
         <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -344,14 +344,17 @@
         <attribute name="typeRaw" optional="YES" attributeType="Binary"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
         <relationship name="module" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Module" inverseName="itemsRaw" inverseEntity="Module"/>
+        <relationship name="sequenceCurrent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItemSequence" inverseName="current" inverseEntity="ModuleItemSequence"/>
+        <relationship name="sequenceNext" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItemSequence" inverseName="next" inverseEntity="ModuleItemSequence"/>
+        <relationship name="sequencePrev" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItemSequence" inverseName="prev" inverseEntity="ModuleItemSequence"/>
     </entity>
     <entity name="ModuleItemSequence" representedClassName="Core.ModuleItemSequence" syncable="YES">
         <attribute name="assetID" attributeType="String"/>
         <attribute name="assetTypeRaw" attributeType="String"/>
         <attribute name="courseID" attributeType="String"/>
-        <relationship name="current" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItem"/>
-        <relationship name="next" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItem"/>
-        <relationship name="prev" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItem"/>
+        <relationship name="current" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItem" inverseName="sequenceCurrent" inverseEntity="ModuleItem"/>
+        <relationship name="next" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItem" inverseName="sequenceNext" inverseEntity="ModuleItem"/>
+        <relationship name="prev" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItem" inverseName="sequencePrev" inverseEntity="ModuleItem"/>
     </entity>
     <entity name="NotificationCategory" representedClassName="Core.NotificationCategory" syncable="YES">
         <attribute name="category" attributeType="String"/>
@@ -670,7 +673,8 @@
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
         <element name="MediaComment" positionX="-369" positionY="-18" width="128" height="148"/>
         <element name="Module" positionX="-369" positionY="-18" width="128" height="133"/>
-        <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="225"/>
+        <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="268"/>
+        <element name="ModuleItemSequence" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="NotificationCategory" positionX="-522" positionY="0" width="128" height="103"/>
         <element name="Page" positionX="-549" positionY="-27" width="128" height="193"/>
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1080"/>
@@ -691,6 +695,5 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="208"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="ModuleItemSequence" positionX="-540" positionY="-18" width="128" height="133"/>
     </elements>
 </model>

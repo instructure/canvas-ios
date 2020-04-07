@@ -187,13 +187,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/files/:fileID": fileViewController,
     "/files/:fileID/download": fileViewController,
     "/files/:fileID/old": fileViewController,
-    "/:context/:contextID/files/:fileID": { url, params in
-        if params["context"] == "courses", let courseID = params["contextID"],
-            let controller = moduleItemController(for: url, courseID: courseID) {
-            return controller
-        }
-        return fileViewController(url: url, params: params)
-    },
+    "/:context/:contextID/files/:fileID": fileViewController,
     "/:context/:contextID/files/:fileID/download": fileViewController,
 
     "/courses/:courseID/grades": nil,
@@ -254,7 +248,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
         return try? ModuleItemDetailViewController(session: session, courseID: courseID, moduleItemID: itemID, route: route)
     },
 
-    "/courses/:courseID/modules/:module_item_redirect/:itemID": { url, params in
+    "/courses/:courseID/module_item_redirect/:itemID": { url, params in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         guard let session = Session.current else { return nil }
         if ExperimentalFeature.studentModules.isEnabled {
@@ -309,7 +303,6 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/courses/:courseID/quizzes/:quizID": { url, params in
         guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
         guard let session = Session.current else { return nil }
-        if let controller = moduleItemController(for: url, courseID: courseID) { return controller }
         if ExperimentalFeature.studentModules.isEnabled, !url.originIsModuleItemDetails {
             return ModuleItemSequenceViewController.create(
                 courseID: courseID,
@@ -318,6 +311,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
                 url: url
             )
         }
+        if let controller = moduleItemController(for: url, courseID: courseID) { return controller }
         return QuizIntroViewController(session: session, courseID: courseID, quizID: quizID)
     },
 
@@ -448,6 +442,10 @@ private func previewFileViewController(url: URLComponents, params: [String: Stri
 }
 
 private func fileViewController(url: URLComponents, params: [String: String]) -> UIViewController? {
+    if params["context"] == "courses", let courseID = params["contextID"],
+        let controller = moduleItemController(for: url, courseID: courseID) {
+        return controller
+    }
     guard let fileID = url.queryItems?.first(where: { $0.name == "preview" })?.value ?? params["fileID"] else { return nil }
     var context = ContextModel(path: url.path)
     if let courseID = url.queryItems?.first(where: { $0.name == "courseID" })?.value {

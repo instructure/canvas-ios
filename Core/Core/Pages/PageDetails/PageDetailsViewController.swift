@@ -46,7 +46,7 @@ public class PageDetailsViewController: UIViewController, PageDetailsViewProtoco
     }
 
     override public func viewDidLoad() {
-        setupTitleViewInNavbar(title: NSLocalizedString("Page", bundle: .core, comment: ""))
+        setupTitleViewInNavbar(title: NSLocalizedString("Page Details", bundle: .core, comment: ""))
         webView?.linkDelegate = self
 
         let refresh = CircleRefreshControl()

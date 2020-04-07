@@ -22,6 +22,7 @@ import SafariServices
 
 public class ExternalURLViewController: UIViewController, ColoredNavViewProtocol {
     @IBOutlet public weak var nameLabel: UILabel!
+    @IBOutlet weak var spinnerView: CircleProgressView!
 
     public var color: UIColor?
     public var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
@@ -30,6 +31,8 @@ public class ExternalURLViewController: UIViewController, ColoredNavViewProtocol
     public var name: String!
     public var url: URL!
     public var courseID: String?
+
+    public var authenticate = false
 
     public lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -52,7 +55,6 @@ public class ExternalURLViewController: UIViewController, ColoredNavViewProtocol
         view.backgroundColor = .named(.backgroundLightest)
         nameLabel.text = name
         setupTitleViewInNavbar(title: NSLocalizedString("External URL", bundle: .core, comment: ""))
-
         colors.refresh()
         courses?.refresh()
     }
@@ -70,6 +72,21 @@ public class ExternalURLViewController: UIViewController, ColoredNavViewProtocol
     }
 
     @IBAction public func openButtonPressed(_ sender: UIButton) {
+        if authenticate {
+            spinnerView.isHidden = false
+            env.api.makeRequest(GetWebSessionRequest(to: url)) { [weak self] response, _, error in
+                guard let self = self else { return }
+                performUIUpdate {
+                    self.spinnerView.isHidden = true
+                    self.openInSafari(url: response?.session_url ?? self.url)
+                }
+            }
+            return
+        }
+        openInSafari(url: url)
+    }
+
+    func openInSafari(url: URL) {
         let safari = SFSafariViewController(url: url)
         env.router.show(safari, from: self, options: .modal(.overFullScreen))
     }

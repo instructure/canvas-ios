@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_0" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,11 +14,28 @@
             <objects>
                 <viewController storyboardIdentifier="PageDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hCM-xp-dHi" customClass="PageDetailsViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kCX-Cg-z8M">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWL-a9-JVf" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="16" y="16" width="382" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold20"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JHR-kt-BHq">
+                                <rect key="frame" x="16" y="56" width="382" height="0.6666666666666643"/>
+                                <color key="backgroundColor" name="backgroundMedium"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="Kzz-a1-mHQ"/>
+                                </constraints>
+                            </view>
                             <wkWebView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xRQ-Bh-ekd" customClass="CoreWebView" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="40.666666666666686" width="414" height="695.33333333333326"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
@@ -29,9 +47,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="WWL-a9-JVf" firstAttribute="leading" secondItem="1ZZ-qZ-B9j" secondAttribute="leading" constant="16" id="108-UO-f7E"/>
+                            <constraint firstItem="JHR-kt-BHq" firstAttribute="top" secondItem="WWL-a9-JVf" secondAttribute="bottom" constant="16" id="HrY-Ve-8Cp"/>
                             <constraint firstItem="xRQ-Bh-ekd" firstAttribute="bottom" secondItem="1ZZ-qZ-B9j" secondAttribute="bottom" id="Jgs-rS-qLc"/>
                             <constraint firstItem="xRQ-Bh-ekd" firstAttribute="trailing" secondItem="1ZZ-qZ-B9j" secondAttribute="trailing" id="OMm-ia-zZS"/>
-                            <constraint firstItem="xRQ-Bh-ekd" firstAttribute="top" secondItem="1ZZ-qZ-B9j" secondAttribute="top" id="nr3-5g-mpo"/>
+                            <constraint firstItem="WWL-a9-JVf" firstAttribute="top" secondItem="1ZZ-qZ-B9j" secondAttribute="top" constant="16" id="Yiy-zJ-kIX"/>
+                            <constraint firstItem="1ZZ-qZ-B9j" firstAttribute="trailing" secondItem="WWL-a9-JVf" secondAttribute="trailing" constant="16" id="bAb-OI-5s1"/>
+                            <constraint firstItem="1ZZ-qZ-B9j" firstAttribute="trailing" secondItem="JHR-kt-BHq" secondAttribute="trailing" constant="16" id="bpj-C4-0R5"/>
+                            <constraint firstItem="JHR-kt-BHq" firstAttribute="bottom" secondItem="xRQ-Bh-ekd" secondAttribute="top" constant="16" id="fHs-qJ-ldF"/>
+                            <constraint firstItem="JHR-kt-BHq" firstAttribute="leading" secondItem="1ZZ-qZ-B9j" secondAttribute="leading" constant="16" id="jNS-KZ-eHw"/>
                             <constraint firstItem="xRQ-Bh-ekd" firstAttribute="leading" secondItem="1ZZ-qZ-B9j" secondAttribute="leading" id="xRy-2v-mxi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1ZZ-qZ-B9j"/>
@@ -45,4 +69,9 @@
             <point key="canvasLocation" x="144.375" y="126.7605633802817"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="backgroundMedium">
+            <color red="0.7803921568627451" green="0.80392156862745101" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

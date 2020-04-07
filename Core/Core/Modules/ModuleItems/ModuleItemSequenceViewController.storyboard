@@ -21,11 +21,11 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="762"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iGP-7W-vfy">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iGP-7W-vfy">
                                 <rect key="frame" x="0.0" y="806" width="414" height="56"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywu-lr-3Bv" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="338" y="16" width="60" height="24"/>
+                                        <rect key="frame" x="366" y="13" width="32" height="30"/>
                                         <state key="normal" title="Next"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
@@ -37,7 +37,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lE8-Sf-NiN" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="16" width="90" height="24"/>
+                                        <rect key="frame" x="16" y="13" width="59" height="30"/>
                                         <state key="normal" title="Previous"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
@@ -70,9 +70,8 @@
                         <constraints>
                             <constraint firstItem="97J-8u-P7Y" firstAttribute="bottom" secondItem="iGP-7W-vfy" secondAttribute="bottom" id="A0v-XR-3s6"/>
                             <constraint firstItem="Xc1-o8-iDS" firstAttribute="top" secondItem="97J-8u-P7Y" secondAttribute="top" id="BTg-7e-Mlo"/>
-                            <constraint firstItem="iGP-7W-vfy" firstAttribute="top" secondItem="Xc1-o8-iDS" secondAttribute="bottom" id="Chd-Su-hzE"/>
                             <constraint firstItem="sjW-dW-Pel" firstAttribute="centerY" secondItem="1Qu-yS-mhO" secondAttribute="centerY" id="FKO-c2-Xem"/>
-                            <constraint firstItem="97J-8u-P7Y" firstAttribute="bottom" secondItem="Xc1-o8-iDS" secondAttribute="bottom" priority="250" id="IhO-6Z-8QD"/>
+                            <constraint firstItem="Xc1-o8-iDS" firstAttribute="bottom" secondItem="iGP-7W-vfy" secondAttribute="top" id="VRJ-xc-0QM"/>
                             <constraint firstItem="iGP-7W-vfy" firstAttribute="leading" secondItem="97J-8u-P7Y" secondAttribute="leading" id="dxi-v1-d5O"/>
                             <constraint firstItem="Xc1-o8-iDS" firstAttribute="leading" secondItem="97J-8u-P7Y" secondAttribute="leading" id="eTD-ac-7Zt"/>
                             <constraint firstItem="97J-8u-P7Y" firstAttribute="trailing" secondItem="iGP-7W-vfy" secondAttribute="trailing" id="lBY-cm-82c"/>
@@ -82,7 +81,8 @@
                         <viewLayoutGuide key="safeArea" id="97J-8u-P7Y"/>
                     </view>
                     <connections>
-                        <outlet property="bottomConstraint" destination="Chd-Su-hzE" id="g5X-Vb-lkf"/>
+                        <outlet property="buttonsContainer" destination="iGP-7W-vfy" id="lfN-Al-uTZ"/>
+                        <outlet property="buttonsHeightConstraint" destination="ZAv-eD-KKl" id="MIx-pI-9BZ"/>
                         <outlet property="nextButton" destination="ywu-lr-3Bv" id="uNj-xQ-3iH"/>
                         <outlet property="pagesContainer" destination="Xc1-o8-iDS" id="pkP-cz-if5"/>
                         <outlet property="previousButton" destination="lE8-Sf-NiN" id="2lH-2E-P0x"/>

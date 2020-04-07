@@ -675,6 +675,8 @@
 		9FE84DDC214FE5C500B95A68 /* GetGroupTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */; };
 		9FE84DE2215037A000B95A68 /* GetContextTabsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */; };
 		9FEBF1D823CE1E18001C824B /* CreateConversationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEBF1D723CE1E18001C824B /* CreateConversationTests.swift */; };
+		B102EEB4243B7989002E04F0 /* ModuleItemDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B102EEB3243B7989002E04F0 /* ModuleItemDetailsViewController.storyboard */; };
+		B102EEB6243B862C002E04F0 /* ModuleItemSequenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B102EEB5243B862C002E04F0 /* ModuleItemSequenceViewController.swift */; };
 		B107F6CB234BB847000DAC83 /* ItemPickerElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107F6CA234BB847000DAC83 /* ItemPickerElement.swift */; };
 		B109249423CE81C400796903 /* RoleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B109249323CE81C400796903 /* RoleTests.swift */; };
 		B10E89072384807B00E7684E /* GradesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10E89062384807B00E7684E /* GradesViewControllerTests.swift */; };
@@ -1678,6 +1680,8 @@
 		9FE84DDD2150281300B95A68 /* GetContextTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextTabs.swift; sourceTree = "<group>"; };
 		9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextTabsTest.swift; sourceTree = "<group>"; };
 		9FEBF1D723CE1E18001C824B /* CreateConversationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateConversationTests.swift; sourceTree = "<group>"; };
+		B102EEB3243B7989002E04F0 /* ModuleItemDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ModuleItemDetailsViewController.storyboard; sourceTree = "<group>"; };
+		B102EEB5243B862C002E04F0 /* ModuleItemSequenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemSequenceViewController.swift; sourceTree = "<group>"; };
 		B107F6CA234BB847000DAC83 /* ItemPickerElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPickerElement.swift; sourceTree = "<group>"; };
 		B109248B23CD2BC400796903 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		B109249323CE81C400796903 /* RoleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleTests.swift; sourceTree = "<group>"; };
@@ -3453,8 +3457,10 @@
 			children = (
 				B14707B32437BC1C00CE1DBD /* ExternalURLViewController.storyboard */,
 				B14707B22437BC1C00CE1DBD /* ExternalURLViewController.swift */,
+				B102EEB3243B7989002E04F0 /* ModuleItemDetailsViewController.storyboard */,
 				B14707B62437CC9000CE1DBD /* ModuleItemDetailsViewController.swift */,
 				B14707B72437CC9000CE1DBD /* ModuleItemSequenceViewController.storyboard */,
+				B102EEB5243B862C002E04F0 /* ModuleItemSequenceViewController.swift */,
 			);
 			path = ModuleItems;
 			sourceTree = "<group>";
@@ -4227,6 +4233,7 @@
 				9FBFE6D322412B9E002B3796 /* ActAsUserViewController.storyboard in Resources */,
 				B14707B92437CC9000CE1DBD /* ModuleItemSequenceViewController.storyboard in Resources */,
 				7D2FADC4225BBA5600BCE19E /* RichContentEditor.js in Resources */,
+				B102EEB4243B7989002E04F0 /* ModuleItemDetailsViewController.storyboard in Resources */,
 				7DD6CC6921BCCE20004C4BB6 /* LoginFindSchoolViewController.storyboard in Resources */,
 				7DCF1ECC216BFE5D003AF358 /* Localizable.strings in Resources */,
 				7D7242622429C473007ED42F /* CourseListViewController.storyboard in Resources */,
@@ -4793,6 +4800,7 @@
 				7DA260D423F72359005D2121 /* DynamicButton.swift in Sources */,
 				7DA260A323F7234C005D2121 /* IPC.swift in Sources */,
 				7DA2605323F722D9005D2121 /* Module.swift in Sources */,
+				B102EEB6243B862C002E04F0 /* ModuleItemSequenceViewController.swift in Sources */,
 				7DA2605823F722D9005D2121 /* Permissions.swift in Sources */,
 				7DA260C723F72352005D2121 /* GetObservedStudents.swift in Sources */,
 				7DA260DA23F72359005D2121 /* FloatingButton.swift in Sources */,
