@@ -25,7 +25,7 @@ protocol CanvadocsAnnotationProviderDelegate: class {
     func annotationSaveStateChanges(saving: Bool)
 }
 
-class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
+class CanvadocsAnnotationProvider: PDFContainerAnnotationProvider {
     
     @objc let service: CanvadocsAnnotationService
 
@@ -40,7 +40,7 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
         }
     }
     
-    init(documentProvider: PSPDFDocumentProvider!, annotations: [CanvadocsAnnotation], service: CanvadocsAnnotationService) {
+    init(documentProvider: PDFDocumentProvider!, annotations: [CanvadocsAnnotation], service: CanvadocsAnnotationService) {
         self.service = service
         self.canvadocsAnnotations = annotations
 
@@ -49,10 +49,10 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
         guard let metadata = service.metadata?.annotationMetadata, metadata.enabled else { return }
 
         if let doc = documentProvider.document {
-            var allAnnotations: [PSPDFAnnotation] = []
+            var allAnnotations: [Annotation] = []
             for canvadocsAnnotation in annotations {
                 if let annotation = canvadocsAnnotation.pspdfAnnotation(for: doc) {
-                    (annotation as? PSPDFFreeTextAnnotation)?.sizeToFit()
+                    (annotation as? FreeTextAnnotation)?.sizeToFit()
                     annotation.flags.remove(.readOnly) // Always allow user to view and add comments
                     annotation.isEditable = annotation.user == metadata.userID &&
                         (metadata.permissions == .ReadWriteManage || metadata.permissions == .ReadWrite)
@@ -63,7 +63,7 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
         }
     }
     
-    @objc func getReplies (to: PSPDFAnnotation) -> [CanvadocsCommentReplyAnnotation] {
+    @objc func getReplies (to: Annotation) -> [CanvadocsCommentReplyAnnotation] {
         var replies: [CanvadocsCommentReplyAnnotation] = []
         for annotation in allAnnotations {
             if let reply = annotation as? CanvadocsCommentReplyAnnotation, reply.inReplyToName == to.name {
@@ -85,12 +85,12 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
     @objc func decrementRequestsInFlight() {
         requestsInFlight -= 1
     }
-    
-    override func add(_ annotations: [PSPDFAnnotation], options: [String : Any]? = nil) -> [PSPDFAnnotation]? {
+
+    override func add(_ annotations: [Annotation], options: [AnnotationManager.ChangeBehaviorKey : Any]? = nil) -> [Annotation]? {
         super.add(annotations, options: options)
         guard let doc = self.documentProvider?.document else { return nil }
         
-        var added: [PSPDFAnnotation] = []
+        var added: [Annotation] = []
         for annotation in annotations {
             if let canvadocsAnnotation = CanvadocsAnnotation(pspdfAnnotation: annotation, onDocument: doc) {
                 added.append(annotation)
@@ -115,10 +115,10 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
         return added
     }
     
-    override func remove(_ annotations: [PSPDFAnnotation], options: [String : Any]? = nil) -> [PSPDFAnnotation]? {
+    override func remove(_ annotations: [Annotation], options: [AnnotationManager.ChangeBehaviorKey : Any]? = nil) -> [Annotation]? {
         super.remove(annotations, options: options)
         
-        var removed: [PSPDFAnnotation] = []
+        var removed: [Annotation] = []
         for annotation in annotations {
             if let annotationID = annotation.name {
                 print("Deleting annotation \(annotationID)")
@@ -142,11 +142,11 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
         return removed
     }
     
-    override func didChange(_ annotation: PSPDFAnnotation, keyPaths: [String], options: [String : Any]? = nil) {
+    override func didChange(_ annotation: Annotation, keyPaths: [String], options: [String : Any]? = nil) {
         syncAnnotation(annotation)
     }
     
-    @objc func syncAnnotation(_ annotation: PSPDFAnnotation) {
+    @objc func syncAnnotation(_ annotation: Annotation) {
         guard
             let doc = documentProvider?.document,
             let pspdfAnnotationID = annotation.name,
@@ -154,7 +154,7 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
             let canvadocsAnnotation = CanvadocsAnnotation(pspdfAnnotation: annotation, onDocument: doc)
             else { return }
         
-        if let inkAnnotation = annotation as? PSPDFInkAnnotation, inkAnnotation.lines.count > 120 {
+        if let inkAnnotation = annotation as? InkAnnotation, (inkAnnotation.lines?.count ?? 0) > 120 {
             doc.undoController?.undo()
             canvasDelegate?.annotationDidExceedLimit(annotation: canvadocsAnnotation)
             return
@@ -195,10 +195,10 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
 }
 
 // Needed for setRotationOffset(_:forPageAt:)
-extension CanvadocsAnnotationProvider: PSPDFAnnotationProviderRefreshing {
-    func prepareForRefresh() {
+extension CanvadocsAnnotationProvider {
+    override func prepareForRefresh() {
     }
 
-    func refreshAnnotationsForPages(at pageIndexes: IndexSet) {
+    override func refreshAnnotationsForPages(at pageIndexes: IndexSet) {
     }
 }

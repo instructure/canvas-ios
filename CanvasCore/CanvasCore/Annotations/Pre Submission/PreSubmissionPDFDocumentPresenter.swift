@@ -22,7 +22,7 @@ import PSPDFKitUI
 import Core
 
 open class PreSubmissionPDFDocumentPresenter: NSObject {
-    @objc var pdfDocument: PSPDFDocument
+    @objc var pdfDocument: Document
     @objc let session: Session?
     @objc let defaultCourseID: String?
     @objc let defaultAssignmentID: String?
@@ -30,7 +30,7 @@ open class PreSubmissionPDFDocumentPresenter: NSObject {
     @objc open var didSubmitAssignment: ()->Void = { }
 
     @objc public init(documentURL: URL, session: Session?, defaultCourseID: String? = nil, defaultAssignmentID: String? = nil) {
-        pdfDocument = PSPDFDocument(url: documentURL)
+        pdfDocument = Document(url: documentURL)
         pdfDocument.annotationSaveMode = .embedded
         self.session = session
         self.defaultCourseID = defaultCourseID
@@ -41,10 +41,10 @@ open class PreSubmissionPDFDocumentPresenter: NSObject {
         AppEnvironment.shared.userDefaults?.submitAssignmentID = defaultAssignmentID
     }
 
-    @objc func configuration() -> PSPDFConfiguration {
-        return PSPDFConfiguration { (builder) -> Void in
+    @objc func configuration() -> PDFConfiguration {
+        return PDFConfiguration { (builder) -> Void in
             applySharedAppConfiguration(to: builder)
-            let sharing = PSPDFDocumentSharingConfiguration { builder in
+            let sharing = DocumentSharingConfiguration { builder in
                 builder.annotationOptions = [.flatten]
                 builder.pageSelectionOptions = .all
             }
@@ -70,17 +70,17 @@ open class PreSubmissionPDFDocumentPresenter: NSObject {
             builder.propertiesForAnnotations[.polygon] = [["color"], ["lineWidth"]]
 
             // Override the override
-            builder.overrideClass(PSPDFAnnotationToolbar.self, with: PSPDFAnnotationToolbar.self)
+            builder.overrideClass(AnnotationToolbar.self, with: AnnotationToolbar.self)
         }
     }
 
     @objc open func getPDFViewController() -> UIViewController {
         stylePSPDFKit()
 
-        let pdfViewController = PSPDFViewController(document: pdfDocument, configuration: configuration())
+        let pdfViewController = PDFViewController(document: pdfDocument, configuration: configuration())
         pdfViewController.navigationItem.rightBarButtonItems = [pdfViewController.activityButtonItem, pdfViewController.annotationButtonItem, pdfViewController.searchButtonItem]
-        pdfViewController.annotationToolbarController?.toolbar.supportedToolbarPositions = [.positionLeft, .positionInTopBar, .positionsVertical,  .positionRight]
-        pdfViewController.annotationToolbarController?.toolbar.toolbarPosition = .positionLeft
+        pdfViewController.annotationToolbarController?.toolbar.supportedToolbarPositions = [.left, .inTopBar, .vertical,  .right]
+        pdfViewController.annotationToolbarController?.toolbar.toolbarPosition = .left
         pdfViewController.delegate = self
 
         return pdfViewController
@@ -92,36 +92,36 @@ open class PreSubmissionPDFDocumentPresenter: NSObject {
     
 }
 
-extension PreSubmissionPDFDocumentPresenter: PSPDFViewControllerDelegate {
-    public func pdfViewController(_ pdfController: PSPDFViewController, shouldShow menuItems: [PSPDFMenuItem], atSuggestedTargetRect rect: CGRect, forSelectedText selectedText: String, in textRect: CGRect, on pageView: PSPDFPageView) -> [PSPDFMenuItem] {
+extension PreSubmissionPDFDocumentPresenter: PDFViewControllerDelegate {
+    public func pdfViewController(_ pdfController: PDFViewController, shouldShow menuItems: [MenuItem], atSuggestedTargetRect rect: CGRect, forSelectedText selectedText: String, in textRect: CGRect, on pageView: PDFPageView) -> [MenuItem] {
         return menuItems
     }
 
-    public func pdfViewController(_ pdfController: PSPDFViewController, shouldShow menuItems: [PSPDFMenuItem], atSuggestedTargetRect rect: CGRect, for annotations: [PSPDFAnnotation]?, in annotationRect: CGRect, on pageView: PSPDFPageView) -> [PSPDFMenuItem] {
+    public func pdfViewController(_ pdfController: PDFViewController, shouldShow menuItems: [MenuItem], atSuggestedTargetRect rect: CGRect, for annotations: [Annotation]?, in annotationRect: CGRect, on pageView: PDFPageView) -> [MenuItem] {
         if annotations?.count == 1, let annotation = annotations?.first {
-            var realMenuItems = [PSPDFMenuItem]()
+            var realMenuItems = [MenuItem]()
             let filteredMenuItems = menuItems.filter {
                 guard let identifier = $0.identifier else { return true }
-                if identifier == PSPDFTextMenu.annotationMenuInspector.rawValue {
+                if identifier == TextMenu.annotationMenuInspector.rawValue {
                     $0.title = NSLocalizedString("Style", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "")
                 }
                 return (
-                    identifier != PSPDFTextMenu.annotationMenuRemove.rawValue &&
-                    identifier != PSPDFTextMenu.annotationMenuNote.rawValue
+                    identifier != TextMenu.annotationMenuRemove.rawValue &&
+                    identifier != TextMenu.annotationMenuNote.rawValue
                 )
             }
             realMenuItems.append(contentsOf: filteredMenuItems)
-            realMenuItems.append(PSPDFMenuItem(title: NSLocalizedString("Remove", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), image: .icon(.trash), block: {
-                pdfController.document?.remove([annotation], options: nil)
-            }, identifier: PSPDFTextMenu.annotationMenuRemove.rawValue))
+            realMenuItems.append(MenuItem(title: NSLocalizedString("Remove", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), image: .icon(.trash), block: {
+                pdfController.document?.remove(annotations: [annotation], options: nil)
+            }, identifier: TextMenu.annotationMenuRemove.rawValue))
             return realMenuItems
         }
 
         return menuItems
     }
 
-    public func pdfViewController(_ pdfController: PSPDFViewController, shouldShow controller: UIViewController, options: [String : Any]? = nil, animated: Bool) -> Bool {
-        if controller is PSPDFStampViewController {
+    public func pdfViewController(_ pdfController: PDFViewController, shouldShow controller: UIViewController, options: [String : Any]? = nil, animated: Bool) -> Bool {
+        if controller is StampViewController {
             return false
         }
 
@@ -135,8 +135,8 @@ extension PreSubmissionPDFDocumentPresenter: PSPDFViewControllerDelegate {
     }
 }
 
-extension PreSubmissionPDFDocumentPresenter: PSPDFDocumentDelegate {
-    @objc public func pdfDocument(_ document: PSPDFDocument, didSave annotations: [PSPDFAnnotation]) {
+extension PreSubmissionPDFDocumentPresenter: PDFDocumentDelegate {
+    @objc public func pdfDocument(_ document: Document, didSave annotations: [Annotation]) {
         didSaveAnnotations()
     }
 }

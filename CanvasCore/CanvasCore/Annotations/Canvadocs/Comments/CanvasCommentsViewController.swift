@@ -21,16 +21,16 @@ import PSPDFKit
 
 class CanvadocsCommentsViewController: UIViewController {
     
-    @objc var annotation: PSPDFAnnotation!
+    @objc var annotation: Annotation!
     @objc var comments = [CanvadocsCommentReplyAnnotation]()
-    @objc var pdfDocument: PSPDFDocument!
+    @objc var pdfDocument: Document!
     var metadata: CanvadocsAnnotationMetadata!
     
     @objc var tableView: UITableView!
     @objc var replyToolbar: CommentReplyView!
     @objc var replyToolbarBottom: NSLayoutConstraint?
     
-    static func new(_ annotation: PSPDFAnnotation, pdfDocument: PSPDFDocument, metadata: CanvadocsAnnotationMetadata) -> CanvadocsCommentsViewController {
+    static func new(_ annotation: Annotation, pdfDocument: Document, metadata: CanvadocsAnnotationMetadata) -> CanvadocsCommentsViewController {
         let vc = CanvadocsCommentsViewController(nibName: nil, bundle: nil)
         vc.annotation = annotation
         vc.pdfDocument = pdfDocument
@@ -79,7 +79,7 @@ class CanvadocsCommentsViewController: UIViewController {
                     newAnnotation.user = self.metadata.userID
                     newAnnotation.userName = self.metadata.userName
                     self.comments.append(newAnnotation)
-                    self.pdfDocument.add([newAnnotation], options: [:])
+                    self.pdfDocument.add(annotations: [newAnnotation], options: [:])
                     self.replyToolbar.clearText()
                     self.tableView.reloadData()
                 }
@@ -112,7 +112,7 @@ class CanvadocsCommentsViewController: UIViewController {
     @objc func close(_ sender: UIBarButtonItem) {
         let deleted = comments.filter({ $0.isDeleted })
         if deleted.count > 0 {
-            pdfDocument.remove(deleted, options: nil)
+            pdfDocument.remove(annotations: deleted, options: nil)
         }
         dismiss(animated: true, completion: nil)
     }
@@ -126,7 +126,7 @@ extension CanvadocsCommentsViewController: CommentTableViewCellDelegate {
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: NSLocalizedString("Delete", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), style: .destructive, handler: { _ in
             guard let index = self.comments.firstIndex(of: reply) else { return }
-            self.pdfDocument.remove([reply], options: [:])
+            self.pdfDocument.remove(annotations: [reply], options: [:])
             self.comments.remove(at: index)
             self.tableView.reloadData()
         }))

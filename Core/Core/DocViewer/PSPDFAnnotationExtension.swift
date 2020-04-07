@@ -23,7 +23,7 @@ private var annotationDeletedAtKey: UInt8 = 0
 private var annotationDeletedByKey: UInt8 = 0
 private var annotationDeletedByIDKey: UInt8 = 0
 
-extension PSPDFAnnotation {
+extension Annotation {
     var userName: String? {
         get { return objc_getAssociatedObject(self, &annotationUserNameKey) as? String }
         set { objc_setAssociatedObject(self, &annotationUserNameKey, newValue, .OBJC_ASSOCIATION_COPY) }
@@ -42,22 +42,22 @@ extension PSPDFAnnotation {
     }
 
     var isEmpty: Bool {
-        return (self is PSPDFFreeTextAnnotation || self is DocViewerCommentReplyAnnotation) && contents?.isEmpty != false
+        return (self is FreeTextAnnotation || self is DocViewerCommentReplyAnnotation) && contents?.isEmpty != false
     }
 
-    static func from(_ apiAnnotation: APIDocViewerAnnotation, metadata: APIDocViewerAnnotationsMetadata) -> PSPDFAnnotation? {
-        let annotation: PSPDFAnnotation
+    static func from(_ apiAnnotation: APIDocViewerAnnotation, metadata: APIDocViewerAnnotationsMetadata) -> Annotation? {
+        let annotation: Annotation
         switch apiAnnotation.type {
         case .highlight:
-            let highlight = PSPDFHighlightAnnotation()
-            highlight.rects = apiAnnotation.coords?.map { NSValue(cgRect: rectFrom($0)) }
+            let highlight = HighlightAnnotation()
+            highlight.rects = apiAnnotation.coords?.map { rectFrom($0) }
             annotation = highlight
         case .strikeout:
-            let strikeout = PSPDFStrikeOutAnnotation()
-            strikeout.rects = apiAnnotation.coords?.map { NSValue(cgRect: rectFrom($0)) }
+            let strikeout = StrikeOutAnnotation()
+            strikeout.rects = apiAnnotation.coords?.map { rectFrom($0) }
             annotation = strikeout
         case .freetext:
-            let freeText = PSPDFFreeTextAnnotation(contents: apiAnnotation.contents ?? "")
+            let freeText = FreeTextAnnotation(contents: apiAnnotation.contents ?? "")
             let fontSizeStr = apiAnnotation.font?.trimmingCharacters(in: CharacterSet(charactersIn: "0123456789").inverted) ?? ""
             freeText.fontName = "Helvetica" // apiAnnotation.font?.split(separator: " ")?.last.flatMap { String($0) } ?? "Helvetica"
             freeText.fontSize = CGFloat(Float(fontSizeStr) ?? 14) * 0.9
@@ -72,17 +72,16 @@ extension PSPDFAnnotation {
             reply.inReplyToName = apiAnnotation.inreplyto
             annotation = reply
         case .ink:
-            let ink = PSPDFInkAnnotation()
-            ink.lines = apiAnnotation.inklist?.gestures.map { $0.map { (point: APIDocViewerInkPoint) -> NSValue in
-                let drawingPoint = PSPDFDrawingPointFromCGPoint(CGPoint(x: point.x, y: point.y))
-                return NSValue.pspdf_value(with: drawingPoint)
+            let ink = InkAnnotation()
+            ink.lines = apiAnnotation.inklist?.gestures.map { $0.map { (point: APIDocViewerInkPoint) -> DrawingPoint in
+                return DrawingPoint(cgPoint: CGPoint(x: point.x, y: point.y))
             } }
             if let width = apiAnnotation.width {
                 ink.lineWidth = CGFloat(width)
             }
             annotation = ink
         case .square:
-            let square = PSPDFSquareAnnotation()
+            let square = SquareAnnotation()
             square.lineWidth = CGFloat(apiAnnotation.width ?? 1.0)
             annotation = square
         }
@@ -115,25 +114,32 @@ extension PSPDFAnnotation {
         var inreplyto: String?
         var inklist: APIDocViewerInklist?
         switch self {
-        case is PSPDFHighlightAnnotation:
+        case is HighlightAnnotation:
             type = .highlight
-        case is PSPDFStrikeOutAnnotation:
+        case is StrikeOutAnnotation:
             type = .strikeout
-        case is PSPDFFreeTextAnnotation:
+        case is FreeTextAnnotation:
             type = .freetext
-        case is PSPDFInkAnnotation:
+        case is InkAnnotation:
             type = .ink
-            let lines = (self as? PSPDFInkAnnotation)?.lines ?? []
-            inklist = APIDocViewerInklist(gestures: lines.map { simplify($0.map { (value: NSValue) -> APIDocViewerInkPoint in
-                let point = value.pspdf_drawingPointValue
-                return APIDocViewerInkPoint(x: Double(point.location.x), y: Double(point.location.y), width: Double(self.lineWidth), opacity: 1)
-            }, within: 0.5) })
-        case is PSPDFSquareAnnotation:
+            let lines = (self as? InkAnnotation)?.lines ?? []
+            let gestures = lines.map { (drawingPoints: [DrawingPoint]) -> [APIDocViewerInkPoint] in
+                simplify(
+                    drawingPoints.map {
+                        let x = Double($0.location.x)
+                        let y = Double($0.location.y)
+                        let w = Double(self.lineWidth)
+                        return APIDocViewerInkPoint(x: x, y: y, width: w, opacity: 1)
+                    },
+                    within: 0.5)
+            }
+            inklist = APIDocViewerInklist(gestures: gestures)
+        case is SquareAnnotation:
             type = .square
         case is DocViewerCommentReplyAnnotation:
             type = .commentReply
             inreplyto = (self as? DocViewerCommentReplyAnnotation)?.inReplyToName
-        case is DocViewerPointAnnotation, is PSPDFNoteAnnotation:
+        case is DocViewerPointAnnotation, is NoteAnnotation:
             type = .text // point
         default:
             return nil
@@ -156,7 +162,7 @@ extension PSPDFAnnotation {
             icon: type == .text ? "Comment" : nil,
             contents: contents,
             inreplyto: inreplyto,
-            coords: rects?.map { pointsFrom($0.cgRectValue) },
+            coords: rects?.map { pointsFrom($0) },
             rect: pointsFrom(boundingBox),
             font: fontName.flatMap { "\(Int(fontSize / 0.9))pt \($0)" },
             inklist: inklist,

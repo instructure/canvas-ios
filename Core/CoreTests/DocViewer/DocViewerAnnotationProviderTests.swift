@@ -49,7 +49,7 @@ class DocViewerAnnotationProviderTests: XCTestCase {
         enabled: Bool = true,
         permissions: APIDocViewerPermissions = .readwritemanage
     ) -> DocViewerAnnotationProvider {
-        let document = PSPDFDocument(url: Bundle(for: DocViewerAnnotationProviderTests.self).url(forResource: "instructure", withExtension: "pdf")!)
+        let document = Document(url: Bundle(for: DocViewerAnnotationProviderTests.self).url(forResource: "instructure", withExtension: "pdf")!)
         let metadata = APIDocViewerAnnotationsMetadata(enabled: enabled, user_id: "1", user_name: "a", permissions: permissions)
         let documentProvider = document.documentProviders.first!
         let provider = DocViewerAnnotationProvider(
@@ -73,7 +73,7 @@ class DocViewerAnnotationProviderTests: XCTestCase {
             APIDocViewerAnnotation.make(id: "2", type: .commentReply, inreplyto: "1"),
             APIDocViewerAnnotation.make(id: "3", type: .commentReply, inreplyto: "1"),
         ])
-        XCTAssertEqual(provider.getReplies(to: try PSPDFAnnotation(dictionary: ["name": "1"])).count, 2)
+        XCTAssertEqual(provider.getReplies(to: try Annotation(dictionary: ["name": "1"])).count, 2)
     }
 
     func testAddNoData() {
@@ -108,7 +108,7 @@ class DocViewerAnnotationProviderTests: XCTestCase {
 
     func testAddUnsupported() {
         let provider = getProvider()
-        let annotation = try! PSPDFSoundAnnotation(dictionary: nil)
+        let annotation = try! SoundAnnotation(dictionary: nil)
         XCTAssertEqual(provider.add([ annotation ])?.count, 0)
     }
 
@@ -156,8 +156,8 @@ class DocViewerAnnotationProviderTests: XCTestCase {
         let provider = getProvider()
         let delegate = Delegate()
         provider.docViewerDelegate = delegate
-        let annotation = PSPDFInkAnnotation(lines: (0...120).map {
-            return [ NSValue.pspdf_value(with: PSPDFDrawingPoint(location: CGPoint(x: $0, y: $0), intensity: 1)) ]
+        let annotation = InkAnnotation(lines: (0...120).map {
+            return [ DrawingPoint(location: CGPoint(x: $0, y: $0), intensity: 1) ]
         })
         provider.didChange(annotation, keyPaths: [])
         XCTAssertEqual(delegate.annotation, annotation.apiAnnotation())
@@ -177,7 +177,7 @@ class DocViewerAnnotationProviderTests: XCTestCase {
         let provider = getProvider()
         let delegate = Delegate()
         provider.docViewerDelegate = delegate
-        let annotation = try! PSPDFSoundAnnotation(dictionary: nil)
+        let annotation = try! SoundAnnotation(dictionary: nil)
         provider.didChange(annotation, keyPaths: [])
         XCTAssertNil(delegate.error)
     }

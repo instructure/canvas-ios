@@ -36,7 +36,6 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
            guard let session = Session.current else { return nil }
            return try? CalendarEventDetailViewController(forEventWithID: eventID, in: session, route: route)
        }
-       guard ExperimentalFeature.studentCalendar.isEnabled else { return nil }
        let controller = PlannerViewController.create()
        controller.view.tintColor = Brand.shared.primary
        return controller

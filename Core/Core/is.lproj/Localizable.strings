@@ -101,6 +101,9 @@
 "Camera" = "Myndavél";
 
 /* No comment provided by engineer. */
+"Camera not available" = "Myndavél er ekki tiltæk";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Finnurðu ekki skólann þinn? Prufaðu að slá inn alla vefslóð skólans.";
 
 /* No comment provided by engineer. */
@@ -180,6 +183,15 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Lokið";
+
+/* concluded date at time */
+"Concluded %@ at %@" = "Lokið þann %1$@ klukkan %2$@";
+
+/* No comment provided by engineer. */
+"Concluded Conferences" = "Loknar ráðstefnur";
+
+/* No comment provided by engineer. */
+"Conference Details" = "Upplýsingar um ráðstefnu";
 
 /* No comment provided by engineer. */
 "Conferences" = "Ráðstefnur";
@@ -353,10 +365,16 @@
 "Filter events" = "Sía viðburði";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Lokaeinkunn: %@";
 
 /* No comment provided by engineer. */
 "final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find a code to scan" = "Finndu kóða til að skanna";
 
 /* No comment provided by engineer. */
 "Find my school" = "Finna skólann minn";
@@ -419,6 +437,9 @@
 "Impact Level" = "Stig áhrifa";
 
 /* No comment provided by engineer. */
+"In Progress" = "Í gangi";
+
+/* No comment provided by engineer. */
 "Inbox" = "Innhólf";
 
 /* No comment provided by engineer. */
@@ -438,6 +459,9 @@
 
 /* No comment provided by engineer. */
 "Italic" = "Skáletrað";
+
+/* No comment provided by engineer. */
+"Join" = "Taka þátt";
 
 /* No comment provided by engineer. */
 "Landing Page" = "Lendingarsíða";
@@ -494,6 +518,9 @@
 "list_or_two" = "%1$@ eða %2$@";
 
 /* No comment provided by engineer. */
+"Locate QR Code" = "Finna QR kóða";
+
+/* No comment provided by engineer. */
 "Log In" = "Innskráning";
 
 /* No comment provided by engineer. */
@@ -503,7 +530,16 @@
 "Log Out" = "Útskráning";
 
 /* No comment provided by engineer. */
+"Logging you in" = "Skrái þig inn";
+
+/* No comment provided by engineer. */
 "Login" = "Innskráning";
+
+/* No comment provided by engineer. */
+"Login Error" = "Innskráningarvilla";
+
+/* No comment provided by engineer. */
+"Make sure you enable camera permissions in Settings" = "Passaðu að virkja leyfi fyrir myndavél í stillingum";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Stjórna nemendum";
@@ -533,13 +569,25 @@
 "Never" = "Aldrei";
 
 /* No comment provided by engineer. */
+"New Conferences" = "Nýjar ráðstefnur";
+
+/* No comment provided by engineer. */
 "New To Do" = "Nýtt að gera";
+
+/* No comment provided by engineer. */
+"Next" = "Næsti";
+
+/* No comment provided by engineer. */
+"No Conferences" = "Engar ráðstefnur";
 
 /* No comment provided by engineer. */
 "No Content" = "Ekkert efni";
 
 /* No comment provided by engineer. */
 "No Courses" = "Engin námskeið";
+
+/* No comment provided by engineer. */
+"No description" = "Engin lýsing";
 
 /* No comment provided by engineer. */
 "No Due Date" = "Enginn skiladagur";
@@ -561,6 +609,9 @@
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ekki metið";
+
+/* No comment provided by engineer. */
+"Not Started" = "Ekki byrjað";
 
 /* No comment provided by engineer. */
 "Not Submitted" = "Ekki lagt fram";
@@ -623,6 +674,12 @@
 "Play" = "Spila";
 
 /* No comment provided by engineer. */
+"Please generate another QR Code and try again." = "Búðu til annan QR kóða og reyndu aftur.";
+
+/* No comment provided by engineer. */
+"Please wait, this might take a minute." = "Hinkraðu þetta gæti tekið mínútu.";
+
+/* No comment provided by engineer. */
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
@@ -648,6 +705,9 @@
 
 /* No comment provided by engineer. */
 "Record Audio" = "Taka upp hljóð";
+
+/* No comment provided by engineer. */
+"Recordings" = "Upptökur";
 
 /* No comment provided by engineer. */
 "red" = "rauður";
@@ -678,6 +738,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "Reyna aftur";
+
+/* No comment provided by engineer. */
+"Scanning not supported" = "Skönnun er ekki studd";
 
 /* No comment provided by engineer. */
 "Scheduling" = "Tímasett";
@@ -741,6 +804,9 @@
 
 /* No comment provided by engineer. */
 "Start recording" = "Hefja upptöku";
+
+/* started date at time */
+"Started %@ at %@" = "Byrjað þann %1$@ klukkan %2$@";
 
 /* No comment provided by engineer. */
 "Stop Act as User" = "Hætta að bregðast við sem notandi";
@@ -824,10 +890,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Appið þarf að endurræsa til að nota nýju tungumálastillinguna. Endurræstu appið.";
 
 /* No comment provided by engineer. */
+"There are no conferences to display yet." = "Það eru engar ráðstefnur til að sýna enn.";
+
+/* No comment provided by engineer. */
 "There are no pages to display." = "Það eru engir síður til að sýna.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Vandamál kom upp við að endurheimta notandaskilmála.";
+
+/* No comment provided by engineer. */
+"There was an error loading conferences. Pull to refresh to try again." = "Villa kom við að sækja ráðstefnur. Dragðu til að endurglæða til að reyna aftur.";
 
 /* No comment provided by engineer. */
 "There was an error loading courses. Pull to refresh to try again." = "Villa kom upp við að sækja námskeiðin. Dragðu til að endurglæða til að reyna aftur.";

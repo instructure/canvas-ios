@@ -444,9 +444,6 @@
 /* label for customizing a course */
 "Customize" = "Mukauttaa";
 
-/* No comment provided by engineer. */
-"d_events" = "d_events";
-
 /* dashboard page title */
 "Dashboard" = "Koontinäyttö";
 
@@ -906,9 +903,6 @@
 /* No comment provided by engineer. */
 "Next 7 Days" = "Seuraavat seitsemän päivää";
 
-/* Button to navigate to the next day on the calendar */
-"Next Day" = "Seuraava päivä";
-
 /* No comment provided by engineer. */
 "Next item" = "Seuraava kohde";
 
@@ -1098,9 +1092,6 @@
 /* Button title for previous module item. */
 "Previous" = "Edellinen";
 
-/* Button to navigate to the previous day on the calendar */
-"Previous Day" = "Edellinen päivä";
-
 /* No comment provided by engineer. */
 "Previous item" = "Edellinen kohde";
 
@@ -1154,9 +1145,6 @@
 
 /* Record video submission comment option */
 "Record Video" = "Nauhoita video";
-
-/* Button to refresh the calendar events */
-"Refresh" = "Virkistä";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Päivitä-painike";
@@ -1516,7 +1504,7 @@
 /* No comment provided by engineer. */
 "To:" = "Vastaanottaja:";
 
-/* Button to scroll to 'today' on the calendar */
+/* No comment provided by engineer. */
 "Today" = "Tänään";
 
 /* No comment provided by engineer. */

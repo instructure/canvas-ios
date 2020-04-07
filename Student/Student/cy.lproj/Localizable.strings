@@ -444,9 +444,6 @@
 /* label for customizing a course */
 "Customize" = "Addasu";
 
-/* No comment provided by engineer. */
-"d_events" = "d_events";
-
 /* dashboard page title */
 "Dashboard" = "Dangosfwrdd";
 
@@ -906,9 +903,6 @@
 /* No comment provided by engineer. */
 "Next 7 Days" = "Yn y 7 Diwrnod Nesaf";
 
-/* Button to navigate to the next day on the calendar */
-"Next Day" = "Diwrnod Nesaf";
-
 /* No comment provided by engineer. */
 "Next item" = "Eitem nesaf";
 
@@ -1098,9 +1092,6 @@
 /* Button title for previous module item. */
 "Previous" = "Blaenorol";
 
-/* Button to navigate to the previous day on the calendar */
-"Previous Day" = "Diwrnod Blaenorol";
-
 /* No comment provided by engineer. */
 "Previous item" = "Eitem flaenorol";
 
@@ -1154,9 +1145,6 @@
 
 /* Record video submission comment option */
 "Record Video" = "Recordio Fideo";
-
-/* Button to refresh the calendar events */
-"Refresh" = "Adnewyddu";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Botwm Adnewyddu";
@@ -1516,7 +1504,7 @@
 /* No comment provided by engineer. */
 "To:" = "At:";
 
-/* Button to scroll to 'today' on the calendar */
+/* No comment provided by engineer. */
 "Today" = "Heddiw";
 
 /* No comment provided by engineer. */

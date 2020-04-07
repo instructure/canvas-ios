@@ -33,12 +33,12 @@
                     <rect key="frame" x="16" y="25" width="350" height="31"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Module Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4NE-AM-KWx" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="1" width="293" height="29"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                            <nil key="textColor"/>
+                            <rect key="frame" x="0.0" y="3.5" width="293" height="24"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold24"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold20"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                             </userDefinedRuntimeAttributes>
                         </label>

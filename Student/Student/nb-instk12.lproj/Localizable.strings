@@ -444,9 +444,6 @@
 /* label for customizing a course */
 "Customize" = "Tilpass";
 
-/* No comment provided by engineer. */
-"d_events" = "d_events";
-
 /* dashboard page title */
 "Dashboard" = "Oversikt";
 
@@ -906,9 +903,6 @@
 /* No comment provided by engineer. */
 "Next 7 Days" = "Neste 7 dager";
 
-/* Button to navigate to the next day on the calendar */
-"Next Day" = "Neste dag";
-
 /* No comment provided by engineer. */
 "Next item" = "Neste objekt";
 
@@ -1098,9 +1092,6 @@
 /* Button title for previous module item. */
 "Previous" = "Forrige";
 
-/* Button to navigate to the previous day on the calendar */
-"Previous Day" = "Forrige dag";
-
 /* No comment provided by engineer. */
 "Previous item" = "Forrige artikkel";
 
@@ -1154,9 +1145,6 @@
 
 /* Record video submission comment option */
 "Record Video" = "Ta opp video";
-
-/* Button to refresh the calendar events */
-"Refresh" = "Oppdater";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Oppfriskningsknapp";
@@ -1516,7 +1504,7 @@
 /* No comment provided by engineer. */
 "To:" = "Til:";
 
-/* Button to scroll to 'today' on the calendar */
+/* No comment provided by engineer. */
 "Today" = "I dag";
 
 /* No comment provided by engineer. */

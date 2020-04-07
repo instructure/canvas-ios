@@ -25,7 +25,7 @@ protocol DocViewerAnnotationProviderDelegate: class {
     func annotationSaveStateChanges(saving: Bool)
 }
 
-class DocViewerAnnotationProvider: PSPDFContainerAnnotationProvider {
+class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
     let api: API
     var apiAnnotations: [String: APIDocViewerAnnotation] = [:]
     weak var docViewerDelegate: DocViewerAnnotationProviderDelegate?
@@ -37,21 +37,21 @@ class DocViewerAnnotationProvider: PSPDFContainerAnnotationProvider {
         }
     }
 
-    init(documentProvider: PSPDFDocumentProvider!, metadata: APIDocViewerAnnotationsMetadata, annotations: [APIDocViewerAnnotation], api: API, sessionID: String) {
+    init(documentProvider: PDFDocumentProvider!, metadata: APIDocViewerAnnotationsMetadata, annotations: [APIDocViewerAnnotation], api: API, sessionID: String) {
         self.api = api
         self.sessionID = sessionID
 
         super.init(documentProvider: documentProvider)
 
         guard metadata.enabled else { return }
-        let allAnnotations = annotations.compactMap { (apiAnnotation: APIDocViewerAnnotation) -> PSPDFAnnotation? in
+        let allAnnotations = annotations.compactMap { (apiAnnotation: APIDocViewerAnnotation) -> Annotation? in
             apiAnnotations[apiAnnotation.id] = apiAnnotation
-            return PSPDFAnnotation.from(apiAnnotation, metadata: metadata)
+            return Annotation.from(apiAnnotation, metadata: metadata)
         }
         setAnnotations(allAnnotations, append: false)
     }
 
-    func getReplies (to: PSPDFAnnotation) -> [DocViewerCommentReplyAnnotation] {
+    func getReplies (to: Annotation) -> [DocViewerCommentReplyAnnotation] {
         return allAnnotations
             .compactMap { $0 as? DocViewerCommentReplyAnnotation }
             .filter { $0.inReplyToName == to.name }
@@ -62,9 +62,9 @@ class DocViewerAnnotationProvider: PSPDFContainerAnnotationProvider {
             }
     }
 
-    override func add(_ annotations: [PSPDFAnnotation], options: [String: Any]? = nil) -> [PSPDFAnnotation]? {
+    override func add(_ annotations: [Annotation], options: [AnnotationManager.ChangeBehaviorKey: Any]? = nil) -> [Annotation]? {
         super.add(annotations, options: options)
-        var added: [PSPDFAnnotation] = []
+        var added: [Annotation] = []
         for annotation in annotations {
             guard let apiAnnotation = annotation.apiAnnotation() else { continue }
             added.append(annotation)
@@ -77,9 +77,9 @@ class DocViewerAnnotationProvider: PSPDFContainerAnnotationProvider {
         return added
     }
 
-    override func remove(_ annotations: [PSPDFAnnotation], options: [String: Any]? = nil) -> [PSPDFAnnotation]? {
+    override func remove(_ annotations: [Annotation], options: [AnnotationManager.ChangeBehaviorKey: Any]? = nil) -> [Annotation]? {
         super.remove(annotations, options: options)
-        var removed: [PSPDFAnnotation] = []
+        var removed: [Annotation] = []
         for annotation in annotations {
             guard let id = annotation.name, apiAnnotations.removeValue(forKey: id) != nil else { continue }
             removed.append(annotation)
@@ -112,14 +112,14 @@ class DocViewerAnnotationProvider: PSPDFContainerAnnotationProvider {
         }
     }
 
-    override func didChange(_ annotation: PSPDFAnnotation, keyPaths: [String], options: [String: Any]? = nil) {
+    override func didChange(_ annotation: Annotation, keyPaths: [String], options: [String: Any]? = nil) {
         syncAnnotation(annotation)
     }
 
-    func syncAnnotation(_ annotation: PSPDFAnnotation) {
+    func syncAnnotation(_ annotation: Annotation) {
         guard let apiAnnotation = annotation.apiAnnotation() else { return }
 
-        if let inkAnnotation = annotation as? PSPDFInkAnnotation, inkAnnotation.lines.count > 120 {
+        if let inkAnnotation = annotation as? InkAnnotation, (inkAnnotation.lines?.count ??  0) > 120 {
             documentProvider?.document?.undoController?.undo()
             docViewerDelegate?.annotationDidExceedLimit(annotation: apiAnnotation)
             return
@@ -142,9 +142,9 @@ class DocViewerAnnotationProvider: PSPDFContainerAnnotationProvider {
 }
 
 // Needed for setRotationOffset(_:forPageAt:)
-extension DocViewerAnnotationProvider: PSPDFAnnotationProviderRefreshing {
-    func prepareForRefresh() {
+extension DocViewerAnnotationProvider {
+    override func prepareForRefresh() {
     }
-    func refreshAnnotationsForPages(at pageIndexes: IndexSet) {
+    override func refreshAnnotationsForPages(at pageIndexes: IndexSet) {
     }
 }

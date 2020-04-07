@@ -444,9 +444,6 @@
 /* label for customizing a course */
 "Customize" = "Anpassa";
 
-/* No comment provided by engineer. */
-"d_events" = "d_events";
-
 /* dashboard page title */
 "Dashboard" = "Översikt";
 
@@ -906,9 +903,6 @@
 /* No comment provided by engineer. */
 "Next 7 Days" = "Kommande 7 dagarna";
 
-/* Button to navigate to the next day on the calendar */
-"Next Day" = "Nästa dag";
-
 /* No comment provided by engineer. */
 "Next item" = "Nästa objekt";
 
@@ -1098,9 +1092,6 @@
 /* Button title for previous module item. */
 "Previous" = "Föregående";
 
-/* Button to navigate to the previous day on the calendar */
-"Previous Day" = "Föregående dag";
-
 /* No comment provided by engineer. */
 "Previous item" = "Föregående objekt";
 
@@ -1154,9 +1145,6 @@
 
 /* Record video submission comment option */
 "Record Video" = "Spela in video";
-
-/* Button to refresh the calendar events */
-"Refresh" = "Uppdatera";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Uppdateringsknapp";
@@ -1516,7 +1504,7 @@
 /* No comment provided by engineer. */
 "To:" = "Till:";
 
-/* Button to scroll to 'today' on the calendar */
+/* No comment provided by engineer. */
 "Today" = "I dag";
 
 /* No comment provided by engineer. */

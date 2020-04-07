@@ -39,7 +39,7 @@ extension UIView {
 
 public class CanvadocView: UIView {
     
-    @objc weak var pdfViewController: PSPDFViewController?
+    @objc weak var pdfViewController: PDFViewController?
 
     @objc var bottomInset = CGFloat(0.0)
     
@@ -51,7 +51,7 @@ public class CanvadocView: UIView {
     var task: URLSessionTask?
     
     private let toolbar = UIToolbar()
-    private let flexibleToolbarContainer = PSPDFFlexibleToolbarContainer()
+    private let flexibleToolbarContainer = FlexibleToolbarContainer()
     
     @objc var config: Dictionary<String, Any> = [:] {
         didSet {
@@ -138,7 +138,7 @@ public class CanvadocView: UIView {
         }
     }
     
-    private func embed(pdfViewController: PSPDFViewController) {
+    private func embed(pdfViewController: PDFViewController) {
         guard let parentVC = parentViewController else { return }
         guard self.pdfViewController == nil else { return }
 
@@ -153,7 +153,7 @@ public class CanvadocView: UIView {
             
             let manager = pdfViewController.annotationStateManager
             let annotationToolbar = CanvadocsAnnotationToolbar(annotationStateManager: manager)
-            annotationToolbar.supportedToolbarPositions = [.positionInTopBar]
+            annotationToolbar.supportedToolbarPositions = [.inTopBar]
             annotationToolbar.isDragEnabled = false
             annotationToolbar.showDoneButton = false
 
@@ -199,7 +199,7 @@ public class CanvadocView: UIView {
                 components.path = components.path.replacingOccurrences(of: "/view", with: "")
                 if let goodURL = components.url {
                     CanvadocsPDFDocumentPresenter.loadPDFViewController(goodURL, with: teacherAppConfiguration(bottomInset: self.bottomInset), showAnnotationBarButton: true, onSaveStateChange: self.onSaveStateChange) { pdfViewController, errors in
-                        if let pdfViewController = pdfViewController as? PSPDFViewController {
+                        if let pdfViewController = pdfViewController as? PDFViewController {
                             self.activityIndicator.stopAnimating()
                             self.embed(pdfViewController: pdfViewController)
                         } else  {
@@ -258,8 +258,8 @@ public class CanvadocView: UIView {
     }
 }
 
-extension CanvadocView: PSPDFAnnotationStateManagerDelegate {
-    public func annotationStateManager(_ manager: PSPDFAnnotationStateManager, didChangeState oldState: AnnotationString?, to newState: AnnotationString?, variant oldVariant: AnnotationVariantString?, to newVariant: AnnotationVariantString?) {
+extension CanvadocView: AnnotationStateManagerDelegate {
+    public func annotationStateManager(_ manager: AnnotationStateManager, didChangeState oldState: Annotation.Tool?, to newState: Annotation.Tool?, variant oldVariant: Annotation.Variant?, to newVariant: Annotation.Variant?) {
         if let state = newState, !state.rawValue.isEmpty {
             setScrollEnabled(false)
         } else {

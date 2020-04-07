@@ -56,27 +56,17 @@ func dashboardTab(session: Session) -> UIViewController {
 }
 
 func calendarTab(session: Session) -> UIViewController {
-    let calendar: UIViewController
-    if ExperimentalFeature.studentCalendar.isEnabled {
-        let split = HelmSplitViewController()
-        split.viewControllers = [
-            UINavigationController(rootViewController: PlannerViewController.create()),
-            UINavigationController(rootViewController: EmptyViewController()),
-        ]
-        split.view.tintColor = Brand.shared.primary.ensureContrast(against: .named(.backgroundLightest))
-        calendar = split
-    } else {
-        let month = CalendarMonthViewController.new(session)
-        month.routeToURL = { url in
-            AppEnvironment.shared.router.route(to: url, from: month)
-        }
-        calendar = UINavigationController(rootViewController: month)
-    }
-    calendar.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar page title")
-    calendar.tabBarItem.image = .icon(.calendarMonth, .line)
-    calendar.tabBarItem.selectedImage = .icon(.calendarMonth, .solid)
-    calendar.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
-    return calendar
+    let split = HelmSplitViewController()
+    split.viewControllers = [
+        UINavigationController(rootViewController: PlannerViewController.create()),
+        UINavigationController(rootViewController: EmptyViewController()),
+    ]
+    split.view.tintColor = Brand.shared.primary.ensureContrast(against: .named(.backgroundLightest))
+    split.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar page title")
+    split.tabBarItem.image = .icon(.calendarMonth, .line)
+    split.tabBarItem.selectedImage = .icon(.calendarMonth, .solid)
+    split.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
+    return split
 }
 
 func todoTab() -> UIViewController {

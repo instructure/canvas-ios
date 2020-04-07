@@ -101,6 +101,9 @@
 "Camera" = "Kamera";
 
 /* No comment provided by engineer. */
+"Camera not available" = "Kamera er ikke tilgjengelig";
+
+/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Kan du ikke finne skolen din? Prøv å skrive hele skolens URL.";
 
 /* No comment provided by engineer. */
@@ -180,6 +183,15 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Fullført";
+
+/* concluded date at time */
+"Concluded %@ at %@" = "Avsluttet %1$@ kl %2$@";
+
+/* No comment provided by engineer. */
+"Concluded Conferences" = "Avsluttede konferanser";
+
+/* No comment provided by engineer. */
+"Conference Details" = "Konferanse informasjon";
 
 /* No comment provided by engineer. */
 "Conferences" = "Konferanser";
@@ -353,10 +365,16 @@
 "Filter events" = "Filtrer hendelser";
 
 /* No comment provided by engineer. */
+"filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
+
+/* No comment provided by engineer. */
 "Final Grade: %@" = "Sluttvurdering: %@";
 
 /* No comment provided by engineer. */
 "final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find a code to scan" = "Finn en skanningkode";
 
 /* No comment provided by engineer. */
 "Find my school" = "Finne skolen min";
@@ -419,6 +437,9 @@
 "Impact Level" = "Innvirkningsnivå";
 
 /* No comment provided by engineer. */
+"In Progress" = "Pågår";
+
+/* No comment provided by engineer. */
 "Inbox" = "Innboks";
 
 /* No comment provided by engineer. */
@@ -438,6 +459,9 @@
 
 /* No comment provided by engineer. */
 "Italic" = "Kursiv";
+
+/* No comment provided by engineer. */
+"Join" = "Bli med";
 
 /* No comment provided by engineer. */
 "Landing Page" = "Destinasjonsside";
@@ -494,6 +518,9 @@
 "list_or_two" = "%1$@ eller %2$@";
 
 /* No comment provided by engineer. */
+"Locate QR Code" = "Lokalisere QR-kode";
+
+/* No comment provided by engineer. */
 "Log In" = "Logg på";
 
 /* No comment provided by engineer. */
@@ -503,7 +530,16 @@
 "Log Out" = "Logg Ut";
 
 /* No comment provided by engineer. */
+"Logging you in" = "Logger deg inn";
+
+/* No comment provided by engineer. */
 "Login" = "Logg inn";
+
+/* No comment provided by engineer. */
+"Login Error" = "Innloggingsfeil";
+
+/* No comment provided by engineer. */
+"Make sure you enable camera permissions in Settings" = "Påse at du aktiverer kameratillatelser i Innstillinger";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Administrer elever";
@@ -533,13 +569,25 @@
 "Never" = "Aldri";
 
 /* No comment provided by engineer. */
+"New Conferences" = "Nye konferanser";
+
+/* No comment provided by engineer. */
 "New To Do" = "Ny i gjøremål";
+
+/* No comment provided by engineer. */
+"Next" = "Neste";
+
+/* No comment provided by engineer. */
+"No Conferences" = "Ingen konferanser";
 
 /* No comment provided by engineer. */
 "No Content" = "Uten innhold";
 
 /* No comment provided by engineer. */
 "No Courses" = "Ingen fag";
+
+/* No comment provided by engineer. */
+"No description" = "Ingen beskrivelse";
 
 /* No comment provided by engineer. */
 "No Due Date" = "Ingen forfallsdato";
@@ -561,6 +609,9 @@
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ikke vurdert";
+
+/* No comment provided by engineer. */
+"Not Started" = "Ikke startet";
 
 /* No comment provided by engineer. */
 "Not Submitted" = "Ikke levert";
@@ -623,6 +674,12 @@
 "Play" = "Spill av";
 
 /* No comment provided by engineer. */
+"Please generate another QR Code and try again." = "Vennligst lag en ny QR-kode og prøv på nytt.";
+
+/* No comment provided by engineer. */
+"Please wait, this might take a minute." = "Vennligst vent, dette kan ta et minutt";
+
+/* No comment provided by engineer. */
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
@@ -648,6 +705,9 @@
 
 /* No comment provided by engineer. */
 "Record Audio" = "Lydopptak";
+
+/* No comment provided by engineer. */
+"Recordings" = "Opptak";
 
 /* No comment provided by engineer. */
 "red" = "rød";
@@ -678,6 +738,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "Forsøk igjen";
+
+/* No comment provided by engineer. */
+"Scanning not supported" = "Ikke støttet skanning";
 
 /* No comment provided by engineer. */
 "Scheduling" = "Planlegger";
@@ -741,6 +804,9 @@
 
 /* No comment provided by engineer. */
 "Start recording" = "Start opptak";
+
+/* started date at time */
+"Started %@ at %@" = "Start %1$@ kl %2$@";
 
 /* No comment provided by engineer. */
 "Stop Act as User" = "Avslutt å opptre som bruker";
@@ -824,10 +890,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Appen må startes på nytt for å bruke de nye språkinnstillingene. Relansere appen.";
 
 /* No comment provided by engineer. */
+"There are no conferences to display yet." = "Det er ennå ingen konferanser å vise.";
+
+/* No comment provided by engineer. */
 "There are no pages to display." = "Det er ingen sider å vise.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Det oppsto et problem under hentingen av bruksvilkårene.";
+
+/* No comment provided by engineer. */
+"There was an error loading conferences. Pull to refresh to try again." = "Det oppstod en feil under lasting av konferansene. Dra for å oppdatere og prøve på nytt.";
 
 /* No comment provided by engineer. */
 "There was an error loading courses. Pull to refresh to try again." = "Det oppstod en feil under lasting av fag. Dra for å oppdatere og prøve på nytt.";

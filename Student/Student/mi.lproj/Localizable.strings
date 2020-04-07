@@ -444,9 +444,6 @@
 /* label for customizing a course */
 "Customize" = "Whakaritea";
 
-/* No comment provided by engineer. */
-"d_events" = "d_events";
-
 /* dashboard page title */
 "Dashboard" = "Papatohu";
 
@@ -906,9 +903,6 @@
 /* No comment provided by engineer. */
 "Next 7 Days" = "Panuku 7 ra";
 
-/* Button to navigate to the next day on the calendar */
-"Next Day" = "Rā e heke mai nei";
-
 /* No comment provided by engineer. */
 "Next item" = "Tūemi e heke mai nei";
 
@@ -1098,9 +1092,6 @@
 /* Button title for previous module item. */
 "Previous" = "Ō muri";
 
-/* Button to navigate to the previous day on the calendar */
-"Previous Day" = "Rā o mua";
-
 /* No comment provided by engineer. */
 "Previous item" = "Tūemi o mua";
 
@@ -1154,9 +1145,6 @@
 
 /* Record video submission comment option */
 "Record Video" = "Tāhopu Ataata";
-
-/* Button to refresh the calendar events */
-"Refresh" = "Whakahouhia";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Pātene Whakahou";
@@ -1516,7 +1504,7 @@
 /* No comment provided by engineer. */
 "To:" = "Ki:";
 
-/* Button to scroll to 'today' on the calendar */
+/* No comment provided by engineer. */
 "Today" = "I tēnei rā tonu";
 
 /* No comment provided by engineer. */

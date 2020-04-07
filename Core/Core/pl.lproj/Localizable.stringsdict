@@ -125,7 +125,7 @@
 	<key>filter_events_d_calendars_selected</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Filter events, %#@calendars@</string>
+		<string>Filtruj zdarzenia, %#@calendars@</string>
 		<key>calendars</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -137,9 +137,9 @@
 			<key>many</key>
 			<string>%d calendars selected</string>
 			<key>one</key>
-			<string>%d calendar selected</string>
+			<string>%d wybrany kalendarz</string>
 			<key>other</key>
-			<string>%d calendars selected</string>
+			<string>%d wybrane kalendarze</string>
 		</dict>
 	</dict>
 	<key>final_grade_g_pts</key>

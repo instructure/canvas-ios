@@ -314,9 +314,9 @@ class QuizPresentingViewController: UIViewController {
     }
     
     @objc func exitQuiz(_ button: UIBarButtonItem?) {
-        let courseID = quizController.service.context.id
-        let quizID = quizController.service.quizID
-        GetQuiz(courseID: courseID, quizID: quizID).fetch(force: true) { _, _, _ in }
+        NotificationCenter.default.post(name: .quizRefresh, object: nil, userInfo: [
+            "quizID": quizController.service.quizID,
+        ])
         dismiss(animated: true, completion: nil)
     }
     
@@ -448,6 +448,7 @@ extension QuizPresentingViewController {
     }
     
     @objc func goAheadAndSubmit(_ customLoadingText: String? = nil) {
+        let quizID = submissionController.service.quizID
         submissionViewController.answerUnsubmittedQuestions() { [weak self] in
             guard let me = self, let submission = me.submissionController.submission else { return }
 
@@ -466,6 +467,9 @@ extension QuizPresentingViewController {
                 } else {
                     confirmationViewController.showState(.successful)
                 }
+                NotificationCenter.default.post(name: .quizRefresh, object: nil, userInfo: [
+                    "quizID": quizID,
+                ])
             }
         }
     }

@@ -31,7 +31,7 @@ public class MDMManager: NSObject {
     public private(set) var host: String?
     public private(set) var authenticationProvider: String?
     public private(set) var logins: [MDMLogin] = []
-    @objc public private(set) var loginsRaw: [String: Any]?
+    @objc dynamic public private(set) var loginsRaw: [String: Any]?
     private var token: NSObjectProtocol?
 
     override init() {
