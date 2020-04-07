@@ -29,6 +29,8 @@ class FileDetailsViewControllerTests: CoreTestCase {
     var context: Context? = ContextModel(.course, id: "2")
     lazy var controller = FileDetailsViewController.create(context: context, fileID: "1", assignmentID: "3")
     var navigation: UINavigationController!
+    var saveWasCalled = false
+    var didSaveExpectation: XCTestExpectation!
 
     override func setUp() {
         super.setUp()
@@ -36,6 +38,8 @@ class FileDetailsViewControllerTests: CoreTestCase {
         navigation = UINavigationController(rootViewController: controller)
         api.mock(controller.files, value: file)
         api.mockDownload(file.url!.rawValue)
+        saveWasCalled = false
+        didSaveExpectation = XCTestExpectation(description: "did save")
     }
 
     override func tearDown() {
@@ -183,23 +187,22 @@ class FileDetailsViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         XCTAssertTrue(controller.spinnerView.isHidden)
         XCTAssertTrue(controller.progressView.isHidden)
-        let pdf = controller.children.first as! PSPDFViewController
+        let pdf = controller.children.first as! PDFViewController
         XCTAssertTrue(controller.pdfViewController(pdf, shouldShow: UIActivityViewController(activityItems: [""], applicationActivities: nil), animated: false))
-        XCTAssertFalse(controller.pdfViewController(pdf, shouldShow: PSPDFStampViewController(), animated: false))
+        XCTAssertFalse(controller.pdfViewController(pdf, shouldShow: StampViewController(), animated: false))
 
         let items = [
-            PSPDFMenuItem(title: "", block: {}, identifier: PSPDFTextMenu.annotationMenuNote.rawValue),
-            PSPDFMenuItem(title: "", block: {}, identifier: PSPDFTextMenu.annotationMenuInspector.rawValue),
-            PSPDFMenuItem(title: "", block: {}, identifier: PSPDFTextMenu.annotationMenuRemove.rawValue),
+            MenuItem(title: "", block: {}, identifier: TextMenu.annotationMenuNote.rawValue),
+            MenuItem(title: "", block: {}, identifier: TextMenu.annotationMenuInspector.rawValue),
+            MenuItem(title: "", block: {}, identifier: TextMenu.annotationMenuRemove.rawValue),
         ]
-        let results = controller.pdfViewController(pdf, shouldShow: items, atSuggestedTargetRect: .zero, for: [], in: .zero, on: PSPDFPageView(frame: .zero))
+        let results = controller.pdfViewController(pdf, shouldShow: items, atSuggestedTargetRect: .zero, forSelectedText: "", in: .zero, on: PDFPageView(frame: .zero))
         XCTAssertEqual(results.count, 2)
         XCTAssertEqual(results[0].title, "Style")
         XCTAssertNotNil(results[1].ps_image)
-        let document = MockDocument()
-        pdf.document = document
+        pdf.document?.delegate = self
         controller.viewWillDisappear(false)
-        XCTAssertTrue(document.saveWasCalled)
+        XCTAssertTrue(saveWasCalled)
     }
 
     func xtestSVG() {
@@ -253,9 +256,12 @@ class FileDetailsViewControllerTests: CoreTestCase {
     }
 }
 
-class MockDocument: PSPDFDocument {
-    var saveWasCalled = false
-    override func save(options: [PSPDFDocumentSaveOption: Any]? = nil) throws {
+extension FileDetailsViewControllerTests: PDFDocumentDelegate {
+    func  pdfDocumentDidSave(_ document: Document) {
         saveWasCalled = true
+    }
+
+    func pdfDocument(_ document: Document, saveDidFailWithError error: Error) {
+        saveWasCalled = true // although it may have failed, it was called
     }
 }

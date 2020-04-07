@@ -678,7 +678,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../scripts/carthage-copy-frameworks.swift\"\n";
+			shellScript = "#\"${SRCROOT}/../scripts/carthage-copy-frameworks.swift\"\n\"${SRCROOT}/../scripts/carthage-copy-frameworks\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

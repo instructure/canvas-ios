@@ -37,7 +37,7 @@ extension UIView {
 
 public class PSPDFView: UIView {
     
-    @objc weak var pdfViewController: PSPDFViewController?
+    @objc weak var pdfViewController: PDFViewController?
     
     @objc var config: NSDictionary = [:] {
         didSet {
@@ -75,8 +75,8 @@ public class PSPDFView: UIView {
         }
         stylePSPDFKit()
 
-        let doc = PSPDFDocument(url: documentURL)
-        let vc = PSPDFViewController(document: doc)
+        let doc = Document(url: documentURL)
+        let vc = PDFViewController(document: doc)
         parentVC.addChild(vc)
         addSubview(vc.view)
         vc.view.frame = bounds

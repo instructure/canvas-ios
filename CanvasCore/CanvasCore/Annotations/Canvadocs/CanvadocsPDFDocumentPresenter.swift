@@ -22,8 +22,8 @@ import PSPDFKitUI
 import Core
 
 let DisabledMenuItems: [String] = [
-    PSPDFTextMenu.annotationMenuOpacity.rawValue,
-    PSPDFTextMenu.annotationMenuThickness.rawValue,
+    TextMenu.annotationMenuOpacity.rawValue,
+    TextMenu.annotationMenuThickness.rawValue,
 ]
 
 // This class will be the manager for the PSPDFViewController. Any app that wants to display this document will have to:
@@ -34,8 +34,8 @@ let DisabledMenuItems: [String] = [
 // 4. Insert the resulting view controller from `getPDFViewController` into the view hierarchy wherever you want
 
 open class CanvadocsPDFDocumentPresenter: NSObject {
-    @objc var pdfDocument: PSPDFDocument
-    @objc let configuration: PSPDFConfiguration
+    @objc var pdfDocument: Document
+    @objc let configuration: PDFConfiguration
     @objc var onSaveStateChange: RCTDirectEventBlock?
     
     @objc var localPDFURL: URL
@@ -43,9 +43,9 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
     var metadata: CanvadocsFileMetadata?
     @objc let service: CanvadocsAnnotationService
     @objc var annotationProvider: CanvadocsAnnotationProvider?
-    @objc weak var pdfViewController: PSPDFViewController?
+    @objc weak var pdfViewController: PDFViewController?
 
-    @objc public static func loadPDFViewController(_ sessionURL: URL, with configuration: PSPDFConfiguration, showAnnotationBarButton: Bool, onSaveStateChange: RCTDirectEventBlock? = nil, completed: @escaping (UIViewController?, [NSError]?)->()) {
+    @objc public static func loadPDFViewController(_ sessionURL: URL, with configuration: PDFConfiguration, showAnnotationBarButton: Bool, onSaveStateChange: RCTDirectEventBlock? = nil, completed: @escaping (UIViewController?, [NSError]?)->()) {
         var metadata: CanvadocsFileMetadata? = nil
         var localPDFURL: URL? = nil
         var canvadocsAnnotations: [CanvadocsAnnotation]? = nil
@@ -109,12 +109,12 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         }
     }
 
-    init(localPDFURL: URL, annotations: [CanvadocsAnnotation], metadata: CanvadocsFileMetadata? = nil, service: CanvadocsAnnotationService, configuration: PSPDFConfiguration) {
+    init(localPDFURL: URL, annotations: [CanvadocsAnnotation], metadata: CanvadocsFileMetadata? = nil, service: CanvadocsAnnotationService, configuration: PDFConfiguration) {
         self.localPDFURL = localPDFURL
         self.annotations = annotations
         self.metadata = metadata
         self.service = service
-        self.pdfDocument = PSPDFDocument(url: localPDFURL)
+        self.pdfDocument = Document(url: localPDFURL)
         self.configuration = configuration
         super.init()
 
@@ -139,7 +139,7 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
     @objc open func getPDFViewController(showAnnotationBarButton: Bool = true) -> UIViewController {
         stylePSPDFKit()
 
-        let pdfViewController = PSPDFViewController(document: pdfDocument, configuration: configuration)
+        let pdfViewController = PDFViewController(document: pdfDocument, configuration: configuration)
         pdfViewController.delegate = self
         
         var buttonItems = [UIBarButtonItem] ()
@@ -156,17 +156,17 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
     }
 }
 
-extension CanvadocsPDFDocumentPresenter: PSPDFViewControllerDelegate {
+extension CanvadocsPDFDocumentPresenter: PDFViewControllerDelegate {
     
-    public func pdfViewController(_ pdfController: PSPDFViewController, shouldShow menuItems: [PSPDFMenuItem], atSuggestedTargetRect rect: CGRect, forSelectedText selectedText: String, in textRect: CGRect, on pageView: PSPDFPageView) -> [PSPDFMenuItem] {
+    public func pdfViewController(_ pdfController: PDFViewController, shouldShow menuItems: [MenuItem], atSuggestedTargetRect rect: CGRect, forSelectedText selectedText: String, in textRect: CGRect, on pageView: PDFPageView) -> [MenuItem] {
         return menuItems
     }
 
-    public func pdfViewController(_ pdfController: PSPDFViewController, shouldShow menuItems: [PSPDFMenuItem], atSuggestedTargetRect rect: CGRect, for annotations: [PSPDFAnnotation]?, in annotationRect: CGRect, on pageView: PSPDFPageView) -> [PSPDFMenuItem] {
-        annotations?.forEach { (pageView.annotationView(for: $0) as? PSPDFFreeTextAnnotationView)?.resizableView?.allowRotating = false }
+    public func pdfViewController(_ pdfController: PDFViewController, shouldShow menuItems: [MenuItem], atSuggestedTargetRect rect: CGRect, for annotations: [Annotation]?, in annotationRect: CGRect, on pageView: PDFPageView) -> [MenuItem] {
+        annotations?.forEach { (pageView.annotationView(for: $0) as? FreeTextAnnotationView)?.resizableView?.allowRotating = false }
         if annotations?.count == 1, let annotation = annotations?.first, let metadata = service.metadata?.annotationMetadata {
-            var realMenuItems = [PSPDFMenuItem]()
-            realMenuItems.append(PSPDFMenuItem(title: NSLocalizedString("Comments", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), block: {
+            var realMenuItems = [MenuItem]()
+            realMenuItems.append(MenuItem(title: NSLocalizedString("Comments", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), block: {
                 if let pdfDocument = pdfController.document {
                     let commentsVC = CanvadocsCommentsViewController.new(annotation, pdfDocument: pdfDocument, metadata: metadata)
                     commentsVC.comments = self.annotationProvider?.getReplies(to: annotation) ?? []
@@ -177,22 +177,22 @@ extension CanvadocsPDFDocumentPresenter: PSPDFViewControllerDelegate {
 
             let filteredMenuItems = menuItems.filter {
                 guard let identifier = $0.identifier else { return true }
-                if identifier == PSPDFTextMenu.annotationMenuInspector.rawValue {
+                if identifier == TextMenu.annotationMenuInspector.rawValue {
                     $0.title = NSLocalizedString("Style", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "")
                 }
                 return (
-                    identifier != PSPDFTextMenu.annotationMenuRemove.rawValue &&
-                    identifier != PSPDFTextMenu.annotationMenuCopy.rawValue &&
-                    identifier != PSPDFTextMenu.annotationMenuNote.rawValue &&
+                    identifier != TextMenu.annotationMenuRemove.rawValue &&
+                    identifier != TextMenu.annotationMenuCopy.rawValue &&
+                    identifier != TextMenu.annotationMenuNote.rawValue &&
                     !DisabledMenuItems.contains(identifier)
                 )
             }
             realMenuItems.append(contentsOf: filteredMenuItems)
 
             if annotation.isEditable || metadata.permissions == .ReadWriteManage {
-                realMenuItems.append(PSPDFMenuItem(title: NSLocalizedString("Remove", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), image: .icon(.trash), block: {
-                    pdfController.document?.remove([annotation], options: nil)
-                }, identifier: PSPDFTextMenu.annotationMenuRemove.rawValue))
+                realMenuItems.append(MenuItem(title: NSLocalizedString("Remove", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: ""), image: .icon(.trash), block: {
+                    pdfController.document?.remove(annotations: [annotation], options: nil)
+                }, identifier: TextMenu.annotationMenuRemove.rawValue))
             }
             return realMenuItems
         }
@@ -209,14 +209,14 @@ extension CanvadocsPDFDocumentPresenter: PSPDFViewControllerDelegate {
         }
     }
 
-    public func pdfViewController(_ pdfController: PSPDFViewController, shouldShow controller: UIViewController, options: [String : Any]? = nil, animated: Bool) -> Bool {
-        if controller is PSPDFStampViewController {
+    public func pdfViewController(_ pdfController: PDFViewController, shouldShow controller: UIViewController, options: [String : Any]? = nil, animated: Bool) -> Bool {
+        if controller is StampViewController {
             return false
         }
         return true
     }
     
-    public func pdfViewController(_ pdfController: PSPDFViewController, didTapOn pageView: PSPDFPageView, at viewPoint: CGPoint) -> Bool {
+    public func pdfViewController(_ pdfController: PDFViewController, didTapOn pageView: PDFPageView, at viewPoint: CGPoint) -> Bool {
         let state = pdfController.annotationStateManager
         if state.state == .stamp, let pdfDocument = pdfController.document, let metadata = service.metadata?.annotationMetadata {
             let pointAnnotation = CanvadocsPointAnnotation()
@@ -226,7 +226,7 @@ extension CanvadocsPDFDocumentPresenter: PSPDFViewControllerDelegate {
             pointAnnotation.boundingBox = CGRect(x: 0, y: 0, width: 9.33, height: 13.33)
             pointAnnotation.pageIndex = pageView.pageIndex
             pageView.center(pointAnnotation, aroundPDFPoint: pageView.convert(viewPoint, to: pageView.pdfCoordinateSpace))
-            pdfDocument.add([ pointAnnotation ], options: nil)
+            pdfDocument.add(annotations: [ pointAnnotation ], options: nil)
 
             let commentsVC = CanvadocsCommentsViewController.new(pointAnnotation, pdfDocument: pdfDocument, metadata: metadata)
             let navigationController = UINavigationController(rootViewController: commentsVC)
