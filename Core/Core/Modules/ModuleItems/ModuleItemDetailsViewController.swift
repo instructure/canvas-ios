@@ -59,6 +59,10 @@ public class ModuleItemDetailsViewController: UIViewController {
             children.forEach { $0.unembed() }
             embed(viewController, in: container)
             observations = syncNavigationBar(with: viewController)
+            NotificationCenter.default.post(name: .moduleItemViewDidLoad, object: nil, userInfo: [
+                "moduleID": moduleID!,
+                "itemID": itemID!,
+            ])
         }
     }
 
@@ -86,4 +90,8 @@ public class ModuleItemDetailsViewController: UIViewController {
     @objc func retryButtonPressed() {
         store.refresh(force: true)
     }
+}
+
+extension Notification.Name {
+    static let moduleItemViewDidLoad = Notification.Name(rawValue: "com.instructure.core.notification.ModuleItemViewDidLoad")
 }

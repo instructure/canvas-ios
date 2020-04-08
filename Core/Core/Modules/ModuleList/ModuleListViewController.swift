@@ -91,6 +91,8 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol 
             tableView.contentInset.bottom = -footer.frame.height
         }
 
+        NotificationCenter.default.addObserver(self, selector: #selector(moduleItemViewDidLoad), name: .moduleItemViewDidLoad, object: nil)
+
         courses.refresh()
         colors.refresh()
 
@@ -142,6 +144,23 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol 
             let rect = tableView.rect(forSection: section)
             tableView.setContentOffset(CGPoint(x: 0, y: rect.minY), animated: true)
         }
+    }
+
+    @objc func moduleItemViewDidLoad(_ notification: Notification) {
+        guard
+            let userInfo = notification.userInfo,
+            let moduleID = userInfo["moduleID"] as? String,
+            let itemID = userInfo["itemID"] as? String,
+            let section = store.sectionForModule(moduleID)
+        else {
+            return
+        }
+        let module = store[section]
+        guard let row = module.items.firstIndex(where: { $0.id == itemID }) else { return }
+        let indexPath = IndexPath(row: row, section: section)
+        if tableView.indexPathsForSelectedRows?.contains(indexPath) == true { return }
+        tableView.indexPathsForSelectedRows?.forEach { tableView.deselectRow(at: $0, animated: true) }
+        tableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
     }
 }
 
