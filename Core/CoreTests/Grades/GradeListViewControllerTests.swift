@@ -55,6 +55,28 @@ class GradeListViewControllerTests: CoreTestCase {
         ), ]),
     ]
 
+    func mockGrades(gradingPeriodID: String?, score: Double?) {
+        api.mock(GetEnrollments(
+            context: ContextModel(.course, id: "1"),
+            userID: currentSession.userID,
+            gradingPeriodID: gradingPeriodID,
+            types: [ "StudentEnrollment" ],
+            states: [ .active ]
+        ), value: [ .make(
+            id: "1",
+            course_id: "1",
+            enrollment_state: .active,
+            type: "StudentEnrollment",
+            user_id: self.currentSession.userID,
+            grades: .make(
+                current_grade: score.flatMap { String($0) },
+                final_grade: score.flatMap { String($0) },
+                current_score: score,
+                final_score: score
+            )
+        ) ])
+    }
+
     override func setUp() {
         super.setUp()
         environment.mockStore = false
@@ -63,18 +85,16 @@ class GradeListViewControllerTests: CoreTestCase {
         api.mock(GetAssignmentsByGroup(courseID: "1", gradingPeriodID: "2"), value: [ groups[1] ])
         api.mock(controller.colors, value: .init(custom_colors: [ "course_1": "#008800" ]))
         api.mock(controller.courses, value: .make(enrollments: [ .make(
+            id: nil,
             course_id: "1",
             enrollment_state: .active,
             user_id: currentSession.userID,
             multiple_grading_periods_enabled: true,
             current_grading_period_id: "1"
         ), ]))
-        api.mock(GetEnrollments(
-            context: ContextModel(.course, id: "1"),
-            gradingPeriodID: "1",
-            types: [ "StudentEnrollment" ],
-            states: [ .active ]
-        ))
+        mockGrades(gradingPeriodID: nil, score: 20)
+        mockGrades(gradingPeriodID: "1", score: 20)
+        mockGrades(gradingPeriodID: "2", score: nil)
         api.mock(controller.gradingPeriods, value: [
             .make(id: "1", title: "One"),
             .make(id: "2", title: "Two"),
@@ -90,8 +110,8 @@ class GradeListViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
 
         XCTAssertEqual(controller.gradingPeriodLabel.text, "One")
-        XCTAssertEqual(controller.filterButton.title(for: .normal), "Clear filter")
-        XCTAssertEqual(controller.totalGradeLabel.text, "N/A")
+        XCTAssertEqual(controller.filterButton.title(for: .normal), "Filter")
+        XCTAssertEqual(controller.totalGradeLabel.text, "20%")
 
         let index00 = IndexPath(row: 0, section: 0)
         var cell00 = controller.tableView.cellForRow(at: index00) as? GradeListCell
@@ -110,11 +130,9 @@ class GradeListViewControllerTests: CoreTestCase {
 
         XCTAssertEqual(controller.tableView.numberOfSections, 1)
         controller.filterButton.sendActions(for: .primaryActionTriggered)
-        XCTAssertEqual(controller.tableView.numberOfSections, 2)
-        controller.filterButton.sendActions(for: .primaryActionTriggered)
         let alert = router.presented as? UIAlertController
         XCTAssertEqual(alert?.message, "Filter by:")
-        let two = alert?.actions[1] as? AlertAction
+        let two = alert?.actions[2] as? AlertAction
         XCTAssertEqual(two?.title, "Two")
         two?.handler?(AlertAction())
         XCTAssertEqual(controller.tableView.numberOfSections, 1)
@@ -122,7 +140,7 @@ class GradeListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell00?.nameLabel.text, "Proof that proofs are useful")
 
         api.mock(GetAssignmentsByGroup(courseID: "1"), error: NSError.internalError())
-        controller.filterButton.sendActions(for: .primaryActionTriggered)
+        (alert?.actions[0] as? AlertAction)?.handler?(AlertAction())
         XCTAssertEqual(controller.errorView.isHidden, false)
         XCTAssertEqual(controller.errorView.messageLabel.text, "There was an error loading grades. Pull to refresh to try again.")
 
@@ -140,10 +158,22 @@ class GradeListViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.emptyView.isHidden, true)
     }
 
+    func testHideTotals() {
+        api.mock(controller.courses, value: .make(enrollments: [ .make(
+            id: nil,
+            course_id: "1",
+            enrollment_state: .active,
+            user_id: currentSession.userID,
+            multiple_grading_periods_enabled: true,
+            current_grading_period_id: "1"
+        ), ], hide_final_grades: true))
+        controller.view.layoutIfNeeded()
+        XCTAssertEqual(controller.totalGradeLabel.text, "N/A")
+    }
+
     func testPaginatedRefresh() {
         controller.view.layoutIfNeeded()
-        controller.filterButton.sendActions(for: .primaryActionTriggered)
-        api.mock(GetAssignmentsByGroup(courseID: "1"), value: [ groups[0] ], response: HTTPURLResponse(next: "/courses/1/assignment_groups?page=2"))
+        api.mock(GetAssignmentsByGroup(courseID: "1", gradingPeriodID: "1"), value: [ groups[0] ], response: HTTPURLResponse(next: "/courses/1/assignment_groups?page=2"))
         api.mock(GetNextRequest(path: "/courses/1/assignment_groups?page=2"), value: [ groups[1] ])
         let tableView = controller.tableView!
         tableView.refreshControl?.sendActions(for: .primaryActionTriggered)

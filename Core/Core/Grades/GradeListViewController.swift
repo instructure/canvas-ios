@@ -48,6 +48,14 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
             $0.type.lowercased().contains("student")
         }
     }
+    var gradeEnrollment: Enrollment? {
+        return enrollments.first {
+            $0.id != nil &&
+            $0.state == .active &&
+            $0.userID == userID &&
+            $0.type.lowercased().contains("student")
+        }
+    }
     public weak var gradeListCellIconDelegate: GradeListCellIconDelegate?
     var gradingPeriodID: String?
     var gradingPeriodLoaded = false
@@ -61,6 +69,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
     }
     lazy var courses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.updateNavBar()
+        self?.update()
     }
     lazy var enrollments = env.subscribe(GetEnrollments(
         context: ContextModel(.course, id: courseID),
@@ -92,6 +101,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         emptyTitleLabel.text = NSLocalizedString("No Assignments", bundle: .core, comment: "")
         errorView.messageLabel.text = NSLocalizedString("There was an error loading grades. Pull to refresh to try again.", bundle: .core, comment: "")
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
+        filterButton.setTitle(NSLocalizedString("Filter", bundle: .core, comment: ""), for: .normal)
 
         gradingPeriodView.isHidden = true
 
@@ -102,15 +112,14 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         tableView.refreshControl = refreshControl
         tableView.registerHeaderFooterView(SectionHeaderView.self)
         tableView.separatorColor = .named(.borderMedium)
-        tableView.tableHeaderView?.sizeToFit()
 
         totalGradeHeadingLabel.text = NSLocalizedString("Total Grade", bundle: .core, comment: "")
 
+        assignments.refresh()
         colors.refresh()
         courses.refresh()
-        gradingPeriods.refresh()
         enrollments.refresh()
-        assignments.refresh()
+        gradingPeriods.refresh()
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -124,13 +133,13 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
     }
 
     @objc func refresh() {
-        colors.refresh(force: true)
-        courses.refresh(force: true)
-        gradingPeriods.refresh(force: true)
-        enrollments.refresh(force: true)
         assignments.refresh(force: true) { [weak self] _ in
             self?.refreshControl.endRefreshing()
         }
+        colors.refresh(force: true)
+        courses.refresh(force: true)
+        enrollments.refresh(force: true)
+        gradingPeriods.refresh(force: true)
     }
 
     func updateNavBar() {
@@ -146,21 +155,22 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
             updateGradingPeriod(id: courseEnrollment?.currentGradingPeriodID)
         }
         gradingPeriodLoaded = gradingPeriodLoaded || (courses.requested && !courses.pending)
-        gradingPeriodView.isHidden = !gradingPeriodLoaded || courseEnrollment?.multipleGradingPeriodsEnabled != true
+        gradingPeriodView.isHidden = !gradingPeriodLoaded || courseEnrollment?.multipleGradingPeriodsEnabled == false
         gradingPeriodLabel.text = gradingPeriodID == nil && gradingPeriodLoaded
             ? NSLocalizedString("All Grading Periods", bundle: .core, comment: "")
             : gradingPeriods.first(where: { $0.id == gradingPeriodID })?.title
-        let filter = gradingPeriodID == nil
-            ? NSLocalizedString("Filter", bundle: .core, comment: "")
-            : NSLocalizedString("Clear filter", bundle: .core, comment: "")
-        filterButton.setTitle(filter, for: .normal)
 
-        totalGradeLabel.text = courses.first?.hideFinalGrades == true
-            ? NSLocalizedString("N/A", bundle: .core, comment: "")
-            : enrollments.first?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
+        if courses.first?.hideFinalGrades == true {
+            totalGradeLabel.text = NSLocalizedString("N/A", bundle: .core, comment: "")
+        } else if gradingPeriodID != nil {
+            totalGradeLabel.text = gradeEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
+        } else {
+            totalGradeLabel.text = courseEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
+        }
 
-        loadingView.isHidden = assignments.error != nil || !assignments.pending || !assignments.isEmpty || refreshControl.isRefreshing
-        emptyView.isHidden = assignments.error != nil || assignments.pending || !assignments.isEmpty
+        let isLoading = !assignments.requested || assignments.pending || !gradingPeriodLoaded
+        loadingView.isHidden = assignments.error != nil || !isLoading || !assignments.isEmpty || refreshControl.isRefreshing
+        emptyView.isHidden = assignments.error != nil || isLoading || !assignments.isEmpty
         errorView.isHidden = assignments.error == nil
         tableView.reloadData()
     }
@@ -176,31 +186,30 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         )) { [weak self] in
             self?.update()
         }
-        enrollments.refresh()
-        // Delete assignment groups immediately, to see a spinner again
-        assignments.useCase.reset(context: env.database.viewContext)
-        try? env.database.viewContext.save()
         assignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: gradingPeriodID)) { [weak self] in
             self?.update()
         }
+        // Delete assignment groups immediately, to see a spinner again
+        assignments.useCase.reset(context: env.database.viewContext)
+        try? env.database.viewContext.save()
         assignments.refresh(force: true)
+        enrollments.refresh(force: true)
     }
 
     @IBAction func filter(_ sender: UIButton) {
-        if gradingPeriodID != nil {
-            updateGradingPeriod(id: nil)
-        } else {
-            let alert = UIAlertController(title: nil, message: NSLocalizedString("Filter by:", bundle: .core, comment: ""), preferredStyle: .actionSheet)
-            for period in gradingPeriods where period.title?.isEmpty == false {
-                alert.addAction(AlertAction(period.title, style: .default) { [weak self] _ in
-                    self?.updateGradingPeriod(id: period.id)
-                })
-            }
-            alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
-            alert.popoverPresentationController?.sourceView = sender
-            alert.popoverPresentationController?.sourceRect = sender.bounds
-            env.router.show(alert, from: self, options: .modal())
+        let alert = UIAlertController(title: nil, message: NSLocalizedString("Filter by:", bundle: .core, comment: ""), preferredStyle: .actionSheet)
+        alert.addAction(AlertAction(NSLocalizedString("All Grading Periods", bundle: .core, comment: ""), style: .default) { [weak self] _ in
+            self?.updateGradingPeriod(id: nil)
+        })
+        for period in gradingPeriods where period.title?.isEmpty == false {
+            alert.addAction(AlertAction(period.title, style: .default) { [weak self] _ in
+                self?.updateGradingPeriod(id: period.id)
+            })
         }
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
+        alert.popoverPresentationController?.sourceView = sender
+        alert.popoverPresentationController?.sourceRect = sender.bounds
+        env.router.show(alert, from: self, options: .modal())
     }
 }
 

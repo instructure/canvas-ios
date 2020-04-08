@@ -23,8 +23,10 @@ class GetEnrollments: CollectionUseCase {
     typealias Model = Enrollment
 
     let cacheKey: String?
+    let context: Context
     let gradingPeriodID: String?
     let request: GetEnrollmentsRequest
+    let scope: Scope
 
     init(
         context: Context,
@@ -35,6 +37,7 @@ class GetEnrollments: CollectionUseCase {
         states: [GetEnrollmentsRequest.State]? = nil,
         roles: [Role]? = nil
     ) {
+        self.context = context
         self.gradingPeriodID = gradingPeriodID
         request = GetEnrollmentsRequest(
             context: context,
@@ -45,6 +48,14 @@ class GetEnrollments: CollectionUseCase {
             states: states,
             roles: roles
         )
+        var predicates = [
+            NSPredicate(key: #keyPath(Enrollment.canvasContextID), equals: context.canvasContextID),
+            NSPredicate(format: "%K != nil", #keyPath(Enrollment.id)),
+        ]
+        if let id = userID {
+            predicates.append(NSPredicate(key: #keyPath(Enrollment.userID), equals: id))
+        }
+        scope = Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: predicates), order: [])
 
         var url = URLComponents()
         url.queryItems = request.queryItems

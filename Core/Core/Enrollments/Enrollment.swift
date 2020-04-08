@@ -129,7 +129,6 @@ extension Enrollment {
             grade.currentScore = apiGrades.current_score
             grade.gradingPeriodID = gradingPeriodID
             grades.insert(grade)
-            multipleGradingPeriodsEnabled = item.multiple_grading_periods_enabled ?? (gradingPeriodID != nil)
         } else {
             multipleGradingPeriodsEnabled = item.multiple_grading_periods_enabled ?? false
             currentGradingPeriodID = item.current_grading_period_id

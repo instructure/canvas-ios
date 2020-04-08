@@ -375,7 +375,6 @@
 		7DA2604323F722D9005D2121 /* DiscussionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787BD02021AE5C28000C90A1 /* DiscussionEntry.swift */; };
 		7DA2604423F722D9005D2121 /* DiscussionTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B28225C13DD001F353D /* DiscussionTopic.swift */; };
 		7DA2604523F722D9005D2121 /* Enrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2C763218CB53F004B8E5E /* Enrollment.swift */; };
-		7DA2604623F722D9005D2121 /* EnrollmentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF1EAD216BC48F003AF358 /* EnrollmentState.swift */; };
 		7DA2604723F722D9005D2121 /* ExternalTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = B150C62C2297814E0096D58C /* ExternalTool.swift */; };
 		7DA2604823F722D9005D2121 /* FeatureFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1999AB02305AE3300DA97A4 /* FeatureFlag.swift */; };
 		7DA2604923F722D9005D2121 /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10E8904238447A700E7684E /* Grade.swift */; };
@@ -1494,7 +1493,6 @@
 		7DCF1E9F216BB731003AF358 /* SubmissionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionType.swift; sourceTree = "<group>"; };
 		7DCF1EA1216BB7E4003AF358 /* SubmissionTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionTypeTests.swift; sourceTree = "<group>"; };
 		7DCF1EA3216BBCFB003AF358 /* GradingTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingTypeTests.swift; sourceTree = "<group>"; };
-		7DCF1EAD216BC48F003AF358 /* EnrollmentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentState.swift; sourceTree = "<group>"; };
 		7DCF1EB5216BC861003AF358 /* SubmissionWorkflowState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionWorkflowState.swift; sourceTree = "<group>"; };
 		7DCF1EB7216BC876003AF358 /* LatePolicyStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatePolicyStatus.swift; sourceTree = "<group>"; };
 		7DCF1EB9216BC8C5003AF358 /* TabVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabVisibility.swift; sourceTree = "<group>"; };
@@ -2008,6 +2006,7 @@
 				7D14863C230B43AE003944A2 /* Dashboard */,
 				9FBE5354223AD16F001EC40C /* DeveloperMenu */,
 				7D29D2F5218A29B10036437C /* DocViewer */,
+				7D76C336243CF0F300F481BF /* Enrollments */,
 				7DAFBE6E2318567300E9A37D /* ErrorReports */,
 				7D80AC06212B46D500C40ECE /* Extensions */,
 				7D08B1D02371E9C70075623A /* Files */,
@@ -2058,6 +2057,7 @@
 				7D148642230B48E7003944A2 /* Dashboard */,
 				B1EA5AF9212E6E4800DABC5F /* Database */,
 				7D7472D7218CD73D00CE1430 /* DocViewer */,
+				7D76C337243CF33D00F481BF /* Enrollments */,
 				7DE6A7072319B03600A5B796 /* ErrorReports */,
 				7D80AC59212DB09300C40ECE /* Extensions */,
 				7D08B1D5237205C00075623A /* Files */,
@@ -2346,8 +2346,6 @@
 				B14452FF212E5B6E0009D848 /* Database.xcdatamodeld */,
 				787BD02021AE5C28000C90A1 /* DiscussionEntry.swift */,
 				3B635B28225C13DD001F353D /* DiscussionTopic.swift */,
-				3BE2C763218CB53F004B8E5E /* Enrollment.swift */,
-				7DCF1EAD216BC48F003AF358 /* EnrollmentState.swift */,
 				B150C62C2297814E0096D58C /* ExternalTool.swift */,
 				B1999AB02305AE3300DA97A4 /* FeatureFlag.swift */,
 				B10E8904238447A700E7684E /* Grade.swift */,
@@ -2403,7 +2401,6 @@
 				7D062AFA2124A14700677F66 /* ContextTests.swift */,
 				7DC4A554222EF87300FA03DC /* DiscussionEntryTests.swift */,
 				3BD364AA225D3C02006CEBD8 /* DiscussionTopicTests.swift */,
-				9F88ED00224A742F00DCCA09 /* EnrollmentTests.swift */,
 				7D4C3A762236FFD2007D6792 /* FileTests.swift */,
 				B18E19BA2386216B00B03C73 /* GradeFormatterTests.swift */,
 				7DCF1EA3216BBCFB003AF358 /* GradingTypeTests.swift */,
@@ -2872,6 +2869,25 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		7D76C336243CF0F300F481BF /* Enrollments */ = {
+			isa = PBXGroup;
+			children = (
+				7D8262FA212B3B3000BD268D /* APIEnrollment.swift */,
+				3BE2C763218CB53F004B8E5E /* Enrollment.swift */,
+				7D4C6F36243BE229003C1728 /* GetEnrollments.swift */,
+			);
+			path = Enrollments;
+			sourceTree = "<group>";
+		};
+		7D76C337243CF33D00F481BF /* Enrollments */ = {
+			isa = PBXGroup;
+			children = (
+				B1A6BC89218A977D000515E3 /* APIEnrollmentRequestableTests.swift */,
+				9F88ED00224A742F00DCCA09 /* EnrollmentTests.swift */,
+			);
+			path = Enrollments;
+			sourceTree = "<group>";
+		};
 		7D80AC06212B46D500C40ECE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -2926,7 +2942,6 @@
 				3B635B2E225CD7B3001F353D /* APICalendarEventsRequestableTests.swift */,
 				7D7F71DB241FD90600D6F9CB /* APIDateTests.swift */,
 				78151DCE21AE7E0500692862 /* APIDiscussionRequestableTests.swift */,
-				B1A6BC89218A977D000515E3 /* APIEnrollmentRequestableTests.swift */,
 				7D819FF8228C898100C61EDD /* APIErrorTests.swift */,
 				9FAE410221B6C88000FE7F58 /* APIExternalToolRequestableTests.swift */,
 				7D80AC1A212B6A7700C40ECE /* APIFavoriteRequestableTests.swift */,
@@ -3013,7 +3028,6 @@
 				7D7F71D9241C41BC00D6F9CB /* APIDate.swift */,
 				78151DCA21AE75D400692862 /* APIDiscussion.swift */,
 				78151DCC21AE75F600692862 /* APIDiscussionRequestable.swift */,
-				7D8262FA212B3B3000BD268D /* APIEnrollment.swift */,
 				7D819FF6228C7C7E00C61EDD /* APIError.swift */,
 				9FAE410021B6C56D00FE7F58 /* APIExternalTool.swift */,
 				9FAE40FE21B6C54700FE7F58 /* APIExternalToolRequestable.swift */,
@@ -3408,7 +3422,6 @@
 				9FA690EF23C79489009D12D9 /* GetConversationCourses.swift */,
 				7851D9B22138264800E76EC3 /* GetCustomColors.swift */,
 				B1999AAC2305AA7B00DA97A4 /* GetEnabledFeatureFlags.swift */,
-				7D4C6F36243BE229003C1728 /* GetEnrollments.swift */,
 				EE424B3122E8BBEF00D083EE /* GetFrontPage.swift */,
 				3BA9FF7A2332B3BA00196A06 /* GetGradingPeriods.swift */,
 				9FE84DD9214FE06300B95A68 /* GetGroup.swift */,
@@ -4742,7 +4755,6 @@
 				7DA260CD23F72359005D2121 /* BottomSheetTransitioning.swift in Sources */,
 				7DA260C223F72352005D2121 /* UploadFileComment.swift in Sources */,
 				7D5F103A2429BA2700803324 /* CourseCardCell.swift in Sources */,
-				7DA2604623F722D9005D2121 /* EnrollmentState.swift in Sources */,
 				7DA2601223F7227A005D2121 /* UIFontExtensions.swift in Sources */,
 				7DA2608B23F72315005D2121 /* DrawerTransitioning.swift in Sources */,
 				7DA2609D23F72348005D2121 /* TodoListViewController.swift in Sources */,
