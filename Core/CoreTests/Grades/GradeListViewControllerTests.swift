@@ -74,7 +74,7 @@ class GradeListViewControllerTests: CoreTestCase {
                 current_score: score,
                 final_score: score
             )
-        ) ])
+        ), ])
     }
 
     override func setUp() {
