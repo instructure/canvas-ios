@@ -60,4 +60,13 @@ class RoutesTests: XCTestCase {
         XCTAssertEqual(userInfo?["modal"] as? Bool, false)
         XCTAssertEqual(userInfo?["detail"] as? Bool, true)
     }
+
+    func testMatch() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.registerNativeRoutes()
+        HelmManager.shared.registerRoute("/courses/:courseID/pages/:url")
+        HelmManager.shared.registerRoute("/courses/:courseID/assignments/:assignmentID")
+        XCTAssert(router.match(.parse("/courses/1/pages/page-1")) is PageDetailsViewController)
+        XCTAssert(router.match(.parse("/courses/1/assignments/2")) is HelmViewController)
+    }
 }
