@@ -72,7 +72,7 @@ public struct APIModuleItem: Codable, Equatable {
         position: Int,
         title: String,
         indent: Int,
-        content: ModuleItemType,
+        content: ModuleItemType?,
         html_url: URL?,
         url: URL?,
         published: Bool?,
@@ -131,7 +131,7 @@ public struct APIModuleItem: Codable, Equatable {
         try container.encode(html_url, forKey: .html_url)
         try container.encode(url, forKey: .url)
         try container.encode(published, forKey: .published)
-        try container.encode(content_details, forKey: .content_details)
+        try container.encodeIfPresent(content_details, forKey: .content_details)
         try container.encode(completion_requirement, forKey: .completion_requirement)
         try content.encode(to: encoder)
     }
@@ -190,7 +190,7 @@ extension APIModuleItem {
         position: Int = 1,
         title: String = "Module Item 1",
         indent: Int = 0,
-        content: ModuleItemType = .assignment("1"),
+        content: ModuleItemType? = .assignment("1"),
         html_url: URL? = URL(string: "https://canvas.example.edu/courses/222/modules/items/768"),
         url: URL? = URL(string: "https://canvas.example.edu/api/v1/courses/222/assignments/987"),
         published: Bool? = nil,

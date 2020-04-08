@@ -21,6 +21,7 @@ import Foundation
 public class LTIViewController: UIViewController, ErrorViewController, ColoredNavViewProtocol {
     @IBOutlet weak var spinnerView: CircleProgressView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var openButton: UIButton!
 
     let env = AppEnvironment.shared
     public var tools: LTITools!
@@ -57,7 +58,9 @@ public class LTIViewController: UIViewController, ErrorViewController, ColoredNa
         if name == nil {
             // try to get a more descriptive name of the tool
             tools.getSessionlessLaunch { [weak self] response in
-                self?.nameLabel.text = response?.name ?? self?.nameLabel.text
+                performUIUpdate {
+                    self?.nameLabel.text = response?.name ?? self?.nameLabel.text
+                }
             }
         }
         colors.refresh()
