@@ -233,7 +233,7 @@ if args.count == 3, args[1] == "generate-temp-links" {
 
     let branch = args[3]
     let url = args[4]
-    if branch == "master-build-links" {
+    if branch == "master" {
         guard let appIndex = App.allCases.firstIndex(of: app) else {
             print("Couldn't find build link idendifier!")
             exit(1)
