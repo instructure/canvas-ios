@@ -49,7 +49,7 @@ public struct APIConferenceRecording: Codable {
 }
 
 public struct APIConferencePlaybackFormat: Codable {
-    let length: String
+    let length: String?
     let type: String
     let url: APIURL
 }
