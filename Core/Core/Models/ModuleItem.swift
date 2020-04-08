@@ -69,7 +69,10 @@ public class ModuleItem: NSManagedObject {
 
     @discardableResult
     public static func save(_ item: APIModuleItem, forCourse courseID: String, in context: NSManagedObjectContext) -> ModuleItem {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(ModuleItem.id), item.id.value)
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(key: #keyPath(ModuleItem.courseID), equals: courseID),
+            NSPredicate(key: #keyPath(ModuleItem.id), equals: item.id.value)
+        ])
         let model: ModuleItem = context.fetch(predicate).first ?? context.insert()
         model.update(item)
         model.courseID = courseID

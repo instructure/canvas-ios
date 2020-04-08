@@ -35,10 +35,6 @@ public class ModuleItemDetailsViewController: UIViewController {
     var item: ModuleItem? { store.first }
     var observations: [NSKeyValueObservation]?
 
-    deinit {
-        observations?.forEach { $0.invalidate() }
-    }
-
     public static func create(courseID: String, moduleID: String, itemID: String) -> Self {
         let controller = loadFromStoryboard()
         controller.courseID = courseID
@@ -52,7 +48,7 @@ public class ModuleItemDetailsViewController: UIViewController {
         Analytics.shared.logEvent("module_item", parameters: ["moduleID": moduleID!, "itemID": itemID!])
         errorView.isHidden = true
         errorView.retryButton.addTarget(self, action: #selector(retryButtonPressed), for: .primaryActionTriggered)
-        store.refresh()
+        store.refresh(force: true)
     }
 
     func update() {

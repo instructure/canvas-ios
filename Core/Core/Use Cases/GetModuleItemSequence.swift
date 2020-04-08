@@ -30,12 +30,6 @@ public class GetModuleItemSequence: APIUseCase {
         "module-item-sequence/\(courseID)/\(assetType.rawValue)/\(assetID)"
     }
 
-    public init(courseID: String, assetType: GetModuleItemSequenceRequest.AssetType, assetID: String) {
-        self.courseID = courseID
-        self.assetType = assetType
-        self.assetID = assetID
-    }
-
     public var request: GetModuleItemSequenceRequest {
         GetModuleItemSequenceRequest(courseID: courseID, assetType: assetType, assetID: assetID)
     }
@@ -49,6 +43,12 @@ public class GetModuleItemSequence: APIUseCase {
         return Scope(predicate: predicate, orderBy: #keyPath(ModuleItemSequence.assetID))
     }
 
+    public init(courseID: String, assetType: GetModuleItemSequenceRequest.AssetType, assetID: String) {
+        self.courseID = courseID
+        self.assetType = assetType
+        self.assetID = assetID
+    }
+
     public func write(response: APIModuleItemSequence?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
         let sequence: ModuleItemSequence = client.fetch(scope: scope).first ?? client.insert()
@@ -59,33 +59,5 @@ public class GetModuleItemSequence: APIUseCase {
         sequence.prev = node?.prev.flatMap { .save($0, forCourse: courseID, in: client) }
         sequence.next = node?.next.flatMap { .save($0, forCourse: courseID, in: client) }
         sequence.current = node?.current.flatMap { .save($0, forCourse: courseID, in: client) }
-    }
-}
-
-// TODO: own file
-public class GetModuleItem: APIUseCase {
-    public typealias Model = ModuleItem
-
-    public let courseID: String
-    public let moduleID: String
-    public let itemID: String
-
-    public var cacheKey: String? { request.path }
-
-    public var request: GetModuleItemRequest {
-        return .init(courseID: courseID, moduleID: moduleID, itemID: itemID)
-    }
-
-    public var scope: Scope { .where(#keyPath(ModuleItem.id), equals: itemID) }
-
-    public init(courseID: String, moduleID: String, itemID: String) {
-        self.courseID = courseID
-        self.moduleID = moduleID
-        self.itemID = itemID
-    }
-
-    public func write(response: APIModuleItem?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let response = response else { return }
-        ModuleItem.save(response, forCourse: courseID, in: client)
     }
 }

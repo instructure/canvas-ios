@@ -20,6 +20,7 @@ import Foundation
 import XCTest
 import Core
 @testable import Teacher
+@testable import CanvasCore
 
 class RoutesTests: XCTestCase {
     let route = URLComponents(string: "https://canvas.instructure.com/api/v1/courses/1")!

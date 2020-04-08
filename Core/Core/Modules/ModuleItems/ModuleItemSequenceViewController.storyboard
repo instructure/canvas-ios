@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="806" width="414" height="56"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywu-lr-3Bv" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="366" y="13" width="32" height="30"/>
+                                        <rect key="frame" x="338" y="16" width="60" height="24"/>
                                         <state key="normal" title="Next"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
@@ -33,11 +33,11 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="miniArrowEndSolid"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="goNext" destination="lhr-LL-71f" eventType="touchUpInside" id="SWm-HG-aok"/>
+                                            <action selector="goNext" destination="lhr-LL-71f" eventType="primaryActionTriggered" id="QWF-Gm-VCd"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lE8-Sf-NiN" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="13" width="59" height="30"/>
+                                        <rect key="frame" x="16" y="16" width="90" height="24"/>
                                         <state key="normal" title="Previous"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
@@ -45,7 +45,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="miniArrowStartSolid"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="goPrevious" destination="lhr-LL-71f" eventType="touchUpInside" id="Y6q-i1-Qug"/>
+                                            <action selector="goPrevious" destination="lhr-LL-71f" eventType="primaryActionTriggered" id="MpC-Ov-Nie"/>
                                         </connections>
                                     </button>
                                 </subviews>

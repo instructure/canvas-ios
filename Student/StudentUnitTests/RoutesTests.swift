@@ -89,7 +89,7 @@ class RoutesTests: XCTestCase {
     }
 
     func testCourseAssignment() {
-        XCTAssert(router.match(Route.course("2", assignment: "3").url) is AssignmentDetailsViewController)
+        XCTAssert(router.match(Route.course("2", assignment: "3").url) is ModuleItemSequenceViewController)
     }
 
     func testGroup() {
@@ -131,6 +131,67 @@ class RoutesTests: XCTestCase {
         ExperimentalFeature.studentModules.isEnabled = true
         XCTAssert(router.match(Route.modules(forCourse: "1").url) is ModuleListViewController)
         XCTAssert(router.match(Route.module(forCourse: "1", moduleID: "1").url) is ModuleListViewController)
+    }
+
+    func testModuleItems() {
+        ExperimentalFeature.studentModules.isEnabled = false
+        XCTAssert(router.match(.parse("/courses/1/assignments/syllabus")) is StudentSyllabusViewController)
+        XCTAssert(router.match(.parse("/courses/1/assignments/2")) is AssignmentDetailsViewController)
+        XCTAssert(router.match(.parse("/courses/1/discussions/2")) is HelmViewController)
+        XCTAssert(router.match(.parse("/groups/1/discussions/2")) is HelmViewController)
+        XCTAssert(router.match(.parse("/courses/1/discussion_topics/2")) is HelmViewController)
+        XCTAssert(router.match(.parse("/groups/1/discussion_topics/2")) is HelmViewController)
+        XCTAssert(router.match(.parse("/files/1")) is FileDetailsViewController)
+        XCTAssert(router.match(.parse("/files/1/download")) is FileDetailsViewController)
+        XCTAssert(router.match(.parse("/files/1/old")) is FileDetailsViewController)
+        XCTAssert(router.match(.parse("/courses/1/files/2")) is FileDetailsViewController)
+        XCTAssert(router.match(.parse("/courses/1/files/2/download")) is FileDetailsViewController)
+        XCTAssert(router.match(.parse("/groups/1/files/2/download")) is FileDetailsViewController)
+        XCTAssert(router.match(.parse("/courses/1/files/2?module_item_id=2")) is ModuleItemDetailViewController)
+        XCTAssert(router.match(.parse("/courses/1/files/2/download?module_item_id=2")) is ModuleItemDetailViewController)
+        XCTAssertNil(router.match(.parse("/courses/1/module_item_redirect/2")))
+        XCTAssert(router.match(.parse("/courses/1/modules/2/items/3")) is ModuleItemDetailViewController)
+        XCTAssert(router.match(.parse("/courses/1/modules/items/2")) is ModuleItemDetailViewController)
+        XCTAssert(router.match(.parse("/courses/1/pages/2")) is PageDetailsViewController)
+        XCTAssert(router.match(.parse("/groups/1/pages/2")) is PageDetailsViewController)
+        XCTAssert(router.match(.parse("/courses/1/wiki/2")) is PageDetailsViewController)
+        XCTAssert(router.match(.parse("/groups/1/wiki/2")) is PageDetailsViewController)
+        XCTAssert(router.match(.parse("/courses/1/pages/2?module_item_id=3")) is ModuleItemDetailViewController)
+        XCTAssert(router.match(.parse("/courses/1/wiki/2?module_item_id=3")) is ModuleItemDetailViewController)
+        XCTAssert(router.match(.parse("/courses/1/quizzes/2")) is QuizIntroViewController)
+        XCTAssert(router.match(.parse("/courses/1/quizzes/2?module_item_id=3")) is ModuleItemDetailViewController)
+    }
+
+    func testNewModuleItems() {
+        ExperimentalFeature.studentModules.isEnabled = true
+        XCTAssert(router.match(.parse("/courses/1/assignments/syllabus")) is StudentSyllabusViewController)
+        XCTAssert(router.match(.parse("/courses/1/assignments/2")) is ModuleItemSequenceViewController)
+        XCTAssert(router.match(.parse("/courses/1/assignments/2?origin=module_item_details")) is AssignmentDetailsViewController)
+        XCTAssert(router.match(.parse("/courses/1/discussions/2")) is ModuleItemSequenceViewController)
+        XCTAssert(router.match(.parse("/groups/1/discussions/2")) is HelmViewController)
+        XCTAssert(router.match(.parse("/courses/1/discussion_topics/2")) is ModuleItemSequenceViewController)
+        XCTAssert(router.match(.parse("/groups/1/discussion_topics/2")) is HelmViewController)
+        XCTAssert(router.match(.parse("/courses/1/discussion_topics/2?origin=module_item_details")) is HelmViewController)
+        XCTAssert(router.match(.parse("/files/1")) is FileDetailsViewController)
+        XCTAssert(router.match(.parse("/files/1/download")) is FileDetailsViewController)
+        XCTAssert(router.match(.parse("/files/1/old")) is FileDetailsViewController)
+        XCTAssert(router.match(.parse("/courses/1/files/2")) is ModuleItemSequenceViewController)
+        XCTAssert(router.match(.parse("/courses/1/files/2/download")) is ModuleItemSequenceViewController)
+        XCTAssert(router.match(.parse("/groups/1/files/2/download")) is FileDetailsViewController)
+        XCTAssert(router.match(.parse("/courses/1/files/2?module_item_id=2")) is ModuleItemSequenceViewController)
+        XCTAssert(router.match(.parse("/courses/1/files/2/download?module_item_id=2")) is ModuleItemSequenceViewController)
+        XCTAssert(router.match(.parse("/courses/1/files/2?origin=module_item_details")) is FileDetailsViewController)
+        XCTAssert(router.match(.parse("/courses/1/quizzes/2")) is ModuleItemSequenceViewController)
+        XCTAssert(router.match(.parse("/courses/1/module_item_redirect/2")) is ModuleItemSequenceViewController)
+        XCTAssert(router.match(.parse("/courses/1/modules/2/items/3")) is ModuleItemSequenceViewController)
+        XCTAssert(router.match(.parse("/courses/1/modules/items/2")) is ModuleItemSequenceViewController)
+        XCTAssert(router.match(.parse("/courses/1/pages/2")) is ModuleItemSequenceViewController)
+        XCTAssert(router.match(.parse("/groups/1/pages/2")) is PageDetailsViewController)
+        XCTAssert(router.match(.parse("/courses/1/wiki/2")) is ModuleItemSequenceViewController)
+        XCTAssert(router.match(.parse("/groups/1/wiki/2")) is PageDetailsViewController)
+        XCTAssert(router.match(.parse("/courses/1/pages/2?origin=module_item_details")) is PageDetailsViewController)
+        XCTAssert(router.match(.parse("/courses/1/wiki/2?origin=module_item_details")) is PageDetailsViewController)
+        XCTAssert(router.match(.parse("/courses/1/quizzes/2?origin=module_item_details")) is QuizIntroViewController)
     }
 
     func testFallbackNonHTTP() {

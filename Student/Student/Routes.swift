@@ -442,10 +442,6 @@ private func previewFileViewController(url: URLComponents, params: [String: Stri
 }
 
 private func fileViewController(url: URLComponents, params: [String: String]) -> UIViewController? {
-    if params["context"] == "courses", let courseID = params["contextID"],
-        let controller = moduleItemController(for: url, courseID: courseID) {
-        return controller
-    }
     guard let fileID = url.queryItems?.first(where: { $0.name == "preview" })?.value ?? params["fileID"] else { return nil }
     var context = ContextModel(path: url.path)
     if let courseID = url.queryItems?.first(where: { $0.name == "courseID" })?.value {
@@ -459,6 +455,11 @@ private func fileViewController(url: URLComponents, params: [String: String]) ->
             assetID: fileID,
             url: url
         )
+    }
+    if context?.contextType == .course,
+        let courseID = context?.id,
+        let controller = moduleItemController(for: url, courseID: courseID) {
+        return controller
     }
     return FileDetailsViewController.create(context: context, fileID: fileID, assignmentID: assignmentID)
 }

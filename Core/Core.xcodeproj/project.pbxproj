@@ -698,6 +698,10 @@
 		B14707B82437CC9000CE1DBD /* ModuleItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14707B62437CC9000CE1DBD /* ModuleItemDetailsViewController.swift */; };
 		B14707B92437CC9000CE1DBD /* ModuleItemSequenceViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B14707B72437CC9000CE1DBD /* ModuleItemSequenceViewController.storyboard */; };
 		B147CCD72409CC6C0064BD3F /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B147CCD62409CC6C0064BD3F /* LoadingCell.swift */; };
+		B1487F93243E333200013404 /* ModuleItemDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1487F92243E333200013404 /* ModuleItemDetailsViewControllerTests.swift */; };
+		B1487F95243E3E4700013404 /* GetModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1487F94243E3E4700013404 /* GetModuleItem.swift */; };
+		B1487F97243E3FAF00013404 /* GetModuleItemSequenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1487F96243E3FAF00013404 /* GetModuleItemSequenceTests.swift */; };
+		B1487F99243E43C400013404 /* GetModuleItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1487F98243E43C400013404 /* GetModuleItemTests.swift */; };
 		B149098C23D9154C0051D961 /* LTIViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B149098B23D9154B0051D961 /* LTIViewControllerTests.swift */; };
 		B14B7055229468BC00B568D6 /* FilePickerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B7054229468BC00B568D6 /* FilePickerViewControllerTests.swift */; };
 		B14B70572294758600B568D6 /* UploadFileCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B70562294758600B568D6 /* UploadFileCommentTests.swift */; };
@@ -1711,6 +1715,10 @@
 		B14707B62437CC9000CE1DBD /* ModuleItemDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleItemDetailsViewController.swift; sourceTree = "<group>"; };
 		B14707B72437CC9000CE1DBD /* ModuleItemSequenceViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ModuleItemSequenceViewController.storyboard; sourceTree = "<group>"; };
 		B147CCD62409CC6C0064BD3F /* LoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
+		B1487F92243E333200013404 /* ModuleItemDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemDetailsViewControllerTests.swift; sourceTree = "<group>"; };
+		B1487F94243E3E4700013404 /* GetModuleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetModuleItem.swift; sourceTree = "<group>"; };
+		B1487F96243E3FAF00013404 /* GetModuleItemSequenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetModuleItemSequenceTests.swift; sourceTree = "<group>"; };
+		B1487F98243E43C400013404 /* GetModuleItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetModuleItemTests.swift; sourceTree = "<group>"; };
 		B149098923D8FC240051D961 /* LTIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIViewController.swift; sourceTree = "<group>"; };
 		B149098B23D9154B0051D961 /* LTIViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIViewControllerTests.swift; sourceTree = "<group>"; };
 		B14B704C228F30A100B568D6 /* UploadFileComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFileComment.swift; sourceTree = "<group>"; };
@@ -3431,6 +3439,7 @@
 				B1999AAC2305AA7B00DA97A4 /* GetEnabledFeatureFlags.swift */,
 				EE424B3122E8BBEF00D083EE /* GetFrontPage.swift */,
 				9FE84DD9214FE06300B95A68 /* GetGroup.swift */,
+				B1487F94243E3E4700013404 /* GetModuleItem.swift */,
 				B1131129242D56CF003A79A8 /* GetModuleItemSequence.swift */,
 				B15CA270221DE1C80014FB02 /* GetModules.swift */,
 				9F4D24722331648B00EDFCFE /* GetPage.swift */,
@@ -3570,6 +3579,8 @@
 				7DFB2CF821C978D40077DEEE /* GetCustomColorsTests.swift */,
 				B119B4BC2307208200A74062 /* GetEnabledFeatureFlagsTests.swift */,
 				9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */,
+				B1487F96243E3FAF00013404 /* GetModuleItemSequenceTests.swift */,
+				B1487F98243E43C400013404 /* GetModuleItemTests.swift */,
 				B15CA272221DE1FA0014FB02 /* GetModulesTests.swift */,
 				9F5C93022375F682005105BB /* GetPage.swift */,
 				EE424B3522E8E16D00D083EE /* GetPagesTests.swift */,
@@ -3624,6 +3635,7 @@
 			isa = PBXGroup;
 			children = (
 				B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */,
+				B1487F92243E333200013404 /* ModuleItemDetailsViewControllerTests.swift */,
 			);
 			path = ModuleItems;
 			sourceTree = "<group>";
@@ -4397,7 +4409,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "#\"${SRCROOT}/../scripts/carthage-copy-frameworks.swift\"\n#\"${SRCROOT}/../scripts/carthage-copy-frameworks\"\n/usr/local/bin/carthage copy-frameworks\n";
+			shellScript = "#\"${SRCROOT}/../scripts/carthage-copy-frameworks.swift\"\n\"${SRCROOT}/../scripts/carthage-copy-frameworks\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -4452,12 +4464,14 @@
 				7D70DEA2233EADBB00F5C3D4 /* CommunicationChannelTests.swift in Sources */,
 				7DBED017232FDDB700392F3C /* GetAccountHelpLinksTests.swift in Sources */,
 				7DDC450F215BF4AA003F3209 /* UIFontExtensionsTests.swift in Sources */,
+				B1487F93243E333200013404 /* ModuleItemDetailsViewControllerTests.swift in Sources */,
 				B1D5EF602358D93100B3ACD3 /* LoginWebViewControllerTests.swift in Sources */,
 				7D2DC2F62199F27B008FE29A /* DocViewerPointAnnotationTests.swift in Sources */,
 				7D64A97723676025004EAEDF /* APICourseSectionTests.swift in Sources */,
 				9F62EDD82326D1E500EA9F79 /* GetSearchRecipientsTests.swift in Sources */,
 				3B635B2F225CD7B3001F353D /* APICalendarEventsRequestableTests.swift in Sources */,
 				7D70DE9A233EA2D200F5C3D4 /* APINotificationPreferencesTests.swift in Sources */,
+				B1487F97243E3FAF00013404 /* GetModuleItemSequenceTests.swift in Sources */,
 				B1F13290224BBFC0002C0555 /* ModuleItemTypeTests.swift in Sources */,
 				7DCF1ED4216C05A0003AF358 /* DueViewableTests.swift in Sources */,
 				7DD6947B21949DC900BA4984 /* IconViewTests.swift in Sources */,
@@ -4489,6 +4503,7 @@
 				B119B4BD2307208200A74062 /* GetEnabledFeatureFlagsTests.swift in Sources */,
 				3B158CB122E167CD0039A568 /* PageViewEventTests.swift in Sources */,
 				9727093B23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift in Sources */,
+				B1487F99243E43C400013404 /* GetModuleItemTests.swift in Sources */,
 				7D1F704821CAE4E700E78D69 /* AppEnvironmentTests.swift in Sources */,
 				7DEAD09E22790B720030C28A /* RichContentEditorViewControllerTests.swift in Sources */,
 				7DBED03623344EDF00392F3C /* ExternalToolLaunchPlacementTests.swift in Sources */,
@@ -5074,6 +5089,7 @@
 				7DA2607523F722F6005D2121 /* PageListCell.swift in Sources */,
 				7DA2602623F722B3005D2121 /* LogEventListPresenter.swift in Sources */,
 				7DA25FCF23F72136005D2121 /* APITab.swift in Sources */,
+				B1487F95243E3E4700013404 /* GetModuleItem.swift in Sources */,
 				7DA260D523F72359005D2121 /* DynamicLabel.swift in Sources */,
 				7D4F44FF241BFCF300233B92 /* Conference.swift in Sources */,
 				7DA260AF23F72352005D2121 /* GetCourses.swift in Sources */,

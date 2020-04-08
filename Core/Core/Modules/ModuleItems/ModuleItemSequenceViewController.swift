@@ -75,7 +75,7 @@ public class ModuleItemSequenceViewController: UIViewController {
         } else if assetType != .moduleItem, let match = env.router.match(.parse(url.appendingOrigin("module_item_details"))) {
             viewController = match
         } else {
-            let external = ExternalURLViewController.create(name: url.host ?? url.path, url: url, courseID: courseID)
+            let external = ExternalURLViewController.create(name: NSLocalizedString("Unsupported Item", bundle: .core, comment: ""), url: url, courseID: courseID)
             external.authenticate = true
             viewController = external
         }

@@ -303,47 +303,15 @@ class ModuleListViewControllerTests: CoreTestCase {
 
     }
 
-    func testSelectExternalTool() throws {
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
-            .make(items: [
-                .make(id: "1", content: .externalTool("1", URL(string: "/")!)),
-            ]),
-        ])
-        api.mock(
-            GetSessionlessLaunchURLRequest(
-                context: ContextModel(.course, id: "1"),
-                id: "1",
-                url: nil,
-                assignmentID: nil,
-                moduleItemID: "1",
-                launchType: .module_item),
-            value: .make(url: URL(string: "https://canvas.instructure.com")!)
-        )
-        viewController.view.layoutIfNeeded()
-        viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
-        XCTAssertNotNil(router.presented as? SFSafariViewController)
-    }
-
-    func testSelectExternalURL() {
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
-            .make(items: [
-                .make(content: .externalURL(URL(string: "https://canvas.instructure.com")!)),
-            ]),
-        ])
-        viewController.view.layoutIfNeeded()
-        viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
-        XCTAssertNotNil(router.presented as? SFSafariViewController)
-    }
-
     func testSelectItem() {
         api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
             .make(items: [
-                .make(content: .assignment("1"), url: URL(string: "/courses/1/assignments/1")!),
+                .make(content: .assignment("1"), html_url: URL(string: "/courses/1/modules/items/1")!),
             ]),
         ])
         viewController.view.layoutIfNeeded()
         viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
-        XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/assignments/1")!, withOptions: .detail))
+        XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/modules/items/1")!, withOptions: .detail))
         XCTAssertNoThrow(viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 99)))
         XCTAssertNoThrow(viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 99, section: 0)))
     }

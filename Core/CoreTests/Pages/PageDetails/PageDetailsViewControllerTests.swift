@@ -47,7 +47,7 @@ class PageDetailsViewControllerTests: CoreTestCase {
     func testViewDidLoad() {
         load()
 
-        XCTAssertEqual(viewController.titleSubtitleView.title, "Page")
+        XCTAssertEqual(viewController.titleSubtitleView.title, "Page Details")
         XCTAssertNotNil(viewController.webView?.scrollView.refreshControl)
     }
 

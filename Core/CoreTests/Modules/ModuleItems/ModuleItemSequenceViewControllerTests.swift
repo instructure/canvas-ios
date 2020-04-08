@@ -21,17 +21,7 @@ import Foundation
 import XCTest
 @testable import TestsFoundation
 
-class ModuleItemDetailsViewControllerTests: CoreTestCase {
-    typealias AssetType = ModuleItemType
-
-    class CurrentViewController: UIViewController {}
-    class NextViewController: UIViewController {}
-    class PreviousViewController: UIViewController {}
-
-    var courseID = "1"
-    var assetType: ModuleItemSequenceViewController.AssetType = .assignment
-    var assetID: String = "2"
-    var url = URLComponents(string: "/courses/1/assignments/2")!
+class ModuleItemSequenceViewControllerTests: CoreTestCase {
     lazy var controller = ModuleItemSequenceViewController.create(
         courseID: "1",
         assetType: .moduleItem,
@@ -47,15 +37,15 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
         let current = APIModuleItem.make(id: "2", module_id: "1", html_url: URL(string: "/current"))
         let next = APIModuleItem.make(id: "3", module_id: "2", html_url: URL(string: "/next"))
         api.mock(
-            GetModuleItemSequenceRequest(courseID: courseID, assetType: .moduleItem, assetID: prev.id.value),
+            GetModuleItemSequenceRequest(courseID: "1", assetType: .moduleItem, assetID: prev.id.value),
             value: .make(items: [.make(prev: nil, current: prev, next: current)])
         )
         api.mock(
-            GetModuleItemSequenceRequest(courseID: courseID, assetType: .moduleItem, assetID: current.id.value),
+            GetModuleItemSequenceRequest(courseID: "1", assetType: .moduleItem, assetID: current.id.value),
             value: .make(items: [.make(prev: prev, current: current, next: next)])
         )
         api.mock(
-            GetModuleItemSequenceRequest(courseID: courseID, assetType: .moduleItem, assetID: next.id.value),
+            GetModuleItemSequenceRequest(courseID: "1", assetType: .moduleItem, assetID: next.id.value),
             value: .make(items: [.make(prev: current, current: next, next: nil)])
         )
     }
@@ -67,7 +57,7 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(details.moduleID, "1")
         XCTAssertEqual(details.itemID, "2")
         XCTAssertFalse(controller.previousButton.isHidden)
-        XCTAssertTrue(controller.previousButton.isHidden)
+        XCTAssertFalse(controller.nextButton.isHidden)
 
         controller.previousButton.sendActions(for: .primaryActionTriggered)
         details = controller.pages.currentPage as! ModuleItemDetailsViewController
@@ -96,5 +86,41 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.navigationItem.title, "Title 2")
         XCTAssertEqual(details.navigationItem.leftBarButtonItems, [leftButton])
         XCTAssertEqual(details.navigationItem.rightBarButtonItems, [rightButton])
+    }
+
+    func testNotAModuleItem() {
+        let url = URLComponents(string: "/courses/1/files/1?origin=module_item_details")!
+        router.mock(url) { FileDetailsViewController.create(context: ContextModel(.course, id: "1"), fileID: "1") }
+        api.mock(
+            GetModuleItemSequenceRequest(courseID: "1", assetType: .file, assetID: "1"),
+            value: .make(items: [.make(current: nil)])
+        )
+        let controller = ModuleItemSequenceViewController.create(
+            courseID: "1",
+            assetType: .file,
+            assetID: "1",
+            url: URLComponents(string: "/courses/1/files/1")!
+        )
+        controller.view.layoutIfNeeded()
+        XCTAssertNotNil(controller.pages.currentPage as? FileDetailsViewController)
+        XCTAssertTrue(controller.buttonsContainer.isHidden)
+    }
+
+    func testUnsupportedItem() {
+        api.mock(
+            GetModuleItemSequenceRequest(courseID: "1", assetType: .moduleItem, assetID: "1"),
+            value: .make(items: [.make(current: nil)])
+        )
+        let controller = ModuleItemSequenceViewController.create(
+            courseID: "1",
+            assetType: .moduleItem,
+            assetID: "1",
+            url: URLComponents(string: "/unsupported-item")!
+        )
+        controller.view.layoutIfNeeded()
+        let details = controller.pages.currentPage as! ExternalURLViewController
+        XCTAssertEqual(details.name, "Unsupported Item")
+        XCTAssertEqual(details.courseID, "1")
+        XCTAssertTrue(details.authenticate)
     }
 }

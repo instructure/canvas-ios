@@ -61,7 +61,9 @@ export function registerScreen (
   }
   const route = new RouteHandler(path)
   routes.set(route, options)
-  Helm.registerRoute(path)
+  if (options.showInWebView !== true && options.deepLink) {
+    Helm.registerRoute(path)
+  }
 }
 
 export function wrapComponentInProviders (moduleName: string, generator: (props: any) => any, store: Store): any {
