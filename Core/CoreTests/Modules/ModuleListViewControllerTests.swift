@@ -307,7 +307,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
             .make(id: "1", items: [
                 .make(id: "1", content: .assignment("1"), html_url: URL(string: "/courses/1/modules/items/1")!),
-                .make(id: "2", content: .page("2"))
+                .make(id: "2", content: .page("2")),
             ]),
         ])
         viewController.view.layoutIfNeeded()

@@ -116,7 +116,7 @@ public struct APIModuleItem: Codable, Equatable {
         html_url = try container.decodeIfPresent(URL.self, forKey: .html_url)
         url = try container.decodeIfPresent(URL.self, forKey: .url)
         published = try container.decodeIfPresent(Bool.self, forKey: .published)
-        content = try Optional<ModuleItemType>(from: decoder)
+        content = try ModuleItemType?(from: decoder)
         content_details = try container.decodeIfPresent(ContentDetails.self, forKey: .content_details)
         completion_requirement = try container.decodeIfPresent(CompletionRequirement.self, forKey: .completion_requirement)
     }

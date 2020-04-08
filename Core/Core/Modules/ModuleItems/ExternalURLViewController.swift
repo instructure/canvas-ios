@@ -74,7 +74,7 @@ public class ExternalURLViewController: UIViewController, ColoredNavViewProtocol
     @IBAction public func openButtonPressed(_ sender: UIButton) {
         if authenticate {
             spinnerView.isHidden = false
-            env.api.makeRequest(GetWebSessionRequest(to: url)) { [weak self] response, _, error in
+            env.api.makeRequest(GetWebSessionRequest(to: url)) { [weak self] response, _, _ in
                 guard let self = self else { return }
                 performUIUpdate {
                     self.spinnerView.isHidden = true

@@ -89,6 +89,9 @@ class RoutesTests: XCTestCase {
     }
 
     func testCourseAssignment() {
+        ExperimentalFeature.studentModules.isEnabled = false
+        XCTAssert(router.match(Route.course("2", assignment: "3").url) is AssignmentDetailsViewController)
+        ExperimentalFeature.studentModules.isEnabled = true
         XCTAssert(router.match(Route.course("2", assignment: "3").url) is ModuleItemSequenceViewController)
     }
 
