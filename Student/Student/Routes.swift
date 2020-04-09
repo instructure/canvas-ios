@@ -237,13 +237,13 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/courses/:courseID/pages": { _, params in
         guard let courseID = params["courseID"] else { return nil }
         let context = ContextModel(.course, id: ID.expandTildeID(courseID))
-        return PageListViewController.create(context: context, appTraitCollection: UIApplication.shared.keyWindow?.traitCollection, app: .student)
+        return PageListViewController.create(context: context, app: .student)
     },
 
     "/groups/:groupID/pages": { _, params in
         guard let groupID = params["groupID"] else { return nil }
         let context = ContextModel(.group, id: ID.expandTildeID(groupID))
-        return PageListViewController.create(context: context, appTraitCollection: UIApplication.shared.keyWindow?.traitCollection, app: .student)
+        return PageListViewController.create(context: context, app: .student)
     },
 
     "/:context/:contextID/wiki": { url, _ in
