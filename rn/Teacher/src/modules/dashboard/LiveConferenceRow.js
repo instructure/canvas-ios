@@ -40,7 +40,7 @@ export default class LiveConferenceRow extends React.Component {
 
   navigate = () => {
     const { id, context_type, context_id } = this.props.conference
-    this.props.navigator.show(`/${context_type.toLowerCase()}s/${context_id}/conferences/${id}`)
+    this.props.navigator.show(`/${context_type.toLowerCase()}s/${context_id}/conferences/${id}/join`)
   }
 
   render () {
