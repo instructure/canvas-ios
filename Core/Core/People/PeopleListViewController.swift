@@ -110,6 +110,12 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
         if let color = color {
             navigationController?.navigationBar.useContextColor(color)
         }
+        env.pageViewLogger.startTrackingTimeOnViewController()
+    }
+
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "\(context.pathComponent)/users", attributes: [:])
     }
 
     func updateNavBar() {

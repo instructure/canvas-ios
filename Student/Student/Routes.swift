@@ -77,10 +77,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/:context/:contextID/announcements/:announcementID": nil,
 
-    "/courses/:courseID/assignments": { url, params in
-        guard let courseID = params["courseID"] else { return nil }
-        return AssignmentListViewController.create(courseID: courseID)
-    },
+    "/courses/:courseID/assignments": nil,
 
     "/courses/:courseID/assignments-fromHomeTab": { url, params in
         var props = params as [String: Any]
@@ -149,6 +146,11 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/:context/:contextID/conferences/:conferenceID": { url, params in
         guard let context = ContextModel(path: url.path), let id = params["conferenceID"] else { return nil }
         return ConferenceDetailsViewController.create(context: context, conferenceID: id)
+    },
+
+    "/:context/:contextID/conferences/:conferenceID/join": { url, params in
+        open(url: url)
+        return nil
     },
 
     "/:context/:contextID/discussions": nil,
@@ -268,13 +270,13 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/courses/:courseID/pages": { _, params in
         guard let courseID = params["courseID"] else { return nil }
         let context = ContextModel(.course, id: ID.expandTildeID(courseID))
-        return PageListViewController.create(context: context, appTraitCollection: UIApplication.shared.keyWindow?.traitCollection, app: .student)
+        return PageListViewController.create(context: context, app: .student)
     },
 
     "/groups/:groupID/pages": { _, params in
         guard let groupID = params["groupID"] else { return nil }
         let context = ContextModel(.group, id: ID.expandTildeID(groupID))
-        return PageListViewController.create(context: context, appTraitCollection: UIApplication.shared.keyWindow?.traitCollection, app: .student)
+        return PageListViewController.create(context: context, app: .student)
     },
 
     "/:context/:contextID/wiki": { url, _ in

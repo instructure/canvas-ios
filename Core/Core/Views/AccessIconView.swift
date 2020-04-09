@@ -35,7 +35,7 @@ open class AccessIconView: UIView {
 
     public var state: State? {
         didSet {
-            statusIconView.isHidden = false
+            statusIconView.isHidden = PublishedIconView.isAutohideEnabled
             statusIconView.backgroundColor = .named(.backgroundLightest)
             switch state {
             case .published:
