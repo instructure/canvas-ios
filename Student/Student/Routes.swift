@@ -144,6 +144,11 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
         return ConferenceDetailsViewController.create(context: context, conferenceID: id)
     },
 
+    "/:context/:contextID/conferences/:conferenceID/join": { url, params in
+        open(url: url)
+        return nil
+    },
+
     "/:context/:contextID/discussions": nil,
     "/:context/:contextID/discussion_topics": nil,
 
