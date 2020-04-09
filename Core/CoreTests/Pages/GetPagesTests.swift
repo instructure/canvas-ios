@@ -27,14 +27,10 @@ class GetPagesTest: CoreTestCase {
         let useCase = GetPages(context: courseContext)
         XCTAssertEqual(useCase.cacheKey, "get-course_42-pages")
         XCTAssertEqual(useCase.request.context.canvasContextID, courseContext.canvasContextID)
-
-        let contextID = NSPredicate(format: "%K == %@", #keyPath(Page.contextID), courseContext.canvasContextID)
-        let isFrontPage = NSPredicate(format: "%K == false", #keyPath(Page.isFrontPage))
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [contextID, isFrontPage])
-        let order = NSSortDescriptor(key: #keyPath(Page.title), ascending: true)
-
-        XCTAssertEqual(useCase.scope.predicate, predicate)
-        XCTAssertEqual(useCase.scope.order, [order])
+        XCTAssertEqual(useCase.scope, Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(key: #keyPath(Page.contextID), equals: courseContext.canvasContextID),
+            NSPredicate(format: "%K == false", #keyPath(Page.isFrontPage)),
+        ]), orderBy: #keyPath(Page.title), naturally: true))
     }
 
     func testFrontPageProperties() {
@@ -75,5 +71,4 @@ class GetPagesTest: CoreTestCase {
         XCTAssertEqual(pages.first?.contextID, courseContext.canvasContextID)
         XCTAssertEqual(pages.first?.isFrontPage, true)
     }
-
 }

@@ -20,67 +20,123 @@ import XCTest
 @testable import Core
 
 class PageListViewControllerTests: CoreTestCase {
-    var viewController: PageListViewController!
-    let context = ContextModel(.course, id: "1")
+    lazy var controller = PageListViewController.create(context: ContextModel(.course, id: "42"), app: .teacher)
 
     override func setUp() {
         super.setUp()
-        viewController = PageListViewController.create(env: environment, context: context, appTraitCollection: nil, app: .student)
-    }
-
-    func testItAddsThePlusButtonInTeacherApp() {
-        viewController = PageListViewController.create(env: environment, context: context, appTraitCollection: nil, app: .teacher)
-        viewController.update(isLoading: false)
-        XCTAssertEqual(viewController.navigationItem.rightBarButtonItems?.count, 1)
-    }
-
-    func testItDoesNotAddThePlusButtonInStudentCourse() {
-        viewController = PageListViewController.create(env: environment, context: context, appTraitCollection: nil, app: .student)
-        viewController.update(isLoading: false)
-        XCTAssertNil(viewController.navigationItem.rightBarButtonItems)
-    }
-
-    func testItDoesAddThePlusButtonInStudentGroup() {
-        viewController = PageListViewController.create(env: environment, context: ContextModel(.group, id: "1"), appTraitCollection: nil, app: .student)
-        viewController.update(isLoading: false)
-        XCTAssertEqual(viewController.navigationItem.rightBarButtonItems?.count, 1)
-    }
-
-    func load() {
-        viewController.view.frame = CGRect(x: 0, y: 0, width: 300, height: 800)
-        viewController.view.layoutIfNeeded()
-        viewController.viewDidLoad()
-        viewController.viewWillAppear(false)
-        viewController.viewDidAppear(false)
-    }
-
-    func testRender() {
-        viewController = PageListViewController.create(env: environment, context: context, appTraitCollection: nil, app: .student)
         environment.mockStore = false
+        api.mock(controller.colors, value: .init(custom_colors: [
+            "course_42": "#000088",
+            "group_1": "#facade",
+        ]))
+        api.mock(controller.course, value: .make(id: "42"))
+        api.mock(controller.frontPage, value: .make(front_page: true))
+        api.mock(controller.pages, value: [
+            .make(html_url: URL(string: "courses/42/pages/dois")!, page_id: "2", title: "Dois"),
+            .make(page_id: "3", title: "Trey"),
+        ])
+    }
 
-        api.mock(viewController.presenter!.course!, value: APICourse.make())
-        api.mock(viewController.presenter!.colors, value: APICustomColors(custom_colors: [ "course_1": "#f00" ]))
-        let a = APIPage.make(html_url: URL(string: "/courses/1/pages/one")!, page_id: ID(1), title: "A")
-        api.mock(viewController.presenter!.pages.all!, value: [a])
-        let frontPage = APIPage.make(body: "hello front page", front_page: true, html_url: URL(string: "/courses/3/pages/three")!, page_id: ID(3), title: "frontpage")
-        api.mock(viewController.presenter!.pages.frontPage!, value: frontPage)
+    func testLayout() {
+        let nav = UINavigationController(rootViewController: controller)
+        let split = UISplitViewController()
+        split.viewControllers = [ nav ]
+        split.preferredDisplayMode = .allVisible
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#000088")
+        XCTAssertEqual(controller.titleSubtitleView.title, "Pages")
+        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+        XCTAssert(router.lastRoutedTo(.parse("/courses/42/pages/answers-page")))
 
-        load()
+        let createButton = controller.navigationItem.rightBarButtonItem
+        _ = createButton?.target?.perform(createButton!.action)
+        XCTAssert(router.lastRoutedTo(.parse("courses/42/pages/new")))
 
-        XCTAssertEqual(viewController.presenter!.pages.all?.count, 1)
+        XCTAssertEqual(controller.tableView.numberOfSections, 2)
+        let index00 = IndexPath(row: 0, section: 0)
+        var cell00 = controller.tableView.cellForRow(at: index00) as? PageListFrontPageCell
+        XCTAssertEqual(cell00?.titleLabel.text, "Answers Page")
+        let index01 = IndexPath(row: 0, section: 1)
+        let cell01 = controller.tableView.cellForRow(at: index01) as? PageListCell
+        XCTAssertEqual(cell01?.titleLabel.text, "Dois")
+        var cell11 = controller.tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as? PageListCell
+        XCTAssertEqual(cell11?.titleLabel.text, "Trey")
 
-        let cell = viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? PageListCell
-        XCTAssertEqual(cell?.titleLabel?.text, "A")
-        let expectedDate = PageListCell.dateFormatter.string(from: a.updated_at)
-        XCTAssertEqual(cell?.dateLabel?.text, expectedDate)
-        XCTAssertEqual(cell?.accessIconView?.icon, UIImage.icon(.document, .line))
-        viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
-        XCTAssert(router.lastRoutedTo(.parse("/courses/1/pages/one")))
+        controller.tableView.selectRow(at: index01, animated: false, scrollPosition: .none)
+        controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index01)
+        XCTAssert(router.lastRoutedTo(.parse("courses/42/pages/dois")))
+        controller.viewWillAppear(false)
+        XCTAssertNil(controller.tableView.indexPathForSelectedRow)
 
-        XCTAssertEqual(viewController.frontPageTitleLabel.text, frontPage.title)
-        XCTAssertEqual(viewController.frontPageTitleLabel.isHidden, false)
+        NotificationCenter.default.post(name: NSNotification.Name("page-created"), object: nil)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 1), 2)
+        NotificationCenter.default.post(name: NSNotification.Name("page-created"), object: nil, userInfo: apiPageToDictionary(page: .make(
+            html_url: URL(string: "/courses/42/pages/new-page")!,
+            page_id: "1234",
+            title: "New Page"
+        )))
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 1), 3)
+        cell11 = controller.tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as? PageListCell
+        XCTAssertEqual(cell11?.titleLabel.text, "New Page")
 
-        viewController.frontPageViewButton.sendActions(for: .touchUpInside)
-        XCTAssert(router.lastRoutedTo(.parse("/courses/3/pages/three")))
+        NotificationCenter.default.post(name: NSNotification.Name("page-created"), object: nil, userInfo: apiPageToDictionary(page: .make(
+            front_page: true,
+            html_url: URL(string: "/courses/42/pages/new-page")!,
+            page_id: "1234",
+            title: "New Page"
+        )))
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 1)
+        cell00 = controller.tableView.cellForRow(at: index00) as? PageListFrontPageCell
+        XCTAssertEqual(cell00?.titleLabel.text, "New Page")
+
+        api.mock(controller.frontPage)
+        api.mock(controller.pages, value: [])
+        controller.tableView.refreshControl?.sendActions(for: .primaryActionTriggered)
+        XCTAssertEqual(controller.emptyView.isHidden, false)
+
+        XCTAssertNoThrow(controller.viewWillDisappear(false))
+    }
+
+    func testNoCreate() {
+        controller.app = .student
+        controller.view.layoutIfNeeded()
+        XCTAssertNil(controller.navigationItem.rightBarButtonItem)
+    }
+
+    func testGroup() {
+        controller.context = ContextModel(.group, id: "1")
+        api.mock(controller.group, value: .make())
+        let nav = UINavigationController(rootViewController: controller)
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#facade")
+        XCTAssertEqual(controller.titleSubtitleView.title, "Pages")
+        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Group One")
+        XCTAssertNotNil(controller.navigationItem.rightBarButtonItem)
+    }
+
+    func testPaginatedRefresh() {
+        api.mock(controller.frontPage)
+        controller.view.layoutIfNeeded()
+        api.mock(controller.pages, value: [.make()], response: HTTPURLResponse(next: "/courses/42/pages?page=2"))
+        api.mock(GetNextRequest(path: "/courses/42/pages?page=2"), value: [
+            APIPage.make(page_id: "12", title: "z next page"),
+        ])
+        let tableView = controller.tableView!
+        tableView.refreshControl?.sendActions(for: .valueChanged)
+        XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 2)
+        let loading = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)) as? LoadingCell
+        XCTAssertNotNil(loading)
+        XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 2)
+        let cell = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)) as! PageListCell
+        XCTAssertEqual(cell.titleLabel.text, "z next page")
+    }
+
+    func apiPageToDictionary(page: APIPage) -> [String: Any] {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        let data = try! encoder.encode(page)
+        return try! JSONSerialization.jsonObject(with: data) as! [String: Any]
     }
 }
