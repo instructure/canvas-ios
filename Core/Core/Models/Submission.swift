@@ -22,6 +22,15 @@ import UIKit
 
 public typealias RubricAssessments = [String: RubricAssessment]
 
+public final class SubmissionList: NSManagedObject {
+    @NSManaged public var id: String
+    @NSManaged var submissionsRaw: NSOrderedSet
+    public var submissions: [Submission] {
+        get { submissionsRaw.array.compactMap { $0 as? Submission } }
+        set { submissionsRaw = NSOrderedSet(array: newValue) }
+    }
+}
+
 final public class Submission: NSManagedObject {
     @NSManaged public var assignment: Assignment?
     @NSManaged public var assignmentID: String
