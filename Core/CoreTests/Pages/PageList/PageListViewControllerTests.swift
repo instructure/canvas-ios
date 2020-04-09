@@ -33,7 +33,7 @@ class PageListViewControllerTests: CoreTestCase {
         api.mock(controller.frontPage, value: .make(front_page: true))
         api.mock(controller.pages, value: [
             .make(html_url: URL(string: "courses/42/pages/dois")!, page_id: "2", title: "Dois"),
-            .make(page_id: "3", title: "Trey")
+            .make(page_id: "3", title: "Trey"),
         ])
     }
 
