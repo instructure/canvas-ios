@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,13 +16,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ga9-T1-JgT">
-                                <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y4n-B5-455" customClass="CircleProgressView" customModule="Core">
+                                <rect key="frame" x="167.5" y="313.5" width="40" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="0T4-ZW-36o"/>
-                                    <constraint firstAttribute="width" constant="20" id="uTp-qe-ycX"/>
+                                    <constraint firstAttribute="width" constant="40" id="YxR-O7-eci"/>
+                                    <constraint firstAttribute="height" constant="40" id="oHs-C0-kAI"/>
                                 </constraints>
-                            </activityIndicatorView>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2qC-UP-t75">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
@@ -551,11 +551,11 @@
                             <constraint firstItem="2qC-UP-t75" firstAttribute="top" secondItem="1aY-Ds-3yT" secondAttribute="top" id="XxZ-9j-Zcg"/>
                             <constraint firstItem="2qC-UP-t75" firstAttribute="trailing" secondItem="1aY-Ds-3yT" secondAttribute="trailing" id="cX4-tg-p1U"/>
                             <constraint firstItem="QTp-Qq-8ZA" firstAttribute="trailing" secondItem="1aY-Ds-3yT" secondAttribute="trailing" id="cX4-tg-p3U"/>
-                            <constraint firstItem="Ga9-T1-JgT" firstAttribute="centerY" secondItem="vDv-xP-3aC" secondAttribute="centerY" id="iFa-jv-UqQ"/>
                             <constraint firstItem="2qC-UP-t75" firstAttribute="leading" secondItem="1aY-Ds-3yT" secondAttribute="leading" id="iUD-HX-1Ym"/>
                             <constraint firstItem="QTp-Qq-8ZA" firstAttribute="leading" secondItem="1aY-Ds-3yT" secondAttribute="leading" id="iUD-HX-3Ym"/>
+                            <constraint firstItem="Y4n-B5-455" firstAttribute="centerY" secondItem="vDv-xP-3aC" secondAttribute="centerY" id="is1-G2-BQM"/>
                             <constraint firstItem="1aY-Ds-3yT" firstAttribute="trailing" secondItem="Oo1-Sb-iO9" secondAttribute="trailing" id="k95-9S-QPt"/>
-                            <constraint firstItem="Ga9-T1-JgT" firstAttribute="centerX" secondItem="vDv-xP-3aC" secondAttribute="centerX" id="sby-5b-YMh"/>
+                            <constraint firstItem="Y4n-B5-455" firstAttribute="centerX" secondItem="vDv-xP-3aC" secondAttribute="centerX" id="ou3-uJ-bnX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1aY-Ds-3yT"/>
                     </view>
@@ -569,7 +569,7 @@
                         <outlet property="gradeHeadingLabel" destination="POu-Bn-aGg" id="NF2-DK-7UI"/>
                         <outlet property="gradeSection" destination="uqK-cv-6c4" id="5hS-6j-EwI"/>
                         <outlet property="gradedView" destination="E1l-zH-QmF" id="JRc-bg-TcS"/>
-                        <outlet property="loadingView" destination="Ga9-T1-JgT" id="Tnv-1m-bKK"/>
+                        <outlet property="loadingView" destination="Y4n-B5-455" id="ZmV-Eq-S3r"/>
                         <outlet property="lockedIconContainerView" destination="TO1-FI-dAE" id="xJ8-6I-LRF"/>
                         <outlet property="lockedIconHeight" destination="inZ-8R-6xv" id="FHO-NK-u5v"/>
                         <outlet property="lockedIconImageView" destination="Yw2-71-XHM" id="50C-jC-V3L"/>

@@ -1,19 +1,4 @@
 PODS:
-  - AFNetworking (3.2.1):
-    - AFNetworking/NSURLSession (= 3.2.1)
-    - AFNetworking/Reachability (= 3.2.1)
-    - AFNetworking/Security (= 3.2.1)
-    - AFNetworking/Serialization (= 3.2.1)
-    - AFNetworking/UIKit (= 3.2.1)
-  - AFNetworking/NSURLSession (3.2.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.2.1)
-  - AFNetworking/Security (3.2.1)
-  - AFNetworking/Serialization (3.2.1)
-  - AFNetworking/UIKit (3.2.1):
-    - AFNetworking/NSURLSession
   - boost-for-react-native (1.63.0)
   - BVLinearGradient (2.5.6):
     - React
@@ -129,9 +114,6 @@ PODS:
     - GoogleUtilities/Logger
   - Interactable (0.0.9):
     - React
-  - Mantle (1.5.8):
-    - Mantle/extobjc (= 1.5.8)
-  - Mantle/extobjc (1.5.8)
   - Marshal (1.2.7)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
@@ -224,7 +206,6 @@ PODS:
   - yoga (0.59.9.React)
 
 DEPENDENCIES:
-  - AFNetworking (~> 3.0)
   - BVLinearGradient (from `./rn/Teacher/node_modules/react-native-linear-gradient`)
   - Cartography (~> 3.1)
   - DoubleConversion (from `./rn/Teacher/node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
@@ -235,7 +216,6 @@ DEPENDENCIES:
   - glog (from `./rn/Teacher/node_modules/react-native/third-party-podspecs/glog.podspec`)
   - GoogleUtilities (~> 6.0)
   - Interactable (from `./rn/Teacher/node_modules/react-native-interactable`)
-  - Mantle (~> 1.5.5)
   - Marshal (~> 1.2.7)
   - PactConsumerSwift (from `https://github.com/DiUS/pact-consumer-swift.git`)
   - react-native-camera (from `./rn/Teacher/node_modules/react-native-camera`)
@@ -266,7 +246,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - AFNetworking
     - boost-for-react-native
     - Cartography
     - Firebase
@@ -284,7 +263,6 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
-    - Mantle
     - Marshal
     - nanopb
     - Nimble
@@ -333,7 +311,6 @@ CHECKOUT OPTIONS:
     :git: https://github.com/DiUS/pact-consumer-swift.git
 
 SPEC CHECKSUMS:
-  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
   Cartography: 1988b7578871a56c036e7af17195cb2190edf18c
@@ -356,7 +333,6 @@ SPEC CHECKSUMS:
   GoogleDataTransportCCTSupport: 32f75fbe904c82772fcbb6b6bd4525bfb6f2a862
   GoogleUtilities: ad0f3b691c67909d03a3327cc205222ab8f42e0e
   Interactable: 0a9f2a42b02ea03114d7e03e714d946a65cd8d0b
-  Mantle: f03b2b606c3f0cabd80214ad8a2fed6b464a7359
   Marshal: ef480864a6af10a63f67be7e55bb5d8fe67a16d9
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Nimble: 4ab1aeb9b45553c75b9687196b0fa0713170a332
@@ -375,6 +351,6 @@ SPEC CHECKSUMS:
   RNSound: a1d01988e043aed5dbb476c2152b5ffb02446750
   yoga: 03ff42a6f223fb88deeaed60249020d80c3091ee
 
-PODFILE CHECKSUM: daf061505820492dac5e4ee6011b3aecc9ce6cc3
+PODFILE CHECKSUM: 2155015e78f6eb0e821c8bd2a97a00af593c6445
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1
