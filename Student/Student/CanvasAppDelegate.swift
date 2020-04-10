@@ -120,9 +120,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         Logger.shared.log()
         CoreWebView.stopCookieKeepAlive()
+        environment.backgroundVideoPlayer()
         if LocalizationManager.needsRestart {
             exit(EXIT_SUCCESS)
         }
+    }
+
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        environment.reconnectVideoPlayer()
     }
 
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {

@@ -95,6 +95,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         } else {
             stopTrackingTimeOnViewController(eventName: "/files/\(fileID)")
         }
+        env.disconnectVideoPlayer()
     }
 
     func update() {
@@ -129,6 +130,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         controller.player = AVPlayer(url: url)
         controller.view.accessibilityIdentifier = "FileDetails.videoPlayer"
         embed(controller, in: contentView)
+        env.connectVideoPlayer(controller)
         doneLoading()
     }
 
