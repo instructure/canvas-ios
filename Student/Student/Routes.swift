@@ -251,7 +251,6 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/courses/:courseID/module_item_redirect/:itemID": { url, params in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
-        guard let session = Session.current else { return nil }
         if ExperimentalFeature.studentModules.isEnabled {
             return ModuleItemSequenceViewController.create(
                 courseID: courseID,
