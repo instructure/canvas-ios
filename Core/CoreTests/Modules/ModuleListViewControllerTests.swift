@@ -303,49 +303,22 @@ class ModuleListViewControllerTests: CoreTestCase {
 
     }
 
-    func testSelectExternalTool() throws {
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
-            .make(items: [
-                .make(id: "1", content: .externalTool("1", URL(string: "/")!)),
-            ]),
-        ])
-        api.mock(
-            GetSessionlessLaunchURLRequest(
-                context: ContextModel(.course, id: "1"),
-                id: "1",
-                url: nil,
-                assignmentID: nil,
-                moduleItemID: "1",
-                launchType: .module_item),
-            value: .make(url: URL(string: "https://canvas.instructure.com")!)
-        )
-        viewController.view.layoutIfNeeded()
-        viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
-        XCTAssertNotNil(router.presented as? SFSafariViewController)
-    }
-
-    func testSelectExternalURL() {
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
-            .make(items: [
-                .make(content: .externalURL(URL(string: "https://canvas.instructure.com")!)),
-            ]),
-        ])
-        viewController.view.layoutIfNeeded()
-        viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
-        XCTAssertNotNil(router.presented as? SFSafariViewController)
-    }
-
     func testSelectItem() {
         api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
-            .make(items: [
-                .make(content: .assignment("1"), url: URL(string: "/courses/1/assignments/1")!),
+            .make(id: "1", items: [
+                .make(id: "1", content: .assignment("1"), html_url: URL(string: "/courses/1/modules/items/1")!),
+                .make(id: "2", content: .page("2")),
             ]),
         ])
         viewController.view.layoutIfNeeded()
         viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
-        XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/assignments/1")!, withOptions: .detail))
+        XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/modules/items/1")!, withOptions: .detail))
         XCTAssertNoThrow(viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 99)))
         XCTAssertNoThrow(viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 99, section: 0)))
+        viewController.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
+        XCTAssertEqual(viewController.tableView.indexPathForSelectedRow, IndexPath(row: 0, section: 0))
+        NotificationCenter.default.post(name: .moduleItemViewDidLoad, object: nil, userInfo: ["moduleID": "1", "itemID": "2"])
+        XCTAssertEqual(viewController.tableView.indexPathForSelectedRow, IndexPath(row: 1, section: 0))
     }
 
     func testViewWillAppearDeselectsSelectedRow() {

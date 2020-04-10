@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -171,7 +171,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <constraints>
-                                            <constraint firstItem="UBc-rt-n2v" firstAttribute="trailing" secondItem="rv6-mL-EtC" secondAttribute="trailing" constant="16" id="8ge-sZ-mLZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="rv6-mL-EtC" secondAttribute="trailing" constant="42" id="N6Z-iX-yrA"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="fullDivider" value="YES"/>
@@ -192,10 +192,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="CdB-fh-KOY">
-                                                    <rect key="frame" x="15" y="5" width="319" height="24.5"/>
+                                                    <rect key="frame" x="15" y="5" width="318" height="24.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text subheader" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQS-d3-6zu" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="2.5" width="291" height="19.5"/>
+                                                            <rect key="frame" x="0.0" y="2.5" width="290" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                             <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -205,7 +205,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ahp-vo-ISY" customClass="PublishedIconView" customModule="Core">
-                                                            <rect key="frame" x="295" y="0.5" width="24" height="24"/>
+                                                            <rect key="frame" x="294" y="0.5" width="24" height="24"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="24" id="jt5-oJ-Eux"/>
                                                                 <constraint firstAttribute="height" constant="24" id="zc0-hu-MBy"/>
@@ -221,7 +221,7 @@
                                                 <constraint firstItem="CdB-fh-KOY" firstAttribute="top" secondItem="SeG-X8-Qxd" secondAttribute="top" constant="5" id="U6G-wB-VYY"/>
                                                 <constraint firstAttribute="bottom" secondItem="CdB-fh-KOY" secondAttribute="bottom" constant="5" id="i6X-aL-RqN"/>
                                                 <constraint firstItem="CdB-fh-KOY" firstAttribute="leading" secondItem="SeG-X8-Qxd" secondAttribute="leadingMargin" id="nQ2-qs-fHo"/>
-                                                <constraint firstAttribute="trailing" secondItem="CdB-fh-KOY" secondAttribute="trailing" constant="41" id="ybq-Mh-lvr"/>
+                                                <constraint firstAttribute="trailing" secondItem="CdB-fh-KOY" secondAttribute="trailing" constant="42" id="ybq-Mh-lvr"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <userDefinedRuntimeAttributes>

@@ -63,7 +63,8 @@ open class HelmManager: NSObject {
     private var viewControllers = NSMapTable<NSString, HelmViewController>(keyOptions: .strongMemory, valueOptions: .weakMemory)
     @objc private(set) var defaultScreenConfiguration: [ModuleName: [String: Any]] = [:]
     @objc fileprivate(set) var masterModules = Set<ModuleName>()
-    private var nativeViewControllerFactories: [ModuleName: HelmViewControllerFactory] = [:]
+    public var nativeViewControllerFactories: [ModuleName: HelmViewControllerFactory] = [:]
+    public var registeredRoutes: Set<String> = []
 
     fileprivate var pushTransitioningDelegate = PushTransitioningDelegate()
 
@@ -101,6 +102,10 @@ open class HelmManager: NSObject {
 
     func register<T: HelmViewController>(screen: T) {
         viewControllers.setObject(screen, forKey: screen.screenInstanceID as NSString)
+    }
+
+    @objc open func registerRoute(_ template: String) {
+        registeredRoutes.insert(template)
     }
 
     @objc open func setScreenConfig(_ config: [String: Any], forScreenWithID screenInstanceID: String, hasRendered: Bool) {

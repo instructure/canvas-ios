@@ -86,6 +86,7 @@ open class QuizIntroViewController: UIViewController, PageViewEventViewControlle
     open override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.title = NSLocalizedString("Quiz Details", bundle: .core, comment: "")
         preparePageViewController()
         prepareFooterView()
     }

@@ -29,6 +29,15 @@ public class TestRouter: RouterProtocol {
         }
         return nil
     }
+    public var routes = [URLComponents: () -> UIViewController?]()
+
+    public func mock(_ url: URLComponents, factory: @escaping () -> UIViewController?) {
+        routes[url] = factory
+    }
+
+    public func mock(_ string: String, factory: @escaping () -> UIViewController?) {
+        mock(.parse(URL(string: string)!), factory: factory)
+    }
 
     @discardableResult
     public func dismiss() -> UIViewController? {
@@ -36,7 +45,7 @@ public class TestRouter: RouterProtocol {
     }
 
     public func match(_ url: URLComponents) -> UIViewController? {
-        return nil
+        return routes[url]?()
     }
 
     public var routeExpectation = XCTestExpectation(description: "route")

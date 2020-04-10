@@ -51,6 +51,10 @@ extension URL {
         return components.url ?? self
     }
 
+    public func appendingOrigin(_ origin: String) -> URL {
+        return appendingQueryItems(.init(name: "origin", value: origin))
+    }
+
     public func move(to destination: URL, override: Bool = true, copy: Bool = false) throws {
         let manager = FileManager.default
         if destination.hasDirectoryPath {

@@ -64,6 +64,10 @@ public extension URLComponents {
         return false
     }
 
+    var originIsModuleItemDetails: Bool {
+        return queryItems?.first(where: { $0.name == "origin" })?.value == "module_item_details"
+    }
+
     var originIsNotification: Bool {
         get {
             if let origin = queryItems?.first(where: { $0.name == "origin" })?.value, origin == "notification" {

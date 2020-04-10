@@ -54,7 +54,7 @@ public struct APIModuleItem: Codable, Equatable {
     public let title: String
     /// 0-based indent level; module items may be indented to show a hierarchy
     public let indent: Int
-    public let content: ModuleItemType
+    public let content: ModuleItemType?
     /// link to the item in Canvas
     /// eg: "https://canvas.example.edu/courses/222/modules/items/768"
     public let html_url: URL?
@@ -63,7 +63,7 @@ public struct APIModuleItem: Codable, Equatable {
     public let url: URL?
     /// Only present if the caller has permission to view unpublished items
     public let published: Bool?
-    public let content_details: ContentDetails // include[]=content_details
+    public let content_details: ContentDetails? // include[]=content_details not available in sequence call
     public let completion_requirement: CompletionRequirement?
 
     public init(
@@ -72,11 +72,11 @@ public struct APIModuleItem: Codable, Equatable {
         position: Int,
         title: String,
         indent: Int,
-        content: ModuleItemType,
+        content: ModuleItemType?,
         html_url: URL?,
         url: URL?,
         published: Bool?,
-        content_details: ContentDetails,
+        content_details: ContentDetails?,
         completion_requirement: CompletionRequirement?
     ) {
         self.id = id
@@ -116,8 +116,8 @@ public struct APIModuleItem: Codable, Equatable {
         html_url = try container.decodeIfPresent(URL.self, forKey: .html_url)
         url = try container.decodeIfPresent(URL.self, forKey: .url)
         published = try container.decodeIfPresent(Bool.self, forKey: .published)
-        content = try ModuleItemType(from: decoder)
-        content_details = try container.decode(ContentDetails.self, forKey: .content_details)
+        content = try ModuleItemType?(from: decoder)
+        content_details = try container.decodeIfPresent(ContentDetails.self, forKey: .content_details)
         completion_requirement = try container.decodeIfPresent(CompletionRequirement.self, forKey: .completion_requirement)
     }
 
@@ -131,9 +131,9 @@ public struct APIModuleItem: Codable, Equatable {
         try container.encode(html_url, forKey: .html_url)
         try container.encode(url, forKey: .url)
         try container.encode(published, forKey: .published)
-        try container.encode(content_details, forKey: .content_details)
+        try container.encodeIfPresent(content_details, forKey: .content_details)
         try container.encode(completion_requirement, forKey: .completion_requirement)
-        try content.encode(to: encoder)
+        try content?.encode(to: encoder)
     }
 }
 

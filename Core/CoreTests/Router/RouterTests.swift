@@ -159,13 +159,29 @@ class RouterTests: CoreTestCase {
         XCTAssert(mockView.detail?.isKind(of: UINavigationController.self) == true)
     }
 
-    func testRouteDetailNotInSplitViewDoesAShow() {
+    func testRouteDetailNotInSplitViewDoesAShowDetail() {
         let mockView = MockViewController()
         let router = Router(routes: [
             RouteHandler("/detail") { _, _ in
                 return UIViewController()
             },
         ]) { _, _, _ in }
+        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail)
+        XCTAssertNotNil(mockView.detail)
+        XCTAssert(mockView.detail?.isKind(of: UIViewController.self) == true)
+        XCTAssert(mockView.detail?.isKind(of: UINavigationController.self) == true)
+    }
+
+    func testRouteDetailInCollapsedSplitViewDoesAShow() {
+        let mockView = MockViewController()
+        let router = Router(routes: [
+            RouteHandler("/detail") { _, _ in
+                return UIViewController()
+            },
+        ]) { _, _, _ in }
+        let split = MockSplitViewController()
+        split.viewControllers = [UINavigationController(rootViewController: mockView)]
+        split.mockCollapsed = true
         router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail)
         XCTAssertNotNil(mockView.shown)
         XCTAssert(mockView.shown?.isKind(of: UIViewController.self) == true)

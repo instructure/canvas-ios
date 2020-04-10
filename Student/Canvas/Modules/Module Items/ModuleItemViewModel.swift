@@ -61,13 +61,14 @@ class ModuleItemViewModel: NSObject {
                     guard let courseID = courseID else { return nil }
                     let tools = LTITools(
                         context: ContextModel(.course, id: courseID),
-                        id: toolID, url: url,
+                        id: toolID,
+                        url: url,
                         launchType: .module_item,
                         assignmentID: nil,
                         moduleID: moduleID,
                         moduleItemID: moduleItemID
                     )
-                    return LTIViewController(tools: tools)
+                    return LTIViewController.create(tools: tools)
                 default: break
                 }
             }

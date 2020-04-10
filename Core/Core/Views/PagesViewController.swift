@@ -34,7 +34,7 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
     public let scrollView = UIScrollView()
 
     private var leftPage: UIViewController?
-    public private(set) var currentPage = UIViewController()
+    public private(set) var currentPage: UIViewController! = UIViewController()
     private var rightPage: UIViewController?
 
     private var showing: [UIViewController] = []

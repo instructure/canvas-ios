@@ -19,8 +19,8 @@
 import UIKit
 
 public class ListErrorView: UIView {
-    @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var retryButton: UIButton!
+    @IBOutlet public weak var messageLabel: UILabel!
+    @IBOutlet public weak var retryButton: UIButton!
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
