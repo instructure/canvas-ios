@@ -36,7 +36,7 @@ class ConversationListCell: UITableViewCell {
             ? conversation.subject
             : NSLocalizedString("(No subject)", comment: "")
         subjectLabel.text = subject
-        dateLabel.text = conversation.lastMessageAt?.dateMediumString ?? ""
+        dateLabel.text = conversation.lastMessageAt?.relativeDateTimeString ?? ""
         contextLabel.text = conversation.contextName
         lastMessageLabel.text = conversation.lastMessage
 
@@ -45,7 +45,7 @@ class ConversationListCell: UITableViewCell {
             NSLocalizedString("%@, in %@, the last message was on %@ %@", comment: "label for conversation row with context, subject, & last message date & text"),
             subject,
             conversation.contextName ?? "",
-            conversation.lastMessageAt?.dateMediumString ?? "",
+            conversation.lastMessageAt?.dateTimeString ?? "",
             conversation.lastMessage
         )
         if conversation.workflowState == .unread {

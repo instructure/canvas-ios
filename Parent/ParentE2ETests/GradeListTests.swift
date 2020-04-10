@@ -20,11 +20,11 @@ import Core
 import TestsFoundation
 @testable import CoreUITests
 
-class GradesListTests: CoreUITestCase {
+class GradeListTests: CoreUITestCase {
     func testAssignmentDetailsCompose() {
         let courseCell = Courses.course(id: "263")
         courseCell.tapUntil { !courseCell.exists }
-        GradesList.assignment(id: "1831").tap()
+        GradeList.cell(assignmentID: "1831").tap()
         app.find(labelContaining: "This is assignment one.").waitToExist()
         AssignmentDetails.replyButton.tap()
 

@@ -84,28 +84,31 @@ public extension Date {
         Cal.currentCalendar.date(from: Cal.currentCalendar.dateComponents([.year, .month, .day], from: self)) ?? Date()
     }
 
-    func utcToLocal() -> Date {
-        let timezone = Cal.currentCalendar.timeZone
-        let seconds = TimeInterval(timezone.secondsFromGMT(for: self))
-        return Date(timeInterval: seconds, since: self)
-    }
-
-    func localToUTC() -> Date {
-        let timezone = Cal.currentCalendar.timeZone
-        let seconds = -TimeInterval(timezone.secondsFromGMT(for: self))
-        return Date(timeInterval: seconds, since: self)
-    }
-
-    static var dateOnlyFormatter: DateFormatter = {
+    static var relativeDateOnlyFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.setLocalizedDateFormatFromTemplate("MMMd")
+        formatter.doesRelativeDateFormatting = true
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        return formatter
+    }()
+    static var relativeDateTimeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.doesRelativeDateFormatting = true
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
         return formatter
     }()
 
-    var dateMediumString: String {
-        if Calendar.current.component(.year, from: self) == Calendar.current.component(.year, from: Clock.now) {
-            return Date.dateOnlyFormatter.string(from: self)
-        }
-        return DateFormatter.localizedString(from: self, dateStyle: .medium, timeStyle: .none)
+    var dateOnlyString: String {
+        DateFormatter.localizedString(from: self, dateStyle: .medium, timeStyle: .none)
+    }
+    var dateTimeString: String {
+        DateFormatter.localizedString(from: self, dateStyle: .medium, timeStyle: .short)
+    }
+    var relativeDateOnlyString: String {
+        Date.relativeDateOnlyFormatter.string(from: self)
+    }
+    var relativeDateTimeString: String {
+        Date.relativeDateTimeFormatter.string(from: self)
     }
 }

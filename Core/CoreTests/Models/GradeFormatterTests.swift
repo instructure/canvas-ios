@@ -55,8 +55,8 @@ class GradeFormatterTests: BaseGradeFormatterTests {
     func testDecimals() {
         formatter.gradeStyle = .short
         formatter.gradingType = .points
-        submission.score = 1.005
-        XCTAssertEqual(formatter.string(from: submission), "1.005")
+        submission.score = 1.05
+        XCTAssertEqual(formatter.string(from: submission), "1.05")
         submission.score = 1.0005
         XCTAssertEqual(formatter.string(from: submission), "1")
     }

@@ -154,14 +154,12 @@
         <attribute name="arcEnabledRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="arcID" optional="YES" attributeType="String"/>
         <attribute name="courseCode" optional="YES" attributeType="String"/>
-        <attribute name="currentGradingPeriodID" optional="YES" attributeType="String"/>
         <attribute name="defaultViewRaw" optional="YES" attributeType="String"/>
         <attribute name="hideFinalGrades" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="imageDownloadURL" optional="YES" attributeType="URI"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isPastEnrollment" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="multipleGradingPeriodsEnabled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="syllabusBody" optional="YES" attributeType="String"/>
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="course" inverseEntity="Enrollment"/>
@@ -559,6 +557,7 @@
         <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="submissions" inverseEntity="Assignment"/>
         <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="submission" inverseEntity="File"/>
         <relationship name="discussionEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DiscussionEntry" inverseName="submission" inverseEntity="DiscussionEntry"/>
+        <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubmissionList" inverseName="submissionsRaw" inverseEntity="SubmissionList"/>
         <relationship name="mediaComment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MediaComment" inverseName="submission" inverseEntity="MediaComment"/>
         <relationship name="rubricAssesmentRaw" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RubricAssessment" inverseName="submission" inverseEntity="RubricAssessment"/>
     </entity>
@@ -578,6 +577,10 @@
         <attribute name="mediaURL" optional="YES" attributeType="URI"/>
         <attribute name="userID" optional="YES" attributeType="String"/>
         <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="submissionComment" inverseEntity="File"/>
+    </entity>
+    <entity name="SubmissionList" representedClassName="Core.SubmissionList" syncable="YES">
+        <attribute name="id" attributeType="String"/>
+        <relationship name="submissionsRaw" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Submission" inverseName="list" inverseEntity="Submission"/>
     </entity>
     <entity name="Syllabus" representedClassName="Core.Syllabus" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
@@ -648,7 +651,7 @@
         <element name="Conversation" positionX="-540" positionY="-18" width="128" height="238"/>
         <element name="ConversationMessage" positionX="-522" positionY="0" width="128" height="208"/>
         <element name="ConversationParticipant" positionX="-531" positionY="-9" width="128" height="118"/>
-        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="283"/>
+        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="253"/>
         <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="150"/>
         <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="255"/>
@@ -676,7 +679,7 @@
         <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="133"/>
         <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="150"/>
         <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="148"/>
-        <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="418"/>
+        <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="433"/>
         <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="268"/>
         <element name="Syllabus" positionX="-540" positionY="-18" width="128" height="73"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
@@ -685,5 +688,6 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="223"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="SubmissionList" positionX="-540" positionY="-18" width="128" height="73"/>
     </elements>
 </model>

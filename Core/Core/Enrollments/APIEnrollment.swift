@@ -86,6 +86,10 @@ public struct APIEnrollment: Codable, Equatable {
     }
 }
 
+public enum EnrollmentState: String, Codable, CaseIterable {
+    case active, inactive, invited, completed, creation_pending
+}
+
 #if DEBUG
 extension APIEnrollment {
     public static func make(
