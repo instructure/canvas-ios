@@ -49,7 +49,6 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         load()
 
         XCTAssertEqual(viewController.titleSubtitleView.title, "Assignment Details")
-        XCTAssertEqual(viewController.loadingView?.color.hex, "#008EE2")
         XCTAssertEqual(viewController.submitAssignmentButton.alpha, 0.0)
         XCTAssertEqual(viewController.scrollviewInsetConstraint.constant, 0.0)
         XCTAssertEqual(viewController.dueSection?.header.text, "Due")

@@ -20,7 +20,7 @@ import UIKit
 import Core
 
 class ConversationListViewController: UIViewController, ConversationCoursesActionSheetDelegate {
-    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var composeButton: UIButton!
     @IBOutlet weak var emptyView: EmptyView!
     @IBOutlet weak var errorView: UIView!
@@ -41,8 +41,6 @@ class ConversationListViewController: UIViewController, ConversationCoursesActio
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
         title = NSLocalizedString("Inbox", comment: "")
-
-        activityIndicatorView.color = Brand.shared.primary
 
         composeButton.accessibilityLabel = NSLocalizedString("Compose new message", comment: "")
         composeButton.layer.shadowColor = UIColor.named(.backgroundDarkest).cgColor
@@ -82,7 +80,7 @@ class ConversationListViewController: UIViewController, ConversationCoursesActio
     }
 
     func update() {
-        activityIndicatorView.stopAnimating()
+        loadingView.isHidden = true
         tableView.reloadData()
         tableView.refreshControl?.endRefreshing()
         if let error = conversations.error {

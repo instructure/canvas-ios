@@ -53,23 +53,20 @@
 		7D64A983236796CC004EAEDF /* AttendanceStatusControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A982236796CC004EAEDF /* AttendanceStatusControllerTests.swift */; };
 		7D64A98523689DD5004EAEDF /* DatePickerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A98423689DD4004EAEDF /* DatePickerViewControllerTests.swift */; };
 		7D64A9872368C6C0004EAEDF /* AttendanceViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A9862368C6C0004EAEDF /* AttendanceViewControllerTests.swift */; };
+		7DA4DA302440EFBA009CA964 /* IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4DA2F2440EFBA009CA964 /* IBDesignables.swift */; };
 		7DBF923B2269791600710D0F /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		840CABA038B02116B1BDA3E0 /* Pods_defaults_TeacherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
 		B15CA240221DBA940014FB02 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA23F221DBA940014FB02 /* Routes.swift */; };
 		B15CA26D221DDEB40014FB02 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; };
 		B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */; };
-		B15CA297221E103B0014FB02 /* DynamicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA296221E103B0014FB02 /* DynamicLabel.swift */; };
 		B15CA29D221F16C90014FB02 /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA29C221F16C90014FB02 /* BundleExtensions.swift */; };
 		B175D62423A96AE400F8E696 /* SpeedGrader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B175D62323A96AE400F8E696 /* SpeedGrader.swift */; };
 		B175D62623A96B0F00F8E696 /* IPadSpeedGraderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B175D62523A96B0F00F8E696 /* IPadSpeedGraderTests.swift */; };
 		B17E1DB5238DA8550022EE0E /* SpeedGraderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E1DB4238DA8550022EE0E /* SpeedGraderTests.swift */; };
-		B18359B2222485E60005A918 /* AccessIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18359B1222485E60005A918 /* AccessIconView.swift */; };
-		B183F99B2252925F000A6930 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B183F99A2252925F000A6930 /* IconView.swift */; };
 		B1992AAB2264D51200396A1F /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1992AAA2264D51200396A1F /* RoutesTests.swift */; };
 		B1A5CDE5239581E100BEA196 /* CanvadocsConstantsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A5CDE4239581E100BEA196 /* CanvadocsConstantsTests.swift */; };
 		B1A5CDE62395836600BEA196 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; };
-		B1D5CFBC224FDEF3004A1361 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D5CFBB224FDEF2004A1361 /* DividerView.swift */; };
 		B1F4060322E2444D008FAFE6 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405FD22E2444D008FAFE6 /* ReactiveObjC.framework */; };
 		B1F4060422E2444D008FAFE6 /* ReactiveObjCBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405FE22E2444D008FAFE6 /* ReactiveObjCBridge.framework */; };
 		B1F4060522E2444D008FAFE6 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405FF22E2444D008FAFE6 /* ReactiveSwift.framework */; };
@@ -355,6 +352,7 @@
 		7D64A982236796CC004EAEDF /* AttendanceStatusControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceStatusControllerTests.swift; sourceTree = "<group>"; };
 		7D64A98423689DD4004EAEDF /* DatePickerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewControllerTests.swift; sourceTree = "<group>"; };
 		7D64A9862368C6C0004EAEDF /* AttendanceViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceViewControllerTests.swift; sourceTree = "<group>"; };
+		7DA4DA2F2440EFBA009CA964 /* IBDesignables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignables.swift; sourceTree = "<group>"; };
 		862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_TeacherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
 		B15CA23F221DBA940014FB02 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Routes.swift; path = Teacher/Routes.swift; sourceTree = "<group>"; };
@@ -362,16 +360,12 @@
 		B15CA261221DDB820014FB02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTestCase.swift; sourceTree = "<group>"; };
-		B15CA296221E103B0014FB02 /* DynamicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabel.swift; sourceTree = "<group>"; };
 		B15CA29C221F16C90014FB02 /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
 		B175D62323A96AE400F8E696 /* SpeedGrader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGrader.swift; sourceTree = "<group>"; };
 		B175D62523A96B0F00F8E696 /* IPadSpeedGraderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadSpeedGraderTests.swift; sourceTree = "<group>"; };
 		B17E1DB4238DA8550022EE0E /* SpeedGraderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderTests.swift; sourceTree = "<group>"; };
-		B18359B1222485E60005A918 /* AccessIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessIconView.swift; sourceTree = "<group>"; };
-		B183F99A2252925F000A6930 /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		B1992AAA2264D51200396A1F /* RoutesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTests.swift; sourceTree = "<group>"; };
 		B1A5CDE4239581E100BEA196 /* CanvadocsConstantsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvadocsConstantsTests.swift; sourceTree = "<group>"; };
-		B1D5CFBB224FDEF2004A1361 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 		B1F405FD22E2444D008FAFE6 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjC.framework; path = ../../../Carthage/Build/iOS/ReactiveObjC.framework; sourceTree = "<group>"; };
 		B1F405FE22E2444D008FAFE6 /* ReactiveObjCBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjCBridge.framework; path = ../../../Carthage/Build/iOS/ReactiveObjCBridge.framework; sourceTree = "<group>"; };
 		B1F405FF22E2444D008FAFE6 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = ../../../Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
@@ -610,10 +604,7 @@
 		B15CA293221E0F890014FB02 /* IBDesignables */ = {
 			isa = PBXGroup;
 			children = (
-				B18359B1222485E60005A918 /* AccessIconView.swift */,
-				B1D5CFBB224FDEF2004A1361 /* DividerView.swift */,
-				B15CA296221E103B0014FB02 /* DynamicLabel.swift */,
-				B183F99A2252925F000A6930 /* IconView.swift */,
+				7DA4DA2F2440EFBA009CA964 /* IBDesignables.swift */,
 			);
 			name = IBDesignables;
 			path = Teacher/IBDesignables;
@@ -1048,18 +1039,15 @@
 				3B55FECB22FCB90000FCB7B2 /* PostSettingsViewController.swift in Sources */,
 				3B55FECD22FCB91800FCB7B2 /* PostGradesViewController.swift in Sources */,
 				7D64A95D23620A27004EAEDF /* AttendanceStatusController.swift in Sources */,
-				B1D5CFBC224FDEF3004A1361 /* DividerView.swift in Sources */,
 				B15CA240221DBA940014FB02 /* Routes.swift in Sources */,
 				B15CA29D221F16C90014FB02 /* BundleExtensions.swift in Sources */,
 				7D64A96023620A27004EAEDF /* DatePickerCollectionView.swift in Sources */,
 				7D64A95E23620A27004EAEDF /* AttendanceViewController.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */,
-				B15CA297221E103B0014FB02 /* DynamicLabel.swift in Sources */,
+				7DA4DA302440EFBA009CA964 /* IBDesignables.swift in Sources */,
 				7D64A96223620A27004EAEDF /* RollCallSession.swift in Sources */,
 				7D64A96423620A27004EAEDF /* StatusCell.swift in Sources */,
-				B18359B2222485E60005A918 /* AccessIconView.swift in Sources */,
 				3B18E82B230C683D006CAF5C /* PostGradesPresenter.swift in Sources */,
-				B183F99B2252925F000A6930 /* IconView.swift in Sources */,
 				7D64A96123620A27004EAEDF /* DatePickerViewController.swift in Sources */,
 				494AE0B91F843CB5001A8F31 /* RootTabBarController.swift in Sources */,
 			);

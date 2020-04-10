@@ -28,7 +28,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var descriptionHeadingLabel: UILabel?
     @IBOutlet weak var descriptionView: CoreWebView?
     @IBOutlet weak var scrollView: UIScrollView?
-    @IBOutlet weak var loadingView: UIActivityIndicatorView?
+    @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var submissionButtonView: UIView?
     @IBOutlet weak var submissionButton: DynamicButton?
     @IBOutlet weak var submissionButtonIcon: UIImageView?
@@ -267,7 +267,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         updateQuizSettings(quiz)
 
         scrollView?.isHidden = false
-        loadingView?.stopAnimating()
+        loadingView.isHidden = true
         refreshControl?.endRefreshing()
     }
 

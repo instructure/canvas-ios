@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -228,16 +228,19 @@
                                     <action selector="createNewConversation" destination="oF4-8s-qeo" eventType="primaryActionTriggered" id="UKp-1X-7k4"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="8Av-cs-OBu">
-                                <rect key="frame" x="169" y="293" width="37" height="37"/>
-                            </activityIndicatorView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Ev-hi-6cS" customClass="CircleProgressView" customModule="Core">
+                                <rect key="frame" x="67" y="247" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="fPi-i2-SER"/>
+                                    <constraint firstAttribute="width" constant="40" id="h4M-jc-pgQ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="pll-5a-KPe" firstAttribute="top" relation="greaterThanOrEqual" secondItem="NtH-5o-63L" secondAttribute="top" id="2Yb-gT-WDe"/>
                             <constraint firstItem="NtH-5o-63L" firstAttribute="bottom" secondItem="s2j-of-nuS" secondAttribute="bottom" id="3nE-ht-cEd"/>
                             <constraint firstItem="NtH-5o-63L" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pll-5a-KPe" secondAttribute="bottom" id="4ye-Fe-IxG"/>
-                            <constraint firstItem="8Av-cs-OBu" firstAttribute="centerY" secondItem="A3S-9c-SHq" secondAttribute="centerY" id="DX9-DR-oj9"/>
                             <constraint firstItem="pll-5a-KPe" firstAttribute="leading" secondItem="NtH-5o-63L" secondAttribute="leading" id="KSw-cd-cKw"/>
                             <constraint firstItem="NtH-5o-63L" firstAttribute="trailing" secondItem="s2j-of-nuS" secondAttribute="trailing" id="N0l-8k-nx8"/>
                             <constraint firstItem="pll-5a-KPe" firstAttribute="centerY" secondItem="A3S-9c-SHq" secondAttribute="centerY" id="Qqo-8C-sn8"/>
@@ -245,20 +248,21 @@
                             <constraint firstItem="BsH-rP-fBq" firstAttribute="centerX" secondItem="A3S-9c-SHq" secondAttribute="centerX" id="V9j-Gf-Kop"/>
                             <constraint firstItem="NtH-5o-63L" firstAttribute="trailing" secondItem="Prk-n7-JjP" secondAttribute="trailing" constant="16" id="YoW-3k-qKY"/>
                             <constraint firstItem="NtH-5o-63L" firstAttribute="bottom" secondItem="Prk-n7-JjP" secondAttribute="bottom" constant="16" id="bnR-Az-Mv9"/>
+                            <constraint firstItem="2Ev-hi-6cS" firstAttribute="centerY" secondItem="A3S-9c-SHq" secondAttribute="centerY" id="hF9-yT-nW2"/>
                             <constraint firstItem="s2j-of-nuS" firstAttribute="leading" secondItem="NtH-5o-63L" secondAttribute="leading" id="hPi-o7-lyI"/>
                             <constraint firstItem="s2j-of-nuS" firstAttribute="top" secondItem="NtH-5o-63L" secondAttribute="top" id="mBe-8N-qyx"/>
-                            <constraint firstItem="8Av-cs-OBu" firstAttribute="centerX" secondItem="A3S-9c-SHq" secondAttribute="centerX" id="sGR-QI-TkK"/>
+                            <constraint firstItem="2Ev-hi-6cS" firstAttribute="centerX" secondItem="A3S-9c-SHq" secondAttribute="centerX" id="sRN-0r-gAZ"/>
                             <constraint firstItem="BsH-rP-fBq" firstAttribute="centerY" secondItem="A3S-9c-SHq" secondAttribute="centerY" id="szc-eh-Y9O"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NtH-5o-63L"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="activityIndicatorView" destination="8Av-cs-OBu" id="uKa-8C-Jbl"/>
                         <outlet property="composeButton" destination="Prk-n7-JjP" id="wdS-Rq-hE2"/>
                         <outlet property="emptyView" destination="BsH-rP-fBq" id="uDS-ia-xwf"/>
                         <outlet property="errorLabel" destination="lOj-As-Mel" id="GUF-I7-avC"/>
                         <outlet property="errorView" destination="pll-5a-KPe" id="Rdn-W6-NVP"/>
+                        <outlet property="loadingView" destination="2Ev-hi-6cS" id="BpJ-gY-3UH"/>
                         <outlet property="retryButton" destination="QGP-rE-yqV" id="QZO-9J-euW"/>
                         <outlet property="tableView" destination="s2j-of-nuS" id="fHS-41-gfr"/>
                     </connections>

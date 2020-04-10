@@ -20,7 +20,7 @@ import UIKit
 
 class PairWithObserverViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var codeLabel: DynamicLabel!
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var spinner: CircleProgressView!
     @IBOutlet weak var codeContainer: UIView!
     @IBOutlet weak var notificationView: NotificationView!
     @IBOutlet weak var notificationViewBottomConstraint: NSLayoutConstraint!
@@ -54,7 +54,7 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
         didGenerateCode = true
         env.api.makeRequest(PostObserverPairingCodes()) { [weak self] response, _, error in
             performUIUpdate {
-                self?.spinner.stopAnimating()
+                self?.spinner.isHidden = true
                 if let error = error {
                     self?.showError(error)
                 } else {
