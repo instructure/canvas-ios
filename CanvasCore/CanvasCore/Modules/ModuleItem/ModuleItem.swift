@@ -59,14 +59,14 @@ open class ModuleItem: NSManagedObject, LockableModel {
 
         var type: ContentType {
             switch self {
-            case .file(_): return .file
-            case .page(_): return .page
-            case .discussion(_): return .discussion
-            case .assignment(_): return .assignment
-            case .quiz(_): return .quiz
+            case .file: return .file
+            case .page: return .page
+            case .discussion: return .discussion
+            case .assignment: return .assignment
+            case .quiz: return .quiz
             case .subHeader: return .subHeader
-            case .externalURL(_): return .externalURL
-            case .externalTool(_): return .externalTool
+            case .externalURL: return .externalURL
+            case .externalTool: return .externalTool
             case .masteryPaths: return .masteryPaths
             }
         }

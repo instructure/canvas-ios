@@ -21,7 +21,7 @@ public struct GetAssignmentGroupsRequest: APIRequestable {
     public typealias Response = [APIAssignmentGroup]
 
     public enum Include: String {
-        case assignments
+        case assignments, discussion_topic, observed_users, submission
     }
 
     let courseID: String

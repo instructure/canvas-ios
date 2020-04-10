@@ -20,7 +20,7 @@ import Foundation
 import UIKit
 
 public class TodoListViewController: UIViewController, ErrorViewController, PageViewEventViewControllerLoggingProtocol {
-    @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet var loadingView: CircleProgressView!
     @IBOutlet var emptyDescLabel: UILabel!
     @IBOutlet var emptyTitleLabel: UILabel!
     @IBOutlet var emptyView: UIView!
@@ -53,8 +53,6 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
         navigationItem.title = NSLocalizedString("To Do", bundle: .core, comment: "")
         navigationItem.leftBarButtonItem = profileButton
 
-        activityIndicatorView.color = Brand.shared.primary
-
         emptyDescLabel.text = NSLocalizedString("Your to do list is empty. Time to recharge.", bundle: .core, comment: "")
         emptyTitleLabel.text = NSLocalizedString("Well Done!", bundle: .core, comment: "")
         emptyView.isHidden = true
@@ -83,7 +81,7 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
 
     func update() {
         guard todos.requested, !todos.pending else { return }
-        activityIndicatorView.stopAnimating()
+        loadingView.isHidden = true
         tableView.refreshControl?.endRefreshing()
         tableView.reloadData()
         emptyView.isHidden = !todos.isEmpty

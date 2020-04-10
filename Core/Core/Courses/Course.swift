@@ -31,8 +31,6 @@ final public class Course: NSManagedObject, Context, WriteableModel {
     @NSManaged public var name: String?
     @NSManaged public var enrollments: Set<Enrollment>?
     @NSManaged public var syllabusBody: String?
-    @NSManaged public var multipleGradingPeriodsEnabled: Bool
-    @NSManaged public var currentGradingPeriodID: String?
     @NSManaged public var grades: Set<Grade>?
     @NSManaged public var hideFinalGrades: Bool
     @NSManaged var planner: Planner?

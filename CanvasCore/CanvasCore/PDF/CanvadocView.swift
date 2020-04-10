@@ -20,7 +20,6 @@ import UIKit
 import PSPDFKit
 import PSPDFKitUI
 import React
-import AFNetworking
 import Core
 
 // CREDIT: https://stackoverflow.com/a/24590678

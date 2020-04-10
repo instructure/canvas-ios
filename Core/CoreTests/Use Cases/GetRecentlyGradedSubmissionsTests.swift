@@ -50,23 +50,4 @@ class GetRecentlyGradedSubmissionsTests: CoreTestCase {
         let useCase = GetRecentlyGradedSubmissions(userID: "self")
         XCTAssertEqual(useCase.cacheKey, "recently-graded-submissions")
     }
-
-    func testScope() {
-        let firstDate = Date(fromISOString: "2019-04-29T18:17:21.890Z", formatOptions: [ .withInternetDateTime, .withFractionalSeconds ])
-        let secondDate = Date(fromISOString: "2019-04-28T18:17:21.890Z", formatOptions: [ .withInternetDateTime, .withFractionalSeconds ])
-
-        XCTAssertNotNil(firstDate)
-        XCTAssertNotNil(secondDate)
-
-        let firstSubmission = Submission.make(from: APISubmission.make(assignment_id: "1", graded_at: firstDate), in: databaseClient)
-        let secondSubmission = Submission.make(from: APISubmission.make(assignment_id: "2", graded_at: secondDate), in: databaseClient)
-
-        let useCase = GetRecentlyGradedSubmissions(userID: "self")
-
-        let submissions: [Submission] = databaseClient.fetch(scope: useCase.scope)
-
-        XCTAssertEqual(submissions.count, 2)
-        XCTAssertEqual(submissions[0], firstSubmission)
-        XCTAssertEqual(submissions[1], secondSubmission)
-    }
 }

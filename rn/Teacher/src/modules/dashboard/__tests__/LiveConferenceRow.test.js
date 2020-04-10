@@ -54,6 +54,6 @@ describe('LiveConferenceRow', () => {
     const navigator = templates.navigator()
     const tree = shallow(<LiveConferenceRow {...defaults} navigator={navigator} />)
     tree.find(`[testID='LiveConference.1.navigateButton']`).simulate('Press')
-    expect(navigator.show).toHaveBeenCalledWith('/courses/1/conferences/1')
+    expect(navigator.show).toHaveBeenCalledWith('/courses/1/conferences/1/join')
   })
 })

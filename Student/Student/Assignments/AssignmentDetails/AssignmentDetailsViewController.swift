@@ -28,7 +28,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var descriptionHeadingLabel: UILabel?
     @IBOutlet weak var descriptionView: CoreWebView?
     @IBOutlet weak var scrollView: UIScrollView?
-    @IBOutlet weak var loadingView: UIActivityIndicatorView?
+    @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var submissionButtonView: UIView?
     @IBOutlet weak var submissionButton: DynamicButton?
     @IBOutlet weak var submissionButtonIcon: UIImageView?
@@ -236,7 +236,9 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         statusLabel?.isHidden = assignment.submissionStatusIsHidden
         statusLabel?.textColor = assignment.submissionStatusColor
         statusLabel?.text = assignment.submissionStatusText
-        dueSection?.subHeader.text = assignment.dueText
+        dueSection?.subHeader.text = assignment.dueAt.flatMap {
+            $0.dateTimeString
+        } ?? NSLocalizedString("No Due Date", bundle: .core, comment: "")
         submissionTypesSection?.subHeader.text = assignment.submissionTypeText
         fileTypesSection?.subHeader.text = assignment.fileTypeText
         fileTypesSection?.isHidden = !assignment.hasFileTypes
@@ -265,7 +267,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         updateQuizSettings(quiz)
 
         scrollView?.isHidden = false
-        loadingView?.stopAnimating()
+        loadingView.isHidden = true
         refreshControl?.endRefreshing()
     }
 

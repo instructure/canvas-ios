@@ -115,7 +115,6 @@
 		E8989F1623AD2AE800EF4B2B /* CoreUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8989F1523AD2AE800EF4B2B /* CoreUITestCase.swift */; };
 		E8A4887D23AD2E9700671BB6 /* UITestUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A4887C23AD2E9700671BB6 /* UITestUser.swift */; };
 		E8BE4F5C233E73E100DC399A /* XCUIElementQueryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE4F5B233E73E100DC399A /* XCUIElementQueryExtensions.swift */; };
-		EE424B3822E8E72D00D083EE /* APIPageFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3722E8E72D00D083EE /* APIPageFixture.swift */; };
 		EE424B3A22E8E97100D083EE /* PageFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3922E8E97100D083EE /* PageFixture.swift */; };
 /* End PBXBuildFile section */
 
@@ -230,7 +229,6 @@
 		E8989F1523AD2AE800EF4B2B /* CoreUITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreUITestCase.swift; sourceTree = "<group>"; };
 		E8A4887C23AD2E9700671BB6 /* UITestUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestUser.swift; sourceTree = "<group>"; };
 		E8BE4F5B233E73E100DC399A /* XCUIElementQueryExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIElementQueryExtensions.swift; sourceTree = "<group>"; };
-		EE424B3722E8E72D00D083EE /* APIPageFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPageFixture.swift; sourceTree = "<group>"; };
 		EE424B3922E8E97100D083EE /* PageFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFixture.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -339,7 +337,6 @@
 				B15CA281221DFF240014FB02 /* APIModuleFixture.swift */,
 				7D70DE9D233EAB5500F5C3D4 /* APINotificationPreferencesFixture.swift */,
 				B141ABE3231EE16F00E73D84 /* APIOAuthTokenFixture.swift */,
-				EE424B3722E8E72D00D083EE /* APIPageFixture.swift */,
 				9F1CEA5A22400A1D000BB98F /* APIPermissions.swift */,
 				7DCF2047216D6597003AF358 /* APIQuizFixture.swift */,
 				3B6386A62264F781002DEE72 /* APIRubricFixture.swift */,
@@ -735,7 +732,6 @@
 				B150C6362298D67E0096D58C /* ExternalToolFixture.swift in Sources */,
 				7DBED034233409D900392F3C /* TestLoginDelegate.swift in Sources */,
 				7DAC288022B1A3F900C0B692 /* XCUIElementExtensions.swift in Sources */,
-				EE424B3822E8E72D00D083EE /* APIPageFixture.swift in Sources */,
 				7DC4A557222EF9A800FA03DC /* APIDiscussionEntryFixture.swift in Sources */,
 				B1A32BDE2159A1D70071B41E /* APIAssignmentFixture.swift in Sources */,
 				7DB0A1D421C1C90D009ABB40 /* APIAccountResultsFixture.swift in Sources */,

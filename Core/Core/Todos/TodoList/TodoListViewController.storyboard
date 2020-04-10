@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,7 +33,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MW1-Eb-WpI" customClass="AccessIconView" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="14" width="24" height="20"/>
+                                                    <rect key="frame" x="16" y="12" width="24" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="24" id="fBd-Jv-Mqp"/>
                                                         <constraint firstAttribute="height" constant="24" id="qst-gN-BGz"/>
@@ -131,31 +131,35 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="mma-Ar-ur9">
-                                <rect key="frame" x="169" y="315" width="37" height="37"/>
-                            </activityIndicatorView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ihH-Fi-Yfg" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="167.5" y="313.5" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="0Tl-0L-IYm"/>
+                                    <constraint firstAttribute="width" constant="40" id="yPt-bQ-aJ8"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Cg6-Zk-wdF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="UYo-QM-uyW" secondAttribute="top" constant="16" id="1SI-g0-xaD"/>
                             <constraint firstItem="UYo-QM-uyW" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Cg6-Zk-wdF" secondAttribute="bottom" constant="16" id="G9w-Rd-mM1"/>
-                            <constraint firstItem="mma-Ar-ur9" firstAttribute="centerX" secondItem="nrl-1L-8g8" secondAttribute="centerX" id="GLF-lk-dIF"/>
-                            <constraint firstItem="mma-Ar-ur9" firstAttribute="centerY" secondItem="nrl-1L-8g8" secondAttribute="centerY" id="LvJ-SD-mCK"/>
                             <constraint firstItem="UYo-QM-uyW" firstAttribute="trailing" secondItem="Cg6-Zk-wdF" secondAttribute="trailing" constant="16" id="MfO-2j-ljr"/>
                             <constraint firstItem="UYo-QM-uyW" firstAttribute="trailing" secondItem="k4y-uG-qv2" secondAttribute="trailing" id="X2f-qv-fJF"/>
                             <constraint firstItem="Cg6-Zk-wdF" firstAttribute="centerY" secondItem="UYo-QM-uyW" secondAttribute="centerY" id="XB4-ai-CWm"/>
                             <constraint firstItem="k4y-uG-qv2" firstAttribute="leading" secondItem="UYo-QM-uyW" secondAttribute="leading" id="buH-VC-LYE"/>
+                            <constraint firstItem="ihH-Fi-Yfg" firstAttribute="centerX" secondItem="nrl-1L-8g8" secondAttribute="centerX" id="dyo-E7-1Zu"/>
                             <constraint firstItem="k4y-uG-qv2" firstAttribute="top" secondItem="UYo-QM-uyW" secondAttribute="top" id="m0o-Cl-hNz"/>
                             <constraint firstItem="Cg6-Zk-wdF" firstAttribute="leading" secondItem="UYo-QM-uyW" secondAttribute="leading" constant="16" id="qYe-UU-IbV"/>
                             <constraint firstItem="UYo-QM-uyW" firstAttribute="bottom" secondItem="k4y-uG-qv2" secondAttribute="bottom" id="wFq-S2-v8o"/>
+                            <constraint firstItem="ihH-Fi-Yfg" firstAttribute="centerY" secondItem="nrl-1L-8g8" secondAttribute="centerY" id="x5v-dD-Uvz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UYo-QM-uyW"/>
                     </view>
                     <connections>
-                        <outlet property="activityIndicatorView" destination="mma-Ar-ur9" id="gME-na-TK9"/>
                         <outlet property="emptyDescLabel" destination="vfx-Lg-FFa" id="7n8-Cj-0Vk"/>
                         <outlet property="emptyTitleLabel" destination="7bc-O2-trp" id="2id-9u-hnK"/>
                         <outlet property="emptyView" destination="Cg6-Zk-wdF" id="Inh-hG-Gdx"/>
+                        <outlet property="loadingView" destination="ihH-Fi-Yfg" id="nlQ-rO-vM9"/>
                         <outlet property="tableView" destination="k4y-uG-qv2" id="jJa-ra-h12"/>
                     </connections>
                 </viewController>

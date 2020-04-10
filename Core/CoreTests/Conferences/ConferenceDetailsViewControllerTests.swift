@@ -60,7 +60,7 @@ class ConferenceDetailsViewControllerTests: CoreTestCase {
 
         api.mock(controller.conferences, value: .init(conferences: [ .make(description: "", started_at: Clock.now) ]))
         controller.refreshControl.sendActions(for: .primaryActionTriggered)
-        XCTAssertEqual(controller.statusLabel.text, "In Progress | Started Mar 14 at 12:00 AM")
+        XCTAssertEqual(controller.statusLabel.text, "In Progress | Started Mar 14, 2020 at 12:00 AM")
         XCTAssertEqual(controller.detailsLabel.text, "No description")
         XCTAssertEqual(controller.joinButton.isHidden, false)
         XCTAssertEqual(controller.recordingsView.isHidden, true)
@@ -78,7 +78,7 @@ class ConferenceDetailsViewControllerTests: CoreTestCase {
             ), ]),
         ]))
         controller.refreshControl.sendActions(for: .primaryActionTriggered)
-        XCTAssertEqual(controller.statusLabel.text, "Concluded Mar 14 at 12:00 AM")
+        XCTAssertEqual(controller.statusLabel.text, "Concluded Mar 14, 2020 at 12:00 AM")
         XCTAssertEqual(controller.joinButton.isHidden, true)
         XCTAssertEqual(controller.recordingsView.isHidden, false)
 

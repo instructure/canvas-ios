@@ -16,24 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import CoreData
 import Foundation
 
 public struct GetRecentlyGradedSubmissions: CollectionUseCase {
-    public typealias Model = Submission
+    public typealias Model = SubmissionList
 
-    let userID: String
+    public let cacheKey: String? = "recently-graded-submissions"
+    public let request: GetRecentlyGradedSubmissionsRequest
+    public let scope: Scope
 
     public init (userID: String) {
-        self.userID = userID
+        request = GetRecentlyGradedSubmissionsRequest(userID: userID)
+        scope = Scope.where(#keyPath(SubmissionList.id), equals: "recently-graded")
     }
 
-    public var request: GetRecentlyGradedSubmissionsRequest {
-        return GetRecentlyGradedSubmissionsRequest(userID: userID)
+    public func write(response: [APISubmission]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        let list: SubmissionList = client.fetch(scope: scope).first ?? client.insert()
+        list.id = "recently-graded"
+        list.submissions.append(contentsOf: Submission.save(response ?? [], in: client))
     }
-
-    public var scope: Scope {
-        return .all(orderBy: #keyPath(Submission.gradedAt), ascending: false, naturally: false)
-    }
-
-    public var cacheKey: String? = "recently-graded-submissions"
 }

@@ -141,6 +141,11 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
         return ConferenceDetailsViewController.create(context: context, conferenceID: id)
     },
 
+    "/:context/:contextID/conferences/:conferenceID/join": { url, params in
+        open(url: url)
+        return nil
+    },
+
     "/:context/:contextID/discussions": nil,
     "/:context/:contextID/discussion_topics": nil,
 
@@ -186,7 +191,10 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     },
     "/:context/:contextID/files/:fileID/download": fileViewController,
 
-    "/courses/:courseID/grades": nil,
+    "/courses/:courseID/grades": { _, params in
+        guard let courseID = params["courseID"] else { return nil }
+        return GradeListViewController.create(courseID: courseID)
+    },
 
     "/courses/:courseID/modules": { _, params in
         guard let courseID = params["courseID"] else { return nil }
@@ -234,13 +242,13 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/courses/:courseID/pages": { _, params in
         guard let courseID = params["courseID"] else { return nil }
         let context = ContextModel(.course, id: ID.expandTildeID(courseID))
-        return PageListViewController.create(context: context, appTraitCollection: UIApplication.shared.keyWindow?.traitCollection, app: .student)
+        return PageListViewController.create(context: context, app: .student)
     },
 
     "/groups/:groupID/pages": { _, params in
         guard let groupID = params["groupID"] else { return nil }
         let context = ContextModel(.group, id: ID.expandTildeID(groupID))
-        return PageListViewController.create(context: context, appTraitCollection: UIApplication.shared.keyWindow?.traitCollection, app: .student)
+        return PageListViewController.create(context: context, app: .student)
     },
 
     "/:context/:contextID/wiki": { url, _ in

@@ -61,8 +61,6 @@ abstract_target 'defaults' do
 
   pod 'Marshal', '~> 1.2.7'
   pod 'Cartography', '~> 3.1'
-  pod 'AFNetworking', '~> 3.0'
-  pod 'Mantle', '~> 1.5.5'
   pod 'GoogleUtilities', '~> 6.0'
 
   target 'PactTests' do
