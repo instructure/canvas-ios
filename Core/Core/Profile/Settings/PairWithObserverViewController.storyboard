@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -45,13 +45,13 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold24"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="73n-5k-D0c">
-                                                <rect key="frame" x="181" y="26.5" width="20" height="20"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="20G-jc-QC6" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
+                                                <rect key="frame" x="171" y="16.5" width="40" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="s8N-Wr-bSt"/>
-                                                    <constraint firstAttribute="width" constant="20" id="szF-Is-28O"/>
+                                                    <constraint firstAttribute="height" constant="40" id="5jz-q4-L5f"/>
+                                                    <constraint firstAttribute="width" constant="40" id="yCO-AO-aA3"/>
                                                 </constraints>
-                                            </activityIndicatorView>
+                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACR-5K-WJ4">
                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="73"/>
                                                 <connections>
@@ -62,13 +62,13 @@
                                         <color key="backgroundColor" name="backgroundLight"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="tVC-Xc-ovi" secondAttribute="bottom" constant="24" id="1v7-sw-umq"/>
+                                            <constraint firstItem="20G-jc-QC6" firstAttribute="centerX" secondItem="EH4-JY-Fzl" secondAttribute="centerX" id="56c-7B-IYd"/>
                                             <constraint firstItem="tVC-Xc-ovi" firstAttribute="top" secondItem="EH4-JY-Fzl" secondAttribute="top" constant="24" id="6r0-Ey-kEi"/>
-                                            <constraint firstItem="73n-5k-D0c" firstAttribute="centerY" secondItem="EH4-JY-Fzl" secondAttribute="centerY" id="FlM-Am-urp"/>
+                                            <constraint firstItem="20G-jc-QC6" firstAttribute="centerY" secondItem="EH4-JY-Fzl" secondAttribute="centerY" id="6uI-9j-5Kk"/>
                                             <constraint firstAttribute="trailing" secondItem="ACR-5K-WJ4" secondAttribute="trailing" id="Nbb-NU-lI0"/>
                                             <constraint firstAttribute="bottom" secondItem="ACR-5K-WJ4" secondAttribute="bottom" id="VhH-8S-3tf"/>
                                             <constraint firstItem="tVC-Xc-ovi" firstAttribute="leading" secondItem="EH4-JY-Fzl" secondAttribute="leading" id="caP-jN-0ki"/>
                                             <constraint firstItem="ACR-5K-WJ4" firstAttribute="leading" secondItem="EH4-JY-Fzl" secondAttribute="leading" id="jDw-wG-TPo"/>
-                                            <constraint firstItem="73n-5k-D0c" firstAttribute="centerX" secondItem="EH4-JY-Fzl" secondAttribute="centerX" id="k2o-XY-dCn"/>
                                             <constraint firstAttribute="trailing" secondItem="tVC-Xc-ovi" secondAttribute="trailing" id="pHm-Ao-IlV"/>
                                             <constraint firstItem="ACR-5K-WJ4" firstAttribute="top" secondItem="EH4-JY-Fzl" secondAttribute="top" id="pgO-8W-X5R"/>
                                             <constraint firstAttribute="height" priority="750" constant="72" id="sSm-YY-Tac"/>
@@ -111,7 +111,7 @@
                         <outlet property="codeLabel" destination="tVC-Xc-ovi" id="ufL-7B-U84"/>
                         <outlet property="notificationView" destination="m7p-Jk-zaq" id="NTS-4B-rA3"/>
                         <outlet property="notificationViewBottomConstraint" destination="QI9-ML-JkL" id="Kgp-Nw-CxX"/>
-                        <outlet property="spinner" destination="73n-5k-D0c" id="aEP-ic-8De"/>
+                        <outlet property="spinner" destination="20G-jc-QC6" id="iKu-AX-Mrt"/>
                         <outlet property="tapToCopyButton" destination="jqL-RC-I4s" id="aSG-TW-dAd"/>
                     </connections>
                 </viewController>

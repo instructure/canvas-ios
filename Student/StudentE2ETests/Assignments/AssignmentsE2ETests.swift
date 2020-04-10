@@ -34,7 +34,7 @@ class AssignmentsE2ETests: CoreUITestCase {
 
         CourseNavigation.grades.tap()
 
-        GradesList.assignment(id: "1831").tap()
+        GradeList.cell(assignmentID: "1831").tap()
 
         AssignmentDetails.description("This is assignment one.").waitToExist()
         app.swipeUp()

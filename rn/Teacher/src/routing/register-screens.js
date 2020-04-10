@@ -73,7 +73,6 @@ import PushNotifications from '../modules/developer-menu/PushNotifications'
 import SectionSelector from '../modules/announcements/edit/SectionSelector'
 import ExperimentalFeature from '../common/ExperimentalFeature'
 import RatingRequest from '../modules/developer-menu/RatingRequest'
-import GradesList from '../modules/grades/GradesList'
 import PageViewEvents from '../modules/developer-menu/PageViewEvents'
 
 import { Store } from 'redux'
@@ -230,7 +229,7 @@ export function registerScreens (store: Store): void {
     registerScreen('/groups/:groupID', null, store, { canBecomeMaster: true, deepLink: true })
     registerScreen('/groups/:groupID/tabs', null, store, { canBecomeMaster: true, deepLink: true })
     registerScreen('/groups/:groupID/users', wrap(GroupList), store)
-    registerScreen('/courses/:courseID/grades', wrap(GradesList), store, { canBecomeMaster: true, deepLink: true })
+    registerScreen('/courses/:courseID/grades', null, store, { canBecomeMaster: true, deepLink: true })
     registerScreen('/courses/:courseID/users/:userID', wrap(StudentContextCardCourse), store, { deepLink: true })
     registerScreen('/groups/:groupID/users/:userID', wrap(StudentContextCardGroup), store, { deepLink: true })
     registerScreen('/courses/:courseID/users', null, store)

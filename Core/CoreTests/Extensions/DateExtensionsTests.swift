@@ -102,18 +102,6 @@ class DateExtensionsTests: XCTestCase {
         XCTAssertEqual(a.removeTime(), b)
     }
 
-    func testUTCToLocal() {
-        let utc = Date(fromISOString: "2020-02-21T06:59:59Z")!
-        let expectedLocalTime = Date(fromISOString: "2020-02-20T23:59:59Z")!
-        XCTAssertEqual(utc.utcToLocal(), expectedLocalTime)
-    }
-
-    func testlocalToUTC() {
-        let local = Date(fromISOString: "2020-02-20T23:59:59Z")!
-        let expectedUTClTime = Date(fromISOString: "2020-02-20T16:59:59Z")!
-        XCTAssertEqual(local.utcToLocal(), expectedUTClTime)
-    }
-
     func testAddSeconds() {
         let a = Date(fromISOString: "2020-02-21T06:59:59Z")!
         let b = Date(fromISOString: "2020-02-21T07:00:00Z")!
@@ -122,9 +110,13 @@ class DateExtensionsTests: XCTestCase {
         XCTAssertEqual(a.addSeconds(-1), c)
     }
 
-    func testDateMediumString() {
-        Clock.mockNow(DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 12, day: 25).date!)
-        XCTAssertEqual(DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 1, day: 1).date?.dateMediumString, "Jan 1")
-        XCTAssertEqual(DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 12, day: 25).date?.dateMediumString, "Dec 25, 2020")
+    func testDateOnlyString() {
+        XCTAssertEqual(DateComponents(calendar: .current, timeZone: .current, year: 2000, month: 12, day: 25).date?.dateOnlyString, "Dec 25, 2000")
+        XCTAssertEqual(DateComponents(calendar: .current, timeZone: .current, year: 2000, month: 12, day: 25).date?.relativeDateOnlyString, "Dec 25, 2000")
+    }
+
+    func testDateTimeString() {
+        XCTAssertEqual(DateComponents(calendar: .current, timeZone: .current, year: 2000, month: 12, day: 25, hour: 11, minute: 45).date?.dateTimeString, "Dec 25, 2000 at 11:45 AM")
+        XCTAssertEqual(DateComponents(calendar: .current, timeZone: .current, year: 2000, month: 12, day: 25, hour: 11, minute: 45).date?.relativeDateTimeString, "Dec 25, 2000 at 11:45 AM")
     }
 }

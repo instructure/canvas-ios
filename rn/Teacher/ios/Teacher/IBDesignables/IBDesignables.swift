@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,18 +17,15 @@
 //
 
 import Core
-import TestsFoundation
-@testable import CoreUITests
 
-class GradesListTests: CoreUITestCase {
-    func testAssignmentDetailsCompose() {
-        let courseCell = Courses.course(id: "263")
-        courseCell.tapUntil { !courseCell.exists }
-        GradesList.assignment(id: "1831").tap()
-        app.find(labelContaining: "This is assignment one.").waitToExist()
-        AssignmentDetails.replyButton.tap()
-
-        XCTAssertEqual(Compose.recipientName(id: "837").label(), "Teacher One")
-        XCTAssertEqual(Compose.subject.value(), "Regarding: Student One, Assignment - Assignment One")
-    }
-}
+@IBDesignable
+class AvatarGroupView: Core.AvatarGroupView {}
+class AvatarView: Core.AvatarView {}
+class CoreWebView: Core.CoreWebView {}
+class DividerView: Core.DividerView {}
+class DynamicButton: Core.DynamicButton {}
+class DynamicLabel: Core.DynamicLabel {}
+class DynamicTextField: Core.DynamicTextField {}
+class EmptyView: Core.EmptyView {}
+class FloatingButton: Core.FloatingButton {}
+class IconView: Core.IconView {}

@@ -54,9 +54,8 @@ final class Conference: NSManagedObject {
     var statusText: String {
         if let date = endedAt {
             return String.localizedStringWithFormat(
-                NSLocalizedString("Concluded %@ at %@", bundle: .core, comment: "concluded date at time"),
-                date.dateMediumString,
-                DateFormatter.localizedString(from: date, dateStyle: .none, timeStyle: .short)
+                NSLocalizedString("Concluded %@", bundle: .core, comment: "concluded datetime"),
+                date.dateTimeString
             )
         }
         if startedAt != nil {
@@ -71,9 +70,8 @@ final class Conference: NSManagedObject {
             status.append(NSAttributedString(string: statusText, attributes: [.foregroundColor: statusColor]))
             status.append(NSAttributedString(string: " | "))
             status.append(NSAttributedString(string: String.localizedStringWithFormat(
-                NSLocalizedString("Started %@ at %@", bundle: .core, comment: "started date at time"),
-                date.dateMediumString,
-                DateFormatter.localizedString(from: date, dateStyle: .none, timeStyle: .short)
+                NSLocalizedString("Started %@", bundle: .core, comment: "started datetime"),
+                date.dateTimeString
             )))
             return status
         }

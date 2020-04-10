@@ -47,7 +47,7 @@ public class GradeCircleView: UIView {
     @IBOutlet weak var circlePoints: UILabel!
     @IBOutlet weak var circleLabel: UILabel!
     @IBOutlet weak var circleComplete: UIImageView!
-    @IBOutlet weak var gradeCircle: CircleProgressView?
+    @IBOutlet weak var gradeCircle: CircleProgressView!
     @IBOutlet weak var displayGrade: UILabel!
     @IBOutlet weak var outOfLabel: UILabel!
     @IBOutlet weak var latePenaltyLabel: UILabel!
@@ -64,6 +64,7 @@ public class GradeCircleView: UIView {
     }
 
     public func update(_ assignment: Assignment) {
+        gradeCircle.progress = 1 // make sure it's never spinning
         circleComplete.isAccessibilityElement = true
         // in this case the submission should always be there because canvas generates
         // submissions for every user for every assignment but just in case
@@ -87,9 +88,9 @@ public class GradeCircleView: UIView {
         // Update grade circle
         if let score = submission.score, let pointsPossible = assignment.pointsPossible {
             circlePoints.text = NumberFormatter.localizedString(from: NSNumber(value: score), number: .decimal)
-            gradeCircle?.progress = CGFloat(score / pointsPossible)
+            gradeCircle.progress = CGFloat(score / pointsPossible)
 
-            gradeCircle?.accessibilityLabel = assignment.scoreOutOfPointsPossibleText
+            gradeCircle.accessibilityLabel = assignment.scoreOutOfPointsPossibleText
         }
 
         circleLabel.text = assignment.pointsText

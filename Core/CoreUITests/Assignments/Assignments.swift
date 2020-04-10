@@ -67,13 +67,13 @@ enum AssignmentsList {
     }
 }
 
-enum GradesList {
+enum GradeList {
     static var title: Element {
         return app.find(label: "Grades")
     }
 
-    static func assignment(id: String) -> Element {
-        return app.find(id: "grades-list.grades-list-row.cell-\(id)")
+    static func cell(assignmentID: String) -> Element {
+        return app.find(id: "GradeListCell.\(assignmentID)")
     }
 }
 

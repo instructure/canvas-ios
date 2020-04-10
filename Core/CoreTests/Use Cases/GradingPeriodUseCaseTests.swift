@@ -35,7 +35,7 @@ class GetGradingPeriodsUseCaseTests: CoreTestCase {
     }
 
     func testScope() {
-        XCTAssertEqual(useCase.scope, Scope.where(#keyPath(GradingPeriod.courseID), equals: courseID))
+        XCTAssertEqual(useCase.scope, Scope.where(#keyPath(GradingPeriod.courseID), equals: courseID, orderBy: #keyPath(GradingPeriod.startDate)))
     }
 
     func testRequest() {
