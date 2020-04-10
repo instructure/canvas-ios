@@ -140,6 +140,7 @@ class RoutesTests: XCTestCase {
         ExperimentalFeature.studentModules.isEnabled = false
         XCTAssert(router.match(.parse("/courses/1/assignments/syllabus")) is StudentSyllabusViewController)
         XCTAssert(router.match(.parse("/courses/1/assignments/2")) is AssignmentDetailsViewController)
+        XCTAssert(router.match(.parse("/courses/1/assignments/2?module_item_id=3")) is ModuleItemDetailViewController)
         XCTAssert(router.match(.parse("/courses/1/discussions/2")) is HelmViewController)
         XCTAssert(router.match(.parse("/groups/1/discussions/2")) is HelmViewController)
         XCTAssert(router.match(.parse("/courses/1/discussion_topics/2")) is HelmViewController)

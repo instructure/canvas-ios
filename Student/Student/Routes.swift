@@ -106,6 +106,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
                 url: url
             )
         }
+        if let controller = moduleItemController(for: url, courseID: courseID) { return controller }
         return AssignmentDetailsViewController.create(
             courseID: ID.expandTildeID(courseID),
             assignmentID: ID.expandTildeID(assignmentID),
