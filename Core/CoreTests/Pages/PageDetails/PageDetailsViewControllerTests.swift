@@ -21,230 +21,139 @@ import XCTest
 import WebKit
 
 class PageDetailsViewControllerTests: CoreTestCase {
-    class MockWebView: CoreWebView {
-        var html: String = ""
-        open override func loadHTMLString(_ string: String, baseURL: URL? = AppEnvironment.shared.currentSession?.baseURL) -> WKNavigation? {
-            html = string
-            return super.loadHTMLString(string, baseURL: baseURL)
-        }
-    }
+    lazy var controller = PageDetailsViewController.create(context: context, pageURL: pageURL, app: .student)
 
     let context = ContextModel(.course, id: "1")
-    let pageURL = "test-page"
-    let htmlURL = URL(string: "/courses/1/pages/test-page")!
-
-    var viewController: PageDetailsViewController!
+    var htmlURL = URL(string: "/courses/1/pages/test-page")!
+    var pageURL = "test-page"
 
     override func setUp() {
         super.setUp()
-        viewController = PageDetailsViewController.create(env: environment, context: context, pageURL: pageURL, app: .student)
+        environment.mockStore = false
+        api.mock(controller.colors, value: .init(custom_colors: [
+            "course_1": "#008800",
+            "group_1": "#000088",
+        ]))
+        api.mock(GetCourse(courseID: "1"), value: .make())
+        api.mock(GetGroup(groupID: "1"), value: .make())
+        api.mock(GetPageRequest(context: context, url: pageURL), value: .make(
+            editing_roles: "teachers,students",
+            html_url: htmlURL,
+            title: "Test Page",
+            url: pageURL
+        ))
     }
 
-    func load() {
-        XCTAssertNotNil(viewController.view)
+    func testLayout() {
+        let nav = UINavigationController(rootViewController: controller)
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#008800")
+        XCTAssertEqual(controller.titleSubtitleView.title, "Test Page")
+        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+        XCTAssertEqual(controller.navigationItem.rightBarButtonItems?.count, 1)
+
+        let optionsButton = controller.navigationItem.rightBarButtonItem
+        _ = optionsButton?.target?.perform(optionsButton!.action, with: [optionsButton])
+        let alert = router.presented as? UIAlertController
+        XCTAssertEqual(alert?.actions.count, 2)
+        XCTAssertEqual(alert?.actions.last?.title, "Cancel")
+        XCTAssertEqual(alert?.actions.last?.style, .cancel)
+        XCTAssertEqual(alert?.actions.first?.title, "Edit")
+        (alert?.actions.first as? AlertAction)?.handler?(AlertAction())
+        XCTAssertNotNil(router.lastRoutedTo(htmlURL.appendingPathComponent("edit")))
+
+        api.mock(DeletePageRequest(context: context, url: pageURL), error: NSError.internalError())
+        controller.app = .teacher
+        _ = optionsButton?.target?.perform(optionsButton!.action, with: [optionsButton])
+        let deleteAction = (router.presented as? UIAlertController)?.actions[1]
+        XCTAssertEqual(deleteAction?.title, "Delete")
+        XCTAssertEqual(deleteAction?.style, .destructive)
+        (deleteAction as? AlertAction)?.handler?(AlertAction())
+        let confirmAction = (router.presented as? UIAlertController)?.actions.last
+        (confirmAction as? AlertAction)?.handler?(AlertAction())
+        XCTAssertEqual((router.presented as? UIAlertController)?.message, "Internal Error")
+
+        router.viewControllerCalls = []
+        api.mock(DeletePageRequest(context: context, url: pageURL))
+        (confirmAction as? AlertAction)?.handler?(AlertAction())
+        XCTAssertNil(router.presented)
+
+        api.mock(GetPageRequest(context: context, url: pageURL), value: .make(
+            html_url: htmlURL,
+            title: "Refreshed",
+            url: pageURL
+        ))
+        controller.app = .student
+        controller.webView.scrollView.refreshControl?.beginRefreshing()
+        controller.webView.scrollView.refreshControl?.sendActions(for: .primaryActionTriggered)
+        XCTAssertEqual(controller.webView.scrollView.refreshControl?.isRefreshing, false)
+        XCTAssertEqual(controller.titleSubtitleView.title, "Refreshed")
+        XCTAssertNil(controller.navigationItem.rightBarButtonItem)
     }
 
-    func testViewDidLoad() {
-        load()
+    func testGroup() {
+        controller.context = ContextModel(.group, id: "1")
+        api.mock(GetPageRequest(context: controller.context, url: pageURL), value: .make(
+            html_url: URL(string: "/groups/1/pages/test-page")!,
+            title: "Test Page",
+            url: pageURL
+        ))
+        let nav = UINavigationController(rootViewController: controller)
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
 
-        XCTAssertEqual(viewController.titleSubtitleView.title, "Page")
-        XCTAssertNotNil(viewController.webView?.scrollView.refreshControl)
+        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#000088")
+        XCTAssertEqual(controller.titleSubtitleView.title, "Test Page")
+        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Group One")
     }
 
     func testFrontPage() {
+        htmlURL = URL(string: "/courses/1/pages/front_page")!
+        pageURL = "front_page"
+        controller = PageDetailsViewController.create(context: context, pageURL: pageURL, app: .student)
         api.mock(GetFrontPageRequest(context: context), value: .make(
             front_page: true,
             html_url: htmlURL,
             title: "Front Page"
         ))
-        environment.mockStore = false
-        let viewController = PageDetailsViewController.create(context: context, pageURL: "front_page", app: .student)
-        viewController.view.layoutIfNeeded()
-        XCTAssertEqual(viewController.titleSubtitleView.title, "Front Page")
+        controller.view.layoutIfNeeded()
+        XCTAssertEqual(controller.titleSubtitleView.title, "Front Page")
+        XCTAssertNil(controller.navigationItem.rightBarButtonItem)
     }
 
-    func testUpdateNavBar() {
-        load()
-        _ = UINavigationController(rootViewController: viewController)
-
-        viewController.updateNavBar(subtitle: "My Page", color: .red)
-        XCTAssertEqual(viewController.titleSubtitleView.subtitle, "My Page")
-        XCTAssertEqual(viewController.navigationController?.navigationBar.barTintColor, .red)
+    func testUpdatesThePageOnEdit() {
+        controller.view.layoutIfNeeded()
+        NotificationCenter.default.post(name: NSNotification.Name("page-edit"), object: nil, userInfo: apiPageToDictionary(page: .make(
+           html_url: htmlURL,
+           title: "Changed",
+           url: "changed"
+        )))
+        XCTAssertEqual(controller.titleSubtitleView.title, "Changed")
+        XCTAssertEqual(controller.pageURL, "changed")
     }
 
-    func testUpdate() {
-        let page = Page.make(from: .make(
-            body: "<p>This a body</p>",
-            html_url: htmlURL,
-            title: "My Page",
-            url: pageURL
+    func testUpdatesFrontPageWhenChanged() {
+        let prevFront = Page.make(from: .make(
+            front_page: true,
+            html_url: URL(string: "/courses/1/pages/front-page")!,
+            page_id: "1234"
         ))
-        load()
-        let webView = MockWebView()
-        viewController.webView = webView
-        viewController.update()
-
-        XCTAssertEqual(viewController.titleSubtitleView.title, page.title)
-        XCTAssertEqual(webView.html, page.body)
-    }
-
-    func testAddEditButtonOnce() {
-        Page.make(from: .make(
-            editing_roles: "teachers,students",
+        controller.view.layoutIfNeeded()
+        NotificationCenter.default.post(name: NSNotification.Name("page-edit"), object: nil, userInfo: apiPageToDictionary(page: .make(
+            front_page: true,
             html_url: htmlURL,
             url: pageURL
-        ))
-        load()
-        _ = UINavigationController(rootViewController: viewController)
-
-        viewController.update()
-        XCTAssertEqual(viewController.navigationItem.rightBarButtonItems?.count, 1)
-
-        viewController.update()
-        XCTAssertEqual(viewController.navigationItem.rightBarButtonItems?.count, 1)
+        )))
+        XCTAssertEqual(prevFront.isFrontPage, false)
+        XCTAssertEqual(controller.page?.isFrontPage, true)
     }
 
-    func testDoesNotAddEditButton() {
-        Page.make(from: .make(
-            editing_roles: "teachers",
-            html_url: htmlURL,
-            url: pageURL
-        ))
-        load()
-        _ = UINavigationController(rootViewController: viewController)
-
-        viewController.update()
-        XCTAssertNil(viewController.navigationItem.rightBarButtonItems)
-    }
-
-    func testEndsRefreshing() {
-        Page.make(from: .make(
-            html_url: htmlURL,
-            url: pageURL
-        ))
-        load()
-        viewController.webView?.scrollView.refreshControl?.beginRefreshing()
-
-        XCTAssertEqual(viewController.webView?.scrollView.refreshControl?.isRefreshing, true)
-
-        viewController.update()
-        XCTAssertEqual(viewController.webView?.scrollView.refreshControl?.isRefreshing, false)
-    }
-
-    func testKabobPressed() {
-        Page.make(from: .make(
-            html_url: htmlURL,
-            url: pageURL
-        ))
-
-        viewController = PageDetailsViewController.create(env: environment, context: context, pageURL: pageURL, app: .teacher)
-        load()
-
-        let barButtonItem = UIBarButtonItem()
-        viewController.kabobPressed(barButtonItem)
-
-        wait(for: [router.showExpectation], timeout: 1)
-
-        let (shown, vc, _) = router.viewControllerCalls.last!
-        XCTAssertEqual(vc, viewController)
-
-        let alert = shown as! UIAlertController
-        XCTAssertEqual(alert.actions.count, 3)
-        XCTAssertEqual(alert.actions.last?.title, "Cancel")
-        XCTAssertEqual(alert.actions.last?.style, .cancel)
-    }
-
-    func testKabobDoesNotShowDelete() {
-        Page.make(from: .make(
-            editing_roles: "teachers",
-            html_url: htmlURL,
-            url: pageURL
-        ))
-        load()
-
-        viewController.kabobPressed(UIBarButtonItem())
-        wait(for: [router.showExpectation], timeout: 1)
-
-        let (shown, _, _) = router.viewControllerCalls.last!
-        let alert = shown as! UIAlertController
-        XCTAssertEqual(alert.actions.count, 2)
-    }
-
-    func testKabobEdit() {
-        Page.make(from: .make(
-            editing_roles: "teachers,students",
-            html_url: htmlURL,
-            url: pageURL
-        ))
-        load()
-
-        viewController.kabobPressed(UIBarButtonItem())
-        wait(for: [router.showExpectation], timeout: 1)
-
-        let (shown, _, _) = router.viewControllerCalls.last!
-        let alert = shown as! UIAlertController
-        let action = alert.actions.first! as! AlertAction
-
-        XCTAssertEqual(action.title, "Edit")
-        XCTAssertEqual(action.style, .default)
-
-        action.handler?(action)
-        wait(for: [router.routeExpectation], timeout: 1)
-        XCTAssertNotNil(router.lastRoutedTo(htmlURL.appendingPathComponent("edit")))
-    }
-
-    func testKabobDelete() {
-        Page.make(from: .make(
-            html_url: htmlURL,
-            url: pageURL
-        ))
-        viewController = PageDetailsViewController.create(env: environment, context: context, pageURL: pageURL, app: .teacher)
-        load()
-
-        viewController.kabobPressed(UIBarButtonItem())
-        wait(for: [router.showExpectation], timeout: 1)
-
-        let (shown, _, _) = router.viewControllerCalls.last!
-        let alert = shown as! UIAlertController
-
-        let action = alert.actions[1] as! AlertAction
-        XCTAssertEqual(action.title, "Delete")
-        XCTAssertEqual(action.style, .destructive)
-
-        router.resetExpectations()
-        action.handler?(action)
-        wait(for: [router.showExpectation], timeout: 1)
-
-        let (confirm, _, _) = router.viewControllerCalls.last!
-        XCTAssertNotEqual(confirm, shown)
-        XCTAssert(confirm is UIAlertController)
-    }
-
-    func testConfirmDelete() {
-        api.mock(DeletePageRequest(context: context, url: pageURL), value: .make())
-        Page.make(from: .make(
-            html_url: htmlURL,
-            url: pageURL
-        ))
-        viewController = PageDetailsViewController.create(env: environment, context: context, pageURL: pageURL, app: .teacher)
-        load()
-
-        viewController.showDeleteConfirmation()
-        wait(for: [router.showExpectation], timeout: 1)
-
-        let (shown, _, _) = router.viewControllerCalls.last!
-        let alert = shown as! UIAlertController
-
-        XCTAssertEqual(alert.actions.count, 2)
-        XCTAssertEqual(alert.actions.first?.title, "Cancel")
-        XCTAssertEqual(alert.actions.first?.style, .cancel)
-        XCTAssertEqual(alert.actions.last?.title, "OK")
-        XCTAssertEqual(alert.actions.last?.style, .destructive)
-
-        let action = alert.actions.last as! AlertAction
-        action.handler?(action)
-
-        wait(for: [router.popExpectation], timeout: 1)
-        XCTAssertNil(viewController.presenter.page)
+    func apiPageToDictionary(page: APIPage) -> [String: Any] {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        let data = try! encoder.encode(page)
+        return try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String: Any]
     }
 }

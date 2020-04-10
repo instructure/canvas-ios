@@ -20,14 +20,17 @@ import Foundation
 import UIKit
 
 public class SectionHeaderView: UITableViewHeaderFooterView {
-    @IBOutlet weak public var titleLabel: DynamicLabel?
+    @IBOutlet weak public var titleLabel: UILabel!
     @IBOutlet weak var bgView: UIView!
+
+    public override func awakeFromNib() {
+        super.awakeFromNib()
+        bgView.backgroundColor = .named(.backgroundLightest)
+    }
 
     public static func create(title: String, section: Int) -> SectionHeaderView {
         let view = loadFromXib()
-        view.backgroundColor = .named(.backgroundLight)
-        view.titleLabel?.text = title
-        view.bgView.backgroundColor = .named(.backgroundLightest)
+        view.titleLabel.text = title
         return view
     }
 }

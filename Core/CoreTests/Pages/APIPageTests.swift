@@ -19,7 +19,7 @@
 import XCTest
 @testable import Core
 
-class APIPageRequestableTests: XCTestCase {
+class APIPageTests: XCTestCase {
     let courseContext = ContextModel(.course, id: "42")
     let groupContext = ContextModel(.group, id: "42")
 

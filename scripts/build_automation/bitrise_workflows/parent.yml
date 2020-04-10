@@ -105,7 +105,7 @@ workflows:
     - _common
     steps:
     - script:
-        title: Update build link if part of PR
+        title: Update build link
         is_skippable: true
         inputs:
         - runner_bin: "/bin/zsh"

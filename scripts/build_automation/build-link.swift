@@ -32,13 +32,19 @@ let repoOwner = "instructure"
 let repoName = "canvas-ios"
 let repo = "\(repoOwner)/\(repoName)"
 let magicString = "build-link" + "-magic-string"
+let masterLinkIds = [
+  "5170df518790453cb3c867a36a9befd0",
+  "fe339692b8644ce3be6ec62b7f1c7caf",
+  "fe13f1e303d545c4aec2118366a7ddfc",
+]
 
 enum App: String, CaseIterable {
     case student, teacher, parent
 
-    func title(forPr prID: String) -> String {
-        "\(self) - PR \(prID)"
+    func title(branchDescription: String) -> String {
+        "\(self) - \(branchDescription)"
     }
+
 }
 
 let env = ProcessInfo.processInfo.environment
@@ -187,7 +193,7 @@ func createBuildLinks(prID: String) throws {
     var ids: [String] = []
     var links: [String] = []
     for app in App.allCases {
-        let result = try Rebrandly.shortenOrUpdate(url: tempUrl, title: app.title(forPr: prID))
+        let result = try Rebrandly.shortenOrUpdate(url: tempUrl, title: app.title(branchDescription: "PR \(prID)"))
         ids.append(result.id)
         links.append("\(app): [Link](https://\(result.shortUrl)) | [QR](\(result.qrUrl))")
     }
@@ -209,7 +215,7 @@ func updateBuildLink(prID: String, app: App, url: String) throws {
         print("Couldn't find build link idendifier!")
         return
     }
-    try Rebrandly.shortenOrUpdate(id: ids[appIndex], url: url, title: app.title(forPr: prID))
+    try Rebrandly.shortenOrUpdate(id: ids[appIndex], url: url, title: app.title(branchDescription: "PR \(prID)"))
 }
 
 let usage = """
@@ -227,14 +233,24 @@ if args.count == 3, args[1] == "generate-temp-links" {
 
     let branch = args[3]
     let url = args[4]
-    guard let prID = try Github.findAssociatedPullRequests(branch: branch).max() else {
-        print("can't find a pull request associated with branch \(branch)")
-        exit(1)
+    if branch == "master" {
+        guard let appIndex = App.allCases.firstIndex(of: app) else {
+            print("Couldn't find build link idendifier!")
+            exit(1)
+        }
+        try Rebrandly.shortenOrUpdate(
+          id: masterLinkIds[appIndex],
+          url: url,
+          title: app.title(branchDescription: "master")
+        )
+    } else {
+        guard let prID = try Github.findAssociatedPullRequests(branch: branch).max() else {
+            print("can't find a pull request associated with branch \(branch)")
+            exit(1)
+        }
+        try updateBuildLink(prID: "\(prID)", app: app, url: url)
     }
-    try updateBuildLink(prID: "\(prID)", app: app, url: url)
 } else {
     print(usage)
     exit(1)
 }
-
-

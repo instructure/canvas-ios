@@ -18,67 +18,115 @@
 
 import UIKit
 
-protocol PageDetailsViewProtocol: ColoredNavViewProtocol, ErrorViewController {
-    func update()
-    func dismiss(animated flag: Bool, completion: (() -> Void)?)
-}
+public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate, ErrorViewController {
+    lazy var optionsButton = UIBarButtonItem(image: .icon(.more), style: .plain, target: self, action: #selector(showOptions))
+    @IBOutlet weak var webView: CoreWebView!
+    let refreshControl = CircleRefreshControl()
+    public let titleSubtitleView = TitleSubtitleView.create()
 
-public class PageDetailsViewController: UIViewController, PageDetailsViewProtocol {
-    var env: AppEnvironment!
-    var context: Context!
-    var pageURL: String!
-    var app: App!
-    var presenter: PageDetailsPresenter!
-
-    public var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
+    var app = App.student
     public var color: UIColor?
+    var context: Context = ContextModel.currentUser
+    let env = AppEnvironment.shared
+    var pageURL = ""
 
-    @IBOutlet weak var webView: CoreWebView?
-
-    public static func create(env: AppEnvironment = .shared, context: Context, pageURL: String, app: App) -> PageDetailsViewController {
-        let vc = loadFromStoryboard()
-        vc.env = env
-        vc.context = context
-        vc.pageURL = pageURL
-        vc.app = app
-        vc.presenter = PageDetailsPresenter(env: env, viewController: vc, context: context, pageURL: pageURL, app: app)
-        return vc
+    lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
+        self?.updateNavBar()
+    }
+    lazy var courses = env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
+        self?.updateNavBar()
+    }
+    lazy var groups = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
+        self?.updateNavBar()
+    }
+    lazy var pages = env.subscribe(GetPage(context: context, url: pageURL)) { [weak self] in
+        self?.update()
     }
 
-    override public func viewDidLoad() {
+    var page: Page? { pages.first }
+
+    var canEdit: Bool {
+        app == .teacher ||
+        page?.editingRoles.contains("students") == true ||
+        page?.editingRoles.contains("public") == true ||
+        page?.editingRoles.contains("members") == true
+    }
+
+    var canDelete: Bool {
+        app == .teacher && page?.isFrontPage != true
+    }
+
+    public static func create(context: Context, pageURL: String, app: App) -> PageDetailsViewController {
+        let controller = loadFromStoryboard()
+        controller.context = context
+        controller.pageURL = pageURL
+        controller.app = app
+        return controller
+    }
+
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .named(.backgroundLightest)
         setupTitleViewInNavbar(title: NSLocalizedString("Page", bundle: .core, comment: ""))
-        webView?.linkDelegate = self
+        webView.linkDelegate = self
 
-        let refresh = CircleRefreshControl()
-        refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
-        webView?.scrollView.refreshControl = refresh
+        refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
+        webView.scrollView.refreshControl = refreshControl
 
-        presenter.viewIsReady()
+        colors.refresh()
+        if context.contextType == .course {
+            courses.refresh()
+        } else {
+            groups.refresh()
+        }
+        pages.refresh(force: true)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(pageEdited), name: Notification.Name("page-edit"), object: nil)
+        NotificationCenter.default.post(moduleItem: .page(pageURL), completedRequirement: .view, courseID: context.id)
     }
 
-    @objc func refresh(_ refresh: CircleRefreshControl) {
-        presenter.pages.refresh(force: true)
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let color = color {
+            navigationController?.navigationBar.useContextColor(color)
+        }
     }
 
-    @objc
-    func kabobPressed(_ sender: UIBarButtonItem) {
+    @objc func refresh() {
+        pages.refresh(force: true) { [weak self] _ in
+            self?.refreshControl.endRefreshing()
+        }
+    }
+
+    func updateNavBar() {
+        guard
+            let name = context.contextType == .course ? courses.first?.name : groups.first?.name,
+            let color = context.contextType == .course ? courses.first?.color : groups.first?.color
+        else { return }
+        updateNavBar(subtitle: name, color: color)
+    }
+
+    func update() {
+        guard let page = page else { return }
+        titleSubtitleView.title = page.title
+        navigationItem.rightBarButtonItem = canEdit ? optionsButton : nil
+        webView.loadHTMLString(page.body)
+    }
+
+    @objc func showOptions(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.popoverPresentationController?.barButtonItem = sender
-
         alert.addAction(AlertAction(NSLocalizedString("Edit", bundle: .core, comment: ""), style: .default) { [weak self] _ in
-            guard let vc = self, let page = vc.presenter.page else {
-                return
-            }
+            guard let self = self, let page = self.page else { return }
             guard let url = page.htmlURL?.appendingPathComponent("edit") else { return }
-            self?.env.router.route(to: url, from: vc, options: .modal(.formSheet, embedInNav: true))
+            self.env.router.route(to: url, from: self, options: .modal(.formSheet, embedInNav: true))
         })
-
-        if presenter.canDelete() {
+        if canDelete {
             alert.addAction(AlertAction(NSLocalizedString("Delete", bundle: .core, comment: ""), style: .destructive) { [weak self] _ in
                 self?.showDeleteConfirmation()
             })
         }
         alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
+        alert.popoverPresentationController?.barButtonItem = sender
         env.router.show(alert, from: self, options: .modal())
     }
 
@@ -86,33 +134,47 @@ public class PageDetailsViewController: UIViewController, PageDetailsViewProtoco
         let alert = UIAlertController(title: NSLocalizedString("Are you sure you want to delete this page?", bundle: .core, comment: ""), message: nil, preferredStyle: .alert)
         alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
         alert.addAction(AlertAction(NSLocalizedString("OK", bundle: .core, comment: ""), style: .destructive) { [weak self] _ in
-            self?.presenter.deletePage()
+            self?.deletePage()
         })
         env.router.show(alert, from: self)
     }
 
-    func update() {
-        guard let page = presenter.page else {
-            return
-        }
-
-        titleSubtitleView.title = page.title
-        webView?.loadHTMLString(page.body)
-
-        let buttonCount = navigationItem.rightBarButtonItems?.count ?? 0
-        if presenter.canEdit() && buttonCount < 1 {
-            addNavigationButton(UIBarButtonItem(image: UIImage.icon(.more), style: .plain, target: self, action: #selector(kabobPressed)), side: .right)
-        }
-
-        if webView?.scrollView.refreshControl?.isRefreshing == true && presenter.pages.pending == false {
-            webView?.scrollView.refreshControl?.endRefreshing()
-        }
+    func deletePage() {
+        guard let page = page else { return }
+        env.api.makeRequest(DeletePageRequest(context: context, url: pageURL)) { [weak self] (_, _, error) in performUIUpdate {
+            guard let self = self else { return }
+            if let error = error {
+                return self.showError(error)
+            }
+            self.env.database.viewContext.delete(page)
+            try? self.env.database.viewContext.save()
+            self.env.router.pop(from: self)
+        } }
     }
-}
 
-extension PageDetailsViewController: CoreWebViewLinkDelegate {
-    public func handleLink(_ url: URL) -> Bool {
-        env.router.route(to: url, from: self)
-        return true
+    @objc func pageEdited(notification: NSNotification) {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        guard
+            let info = notification.userInfo,
+            let data = try? JSONSerialization.data(withJSONObject: info),
+            let apiPage = try? decoder.decode(APIPage.self, from: data)
+        else { return }
+
+        // if the front page was changed, ensure only one page has the front page set
+        let frontPageChanged = apiPage.front_page != page?.isFrontPage
+        if frontPageChanged {
+            let scope = GetFrontPage(context: context).scope
+            let currentFrontPage: Page? = env.database.viewContext.fetch(scope: scope).first
+            currentFrontPage?.isFrontPage = false
+        }
+        page?.update(from: apiPage)
+        try? env.database.viewContext.save()
+
+        pageURL = apiPage.url
+        pages = env.subscribe(GetPage(context: context, url: pageURL)) { [weak self] in
+            self?.update()
+        }
+        pages.refresh()
     }
 }

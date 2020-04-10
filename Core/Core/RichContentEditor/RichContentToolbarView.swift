@@ -65,6 +65,7 @@ public class RichContentToolbarView: UIView {
 
     public override func awakeFromNib() {
         super.awakeFromNib()
+        backgroundColor = .named(.backgroundLightest)
         translatesAutoresizingMaskIntoConstraints = false
         undoButton.accessibilityLabel = NSLocalizedString("Undo", bundle: .core, comment: "")
         redoButton.accessibilityLabel = NSLocalizedString("Redo", bundle: .core, comment: "")

@@ -21,10 +21,10 @@ import TestsFoundation
 
 enum PagesList {
     static var frontPage: Element {
-        return app.find(id: "pages.list.front-page-row")
+        return app.find(id: "PageListFrontPageCell")
     }
 
     static func page(index: Int) -> Element {
-        return app.find(id: "pages.list.page.row-\(index)")
+        return app.find(id: "PageListCell.\(index)")
     }
 }

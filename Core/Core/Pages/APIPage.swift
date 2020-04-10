@@ -17,6 +17,47 @@
 //
 
 import Foundation
+
+public struct APIPage: Codable, Equatable {
+    let url: String
+    let updated_at: Date
+    let front_page: Bool
+    let page_id: ID
+    let title: String
+    let html_url: URL
+    let published: Bool
+    let body: String?
+    let editing_roles: String?
+}
+
+#if DEBUG
+extension APIPage {
+    public static func make(
+        body: String? = nil,
+        editing_roles: String? = nil,
+        front_page: Bool = false,
+        html_url: URL = URL(string: "/courses/42/pages/answers-page")!,
+        page_id: ID = ID("42"),
+        published: Bool = false,
+        title: String = "Answers Page",
+        updated_at: Date = Date(),
+        url: String = "answers-page"
+	) -> APIPage {
+        return APIPage(
+            url: url,
+            updated_at: updated_at,
+            front_page: front_page,
+            page_id: page_id,
+            title: title,
+            html_url: html_url,
+            published: published,
+            body: body,
+            editing_roles: editing_roles
+        )
+    }
+}
+#endif
+
 public struct GetPagesRequest: APIRequestable {
     public typealias Response = [APIPage]
 

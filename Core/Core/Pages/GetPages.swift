@@ -37,11 +37,11 @@ public struct GetPages: CollectionUseCase {
     }
 
     public var scope: Scope {
-        let contextID = NSPredicate(format: "%K == %@", #keyPath(Page.contextID), context.canvasContextID)
-        let notFrontPage = NSPredicate(format: "%K == false", #keyPath(Page.isFrontPage))
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [contextID, notFrontPage])
-        let order = NSSortDescriptor(key: #keyPath(Page.title), ascending: true)
-        return Scope(predicate: predicate, order: [order])
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(key: #keyPath(Page.contextID), equals: context.canvasContextID),
+            NSPredicate(format: "%K == false", #keyPath(Page.isFrontPage)),
+        ])
+        return Scope(predicate: predicate, orderBy: #keyPath(Page.title), naturally: true)
     }
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping ([APIPage]?, URLResponse?, Error?) -> Void) {
