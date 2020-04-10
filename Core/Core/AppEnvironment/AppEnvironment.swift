@@ -35,9 +35,6 @@ open class AppEnvironment {
     public var userDefaults: SessionDefaults?
     public weak var loginDelegate: LoginDelegate?
 
-    private var videoPlayerViewController: AVPlayerViewController?
-    private var videoPlayer: AVPlayer?
-
     public init() {
         self.database = globalDatabase
         self.api = URLSessionAPI()
@@ -71,24 +68,5 @@ open class AppEnvironment {
     public func subscribe<Model>(scope: Scope, _ callback: @escaping Store<LocalUseCase<Model>>.EventHandler) -> Store<LocalUseCase<Model>> {
         let useCase = LocalUseCase<Model>(scope: scope)
         return subscribe(useCase, callback)
-    }
-
-    public func connectVideoPlayer(_ playerViewController: AVPlayerViewController) {
-        videoPlayerViewController = playerViewController
-        videoPlayer = playerViewController.player
-    }
-
-    public func backgroundVideoPlayer() {
-        videoPlayerViewController?.player = nil
-    }
-
-    public func reconnectVideoPlayer() {
-        videoPlayerViewController?.player = videoPlayer
-        videoPlayerViewController = nil
-    }
-
-    public func disconnectVideoPlayer() {
-        videoPlayerViewController = nil
-        videoPlayer = nil
     }
 }

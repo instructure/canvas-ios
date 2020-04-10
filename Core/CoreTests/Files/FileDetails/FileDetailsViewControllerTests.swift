@@ -40,6 +40,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         api.mockDownload(file.url!.rawValue)
         saveWasCalled = false
         didSaveExpectation = XCTestExpectation(description: "did save")
+        BackgroundVideoPlayer.shared.disconnect()
     }
 
     override func tearDown() {
@@ -47,6 +48,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         if let url = controller.localURL, FileManager.default.fileExists(atPath: url.path) {
             XCTAssertNoThrow(try FileManager.default.removeItem(at: url))
         }
+        BackgroundVideoPlayer.shared.disconnect()
     }
 
     func testLayout() {
@@ -226,6 +228,9 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertTrue(controller.spinnerView.isHidden)
         XCTAssertTrue(controller.progressView.isHidden)
         XCTAssert(controller.children.first is AVPlayerViewController)
+        XCTAssert(BackgroundVideoPlayer.shared.isConnected)
+        controller.viewWillDisappear(false)
+        XCTAssertFalse(BackgroundVideoPlayer.shared.isConnected)
     }
 
     func testShare() {
