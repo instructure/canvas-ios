@@ -51,7 +51,7 @@ public class LTIViewController: UIViewController, ErrorViewController, ColoredNa
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .named(.backgroundLightest)
         spinnerView.isHidden = true
         nameLabel.text = name ?? NSLocalizedString("LTI Tool", bundle: .core, comment: "")
         setupTitleViewInNavbar(title: NSLocalizedString("External Tool", bundle: .core, comment: ""))
