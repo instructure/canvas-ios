@@ -39,7 +39,7 @@ public class ModuleItemSequenceViewController: UIViewController {
     var observations: [NSKeyValueObservation]?
 
     lazy var store = env.subscribe(GetModuleItemSequence(courseID: courseID, assetType: assetType, assetID: assetID)) { [weak self] in
-        self?.update()
+        self?.update(embed: true)
     }
     var sequence: ModuleItemSequence? { store.first }
 
@@ -58,28 +58,36 @@ public class ModuleItemSequenceViewController: UIViewController {
         pages.scrollView.isScrollEnabled = false
         embed(pages, in: pagesContainer)
 
+        // places the next arrow on the opposite side
+        let transform = CGAffineTransform(scaleX: -1, y: 1)
+        nextButton.transform = transform
+        nextButton.titleLabel?.transform = transform
+        nextButton.imageView?.transform = transform
+
         // force refresh because we don't provide a refresh control
         store.refresh(force: true)
     }
 
-    func update(direction: PagesViewController.Direction? = nil) {
+    func update(embed: Bool) {
         if store.requested, store.pending {
             spinnerView.isHidden = false
             return
         }
         spinnerView.isHidden = true
         guard let url = url.url else { return }
-        let viewController: UIViewController
-        if let current = sequence?.current, !env.database.viewContext.isObjectDeleted(current) {
-            viewController = ModuleItemDetailsViewController.create(courseID: courseID, moduleID: current.moduleID, itemID: current.id)
-        } else if assetType != .moduleItem, let match = env.router.match(.parse(url.appendingOrigin("module_item_details"))) {
-            viewController = match
-        } else {
-            let external = ExternalURLViewController.create(name: NSLocalizedString("Unsupported Item", bundle: .core, comment: ""), url: url, courseID: courseID)
-            external.authenticate = true
-            viewController = external
+        if embed {
+            let viewController: UIViewController
+            if let current = sequence?.current, !env.database.viewContext.isObjectDeleted(current) {
+                viewController = ModuleItemDetailsViewController.create(courseID: courseID, moduleID: current.moduleID, itemID: current.id)
+            } else if assetType != .moduleItem, let match = env.router.match(.parse(url.appendingOrigin("module_item_details"))) {
+                viewController = match
+            } else {
+                let external = ExternalURLViewController.create(name: NSLocalizedString("Unsupported Item", bundle: .core, comment: ""), url: url, courseID: courseID)
+                external.authenticate = true
+                viewController = external
+            }
+            setCurrentPage(viewController)
         }
-        setCurrentPage(viewController, direction: direction)
         showSequenceButtons(prev: sequence?.prev != nil, next: sequence?.next != nil)
     }
 
@@ -92,11 +100,13 @@ public class ModuleItemSequenceViewController: UIViewController {
         self.view.layoutIfNeeded()
     }
 
-    func update(item: ModuleItem, direction: PagesViewController.Direction? = nil) {
+    func show(item: ModuleItem, direction: PagesViewController.Direction? = nil) {
+        let details = ModuleItemDetailsViewController.create(courseID: courseID, moduleID: item.moduleID, itemID: item.id)
+        setCurrentPage(details, direction: direction)
         store = env.subscribe(GetModuleItemSequence(courseID: courseID, assetType: .moduleItem, assetID: item.id)) { [weak self] in
-            self?.update(direction: direction)
+            self?.update(embed: false)
         }
-        store.refresh()
+        store.refresh(force: true)
     }
 
     func setCurrentPage(_ page: UIViewController, direction: PagesViewController.Direction? = nil) {
@@ -106,11 +116,11 @@ public class ModuleItemSequenceViewController: UIViewController {
 
     @IBAction func goPrevious() {
         guard let prev = sequence?.prev else { return }
-        update(item: prev, direction: .reverse)
+        show(item: prev, direction: .reverse)
     }
 
     @IBAction func goNext() {
         guard let next = sequence?.next else { return }
-        update(item: next, direction: .forward)
+        show(item: next, direction: .forward)
     }
 }
