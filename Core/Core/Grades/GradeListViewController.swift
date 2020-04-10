@@ -162,7 +162,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
 
         if courses.first?.hideFinalGrades == true {
             totalGradeLabel.text = NSLocalizedString("N/A", bundle: .core, comment: "")
-        } else if gradingPeriodID != nil {
+        } else if gradingPeriodID != nil, gradeEnrollment?.currentScore(gradingPeriodID: gradingPeriodID) != nil {
             totalGradeLabel.text = gradeEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
         } else {
             totalGradeLabel.text = courseEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
