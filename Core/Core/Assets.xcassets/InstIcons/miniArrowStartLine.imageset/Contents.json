@@ -2,7 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "miniArrowStart.pdf"
+      "filename" : "miniArrowStart.pdf",
+      "language-direction" : "left-to-right"
     }
   ],
   "info" : {
