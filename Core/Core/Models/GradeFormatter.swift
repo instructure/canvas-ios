@@ -39,7 +39,7 @@ public class GradeFormatter {
     public static let numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.locale = Locale.current
-        formatter.maximumFractionDigits = 3
+        formatter.maximumFractionDigits = 2
         formatter.minimumFractionDigits = 0
         formatter.numberStyle = .decimal
         return formatter

@@ -46,11 +46,11 @@ class ConferenceTests: CoreTestCase {
         XCTAssertEqual(conference.statusColor, .named(.textDark))
         conference.startedAt = DateComponents(calendar: .current, year: 2020, month: 3, day: 14, hour: 13).date
         XCTAssertEqual(conference.statusText, "In Progress")
-        XCTAssertEqual(conference.statusLongText.string, "In Progress | Started Mar 14 at 1:00 PM")
+        XCTAssertEqual(conference.statusLongText.string, "In Progress | Started Mar 14, 2020 at 1:00 PM")
         XCTAssertEqual(conference.statusColor, .named(.textSuccess))
         conference.endedAt = DateComponents(calendar: .current, year: 2020, month: 3, day: 14, hour: 13).date
-        XCTAssertEqual(conference.statusText, "Concluded Mar 14 at 1:00 PM")
-        XCTAssertEqual(conference.statusLongText.string, "Concluded Mar 14 at 1:00 PM")
+        XCTAssertEqual(conference.statusText, "Concluded Mar 14, 2020 at 1:00 PM")
+        XCTAssertEqual(conference.statusLongText.string, "Concluded Mar 14, 2020 at 1:00 PM")
         XCTAssertEqual(conference.statusColor, .named(.textDark))
     }
 

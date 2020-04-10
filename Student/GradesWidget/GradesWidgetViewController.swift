@@ -65,8 +65,7 @@ func isDeviceLocked() -> Bool {
 }
 
 class GradesWidgetViewController: UIViewController {
-    lazy var presenter = GradesWidgetPresenter(view: self)
-
+    let env = AppEnvironment.shared
     var error: Error?
 
     var sectionHeaderHeight: CGFloat {
@@ -84,6 +83,20 @@ class GradesWidgetViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var viewMoreButton: UIButton?
+
+    lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
+        self?.reload()
+    }
+    lazy var courses: Store<LocalUseCase<Course>> = env.subscribe(scope: .all(orderBy: #keyPath(Course.id))) { [weak self] in
+        self?.reload()
+    }
+    lazy var favorites = env.subscribe(GetCourses(showFavorites: true, perPage: 99)) { [weak self] in
+        self?.reload()
+    }
+    lazy var submissionList = env.subscribe(GetRecentlyGradedSubmissions(userID: "self")) { [weak self] in
+        self?.reload()
+    }
+    var submissions: [Submission] { submissionList.first?.submissions ?? [] }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -112,14 +125,17 @@ class GradesWidgetViewController: UIViewController {
         guard let mostRecentKeyChain = LoginSession.mostRecent else {
             return showError(GradesWidgetError.notLoggedIn)
         }
-        AppEnvironment.shared.userDidLogin(session: mostRecentKeyChain)
-        presenter.viewIsReady()
+        env.userDidLogin(session: mostRecentKeyChain)
+
+        colors.refresh()
+        favorites.refresh(force: true)
+        submissionList.refresh(force: true)
     }
 
     func reload() {
-        if let error = presenter.favorites.error {
+        if let error = favorites.error {
             showError(error)
-        } else if presenter.favorites.isEmpty && !presenter.favorites.pending {
+        } else if favorites.isEmpty && !favorites.pending {
             showError(GradesWidgetError.noFavoritedCourses)
         } else {
             showError(nil)
@@ -140,7 +156,7 @@ class GradesWidgetViewController: UIViewController {
 extension GradesWidgetViewController: UITableViewDataSource {
     func maxNumCourseRows() -> Int {
         let totalHeight = extensionContext?.widgetMaximumSize(for: .expanded).height ?? 0
-        let assignmentSectionHeight = self.tableView(self.tableView, heightForHeaderInSection: 0) + (CGFloat(presenter.submissions.count) * self.rowHeight)
+        let assignmentSectionHeight = self.tableView(self.tableView, heightForHeaderInSection: 0) + (CGFloat(submissions.count) * self.rowHeight)
         let maxCourseRowsHeight = totalHeight - assignmentSectionHeight - self.sectionHeaderHeight
         return Int(floor(maxCourseRowsHeight / self.rowHeight))
     }
@@ -157,7 +173,7 @@ extension GradesWidgetViewController: UITableViewDataSource {
             return 0
         }
 
-        if section == 0 && presenter.submissions.count == 0 {
+        if section == 0 && submissions.count == 0 {
             return 0
         }
 
@@ -192,18 +208,18 @@ extension GradesWidgetViewController: UITableViewDataSource {
         }
 
         if section == 0 {
-            return presenter.submissions.count
+            return submissions.count
         }
 
         let maxRows = maxNumCourseRows()
 
         // We have the same number of courses as the max we can show
-        if maxRows == presenter.favorites.count {
-            return presenter.favorites.count
+        if maxRows == favorites.count {
+            return favorites.count
         }
 
         // we either have more or less than the maxRows count
-        let rowsToShow = min(presenter.favorites.count, maxRows - 1)
+        let rowsToShow = min(favorites.count, maxRows - 1)
         return rowsToShow
     }
 
@@ -224,7 +240,7 @@ extension GradesWidgetViewController: UITableViewDataSource {
     }
 
     func courseGradeCell(indexPath: IndexPath) -> UITableViewCell {
-        let course = presenter.favorites[indexPath.row]
+        let course = favorites[indexPath.row]
 
         let cell = tableView.dequeue(for: indexPath) as GradesWidgetCourseCell
         cell.courseNameLabel?.text = course?.name
@@ -234,9 +250,9 @@ extension GradesWidgetViewController: UITableViewDataSource {
     }
 
     func assignmentGradeCell(indexPath: IndexPath) -> UITableViewCell {
-        let submission = presenter.submissions[indexPath.row]
-        let assignment = submission?.assignment
-        let course = presenter.courses.first(where: { $0.id == assignment?.courseID })
+        let submission = submissions[indexPath.row]
+        let assignment = submission.assignment
+        let course = courses.first(where: { $0.id == assignment?.courseID })
 
         let cell = tableView.dequeue(for: indexPath) as GradesWidgetAssignmentCell
         cell.courseNameLabel?.text = course?.name
@@ -275,7 +291,7 @@ extension GradesWidgetViewController: UITableViewDelegate {
     }
 
     func openAssignment(indexPath: IndexPath, host: String) {
-        guard let submission = presenter.submissions[indexPath.row], let assignment = submission.assignment else {
+        guard let assignment = submissions[indexPath.row].assignment else {
             extensionContext?.open(URL(string: "canvas-courses://\(host)")!)
             return
         }
@@ -284,7 +300,7 @@ extension GradesWidgetViewController: UITableViewDelegate {
     }
 
     func openCourse(indexPath: IndexPath, host: String) {
-        guard let course = presenter.favorites[indexPath.row] else {
+        guard let course = favorites[indexPath.row] else {
             extensionContext?.open(URL(string: "canvas-courses://\(host)")!)
             return
         }
@@ -310,14 +326,14 @@ extension GradesWidgetViewController: NCWidgetProviding {
             return
         }
 
-        let numSections = presenter.submissions.count > 0 ? 2 : 1
+        let numSections = submissions.count > 0 ? 2 : 1
         let sectionsHeight = self.sectionHeaderHeight * CGFloat(numSections)
-        let assignmentGradesHeight = self.rowHeight * CGFloat(presenter.submissions.count)
-        let courseGradesHeight = self.rowHeight * CGFloat(presenter.favorites.count)
+        let assignmentGradesHeight = self.rowHeight * CGFloat(submissions.count)
+        let courseGradesHeight = self.rowHeight * CGFloat(favorites.count)
         let tableViewHeight = sectionsHeight + assignmentGradesHeight + courseGradesHeight
         let maxHeight = min(maxSize.height, tableViewHeight)
 
-        viewMoreButton?.isHidden = maxNumCourseRows() >= presenter.favorites.count
+        viewMoreButton?.isHidden = maxNumCourseRows() >= favorites.count
 
         preferredContentSize = CGSize(width: 0, height: maxHeight)
         tableView.reloadData()

@@ -29,15 +29,14 @@ public final class AssignmentGroup: NSManagedObject {
 
     @discardableResult
     public static func save(_ item: APIAssignmentGroup, courseID: String, in context: NSManagedObjectContext) -> AssignmentGroup {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(AssignmentGroup.id), item.id.value)
-        let model: AssignmentGroup = context.fetch(predicate).first ?? context.insert()
+        let model: AssignmentGroup = context.first(where: #keyPath(AssignmentGroup.id), equals: item.id.value) ?? context.insert()
         model.id = item.id.value
         model.name = item.name
         model.position = item.position
         model.courseID = courseID
 
         for a in item.assignments ?? [] {
-            let assignment = Assignment.save(a, in: context, updateSubmission: false)
+            let assignment = Assignment.save(a, in: context, updateSubmission: true)
             assignment.assignmentGroupPosition = item.position
             assignment.assignmentGroup = model
         }

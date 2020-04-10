@@ -188,9 +188,8 @@ extension APIAssignmentListAssignment {
         }
 
         if let dueAt = dueAt {
-            let dtString = DateFormatter.localizedString(from: dueAt, dateStyle: .medium, timeStyle: .short)
             let format = NSLocalizedString("Due %@", bundle: .core, comment: "i.e. Due <Jan 10, 2020 at 9:00 PM>")
-            return String.localizedStringWithFormat(format, dtString)
+            return String.localizedStringWithFormat(format, dueAt.relativeDateTimeString)
         }
 
         return NSLocalizedString("No Due Date", bundle: .core, comment: "")

@@ -22,6 +22,15 @@ import UIKit
 
 public typealias RubricAssessments = [String: RubricAssessment]
 
+public final class SubmissionList: NSManagedObject {
+    @NSManaged public var id: String
+    @NSManaged var submissionsRaw: NSOrderedSet
+    public var submissions: [Submission] {
+        get { submissionsRaw.array.compactMap { $0 as? Submission } }
+        set { submissionsRaw = NSOrderedSet(array: newValue) }
+    }
+}
+
 final public class Submission: NSManagedObject {
     @NSManaged public var assignment: Assignment?
     @NSManaged public var assignmentID: String
@@ -290,10 +299,12 @@ public enum SubmissionStatus {
     var color: UIColor {
         switch self {
         case .late:
-            return .named(.fire)
+            return .named(.textWarning)
         case .missing:
-            return .named(.crimson)
-        case .submitted, .notSubmitted:
+            return .named(.textDanger)
+        case .submitted:
+            return .named(.textSuccess)
+        case .notSubmitted:
             return .named(.textDark)
         }
     }
