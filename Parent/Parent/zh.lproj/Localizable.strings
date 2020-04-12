@@ -22,9 +22,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
-/* Label for button that allows admin to Act as User */
-"Act as User" = "临时代理用户";
-
 /* No comment provided by engineer. */
 "Add" = "添加";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "添加学生";
-
-/* Label displayed when logged in as an admin */
-"Admin" = "管理员";
 
 /* Alert Section Header */
 "Alert me when:" = "通知我当：";
@@ -279,9 +273,6 @@
 /* No comment provided by engineer. */
 "Syllabus" = "教学大纲";
 
-/* Directions in the admin view */
-"Tap to start viewing Canvas as another person." = "轻触以开始以另一个人的身份查看 Canvas。";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "加载AlertKit数据库文件时出现问题。";
 
@@ -308,9 +299,6 @@
 
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "上传 %1$@ 位于%2$@";
-
-/* Header title of admin view */
-"Welcome!" = "欢迎！";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "您必须允许“设置”中的通知设置提醒。";

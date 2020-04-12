@@ -320,8 +320,11 @@
   "compose_message_8abd180a": {
     "message": "Compose message"
   },
-  "conferences_a0a8984b": {
-    "message": "Conferences"
+  "conference_in_progress_bed08457": {
+    "message": "Conference in progress"
+  },
+  "conference_name_is_in_progress_tap_to_view_details_86ffeb1": {
+    "message": "Conference { name } is in progress, tap to view details"
   },
   "conversation_options_8be926f3": {
     "message": "Conversation options"
@@ -1529,9 +1532,6 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "There are no comments to display."
   },
-  "there_are_no_conferences_to_display_400a0413": {
-    "message": "There are no conferences to display."
-  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "There are no discussions to display."
   },
@@ -1561,6 +1561,9 @@
   },
   "there_was_a_problem_loading_the_groups_6945e624": {
     "message": "Error loading the groups."
+  },
+  "there_was_a_problem_loading_the_live_conferences_d80f2f9e": {
+    "message": "There was a problem loading the live conferences."
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
     "message": "There was a problem loading the quiz submissions."

@@ -32,6 +32,12 @@
 "Alerts" = "Notiser";
 
 /* No comment provided by engineer. */
+"All annotations saved." = "Alla noteringar har sparats.";
+
+/* All Courses screen title */
+"All Courses" = "Alla kurser";
+
+/* No comment provided by engineer. */
 "All Grading Periods" = "Alla bedömningsperioder";
 
 /* No comment provided by engineer. */
@@ -173,6 +179,9 @@
 "Collapse" = "Stäng";
 
 /* No comment provided by engineer. */
+"collapsed" = "minimerad";
+
+/* No comment provided by engineer. */
 "Color Overlay" = "Färgöverlägg";
 
 /* No comment provided by engineer. */
@@ -183,9 +192,6 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Färdig";
-
-/* concluded date at time */
-"Concluded %@ at %@" = "Slutförde %1$@ kl. %2$@";
 
 /* No comment provided by engineer. */
 "Concluded Conferences" = "Avslutade konferenser";
@@ -210,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Conversations" = "Konversationer";
+
+/* No comment provided by engineer. */
+"Copied!" = "Kopierad!";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "Det gick inte att spara aviseringsinställning";
@@ -317,16 +326,19 @@
 "End Act as User" = "Sluta agera som användaren";
 
 /* No comment provided by engineer. */
-"Enrollment not found." = "Registreringen hittades inte";
+"Error" = "Fel";
 
 /* No comment provided by engineer. */
-"Error" = "Fel";
+"Error Saving. Tap to retry." = "Det gick inte att spara. Tryck för att försöka igen.";
 
 /* No comment provided by engineer. */
 "Excused" = "Ursäktad";
 
 /* No comment provided by engineer. */
 "Expand" = "Expandera";
+
+/* No comment provided by engineer. */
+"expanded" = "expanderad";
 
 /* No comment provided by engineer. */
 "Experimental Features" = "Experimentella funktioner";
@@ -518,6 +530,9 @@
 "list_or_two" = "%1$@ eller %2$@";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "Läser in fler moduler...";
+
+/* No comment provided by engineer. */
 "Locate QR Code" = "Lokalisera QR-kod";
 
 /* No comment provided by engineer. */
@@ -563,6 +578,9 @@
 "Missing" = "Saknas";
 
 /* No comment provided by engineer. */
+"Modules" = "Moduler";
+
+/* No comment provided by engineer. */
 "N/A" = "Ej tillämpligt";
 
 /* No comment provided by engineer. */
@@ -597,6 +615,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Ingen bild hittades i bildväljaren";
+
+/* No comment provided by engineer. */
+"No Modules" = "Inga moduler";
 
 /* No comment provided by engineer. */
 "No Results" = "Inga resultat";
@@ -641,6 +662,9 @@
 "On Paper" = "På papper";
 
 /* No comment provided by engineer. */
+"Open %@ user preferences" = "Öppna %@ användarinställningar";
+
+/* No comment provided by engineer. */
 "orange" = "orange";
 
 /* No comment provided by engineer. */
@@ -656,7 +680,13 @@
 "Pages" = "Sidor";
 
 /* No comment provided by engineer. */
+"Pair with Observer" = "Koppla med observatör";
+
+/* No comment provided by engineer. */
 "Password" = "Lösenord";
+
+/* No comment provided by engineer. */
+"Past Enrollments" = "Tidigare registreringar";
 
 /* No comment provided by engineer. */
 "Pause" = "Pausa";
@@ -693,6 +723,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Profilmeny";
+
+/* No comment provided by engineer. */
+"published" = "publicerad";
 
 /* No comment provided by engineer. */
 "purple" = "lila";
@@ -740,6 +773,9 @@
 "Retry" = "Försök igen";
 
 /* No comment provided by engineer. */
+"Saving..." = "Sparar ...";
+
+/* No comment provided by engineer. */
 "Scanning not supported" = "Skanning stöds inte";
 
 /* No comment provided by engineer. */
@@ -747,6 +783,12 @@
 
 /* No comment provided by engineer. */
 "Search" = "Sök";
+
+/* No comment provided by engineer. */
+"See All" = "Se alla";
+
+/* No comment provided by engineer. */
+"See All Courses" = "Se alla kurser";
 
 /* No comment provided by engineer. */
 "See attached files." = "Se bifogade filer.";
@@ -805,9 +847,6 @@
 /* No comment provided by engineer. */
 "Start recording" = "Starta inspelning";
 
-/* started date at time */
-"Started %@ at %@" = "Startade %1$@ kl. %2$@";
-
 /* No comment provided by engineer. */
 "Stop Act as User" = "Sluta agera som användare";
 
@@ -860,6 +899,9 @@
 "Tap here for help." = "Tryck här för hjälp.";
 
 /* No comment provided by engineer. */
+"Tap to copy" = "Tryck för att kopiera";
+
+/* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tryck för att välja som kurser du vill se i kalendern.";
 
 /* No comment provided by engineer. */
@@ -893,7 +935,7 @@
 "There are no conferences to display yet." = "Det finns inga konferenser att visa än.";
 
 /* No comment provided by engineer. */
-"There are no pages to display." = "Det finns inga sidor att visa.";
+"There are no modules to display yet." = "Det finns inga moduler att visa än.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Det gick inte att hämta användningsvillkoren.";
@@ -906,6 +948,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading events. Pull to refresh to try again." = "Det gick inte att läsa in händelser. Dra för att uppdatera igen.";
+
+/* No comment provided by engineer. */
+"There was an error loading modules. Pull to refresh to try again." = "Det gick inte att läsa in modulerna. Dra för att uppdatera igen.";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "Det gick inte att läsa in personer. Dra för att uppdatera igen.";
@@ -924,6 +969,9 @@
 
 /* No comment provided by engineer. */
 "This is a media comment" = "Detta är en mediekommentar";
+
+/* No comment provided by engineer. */
+"This module is empty." = "Den här modulen är tom.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Förfluten tid";
@@ -953,6 +1001,9 @@
 "Unordered List" = "Ej ordnad lista";
 
 /* No comment provided by engineer. */
+"unpublished" = "avpublicerad";
+
+/* No comment provided by engineer. */
 "Updated Language Settings" = "Uppdaterade språkinställningar";
 
 /* No comment provided by engineer. */
@@ -969,6 +1020,9 @@
 
 /* No comment provided by engineer. */
 "Use Camera" = "Använd kamera";
+
+/* No comment provided by engineer. */
+"Use this code to pair with me in Canvas Parent: %@" = "Använd den här koden för att koppla samman oss i Canvas Parent: %@";
 
 /* No comment provided by engineer. */
 "User ID" = "Användar-ID";

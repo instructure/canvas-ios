@@ -320,8 +320,11 @@
   "compose_message_8abd180a": {
     "message": "Sestavi sporočilo"
   },
-  "conferences_a0a8984b": {
-    "message": "Konference"
+  "conference_in_progress_bed08457": {
+    "message": "V teku je konferenca"
+  },
+  "conference_name_is_in_progress_tap_to_view_details_86ffeb1": {
+    "message": "V teku je konferenca { name }, tapnite za podrobnosti"
   },
   "conversation_options_8be926f3": {
     "message": "Možnosti pogovora"
@@ -1529,9 +1532,6 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "Ni nobenih komentarjev za prikaz."
   },
-  "there_are_no_conferences_to_display_400a0413": {
-    "message": "Ni nobenih konferenc za prikaz."
-  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Ni nobenih razprav za prikaz."
   },
@@ -1561,6 +1561,9 @@
   },
   "there_was_a_problem_loading_the_groups_6945e624": {
     "message": "Prišlo je do težav pri nalaganju skupin."
+  },
+  "there_was_a_problem_loading_the_live_conferences_d80f2f9e": {
+    "message": "Prišlo je do težav pri nalaganju konferenc v živo."
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
     "message": "Prišlo je do težav pri nalaganju oddaj kviza."

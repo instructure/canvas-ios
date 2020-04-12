@@ -184,9 +184,6 @@
 /* No comment provided by engineer. */
 "Complete" = "Fuldført";
 
-/* concluded date at time */
-"Concluded %@ at %@" = "Afsluttet %1$@ kl. %2$@";
-
 /* No comment provided by engineer. */
 "Concluded Conferences" = "Afsluttede konferencer";
 
@@ -315,9 +312,6 @@
 
 /* No comment provided by engineer. */
 "End Act as User" = "Afslut \\'funger som bruger\\'";
-
-/* No comment provided by engineer. */
-"Enrollment not found." = "Tilmelding ikke fundet.";
 
 /* No comment provided by engineer. */
 "Error" = "Fejl";
@@ -805,9 +799,6 @@
 /* No comment provided by engineer. */
 "Start recording" = "Start optagelsen";
 
-/* started date at time */
-"Started %@ at %@" = "Startede %1$@ kl. %2$@";
-
 /* No comment provided by engineer. */
 "Stop Act as User" = "Hold op med at fungere som bruger";
 
@@ -891,9 +882,6 @@
 
 /* No comment provided by engineer. */
 "There are no conferences to display yet." = "Der er ikke nogen konferencer at vise endnu.";
-
-/* No comment provided by engineer. */
-"There are no pages to display." = "Der er ikke nogen sider at vise.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Der opstod et problem ved hentning af Betingelser for brug";

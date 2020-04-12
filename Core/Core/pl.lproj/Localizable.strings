@@ -32,6 +32,12 @@
 "Alerts" = "Alerty";
 
 /* No comment provided by engineer. */
+"All annotations saved." = "Zapisano wszystkie adnotacje.";
+
+/* All Courses screen title */
+"All Courses" = "Wszystkie kursy";
+
+/* No comment provided by engineer. */
 "All Grading Periods" = "Wszystkie okresy oceniania";
 
 /* No comment provided by engineer. */
@@ -173,6 +179,9 @@
 "Collapse" = "Zwiń";
 
 /* No comment provided by engineer. */
+"collapsed" = "zwinięte";
+
+/* No comment provided by engineer. */
 "Color Overlay" = "Kolor nakładki";
 
 /* No comment provided by engineer. */
@@ -183,9 +192,6 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Ukończony";
-
-/* concluded date at time */
-"Concluded %@ at %@" = "Zakończono %1$@ o %2$@";
 
 /* No comment provided by engineer. */
 "Concluded Conferences" = "Zakończone konferencje";
@@ -210,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Conversations" = "Rozmowy";
+
+/* No comment provided by engineer. */
+"Copied!" = "Skopiowano!";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "Nie można zapisać preferencji powiadomień";
@@ -317,16 +326,19 @@
 "End Act as User" = "Zakończ podszywanie się jako użytkownik";
 
 /* No comment provided by engineer. */
-"Enrollment not found." = "Nie znaleziono zapisu.";
+"Error" = "Błąd";
 
 /* No comment provided by engineer. */
-"Error" = "Błąd";
+"Error Saving. Tap to retry." = "Błąd podczas zapisywania. Stuknij, aby ponowić.";
 
 /* No comment provided by engineer. */
 "Excused" = "Usprawiedliwiony";
 
 /* No comment provided by engineer. */
 "Expand" = "Rozwiń";
+
+/* No comment provided by engineer. */
+"expanded" = "rozwinięte";
 
 /* No comment provided by engineer. */
 "Experimental Features" = "Funkcje eksperymentalne";
@@ -518,6 +530,9 @@
 "list_or_two" = "%1$@ lub %2$@";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "Trwa ładowanie kolejnych modułów...";
+
+/* No comment provided by engineer. */
 "Locate QR Code" = "Znajdź kod QR";
 
 /* No comment provided by engineer. */
@@ -563,6 +578,9 @@
 "Missing" = "Brak";
 
 /* No comment provided by engineer. */
+"Modules" = "Moduły";
+
+/* No comment provided by engineer. */
 "N/A" = "Nd.";
 
 /* No comment provided by engineer. */
@@ -597,6 +615,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Nie odnaleziono obrazu z narzędzia wyboru obrazów";
+
+/* No comment provided by engineer. */
+"No Modules" = "Brak modułów";
 
 /* No comment provided by engineer. */
 "No Results" = "Brak wyników";
@@ -641,6 +662,9 @@
 "On Paper" = "Na papierze";
 
 /* No comment provided by engineer. */
+"Open %@ user preferences" = "Otwórz preferencje użytkownika %@";
+
+/* No comment provided by engineer. */
 "orange" = "pomarańczowy";
 
 /* No comment provided by engineer. */
@@ -656,7 +680,13 @@
 "Pages" = "Strony";
 
 /* No comment provided by engineer. */
+"Pair with Observer" = "Paruj z obserwującym";
+
+/* No comment provided by engineer. */
 "Password" = "Hasło";
+
+/* No comment provided by engineer. */
+"Past Enrollments" = "Wcześniejsze zapisy";
 
 /* No comment provided by engineer. */
 "Pause" = "Pauza";
@@ -693,6 +723,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Menu profilu";
+
+/* No comment provided by engineer. */
+"published" = "opublikowane";
 
 /* No comment provided by engineer. */
 "purple" = "fioletowy";
@@ -740,6 +773,9 @@
 "Retry" = "Ponów próbę";
 
 /* No comment provided by engineer. */
+"Saving..." = "Zapisywanie...";
+
+/* No comment provided by engineer. */
 "Scanning not supported" = "Skanowanie nie jest obsługiwane";
 
 /* No comment provided by engineer. */
@@ -747,6 +783,12 @@
 
 /* No comment provided by engineer. */
 "Search" = "Wyszukaj";
+
+/* No comment provided by engineer. */
+"See All" = "Zobacz wszystko";
+
+/* No comment provided by engineer. */
+"See All Courses" = "Zobacz wszystkie kursy";
 
 /* No comment provided by engineer. */
 "See attached files." = "Pokaż dołączone pliki.";
@@ -805,9 +847,6 @@
 /* No comment provided by engineer. */
 "Start recording" = "Rozpocznij nagrywanie";
 
-/* started date at time */
-"Started %@ at %@" = "Rozpoczęto %1$@ o %2$@";
-
 /* No comment provided by engineer. */
 "Stop Act as User" = "Zatrzymaj podszywanie się jako użytkownik";
 
@@ -860,6 +899,9 @@
 "Tap here for help." = "Stuknij tutaj, aby uzyskać pomoc.";
 
 /* No comment provided by engineer. */
+"Tap to copy" = "Stuknij, aby skopiować";
+
+/* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Stuknij, aby wybrać kursy, które chcesz zobaczyć w kalendarzu.";
 
 /* No comment provided by engineer. */
@@ -893,7 +935,7 @@
 "There are no conferences to display yet." = "Brak konferencji do wyświetlenia.";
 
 /* No comment provided by engineer. */
-"There are no pages to display." = "Brak stron do wyświetlenia.";
+"There are no modules to display yet." = "Brak modułów do wyświetlenia.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Wystąpił problem z pobraniem Warunków korzystania.";
@@ -906,6 +948,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading events. Pull to refresh to try again." = "Wystąpił błąd podczas wczytywania wydarzeń. Przeciągnij, aby odświeżyć widok, i spróbuj ponownie.";
+
+/* No comment provided by engineer. */
+"There was an error loading modules. Pull to refresh to try again." = "Wystąpił błąd podczas wczytywania modułów. Przeciągnij, aby odświeżyć widok, i spróbuj ponownie.";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "Wystąpił błąd podczas wczytywania osób. Przeciągnij, aby odświeżyć widok, i spróbuj ponownie.";
@@ -924,6 +969,9 @@
 
 /* No comment provided by engineer. */
 "This is a media comment" = "To komentarz w formie multimedialnej";
+
+/* No comment provided by engineer. */
+"This module is empty." = "Ten moduł jest pusty.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Czas do tej pory";
@@ -953,6 +1001,9 @@
 "Unordered List" = "Lista nieuporządkowana";
 
 /* No comment provided by engineer. */
+"unpublished" = "nieopublikowane";
+
+/* No comment provided by engineer. */
 "Updated Language Settings" = "Zaktualizuj ustawienia językowe";
 
 /* No comment provided by engineer. */
@@ -969,6 +1020,9 @@
 
 /* No comment provided by engineer. */
 "Use Camera" = "Użyj kamery";
+
+/* No comment provided by engineer. */
+"Use this code to pair with me in Canvas Parent: %@" = "Użyj tego kodu do sparowania ze mną w Canvas Parent; %@";
 
 /* No comment provided by engineer. */
 "User ID" = "ID użytkownika";

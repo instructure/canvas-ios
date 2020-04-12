@@ -22,9 +22,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
-/* Label for button that allows admin to Act as User */
-"Act as User" = "تصرف كمستخدم";
-
 /* No comment provided by engineer. */
 "Add" = "إضافة";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "إضافة طالب";
-
-/* Label displayed when logged in as an admin */
-"Admin" = "المسؤول";
 
 /* Alert Section Header */
 "Alert me when:" = "تنبيهي عندما:";
@@ -279,9 +273,6 @@
 /* No comment provided by engineer. */
 "Syllabus" = "المناهج";
 
-/* Directions in the admin view */
-"Tap to start viewing Canvas as another person." = "انقر لبدء عرض Canvas كشخص آخر.";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "حدثت مشكلة أثناء تحميل ملف قاعدة البيانات AlertKit.";
 
@@ -308,9 +299,6 @@
 
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "تحميل %1$@ في %2$@";
-
-/* Header title of admin view */
-"Welcome!" = "مرحبًا!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "يجب السماح بالإعلامات في الإعدادات لتعيين التذكيرات.";

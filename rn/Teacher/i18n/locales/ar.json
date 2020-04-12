@@ -320,8 +320,11 @@
   "compose_message_8abd180a": {
     "message": "إنشاء رسالة"
   },
-  "conferences_a0a8984b": {
-    "message": "المؤتمرات"
+  "conference_in_progress_bed08457": {
+    "message": "المؤتمر قيد التقدم"
+  },
+  "conference_name_is_in_progress_tap_to_view_details_86ffeb1": {
+    "message": "المؤتمر { name } قيد التقدم، اضغط لعرض التفاصيل."
   },
   "conversation_options_8be926f3": {
     "message": "خيارات المحادثة"
@@ -1529,9 +1532,6 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "لا توجد أي تعليقات للعرض."
   },
-  "there_are_no_conferences_to_display_400a0413": {
-    "message": "لا توجد أي مؤتمرات للعرض."
-  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "لا توجد أي نقاشات للعرض."
   },
@@ -1561,6 +1561,9 @@
   },
   "there_was_a_problem_loading_the_groups_6945e624": {
     "message": "حدثت مشكلة أثناء تحميل المجموعات."
+  },
+  "there_was_a_problem_loading_the_live_conferences_d80f2f9e": {
+    "message": "حدثت مشكلة أثناء تحميل المؤتمرات الحية."
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
     "message": "حدثت مشكلة أثناء تحميل إرسالات الاختبارات الموجزة."

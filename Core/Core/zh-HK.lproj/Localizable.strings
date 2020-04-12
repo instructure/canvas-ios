@@ -32,6 +32,12 @@
 "Alerts" = "提醒";
 
 /* No comment provided by engineer. */
+"All annotations saved." = "所有注釋已儲存。";
+
+/* All Courses screen title */
+"All Courses" = "所有課程";
+
+/* No comment provided by engineer. */
 "All Grading Periods" = "所有評分期";
 
 /* No comment provided by engineer. */
@@ -173,6 +179,9 @@
 "Collapse" = "收起";
 
 /* No comment provided by engineer. */
+"collapsed" = "收起";
+
+/* No comment provided by engineer. */
 "Color Overlay" = "顏色覆蓋";
 
 /* No comment provided by engineer. */
@@ -183,9 +192,6 @@
 
 /* No comment provided by engineer. */
 "Complete" = "完成";
-
-/* concluded date at time */
-"Concluded %@ at %@" = "%1$@ 結束於%2$@";
 
 /* No comment provided by engineer. */
 "Concluded Conferences" = "已結束的會議";
@@ -210,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Conversations" = "交談";
+
+/* No comment provided by engineer. */
+"Copied!" = "已複製！";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "無法保存通知偏好設定";
@@ -317,16 +326,19 @@
 "End Act as User" = "結束作為使用者";
 
 /* No comment provided by engineer. */
-"Enrollment not found." = "找不到註冊學生。";
+"Error" = "錯誤";
 
 /* No comment provided by engineer. */
-"Error" = "錯誤";
+"Error Saving. Tap to retry." = "儲存錯誤。點選以重試。";
 
 /* No comment provided by engineer. */
 "Excused" = "已免除";
 
 /* No comment provided by engineer. */
 "Expand" = "展開";
+
+/* No comment provided by engineer. */
+"expanded" = "展開";
 
 /* No comment provided by engineer. */
 "Experimental Features" = "實驗功能";
@@ -518,6 +530,9 @@
 "list_or_two" = "%1$@或者%2$@";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "正在載入更多單元...";
+
+/* No comment provided by engineer. */
 "Locate QR Code" = "尋找 QR 碼";
 
 /* No comment provided by engineer. */
@@ -563,6 +578,9 @@
 "Missing" = "缺少";
 
 /* No comment provided by engineer. */
+"Modules" = "單元";
+
+/* No comment provided by engineer. */
 "N/A" = "不適用";
 
 /* No comment provided by engineer. */
@@ -597,6 +615,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "從影像選擇器中找不到影像";
+
+/* No comment provided by engineer. */
+"No Modules" = "無單元";
 
 /* No comment provided by engineer. */
 "No Results" = "沒有結果";
@@ -641,6 +662,9 @@
 "On Paper" = "在紙上";
 
 /* No comment provided by engineer. */
+"Open %@ user preferences" = "打開 %@ 用戶偏好設定";
+
+/* No comment provided by engineer. */
 "orange" = "橙色";
 
 /* No comment provided by engineer. */
@@ -656,7 +680,13 @@
 "Pages" = "頁面";
 
 /* No comment provided by engineer. */
+"Pair with Observer" = "與觀察者配對";
+
+/* No comment provided by engineer. */
 "Password" = "密碼";
+
+/* No comment provided by engineer. */
+"Past Enrollments" = "過去的註冊";
 
 /* No comment provided by engineer. */
 "Pause" = "暫停";
@@ -693,6 +723,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "個人檔案選單";
+
+/* No comment provided by engineer. */
+"published" = "已發佈";
 
 /* No comment provided by engineer. */
 "purple" = "紫色";
@@ -740,6 +773,9 @@
 "Retry" = "重試";
 
 /* No comment provided by engineer. */
+"Saving..." = "正在儲存...";
+
+/* No comment provided by engineer. */
 "Scanning not supported" = "不支援掃描";
 
 /* No comment provided by engineer. */
@@ -747,6 +783,12 @@
 
 /* No comment provided by engineer. */
 "Search" = "搜尋";
+
+/* No comment provided by engineer. */
+"See All" = "檢視所有";
+
+/* No comment provided by engineer. */
+"See All Courses" = "檢視所有課程";
 
 /* No comment provided by engineer. */
 "See attached files." = "見所附檔案。";
@@ -805,9 +847,6 @@
 /* No comment provided by engineer. */
 "Start recording" = "開始錄製";
 
-/* started date at time */
-"Started %@ at %@" = "%1$@ 開始於%2$@";
-
 /* No comment provided by engineer. */
 "Stop Act as User" = "停止作為使用者";
 
@@ -860,6 +899,9 @@
 "Tap here for help." = "點按此處獲取支援。";
 
 /* No comment provided by engineer. */
+"Tap to copy" = "點選以複製";
+
+/* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "點選以選擇您要在行事曆上看到的課程。";
 
 /* No comment provided by engineer. */
@@ -893,7 +935,7 @@
 "There are no conferences to display yet." = "尚未有可顯示的會議。";
 
 /* No comment provided by engineer. */
-"There are no pages to display." = "沒有可顯示的頁面。";
+"There are no modules to display yet." = "尚未有可顯示的單元。";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "取得使用條款時出現問題。";
@@ -906,6 +948,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading events. Pull to refresh to try again." = "載入活動時發生錯誤。提取以進行重新整理以再試一次。";
+
+/* No comment provided by engineer. */
+"There was an error loading modules. Pull to refresh to try again." = "載入單元時發生錯誤。提取以進行重新整理以再試一次。";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "載入成員時發生錯誤。提取以進行重新整理以再試一次。";
@@ -924,6 +969,9 @@
 
 /* No comment provided by engineer. */
 "This is a media comment" = "這是媒體評論";
+
+/* No comment provided by engineer. */
+"This module is empty." = "此單元為空。";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "已用時間";
@@ -953,6 +1001,9 @@
 "Unordered List" = "無序列表";
 
 /* No comment provided by engineer. */
+"unpublished" = "未發佈";
+
+/* No comment provided by engineer. */
 "Updated Language Settings" = "已更新語言設定";
 
 /* No comment provided by engineer. */
@@ -969,6 +1020,9 @@
 
 /* No comment provided by engineer. */
 "Use Camera" = "使用攝像頭";
+
+/* No comment provided by engineer. */
+"Use this code to pair with me in Canvas Parent: %@" = "使用此編碼與我在 Canvas Parent 內配對： %@";
 
 /* No comment provided by engineer. */
 "User ID" = "使用者 ID";

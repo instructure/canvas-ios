@@ -305,9 +305,6 @@
 "End Act as User" = "Whakamutu mahi hei Kaiwhakamahi";
 
 /* No comment provided by engineer. */
-"Enrollment not found." = "Whakauru kore i kitea";
-
-/* No comment provided by engineer. */
 "Error" = "Hapa";
 
 /* No comment provided by engineer. */
@@ -822,9 +819,6 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Me tīmata te taupānga anō ki te whakamahi i ngā tautuhinga reo hou. Tēna koa tuku anō i te taupānga.";
-
-/* No comment provided by engineer. */
-"There are no pages to display." = "Kaore ngā whārangi hei whakātu.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "He raruraru i te wā e kimi ana i ngā Ture Whakamahia";

@@ -32,6 +32,12 @@
 "Alerts" = "Viðvaranir";
 
 /* No comment provided by engineer. */
+"All annotations saved." = "Allar textaskýringar voru vistaðar.";
+
+/* All Courses screen title */
+"All Courses" = "Öll námskeið";
+
+/* No comment provided by engineer. */
 "All Grading Periods" = "Öll einkunnatímabil";
 
 /* No comment provided by engineer. */
@@ -173,6 +179,9 @@
 "Collapse" = "Fella";
 
 /* No comment provided by engineer. */
+"collapsed" = "fellt saman";
+
+/* No comment provided by engineer. */
 "Color Overlay" = "Yfirlag litar";
 
 /* No comment provided by engineer. */
@@ -183,9 +192,6 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Lokið";
-
-/* concluded date at time */
-"Concluded %@ at %@" = "Lokið þann %1$@ klukkan %2$@";
 
 /* No comment provided by engineer. */
 "Concluded Conferences" = "Loknar ráðstefnur";
@@ -210,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Conversations" = "Samræður";
+
+/* No comment provided by engineer. */
+"Copied!" = "Afritað!";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "Ekki var hægt að vista kjörstillingum tilkynninga";
@@ -317,16 +326,19 @@
 "End Act as User" = "Hætta að bregðast við sem notandi ";
 
 /* No comment provided by engineer. */
-"Enrollment not found." = "Innritun fannst ekki.";
+"Error" = "Villa";
 
 /* No comment provided by engineer. */
-"Error" = "Villa";
+"Error Saving. Tap to retry." = "Villa við að vista. Smelltu til að reyna aftur.";
 
 /* No comment provided by engineer. */
 "Excused" = "Undanþegið";
 
 /* No comment provided by engineer. */
 "Expand" = "Víkka";
+
+/* No comment provided by engineer. */
+"expanded" = "víkkað";
 
 /* No comment provided by engineer. */
 "Experimental Features" = "Tilraunaeiginleikar";
@@ -518,6 +530,9 @@
 "list_or_two" = "%1$@ eða %2$@";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "Hleð inn fleiri einingum…";
+
+/* No comment provided by engineer. */
 "Locate QR Code" = "Finna QR kóða";
 
 /* No comment provided by engineer. */
@@ -563,6 +578,9 @@
 "Missing" = "Vantar";
 
 /* No comment provided by engineer. */
+"Modules" = "Námsefni";
+
+/* No comment provided by engineer. */
 "N/A" = "Á ekki við";
 
 /* No comment provided by engineer. */
@@ -597,6 +615,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Engin mynd fannst í myndavali okkar";
+
+/* No comment provided by engineer. */
+"No Modules" = "Engar einingar";
 
 /* No comment provided by engineer. */
 "No Results" = "Engar niðurstöður";
@@ -641,6 +662,9 @@
 "On Paper" = "Á blaði";
 
 /* No comment provided by engineer. */
+"Open %@ user preferences" = "Opna %@ kjörstillingar notanda";
+
+/* No comment provided by engineer. */
 "orange" = "appelsínugulur";
 
 /* No comment provided by engineer. */
@@ -656,7 +680,13 @@
 "Pages" = "Síður";
 
 /* No comment provided by engineer. */
+"Pair with Observer" = "Para við áhorfanda";
+
+/* No comment provided by engineer. */
 "Password" = "Lykilorð";
+
+/* No comment provided by engineer. */
+"Past Enrollments" = "Fyrri innritanir";
 
 /* No comment provided by engineer. */
 "Pause" = "Gera hlé";
@@ -693,6 +723,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Uppsetningar valmynd";
+
+/* No comment provided by engineer. */
+"published" = "birt";
 
 /* No comment provided by engineer. */
 "purple" = "fjólublár";
@@ -740,6 +773,9 @@
 "Retry" = "Reyna aftur";
 
 /* No comment provided by engineer. */
+"Saving..." = "Vista...";
+
+/* No comment provided by engineer. */
 "Scanning not supported" = "Skönnun er ekki studd";
 
 /* No comment provided by engineer. */
@@ -747,6 +783,12 @@
 
 /* No comment provided by engineer. */
 "Search" = "Leita";
+
+/* No comment provided by engineer. */
+"See All" = "Sjá allt";
+
+/* No comment provided by engineer. */
+"See All Courses" = "Sjá öll námskeið";
 
 /* No comment provided by engineer. */
 "See attached files." = "Sjá viðhengdar skrár.";
@@ -805,9 +847,6 @@
 /* No comment provided by engineer. */
 "Start recording" = "Hefja upptöku";
 
-/* started date at time */
-"Started %@ at %@" = "Byrjað þann %1$@ klukkan %2$@";
-
 /* No comment provided by engineer. */
 "Stop Act as User" = "Hætta að bregðast við sem notandi";
 
@@ -860,6 +899,9 @@
 "Tap here for help." = "Smelltu hér til að fá hjálp.";
 
 /* No comment provided by engineer. */
+"Tap to copy" = "Smelltu til að afrita";
+
+/* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Smelltu til að velja námskeiðin sem þú vilt sjá á dagatalinu.";
 
 /* No comment provided by engineer. */
@@ -893,7 +935,7 @@
 "There are no conferences to display yet." = "Það eru engar ráðstefnur til að sýna enn.";
 
 /* No comment provided by engineer. */
-"There are no pages to display." = "Það eru engir síður til að sýna.";
+"There are no modules to display yet." = "Ekki er hægt að sýna neinar einingar enn.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Vandamál kom upp við að endurheimta notandaskilmála.";
@@ -906,6 +948,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading events. Pull to refresh to try again." = "Villa kom upp við að sækja viðburði. Dragðu til að endurglæða til að reyna aftur.";
+
+/* No comment provided by engineer. */
+"There was an error loading modules. Pull to refresh to try again." = "Villa kom upp við að sækja einingar. Dragðu til að endurglæða til að reyna aftur.";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "Villa kom upp við að sækja fólk. Dragðu til að endurglæða til að reyna aftur.";
@@ -924,6 +969,9 @@
 
 /* No comment provided by engineer. */
 "This is a media comment" = "Þetta er miðilsathugasemd";
+
+/* No comment provided by engineer. */
+"This module is empty." = "Þessi eining er tóm.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Liðinn tími";
@@ -953,6 +1001,9 @@
 "Unordered List" = "Óraðaður listi";
 
 /* No comment provided by engineer. */
+"unpublished" = "óbirt";
+
+/* No comment provided by engineer. */
 "Updated Language Settings" = "Uppfærðar tungumálastillingar";
 
 /* No comment provided by engineer. */
@@ -969,6 +1020,9 @@
 
 /* No comment provided by engineer. */
 "Use Camera" = "Nota myndavél";
+
+/* No comment provided by engineer. */
+"Use this code to pair with me in Canvas Parent: %@" = "Notaðu þennan kóða til að para við mig í Canvas foreldri: %@";
 
 /* No comment provided by engineer. */
 "User ID" = "Auðkenni notanda";

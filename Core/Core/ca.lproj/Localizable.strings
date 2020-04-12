@@ -278,9 +278,6 @@
 "End Act as User" = "Deixa d'actuar com a usuari";
 
 /* No comment provided by engineer. */
-"Enrollment not found." = "No s'ha trobat la inscripció.";
-
-/* No comment provided by engineer. */
 "Error" = "Error";
 
 /* No comment provided by engineer. */
@@ -726,9 +723,6 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Per utilitzar la configuració d'idioma nova, cal reiniciar l'aplicació. Torneu a iniciar l'aplicació.";
-
-/* No comment provided by engineer. */
-"There are no pages to display." = "No hi ha cap pàgina que es pugui mostrar.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "S'ha produït un problema en recuperar les condicions d'ús.";

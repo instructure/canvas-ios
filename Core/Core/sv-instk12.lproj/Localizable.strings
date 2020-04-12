@@ -184,9 +184,6 @@
 /* No comment provided by engineer. */
 "Complete" = "Färdig";
 
-/* concluded date at time */
-"Concluded %@ at %@" = "Slutförde %1$@ kl. %2$@";
-
 /* No comment provided by engineer. */
 "Concluded Conferences" = "Avslutade konferenser";
 
@@ -315,9 +312,6 @@
 
 /* No comment provided by engineer. */
 "End Act as User" = "Sluta agera som användaren";
-
-/* No comment provided by engineer. */
-"Enrollment not found." = "Registreringen hittades inte";
 
 /* No comment provided by engineer. */
 "Error" = "Fel";
@@ -805,9 +799,6 @@
 /* No comment provided by engineer. */
 "Start recording" = "Starta inspelning";
 
-/* started date at time */
-"Started %@ at %@" = "Startade %1$@ kl. %2$@";
-
 /* No comment provided by engineer. */
 "Stop Act as User" = "Sluta agera som användare";
 
@@ -891,9 +882,6 @@
 
 /* No comment provided by engineer. */
 "There are no conferences to display yet." = "Det finns inga konferenser att visa än.";
-
-/* No comment provided by engineer. */
-"There are no pages to display." = "Det finns inga sidor att visa.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Det gick inte att hämta användningsvillkoren.";
