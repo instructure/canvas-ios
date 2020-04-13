@@ -177,14 +177,16 @@ public class Router: RouterProtocol {
 
     public func route(to url: URLComponents, from: UIViewController, options: RouteOptions = .noOptions) {
         let url = cleanURL(url)
-        if url.host?.isEmpty == false && !urlMatchesSessionHost(url) {
-            fallback(url, from, options)
-            return
-        }
         #if DEBUG
         DeveloperMenuViewController.recordRouteInHistory(url.url?.absoluteString)
         #endif
         Analytics.shared.logEvent("route", parameters: ["url": String(describing: url)])
+
+        if url.host?.isEmpty == false && !urlMatchesSessionHost(url) {
+            fallback(url, from, options)
+            return
+        }
+
         for route in handlers {
             if let params = route.match(url) {
                 if let view = route.factory(url, params) {
