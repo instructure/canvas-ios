@@ -32,6 +32,12 @@
 "Alerts" = "Alertes";
 
 /* No comment provided by engineer. */
+"All annotations saved." = "Toutes les annotations enregistrées.";
+
+/* All Courses screen title */
+"All Courses" = "Tous les cours";
+
+/* No comment provided by engineer. */
 "All Grading Periods" = "Toutes les périodes de notation";
 
 /* No comment provided by engineer. */
@@ -173,6 +179,9 @@
 "Collapse" = "Réduire";
 
 /* No comment provided by engineer. */
+"collapsed" = "réduit";
+
+/* No comment provided by engineer. */
 "Color Overlay" = "Superposition de couleurs";
 
 /* No comment provided by engineer. */
@@ -183,9 +192,6 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Terminé";
-
-/* concluded date at time */
-"Concluded %@ at %@" = "Terminé %1$@ à %2$@";
 
 /* No comment provided by engineer. */
 "Concluded Conferences" = "Conférences terminées";
@@ -210,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Conversations" = "Conversations";
+
+/* No comment provided by engineer. */
+"Copied!" = "Copié!";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "Impossible d’enregistrer les préférences de notification";
@@ -317,16 +326,19 @@
 "End Act as User" = "Cesser d'agir en tant qu'utilisateur";
 
 /* No comment provided by engineer. */
-"Enrollment not found." = "Inscription non trouvée";
+"Error" = "Erreur";
 
 /* No comment provided by engineer. */
-"Error" = "Erreur";
+"Error Saving. Tap to retry." = "Erreur lors de l'enregistrement. Tapotez pour réessayer.";
 
 /* No comment provided by engineer. */
 "Excused" = "Exempté";
 
 /* No comment provided by engineer. */
 "Expand" = "Développer";
+
+/* No comment provided by engineer. */
+"expanded" = "développé";
 
 /* No comment provided by engineer. */
 "Experimental Features" = "Fonctions expérimentales";
@@ -518,6 +530,9 @@
 "list_or_two" = "%1$@ ou %2$@";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "Chargement de plus de modules";
+
+/* No comment provided by engineer. */
 "Locate QR Code" = "Trouver le code QR";
 
 /* No comment provided by engineer. */
@@ -563,6 +578,9 @@
 "Missing" = "Manquant";
 
 /* No comment provided by engineer. */
+"Modules" = "Modules";
+
+/* No comment provided by engineer. */
 "N/A" = "S.O.";
 
 /* No comment provided by engineer. */
@@ -597,6 +615,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Aucune image trouvée du sélecteur d’images";
+
+/* No comment provided by engineer. */
+"No Modules" = "Aucun module";
 
 /* No comment provided by engineer. */
 "No Results" = "Pas de résultat";
@@ -641,6 +662,9 @@
 "On Paper" = "Sur papier";
 
 /* No comment provided by engineer. */
+"Open %@ user preferences" = "Ouvrir les préférences utilisateur de %@";
+
+/* No comment provided by engineer. */
 "orange" = "orange";
 
 /* No comment provided by engineer. */
@@ -656,7 +680,13 @@
 "Pages" = "Pages";
 
 /* No comment provided by engineer. */
+"Pair with Observer" = "Jumeler avec l’observateur";
+
+/* No comment provided by engineer. */
 "Password" = "Mot de passe";
+
+/* No comment provided by engineer. */
+"Past Enrollments" = "Inscriptions antérieures";
 
 /* No comment provided by engineer. */
 "Pause" = "Mettre en pause";
@@ -693,6 +723,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Menu Profil";
+
+/* No comment provided by engineer. */
+"published" = "publié";
 
 /* No comment provided by engineer. */
 "purple" = "violet";
@@ -740,6 +773,9 @@
 "Retry" = "Réessayer";
 
 /* No comment provided by engineer. */
+"Saving..." = "Sauvegarde en cours...";
+
+/* No comment provided by engineer. */
 "Scanning not supported" = "Numérisation non prise en charge";
 
 /* No comment provided by engineer. */
@@ -747,6 +783,12 @@
 
 /* No comment provided by engineer. */
 "Search" = "Rechercher";
+
+/* No comment provided by engineer. */
+"See All" = "Afficher tout";
+
+/* No comment provided by engineer. */
+"See All Courses" = "Voir tous les cours";
 
 /* No comment provided by engineer. */
 "See attached files." = "Voir les fichiers joints.";
@@ -805,9 +847,6 @@
 /* No comment provided by engineer. */
 "Start recording" = "Démarrer l’enregistrement.";
 
-/* started date at time */
-"Started %@ at %@" = "Commencé %1$@ à %2$@";
-
 /* No comment provided by engineer. */
 "Stop Act as User" = "Arrêter d'agir en tant qu'utilisateur";
 
@@ -860,6 +899,9 @@
 "Tap here for help." = "Appuyer ici pour obtenir de l'aide.";
 
 /* No comment provided by engineer. */
+"Tap to copy" = "Tapoter pour copier";
+
+/* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Appuyez pour sélectionner les cours que vous souhaitez voir sur le calendrier.";
 
 /* No comment provided by engineer. */
@@ -893,7 +935,7 @@
 "There are no conferences to display yet." = "Il n'y a pas encore de conférences à afficher.";
 
 /* No comment provided by engineer. */
-"There are no pages to display." = "Il n'existe aucune page à afficher.";
+"There are no modules to display yet." = "Il n'y a pas encore de modules à afficher.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Un problème est survenu lors de la récupération des conditions d’utilisation.";
@@ -906,6 +948,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading events. Pull to refresh to try again." = "Une erreur est survenue lors du chargement des événements. Tirez pour actualiser et réessayer.";
+
+/* No comment provided by engineer. */
+"There was an error loading modules. Pull to refresh to try again." = "Une erreur est survenue lors du chargement des modules. Tirez pour actualiser et réessayer.";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "Une erreur est survenue lors du chargement des personnes. Tirez pour actualiser et réessayer.";
@@ -924,6 +969,9 @@
 
 /* No comment provided by engineer. */
 "This is a media comment" = "Ceci est un commentaire multimédia";
+
+/* No comment provided by engineer. */
+"This module is empty." = "Ce module est vide.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Temps écoulé";
@@ -953,6 +1001,9 @@
 "Unordered List" = "Liste dans le désordre";
 
 /* No comment provided by engineer. */
+"unpublished" = "non publié";
+
+/* No comment provided by engineer. */
 "Updated Language Settings" = "Paramètres de langue mis à jour";
 
 /* No comment provided by engineer. */
@@ -969,6 +1020,9 @@
 
 /* No comment provided by engineer. */
 "Use Camera" = "Utiliser la caméra";
+
+/* No comment provided by engineer. */
+"Use this code to pair with me in Canvas Parent: %@" = "Utilisez ce code pour vous jumeler avec moi dans Canvas Parent: %@";
 
 /* No comment provided by engineer. */
 "User ID" = "ID utilisateur";

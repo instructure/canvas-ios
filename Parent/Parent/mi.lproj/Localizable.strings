@@ -22,9 +22,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
-/* Label for button that allows admin to Act as User */
-"Act as User" = "Mahi rite kaiwhakamahi";
-
 /* No comment provided by engineer. */
 "Add" = "Tāpiri";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "Tapiri ākonga";
-
-/* Label displayed when logged in as an admin */
-"Admin" = "Whakahaere";
 
 /* Alert Section Header */
 "Alert me when:" = "Matohi ahau ina:";
@@ -279,9 +273,6 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Marautanga";
 
-/* Directions in the admin view */
-"Tap to start viewing Canvas as another person." = "Patopato ki te tīmata ki te tiro Canvas he tangata atu kē.";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "He raruraru i te wā e uta ana i te AlertKit Matāra kōnae pātengi rarunga.";
 
@@ -308,9 +299,6 @@
 
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "E tikiake ana %1$@ kei te %2$@";
-
-/* Header title of admin view */
-"Welcome!" = "Nau Mai!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Me tukua e koe ngā whakamōhiotanga i roto i ngā Tautuhinga ki te whakatau ngā whakamaharatanga.";

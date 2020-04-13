@@ -320,8 +320,11 @@
   "compose_message_8abd180a": {
     "message": "Nachricht verfassen"
   },
-  "conferences_a0a8984b": {
-    "message": "Konferenzen"
+  "conference_in_progress_bed08457": {
+    "message": "Aktive Konferenz"
+  },
+  "conference_name_is_in_progress_tap_to_view_details_86ffeb1": {
+    "message": "Die Konferenz { name } ist aktiv, bitte antippen, um Details anzuzeigen."
   },
   "conversation_options_8be926f3": {
     "message": "Gesprächsoptionen"
@@ -1529,9 +1532,6 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "Es gibt keine Kommentar zum Anzeigen"
   },
-  "there_are_no_conferences_to_display_400a0413": {
-    "message": "Es sind keine Konferenzen anzuzeigen."
-  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Es sind keine Diskussionen anzuzeigen"
   },
@@ -1561,6 +1561,9 @@
   },
   "there_was_a_problem_loading_the_groups_6945e624": {
     "message": "Beim Laden der gruppen ist ein Problem aufgetreten."
+  },
+  "there_was_a_problem_loading_the_live_conferences_d80f2f9e": {
+    "message": "Beim Laden der Live-Konferenzen ist ein Problem aufgetreten."
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
     "message": "Beim Laden der Quizabgaben ist ein Problem aufgetreten."

@@ -22,9 +22,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1–100 %";
 
-/* Label for button that allows admin to Act as User */
-"Act as User" = "Nastopajoči v vlogi uporabnika";
-
 /* No comment provided by engineer. */
 "Add" = "Dodaj";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "Dodaj študenta";
-
-/* Label displayed when logged in as an admin */
-"Admin" = "Skrbnik";
 
 /* Alert Section Header */
 "Alert me when:" = "Obvesti me, ko:";
@@ -279,9 +273,6 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Učni načrt";
 
-/* Directions in the admin view */
-"Tap to start viewing Canvas as another person." = "Tapnite za ogled sistema Canvas v vlogi drugega uporabnika.";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov AlertKit.";
 
@@ -308,9 +299,6 @@
 
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Nalaganje %1$@ je ob %2$@";
-
-/* Header title of admin view */
-"Welcome!" = "Dobrodošli.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Za nastavitev opomnikov morate v možnosti »Nastavitve« dovoliti sporočila.";

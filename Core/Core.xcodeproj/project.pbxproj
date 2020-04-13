@@ -478,9 +478,6 @@
 		7DA260B223F72352005D2121 /* GetEnabledFeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1999AAC2305AA7B00DA97A4 /* GetEnabledFeatureFlags.swift */; };
 		7DA260B323F72352005D2121 /* GetFrontPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3122E8BBEF00D083EE /* GetFrontPage.swift */; };
 		7DA260B423F72352005D2121 /* GetGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DD9214FE06300B95A68 /* GetGroup.swift */; };
-		7DA260B623F72352005D2121 /* GetPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D24722331648B00EDFCFE /* GetPage.swift */; };
-		7DA260B723F72352005D2121 /* GetPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC3EF6822E267BE00799FE2 /* GetPages.swift */; };
-		7DA260B523F72352005D2121 /* GetModules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA270221DE1C80014FB02 /* GetModules.swift */; };
 		7DA260B823F72352005D2121 /* GetQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D819FFE228DB48C00C61EDD /* GetQuiz.swift */; };
 		7DA260B923F72352005D2121 /* GetQuizSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD371BE22E7B20900C2D0F7 /* GetQuizSubmission.swift */; };
 		7DA260BA23F72352005D2121 /* GetQuizzes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF2043216D622B003AF358 /* GetQuizzes.swift */; };
@@ -3438,11 +3435,6 @@
 				B1999AAC2305AA7B00DA97A4 /* GetEnabledFeatureFlags.swift */,
 				3BA9FF7A2332B3BA00196A06 /* GetGradingPeriods.swift */,
 				9FE84DD9214FE06300B95A68 /* GetGroup.swift */,
-				9F4D24722331648B00EDFCFE /* GetPage.swift */,
-				EEC3EF6822E267BE00799FE2 /* GetPages.swift */,
-				B1487F94243E3E4700013404 /* GetModuleItem.swift */,
-				B1131129242D56CF003A79A8 /* GetModuleItemSequence.swift */,
-				B15CA270221DE1C80014FB02 /* GetModules.swift */,
 				3BE1A6F923E4540D0037CAB1 /* GetObservedStudents.swift */,
 				7D819FFE228DB48C00C61EDD /* GetQuiz.swift */,
 				7DD371BE22E7B20900C2D0F7 /* GetQuizSubmission.swift */,

@@ -16,17 +16,11 @@
 /* Percentage field placeholder */
 "1-100%" = "De l'1 al 100 %";
 
-/* Label for button that allows admin to Act as User */
-"Act as User" = "Actua com a usuari";
-
 /* No comment provided by engineer. */
 "Add" = "Afegeix";
 
 /* No comment provided by engineer. */
 "Add Student" = "Afegeix un estudiant";
-
-/* Label displayed when logged in as an admin */
-"Admin" = "Administrador";
 
 /* Alert Section Header */
 "Alert me when:" = "Aviseu-me quan:";
@@ -214,9 +208,6 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Temari";
 
-/* Directions in the admin view */
-"Tap to start viewing Canvas as another person." = "Toqueu per començar a veure Canvas com una altra persona.";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "S'ha produït un problema en carregar el fitxer de la base de dades de AlertKit.";
 
@@ -237,9 +228,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Sense llegir";
-
-/* Header title of admin view */
-"Welcome!" = "Benvingut!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Per tal d'establir recordatoris, heu de permetre les notificacions a Configuració.";

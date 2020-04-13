@@ -32,6 +32,12 @@
 "Alerts" = "アラート";
 
 /* No comment provided by engineer. */
+"All annotations saved." = "すべての注釈が保存されました。";
+
+/* All Courses screen title */
+"All Courses" = "すべてのコース";
+
+/* No comment provided by engineer. */
 "All Grading Periods" = "すべての採点期間";
 
 /* No comment provided by engineer. */
@@ -173,6 +179,9 @@
 "Collapse" = "折りたたみ";
 
 /* No comment provided by engineer. */
+"collapsed" = "折りたたみ";
+
+/* No comment provided by engineer. */
 "Color Overlay" = "カラーオーバーレイ";
 
 /* No comment provided by engineer. */
@@ -183,9 +192,6 @@
 
 /* No comment provided by engineer. */
 "Complete" = "完了";
-
-/* concluded date at time */
-"Concluded %@ at %@" = "%1$@ を＿に終了%2$@";
 
 /* No comment provided by engineer. */
 "Concluded Conferences" = "終了した会議";
@@ -210,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Conversations" = "会話";
+
+/* No comment provided by engineer. */
+"Copied!" = "コピーしました！";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "通知設定を保存できませんでした";
@@ -317,16 +326,19 @@
 "End Act as User" = "ユーザーとして行動することを止める";
 
 /* No comment provided by engineer. */
-"Enrollment not found." = "登録が見つかりません";
+"Error" = "エラー";
 
 /* No comment provided by engineer. */
-"Error" = "エラー";
+"Error Saving. Tap to retry." = "エラーの保存。タップして再試行してください。";
 
 /* No comment provided by engineer. */
 "Excused" = "免除";
 
 /* No comment provided by engineer. */
 "Expand" = "展開";
+
+/* No comment provided by engineer. */
+"expanded" = "拡大";
 
 /* No comment provided by engineer. */
 "Experimental Features" = "実験機能";
@@ -518,6 +530,9 @@
 "list_or_two" = "%1$@または%2$@";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "モジュールをさらにロードしています…";
+
+/* No comment provided by engineer. */
 "Locate QR Code" = "QR コードを探す";
 
 /* No comment provided by engineer. */
@@ -563,6 +578,9 @@
 "Missing" = "欠如";
 
 /* No comment provided by engineer. */
+"Modules" = "モジュール";
+
+/* No comment provided by engineer. */
 "N/A" = "N/A";
 
 /* No comment provided by engineer. */
@@ -597,6 +615,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "画像ピッカーに画像が見つかりませんでした";
+
+/* No comment provided by engineer. */
+"No Modules" = "モジュールなし";
 
 /* No comment provided by engineer. */
 "No Results" = "結果はありません";
@@ -641,6 +662,9 @@
 "On Paper" = "書類上";
 
 /* No comment provided by engineer. */
+"Open %@ user preferences" = "%@ ユーザー設定を開く";
+
+/* No comment provided by engineer. */
 "orange" = "オレンジ";
 
 /* No comment provided by engineer. */
@@ -656,7 +680,13 @@
 "Pages" = "ページ";
 
 /* No comment provided by engineer. */
+"Pair with Observer" = "オブザーバーとペアにする";
+
+/* No comment provided by engineer. */
 "Password" = "パスワード";
+
+/* No comment provided by engineer. */
+"Past Enrollments" = "過去の登録";
 
 /* No comment provided by engineer. */
 "Pause" = "一時停止";
@@ -693,6 +723,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "プロフィールメニュー";
+
+/* No comment provided by engineer. */
+"published" = "公開済み";
 
 /* No comment provided by engineer. */
 "purple" = "パープル";
@@ -740,6 +773,9 @@
 "Retry" = "再試行";
 
 /* No comment provided by engineer. */
+"Saving..." = "保存しています…";
+
+/* No comment provided by engineer. */
 "Scanning not supported" = "スキャンはサポートされていません";
 
 /* No comment provided by engineer. */
@@ -747,6 +783,12 @@
 
 /* No comment provided by engineer. */
 "Search" = "検索";
+
+/* No comment provided by engineer. */
+"See All" = "すべてを表示する";
+
+/* No comment provided by engineer. */
+"See All Courses" = "すべてのコースを表示する";
 
 /* No comment provided by engineer. */
 "See attached files." = "添付ファイルをご参照ください。";
@@ -805,9 +847,6 @@
 /* No comment provided by engineer. */
 "Start recording" = "録画開始";
 
-/* started date at time */
-"Started %@ at %@" = "＿に%1$@を開始しました%2$@";
-
 /* No comment provided by engineer. */
 "Stop Act as User" = "ユーザーとして行動することを止める";
 
@@ -860,6 +899,9 @@
 "Tap here for help." = "ここをタップしてヘルプを表示します。";
 
 /* No comment provided by engineer. */
+"Tap to copy" = "タップしてコピーする";
+
+/* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "タップして予定表に表示したいコースを選択してください。";
 
 /* No comment provided by engineer. */
@@ -893,7 +935,7 @@
 "There are no conferences to display yet." = "表示する会議はまだありません。";
 
 /* No comment provided by engineer. */
-"There are no pages to display." = "表示するページはありません。";
+"There are no modules to display yet." = "表示するモジュールはまだありません。";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "利用規約の取得中に問題が発生しました。";
@@ -906,6 +948,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading events. Pull to refresh to try again." = "イベントのロード中にエラーが発生しました。プルして更新し、再試行してください。";
+
+/* No comment provided by engineer. */
+"There was an error loading modules. Pull to refresh to try again." = "モジュールのロード中にエラーが発生しました。プルして更新し、再試行してください。";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "ピープルのロード中にエラーが発生しました。プルして更新し、再試行してください。";
@@ -924,6 +969,9 @@
 
 /* No comment provided by engineer. */
 "This is a media comment" = "これはメディアコメントです";
+
+/* No comment provided by engineer. */
+"This module is empty." = "このモジュールは空です。";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "経過時間";
@@ -953,6 +1001,9 @@
 "Unordered List" = "順不同リスト";
 
 /* No comment provided by engineer. */
+"unpublished" = "未公開";
+
+/* No comment provided by engineer. */
 "Updated Language Settings" = "更新された言語設定";
 
 /* No comment provided by engineer. */
@@ -969,6 +1020,9 @@
 
 /* No comment provided by engineer. */
 "Use Camera" = "カメラを使用する";
+
+/* No comment provided by engineer. */
+"Use this code to pair with me in Canvas Parent: %@" = "Canvas Parent で私とペアになるには、このコードを使用してください： %@";
 
 /* No comment provided by engineer. */
 "User ID" = "ユーザーID";

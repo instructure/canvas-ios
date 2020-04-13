@@ -22,9 +22,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
-/* Label for button that allows admin to Act as User */
-"Act as User" = "Aji tankou Itilizatè";
-
 /* No comment provided by engineer. */
 "Add" = "Ajoute";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "Ajoute Elèv";
-
-/* Label displayed when logged in as an admin */
-"Admin" = "Admin";
 
 /* Alert Section Header */
 "Alert me when:" = "Avèti mwen lè:";
@@ -279,9 +273,6 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Pwogram";
 
-/* Directions in the admin view */
-"Tap to start viewing Canvas as another person." = "Tape pou kòmanse afiche Canvas tankou yon lòt moun.";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Te gen yon pwoblèm nan chajman fichye baz de done AlertKit a,";
 
@@ -308,9 +299,6 @@
 
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Transfere %1$@ nan %2$@";
-
-/* Header title of admin view */
-"Welcome!" = "Bienveni!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Ou dwe otorize notifikasyon nan Paramèt yo pou ka regle èd memwa yo.";

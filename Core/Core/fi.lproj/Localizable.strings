@@ -32,6 +32,12 @@
 "Alerts" = "Hälytykset";
 
 /* No comment provided by engineer. */
+"All annotations saved." = "Kaikki huomautukset tallennettiin.";
+
+/* All Courses screen title */
+"All Courses" = "Kaikki kurssit";
+
+/* No comment provided by engineer. */
 "All Grading Periods" = "Kaikki arvosanojen antojaksot";
 
 /* No comment provided by engineer. */
@@ -173,6 +179,9 @@
 "Collapse" = "Kutista";
 
 /* No comment provided by engineer. */
+"collapsed" = "kutistettu";
+
+/* No comment provided by engineer. */
 "Color Overlay" = "Värin päällys";
 
 /* No comment provided by engineer. */
@@ -183,9 +192,6 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Valmis";
-
-/* concluded date at time */
-"Concluded %@ at %@" = "%1$@ saatettu päätökseen %2$@";
 
 /* No comment provided by engineer. */
 "Concluded Conferences" = "Loppuunviedyt konferenssit";
@@ -210,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Conversations" = "Viestit";
+
+/* No comment provided by engineer. */
+"Copied!" = "Kopioitu!";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "Ilmoitusasetuksien tallennus ei onnistunut";
@@ -317,16 +326,19 @@
 "End Act as User" = "Päätä toimi käyttäjänä";
 
 /* No comment provided by engineer. */
-"Enrollment not found." = "Rekisteröitymistä ei löytynyt";
+"Error" = "Virhe";
 
 /* No comment provided by engineer. */
-"Error" = "Virhe";
+"Error Saving. Tap to retry." = "Virhe tallennettaessa. Yritä uudelleen napauttamalla.";
 
 /* No comment provided by engineer. */
 "Excused" = "Annettu anteeksi";
 
 /* No comment provided by engineer. */
 "Expand" = "Laajenna";
+
+/* No comment provided by engineer. */
+"expanded" = "laajennettu";
 
 /* No comment provided by engineer. */
 "Experimental Features" = "Kokeelliset omaisuudet";
@@ -518,6 +530,9 @@
 "list_or_two" = "%1$@ tai %2$@";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "Ladataan lisää moduuleita...";
+
+/* No comment provided by engineer. */
 "Locate QR Code" = "Etsi viivakoodi";
 
 /* No comment provided by engineer. */
@@ -563,6 +578,9 @@
 "Missing" = "Puuttuu";
 
 /* No comment provided by engineer. */
+"Modules" = "Moduulit";
+
+/* No comment provided by engineer. */
 "N/A" = "Ei sovellettavissa";
 
 /* No comment provided by engineer. */
@@ -597,6 +615,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Kuvaa ei löytynyt kuvan poimintatoiminnosta";
+
+/* No comment provided by engineer. */
+"No Modules" = "Ei moduuleita";
 
 /* No comment provided by engineer. */
 "No Results" = "Ei tuloksia";
@@ -641,6 +662,9 @@
 "On Paper" = "Paperilla";
 
 /* No comment provided by engineer. */
+"Open %@ user preferences" = "Avaa %@ käyttäjäasetukset";
+
+/* No comment provided by engineer. */
 "orange" = "oranssi";
 
 /* No comment provided by engineer. */
@@ -656,7 +680,13 @@
 "Pages" = "Sivut";
 
 /* No comment provided by engineer. */
+"Pair with Observer" = "Yhdistä havaitsijan kanssa";
+
+/* No comment provided by engineer. */
 "Password" = "Salasana";
+
+/* No comment provided by engineer. */
+"Past Enrollments" = "Menneet rekisteröitymiset";
 
 /* No comment provided by engineer. */
 "Pause" = "Keskeytä";
@@ -693,6 +723,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Esikatseluvalikko";
+
+/* No comment provided by engineer. */
+"published" = "julkaistu";
 
 /* No comment provided by engineer. */
 "purple" = "purppura";
@@ -740,6 +773,9 @@
 "Retry" = "Yritä uudelleen";
 
 /* No comment provided by engineer. */
+"Saving..." = "Tallennetaan...";
+
+/* No comment provided by engineer. */
 "Scanning not supported" = "Skannausta ei tueta";
 
 /* No comment provided by engineer. */
@@ -747,6 +783,12 @@
 
 /* No comment provided by engineer. */
 "Search" = "Hae";
+
+/* No comment provided by engineer. */
+"See All" = "Katso kaikki";
+
+/* No comment provided by engineer. */
+"See All Courses" = "Katso kaikki kurssit";
 
 /* No comment provided by engineer. */
 "See attached files." = "Katso liitetyt tiedostot.";
@@ -805,9 +847,6 @@
 /* No comment provided by engineer. */
 "Start recording" = "Aloita nauhoitus";
 
-/* started date at time */
-"Started %@ at %@" = "Aloitti %1$@ %2$@";
-
 /* No comment provided by engineer. */
 "Stop Act as User" = "Lopeta toimiminen käyttäjänä";
 
@@ -860,6 +899,9 @@
 "Tap here for help." = "Avaa ohje napauttamalla tässä.";
 
 /* No comment provided by engineer. */
+"Tap to copy" = "Kopioi napauttamalla";
+
+/* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Valitse napauttamalla kurssit, jotka haluat nähdä kalenterissa.";
 
 /* No comment provided by engineer. */
@@ -893,7 +935,7 @@
 "There are no conferences to display yet." = "Näytettäviä konferensseja ei vielä ole.";
 
 /* No comment provided by engineer. */
-"There are no pages to display." = "Näytettäviä sivuja ei ole.";
+"There are no modules to display yet." = "Näytettäviä moduuleita ei vielä näytetä.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Ilmeni ongelma käyttöehtoja noudettaessa.";
@@ -906,6 +948,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading events. Pull to refresh to try again." = "Tapahtumien latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
+
+/* No comment provided by engineer. */
+"There was an error loading modules. Pull to refresh to try again." = "Moduulien latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "Ihmisten latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
@@ -924,6 +969,9 @@
 
 /* No comment provided by engineer. */
 "This is a media comment" = "Tämä on mediakommentti";
+
+/* No comment provided by engineer. */
+"This module is empty." = "Tämä moduuli on tyhjä.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Kulunut aika";
@@ -953,6 +1001,9 @@
 "Unordered List" = "Tilaamattomien luettelo";
 
 /* No comment provided by engineer. */
+"unpublished" = "julkaisematon";
+
+/* No comment provided by engineer. */
 "Updated Language Settings" = "Päivitetyt kieliasetukset";
 
 /* No comment provided by engineer. */
@@ -969,6 +1020,9 @@
 
 /* No comment provided by engineer. */
 "Use Camera" = "Käytä kameraa";
+
+/* No comment provided by engineer. */
+"Use this code to pair with me in Canvas Parent: %@" = "Muodosta laitepari kanssani Canvas Parentissa. %@";
 
 /* No comment provided by engineer. */
 "User ID" = "Käyttäjätunnus";

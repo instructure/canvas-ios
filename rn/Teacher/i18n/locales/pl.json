@@ -320,8 +320,11 @@
   "compose_message_8abd180a": {
     "message": "Utwórz wiadomość"
   },
-  "conferences_a0a8984b": {
-    "message": "Konferencje"
+  "conference_in_progress_bed08457": {
+    "message": "Konferencja w toku"
+  },
+  "conference_name_is_in_progress_tap_to_view_details_86ffeb1": {
+    "message": "Konferencja { name } jest w toku; stuknij, aby wyświetlić szczegóły"
   },
   "conversation_options_8be926f3": {
     "message": "Opcje rozmowy"
@@ -1529,9 +1532,6 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "Brak komentarzy do wyświetlenia."
   },
-  "there_are_no_conferences_to_display_400a0413": {
-    "message": "Brak konferencji do wyświetlenia."
-  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Brak dyskusji do wyświetlenia."
   },
@@ -1561,6 +1561,9 @@
   },
   "there_was_a_problem_loading_the_groups_6945e624": {
     "message": "Wystąpił problem z wczytaniem grup."
+  },
+  "there_was_a_problem_loading_the_live_conferences_d80f2f9e": {
+    "message": "Wystąpił problem z wczytaniem konferencji na żywo."
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
     "message": "Wystąpił problem z wczytaniem przesłanych testów."

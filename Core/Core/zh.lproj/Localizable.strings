@@ -32,6 +32,12 @@
 "Alerts" = "警告";
 
 /* No comment provided by engineer. */
+"All annotations saved." = "所有注释已保存。";
+
+/* All Courses screen title */
+"All Courses" = "所有课程";
+
+/* No comment provided by engineer. */
 "All Grading Periods" = "所有评分周期";
 
 /* No comment provided by engineer. */
@@ -173,6 +179,9 @@
 "Collapse" = "折叠";
 
 /* No comment provided by engineer. */
+"collapsed" = "折叠";
+
+/* No comment provided by engineer. */
 "Color Overlay" = "颜色覆盖";
 
 /* No comment provided by engineer. */
@@ -183,9 +192,6 @@
 
 /* No comment provided by engineer. */
 "Complete" = "完成";
-
-/* concluded date at time */
-"Concluded %@ at %@" = "结束日期%1$@，时间%2$@";
 
 /* No comment provided by engineer. */
 "Concluded Conferences" = "已结束的会议";
@@ -210,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Conversations" = "会话";
+
+/* No comment provided by engineer. */
+"Copied!" = "已复制";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "无法保存通知首选项";
@@ -317,16 +326,19 @@
 "End Act as User" = "结束担当用户";
 
 /* No comment provided by engineer. */
-"Enrollment not found." = "未找到注册学生。";
+"Error" = "错误";
 
 /* No comment provided by engineer. */
-"Error" = "错误";
+"Error Saving. Tap to retry." = "保存时出错。点击以重试。";
 
 /* No comment provided by engineer. */
 "Excused" = "已请假";
 
 /* No comment provided by engineer. */
 "Expand" = "展开";
+
+/* No comment provided by engineer. */
+"expanded" = "展开";
 
 /* No comment provided by engineer. */
 "Experimental Features" = "试验功能";
@@ -518,6 +530,9 @@
 "list_or_two" = "%1$@或%2$@";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "正在加载更多单元……";
+
+/* No comment provided by engineer. */
 "Locate QR Code" = "查找二维码";
 
 /* No comment provided by engineer. */
@@ -563,6 +578,9 @@
 "Missing" = "缺失";
 
 /* No comment provided by engineer. */
+"Modules" = "单元";
+
+/* No comment provided by engineer. */
 "N/A" = "不适用";
 
 /* No comment provided by engineer. */
@@ -597,6 +615,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "从图像选择器找不到图像";
+
+/* No comment provided by engineer. */
+"No Modules" = "无模块";
 
 /* No comment provided by engineer. */
 "No Results" = "无结果";
@@ -641,6 +662,9 @@
 "On Paper" = "纸上";
 
 /* No comment provided by engineer. */
+"Open %@ user preferences" = "打开%@用户首选项";
+
+/* No comment provided by engineer. */
 "orange" = "桔黄色";
 
 /* No comment provided by engineer. */
@@ -656,7 +680,13 @@
 "Pages" = "页面";
 
 /* No comment provided by engineer. */
+"Pair with Observer" = "与旁听者配对";
+
+/* No comment provided by engineer. */
 "Password" = "密码";
+
+/* No comment provided by engineer. */
+"Past Enrollments" = "以前的注册";
 
 /* No comment provided by engineer. */
 "Pause" = "暂停";
@@ -693,6 +723,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "个人资料菜单";
+
+/* No comment provided by engineer. */
+"published" = "已发布";
 
 /* No comment provided by engineer. */
 "purple" = "紫色";
@@ -740,6 +773,9 @@
 "Retry" = "重试";
 
 /* No comment provided by engineer. */
+"Saving..." = "正在保存...";
+
+/* No comment provided by engineer. */
 "Scanning not supported" = "不支持扫描";
 
 /* No comment provided by engineer. */
@@ -747,6 +783,12 @@
 
 /* No comment provided by engineer. */
 "Search" = "搜索";
+
+/* No comment provided by engineer. */
+"See All" = "查看全部";
+
+/* No comment provided by engineer. */
+"See All Courses" = "查看所有课程";
 
 /* No comment provided by engineer. */
 "See attached files." = "查看附件文件。";
@@ -805,9 +847,6 @@
 /* No comment provided by engineer. */
 "Start recording" = "开始录制";
 
-/* started date at time */
-"Started %@ at %@" = "开始日期%1$@，时间%2$@";
-
 /* No comment provided by engineer. */
 "Stop Act as User" = "停止临时代理用户";
 
@@ -860,6 +899,9 @@
 "Tap here for help." = "轻击此处获取帮助。";
 
 /* No comment provided by engineer. */
+"Tap to copy" = "点击以复制";
+
+/* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "点击以选择您要在日历上看到的课程。";
 
 /* No comment provided by engineer. */
@@ -893,7 +935,7 @@
 "There are no conferences to display yet." = "暂时没有会议可以显示。";
 
 /* No comment provided by engineer. */
-"There are no pages to display." = "没有要显示的页面。";
+"There are no modules to display yet." = "没有可以显示的单元。";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "提取使用条款时出错。";
@@ -906,6 +948,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading events. Pull to refresh to try again." = "加载活动时出错。下拉刷新以重试。";
+
+/* No comment provided by engineer. */
+"There was an error loading modules. Pull to refresh to try again." = "加载单元时发生错误。下拉刷新以重试。";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "加载人脉时出错。下拉刷新以重试。";
@@ -924,6 +969,9 @@
 
 /* No comment provided by engineer. */
 "This is a media comment" = "这是一条媒体评论";
+
+/* No comment provided by engineer. */
+"This module is empty." = "该单元为空。";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "经过的时间";
@@ -953,6 +1001,9 @@
 "Unordered List" = "无序的列表";
 
 /* No comment provided by engineer. */
+"unpublished" = "取消发布";
+
+/* No comment provided by engineer. */
 "Updated Language Settings" = "已更新语言设置";
 
 /* No comment provided by engineer. */
@@ -969,6 +1020,9 @@
 
 /* No comment provided by engineer. */
 "Use Camera" = "使用相机";
+
+/* No comment provided by engineer. */
+"Use this code to pair with me in Canvas Parent: %@" = "在 Canvas Parent 中使用此代码与我配对： %@";
 
 /* No comment provided by engineer. */
 "User ID" = "用户ID";

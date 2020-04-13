@@ -32,6 +32,12 @@
 "Alerts" = "Alerts";
 
 /* No comment provided by engineer. */
+"All annotations saved." = "All annotations saved.";
+
+/* All Courses screen title */
+"All Courses" = "All modules";
+
+/* No comment provided by engineer. */
 "All Grading Periods" = "All Grading Periods";
 
 /* No comment provided by engineer. */
@@ -173,6 +179,9 @@
 "Collapse" = "Collapse";
 
 /* No comment provided by engineer. */
+"collapsed" = "collapsed";
+
+/* No comment provided by engineer. */
 "Color Overlay" = "Colour overlay";
 
 /* No comment provided by engineer. */
@@ -183,9 +192,6 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Complete";
-
-/* concluded date at time */
-"Concluded %@ at %@" = "Concluded %1$@ at %2$@";
 
 /* No comment provided by engineer. */
 "Concluded Conferences" = "Concluded conferences";
@@ -210,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Conversations" = "Conversations";
+
+/* No comment provided by engineer. */
+"Copied!" = "Copied!";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "Could not save notification preference";
@@ -317,16 +326,19 @@
 "End Act as User" = "End Act as User";
 
 /* No comment provided by engineer. */
-"Enrollment not found." = "Enrolment not found.";
+"Error" = "Error";
 
 /* No comment provided by engineer. */
-"Error" = "Error";
+"Error Saving. Tap to retry." = "Error saving. Tap to retry.";
 
 /* No comment provided by engineer. */
 "Excused" = "Excused";
 
 /* No comment provided by engineer. */
 "Expand" = "Expand";
+
+/* No comment provided by engineer. */
+"expanded" = "expanded";
 
 /* No comment provided by engineer. */
 "Experimental Features" = "Experimental Features";
@@ -518,6 +530,9 @@
 "list_or_two" = "%1$@ or %2$@";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "Loading more units...";
+
+/* No comment provided by engineer. */
 "Locate QR Code" = "Locate QR Code";
 
 /* No comment provided by engineer. */
@@ -563,6 +578,9 @@
 "Missing" = "Missing";
 
 /* No comment provided by engineer. */
+"Modules" = "Units";
+
+/* No comment provided by engineer. */
 "N/A" = "N/A";
 
 /* No comment provided by engineer. */
@@ -597,6 +615,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "No image found from image picker";
+
+/* No comment provided by engineer. */
+"No Modules" = "No units";
 
 /* No comment provided by engineer. */
 "No Results" = "No results";
@@ -641,6 +662,9 @@
 "On Paper" = "On paper";
 
 /* No comment provided by engineer. */
+"Open %@ user preferences" = "Open %@ user preferences";
+
+/* No comment provided by engineer. */
 "orange" = "orange";
 
 /* No comment provided by engineer. */
@@ -656,7 +680,13 @@
 "Pages" = "Pages";
 
 /* No comment provided by engineer. */
+"Pair with Observer" = "Pair with observer";
+
+/* No comment provided by engineer. */
 "Password" = "Password";
+
+/* No comment provided by engineer. */
+"Past Enrollments" = "Past enrolments";
 
 /* No comment provided by engineer. */
 "Pause" = "Pause";
@@ -693,6 +723,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Profile menu";
+
+/* No comment provided by engineer. */
+"published" = "published";
 
 /* No comment provided by engineer. */
 "purple" = "purple";
@@ -740,6 +773,9 @@
 "Retry" = "Retry";
 
 /* No comment provided by engineer. */
+"Saving..." = "Saving...";
+
+/* No comment provided by engineer. */
 "Scanning not supported" = "Scanning not supported";
 
 /* No comment provided by engineer. */
@@ -747,6 +783,12 @@
 
 /* No comment provided by engineer. */
 "Search" = "Search";
+
+/* No comment provided by engineer. */
+"See All" = "See all";
+
+/* No comment provided by engineer. */
+"See All Courses" = "See All Modules";
 
 /* No comment provided by engineer. */
 "See attached files." = "See attached files.";
@@ -805,9 +847,6 @@
 /* No comment provided by engineer. */
 "Start recording" = "Start recording";
 
-/* started date at time */
-"Started %@ at %@" = "Started %1$@ at %2$@";
-
 /* No comment provided by engineer. */
 "Stop Act as User" = "Stop act as user";
 
@@ -860,6 +899,9 @@
 "Tap here for help." = "Tap here for help.";
 
 /* No comment provided by engineer. */
+"Tap to copy" = "Tap to copy";
+
+/* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tap to select the modules you want to see on the calendar.";
 
 /* No comment provided by engineer. */
@@ -893,7 +935,7 @@
 "There are no conferences to display yet." = "There are no conferences to display yet.";
 
 /* No comment provided by engineer. */
-"There are no pages to display." = "There are no pages to display.";
+"There are no modules to display yet." = "There are no units to display yet.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "There was a problem retrieving the Terms of Use.";
@@ -906,6 +948,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading events. Pull to refresh to try again." = "There was an error loading events. Pull to refresh to try again.";
+
+/* No comment provided by engineer. */
+"There was an error loading modules. Pull to refresh to try again." = "There was an error loading units. Pull to refresh to try again.";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "There was an error loading people. Pull to refresh to try again.";
@@ -924,6 +969,9 @@
 
 /* No comment provided by engineer. */
 "This is a media comment" = "This is a media comment";
+
+/* No comment provided by engineer. */
+"This module is empty." = "This unit is empty.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Time elapsed";
@@ -953,6 +1001,9 @@
 "Unordered List" = "Unordered list";
 
 /* No comment provided by engineer. */
+"unpublished" = "unpublished";
+
+/* No comment provided by engineer. */
 "Updated Language Settings" = "Updated language settings";
 
 /* No comment provided by engineer. */
@@ -969,6 +1020,9 @@
 
 /* No comment provided by engineer. */
 "Use Camera" = "Use Camera";
+
+/* No comment provided by engineer. */
+"Use this code to pair with me in Canvas Parent: %@" = "Use this code to pair with me in Canvas Parent: %@";
 
 /* No comment provided by engineer. */
 "User ID" = "User ID";

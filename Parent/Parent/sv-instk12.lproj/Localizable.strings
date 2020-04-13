@@ -22,9 +22,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1–100 %";
 
-/* Label for button that allows admin to Act as User */
-"Act as User" = "Agera som användare";
-
 /* No comment provided by engineer. */
 "Add" = "Lägg till";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "Lägg till elev";
-
-/* Label displayed when logged in as an admin */
-"Admin" = "Admin";
 
 /* Alert Section Header */
 "Alert me when:" = "Larma mig när:";
@@ -279,9 +273,6 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Kursöversikt";
 
-/* Directions in the admin view */
-"Tap to start viewing Canvas as another person." = "Tryck för att använda Canvas som någon annan.";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Ett problem uppstod vid inläsningen av databasfilen för AlertKit.";
 
@@ -308,9 +299,6 @@
 
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Uppladdning av %1$@ är på %2$@";
-
-/* Header title of admin view */
-"Welcome!" = "Välkommen!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Du måste tillåta aviseringar i Inställningar för att ställa in påminnelser.";

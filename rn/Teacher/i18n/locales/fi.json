@@ -320,8 +320,11 @@
   "compose_message_8abd180a": {
     "message": "Luo viesti"
   },
-  "conferences_a0a8984b": {
-    "message": "Konferenssit"
+  "conference_in_progress_bed08457": {
+    "message": "Kokous käynnissä"
+  },
+  "conference_name_is_in_progress_tap_to_view_details_86ffeb1": {
+    "message": "Konferenssi { name } on käynnissä, katso tiedot napauttamalla"
   },
   "conversation_options_8be926f3": {
     "message": "Keskustelun vaihtoehdot"
@@ -1529,9 +1532,6 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "Näytettäviä kommentteja ei ole."
   },
-  "there_are_no_conferences_to_display_400a0413": {
-    "message": "Näytettäviä konferensseja ei ole."
-  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Näytettäviä keskusteluita ei ole."
   },
@@ -1561,6 +1561,9 @@
   },
   "there_was_a_problem_loading_the_groups_6945e624": {
     "message": "Ryhmien latauksessa ilmeni ongelma."
+  },
+  "there_was_a_problem_loading_the_live_conferences_d80f2f9e": {
+    "message": "Live-kokousten lataamisessa ilmeni ongelma."
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
     "message": "Tietovisan lähetysten latauksessa ilmeni ongelma."

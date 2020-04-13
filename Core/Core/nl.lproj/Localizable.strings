@@ -32,6 +32,12 @@
 "Alerts" = "Waarschuwingen";
 
 /* No comment provided by engineer. */
+"All annotations saved." = "Alle aantekeningen opgeslagen.";
+
+/* All Courses screen title */
+"All Courses" = "Alle cursussen";
+
+/* No comment provided by engineer. */
 "All Grading Periods" = "Alle beoordelingsperioden";
 
 /* No comment provided by engineer. */
@@ -173,6 +179,9 @@
 "Collapse" = "Samenvouwen";
 
 /* No comment provided by engineer. */
+"collapsed" = "samengevouwen";
+
+/* No comment provided by engineer. */
 "Color Overlay" = "Kleurenoverlay";
 
 /* No comment provided by engineer. */
@@ -183,9 +192,6 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Voltooid";
-
-/* concluded date at time */
-"Concluded %@ at %@" = "%1$@ voltooid om %2$@";
 
 /* No comment provided by engineer. */
 "Concluded Conferences" = "Voltooide vergaderingen";
@@ -210,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Conversations" = "Gesprekken";
+
+/* No comment provided by engineer. */
+"Copied!" = "Gekopieerd!";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "Kan geen meldingsvoorkeuren opslaan";
@@ -317,16 +326,19 @@
 "End Act as User" = "Stop met optreden als gebruiker";
 
 /* No comment provided by engineer. */
-"Enrollment not found." = "Inschrijving niet gevonden.";
+"Error" = "Fout";
 
 /* No comment provided by engineer. */
-"Error" = "Fout";
+"Error Saving. Tap to retry." = "Fout bij opslaan. Tik om het opnieuw te proberen.";
 
 /* No comment provided by engineer. */
 "Excused" = "Vrijgesteld";
 
 /* No comment provided by engineer. */
 "Expand" = "Uitvouwen";
+
+/* No comment provided by engineer. */
+"expanded" = "uitgevouwen";
 
 /* No comment provided by engineer. */
 "Experimental Features" = "Experimentele functies";
@@ -518,6 +530,9 @@
 "list_or_two" = "%1$@ of %2$@";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "Meer modules laden...";
+
+/* No comment provided by engineer. */
 "Locate QR Code" = "QR-code zoeken";
 
 /* No comment provided by engineer. */
@@ -563,6 +578,9 @@
 "Missing" = "Ontbrekend";
 
 /* No comment provided by engineer. */
+"Modules" = "Modules";
+
+/* No comment provided by engineer. */
 "N/A" = "N.v.t.";
 
 /* No comment provided by engineer. */
@@ -597,6 +615,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Er is geen afbeelding gevonden van afbeeldingkiezer";
+
+/* No comment provided by engineer. */
+"No Modules" = "Geen modules";
 
 /* No comment provided by engineer. */
 "No Results" = "Geen resultaten";
@@ -641,6 +662,9 @@
 "On Paper" = "Op papier";
 
 /* No comment provided by engineer. */
+"Open %@ user preferences" = "Gebruikersvoorkeuren %@ openen";
+
+/* No comment provided by engineer. */
 "orange" = "oranje";
 
 /* No comment provided by engineer. */
@@ -656,7 +680,13 @@
 "Pages" = "Pagina's";
 
 /* No comment provided by engineer. */
+"Pair with Observer" = "Koppelen met waarnemer";
+
+/* No comment provided by engineer. */
 "Password" = "Wachtwoord";
+
+/* No comment provided by engineer. */
+"Past Enrollments" = "Oude inschrijvingen";
 
 /* No comment provided by engineer. */
 "Pause" = "Onderbreken";
@@ -693,6 +723,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Menu Profiel";
+
+/* No comment provided by engineer. */
+"published" = "gepubliceerd";
 
 /* No comment provided by engineer. */
 "purple" = "paars";
@@ -740,6 +773,9 @@
 "Retry" = "Opnieuw proberen";
 
 /* No comment provided by engineer. */
+"Saving..." = "Bezig met opslaan...";
+
+/* No comment provided by engineer. */
 "Scanning not supported" = "Scannen wordt niet ondersteund";
 
 /* No comment provided by engineer. */
@@ -747,6 +783,12 @@
 
 /* No comment provided by engineer. */
 "Search" = "Zoeken";
+
+/* No comment provided by engineer. */
+"See All" = "Alles weergeven";
+
+/* No comment provided by engineer. */
+"See All Courses" = "Alle cursussen weergeven";
 
 /* No comment provided by engineer. */
 "See attached files." = "Bijgevoegde bestanden zien.";
@@ -805,9 +847,6 @@
 /* No comment provided by engineer. */
 "Start recording" = "Opname starten";
 
-/* started date at time */
-"Started %@ at %@" = "%1$@ gestart om %2$@";
-
 /* No comment provided by engineer. */
 "Stop Act as User" = "Stop met optreden als gebruiker";
 
@@ -860,6 +899,9 @@
 "Tap here for help." = "Tik hier voor hulp.";
 
 /* No comment provided by engineer. */
+"Tap to copy" = "Tik om te kopiëren";
+
+/* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tik om de cursussen te selecteren die je in de kalender wilt zien.";
 
 /* No comment provided by engineer. */
@@ -893,7 +935,7 @@
 "There are no conferences to display yet." = "Er zijn nog geen vergaderingen om weer te geven.";
 
 /* No comment provided by engineer. */
-"There are no pages to display." = "Er zijn geen pagina's om weer te geven";
+"There are no modules to display yet." = "Er zijn nog geen modules om weer te geven.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Er is een probleem met het ophalen van de gebruiksvoorwaarden";
@@ -906,6 +948,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading events. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van gebeurtenissen. Pull om te vernieuwen om het opnieuw te proberen.";
+
+/* No comment provided by engineer. */
+"There was an error loading modules. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van modules. Pull om te vernieuwen om het opnieuw te proberen.";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van personen. Pull om te vernieuwen om het opnieuw te proberen.";
@@ -924,6 +969,9 @@
 
 /* No comment provided by engineer. */
 "This is a media comment" = "Dit is een media-opmerking";
+
+/* No comment provided by engineer. */
+"This module is empty." = "Deze module is leeg.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Verstreken tijd";
@@ -953,6 +1001,9 @@
 "Unordered List" = "Ongeordende lijst";
 
 /* No comment provided by engineer. */
+"unpublished" = "niet-gepubliceerd";
+
+/* No comment provided by engineer. */
 "Updated Language Settings" = "Bijgewerkte taalinstellingen";
 
 /* No comment provided by engineer. */
@@ -969,6 +1020,9 @@
 
 /* No comment provided by engineer. */
 "Use Camera" = "Camera gebruiken";
+
+/* No comment provided by engineer. */
+"Use this code to pair with me in Canvas Parent: %@" = "Gebruik deze code om met mij te koppelen in Canvas Parent: %@";
 
 /* No comment provided by engineer. */
 "User ID" = "Gebruikers-ID:";

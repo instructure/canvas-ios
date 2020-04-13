@@ -22,9 +22,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
-/* Label for button that allows admin to Act as User */
-"Act as User" = "Действовать как пользователь";
-
 /* No comment provided by engineer. */
 "Add" = "Добавить";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "Добавить студента";
-
-/* Label displayed when logged in as an admin */
-"Admin" = "Админ";
 
 /* Alert Section Header */
 "Alert me when:" = "Оповестить меня, когда:";
@@ -279,9 +273,6 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Учебный план";
 
-/* Directions in the admin view */
-"Tap to start viewing Canvas as another person." = "Нажмите, чтобы начать просмотр Canvas как другой пользователь.";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Возникла проблема при загрузке файла базы данных AlertKit.";
 
@@ -308,9 +299,6 @@
 
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Загрузка %1$@ находится в %2$@";
-
-/* Header title of admin view */
-"Welcome!" = "Добро пожаловать!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Вы должны разрешить уведомления в настройках для задания напоминаний.";

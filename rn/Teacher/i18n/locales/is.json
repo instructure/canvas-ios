@@ -320,8 +320,11 @@
   "compose_message_8abd180a": {
     "message": "Semja skilaboð"
   },
-  "conferences_a0a8984b": {
-    "message": "Ráðstefnur"
+  "conference_in_progress_bed08457": {
+    "message": "Ráðstefna í gangi"
+  },
+  "conference_name_is_in_progress_tap_to_view_details_86ffeb1": {
+    "message": "Ráðstefna { name } er í gangi, smelltu til að sjá upplýsingar"
   },
   "conversation_options_8be926f3": {
     "message": "Valkostir samræða"
@@ -1529,9 +1532,6 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "Það eru engar athugasemdir til að sýna."
   },
-  "there_are_no_conferences_to_display_400a0413": {
-    "message": "Það eru engar ráðstefnur til að sýna."
-  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Það eru engar umræður til að sýna."
   },
@@ -1561,6 +1561,9 @@
   },
   "there_was_a_problem_loading_the_groups_6945e624": {
     "message": "Vandamál kom upp við að sækja hópa."
+  },
+  "there_was_a_problem_loading_the_live_conferences_d80f2f9e": {
+    "message": "Vandamál kom upp við að sækja ráðstefnurnar."
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
     "message": "Vandamál kom upp við að sækja prófaskil."

@@ -320,8 +320,11 @@
   "compose_message_8abd180a": {
     "message": "Bericht opstellen"
   },
-  "conferences_a0a8984b": {
-    "message": "Vergaderingen"
+  "conference_in_progress_bed08457": {
+    "message": "Vergadering is gaande"
+  },
+  "conference_name_is_in_progress_tap_to_view_details_86ffeb1": {
+    "message": "Vergadering { name } is gaande, tik om details te bekijken"
   },
   "conversation_options_8be926f3": {
     "message": "Conversatie-opties"
@@ -1529,9 +1532,6 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "Er zijn geen opmerkingen om weer te geven."
   },
-  "there_are_no_conferences_to_display_400a0413": {
-    "message": "Er zijn geen vergaderingen om weer te geven."
-  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Er zijn geen discussies om weer te geven"
   },
@@ -1561,6 +1561,9 @@
   },
   "there_was_a_problem_loading_the_groups_6945e624": {
     "message": "Er is een probleem met het laden van de groepen."
+  },
+  "there_was_a_problem_loading_the_live_conferences_d80f2f9e": {
+    "message": "Er is een probleem met het laden van de live vergaderingen."
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
     "message": "Er is een probleem ontstaan bij het laden van de toetsinzendingen."

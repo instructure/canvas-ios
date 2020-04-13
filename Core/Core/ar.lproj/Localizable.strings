@@ -32,6 +32,12 @@
 "Alerts" = "التنبيهات";
 
 /* No comment provided by engineer. */
+"All annotations saved." = "تم حفظ جميع التعليقات التوضيحية.";
+
+/* All Courses screen title */
+"All Courses" = "جميع المساقات";
+
+/* No comment provided by engineer. */
 "All Grading Periods" = "جميع فترات تقييم الدرجات";
 
 /* No comment provided by engineer. */
@@ -173,6 +179,9 @@
 "Collapse" = "طي";
 
 /* No comment provided by engineer. */
+"collapsed" = "تم الطي";
+
+/* No comment provided by engineer. */
 "Color Overlay" = "تراكب لوني";
 
 /* No comment provided by engineer. */
@@ -183,9 +192,6 @@
 
 /* No comment provided by engineer. */
 "Complete" = "مكتمل";
-
-/* concluded date at time */
-"Concluded %@ at %@" = "تم الانتهاء من %1$@ في %2$@";
 
 /* No comment provided by engineer. */
 "Concluded Conferences" = "المؤتمرات المنجزة";
@@ -210,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Conversations" = "المحادثات";
+
+/* No comment provided by engineer. */
+"Copied!" = "تم النسخ!";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "تعذر حفظ تفضيل الإخطار";
@@ -317,16 +326,19 @@
 "End Act as User" = "إنهاء التصرف كمستخدم";
 
 /* No comment provided by engineer. */
-"Enrollment not found." = "لم يتم العثور على التسجيل.";
+"Error" = "خطأ";
 
 /* No comment provided by engineer. */
-"Error" = "خطأ";
+"Error Saving. Tap to retry." = "خطأ أثناء الحفظ. اضغط لإعادة المحاولة.";
 
 /* No comment provided by engineer. */
 "Excused" = "معفى";
 
 /* No comment provided by engineer. */
 "Expand" = "توسيع";
+
+/* No comment provided by engineer. */
+"expanded" = "تم التوسيع";
 
 /* No comment provided by engineer. */
 "Experimental Features" = "ميزات تجريبية";
@@ -518,6 +530,9 @@
 "list_or_two" = "%1$@ أو %2$@";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "تحميل المزيد من الوحدات النمطية...";
+
+/* No comment provided by engineer. */
 "Locate QR Code" = "ابحث عن رمز QR";
 
 /* No comment provided by engineer. */
@@ -563,6 +578,9 @@
 "Missing" = "مفقود";
 
 /* No comment provided by engineer. */
+"Modules" = "الوحدات النمطية";
+
+/* No comment provided by engineer. */
 "N/A" = "لا يوجد";
 
 /* No comment provided by engineer. */
@@ -597,6 +615,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "لم يتم العثور على صورة من منتقي الصور";
+
+/* No comment provided by engineer. */
+"No Modules" = "لا توجد وحدات نمطية";
 
 /* No comment provided by engineer. */
 "No Results" = "لا توجد نتائج";
@@ -641,6 +662,9 @@
 "On Paper" = "على الورق";
 
 /* No comment provided by engineer. */
+"Open %@ user preferences" = "فتح تفضيلات مستخدم %@";
+
+/* No comment provided by engineer. */
 "orange" = "برتقالي";
 
 /* No comment provided by engineer. */
@@ -656,7 +680,13 @@
 "Pages" = "الصفحات";
 
 /* No comment provided by engineer. */
+"Pair with Observer" = "الإقران بالمراقب";
+
+/* No comment provided by engineer. */
 "Password" = "كلمة المرور";
+
+/* No comment provided by engineer. */
+"Past Enrollments" = "التسجيلات الماضية";
 
 /* No comment provided by engineer. */
 "Pause" = "إيقاف مؤقت";
@@ -693,6 +723,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "قائمة ملف التعريف";
+
+/* No comment provided by engineer. */
+"published" = "تم النشر";
 
 /* No comment provided by engineer. */
 "purple" = "أرجواني";
@@ -740,6 +773,9 @@
 "Retry" = "إعادة المحاولة";
 
 /* No comment provided by engineer. */
+"Saving..." = "جارٍ الحفظ...";
+
+/* No comment provided by engineer. */
 "Scanning not supported" = "المسح الضوئي غير مدعوم";
 
 /* No comment provided by engineer. */
@@ -747,6 +783,12 @@
 
 /* No comment provided by engineer. */
 "Search" = "بحث";
+
+/* No comment provided by engineer. */
+"See All" = "عرض الكل";
+
+/* No comment provided by engineer. */
+"See All Courses" = "رؤية جميع المساقات";
 
 /* No comment provided by engineer. */
 "See attached files." = "انظر الملفات المرفقة.";
@@ -805,9 +847,6 @@
 /* No comment provided by engineer. */
 "Start recording" = "بدء تسجيل";
 
-/* started date at time */
-"Started %@ at %@" = "تم البدء في %1$@ في %2$@";
-
 /* No comment provided by engineer. */
 "Stop Act as User" = "إيقاف التصرف كمستخدم";
 
@@ -860,6 +899,9 @@
 "Tap here for help." = "اضغط هنا للحصول على المساعدة.";
 
 /* No comment provided by engineer. */
+"Tap to copy" = "اضغط للنسخ";
+
+/* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "اضغط لتحديد المساقات التي ترغب في رؤيتها على التقويم.";
 
 /* No comment provided by engineer. */
@@ -893,7 +935,7 @@
 "There are no conferences to display yet." = "لا توجد أي مؤتمرات للعرض حتى الآن.";
 
 /* No comment provided by engineer. */
-"There are no pages to display." = "لا توجد أي صفحات للعرض.";
+"There are no modules to display yet." = "لا توجد أي وحدات نمطية للعرض حتى الآن.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "حدثت مشكلة أثناء استرداد شروط الاستخدام.";
@@ -906,6 +948,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading events. Pull to refresh to try again." = "حدث خطأ أثناء تحميل الأحداث. اسحب للتحديث لإعادة المحاولة.";
+
+/* No comment provided by engineer. */
+"There was an error loading modules. Pull to refresh to try again." = "حدث خطأ أثناء تحميل الوحدات النمطية. اسحب للتحديث لإعادة المحاولة.";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "حدث خطأ أثناء تحميل الأشخاص. اسحب للتحديث لإعادة المحاولة.";
@@ -924,6 +969,9 @@
 
 /* No comment provided by engineer. */
 "This is a media comment" = "هذا تعليق وسائط";
+
+/* No comment provided by engineer. */
+"This module is empty." = "هذه الوحدة النمطية فارغة.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "الوقت المنقضي";
@@ -953,6 +1001,9 @@
 "Unordered List" = "قائمة غير مرتبة";
 
 /* No comment provided by engineer. */
+"unpublished" = "غير منشور";
+
+/* No comment provided by engineer. */
 "Updated Language Settings" = "إعدادات اللغة المحدثة";
 
 /* No comment provided by engineer. */
@@ -969,6 +1020,9 @@
 
 /* No comment provided by engineer. */
 "Use Camera" = "استخدام الكاميرا";
+
+/* No comment provided by engineer. */
+"Use this code to pair with me in Canvas Parent: %@" = "استخدم هذا الرمز للاقتران بي في Canvas Parent: %@";
 
 /* No comment provided by engineer. */
 "User ID" = "معرف المستخدم";

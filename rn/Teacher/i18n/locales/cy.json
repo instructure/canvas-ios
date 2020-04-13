@@ -320,8 +320,11 @@
   "compose_message_8abd180a": {
     "message": "Creu Neges"
   },
-  "conferences_a0a8984b": {
-    "message": "Cynadleddau"
+  "conference_in_progress_bed08457": {
+    "message": "Cynhadledd ar waith"
+  },
+  "conference_name_is_in_progress_tap_to_view_details_86ffeb1": {
+    "message": "Mae cynhadledd { name } ar waith, tapiwch i weld manylion"
   },
   "conversation_options_8be926f3": {
     "message": "Opsiynau trafodaethau"
@@ -1529,9 +1532,6 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "Does dim sylwadau i’w dangos."
   },
-  "there_are_no_conferences_to_display_400a0413": {
-    "message": "Does dim cynadleddau i’w dangos."
-  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Does dim trafodaethau i’w dangos."
   },
@@ -1561,6 +1561,9 @@
   },
   "there_was_a_problem_loading_the_groups_6945e624": {
     "message": "Problem wrth lwytho’r grwpiau."
+  },
+  "there_was_a_problem_loading_the_live_conferences_d80f2f9e": {
+    "message": "Problem wrth lwytho’r gynhadledd fyw."
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
     "message": "Problem wrth lwytho'r cwisiau sydd wedi'u cyflwyno."
