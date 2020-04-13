@@ -45,8 +45,51 @@ class ModuleListViewControllerTests: CoreTestCase {
 
     func testViewDidLoad() throws {
         api.mock(viewController.colors, value: APICustomColors(custom_colors: ["course_1": "#fff"]))
+        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
+            .make(id: "1", items: [
+                .make(
+                    id: "1",
+                    position: 0,
+                    title: "Item 1",
+                    content_details: .make(
+                        due_at: Date(fromISOString: "2019-12-25T14:24:37Z")!,
+                        points_possible: 10
+                    ),
+                    completion_requirement: .make(type: .min_score, completed: false, min_score: 8.0)
+                ),
+                .make(
+                    id: "2",
+                    position: 1,
+                    content_details: .make(
+                        due_at: nil,
+                        points_possible: 10
+                    ),
+                    completion_requirement: nil
+                ),
+                .make(
+                    id: "3",
+                    position: 2,
+                    content_details: nil,
+                    completion_requirement: .make(type: .must_view, completed: false)
+                ),
+                .make(
+                    id: "4",
+                    content_details: nil,
+                    completion_requirement: .make(type: .must_submit, completed: true)
+                ),
+            ]),
+        ])
         let nav = UINavigationController(rootViewController: viewController)
         viewController.view.layoutIfNeeded()
+        let item1 = moduleItemCell(at: IndexPath(row: 0, section: 0))
+        XCTAssertEqual(item1.nameLabel.text, "Item 1")
+        XCTAssertEqual(item1.dueLabel.text, "Dec 25, 2019 | 10 pts | Score at least 8")
+        let item2 = moduleItemCell(at: IndexPath(row: 1, section: 0))
+        XCTAssertEqual(item2.dueLabel.text, "10 pts")
+        let item3 = moduleItemCell(at: IndexPath(row: 2, section: 0))
+        XCTAssertEqual(item3.dueLabel.text, "View")
+        let item4 = moduleItemCell(at: IndexPath(row: 3, section: 0))
+        XCTAssertEqual(item4.dueLabel.text, "Submitted")
         XCTAssertNotNil(nav.viewControllers.first)
         let footer = try XCTUnwrap(viewController.tableView.tableFooterView as? UILabel)
         XCTAssertEqual(footer.text, "Loading more modules...")

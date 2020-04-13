@@ -85,6 +85,7 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol 
         tableView.registerCell(EmptyCell.self)
         tableView.registerCell(LoadingCell.self)
         tableView.registerHeaderFooterView(ModuleSectionHeaderView.self, fromNib: false)
+        tableView.registerHeaderFooterView(ModuleSectionFooterView.self, fromNib: false)
         if let footer = tableView.tableFooterView as? UILabel {
             footer.isHidden = true
             footer.text = NSLocalizedString("Loading more modules...", bundle: .core, comment: "")
@@ -176,6 +177,10 @@ extension ModuleListViewController: UITableViewDataSource {
             self?.toggleSection(section)
         }
         return header
+    }
+
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return tableView.dequeueHeaderFooter(ModuleSectionFooterView.self)
     }
 
     func toggleSection(_ section: Int) {

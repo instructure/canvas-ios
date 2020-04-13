@@ -88,13 +88,24 @@ public struct GetModuleItemsRequest: APIRequestable {
 public struct GetModuleItemRequest: APIRequestable {
     public typealias Response = APIModuleItem
 
+    public enum Include: String {
+        case content_details
+    }
+
     public let courseID: String
     public let moduleID: String
     public let itemID: String
+    public let include: [Include]
 
     public var path: String {
         let context = ContextModel(.course, id: courseID)
         return "\(context.pathComponent)/modules/\(moduleID)/items/\(itemID)"
+    }
+
+    public var query: [APIQueryItem] {
+        return [
+            .include(include.map { $0.rawValue }),
+        ]
     }
 }
 

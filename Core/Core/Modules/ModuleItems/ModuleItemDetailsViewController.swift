@@ -19,7 +19,7 @@
 import Foundation
 import UIKit
 
-public class ModuleItemDetailsViewController: UIViewController {
+public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewProtocol {
     let env = AppEnvironment.shared
     var courseID: String!
     var moduleID: String!
@@ -27,9 +27,19 @@ public class ModuleItemDetailsViewController: UIViewController {
 
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var errorView: ListErrorView!
+    @IBOutlet weak var emptyView: EmptyView!
 
     lazy var store = env.subscribe(GetModuleItem(courseID: courseID, moduleID: moduleID, itemID: itemID)) { [weak self] in
         self?.update()
+    }
+
+    public var color: UIColor?
+    public var titleSubtitleView = TitleSubtitleView.create()
+    lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
+        self?.updateNavBar()
+    }
+    lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
+        self?.updateNavBar()
     }
 
     var item: ModuleItem? { store.first }
@@ -48,15 +58,19 @@ public class ModuleItemDetailsViewController: UIViewController {
         Analytics.shared.logEvent("module_item", parameters: ["moduleID": moduleID!, "itemID": itemID!])
         errorView.isHidden = true
         errorView.retryButton.addTarget(self, action: #selector(retryButtonPressed), for: .primaryActionTriggered)
+        emptyView.isHidden = true
         store.refresh(force: true)
     }
 
     func update() {
         guard store.requested, !store.pending else { return }
-        errorView.isHidden = store.error == nil
-        container.isHidden = !errorView.isHidden
-        if let viewController = itemViewController() {
-            children.forEach { $0.unembed() }
+        let itemViewController = self.itemViewController()
+        let showLocked = item?.isAssignment != true && item?.lockedForUser == true
+        emptyView.titleText = item?.title
+        emptyView.isHidden = !showLocked
+        errorView.isHidden = itemViewController != nil && store.error == nil
+        children.forEach { $0.unembed() }
+        if let viewController = itemViewController, emptyView.isHidden, errorView.isHidden {
             embed(viewController, in: container)
             observations = syncNavigationBar(with: viewController)
             NotificationCenter.default.post(name: .moduleItemViewDidLoad, object: nil, userInfo: [
@@ -64,6 +78,10 @@ public class ModuleItemDetailsViewController: UIViewController {
                 "itemID": itemID!,
             ])
         }
+    }
+
+    func updateNavBar() {
+        updateNavBar(subtitle: course.first?.name, color: course.first?.color)
     }
 
     func itemViewController() -> UIViewController? {

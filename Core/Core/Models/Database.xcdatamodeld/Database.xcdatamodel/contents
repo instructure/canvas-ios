@@ -331,12 +331,17 @@
         <relationship name="itemsRaw" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="ModuleItem" inverseName="module" inverseEntity="ModuleItem"/>
     </entity>
     <entity name="ModuleItem" representedClassName="Core.ModuleItem" syncable="YES">
+        <attribute name="completed" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="completionRequirementTypeRaw" optional="YES" attributeType="String"/>
         <attribute name="courseID" attributeType="String"/>
         <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="htmlURL" optional="YES" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="indent" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="lockedForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="minScoreRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="moduleID" attributeType="String"/>
+        <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="position" attributeType="Integer 64" usesScalarValueType="YES"/>
         <attribute name="publishedRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
@@ -678,7 +683,7 @@
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
         <element name="MediaComment" positionX="-369" positionY="-18" width="128" height="148"/>
         <element name="Module" positionX="-369" positionY="-18" width="128" height="133"/>
-        <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="268"/>
+        <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="343"/>
         <element name="ModuleItemSequence" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="NotificationCategory" positionX="-522" positionY="0" width="128" height="103"/>
         <element name="Page" positionX="-549" positionY="-27" width="128" height="193"/>
@@ -693,6 +698,7 @@
         <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="148"/>
         <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="433"/>
         <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="268"/>
+        <element name="SubmissionList" positionX="-540" positionY="-18" width="128" height="73"/>
         <element name="Syllabus" positionX="-540" positionY="-18" width="128" height="73"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="Todo" positionX="-540" positionY="-18" width="128" height="148"/>
@@ -700,6 +706,5 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="223"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="SubmissionList" positionX="-540" positionY="-18" width="128" height="73"/>
     </elements>
 </model>

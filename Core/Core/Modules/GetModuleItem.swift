@@ -34,7 +34,7 @@ public class GetModuleItem: APIUseCase {
         self.courseID = courseID
         self.moduleID = moduleID
         self.itemID = itemID
-        request = GetModuleItemRequest(courseID: courseID, moduleID: moduleID, itemID: itemID)
+        request = GetModuleItemRequest(courseID: courseID, moduleID: moduleID, itemID: itemID, include: [.content_details])
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(ModuleItem.courseID), equals: courseID),
             NSPredicate(key: #keyPath(ModuleItem.id), equals: itemID),
@@ -45,6 +45,7 @@ public class GetModuleItem: APIUseCase {
 
     public func write(response: APIModuleItem?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
-        ModuleItem.save(response, forCourse: courseID, in: client)
+        let item = ModuleItem.save(response, forCourse: courseID, in: client)
+        item.completionRequirement = response.completion_requirement
     }
 }

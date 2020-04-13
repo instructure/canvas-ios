@@ -51,6 +51,11 @@ public class ModuleItem: NSManagedObject {
     @NSManaged public var typeRaw: Data?
     @NSManaged public var module: Module?
     @NSManaged public var dueAt: Date?
+    @NSManaged public var pointsPossibleRaw: NSNumber?
+    @NSManaged public var completionRequirementTypeRaw: String?
+    @NSManaged public var minScoreRaw: NSNumber?
+    @NSManaged public var completed: Bool
+    @NSManaged public var lockedForUser: Bool
 
     public var published: Bool? {
         get { return publishedRaw?.boolValue }
@@ -65,6 +70,40 @@ public class ModuleItem: NSManagedObject {
             return nil
         }
         set { typeRaw = try? encoder.encode(newValue) }
+    }
+
+    public var isAssignment: Bool {
+        if case .assignment(_) = type {
+            return true
+        }
+        return false
+    }
+
+    public var pointsPossible: Double? {
+        get { return pointsPossibleRaw?.doubleValue }
+        set { pointsPossibleRaw = NSNumber(value: newValue) }
+    }
+
+    public var completionRequirementType: CompletionRequirementType? {
+        get { return completionRequirementTypeRaw.flatMap { CompletionRequirementType(rawValue: $0) } }
+        set { completionRequirementTypeRaw = newValue?.rawValue }
+    }
+
+    public var minScore: Double? {
+        get { return minScoreRaw?.doubleValue }
+        set { minScoreRaw = NSNumber(value: newValue) }
+    }
+
+    public var completionRequirement: CompletionRequirement? {
+        get {
+            guard let type = completionRequirementType else { return nil }
+            return CompletionRequirement(type: type, completed: completed, min_score: minScore)
+        }
+        set {
+            completionRequirementType = newValue?.type
+            completed = newValue?.completed ?? false
+            minScore = newValue?.min_score
+        }
     }
 
     @discardableResult
@@ -89,6 +128,10 @@ public class ModuleItem: NSManagedObject {
         url = item.url
         published = item.published
         type = item.content
-        dueAt = item.content_details?.due_at
+        if let contentDetails = item.content_details {
+            pointsPossible = contentDetails.points_possible
+            dueAt = contentDetails.due_at
+            lockedForUser = contentDetails.locked_for_user == true
+        }
     }
 }
