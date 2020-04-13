@@ -177,6 +177,10 @@ public class Router: RouterProtocol {
 
     public func route(to url: URLComponents, from: UIViewController, options: RouteOptions = .noOptions) {
         let url = cleanURL(url)
+        if url.host?.isEmpty == false && !urlMatchesSessionHost(url) {
+            fallback(url, from, options)
+            return
+        }
         #if DEBUG
         DeveloperMenuViewController.recordRouteInHistory(url.url?.absoluteString)
         #endif
@@ -190,5 +194,10 @@ public class Router: RouterProtocol {
             }
         }
         fallback(url, from, options)
+    }
+
+    private func urlMatchesSessionHost(_ url: URLComponents) -> Bool {
+        let sessionHost = AppEnvironment.shared.currentSession?.baseURL.host ?? ""
+        return url.host == sessionHost
     }
 }
