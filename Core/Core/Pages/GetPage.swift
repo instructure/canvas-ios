@@ -27,6 +27,11 @@ public struct GetPage: UseCase {
 
     var isFrontPage: Bool { url == "front_page" }
 
+    init(context: Context, url: String) {
+        self.context = context
+        self.url =  url.removingPercentEncoding ?? ""
+    }
+
     public var cacheKey: String? {
         return "get-\(context.canvasContextID)-page-\(url)"
     }

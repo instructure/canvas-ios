@@ -23,6 +23,10 @@ class GetPageTests: CoreTestCase {
     let context = ContextModel(.course, id: "1")
     let pageURL = "page-test"
 
+    func testEncodedString() {
+        XCTAssertEqual(GetPage(context: context, url: "pipe-%7C-pipe").url, "pipe-|-pipe")
+    }
+
     func testCacheKey() {
         XCTAssertEqual(GetPage(context: context, url: pageURL).cacheKey, "get-course_1-page-page-test")
     }
