@@ -320,8 +320,11 @@
   "compose_message_8abd180a": {
     "message": "Composer un message"
   },
-  "conferences_a0a8984b": {
-    "message": "Conférences"
+  "conference_in_progress_bed08457": {
+    "message": "Conférence en cours"
+  },
+  "conference_name_is_in_progress_tap_to_view_details_86ffeb1": {
+    "message": "La conférence { name } est en cours. Appuyez pour plus d'informations."
   },
   "conversation_options_8be926f3": {
     "message": "Options de conversation"
@@ -1529,9 +1532,6 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "Il n'y a pas de commentaires à afficher."
   },
-  "there_are_no_conferences_to_display_400a0413": {
-    "message": "Aucune conférence à afficher."
-  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Aucune discussion à afficher."
   },
@@ -1561,6 +1561,9 @@
   },
   "there_was_a_problem_loading_the_groups_6945e624": {
     "message": "Un problème est apparu pendant le chargement des groupes.."
+  },
+  "there_was_a_problem_loading_the_live_conferences_d80f2f9e": {
+    "message": "Un problème est survenu lors du chargement des conférences en direct."
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
     "message": "Une erreur est survenue lors du téléchargement de l’envoi des tâches"

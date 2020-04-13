@@ -320,8 +320,11 @@
   "compose_message_8abd180a": {
     "message": "メッセージを作成"
   },
-  "conferences_a0a8984b": {
-    "message": "会議"
+  "conference_in_progress_bed08457": {
+    "message": "会議進行中"
+  },
+  "conference_name_is_in_progress_tap_to_view_details_86ffeb1": {
+    "message": "会議{ name }が進行中です。タップして詳細を表示してください"
   },
   "conversation_options_8be926f3": {
     "message": "会話のオプション"
@@ -1529,9 +1532,6 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "表示するコメントはありません。"
   },
-  "there_are_no_conferences_to_display_400a0413": {
-    "message": "表示する会議はありません。"
-  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "表示するディスカッションはありません。"
   },
@@ -1561,6 +1561,9 @@
   },
   "there_was_a_problem_loading_the_groups_6945e624": {
     "message": "グループの読み込み中、問題がありました。"
+  },
+  "there_was_a_problem_loading_the_live_conferences_d80f2f9e": {
+    "message": "ライブ会議のロード中に問題が発生しました。"
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
     "message": "クイズ提出を読み込み中、問題がありました。."

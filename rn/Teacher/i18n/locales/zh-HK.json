@@ -320,8 +320,11 @@
   "compose_message_8abd180a": {
     "message": "編輯訊息"
   },
-  "conferences_a0a8984b": {
-    "message": "會議"
+  "conference_in_progress_bed08457": {
+    "message": "會議進行中"
+  },
+  "conference_name_is_in_progress_tap_to_view_details_86ffeb1": {
+    "message": "會議{ name }正在進行中，點選以查看詳情 "
   },
   "conversation_options_8be926f3": {
     "message": "交談選項"
@@ -1529,9 +1532,6 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "沒有可顯示的評論。"
   },
-  "there_are_no_conferences_to_display_400a0413": {
-    "message": "沒有可顯示的會議。"
-  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "沒有可顯示的討論。"
   },
@@ -1561,6 +1561,9 @@
   },
   "there_was_a_problem_loading_the_groups_6945e624": {
     "message": "載入小組時發生問題。"
+  },
+  "there_was_a_problem_loading_the_live_conferences_d80f2f9e": {
+    "message": "載入直播會議時出現問題。"
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
     "message": "載入測驗提交頁面時發生問題。"

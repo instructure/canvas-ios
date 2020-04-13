@@ -83,6 +83,8 @@ const whitelist = [
   'lti',
   'marker',
   'mini-arrow-down',
+  'mini-arrow-end',
+  'mini-arrow-start',
   'mini-arrow-up',
   'module',
   'more',
@@ -145,7 +147,7 @@ for (const icon of whitelist) {
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "${name}.pdf"${ !/right|left|list|play|forward|reply/i.test(name) ? '' : `,
+      "filename" : "${name}.pdf"${ !/right|left|list|play|forward|reply|start|miniArrowEnd/i.test(name) ? '' : `,
       "language-direction" : "left-to-right"` }
     }
   ],

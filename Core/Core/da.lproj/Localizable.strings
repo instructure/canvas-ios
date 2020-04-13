@@ -32,6 +32,12 @@
 "Alerts" = "Varslinger";
 
 /* No comment provided by engineer. */
+"All annotations saved." = "Alle anmærkninger gemmes.";
+
+/* All Courses screen title */
+"All Courses" = "Alle fag";
+
+/* No comment provided by engineer. */
 "All Grading Periods" = "Alle karakterperioder";
 
 /* No comment provided by engineer. */
@@ -173,6 +179,9 @@
 "Collapse" = "Skjul";
 
 /* No comment provided by engineer. */
+"collapsed" = "skjult";
+
+/* No comment provided by engineer. */
 "Color Overlay" = "Farve overlag";
 
 /* No comment provided by engineer. */
@@ -183,9 +192,6 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Fuldført";
-
-/* concluded date at time */
-"Concluded %@ at %@" = "Afsluttet %1$@ kl. %2$@";
 
 /* No comment provided by engineer. */
 "Concluded Conferences" = "Afsluttede konferencer";
@@ -210,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Conversations" = "Samtale";
+
+/* No comment provided by engineer. */
+"Copied!" = "Kopieret!";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "Kunne ikke gemme meddelelsesindstilling";
@@ -317,16 +326,19 @@
 "End Act as User" = "Afslut \\'funger som bruger\\'";
 
 /* No comment provided by engineer. */
-"Enrollment not found." = "Tilmelding ikke fundet.";
+"Error" = "Fejl";
 
 /* No comment provided by engineer. */
-"Error" = "Fejl";
+"Error Saving. Tap to retry." = "Fejl da der skulle gemmes. Tryk for at prøve igen.";
 
 /* No comment provided by engineer. */
 "Excused" = "Undskyldt";
 
 /* No comment provided by engineer. */
 "Expand" = "Udvid";
+
+/* No comment provided by engineer. */
+"expanded" = "udvidet";
 
 /* No comment provided by engineer. */
 "Experimental Features" = "Eksperimentelle funktioner";
@@ -518,6 +530,9 @@
 "list_or_two" = "%1$@ eller %2$@";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "Indlæser flere moduler ...";
+
+/* No comment provided by engineer. */
 "Locate QR Code" = "Find QR-kode";
 
 /* No comment provided by engineer. */
@@ -563,6 +578,9 @@
 "Missing" = "Mangler";
 
 /* No comment provided by engineer. */
+"Modules" = "Moduler";
+
+/* No comment provided by engineer. */
 "N/A" = "N/A";
 
 /* No comment provided by engineer. */
@@ -597,6 +615,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Intet billede fundet i billedvælgeren";
+
+/* No comment provided by engineer. */
+"No Modules" = "Ingen moduler";
 
 /* No comment provided by engineer. */
 "No Results" = "Ingen resultater";
@@ -641,6 +662,9 @@
 "On Paper" = "På papir";
 
 /* No comment provided by engineer. */
+"Open %@ user preferences" = "Åbn brugerpræferencer for %@";
+
+/* No comment provided by engineer. */
 "orange" = "orange";
 
 /* No comment provided by engineer. */
@@ -656,7 +680,13 @@
 "Pages" = "Sider";
 
 /* No comment provided by engineer. */
+"Pair with Observer" = "Par med observatør";
+
+/* No comment provided by engineer. */
 "Password" = "Adgangskode";
+
+/* No comment provided by engineer. */
+"Past Enrollments" = "Tidligere tilmeldinger";
 
 /* No comment provided by engineer. */
 "Pause" = "Pause";
@@ -693,6 +723,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Profilmenu";
+
+/* No comment provided by engineer. */
+"published" = "offentliggjort";
 
 /* No comment provided by engineer. */
 "purple" = "lilla";
@@ -740,6 +773,9 @@
 "Retry" = "Prøv igen";
 
 /* No comment provided by engineer. */
+"Saving..." = "Gemmer ...";
+
+/* No comment provided by engineer. */
 "Scanning not supported" = "Scanning understøttes ikke";
 
 /* No comment provided by engineer. */
@@ -747,6 +783,12 @@
 
 /* No comment provided by engineer. */
 "Search" = "Søg";
+
+/* No comment provided by engineer. */
+"See All" = "Se alle";
+
+/* No comment provided by engineer. */
+"See All Courses" = "Se alle fag";
 
 /* No comment provided by engineer. */
 "See attached files." = "Se vedhæftede filer.";
@@ -805,9 +847,6 @@
 /* No comment provided by engineer. */
 "Start recording" = "Start optagelsen";
 
-/* started date at time */
-"Started %@ at %@" = "Startede %1$@ kl. %2$@";
-
 /* No comment provided by engineer. */
 "Stop Act as User" = "Hold op med at fungere som bruger";
 
@@ -860,6 +899,9 @@
 "Tap here for help." = "Tryk her for at få hjælp.";
 
 /* No comment provided by engineer. */
+"Tap to copy" = "Tryk for at kopiere";
+
+/* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tryk for at vælge de fag, du vil se i kalenderen.";
 
 /* No comment provided by engineer. */
@@ -893,7 +935,7 @@
 "There are no conferences to display yet." = "Der er ikke nogen konferencer at vise endnu.";
 
 /* No comment provided by engineer. */
-"There are no pages to display." = "Der er ikke nogen sider at vise.";
+"There are no modules to display yet." = "Der er ikke nogen moduler at vise endnu.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Der opstod et problem ved hentning af Betingelser for brug";
@@ -906,6 +948,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading events. Pull to refresh to try again." = "Der opstod en fejl under indlæsning af begivenheder. Træk for at opdatere for at prøve igen.";
+
+/* No comment provided by engineer. */
+"There was an error loading modules. Pull to refresh to try again." = "Der opstod en fejl under indlæsningen af moduler. Træk for at opdatere for at prøve igen.";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "Der opstod en fejl under indlæsning af deltagere. Træk for at opdatere for at prøve igen.";
@@ -924,6 +969,9 @@
 
 /* No comment provided by engineer. */
 "This is a media comment" = "Dette er en mediekommentar";
+
+/* No comment provided by engineer. */
+"This module is empty." = "Dette modul er tomt.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Tid gået";
@@ -953,6 +1001,9 @@
 "Unordered List" = "Ikke ordnet liste";
 
 /* No comment provided by engineer. */
+"unpublished" = "ikke offentliggjort";
+
+/* No comment provided by engineer. */
 "Updated Language Settings" = "Opdaterede sprogindstillinger";
 
 /* No comment provided by engineer. */
@@ -969,6 +1020,9 @@
 
 /* No comment provided by engineer. */
 "Use Camera" = "Brug kamera";
+
+/* No comment provided by engineer. */
+"Use this code to pair with me in Canvas Parent: %@" = "Brug denne kode til at blive parret til min konto i Canvas Parent: %@";
 
 /* No comment provided by engineer. */
 "User ID" = "Bruger-id";

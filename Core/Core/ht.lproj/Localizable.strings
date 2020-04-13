@@ -32,6 +32,12 @@
 "Alerts" = "Alèt";
 
 /* No comment provided by engineer. */
+"All annotations saved." = "Tout anotasyon anrejistre.";
+
+/* All Courses screen title */
+"All Courses" = "Tout Kou";
+
+/* No comment provided by engineer. */
 "All Grading Periods" = "Tout Peryòd Klasman";
 
 /* No comment provided by engineer. */
@@ -173,6 +179,9 @@
 "Collapse" = "Redwi";
 
 /* No comment provided by engineer. */
+"collapsed" = "retresi";
+
+/* No comment provided by engineer. */
 "Color Overlay" = "Sipèpozisyon Koulè";
 
 /* No comment provided by engineer. */
@@ -183,9 +192,6 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Fini";
-
-/* concluded date at time */
-"Concluded %@ at %@" = "Fini %1$@ a %2$@";
 
 /* No comment provided by engineer. */
 "Concluded Conferences" = "Konferans Fini";
@@ -210,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Conversations" = "Konvèsasyon";
+
+/* No comment provided by engineer. */
+"Copied!" = "Kopye!";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "Pa t kapab anrejistre preferans notifikasyon";
@@ -317,16 +326,19 @@
 "End Act as User" = "Fini Aksyon kòm yon Itilizatè";
 
 /* No comment provided by engineer. */
-"Enrollment not found." = "Enskripsyon entwouvab.";
+"Error" = "Erè";
 
 /* No comment provided by engineer. */
-"Error" = "Erè";
+"Error Saving. Tap to retry." = "Erè Anrejistreman. Tape pou re eseye.";
 
 /* No comment provided by engineer. */
 "Excused" = "Egzante";
 
 /* No comment provided by engineer. */
 "Expand" = "Elaji";
+
+/* No comment provided by engineer. */
+"expanded" = "elaji";
 
 /* No comment provided by engineer. */
 "Experimental Features" = "Fonksyon Eksperimantal";
@@ -518,6 +530,9 @@
 "list_or_two" = "%1$@ oswa %2$@";
 
 /* No comment provided by engineer. */
+"Loading more modules..." = "Chajman plis modil...";
+
+/* No comment provided by engineer. */
 "Locate QR Code" = "Jwenn Kòd QR";
 
 /* No comment provided by engineer. */
@@ -563,6 +578,9 @@
 "Missing" = "Manke";
 
 /* No comment provided by engineer. */
+"Modules" = "Modil";
+
+/* No comment provided by engineer. */
 "N/A" = "N/A";
 
 /* No comment provided by engineer. */
@@ -597,6 +615,9 @@
 
 /* No comment provided by engineer. */
 "No image found from image picker" = "Nou pa jwenn okenn imaj apati de selektè imaj la";
+
+/* No comment provided by engineer. */
+"No Modules" = "Okenn Modil";
 
 /* No comment provided by engineer. */
 "No Results" = "Okenn Rezilta";
@@ -641,6 +662,9 @@
 "On Paper" = "Sou Papye";
 
 /* No comment provided by engineer. */
+"Open %@ user preferences" = "Ouvri %@ preferans itilizatè";
+
+/* No comment provided by engineer. */
 "orange" = "oranj";
 
 /* No comment provided by engineer. */
@@ -656,7 +680,13 @@
 "Pages" = "Paj";
 
 /* No comment provided by engineer. */
+"Pair with Observer" = "Asosye avèk Obsèvatè";
+
+/* No comment provided by engineer. */
 "Password" = "Modpas";
+
+/* No comment provided by engineer. */
+"Past Enrollments" = "Enskripsyon Pase";
 
 /* No comment provided by engineer. */
 "Pause" = "Poz";
@@ -693,6 +723,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Meni Pwofil";
+
+/* No comment provided by engineer. */
+"published" = "pibliye";
 
 /* No comment provided by engineer. */
 "purple" = "mov";
@@ -740,6 +773,9 @@
 "Retry" = "Re eseye";
 
 /* No comment provided by engineer. */
+"Saving..." = "Anrejistreman...";
+
+/* No comment provided by engineer. */
 "Scanning not supported" = "Nimerizasyon an pa posib";
 
 /* No comment provided by engineer. */
@@ -747,6 +783,12 @@
 
 /* No comment provided by engineer. */
 "Search" = "Chèche";
+
+/* No comment provided by engineer. */
+"See All" = "Gade Tout";
+
+/* No comment provided by engineer. */
+"See All Courses" = "Afiche Tout Kou";
 
 /* No comment provided by engineer. */
 "See attached files." = "Gade fichye atache yo.";
@@ -805,9 +847,6 @@
 /* No comment provided by engineer. */
 "Start recording" = "Kòmanse anrejistreman";
 
-/* started date at time */
-"Started %@ at %@" = "Kòmanse %1$@ a %2$@";
-
 /* No comment provided by engineer. */
 "Stop Act as User" = "Sispann Aji tankou Itilizatè";
 
@@ -860,6 +899,9 @@
 "Tap here for help." = "Tape la pou èd.";
 
 /* No comment provided by engineer. */
+"Tap to copy" = "Tape pou ka kopye";
+
+/* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tape pou ka seleksyone kou ou vle wè nan kalandriye a.";
 
 /* No comment provided by engineer. */
@@ -893,7 +935,7 @@
 "There are no conferences to display yet." = "Poko gen konferans pou afiche.";
 
 /* No comment provided by engineer. */
-"There are no pages to display." = "Pa gen paj pou afiche.";
+"There are no modules to display yet." = "Poko gen modil pou afiche.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Gen yon pwoblèm ki pase pandan rekiperasyon Kondisyon Itilizasyon an";
@@ -906,6 +948,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading events. Pull to refresh to try again." = "Te gen yon erè nan chajman aktivite yo. Rale pou aktyalize pou ka eseye ankò.";
+
+/* No comment provided by engineer. */
+"There was an error loading modules. Pull to refresh to try again." = "Te gen yon erè nan chajman modil yo. Rale pou aktyalize pou ka eseye ankò.";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "Te gen yon erè nan chajman kontak yo. Rale pou aktyalize pou ka eseye ankò.";
@@ -924,6 +969,9 @@
 
 /* No comment provided by engineer. */
 "This is a media comment" = "Sa se yon kòmantè miltimedya";
+
+/* No comment provided by engineer. */
+"This module is empty." = "Modil sa a vid.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Tan ki pase";
@@ -953,6 +1001,9 @@
 "Unordered List" = "Lis non Òdone";
 
 /* No comment provided by engineer. */
+"unpublished" = "pa pibliye";
+
+/* No comment provided by engineer. */
 "Updated Language Settings" = "Paramèt Langaj Aktyalize";
 
 /* No comment provided by engineer. */
@@ -969,6 +1020,9 @@
 
 /* No comment provided by engineer. */
 "Use Camera" = "Itilize Kamera";
+
+/* No comment provided by engineer. */
+"Use this code to pair with me in Canvas Parent: %@" = "Itilize kòd sa a pou asosye ak mwen sou Canvas Parent: %@";
 
 /* No comment provided by engineer. */
 "User ID" = "ID Itilizatè";

@@ -320,8 +320,11 @@
   "compose_message_8abd180a": {
     "message": "Compor Mensagem"
   },
-  "conferences_a0a8984b": {
-    "message": "Conferências"
+  "conference_in_progress_bed08457": {
+    "message": "Conferência em curso"
+  },
+  "conference_name_is_in_progress_tap_to_view_details_86ffeb1": {
+    "message": "A conferência { name } está em curso, toque para ver detalhes"
   },
   "conversation_options_8be926f3": {
     "message": "Opções de conversa"
@@ -1529,9 +1532,6 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "Não há comentários para exibir."
   },
-  "there_are_no_conferences_to_display_400a0413": {
-    "message": "Não há conferências para exibir."
-  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Não há discussões para mostrar."
   },
@@ -1561,6 +1561,9 @@
   },
   "there_was_a_problem_loading_the_groups_6945e624": {
     "message": "Ocorreu um problema ao carregar os grupos."
+  },
+  "there_was_a_problem_loading_the_live_conferences_d80f2f9e": {
+    "message": "Havia um problema no carregamento das conferências em direto."
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
     "message": "Ocorreu um problema ao carregar as submissões do teste."

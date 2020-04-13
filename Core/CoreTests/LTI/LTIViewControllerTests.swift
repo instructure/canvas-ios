@@ -23,23 +23,49 @@ import XCTest
 import SafariServices
 
 class LTIViewControllerTests: CoreTestCase {
+    override func setUp() {
+        super.setUp()
+        environment.mockStore = false
+    }
+
     func testLayout() {
         let tools = LTITools(id: "1")
-        let controller = LTIViewController(tools: tools)
-        let task = api.mock(tools.request, value: .make())
+        let controller = LTIViewController.create(tools: tools)
+        var task = api.mock(tools.request, value: .make(name: "So Descriptive", url: URL(string: "/")!))
         task.paused = true
 
         controller.view.layoutIfNeeded()
-        XCTAssertFalse(controller.button.isHidden)
-        XCTAssertFalse(controller.spinner.isAnimating)
-        XCTAssertEqual(controller.button.title(for: .normal), "Launch External Tool")
+        XCTAssertEqual(controller.nameLabel.text, "LTI Tool")
+        XCTAssertTrue(controller.spinnerView.isHidden)
+        XCTAssertEqual(controller.titleSubtitleView.title, "External Tool")
+        XCTAssertNil(controller.titleSubtitleView.subtitle)
+        task.paused = false
+        XCTAssertEqual(controller.nameLabel.text, "So Descriptive")
 
-        controller.button.sendActions(for: .primaryActionTriggered)
-        XCTAssertTrue(controller.button.isHidden)
-        XCTAssertTrue(controller.spinner.isAnimating)
+        task = api.mock(tools.request, value: .make())
+        task.paused = true
+        controller.openButton.sendActions(for: .primaryActionTriggered)
+        XCTAssertFalse(controller.spinnerView.isHidden)
+        XCTAssertFalse(controller.openButton.isEnabled)
         task.paused = false
         XCTAssertNotNil(router.presented as? SFSafariViewController)
-        XCTAssertFalse(controller.button.isHidden)
-        XCTAssertFalse(controller.spinner.isAnimating)
+        XCTAssertTrue(controller.spinnerView.isHidden)
+        XCTAssertTrue(controller.openButton.isEnabled)
+    }
+
+    func testName() {
+        let tools = LTITools(id: "1")
+        let controller = LTIViewController.create(tools: tools, name: "Fancy Tool")
+        controller.view.layoutIfNeeded()
+        XCTAssertEqual(controller.nameLabel.text, "Fancy Tool")
+    }
+
+    func testCourseSubtitle() {
+        let course = APICourse.make(id: "1", name: "Fancy Course")
+        let tools = LTITools(context: ContextModel(.course, id: course.id))
+        let controller = LTIViewController.create(tools: tools)
+        api.mock(controller.courses!, value: course)
+        controller.view.layoutIfNeeded()
+        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Fancy Course")
     }
 }

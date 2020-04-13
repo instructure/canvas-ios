@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Module Item Sequence View Controller-->
+        <scene sceneID="3Xe-tU-2XZ">
+            <objects>
+                <viewController storyboardIdentifier="ModuleItemSequenceViewController" id="lhr-LL-71f" customClass="ModuleItemSequenceViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1Qu-yS-mhO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xc1-o8-iDS">
+                                <rect key="frame" x="0.0" y="44" width="414" height="762"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iGP-7W-vfy">
+                                <rect key="frame" x="0.0" y="806" width="414" height="56"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywu-lr-3Bv" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="366" y="13" width="32" height="30"/>
+                                        <state key="normal" title="Next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="miniArrowEndSolid"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="goNext" destination="lhr-LL-71f" eventType="primaryActionTriggered" id="QWF-Gm-VCd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lE8-Sf-NiN" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="13" width="59" height="30"/>
+                                        <state key="normal" title="Previous"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="miniArrowStartSolid"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="goPrevious" destination="lhr-LL-71f" eventType="primaryActionTriggered" id="MpC-Ov-Nie"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="backgroundLight"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ywu-lr-3Bv" secondAttribute="trailing" constant="16" id="E8f-HO-IHc"/>
+                                    <constraint firstItem="ywu-lr-3Bv" firstAttribute="centerY" secondItem="iGP-7W-vfy" secondAttribute="centerY" id="R3l-h5-iZ9"/>
+                                    <constraint firstAttribute="height" constant="56" id="ZAv-eD-KKl"/>
+                                    <constraint firstItem="lE8-Sf-NiN" firstAttribute="centerY" secondItem="iGP-7W-vfy" secondAttribute="centerY" id="k2t-rq-UuN"/>
+                                    <constraint firstItem="lE8-Sf-NiN" firstAttribute="leading" secondItem="iGP-7W-vfy" secondAttribute="leading" constant="16" id="xCF-9O-iFD"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sjW-dW-Pel" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="187" y="428" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="gza-RI-Dey"/>
+                                    <constraint firstAttribute="width" constant="40" id="t4T-UJ-uI7"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="97J-8u-P7Y" firstAttribute="bottom" secondItem="iGP-7W-vfy" secondAttribute="bottom" id="A0v-XR-3s6"/>
+                            <constraint firstItem="Xc1-o8-iDS" firstAttribute="top" secondItem="97J-8u-P7Y" secondAttribute="top" id="BTg-7e-Mlo"/>
+                            <constraint firstItem="sjW-dW-Pel" firstAttribute="centerY" secondItem="1Qu-yS-mhO" secondAttribute="centerY" id="FKO-c2-Xem"/>
+                            <constraint firstItem="Xc1-o8-iDS" firstAttribute="bottom" secondItem="iGP-7W-vfy" secondAttribute="top" id="VRJ-xc-0QM"/>
+                            <constraint firstItem="iGP-7W-vfy" firstAttribute="leading" secondItem="97J-8u-P7Y" secondAttribute="leading" id="dxi-v1-d5O"/>
+                            <constraint firstItem="Xc1-o8-iDS" firstAttribute="leading" secondItem="97J-8u-P7Y" secondAttribute="leading" id="eTD-ac-7Zt"/>
+                            <constraint firstItem="97J-8u-P7Y" firstAttribute="trailing" secondItem="iGP-7W-vfy" secondAttribute="trailing" id="lBY-cm-82c"/>
+                            <constraint firstItem="sjW-dW-Pel" firstAttribute="centerX" secondItem="1Qu-yS-mhO" secondAttribute="centerX" id="vFq-tD-BdS"/>
+                            <constraint firstItem="97J-8u-P7Y" firstAttribute="trailing" secondItem="Xc1-o8-iDS" secondAttribute="trailing" id="ym3-yf-V4C"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="97J-8u-P7Y"/>
+                    </view>
+                    <connections>
+                        <outlet property="buttonsContainer" destination="iGP-7W-vfy" id="lfN-Al-uTZ"/>
+                        <outlet property="buttonsHeightConstraint" destination="ZAv-eD-KKl" id="MIx-pI-9BZ"/>
+                        <outlet property="nextButton" destination="ywu-lr-3Bv" id="uNj-xQ-3iH"/>
+                        <outlet property="pagesContainer" destination="Xc1-o8-iDS" id="pkP-cz-if5"/>
+                        <outlet property="previousButton" destination="lE8-Sf-NiN" id="2lH-2E-P0x"/>
+                        <outlet property="spinnerView" destination="sjW-dW-Pel" id="jRz-Uh-TJt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HY3-EV-IdD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-275.36231884057975" y="-218.30357142857142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="backgroundLight">
+            <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -20,6 +20,7 @@ import Foundation
 import XCTest
 import Core
 @testable import Teacher
+@testable import CanvasCore
 
 class RoutesTests: XCTestCase {
     let route = URLComponents(string: "https://canvas.instructure.com/api/v1/courses/1")!
@@ -58,5 +59,14 @@ class RoutesTests: XCTestCase {
         XCTAssertEqual(userInfo?["url"] as? String, route.url!.absoluteString)
         XCTAssertEqual(userInfo?["modal"] as? Bool, false)
         XCTAssertEqual(userInfo?["detail"] as? Bool, true)
+    }
+
+    func testMatch() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.registerNativeRoutes()
+        HelmManager.shared.registerRoute("/courses/:courseID/pages/:url")
+        HelmManager.shared.registerRoute("/courses/:courseID/assignments/:assignmentID")
+        XCTAssert(router.match(.parse("/courses/1/pages/page-1")) is PageDetailsViewController)
+        XCTAssert(router.match(.parse("/courses/1/assignments/2")) is HelmViewController)
     }
 }

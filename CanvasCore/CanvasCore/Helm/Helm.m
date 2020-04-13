@@ -87,4 +87,8 @@ RCT_EXPORT_METHOD(reload) {
     [[HelmManager shared] reload];
 }
 
+RCT_EXPORT_METHOD(registerRoute:(NSString *)template) {
+    [[HelmManager shared] registerRoute:template];
+}
+
 @end

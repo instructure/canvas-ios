@@ -18,65 +18,71 @@
 
 import Foundation
 
-public class LTIViewController: UIViewController {
-    public let tools: LTITools
+public class LTIViewController: UIViewController, ErrorViewController, ColoredNavViewProtocol {
+    @IBOutlet weak var spinnerView: CircleProgressView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var openButton: UIButton!
 
-    var spinner: UIActivityIndicatorView!
-    var button: UIButton!
+    let env = AppEnvironment.shared
+    public var tools: LTITools!
+    public var name: String?
+    public var color: UIColor?
+    public var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
 
-    public init(tools: LTITools) {
-        self.tools = tools
-        super.init(nibName: nil, bundle: nil)
+    lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
+        self?.updateNavBar()
+    }
+
+    lazy var courses = courseID.flatMap { env.subscribe(GetCourse(courseID: $0, include: [])) { [weak self] in
+        self?.updateNavBar()
+    }}
+
+    var courseID: String? {
+        guard tools.context.contextType == .course else { return nil }
+        return tools.context.id
+    }
+
+    public static func create(tools: LTITools, name: String? = nil) -> Self {
+        let controller = loadFromStoryboard()
+        controller.tools = tools
+        controller.name = name
+        return controller
     }
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-
-        button = UIButton(type: .system)
-        button.setTitleColor(Brand.shared.buttonPrimaryText, for: .normal)
-        button.backgroundColor = Brand.shared.buttonPrimaryBackground
-        button.setTitle(NSLocalizedString("Launch External Tool", bundle: .core, comment: ""), for: .normal)
-        button.titleLabel?.font = .scaledNamedFont(.semibold16)
-        button.addTarget(self, action: #selector(launch), for: .primaryActionTriggered)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
-        button.layer.cornerRadius = 4
-        button.sizeToFit()
-        view.addSubview(button)
-        let safeArea = view.safeAreaLayoutGuide
-        NSLayoutConstraint.activate([
-            button.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor),
-            button.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
-            button.widthAnchor.constraint(lessThanOrEqualToConstant: 285),
-            button.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 45),
-            button.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -45),
-        ])
-
-        spinner = UIActivityIndicatorView(style: .gray)
-        spinner.hidesWhenStopped = true
-        spinner.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(spinner)
-        NSLayoutConstraint.activate([
-            spinner.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            spinner.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor),
-        ])
-    }
-
-    @objc func launch() {
-        showLoading(true)
-        tools.presentTool(from: self, animated: true) { [weak self] _ in
-            self?.showLoading(false)
+        view.backgroundColor = .named(.backgroundLightest)
+        spinnerView.isHidden = true
+        nameLabel.text = name ?? NSLocalizedString("LTI Tool", bundle: .core, comment: "")
+        setupTitleViewInNavbar(title: NSLocalizedString("External Tool", bundle: .core, comment: ""))
+        if name == nil {
+            // try to get a more descriptive name of the tool
+            tools.getSessionlessLaunch { [weak self] response in
+                performUIUpdate {
+                    self?.nameLabel.text = response?.name ?? self?.nameLabel.text
+                }
+            }
         }
+        colors.refresh()
+        courses?.refresh()
     }
 
-    func showLoading(_ loading: Bool) {
-        loading ? spinner.startAnimating() : spinner.stopAnimating()
-        button.isHidden = loading
+    func updateNavBar() {
+        let course = courses?.first
+        updateNavBar(subtitle: course?.name, color: course?.color)
     }
 
-    public required init?(coder aDecoder: NSCoder) {
-        fatalError("not supported")
+    @IBAction func openButtonPressed(_ sender: UIButton) {
+        sender.isEnabled = false
+        spinnerView.isHidden = false
+        tools.presentTool(from: self, animated: true) { [weak self, weak sender] success in
+            performUIUpdate {
+                self?.spinnerView.isHidden = true
+                sender?.isEnabled = true
+                if !success {
+                    self?.showError(message: NSLocalizedString("Could not launch tool. Please try again.", bundle: .core, comment: ""))
+                }
+            }
+        }
     }
 }

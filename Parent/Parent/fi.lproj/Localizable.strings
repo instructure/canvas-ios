@@ -22,9 +22,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1-100 %";
 
-/* Label for button that allows admin to Act as User */
-"Act as User" = "Toimi käyttäjänä";
-
 /* No comment provided by engineer. */
 "Add" = "Lisää";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "Lisää opiskelija";
-
-/* Label displayed when logged in as an admin */
-"Admin" = "Järjestelmävalvoja";
 
 /* Alert Section Header */
 "Alert me when:" = "Hälytä minua, kun:";
@@ -279,9 +273,6 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Opinto-ohjelma";
 
-/* Directions in the admin view */
-"Tap to start viewing Canvas as another person." = "Aloita Canvas-sovelluksen tarkastelu toisena henkilönä.";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Tietokantatiedoston AlertKit latauksessa tapahtui virhe.";
 
@@ -308,9 +299,6 @@
 
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "%1$@ lataus on %2$@";
-
-/* Header title of admin view */
-"Welcome!" = "Tervetuloa!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Sinun täytyy sallia ilmoitukset asetuksissa määrittääksesi muistutukset.";

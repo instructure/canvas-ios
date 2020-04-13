@@ -22,6 +22,17 @@ import CanvasCore
 
 class Router: RouterProtocol {
     func match(_ url: URLComponents) -> UIViewController? {
+        for template in HelmManager.shared.registeredRoutes {
+            let route = RouteHandler(template) { _, params in
+                if let factory = HelmManager.shared.nativeViewControllerFactories[template] {
+                    return factory.builder(params)
+                }
+                return HelmViewController(moduleName: template, props: params)
+            }
+            if let params = route.match(url), let match = route.factory(url, params) {
+                return match
+            }
+        }
         return nil
     }
 

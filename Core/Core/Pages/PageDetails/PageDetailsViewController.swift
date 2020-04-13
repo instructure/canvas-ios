@@ -67,7 +67,7 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
-        setupTitleViewInNavbar(title: NSLocalizedString("Page", bundle: .core, comment: ""))
+        setupTitleViewInNavbar(title: NSLocalizedString("Page Details", bundle: .core, comment: ""))
         webView.linkDelegate = self
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)

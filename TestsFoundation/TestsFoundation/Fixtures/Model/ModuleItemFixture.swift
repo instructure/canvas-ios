@@ -32,3 +32,24 @@ extension ModuleItem {
         return model
     }
 }
+
+extension ModuleItemSequence {
+    @discardableResult
+    public static func make(
+        from api: APIModuleItemSequence = .make(),
+        courseID: String = "1",
+        assetType: AssetType = .moduleItem,
+        assetID: String = "1",
+        in client: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> ModuleItemSequence {
+        let sequence: ModuleItemSequence = client.insert()
+        sequence.courseID = courseID
+        sequence.assetType = assetType
+        sequence.assetID = assetID
+        let node = api.items.first
+        sequence.prev = node?.prev.flatMap { .save($0, forCourse: courseID, in: client) }
+        sequence.next = node?.next.flatMap { .save($0, forCourse: courseID, in: client) }
+        sequence.current = node?.current.flatMap { .save($0, forCourse: courseID, in: client) }
+        return sequence
+    }
+}

@@ -94,3 +94,22 @@ extension APIModuleItem.CompletionRequirement {
         return APIModuleItem.CompletionRequirement(type: type, completed: completed, min_score: min_score)
     }
 }
+
+extension APIModuleItemSequence.Node {
+    public static func make(
+        prev: APIModuleItem? = nil,
+        current: APIModuleItem? = nil,
+        next: APIModuleItem? = nil
+    ) -> Self {
+        return .init(prev: prev, current: current, next: next)
+    }
+}
+
+extension APIModuleItemSequence {
+    public static func make(
+        items: [Node] = [.make()],
+        modules: [APIModule] = [.make()]
+    ) -> Self {
+        return .init(items: items, modules: modules)
+    }
+}

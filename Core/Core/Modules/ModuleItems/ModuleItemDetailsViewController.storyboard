@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Module Item Details View Controller-->
+        <scene sceneID="bvy-nv-4Kf">
+            <objects>
+                <viewController storyboardIdentifier="ModuleItemDetailsViewController" id="pRf-Li-hki" customClass="ModuleItemDetailsViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hUi-aY-MPo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mly-3M-vhC">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQT-Kt-Wb4" customClass="ListErrorView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="358" width="414" height="180"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="VGI-Tp-KTF"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="XQT-Kt-Wb4" firstAttribute="centerX" secondItem="hUi-aY-MPo" secondAttribute="centerX" id="583-Al-8RN"/>
+                            <constraint firstItem="I0K-eC-1K5" firstAttribute="trailing" secondItem="XQT-Kt-Wb4" secondAttribute="trailing" id="5IP-2v-XwL"/>
+                            <constraint firstItem="XQT-Kt-Wb4" firstAttribute="centerY" secondItem="hUi-aY-MPo" secondAttribute="centerY" id="FnR-Mk-zUW"/>
+                            <constraint firstItem="I0K-eC-1K5" firstAttribute="bottom" secondItem="Mly-3M-vhC" secondAttribute="bottom" id="fcT-ia-eSc"/>
+                            <constraint firstItem="XQT-Kt-Wb4" firstAttribute="leading" secondItem="I0K-eC-1K5" secondAttribute="leading" id="kvD-Ne-Xdy"/>
+                            <constraint firstItem="Mly-3M-vhC" firstAttribute="top" secondItem="I0K-eC-1K5" secondAttribute="top" id="pEb-pb-Fsg"/>
+                            <constraint firstItem="Mly-3M-vhC" firstAttribute="leading" secondItem="I0K-eC-1K5" secondAttribute="leading" id="pby-s9-4gO"/>
+                            <constraint firstItem="I0K-eC-1K5" firstAttribute="trailing" secondItem="Mly-3M-vhC" secondAttribute="trailing" id="zVX-um-M3w"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="I0K-eC-1K5"/>
+                    </view>
+                    <connections>
+                        <outlet property="container" destination="Mly-3M-vhC" id="C5S-v4-MLh"/>
+                        <outlet property="errorView" destination="XQT-Kt-Wb4" id="CjY-ah-4RM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cwG-Dj-KPF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-91" y="93"/>
+        </scene>
+    </scenes>
+</document>

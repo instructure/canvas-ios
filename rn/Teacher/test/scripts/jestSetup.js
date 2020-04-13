@@ -157,6 +157,7 @@ NativeModules.Helm = {
   dismiss: jest.fn(() => Promise.resolve()),
   dismissAllModals: jest.fn(() => Promise.resolve()),
   traitCollection: jest.fn(),
+  registerRoute: jest.fn(),
 }
 
 NativeModules.TabBarBadgeCounts = {
