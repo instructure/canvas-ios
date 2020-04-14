@@ -128,7 +128,7 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
           ...state[courseID],
           color,
           oldColor: state[courseID].color,
-          pending: state[courseID].pending + 1,
+          pending: (state[courseID]?.pending || 0) + 1,
           error: null,
         },
       }
@@ -161,7 +161,7 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
         [course.id]: {
           ...state[course.id],
           course,
-          pending: state[course.id].pending + 1,
+          pending: (state[course.id]?.pending || 0) + 1,
           error: null,
         },
       }
@@ -173,7 +173,7 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
         [course.id]: {
           ...state[course.id],
           course: { ...course, name: result.data.name, original_name: originalName },
-          pending: state[course.id].pending - 1,
+          pending: (state[course.id]?.pending || 1) - 1,
           error: null,
         },
       }
@@ -185,7 +185,7 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
           ...state[oldCourse.id],
           course: oldCourse,
           error: parseErrorMessage(error),
-          pending: state[oldCourse.id].pending - 1,
+          pending: (state[oldCourse.id]?.pending || 1) - 1,
         },
       }
     },
@@ -196,7 +196,7 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
         ...state,
         [course.id]: {
           ...state[course.id],
-          pending: state[course.id].pending + 1,
+          pending: (state[course.id]?.pending || 0) + 1,
           error: null,
         },
       }
@@ -211,7 +211,7 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
         [course.id]: {
           ...courseState,
           course,
-          pending: state[course.id].pending - 1,
+          pending: (state[course.id]?.pending || 1) - 1,
           error: null,
         },
       }
@@ -221,7 +221,7 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
         ...state,
         [course.id]: {
           ...state[course.id],
-          pending: state[course.id].pending - 1,
+          pending: (state[course.id]?.pending || 1) - 1,
           error: parseErrorMessage(error),
         },
       }
@@ -233,7 +233,7 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
         ...state,
         [courseID]: {
           ...state[courseID],
-          pending: state[courseID].pending + 1,
+          pending: (state[courseID]?.pending || 0) + 1,
         },
       }
     },
@@ -242,7 +242,7 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
         ...state,
         [courseID]: {
           ...state[courseID],
-          pending: state[courseID].pending - 1,
+          pending: (state[courseID]?.pending || 1) - 1,
         },
       }
     },
@@ -252,7 +252,7 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
         ...state,
         [courseID]: {
           ...state[courseID],
-          pending: state[courseID].pending - 1,
+          pending: (state[courseID]?.pending || 1) - 1,
           enabledFeatures: result.data,
         },
       }

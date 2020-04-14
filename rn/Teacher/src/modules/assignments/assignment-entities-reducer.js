@@ -137,7 +137,7 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
       [updatedAssignment.id]: {
         ...state[updatedAssignment.id],
         error: null,
-        pending: (state[updatedAssignment.id] && state[updatedAssignment.id].pending || 0) + 1,
+        pending: (state[updatedAssignment.id]?.pending || 0) + 1,
         data: {
           ...updatedAssignment,
         },
@@ -148,7 +148,7 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
       [updatedAssignment.id]: {
         ...state[updatedAssignment.id],
         error: null,
-        pending: state[updatedAssignment.id] && state[updatedAssignment.id].pending ? Math.max(0, state[updatedAssignment.id].pending - 1) : 0,
+        pending: Math.max(0, (state[updatedAssignment.id]?.pending || 1) - 1),
         data: updatedAssignment,
       },
     }),
