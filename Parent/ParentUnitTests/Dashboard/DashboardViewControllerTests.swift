@@ -19,37 +19,58 @@
 import XCTest
 @testable import Core
 @testable import Parent
-@testable import CanvasCore
 import TestsFoundation
 
 class DashboardViewControllerTests: ParentTestCase {
-
-    var vc: Parent.DashboardViewController!
-
-    override func setUp() {
-        super.setUp()
-        vc = DashboardViewController.create(session: Session.current!)
-        vc.loadView()
-    }
+    lazy var vc = Parent.DashboardViewController.create()
 
     func testLayoutMenu() {
         let students: [APIEnrollment] = [
             .make(observed_user: .make(
                 id: "1",
                 name: "Full Name",
-                short_name: "Short Name"
+                short_name: "Short Name",
+                pronouns: "Pro/Noun"
             )),
             .make(observed_user: .make(id: "2")),
         ]
         api.mock(GetObservedStudents(observerID: "1"), value: students)
         api.mock(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: APIPermissions.make())
+        api.mock(GetConversationsUnreadCountRequest(), value: .init(unread_count: 3))
+        env.userDefaults?.parentCurrentStudentID = nil
 
-        vc.viewDidLoad()
-        vc.viewDidAppear(false)
+        vc.view.layoutIfNeeded()
+        vc.viewWillAppear(false)
 
-        XCTAssertFalse(vc.pageViewController.viewControllers?.first is AdminViewController)
-        XCTAssertEqual(vc.navbarNameButton.titleLabel?.text, "Short Name")
-        XCTAssertEqual(vc.navbarMenuStackView.arrangedSubviews.count, students.count + 1) // + add button
+        XCTAssertEqual(vc.avatarView.name, "Full Name")
+        XCTAssertEqual(vc.titleLabel.text, "Short Name (Pro/Noun)")
+        XCTAssertEqual(vc.dropdownButton.accessibilityLabel, "Current student: Short Name (Pro/Noun). Tap to switch students")
+        XCTAssertEqual(vc.studentListStack.arrangedSubviews.count, students.count + 1) // + add button
+
+        XCTAssert(vc.tabsController.viewControllers?[0] is Parent.CourseListViewController)
+        XCTAssert(vc.tabsController.viewControllers?[1] is PlannerViewController)
+        XCTAssert(vc.tabsController.viewControllers?[2] is Parent.AlertsListViewController)
+
+        XCTAssertEqual(vc.profileButton.accessibilityLabel, "Settings. 3 unread conversations")
+        vc.profileButton.sendActions(for: .primaryActionTriggered)
+        XCTAssert(router.lastRoutedTo(.profile, withOptions: .modal()))
+
+        XCTAssertEqual(vc.studentListHiddenHeight.isActive, true)
+        vc.dropdownButton.sendActions(for: .primaryActionTriggered)
+        XCTAssertEqual(vc.studentListHiddenHeight.isActive, false)
+
+        (vc.studentListStack.arrangedSubviews[1] as? UIButton)?.sendActions(for: .primaryActionTriggered)
+        drainMainQueue() // Wait for animation to complete
+        XCTAssertEqual(vc.studentListHiddenHeight.isActive, true)
+        XCTAssertEqual(vc.avatarView.name, "Bob")
+        XCTAssertEqual(vc.titleLabel.text, "Bob")
+        XCTAssertEqual(vc.dropdownButton.accessibilityLabel, "Current student: Bob. Tap to switch students")
+        XCTAssertEqual(vc.studentListStack.arrangedSubviews.count, students.count + 1) // + add button
+
+        (vc.studentListStack.arrangedSubviews.last as? UIButton)?.sendActions(for: .primaryActionTriggered)
+        XCTAssert(router.presented is UIAlertController)
+
+        XCTAssertNoThrow(vc.viewWillDisappear(false))
     }
 
     func testAdmin() {
@@ -57,30 +78,34 @@ class DashboardViewControllerTests: ParentTestCase {
         api.mock(GetObservedStudents(observerID: "1"), value: [])
         api.mock(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: APIPermissions.make())
 
-        vc.viewDidLoad()
-        vc.viewDidAppear(false)
+        vc.view.layoutIfNeeded()
+        vc.viewWillAppear(false)
 
-        XCTAssertTrue( vc.pageViewController.viewControllers?.first is AdminViewController )
+        XCTAssertEqual(vc.avatarView.isHidden, true)
+        XCTAssertEqual(vc.titleLabel.text, "Add Student")
+        XCTAssertEqual(vc.dropdownView.isHidden, true)
+        XCTAssertEqual(vc.dropdownButton.accessibilityLabel, "Add Student")
+        XCTAssertTrue(vc.tabsController.viewControllers?.first is AdminViewController)
     }
 
     func testShowNotAParentModal() {
         api.mock(GetObservedStudents(observerID: "1"), error: NSError.instructureError("error"))
         api.mock(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: APIPermissions.make())
 
-        vc.viewDidLoad()
-        vc.viewDidAppear(false)
+        vc.view.layoutIfNeeded()
+        vc.viewWillAppear(false)
 
-        XCTAssertTrue(router.lastRoutedTo(.wrongApp))
+        XCTAssertTrue(router.lastRoutedTo(.wrongApp, withOptions: .modal(isDismissable: false, embedInNav: true)))
     }
 
     func testShowNotAParentModalNoStudentsToObserve() {
         api.mock(GetObservedStudents(observerID: "1"), value: [])
         api.mock(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: APIPermissions.make())
 
-        vc.viewDidLoad()
-        vc.viewDidAppear(false)
+        vc.view.layoutIfNeeded()
+        vc.viewWillAppear(false)
 
-        XCTAssertTrue(router.lastRoutedTo(.wrongApp))
+        XCTAssertTrue(router.lastRoutedTo(.wrongApp, withOptions: .modal(isDismissable: false, embedInNav: true)))
     }
 
     func testPersistedUserIsDefaultSelectedUser() {
@@ -93,11 +118,11 @@ class DashboardViewControllerTests: ParentTestCase {
         ]
         api.mock(GetObservedStudents(observerID: "1"), value: students)
 
-        vc.viewDidLoad()
-        vc.viewDidAppear(false)
+        vc.view.layoutIfNeeded()
+        vc.viewWillAppear(false)
 
-        XCTAssertEqual(vc.navbarNameButton.titleLabel?.text, "User 3")
-        XCTAssertEqual(vc.navbarMenuStackView.arrangedSubviews.count, students.count + 1)
+        XCTAssertEqual(vc.titleLabel.text, "User 3")
+        XCTAssertEqual(vc.studentListStack.arrangedSubviews.count, students.count + 1)
     }
 
     func testNoDefaultSelectedUser() {
@@ -110,10 +135,10 @@ class DashboardViewControllerTests: ParentTestCase {
         ]
         api.mock(GetObservedStudents(observerID: "1"), value: students)
 
-        vc.viewDidLoad()
-        vc.viewDidAppear(false)
+        vc.view.layoutIfNeeded()
+        vc.viewWillAppear(false)
 
-        XCTAssertEqual(vc.navbarNameButton.titleLabel?.text, "User 2")
-        XCTAssertEqual(vc.navbarMenuStackView.arrangedSubviews.count, students.count + 1)
+        XCTAssertEqual(vc.titleLabel.text, "User 2")
+        XCTAssertEqual(vc.studentListStack.arrangedSubviews.count, students.count + 1)
     }
 }
