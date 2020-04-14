@@ -62,7 +62,6 @@ extension QuizSubmission : JSONDecodable {
         let jsonObject = json as? NSDictionary
         if let
             id = idString(jsonObject?["id"]),
-            let attempt = jsonObject?["attempt"] as? Int,
             let attemptsLeft = jsonObject?["attempts_left"] as? Int,
             let validationToken = jsonObject?["validation_token"] as? String,
             let workflowState = QuizSubmission.WorkflowState.fromJSON(jsonObject?["workflow_state"]) {
@@ -72,7 +71,7 @@ extension QuizSubmission : JSONDecodable {
                     dateStarted: Date.fromJSON(jsonObject?["started_at"]),
                     dateFinished: Date.fromJSON(jsonObject?["finished_at"]),
                     endAt: Date.fromJSON(jsonObject?["end_at"]),
-                    attempt: attempt,
+                    attempt: jsonObject?["attempt"] as? Int ?? 0,
                     attemptsLeft: attemptsLeft,
                     validationToken: validationToken,
                     workflowState: workflowState,
