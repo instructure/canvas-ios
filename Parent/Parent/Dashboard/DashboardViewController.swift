@@ -90,7 +90,7 @@ class DashboardViewController: UIViewController {
         embed(tabsController, in: tabsContainer)
 
         permissions.refresh(force: true)
-        students.exhaust() { [weak self] list in
+        students.exhaust { [weak self] list in
             // workaround temporary students.isEmpty && !students.pending
             self?.hasStudents = self?.hasStudents == true || !list.isEmpty
             self?.update()
@@ -270,7 +270,7 @@ class DashboardViewController: UIViewController {
             let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                 Alert.unreadPredicate(),
                 Alert.undismissedPredicate(),
-                Alert.observeePredicate(observeeID)
+                Alert.observeePredicate(observeeID),
             ])
             alertTabBadgeCountCoordinator = AlertCountCoordinator(session: session, studentID: observeeID, predicate: predicate) { [weak alerts] count in
                 alerts?.tabBarItem.badgeValue = count <= 0 ? nil :
@@ -310,7 +310,7 @@ class StudentButton: UIButton {
             avatarView.heightAnchor.constraint(equalToConstant: 48),
             avatarView.widthAnchor.constraint(equalToConstant: 48),
             heightAnchor.constraint(equalToConstant: 105),
-            widthAnchor.constraint(equalToConstant: 90)
+            widthAnchor.constraint(equalToConstant: 90),
         ])
     }
 }
@@ -351,7 +351,7 @@ class AddStudentButton: UIButton {
             icon.heightAnchor.constraint(equalToConstant: 20),
             icon.widthAnchor.constraint(equalToConstant: 20),
             heightAnchor.constraint(equalToConstant: 105),
-            widthAnchor.constraint(equalToConstant: 90)
+            widthAnchor.constraint(equalToConstant: 90),
         ])
     }
 }
