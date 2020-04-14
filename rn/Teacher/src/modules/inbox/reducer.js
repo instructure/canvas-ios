@@ -164,7 +164,7 @@ export const conversations: Reducer = handleActions({
       ...state,
       [conversationID]: {
         ...state[conversationID],
-        pending: (state[conversationID] && state[conversationID].pending || 0) + 1,
+        pending: (state[conversationID]?.pending || 0) + 1,
         error: null,
       },
     }),
@@ -177,7 +177,7 @@ export const conversations: Reducer = handleActions({
       ...state,
       [conversationID]: {
         ...state[conversationID],
-        pending: (state[conversationID] && state[conversationID].pending || 1) - 1,
+        pending: (state[conversationID]?.pending || 1) - 1,
         error: parseErrorMessage(error),
       },
     }),

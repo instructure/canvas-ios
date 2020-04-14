@@ -80,7 +80,7 @@ export function updateMapStateToProps (state: AppState, ownProps: AssignmentDeta
   return {
     assignmentDetails: assignment,
     courseColor: course.color,
-    pending: state.entities.assignments[ownProps.assignmentID].pending,
-    error: state.entities.assignments[ownProps.assignmentID].error,
+    pending: state.entities.assignments[ownProps.assignmentID]?.pending,
+    error: state.entities.assignments[ownProps.assignmentID]?.error,
   }
 }

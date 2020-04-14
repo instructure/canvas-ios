@@ -82,7 +82,7 @@ export const asyncActions: Reducer<any, any> = handleActions({
     const name = action.payload.name
     const record = {
       ...state[name],
-      pending: (state[name] && state[name].pending || 0) - 1,
+      pending: (state[name]?.pending || 1) - 1,
       lastResolvedDate: new Date(),
       lastError: undefined,
     }
@@ -96,7 +96,7 @@ export const asyncActions: Reducer<any, any> = handleActions({
     const lastError = action.payload.error
     const record = {
       ...state[name],
-      pending: (state[name] && state[name].pending || 0) - 1,
+      pending: (state[name]?.pending || 1) - 1,
       lastError,
     }
     return {
