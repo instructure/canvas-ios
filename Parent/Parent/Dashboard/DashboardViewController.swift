@@ -240,7 +240,7 @@ class DashboardViewController: UIViewController {
         courses.tabBarItem.accessibilityIdentifier = "TabBar.coursesTab"
 
         var selectedDate = Clock.now
-        if let tabs = tabsController.viewControllers, tabs.count >= 1, let prevCal = tabs[1] as? PlannerViewController {
+        if let tabs = tabsController.viewControllers, tabs.count >= 2, let prevCal = tabs[1] as? PlannerViewController {
             selectedDate = prevCal.selectedDate
         }
         let calendar = currentStudentID.flatMap { (id: String) -> UIViewController? in
