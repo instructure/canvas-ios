@@ -120,7 +120,9 @@ public class PageListViewController: UIViewController, ColoredNavViewProtocol {
         loadingView.isHidden = pages.error != nil || !isLoading || refreshControl.isRefreshing
         emptyView.isHidden = pages.error != nil || isLoading || !frontPage.isEmpty || !pages.isEmpty
         errorView.isHidden = pages.error == nil
+        let selected = tableView.indexPathForSelectedRow
         tableView.reloadData()
+        tableView.selectRow(at: selected, animated: false, scrollPosition: .none) // preserve prior selection
 
         if !selectedFirstPage, !isLoading, let url = frontPage.first?.htmlURL ?? pages.first?.htmlURL {
             selectedFirstPage = true
