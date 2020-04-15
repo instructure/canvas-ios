@@ -50,7 +50,7 @@ public struct APIPlannerOverride: Codable, Equatable {
     let plannable_type: String
     let plannable_id: ID
     let user_id: ID
-    let assignment_id: String
+    let assignment_id: String?
     let workflow_state: String
     let marked_complete: Bool
     let dismissed: Bool
