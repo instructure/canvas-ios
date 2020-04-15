@@ -56,6 +56,13 @@ public class PSPDFView: UIView {
         super.init(frame: frame)
     }
     required public init?(coder aDecoder: NSCoder) { fatalError("nope") }
+
+    deinit {
+        if pdfViewController?.parent != nil {
+            pdfViewController?.willMove(toParent: nil)
+            pdfViewController?.removeFromParent()
+        }
+    }
     
     override public func layoutSubviews() {
         super.layoutSubviews()
@@ -82,5 +89,18 @@ public class PSPDFView: UIView {
         vc.view.frame = bounds
         vc.didMove(toParent: parentVC)
         self.pdfViewController = vc
+    }
+
+    public override func didMoveToWindow() {
+        super.didMoveToWindow()
+        guard let controller = pdfViewController else { return }
+        let parent = parentViewController
+        parent?.addChild(controller)
+        controller.didMove(toParent: parent)
+    }
+
+    public override func removeFromSuperview() {
+        pdfViewController?.dismiss(animated: false) // avoid orphan popovers
+        super.removeFromSuperview()
     }
 }

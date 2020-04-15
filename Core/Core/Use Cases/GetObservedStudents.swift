@@ -37,11 +37,13 @@ public class GetObservedStudents: CollectionUseCase {
     }
 
     public var request: GetEnrollmentsRequest {
-        return GetEnrollmentsRequest(context: ContextModel.currentUser,
-                                     gradingPeriodID: nil,
-                                     includes: [.observed_users, .avatar_url],
-                                     states: GetEnrollmentsRequest.State.allForParentObserver,
-                                     roles: [.observer])
+        GetEnrollmentsRequest(
+            context: ContextModel.currentUser,
+            gradingPeriodID: nil,
+            includes: [.observed_users, .avatar_url],
+            states: GetEnrollmentsRequest.State.allForParentObserver,
+            roles: [ .observer ]
+        )
     }
 
     public func write(response: [APIEnrollment]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {

@@ -110,7 +110,7 @@ export const submissions: Reducer<SubmissionsState, any> = handleActions({
         ...state,
         [submissionID]: {
           ...state[submissionID],
-          pending: state[submissionID].pending + 1,
+          pending: (state[submissionID]?.pending || 0) + 1,
         },
       }
     },
@@ -159,7 +159,7 @@ export const submissions: Reducer<SubmissionsState, any> = handleActions({
         ...state,
         [submissionID]: {
           ...state[submissionID],
-          pending: state[submissionID].pending - 1,
+          pending: (state[submissionID]?.pending || 1) - 1,
         },
       }
     },

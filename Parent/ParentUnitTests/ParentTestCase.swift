@@ -48,7 +48,6 @@ class ParentTestCase: XCTestCase {
         UploadManager.shared = MockUploadManager()
         ExperimentalFeature.allEnabled = false
         Parent.currentStudentID = "1"
-        Parent.legacySession = Session.current
         UIView.setAnimationsEnabled(false)
     }
 }

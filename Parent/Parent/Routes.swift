@@ -18,18 +18,19 @@
 
 import Foundation
 import SafariServices
+import CanvasCore
 import Core
 
 let router = Router(routes: [
 
     RouteHandler(.accountNotification(":id")) { _, params in
-        guard let session = legacySession, let id = params["id"] else { return nil }
+        guard let session = Session.current, let id = params["id"] else { return nil }
         return try? AccountNotificationViewController(session: session, announcementID: id)
     },
 
     RouteHandler("/calendar") { url, _ in
         if let eventID = url.queryItems?.first(where: { $0.name == "event_id" })?.value {
-            guard let session = legacySession, let studentID = currentStudentID else { return nil }
+            guard let session = Session.current, let studentID = currentStudentID else { return nil }
             return try? CalendarEventDetailsViewController(session: session, studentID: studentID, calendarEventID: eventID)
         }
         guard let studentID = currentStudentID else { return nil }
@@ -48,13 +49,12 @@ let router = Router(routes: [
     },
 
     RouteHandler(.courses) { _, _ in
-        guard let session = legacySession else { return nil }
-        return DashboardViewController.create(session: session)
+        return DashboardViewController.create()
     },
 
     RouteHandler(.course(":courseID", assignment: ":assignmentID")) { _, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
-        guard let session = legacySession, let studentID = currentStudentID else { return nil }
+        guard let session = Session.current, let studentID = currentStudentID else { return nil }
         if assignmentID == "syllabus" {
             return CourseSyllabusViewController(courseID: courseID, studentID: studentID, session: session)
         }
@@ -63,7 +63,7 @@ let router = Router(routes: [
 
     RouteHandler(.submission(forCourse: ":courseID", assignment: ":assignmentID", user: ":userID")) { _, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let studentID = params["userID"] else { return nil }
-        guard let session = legacySession else { return nil }
+        guard let session = Session.current else { return nil }
         return try? AssignmentDetailsViewController(session: session, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
     },
 
@@ -75,19 +75,19 @@ let router = Router(routes: [
 
     RouteHandler(.courseCalendarEvent(courseID: ":courseID", eventID: ":eventID")) { _, params in
         guard let courseID = params["courseID"], let eventID = params["eventID"] else { return nil }
-        guard let session = legacySession, let studentID = currentStudentID else { return nil }
+        guard let session = Session.current, let studentID = currentStudentID else { return nil }
         return try? CalendarEventDetailsViewController(session: session, studentID: studentID, courseID: courseID, calendarEventID: eventID)
     },
 
     RouteHandler(.courseDiscussion(courseID: ":courseID", topicID: ":topicID")) { _, params in
         guard let courseID = params["courseID"], let topicID = params["topicID"] else { return nil }
-        guard let session = legacySession, let studentID = currentStudentID else { return nil }
+        guard let session = Session.current, let studentID = currentStudentID else { return nil }
         return try? AnnouncementDetailsViewController(session: session, studentID: studentID, courseID: courseID, announcementID: topicID)
     },
 
     RouteHandler(.actionableItemCalendarEvent(eventID: ":eventID")) { _, params in
         guard let eventID = params["eventID"] else { return nil }
-        guard let session = legacySession, let studentID = currentStudentID else { return nil }
+        guard let session = Session.current, let studentID = currentStudentID else { return nil }
         return try? CalendarEventDetailsViewController(session: session, studentID: studentID, calendarEventID: eventID)
     },
 
@@ -99,12 +99,12 @@ let router = Router(routes: [
         let showPromptValue = url.queryItems?.first { $0.name == "showPrompt" }?.value
         let showPrompt = Bool(showPromptValue ?? "") ?? false
 
-        guard let session = legacySession else { return nil }
+        guard let session = Session.current else { return nil }
         return SettingsViewController.create(session: session, showAddStudentPrompt: showPrompt)
     },
 
     RouteHandler(.observeeThresholds(":userID")) { _, params in
-        guard let session = legacySession, let userID = params["userID"] else { return nil }
+        guard let session = Session.current, let userID = params["userID"] else { return nil }
         return StudentSettingsViewController.create(session, studentID: userID)
     },
 

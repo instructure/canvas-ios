@@ -90,7 +90,7 @@ export const quizData: Reducer<QuizzesState, any> = handleActions({
       [quizID]: {
         ...state[quizID],
         data: quiz.data,
-        pending: state[quizID] && state[quizID].pending ? state[quizID].pending - 1 : 0,
+        pending: (state[quizID]?.pending || 1) - 1,
         error: null,
       },
     }),

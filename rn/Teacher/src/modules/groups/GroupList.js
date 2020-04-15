@@ -142,9 +142,9 @@ export function mapStateToProps (state: AppState, ownProps: RouterProps): StateP
   let group = null
 
   if (state.entities.groups && state.entities.groups[ownProps.groupID]) {
-    pending = state.entities.groups[ownProps.groupID].pending
-    error = state.entities.groups[ownProps.groupID].error
-    group = state.entities.groups[ownProps.groupID].group
+    pending = state.entities.groups[ownProps.groupID]?.pending
+    error = state.entities.groups[ownProps.groupID]?.error
+    group = state.entities.groups[ownProps.groupID]?.group
   }
 
   return {
