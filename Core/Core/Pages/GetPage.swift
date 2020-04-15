@@ -36,6 +36,18 @@ public struct GetPage: UseCase {
         return "get-\(context.canvasContextID)-page-\(url)"
     }
 
+    public func reset(context: NSManagedObjectContext) {
+        guard isFrontPage else { return }
+        // Unset previous flags to ensure we get the new front page
+        let frontPages: [Page] = context.fetch(NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(key: #keyPath(Page.contextID), equals: self.context.canvasContextID),
+            NSPredicate(format: "%K == true", #keyPath(Page.isFrontPage)),
+        ]))
+        for front in frontPages {
+            front.isFrontPage = false
+        }
+    }
+
     public var scope: Scope {
         if isFrontPage {
             let contextID = NSPredicate(format: "%K == %@", #keyPath(Page.contextID), context.canvasContextID)
