@@ -23,6 +23,13 @@ import TestsFoundation
 class ProfileE2ETests: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { return ProfileE2ETests.self }
 
+    override func setUp() {
+        // opening and closing profile causes flakiness
+        // relaunch every test for stability
+        Self.needsLaunch = true
+        super.setUp()
+    }
+
     func testCourseCardGrades() {
         Profile.open()
         Profile.showGradesToggle.waitToExist()
