@@ -66,4 +66,10 @@ class GetPageTests: CoreTestCase {
         XCTAssertTrue(scope.predicate.evaluate(with: match))
         XCTAssertFalse(scope.predicate.evaluate(with: mismatch))
     }
+
+    func testReset() {
+        let previous = Page.make(from: .make(front_page: true, html_url: URL(string: context.pathComponent)!, page_id: "1"))
+        GetPage(context: context, url: "front_page").reset(context: databaseClient)
+        XCTAssertFalse(previous.isFrontPage)
+    }
 }
