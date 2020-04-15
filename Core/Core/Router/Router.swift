@@ -112,7 +112,7 @@ public extension RouterProtocol {
             }
             from.present(nav ?? view, animated: true, completion: completion)
         case .detail:
-            if from.isInSplitViewDetail || from.splitViewController?.isCollapsed == true {
+            if from.splitViewController == nil || from.isInSplitViewDetail || from.splitViewController?.isCollapsed == true {
                 from.show(view, sender: nil)
             } else {
                 from.showDetailViewController(nav ?? view, sender: from)

@@ -21,7 +21,7 @@ import TestsFoundation
 
 enum ExternalTool {
     static var launchButton: Element {
-        return app.find(labelContaining: "Launch External Tool")
+        return app.find(labelContaining: "Open in Safari")
     }
 
     static func pageText(_ string: String) -> Element {
