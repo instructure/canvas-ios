@@ -409,8 +409,8 @@ describe('CourseNavigation', () => {
     let props = {
       ...defaultProps,
       tabs: [ tab ],
-      getFakeStudents: jest.fn(() => Promise.resolve({
-        data: [ template.enrollment({ id: '22' }) ],
+      getFakeStudent: jest.fn(() => Promise.resolve({
+        data: { id: '22' },
       })),
     }
     let tree = shallow(<CourseNavigation {...props} />)
@@ -429,8 +429,8 @@ describe('CourseNavigation', () => {
     let props = {
       ...defaultProps,
       tabs: [ tab ],
-      getFakeStudents: jest.fn(() => Promise.resolve({
-        data: [],
+      getFakeStudent: jest.fn(() => Promise.resolve({
+        data: null,
       })),
     }
     let tree = shallow(<CourseNavigation {...props} />)
@@ -441,8 +441,8 @@ describe('CourseNavigation', () => {
       .simulate('Press', tab)
     await new Promise((resolve) => process.nextTick(resolve))
     expect(Alert.alert).toHaveBeenCalledWith(
-      'Student View Enrollment Not Found',
-      'You must access Student View for this course once from the website before using Student View in the app.',
+      'Error',
+      'Please try again.',
       [ { text: 'OK', onPress: null, style: 'cancel' } ]
     )
   })
@@ -455,8 +455,8 @@ describe('CourseNavigation', () => {
     let props = {
       ...defaultProps,
       tabs: [ tab ],
-      getFakeStudents: jest.fn(() => Promise.resolve({
-        data: [ template.enrollment({ id: '22' }) ],
+      getFakeStudent: jest.fn(() => Promise.resolve({
+        data: { id: '22' },
       })),
     }
     let tree = shallow(<CourseNavigation {...props} />)
@@ -475,7 +475,7 @@ describe('CourseNavigation', () => {
     let props = {
       ...defaultProps,
       tabs: [ tab ],
-      getFakeStudents: jest.fn(() => Promise.reject({})),
+      getFakeStudent: jest.fn(() => Promise.reject({})),
     }
     let tree = shallow(<CourseNavigation {...props} />)
     await tree

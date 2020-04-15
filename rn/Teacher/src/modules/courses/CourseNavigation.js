@@ -45,8 +45,7 @@ import * as LTITools from '../../common/LTITools'
 import TabsList from '../tabs/TabsList'
 import { logEvent } from '@common/CanvasAnalytics'
 import showColorOverlayForCourse from '../../common/show-color-overlay-for-course'
-import { getFakeStudents } from '../../canvas-api'
-import ExperimentalFeature from '../../common/ExperimentalFeature'
+import { getFakeStudent } from '../../canvas-api'
 
 type RoutingParams = {
   +courseID: string,
@@ -73,7 +72,7 @@ const { NativeLogin } = NativeModules
 
 export class CourseNavigation extends Component<CourseNavigationProps, any> {
   static defaultProps = {
-    getFakeStudents,
+    getFakeStudent,
   }
 
   state = {
@@ -85,10 +84,8 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
   homeDidShow: boolean = false
 
   async getFakeStudentID () {
-    let { data } = await this.props.getFakeStudents(this.props.courseID)
-    if (data && data.length && data[0].id != null) {
-      return data[0].id
-    }
+    let { data } = await this.props.getFakeStudent(this.props.courseID)
+    return data?.id
   }
 
   componentWillMount () {
@@ -103,17 +100,20 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
   }
 
   launchStudentView = async () => {
+    let showError = () => {
+      Alert.alert(
+        i18n('Error'),
+        i18n('Please try again.'),
+        [
+          { text: i18n('OK'), onPress: null, style: 'cancel' },
+        ]
+      )
+    }
     this.setState({ loadingStudentView: true })
     try {
       let fakeStudentID = await this.getFakeStudentID()
       if (fakeStudentID == null) {
-        Alert.alert(
-          i18n('Student View Enrollment Not Found'),
-          i18n('You must access Student View for this course once from the website before using Student View in the app.'),
-          [
-            { text: i18n('OK'), onPress: null, style: 'cancel' },
-          ]
-        )
+        showError()
         return
       }
       let canOpen = await Linking.canOpenURL('canvas-student:')
@@ -122,13 +122,7 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
       }
       NativeLogin.actAsFakeStudentWithID(fakeStudentID)
     } catch (e) {
-      Alert.alert(
-        i18n('Error'),
-        i18n('Please try again.'),
-        [
-          { text: i18n('OK'), onPress: null, style: 'cancel' },
-        ]
-      )
+      showError()
     }
     this.setState({ loadingStudentView: false })
   }
@@ -308,7 +302,7 @@ export function mapStateToProps (state: AppState, { courseID }: RoutingParams): 
     })
     .sort((t1, t2) => (t1.position - t2.position))
 
-  if (isTeacher() && permissions?.use_student_view && ExperimentalFeature.teacherStudentView.isEnabled) {
+  if (isTeacher() && permissions?.use_student_view) {
     tabs.push({
       id: 'student-view',
       label: i18n('Student View'),
