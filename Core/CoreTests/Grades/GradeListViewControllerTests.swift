@@ -96,8 +96,8 @@ class GradeListViewControllerTests: CoreTestCase {
         mockGrades(gradingPeriodID: "1", score: 20)
         mockGrades(gradingPeriodID: "2", score: nil)
         api.mock(controller.gradingPeriods, value: [
-            .make(id: "1", title: "One"),
-            .make(id: "2", title: "Two"),
+            .make(id: "1", title: "One", start_date: Clock.now.addDays(-7)),
+            .make(id: "2", title: "Two", start_date: Clock.now.addDays(7)),
         ])
     }
 
