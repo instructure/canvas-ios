@@ -20,84 +20,50 @@
 //  Generates release notes from our common commit message format
 //
 
-// @flow
-
-var prompt = require('prompt')
-const yargs = require('yargs')
-const { spawn } = require('child_process')
+const { spawnSync } = require('child_process')
 
 console.log('Engage Release Notes Automation!')
 
 // This is put between the commits to easily parse then into an array
 let delimiter = '#---------------praise the sun---------------#'
 
-generateReleaseNotes().catch(err => {
-  console.error('Export translations failed: ', err)
+try {
+  generateReleaseNotes()
+} catch (err) {
+  console.error('Generate release notes failed:', err)
   process.exit(2)
-})
-
-function run (cmd, args, opts) {
-  return new Promise((resolve, reject) => {
-    const command = spawn(cmd, args, opts)
-    command.on('error', reject)
-    let result = ''
-    let error = ''
-    command.stdout.on('data', data => {
-      result += data.toString()
-    })
-    command.stderr.on('data', data => {
-      error += data.toString()
-    })
-    command.on('exit', code => {
-      if (code === 0) return resolve(result)
-      console.error(command.stderr.toString())
-      reject(`${cmd} ${args.join(' ')} failed with code ${code}. ${error}`)
-    })
-  })
 }
 
-async function generateReleaseNotes () {
-  var tag = yargs.argv.tag
-  var app = yargs.argv.app
+function run (cmd, args) {
+  const { error, stderr, stdout } = spawnSync(cmd, args, { encoding: 'utf8' })
+  if (stderr) { console.error(stderr) }
+  if (error) { throw error }
+  return stdout
+}
+
+function generateReleaseNotes () {
+  const tag = process.argv[2] || ''
+  const app = tag.split('-')[0]
+  if (![ 'Parent', 'Student', 'Teacher' ].includes(app)) {
+    throw new Error('The tag argument is required and must start with Parent-, Student-, or Teacher-')
+  }
 
   console.log('Executing git fetch to make sure we have the latest tags....')
-  await run('git', ['fetch', '--tags'])
-  if (tag && app) {
-    await finalizeReleaseNotes(tag, app)
-  } else {
-    prompt.start()
-    prompt.get(['Previous release tag', 'Name of app to release'], async function (err, result) {
-      if (err) {
-        console.log('An error occured gathering the required input. Sorry!')
-        return
-      }
+  run('git', [ 'fetch', '--force', '--tags' ])
 
-      tag = result['Previous release tag']
-      app = result['Name of app to release']
-
-      await finalizeReleaseNotes(tag, app)
-    })
-  }
-}
-
-async function finalizeReleaseNotes (tag, app) {
-  console.log('using tag: ', tag)
-  console.log('using app: ', app)
-
-  // Make sure that the tag passed in is valid
-  let tags = await run('git', ['tag'])
-
-  if (!tags.split('\n').includes(tag)) {
-    console.log('Invalid tag. Run `git tag` to see available tags.')
-    process.exit(1)
+  const tags = run('git', [ 'ls-remote', '--tags', '--sort=v:refname', 'origin', `refs/tags/${app}-*` ])
+    .split('\n').map(line => line.split('/').pop()).filter(Boolean)
+  const currentIndex = tags.indexOf(tag)
+  const sinceTag = tags[currentIndex - 1]
+  if (currentIndex < 0) {
+    throw new Error(`${tag} is not a valid tag`)
+  } else if (!sinceTag) {
+    throw new Error('Could not find a previous tag')
   }
 
-  try {
-    let result = await run('git', ['log', `${tag}...HEAD`, `--pretty=format:commit:%H%n%B${delimiter}`, '--'])
-    parseGitLog(result, app.toLowerCase())
-  } catch (e) {
-    console.log(e)
-  }
+  console.log(`Generating release notes for ${app} ${sinceTag}...${tag}`)
+  let result = run('git', [ 'log', `${sinceTag}...${tag}`, `--pretty=format:commit:%H%n%B${delimiter}`, '--' ])
+  parseGitLog(result, app.toLowerCase())
 }
 
 // Parses through the gitlog, using the app to know which ones to filter out
