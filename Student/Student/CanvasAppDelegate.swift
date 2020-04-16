@@ -53,6 +53,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         Core.Analytics.shared.handler = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
+        if launchOptions?[.sourceApplication] as? String == Bundle.teacherBundleID,
+            let url = launchOptions?[.url] as? URL,
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
+            components.path == "student_view",
+            let fakeStudent = LoginSession.mostRecent(in: .shared, forKey: .fakeStudents) {
+            LoginSession.add(fakeStudent)
+        }
+
         if let session = LoginSession.mostRecent {
             window?.rootViewController = LoadingViewController.create()
             window?.makeKeyAndVisible()
