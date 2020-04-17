@@ -152,3 +152,18 @@ public struct PostMarkModuleItemRead: APIRequestable {
         return "\(context.pathComponent)/modules/\(moduleID)/items/\(moduleItemID)/mark_read"
     }
 }
+
+// https://canvas.instructure.com/doc/api/modules.html#method.context_module_items_api.mark_as_done
+public struct PutMarkModuleItemDone: APIRequestable {
+    public typealias Response = APINoContent
+
+    public let courseID: String
+    public let moduleID: String
+    public let moduleItemID: String
+    public let done: Bool
+    public var method: APIMethod { done ? .put : .delete }
+    public var path: String {
+        let context = ContextModel(.course, id: courseID)
+        return "\(context.pathComponent)/modules/\(moduleID)/items/\(moduleItemID)/done"
+    }
+}

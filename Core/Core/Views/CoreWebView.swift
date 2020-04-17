@@ -139,6 +139,11 @@ open class CoreWebView: WKWebView {
                 text-decoration: none;
                 text-align: center;
             }
+            .lock-explanation {
+                font-weight: 500;
+                font-size: 16px;
+                text-align: center;
+            }
         """
     }
 

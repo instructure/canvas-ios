@@ -56,6 +56,7 @@ public class ModuleItem: NSManagedObject {
     @NSManaged public var minScoreRaw: NSNumber?
     @NSManaged public var completed: Bool
     @NSManaged public var lockedForUser: Bool
+    @NSManaged public var lockExplanation: String?
 
     public var published: Bool? {
         get { return publishedRaw?.boolValue }
@@ -132,6 +133,7 @@ public class ModuleItem: NSManagedObject {
             pointsPossible = contentDetails.points_possible
             dueAt = contentDetails.due_at
             lockedForUser = contentDetails.locked_for_user == true
+            lockExplanation = contentDetails.lock_explanation
         }
     }
 }

@@ -24,6 +24,13 @@ import XCTest
 import TestsFoundation
 
 class ModuleListViewControllerTests: CoreTestCase {
+    class MockSplitViewController: UISplitViewController {
+        var mockCollapsed: Bool?
+        override var isCollapsed: Bool {
+            return mockCollapsed ?? super.isCollapsed
+        }
+    }
+
     lazy var viewController = ModuleListViewController.create(courseID: "1")
     var save: XCTestExpectation?
 
@@ -62,7 +69,9 @@ class ModuleListViewControllerTests: CoreTestCase {
                     position: 1,
                     content_details: .make(
                         due_at: nil,
-                        points_possible: 10
+                        points_possible: 10,
+                        locked_for_user: true,
+                        lock_explanation: "Reasons"
                     ),
                     completion_requirement: nil
                 ),
@@ -86,6 +95,8 @@ class ModuleListViewControllerTests: CoreTestCase {
         XCTAssertEqual(item1.dueLabel.text, "Dec 25, 2019 | 10 pts | Score at least 8")
         let item2 = moduleItemCell(at: IndexPath(row: 1, section: 0))
         XCTAssertEqual(item2.dueLabel.text, "10 pts")
+        XCTAssertFalse(item2.isUserInteractionEnabled)
+        XCTAssertFalse(item2.nameLabel.isEnabled)
         let item3 = moduleItemCell(at: IndexPath(row: 2, section: 0))
         XCTAssertEqual(item3.dueLabel.text, "View")
         let item4 = moduleItemCell(at: IndexPath(row: 3, section: 0))
@@ -358,6 +369,21 @@ class ModuleListViewControllerTests: CoreTestCase {
         XCTAssertTrue(router.lastRoutedTo(URL(string: "/courses/1/modules/items/1")!, withOptions: .detail))
         XCTAssertNoThrow(viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 99)))
         XCTAssertNoThrow(viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 99, section: 0)))
+    }
+
+    func testAutomaticallyChangesSelectionInSplitView() {
+        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
+            .make(id: "1", items: [
+                .make(id: "1", position: 1, content: .assignment("1"), html_url: URL(string: "/courses/1/modules/items/1")!),
+                .make(id: "2", position: 2, content: .page("2")),
+            ]),
+        ])
+        let svc = MockSplitViewController()
+        svc.mockCollapsed = false
+        svc.viewControllers = [viewController]
+        viewController.view.layoutIfNeeded()
+        viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        XCTAssertNoThrow(viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 99)))
         viewController.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
         XCTAssertEqual(viewController.tableView.indexPathForSelectedRow, IndexPath(row: 0, section: 0))
         NotificationCenter.default.post(name: .moduleItemViewDidLoad, object: nil, userInfo: ["moduleID": "1", "itemID": "2"])
@@ -371,5 +397,24 @@ class ModuleListViewControllerTests: CoreTestCase {
         XCTAssertNotNil(viewController.tableView.indexPathForSelectedRow)
         viewController.viewWillAppear(false)
         XCTAssertNil(viewController.tableView.indexPathForSelectedRow)
+    }
+
+    func testModuleItemRequirementCompleted() {
+        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
+            .make(id: "1", items: [
+                .make(id: "1", completion_requirement: .make(type: .must_view, completed: false)),
+            ]),
+        ])
+        viewController.view.layoutIfNeeded()
+        var cell = moduleItemCell(at: IndexPath(row: 0, section: 0))
+        XCTAssertEqual(cell.dueLabel.text, "View")
+        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
+            .make(id: "1", items: [
+                .make(id: "1", completion_requirement: .make(type: .must_view, completed: true)),
+            ]),
+        ])
+        NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
+        cell = moduleItemCell(at: IndexPath(row: 0, section: 0))
+        XCTAssertEqual(cell.dueLabel.text, "Viewed")
     }
 }

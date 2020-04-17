@@ -35,6 +35,7 @@ RCT_EXPORT_METHOD(viewedDiscussion:(NSString *)courseID discussionID:(NSString *
 
 RCT_EXPORT_METHOD(contributedDiscussion:(NSString *)courseID discussionID:(NSString *)discussionID)
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"com.instructure.core.notification.ModuleItemRequirementCompleted" object:nil];
     [Session.current postProgressDiscussionContributedWithCourseID:courseID discussionTopicID:discussionID];
 }
 

@@ -74,21 +74,27 @@ public class ModuleItemSequenceViewController: UIViewController {
             return
         }
         spinnerView.isHidden = true
-        guard let url = url.url else { return }
-        if embed {
-            let viewController: UIViewController
-            if let current = sequence?.current, !env.database.viewContext.isObjectDeleted(current) {
-                viewController = ModuleItemDetailsViewController.create(courseID: courseID, moduleID: current.moduleID, itemID: current.id)
-            } else if assetType != .moduleItem, let match = env.router.match(.parse(url.appendingOrigin("module_item_details"))) {
-                viewController = match
-            } else {
-                let external = ExternalURLViewController.create(name: NSLocalizedString("Unsupported Item", bundle: .core, comment: ""), url: url, courseID: courseID)
-                external.authenticate = true
-                viewController = external
-            }
+        if embed, let viewController = currentViewController() {
             setCurrentPage(viewController)
         }
         showSequenceButtons(prev: sequence?.prev != nil, next: sequence?.next != nil)
+    }
+
+    func currentViewController() -> UIViewController? {
+        guard let url = url.url else { return nil }
+        if let current = sequence?.current {
+            return ModuleItemDetailsViewController.create(courseID: courseID, moduleID: current.moduleID, itemID: current.id)
+        } else if assetType != .moduleItem, let match = env.router.match(.parse(url.appendingOrigin("module_item_details"))) {
+            return match
+        } else {
+            let external = ExternalURLViewController.create(
+                name: NSLocalizedString("Unsupported Item", bundle: .core, comment: ""),
+                url: url,
+                courseID: courseID
+            )
+            external.authenticate = true
+            return external
+        }
     }
 
     func showSequenceButtons(prev: Bool, next: Bool) {
@@ -111,6 +117,8 @@ public class ModuleItemSequenceViewController: UIViewController {
 
     func setCurrentPage(_ page: UIViewController, direction: PagesViewController.Direction? = nil) {
         pages.setCurrentPage(page, direction: direction)
+        navigationItem.rightBarButtonItems = []
+        navigationItem.leftBarButtonItems = []
         observations = syncNavigationBar(with: page)
     }
 
