@@ -31,7 +31,8 @@ exports[`SubmissionSettings renders properly 1`] = `
       <View
         accessibilityLabel="Mute Grades, Off"
         accessible={true}
-        isTVSelectable={true}
+        focusable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}

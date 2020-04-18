@@ -13,7 +13,6 @@ exports[`AttachmentPicker renders 1`] = `
 >
   <Modal
     animationType="fade"
-    hardwareAccelerated={false}
     onLayout={[Function]}
     transparent={true}
     visible={false}

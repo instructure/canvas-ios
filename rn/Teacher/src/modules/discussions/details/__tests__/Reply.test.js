@@ -24,7 +24,7 @@ import { ActionSheetIOS } from 'react-native'
 import Reply, { type Props } from '../Reply'
 import * as template from '../../../../__templates__'
 
-jest.mock('ActionSheetIOS', () => ({
+jest.mock('react-native/Libraries/ActionSheetIOS/ActionSheetIOS', () => ({
   showActionSheetWithOptions: jest.fn(),
 }))
 

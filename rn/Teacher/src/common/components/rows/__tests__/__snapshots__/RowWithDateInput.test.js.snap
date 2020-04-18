@@ -22,7 +22,8 @@ exports[`Render row with date 1`] = `
 >
   <View
     accessible={true}
-    isTVSelectable={true}
+    focusable={false}
+    onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -126,7 +127,8 @@ exports[`Render row with date and the clear button 1`] = `
 >
   <View
     accessible={true}
-    isTVSelectable={true}
+    focusable={false}
+    onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -220,14 +222,14 @@ exports[`Render row with date and the clear button 1`] = `
     <View
       accessibilityLabel="Remove date"
       accessible={true}
-      isTVSelectable={true}
+      focusable={false}
+      onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
       onResponderTerminate={[Function]}
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
-      style={null}
     >
       <Image
         source={
@@ -235,7 +237,6 @@ exports[`Render row with date and the clear button 1`] = `
             "testUri": "../../../src/images/Clear.png",
           }
         }
-        style={null}
       />
     </View>
   </View>

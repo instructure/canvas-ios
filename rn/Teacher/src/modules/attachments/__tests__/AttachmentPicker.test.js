@@ -34,9 +34,9 @@ import Permissions from '../../../common/permissions'
 import * as template from '../../../__templates__'
 
 jest
-  .mock('Button', () => 'Button')
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
+  .mock('react-native/Libraries/Components/Button', () => 'Button')
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
+  .mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
   .mock('../../../common/components/AudioRecorder', () => 'AudioRecorder')
   .mock('react-native-document-picker', () => ({
     __esModule: true,

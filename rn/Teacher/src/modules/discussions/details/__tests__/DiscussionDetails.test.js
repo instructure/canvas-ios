@@ -33,7 +33,7 @@ import * as template from '../../../../__templates__'
 
 jest
   .mock('../../../../routing')
-  .mock('LayoutAnimation', () => ({
+  .mock('react-native/Libraries/LayoutAnimation/LayoutAnimation', () => ({
     easeInEaseOut: jest.fn(),
   }))
   .mock('../../../../redux/middleware/error-handler', () => {

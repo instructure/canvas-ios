@@ -24,7 +24,7 @@ import renderer from 'react-test-renderer'
 import explore from '../../../../../test/helpers/explore'
 import * as template from '../../../../__templates__'
 
-jest.mock('Switch', () => 'Switch')
+jest.mock('react-native/Libraries/Components/Switch/Switch', () => 'Switch')
 
 let defaultProps = {
   courseID: '1',
@@ -37,7 +37,7 @@ let defaultProps = {
 }
 
 describe('SubmissionSettings', () => {
-  beforeEach(() => jest.resetAllMocks())
+  beforeEach(() => jest.clearAllMocks())
 
   it('renders properly', () => {
     let tree = renderer.create(

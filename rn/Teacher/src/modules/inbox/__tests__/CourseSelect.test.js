@@ -29,7 +29,7 @@ import renderer from 'react-test-renderer'
 import explore from '../../../../test/helpers/explore'
 import i18n from 'format-message'
 
-jest.mock('TouchableHighlight', () => 'TouchableHighlight')
+jest.mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
 
 let template = {
   ...require('../../../__templates__/course'),
@@ -73,7 +73,7 @@ let defaultProps = {
 }
 
 describe('CourseSelect', () => {
-  beforeEach(() => jest.resetAllMocks())
+  beforeEach(() => jest.clearAllMocks())
 
   it('renders', () => {
     let tree = renderer.create(

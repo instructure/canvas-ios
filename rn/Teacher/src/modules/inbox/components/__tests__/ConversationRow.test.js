@@ -22,7 +22,7 @@ import React from 'react'
 import ConversationRow from '../ConversationRow'
 import { shallow } from 'enzyme'
 
-jest.mock('TouchableHighlight', () => 'TouchableHighlight')
+jest.mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
 
 const template = {
   ...require('../../../../__templates__/conversations'),

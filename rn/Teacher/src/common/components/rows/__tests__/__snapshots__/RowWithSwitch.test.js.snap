@@ -4,7 +4,8 @@ exports[`Render row with switch 1`] = `
 <View
   accessibilityLabel="Row with a switch in it!, Off"
   accessible={true}
-  isTVSelectable={true}
+  focusable={true}
+  onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -92,7 +93,7 @@ exports[`Render row with switch 1`] = `
         }
       >
         <RCTSwitch
-          accessibilityRole="button"
+          accessibilityRole="switch"
           identifier="test"
           onChange={[Function]}
           onResponderTerminationRequest={[Function]}

@@ -420,16 +420,14 @@ exports[`VideoRecorder renders ready 1`] = `
   </View>
   <Camera
     captureAudio={true}
-    captureMode="video"
-    captureQuality="medium"
-    captureTarget="disk"
+    defaultVideoQuality="medium"
     style={
       Object {
         "flex": 1,
         "zIndex": 0,
       }
     }
-    type="front"
+    type={2}
   />
 </View>
 `;
@@ -524,16 +522,14 @@ exports[`VideoRecorder renders recording 1`] = `
   </View>
   <Camera
     captureAudio={true}
-    captureMode="video"
-    captureQuality="medium"
-    captureTarget="disk"
+    defaultVideoQuality="medium"
     style={
       Object {
         "flex": 1,
         "zIndex": 0,
       }
     }
-    type="front"
+    type={2}
   />
 </View>
 `;

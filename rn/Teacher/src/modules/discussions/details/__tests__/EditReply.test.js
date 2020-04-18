@@ -26,7 +26,7 @@ import app from '../../../app'
 import * as template from '../../../../__templates__'
 
 jest
-  .mock('LayoutAnimation', () => ({
+  .mock('react-native/Libraries/LayoutAnimation/LayoutAnimation', () => ({
     easeInEaseOut: jest.fn(),
     Types: {
       easeInEaseOut: jest.fn(),

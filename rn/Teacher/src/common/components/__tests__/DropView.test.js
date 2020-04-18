@@ -23,7 +23,7 @@ import React from 'react'
 import { Platform, View } from 'react-native'
 import DropView from '../DropView'
 
-jest.mock('Platform', () => ({
+jest.mock('react-native/Libraries/Utilities/Platform', () => ({
   OS: 'ios',
   Version: '11.2',
 }))

@@ -27,7 +27,7 @@ let template = {
   ...require('../../../__templates__/helm'),
 }
 
-jest.mock('TouchableOpacity', () => 'TouchableOpacity')
+jest.mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
 
 test('SubmissionHeader navigates to filter when pressed', () => {
   let navigator = template.navigator()

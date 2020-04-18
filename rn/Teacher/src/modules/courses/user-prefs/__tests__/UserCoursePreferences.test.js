@@ -29,8 +29,8 @@ import { Alert } from 'react-native'
 import renderer from 'react-test-renderer'
 
 jest
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('Alert', () => ({
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
+  .mock('react-native/Libraries/Alert/Alert', () => ({
     alert: jest.fn(),
   }))
   .mock('../../../../routing/Screen', () => 'Screen')
@@ -55,7 +55,7 @@ let defaultProps: any = {
 
 describe('UserCoursePreferences', () => {
   beforeEach(() => {
-    jest.resetAllMocks()
+    jest.clearAllMocks()
   })
 
   it('renders', () => {

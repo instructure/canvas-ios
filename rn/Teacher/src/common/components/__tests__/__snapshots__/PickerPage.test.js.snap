@@ -26,14 +26,12 @@ exports[`PickerPage renders the given options as rows 1`] = `
 `;
 
 exports[`PickerPage renders the given options as rows: a 1`] = `
-<TouchableHighlight
+<ForwardRef
   accessibilityTraits={
     Array [
       "button",
     ]
   }
-  activeOpacity={0.85}
-  delayPressOut={100}
   onPress={[Function]}
   style={
     Array [
@@ -44,7 +42,6 @@ exports[`PickerPage renders the given options as rows: a 1`] = `
       },
     ]
   }
-  underlayColor="black"
 >
   <View
     style={
@@ -102,19 +99,17 @@ exports[`PickerPage renders the given options as rows: a 1`] = `
       </Text>
     </View>
   </View>
-</TouchableHighlight>
+</ForwardRef>
 `;
 
 exports[`PickerPage renders the given options as rows: b 1`] = `
-<TouchableHighlight
+<ForwardRef
   accessibilityTraits={
     Array [
       "button",
       "selected",
     ]
   }
-  activeOpacity={0.85}
-  delayPressOut={100}
   onPress={[Function]}
   style={
     Array [
@@ -125,7 +120,6 @@ exports[`PickerPage renders the given options as rows: b 1`] = `
       },
     ]
   }
-  underlayColor="black"
 >
   <View
     style={
@@ -218,18 +212,16 @@ exports[`PickerPage renders the given options as rows: b 1`] = `
       </View>
     </View>
   </View>
-</TouchableHighlight>
+</ForwardRef>
 `;
 
 exports[`PickerPage renders the given options as rows: c 1`] = `
-<TouchableHighlight
+<ForwardRef
   accessibilityTraits={
     Array [
       "button",
     ]
   }
-  activeOpacity={0.85}
-  delayPressOut={100}
   onPress={[Function]}
   style={
     Array [
@@ -240,7 +232,6 @@ exports[`PickerPage renders the given options as rows: c 1`] = `
       },
     ]
   }
-  underlayColor="black"
 >
   <View
     style={
@@ -298,5 +289,5 @@ exports[`PickerPage renders the given options as rows: c 1`] = `
       </Text>
     </View>
   </View>
-</TouchableHighlight>
+</ForwardRef>
 `;

@@ -25,9 +25,9 @@ import VideoRecorder, { type Props } from '../VideoRecorder'
 import explore from '../../../../test/helpers/explore'
 
 jest
-  .mock('Button', () => 'Button')
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
+  .mock('react-native/Libraries/Components/Button', () => 'Button')
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
+  .mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
   .mock('../Video', () => 'Video')
 
 describe('VideoRecorder', () => {
@@ -56,8 +56,8 @@ describe('VideoRecorder', () => {
     const createNodeMock = ({ type }) => {
       if (type === 'Camera') {
         return {
-          capture: jest.fn(() => ({ then: callback => callback({ path: '/comment.mov' }) })),
-          stopCapture: jest.fn(),
+          recordAsync: jest.fn(() => ({ then: callback => callback({ uri: '/comment.mov' }) })),
+          stopRecording: jest.fn(),
         }
       }
     }
@@ -82,8 +82,8 @@ describe('VideoRecorder', () => {
     const createNodeMock = ({ type }) => {
       if (type === 'Camera') {
         return {
-          capture: jest.fn(() => ({ then: callback => callback({ path: '/comment.mov' }) })),
-          stopCapture: jest.fn(),
+          recordAsync: jest.fn(() => ({ then: callback => callback({ uri: '/comment.mov' }) })),
+          stopRecording: jest.fn(),
         }
       }
     }
@@ -112,8 +112,8 @@ describe('VideoRecorder', () => {
     const createNodeMock = ({ type }) => {
       if (type === 'Camera') {
         return {
-          capture: jest.fn(() => ({ then: callback => callback({ path: '/comment.mov' }) })),
-          stopCapture: jest.fn(),
+          recordAsync: jest.fn(() => ({ then: callback => callback({ uri: '/comment.mov' }) })),
+          stopRecording: jest.fn(),
         }
       }
     }
@@ -130,8 +130,8 @@ describe('VideoRecorder', () => {
     const createNodeMock = ({ type }) => {
       if (type === 'Camera') {
         return {
-          capture: jest.fn(() => new Promise(() => {})),
-          stopCapture: jest.fn(),
+          recordAsync: jest.fn(() => new Promise(() => {})),
+          stopRecording: jest.fn(),
         }
       }
     }

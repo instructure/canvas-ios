@@ -22,7 +22,7 @@ import React from 'react'
 import { RubricDescription, mapStateToProps } from '../RubricDescription'
 import renderer from 'react-test-renderer'
 
-jest.unmock('ScrollView')
+jest.unmock('react-native/Libraries/Components/ScrollView/ScrollView')
 
 const templates = {
   ...require('../../../__templates__/helm'),
@@ -44,7 +44,7 @@ let defaultProps = {
 }
 
 describe('RubricDescription', () => {
-  beforeEach(() => jest.resetAllMocks())
+  beforeEach(() => jest.clearAllMocks())
 
   it('renders', () => {
     let tree = renderer.create(

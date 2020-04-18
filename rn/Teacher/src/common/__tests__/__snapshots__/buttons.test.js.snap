@@ -29,7 +29,6 @@ exports[`common buttons <Button> adds additional styles to the base button 1`] =
 exports[`common buttons <LinkButton> adds additional styles to the base button 1`] = `
 <TouchableOpacity
   accessibilityRole="button"
-  activeOpacity={0.2}
   hitSlop={
     Object {
       "bottom": 15,

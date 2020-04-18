@@ -28,7 +28,7 @@ let defaultProps = {
 }
 
 describe('AutoGrowingTextInput', () => {
-  beforeEach(() => jest.resetAllMocks())
+  beforeEach(() => jest.clearAllMocks())
   it('renders', () => {
     let tree = renderer.create(
       <AutoGrowingTextInput {...defaultProps} />

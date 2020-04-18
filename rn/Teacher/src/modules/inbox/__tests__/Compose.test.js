@@ -35,7 +35,7 @@ let defaultProps = {
 }
 
 jest
-  .mock('LayoutAnimation', () => ({
+  .mock('react-native/Libraries/LayoutAnimation/LayoutAnimation', () => ({
     configureNext: jest.fn(),
     easeInEaseOut: jest.fn(),
     Types: {
@@ -46,13 +46,13 @@ jest
       opacity: 1,
     },
   }))
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
-  .mock('Alert', () => ({ alert: jest.fn() }))
+  .mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
+  .mock('react-native/Libraries/Alert/Alert', () => ({ alert: jest.fn() }))
   .mock('../../../canvas-api')
   .mock('../../../routing/Screen')
 
 describe('Compose', () => {
-  beforeEach(() => jest.resetAllMocks())
+  beforeEach(() => jest.clearAllMocks())
 
   it('renders', () => {
     let tree = shallow(<Compose {...defaultProps} />)

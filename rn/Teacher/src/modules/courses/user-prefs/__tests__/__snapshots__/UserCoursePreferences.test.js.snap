@@ -27,7 +27,6 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
   >
     <Modal
       animationType="fade"
-      hardwareAccelerated={false}
       supportedOrientations={
         Array [
           "portrait",
@@ -772,7 +771,6 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
   >
     <Modal
       animationType="fade"
-      hardwareAccelerated={false}
       supportedOrientations={
         Array [
           "portrait",
@@ -1547,7 +1545,6 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
   >
     <Modal
       animationType="fade"
-      hardwareAccelerated={false}
       supportedOrientations={
         Array [
           "portrait",
@@ -2502,7 +2499,6 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
   >
     <Modal
       animationType="fade"
-      hardwareAccelerated={false}
       supportedOrientations={
         Array [
           "portrait",
@@ -3457,7 +3453,6 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
   >
     <Modal
       animationType="fade"
-      hardwareAccelerated={false}
       supportedOrientations={
         Array [
           "portrait",
@@ -4412,7 +4407,6 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
   >
     <Modal
       animationType="fade"
-      hardwareAccelerated={false}
       supportedOrientations={
         Array [
           "portrait",
@@ -5367,7 +5361,6 @@ exports[`UserCoursePreferences renders 1`] = `
   >
     <Modal
       animationType="fade"
-      hardwareAccelerated={false}
       supportedOrientations={
         Array [
           "portrait",
@@ -6338,7 +6331,6 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
   >
     <Modal
       animationType="fade"
-      hardwareAccelerated={false}
       supportedOrientations={
         Array [
           "portrait",
@@ -7293,7 +7285,6 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
   >
     <Modal
       animationType="fade"
-      hardwareAccelerated={false}
       supportedOrientations={
         Array [
           "portrait",
@@ -8248,7 +8239,6 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
   >
     <Modal
       animationType="fade"
-      hardwareAccelerated={false}
       supportedOrientations={
         Array [
           "portrait",

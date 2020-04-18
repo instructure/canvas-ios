@@ -29,10 +29,10 @@ const template = {
   ...require('../../../../__templates__/course'),
 }
 
-jest.mock('TouchableOpacity', () => 'TouchableOpacity')
+jest.mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
 jest.mock('../../../../routing')
 const mockActionSheet = jest.fn()
-jest.mock('ActionSheetIOS', () => ({
+jest.mock('react-native/Libraries/ActionSheetIOS/ActionSheetIOS', () => ({
   showActionSheetWithOptions: mockActionSheet,
 }))
 
@@ -46,7 +46,7 @@ let defaultProps = {
 
 describe('CourseFilter', () => {
   beforeEach(() => {
-    jest.resetAllMocks()
+    jest.clearAllMocks()
   })
 
   it('renders correctly', () => {

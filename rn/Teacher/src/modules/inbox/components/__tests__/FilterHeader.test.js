@@ -25,7 +25,7 @@ import explore from '../../../../../test/helpers/explore'
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
 
-jest.mock('TouchableOpacity', () => 'TouchableOpacity')
+jest.mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
 
 it('renders correctly', () => {
   const tree = renderer.create(

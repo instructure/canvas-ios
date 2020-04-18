@@ -33,7 +33,7 @@ const data = [
 jest
   .mock('../../attachments/AttachmentPicker', () => 'AttachmentPicker')
   .mock('../../../routing/Screen')
-  .mock('Platform', () => ({
+  .mock('react-native/Libraries/Utilities/Platform', () => ({
     OS: 'ios',
     Version: '11.2',
   }))

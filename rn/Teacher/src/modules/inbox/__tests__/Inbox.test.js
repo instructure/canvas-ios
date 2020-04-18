@@ -26,7 +26,7 @@ import setProps from '../../../../test/helpers/setProps'
 import explore from '../../../../test/helpers/explore'
 import renderer from 'react-test-renderer'
 
-jest.mock('TouchableHighlight', () => 'TouchableHighlight')
+jest.mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
 
 const template = {
   ...require('../../../__templates__/conversations'),
@@ -54,7 +54,7 @@ let defaultProps = {
   }),
 }
 
-beforeEach(() => jest.resetAllMocks())
+beforeEach(() => jest.clearAllMocks())
 
 describe('Inbox', () => {
   it('renders correctly', () => {

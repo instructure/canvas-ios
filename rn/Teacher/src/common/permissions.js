@@ -19,11 +19,13 @@
 // @flow
 
 import i18n from 'format-message'
-import Camera from 'react-native-camera'
 import {
   Alert,
   Linking,
+  NativeModules,
 } from 'react-native'
+
+const CameraManager = NativeModules.RNCameraManager
 
 type Permission = 'microphone' | 'camera' | 'photos'
 
@@ -68,7 +70,7 @@ function alert (permission: Permission) {
 
 export default ({
   errorMessages,
-  checkMicrophone: Camera.checkAudioAuthorizationStatus,
-  checkCamera: Camera.checkDeviceAuthorizationStatus,
+  checkMicrophone: CameraManager.checkRecordAudioAuthorizationStatus,
+  checkCamera: CameraManager.checkVideoAuthorizationStatus,
   alert,
 }: Permissions)

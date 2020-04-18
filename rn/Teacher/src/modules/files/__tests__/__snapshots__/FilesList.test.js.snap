@@ -32,7 +32,8 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -236,7 +237,8 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -440,7 +442,8 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -842,7 +845,8 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -1046,7 +1050,8 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -1250,7 +1255,8 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -1652,7 +1658,8 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -1856,7 +1863,8 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -2060,7 +2068,8 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -2462,7 +2471,8 @@ exports[`FilesList sending weird data into the progress update function should n
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -2666,7 +2676,8 @@ exports[`FilesList sending weird data into the progress update function should n
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -2870,7 +2881,8 @@ exports[`FilesList sending weird data into the progress update function should n
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -3279,7 +3291,8 @@ exports[`FilesList should render 1`] = `
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -3483,7 +3496,8 @@ exports[`FilesList should render 1`] = `
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -3687,7 +3701,8 @@ exports[`FilesList should render 1`] = `
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -3964,7 +3979,8 @@ exports[`FilesList should render for course files 1`] = `
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -4168,7 +4184,8 @@ exports[`FilesList should render for course files 1`] = `
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -4372,7 +4389,8 @@ exports[`FilesList should render for course files 1`] = `
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -4655,7 +4673,8 @@ exports[`FilesList should render for user files 1`] = `
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -4859,7 +4878,8 @@ exports[`FilesList should render for user files 1`] = `
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -5063,7 +5083,8 @@ exports[`FilesList should render for user files 1`] = `
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -5353,7 +5374,8 @@ exports[`FilesList should render with folders 1`] = `
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -5557,7 +5579,8 @@ exports[`FilesList should render with folders 1`] = `
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -5761,7 +5784,8 @@ exports[`FilesList should render with folders 1`] = `
           <View>
             <View
               accessible={true}
-              isTVSelectable={true}
+              focusable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}

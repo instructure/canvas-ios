@@ -23,7 +23,7 @@ import ColorButton from '../ColorButton'
 import explore from '../../../../../../test/helpers/explore'
 import renderer from 'react-test-renderer'
 
-jest.mock('TouchableHighlight', () => 'TouchableHighlight')
+jest.mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
 
 let defaultProps = {
   color: '#fff',
@@ -33,7 +33,7 @@ let defaultProps = {
 
 describe('ColorButton', () => {
   beforeEach(() => {
-    jest.resetAllMocks()
+    jest.clearAllMocks()
   })
 
   it('renders unselected', () => {

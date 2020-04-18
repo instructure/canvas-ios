@@ -30,20 +30,19 @@ import { QuizEdit, mapStateToProps } from '../QuizEdit'
 import explore from '../../../../../test/helpers/explore'
 
 jest
-  .mock('Button', () => 'Button')
-  .mock('Switch', () => 'Switch')
-  .mock('TextInput', () => 'TextInput')
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
-  .mock('LayoutAnimation', () => ({
+  .mock('react-native/Libraries/Components/Button', () => 'Button')
+  .mock('react-native/Libraries/Components/Switch/Switch', () => 'Switch')
+  .mock('react-native/Libraries/Components/TextInput/TextInput', () => 'TextInput')
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
+  .mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
+  .mock('react-native/Libraries/LayoutAnimation/LayoutAnimation', () => ({
     easeInEaseOut: jest.fn(),
   }))
-  .mock('DatePickerIOS', () => 'DatePickerIOS')
-  .mock('Alert', () => ({
+  .mock('react-native/Libraries/Components/DatePicker/DatePickerIOS', () => 'DatePickerIOS')
+  .mock('react-native/Libraries/Alert/Alert', () => ({
     alert: jest.fn(),
   }))
   .mock('../../../../routing')
-  .mock('WebView', () => 'WebView')
   .mock('../../../assignment-details/components/AssignmentDatesEditor', () => 'AssignmentDatesEditor')
   .mock('../../../../routing/Screen')
 

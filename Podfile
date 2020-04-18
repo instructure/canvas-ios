@@ -3,6 +3,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 workspace 'Canvas.xcworkspace'
 inhibit_all_warnings!
 platform :ios, '12.0'
+# require_relative './rn/Teacher/node_modules/@react-native-community/cli-platform-ios/native_modules'
 
 
 def firebase_pods
@@ -15,49 +16,59 @@ def canvas_crashlytics_rn_firebase_pods
   pod 'Firebase/Crashlytics', '~> 6.20.0'
 end
 
+def react_native_pods
+  pod 'FBLazyVector', :path => "./rn/Teacher/node_modules/react-native/Libraries/FBLazyVector"
+  pod 'FBReactNativeSpec', :path => "./rn/Teacher/node_modules/react-native/Libraries/FBReactNativeSpec"
+  pod 'RCTRequired', :path => "./rn/Teacher/node_modules/react-native/Libraries/RCTRequired"
+  pod 'RCTTypeSafety', :path => "./rn/Teacher/node_modules/react-native/Libraries/TypeSafety"
+  pod 'React', :path => './rn/Teacher/node_modules/react-native/'
+  pod 'React-Core', :path => './rn/Teacher/node_modules/react-native/'
+  pod 'React-CoreModules', :path => './rn/Teacher/node_modules/react-native/React/CoreModules'
+  pod 'React-Core/DevSupport', :path => './rn/Teacher/node_modules/react-native/'
+  pod 'React-RCTActionSheet', :path => './rn/Teacher/node_modules/react-native/Libraries/ActionSheetIOS'
+  pod 'React-RCTAnimation', :path => './rn/Teacher/node_modules/react-native/Libraries/NativeAnimation'
+  pod 'React-RCTBlob', :path => './rn/Teacher/node_modules/react-native/Libraries/Blob'
+  pod 'React-RCTImage', :path => './rn/Teacher/node_modules/react-native/Libraries/Image'
+  pod 'React-RCTLinking', :path => './rn/Teacher/node_modules/react-native/Libraries/LinkingIOS'
+  pod 'React-RCTNetwork', :path => './rn/Teacher/node_modules/react-native/Libraries/Network'
+  pod 'React-RCTSettings', :path => './rn/Teacher/node_modules/react-native/Libraries/Settings'
+  pod 'React-RCTText', :path => './rn/Teacher/node_modules/react-native/Libraries/Text'
+  pod 'React-RCTVibration', :path => './rn/Teacher/node_modules/react-native/Libraries/Vibration'
+  pod 'React-Core/RCTWebSocket', :path => './rn/Teacher/node_modules/react-native/'
+  pod 'React-RCTPushNotification', :path => './rn/Teacher/node_modules/react-native/Libraries/PushNotificationIOS'
+
+  pod 'React-cxxreact', :path => './rn/Teacher/node_modules/react-native/ReactCommon/cxxreact'
+  pod 'React-jsi', :path => './rn/Teacher/node_modules/react-native/ReactCommon/jsi'
+  pod 'React-jsiexecutor', :path => './rn/Teacher/node_modules/react-native/ReactCommon/jsiexecutor'
+  pod 'React-jsinspector', :path => './rn/Teacher/node_modules/react-native/ReactCommon/jsinspector'
+  pod 'ReactCommon/callinvoker', :path => "./rn/Teacher/node_modules/react-native/ReactCommon"
+  pod 'ReactCommon/turbomodule/core', :path => "./rn/Teacher/node_modules/react-native/ReactCommon"
+  pod 'Yoga', :path => './rn/Teacher/node_modules/react-native/ReactCommon/yoga', :modular_headers => true
+
+  pod 'DoubleConversion', :podspec => './rn/Teacher/node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
+  pod 'glog', :podspec => './rn/Teacher/node_modules/react-native/third-party-podspecs/glog.podspec'
+  pod 'Folly', :podspec => './rn/Teacher/node_modules/react-native/third-party-podspecs/Folly.podspec'
+
+  # node modules
+  # use_native_modules!
+  pod 'BVLinearGradient', :path => './rn/Teacher/node_modules/react-native-linear-gradient'
+  pod 'Interactable', :path => './rn/Teacher/node_modules/react-native-interactable'
+  pod 'react-native-camera', :path => './rn/Teacher/node_modules/react-native-camera'
+  pod 'react-native-document-picker', :path => './rn/Teacher/node_modules/react-native-document-picker'
+  pod 'react-native-image-picker', :path => './rn/Teacher/node_modules/react-native-image-picker'
+  pod 'ReactNativeART', :path => './rn/Teacher/node_modules/@react-native-community/art'
+  pod 'RNAudio', :path => './rn/Teacher/node_modules/react-native-audio'
+  pod 'RNCAsyncStorage', :path => './rn/Teacher/node_modules/@react-native-community/async-storage'
+  pod 'RNDeviceInfo', :path => './rn/Teacher/node_modules/react-native-device-info'
+  pod 'RNFS', :path => './rn/Teacher/node_modules/react-native-fs'
+  pod 'RNSearchBar', :path => './rn/Teacher/node_modules/react-native-search-bar'
+  pod 'RNSound', :path => './rn/Teacher/node_modules/react-native-sound'
+end
+
 abstract_target 'defaults' do
   use_frameworks!
 
-  nm_path = './rn/Teacher/node_modules/'
-  rn_path = nm_path + 'react-native/'
-  pod 'React', :path => rn_path, :subspecs => [
-    'Core',
-    'CxxBridge', # Include this for RN >= 0.47
-    'DevSupport', # Include this to enable In-App Devmenu if RN >= 0.43
-    'RCTText',
-    'RCTNetwork',
-    'RCTWebSocket', # needed for debugging
-    # Add any other subspecs you want to use in your project
-    'ART',
-    'RCTActionSheet',
-    'RCTAnimation',
-    'RCTImage',
-    'RCTSettings',
-    'RCTVibration',
-    'RCTPushNotification',
-    'RCTLinkingIOS',
-    'fishhook'
-  ]
-  # Explicitly include Yoga if you are using RN >= 0.42.0
-  pod "yoga", :path => rn_path + 'ReactCommon/yoga'
-
-  # Third party deps podspec link
-  pod 'DoubleConversion', :podspec => rn_path + 'third-party-podspecs/DoubleConversion.podspec'
-  pod 'glog', :podspec => rn_path + 'third-party-podspecs/glog.podspec'
-  pod 'Folly', :podspec => rn_path + 'third-party-podspecs/Folly.podspec'
-
-  # node modules
-  pod 'RNCAsyncStorage', :path => nm_path + '@react-native-community/async-storage'
-  pod 'RNFS', :path => nm_path + 'react-native-fs'
-  pod 'RNDeviceInfo', :path => nm_path + 'react-native-device-info'
-  pod 'react-native-image-picker', :path => nm_path + 'react-native-image-picker'
-  pod 'Interactable', :path => nm_path + 'react-native-interactable'
-  pod 'BVLinearGradient', :path => nm_path + 'react-native-linear-gradient'
-  pod 'RNSearchBar', :path => nm_path + 'react-native-search-bar'
-  pod 'react-native-document-picker', :path => nm_path + 'react-native-document-picker'
-  pod 'RNAudio', :path => nm_path + 'react-native-audio'
-  pod 'RNSound', :path => nm_path + 'react-native-sound'
-  pod 'react-native-camera', :path => nm_path + 'react-native-camera'
+  react_native_pods
 
   pod 'Marshal', '~> 1.2.7'
   pod 'Cartography', '~> 3.1'
