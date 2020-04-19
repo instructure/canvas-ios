@@ -92,9 +92,6 @@
   "all_in_e5ddaee0": {
     "message": "Tots a"
   },
-  "all_people_16d90b41": {
-    "message": "Totes les persones"
-  },
   "all_submissions_3eedfb97": {
     "message": "Totes les entregues"
   },
@@ -323,8 +320,11 @@
   "compose_message_8abd180a": {
     "message": "Redacta un missatge"
   },
-  "conferences_a0a8984b": {
-    "message": "Conferències"
+  "conference_in_progress_bed08457": {
+    "message": "Conferència en curs"
+  },
+  "conference_name_is_in_progress_tap_to_view_details_86ffeb1": {
+    "message": "La conferència { name } està en curs, toqueu per veure'n els detalls"
   },
   "conversation_options_8be926f3": {
     "message": "Opcions de conversa"
@@ -466,9 +466,6 @@
   },
   "description_436c48d7": {
     "message": "Descripció"
-  },
-  "designer_c458392": {
-    "message": "Dissenyador"
   },
   "details_98a31b68": {
     "message": "Detalls"
@@ -647,9 +644,6 @@
   "filter_numselected_number_2e4c17e3": {
     "message": "Filtre ({ numSelected, number })"
   },
-  "filter_people_b34b567b": {
-    "message": "Filtra les persones"
-  },
   "filter_submissions_numselected_number_selected_177867b3": {
     "message": "Filtra les entregues. ({ numSelected, number }) seleccionats."
   },
@@ -754,6 +748,9 @@
   },
   "help_4c4968b1": {
     "message": "Ajuda"
+  },
+  "help_your_students_with_this_assignment_by_adding__5d22ea1a": {
+    "message": "Afegiu instruccions a aquesta tasca per ajudar els estudiants a realitzar-la."
   },
   "hidden_14a032a7": {
     "message": "Amagat"
@@ -935,6 +932,9 @@
   "name_profile_240f0967": {
     "message": "Perfil de { name }"
   },
+  "name_pronouns_8d5a0061": {
+    "message": "{ name } ({ pronouns })"
+  },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } més"
   },
@@ -1037,9 +1037,6 @@
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# minut}\n  other {# minuts}\n}"
   },
-  "observer_248a192e": {
-    "message": "Observador"
-  },
   "off_5385ef3f": {
     "message": "Desactivat"
   },
@@ -1094,6 +1091,9 @@
   "open_for_comments_1810648": {
     "message": "Obert per als comentaris"
   },
+  "opens_in_student_app_a9571498": {
+    "message": "S'obre a l'aplicació de l'estudiant"
+  },
   "options_3ab0ea65": {
     "message": "Opcions"
   },
@@ -1130,9 +1130,6 @@
   "past_enrollments_a846da48": {
     "message": "Inscripcions anteriors"
   },
-  "people_b4ebb13c": {
-    "message": "Persones"
-  },
   "percent_d7ddd35b": {
     "message": "Percentatge (%)"
   },
@@ -1150,6 +1147,9 @@
   },
   "pinned_discussions_a55c0cea": {
     "message": "Debats ancorats"
+  },
+  "please_try_again_5d872e78": {
+    "message": "Torneu-ho a provar."
   },
   "points_bb475533": {
     "message": "Punts"
@@ -1439,6 +1439,12 @@
   "student_5da6bfd1": {
     "message": "Estudiant"
   },
+  "student_view_ac9b672f": {
+    "message": "Vista d'estudiant"
+  },
+  "student_view_enrollment_not_found_8f9cbdd5": {
+    "message": "No s'ha trobat la vista d'estudiant de la inscripció"
+  },
   "students_1b8cd07b": {
     "message": "Estudiants"
   },
@@ -1478,9 +1484,6 @@
   "syllabus_f191f65b": {
     "message": "Temari"
   },
-  "ta_8d966626": {
-    "message": "TA"
-  },
   "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
     "message": "Manteniu tocat el número d'una rúbrica per veure'n la descripció"
   },
@@ -1492,9 +1495,6 @@
   },
   "tap_to_view_submissions_list_5bfe32f3": {
     "message": "Toqueu per veure la llista d'entregues."
-  },
-  "teacher_5a73b637": {
-    "message": "Professor"
   },
   "teachers_52e2423f": {
     "message": "Professors"
@@ -1532,9 +1532,6 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "No hi ha cap comentari que es pugui mostrar."
   },
-  "there_are_no_conferences_to_display_400a0413": {
-    "message": "No hi ha cap conferència que es pugui mostrar."
-  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "No hi ha cap debat que es pugui mostrar."
   },
@@ -1564,6 +1561,9 @@
   },
   "there_was_a_problem_loading_the_groups_6945e624": {
     "message": "S'ha produït un problema en carregar els grups."
+  },
+  "there_was_a_problem_loading_the_live_conferences_d80f2f9e": {
+    "message": "S'ha produït un problema en carregar les conferències en directe."
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
     "message": "S'ha produït un problema en carregar les entregues de qüestionaris."
@@ -1615,6 +1615,9 @@
   },
   "this_criterion_will_not_impact_the_score_94adf77b": {
     "message": "Aquest criteri no influirà en la puntuació."
+  },
+  "this_file_is_currently_locked_6dc6635f": {
+    "message": "Aquest fitxer està bloquejat actualment."
   },
   "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
     "message": "Cal establir drets d'ús per a aquest fitxer abans que es pugui publicar."
@@ -1796,6 +1799,9 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Heu estat convidat"
+  },
+  "you_must_access_student_view_for_this_course_once__ae054476": {
+    "message": "Abans d'utilitzar la Vista d'estudiant a l'aplicació, heu d'accedir a la Vista d'estudiant d'aquest curs una vegada des del lloc web."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Per utilitzar la càmera, heu d'activar els permisos per a la càmera i per al micròfon a Configuració."

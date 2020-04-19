@@ -1,17 +1,20 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Sense assumpte)";
 
-/* <String> <Int> of <Int> */
-"%@ %d of %d" = "%1$@ %2$d de %3$d";
-
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ venç a les %2$@";
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ començarà a les %2$@";
 
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@, a %2$@, l'últim missatge va ser el %3$@ %4$@";
+
 /* added to conversation label when unread */
 "%@, unread" = "%@, sense llegir";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
 
 /* Percentage field placeholder */
 "1-100%" = "De l'1 al 100 %";
@@ -20,7 +23,13 @@
 "Add" = "Afegeix";
 
 /* No comment provided by engineer. */
+"Add Attachments" = "Afegeix fitxers adjunts";
+
+/* No comment provided by engineer. */
 "Add Student" = "Afegeix un estudiant";
+
+/* No comment provided by engineer. */
+"Add students at the top or visit the global menu to masquerade as a student." = "Afegiu estudiants a la part superior o visiteu el menú global per fer-vos passar per un estudiant.";
 
 /* Alert Section Header */
 "Alert me when:" = "Aviseu-me quan:";
@@ -49,6 +58,9 @@
 /* No comment provided by engineer. */
 "Back" = "Enrere";
 
+/* Calendar Tab */
+"Calendar" = "Calendari";
+
 /* No comment provided by engineer. */
 "Calendar Event" = "Esdeveniment al calendari";
 
@@ -65,7 +77,16 @@
 "Caught up on Alerts" = "Esteu al dia amb els avisos";
 
 /* No comment provided by engineer. */
+"Choose a course to message" = "Trieu un curs per enviar el missatge";
+
+/* No comment provided by engineer. */
+"Compose Message" = "Redacta un missatge";
+
+/* No comment provided by engineer. */
 "Compose new message" = "Redacta un missatge nou";
+
+/* No comment provided by engineer. */
+"conversation_unread_messages" = "conversation_unread_messages";
 
 /* Course Announcement Description */
 "Course announcements" = "Anuncis del curs";
@@ -80,7 +101,13 @@
 "Courses" = "Cursos";
 
 /* No comment provided by engineer. */
+"Current student: %@. Tap to switch students" = "Estudiant actual: %@. Toqueu per canviar d'estudiants";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Descarta";
+
+/* No comment provided by engineer. */
+"Edit Recipients" = "Edita els destinataris";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Recordatori d'esdeveniment";
@@ -90,6 +117,18 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "No s'ha pogut carregar (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"Failed. Tap for options" = "S'ha produït un error. Toqueu per veure les opcions";
+
+/* No comment provided by engineer. */
+"File" = "Fitxer";
+
+/* No comment provided by engineer. */
+"Find School" = "Cerca una escola";
+
+/* No comment provided by engineer. */
+"for %@" = "per a %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Pàgina frontal";
@@ -137,7 +176,13 @@
 "Low course grade cannot be higher than high course grade" = "La qualificació de curs baixa no pot ser superior a la qualificació de curs alta";
 
 /* No comment provided by engineer. */
+"Manage Students" = "Administra els estudiants";
+
+/* No comment provided by engineer. */
 "Message" = "Missatge";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Missatge de %1$@, %2$@, el %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Falta";
@@ -150,6 +195,9 @@
 
 /* No comment provided by engineer. */
 "Missing: %@ (%@/%@)" = "Falta: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"n/a" = "n/a";
 
 /* No comment provided by engineer. */
 "New Message" = "Missatge nou";
@@ -176,6 +224,20 @@
 "Permission Needed" = "Cal permís";
 
 /* No comment provided by engineer. */
+"Recipients" = "Destinataris";
+
+/* No comment provided by engineer. */
+"Regarding: %@" = "Sobre: %@";
+
+/* Regarding <John Doe>, [link to grades or syllabus]
+   Regarding <John Doe>, <Grades | Syllabus>
+   Regarding <Name>, <URL> */
+"Regarding: %@, %@" = "Sobre: %1$@, %2$@";
+
+/* Regarding <Name>, Assignment - <Assignment Name> */
+"Regarding: %@, Assignment - %@" = "Sobre: %1$@, Tasca - %2$@";
+
+/* No comment provided by engineer. */
 "Reply" = "Respon";
 
 /* No comment provided by engineer. */
@@ -189,6 +251,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "Configuració";
+
+/* No comment provided by engineer. */
+"Settings. %@" = "Configuració. %@";
 
 /* No comment provided by engineer. */
 "Subject" = "Assumpte";
@@ -224,10 +289,19 @@
 "This student's courses may not be published yet." = "És possible que encara no s'hagin publicat els cursos d'aquest estudiant.";
 
 /* No comment provided by engineer. */
+"To" = "Per a";
+
+/* No comment provided by engineer. */
 "Trouble logging in" = "Hi ha problemes per iniciar la sessió";
 
 /* No comment provided by engineer. */
 "Unread" = "Sense llegir";
+
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "La càrrega de %1$@ està a %2$@";
+
+/* No comment provided by engineer. */
+"Welcome, Admin!" = "Benvingut, administrador!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Per tal d'establir recordatoris, heu de permetre les notificacions a Configuració.";
