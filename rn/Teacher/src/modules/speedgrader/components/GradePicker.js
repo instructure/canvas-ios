@@ -315,7 +315,7 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
             >
               {this.renderField()}
             </TouchableOpacity>
-            {this.props.newGradebookEnabled && !!this.props.grade && this.props.postedAt == null &&
+            {!!this.props.grade && this.props.postedAt == null &&
               <Image
                 source={Images.off}
                 style={styles.eyeball}

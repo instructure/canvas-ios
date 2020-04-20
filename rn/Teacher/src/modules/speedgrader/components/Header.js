@@ -130,7 +130,7 @@ export class Header extends Component<HeaderProps, State> {
             </View>
           </View>
         </TouchableHighlight>
-        {this.props.newGradebookEnabled && this.renderEyeBall()}
+        {this.renderEyeBall()}
         {this.renderDoneButton()}
       </View>
     )
