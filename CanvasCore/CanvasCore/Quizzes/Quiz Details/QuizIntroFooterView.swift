@@ -21,11 +21,9 @@ import Cartography
 
 
 class QuizIntroFooterView: UIView {
-    @objc let pageControl = UIPageControl()
     @objc let takeButton = UIButton()
     fileprivate let takeabilityActivityIndicator = UIActivityIndicatorView()
-    
-    fileprivate var pageControlConstraintGroup = ConstraintGroup()
+
     fileprivate var takeButtonConstraintGroup = ConstraintGroup()
 
     fileprivate let visualEffectContainer = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
@@ -38,7 +36,6 @@ class QuizIntroFooterView: UIView {
         backgroundColor = UIColor.clear
         
         prepareBackgroundView()
-        preparePageControl()
         prepareTakeButton()
 
     }
@@ -53,16 +50,10 @@ class QuizIntroFooterView: UIView {
 extension QuizIntroFooterView {
     @objc func setTakeButtonOnscreen(_ onscreen: Bool, animated: Bool) {
         if onscreen {
-            constrain(pageControl, visualEffectContainer.contentView, replace: pageControlConstraintGroup) { pageControl, contentView in
-                pageControl.centerY == contentView.bottom + 60
-            }
             constrain(takeButton, visualEffectContainer.contentView, replace: takeButtonConstraintGroup) { takeButton, contentView in
                 takeButton.centerY == contentView.centerY
             }
         } else {
-            constrain(pageControl, visualEffectContainer.contentView, replace: pageControlConstraintGroup) { pageControl, contentView in
-                pageControl.centerY == contentView.centerY
-            }
             constrain(takeButton, visualEffectContainer.contentView, replace: takeButtonConstraintGroup) { takeButton, contentView in
                 takeButton.centerY == contentView.bottom + 60
             }
@@ -156,20 +147,5 @@ extension QuizIntroFooterView {
         
         // start off screen
         setTakeButtonOnscreen(true, animated: false)
-    }
-}
-
-
-// MARK: Page Control
-
-extension QuizIntroFooterView {
-    fileprivate func preparePageControl() {
-        pageControl.pageIndicatorTintColor = Brand.current.tintColor
-        pageControl.currentPageIndicatorTintColor = Brand.current.secondaryTintColor
-        pageControl.isHidden = true
-        visualEffectContainer.contentView.addSubview(pageControl)
-        constrain(pageControl, visualEffectContainer) { pageControl, container in
-            pageControl.centerX == container.centerX
-        }
     }
 }
