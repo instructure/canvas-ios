@@ -56,11 +56,13 @@ workflows:
         inputs:
         - access_token: "$BITRISE_CI_TOKEN"
         - workflows: ipad-tests
-    - build-router-start:
+    - script:
         title: Start sub-build
         inputs:
-        - access_token: "$BITRISE_CI_TOKEN"
-        - workflows: danger-yarn
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            set -exo pipefail
+            bitrise --ci run danger-yarn --config scripts/build_automation/bitrise_workflows/tests.yml
 
     - cache-pull: {}
     - &set-mtime
@@ -159,10 +161,10 @@ workflows:
 
             zip --quiet -r "$BITRISE_DEPLOY_DIR/citests.xcresult.zip" scripts/coverage/citests.xcresult
         is_always_run: true
-    - build-router-wait:
-        title: Wait for danger-yarn sub-build to succeed
-        inputs:
-        - access_token: "$BITRISE_CI_TOKEN"
+    # - build-router-wait:
+    #     title: Wait for danger-yarn sub-build to succeed
+    #     inputs:
+    #     - access_token: "$BITRISE_CI_TOKEN"
     - script:
         title: Get danger-yarn results
         is_always_run: true
@@ -172,13 +174,13 @@ workflows:
             #!/bin/zsh
             set -euxo pipefail
 
-            API="https://api.bitrise.io/v0.1/apps/${BITRISE_APP_SLUG}/builds/${ROUTER_STARTED_BUILD_SLUGS}"
+            # API="https://api.bitrise.io/v0.1/apps/${BITRISE_APP_SLUG}/builds/${ROUTER_STARTED_BUILD_SLUGS}"
 
-            ARTIFACT_SLUG=$(curl -H "Authorization: $BITRISE_CI_TOKEN" "$API/artifacts" |
-                jq -r '.data[] | select(.title == "results.tar.xz").slug')
-            ARTIFACT_URL=$(curl -H "Authorization: $BITRISE_CI_TOKEN" "$API/artifacts/${ARTIFACT_SLUG}" |
-                jq -r '.data.expiring_download_url')
-            curl -L $ARTIFACT_URL | tar xJf -
+            # ARTIFACT_SLUG=$(curl -H "Authorization: $BITRISE_CI_TOKEN" "$API/artifacts" |
+            #     jq -r '.data[] | select(.title == "results.tar.xz").slug')
+            # ARTIFACT_URL=$(curl -H "Authorization: $BITRISE_CI_TOKEN" "$API/artifacts/${ARTIFACT_SLUG}" |
+            #     jq -r '.data.expiring_download_url')
+            # curl -L $ARTIFACT_URL | tar xJf -
             cat tmp/report_to_danger_subbuild.md >> tmp/report_to_danger.md || true
     - script:
         title: Report Coverage
@@ -209,6 +211,7 @@ workflows:
                     --data-binary @- \
                     "$SPLUNK_ENDPOINT_URL"
         is_always_run: true
+        is_skippable: true
     - yarn:
         title: yarn danger ci
         is_always_run: true
@@ -222,7 +225,7 @@ workflows:
           - content: |-
               set -euo pipefail
               ./scripts/delete-extra-checkmarx-comments.swift $BITRISE_PULL_REQUEST
-    - deploy-to-bitrise-io: {}
+    # - deploy-to-bitrise-io: {}
 
   danger-yarn:
     steps:
@@ -293,7 +296,7 @@ workflows:
             tar -cJf $BITRISE_DEPLOY_DIR/results.tar.xz \
                 scripts/coverage/react-native \
                 tmp/report_to_danger_subbuild.md
-    - deploy-to-bitrise-io: {}
+    # - deploy-to-bitrise-io: {}
 
   nightly-cache-gen:
     steps:
