@@ -1,9 +1,6 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Ekkert efnisheiti)";
 
-/* <String> <Int> of <Int> */
-"%@ %d of %d" = "%1$@ %2$d af %3$d";
-
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ skiladagur er %2$@";
 
@@ -30,6 +27,9 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "Bæta við nemanda";
+
+/* No comment provided by engineer. */
+"Add students at the top or visit the global menu to masquerade as a student." = "Bæta nemendum við efst eða fara í altæka valmynd til að dyljast sem nemandi.";
 
 /* Alert Section Header */
 "Alert me when:" = "Vara mig við þegar:";
@@ -299,6 +299,9 @@
 
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Upphleðsla %1$@ er í %2$@";
+
+/* No comment provided by engineer. */
+"Welcome, Admin!" = "Velkominn, stjórnandi!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Þú verður að leyfa tilkynningar í stillingum til að setja inn áminningar.";
