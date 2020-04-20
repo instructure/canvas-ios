@@ -105,7 +105,7 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
         let title: String
         switch item?.type {
         case .assignment:
-            title = NSLocalizedString("Assignment Details", bundle:. core, comment: "")
+            title = NSLocalizedString("Assignment Details", bundle: .core, comment: "")
         case .discussion:
             title = NSLocalizedString("Discussion Details", bundle: .core, comment: "")
         case .externalTool:
