@@ -1,9 +1,6 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Intet emne)";
 
-/* <String> <Int> of <Int> */
-"%@ %d of %d" = "%1$@ %2$d af %3$d";
-
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ forfalder kl. %2$@";
 

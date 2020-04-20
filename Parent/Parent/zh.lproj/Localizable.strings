@@ -1,9 +1,6 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(无标题)";
 
-/* <String> <Int> of <Int> */
-"%@ %d of %d" = "%3$d 的 %1$@ %2$d ";
-
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@截止日期%2$@";
 
@@ -30,6 +27,9 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "添加学生";
+
+/* No comment provided by engineer. */
+"Add students at the top or visit the global menu to masquerade as a student." = "在顶部添加学生或访问全局菜单以伪装成学生。";
 
 /* Alert Section Header */
 "Alert me when:" = "通知我当：";
@@ -299,6 +299,9 @@
 
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "上传 %1$@ 位于%2$@";
+
+/* No comment provided by engineer. */
+"Welcome, Admin!" = "欢迎您，网站管理员！";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "您必须允许“设置”中的通知设置提醒。";

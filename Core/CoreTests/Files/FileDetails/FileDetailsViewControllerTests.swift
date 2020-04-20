@@ -253,19 +253,11 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertFalse( FileManager.default.fileExists(atPath: docsURL.path) )
     }
 
-    func xtestSVG() {
+    func testSVG() {
         mock(APIFile.make(filename: "File.svg", contentType: "image/svg+xml", mime_class: "file"))
-        let done = expectation(description: "done")
-        var token: NSObjectProtocol?
-        token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { _ in
-            NotificationCenter.default.removeObserver(token!)
-            done.fulfill()
-        }
         controller.view.layoutIfNeeded()
-        wait(for: [done], timeout: 5)
         XCTAssert(controller.contentView.subviews.first is CoreWebView)
-        XCTAssertTrue(controller.spinnerView.isHidden)
-        XCTAssertTrue(controller.progressView.isHidden)
+        XCTAssertNotNil(controller.loadObservation)
     }
 
     func testVideo() {
