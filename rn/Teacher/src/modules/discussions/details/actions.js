@@ -77,6 +77,13 @@ export let Actions = (api: CanvasApi): * => ({
       entryID,
     }
   }),
+  markEntryAsUnread: createAction('discussions.details.markEntryAsUnread', (context: string, contextID: string, discussionID: string, entryID: string) => {
+    return {
+      promise: api.markEntryAsUnread(context, contextID, discussionID, entryID),
+      discussionID,
+      entryID,
+    }
+  }),
   markAllAsRead: createAction('discussions.details.markAllAsRead', (context: string, contextID: string, discussionID: string, oldUnreadCount: number) => {
     return {
       promise: api.markAllAsRead(context, contextID, discussionID),

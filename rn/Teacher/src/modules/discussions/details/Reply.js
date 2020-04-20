@@ -24,6 +24,7 @@ import {
   View,
   ActionSheetIOS,
   TouchableOpacity,
+  TouchableHighlight,
 } from 'react-native'
 import { Text } from '../../../common/text'
 import { LinkButton, Button } from '../../../common/buttons'
@@ -38,6 +39,7 @@ import { isTeacher } from '../../app'
 import isEqual from 'lodash/isEqual'
 import { logEvent } from '@common/CanvasAnalytics'
 import { personDisplayName } from '../../../common/formatters'
+import icon from '../../../images/inst-icons'
 
 type ReadState = 'read' | 'unread'
 
@@ -232,19 +234,10 @@ export default class Reply extends Component<Props, State> {
             >
               {i18n('Reply')}
             </LinkButton>
-            { this._canEdit() &&
-              <Text style={[style.footer, { color: colors.borderMedium, textAlign: 'center', alignSelf: 'center', paddingLeft: 10, paddingRight: 10 }]} accessible={false}>|</Text>
-            }
-            { this._canEdit() &&
-              <LinkButton
-                style={style.footer}
-                textStyle={buttonTextStyle}
-                onPress={this._actionEdit}
-                testID={`discussion.reply.${this.props.reply.id}.edit-btn`}
-              >
-                {i18n('Edit')}
-              </LinkButton>
-            }
+            <Text style={[style.footer, style.morePipe]} accessible={false}>|</Text>
+            <TouchableHighlight onPress={this.showMoreOptions} testID={`Reply.${this.props.reply.id}.moreButton`}>
+              <Image source={icon('more')} style={style.moreIcon} />
+            </TouchableHighlight>
           </View>
         }
         { showRating &&
@@ -312,6 +305,51 @@ export default class Reply extends Component<Props, State> {
     ) : <View />
   }
 
+  showMoreOptions = () => {
+    let canEdit = isTeacher()
+    let isUnread = this.props.readState === 'unread'
+    let options = []
+    if (isUnread) {
+      options.push(i18n('Mark as Read'))
+    } else {
+      options.push(i18n('Mark as Unread'))
+    }
+    if (canEdit) {
+      options.push(i18n('Edit'))
+      options.push(i18n('Delete'))
+    }
+    options.push(i18n('Cancel'))
+    ActionSheetIOS.showActionSheetWithOptions({
+      options,
+      cancelButtonIndex: options.length - 1,
+      destructiveButtonIndex: canEdit ? options.length - 2 : undefined,
+    }, (index) => {
+      switch (index) {
+        case 0:
+          isUnread ? this.markAsRead() : this.props.onMarkUnread(this.props.reply.id)
+          break
+        case 1:
+          if (canEdit) {
+            this.edit()
+          }
+          break
+        case 2:
+          this.delete()
+          break
+      }
+    })
+  }
+
+  markAsRead () {
+    const {
+      context,
+      contextID,
+      discussionID,
+      reply,
+    } = this.props
+    this.props.markEntryAsRead(context, contextID, discussionID, reply.id)
+  }
+
   _actionMore = () => {
     this.props.onPressMoreReplies(this.props.myPath)
   }
@@ -325,39 +363,29 @@ export default class Reply extends Component<Props, State> {
     this.props.replyToEntry(this.props.reply.id, this.props.myPath)
   }
 
-  _actionEdit = () => {
+  edit () {
     if (this.props.isAnnouncement) {
       logEvent('announcement_reply_edited')
     } else {
       logEvent('discussion_topic_reply_edited')
     }
-    const { context, contextID, discussionID } = this.props
-    let options = []
-    options.push(i18n('Edit'))
-    options.push(i18n('Delete'))
-    options.push(i18n('Cancel'))
-    ActionSheetIOS.showActionSheetWithOptions({
-      options: options,
-      cancelButtonIndex: options.length - 1,
-      destructiveButtonIndex: options.length - 2,
-    }, (button) => {
-      if (button === (options.length - 1)) { return }
-      if (button === (options.length - 2)) { this.props.deleteDiscussionEntry(context, contextID, discussionID, this.props.reply.id, this.props.myPath); return }
-      if (button === 0) {
-        this.props.navigator.show(`/${context}/${contextID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true }, { message: this.props.reply.message, entryID: this.props.reply.id, isEdit: true, indexPath: this.props.myPath })
-        return
-      }
-    })
+    const { context, contextID, discussionID, reply, myPath } = this.props
+    this.props.navigator.show(
+      `/${context}/${contextID}/discussion_topics/${discussionID}/reply`,
+      { modal: true },
+      { message: reply.message, entryID: reply.id, isEdit: true, indexPath: myPath }
+    )
+  }
+
+  delete () {
+    const { context, contextID, discussionID, reply, myPath } = this.props
+    this.props.deleteDiscussionEntry(context, contextID, discussionID, reply.id, myPath)
   }
 
   _actionRate = () => {
     const rating = this.hasRated() ? 0 : 1
     const { context, contextID, discussionID } = this.props
     this.props.rateEntry(context, contextID, discussionID, this.props.reply.id, rating, this.props.myPath)
-  }
-
-  _canEdit = () => {
-    return isTeacher()
   }
 }
 
@@ -481,5 +509,19 @@ const style = createStyleSheet((colors, vars) => ({
     fontWeight: 'bold',
     marginLeft: 4,
     fontSize: 14,
+  },
+  moreIcon: {
+    tintColor: colors.textDark,
+    resizeMode: 'contain',
+    height: 24,
+    width: 24,
+    transform: [{ rotate: '90deg' }],
+  },
+  morePipe: {
+    color: colors.borderMedium,
+    textAlign: 'center',
+    alignSelf: 'center',
+    paddingLeft: 10,
+    paddingRight: 10,
   },
 }))
