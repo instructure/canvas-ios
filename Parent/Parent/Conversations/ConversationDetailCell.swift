@@ -21,7 +21,7 @@ import UIKit
 import Core
 
 class ConversationDetailCell: UITableViewCell {
-    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var messageLabel: UITextView!
     @IBOutlet weak var fromLabel: UILabel!
     @IBOutlet weak var toLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -37,6 +37,11 @@ class ConversationDetailCell: UITableViewCell {
         self.message = m
         self.parent = parent
         messageLabel.text = m.body
+        messageLabel.font = UIFont.scaledNamedFont(.medium14)
+        messageLabel.textColor = UIColor.named(.textDarkest)
+        messageLabel.sizeToFit()
+        messageLabel.isScrollEnabled = false
+
         toLabel.text = m.localizedAudience(myID: myID, userMap: userMap)
         fromLabel.text = userMap[ m.authorID ]?.displayName
         dateLabel.text = DateFormatter.localizedString(from: createdAt, dateStyle: .medium, timeStyle: .short)

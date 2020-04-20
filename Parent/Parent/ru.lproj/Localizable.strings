@@ -1,9 +1,6 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Нет субъекта)";
 
-/* <String> <Int> of <Int> */
-"%@ %d of %d" = "%1$@ %2$d из %3$d";
-
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ необходимо завершить через %2$@";
 
@@ -30,6 +27,9 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "Добавить студента";
+
+/* No comment provided by engineer. */
+"Add students at the top or visit the global menu to masquerade as a student." = "Добавьте учащихся в верхней части или пройдите в общее меню, чтобы выступит в качестве учащегося.";
 
 /* Alert Section Header */
 "Alert me when:" = "Оповестить меня, когда:";
@@ -299,6 +299,9 @@
 
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Загрузка %1$@ находится в %2$@";
+
+/* No comment provided by engineer. */
+"Welcome, Admin!" = "Добро пожаловать, администратор!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Вы должны разрешить уведомления в настройках для задания напоминаний.";

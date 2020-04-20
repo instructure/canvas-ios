@@ -56,7 +56,7 @@ extension NSPersistentContainer {
 
         if let appGroup = appGroup {
             guard let appGroupFolder = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup) else {
-                preconditionFailure("App Group does not exist")
+                return nil
             }
             folder = appGroupFolder
         }

@@ -159,7 +159,7 @@ class RouterTests: CoreTestCase {
         XCTAssert(mockView.detail?.isKind(of: UINavigationController.self) == true)
     }
 
-    func testRouteDetailNotInSplitViewDoesAShowDetail() {
+    func testRouteDetailNotInSplitViewDoesAShow() {
         let mockView = MockViewController()
         let router = Router(routes: [
             RouteHandler("/detail") { _, _ in
@@ -167,9 +167,9 @@ class RouterTests: CoreTestCase {
             },
         ]) { _, _, _ in }
         router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail)
-        XCTAssertNotNil(mockView.detail)
-        XCTAssert(mockView.detail?.isKind(of: UIViewController.self) == true)
-        XCTAssert(mockView.detail?.isKind(of: UINavigationController.self) == true)
+        XCTAssertNotNil(mockView.shown)
+        XCTAssert(mockView.shown?.isKind(of: UIViewController.self) == true)
+        XCTAssert(mockView.shown?.isKind(of: UINavigationController.self) == false)
     }
 
     func testRouteDetailInCollapsedSplitViewDoesAShow() {
@@ -339,6 +339,20 @@ class RouterTests: CoreTestCase {
         ]) { _, _, _ in }
         let components = URLComponents(string: "https://canvas.instructure.com/somewhere")!
         XCTAssertNotNil(router.match(components))
+    }
+
+    func testRouteToExternalURL() {
+        let mockView = MockViewController()
+        let url = URLComponents(string: "https://foobar.com/support")!
+        var didUseLocalSupportRoute = false
+        let router = Router(routes: [
+            RouteHandler("/support") { _, _ in
+                didUseLocalSupportRoute = true
+                return UIViewController()
+            },
+        ]) { _, _, _ in }
+        router.route(to: url, from: mockView)
+        XCTAssertFalse(didUseLocalSupportRoute)
     }
 
     func testShowAlertController() {

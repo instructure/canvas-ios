@@ -112,7 +112,7 @@ public extension RouterProtocol {
             }
             from.present(nav ?? view, animated: true, completion: completion)
         case .detail:
-            if from.isInSplitViewDetail || from.splitViewController?.isCollapsed == true {
+            if from.splitViewController == nil || from.isInSplitViewDetail || from.splitViewController?.isCollapsed == true {
                 from.show(view, sender: nil)
             } else {
                 from.showDetailViewController(nav ?? view, sender: from)
@@ -181,6 +181,12 @@ public class Router: RouterProtocol {
         DeveloperMenuViewController.recordRouteInHistory(url.url?.absoluteString)
         #endif
         Analytics.shared.logEvent("route", parameters: ["url": String(describing: url)])
+
+        if url.host?.isEmpty == false && !urlMatchesSessionHost(url) {
+            fallback(url, from, options)
+            return
+        }
+
         for route in handlers {
             if let params = route.match(url) {
                 if let view = route.factory(url, params) {
@@ -190,5 +196,10 @@ public class Router: RouterProtocol {
             }
         }
         fallback(url, from, options)
+    }
+
+    private func urlMatchesSessionHost(_ url: URLComponents) -> Bool {
+        let sessionHost = AppEnvironment.shared.currentSession?.baseURL.host ?? ""
+        return url.host == sessionHost
     }
 }

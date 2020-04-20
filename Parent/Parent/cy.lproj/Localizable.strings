@@ -1,9 +1,6 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Dim pwnc)";
 
-/* <String> <Int> of <Int> */
-"%@ %d of %d" = "%1$@ %2$d o %3$d";
-
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ erbyn %2$@";
 
@@ -30,6 +27,9 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "Ychwanegu Myfyriwr";
+
+/* No comment provided by engineer. */
+"Add students at the top or visit the global menu to masquerade as a student." = "Ychwanegwch fyfyrwyr at y brig neu ewch i’r ddewislen gyffredinol i esgus eich bod chi’n fyfyriwr.";
 
 /* Alert Section Header */
 "Alert me when:" = "Rhowch wybod i mi pan:";
@@ -299,6 +299,9 @@
 
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Mae llwytho %1$@ i fyny ar %2$@";
+
+/* No comment provided by engineer. */
+"Welcome, Admin!" = "Croeso, Weinyddwr!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Rhaid i chi ganiatáu hysbysiadau yn y Gosodiadau er mwyn gosod nodiadau atgoffa.";

@@ -1,9 +1,6 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Ni zadeve)";
 
-/* <String> <Int> of <Int> */
-"%@ %d of %d" = "%1$@ %2$d od %3$d";
-
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ ima rok ob %2$@";
 
@@ -30,6 +27,9 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "Dodaj študenta";
+
+/* No comment provided by engineer. */
+"Add students at the top or visit the global menu to masquerade as a student." = "Dodajte študente na vrhu ali pa pojdite v globalni meni, da prevzamete vlogo študenta.";
 
 /* Alert Section Header */
 "Alert me when:" = "Obvesti me, ko:";
@@ -299,6 +299,9 @@
 
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Nalaganje %1$@ je ob %2$@";
+
+/* No comment provided by engineer. */
+"Welcome, Admin!" = "Dobrodošli, skrbnik!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Za nastavitev opomnikov morate v možnosti »Nastavitve« dovoliti sporočila.";

@@ -6,6 +6,7 @@
 	<array>
 		<string>group.com.instructure.Contexts</string>
 		<string>group.com.instructure.icanvas</string>
+		<string>group.instructure.shared</string>
 	</array>
 	<key>keychain-access-groups</key>
 	<array>

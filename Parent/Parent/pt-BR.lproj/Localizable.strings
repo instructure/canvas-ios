@@ -1,9 +1,6 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(Sem assunto)";
 
-/* <String> <Int> of <Int> */
-"%@ %d of %d" = "%1$@ %2$d de %3$d";
-
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ vence às %2$@";
 
@@ -30,6 +27,9 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "Adicionar Estudante";
+
+/* No comment provided by engineer. */
+"Add students at the top or visit the global menu to masquerade as a student." = "Adicione alunos ao topo ou visite o menu global para se fingir de aluno.";
 
 /* Alert Section Header */
 "Alert me when:" = "Avisem-me quando:";
@@ -299,6 +299,9 @@
 
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Carregando %1$@ está em %2$@";
+
+/* No comment provided by engineer. */
+"Welcome, Admin!" = "Bem-vindo, Admin!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Você deve permitir notificações nas Configurações para definir lembretes.";

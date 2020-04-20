@@ -25,13 +25,11 @@ import Core
 import SafariServices
 
 let ParentAppRefresherTTL: TimeInterval = 5.minutes
-var legacySession: Session?
 var currentStudentID: String?
 
 @UIApplicationMain
 class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     lazy var window: UIWindow? = ActAsUserWindow(frame: UIScreen.main.bounds, loginDelegate: self)
-    var studentsRefresher: Refresher?
 
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
@@ -94,31 +92,20 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
             Firebase.Crashlytics.crashlytics().setUserID(crashlyticsUserId)
         }
-        legacySession = Session.current
         Analytics.shared.logSession(session)
         getPreferences()
         showRootView()
     }
 
     func showRootView() {
-        guard let session = legacySession else { return }
-        do {
-            let refresher = try Student.observedStudentsRefresher(session)
-            refresher.refreshingCompleted.observeValues { [weak self] _ in
-                guard let self = self, let window = self.window else { return }
-                self.studentsRefresher = nil
-
-                let controller = DashboardNavigationController(rootViewController: DashboardViewController.create(session: session))
-                controller.view.layoutIfNeeded()
-                UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
-                    window.rootViewController = controller
-                }, completion: nil)
-            }
-            refresher.refresh(true)
-            studentsRefresher = refresher
-        } catch let e as NSError {
-            print(e)
-        }
+        guard let window = self.window else { return }
+        let controller = DashboardNavigationController(rootViewController: DashboardViewController.create())
+        controller.view.layoutIfNeeded()
+        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
+            window.rootViewController = controller
+        }, completion: { _ in
+            StartupManager.shared.markStartupFinished()
+        })
     }
 
     func getPreferences() {
@@ -164,7 +151,6 @@ extension ParentAppDelegate: LoginDelegate {
 
     func changeUser() {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
-        legacySession = nil
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .parent)
         }, completion: nil)

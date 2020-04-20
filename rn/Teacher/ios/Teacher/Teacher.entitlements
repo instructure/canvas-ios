@@ -4,6 +4,12 @@
 <dict>
 	<key>aps-environment</key>
 	<string>development</string>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:sso.canvaslms.com</string>
+		<string>applinks:sso.beta.canvaslms.com</string>
+		<string>applinks:sso.test.canvaslms.com</string>
+	</array>
 	<key>com.apple.developer.icloud-container-identifiers</key>
 	<array>
 		<string>iCloud.$(CFBundleIdentifier)</string>
@@ -21,17 +27,12 @@
 	<key>com.apple.security.application-groups</key>
 	<array>
 		<string>group.instructure.shared</string>
+		<string>group.com.instructure.Contexts</string>
 	</array>
 	<key>keychain-access-groups</key>
 	<array>
 		<string>$(AppIdentifierPrefix)com.instructure.shared-credentials</string>
 		<string>$(AppIdentifierPrefix)com.instructure.ios.teacher</string>
 	</array>
-    <key>com.apple.developer.associated-domains</key>
-    <array>
-        <string>applinks:sso.canvaslms.com</string>
-        <string>applinks:sso.beta.canvaslms.com</string>
-        <string>applinks:sso.test.canvaslms.com</string>
-    </array>
 </dict>
 </plist>

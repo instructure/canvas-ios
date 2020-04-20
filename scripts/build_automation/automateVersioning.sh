@@ -95,22 +95,9 @@ updateVersionAndBuildNumberInPlist() {
 
 generateReleaseNotes() {
 	TAG="$APP_NAME-$APP_RELEASE_VERSION"
-	#	if the tag exists, use the tag 2nd to last in the list, else use the last tag in the list
-	NUMBER_FROM_THE_BOTTOM=1
-	if git ls-remote --tags | egrep -q "refs/tags/$TAG$"
-	then
-		NUMBER_FROM_THE_BOTTOM=2
-	fi
-	
-	
-	PREVIOUS_RELEASE_TAG=$(git ls-remote --tags origin | grep $APP_NAME- | sort -V | tail -$NUMBER_FROM_THE_BOTTOM | head -n 1 | awk '{print $2}' | sed -e "s/refs\/tags\///g")
-	echo "previous release tag: $PREVIOUS_RELEASE_TAG"
-	
-	pushd scripts
-	# node generate-release-notes.js --tag=$PREVIOUS_RELEASE_TAG --app=$APP_NAME
-	NOTES=$(node generate-release-notes.js --tag=$PREVIOUS_RELEASE_TAG --app=$APP_NAME)
-	popd
 
+	# node scripts/generate-release-notes.js $TAG
+	NOTES=$(node scripts/generate-release-notes.js $TAG)
 	envman add --key RELEASE_NOTES --value "$NOTES"
 }
 

@@ -20,6 +20,7 @@ import Foundation
 import XCTest
 @testable import Parent
 import TestsFoundation
+@testable import CanvasCore
 @testable import Core
 
 class SettingsViewControllerTests: ParentTestCase {
@@ -27,7 +28,7 @@ class SettingsViewControllerTests: ParentTestCase {
 
     override func setUp() {
         super.setUp()
-        viewController = SettingsViewController.create(env: env, session: legacySession!)
+        viewController = SettingsViewController.create(env: env, session: Session.current!)
     }
 
     func load() {

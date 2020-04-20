@@ -304,7 +304,17 @@ class SubmissionDetailsTests: StudentUITestCase {
         mockBaseRequests()
         let assignment = mock(assignment: .make(submission_types: [ .external_tool ]))
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make())
-
+        mockData(
+            GetSessionlessLaunchURLRequest(
+                context: ContextModel(.course, id: course.id.value),
+                id: nil,
+                url: nil,
+                assignmentID: assignment.id.value,
+                moduleItemID: nil,
+                launchType: .assessment
+            ),
+            value: .make()
+        )
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
         ExternalTool.launchButton.waitToExist(5)

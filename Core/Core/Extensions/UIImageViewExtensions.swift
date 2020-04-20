@@ -29,8 +29,6 @@ private var loaderHandle: UInt8 = 0
 
 public protocol ImageLoadingView: class {
     var frame: CGRect { get }
-    var loader: ImageLoader? { get }
-    func load(url: URL?) -> URLSessionTask?
     func load(url: URL, didCompleteWith: LoadedImage?, error: Error?)
 }
 
@@ -99,6 +97,11 @@ public class ImageLoader {
 
     private static var rendered: [String: LoadedImage] = [:]
     private static var loading: [String: [ImageLoader]] = [:]
+
+    static func reset() {
+        rendered = [:]
+        loading = [:]
+    }
 
     init(url: URL, view: ImageLoadingView) {
         self.frame = view.frame
