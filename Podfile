@@ -31,11 +31,11 @@ def react_native_pods
   pod 'React-RCTImage', :path => './rn/Teacher/node_modules/react-native/Libraries/Image'
   pod 'React-RCTLinking', :path => './rn/Teacher/node_modules/react-native/Libraries/LinkingIOS'
   pod 'React-RCTNetwork', :path => './rn/Teacher/node_modules/react-native/Libraries/Network'
+  pod 'React-RCTPushNotification', :path => './rn/Teacher/node_modules/react-native/Libraries/PushNotificationIOS'
   pod 'React-RCTSettings', :path => './rn/Teacher/node_modules/react-native/Libraries/Settings'
   pod 'React-RCTText', :path => './rn/Teacher/node_modules/react-native/Libraries/Text'
   pod 'React-RCTVibration', :path => './rn/Teacher/node_modules/react-native/Libraries/Vibration'
   pod 'React-Core/RCTWebSocket', :path => './rn/Teacher/node_modules/react-native/'
-  pod 'React-RCTPushNotification', :path => './rn/Teacher/node_modules/react-native/Libraries/PushNotificationIOS'
 
   pod 'React-cxxreact', :path => './rn/Teacher/node_modules/react-native/ReactCommon/cxxreact'
   pod 'React-jsi', :path => './rn/Teacher/node_modules/react-native/ReactCommon/jsi'
@@ -117,7 +117,7 @@ end
 
 post_install do |installer|
   installer.pod_targets.each do |target|
-    silenceWarningsInUmbrellas = %w[ React ]
+    silenceWarningsInUmbrellas = %w[ React-Core ]
     next unless silenceWarningsInUmbrellas.include? target.name
 
     target.umbrella_header_path.open("r+") do |file|
