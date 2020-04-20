@@ -1,9 +1,0 @@
-/* Class = "UILabel"; text = "Timed Quiz"; ObjectID = "aPJ-b1-PDA"; */
-"aPJ-b1-PDA.text" = "Tímamælt próf";
-
-/* Class = "UILabel"; text = "You have 5 minutes."; ObjectID = "KWG-Lz-03A"; */
-"KWG-Lz-03A.text" = "Þú hefur 5 mínútur.";
-
-/* Class = "UILabel"; text = "Hide/show timer by pressing the timer."; ObjectID = "VPh-7F-wIC"; */
-"VPh-7F-wIC.text" = "Fela/sýna tímamæli með því að ýta á tímamæli.";
-
