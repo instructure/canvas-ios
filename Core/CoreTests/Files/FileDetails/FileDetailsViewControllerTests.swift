@@ -237,7 +237,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertTrue( FileManager.default.fileExists(atPath: expectedURL.path) )
     }
 
-    func testNonMutatedPdfFileSavesToDocumentsDirectory() {
+    func testNonMutatedPdfFileStaysInTempDirectory() {
         let expectedURL = URL.temporaryDirectory.appendingPathComponent("\(currentSession.uniqueID)/1/File.pdf")
         let docsURL = URL.documentsDirectory.appendingPathComponent("\(currentSession.uniqueID)/1/File.pdf")
         try? FileManager.default.removeItem(atPath: docsURL.path)
