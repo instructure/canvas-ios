@@ -70,12 +70,6 @@ abstract_target 'defaults' do
 
   pspdfkit
 
-  target 'Core' do
-    project 'Core/Core.xcodeproj'
-    pod 'PactConsumerSwift', :git => 'https://github.com/DiUS/pact-consumer-swift.git'
-    pspdfkit
-  end
-
   target 'Parent' do
     project 'Parent/Parent.xcodeproj'
     firebase_pods
@@ -110,6 +104,18 @@ abstract_target 'defaults' do
     project 'CanvasCore/CanvasCore.xcodeproj'
     canvas_crashlytics_rn_firebase_pods
   end
+end
+
+target 'PactTests' do
+  use_frameworks!
+  project 'Core/Core.xcodeproj'
+  pod 'PactConsumerSwift', :git => 'https://github.com/DiUS/pact-consumer-swift.git'
+end
+
+target 'Core' do
+  use_frameworks!
+  project 'Core/Core.xcodeproj'
+  pspdfkit
 end
 
 post_install do |installer|
