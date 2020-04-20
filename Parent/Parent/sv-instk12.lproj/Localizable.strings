@@ -1,9 +1,6 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(inget ämne)";
 
-/* <String> <Int> of <Int> */
-"%@ %d of %d" = "%1$@ %2$d av %3$d";
-
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ ska vara klar %2$@";
 

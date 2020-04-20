@@ -1,9 +1,6 @@
 /* No comment provided by engineer. */
 "(No subject)" = "(inget ämne)";
 
-/* <String> <Int> of <Int> */
-"%@ %d of %d" = "%1$@ %2$d av %3$d";
-
 /* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ ska vara klar %2$@";
 
@@ -30,6 +27,9 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "Lägg till student";
+
+/* No comment provided by engineer. */
+"Add students at the top or visit the global menu to masquerade as a student." = "Lägg till studenter längst upp eller öppna den globala menyn för att utge dig för att vara student.";
 
 /* Alert Section Header */
 "Alert me when:" = "Larma mig när:";
@@ -299,6 +299,9 @@
 
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Uppladdning av %1$@ är på %2$@";
+
+/* No comment provided by engineer. */
+"Welcome, Admin!" = "Välkommen administratör!";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Du måste tillåta aviseringar i Inställningar för att ställa in påminnelser.";

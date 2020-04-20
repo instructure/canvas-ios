@@ -29,9 +29,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d unread conversation</string>
+			<string>%d conversa no llegida</string>
 			<key>other</key>
-			<string>%d unread conversations</string>
+			<string>%d converses no llegides</string>
 		</dict>
 	</dict>
 	<key>d_events</key>
@@ -93,15 +93,15 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d event</string>
+			<string>%d esdeveniment</string>
 			<key>other</key>
-			<string>%d events</string>
+			<string>%d esdeveniments</string>
 		</dict>
 	</dict>
 	<key>filter_events_d_calendars_selected</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Filter events, %#@calendars@</string>
+		<string>Filtra els esdeveniments, %#@calendars@</string>
 		<key>calendars</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -109,9 +109,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d calendar selected</string>
+			<string>%d calendari seleccionat</string>
 			<key>other</key>
-			<string>%d calendars selected</string>
+			<string>%d calendaris seleccionats</string>
 		</dict>
 	</dict>
 	<key>final_grade_g_pts</key>
@@ -157,9 +157,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>one</key>
-			<string>%g point</string>
+			<string>%g punt</string>
 			<key>other</key>
-			<string>%g points</string>
+			<string>%g punts</string>
 		</dict>
 	</dict>
 	<key>g_pts</key>

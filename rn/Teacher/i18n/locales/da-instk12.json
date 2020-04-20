@@ -320,8 +320,11 @@
   "compose_message_8abd180a": {
     "message": "Skriv besked"
   },
-  "conferences_a0a8984b": {
-    "message": "Konferencer"
+  "conference_in_progress_bed08457": {
+    "message": "Konference i gang"
+  },
+  "conference_name_is_in_progress_tap_to_view_details_86ffeb1": {
+    "message": "Konference { name } er i gang, tryk for at se detaljer"
   },
   "conversation_options_8be926f3": {
     "message": "Samtaleindstillinger"
@@ -1529,9 +1532,6 @@
   "there_are_no_comments_to_display_bde58f70": {
     "message": "Der er ikke nogen kommentarer at vise."
   },
-  "there_are_no_conferences_to_display_400a0413": {
-    "message": "Der er ikke nogen konferencer at vise."
-  },
   "there_are_no_discussions_to_display_37bc437f": {
     "message": "Der er ikke nogen diskussioner at vise."
   },
@@ -1561,6 +1561,9 @@
   },
   "there_was_a_problem_loading_the_groups_6945e624": {
     "message": "Der opstod et problem ved indlæsning af grupperne."
+  },
+  "there_was_a_problem_loading_the_live_conferences_d80f2f9e": {
+    "message": "Der opstod et problem ved indlæsning af live-konferencen."
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
     "message": "Der opstod et problem ved indlæsning af quizafleveringer."
