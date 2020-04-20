@@ -706,8 +706,6 @@
 		B15CA275221DE8E50014FB02 /* APIModuleRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA274221DE8E50014FB02 /* APIModuleRequestableTests.swift */; };
 		B15CA284221E00870014FB02 /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA283221E00870014FB02 /* ModuleTests.swift */; };
 		B162469F2445001F00982C52 /* CompletionRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162469E2445001E00982C52 /* CompletionRequirement.swift */; };
-		B16246A124450D4900982C52 /* ModuleSectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16246A024450D4900982C52 /* ModuleSectionFooterView.swift */; };
-		B16246A324450D6400982C52 /* ModuleSectionFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B16246A224450D6400982C52 /* ModuleSectionFooterView.xib */; };
 		B164DC1F22DE2AB30037FA86 /* APIAccountResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164DC1E22DE2AB30037FA86 /* APIAccountResultTests.swift */; };
 		B16E05E02423D770006B6ADB /* LoginQRCodeTutorialViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B16E05DF2423D770006B6ADB /* LoginQRCodeTutorialViewController.storyboard */; };
 		B16E05E22423DF83006B6ADB /* LoginQRCodeTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16E05E12423DF83006B6ADB /* LoginQRCodeTutorialViewController.swift */; };
@@ -1735,8 +1733,6 @@
 		B15CA283221E00870014FB02 /* ModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTests.swift; sourceTree = "<group>"; };
 		B15E4B86238C4DC2002119CF /* Syllabus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syllabus.swift; sourceTree = "<group>"; };
 		B162469E2445001E00982C52 /* CompletionRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionRequirement.swift; sourceTree = "<group>"; };
-		B16246A024450D4900982C52 /* ModuleSectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleSectionFooterView.swift; sourceTree = "<group>"; };
-		B16246A224450D6400982C52 /* ModuleSectionFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModuleSectionFooterView.xib; sourceTree = "<group>"; };
 		B164DC1E22DE2AB30037FA86 /* APIAccountResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountResultTests.swift; sourceTree = "<group>"; };
 		B16E05DF2423D770006B6ADB /* LoginQRCodeTutorialViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginQRCodeTutorialViewController.storyboard; sourceTree = "<group>"; };
 		B16E05E12423DF83006B6ADB /* LoginQRCodeTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginQRCodeTutorialViewController.swift; sourceTree = "<group>"; };
@@ -2555,8 +2551,6 @@
 				7D159CE2242E553900A77A15 /* ModuleItemSubHeaderCell.swift */,
 				7D159CE3242E553900A77A15 /* ModuleListViewController.storyboard */,
 				7D159CE4242E553900A77A15 /* ModuleListViewController.swift */,
-				B16246A024450D4900982C52 /* ModuleSectionFooterView.swift */,
-				B16246A224450D6400982C52 /* ModuleSectionFooterView.xib */,
 				7D159CE5242E553900A77A15 /* ModuleSectionHeaderView.swift */,
 				7D159CE6242E553900A77A15 /* ModuleSectionHeaderView.xib */,
 				7D159CE7242E553900A77A15 /* ModuleStore.swift */,
@@ -4258,7 +4252,6 @@
 				5BF786A6218599B600471A5F /* InfoPlist.strings in Resources */,
 				B14707AC24379FED00CE1DBD /* LTIViewController.storyboard in Resources */,
 				7DEAD09822789E8A0030C28A /* RichContentEditor.css in Resources */,
-				B16246A324450D6400982C52 /* ModuleSectionFooterView.xib in Resources */,
 				7DE3D11F225E7058000CAE7C /* RichContentToolbarView.xib in Resources */,
 				7DFFAB1A219DDB22003E71F8 /* CommentListViewController.storyboard in Resources */,
 				B18359AA222450DE0005A918 /* AccessIconView.xib in Resources */,
@@ -4725,7 +4718,6 @@
 				7DA2601A23F7227A005D2121 /* UITableViewExtensions.swift in Sources */,
 				B1A76AC024227027000820A8 /* ScannerViewController.swift in Sources */,
 				7DA2601623F7227A005D2121 /* UINavigationBarExtensions.swift in Sources */,
-				B16246A124450D4900982C52 /* ModuleSectionFooterView.swift in Sources */,
 				7DA2604A23F722D9005D2121 /* GradeFormatter.swift in Sources */,
 				7DA2602723F722C2005D2121 /* LoginDelegate.swift in Sources */,
 				7DA260E123F72359005D2121 /* ItemPickerViewController.swift in Sources */,
