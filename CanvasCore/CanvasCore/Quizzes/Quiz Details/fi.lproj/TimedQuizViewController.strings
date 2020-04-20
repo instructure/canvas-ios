@@ -1,9 +1,0 @@
-/* Class = "UILabel"; text = "Timed Quiz"; ObjectID = "aPJ-b1-PDA"; */
-"aPJ-b1-PDA.text" = "Ajoitettu tietovisa";
-
-/* Class = "UILabel"; text = "You have 5 minutes."; ObjectID = "KWG-Lz-03A"; */
-"KWG-Lz-03A.text" = "Sinulla on 5 minuuttia aikaa.";
-
-/* Class = "UILabel"; text = "Hide/show timer by pressing the timer."; ObjectID = "VPh-7F-wIC"; */
-"VPh-7F-wIC.text" = "Piilota/näytä ajastin painamalla ajastinta.";
-
