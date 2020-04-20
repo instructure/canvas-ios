@@ -125,6 +125,9 @@ PODS:
     - Nimble (~> 8.0)
   - PromisesObjC (1.2.8)
   - Protobuf (3.11.4)
+  - PSPDFKit (9.3.1):
+    - PSPDFKit/Core (= 9.3.1)
+  - PSPDFKit/Core (9.3.1)
   - React (0.59.9):
     - React/Core (= 0.59.9)
   - react-native-camera (0.10.0):
@@ -218,6 +221,7 @@ DEPENDENCIES:
   - Interactable (from `./rn/Teacher/node_modules/react-native-interactable`)
   - Marshal (~> 1.2.7)
   - PactConsumerSwift (from `https://github.com/DiUS/pact-consumer-swift.git`)
+  - PSPDFKit (from `https://customers.pspdfkit.com/cocoapods/rTqo6AXV42EZLAdXASrGZeckgKVbxZ/pspdfkit/latest.podspec`)
   - react-native-camera (from `./rn/Teacher/node_modules/react-native-camera`)
   - react-native-document-picker (from `./rn/Teacher/node_modules/react-native-document-picker`)
   - react-native-image-picker (from `./rn/Teacher/node_modules/react-native-image-picker`)
@@ -282,6 +286,8 @@ EXTERNAL SOURCES:
     :path: "./rn/Teacher/node_modules/react-native-interactable"
   PactConsumerSwift:
     :git: https://github.com/DiUS/pact-consumer-swift.git
+  PSPDFKit:
+    :podspec: https://customers.pspdfkit.com/cocoapods/rTqo6AXV42EZLAdXASrGZeckgKVbxZ/pspdfkit/latest.podspec
   React:
     :path: "./rn/Teacher/node_modules/react-native/"
   react-native-camera:
@@ -339,6 +345,7 @@ SPEC CHECKSUMS:
   PactConsumerSwift: 162222e11d1edffdd1d9d16918f6db10f914dae7
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
+  PSPDFKit: 6a3ef860b676b78c5e81c6d74a340ae1e1902068
   React: a86b92f00edbe1873a63e4a212c29b7a7ad5224f
   react-native-camera: a4446f056fb28a9aa7acb3e14af595216aac0a8d
   react-native-document-picker: e3516aff0dcf65ee0785d9bcf190eb10e2261154
@@ -351,6 +358,6 @@ SPEC CHECKSUMS:
   RNSound: a1d01988e043aed5dbb476c2152b5ffb02446750
   yoga: 03ff42a6f223fb88deeaed60249020d80c3091ee
 
-PODFILE CHECKSUM: 2155015e78f6eb0e821c8bd2a97a00af593c6445
+PODFILE CHECKSUM: c59ced78f1cc4799821fd2be13b88c256b17ebaf
 
 COCOAPODS: 1.9.1

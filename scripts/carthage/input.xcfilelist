@@ -1,5 +1,3 @@
-$(SRCROOT)/../Carthage/Build/iOS/PSPDFKit.framework
-$(SRCROOT)/../Carthage/Build/iOS/PSPDFKitUI.framework
 $(SRCROOT)/../Carthage/Build/iOS/ReactiveObjC.framework
 $(SRCROOT)/../Carthage/Build/iOS/ReactiveObjCBridge.framework
 $(SRCROOT)/../Carthage/Build/iOS/ReactiveSwift.framework

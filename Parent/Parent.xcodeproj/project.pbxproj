@@ -156,8 +156,6 @@
 		B1F4061722E6393D008FAFE6 /* ReactiveObjCBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4061222E6393C008FAFE6 /* ReactiveObjCBridge.framework */; };
 		B1F4061822E6393D008FAFE6 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4061322E6393C008FAFE6 /* ReactiveCocoa.framework */; };
 		B1F4061922E6393D008FAFE6 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4061422E6393D008FAFE6 /* ReactiveSwift.framework */; };
-		E80763DF23E08EC80085DAFB /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F2221492400083E660 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E80763E023E08EC80085DAFB /* PSPDFKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F3221492400083E660 /* PSPDFKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E80763E223E08F420085DAFB /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80763E123E08F420085DAFB /* InboxTests.swift */; };
 		E81B573923E1EEC5002A0C38 /* GradeListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B573823E1EEC5002A0C38 /* GradeListTests.swift */; };
 		E81B575023E23CC1002A0C38 /* CoreUITests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8E1BE5823C68A14000E3A76 /* CoreUITests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -165,11 +163,7 @@
 		E81B575923E23EF5002A0C38 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8E1BE5623C68A03000E3A76 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E81B575A23E23EFD002A0C38 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8E1BE5623C68A03000E3A76 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8E1BE4D23C6891F000E3A76 /* ParentUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E1BE4C23C6891F000E3A76 /* ParentUITestCase.swift */; };
-		E8E1BE5D23C68A89000E3A76 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F2221492400083E660 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E8E1BE5E23C68A89000E3A76 /* PSPDFKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F3221492400083E660 /* PSPDFKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8E1BE6123C69418000E3A76 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E1BE6023C69418000E3A76 /* ExampleTests.swift */; };
-		F9B946F4221492400083E660 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F2221492400083E660 /* PSPDFKit.framework */; };
-		F9B946F5221492400083E660 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F3221492400083E660 /* PSPDFKitUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -217,8 +211,6 @@
 			files = (
 				E81B575A23E23EFD002A0C38 /* TestsFoundation.framework in Embed Frameworks */,
 				E81B575023E23CC1002A0C38 /* CoreUITests.framework in Embed Frameworks */,
-				E80763DF23E08EC80085DAFB /* PSPDFKit.framework in Embed Frameworks */,
-				E80763E023E08EC80085DAFB /* PSPDFKitUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -231,8 +223,6 @@
 			files = (
 				E81B575923E23EF5002A0C38 /* TestsFoundation.framework in Embed Frameworks */,
 				E81B575123E23CC9002A0C38 /* CoreUITests.framework in Embed Frameworks */,
-				E8E1BE5D23C68A89000E3A76 /* PSPDFKit.framework in Embed Frameworks */,
-				E8E1BE5E23C68A89000E3A76 /* PSPDFKitUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -864,8 +854,6 @@
 		E8E1BE5A23C68A2B000E3A76 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8E1BE6023C69418000E3A76 /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
 		F8877E061349202471F1B57A /* Pods-Parent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parent.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Parent/Pods-Parent.release.xcconfig"; sourceTree = "<group>"; };
-		F9B946F2221492400083E660 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../Carthage/Build/iOS/PSPDFKit.framework; sourceTree = "<group>"; };
-		F9B946F3221492400083E660 /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = ../Carthage/Build/iOS/PSPDFKitUI.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -897,8 +885,6 @@
 				2C75AB991DDF62D500650856 /* CoreText.framework in Frameworks */,
 				2C75AB9F1DDF62E600650856 /* CoreVideo.framework in Frameworks */,
 				5180FB980843FA6B1321EF5E /* Pods_defaults_Parent.framework in Frameworks */,
-				F9B946F4221492400083E660 /* PSPDFKit.framework in Frameworks */,
-				F9B946F5221492400083E660 /* PSPDFKitUI.framework in Frameworks */,
 				2C75ABA11DDF62ED00650856 /* QuartzCore.framework in Frameworks */,
 				2C75ABA31DDF62F200650856 /* SystemConfiguration.framework in Frameworks */,
 			);
@@ -1235,8 +1221,6 @@
 				5DF4F6632250B1D4C9A25BC6 /* Pods_defaults_Parent.framework */,
 				B38F4CDA7FBACEC7F04FB4BB /* Pods_Parent.framework */,
 				3029A40C0EE636CB00AF751E /* Pods_ParentTests.framework */,
-				F9B946F2221492400083E660 /* PSPDFKit.framework */,
-				F9B946F3221492400083E660 /* PSPDFKitUI.framework */,
 				2C75ABA01DDF62ED00650856 /* QuartzCore.framework */,
 				2C75ABA21DDF62F200650856 /* SystemConfiguration.framework */,
 				542DCE84F15AD20740221847 /* Pods_defaults_ParentUnitTests.framework */,

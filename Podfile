@@ -4,7 +4,6 @@ workspace 'Canvas.xcworkspace'
 inhibit_all_warnings!
 platform :ios, '12.0'
 
-
 def firebase_pods
   pod 'Firebase/Crashlytics', '~> 6.20.0'
   pod 'Firebase/RemoteConfig', '~> 6.20.0'
@@ -14,6 +13,12 @@ end
 def canvas_crashlytics_rn_firebase_pods
   pod 'Firebase/Crashlytics', '~> 6.20.0'
 end
+
+def pspdfkit
+  pod 'PSPDFKit',
+    podspec: 'https://customers.pspdfkit.com/cocoapods/rTqo6AXV42EZLAdXASrGZeckgKVbxZ/pspdfkit/latest.podspec'
+end
+
 
 abstract_target 'defaults' do
   use_frameworks!
@@ -63,9 +68,12 @@ abstract_target 'defaults' do
   pod 'Cartography', '~> 3.1'
   pod 'GoogleUtilities', '~> 6.0'
 
-  target 'PactTests' do
+  pspdfkit
+
+  target 'Core' do
     project 'Core/Core.xcodeproj'
     pod 'PactConsumerSwift', :git => 'https://github.com/DiUS/pact-consumer-swift.git'
+    pspdfkit
   end
 
   target 'Parent' do

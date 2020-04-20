@@ -75,21 +75,13 @@
 		B1FF02D2240435B0004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02D1240435B0004B7B1C /* KeychainTests.swift */; };
 		E841D8B023D6472F00685A63 /* CoreUITests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8F6CFFE23045A01004347D9 /* CoreUITests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E841D8B123D6472F00685A63 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E841D8B223D6472F00685A63 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F6221492580083E660 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E841D8B323D6472F00685A63 /* PSPDFKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F7221492580083E660 /* PSPDFKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E841D8B423D6472F00685A63 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E841D8BC23D6478000685A63 /* E2ETestsFromCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841D8BB23D6478000685A63 /* E2ETestsFromCore.swift */; };
 		E881134922FCA81B00354C59 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E881134B22FCA8AC00354C59 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F6221492580083E660 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E881134C22FCA8B100354C59 /* PSPDFKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F7221492580083E660 /* PSPDFKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8A2FCAB23048AF80070B732 /* UITestsFromCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A2FCAA23048AF80070B732 /* UITestsFromCore.swift */; };
 		E8AA0A9322FCC83B002D0A87 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E8AA0A9422FCC83B002D0A87 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F6221492580083E660 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E8AA0A9522FCC83B002D0A87 /* PSPDFKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F7221492580083E660 /* PSPDFKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8AA0A9622FCC83B002D0A87 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8F6CFFF23045A01004347D9 /* CoreUITests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8F6CFFE23045A01004347D9 /* CoreUITests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F9B946F8221492580083E660 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F6221492580083E660 /* PSPDFKit.framework */; };
-		F9B946F9221492580083E660 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F7221492580083E660 /* PSPDFKitUI.framework */; };
 		F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */; };
 /* End PBXBuildFile section */
 
@@ -136,8 +128,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E881134C22FCA8B100354C59 /* PSPDFKitUI.framework in Embed Frameworks */,
-				E881134B22FCA8AC00354C59 /* PSPDFKit.framework in Embed Frameworks */,
 				E881134922FCA81B00354C59 /* Core.framework in Embed Frameworks */,
 				7DBF923B2269791600710D0F /* TestsFoundation.framework in Embed Frameworks */,
 			);
@@ -152,8 +142,6 @@
 			files = (
 				E841D8B023D6472F00685A63 /* CoreUITests.framework in Embed Frameworks */,
 				E841D8B123D6472F00685A63 /* Core.framework in Embed Frameworks */,
-				E841D8B223D6472F00685A63 /* PSPDFKit.framework in Embed Frameworks */,
-				E841D8B323D6472F00685A63 /* PSPDFKitUI.framework in Embed Frameworks */,
 				E841D8B423D6472F00685A63 /* TestsFoundation.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -167,8 +155,6 @@
 			files = (
 				E8F6CFFF23045A01004347D9 /* CoreUITests.framework in Embed Frameworks */,
 				E8AA0A9322FCC83B002D0A87 /* Core.framework in Embed Frameworks */,
-				E8AA0A9422FCC83B002D0A87 /* PSPDFKit.framework in Embed Frameworks */,
-				E8AA0A9522FCC83B002D0A87 /* PSPDFKitUI.framework in Embed Frameworks */,
 				E8AA0A9622FCC83B002D0A87 /* TestsFoundation.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -381,8 +367,6 @@
 		E8A2FCAA23048AF80070B732 /* UITestsFromCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestsFromCore.swift; sourceTree = "<group>"; };
 		E8F6CFFE23045A01004347D9 /* CoreUITests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Teacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F9B946F6221492580083E660 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../../Carthage/Build/iOS/PSPDFKit.framework; sourceTree = "<group>"; };
-		F9B946F7221492580083E660 /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = ../../../Carthage/Build/iOS/PSPDFKitUI.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -405,8 +389,6 @@
 				2C50EE051E735CC00096592C /* CoreVideo.framework in Frameworks */,
 				8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */,
 				F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */,
-				F9B946F8221492580083E660 /* PSPDFKit.framework in Frameworks */,
-				F9B946F9221492580083E660 /* PSPDFKitUI.framework in Frameworks */,
 				2C50EE071E735CC60096592C /* QuartzCore.framework in Frameworks */,
 				2C50EE091E735CCB0096592C /* SystemConfiguration.framework in Frameworks */,
 			);
@@ -484,8 +466,6 @@
 				2E32426347BE56C907EB34A1 /* Pods_defaults_common_ui_tests_TeacherUITests.framework */,
 				EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */,
 				862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */,
-				F9B946F6221492580083E660 /* PSPDFKit.framework */,
-				F9B946F7221492580083E660 /* PSPDFKitUI.framework */,
 				2C50EE061E735CC60096592C /* QuartzCore.framework */,
 				2C50EE081E735CCB0096592C /* SystemConfiguration.framework */,
 				B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */,
