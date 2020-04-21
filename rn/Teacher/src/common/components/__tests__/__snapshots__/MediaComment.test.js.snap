@@ -158,17 +158,6 @@ exports[`MediaComment renders videos 1`] = `
         />
       </TouchableHighlight>
     </View>
-    <Camera
-      captureAudio={true}
-      defaultVideoQuality="medium"
-      style={
-        Object {
-          "flex": 1,
-          "zIndex": 0,
-        }
-      }
-      type={2}
-    />
   </View>
 </View>
 `;

@@ -29,6 +29,15 @@ jest
   .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
   .mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
   .mock('../AudioRecorder', () => 'AudioRecorder')
+  .mock('react-native-camera', () => {
+    const React = require.requireActual('react')
+    return { RNCamera: class Camera extends React.Component {
+        static Constants = { Type: { back: 1, front: 2 } }
+        render () { return null }
+        recordAsync = jest.fn(() => ({ then: callback => callback({ uri: '/comment.mov' }) }))
+        stopRecording = jest.fn()
+    } }
+  })
 
 describe('MediaComment', () => {
   let props: Props

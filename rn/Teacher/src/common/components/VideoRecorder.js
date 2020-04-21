@@ -30,7 +30,7 @@ import {
 } from 'react-native'
 import i18n from 'format-message'
 import images from '../../images'
-import Camera from 'react-native-camera'
+import { RNCamera as Camera } from 'react-native-camera'
 import Video from './Video'
 
 export type Props = {
@@ -149,10 +149,10 @@ export default class VideoRecorder extends Component<Props, any> {
         { showingCamera &&
           <Camera
             captureAudio
-            defaultVideoQuality='medium'
+            defaultVideoQuality={1 /* medium */}
             ref={this.captureCamera}
             style={style.camera}
-            type={2 /* front */}
+            type={Camera.Constants.Type.front}
           />
         }
         { finished &&
