@@ -27,7 +27,7 @@ workflows:
     steps:
     - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
         title: Canvas iOS Secrets
-    - cache-pull: {}
+    # - cache-pull: {}
     - script:
         title: Install build tools
         inputs:
@@ -46,10 +46,6 @@ workflows:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
         title: yarn install dependencies
     - cocoapods-install:
-        inputs:
-        - verbose: 'false'
-    - cocoapods-install:
-        title: Duplicate install because Yoga case sensitivity issues
         inputs:
         - verbose: 'false'
     - ios-auto-provision:

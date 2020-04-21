@@ -63,7 +63,7 @@ workflows:
         - access_token: "$BITRISE_CI_TOKEN"
         - workflows: danger-yarn
 
-    - cache-pull: {}
+    # - cache-pull: {}
     - &set-mtime
       script-runner:
         title: Set file mtime
@@ -299,7 +299,6 @@ workflows:
     - *yarn-install-root
     - *yarn-install
     - *cocoapods
-    - *cocoapods
     - *build-citests
     - script:
         title: Prepare cache
@@ -364,7 +363,7 @@ workflows:
     - &secrets
       git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
         title: Canvas iOS Secrets
-    - cache-pull: {}
+    # - cache-pull: {}
     - *set-mtime
     - *install-tools
     # - &fix-microphone
@@ -384,7 +383,6 @@ workflows:
     - *yarn-install
     - *yarn-lint
     - *yarn-test
-    - *cocoapods
     - *cocoapods
     - script:
         title: Run Nightly Tests
@@ -494,7 +492,6 @@ workflows:
     - *yarn-install-root
     - *yarn-install
     - *cocoapods
-    - *cocoapods
     - script:
         title: blame
         inputs:
@@ -509,14 +506,13 @@ workflows:
         - commit_hash: $GIT_CLONE_COMMIT_HASH
         - set_specific_status: pending
     - *secrets
-    - cache-pull: {}
+    # - cache-pull: {}
     - *set-mtime
     - *install-tools
     # - *fix-microphone
     - *carthage
     - *yarn-install-root
     - *yarn-install
-    - *cocoapods
     - *cocoapods
     - script:
         title: iPad tests
@@ -549,14 +545,13 @@ workflows:
     steps:
     - *set-time-zone
     - *secrets
-    - cache-pull: {}
+    # - cache-pull: {}
     - *set-mtime
     - *install-tools
     # - *fix-microphone
     - *carthage
     - *yarn-install-root
     - *yarn-install
-    - *cocoapods
     - *cocoapods
     - script:
         title: beta tests
@@ -596,7 +591,6 @@ workflows:
     - *carthage
     - *yarn-install-root
     - *yarn-install
-    - *cocoapods
     - *cocoapods
     - script:
         title: Build Pact Tests
