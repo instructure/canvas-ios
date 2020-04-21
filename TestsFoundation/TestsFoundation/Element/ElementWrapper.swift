@@ -30,6 +30,7 @@ public var app: XCUIApplication {
 //  }
 public protocol ElementWrapper: Element {
     var element: Element { get }
+    var typeName: String { get }
     var id: String { get }
 }
 
@@ -37,6 +38,8 @@ public extension ElementWrapper {
     var element: Element {
         app.find(id: id)
     }
+
+    var typeName: String { String(describing: Self.self) }
 
     var queryWrapper: XCUIElementQueryWrapper {
         element.queryWrapper
@@ -56,7 +59,7 @@ public extension ElementWrapper where Self: RawRepresentable, Self.RawValue: Str
         app.find(id: id)
     }
     var id: String {
-        "\(String(describing: Self.self)).\(rawValue)"
+        "\(typeName).\(rawValue)"
     }
 }
 

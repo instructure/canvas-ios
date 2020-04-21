@@ -22,6 +22,7 @@ import Foundation
 public struct APIConference: Codable {
     let conference_key: String?
     let conference_type: String
+    let context_type: String?
     let description: String?
     let duration: Double? // minutes
     let ended_at: Date?
@@ -59,6 +60,7 @@ extension APIConference {
     public static func make(
         conference_key: String? = "a",
         conference_type: String = "BigBlueButton",
+        context_type: String? = nil,
         description: String? = "test description",
         duration: Double? = 60,
         ended_at: Date? = nil,
@@ -75,6 +77,7 @@ extension APIConference {
         return APIConference(
             conference_key: conference_key,
             conference_type: conference_type,
+            context_type: context_type,
             description: description,
             duration: duration,
             ended_at: ended_at,

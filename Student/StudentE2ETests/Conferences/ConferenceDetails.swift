@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,14 +18,12 @@
 
 import Foundation
 
-// https://canvas.instructure.com/doc/api/tabs.html#Tab
-public struct APITab: Codable, Equatable {
-    let id: ID
-    let html_url: URL
-    let full_url: URL?
-    let label: String
-    let type: TabType
-    let hidden: Bool?
-    let visibility: TabVisibility
-    let position: Int
+public enum ConferenceDetails: String, ElementWrapper {
+    case title, status, details, join
+
+    public enum Recording: String, ElementWrapper {
+        case title, duration, date
+
+        public var typeName: String { "ConferenceDetails.Recording" }
+    }
 }
