@@ -47,6 +47,7 @@ workflows:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
         title: yarn install dependencies
     - cocoapods-install: {}
+    - cocoapods-install: {}
     - script:
         title: Yogatest
         inputs:
@@ -55,7 +56,6 @@ workflows:
             #!/bin/zsh
             set -euxo pipefail
 
-            ls -l "$BITRISE_SOURCE_DIR/Pods/Target Support Files"
             ls -l "$BITRISE_SOURCE_DIR/Pods/Target Support Files/Yoga"
     - ios-auto-provision:
         inputs:
