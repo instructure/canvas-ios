@@ -299,6 +299,7 @@ workflows:
     - *yarn-install-root
     - *yarn-install
     - *cocoapods
+    - *cocoapods
     - *build-citests
     - script:
         title: Prepare cache
@@ -383,6 +384,7 @@ workflows:
     - *yarn-install
     - *yarn-lint
     - *yarn-test
+    - *cocoapods
     - *cocoapods
     - script:
         title: Run Nightly Tests
@@ -492,6 +494,7 @@ workflows:
     - *yarn-install-root
     - *yarn-install
     - *cocoapods
+    - *cocoapods
     - script:
         title: blame
         inputs:
@@ -513,6 +516,7 @@ workflows:
     - *carthage
     - *yarn-install-root
     - *yarn-install
+    - *cocoapods
     - *cocoapods
     - script:
         title: iPad tests
@@ -553,6 +557,7 @@ workflows:
     - *yarn-install-root
     - *yarn-install
     - *cocoapods
+    - *cocoapods
     - script:
         title: beta tests
         inputs:
@@ -591,6 +596,7 @@ workflows:
     - *carthage
     - *yarn-install-root
     - *yarn-install
+    - *cocoapods
     - *cocoapods
     - script:
         title: Build Pact Tests

@@ -46,17 +46,13 @@ workflows:
         inputs:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
         title: yarn install dependencies
-    - cocoapods-install: {}
-    - cocoapods-install: {}
-    - script:
-        title: Yogatest
+    - cocoapods-install:
         inputs:
-        - runner_bin: "/bin/zsh"
-        - content: |-
-            #!/bin/zsh
-            set -euxo pipefail
-
-            ls -l "$BITRISE_SOURCE_DIR/Pods/Target Support Files/Yoga"
+        - verbose: 'false'
+    - cocoapods-install:
+        title: Duplicate install because Yoga case sensitivity issues
+        inputs:
+        - verbose: 'false'
     - ios-auto-provision:
         inputs:
         - generate_profiles: 'yes'
