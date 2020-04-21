@@ -9,6 +9,7 @@ app:
   - RELEASE_BRANCH: release/student
   - APP_NAME: Student
   - TEST_APP_SLUG: 0dd579306f1d4289
+  - RCT_NO_LAUNCH_PACKAGER: 1
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 format_version: '4'
 project_type: other
@@ -36,10 +37,6 @@ workflows:
         inputs:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
         title: yarn install dependencies
-    - npm:
-        inputs:
-        - command: install -g react-native-cli
-        title: npm install -g react-native-cli
     - cocoapods-install: {}
     - ios-auto-provision:
         inputs:

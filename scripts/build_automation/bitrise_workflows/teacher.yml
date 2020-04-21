@@ -18,6 +18,7 @@ app:
   - RELEASE_BRANCH: release/teacher
   - APP_NAME: Teacher
   - TEST_APP_SLUG: 0dd579306f1d4289
+  - RCT_NO_LAUNCH_PACKAGER: 1
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 format_version: '4'
 project_type: other

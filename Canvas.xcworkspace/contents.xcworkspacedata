@@ -41,9 +41,6 @@
          location = "group:index.ios.js">
       </FileRef>
       <FileRef
-         location = "group:launchPackager.command">
-      </FileRef>
-      <FileRef
          location = "group:metro.config.js">
       </FileRef>
       <FileRef
