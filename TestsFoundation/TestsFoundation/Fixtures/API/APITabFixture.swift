@@ -23,6 +23,7 @@ extension APITab {
     public static func make(
         id: ID = "home",
         html_url: URL = URL(string: "/groups/16")!,
+        full_url: URL? = nil,
         label: String = "Home",
         type: TabType = .internal,
         hidden: Bool? = nil,
@@ -32,6 +33,7 @@ extension APITab {
         return APITab(
             id: id,
             html_url: html_url,
+            full_url: full_url,
             label: label,
             type: type,
             hidden: hidden,
