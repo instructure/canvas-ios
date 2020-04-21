@@ -63,7 +63,7 @@ workflows:
         - access_token: "$BITRISE_CI_TOKEN"
         - workflows: danger-yarn
 
-    # - cache-pull: {}
+    - cache-pull: {}
     - &set-mtime
       script-runner:
         title: Set file mtime
@@ -85,6 +85,7 @@ workflows:
             brew install --HEAD carthage
             brew reinstall swiftlint jq xcbeautify mxcl/made/swift-sh
             pip3 install awscli
+            rm -rf "$BITRISE_SOURCE_DIR/Pods/Target Support Files/yoga"
     - script:
         title: Create temporary build links
         is_skippable: true
@@ -363,7 +364,7 @@ workflows:
     - &secrets
       git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
         title: Canvas iOS Secrets
-    # - cache-pull: {}
+    - cache-pull: {}
     - *set-mtime
     - *install-tools
     # - &fix-microphone
@@ -506,7 +507,7 @@ workflows:
         - commit_hash: $GIT_CLONE_COMMIT_HASH
         - set_specific_status: pending
     - *secrets
-    # - cache-pull: {}
+    - cache-pull: {}
     - *set-mtime
     - *install-tools
     # - *fix-microphone
@@ -545,7 +546,7 @@ workflows:
     steps:
     - *set-time-zone
     - *secrets
-    # - cache-pull: {}
+    - cache-pull: {}
     - *set-mtime
     - *install-tools
     # - *fix-microphone
