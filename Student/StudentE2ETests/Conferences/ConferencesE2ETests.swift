@@ -61,8 +61,4 @@ class ConferencesE2ETests: CoreUITestCase {
         XCTAssert(ConferenceDetails.status.label().contains("In Progress | Started Apr 8, 2020 at "))
         XCTAssertEqual(ConferenceDetails.details.label(), "It never ends...")
     }
-
-    func test() {
-        RunLoop.current.run()
-    }
 }
