@@ -17,8 +17,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CanvasCore/CanvasCore-Swift.h>
 @import React;
+@import Core;
 
 @interface TabBarBadgeCountsReact : NSObject<RCTBridgeModule>
 @end
@@ -27,11 +27,11 @@
 RCT_EXPORT_MODULE(TabBarBadgeCounts);
 RCT_EXPORT_METHOD(updateUnreadMessageCount: (NSNumber* _Nonnull)count)
 {
-    [TabBarBadgeCounts updateUnreadMessageCount:count];
+    TabBarBadgeCounts.unreadMessageCount = count.unsignedIntValue;
 }
 RCT_EXPORT_METHOD(updateTodoListCount: (NSNumber* _Nonnull)count)
 {
-    [TabBarBadgeCounts updateTodoListCount:count];
+    TabBarBadgeCounts.todoListCount = count.unsignedIntValue;
 }
 
 - (dispatch_queue_t)methodQueue { return dispatch_get_main_queue(); }

@@ -38,8 +38,7 @@ public func inboxTab() -> UIViewController {
     inboxSplit.tabBarItem = UITabBarItem(title: title, image: .icon(.email, .line), selectedImage: .icon(.email, .solid))
     inboxSplit.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
     inboxSplit.extendedLayoutIncludesOpaqueBars = true
-    
-    inboxSplit.tabBarItem.reactive.badgeValue <~ TabBarBadgeCounts.unreadMessageCountString
+    TabBarBadgeCounts.messageItem = inboxSplit.tabBarItem
     
     return inboxSplit
 }

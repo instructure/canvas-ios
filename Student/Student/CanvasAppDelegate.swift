@@ -20,7 +20,6 @@ import AVKit
 import UIKit
 import PSPDFKit
 import CanvasCore
-import ReactiveSwift
 import UserNotifications
 import Firebase
 import Core
@@ -48,8 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         prepareReactNative()
         setupDefaultErrorHandling()
         setupPageViewLogging()
-        UIApplication.shared.reactive.applicationIconBadgeNumber
-            <~ TabBarBadgeCounts.applicationIconBadgeNumber
+        TabBarBadgeCounts.application = UIApplication.shared
         Core.Analytics.shared.handler = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
