@@ -272,7 +272,6 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
           userID={this.props.userID}
           group={this.props.group}
           anonymousGrading={this.props.anonymousGrading}
-          newGradebookEnabled={this.props.newGradebookEnabled}
         />
         <SubmissionPicker
           submission={this.props.submission}
@@ -319,7 +318,6 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
           userID={this.props.userID}
           group={this.props.group}
           anonymousGrading={this.props.anonymousGrading}
-          newGradebookEnabled={this.props.newGradebookEnabled}
         />
         <View style={styles.splitView}>
           <View style={styles.left}>
