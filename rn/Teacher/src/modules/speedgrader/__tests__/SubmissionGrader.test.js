@@ -16,8 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import React from 'react'
 import SubmissionGrader from '../SubmissionGrader'
 import renderer from 'react-test-renderer'
@@ -27,16 +25,15 @@ import { shallow } from 'enzyme'
 import * as template from '../../../__templates__'
 
 jest
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
-  .mock('WebView', () => 'WebView')
-  .mock('SegmentedControlIOS', () => 'SegmentedControlIOS')
-  .mock('../GradeTab')
-  .mock('../components/GradePicker')
-  .mock('../components/Header')
+  .mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
+  .mock('react-native/Libraries/Components/SegmentedControlIOS/SegmentedControlIOS', () => 'SegmentedControlIOS')
+  .mock('../GradeTab', () => 'GradeTab')
+  .mock('../components/GradePicker', () => 'GradePicker')
+  .mock('../components/Header', () => 'Header')
   .mock('../components/SubmissionPicker', () => 'SubmissionPicker')
-  .mock('../components/FilesTab')
-  .mock('../components/SimilarityScore')
-  .mock('../comments/CommentsTab')
+  .mock('../components/FilesTab', () => 'FilesTab')
+  .mock('../components/SimilarityScore', () => 'SimilarityScore')
+  .mock('../comments/CommentsTab', () => 'CommentsTab')
   .mock('../SubmissionViewer', () => 'SubmissionViewer')
 
 let defaultProps = {
@@ -49,7 +46,7 @@ let defaultProps = {
 
 describe('SubmissionGrader', () => {
   beforeEach(() => {
-    jest.resetAllMocks()
+    jest.clearAllMocks()
   })
 
   it('renders', () => {

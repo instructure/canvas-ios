@@ -37,7 +37,7 @@ const template = {
 
 jest
   .mock('../../../../routing')
-  .mock('Alert', () => ({
+  .mock('react-native/Libraries/Alert/Alert', () => ({
     alert: jest.fn(),
   }))
   .mock('knuth-shuffle-seeded', () => jest.fn())
@@ -99,7 +99,7 @@ const props = {
   refetch: jest.fn(),
 }
 
-beforeEach(() => jest.resetAllMocks())
+beforeEach(() => jest.clearAllMocks())
 
 test('SubmissionList loaded', () => {
   const tree = renderer.create(

@@ -23,7 +23,7 @@ import React from 'react'
 import ToolTip from '../ToolTip'
 import renderer from 'react-test-renderer'
 
-jest.mock('Animated', () => {
+jest.mock('react-native/Libraries/Animated/src/Animated', () => {
   const ActualAnimated = require.requireActual('Animated')
   return {
     ...ActualAnimated,

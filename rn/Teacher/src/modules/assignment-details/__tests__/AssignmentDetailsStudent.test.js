@@ -26,8 +26,7 @@ import * as template from '../../../__templates__'
 
 jest
   .mock('../../../routing')
-  .mock('WebView', () => 'WebView')
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
 
 let course: any = template.course()
 let assignment: any = template.assignment()

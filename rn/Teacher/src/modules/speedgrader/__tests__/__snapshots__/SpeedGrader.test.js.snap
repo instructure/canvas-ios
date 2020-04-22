@@ -340,13 +340,16 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   "useCallback": [Function],
                   "useContext": [Function],
                   "useDebugValue": [Function],
+                  "useDeferredValue": [Function],
                   "useEffect": [Function],
                   "useImperativeHandle": [Function],
                   "useLayoutEffect": [Function],
                   "useMemo": [Function],
                   "useReducer": [Function],
                   "useRef": [Function],
+                  "useResponder": [Function],
                   "useState": [Function],
+                  "useTransition": [Function],
                 },
                 "_element": <SpeedGrader
                   assignmentID="1"

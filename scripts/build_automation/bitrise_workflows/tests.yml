@@ -13,6 +13,7 @@ app:
   - SPLUNK_ENDPOINT_URL: https://http-inputs-inst.splunkcloud.com:443/services/collector
     opts:
       is_expand: false
+  - RCT_NO_LAUNCH_PACKAGER: 1
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 format_version: '4'
 project_type: other
@@ -84,6 +85,7 @@ workflows:
             brew install --HEAD carthage
             brew reinstall swiftlint jq xcbeautify mxcl/made/swift-sh
             pip3 install awscli
+            rm -rf "$BITRISE_SOURCE_DIR/Pods/Target Support Files/yoga"
     - script:
         title: Create temporary build links
         is_skippable: true
@@ -104,12 +106,6 @@ workflows:
         inputs:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
         title: rn yarn install
-    - &yarn-global-add-react-native-cli
-      yarn:
-        title: rn yarn global add react-native-cli
-        inputs:
-        - command: global add react-native-cli
-        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
     - &cocoapods
       cocoapods-install:
         inputs:
@@ -247,7 +243,6 @@ workflows:
             fi
     - *yarn-install-root
     - *yarn-install
-    - *yarn-global-add-react-native-cli
     - &yarn-lint
       yarn:
         title: rn yarn lint
@@ -304,7 +299,6 @@ workflows:
     - *carthage
     - *yarn-install-root
     - *yarn-install
-    - *yarn-global-add-react-native-cli
     - *cocoapods
     - *build-citests
     - script:
@@ -388,7 +382,6 @@ workflows:
     - *carthage
     - *yarn-install-root
     - *yarn-install
-    - *yarn-global-add-react-native-cli
     - *yarn-lint
     - *yarn-test
     - *cocoapods
@@ -499,7 +492,6 @@ workflows:
     - *carthage
     - *yarn-install-root
     - *yarn-install
-    - *yarn-global-add-react-native-cli
     - *cocoapods
     - script:
         title: blame
@@ -522,7 +514,6 @@ workflows:
     - *carthage
     - *yarn-install-root
     - *yarn-install
-    - *yarn-global-add-react-native-cli
     - *cocoapods
     - script:
         title: iPad tests
@@ -562,7 +553,6 @@ workflows:
     - *carthage
     - *yarn-install-root
     - *yarn-install
-    - *yarn-global-add-react-native-cli
     - *cocoapods
     - script:
         title: beta tests
@@ -602,7 +592,6 @@ workflows:
     - *carthage
     - *yarn-install-root
     - *yarn-install
-    - *yarn-global-add-react-native-cli
     - *cocoapods
     - script:
         title: Build Pact Tests

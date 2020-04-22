@@ -27,7 +27,8 @@ exports[`render correctly 1`] = `
         <item>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -181,7 +182,8 @@ exports[`render correctly 1`] = `
         <item>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -352,7 +354,8 @@ exports[`render correctly 1`] = `
         <item>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -523,7 +526,8 @@ exports[`render correctly 1`] = `
         <item>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -698,7 +702,8 @@ exports[`render correctly 2`] = `
         <item>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -869,7 +874,8 @@ exports[`render correctly 2`] = `
         <item>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}

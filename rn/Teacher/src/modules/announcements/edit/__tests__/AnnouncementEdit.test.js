@@ -28,11 +28,11 @@ import { shallow } from 'enzyme'
 import { AnnouncementEdit, mapStateToProps, type Props } from '../AnnouncementEdit'
 
 jest
-  .mock('Button', () => 'Button')
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
+  .mock('react-native/Libraries/Components/Button', () => 'Button')
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
+  .mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
   .mock('../../../../routing/Screen')
-  .mock('LayoutAnimation', () => ({
+  .mock('react-native/Libraries/LayoutAnimation/LayoutAnimation', () => ({
     easeInEaseOut: jest.fn(),
     Types: {
       easeInEaseOut: jest.fn(),
@@ -42,7 +42,7 @@ jest
       opacity: 1,
     },
   }))
-  .mock('Alert', () => ({
+  .mock('react-native/Libraries/Alert/Alert', () => ({
     alert: jest.fn(),
   }))
 

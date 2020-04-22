@@ -24,7 +24,7 @@ import renderer from 'react-test-renderer'
 import CommentInput from '../CommentInput'
 import explore from '../../../../../test/helpers/explore'
 
-jest.mock('TouchableOpacity', () => 'TouchableOpacity')
+jest.mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
 
 describe('CommentInput', () => {
   beforeEach(() => {

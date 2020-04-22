@@ -33,7 +33,7 @@ let defaultProps = {
 }
 
 describe('CommentStatus', () => {
-  beforeEach(() => jest.resetAllMocks())
+  beforeEach(() => jest.clearAllMocks())
   it('renders', () => {
     let tree = renderer.create(
       <CommentStatus {...defaultProps} />

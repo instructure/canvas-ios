@@ -34,10 +34,8 @@ const template = {
 }
 
 jest
-  .mock('../../../routing')
-  .mock('WebView', () => 'WebView')
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('../components/SubmissionBreakdownGraphSection')
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
+  .mock('../components/SubmissionBreakdownGraphSection', () => 'SubmissionBreakdownGraphSection')
 
 let course: any = template.course()
 let assignment: any = template.assignment()

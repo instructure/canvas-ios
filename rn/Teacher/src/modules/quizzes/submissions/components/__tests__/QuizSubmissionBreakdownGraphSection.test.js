@@ -33,7 +33,7 @@ const template = {
   ...require('../../../../../__templates__/enrollments'),
   ...require('../../../../../redux/__templates__/app-state'),
 }
-jest.mock('TouchableOpacity', () => 'TouchableOpacity')
+jest.mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
 
 let course: any = template.course()
 let quiz: any = template.quiz()

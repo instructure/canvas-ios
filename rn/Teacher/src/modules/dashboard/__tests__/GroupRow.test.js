@@ -24,7 +24,7 @@ import GroupRow from '../GroupRow'
 import renderer from 'react-test-renderer'
 import explore from '../../../../test/helpers/explore'
 
-jest.mock('TouchableHighlight', () => 'TouchableHighlight')
+jest.mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
 
 let props = {
   style: { margin: 8 },
@@ -37,7 +37,7 @@ let props = {
 }
 
 describe('GroupRow', () => {
-  beforeEach(() => jest.resetAllMocks())
+  beforeEach(() => jest.clearAllMocks())
 
   it('renders', () => {
     const tree = renderer.create(

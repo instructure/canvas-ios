@@ -45,7 +45,7 @@ describe('SectionSelector', () => {
   let props = resetProps()
   beforeEach(() => {
     props = resetProps()
-    jest.resetAllMocks()
+    jest.clearAllMocks()
   })
 
   it('renders a screen', () => {

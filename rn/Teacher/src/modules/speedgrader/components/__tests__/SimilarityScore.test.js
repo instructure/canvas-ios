@@ -25,9 +25,9 @@ import { SimilarityScore, type Props, mapStateToProps } from '../SimilarityScore
 import explore from '../../../../../test/helpers/explore'
 
 jest
-  .mock('Button', () => 'Button')
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
+  .mock('react-native/Libraries/Components/Button', () => 'Button')
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
+  .mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
 
 const template = {
   ...require('../../../../__templates__/submissions'),

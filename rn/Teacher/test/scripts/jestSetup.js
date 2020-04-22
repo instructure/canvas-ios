@@ -74,12 +74,12 @@ jest.mock('react-native-document-picker', () => ({
 
 const { NativeModules } = require('react-native')
 
-require.requireActual('View').displayName = 'View'
-require.requireActual('Text').displayName = 'Text'
-require.requireActual('Image').displayName = 'Image'
-require.requireActual('TextInput').displayName = 'TextInput'
-require.requireActual('ActivityIndicator').displayName = 'ActivityIndicator'
-require.requireActual('TouchableOpacity').displayName = 'TouchableOpacity'
+require.requireActual('react-native/Libraries/Components/View/View').displayName = 'View'
+require.requireActual('react-native/Libraries/Text/Text').displayName = 'Text'
+require.requireActual('react-native/Libraries/Image/Image').displayName = 'Image'
+require.requireActual('react-native/Libraries/Components/TextInput/TextInput').displayName = 'TextInput'
+require.requireActual('react-native/Libraries/Components/ActivityIndicator/ActivityIndicator').displayName = 'ActivityIndicator'
+require.requireActual('react-native/Libraries/Components/Touchable/TouchableOpacity').displayName = 'TouchableOpacity'
 
 jest.mock('../../src/canvas-api')
 global.fetch = require('jest-fetch-mock')
@@ -203,10 +203,10 @@ NativeModules.SiriShortcutManager = {
   donateSiriShortcut: jest.fn(),
 }
 
-jest.mock('NativeEventEmitter')
+jest.mock('react-native/Libraries/EventEmitter/NativeEventEmitter')
 
-jest.mock('Animated', () => {
-  const ActualAnimated = require.requireActual('Animated')
+jest.mock('react-native/Libraries/Animated/src/Animated', () => {
+  const ActualAnimated = require.requireActual('react-native/Libraries/Animated/src/Animated')
   return {
     ...ActualAnimated,
     timing: (value, config) => {
@@ -233,8 +233,8 @@ jest.mock('Animated', () => {
   }
 })
 
-jest.mock('PickerIOS', () => {
-  const RealComponent = require.requireActual('PickerIOS')
+jest.mock('react-native/Libraries/Components/Picker/PickerIOS', () => {
+  const RealComponent = require.requireActual('react-native/Libraries/Components/Picker/PickerIOS')
   const React = require('React')
   const PickerIOS = class extends RealComponent {
     render () {
@@ -246,13 +246,13 @@ jest.mock('PickerIOS', () => {
   return PickerIOS
 })
 
-jest.mock('AccessibilityInfo', () => ({
+jest.mock('react-native/Libraries/Components/AccessibilityInfo/AccessibilityInfo', () => ({
   setAccessibilityFocus: jest.fn(),
   announceForAccessibility: jest.fn(),
 }))
 
-jest.mock('LayoutAnimation', () => {
-  const ActualLayoutAnimation = require.requireActual('LayoutAnimation')
+jest.mock('react-native/Libraries/LayoutAnimation/LayoutAnimation', () => {
+  const ActualLayoutAnimation = require.requireActual('react-native/Libraries/LayoutAnimation/LayoutAnimation')
   return {
     ...ActualLayoutAnimation,
     easeInEaseOut: jest.fn(),
@@ -260,18 +260,18 @@ jest.mock('LayoutAnimation', () => {
   }
 })
 
-jest.mock('Linking', () => ({
+jest.mock('react-native/Libraries/Linking/Linking', () => ({
   canOpenURL: jest.fn(() => Promise.resolve(true)),
   openURL: jest.fn(),
 }))
 
-jest.mock('AppState', () => ({
+jest.mock('react-native/Libraries/AppState/AppState', () => ({
   currentState: 'active',
   addEventListener: jest.fn(),
   removeEventListener: jest.fn(),
 }))
 
-NativeModules.CameraManager = {
+NativeModules.RNCameraManager = {
   Aspect: {
     fill: 'fill',
   },
@@ -299,6 +299,9 @@ NativeModules.CameraManager = {
   BarCodeType: [],
 }
 
+NativeModules.ImagePickerManager = {
+}
+
 NativeModules.NativeFileSystem = {
   pathForResource: jest.fn(() => Promise.resolve('/')),
   convertToJPEG: jest.fn(() => Promise.resolve('/image.jpg')),
@@ -323,7 +326,7 @@ jest.mock('react-native-device-info', () => {
 jest.mock('../../src/canvas-api/httpClient')
 
 // makes tree.find('FlatList').dive() useful
-jest.mock('FlatList', () => {
+jest.mock('react-native/Libraries/Lists/FlatList', () => {
   const React = require('React')
   return class FlatList extends React.Component {
     render () {
@@ -375,7 +378,7 @@ jest.mock('react-native-keyboard-aware-scroll-view/lib/KeyboardAwareFlatList', (
 })
 
 // makes tree.find('SectionList').dive() useful
-jest.mock('SectionList', () => {
+jest.mock('react-native/Libraries/Lists/SectionList', () => {
   const React = require('React')
   return class SectionList extends React.Component {
     render () {
@@ -408,11 +411,11 @@ jest.mock('SectionList', () => {
 // makes tree.find('KeyboardAwareScrollView').getELement().ref possible
 jest.mock('react-native-keyboard-aware-scroll-view/lib/KeyboardAwareScrollView', () => 'KeyboardAwareScrollView')
 
-jest.mock('I18nManager', () => ({
+jest.mock('react-native/Libraries/ReactNative/I18nManager', () => ({
   isRTL: false,
 }))
 
-jest.mock('Settings', () => {
+jest.mock('react-native/Libraries/Settings/Settings', () => {
   let settings = {}
   return {
     get (key) {
@@ -426,5 +429,7 @@ jest.mock('Settings', () => {
     },
   }
 })
+
+jest.mock('react-native/Libraries/Modal/Modal', () => 'Modal')
 
 ExperimentalFeature.allEnabled = true

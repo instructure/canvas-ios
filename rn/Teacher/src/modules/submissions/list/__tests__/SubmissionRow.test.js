@@ -28,7 +28,7 @@ import renderer from 'react-test-renderer'
 import * as templates from '../../../../canvas-api-v2/__templates__'
 
 jest
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
   .mock('../../../../common/components/Avatar', () => 'Avatar')
 
 const defaultProps = {

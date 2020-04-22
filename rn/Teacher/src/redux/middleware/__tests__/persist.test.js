@@ -36,7 +36,7 @@ describe('persistMiddleware', () => {
   let store
 
   beforeEach(() => {
-    jest.resetAllMocks()
+    jest.clearAllMocks()
     store = mockStore()
   })
 

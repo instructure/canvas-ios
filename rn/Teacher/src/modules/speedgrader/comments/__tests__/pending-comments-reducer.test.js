@@ -64,7 +64,7 @@ const failed: PendingCommentState = {
   error: '😭',
 }
 
-beforeEach(() => jest.resetAllMocks())
+beforeEach(() => jest.clearAllMocks())
 
 test('reduces pending comments', () => {
   const action = {

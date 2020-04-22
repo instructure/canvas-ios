@@ -66,9 +66,7 @@ exports[`Compose renders 1`] = `
         }
       }
     >
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
+      <ForwardRef
         onPress={[Function]}
         style={
           Object {
@@ -106,7 +104,7 @@ exports[`Compose renders 1`] = `
           </Text>
           <DisclosureIndicator />
         </View>
-      </TouchableHighlight>
+      </ForwardRef>
       <View
         style={
           Object {
@@ -246,9 +244,7 @@ exports[`Compose renders after picking a course 1`] = `
         }
       }
     >
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
+      <ForwardRef
         onPress={[Function]}
         style={
           Object {
@@ -288,7 +284,7 @@ exports[`Compose renders after picking a course 1`] = `
           </Text>
           <DisclosureIndicator />
         </View>
-      </TouchableHighlight>
+      </ForwardRef>
       <View
         style={
           Array [
@@ -508,9 +504,7 @@ exports[`Compose renders reply 1`] = `
         }
       }
     >
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
+      <ForwardRef
         style={
           Object {
             "borderBottomColor": "#C7CDD1",
@@ -548,7 +542,7 @@ exports[`Compose renders reply 1`] = `
             Course 1
           </Text>
         </View>
-      </TouchableHighlight>
+      </ForwardRef>
       <View
         style={
           Array [
@@ -768,9 +762,7 @@ exports[`Compose renders with passed in recipients 1`] = `
         }
       }
     >
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
+      <ForwardRef
         onPress={[Function]}
         style={
           Object {
@@ -808,7 +800,7 @@ exports[`Compose renders with passed in recipients 1`] = `
           </Text>
           <DisclosureIndicator />
         </View>
-      </TouchableHighlight>
+      </ForwardRef>
       <View
         style={
           Object {

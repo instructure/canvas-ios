@@ -25,13 +25,13 @@ import * as templates from '../../../../__templates__'
 import { Alert } from 'react-native'
 
 jest
-  .mock('LayoutAnimation', () => ({
+  .mock('react-native/Libraries/LayoutAnimation/LayoutAnimation', () => ({
     create: jest.fn(),
     configureNext: jest.fn(),
     Types: { linear: null },
     Properties: { opacity: null },
   }))
-  .mock('Alert', () => ({
+  .mock('react-native/Libraries/Alert/Alert', () => ({
     alert: jest.fn(),
   }))
   .useFakeTimers()

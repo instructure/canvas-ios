@@ -671,10 +671,10 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Teacher" */;
 			buildPhases = (
 				B3ADBFFA3D2F8B176CD267CC /* [CP] Check Pods Manifest.lock */,
-				4931EB6B1F731BD700715EF2 /* Start the Packager */,
+				4931EB6B1F731BD700715EF2 /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
-				49AD4F601F730CB000BEDB8E /* Bundle React Native Code and Resources */,
+				49AD4F601F730CB000BEDB8E /* Bundle React Native Code And Images */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				4943ECC51E5CEFBD001DC5B5 /* Embed Frameworks */,
 				B714E89FBF87F7C6C1A4CBF2 /* [CP] Embed Pods Frameworks */,
@@ -903,35 +903,34 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ] ; then\n    \"${PODS_ROOT}/FirebaseCrashlytics/run\" || echo \"FirebaseCrashlytics build phase script failed!\"\nfi\n";
 		};
-		4931EB6B1F731BD700715EF2 /* Start the Packager */ = {
+		4931EB6B1F731BD700715EF2 /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Start the Packager";
+			name = "Start Packager";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/myfile",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ] ; then\nexit 0\nfi\n\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\nif nc -w 5 -z localhost 8081 ; then\nif ! curl -s \"http://localhost:8081/status\" | grep -q \"packager-status:running\" ; then\necho \"Port 8081 already in use, packager is either not running or not running correctly\"\nexit 2\nfi\nelse\nopen \"$SRCROOT/../launchPackager.command\" || echo \"Can't start packager automatically\"\nfi\nfi\n";
+			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		49AD4F601F730CB000BEDB8E /* Bundle React Native Code and Resources */ = {
+		49AD4F601F730CB000BEDB8E /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Bundle React Native Code and Resources";
+			name = "Bundle React Native Code And Images";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n\n# Define NVM_DIR and source the nvm.sh setup script\n[ -z \"$NVM_DIR\" ] && export NVM_DIR=\"$HOME/.nvm\"\nif [[ -s \"$HOME/.nvm/nvm.sh\" ]]; then\n. \"$HOME/.nvm/nvm.sh\"\nelif [[ -x \"$(command -v brew)\" && -s \"$(brew --prefix nvm)/nvm.sh\" ]]; then\n. \"$(brew --prefix nvm)/nvm.sh\"\nfi\n\nif [ \"${CONFIGURATION}\" = \"Release\" ]\nthen\ncd \"${PROJECT_DIR}/../\"\nset -x\nDEST=$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\nreact-native bundle --entry-file ./index.ios.js --platform ios --bundle-output \"${DEST}/main.jsbundle\" --sourcemap-output \"${DEST}/main.jsbundle.map\" --dev false --assets-dest \"$DEST\" --reset-cache\ncd \"${PROJECT_DIR}\"\nelse\n../node_modules/react-native/scripts/react-native-xcode.sh\nfi\n";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		5AB2BCD6CC4B25C00B73A429 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

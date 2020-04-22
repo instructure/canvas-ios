@@ -51,7 +51,6 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
           <TouchableOpacity
             accessibilityLabel="Un-starred"
             accessibilityTraits="button"
-            activeOpacity={0.2}
             focusedOpacity={0.7}
             hitSlop={
               Object {
@@ -145,7 +144,6 @@ exports[`ConversationDetails renders correctly 1`] = `
           <TouchableOpacity
             accessibilityLabel="Un-starred"
             accessibilityTraits="button"
-            activeOpacity={0.2}
             focusedOpacity={0.7}
             hitSlop={
               Object {
@@ -283,7 +281,6 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
           <TouchableOpacity
             accessibilityLabel="Un-starred"
             accessibilityTraits="button"
-            activeOpacity={0.2}
             focusedOpacity={0.7}
             hitSlop={
               Object {
@@ -468,7 +465,6 @@ exports[`ConversationDetails renders with alternate data 1`] = `
           <TouchableOpacity
             accessibilityLabel="Starred"
             accessibilityTraits="button"
-            activeOpacity={0.2}
             focusedOpacity={0.7}
             hitSlop={
               Object {

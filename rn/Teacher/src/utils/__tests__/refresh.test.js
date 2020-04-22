@@ -67,7 +67,7 @@ describe('refresh', () => {
     let tree = renderer.create(
       <Refreshed>This is text</Refreshed>
     )
-    jest.resetAllMocks()
+    jest.clearAllMocks()
     tree.update(<Refreshed>This is text</Refreshed>)
     expect(refreshFunction).not.toHaveBeenCalled()
   })

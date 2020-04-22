@@ -28,12 +28,12 @@ import setProps from '../../../../../test/helpers/setProps'
 import * as templates from '../../../../__templates__/index'
 
 jest
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
-  .mock('Alert', () => ({
+  .mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
+  .mock('react-native/Libraries/Alert/Alert', () => ({
     prompt: jest.fn(),
     alert: jest.fn(),
   }))
-  .mock('Animated', () => ({
+  .mock('react-native/Libraries/Animated/src/Animated', () => ({
     timing: jest.fn(),
     View: 'Animated.View',
     Value: jest.fn(),

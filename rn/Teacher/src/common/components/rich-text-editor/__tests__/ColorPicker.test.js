@@ -26,7 +26,7 @@ import ColorPicker from '../ColorPicker'
 import explore from '../../../../../test/helpers/explore'
 
 jest
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
 
 describe('ColorPicker', () => {
   const defaultProps = {

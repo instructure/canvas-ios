@@ -24,9 +24,9 @@ import renderer from 'react-test-renderer'
 import EmptyAttachments from '../EmptyAttachments'
 
 jest
-  .mock('Button', () => 'Button')
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
+  .mock('react-native/Libraries/Components/Button', () => 'Button')
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
+  .mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
 
 test('render', () => {
   expect(

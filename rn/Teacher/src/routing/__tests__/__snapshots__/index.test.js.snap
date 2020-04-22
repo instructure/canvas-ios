@@ -893,7 +893,7 @@ exports[`wrapComponentInProviders renders wrapped screen with store correctly 1`
         },
       },
       "typeDefs": undefined,
-      "version": "2.6.3",
+      "version": "2.6.8",
       "watchQuery": [Function],
     }
   }
@@ -1790,7 +1790,7 @@ exports[`wrapComponentInProviders renders wrapped screen with store correctly 1`
             },
           },
           "typeDefs": undefined,
-          "version": "2.6.3",
+          "version": "2.6.8",
           "watchQuery": [Function],
         }
       }

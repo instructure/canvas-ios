@@ -26,11 +26,11 @@ import { DiscussionsList, mapStateToProps, type Props } from '../DiscussionsList
 import app from '@modules/app'
 
 jest
-  .mock('Button', () => 'Button')
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
+  .mock('react-native/Libraries/Components/Button', () => 'Button')
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
+  .mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
   .mock('../../../../routing')
-  .mock('ActionSheetIOS', () => ({
+  .mock('react-native/Libraries/ActionSheetIOS/ActionSheetIOS', () => ({
     showActionSheetWithOptions: jest.fn(),
   }))
   .mock('../../../../routing/Screen')
@@ -48,7 +48,7 @@ const template = {
 describe('DiscussionsList', () => {
   let props: Props
   beforeEach(() => {
-    jest.resetAllMocks()
+    jest.clearAllMocks()
     app.isTeacher = jest.fn(() => true)
     app.isStudent = jest.fn(() => false)
     props = {

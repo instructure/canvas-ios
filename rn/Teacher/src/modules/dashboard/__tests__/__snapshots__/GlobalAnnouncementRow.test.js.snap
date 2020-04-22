@@ -55,10 +55,8 @@ exports[`GlobalAnnouncementRow renders calendar announcements 1`] = `
         }
       }
     >
-      <TouchableHighlight
+      <ForwardRef
         accessibilityTraits="button"
-        activeOpacity={0.85}
-        delayPressOut={100}
         hitSlop={
           Object {
             "bottom": 16,
@@ -86,7 +84,7 @@ exports[`GlobalAnnouncementRow renders calendar announcements 1`] = `
             Tap to view announcement
           </SubTitle>
         </View>
-      </TouchableHighlight>
+      </ForwardRef>
       <CanvasWebView
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
@@ -172,10 +170,8 @@ exports[`GlobalAnnouncementRow renders error announcements 1`] = `
         }
       }
     >
-      <TouchableHighlight
+      <ForwardRef
         accessibilityTraits="button"
-        activeOpacity={0.85}
-        delayPressOut={100}
         hitSlop={
           Object {
             "bottom": 16,
@@ -203,7 +199,7 @@ exports[`GlobalAnnouncementRow renders error announcements 1`] = `
             Tap to view announcement
           </SubTitle>
         </View>
-      </TouchableHighlight>
+      </ForwardRef>
       <CanvasWebView
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
@@ -289,10 +285,8 @@ exports[`GlobalAnnouncementRow renders information announcements 1`] = `
         }
       }
     >
-      <TouchableHighlight
+      <ForwardRef
         accessibilityTraits="button"
-        activeOpacity={0.85}
-        delayPressOut={100}
         hitSlop={
           Object {
             "bottom": 16,
@@ -320,7 +314,7 @@ exports[`GlobalAnnouncementRow renders information announcements 1`] = `
             Tap to view announcement
           </SubTitle>
         </View>
-      </TouchableHighlight>
+      </ForwardRef>
       <CanvasWebView
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
@@ -406,10 +400,8 @@ exports[`GlobalAnnouncementRow renders question announcements 1`] = `
         }
       }
     >
-      <TouchableHighlight
+      <ForwardRef
         accessibilityTraits="button"
-        activeOpacity={0.85}
-        delayPressOut={100}
         hitSlop={
           Object {
             "bottom": 16,
@@ -437,7 +429,7 @@ exports[`GlobalAnnouncementRow renders question announcements 1`] = `
             Tap to view announcement
           </SubTitle>
         </View>
-      </TouchableHighlight>
+      </ForwardRef>
       <CanvasWebView
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
@@ -523,10 +515,8 @@ exports[`GlobalAnnouncementRow renders unexpected icon as information 1`] = `
         }
       }
     >
-      <TouchableHighlight
+      <ForwardRef
         accessibilityTraits="button"
-        activeOpacity={0.85}
-        delayPressOut={100}
         hitSlop={
           Object {
             "bottom": 16,
@@ -554,7 +544,7 @@ exports[`GlobalAnnouncementRow renders unexpected icon as information 1`] = `
             Tap to view announcement
           </SubTitle>
         </View>
-      </TouchableHighlight>
+      </ForwardRef>
       <CanvasWebView
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
@@ -640,10 +630,8 @@ exports[`GlobalAnnouncementRow renders warning announcements 1`] = `
         }
       }
     >
-      <TouchableHighlight
+      <ForwardRef
         accessibilityTraits="button"
-        activeOpacity={0.85}
-        delayPressOut={100}
         hitSlop={
           Object {
             "bottom": 16,
@@ -671,7 +659,7 @@ exports[`GlobalAnnouncementRow renders warning announcements 1`] = `
             Tap to view announcement
           </SubTitle>
         </View>
-      </TouchableHighlight>
+      </ForwardRef>
       <CanvasWebView
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
