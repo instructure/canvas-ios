@@ -17,80 +17,40 @@
 //
 
 // @flow
+import { shallow } from 'enzyme'
 import React from 'react'
 import SubmissionsHeader from '../SubmissionsHeader.js'
-import renderer from 'react-test-renderer'
 import defaultFilterOptions from '../../filter/filter-options'
-import explore from '../../../../test/helpers/explore'
 
 let template = {
   ...require('../../../__templates__/helm'),
 }
 
-jest.mock('TouchableOpacity', () => 'TouchableOpacity')
+jest.mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
 
-test('SubmissionHeader navigates to filter when pressed', () => {
-  let navigator = template.navigator()
-  let filterOptions = defaultFilterOptions()
-  const tree = renderer.create(
-    <SubmissionsHeader filterOptions={filterOptions} navigator={navigator} />
-  ).toJSON()
+describe('SubmissionHeader', () => {
+  it('navigates to filter when pressed', () => {
+    let navigator = template.navigator()
+    let filterOptions = defaultFilterOptions()
+    const tree = shallow(
+      <SubmissionsHeader filterOptions={filterOptions} navigator={navigator} />
+    )
 
-  let filterButton = explore(tree).selectByID('submission-list.filter') || {}
-  filterButton.props.onPress()
+    let filterButton = tree.find('[testID="submission-list.filter"]')
+    filterButton.simulate('Press')
 
-  expect(navigator.show).toHaveBeenCalledWith(
-    '/filter',
-    { modal: true },
-    { filterOptions, navigator }
-  )
+    expect(navigator.show).toHaveBeenCalledWith(
+      '/filter',
+      { modal: true },
+      { filterOptions, navigator }
+    )
+  })
+
+  it('renders anonymous grading', () => {
+    const tree = shallow(
+      <SubmissionsHeader filterOptions={defaultFilterOptions()} anonymous />
+    )
+    expect(tree.find('[testID="SubmissionsHeader.subtitle"]').prop('children')).toBe('Anonymous grading')
+  })
 })
 
-test('SubmissionHeader anonymous grading', () => {
-  const tree = renderer.create(
-    <SubmissionsHeader filterOptions={defaultFilterOptions()} anonymous />
-  ).toJSON()
-
-  expect(tree).toMatchSnapshot()
-})
-
-test('SubmissionHeader muted grading', () => {
-  const tree = renderer.create(
-    <SubmissionsHeader filterOptions={defaultFilterOptions()} muted />
-  ).toJSON()
-
-  expect(tree).toMatchSnapshot()
-})
-
-test('SubmissionHeader anonymous and muted', () => {
-  const tree = renderer.create(
-    <SubmissionsHeader filterOptions={defaultFilterOptions()} anonymous muted />
-  ).toJSON()
-
-  expect(tree).toMatchSnapshot()
-})
-
-test('SubmissionHeader muted grading but new gradebook', () => {
-  const tree = renderer.create(
-    <SubmissionsHeader
-      filterOptions={defaultFilterOptions()}
-      muted
-      newGradebookEnabled
-    />
-  ).toJSON()
-
-  expect(tree).toMatchSnapshot()
-})
-
-test('SubmissionHeader muted grading but new gradebook', () => {
-  const tree = renderer.create(
-    <SubmissionsHeader
-      filterOptions={defaultFilterOptions()}
-      muted
-      anonymous
-      newGradebookEnabled
-    />
-  ).toJSON()
-
-  expect(tree).toMatchSnapshot()
-})

@@ -30,7 +30,7 @@ import app from '../../../app'
 jest.useFakeTimers()
 
 jest
-  .mock('LayoutAnimation', () => ({
+  .mock('react-native/Libraries/LayoutAnimation/LayoutAnimation', () => ({
     easeInEaseOut: jest.fn(),
     Types: {
       easeInEaseOut: jest.fn(),
@@ -40,7 +40,7 @@ jest
       opacity: 1,
     },
   }))
-  .mock('Alert', () => ({
+  .mock('react-native/Libraries/Alert/Alert', () => ({
     alert: jest.fn(),
   }))
 

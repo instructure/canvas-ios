@@ -13,15 +13,13 @@ exports[`Slider renders 1`] = `
     }
   }
 >
-  <TouchableHighlight
+  <ForwardRef
     accessibilityLabel="Lowest possible score, 0"
     accessibilityTraits={
       Array [
         "button",
       ]
     }
-    activeOpacity={0.85}
-    delayPressOut={100}
     onPress={[Function]}
     testID="slider.zero"
     underlayColor="transparent"
@@ -38,7 +36,7 @@ exports[`Slider renders 1`] = `
         0
       </Text>
     </View>
-  </TouchableHighlight>
+  </ForwardRef>
   <View
     onLayout={[Function]}
     style={
@@ -66,7 +64,7 @@ exports[`Slider renders 1`] = `
       }
       testID="slider.line"
     />
-    <AnimatedComponent
+    <ForwardRef(AnimatedComponentWrapper)
       accessibilityLabel="10 out of 100 points possible"
       accessible={true}
       hitSlop={
@@ -122,15 +120,13 @@ exports[`Slider renders 1`] = `
       testID="slider.adjustable"
     />
   </View>
-  <TouchableHighlight
+  <ForwardRef
     accessibilityLabel="Highest possible score, 100"
     accessibilityTraits={
       Array [
         "button",
       ]
     }
-    activeOpacity={0.85}
-    delayPressOut={100}
     onPress={[Function]}
     testID="slider.pointsPossible"
     underlayColor="transparent"
@@ -147,6 +143,6 @@ exports[`Slider renders 1`] = `
         100
       </Text>
     </View>
-  </TouchableHighlight>
+  </ForwardRef>
 </View>
 `;

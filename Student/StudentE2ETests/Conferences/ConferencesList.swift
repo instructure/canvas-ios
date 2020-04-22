@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2016-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,14 +18,15 @@
 
 import Foundation
 
+public enum ConferencesList {
+    public static func header(forSection section: Int) -> Element {
+        app.find(id: "ConferencesList.header-\(section)")
+    }
 
-
-extension QuizIntroViewController {
-    @objc public convenience init(session: Session, courseID: String, quizID: String) {
-        let context = ContextID(id: courseID, context: .course)
-        let service = CanvasQuizService(session: session, context: context, quizID: quizID)
-        let controller = QuizController(service: service, quiz: nil)
-
-        self.init(quizController: controller)
+    public struct Cell {
+        public let id: String
+        public var title: Element { app.find(id: "ConferencesList.cell-\(id).title") }
+        public var status: Element { app.find(id: "ConferencesList.cell-\(id).status") }
+        public var details: Element { app.find(id: "ConferencesList.cell-\(id).details") }
     }
 }

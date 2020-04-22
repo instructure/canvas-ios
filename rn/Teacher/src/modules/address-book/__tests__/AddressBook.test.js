@@ -24,7 +24,7 @@ import { shallow } from 'enzyme'
 import * as templates from '../../../__templates__/index'
 
 jest
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
   .mock('../../../routing/Screen')
   .mock('../../../common/TypeAheadSearch', () => 'TypeAheadSearch')
   .mock('../../../common/components/rows/Row', () => 'Row')
@@ -39,7 +39,7 @@ const u2 = templates.addressBookResult({
 describe('AddressBook', () => {
   let props: Props
   beforeEach(() => {
-    jest.resetAllMocks()
+    jest.clearAllMocks()
     props = {
       onSelect: jest.fn(),
       context: 'course_1',

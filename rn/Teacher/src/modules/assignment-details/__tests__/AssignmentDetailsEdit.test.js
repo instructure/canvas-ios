@@ -32,8 +32,8 @@ import * as template from '../../../__templates__'
 import renderer from 'react-test-renderer'
 
 jest
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('LayoutAnimation', () => ({
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
+  .mock('react-native/Libraries/LayoutAnimation/LayoutAnimation', () => ({
     Presets: {
       spring: null,
     },
@@ -43,9 +43,8 @@ jest
     Types: { linear: null },
     Properties: { opacity: null },
   }))
-  .mock('WebView', () => 'WebView')
-  .mock('Button', () => 'Button')
-  .mock('Switch', () => 'Switch')
+  .mock('react-native/Libraries/Components/Button', () => 'Button')
+  .mock('react-native/Libraries/Components/Switch/Switch', () => 'Switch')
   .mock('../../../routing/Screen')
   .mock('../../assignment-details/components/AssignmentDatesEditor', () => 'AssignmentDatesEditor')
 

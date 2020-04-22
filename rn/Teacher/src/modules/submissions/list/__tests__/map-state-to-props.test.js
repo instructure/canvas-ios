@@ -157,7 +157,7 @@ function createHappyPathTestState () {
   })
 }
 
-beforeEach(() => jest.resetAllMocks())
+beforeEach(() => jest.clearAllMocks())
 
 test('submissions', () => {
   let state = createHappyPathTestState()

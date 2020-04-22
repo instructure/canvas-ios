@@ -24,9 +24,9 @@ import renderer from 'react-test-renderer'
 import explore from '../../../../../test/helpers/explore'
 
 jest
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
-  .mock('LayoutAnimation', () => ({
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
+  .mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
+  .mock('react-native/Libraries/LayoutAnimation/LayoutAnimation', () => ({
     configureNext: jest.fn(),
     easeInEaseOut: jest.fn(),
     Types: {

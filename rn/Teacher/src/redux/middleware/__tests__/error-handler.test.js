@@ -22,7 +22,7 @@ import { parseErrorMessage, defaultErrorMessage, defaultErrorTitle, resetGlobalE
 import { Alert } from 'react-native'
 import mockStore from '../../../../test/helpers/mockStore'
 
-jest.mock('Alert', () => ({
+jest.mock('react-native/Libraries/Alert/Alert', () => ({
   alert: jest.fn(),
 }))
 

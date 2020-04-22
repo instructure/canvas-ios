@@ -16,75 +16,74 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-// @flow
-
-import 'react-native'
+import { shallow } from 'enzyme'
 import React from 'react'
 import Avatar from '../Avatar'
-import renderer from 'react-native-test-utils'
 
-jest.mock('TouchableHighlight', () => 'TouchableHighlight')
+jest.mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
 
-test('Avatar renders with image', () => {
-  let tree = renderer(
-    <Avatar
-      userName="Dirk Diggles"
-      avatarURL="http://www.fillmurray.com/200/300"
-    />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
+describe('Avatar', () => {
+  it('renders with image', () => {
+    let tree = shallow(
+      <Avatar
+        userName="Dirk Diggles"
+        avatarURL="http://www.fillmurray.com/200/300"
+      />
+    )
+    expect(tree.find('Image').prop('source')).toEqual({ uri: 'http://www.fillmurray.com/200/300' })
+  })
 
-test('Avatar renders without image', () => {
-  let tree = renderer(
-    <Avatar
-      userName="Lumpy Lumpkin"
-    />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
+  it('renders without image', () => {
+    let tree = shallow(
+      <Avatar
+        userName="Lumpy Lumpkin"
+      />
+    )
+    expect(tree.find('Text').prop('children')).toBe('LL')
+  })
 
-test('Avatar renders without image but it has a funky name', () => {
-  let tree = renderer(
-    <Avatar
-      userName="   "
-    />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
+  it('renders without image but it has a funky name', () => {
+    let tree = shallow(
+      <Avatar
+        userName="   "
+      />
+    )
+    expect(tree.find('Text').prop('children')).toBe('')
+  })
 
-test('Avatar renders without default canvas avatar', () => {
-  let tree = renderer(
-    <Avatar
-      userName="Lumpy Lumpkin"
-      avatarURL="http://www.fillmurray.com/images/dotted_pic.png"
-    />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
+  it('renders without default canvas avatar', () => {
+    let tree = shallow(
+      <Avatar
+        userName="Lumpy Lumpkin"
+        avatarURL="http://www.fillmurray.com/images/dotted_pic.png"
+      />
+    )
+    expect(tree.find('Text').prop('children')).toBe('LL')
+    expect(tree.find('Image').exists()).toBe(false)
+  })
 
-test('Avatar renders with border', () => {
-  let tree = renderer(
-    <Avatar
-      userName="Lumpy Lumpkin"
-      avatarURL="http://www.fillmurray.com/images/dotted_pic.png"
-      border={true}
-    />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
+  it('renders with border', () => {
+    let tree = shallow(
+      <Avatar
+        userName="Lumpy Lumpkin"
+        avatarURL="http://www.fillmurray.com/200/300"
+        border={true}
+      />
+    )
+    expect(tree.prop('style')[1].borderStyle).toBe('solid')
+  })
 
-test('Avatar renders a TouchableHighlight when onPress is passed in', () => {
-  let onPress = jest.fn()
-  let view = renderer(
-    <Avatar
-      userName="Lumpy Lumpkin"
-      avatarURL="http://www.fillmurray.com/images/dotted_pic.png"
-      onPress={onPress}
-    />
-  )
+  it('renders a TouchableHighlight when onPress is passed in', () => {
+    let onPress = jest.fn()
+    let tree = shallow(
+      <Avatar
+        userName="Lumpy Lumpkin"
+        avatarURL="http://www.fillmurray.com/200/300"
+        onPress={onPress}
+      />
+    )
 
-  let button = view.query('TouchableHighlight')
-  button.simulate('press')
-  expect(onPress).toHaveBeenCalled()
+    tree.find('TouchableHighlight').simulate('Press')
+    expect(onPress).toHaveBeenCalled()
+  })
 })

@@ -23,7 +23,7 @@ import { shallow } from 'enzyme'
 import GroupTopicChildren from '../GroupTopicChildren'
 import * as template from '../../../../__templates__/'
 
-jest.mock('TouchableOpacity', () => 'TouchableOpacity')
+jest.mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
 
 describe('GroupTopicChildren', () => {
   it('renders topic children', async () => {

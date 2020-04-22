@@ -121,7 +121,7 @@ export default class Header extends Component<HeaderProps, State> {
             </View>
           </TouchableHighlight>
         </View>
-        {this.props.newGradebookEnabled && this.renderEyeBall()}
+        {this.renderEyeBall()}
         {this.renderDoneButton()}
       </View>
     )

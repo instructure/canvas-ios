@@ -29,9 +29,9 @@ import * as templates from '../../../__templates__'
 
 registerScreens({})
 jest.mock('../components/GradePicker')
-jest.mock('TouchableOpacity', () => 'TouchableOpacity')
-jest.mock('TouchableHighlight', () => 'TouchableHighlight')
-jest.unmock('FlatList')
+jest.mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
+jest.mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
+jest.unmock('react-native/Libraries/Lists/FlatList')
 
 let ownProps = {
   assignmentID: '1',

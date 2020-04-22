@@ -52,7 +52,7 @@ exports[`ViewFile renders loading while fetching the file 1`] = `
         size="small"
       />
     </View>
-    <SafeAreaView
+    <ForwardRef(SafeAreaView)
       style={
         Object {
           "backgroundColor": "#F5F5F5",
@@ -63,11 +63,9 @@ exports[`ViewFile renders loading while fetching the file 1`] = `
         }
       }
     >
-      <TouchableHighlight
+      <ForwardRef
         accessibilityLabel="Share"
         accessibilityTraits="button"
-        activeOpacity={0.85}
-        delayPressOut={100}
         onPress={[Function]}
         style={
           Object {
@@ -95,12 +93,10 @@ exports[`ViewFile renders loading while fetching the file 1`] = `
             }
           }
         />
-      </TouchableHighlight>
-      <TouchableHighlight
+      </ForwardRef>
+      <ForwardRef
         accessibilityLabel="Copy Link"
         accessibilityTraits="button"
-        activeOpacity={0.85}
-        delayPressOut={100}
         onPress={[Function]}
         style={
           Object {
@@ -128,8 +124,8 @@ exports[`ViewFile renders loading while fetching the file 1`] = `
             }
           }
         />
-      </TouchableHighlight>
-    </SafeAreaView>
+      </ForwardRef>
+    </ForwardRef(SafeAreaView)>
   </View>
 </Screen>
 `;

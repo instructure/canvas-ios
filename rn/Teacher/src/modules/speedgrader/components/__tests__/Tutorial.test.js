@@ -32,12 +32,12 @@ jest
     getItem: jest.fn(() => Promise.resolve()),
     setItem: jest.fn(() => Promise.resolve()),
   }))
-  .mock('Animated', () => ({
+  .mock('react-native/Libraries/Animated/src/Animated', () => ({
     Value: jest.fn(),
     timing: () => ({ start: jest.fn() }),
     View: 'Animated.View',
   }))
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
+  .mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
 
 let defaultProps = {
   tutorials: [{
@@ -48,7 +48,7 @@ let defaultProps = {
 }
 
 describe('Tutorial', () => {
-  beforeEach(() => jest.resetAllMocks())
+  beforeEach(() => jest.clearAllMocks())
   it('will render null before data from async storage has been retrieved', () => {
     let tree = renderer.create(
       <Tutorial {...defaultProps} />

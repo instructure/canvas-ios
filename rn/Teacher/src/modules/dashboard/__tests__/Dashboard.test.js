@@ -28,8 +28,8 @@ import App from '../../app/index'
 
 import * as template from '../../../__templates__'
 
-jest.mock('TouchableOpacity', () => 'TouchableOpacity')
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
+jest.mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
   .mock('../../../routing/Screen')
 
 const colors = {

@@ -33,8 +33,8 @@ import {
 } from '../ConversationDetails'
 
 jest
-  .mock('Alert', () => ({ alert: jest.fn() }))
-  .mock('ActionSheetIOS', () => ({
+  .mock('react-native/Libraries/Alert/Alert', () => ({ alert: jest.fn() }))
+  .mock('react-native/Libraries/ActionSheetIOS/ActionSheetIOS', () => ({
     showActionSheetWithOptions: jest.fn(),
   }))
 

@@ -29,9 +29,9 @@ import explore from '../../../../../test/helpers/explore'
 import * as template from '../../../../__templates__'
 
 jest
-  .mock('ScrollView', () => 'ScrollView')
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('Button', () => 'Button')
+  .mock('react-native/Libraries/Components/ScrollView/ScrollView', () => 'ScrollView')
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
+  .mock('react-native/Libraries/Components/Button', () => 'Button')
   .mock('../LinkModal', () => 'LinkModal')
   .mock('../../CanvasWebView', () => 'CanvasWebView')
   .mock('react-native-fs', () => ({

@@ -213,7 +213,7 @@ exports[`VideoRecorder renders loading 1`] = `
     </Text>
   </View>
   <TouchableHighlight
-    accessibilityLabel="Cancel"
+    accessibilityLabel="Clear recording"
     accessibilityTraits="button"
     hitSlop={
       Object {
@@ -235,20 +235,66 @@ exports[`VideoRecorder renders loading 1`] = `
           "width": 45,
         },
         Object {
+          "bottom": 50,
           "left": 7,
           "position": "absolute",
-          "top": 8,
           "zIndex": 2,
         },
       ]
     }
-    testID="video-recorder.cancel.btn"
+    testID="video-recorder.reset.btn"
     underlayColor="transparent"
   >
     <Image
       source={
         Object {
-          "testUri": "../../../src/images/media-comments/Close.png",
+          "testUri": "../../../src/images/media-comments/Trash.png",
+        }
+      }
+      style={
+        Object {
+          "tintColor": "white",
+        }
+      }
+    />
+  </TouchableHighlight>
+  <TouchableHighlight
+    accessibilityLabel="Send recording"
+    accessibilityTraits="button"
+    hitSlop={
+      Object {
+        "bottom": 4,
+        "left": 4,
+        "right": 4,
+        "top": 4,
+      }
+    }
+    onPress={[Function]}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "rgba(255,255,255,0.14)",
+          "borderRadius": 8,
+          "height": 31,
+          "justifyContent": "center",
+          "width": 45,
+        },
+        Object {
+          "bottom": 50,
+          "position": "absolute",
+          "right": 7,
+          "zIndex": 2,
+        },
+      ]
+    }
+    testID="video-recorder.send.btn"
+    underlayColor="transparent"
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/media-comments/Send.png",
         }
       }
       style={
@@ -280,6 +326,23 @@ exports[`VideoRecorder renders loading 1`] = `
       size="small"
     />
   </View>
+  <Video
+    source={
+      Object {
+        "uri": "file:///comment.mov",
+      }
+    }
+    style={
+      Object {
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 0.5,
+      }
+    }
+  />
 </View>
 `;
 
@@ -418,19 +481,6 @@ exports[`VideoRecorder renders ready 1`] = `
       />
     </TouchableHighlight>
   </View>
-  <Camera
-    captureAudio={true}
-    captureMode="video"
-    captureQuality="medium"
-    captureTarget="disk"
-    style={
-      Object {
-        "flex": 1,
-        "zIndex": 0,
-      }
-    }
-    type="front"
-  />
 </View>
 `;
 
@@ -473,6 +523,52 @@ exports[`VideoRecorder renders recording 1`] = `
       00:01
     </Text>
   </View>
+  <TouchableHighlight
+    accessibilityLabel="Send recording"
+    accessibilityTraits="button"
+    hitSlop={
+      Object {
+        "bottom": 4,
+        "left": 4,
+        "right": 4,
+        "top": 4,
+      }
+    }
+    onPress={[Function]}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "rgba(255,255,255,0.14)",
+          "borderRadius": 8,
+          "height": 31,
+          "justifyContent": "center",
+          "width": 45,
+        },
+        Object {
+          "bottom": 50,
+          "position": "absolute",
+          "right": 7,
+          "zIndex": 2,
+        },
+      ]
+    }
+    testID="video-recorder.send.btn"
+    underlayColor="transparent"
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/media-comments/Send.png",
+        }
+      }
+      style={
+        Object {
+          "tintColor": "white",
+        }
+      }
+    />
+  </TouchableHighlight>
   <View
     style={
       Object {
@@ -522,18 +618,22 @@ exports[`VideoRecorder renders recording 1`] = `
       />
     </TouchableHighlight>
   </View>
-  <Camera
-    captureAudio={true}
-    captureMode="video"
-    captureQuality="medium"
-    captureTarget="disk"
-    style={
+  <Video
+    source={
       Object {
-        "flex": 1,
-        "zIndex": 0,
+        "uri": "file:///comment.mov",
       }
     }
-    type="front"
+    style={
+      Object {
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "zIndex": 0.5,
+      }
+    }
   />
 </View>
 `;

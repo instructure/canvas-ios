@@ -26,9 +26,9 @@ import explore from '../../../../test/helpers/explore'
 import defaultFilterOptions from '../filter-options'
 
 jest
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
   .mock('../../../routing/Screen')
-  .mock('Alert', () => ({
+  .mock('react-native/Libraries/Alert/Alert', () => ({
     prompt: jest.fn(),
   }))
 
@@ -44,7 +44,7 @@ describe('Filter', () => {
     filterPromptMessage: 'This be a test',
   }
 
-  beforeEach(() => jest.resetAllMocks())
+  beforeEach(() => jest.clearAllMocks())
 
   it('renders the filter options', () => {
     let tree = renderer.create(

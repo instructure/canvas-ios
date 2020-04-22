@@ -25,7 +25,7 @@ import SubmittedContent from '../SubmittedContent'
 import images from '../../../../images'
 import explore from '../../../../../test/helpers/explore'
 
-jest.mock('TouchableOpacity', () => 'TouchableOpacity')
+jest.mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
 
 let defaultProps = {
   contentID: '1',
@@ -38,7 +38,7 @@ let defaultProps = {
   onPress: jest.fn(),
 }
 
-beforeEach(() => jest.resetAllMocks())
+beforeEach(() => jest.clearAllMocks())
 
 test('my chat bubbles render correctly', () => {
   const tree = renderer.create(

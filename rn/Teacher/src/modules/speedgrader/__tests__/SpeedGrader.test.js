@@ -32,12 +32,12 @@ import shuffle from 'knuth-shuffle-seeded'
 import * as modelTemplates from '../../../__templates__'
 import DrawerState from '../utils/drawer-state'
 
-jest.mock('../components/GradePicker')
-jest.mock('../components/Header')
-jest.mock('../components/SubmissionPicker.js')
-jest.mock('../components/FilesTab')
-jest.mock('../components/SimilarityScore')
-jest.mock('../../../common/components/BottomDrawer')
+jest.mock('../components/GradePicker', () => 'GradePicker')
+jest.mock('../components/Header', () => 'Header')
+jest.mock('../components/SubmissionPicker', () => 'SubmissionPicker')
+jest.mock('../components/FilesTab', () => 'FilesTab')
+jest.mock('../components/SimilarityScore', () => 'SimilarityScore')
+jest.mock('../../../common/components/BottomDrawer', () => 'BottomDrawer')
 jest.mock('knuth-shuffle-seeded', () => jest.fn())
 
 const templates = {
@@ -83,7 +83,6 @@ let defaultProps = {
   assignmentSubmissionTypes: ['none'],
   gradeSubmissionWithRubric: jest.fn(),
   getCourseEnabledFeatures: jest.fn(),
-  getEnabledFeatureFlags: jest.fn(() => Promise.resolve({ data: [] })),
 }
 
 describe('SpeedGrader', () => {
@@ -98,28 +97,6 @@ describe('SpeedGrader', () => {
     )
 
     expect(tree).toMatchSnapshot()
-  })
-
-  it('fetchs feature flags on mount', async () => {
-    let flagsPromise = Promise.resolve({ data: ['new_gradebook'] })
-    let getEnabledFeatureFlags = jest.fn()
-    getEnabledFeatureFlags.mockReturnValueOnce(flagsPromise)
-    let tree = shallow(
-      <SpeedGrader {...defaultProps} getEnabledFeatureFlags={getEnabledFeatureFlags} />
-    )
-
-    await flagsPromise
-    expect(getEnabledFeatureFlags).toHaveBeenCalled()
-    expect(tree.state().flags).toEqual(['new_gradebook'])
-  })
-
-  it('does not fetch feature flags if they were passed in on mount', () => {
-    let tree = shallow(
-      <SpeedGrader {...defaultProps} flags={['new_gradebook']} />
-    )
-
-    expect(defaultProps.getEnabledFeatureFlags).not.toHaveBeenCalled()
-    expect(tree.state().flags).toEqual(['new_gradebook'])
   })
 
   it('renders with a filter', () => {
@@ -278,7 +255,7 @@ describe('SpeedGrader', () => {
 })
 
 describe('refresh functions', () => {
-  beforeEach(() => jest.resetAllMocks())
+  beforeEach(() => jest.clearAllMocks())
   const props = {
     courseID: '12',
     assignmentID: '55',

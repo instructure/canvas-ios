@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2016-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,16 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import UIKit
+import Foundation
 
-class TimedQuizViewController: UIViewController {
-    
-    @objc var minuteLimit: Int = 0 {
-        didSet {
-            let template = NSLocalizedString("You have %d minutes.", tableName: "Localizable", bundle: .core, value: "", comment: "Shows time limit on a quiz")
-            timeLimitLabel?.text = String.localizedStringWithFormat(template, minuteLimit)
-        }
+public enum ConferenceDetails: String, ElementWrapper {
+    case title, status, details, join
+
+    public enum Recording: String, ElementWrapper {
+        case title, duration, date
+
+        public var typeName: String { "ConferenceDetails.Recording" }
     }
-    
-    @IBOutlet var timeLimitLabel: UILabel?
 }

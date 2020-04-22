@@ -16,11 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-/* eslint-disable flowtype/require-valid-file-annotation */
 import { shallow } from 'enzyme'
 import React from 'react'
 import { GroupList, mapStateToProps } from '../GroupList'
-import renderer from 'react-native-test-utils'
 import * as template from '../../../__templates__'
 
 let defaultProps = {
@@ -40,13 +38,11 @@ jest
   .mock('../../../routing/Screen', () => 'Screen')
 
 describe('GroupList', () => {
-  beforeEach(() => jest.resetAllMocks())
+  beforeEach(() => jest.clearAllMocks())
 
   it('renders properly', () => {
-    let tree = renderer(
-      <GroupList {...defaultProps} />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    let tree = shallow(<GroupList {...defaultProps} />)
+    expect(tree.find('FlatList').prop('data')).toBe(defaultProps.group.users)
   })
 
   it('renders without a group', () => {
@@ -54,10 +50,8 @@ describe('GroupList', () => {
       ...defaultProps,
       group: null,
     }
-    let tree = renderer(
-      <GroupList {...noGroupProps}/>
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    let tree = shallow(<GroupList {...noGroupProps}/>)
+    expect(tree.find('FlatList').prop('data')).toHaveLength(0)
   })
 
   it('renders empty list', () => {
@@ -68,10 +62,10 @@ describe('GroupList', () => {
         users: null,
       },
     }
-    let tree = renderer(
+    let tree = shallow(
       <GroupList {...noUserProps}/>
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(tree.find('FlatList').dive().find('ListEmptyComponent').exists()).toBe(true)
   })
 
   it('navigates to the context card when an avatar is pressed', () => {

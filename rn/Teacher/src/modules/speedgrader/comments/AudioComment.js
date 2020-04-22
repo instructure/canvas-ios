@@ -216,7 +216,7 @@ async function downloadAudio (url: string, captureJob: (number) => void): Promis
 }
 
 /* istanbul ignore next */
-async function loadAudio (path: string): Promise<Sound> {
+function loadAudio (path: string): Promise<Sound> {
   return new Promise((resolve, reject) => {
     const audio = new Sound(path, '', (error) => {
       if (error) {

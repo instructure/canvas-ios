@@ -30,9 +30,6 @@ const templates = {
   ...require('../../../__templates__/helm'),
 }
 
-jest
-  .mock('WebView', () => 'Webview')
-
 let defaultSelections = {
   selectedIndex: null,
   selectedAttachmentIndex: 0,

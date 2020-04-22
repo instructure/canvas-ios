@@ -34,7 +34,6 @@ import CourseSelect from '../modules/inbox/CourseSelect'
 import ConversationDetails from '../modules/inbox/detail/ConversationDetails'
 import DeveloperMenu from '../modules/developer-menu/DeveloperMenu'
 import SubmissionList from '../modules/submissions/list/SubmissionList'
-import SubmissionSettings from '../modules/submissions/list/SubmissionSettings'
 import AssigneePicker from '../modules/assignee-picker/AssigneePicker'
 import AssigneeSearch from '../modules/assignee-picker/AssigneeSearch'
 import SpeedGrader from '../modules/speedgrader/SpeedGrader'
@@ -173,7 +172,6 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/assignments/:assignmentID/assignee-picker', wrap(AssigneePicker), store)
     registerScreen('/courses/:courseID/assignments/:assignmentID/assignee-search', wrap(AssigneeSearch), store)
     registerScreen('/courses/:courseID/assignments/:assignmentID/submissions', wrap(SubmissionList), store, { deepLink: true })
-    registerScreen('/courses/:courseID/assignments/:assignmentID/submission_settings', wrap(SubmissionSettings), store)
     registerScreen('/courses/:courseID/assignments/:assignmentID/post_policy')
     registerScreen('/courses/:courseID/attendance/:toolID')
     registerScreen('/courses/:courseID/gradebook/speed_grader', wrap(SpeedGrader), store)

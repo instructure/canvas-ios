@@ -46,7 +46,6 @@ import CommentInput from '../speedgrader/comments/CommentInput'
 import A11yGroup from '../../common/components/A11yGroup'
 import { graphql } from 'react-apollo'
 import query from '../../canvas-api-v2/queries/SpeedGrader'
-import { getEnabledFeatureFlags } from '../../canvas-api'
 
 const { NativeAccessibility } = NativeModules
 
@@ -72,7 +71,6 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   static defaultProps = {
     onDismiss: () => {},
     drawerPosition: 0,
-    getEnabledFeatureFlags,
   }
 
   constructor (props: SpeedGraderProps) {
@@ -91,19 +89,8 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
       hasScrolledToInitialSubmission: false,
       hasSetInitialDrawerPosition: false,
       scrollEnabled: true,
-      flags: props.flags || [],
     }
     SpeedGrader.drawerState.registerDrawer(this)
-  }
-
-  async componentDidMount () {
-    if (this.state.flags.length === 0) {
-      try {
-        let flags = await this.props.getEnabledFeatureFlags('courses', this.props.courseID)
-        this.setState({ flags: flags.data })
-      } catch (e) {
-      }
-    }
   }
 
   // DrawerObserver
@@ -183,7 +170,6 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
         group={group}
         anonymousGrading={this.props.anonymousGrading}
         assignment={this.props.assignment}
-        newGradebookEnabled={this.state.flags.includes('new_gradebook')}
       />
     </A11yGroup>
   }

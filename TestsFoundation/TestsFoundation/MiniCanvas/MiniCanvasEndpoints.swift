@@ -112,6 +112,16 @@ enum MiniCanvasEndpoints {
         // https://canvas.instructure.com/doc/api/brand_configs.html
         .apiRequest(GetBrandVariablesRequest()) { request in request.state.brandVariables },
 
+        // MARK: Conferences
+        // https://canvas.instructure.com/doc/api/conferences.html
+        .apiRequest(GetConferencesRequest(context: Pattern.courseContext)) { request in
+            try GetConferencesRequest.Response(conferences: lookupCourse(forRequest: request).conferences)
+        },
+
+        .rest("/api/v1/conferences") { request in
+            return .json(GetConferencesRequest.Response(conferences: request.state.liveConferences))
+        },
+
         // MARK: Conversations
         // https://canvas.instructure.com/doc/api/conversations.html
         .apiRequest(GetConversationsUnreadCountRequest()) { request in

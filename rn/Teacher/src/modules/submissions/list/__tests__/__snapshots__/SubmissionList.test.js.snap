@@ -60,6 +60,7 @@ exports[`SubmissionList loaded 1`] = `
         accessibilityLabel="Filter Submissions. (0) selected."
         accessibilityRole="button"
         accessible={true}
+        focusable={true}
         hitSlop={
           Object {
             "bottom": 15,
@@ -68,7 +69,7 @@ exports[`SubmissionList loaded 1`] = `
             "top": 15,
           }
         }
-        isTVSelectable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -113,7 +114,8 @@ exports[`SubmissionList loaded 1`] = `
         <View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -153,14 +155,14 @@ exports[`SubmissionList loaded 1`] = `
                 <View
                   accessibilityLabel="S1 Profile"
                   accessible={true}
-                  isTVSelectable={true}
+                  focusable={true}
+                  onClick={[Function]}
                   onResponderGrant={[Function]}
                   onResponderMove={[Function]}
                   onResponderRelease={[Function]}
                   onResponderTerminate={[Function]}
                   onResponderTerminationRequest={[Function]}
                   onStartShouldSetResponder={[Function]}
-                  style={null}
                 >
                   <View
                     accessibilityLabel=""
@@ -274,7 +276,8 @@ exports[`SubmissionList loaded 1`] = `
         <View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -314,14 +317,14 @@ exports[`SubmissionList loaded 1`] = `
                 <View
                   accessibilityLabel="S2 Profile"
                   accessible={true}
-                  isTVSelectable={true}
+                  focusable={true}
+                  onClick={[Function]}
                   onResponderGrant={[Function]}
                   onResponderMove={[Function]}
                   onResponderRelease={[Function]}
                   onResponderTerminate={[Function]}
                   onResponderTerminationRequest={[Function]}
                   onStartShouldSetResponder={[Function]}
-                  style={null}
                 >
                   <View
                     accessibilityLabel=""
@@ -405,6 +408,22 @@ exports[`SubmissionList loaded 1`] = `
               >
                 Excused
               </Text>
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/off.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 20,
+                    "marginLeft": 10,
+                    "tintColor": "#EE0612",
+                    "width": 20,
+                  }
+                }
+                testID="SubmissionRow.hiddenIcon"
+              />
             </View>
           </View>
         </View>
@@ -413,7 +432,8 @@ exports[`SubmissionList loaded 1`] = `
         <View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -453,14 +473,14 @@ exports[`SubmissionList loaded 1`] = `
                 <View
                   accessibilityLabel="S3 Profile"
                   accessible={true}
-                  isTVSelectable={true}
+                  focusable={true}
+                  onClick={[Function]}
                   onResponderGrant={[Function]}
                   onResponderMove={[Function]}
                   onResponderRelease={[Function]}
                   onResponderTerminate={[Function]}
                   onResponderTerminationRequest={[Function]}
                   onStartShouldSetResponder={[Function]}
-                  style={null}
                 >
                   <View
                     accessibilityLabel=""
@@ -610,7 +630,8 @@ exports[`SubmissionList loaded 1`] = `
         <View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -650,14 +671,14 @@ exports[`SubmissionList loaded 1`] = `
                 <View
                   accessibilityLabel="S4 Profile"
                   accessible={true}
-                  isTVSelectable={true}
+                  focusable={true}
+                  onClick={[Function]}
                   onResponderGrant={[Function]}
                   onResponderMove={[Function]}
                   onResponderRelease={[Function]}
                   onResponderTerminate={[Function]}
                   onResponderTerminationRequest={[Function]}
                   onStartShouldSetResponder={[Function]}
-                  style={null}
                 >
                   <View
                     accessibilityLabel=""
@@ -763,6 +784,22 @@ exports[`SubmissionList loaded 1`] = `
               >
                 A-
               </Text>
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/off.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 20,
+                    "marginLeft": 10,
+                    "tintColor": "#EE0612",
+                    "width": 20,
+                  }
+                }
+                testID="SubmissionRow.hiddenIcon"
+              />
             </View>
           </View>
         </View>
@@ -832,6 +869,7 @@ exports[`SubmissionList renders correctly with empty list 1`] = `
         accessibilityLabel="Filter Submissions. (0) selected."
         accessibilityRole="button"
         accessible={true}
+        focusable={true}
         hitSlop={
           Object {
             "bottom": 15,
@@ -840,7 +878,7 @@ exports[`SubmissionList renders correctly with empty list 1`] = `
             "top": 15,
           }
         }
-        isTVSelectable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -948,7 +986,8 @@ exports[`renders a group row properly 1`] = `
 <View>
   <View
     accessible={true}
-    isTVSelectable={true}
+    focusable={true}
+    onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -988,14 +1027,14 @@ exports[`renders a group row properly 1`] = `
         <View
           accessibilityLabel="John Doe Profile"
           accessible={true}
-          isTVSelectable={true}
+          focusable={true}
+          onClick={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
           onResponderTerminate={[Function]}
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
-          style={null}
         >
           <View
             accessibilityLabel=""
@@ -1101,6 +1140,22 @@ exports[`renders a group row properly 1`] = `
       >
         A-
       </Text>
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/off.png",
+          }
+        }
+        style={
+          Object {
+            "height": 20,
+            "marginLeft": 10,
+            "tintColor": "#EE0612",
+            "width": 20,
+          }
+        }
+        testID="SubmissionRow.hiddenIcon"
+      />
     </View>
   </View>
 </View>
@@ -1110,7 +1165,8 @@ exports[`renders the row properly 1`] = `
 <View>
   <View
     accessible={true}
-    isTVSelectable={true}
+    focusable={true}
+    onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -1150,14 +1206,14 @@ exports[`renders the row properly 1`] = `
         <View
           accessibilityLabel="S1 Profile"
           accessible={true}
-          isTVSelectable={true}
+          focusable={true}
+          onClick={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
           onResponderTerminate={[Function]}
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
-          style={null}
         >
           <View
             accessibilityLabel=""

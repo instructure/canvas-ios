@@ -31,10 +31,10 @@ import ViewFile from '../ViewFile'
 import * as templates from '../../../__templates__/index'
 
 jest
-  .mock('ActionSheetIOS', () => ({
+  .mock('react-native/Libraries/ActionSheetIOS/ActionSheetIOS', () => ({
     showShareActionSheetWithOptions: jest.fn(),
   }))
-  .mock('Clipboard', () => ({
+  .mock('react-native/Libraries/Components/Clipboard/Clipboard', () => ({
     setString: jest.fn(),
   }))
 

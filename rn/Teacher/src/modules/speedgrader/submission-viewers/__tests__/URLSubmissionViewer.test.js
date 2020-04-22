@@ -32,8 +32,8 @@ const t = {
 
 Image.getSize = jest.fn()
 const mockOpenURL = jest.fn()
-jest.mock('Linking', () => ({ openURL: mockOpenURL }))
-jest.mock('TouchableOpacity', () => 'TouchableOpacity')
+jest.mock('react-native/Libraries/Linking/Linking', () => ({ openURL: mockOpenURL }))
+jest.mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
 
 const submission = t.submission({
   attachment: t.attachment(),

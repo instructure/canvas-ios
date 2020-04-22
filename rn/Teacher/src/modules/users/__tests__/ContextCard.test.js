@@ -30,8 +30,8 @@ import renderer from 'react-test-renderer'
 import explore from '../../../../test/helpers/explore'
 
 jest.mock('../../../routing/Screen')
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
+  .mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
   .mock('../../../common/components/ErrorView.js', () => 'ErrorView')
 
 const templates = {
@@ -67,7 +67,7 @@ const defaultProps = {
 }
 
 beforeEach(() => {
-  jest.resetAllMocks()
+  jest.clearAllMocks()
   app.setCurrentApp('teacher')
 })
 

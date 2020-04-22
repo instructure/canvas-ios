@@ -37,7 +37,7 @@ const template = {
 
 jest
   .mock('../../../../routing')
-  .mock('Alert', () => ({
+  .mock('react-native/Libraries/Alert/Alert', () => ({
     alert: jest.fn(),
   }))
   .mock('knuth-shuffle-seeded', () => jest.fn())
@@ -99,7 +99,7 @@ const props = {
   refetch: jest.fn(),
 }
 
-beforeEach(() => jest.resetAllMocks())
+beforeEach(() => jest.clearAllMocks())
 
 test('SubmissionList loaded', () => {
   const tree = renderer.create(
@@ -209,19 +209,6 @@ test('SubmissionList renders correctly with empty list', () => {
   expect(tree).toMatchSnapshot()
 })
 
-test('should navigate to submission settings', () => {
-  let navigator = template.navigator({
-    show: jest.fn(),
-  })
-
-  const tree = renderer.create(
-    <SubmissionList {...props} navigator={navigator} />
-  )
-  tree.getInstance().openSettings()
-
-  expect(navigator.show).toHaveBeenCalledWith('/courses/12/assignments/32/submission_settings', { modal: true })
-})
-
 test('should navigate to post policy settings', () => {
   let navigator = template.navigator({
     show: jest.fn(),
@@ -235,7 +222,7 @@ test('should navigate to post policy settings', () => {
   expect(navigator.show).toHaveBeenCalledWith('/courses/12/assignments/32/post_policy', { modal: true })
 })
 
-test('should show eye button if new gradebook enabled', async () => {
+test('should show eye button', async () => {
   let navigator = template.navigator({
     show: jest.fn(),
   })
@@ -244,7 +231,6 @@ test('should show eye button if new gradebook enabled', async () => {
     <SubmissionList {...props} navigator={navigator} />
   )
 
-  await new Promise(resolve => tree.setState({ flags: ['new_gradebook'] }, resolve))
   const button = tree.find('Screen').prop('rightBarButtons')
     .find(({ testID }) => testID === 'SubmissionsList.postpolicy')
   expect(button).toBeDefined()
@@ -252,25 +238,6 @@ test('should show eye button if new gradebook enabled', async () => {
   const settingsButton = tree.find('Screen').prop('rightBarButtons')
     .find(({ testID }) => testID === 'submission-list.settings')
   expect(settingsButton).toBeUndefined()
-})
-
-test('should show old settings button if new gradebook not enabled', async () => {
-  let navigator = template.navigator({
-    show: jest.fn(),
-  })
-
-  let tree = shallow(
-    <SubmissionList {...props} navigator={navigator} />
-  )
-
-  await new Promise(resolve => tree.setState({ flags: [], didFetchFlags: true }, resolve))
-  const button = tree.find('Screen').prop('rightBarButtons')
-    .find(({ testID }) => testID === 'SubmissionsList.postpolicy')
-  expect(button).toBeUndefined()
-
-  const settingsButton = tree.find('Screen').prop('rightBarButtons')
-    .find(({ testID }) => testID === 'submission-list.settings')
-  expect(settingsButton).toBeDefined()
 })
 
 test('should navigate to a submission', () => {
@@ -289,7 +256,7 @@ test('should navigate to a submission', () => {
   expect(navigator.show).toHaveBeenCalledWith(
     '/courses/12/assignments/32/submissions/2',
     { modal: true, modalPresentationStyle: 'fullscreen' },
-    { filter: expect.any(Function), studentIndex: 1, flags: [], onDismiss: expect.any(Function) }
+    { filter: expect.any(Function), studentIndex: 1, onDismiss: expect.any(Function) }
   )
 
   ExperimentalFeature.allEnabled = true

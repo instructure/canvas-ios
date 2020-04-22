@@ -5,6 +5,8 @@ exports[`ToolTip renders nothing until tooltip added 1`] = `null`;
 exports[`ToolTip renders something interesting when showToolTip is called 1`] = `
 <View
   accessible={true}
+  focusable={true}
+  onClick={[Function]}
   onLayout={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}

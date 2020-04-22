@@ -41,12 +41,22 @@ open class QuizIntroViewController: UIViewController, PageViewEventViewControlle
     }
     @objc var takeabilityTimer: Timer?
     
-    fileprivate var pages: [UIViewController] = []
-    fileprivate let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    fileprivate lazy var details = QuizDetailsViewController(
+        quiz: quizController.quiz,
+        baseURL: quizController.service.baseURL
+    )
     
     fileprivate let footerView: QuizIntroFooterView = QuizIntroFooterView()
 
     fileprivate var didShowOfflineAlert = false
+    
+    public convenience init(session: Session, courseID: String, quizID: String) {
+        let context = ContextID(id: courseID, context: .course)
+        let service = CanvasQuizService(session: session, context: context, quizID: quizID)
+        let controller = QuizController(service: service, quiz: nil)
+
+        self.init(quizController: controller)
+    }
     
     init(quizController: QuizController) {
         self.quizController = quizController
@@ -86,8 +96,8 @@ open class QuizIntroViewController: UIViewController, PageViewEventViewControlle
     open override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = NSLocalizedString("Quiz Details", bundle: .core, comment: "")
-        preparePageViewController()
+        title = NSLocalizedString("Quiz Details", bundle: .core, comment: "")
+        embed(details, in: view)
         prepareFooterView()
     }
     
@@ -104,40 +114,6 @@ open class QuizIntroViewController: UIViewController, PageViewEventViewControlle
         stopTrackingTimeOnViewController(eventName: quizController.service.pageViewName())
     }
     
-    override open func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        
-        coordinator.animate(alongsideTransition: { _ in
-            // who cares?
-        }, completion: { _ in
-            let currentPage = self.footerView.pageControl.currentPage
-            guard currentPage < self.pages.count else { return }
-            
-            let vc = self.pages[self.footerView.pageControl.currentPage]
-            self.pageViewController.setViewControllers([vc], direction: .forward, animated: false, completion: nil)
-        })
-    }
-    
-    fileprivate func preparePageViewController() {
-        pageViewController.delegate = self
-        pageViewController.dataSource = self
-        pageViewController.view.backgroundColor = UIColor.white
-        
-        addChild(pageViewController)
-        view.addSubview(pageViewController.view)
-        pageViewController.didMove(toParent: self)
-
-        pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        constrain(view, pageViewController.view) { view, pageView in
-            pageView.size == view.size
-            pageView.center == view.center
-        }
-
-        pages = [buildQuizDetailsPage()]
-        pageViewController.setViewControllers(pages, direction: .forward, animated: false, completion: nil)
-
-    }
-    
     fileprivate func prepareFooterView() {
         view.addSubview(footerView)
         constrain(view, footerView) { view, footerView in
@@ -150,62 +126,12 @@ open class QuizIntroViewController: UIViewController, PageViewEventViewControlle
         footerView.takeButton.addTarget(self, action: #selector(QuizIntroViewController.takeTheQuiz(_:)), for: .touchUpInside)
     }
     
-    fileprivate func buildQuizDetailsPage() -> QuizDetailsViewController {
-        let vc = QuizDetailsViewController(quiz: self.quizController.quiz, baseURL: self.quizController.service.baseURL)
-        return vc
-    }
-    
-    fileprivate func buildAnswersFinalPage() -> AnswersFinalViewController {
-        return AnswersFinalViewController(nibName: "AnswersFinalViewController", bundle: Bundle(for: QuizIntroViewController.self))
-    }
-    
-    fileprivate func buildTimedQuizPage() -> TimedQuizViewController {
-        let vc = TimedQuizViewController(nibName: "TimedQuizViewController", bundle: Bundle(for: QuizIntroViewController.self))
-        let _ = vc.view // force the hooking up of the outlet
-        return vc
-    }
-    
     fileprivate func updateTakeButtonAndPages() {
-        if pages.count == 1 {
-            footerView.pageControl.isHidden = true
-            footerView.setTakeButtonOnscreen(true, animated: true)
-        } else {
-            footerView.pageControl.isHidden = false
-            footerView.setTakeButtonOnscreen(false, animated: true)
-        }
-        
-        footerView.pageControl.currentPage = 0
-        footerView.pageControl.numberOfPages = pages.count
+        footerView.setTakeButtonOnscreen(true, animated: true)
     }
     
     fileprivate func quizUpdated() {
-        // This is a very pared down implementation making a lot of assumptions.
-        // Assumptions being, that this updated block would only be called once after fetching the quiz,
-        // and not continously in a reactive stream style.
-        
-        // this stuff is just for precaution, incase you didn't see the above note and it started doing some funky stuff
-        if pages.count > 1 {
-            pages.removeSubrange(1...(pages.count-1))
-        }
-        pageViewController.setViewControllers(pages, direction: .forward, animated: false, completion: nil)
-        
-        let detailsPage = pages[0] as! QuizDetailsViewController
-        detailsPage.quizController = quizController
-
-        if quizController.quiz != nil {
-            if quizController.quiz!.oneQuestionAtATime && quizController.quiz!.cantGoBack {
-                pages.append(buildAnswersFinalPage())
-            }
-            switch quizController.quiz!.timeLimit {
-            case .minutes(let minutes):
-                let extraTime = quizController.submission?.extraTime ?? 0
-                let page = buildTimedQuizPage()
-                page.minuteLimit = minutes + extraTime
-                pages.append(page)
-            default: break
-            }
-        }
-        
+        details.quizController = quizController
         updateTakeButtonAndPages()
 
         if let quiz = quizController.quiz {
@@ -295,47 +221,6 @@ open class QuizIntroViewController: UIViewController, PageViewEventViewControlle
                 let alert = UIAlertController(title: NSLocalizedString("Not Takeable", tableName: "Localizable", bundle: .core, value: "", comment: "Title for alert showing when a quiz isn't takeable"), message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", tableName: "Localizable", bundle: .core, value: "", comment: "OK Button Title"), style: .default, handler: { _ in }))
                 self.present(alert, animated: true, completion: nil)
-            }
-        }
-    }
-    
-    // MARK: Other stuffs
-}
-
-extension QuizIntroViewController: UIPageViewControllerDataSource {
-    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        for (index, page) in pages.enumerated() {
-            if page === viewController && index > 0 {
-                return pages[index-1]
-            }
-        }
-        return nil
-    }
-    
-    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        for (index, page) in pages.enumerated() {
-            if page === viewController && index < pages.count-1 {
-                return pages[index+1]
-            }
-        }
-        return nil
-    }
-}
-
-extension QuizIntroViewController: UIPageViewControllerDelegate {
-    public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if completed {
-            // update the current page number
-            for (index, page) in pages.enumerated() {
-                let vcs = pageViewController.viewControllers ?? []
-                if page === vcs.first {
-                    footerView.pageControl.currentPage = index
-                    if index == pages.count - 1 { // if it's the last screen, remove the page indicator, bring in the big blue button
-                        footerView.setTakeButtonOnscreen(true, animated: true)
-                    } else {
-                        footerView.setTakeButtonOnscreen(false, animated: true)
-                    }
-                }
             }
         }
     }
