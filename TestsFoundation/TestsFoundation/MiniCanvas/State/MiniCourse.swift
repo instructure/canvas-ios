@@ -28,6 +28,7 @@ public class MiniCourse {
     public var externalTools: [APIExternalTool] = []
     public var gradingPeriods: [APIGradingPeriod] = []
     public var featureFlags: [String] = []
+    public var conferences: [APIConference] = []
 
     public var id: String { api.id.value }
 
@@ -147,11 +148,12 @@ public class MiniCourse {
         self.api = course
         tabs = [
             "announcements", "assignments", "discussions", "files",
-            "grades", "modules", "pages", "people", "quizzes",
+            "grades", "modules", "pages", "people", "quizzes", "conferences",
         ].map { tabName in
             APITab.make(
                 id: ID(tabName),
                 html_url: URL(string: "/courses/\(course.id)/\(tabName)")!,
+                full_url: URL(string: "/courses/\(course.id)/\(tabName)")!,
                 label: "\(tabName.capitalized)"
             )
         }

@@ -26,7 +26,7 @@ import { shallow } from 'enzyme'
 
 import * as templates from '../../../__templates__'
 
-jest.mock('ActionSheetIOS', () => ({
+jest.mock('react-native/Libraries/ActionSheetIOS/ActionSheetIOS', () => ({
   showShareActionSheetWithOptions: jest.fn(),
 }))
 
@@ -37,8 +37,6 @@ jest.mock('react-native-fs', () => ({
     promise: Promise.resolve({ statusCode: 200 }),
   })),
 }))
-
-jest.mock('WebView', () => 'WebView')
 
 let defaultProps = {
   navigator: templates.navigator(),

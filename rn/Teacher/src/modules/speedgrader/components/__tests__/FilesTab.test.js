@@ -25,7 +25,7 @@ import explore from '../../../../../test/helpers/explore'
 import DrawerState from '../../utils/drawer-state'
 
 jest
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
 
 const templates = {
   ...require('../../../../__templates__/submissions'),

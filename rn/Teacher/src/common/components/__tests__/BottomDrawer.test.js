@@ -32,7 +32,7 @@ jest
   .mock('react-native-button', () => 'Button')
 
 describe('BottomDrawer', () => {
-  beforeEach(() => jest.resetAllMocks())
+  beforeEach(() => jest.clearAllMocks())
   const state = SpeedGrader.drawerState
 
   it('renders any children', () => {

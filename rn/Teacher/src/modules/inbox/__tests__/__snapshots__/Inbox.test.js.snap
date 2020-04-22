@@ -37,7 +37,8 @@ exports[`Inbox filters conversations based on course 1`] = `
         <View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -96,7 +97,8 @@ exports[`Inbox filters conversations based on course 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -134,7 +136,8 @@ exports[`Inbox filters conversations based on course 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -172,7 +175,8 @@ exports[`Inbox filters conversations based on course 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -210,7 +214,8 @@ exports[`Inbox filters conversations based on course 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -289,6 +294,7 @@ exports[`Inbox filters conversations based on course 1`] = `
           accessibilityLabel="Clear Filter Inbox"
           accessibilityRole="button"
           accessible={true}
+          focusable={true}
           hitSlop={
             Object {
               "bottom": 15,
@@ -297,7 +303,7 @@ exports[`Inbox filters conversations based on course 1`] = `
               "top": 15,
             }
           }
-          isTVSelectable={true}
+          onClick={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -555,7 +561,8 @@ exports[`Inbox refreshed component 1`] = `
         <View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -614,7 +621,8 @@ exports[`Inbox refreshed component 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -652,7 +660,8 @@ exports[`Inbox refreshed component 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -690,7 +699,8 @@ exports[`Inbox refreshed component 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -728,7 +738,8 @@ exports[`Inbox refreshed component 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -809,6 +820,7 @@ exports[`Inbox refreshed component 1`] = `
           accessibilityLabel="Filter Inbox"
           accessibilityRole="button"
           accessible={true}
+          focusable={true}
           hitSlop={
             Object {
               "bottom": 15,
@@ -817,7 +829,7 @@ exports[`Inbox refreshed component 1`] = `
               "top": 15,
             }
           }
-          isTVSelectable={true}
+          onClick={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -964,7 +976,8 @@ exports[`Inbox renders correctly 1`] = `
         <View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1023,7 +1036,8 @@ exports[`Inbox renders correctly 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1061,7 +1075,8 @@ exports[`Inbox renders correctly 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1099,7 +1114,8 @@ exports[`Inbox renders correctly 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1137,7 +1153,8 @@ exports[`Inbox renders correctly 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1218,6 +1235,7 @@ exports[`Inbox renders correctly 1`] = `
           accessibilityLabel="Filter Inbox"
           accessibilityRole="button"
           accessible={true}
+          focusable={true}
           hitSlop={
             Object {
               "bottom": 15,
@@ -1226,7 +1244,7 @@ exports[`Inbox renders correctly 1`] = `
               "top": 15,
             }
           }
-          isTVSelectable={true}
+          onClick={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1653,7 +1671,8 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
         <View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1712,7 +1731,8 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1750,7 +1770,8 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1788,7 +1809,8 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1826,7 +1848,8 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1907,6 +1930,7 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
           accessibilityLabel="Filter Inbox"
           accessibilityRole="button"
           accessible={true}
+          focusable={true}
           hitSlop={
             Object {
               "bottom": 15,
@@ -1915,7 +1939,7 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
               "top": 15,
             }
           }
-          isTVSelectable={true}
+          onClick={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -2014,7 +2038,8 @@ exports[`Inbox renders the starred empty state 1`] = `
         <View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2052,7 +2077,8 @@ exports[`Inbox renders the starred empty state 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2090,7 +2116,8 @@ exports[`Inbox renders the starred empty state 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2149,7 +2176,8 @@ exports[`Inbox renders the starred empty state 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2187,7 +2215,8 @@ exports[`Inbox renders the starred empty state 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2268,6 +2297,7 @@ exports[`Inbox renders the starred empty state 1`] = `
           accessibilityLabel="Filter Inbox"
           accessibilityRole="button"
           accessible={true}
+          focusable={true}
           hitSlop={
             Object {
               "bottom": 15,
@@ -2276,7 +2306,7 @@ exports[`Inbox renders the starred empty state 1`] = `
               "top": 15,
             }
           }
-          isTVSelectable={true}
+          onClick={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -2423,7 +2453,8 @@ exports[`Inbox renders with an empty state 1`] = `
         <View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2482,7 +2513,8 @@ exports[`Inbox renders with an empty state 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2520,7 +2552,8 @@ exports[`Inbox renders with an empty state 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2558,7 +2591,8 @@ exports[`Inbox renders with an empty state 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2596,7 +2630,8 @@ exports[`Inbox renders with an empty state 1`] = `
           </View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2677,6 +2712,7 @@ exports[`Inbox renders with an empty state 1`] = `
           accessibilityLabel="Filter Inbox"
           accessibilityRole="button"
           accessible={true}
+          focusable={true}
           hitSlop={
             Object {
               "bottom": 15,
@@ -2685,7 +2721,7 @@ exports[`Inbox renders with an empty state 1`] = `
               "top": 15,
             }
           }
-          isTVSelectable={true}
+          onClick={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}

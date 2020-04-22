@@ -43,7 +43,7 @@ jest.mock('../../canvas-api', () => ({
   }),
 }))
 
-jest.mock('Linking', () => ({ openURL: jest.fn() }))
+jest.mock('react-native/Libraries/Linking/Linking', () => ({ openURL: jest.fn() }))
 
 registerScreens({})
 

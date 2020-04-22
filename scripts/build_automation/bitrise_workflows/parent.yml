@@ -38,6 +38,7 @@ workflows:
 
             brew unlink carthage
             brew install --HEAD carthage
+            rm -rf "$BITRISE_SOURCE_DIR/Pods/Target Support Files/yoga"
     - carthage:
         inputs:
         - carthage_options: "--platform ios"
@@ -45,11 +46,9 @@ workflows:
         inputs:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
         title: yarn install dependencies
-    - npm:
+    - cocoapods-install:
         inputs:
-        - command: install -g react-native-cli
-        title: npm install -g react-native-cli
-    - cocoapods-install: {}
+        - verbose: 'false'
     - ios-auto-provision:
         inputs:
         - generate_profiles: 'yes'

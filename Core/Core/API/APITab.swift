@@ -22,6 +22,7 @@ import Foundation
 public struct APITab: Codable, Equatable {
     let id: ID
     let html_url: URL
+    let full_url: URL?
     let label: String
     let type: TabType
     let hidden: Bool?

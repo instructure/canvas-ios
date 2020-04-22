@@ -22,10 +22,10 @@ import { Alert, AccessibilityInfo, ActionSheetIOS } from 'react-native'
 import RubricItem from '../RubricItem'
 import * as templates from '../../../../__templates__'
 
-jest.mock('Alert', () => ({
+jest.mock('react-native/Libraries/Alert/Alert', () => ({
   prompt: jest.fn(),
 }))
-jest.mock('ActionSheetIOS', () => ({
+jest.mock('react-native/Libraries/ActionSheetIOS/ActionSheetIOS', () => ({
   showActionSheetWithOptions: jest.fn(),
 }))
 

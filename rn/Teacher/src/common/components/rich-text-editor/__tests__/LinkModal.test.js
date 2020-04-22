@@ -26,7 +26,7 @@ import LinkModal from '../LinkModal'
 import explore from '../../../../../test/helpers/explore'
 
 jest
-  .mock('Button', () => 'Button')
+  .mock('react-native/Libraries/Components/Button', () => 'Button')
 
 const defaultProps = {
   visible: true,

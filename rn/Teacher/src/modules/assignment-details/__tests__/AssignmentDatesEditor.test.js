@@ -23,7 +23,7 @@ import React from 'react'
 import AssignmentDatesEditor from '../components/AssignmentDatesEditor.js'
 import renderer from 'react-test-renderer'
 
-jest.mock('LayoutAnimation', () => ({
+jest.mock('react-native/Libraries/LayoutAnimation/LayoutAnimation', () => ({
   easeInEaseOut: jest.fn(),
 }))
 

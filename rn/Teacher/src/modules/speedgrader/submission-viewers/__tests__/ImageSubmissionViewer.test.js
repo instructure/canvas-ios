@@ -38,7 +38,7 @@ let defaultProps = {
 }
 
 describe('ImageSubmissionViewer', () => {
-  beforeEach(() => jest.resetAllMocks())
+  beforeEach(() => jest.clearAllMocks())
 
   it('renders', () => {
     let tree = renderer.create(

@@ -23,7 +23,7 @@ import explore from '../../../../../test/helpers/explore'
 import renderer from 'react-test-renderer'
 
 jest
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
   .mock('../../../../common/components/Avatar', () => 'Avatar')
 
 const mockSubmission = (status = 'none', grade = null) => {

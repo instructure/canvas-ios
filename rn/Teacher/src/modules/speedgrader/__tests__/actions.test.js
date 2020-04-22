@@ -28,7 +28,7 @@ let api = {
 let actions = SpeedGraderActions(api)
 
 describe('SpeedGraderActions', () => {
-  beforeEach(() => jest.resetAllMocks())
+  beforeEach(() => jest.clearAllMocks())
 
   describe('excuseAssignment', () => {
     it('calls gradeSubmission with the correct arguments', () => {

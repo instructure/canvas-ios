@@ -25,10 +25,19 @@ import VideoRecorder, { type Props } from '../VideoRecorder'
 import explore from '../../../../test/helpers/explore'
 
 jest
-  .mock('Button', () => 'Button')
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('TouchableOpacity', () => 'TouchableOpacity')
+  .mock('react-native/Libraries/Components/Button', () => 'Button')
+  .mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')
+  .mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
   .mock('../Video', () => 'Video')
+  .mock('react-native-camera', () => {
+    const React = require.requireActual('react')
+    return { RNCamera: class Camera extends React.Component {
+        static Constants = { Type: { back: 1, front: 2 } }
+        render () { return null }
+        recordAsync = jest.fn(() => ({ then: callback => callback({ uri: '/comment.mov' }) }))
+        stopRecording = jest.fn()
+    } }
+  })
 
 describe('VideoRecorder', () => {
   let props: Props
@@ -53,15 +62,7 @@ describe('VideoRecorder', () => {
   })
 
   it('renders finished', () => {
-    const createNodeMock = ({ type }) => {
-      if (type === 'Camera') {
-        return {
-          capture: jest.fn(() => ({ then: callback => callback({ path: '/comment.mov' }) })),
-          stopCapture: jest.fn(),
-        }
-      }
-    }
-    const view = render(props, { createNodeMock })
+    const view = render(props)
     const btn: any = explore(view.toJSON()).selectByID('video-recorder.start-recording.btn')
     btn.props.onPress()
     btn.props.onPress()
@@ -79,15 +80,7 @@ describe('VideoRecorder', () => {
   it('sends recording', () => {
     const spy = jest.fn()
     props.onFinishedRecording = spy
-    const createNodeMock = ({ type }) => {
-      if (type === 'Camera') {
-        return {
-          capture: jest.fn(() => ({ then: callback => callback({ path: '/comment.mov' }) })),
-          stopCapture: jest.fn(),
-        }
-      }
-    }
-    const view = render(props, { createNodeMock })
+    const view = render(props)
     const btn: any = explore(view.toJSON()).selectByID('video-recorder.start-recording.btn')
     btn.props.onPress()
     btn.props.onPress()
@@ -109,15 +102,7 @@ describe('VideoRecorder', () => {
   })
 
   it('renders reset', () => {
-    const createNodeMock = ({ type }) => {
-      if (type === 'Camera') {
-        return {
-          capture: jest.fn(() => ({ then: callback => callback({ path: '/comment.mov' }) })),
-          stopCapture: jest.fn(),
-        }
-      }
-    }
-    const view = render(props, { createNodeMock })
+    const view = render(props)
     const btn: any = explore(view.toJSON()).selectByID('video-recorder.start-recording.btn')
     btn.props.onPress()
     btn.props.onPress()
@@ -127,14 +112,6 @@ describe('VideoRecorder', () => {
   })
 
   function render (props: Props, options: ?any): any {
-    const createNodeMock = ({ type }) => {
-      if (type === 'Camera') {
-        return {
-          capture: jest.fn(() => new Promise(() => {})),
-          stopCapture: jest.fn(),
-        }
-      }
-    }
-    return renderer.create(<VideoRecorder {...props} />, options || { createNodeMock })
+    return renderer.create(<VideoRecorder {...props} />, options)
   }
 })

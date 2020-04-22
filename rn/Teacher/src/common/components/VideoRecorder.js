@@ -30,7 +30,7 @@ import {
 } from 'react-native'
 import i18n from 'format-message'
 import images from '../../images'
-import Camera, { constants as CameraConstants } from 'react-native-camera'
+import { RNCamera as Camera } from 'react-native-camera'
 import Video from './Video'
 
 export type Props = {
@@ -148,14 +148,11 @@ export default class VideoRecorder extends Component<Props, any> {
         }
         { showingCamera &&
           <Camera
-            captureTarget={CameraConstants.CaptureTarget.disk}
-            captureMode={CameraConstants.CaptureMode.video}
-            captureAudio={true}
-            captureQuality={CameraConstants.CaptureQuality.medium}
-            type={CameraConstants.Type.front}
-            style={style.camera}
-            aspect={CameraConstants.Aspect.fit}
+            captureAudio
+            defaultVideoQuality={1 /* medium */}
             ref={this.captureCamera}
+            style={style.camera}
+            type={Camera.Constants.Type.front}
           />
         }
         { finished &&
@@ -179,8 +176,8 @@ export default class VideoRecorder extends Component<Props, any> {
   startRecording () {
     LayoutAnimation.configureNext(StartStopButtonAnimation)
     this.setState({ recording: true })
-    this.camera.capture().then(({ path }) => {
-      this.setState({ filePath: path, loading: false })
+    this.camera.recordAsync().then(({ uri }) => {
+      this.setState({ filePath: uri, loading: false })
     })
     this.currentTimeInterval = setInterval(() => {
       this.setState(prevState => ({
@@ -191,7 +188,7 @@ export default class VideoRecorder extends Component<Props, any> {
 
   stopRecording () {
     this.setState({ recording: false, loading: true })
-    this.camera && this.camera.stopCapture()
+    this.camera && this.camera.stopRecording()
     LayoutAnimation.configureNext(StartStopButtonAnimation)
     this.currentTimeInterval && clearInterval(this.currentTimeInterval)
   }
@@ -214,7 +211,7 @@ export default class VideoRecorder extends Component<Props, any> {
 
   cancel = () => {
     this.currentTimeInterval && clearInterval(this.currentTimeInterval)
-    this.camera && this.camera.stopCapture()
+    this.camera && this.camera.stopRecording()
     this.props.onCancel()
   }
 }

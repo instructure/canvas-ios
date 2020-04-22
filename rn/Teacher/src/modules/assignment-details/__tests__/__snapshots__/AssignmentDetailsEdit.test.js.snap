@@ -33,7 +33,6 @@ exports[`error occurs when done pressed 1`] = `
   >
     <Modal
       animationType="fade"
-      hardwareAccelerated={false}
       supportedOrientations={
         Array [
           "portrait",
@@ -847,7 +846,6 @@ exports[`modal saving is shown on assignment update 1`] = `
   >
     <Modal
       animationType="fade"
-      hardwareAccelerated={false}
       supportedOrientations={
         Array [
           "portrait",
@@ -1661,7 +1659,6 @@ exports[`renders 1`] = `
   >
     <Modal
       animationType="fade"
-      hardwareAccelerated={false}
       supportedOrientations={
         Array [
           "portrait",
@@ -2475,7 +2472,6 @@ exports[`saving invalid dates displays banner 1`] = `
   >
     <Modal
       animationType="fade"
-      hardwareAccelerated={false}
       supportedOrientations={
         Array [
           "portrait",
@@ -3293,7 +3289,6 @@ exports[`saving invalid name displays banner 1`] = `
   >
     <Modal
       animationType="fade"
-      hardwareAccelerated={false}
       supportedOrientations={
         Array [
           "portrait",
@@ -4138,7 +4133,6 @@ exports[`saving invalid points possible displays banner 1`] = `
   >
     <Modal
       animationType="fade"
-      hardwareAccelerated={false}
       supportedOrientations={
         Array [
           "portrait",
@@ -4983,7 +4977,6 @@ exports[`saving negative points possible displays banner 1`] = `
   >
     <Modal
       animationType="fade"
-      hardwareAccelerated={false}
       supportedOrientations={
         Array [
           "portrait",

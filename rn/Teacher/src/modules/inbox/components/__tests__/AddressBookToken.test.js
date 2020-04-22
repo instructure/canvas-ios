@@ -33,7 +33,7 @@ let defaultProps = {
   delete: jest.fn(),
 }
 
-jest.mock('TouchableOpacity', () => 'TouchableOpacity')
+jest.mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
 
 describe('AddressBookToken', () => {
   it('renders', () => {

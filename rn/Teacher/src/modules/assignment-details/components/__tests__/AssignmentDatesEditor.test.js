@@ -24,9 +24,9 @@ import AssignmentDatesEditor, { type StagedAssignmentDate } from '../AssignmentD
 import renderer from 'react-test-renderer'
 
 jest.mock('../../../../routing')
-jest.mock('LayoutAnimation')
+jest.mock('react-native/Libraries/LayoutAnimation/LayoutAnimation')
 
-jest.mock('Alert', () => {
+jest.mock('react-native/Libraries/Alert/Alert', () => {
   return {
     alert: jest.fn(),
   }
@@ -40,7 +40,7 @@ const template = {
 }
 
 beforeEach(() => {
-  jest.resetAllMocks()
+  jest.clearAllMocks()
 })
 
 describe('function tests', () => {

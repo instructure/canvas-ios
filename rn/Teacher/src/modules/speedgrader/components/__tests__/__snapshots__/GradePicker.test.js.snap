@@ -177,19 +177,17 @@ exports[`GradePicker doesnt render late policy if no grade 1`] = `
       <View
         accessibilityLabel="Lowest possible score, 0"
         accessible={true}
-        isTVSelectable={true}
+        focusable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={null}
         testID="slider.zero"
       >
-        <View
-          style={null}
-        >
+        <View>
           <Text
             style={
               Array [
@@ -290,19 +288,17 @@ exports[`GradePicker doesnt render late policy if no grade 1`] = `
       <View
         accessibilityLabel="Highest possible score, 10"
         accessible={true}
-        isTVSelectable={true}
+        focusable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={null}
         testID="slider.pointsPossible"
       >
-        <View
-          style={null}
-        >
+        <View>
           <Text
             style={
               Array [
@@ -408,6 +404,22 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
             9/10
           </Text>
         </TouchableOpacity>
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/off.png",
+            }
+          }
+          style={
+            Object {
+              "height": 20,
+              "marginLeft": 10,
+              "tintColor": "#EE0612",
+              "width": 20,
+            }
+          }
+          testID="GradePicker.postedEye"
+        />
       </View>
     </View>
     <View
@@ -511,19 +523,17 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
       <View
         accessibilityLabel="Lowest possible score, 0"
         accessible={true}
-        isTVSelectable={true}
+        focusable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={null}
         testID="slider.zero"
       >
-        <View
-          style={null}
-        >
+        <View>
           <Text
             style={
               Array [
@@ -624,19 +634,17 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
       <View
         accessibilityLabel="Highest possible score, 10"
         accessible={true}
-        isTVSelectable={true}
+        focusable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={null}
         testID="slider.pointsPossible"
       >
-        <View
-          style={null}
-        >
+        <View>
           <Text
             style={
               Array [
@@ -742,6 +750,22 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
             9/10
           </Text>
         </TouchableOpacity>
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/off.png",
+            }
+          }
+          style={
+            Object {
+              "height": 20,
+              "marginLeft": 10,
+              "tintColor": "#EE0612",
+              "width": 20,
+            }
+          }
+          testID="GradePicker.postedEye"
+        />
       </View>
     </View>
     <View
@@ -845,19 +869,17 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
       <View
         accessibilityLabel="Lowest possible score, 0"
         accessible={true}
-        isTVSelectable={true}
+        focusable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={null}
         testID="slider.zero"
       >
-        <View
-          style={null}
-        >
+        <View>
           <Text
             style={
               Array [
@@ -958,19 +980,17 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
       <View
         accessibilityLabel="Highest possible score, 10"
         accessible={true}
-        isTVSelectable={true}
+        focusable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={null}
         testID="slider.pointsPossible"
       >
-        <View
-          style={null}
-        >
+        <View>
           <Text
             style={
               Array [
@@ -1071,6 +1091,22 @@ exports[`GradePicker renders points based grades 1`] = `
             5/10
           </Text>
         </TouchableOpacity>
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/off.png",
+            }
+          }
+          style={
+            Object {
+              "height": 20,
+              "marginLeft": 10,
+              "tintColor": "#EE0612",
+              "width": 20,
+            }
+          }
+          testID="GradePicker.postedEye"
+        />
       </View>
     </View>
     <View
@@ -1088,19 +1124,17 @@ exports[`GradePicker renders points based grades 1`] = `
       <View
         accessibilityLabel="Lowest possible score, 0"
         accessible={true}
-        isTVSelectable={true}
+        focusable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={null}
         testID="slider.zero"
       >
-        <View
-          style={null}
-        >
+        <View>
           <Text
             style={
               Array [
@@ -1201,19 +1235,17 @@ exports[`GradePicker renders points based grades 1`] = `
       <View
         accessibilityLabel="Highest possible score, 10"
         accessible={true}
-        isTVSelectable={true}
+        focusable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={null}
         testID="slider.pointsPossible"
       >
-        <View
-          style={null}
-        >
+        <View>
           <Text
             style={
               Array [
@@ -1322,19 +1354,17 @@ exports[`GradePicker renders the activity indicator when pending 1`] = `
       <View
         accessibilityLabel="Lowest possible score, 0"
         accessible={true}
-        isTVSelectable={true}
+        focusable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={null}
         testID="slider.zero"
       >
-        <View
-          style={null}
-        >
+        <View>
           <Text
             style={
               Array [
@@ -1435,19 +1465,17 @@ exports[`GradePicker renders the activity indicator when pending 1`] = `
       <View
         accessibilityLabel="Highest possible score, 10"
         accessible={true}
-        isTVSelectable={true}
+        focusable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={null}
         testID="slider.pointsPossible"
       >
-        <View
-          style={null}
-        >
+        <View>
           <Text
             style={
               Array [
@@ -1658,6 +1686,22 @@ exports[`GradePicker renders the rubric score when useRubricForGrading 1`] = `
             22/10
           </Text>
         </TouchableOpacity>
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/off.png",
+            }
+          }
+          style={
+            Object {
+              "height": 20,
+              "marginLeft": 10,
+              "tintColor": "#EE0612",
+              "width": 20,
+            }
+          }
+          testID="GradePicker.postedEye"
+        />
       </View>
     </View>
   </View>
@@ -1758,19 +1802,17 @@ exports[`GradePicker renders with excused 1`] = `
       <View
         accessibilityLabel="Lowest possible score, 0"
         accessible={true}
-        isTVSelectable={true}
+        focusable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={null}
         testID="slider.zero"
       >
-        <View
-          style={null}
-        >
+        <View>
           <Text
             style={
               Array [
@@ -1871,19 +1913,17 @@ exports[`GradePicker renders with excused 1`] = `
       <View
         accessibilityLabel="Highest possible score, 10"
         accessible={true}
-        isTVSelectable={true}
+        focusable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={null}
         testID="slider.pointsPossible"
       >
-        <View
-          style={null}
-        >
+        <View>
           <Text
             style={
               Array [
@@ -1998,19 +2038,17 @@ exports[`GradePicker renders with no grade 1`] = `
       <View
         accessibilityLabel="Lowest possible score, 0"
         accessible={true}
-        isTVSelectable={true}
+        focusable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={null}
         testID="slider.zero"
       >
-        <View
-          style={null}
-        >
+        <View>
           <Text
             style={
               Array [
@@ -2111,19 +2149,17 @@ exports[`GradePicker renders with no grade 1`] = `
       <View
         accessibilityLabel="Highest possible score, 10"
         accessible={true}
-        isTVSelectable={true}
+        focusable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={null}
         testID="slider.pointsPossible"
       >
-        <View
-          style={null}
-        >
+        <View>
           <Text
             style={
               Array [
@@ -2224,6 +2260,22 @@ exports[`GradePicker updates the visible rubric score when useRubricForGrading a
             22/10
           </Text>
         </TouchableOpacity>
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/off.png",
+            }
+          }
+          style={
+            Object {
+              "height": 20,
+              "marginLeft": 10,
+              "tintColor": "#EE0612",
+              "width": 20,
+            }
+          }
+          testID="GradePicker.postedEye"
+        />
       </View>
     </View>
   </View>

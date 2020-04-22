@@ -157,9 +157,7 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
           }
         }
       />
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
+      <ForwardRef
         onPress={[Function]}
         testID="course-settings.toggle-home-picker"
         underlayColor="#eee"
@@ -218,7 +216,7 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
             </Text>
           </View>
         </View>
-      </TouchableHighlight>
+      </ForwardRef>
       <View
         style={
           Object {
@@ -402,9 +400,7 @@ exports[`CourseSettings renders 1`] = `
           }
         }
       />
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
+      <ForwardRef
         onPress={[Function]}
         testID="course-settings.toggle-home-picker"
         underlayColor="#eee"
@@ -463,7 +459,7 @@ exports[`CourseSettings renders 1`] = `
             </Text>
           </View>
         </View>
-      </TouchableHighlight>
+      </ForwardRef>
       <View
         style={
           Object {
@@ -647,9 +643,7 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
           }
         }
       />
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
+      <ForwardRef
         onPress={[Function]}
         testID="course-settings.toggle-home-picker"
         underlayColor="#eee"
@@ -708,7 +702,7 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
             </Text>
           </View>
         </View>
-      </TouchableHighlight>
+      </ForwardRef>
       <View
         style={
           Object {
@@ -876,9 +870,7 @@ exports[`CourseSettings renders with empty image url 1`] = `
           }
         }
       />
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
+      <ForwardRef
         onPress={[Function]}
         testID="course-settings.toggle-home-picker"
         underlayColor="#eee"
@@ -937,7 +929,7 @@ exports[`CourseSettings renders with empty image url 1`] = `
             </Text>
           </View>
         </View>
-      </TouchableHighlight>
+      </ForwardRef>
       <View
         style={
           Object {
@@ -1121,9 +1113,7 @@ exports[`CourseSettings renders with image url 1`] = `
           }
         }
       />
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
+      <ForwardRef
         onPress={[Function]}
         testID="course-settings.toggle-home-picker"
         underlayColor="#eee"
@@ -1182,7 +1172,7 @@ exports[`CourseSettings renders with image url 1`] = `
             </Text>
           </View>
         </View>
-      </TouchableHighlight>
+      </ForwardRef>
       <View
         style={
           Object {
@@ -1350,9 +1340,7 @@ exports[`CourseSettings renders without image url 1`] = `
           }
         }
       />
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
+      <ForwardRef
         onPress={[Function]}
         testID="course-settings.toggle-home-picker"
         underlayColor="#eee"
@@ -1411,7 +1399,7 @@ exports[`CourseSettings renders without image url 1`] = `
             </Text>
           </View>
         </View>
-      </TouchableHighlight>
+      </ForwardRef>
       <View
         style={
           Object {
@@ -1595,9 +1583,7 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
           }
         }
       />
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
+      <ForwardRef
         onPress={[Function]}
         testID="course-settings.toggle-home-picker"
         underlayColor="#eee"
@@ -1658,7 +1644,7 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
             </Text>
           </View>
         </View>
-      </TouchableHighlight>
+      </ForwardRef>
       <View
         style={
           Object {

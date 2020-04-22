@@ -20,9 +20,7 @@ exports[`SpeedGraderHeader doesnt show the group name when anonymous 1`] = `
       }
     }
   >
-    <TouchableHighlight
-      activeOpacity={0.85}
-      delayPressOut={100}
+    <ForwardRef
       style={
         Object {
           "alignItems": "center",
@@ -87,7 +85,7 @@ exports[`SpeedGraderHeader doesnt show the group name when anonymous 1`] = `
           />
         </View>
       </View>
-    </TouchableHighlight>
+    </ForwardRef>
     <View
       style={
         Object {
@@ -96,9 +94,44 @@ exports[`SpeedGraderHeader doesnt show the group name when anonymous 1`] = `
         }
       }
     >
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
+      <ForwardRef
+        onPress={[Function]}
+        testID="header.navigation-eye"
+        underlayColor="#FFFFFF"
+      >
+        <View
+          style={
+            Object {
+              "paddingLeft": 20,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "eyeLine",
+              }
+            }
+            style={
+              Object {
+                "height": 20,
+                "tintColor": "#8B969E",
+                "width": 20,
+              }
+            }
+          />
+        </View>
+      </ForwardRef>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "marginRight": 12,
+        }
+      }
+    >
+      <ForwardRef
         onPress={[MockFunction]}
         testID="header.navigation-done"
         underlayColor="#FFFFFF"
@@ -114,7 +147,7 @@ exports[`SpeedGraderHeader doesnt show the group name when anonymous 1`] = `
         >
           Done
         </Text>
-      </TouchableHighlight>
+      </ForwardRef>
     </View>
   </View>
 </View>
@@ -140,9 +173,7 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
       }
     }
   >
-    <TouchableHighlight
-      activeOpacity={0.85}
-      delayPressOut={100}
+    <ForwardRef
       onPress={[Function]}
       style={
         Object {
@@ -208,7 +239,7 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
           />
         </View>
       </View>
-    </TouchableHighlight>
+    </ForwardRef>
     <View
       style={
         Object {
@@ -217,9 +248,44 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
         }
       }
     >
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
+      <ForwardRef
+        onPress={[Function]}
+        testID="header.navigation-eye"
+        underlayColor="#FFFFFF"
+      >
+        <View
+          style={
+            Object {
+              "paddingLeft": 20,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "eyeLine",
+              }
+            }
+            style={
+              Object {
+                "height": 20,
+                "tintColor": "#8B969E",
+                "width": 20,
+              }
+            }
+          />
+        </View>
+      </ForwardRef>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "marginRight": 12,
+        }
+      }
+    >
+      <ForwardRef
         onPress={[MockFunction]}
         testID="header.navigation-done"
         underlayColor="#FFFFFF"
@@ -235,7 +301,7 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
         >
           Done
         </Text>
-      </TouchableHighlight>
+      </ForwardRef>
     </View>
   </View>
 </View>
@@ -261,9 +327,7 @@ exports[`SpeedGraderHeader renders with a group submission 1`] = `
       }
     }
   >
-    <TouchableHighlight
-      activeOpacity={0.85}
-      delayPressOut={100}
+    <ForwardRef
       onPress={[Function]}
       style={
         Object {
@@ -329,7 +393,7 @@ exports[`SpeedGraderHeader renders with a group submission 1`] = `
           />
         </View>
       </View>
-    </TouchableHighlight>
+    </ForwardRef>
     <View
       style={
         Object {
@@ -338,9 +402,44 @@ exports[`SpeedGraderHeader renders with a group submission 1`] = `
         }
       }
     >
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
+      <ForwardRef
+        onPress={[Function]}
+        testID="header.navigation-eye"
+        underlayColor="#FFFFFF"
+      >
+        <View
+          style={
+            Object {
+              "paddingLeft": 20,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "eyeLine",
+              }
+            }
+            style={
+              Object {
+                "height": 20,
+                "tintColor": "#8B969E",
+                "width": 20,
+              }
+            }
+          />
+        </View>
+      </ForwardRef>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "marginRight": 12,
+        }
+      }
+    >
+      <ForwardRef
         onPress={[MockFunction]}
         testID="header.navigation-done"
         underlayColor="#FFFFFF"
@@ -356,7 +455,7 @@ exports[`SpeedGraderHeader renders with a group submission 1`] = `
         >
           Done
         </Text>
-      </TouchableHighlight>
+      </ForwardRef>
     </View>
   </View>
 </View>
@@ -382,9 +481,7 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
       }
     }
   >
-    <TouchableHighlight
-      activeOpacity={0.85}
-      delayPressOut={100}
+    <ForwardRef
       onPress={[Function]}
       style={
         Object {
@@ -450,7 +547,7 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
           />
         </View>
       </View>
-    </TouchableHighlight>
+    </ForwardRef>
     <View
       style={
         Object {
@@ -459,9 +556,44 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
         }
       }
     >
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
+      <ForwardRef
+        onPress={[Function]}
+        testID="header.navigation-eye"
+        underlayColor="#FFFFFF"
+      >
+        <View
+          style={
+            Object {
+              "paddingLeft": 20,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "eyeLine",
+              }
+            }
+            style={
+              Object {
+                "height": 20,
+                "tintColor": "#8B969E",
+                "width": 20,
+              }
+            }
+          />
+        </View>
+      </ForwardRef>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "marginRight": 12,
+        }
+      }
+    >
+      <ForwardRef
         onPress={[MockFunction]}
         testID="header.navigation-done"
         underlayColor="#FFFFFF"
@@ -477,7 +609,7 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
         >
           Done
         </Text>
-      </TouchableHighlight>
+      </ForwardRef>
     </View>
   </View>
 </View>
@@ -503,9 +635,7 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
       }
     }
   >
-    <TouchableHighlight
-      activeOpacity={0.85}
-      delayPressOut={100}
+    <ForwardRef
       onPress={[Function]}
       style={
         Object {
@@ -571,7 +701,7 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
           />
         </View>
       </View>
-    </TouchableHighlight>
+    </ForwardRef>
     <View
       style={
         Object {
@@ -580,9 +710,44 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
         }
       }
     >
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
+      <ForwardRef
+        onPress={[Function]}
+        testID="header.navigation-eye"
+        underlayColor="#FFFFFF"
+      >
+        <View
+          style={
+            Object {
+              "paddingLeft": 20,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "eyeLine",
+              }
+            }
+            style={
+              Object {
+                "height": 20,
+                "tintColor": "#8B969E",
+                "width": 20,
+              }
+            }
+          />
+        </View>
+      </ForwardRef>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "marginRight": 12,
+        }
+      }
+    >
+      <ForwardRef
         onPress={[MockFunction]}
         testID="header.navigation-done"
         underlayColor="#FFFFFF"
@@ -598,7 +763,7 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
         >
           Done
         </Text>
-      </TouchableHighlight>
+      </ForwardRef>
     </View>
   </View>
 </View>
@@ -624,9 +789,7 @@ exports[`SpeedGraderHeader renders with an ungraded submission 1`] = `
       }
     }
   >
-    <TouchableHighlight
-      activeOpacity={0.85}
-      delayPressOut={100}
+    <ForwardRef
       onPress={[Function]}
       style={
         Object {
@@ -692,7 +855,7 @@ exports[`SpeedGraderHeader renders with an ungraded submission 1`] = `
           />
         </View>
       </View>
-    </TouchableHighlight>
+    </ForwardRef>
     <View
       style={
         Object {
@@ -701,9 +864,44 @@ exports[`SpeedGraderHeader renders with an ungraded submission 1`] = `
         }
       }
     >
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
+      <ForwardRef
+        onPress={[Function]}
+        testID="header.navigation-eye"
+        underlayColor="#FFFFFF"
+      >
+        <View
+          style={
+            Object {
+              "paddingLeft": 20,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "eyeLine",
+              }
+            }
+            style={
+              Object {
+                "height": 20,
+                "tintColor": "#8B969E",
+                "width": 20,
+              }
+            }
+          />
+        </View>
+      </ForwardRef>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "marginRight": 12,
+        }
+      }
+    >
+      <ForwardRef
         onPress={[MockFunction]}
         testID="header.navigation-done"
         underlayColor="#FFFFFF"
@@ -719,7 +917,7 @@ exports[`SpeedGraderHeader renders with an ungraded submission 1`] = `
         >
           Done
         </Text>
-      </TouchableHighlight>
+      </ForwardRef>
     </View>
   </View>
 </View>
@@ -745,9 +943,7 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
       }
     }
   >
-    <TouchableHighlight
-      activeOpacity={0.85}
-      delayPressOut={100}
+    <ForwardRef
       onPress={[Function]}
       style={
         Object {
@@ -813,7 +1009,7 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
           />
         </View>
       </View>
-    </TouchableHighlight>
+    </ForwardRef>
     <View
       style={
         Object {
@@ -822,9 +1018,44 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
         }
       }
     >
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
+      <ForwardRef
+        onPress={[Function]}
+        testID="header.navigation-eye"
+        underlayColor="#FFFFFF"
+      >
+        <View
+          style={
+            Object {
+              "paddingLeft": 20,
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "eyeLine",
+              }
+            }
+            style={
+              Object {
+                "height": 20,
+                "tintColor": "#8B969E",
+                "width": 20,
+              }
+            }
+          />
+        </View>
+      </ForwardRef>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "marginRight": 12,
+        }
+      }
+    >
+      <ForwardRef
         onPress={[MockFunction]}
         testID="header.navigation-done"
         underlayColor="#FFFFFF"
@@ -840,7 +1071,7 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
         >
           Done
         </Text>
-      </TouchableHighlight>
+      </ForwardRef>
     </View>
   </View>
 </View>

@@ -41,6 +41,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     var loadObservation: NSKeyValueObservation?
     var remoteURL: URL?
     var localURL: URL?
+    var pdfAnnotationsMutatedMoveToDocsDirectory = false
 
     lazy var files = env.subscribe(GetFile(context: context, fileID: fileID)) { [weak self] in
         self?.update()
@@ -168,15 +169,26 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         controller.popoverPresentationController?.barButtonItem = sender
         env.router.show(controller, from: self, options: .modal())
     }
+
+    var filePathComponent: String? {
+        guard let sessionID = env.currentSession?.uniqueID, let name = files.first?.filename else { return nil }
+        return "\(sessionID)/\(fileID)/\(name)"
+    }
 }
 
 extension FileDetailsViewController: URLSessionDownloadDelegate {
     /// This must be called to set `localURL` before initiating download, otherwise there
     /// will be a threading issue with trying to access core data from a different thread.
     func prepLocalURL() -> URL? {
-        guard let sessionID = env.currentSession?.uniqueID, let name = files.first?.filename else { return nil }
-        let base = files.first?.mimeClass == "pdf" ? URL.documentsDirectory : URL.temporaryDirectory
-        return base.appendingPathComponent("\(sessionID)/\(fileID)/\(name)")
+        guard let filePathComponent = filePathComponent else { return nil }
+
+        if files.first?.mimeClass == "pdf" {
+            //  check docs directory first if they have already added/modified annotations on an existing pdf
+            let docsURL = URL.documentsDirectory.appendingPathComponent(filePathComponent)
+            if FileManager.default.fileExists(atPath: docsURL.path) { return docsURL }
+        }
+
+        return URL.temporaryDirectory.appendingPathComponent(filePathComponent)
     }
 
     func downloadFile(at url: URL) {
@@ -337,6 +349,7 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
         }
         controller.delegate = self
         embed(controller, in: contentView)
+        addPDFAnnotationChangeNotifications()
 
         let share = UIBarButtonItem(barButtonSystemItem: .action, target: controller.activityButtonItem.target, action: controller.activityButtonItem.action)
         share.accessibilityIdentifier = "FileDetails.shareButton"
@@ -354,6 +367,23 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
     func saveAnnotations() {
         for child in children {
             _ = try? (child as? PDFViewController)?.document?.save()
+        }
+    }
+
+    public func pdfViewController(_ pdfController: PDFViewController, didSave document: Document, error: Error?) {
+        if pdfAnnotationsMutatedMoveToDocsDirectory, let filePathComponent = filePathComponent {
+            let to = URL.documentsDirectory.appendingPathComponent(filePathComponent)
+            if !FileManager.default.fileExists(atPath: to.path), let from = document.fileURL {
+                do {
+                    try FileManager.default.createDirectory(at: to.deletingLastPathComponent(), withIntermediateDirectories: true)
+                    if FileManager.default.fileExists(atPath: to.path) {
+                        try FileManager.default.removeItem(at: to)
+                    }
+                    try FileManager.default.moveItem(at: from, to: to)
+                } catch {
+                    print("error moving file: \(error)")
+                }
+            }
         }
     }
 
@@ -383,5 +413,16 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
             _ = try? pdfController.document?.save()
         }
         return true
+    }
+
+    func addPDFAnnotationChangeNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(annotationChangedNotification(notification:)), name: .PSPDFAnnotationChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(annotationChangedNotification(notification:)), name: .PSPDFAnnotationsRemoved, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(annotationChangedNotification(notification:)), name: .PSPDFAnnotationsAdded, object: nil)
+    }
+
+    @objc
+    func annotationChangedNotification(notification: Notification) {
+        pdfAnnotationsMutatedMoveToDocsDirectory = true
     }
 }

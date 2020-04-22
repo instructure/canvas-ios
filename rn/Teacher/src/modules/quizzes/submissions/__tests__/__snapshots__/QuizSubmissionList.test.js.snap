@@ -60,6 +60,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
         accessibilityLabel="Filter Submissions. (0) selected."
         accessibilityRole="button"
         accessible={true}
+        focusable={true}
         hitSlop={
           Object {
             "bottom": 15,
@@ -68,7 +69,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
             "top": 15,
           }
         }
-        isTVSelectable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -113,7 +114,8 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
         <View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -408,6 +410,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
         accessibilityLabel="Filter Submissions. (1) selected."
         accessibilityRole="button"
         accessible={true}
+        focusable={true}
         hitSlop={
           Object {
             "bottom": 15,
@@ -416,7 +419,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
             "top": 15,
           }
         }
-        isTVSelectable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -461,7 +464,8 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
         <View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -723,6 +727,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
         accessibilityLabel="Filter Submissions. (0) selected."
         accessibilityRole="button"
         accessible={true}
+        focusable={true}
         hitSlop={
           Object {
             "bottom": 15,
@@ -731,7 +736,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
             "top": 15,
           }
         }
-        isTVSelectable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -776,7 +781,8 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
         <View>
           <View
             accessible={true}
-            isTVSelectable={true}
+            focusable={true}
+            onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}

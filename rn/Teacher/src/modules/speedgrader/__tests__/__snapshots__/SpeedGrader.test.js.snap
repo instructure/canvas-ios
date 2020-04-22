@@ -272,27 +272,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               "courseID": "1",
               "drawerPosition": 0,
               "getCourseEnabledFeatures": [MockFunction],
-              "getEnabledFeatureFlags": [MockFunction] {
-                "calls": Array [
-                  Array [
-                    "courses",
-                    "1",
-                  ],
-                ],
-                "results": Array [
-                  Object {
-                    "type": "return",
-                    "value": Promise {
-                      "_40": 0,
-                      "_55": Object {
-                        "data": Array [],
-                      },
-                      "_65": 1,
-                      "_72": null,
-                    },
-                  },
-                ],
-              },
               "gradeSubmissionWithRubric": [MockFunction],
               "navigator": Object {
                 "dismiss": [MockFunction],
@@ -333,7 +312,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               "currentPageIndex": 0,
               "currentStudentID": "1",
               "drawerInset": 62,
-              "flags": Array [],
               "hasScrolledToInitialSubmission": false,
               "hasSetInitialDrawerPosition": false,
               "scrollEnabled": true,
@@ -362,13 +340,16 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   "useCallback": [Function],
                   "useContext": [Function],
                   "useDebugValue": [Function],
+                  "useDeferredValue": [Function],
                   "useEffect": [Function],
                   "useImperativeHandle": [Function],
                   "useLayoutEffect": [Function],
                   "useMemo": [Function],
                   "useReducer": [Function],
                   "useRef": [Function],
+                  "useResponder": [Function],
                   "useState": [Function],
+                  "useTransition": [Function],
                 },
                 "_element": <SpeedGrader
                   assignmentID="1"
@@ -380,29 +361,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   courseID="1"
                   drawerPosition={0}
                   getCourseEnabledFeatures={[MockFunction]}
-                  getEnabledFeatureFlags={
-                    [MockFunction] {
-                      "calls": Array [
-                        Array [
-                          "courses",
-                          "1",
-                        ],
-                      ],
-                      "results": Array [
-                        Object {
-                          "type": "return",
-                          "value": Promise {
-                            "_40": 0,
-                            "_55": Object {
-                              "data": Array [],
-                            },
-                            "_65": 1,
-                            "_72": null,
-                          },
-                        },
-                      ],
-                    }
-                  }
                   gradeSubmissionWithRubric={[MockFunction]}
                   navigator={
                     Object {
@@ -531,7 +489,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
         "traitCollection": [MockFunction],
       }
     }
-    newGradebookEnabled={false}
     selectedAttachmentIndex={null}
     selectedIndex={null}
     selectedTabIndex={-1}
