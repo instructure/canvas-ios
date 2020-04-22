@@ -680,6 +680,7 @@
 		B11AEBB9240724FA00B736D6 /* Planner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AEBB8240724FA00B736D6 /* Planner.swift */; };
 		B11AEBBB240727AE00B736D6 /* GetPlannerCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AEBBA240727AE00B736D6 /* GetPlannerCourses.swift */; };
 		B11AEBBD24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AEBBC24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift */; };
+		B12151832447A78900D34BE4 /* CompletionRequirementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12151822447A78900D34BE4 /* CompletionRequirementTests.swift */; };
 		B12A763821914059000693DE /* fileupload.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A763721914059000693DE /* fileupload.txt */; };
 		B12A763A2191459F000693DE /* file-post-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A76392191459F000693DE /* file-post-body.txt */; };
 		B133A78A221F59A3000E393E /* ContextColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B133A789221F59A3000E393E /* ContextColorTests.swift */; };
@@ -704,6 +705,7 @@
 		B15CA273221DE1FA0014FB02 /* GetModulesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA272221DE1FA0014FB02 /* GetModulesTests.swift */; };
 		B15CA275221DE8E50014FB02 /* APIModuleRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA274221DE8E50014FB02 /* APIModuleRequestableTests.swift */; };
 		B15CA284221E00870014FB02 /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA283221E00870014FB02 /* ModuleTests.swift */; };
+		B162469F2445001F00982C52 /* CompletionRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162469E2445001E00982C52 /* CompletionRequirement.swift */; };
 		B164DC1F22DE2AB30037FA86 /* APIAccountResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164DC1E22DE2AB30037FA86 /* APIAccountResultTests.swift */; };
 		B16E05E02423D770006B6ADB /* LoginQRCodeTutorialViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B16E05DF2423D770006B6ADB /* LoginQRCodeTutorialViewController.storyboard */; };
 		B16E05E22423DF83006B6ADB /* LoginQRCodeTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16E05E12423DF83006B6ADB /* LoginQRCodeTutorialViewController.swift */; };
@@ -1694,6 +1696,7 @@
 		B11AEBBA240727AE00B736D6 /* GetPlannerCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlannerCourses.swift; sourceTree = "<group>"; };
 		B11AEBBC24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerFilterViewControllerTests.swift; sourceTree = "<group>"; };
 		B11D321621E464AB00F37ABF /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		B12151822447A78900D34BE4 /* CompletionRequirementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionRequirementTests.swift; sourceTree = "<group>"; };
 		B12A763721914059000693DE /* fileupload.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = fileupload.txt; sourceTree = "<group>"; };
 		B12A76392191459F000693DE /* file-post-body.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "file-post-body.txt"; sourceTree = "<group>"; };
 		B12D462B23D754CF0000ED55 /* GoogleCloudAssignmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCloudAssignmentViewController.swift; sourceTree = "<group>"; };
@@ -1729,6 +1732,7 @@
 		B15CA27D221DFA450014FB02 /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		B15CA283221E00870014FB02 /* ModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTests.swift; sourceTree = "<group>"; };
 		B15E4B86238C4DC2002119CF /* Syllabus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syllabus.swift; sourceTree = "<group>"; };
+		B162469E2445001E00982C52 /* CompletionRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionRequirement.swift; sourceTree = "<group>"; };
 		B164DC1E22DE2AB30037FA86 /* APIAccountResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountResultTests.swift; sourceTree = "<group>"; };
 		B16E05DF2423D770006B6ADB /* LoginQRCodeTutorialViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginQRCodeTutorialViewController.storyboard; sourceTree = "<group>"; };
 		B16E05E12423DF83006B6ADB /* LoginQRCodeTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginQRCodeTutorialViewController.swift; sourceTree = "<group>"; };
@@ -2557,6 +2561,7 @@
 		7D159CE9242E553900A77A15 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				B162469E2445001E00982C52 /* CompletionRequirement.swift */,
 				B1A784892441136C001A2B50 /* GetModuleItem.swift */,
 				B1A7848A2441136C001A2B50 /* GetModuleItemSequence.swift */,
 				B1A784882441136C001A2B50 /* GetModules.swift */,
@@ -2852,6 +2857,7 @@
 		7D67C26A242E6BE900BC5CD1 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				B12151822447A78900D34BE4 /* CompletionRequirementTests.swift */,
 				B1F614AC243D0BD300F1FBA3 /* ModuleItems */,
 				7D67C268242E6BE900BC5CD1 /* ModuleListViewControllerTests.swift */,
 				7D67C269242E6BE900BC5CD1 /* ModuleStoreTests.swift */,
@@ -4679,6 +4685,7 @@
 				B16E05E4242529D4006B6ADB /* ScannerViewControllerTests.swift in Sources */,
 				7D0215A121B88BDC009A8E69 /* UITabBarExtensionsTests.swift in Sources */,
 				7DC4A559222EFC9900FA03DC /* Int64ExtensionsTests.swift in Sources */,
+				B12151832447A78900D34BE4 /* CompletionRequirementTests.swift in Sources */,
 				B10E89072384807B00E7684E /* GradeListViewControllerTests.swift in Sources */,
 				7D20F61B21C31CE900B77E5E /* UICollectionViewExtensionsTests.swift in Sources */,
 				7DCF1EC0216BC97F003AF358 /* TabVisibilityTests.swift in Sources */,
@@ -4836,6 +4843,7 @@
 				B1A7848C2441136C001A2B50 /* GetModuleItem.swift in Sources */,
 				7D159CEB242E556100A77A15 /* ModuleItemSubHeaderCell.swift in Sources */,
 				7DA260E523F72359005D2121 /* PublishedIconView.swift in Sources */,
+				B162469F2445001F00982C52 /* CompletionRequirement.swift in Sources */,
 				7DA25FFB23F7226E005D2121 /* DocViewerConstants.swift in Sources */,
 				7DA2600623F7227A005D2121 /* Int64Extensions.swift in Sources */,
 				7DA25F9123F72128005D2121 /* GradeListViewController.swift in Sources */,

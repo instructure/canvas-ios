@@ -55,7 +55,11 @@ public class Module: NSManagedObject {
         module.name = item.name
         module.position = item.position
         module.published = item.published
-        module.items = item.items?.map { ModuleItem.save($0, forCourse: courseID, in: context) } ?? []
+        module.items = item.items?.map {
+            let item = ModuleItem.save($0, forCourse: courseID, in: context)
+            item.completionRequirement = $0.completion_requirement
+            return item
+        } ?? []
         return module
     }
 }

@@ -125,8 +125,10 @@ extension UIViewController {
         title = viewController.title
         navigationItem.title = viewController.title
         navigationItem.titleView = viewController.navigationItem.titleView
-        navigationItem.rightBarButtonItems = viewController.navigationItem.rightBarButtonItems
-        navigationItem.leftBarButtonItems = viewController.navigationItem.leftBarButtonItems
+        let right = navigationItem.rightBarButtonItems ?? []
+        let left = navigationItem.leftBarButtonItems ?? []
+        navigationItem.rightBarButtonItems = (viewController.navigationItem.rightBarButtonItems ?? []) + right
+        navigationItem.leftBarButtonItems = (viewController.navigationItem.leftBarButtonItems ?? []) + left
         return [
             viewController.observe(\.title) { [weak self] item, _ in
                 self?.title = item.title
@@ -138,10 +140,10 @@ extension UIViewController {
                 self?.navigationItem.titleView = item.titleView
             },
             viewController.navigationItem.observe(\.rightBarButtonItems) { [weak self] item, _ in
-                self?.navigationItem.rightBarButtonItems = item.rightBarButtonItems
+                self?.navigationItem.rightBarButtonItems = (item.rightBarButtonItems ?? []) + right
             },
             viewController.navigationItem.observe(\.leftBarButtonItems) { [weak self] item, _ in
-                self?.navigationItem.leftBarButtonItems = item.leftBarButtonItems
+                self?.navigationItem.leftBarButtonItems = (item.leftBarButtonItems ?? []) + left
             },
         ]
     }

@@ -34,17 +34,9 @@ public struct APIModule: Codable, Equatable {
 public struct APIModuleItem: Codable, Equatable {
     public struct ContentDetails: Codable, Equatable {
         public let due_at: Date?
+        public let points_possible: Double?
         public let locked_for_user: Bool?
         public let lock_explanation: String?
-    }
-
-    public struct CompletionRequirement: Codable, Equatable {
-        public enum CompletionRequirementType: String, Codable {
-            case must_view, must_submit, must_contribute, min_score, must_mark_done
-        }
-        public let type: CompletionRequirementType
-        public let completed: Bool?
-        public let min_score: Double?
     }
 
     public let id: ID
@@ -64,7 +56,7 @@ public struct APIModuleItem: Codable, Equatable {
     /// Only present if the caller has permission to view unpublished items
     public let published: Bool?
     public let content_details: ContentDetails? // include[]=content_details not available in sequence call
-    public let completion_requirement: CompletionRequirement?
+    public let completion_requirement: CompletionRequirement? // not available in sequence call
 
     public init(
         id: ID,

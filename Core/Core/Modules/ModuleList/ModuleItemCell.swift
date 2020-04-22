@@ -30,18 +30,23 @@ class ModuleItemCell: UITableViewCell {
 
     func update(_ item: ModuleItem) {
         backgroundColor = .named(.backgroundLightest)
+        isUserInteractionEnabled = !item.lockedForUser
         nameLabel.text = item.title
+        nameLabel.isEnabled = !item.lockedForUser
         iconView.image = item.type?.icon
         publishedIconView.published = item.published
         indentConstraint.constant = CGFloat(item.indent) * ModuleItemCell.IndentMultiplier
-        dueLabel.isHidden = item.dueAt == nil
-        dueLabel.text = item.dueAt.flatMap {
+        let dueAt = item.dueAt.flatMap { DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .none) }
+        let points = item.pointsPossible.flatMap {
             String.localizedStringWithFormat(
-                NSLocalizedString("Due %@", bundle: .core, comment: ""),
-                DateFormatter.localizedString(from: $0, dateStyle: .long, timeStyle: .short)
+                NSLocalizedString("%@ pts", bundle: .core, comment: ""),
+                NSNumber(value: $0)
             )
         }
-        accessibilityLabel = item.title
+        let requirement = item.completionRequirement?.description
+        dueLabel.text = [dueAt, points, requirement].compactMap { $0 }.joined(separator: " | ")
+        dueLabel.isHidden = dueLabel.text == nil
+        accessibilityLabel = [item.title, dueLabel.text].compactMap { $0 }.joined(separator: ",")
         if !publishedIconView.isHidden {
             accessibilityLabel = [
                 item.title,

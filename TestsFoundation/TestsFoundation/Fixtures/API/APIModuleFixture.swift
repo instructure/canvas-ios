@@ -52,7 +52,7 @@ extension APIModuleItem {
         html_url: URL? = URL(string: "https://canvas.example.edu/courses/222/modules/items/768"),
         url: URL? = URL(string: "https://canvas.example.edu/api/v1/courses/222/assignments/987"),
         published: Bool? = nil,
-        content_details: ContentDetails = .make(),
+        content_details: ContentDetails? = nil,
         completion_requirement: CompletionRequirement? = nil
     ) -> APIModuleItem {
         return APIModuleItem(
@@ -74,24 +74,16 @@ extension APIModuleItem {
 extension APIModuleItem.ContentDetails {
     public static func make(
         due_at: Date? = nil,
+        points_possible: Double? = nil,
         locked_for_user: Bool? = nil,
         lock_explanation: String? = nil
     ) -> APIModuleItem.ContentDetails {
         return APIModuleItem.ContentDetails(
             due_at: due_at,
+            points_possible: points_possible,
             locked_for_user: locked_for_user,
             lock_explanation: lock_explanation
         )
-    }
-}
-
-extension APIModuleItem.CompletionRequirement {
-    public static func make(
-        type: CompletionRequirementType = .must_view,
-        completed: Bool? = false,
-        min_score: Double? = nil
-    ) -> APIModuleItem.CompletionRequirement {
-        return APIModuleItem.CompletionRequirement(type: type, completed: completed, min_score: min_score)
     }
 }
 

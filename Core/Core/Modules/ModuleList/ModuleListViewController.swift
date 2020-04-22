@@ -92,6 +92,7 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol 
         }
 
         NotificationCenter.default.addObserver(self, selector: #selector(moduleItemViewDidLoad), name: .moduleItemViewDidLoad, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshProgress), name: .moduleItemRequirementCompleted, object: nil)
 
         courses.refresh()
         colors.refresh()
@@ -107,7 +108,7 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: selectedIndexPath, animated: true)
+            tableView.deselectRow(at: selectedIndexPath, animated: false)
         }
         if let color = color {
             navigationController?.navigationBar.useContextColor(color)
@@ -121,6 +122,12 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol 
 
     @objc func refresh() {
         errorView.isHidden = true
+        store.refresh(force: true)
+    }
+
+    @objc func refreshProgress() {
+        errorView.isHidden = true
+        spinnerView.isHidden = false
         store.refresh(force: true)
     }
 
@@ -148,6 +155,7 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol 
 
     @objc func moduleItemViewDidLoad(_ notification: Notification) {
         guard
+            splitViewController?.isCollapsed == false,
             let userInfo = notification.userInfo,
             let moduleID = userInfo["moduleID"] as? String,
             let itemID = userInfo["itemID"] as? String,
@@ -160,7 +168,15 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol 
         let indexPath = IndexPath(row: row, section: section)
         if tableView.indexPathsForSelectedRows?.contains(indexPath) == true { return }
         tableView.indexPathsForSelectedRows?.forEach { tableView.deselectRow(at: $0, animated: true) }
-        tableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
+        if tableView.cellForRow(at: indexPath) != nil {
+            tableView.selectRow(
+                at: indexPath,
+                animated: true,
+                scrollPosition: tableView.indexPathsForVisibleRows?.contains(indexPath) == true
+                    ? .none
+                    : .bottom
+            )
+        }
     }
 }
 
@@ -265,7 +281,7 @@ extension ModuleListViewController {
 extension ModuleListViewController: ModuleStoreDelegate {
     func moduleStoreDidChange(_ moduleStore: ModuleStore) {
         if store.isLoading {
-            spinnerView.isHidden = refreshControl.isRefreshing || store.count > 0
+            spinnerView.isHidden = refreshControl.isRefreshing
             if store.count > 0 {
                 emptyView.isHidden = true
                 showLoadingNextPage()
@@ -276,7 +292,11 @@ extension ModuleListViewController: ModuleStoreDelegate {
             refreshControl.endRefreshing()
             hideLoadingNextPage()
         }
+        let selected = tableView.indexPathForSelectedRow
         tableView.reloadData()
+        if let selected = selected, tableView.cellForRow(at: selected) != nil {
+            tableView.selectRow(at: selected, animated: false, scrollPosition: .none)
+        }
         scrollToModule()
     }
 

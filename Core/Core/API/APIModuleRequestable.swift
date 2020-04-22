@@ -88,13 +88,24 @@ public struct GetModuleItemsRequest: APIRequestable {
 public struct GetModuleItemRequest: APIRequestable {
     public typealias Response = APIModuleItem
 
+    public enum Include: String {
+        case content_details
+    }
+
     public let courseID: String
     public let moduleID: String
     public let itemID: String
+    public let include: [Include]
 
     public var path: String {
         let context = ContextModel(.course, id: courseID)
         return "\(context.pathComponent)/modules/\(moduleID)/items/\(itemID)"
+    }
+
+    public var query: [APIQueryItem] {
+        return [
+            .include(include.map { $0.rawValue }),
+        ]
     }
 }
 
@@ -139,5 +150,20 @@ public struct PostMarkModuleItemRead: APIRequestable {
     public var path: String {
         let context = ContextModel(.course, id: courseID)
         return "\(context.pathComponent)/modules/\(moduleID)/items/\(moduleItemID)/mark_read"
+    }
+}
+
+// https://canvas.instructure.com/doc/api/modules.html#method.context_module_items_api.mark_as_done
+public struct PutMarkModuleItemDone: APIRequestable {
+    public typealias Response = APINoContent
+
+    public let courseID: String
+    public let moduleID: String
+    public let moduleItemID: String
+    public let done: Bool
+    public var method: APIMethod { done ? .put : .delete }
+    public var path: String {
+        let context = ContextModel(.course, id: courseID)
+        return "\(context.pathComponent)/modules/\(moduleID)/items/\(moduleItemID)/done"
     }
 }

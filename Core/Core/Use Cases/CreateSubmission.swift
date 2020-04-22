@@ -68,6 +68,7 @@ public class CreateSubmission: APIUseCase {
             guard let self = self else { return }
             if error == nil {
                 NotificationCenter.default.post(moduleItem: .assignment(self.assignmentID), completedRequirement: .submit, courseID: self.context.id)
+                NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
             }
             completionHandler(response, urlResponse, error)
         }

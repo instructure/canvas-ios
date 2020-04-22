@@ -19,7 +19,7 @@
 import Foundation
 import UIKit
 
-public class ModuleItemDetailsViewController: UIViewController {
+public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
     let env = AppEnvironment.shared
     var courseID: String!
     var moduleID: String!
@@ -27,9 +27,24 @@ public class ModuleItemDetailsViewController: UIViewController {
 
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var errorView: ListErrorView!
+    @IBOutlet weak var lockedView: UIView!
+    @IBOutlet weak var lockExplanation: CoreWebView!
+    @IBOutlet weak var lockedTitleLabel: UILabel!
+    @IBOutlet weak var spinnerView: CircleProgressView!
+
+    lazy var optionsButton = UIBarButtonItem(image: UIImage.icon(.more), style: .plain, target: self, action: #selector(optionsButtonPressed))
 
     lazy var store = env.subscribe(GetModuleItem(courseID: courseID, moduleID: moduleID, itemID: itemID)) { [weak self] in
         self?.update()
+    }
+
+    public var color: UIColor?
+    public var titleSubtitleView = TitleSubtitleView.create()
+    lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
+        self?.updateNavBar()
+    }
+    lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
+        self?.updateNavBar()
     }
 
     var item: ModuleItem? { store.first }
@@ -45,24 +60,71 @@ public class ModuleItemDetailsViewController: UIViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .named(.backgroundLightest)
+        setupTitleViewInNavbar(title: NSLocalizedString("Module Item", bundle: .core, comment: ""))
         Analytics.shared.logEvent("module_item", parameters: ["moduleID": moduleID!, "itemID": itemID!])
         errorView.isHidden = true
         errorView.retryButton.addTarget(self, action: #selector(retryButtonPressed), for: .primaryActionTriggered)
+        lockedView.isHidden = true
+        lockExplanation.backgroundColor = .clear
         store.refresh(force: true)
+        course.refresh()
+        colors.refresh()
     }
 
     func update() {
         guard store.requested, !store.pending else { return }
-        errorView.isHidden = store.error == nil
-        container.isHidden = !errorView.isHidden
-        if let viewController = itemViewController() {
-            children.forEach { $0.unembed() }
+        let itemViewController = self.itemViewController()
+        let showLocked = item?.isAssignment != true && item?.lockedForUser == true
+        lockedView.isHidden = !showLocked
+        lockedTitleLabel.text = item?.title
+        if let lockExplanation = item?.lockExplanation {
+            self.lockExplanation.loadHTMLString("<p class=\"lock-explanation\">\(lockExplanation)</p>")
+        }
+        spinnerView.isHidden = true
+        errorView.isHidden = itemViewController != nil && store.error == nil
+        container.isHidden = !lockedView.isHidden || !errorView.isHidden
+        updateNavBar()
+        children.forEach { $0.unembed() }
+        if let viewController = itemViewController, !container.isHidden {
             embed(viewController, in: container)
             observations = syncNavigationBar(with: viewController)
             NotificationCenter.default.post(name: .moduleItemViewDidLoad, object: nil, userInfo: [
                 "moduleID": moduleID!,
                 "itemID": itemID!,
             ])
+            if item?.completionRequirementType == .must_view, item?.completed == false, item?.lockedForUser == false {
+                markAsViewed()
+            }
+        }
+    }
+
+    func updateNavBar() {
+        spinnerView.color = course.first?.color
+        updateNavBar(subtitle: course.first?.name, color: course.first?.color)
+        let title: String
+        switch item?.type {
+        case .assignment:
+            title = NSLocalizedString("Assignment Details", bundle: .core, comment: "")
+        case .discussion:
+            title = NSLocalizedString("Discussion Details", bundle: .core, comment: "")
+        case .externalTool:
+            title = NSLocalizedString("External Tool", bundle: .core, comment: "")
+        case .externalURL:
+            title = NSLocalizedString("External URL", bundle: .core, comment: "")
+        case .file:
+            title = NSLocalizedString("File Details", bundle: .core, comment: "")
+        case .quiz:
+            title = NSLocalizedString("Quiz Details", bundle: .core, comment: "")
+        case .page:
+            title = NSLocalizedString("Page Details", bundle: .core, comment: "")
+        case nil, .subHeader:
+            title = NSLocalizedString("Module Item", bundle: .core, comment: "")
+        }
+        titleSubtitleView.title = title
+        navigationItem.rightBarButtonItems = []
+        if item?.completionRequirementType == .must_mark_done {
+            navigationItem.rightBarButtonItems?.append(optionsButton)
         }
     }
 
@@ -90,8 +152,46 @@ public class ModuleItemDetailsViewController: UIViewController {
     @objc func retryButtonPressed() {
         store.refresh(force: true)
     }
+
+    @objc func optionsButtonPressed(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(AlertAction(
+            item?.completed == true
+                ? NSLocalizedString("Mark as Undone", bundle: .core, comment: "")
+                : NSLocalizedString("Mark as Done", bundle: .core, comment: ""),
+            style: .default
+        ) { [weak self] _ in
+            self?.markAsDone()
+        })
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
+        alert.popoverPresentationController?.barButtonItem = sender
+        env.router.show(alert, from: self, options: .modal())
+    }
+
+    func markAsDone() {
+        spinnerView.isHidden = false
+        let request = PutMarkModuleItemDone(courseID: courseID, moduleID: moduleID, moduleItemID: itemID, done: item?.completed == false)
+        env.api.makeRequest(request) { [weak self] _, _, error in performUIUpdate {
+            self?.spinnerView.isHidden = true
+            if let error = error {
+                self?.showError(error)
+                return
+            }
+            NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
+        } }
+    }
+
+    func markAsViewed() {
+        let request = PostMarkModuleItemRead(courseID: courseID, moduleID: moduleID, moduleItemID: itemID)
+        env.api.makeRequest(request) { _, _, error in performUIUpdate {
+            if error == nil {
+                NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
+            }
+        } }
+    }
 }
 
 extension Notification.Name {
     static let moduleItemViewDidLoad = Notification.Name(rawValue: "com.instructure.core.notification.ModuleItemViewDidLoad")
+    public static let moduleItemRequirementCompleted = Notification.Name(rawValue: "com.instructure.core.notification.ModuleItemRequirementCompleted")
 }

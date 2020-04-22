@@ -310,6 +310,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                         object: nil,
                         userInfo: ["assignmentID": assignmentID, "submission": submission]
                     )
+                    NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
                     if let userID = file.userID, let batchID = file.batchID {
                         self.delete(userID: userID, batchID: batchID)
                     }

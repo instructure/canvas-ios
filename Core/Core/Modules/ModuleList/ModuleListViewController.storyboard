@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="54" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="18g-uA-h3W">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="40" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="64" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="18g-uA-h3W">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -24,13 +24,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="252.5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kHb-hb-hny" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
-                                            <rect key="frame" x="167.5" y="106.5" width="40" height="40"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="40" id="tV6-Ts-nWX"/>
-                                                <constraint firstAttribute="width" constant="40" id="vtz-Sd-pEn"/>
-                                            </constraints>
-                                        </view>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a9E-bq-N0r">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="252.5"/>
                                             <subviews>
@@ -81,20 +74,18 @@
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="kHb-hb-hny" firstAttribute="centerY" secondItem="EF8-7Z-xiu" secondAttribute="centerY" id="13a-mI-2w8"/>
                                         <constraint firstItem="nWu-6d-Hd3" firstAttribute="centerY" secondItem="EF8-7Z-xiu" secondAttribute="centerY" priority="250" id="8Hb-Mb-ScT"/>
                                         <constraint firstItem="nWu-6d-Hd3" firstAttribute="top" relation="greaterThanOrEqual" secondItem="EF8-7Z-xiu" secondAttribute="top" id="Dc0-mL-Si1"/>
                                         <constraint firstAttribute="trailing" secondItem="a9E-bq-N0r" secondAttribute="trailing" id="Grj-xZ-W0d"/>
                                         <constraint firstItem="a9E-bq-N0r" firstAttribute="centerY" secondItem="EF8-7Z-xiu" secondAttribute="centerY" priority="250" id="KZd-Lt-07s"/>
                                         <constraint firstItem="nWu-6d-Hd3" firstAttribute="leading" secondItem="EF8-7Z-xiu" secondAttribute="leading" id="iJx-xX-wiB"/>
-                                        <constraint firstItem="kHb-hb-hny" firstAttribute="centerX" secondItem="EF8-7Z-xiu" secondAttribute="centerX" id="jo0-Al-85h"/>
                                         <constraint firstItem="a9E-bq-N0r" firstAttribute="top" relation="greaterThanOrEqual" secondItem="EF8-7Z-xiu" secondAttribute="top" id="r6u-10-tYc"/>
                                         <constraint firstAttribute="trailing" secondItem="nWu-6d-Hd3" secondAttribute="trailing" id="uCp-vm-U4M"/>
                                         <constraint firstItem="a9E-bq-N0r" firstAttribute="leading" secondItem="EF8-7Z-xiu" secondAttribute="leading" id="xFf-MO-h5S"/>
                                     </constraints>
                                 </view>
                                 <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading more modules..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CI0-fv-bBt" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="425.5" width="375" height="20"/>
+                                    <rect key="frame" x="0.0" y="443.5" width="375" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                     <color key="textColor" red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -105,15 +96,15 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ModuleItemCell" id="aAq-Ui-Stp" customClass="ModuleItemCell" customModule="Core" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ModuleItemCell" id="aAq-Ui-Stp" customClass="ModuleItemCell" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="280.5" width="375" height="82.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aAq-Ui-Stp" id="UBc-rt-n2v">
-                                            <rect key="frame" x="0.0" y="0.0" width="349" height="82.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="82.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="rv6-mL-EtC">
-                                                    <rect key="frame" x="16" y="16" width="317" height="50.5"/>
+                                                    <rect key="frame" x="16" y="16" width="343" height="50.5"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lwl-X5-mNS">
                                                             <rect key="frame" x="0.0" y="0.5" width="24" height="50"/>
@@ -122,10 +113,10 @@
                                                             </constraints>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="big-gi-hFf">
-                                                            <rect key="frame" x="40" y="6" width="237" height="38.5"/>
+                                                            <rect key="frame" x="40" y="6" width="263" height="38.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Module Item" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idp-ZT-sKj" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="237" height="19.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="263" height="19.5"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                                     <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -135,7 +126,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Due Apr 15 at 10:48 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SK2-Ab-F0Z" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="21.5" width="237" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="21.5" width="263" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                     <color key="textColor" red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -147,7 +138,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="publishSolid" translatesAutoresizingMaskIntoConstraints="NO" id="Bkc-gN-FAf" customClass="PublishedIconView" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="293" y="13.5" width="24" height="24"/>
+                                                            <rect key="frame" x="319" y="13.5" width="24" height="24"/>
                                                             <color key="tintColor" red="0.0" green="0.67450980392156867" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="24" id="cpF-JT-Qyb"/>
@@ -168,11 +159,9 @@
                                                 <constraint firstAttribute="bottom" secondItem="rv6-mL-EtC" secondAttribute="bottom" constant="16" id="SBy-2l-S0z"/>
                                                 <constraint firstItem="rv6-mL-EtC" firstAttribute="top" secondItem="UBc-rt-n2v" secondAttribute="top" constant="16" id="fHZ-Tc-lue"/>
                                                 <constraint firstItem="rv6-mL-EtC" firstAttribute="leading" secondItem="UBc-rt-n2v" secondAttribute="leading" constant="16" id="hq8-pz-Yww"/>
+                                                <constraint firstAttribute="trailing" secondItem="rv6-mL-EtC" secondAttribute="trailing" constant="16" id="kW2-bP-Zeh"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="rv6-mL-EtC" secondAttribute="trailing" constant="42" id="N6Z-iX-yrA"/>
-                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="fullDivider" value="YES"/>
                                         </userDefinedRuntimeAttributes>
@@ -185,14 +174,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ModuleItemSubHeaderCell" id="Wvk-RZ-0fh" customClass="ModuleItemSubHeaderCell" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="363" width="375" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="363" width="375" height="52.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wvk-RZ-0fh" id="SeG-X8-Qxd">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="34.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="52.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="CdB-fh-KOY">
-                                                    <rect key="frame" x="15" y="5" width="318" height="24.5"/>
+                                                    <rect key="frame" x="15" y="14" width="318" height="24.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text subheader" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQS-d3-6zu" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="2.5" width="290" height="19.5"/>
@@ -218,8 +207,8 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="CdB-fh-KOY" firstAttribute="top" secondItem="SeG-X8-Qxd" secondAttribute="top" constant="5" id="U6G-wB-VYY"/>
-                                                <constraint firstAttribute="bottom" secondItem="CdB-fh-KOY" secondAttribute="bottom" constant="5" id="i6X-aL-RqN"/>
+                                                <constraint firstItem="CdB-fh-KOY" firstAttribute="top" secondItem="SeG-X8-Qxd" secondAttribute="top" constant="14" id="U6G-wB-VYY"/>
+                                                <constraint firstAttribute="bottom" secondItem="CdB-fh-KOY" secondAttribute="bottom" constant="14" id="i6X-aL-RqN"/>
                                                 <constraint firstItem="CdB-fh-KOY" firstAttribute="leading" secondItem="SeG-X8-Qxd" secondAttribute="leadingMargin" id="nQ2-qs-fHo"/>
                                                 <constraint firstAttribute="trailing" secondItem="CdB-fh-KOY" secondAttribute="trailing" constant="42" id="ybq-Mh-lvr"/>
                                             </constraints>
@@ -239,9 +228,18 @@
                                     <outlet property="delegate" destination="7Lx-vO-xSZ" id="v2L-AI-B0r"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kHb-hb-hny" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="167.5" y="313.5" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="tV6-Ts-nWX"/>
+                                    <constraint firstAttribute="width" constant="40" id="vtz-Sd-pEn"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="kHb-hb-hny" firstAttribute="centerX" secondItem="Pgm-Wy-blc" secondAttribute="centerX" id="1qc-Yh-IDJ"/>
+                            <constraint firstItem="kHb-hb-hny" firstAttribute="centerY" secondItem="Pgm-Wy-blc" secondAttribute="centerY" id="E0p-o5-so5"/>
                             <constraint firstItem="18g-uA-h3W" firstAttribute="top" secondItem="LeP-tB-aMn" secondAttribute="top" id="X3i-mT-2Py"/>
                             <constraint firstItem="18g-uA-h3W" firstAttribute="trailing" secondItem="LeP-tB-aMn" secondAttribute="trailing" id="g9W-mH-U57"/>
                             <constraint firstItem="LeP-tB-aMn" firstAttribute="bottom" secondItem="18g-uA-h3W" secondAttribute="bottom" id="jDV-s4-HCu"/>
