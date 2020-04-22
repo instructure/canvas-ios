@@ -33,33 +33,24 @@ import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
 import SubmissionsHeader from '../SubmissionsHeader'
 import defaultFilterOptions, { type SubmissionFilterOption, createFilter, joinTitles, oldCreateFilter } from '../../filter/filter-options'
-import Images from '../../../images'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 import { graphql } from 'react-apollo'
 import query from '../../../canvas-api-v2/queries/SubmissionList'
-import * as canvas from '../../../canvas-api'
 import icon from '../../../images/inst-icons'
 import ExperimentalFeature from '../../../common/ExperimentalFeature'
 import { createStyleSheet } from '../../../common/stylesheet'
 import localeSort from '../../../utils/locale-sort'
 
-const { getEnabledFeatureFlags } = canvas
-
 type Props = SubmissionListProps & { navigator: Navigator } & RefreshProps
 type State = {
   filterOptions: SubmissionFilterOption[],
   filter: Function,
-  flags: string[],
   didFetchFlags: boolean,
 }
 
 export class SubmissionList extends Component<Props, State> {
-  static defaultProps = {
-    getEnabledFeatureFlags,
-  }
-
   constructor (props: Props) {
     super(props)
     let filterOptions = [ ...defaultFilterOptions(this.props.filterType), ...this.props.sections.map(createFilterFromSection) ]
@@ -69,17 +60,7 @@ export class SubmissionList extends Component<Props, State> {
       filterOptions,
       filter,
       refreshing: false,
-      flags: [],
       didFetchFlags: false,
-    }
-  }
-
-  async componentDidMount () {
-    try {
-      let flags = await this.props.getEnabledFeatureFlags('courses', this.props.courseID)
-      this.setState({ flags: flags.data, didFetchFlags: true })
-    } catch (e) {
-      this.setState({ didFetchFlags: true })
     }
   }
 
@@ -110,7 +91,6 @@ export class SubmissionList extends Component<Props, State> {
       {
         filter: filter,
         studentIndex: index,
-        flags: this.state.flags,
         onDismiss: this.refresh.bind(null, false),
       }
     )
@@ -139,7 +119,6 @@ export class SubmissionList extends Component<Props, State> {
         onPress={this.navigateToSubmission(index)}
         anonymous={this.props.anonymous}
         gradingType={this.props.gradingType}
-        newGradebookEnabled={this.state.flags.includes('new_gradebook')}
       />
     )
   }
@@ -153,12 +132,6 @@ export class SubmissionList extends Component<Props, State> {
     this.props.refetch({
       assignmentID: this.props.assignmentID,
       ...filter,
-    })
-  }
-
-  openSettings = () => {
-    this.props.navigator.show(`/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/submission_settings`, {
-      modal: true,
     })
   }
 
@@ -206,26 +179,15 @@ export class SubmissionList extends Component<Props, State> {
         width: 20,
         height: 20,
       },
-    ]
-
-    let newGradebookEnabled = this.state.flags.includes('new_gradebook')
-    if (newGradebookEnabled) {
-      rightBarButtons.push({
+      {
         image: icon('eye', 'solid'),
         testID: 'SubmissionsList.postpolicy',
         action: this.openPostPolicy,
         accessibilityLabel: i18n('Grade post policy'),
         width: 20,
         height: 20,
-      })
-    } else if (this.state.didFetchFlags) {
-      rightBarButtons.push({
-        accessibilityLabel: i18n('Submission Settings'),
-        image: Images.course.settings,
-        testID: 'submission-list.settings',
-        action: this.openSettings,
-      })
-    }
+      },
+    ]
 
     return (
       <Screen
@@ -247,7 +209,6 @@ export class SubmissionList extends Component<Props, State> {
               anonymous={this.props.anonymous}
               muted={this.props.muted}
               navigator={this.props.navigator}
-              newGradebookEnabled={newGradebookEnabled}
             />
             <FlatList
               data={this.props.submissions}

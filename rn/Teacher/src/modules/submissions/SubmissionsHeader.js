@@ -47,11 +47,7 @@ export default class SubmissionsHeader extends Component<SubmissionsHeaderProps,
     let title = joinTitles(this.props.filterOptions) || i18n('All Submissions')
 
     let subTitle = ''
-    if (this.props.muted && this.props.anonymous && !this.props.newGradebookEnabled) {
-      subTitle = i18n('Grades muted, Anonymous grading')
-    } else if (this.props.muted && !this.props.newGradebookEnabled) {
-      subTitle = i18n('Grades muted')
-    } else if (this.props.anonymous) {
+    if (this.props.anonymous) {
       subTitle = i18n('Anonymous grading')
     }
 
@@ -60,7 +56,7 @@ export default class SubmissionsHeader extends Component<SubmissionsHeaderProps,
         <Heading1 numberOfLines={1}>
           { title }
         </Heading1>
-        {!!subTitle && <Text style={styles.subtitle}>{subTitle}</Text>}
+        {!!subTitle && <Text testID='SubmissionsHeader.subtitle' style={styles.subtitle}>{subTitle}</Text>}
       </View>
       { this.renderFilterButton() }
     </View>)

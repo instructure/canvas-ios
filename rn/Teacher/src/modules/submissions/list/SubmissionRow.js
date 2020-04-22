@@ -103,7 +103,7 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
   }
 
   render () {
-    let { user, group, submission, gradingType, newGradebookEnabled } = this.props
+    let { user, group, submission, gradingType } = this.props
     let contextID = group?.id ?? user?.id
     let name = group?.name ?? personDisplayName(user?.name, user?.pronouns)
     let avatarName = group?.name ?? user?.name
@@ -141,7 +141,7 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
           }
         </View>
         <Grade submission={submission} gradingType={gradingType} />
-        {newGradebookEnabled && submission.grade != null && submission.postedAt == null &&
+        {submission.grade != null && submission.postedAt == null &&
           <Image
             source={images.off}
             testID='SubmissionRow.hiddenIcon'

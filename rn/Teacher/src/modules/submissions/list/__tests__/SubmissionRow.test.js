@@ -40,7 +40,6 @@ const defaultProps = {
   submissionID: null,
   submission: templates.submission(),
   anonymous: false,
-  newGradebookEnabled: false,
   onPress: jest.fn(),
   onAvatarPress: jest.fn(),
   gradingType: 'points',
@@ -189,7 +188,6 @@ test('shows the eyeball when grades are not posted', () => {
     <SubmissionRow
       {...defaultProps}
       submission={submission}
-      newGradebookEnabled
     />
   ).toJSON()
   let eye = explore(tree).selectByID('SubmissionRow.hiddenIcon')
@@ -206,7 +204,6 @@ test('does not show the eyeball when grade is posted', () => {
     <SubmissionRow
       {...defaultProps}
       submission={submission}
-      newGradebookEnabled
     />
   ).toJSON()
   let eye = explore(tree).selectByID('SubmissionRow.hiddenIcon')
@@ -224,7 +221,6 @@ test('does not show the eyeball when not graded', () => {
     <SubmissionRow
       {...defaultProps}
       submission={submission}
-      newGradebookEnabled
     />
   ).toJSON()
   let eye = explore(tree).selectByID('SubmissionRow.hiddenIcon')

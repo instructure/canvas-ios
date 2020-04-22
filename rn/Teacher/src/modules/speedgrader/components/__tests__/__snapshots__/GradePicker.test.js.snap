@@ -404,6 +404,22 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
             9/10
           </Text>
         </TouchableOpacity>
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/off.png",
+            }
+          }
+          style={
+            Object {
+              "height": 20,
+              "marginLeft": 10,
+              "tintColor": "#EE0612",
+              "width": 20,
+            }
+          }
+          testID="GradePicker.postedEye"
+        />
       </View>
     </View>
     <View
@@ -734,6 +750,22 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
             9/10
           </Text>
         </TouchableOpacity>
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/off.png",
+            }
+          }
+          style={
+            Object {
+              "height": 20,
+              "marginLeft": 10,
+              "tintColor": "#EE0612",
+              "width": 20,
+            }
+          }
+          testID="GradePicker.postedEye"
+        />
       </View>
     </View>
     <View
@@ -1059,6 +1091,22 @@ exports[`GradePicker renders points based grades 1`] = `
             5/10
           </Text>
         </TouchableOpacity>
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/off.png",
+            }
+          }
+          style={
+            Object {
+              "height": 20,
+              "marginLeft": 10,
+              "tintColor": "#EE0612",
+              "width": 20,
+            }
+          }
+          testID="GradePicker.postedEye"
+        />
       </View>
     </View>
     <View
@@ -1638,6 +1686,22 @@ exports[`GradePicker renders the rubric score when useRubricForGrading 1`] = `
             22/10
           </Text>
         </TouchableOpacity>
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/off.png",
+            }
+          }
+          style={
+            Object {
+              "height": 20,
+              "marginLeft": 10,
+              "tintColor": "#EE0612",
+              "width": 20,
+            }
+          }
+          testID="GradePicker.postedEye"
+        />
       </View>
     </View>
   </View>
@@ -2196,6 +2260,22 @@ exports[`GradePicker updates the visible rubric score when useRubricForGrading a
             22/10
           </Text>
         </TouchableOpacity>
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/off.png",
+            }
+          }
+          style={
+            Object {
+              "height": 20,
+              "marginLeft": 10,
+              "tintColor": "#EE0612",
+              "width": 20,
+            }
+          }
+          testID="GradePicker.postedEye"
+        />
       </View>
     </View>
   </View>

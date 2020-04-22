@@ -28,14 +28,18 @@ open class MiniCanvasUITestCase: CoreUITestCase {
     public var firstCourse: MiniCourse! { mocked.courses.first }
     public var firstAssignment: MiniAssignment! { mocked.courses.first?.assignments.first }
 
-    override open func setUp() {
-        MiniCanvasServer.shared.reset()
+    open func setUpState() {
         let state = MiniCanvasServer.shared.state
         if Bundle.main.isStudentApp {
             state.selfId = state.students[0].id
         } else if Bundle.main.isTeacherApp {
             state.selfId = state.teachers[0].id
         }
+    }
+
+    override open func setUp() {
+        MiniCanvasServer.shared.reset()
+        setUpState()
 
         super.setUp()
         logInEntry(LoginSession(

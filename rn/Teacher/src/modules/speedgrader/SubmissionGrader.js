@@ -174,7 +174,6 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
           showToolTip={showToolTip}
           dismissToolTip={dismissToolTip}
           updateUnsavedChanges={this.updateUnsavedChanges}
-          newGradebookEnabled={this.props.newGradebookEnabled}
         />
     }
   }
@@ -240,7 +239,6 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
           navigator={this.props.navigator}
           courseID={this.props.courseID}
           userID={this.props.userID}
-          newGradebookEnabled={this.props.newGradebookEnabled}
         />
         <SubmissionPicker
           submissionProps={this.props.submissionProps}

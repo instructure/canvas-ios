@@ -131,6 +131,7 @@ extension ConferenceListViewController: UITableViewDataSource, UITableViewDelega
         view.titleLabel?.text = conferences[IndexPath(row: 0, section: section)]?.isConcluded == true
             ? NSLocalizedString("Concluded Conferences", bundle: .core, comment: "")
             : NSLocalizedString("New Conferences", bundle: .core, comment: "")
+        view.titleLabel?.accessibilityIdentifier = "ConferencesList.header-\(section)"
         return view
     }
 
@@ -163,8 +164,11 @@ class ConferenceListCell: UITableViewCell {
             iconView.state = conference?.isConcluded == true ? .unpublished : .published
         }
         titleLabel.text = conference?.title
+        titleLabel.accessibilityIdentifier = (conference?.id).map { "ConferencesList.cell-\($0).title" }
         statusLabel.text = conference?.statusText
         statusLabel.textColor = conference?.statusColor
+        statusLabel.accessibilityIdentifier = (conference?.id).map { "ConferencesList.cell-\($0).status" }
         detailsLabel.text = conference?.details
+        detailsLabel.accessibilityIdentifier = (conference?.id).map { "ConferencesList.cell-\($0).details" }
     }
 }

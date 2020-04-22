@@ -47,7 +47,6 @@ let noSubProps = {
   selectedAttachmentIndex: null,
   anonymous: false,
   navigator: templates.navigator(),
-  newGradebookEnabled: false,
 }
 
 let subProps = {
@@ -169,8 +168,8 @@ describe('SpeedGraderHeader', () => {
     )
   })
 
-  it('renders the eye icon when newGradebook is enabled', () => {
-    let tree = shallow(<Header {...subProps} newGradebookEnabled />)
+  it('renders the eye icon', () => {
+    let tree = shallow(<Header {...subProps} />)
     let eye = tree.find('[testID="header.navigation-eye"]')
     expect(eye.length).toEqual(1)
   })
@@ -181,7 +180,6 @@ describe('SpeedGraderHeader', () => {
       <Header
         {...subProps}
         navigator={navigator}
-        newGradebookEnabled
       />
     )
     let eye = tree.find('[testID="header.navigation-eye"]')

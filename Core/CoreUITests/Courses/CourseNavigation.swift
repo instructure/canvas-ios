@@ -29,6 +29,7 @@ public enum CourseNavigation: String, ElementWrapper, CaseIterable {
     case pages
     case people
     case quizzes
+    case conferences
 
     public var id: String { "courses-details.\(rawValue)-cell" }
 }

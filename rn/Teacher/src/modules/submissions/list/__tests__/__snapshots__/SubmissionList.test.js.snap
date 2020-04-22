@@ -408,6 +408,22 @@ exports[`SubmissionList loaded 1`] = `
               >
                 Excused
               </Text>
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/off.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 20,
+                    "marginLeft": 10,
+                    "tintColor": "#EE0612",
+                    "width": 20,
+                  }
+                }
+                testID="SubmissionRow.hiddenIcon"
+              />
             </View>
           </View>
         </View>
@@ -768,6 +784,22 @@ exports[`SubmissionList loaded 1`] = `
               >
                 A-
               </Text>
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/off.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 20,
+                    "marginLeft": 10,
+                    "tintColor": "#EE0612",
+                    "width": 20,
+                  }
+                }
+                testID="SubmissionRow.hiddenIcon"
+              />
             </View>
           </View>
         </View>
@@ -1108,6 +1140,22 @@ exports[`renders a group row properly 1`] = `
       >
         A-
       </Text>
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/off.png",
+          }
+        }
+        style={
+          Object {
+            "height": 20,
+            "marginLeft": 10,
+            "tintColor": "#EE0612",
+            "width": 20,
+          }
+        }
+        testID="SubmissionRow.hiddenIcon"
+      />
     </View>
   </View>
 </View>

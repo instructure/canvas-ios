@@ -31,6 +31,7 @@ public class MiniCanvasState {
     public var accountNotifications: [APIAccountNotification]
     public var customColors: [String: String] = [:]
     public var favoriteCourses: Set<String> = []
+    public var liveConferences: [APIConference] = []
     public let idGenerator = IDGenerator()
     public let baseUrl: URL
 
