@@ -40,6 +40,7 @@ const {
   deletePendingReplies,
   markAllAsRead,
   markEntryAsRead,
+  markEntryAsUnread,
   rateEntry,
 } = DetailsActions
 const { refreshAnnouncements } = AnnouncementListActions
@@ -588,6 +589,20 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
         [discussionID]: {
           ...state[discussionID],
           unread_entries: unreadEntries,
+        },
+      }
+    },
+  }),
+  [markEntryAsUnread.toString()]: handleAsync({
+    resolved: (state, { discussionID, entryID }) => {
+      return {
+        ...state,
+        [discussionID]: {
+          ...state[discussionID],
+          unread_entries: [
+            ...(state[discussionID].unread_entries || []),
+            entryID,
+          ],
         },
       }
     },

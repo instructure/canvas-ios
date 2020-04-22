@@ -101,6 +101,11 @@ export function markAllAsRead (context: CanvasContext, contextID: string, discus
   return httpClient.put(url)
 }
 
+export function markEntryAsUnread (context: CanvasContext, contextID: string, discussionID: string, entryID: string): ApiPromise<null> {
+  const url = `${context}/${contextID}/discussion_topics/${discussionID}/entries/${entryID}/read`
+  return httpClient.delete(url)
+}
+
 export function rateEntry (context: CanvasContext, contextID: string, discussionID: string, entryID: string, rating: number): ApiPromise<null> {
   const url = `${context}/${contextID}/discussion_topics/${discussionID}/entries/${entryID}/rating`
   return httpClient.post(url, { rating })

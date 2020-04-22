@@ -167,9 +167,9 @@ describe('DiscussionReplies', () => {
   })
 
   it('edit action sheet calls delete', () => {
-    ActionSheetIOS.showActionSheetWithOptions = jest.fn((_, cb) => cb(1))
+    ActionSheetIOS.showActionSheetWithOptions = jest.fn((_, cb) => cb(2))
     let tree = shallow(<Reply {...props} />)
-    let edit = tree.find(`[testID="discussion.reply.${props.reply.id}.edit-btn"]`)
+    let edit = tree.find(`[testID="Reply.${props.reply.id}.moreButton"]`)
     edit.simulate('press')
 
     expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
@@ -177,9 +177,9 @@ describe('DiscussionReplies', () => {
   })
 
   it('edit action sheet calls cancel', () => {
-    ActionSheetIOS.showActionSheetWithOptions = jest.fn((_, cb) => cb(2))
+    ActionSheetIOS.showActionSheetWithOptions = jest.fn((_, cb) => cb(3))
     let tree = shallow(<Reply {...props} />)
-    let edit = tree.find(`[testID="discussion.reply.${props.reply.id}.edit-btn"]`)
+    let edit = tree.find(`[testID="Reply.${props.reply.id}.moreButton"]`)
     edit.simulate('press')
 
     expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
@@ -188,13 +188,31 @@ describe('DiscussionReplies', () => {
   })
 
   it('edit action sheet calls edit', () => {
-    ActionSheetIOS.showActionSheetWithOptions = jest.fn((_, cb) => cb(0))
+    ActionSheetIOS.showActionSheetWithOptions = jest.fn((_, cb) => cb(1))
     let tree = shallow(<Reply {...props} />)
-    let edit = tree.find(`[testID="discussion.reply.${props.reply.id}.edit-btn"]`)
+    let edit = tree.find(`[testID="Reply.${props.reply.id}.moreButton"]`)
     edit.simulate('press')
 
     expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
     expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/reply', { modal: true }, { message: props.reply.message, entryID: props.reply.id, isEdit: true, indexPath: props.myPath })
+  })
+
+  it('edit action sheet marks unread', () => {
+    let spy = jest.fn()
+    ActionSheetIOS.showActionSheetWithOptions = jest.fn((_, cb) => cb(0))
+    let tree = shallow(<Reply {...props} onMarkUnread={spy} />)
+    let edit = tree.find(`[testID="Reply.${props.reply.id}.moreButton"]`)
+    edit.simulate('press')
+    expect(spy).toHaveBeenCalledWith('1')
+  })
+
+  it('edit action sheet marks as read', () => {
+    let spy = jest.fn()
+    ActionSheetIOS.showActionSheetWithOptions = jest.fn((_, cb) => cb(0))
+    let tree = shallow(<Reply {...props} markEntryAsRead={spy} readState='unread' />)
+    let edit = tree.find(`[testID="Reply.${props.reply.id}.moreButton"]`)
+    edit.simulate('press')
+    expect(spy).toHaveBeenCalledWith('courses', '1', '1', '1')
   })
 
   it('reply to entry', () => {
