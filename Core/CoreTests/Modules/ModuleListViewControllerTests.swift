@@ -416,5 +416,6 @@ class ModuleListViewControllerTests: CoreTestCase {
         NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
         cell = moduleItemCell(at: IndexPath(row: 0, section: 0))
         XCTAssertEqual(cell.dueLabel.text, "Viewed")
+        XCTAssertTrue(viewController.errorView.isHidden)
     }
 }

@@ -126,6 +126,7 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol 
     }
 
     @objc func refreshProgress() {
+        errorView.isHidden = true
         spinnerView.isHidden = false
         store.refresh(force: true)
     }
