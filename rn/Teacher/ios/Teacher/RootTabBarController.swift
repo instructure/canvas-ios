@@ -19,20 +19,9 @@
 import UIKit
 import CanvasCore
 import Core
-import ReactiveSwift
 import UserNotifications
 
 class RootTabBarController: UITabBarController {
-
-    init() {
-        super.init(nibName: nil, bundle: nil)
-        self.delegate = self
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTabs()
@@ -81,24 +70,10 @@ class RootTabBarController: UITabBarController {
         toDoVC.view.accessibilityIdentifier = "to-do-list.view"
         toDoVC.tabBarItem = UITabBarItem(title: NSLocalizedString("To Do", comment: ""), image: .icon(.todo), selectedImage: .icon(.todoSolid))
         toDoVC.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
-        toDoVC.tabBarItem.reactive.badgeValue <~ TabBarBadgeCounts.todoListCountString
+        TabBarBadgeCounts.todoItem = toDoVC.tabBarItem
         toDoVC.navigationItem.titleView = Brand.shared.headerImageView()
         let navigation = HelmNavigationController(rootViewController: toDoVC)
         navigation.navigationBar.useGlobalNavStyle()
         return navigation
-    }
-}
-
-// UIKit has a bug, when using the custom transitioning apis. Ash Furrow filed this bug back in iOS 8 days:
-// http://openradar.appspot.com/radar?id=5320103646199808
-// This fixes that, yay!
-extension RootTabBarController: UITabBarControllerDelegate {
-    func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return NoAnimatedTransitioning()
-    }
-
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        tabBarController.resetViewControllerIfSelected(viewController)
-        return true
     }
 }

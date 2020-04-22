@@ -18,7 +18,6 @@
 
 import AVKit
 import UIKit
-import ReactiveSwift
 import UserNotifications
 import PSPDFKit
 import Firebase
@@ -49,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         prepareReactNative()
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
-        UIApplication.shared.reactive.applicationIconBadgeNumber <~ TabBarBadgeCounts.applicationIconBadgeNumber
+        TabBarBadgeCounts.application = UIApplication.shared
 
         if let session = LoginSession.mostRecent {
             window?.rootViewController = LoadingViewController.create()

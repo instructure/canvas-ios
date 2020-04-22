@@ -251,7 +251,6 @@
 		4961F6881F8FB9620093EC86 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F6681F8FB9620093EC86 /* File.swift */; };
 		4961F68A1F8FB9620093EC86 /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F66A1F8FB9620093EC86 /* Upload.swift */; };
 		4961F68B1F8FB9620093EC86 /* FileNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F66B1F8FB9620093EC86 /* FileNode.swift */; };
-		496C7D641F8BEF690010DC03 /* TabBarBadgeCounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C7D631F8BEF690010DC03 /* TabBarBadgeCounts.swift */; };
 		496C7D661F8C00250010DC03 /* TabBarBadgeCounts.m in Sources */ = {isa = PBXBuildFile; fileRef = 496C7D651F8C00250010DC03 /* TabBarBadgeCounts.m */; };
 		497815311FCE14B800D57BBB /* Tab+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497815301FCE14B800D57BBB /* Tab+Details.swift */; };
 		497C0F8A1FACD0D200084032 /* CanvasWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C0F891FACD0D200084032 /* CanvasWebView.swift */; };
@@ -716,7 +715,6 @@
 		4961F6681F8FB9620093EC86 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		4961F66A1F8FB9620093EC86 /* Upload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Upload.swift; sourceTree = "<group>"; };
 		4961F66B1F8FB9620093EC86 /* FileNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileNode.swift; sourceTree = "<group>"; };
-		496C7D631F8BEF690010DC03 /* TabBarBadgeCounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarBadgeCounts.swift; sourceTree = "<group>"; };
 		496C7D651F8C00250010DC03 /* TabBarBadgeCounts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarBadgeCounts.m; sourceTree = "<group>"; };
 		497815301FCE14B800D57BBB /* Tab+Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+Details.swift"; sourceTree = "<group>"; };
 		497C0F891FACD0D200084032 /* CanvasWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWebView.swift; sourceTree = "<group>"; };
@@ -1404,7 +1402,6 @@
 				3BD3220D2242E2F60036C764 /* SiriShortcutManager.m */,
 				3BD3220C2242E2F60036C764 /* SiriShortcutManager.swift */,
 				496C7D651F8C00250010DC03 /* TabBarBadgeCounts.m */,
-				496C7D631F8BEF690010DC03 /* TabBarBadgeCounts.swift */,
 				494AE0AC1F843AAC001A8F31 /* VideoContainerManager.m */,
 				494AE0AB1F843AAB001A8F31 /* VideoContainerView.swift */,
 				58595B2045EC1806A88292D9 /* NativeUtils.m */,
@@ -2681,7 +2678,6 @@
 				490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */,
 				9FB85499208677DB007499DA /* AdjustableManager.m in Sources */,
 				497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
-				496C7D641F8BEF690010DC03 /* TabBarBadgeCounts.swift in Sources */,
 				4961F5EA1F8FB4030093EC86 /* SynchronizedModel.swift in Sources */,
 				4961F5ED1F8FB4070093EC86 /* ColorfulTableViewCell.swift in Sources */,
 				4961F5EE1F8FB4070093EC86 /* FetchedTableViewController.swift in Sources */,
