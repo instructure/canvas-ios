@@ -88,13 +88,6 @@ type State = {
   groups: GroupsState,
 }
 
-type ViewableReply = {
-  index: number,
-  isViewable: boolean,
-  key: string,
-  item: DiscussionReply,
-}
-
 const {
   refreshDiscussionEntries,
   refreshSingleDiscussion,
@@ -688,8 +681,8 @@ export class DiscussionDetails extends Component<Props, any> {
     return (unread.has(id)) ? 'unread' : 'read'
   }
 
-  _markViewableAsRead = (info: { viewableItems: Array<ViewableReply>, changed: Array<ViewableReply>}) => {
-    requestIdleCallback(() => {
+  _markViewableAsRead = (info) => {
+    setTimeout(() => {
       let dID = this.props.discussionID
       let inView = info.viewableItems
       let unread = [...this.state.unread_entries] || []
@@ -710,7 +703,7 @@ export class DiscussionDetails extends Component<Props, any> {
         }
       }
       if (update) this.setState({ unread_entries: unread })
-    })
+    }, 1000)
   }
 }
 
