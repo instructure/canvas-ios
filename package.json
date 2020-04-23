@@ -11,7 +11,9 @@
     "export-translations": "./scripts/translations/export.js",
     "graphql-schema": "./scripts/get-graphql-schema.js",
     "import-translations": "./scripts/translations/import.js",
+    "label-released": "./scripts/update-jira-issues.js label-released",
     "release": "./scripts/build_automation/release.sh",
+    "released": "./scripts/update-jira-issues.js released",
     "svg2pdf": "./scripts/svg2pdf.js",
     "test": "./scripts/coverage/coverage.js --test",
     "update-headers": "./scripts/update-headers.js"
@@ -25,6 +27,7 @@
     "format-message-parse": "^5.1.2",
     "format-message-print": "^5.1.2",
     "highlight.js": "^9.13.1",
+    "jira-client": "^6.16.0",
     "jsdom": "^15.1.0",
     "mkdirp": "^1.0.4",
     "pdfkit": "^0.11.0"
