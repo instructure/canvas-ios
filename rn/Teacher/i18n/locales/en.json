@@ -713,12 +713,6 @@
   "grades_a61eba0a": {
     "message": "Grades"
   },
-  "grades_muted_76c70047": {
-    "message": "Grades muted"
-  },
-  "grades_muted_anonymous_grading_9291ea4b": {
-    "message": "Grades muted, Anonymous grading"
-  },
   "green_15af4778": {
     "message": "Green"
   },
@@ -872,6 +866,12 @@
   "mark_all_as_read_8f3bdf57": {
     "message": "Mark All as Read"
   },
+  "mark_as_read_47ec83dd": {
+    "message": "Mark as Read"
+  },
+  "mark_as_unread_4ded3977": {
+    "message": "Mark as Unread"
+  },
   "me_bf110f4d": {
     "message": "me"
   },
@@ -910,9 +910,6 @@
   },
   "multiple_due_dates_283dd861": {
     "message": "Multiple Due Dates"
-  },
-  "mute_grades_b85bece1": {
-    "message": "Mute Grades"
   },
   "my_files_eea33f44": {
     "message": "My Files"
