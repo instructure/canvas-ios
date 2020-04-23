@@ -47,6 +47,7 @@ describe('DiscussionDetails', () => {
   let props: Props
   beforeEach(() => {
     jest.clearAllMocks()
+    jest.useFakeTimers()
     app.setCurrentApp('teacher')
     let discussion = template.discussion({
       id: '1',
