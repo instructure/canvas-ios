@@ -674,6 +674,7 @@
 		B107F6CB234BB847000DAC83 /* ItemPickerElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107F6CA234BB847000DAC83 /* ItemPickerElement.swift */; };
 		B109249423CE81C400796903 /* RoleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B109249323CE81C400796903 /* RoleTests.swift */; };
 		B10E89072384807B00E7684E /* GradeListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10E89062384807B00E7684E /* GradeListViewControllerTests.swift */; };
+		B1128B582450CF96008EA17E /* ModuleItemSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1128B572450CF96008EA17E /* ModuleItemSequence.swift */; };
 		B119B4BD2307208200A74062 /* GetEnabledFeatureFlagsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B119B4BC2307208200A74062 /* GetEnabledFeatureFlagsTests.swift */; };
 		B11AAC3B237A1EB4002BC41F /* APIURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AAC3A237A1EB4002BC41F /* APIURLTests.swift */; };
 		B11AEBB32405D31C00B736D6 /* CoreWebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AEBB22405D31C00B736D6 /* CoreWebViewControllerTests.swift */; };
@@ -1690,6 +1691,7 @@
 		B10D776F21C2E27200BCE822 /* UITableViewCellExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtensions.swift; sourceTree = "<group>"; };
 		B10E8904238447A700E7684E /* Grade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grade.swift; sourceTree = "<group>"; };
 		B10E89062384807B00E7684E /* GradeListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeListViewControllerTests.swift; sourceTree = "<group>"; };
+		B1128B572450CF96008EA17E /* ModuleItemSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemSequence.swift; sourceTree = "<group>"; };
 		B119B4BC2307208200A74062 /* GetEnabledFeatureFlagsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEnabledFeatureFlagsTests.swift; sourceTree = "<group>"; };
 		B11AAC3A237A1EB4002BC41F /* APIURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIURLTests.swift; sourceTree = "<group>"; };
 		B11AAC3C237A2428002BC41F /* APIURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIURL.swift; sourceTree = "<group>"; };
@@ -2386,6 +2388,7 @@
 				B1A6BC79218A062E000515E3 /* MediaCommentType.swift */,
 				B15CA27D221DFA450014FB02 /* Module.swift */,
 				B1F1328D224BBBC7002C0555 /* ModuleItem.swift */,
+				B1128B572450CF96008EA17E /* ModuleItemSequence.swift */,
 				B1846D1022E8FEBD00BC4C4A /* ModuleItemCompletionRequirement.swift */,
 				B1F13289224BAD43002C0555 /* ModuleItemType.swift */,
 				9FBE536C223C32E7001EC40C /* Permissions.swift */,
@@ -4868,6 +4871,7 @@
 				7DA260AA23F72352005D2121 /* GetBrandVariables.swift in Sources */,
 				7DA2608223F72303005D2121 /* GetContextUsers.swift in Sources */,
 				7D72425C2429BEE9007ED42F /* DashboardSectionHeaderView.swift in Sources */,
+				B1128B582450CF96008EA17E /* ModuleItemSequence.swift in Sources */,
 				7DA25FE523F721DA005D2121 /* App.swift in Sources */,
 				7DA25F8F23F72123005D2121 /* SyllabusPresenter.swift in Sources */,
 				7DA2606B23F722D9005D2121 /* UTI.swift in Sources */,

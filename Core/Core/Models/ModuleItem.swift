@@ -22,19 +22,39 @@ import CoreData
 private let encoder = JSONEncoder()
 private let decoder = JSONDecoder()
 
-public class ModuleItemSequence: NSManagedObject {
-    public typealias AssetType = GetModuleItemSequenceRequest.AssetType
+public class MasteryPath: NSManagedObject {
+    @NSManaged public var locked: Bool
+    @NSManaged public var assignmentSets: Set<MasteryPathAssignmentSet>
 
-    @NSManaged public var courseID: String
-    @NSManaged public var assetTypeRaw: String
-    @NSManaged public var assetID: String
-    @NSManaged public var prev: ModuleItem?
-    @NSManaged public var current: ModuleItem?
-    @NSManaged public var next: ModuleItem?
+    public static func save(_ item: APIMasteryPath, in context: NSManagedObjectContext) -> MasteryPath {
+        let model = context.insert() as MasteryPath
+        model.locked = item.locked
+        model.assignmentSets = Set(item.assignment_sets.map { .save($0, in: context) })
+        return model
+    }
+}
 
-    public var assetType: AssetType {
-        get { AssetType(rawValue: assetTypeRaw) ?? .moduleItem }
-        set { assetTypeRaw = newValue.rawValue }
+public class MasteryPathAssignmentSet: NSManagedObject {
+    @NSManaged public var assignments: Set<MasteryPathAssignment>
+
+    public static func save(_ item: APIMasteryPath.AssignmentSet, in context: NSManagedObjectContext) -> MasteryPathAssignmentSet {
+        let model = context.insert() as MasteryPathAssignmentSet
+        model.assignments = Set(item.assignments.map { .save($0, in: context) })
+        return model
+    }
+}
+
+public class MasteryPathAssignment: NSManagedObject {
+    @NSManaged public var id: String
+    @NSManaged public var name: String
+    @NSManaged public var pointsPossible: NSNumber?
+
+    public static func save(_ item: APIAssignment, in context: NSManagedObjectContext) -> MasteryPathAssignment {
+        let model = context.insert() as MasteryPathAssignment
+        model.id = item.id.value
+        model.name = item.name
+        model.pointsPossible = NSNumber(value: item.points_possible)
+        return model
     }
 }
 
@@ -129,11 +149,10 @@ public class ModuleItem: NSManagedObject {
         url = item.url
         published = item.published
         type = item.content
-        if let contentDetails = item.content_details {
-            pointsPossible = contentDetails.points_possible
-            dueAt = contentDetails.due_at
-            lockedForUser = contentDetails.locked_for_user == true
-            lockExplanation = contentDetails.lock_explanation
-        }
+        pointsPossible = item.content_details?.points_possible
+        dueAt = item.content_details?.due_at
+        lockedForUser = item.content_details?.locked_for_user == true
+        lockExplanation = item.content_details?.lock_explanation
+        completionRequirement = item.completion_requirement
     }
 }

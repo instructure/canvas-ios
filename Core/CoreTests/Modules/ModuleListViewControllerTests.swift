@@ -418,4 +418,12 @@ class ModuleListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell.dueLabel.text, "Viewed")
         XCTAssertTrue(viewController.errorView.isHidden)
     }
+
+    func testLockedMasteryPath() {
+        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
+            .make(id: "1", items: [
+                .make(id: "1", mastery_paths: .make(locked: true)),
+            ]),
+        ])
+    }
 }
