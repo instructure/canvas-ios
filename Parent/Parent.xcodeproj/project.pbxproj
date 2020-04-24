@@ -29,6 +29,8 @@
 		2CB69BCC1D91CE460059C5A5 /* SettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BCE1D91CE460059C5A5 /* SettingsViewController.storyboard */; };
 		2CB69C191D92C5860059C5A5 /* DetailsAttachmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69C1B1D92C5860059C5A5 /* DetailsAttachmentCell.xib */; };
 		2CCDE2951DA7E3AB00B46D87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CCDE2971DA7E3AB00B46D87 /* InfoPlist.strings */; };
+		3B1FF28424534B1200CA8438 /* ParentConversationListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1FF28224534B1200CA8438 /* ParentConversationListViewController.storyboard */; };
+		3B1FF28524534B1200CA8438 /* ParentConversationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FF28324534B1200CA8438 /* ParentConversationListViewController.swift */; };
 		3B36A2D82322C15200599A1E /* APIAlertThreshold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36A2D52322C15200599A1E /* APIAlertThreshold.swift */; };
 		3B36A2D92322C15200599A1E /* AlertThresholdRequestables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36A2D62322C15200599A1E /* AlertThresholdRequestables.swift */; };
 		3B36A2ED2322C2A000599A1E /* GetAlertThresholdRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36A2EC2322C2A000599A1E /* GetAlertThresholdRequestableTests.swift */; };
@@ -527,6 +529,8 @@
 		2CCDE2A81DA7E5BC00B46D87 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2CCDE2A91DA7E5D000B46D87 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3029A40C0EE636CB00AF751E /* Pods_ParentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B1FF28224534B1200CA8438 /* ParentConversationListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ParentConversationListViewController.storyboard; sourceTree = "<group>"; };
+		3B1FF28324534B1200CA8438 /* ParentConversationListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentConversationListViewController.swift; sourceTree = "<group>"; };
 		3B36A2D52322C15200599A1E /* APIAlertThreshold.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAlertThreshold.swift; sourceTree = "<group>"; };
 		3B36A2D62322C15200599A1E /* AlertThresholdRequestables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertThresholdRequestables.swift; sourceTree = "<group>"; };
 		3B36A2DF2322C26A00599A1E /* ParentUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParentUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -934,6 +938,15 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		3B99912424529150005D8624 /* Conversations */ = {
+			isa = PBXGroup;
+			children = (
+				3B1FF28224534B1200CA8438 /* ParentConversationListViewController.storyboard */,
+				3B1FF28324534B1200CA8438 /* ParentConversationListViewController.swift */,
+			);
+			path = Conversations;
+			sourceTree = "<group>";
+		};
 		3BA9FF6B2332997D00196A06 /* Course */ = {
 			isa = PBXGroup;
 			children = (
@@ -1139,6 +1152,7 @@
 		5E6441891C3EE2E0003D7397 /* Parent */ = {
 			isa = PBXGroup;
 			children = (
+				3B99912424529150005D8624 /* Conversations */,
 				3BA9FF6B2332997D00196A06 /* Course */,
 				497C48C51F91539700A3BC06 /* Airwolf */,
 				5E6441911C3EE2E0003D7397 /* Assets.xcassets */,
@@ -1602,6 +1616,7 @@
 				5E6441921C3EE2E0003D7397 /* Assets.xcassets in Resources */,
 				7DC804D22444D01C001AB80C /* DashboardViewController.storyboard in Resources */,
 				2CB69BC61D91CE180059C5A5 /* StudentSettingsHeaderView.xib in Resources */,
+				3B1FF28424534B1200CA8438 /* ParentConversationListViewController.storyboard in Resources */,
 				2C61CD091D9311B400196C03 /* Localizable.strings in Resources */,
 				2CB69BC01D91CE100059C5A5 /* SettingsObserveeCell.xib in Resources */,
 				2CB69BB41D91CDF00059C5A5 /* DetailsInfoCell.xib in Resources */,
@@ -1795,6 +1810,7 @@
 				61B536E11C97C25A0052B8CB /* CalendarEventDetailsViewController.swift in Sources */,
 				3B36A2D92322C15200599A1E /* AlertThresholdRequestables.swift in Sources */,
 				612D64431C8794480045E03B /* DetailsInfoCell.swift in Sources */,
+				3B1FF28524534B1200CA8438 /* ParentConversationListViewController.swift in Sources */,
 				497C48BA1F912BD100A3BC06 /* Session+Alert.swift in Sources */,
 				7DBED00A2328282200392F3C /* Routes.swift in Sources */,
 				61B536F51C99E58B0052B8CB /* DatePickerViewController.swift in Sources */,

@@ -18,7 +18,7 @@
 
 import UIKit
 
-class ConversationListCell: UITableViewCell {
+public  class ConversationListCell: UITableViewCell {
     @IBOutlet weak var avatarGroupView: AvatarGroupView!
     @IBOutlet weak var contextLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -26,7 +26,7 @@ class ConversationListCell: UITableViewCell {
     @IBOutlet weak var subjectLabel: UILabel!
     @IBOutlet weak var unreadView: UIView!
 
-    func update(_ conversation: Conversation) {
+    public func update(_ conversation: Conversation) {
         avatarGroupView.loadUsers(conversation.audience.compactMap {
             (name: $0.name, url: $0.avatarURL)
         })

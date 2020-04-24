@@ -93,7 +93,7 @@ public class ConversationListViewController: UIViewController, ConversationCours
         env.router.show(ConversationCoursesActionSheet.create(delegate: self), from: self, options: .modal())
     }
 
-    func courseSelected(course: Course, user: User) {
+    public func courseSelected(course: Course, user: User) {
         let compose = ComposeViewController.create(
             context: ContextModel(.course, id: course.id),
             observeeID: user.id,

@@ -19,11 +19,11 @@
 import UIKit
 import CoreData
 
-protocol ConversationCoursesActionSheetDelegate: class {
+public protocol ConversationCoursesActionSheetDelegate: class {
     func courseSelected(course: Course, user: User)
 }
 
-class ConversationCoursesActionSheet: UIViewController, ErrorViewController {
+public class ConversationCoursesActionSheet: UIViewController, ErrorViewController {
     let env: AppEnvironment = .shared
     weak var delegate: ConversationCoursesActionSheetDelegate?
     let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
@@ -33,9 +33,9 @@ class ConversationCoursesActionSheet: UIViewController, ErrorViewController {
         self?.update()
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
+    public override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
 
-    static func create(delegate: ConversationCoursesActionSheetDelegate) -> ConversationCoursesActionSheet {
+    public static func create(delegate: ConversationCoursesActionSheetDelegate) -> ConversationCoursesActionSheet {
         let controller = ConversationCoursesActionSheet()
         controller.delegate = delegate
         controller.modalPresentationStyle = .custom
@@ -44,7 +44,7 @@ class ConversationCoursesActionSheet: UIViewController, ErrorViewController {
         return controller
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
         view.frame.size.height = 294
@@ -88,11 +88,11 @@ class ConversationCoursesActionSheet: UIViewController, ErrorViewController {
 }
 
 extension ConversationCoursesActionSheet: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return enrollments.pending ? 0 : enrollments.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let enrollment = enrollments[indexPath.row]
         let cell: SubtitleTableViewCell = tableView.dequeue(for: indexPath)
         cell.textLabel?.text = enrollment?.course?.name
@@ -101,7 +101,7 @@ extension ConversationCoursesActionSheet: UITableViewDataSource, UITableViewDele
         return cell
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let enrollment = enrollments[indexPath.row], let course = enrollment.course, let observedUser = enrollment.observedUser else {
             return
         }
