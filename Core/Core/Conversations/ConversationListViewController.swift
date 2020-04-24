@@ -28,7 +28,7 @@ public class ConversationListViewController: UIViewController, ConversationCours
     @IBOutlet weak var tableView: UITableView!
 
     let env = AppEnvironment.shared
-    lazy var conversations = env.subscribe(GetConversationsWithSent()) { [weak self] in
+    lazy var conversations = env.subscribe(GetConversations()) { [weak self] in
         self?.update()
     }
 
@@ -62,7 +62,7 @@ public class ConversationListViewController: UIViewController, ConversationCours
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.useModalStyle()
+        navigationController?.navigationBar.useGlobalNavStyle()
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
@@ -129,5 +129,28 @@ extension ConversationListViewController: UITableViewDataSource, UITableViewDele
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let conversation = conversations[indexPath] else { return }
         env.router.route(to: .conversation(conversation.id), from: self)
+    }
+
+    public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard let c = conversations[indexPath] else { return nil }
+        var actions: [UIContextualAction] = []
+
+        let title = NSLocalizedString("Unread", comment: "")
+        let markAsUnread = UIContextualAction(style: .normal, title: title) { [weak self]  _, _, success in
+            self?.markConversationAsUnread(c)
+            success(true)
+        }
+        markAsUnread.backgroundColor = .named(.electric)
+        markAsUnread.image = .icon(.email, .solid)
+        actions.append(markAsUnread)
+
+        return UISwipeActionsConfiguration(actions: actions)
+    }
+
+    func markConversationAsUnread(_ c: Conversation) {
+        let u = UpdateConversation(id: c.id, state: .unread)
+        u.fetch(environment: env, force: true) { [weak self] (apiConversation, _, error) in
+            self?.conversations.refresh(force: true)
+        }
     }
 }

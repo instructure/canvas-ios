@@ -85,3 +85,22 @@ public class GetConversation: APIUseCase {
         self.include = include
     }
 }
+
+public class UpdateConversation: APIUseCase {
+    public var cacheKey: String? = nil
+    public typealias Model = Conversation
+    public let id: String
+    public let state: ConversationWorkflowState
+
+    public var request: PutConversationRequest {
+        return PutConversationRequest(id: id, workflowState: state)
+    }
+
+    public var scope: Scope { Scope(predicate: NSPredicate(format: "%K == %@", "id", id), order: []) }
+
+    public init(id: String, state: ConversationWorkflowState) {
+        self.id = id
+        self.state = state
+    }
+
+}

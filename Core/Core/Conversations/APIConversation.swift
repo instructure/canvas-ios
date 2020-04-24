@@ -225,19 +225,24 @@ public struct GetConversationRequest: APIRequestable {
     }
 }
 
-struct PutConversationRequest: APIRequestable {
-    typealias Response = APIConversation
-    struct Body: Encodable {
-        let id: String
-        let workflow_state: ConversationWorkflowState
+public struct PutConversationRequest: APIRequestable {
+    public typealias Response = APIConversation
+    public struct Body: Encodable {
+        let conversation: ConversationContainer
     }
 
     let id: String
     let workflowState: ConversationWorkflowState
-    var path: String { "conversations/\(id)" }
-    let method = APIMethod.put
-    var body: Body? {
-        return Body(id: id, workflow_state: workflowState)
+    public var path: String { "conversations/\(id)" }
+    public let method = APIMethod.put
+
+    struct ConversationContainer: Encodable {
+        let id: String
+        let workflow_state: ConversationWorkflowState
+    }
+
+    public var body: Body? {
+        return Body(conversation: ConversationContainer(id: id, workflow_state: workflowState))
     }
 }
 
