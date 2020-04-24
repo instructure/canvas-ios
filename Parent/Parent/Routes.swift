@@ -56,7 +56,7 @@ let router = Router(routes: [
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         guard let session = Session.current, let studentID = currentStudentID else { return nil }
         if assignmentID == "syllabus" {
-            return CourseSyllabusViewController(courseID: courseID, studentID: studentID, session: session)
+            return CourseDetailsViewController.create(courseID: courseID, studentID: studentID)
         }
         return try? AssignmentDetailsViewController(session: session, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
     },
