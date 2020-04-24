@@ -21,18 +21,17 @@
 //
 
 const { spawnSync } = require('child_process')
+const { addFixVersion } = require('./update-jira-issues')
 
 console.log('Engage Release Notes Automation!')
 
 // This is put between the commits to easily parse then into an array
 let delimiter = '#---------------praise the sun---------------#'
 
-try {
-  generateReleaseNotes()
-} catch (err) {
+generateReleaseNotes().catch((err) => {
   console.error('Generate release notes failed:', err)
   process.exit(2)
-}
+})
 
 function run (cmd, args) {
   const { error, stderr, stdout } = spawnSync(cmd, args, { encoding: 'utf8' })
@@ -63,11 +62,11 @@ function generateReleaseNotes () {
 
   console.log(`Generating release notes for ${app} ${sinceTag}...${tag}`)
   let result = run('git', [ 'log', `${sinceTag}...${tag}`, `--pretty=format:commit:%H%n%B${delimiter}`, '--' ])
-  parseGitLog(result, app.toLowerCase())
+  return parseGitLog(result, app.toLowerCase(), tag)
 }
 
 // Parses through the gitlog, using the app to know which ones to filter out
-function parseGitLog (log, app) {
+async function parseGitLog (log, app, tag) {
   let commits = log.split(delimiter).map(item => item.trim()).filter(a => a)
   let numCommitsForApp = 0
   let numCommitsForAppWithoutReleaseNote = 0
@@ -93,10 +92,10 @@ function parseGitLog (log, app) {
       let jiras = getJiras(commit)
       if (jiras.length) {
         totalNumberOfJiras += jiras.length
-        jiras.forEach(j => allJiras.push(j))
+       allJiras.push(...jiras)
 
         if (!note) {
-          jiras.forEach(j => jirasWithoutReleaseNotes.push(j))
+          jirasWithoutReleaseNotes.push(...jiras)
         }
       } else {
         commitsWithoutJiraTicketNumbers.push(hash)
@@ -106,9 +105,6 @@ function parseGitLog (log, app) {
     }
   }
 
-  const formattedReleaseNotes = releaseNotes.map(item => `- ${item}`).join('\n')
-  const formattedJiras = allJiras.join('\n')
-
   console.log('')
   console.log(`Number of commits included in this release: ${numCommitsForApp}`)
   console.log(`Number of commits not included in this release: ${numCommitsNotForApp}`)
@@ -116,26 +112,28 @@ function parseGitLog (log, app) {
   console.log(`Number of commits included in this release without a release note: ${numCommitsForAppWithoutReleaseNote}`)
   console.log(`Number of jira tickets in this release: ${totalNumberOfJiras}`)
   if (commitsWithoutJiraTicketNumbers.length > 0) {
-    const formatted = commitsWithoutJiraTicketNumbers.join('\n')
     console.log('')
     console.log('Commits that do not include a jira ticket number:')
-    console.log(formatted)
+    console.log(commitsWithoutJiraTicketNumbers.join('\n'))
   }
 
   if (jirasWithoutReleaseNotes.length > 0) {
-    const formatted = jirasWithoutReleaseNotes.join('\n')
     console.log('')
     console.log('Jira tickets without release notes:')
-    console.log(formatted)
+    console.log(jirasWithoutReleaseNotes.join('\n'))
   }
 
   console.log('')
   console.log('Jira tickets included in this release:')
-  console.log(formattedJiras)
+  console.log(allJiras.join('\n'))
   console.log('')
   console.log('Release Notes:')
-  console.log(formattedReleaseNotes)
+  console.log(releaseNotes.map(item => `- ${item}`).join('\n'))
   console.log('')
+
+  if (process.env.JIRA_USERNAME && process.env.JIRA_API_TOKEN) {
+    await addFixVersion(tag, allJiras)
+  }
 }
 
 // Parses the commit message and looks for affects: "parent, student", etc.
