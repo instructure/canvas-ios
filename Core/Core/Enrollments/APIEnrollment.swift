@@ -228,6 +228,7 @@ public struct GetEnrollmentsRequest: APIRequestable {
     }
     public var query: [APIQueryItem] {
         var query: [APIQueryItem] = [
+            .value("per_page", "100"),
             .include(includes.map { $0.rawValue }),
         ]
         if let states = states {

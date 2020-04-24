@@ -98,9 +98,7 @@ let router = Router(routes: [
     RouteHandler(.profileObservees()) { url, _ in
         let showPromptValue = url.queryItems?.first { $0.name == "showPrompt" }?.value
         let showPrompt = Bool(showPromptValue ?? "") ?? false
-
-        guard let session = Session.current else { return nil }
-        return SettingsViewController.create(session: session, showAddStudentPrompt: showPrompt)
+        return StudentListViewController.create(showAddStudentPrompt: showPrompt)
     },
 
     RouteHandler(.observeeThresholds(":userID")) { _, params in
