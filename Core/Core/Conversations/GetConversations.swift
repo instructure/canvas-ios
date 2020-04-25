@@ -22,16 +22,18 @@ public class GetConversations: CollectionUseCase {
     public typealias Model = Conversation
     let include: [GetConversationsRequest.Include] = [.participant_avatars]
     let perPage: Int = 100
-
-    public var cacheKey: String? = "conversations"
+    let requestScope: GetConversationsRequest.Scope?
+    public var cacheKey: String? { "conversations-\(requestScope?.rawValue ?? "all")" }
 
     public var request: GetConversationsRequest {
-        return GetConversationsRequest(include: include, perPage: perPage, scope: nil)
+        return GetConversationsRequest(include: include, perPage: perPage, scope: requestScope)
     }
 
     public var scope = Scope.all(orderBy: #keyPath(Conversation.lastMessageAt), ascending: false)
 
-    public init() {}
+    public init(scope: GetConversationsRequest.Scope? = nil) {
+        self.requestScope = scope
+    }
 }
 
 public class GetConversationsWithSent: APIUseCase {
@@ -87,7 +89,7 @@ public class GetConversation: APIUseCase {
 }
 
 public class UpdateConversation: APIUseCase {
-    public var cacheKey: String? = nil
+    public var cacheKey: String?
     public typealias Model = Conversation
     public let id: String
     public let state: ConversationWorkflowState

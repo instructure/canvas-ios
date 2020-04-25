@@ -28,7 +28,17 @@ public class ConversationListViewController: UIViewController, ConversationCours
     @IBOutlet weak var tableView: UITableView!
 
     let env = AppEnvironment.shared
-    lazy var conversations = env.subscribe(GetConversations()) { [weak self] in
+    var scope: GetConversationsRequest.Scope? = nil {
+        didSet {
+            if scope != oldValue {
+                conversations = env.subscribe(GetConversations(scope: scope)) { [weak self] in
+                    self?.update()
+                }
+                conversations.refresh(force: true)  //  TODO: - this is force refreshing b/c caching does not seem to be working
+            }
+        }
+    }
+    lazy var conversations = env.subscribe(GetConversations(scope: scope)) { [weak self] in
         self?.update()
     }
 
@@ -149,7 +159,7 @@ extension ConversationListViewController: UITableViewDataSource, UITableViewDele
 
     func markConversationAsUnread(_ c: Conversation) {
         let u = UpdateConversation(id: c.id, state: .unread)
-        u.fetch(environment: env, force: true) { [weak self] (apiConversation, _, error) in
+        u.fetch(environment: env, force: true) { [weak self] (_, _, _) in
             self?.conversations.refresh(force: true)
         }
     }

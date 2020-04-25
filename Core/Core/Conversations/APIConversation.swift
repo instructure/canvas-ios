@@ -192,8 +192,8 @@ public struct GetConversationsRequest: APIRequestable {
     enum Include: String {
         case participant_avatars
     }
-    enum Scope: String {
-        case unread, starred, archived, sent
+    public enum Scope: String {
+        case unread, starred, sent, archived
     }
 
     public let path = "conversations"
