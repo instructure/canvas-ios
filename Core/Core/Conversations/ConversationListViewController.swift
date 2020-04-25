@@ -26,20 +26,22 @@ public class ConversationListViewController: UIViewController, ConversationCours
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var retryButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var header: DynamicLabel!
+    @IBOutlet weak var filterButton: DynamicButton!
+    private var selectedCourse: Course?
 
     let env = AppEnvironment.shared
     var scope: GetConversationsRequest.Scope? = nil {
         didSet {
             if scope != oldValue {
-                conversations = env.subscribe(GetConversations(scope: scope)) { [weak self] in
-                    self?.update()
-                }
-                conversations.refresh(force: true)  //  TODO: - this is force refreshing b/c caching does not seem to be working
+                refreshConversations(force: true) //  TODO: - this is force refreshing b/c caching does not seem to be working
             }
         }
     }
-    lazy var conversations = env.subscribe(GetConversations(scope: scope)) { [weak self] in
-        self?.update()
+    var conversations: Store<GetConversations>!
+
+    lazy var enrollments = env.subscribe(GetConversationCourses(role: .student)) { [weak self] in // TODO: - fix role, could be different for teacher
+        self?.enrollmentsDidUpdate()
     }
 
     public static func create() -> ConversationListViewController {
@@ -50,6 +52,7 @@ public class ConversationListViewController: UIViewController, ConversationCours
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
         title = NSLocalizedString("Inbox", comment: "")
+        header.text = NSLocalizedString("All Courses", comment: "")
 
         composeButton.accessibilityLabel = NSLocalizedString("Compose new message", comment: "")
         composeButton.layer.shadowColor = UIColor.named(.backgroundDarkest).cgColor
@@ -67,7 +70,9 @@ public class ConversationListViewController: UIViewController, ConversationCours
         tableView.refreshControl?.tintColor = Brand.shared.primary
         tableView.separatorColor = .named(.borderMedium)
 
-        conversations.refresh()
+        filterButton.isEnabled = false
+        refreshConversations()
+        enrollments.refresh(force: true)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -80,7 +85,16 @@ public class ConversationListViewController: UIViewController, ConversationCours
         emptyView.isHidden = true
         errorView.isHidden = true
         tableView.refreshControl?.beginRefreshing()
-        conversations.refresh(force: true)
+        refreshConversations(force: true)
+    }
+
+    func refreshConversations(force: Bool = false) {
+        var filters: [String]?
+        if let context = selectedCourse?.canvasContextID { filters = [context] }
+        conversations = env.subscribe(GetConversations(scope: scope, filters: filters)) { [weak self] in
+            self?.update()
+        }
+        conversations.refresh(force: force)
     }
 
     func showError(_ error: Error) {
@@ -92,10 +106,19 @@ public class ConversationListViewController: UIViewController, ConversationCours
         loadingView.isHidden = true
         tableView.reloadData()
         tableView.refreshControl?.endRefreshing()
+        header.text = selectedCourse == nil ? NSLocalizedString("All Courses", comment: "") : selectedCourse?.name
         if let error = conversations.error {
             showError(error)
         } else if conversations.isEmpty, !conversations.pending {
             emptyView.isHidden = false
+        } else if !conversations.pending {
+            emptyView.isHidden = true
+        }
+    }
+
+    func enrollmentsDidUpdate() {
+        if enrollments.pending == false && enrollments.requested {
+            filterButton.isEnabled = true
         }
     }
 
@@ -114,6 +137,31 @@ public class ConversationListViewController: UIViewController, ConversationCours
             )
         )
         env.router.show(compose, from: self, options: .modal(embedInNav: true))
+    }
+
+    @IBAction func actionFilterButtonPushed(_ sender: UIButton) {
+        if selectedCourse != nil {
+            updateSelectedCourse(nil)
+        } else {
+            let alert = UIAlertController(title: nil, message: NSLocalizedString("Filter by:", bundle: .core, comment: ""), preferredStyle: .actionSheet)
+            for e in enrollments {
+                guard let course = e.course else { continue }
+                alert.addAction(AlertAction(course.name, style: .default) { [weak self] _ in
+                    self?.updateSelectedCourse(course)
+                })
+            }
+            alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
+            alert.popoverPresentationController?.sourceView = sender
+            alert.popoverPresentationController?.sourceRect = sender.bounds
+            env.router.show(alert, from: self, options: .modal())
+        }
+    }
+
+    func updateSelectedCourse(_ course: Course?) {
+        selectedCourse = course
+        let buttonTitle = selectedCourse == nil ? NSLocalizedString("Filter", comment: "") : NSLocalizedString("Clear Filter", comment: "")
+        filterButton.setTitle(buttonTitle, for: .normal)
+        refreshConversations(force: true)
     }
 }
 
