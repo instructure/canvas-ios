@@ -193,6 +193,9 @@
 /* No comment provided by engineer. */
 "Complete" = "Fini";
 
+/* concluded datetime */
+"Concluded %@" = "Fini %@";
+
 /* No comment provided by engineer. */
 "Concluded Conferences" = "Konferans Fini";
 
@@ -219,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "Copied!" = "Kopye!";
+
+/* No comment provided by engineer. */
+"Could not launch tool. Please try again." = "Paka lanse zouti. Tanpri eseye ankò.";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "Pa t kapab anrejistre preferans notifikasyon";
@@ -347,6 +353,9 @@
 "External Tool" = "Zouti Ekstèn";
 
 /* No comment provided by engineer. */
+"External URL" = "URL Ekstèn";
+
+/* No comment provided by engineer. */
 "Extremely critical emergency" = "Ijans Trè Kritik";
 
 /* No comment provided by engineer. */
@@ -398,6 +407,9 @@
 "Forget %@" = "Bliye %@";
 
 /* No comment provided by engineer. */
+"Front Page" = "Premye Paj";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -408,6 +420,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "Ale nan jodi a";
+
+/* No comment provided by engineer. */
+"Grades" = "Nòt";
 
 /* No comment provided by engineer. */
 "Grading" = "Klasman";
@@ -465,6 +480,9 @@
 
 /* No comment provided by engineer. */
 "It looks like a great day to rest, relax, and recharge." = "Sanble yon bon jou pou repoze w, amize w epi mete enèji..";
+
+/* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "Ta sanble poko gen devwa ki kreye nan espas sa a.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Ta sanble w pa enskri nan okenn kou antan ke %@. Yonn nan lòt app nou yo kapab pi byen adapte. Tape sou yonn pou w ka vizite App Store la.";
@@ -554,6 +572,9 @@
 "Login Error" = "Erè Koneksyon";
 
 /* No comment provided by engineer. */
+"LTI Tool" = "Zouti LTI";
+
+/* No comment provided by engineer. */
 "Make sure you enable camera permissions in Settings" = "Asire w ou aktive pèmisyon kamera a nan Paramèt.";
 
 /* No comment provided by engineer. */
@@ -596,6 +617,9 @@
 "Next" = "Pwochen";
 
 /* No comment provided by engineer. */
+"No Assignments" = "Okenn Sesyon";
+
+/* No comment provided by engineer. */
 "No Conferences" = "Okenn Konferans";
 
 /* No comment provided by engineer. */
@@ -618,6 +642,9 @@
 
 /* No comment provided by engineer. */
 "No Modules" = "Okenn Modil";
+
+/* No comment provided by engineer. */
+"No Pages" = "Okenn Paj";
 
 /* No comment provided by engineer. */
 "No Results" = "Okenn Rezilta";
@@ -675,6 +702,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "Paj";
+
+/* No comment provided by engineer. */
+"Page Details" = "Detay Paj";
 
 /* No comment provided by engineer. */
 "Pages" = "Paj";
@@ -847,6 +877,9 @@
 /* No comment provided by engineer. */
 "Start recording" = "Kòmanse anrejistreman";
 
+/* started datetime */
+"Started %@" = "Kòmanse %@";
+
 /* No comment provided by engineer. */
 "Stop Act as User" = "Sispann Aji tankou Itilizatè";
 
@@ -938,6 +971,9 @@
 "There are no modules to display yet." = "Poko gen modil pou afiche.";
 
 /* No comment provided by engineer. */
+"There are no pages to display yet." = "Poko gen paj pou afiche.";
+
+/* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Gen yon pwoblèm ki pase pandan rekiperasyon Kondisyon Itilizasyon an";
 
 /* No comment provided by engineer. */
@@ -950,7 +986,13 @@
 "There was an error loading events. Pull to refresh to try again." = "Te gen yon erè nan chajman aktivite yo. Rale pou aktyalize pou ka eseye ankò.";
 
 /* No comment provided by engineer. */
+"There was an error loading grades. Pull to refresh to try again." = "Te gen yon erè nan chajman nòt yo. Rale pou aktyalize pou ka eseye ankò.";
+
+/* No comment provided by engineer. */
 "There was an error loading modules. Pull to refresh to try again." = "Te gen yon erè nan chajman modil yo. Rale pou aktyalize pou ka eseye ankò.";
+
+/* No comment provided by engineer. */
+"There was an error loading pages. Pull to refresh to try again." = "Te gen yon erè nan chajman paj yo. Rale pou aktyalize pou ka eseye ankò.";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "Te gen yon erè nan chajman kontak yo. Rale pou aktyalize pou ka eseye ankò.";
@@ -986,6 +1028,9 @@
 "To Do" = "Pou Fè";
 
 /* No comment provided by engineer. */
+"Total Grade" = "Klas Total";
+
+/* No comment provided by engineer. */
 "Total time" = "Tan total";
 
 /* Description for Twitter communication channel */
@@ -1002,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "unpublished" = "pa pibliye";
+
+/* No comment provided by engineer. */
+"Unsupported Item" = "Eleman pa Sipòte";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Paramèt Langaj Aktyalize";

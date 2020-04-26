@@ -193,6 +193,9 @@
 /* No comment provided by engineer. */
 "Complete" = "مكتمل";
 
+/* concluded datetime */
+"Concluded %@" = "تم الانتهاء %@";
+
 /* No comment provided by engineer. */
 "Concluded Conferences" = "المؤتمرات المنجزة";
 
@@ -219,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "Copied!" = "تم النسخ!";
+
+/* No comment provided by engineer. */
+"Could not launch tool. Please try again." = "تعذر إطلاق الأداة. يرجى إعادة المحاولة.";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "تعذر حفظ تفضيل الإخطار";
@@ -347,6 +353,9 @@
 "External Tool" = "أداة خارجية";
 
 /* No comment provided by engineer. */
+"External URL" = "عنوان URL خارجي";
+
+/* No comment provided by engineer. */
 "Extremely critical emergency" = "حالة طارئة حرجة للغاية";
 
 /* No comment provided by engineer. */
@@ -398,6 +407,9 @@
 "Forget %@" = "نسيت %@";
 
 /* No comment provided by engineer. */
+"Front Page" = "الصفحة الأمامية";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -408,6 +420,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "الذهاب إلى اليوم";
+
+/* No comment provided by engineer. */
+"Grades" = "الدرجات";
 
 /* No comment provided by engineer. */
 "Grading" = "تقييم الدرجات";
@@ -465,6 +480,9 @@
 
 /* No comment provided by engineer. */
 "It looks like a great day to rest, relax, and recharge." = "يبدو أنه يوم رائع للراحة والاسترخاء وتجديد النشاط.";
+
+/* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "يبدو أنه لم يتم إنشاء مهام في هذه المساحة حتى الآن.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "يبدو أنك غير مسجل في أي مساقات بصفة %@. قد يكون أحد تطبيقاتنا الأخرى ملائمة لك بشكل أكبر. اضغط على أحد التطبيقات لزيارة App Store.";
@@ -554,6 +572,9 @@
 "Login Error" = "خطأ في تسجيل الدخول";
 
 /* No comment provided by engineer. */
+"LTI Tool" = "أداة LTI";
+
+/* No comment provided by engineer. */
 "Make sure you enable camera permissions in Settings" = "تأكد من تمكين أذونات الكاميرا في الإعدادات";
 
 /* No comment provided by engineer. */
@@ -596,6 +617,9 @@
 "Next" = "التالي";
 
 /* No comment provided by engineer. */
+"No Assignments" = "لا توجد أي مهام";
+
+/* No comment provided by engineer. */
 "No Conferences" = "لا توجد مؤتمرات";
 
 /* No comment provided by engineer. */
@@ -618,6 +642,9 @@
 
 /* No comment provided by engineer. */
 "No Modules" = "لا توجد وحدات نمطية";
+
+/* No comment provided by engineer. */
+"No Pages" = "لا توجد صفحات";
 
 /* No comment provided by engineer. */
 "No Results" = "لا توجد نتائج";
@@ -675,6 +702,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "صفحة";
+
+/* No comment provided by engineer. */
+"Page Details" = "تفاصيل الصفحة";
 
 /* No comment provided by engineer. */
 "Pages" = "الصفحات";
@@ -847,6 +877,9 @@
 /* No comment provided by engineer. */
 "Start recording" = "بدء تسجيل";
 
+/* started datetime */
+"Started %@" = "تم البدء %@";
+
 /* No comment provided by engineer. */
 "Stop Act as User" = "إيقاف التصرف كمستخدم";
 
@@ -938,6 +971,9 @@
 "There are no modules to display yet." = "لا توجد أي وحدات نمطية للعرض حتى الآن.";
 
 /* No comment provided by engineer. */
+"There are no pages to display yet." = "لا توجد أي صفحات للعرض حتى الآن.";
+
+/* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "حدثت مشكلة أثناء استرداد شروط الاستخدام.";
 
 /* No comment provided by engineer. */
@@ -950,7 +986,13 @@
 "There was an error loading events. Pull to refresh to try again." = "حدث خطأ أثناء تحميل الأحداث. اسحب للتحديث لإعادة المحاولة.";
 
 /* No comment provided by engineer. */
+"There was an error loading grades. Pull to refresh to try again." = "حدث خطأ أثناء تحميل الدرجات. اسحب للتحديث لإعادة المحاولة.";
+
+/* No comment provided by engineer. */
 "There was an error loading modules. Pull to refresh to try again." = "حدث خطأ أثناء تحميل الوحدات النمطية. اسحب للتحديث لإعادة المحاولة.";
+
+/* No comment provided by engineer. */
+"There was an error loading pages. Pull to refresh to try again." = "حدث خطأ أثناء تحميل الصفحات. اسحب للتحديث لإعادة المحاولة.";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "حدث خطأ أثناء تحميل الأشخاص. اسحب للتحديث لإعادة المحاولة.";
@@ -986,6 +1028,9 @@
 "To Do" = "قائمة المهام";
 
 /* No comment provided by engineer. */
+"Total Grade" = "التقدير الإجمالي";
+
+/* No comment provided by engineer. */
 "Total time" = "الوقت الإجمالي";
 
 /* Description for Twitter communication channel */
@@ -1002,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "unpublished" = "غير منشور";
+
+/* No comment provided by engineer. */
+"Unsupported Item" = "عنصر غير مدعوم";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "إعدادات اللغة المحدثة";

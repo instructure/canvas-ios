@@ -193,6 +193,9 @@
 /* No comment provided by engineer. */
 "Complete" = "完成";
 
+/* concluded datetime */
+"Concluded %@" = "已结束%@";
+
 /* No comment provided by engineer. */
 "Concluded Conferences" = "已结束的会议";
 
@@ -219,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "Copied!" = "已复制";
+
+/* No comment provided by engineer. */
+"Could not launch tool. Please try again." = "无法启动工具。请重试。";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "无法保存通知首选项";
@@ -347,6 +353,9 @@
 "External Tool" = "外部工具";
 
 /* No comment provided by engineer. */
+"External URL" = "外部 URL";
+
+/* No comment provided by engineer. */
 "Extremely critical emergency" = "十万火急的紧急事件";
 
 /* No comment provided by engineer. */
@@ -398,6 +407,9 @@
 "Forget %@" = "忘记%@";
 
 /* No comment provided by engineer. */
+"Front Page" = "首页";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -408,6 +420,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "转至今天";
+
+/* No comment provided by engineer. */
+"Grades" = "评分";
 
 /* No comment provided by engineer. */
 "Grading" = "评分";
@@ -465,6 +480,9 @@
 
 /* No comment provided by engineer. */
 "It looks like a great day to rest, relax, and recharge." = "今天看起来是休息、放松和恢复的好日子。";
+
+/* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "似乎尚未在此区域创建作业。";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "您似乎没有以%@身份注册任何课程。我们的其他应用程序可能更合适。单击任一应用程序可访问应用商店。";
@@ -554,6 +572,9 @@
 "Login Error" = "登录错误";
 
 /* No comment provided by engineer. */
+"LTI Tool" = "LTI工具";
+
+/* No comment provided by engineer. */
 "Make sure you enable camera permissions in Settings" = "请务必在设置中启用摄像头权限";
 
 /* No comment provided by engineer. */
@@ -596,6 +617,9 @@
 "Next" = "下一步";
 
 /* No comment provided by engineer. */
+"No Assignments" = "无作业";
+
+/* No comment provided by engineer. */
 "No Conferences" = "无会议";
 
 /* No comment provided by engineer. */
@@ -618,6 +642,9 @@
 
 /* No comment provided by engineer. */
 "No Modules" = "无模块";
+
+/* No comment provided by engineer. */
+"No Pages" = "无页面";
 
 /* No comment provided by engineer. */
 "No Results" = "无结果";
@@ -675,6 +702,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "页面";
+
+/* No comment provided by engineer. */
+"Page Details" = "页面详细信息";
 
 /* No comment provided by engineer. */
 "Pages" = "页面";
@@ -847,6 +877,9 @@
 /* No comment provided by engineer. */
 "Start recording" = "开始录制";
 
+/* started datetime */
+"Started %@" = "已开始%@";
+
 /* No comment provided by engineer. */
 "Stop Act as User" = "停止临时代理用户";
 
@@ -938,6 +971,9 @@
 "There are no modules to display yet." = "没有可以显示的单元。";
 
 /* No comment provided by engineer. */
+"There are no pages to display yet." = "没有可显示的页面。";
+
+/* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "提取使用条款时出错。";
 
 /* No comment provided by engineer. */
@@ -950,7 +986,13 @@
 "There was an error loading events. Pull to refresh to try again." = "加载活动时出错。下拉刷新以重试。";
 
 /* No comment provided by engineer. */
+"There was an error loading grades. Pull to refresh to try again." = "加载评分时发生错误。下拉刷新以重试。";
+
+/* No comment provided by engineer. */
 "There was an error loading modules. Pull to refresh to try again." = "加载单元时发生错误。下拉刷新以重试。";
+
+/* No comment provided by engineer. */
+"There was an error loading pages. Pull to refresh to try again." = "加载页面时发生错误。下拉刷新以重试。";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "加载人脉时出错。下拉刷新以重试。";
@@ -986,6 +1028,9 @@
 "To Do" = "待办事项";
 
 /* No comment provided by engineer. */
+"Total Grade" = "总分";
+
+/* No comment provided by engineer. */
 "Total time" = "总时间";
 
 /* Description for Twitter communication channel */
@@ -1002,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "unpublished" = "取消发布";
+
+/* No comment provided by engineer. */
+"Unsupported Item" = "不受支持的项目";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "已更新语言设置";

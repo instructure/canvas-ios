@@ -193,6 +193,9 @@
 /* No comment provided by engineer. */
 "Complete" = "Lokið";
 
+/* concluded datetime */
+"Concluded %@" = "Lokið %@";
+
 /* No comment provided by engineer. */
 "Concluded Conferences" = "Loknar ráðstefnur";
 
@@ -219,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "Copied!" = "Afritað!";
+
+/* No comment provided by engineer. */
+"Could not launch tool. Please try again." = "Ekki tókst að opna verkfæri. Vinsamlegast reynið aftur.";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "Ekki var hægt að vista kjörstillingum tilkynninga";
@@ -347,6 +353,9 @@
 "External Tool" = "Ytra tól";
 
 /* No comment provided by engineer. */
+"External URL" = "Ytri vefslóð";
+
+/* No comment provided by engineer. */
 "Extremely critical emergency" = "Gífurlegt neyðarástand";
 
 /* No comment provided by engineer. */
@@ -398,6 +407,9 @@
 "Forget %@" = "Gleyma %@";
 
 /* No comment provided by engineer. */
+"Front Page" = "Forsíða";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -408,6 +420,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "Fara í daginn í dag";
+
+/* No comment provided by engineer. */
+"Grades" = "Einkunnir";
 
 /* No comment provided by engineer. */
 "Grading" = "Einkunnagjöf";
@@ -465,6 +480,9 @@
 
 /* No comment provided by engineer. */
 "It looks like a great day to rest, relax, and recharge." = "Þetta virðist vera góður dagur til að hvílast, slaka á og hlaða batteríin.";
+
+/* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "Það virðast ekki vera nein verkefni búin til í þessu rými enn.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Þú virðist ekki vera innritaður í nein námskeið sem %@. Eitthvað að hinum öppunum okkar gæti hentað betur. Smelltu á eitt þeirra til að fara í App Store.";
@@ -554,6 +572,9 @@
 "Login Error" = "Innskráningarvilla";
 
 /* No comment provided by engineer. */
+"LTI Tool" = "LTI verkfæri";
+
+/* No comment provided by engineer. */
 "Make sure you enable camera permissions in Settings" = "Passaðu að virkja leyfi fyrir myndavél í stillingum";
 
 /* No comment provided by engineer. */
@@ -596,6 +617,9 @@
 "Next" = "Næsti";
 
 /* No comment provided by engineer. */
+"No Assignments" = "Engin verkefni";
+
+/* No comment provided by engineer. */
 "No Conferences" = "Engar ráðstefnur";
 
 /* No comment provided by engineer. */
@@ -618,6 +642,9 @@
 
 /* No comment provided by engineer. */
 "No Modules" = "Engar einingar";
+
+/* No comment provided by engineer. */
+"No Pages" = "Engar síður";
 
 /* No comment provided by engineer. */
 "No Results" = "Engar niðurstöður";
@@ -675,6 +702,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "Síða";
+
+/* No comment provided by engineer. */
+"Page Details" = "Upplýsingar um síðu";
 
 /* No comment provided by engineer. */
 "Pages" = "Síður";
@@ -847,6 +877,9 @@
 /* No comment provided by engineer. */
 "Start recording" = "Hefja upptöku";
 
+/* started datetime */
+"Started %@" = "Byrjað %@";
+
 /* No comment provided by engineer. */
 "Stop Act as User" = "Hætta að bregðast við sem notandi";
 
@@ -938,6 +971,9 @@
 "There are no modules to display yet." = "Ekki er hægt að sýna neinar einingar enn.";
 
 /* No comment provided by engineer. */
+"There are no pages to display yet." = "Það eru enn engar síður til að sýna.";
+
+/* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Vandamál kom upp við að endurheimta notandaskilmála.";
 
 /* No comment provided by engineer. */
@@ -950,7 +986,13 @@
 "There was an error loading events. Pull to refresh to try again." = "Villa kom upp við að sækja viðburði. Dragðu til að endurglæða til að reyna aftur.";
 
 /* No comment provided by engineer. */
+"There was an error loading grades. Pull to refresh to try again." = "Villa kom upp við að sækja einkunnir. Dragðu til að endurglæða til að reyna aftur.";
+
+/* No comment provided by engineer. */
 "There was an error loading modules. Pull to refresh to try again." = "Villa kom upp við að sækja einingar. Dragðu til að endurglæða til að reyna aftur.";
+
+/* No comment provided by engineer. */
+"There was an error loading pages. Pull to refresh to try again." = "Villa kom upp við að sækja síður. Dragðu til að endurglæða til að reyna aftur.";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "Villa kom upp við að sækja fólk. Dragðu til að endurglæða til að reyna aftur.";
@@ -986,6 +1028,9 @@
 "To Do" = "Verkefni";
 
 /* No comment provided by engineer. */
+"Total Grade" = "Heildareinkunn";
+
+/* No comment provided by engineer. */
 "Total time" = "Heildartími";
 
 /* Description for Twitter communication channel */
@@ -1002,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "unpublished" = "óbirt";
+
+/* No comment provided by engineer. */
+"Unsupported Item" = "Óstutt atriði";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Uppfærðar tungumálastillingar";

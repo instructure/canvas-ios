@@ -193,6 +193,9 @@
 /* No comment provided by engineer. */
 "Complete" = "Voltooid";
 
+/* concluded datetime */
+"Concluded %@" = "Voltooid %@";
+
 /* No comment provided by engineer. */
 "Concluded Conferences" = "Voltooide vergaderingen";
 
@@ -219,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "Copied!" = "Gekopieerd!";
+
+/* No comment provided by engineer. */
+"Could not launch tool. Please try again." = "Kan tool niet starten. Probeer het opnieuw.";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "Kan geen meldingsvoorkeuren opslaan";
@@ -347,6 +353,9 @@
 "External Tool" = "Externe tool";
 
 /* No comment provided by engineer. */
+"External URL" = "Externe URL's";
+
+/* No comment provided by engineer. */
 "Extremely critical emergency" = "Extreem noodgeval";
 
 /* No comment provided by engineer. */
@@ -398,6 +407,9 @@
 "Forget %@" = "Vergeten %@";
 
 /* No comment provided by engineer. */
+"Front Page" = "Voorpagina";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -408,6 +420,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "Ga naar vandaag";
+
+/* No comment provided by engineer. */
+"Grades" = "Cijfers";
 
 /* No comment provided by engineer. */
 "Grading" = "Beoordeling";
@@ -465,6 +480,9 @@
 
 /* No comment provided by engineer. */
 "It looks like a great day to rest, relax, and recharge." = "Dat lijkt een prima dag om lekker uit te rusten, te relaxen en de batterij op te laden.";
+
+/* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "Het lijkt erop dat er in deze ruimte nog geen opdrachten zijn gemaakt.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Het lijkt erop dat je voor geen enkele cursus bent ingeschreven als %@. Wellicht is een van onze andere apps hiervoor beter geschikt. Tik op een ervan om naar de App Store te gaan.";
@@ -554,6 +572,9 @@
 "Login Error" = "Fout bij aanmelden";
 
 /* No comment provided by engineer. */
+"LTI Tool" = "LTI Tool";
+
+/* No comment provided by engineer. */
 "Make sure you enable camera permissions in Settings" = "Zorg ervoor dat je camerarechten inschakelt onder Instellingen";
 
 /* No comment provided by engineer. */
@@ -596,6 +617,9 @@
 "Next" = "Volgende";
 
 /* No comment provided by engineer. */
+"No Assignments" = "Geen opdrachten";
+
+/* No comment provided by engineer. */
 "No Conferences" = "Geen vergaderingen";
 
 /* No comment provided by engineer. */
@@ -618,6 +642,9 @@
 
 /* No comment provided by engineer. */
 "No Modules" = "Geen modules";
+
+/* No comment provided by engineer. */
+"No Pages" = "Geen pagina's";
 
 /* No comment provided by engineer. */
 "No Results" = "Geen resultaten";
@@ -675,6 +702,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "Pagina";
+
+/* No comment provided by engineer. */
+"Page Details" = "Paginadetails";
 
 /* No comment provided by engineer. */
 "Pages" = "Pagina's";
@@ -847,6 +877,9 @@
 /* No comment provided by engineer. */
 "Start recording" = "Opname starten";
 
+/* started datetime */
+"Started %@" = "Gestart %@";
+
 /* No comment provided by engineer. */
 "Stop Act as User" = "Stop met optreden als gebruiker";
 
@@ -938,6 +971,9 @@
 "There are no modules to display yet." = "Er zijn nog geen modules om weer te geven.";
 
 /* No comment provided by engineer. */
+"There are no pages to display yet." = "Er zijn nog geen pagina's om weer te geven.";
+
+/* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Er is een probleem met het ophalen van de gebruiksvoorwaarden";
 
 /* No comment provided by engineer. */
@@ -950,7 +986,13 @@
 "There was an error loading events. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van gebeurtenissen. Pull om te vernieuwen om het opnieuw te proberen.";
 
 /* No comment provided by engineer. */
+"There was an error loading grades. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van cijfers. Pull om te vernieuwen om het opnieuw te proberen.";
+
+/* No comment provided by engineer. */
 "There was an error loading modules. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van modules. Pull om te vernieuwen om het opnieuw te proberen.";
+
+/* No comment provided by engineer. */
+"There was an error loading pages. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van pagina's. Pull om te vernieuwen om het opnieuw te proberen.";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van personen. Pull om te vernieuwen om het opnieuw te proberen.";
@@ -986,6 +1028,9 @@
 "To Do" = "Opdrachtenlijst";
 
 /* No comment provided by engineer. */
+"Total Grade" = "Totaalcijfer";
+
+/* No comment provided by engineer. */
 "Total time" = "Totale tijd";
 
 /* Description for Twitter communication channel */
@@ -1002,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "unpublished" = "niet-gepubliceerd";
+
+/* No comment provided by engineer. */
+"Unsupported Item" = "Niet-ondersteund item";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Bijgewerkte taalinstellingen";
