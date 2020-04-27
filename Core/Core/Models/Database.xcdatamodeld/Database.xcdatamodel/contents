@@ -452,7 +452,6 @@
     </entity>
     <entity name="Plannable" representedClassName=".Plannable" syncable="YES">
         <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
-        <attribute name="contextImage" optional="YES" attributeType="URI"/>
         <attribute name="contextName" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="details" optional="YES" attributeType="String"/>
