@@ -54,7 +54,7 @@ extension APIModuleItem {
         published: Bool? = nil,
         content_details: ContentDetails? = nil,
         completion_requirement: CompletionRequirement? = nil,
-        mastery_paths: MasteryPaths? = nil
+        mastery_paths: APIMasteryPath? = nil
     ) -> APIModuleItem {
         return APIModuleItem(
             id: id,
@@ -112,7 +112,8 @@ extension APIMasteryPath {
     public static func make(
         locked: Bool = false,
         assignment_sets: [AssignmentSet] = [],
+        selected_set_id: ID? = nil
     ) -> Self {
-        return .init(locked: locked, assignment_sets: assignment_sets)
+        return .init(locked: locked, assignment_sets: assignment_sets, selected_set_id: selected_set_id)
     }
 }

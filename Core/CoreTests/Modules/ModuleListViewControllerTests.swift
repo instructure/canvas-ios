@@ -52,41 +52,40 @@ class ModuleListViewControllerTests: CoreTestCase {
 
     func testViewDidLoad() throws {
         api.mock(viewController.colors, value: APICustomColors(custom_colors: ["course_1": "#fff"]))
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
-            .make(id: "1", items: [
-                .make(
-                    id: "1",
-                    position: 0,
-                    title: "Item 1",
-                    content_details: .make(
-                        due_at: Date(fromISOString: "2019-12-25T14:24:37Z")!,
-                        points_possible: 10
-                    ),
-                    completion_requirement: .make(type: .min_score, completed: false, min_score: 8.0)
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [ .make(id: "1", items: nil) ])
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
+            .make(
+                id: "1",
+                position: 0,
+                title: "Item 1",
+                content_details: .make(
+                    due_at: Date(fromISOString: "2019-12-25T14:24:37Z")!,
+                    points_possible: 10
                 ),
-                .make(
-                    id: "2",
-                    position: 1,
-                    content_details: .make(
-                        due_at: nil,
-                        points_possible: 10,
-                        locked_for_user: true,
-                        lock_explanation: "Reasons"
-                    ),
-                    completion_requirement: nil
+                completion_requirement: .make(type: .min_score, completed: false, min_score: 8.0)
+            ),
+            .make(
+                id: "2",
+                position: 1,
+                content_details: .make(
+                    due_at: nil,
+                    points_possible: 10,
+                    locked_for_user: true,
+                    lock_explanation: "Reasons"
                 ),
-                .make(
-                    id: "3",
-                    position: 2,
-                    content_details: nil,
-                    completion_requirement: .make(type: .must_view, completed: false)
-                ),
-                .make(
-                    id: "4",
-                    content_details: nil,
-                    completion_requirement: .make(type: .must_submit, completed: true)
-                ),
-            ]),
+                completion_requirement: nil
+            ),
+            .make(
+                id: "3",
+                position: 2,
+                content_details: nil,
+                completion_requirement: .make(type: .must_view, completed: false)
+            ),
+            .make(
+                id: "4",
+                content_details: nil,
+                completion_requirement: .make(type: .must_submit, completed: true)
+            ),
         ])
         let nav = UINavigationController(rootViewController: viewController)
         viewController.view.layoutIfNeeded()
@@ -111,14 +110,16 @@ class ModuleListViewControllerTests: CoreTestCase {
     }
 
     func testTableViewSort() {
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
-            .make(id: "1", name: "B", position: 2, published: true, items: [
-                .make(id: "1", position: 1, title: "B1"),
-                .make(id: "2", position: 2, title: "B2", published: true),
-            ]),
-            .make(id: "2", name: "A", position: 1, published: false, items: [
-                .make(id: "3", position: 3, title: "A1", published: false),
-            ]),
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [
+            .make(id: "1", name: "B", position: 2, published: true, items: nil),
+            .make(id: "2", name: "A", position: 1, published: false, items: nil),
+        ])
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
+            .make(id: "1", position: 1, title: "B1"),
+            .make(id: "2", position: 2, title: "B2", published: true),
+        ])
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths]), value: [
+            .make(id: "3", position: 3, title: "A1", published: false),
         ])
         viewController.view.layoutIfNeeded()
         XCTAssertEqual(header(forSection: 0).titleLabel.text, "A")
@@ -136,8 +137,8 @@ class ModuleListViewControllerTests: CoreTestCase {
     }
 
     func testLoadingItems() {
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [.make(id: "1", items: nil)])
-        let task = api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details]), value: [.make()])
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "1", items: nil)])
+        let task = api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [.make()])
         task.paused = true
         viewController.view.layoutIfNeeded()
         XCTAssertNotNil(viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? LoadingCell)
@@ -146,14 +147,15 @@ class ModuleListViewControllerTests: CoreTestCase {
     }
 
     func testEmptyItems() {
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [.make(id: "1", items: [])])
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "1")])
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [])
         viewController.view.layoutIfNeeded()
         XCTAssertEqual(viewController.emptyView.isHidden, true)
         XCTAssertNotNil(viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ModuleListViewController.EmptyCell)
     }
 
     func testNoModules() {
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [])
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [])
         viewController.view.layoutIfNeeded()
         XCTAssertEqual(viewController.emptyView.isHidden, false)
         XCTAssertEqual(viewController.emptyTitleLabel.text, "No Modules")
@@ -161,19 +163,19 @@ class ModuleListViewControllerTests: CoreTestCase {
     }
 
     func testError() {
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), error: NSError.internalError())
+        api.mock(GetModulesRequest(courseID: "1", include: []), error: NSError.internalError())
         viewController.view.layoutIfNeeded()
         XCTAssertEqual(viewController.errorView.isHidden, false)
         XCTAssertEqual(viewController.errorView.messageLabel.text, "There was an error loading modules. Pull to refresh to try again.")
 
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [])
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [])
         viewController.errorView.retryButton.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(viewController.errorView.isHidden, true)
         XCTAssertEqual(viewController.emptyView.isHidden, false)
     }
 
     func testDoesNotScrollWithoutModuleID() {
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [
             .make(id: "1", position: 1),
             .make(id: "2", position: 2),
             .make(id: "3", position: 3),
@@ -191,7 +193,7 @@ class ModuleListViewControllerTests: CoreTestCase {
     }
 
     func testScrollsToModule() {
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [
             .make(id: "1", position: 1),
             .make(id: "2", position: 2),
             .make(id: "3", position: 3),
@@ -217,7 +219,7 @@ class ModuleListViewControllerTests: CoreTestCase {
     func testScrollsToPaginatedModule() {
         let link = "https://canvas.instructure.com/courses/1/modules?page=2"
         let next = HTTPURLResponse(next: link)
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [
             .make(id: "1", position: 1),
             .make(id: "2", position: 2),
             .make(id: "3", position: 3),
@@ -237,23 +239,11 @@ class ModuleListViewControllerTests: CoreTestCase {
         XCTAssertGreaterThan(viewController.tableView.contentOffset.y, 0)
     }
 
-    func testModuleWithTooManyItems() {
-        let module = APIModule.make(id: "1", items: nil)
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [module])
-        let item = APIModuleItem.make(title: "Item 1 of many")
-        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details]), value: [item])
-        viewController.view.layoutIfNeeded()
-        XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 1)
-        let cell = moduleItemCell(at: IndexPath(row: 0, section: 0))
-        XCTAssertEqual(cell.nameLabel.text, "Item 1 of many")
-        XCTAssertEqual(viewController.tableView.contentOffset.y, 0)
-    }
-
     func testGetNextPageOfItems() throws {
         let link = "https://canvas.instructure.com/courses/1/modules/1/items?page=2"
         let next = HTTPURLResponse(next: link)
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [.make(id: "1", items: nil)])
-        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details]), value: [.make(id: "1")], response: next)
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "1", items: nil)])
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [.make(id: "1")], response: next)
         let task = api.mock(GetNextRequest<[APIModuleItem]>(path: link), value: [.make(id: "2")])
         task.paused = true
         viewController.view.layoutIfNeeded()
@@ -265,7 +255,7 @@ class ModuleListViewControllerTests: CoreTestCase {
     }
 
     func testLoadingFirstPage() {
-        let task = api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [])
+        let task = api.mock(GetModulesRequest(courseID: "1", include: []), value: [])
         task.paused = true
         viewController.view.layoutIfNeeded()
         XCTAssertEqual(viewController.spinnerView.isHidden, false)
@@ -274,12 +264,11 @@ class ModuleListViewControllerTests: CoreTestCase {
     }
 
     func testLoadingNextPage() {
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [])
         let link = "https://canvas.instructure.com/courses/1/modules?page=2"
         let next = HTTPURLResponse(next: link)
         let one = APIModule.make(id: "1", items: [])
         let two = APIModule.make(id: "2", items: [])
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [one], response: next)
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [one], response: next)
         let task = api.mock(GetNextRequest<[APIModule]>(path: link), value: [two])
         task.paused = true
         viewController.view.layoutIfNeeded()
@@ -292,23 +281,23 @@ class ModuleListViewControllerTests: CoreTestCase {
         XCTAssertEqual(viewController.tableView.contentInset.bottom, -20)
     }
 
-    func testGetNextPageWithTooManyItems() {
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [])
+    func testGetNextPage() {
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [])
         viewController.view.layoutIfNeeded()
         let link = "https://canvas.instructure.com/courses/1/modules?page=2"
         let next = HTTPURLResponse(next: link)
         let one = APIModule.make(id: "1", position: 1, items: [.make()])
         let two = APIModule.make(id: "2", position: 2, items: nil)
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [one], response: next)
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [one], response: next)
         api.mock(GetNextRequest<[APIModule]>(path: link), value: [two])
-        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details]), value: [.make()])
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths]), value: [.make()])
         viewController.tableView.refreshControl?.sendActions(for: .valueChanged)
         XCTAssertEqual(viewController.tableView.numberOfSections, 2)
         XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 1)
     }
 
     func testCollapsingSections() throws {
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [.make(id: "3453243", name: "Module 1")])
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "3453243", name: "Module 1")])
         viewController.view.layoutIfNeeded()
         let before = header(forSection: 0)
         XCTAssertTrue(before.isExpanded)
@@ -327,23 +316,22 @@ class ModuleListViewControllerTests: CoreTestCase {
     }
 
     func testSubHeaders() throws {
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
-            .make(items: [
-                .make(
-                    id: "1",
-                    title: "I am a sub header",
-                    indent: 2,
-                    content: .subHeader,
-                    published: true
-                ),
-                .make(
-                    id: "2",
-                    title: "other subheader",
-                    indent: 2,
-                    content: .subHeader,
-                    published: false
-                ),
-            ]),
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [ .make(id: "1") ])
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
+            .make(
+                id: "1",
+                title: "I am a sub header",
+                indent: 2,
+                content: .subHeader,
+                published: true
+            ),
+            .make(
+                id: "2",
+                title: "other subheader",
+                indent: 2,
+                content: .subHeader,
+                published: false
+            ),
         ])
         viewController.view.layoutIfNeeded()
         let cell = try XCTUnwrap(viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ModuleItemSubHeaderCell)
@@ -358,11 +346,10 @@ class ModuleListViewControllerTests: CoreTestCase {
     }
 
     func testSelectItem() {
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
-            .make(id: "1", items: [
-                .make(id: "1", content: .assignment("1"), html_url: URL(string: "/courses/1/modules/items/1")!),
-                .make(id: "2", content: .page("2")),
-            ]),
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [ .make(id: "1") ])
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
+            .make(id: "1", content: .assignment("1"), html_url: URL(string: "/courses/1/modules/items/1")!),
+            .make(id: "2", content: .page("2")),
         ])
         viewController.view.layoutIfNeeded()
         viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
@@ -372,11 +359,10 @@ class ModuleListViewControllerTests: CoreTestCase {
     }
 
     func testAutomaticallyChangesSelectionInSplitView() {
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
-            .make(id: "1", items: [
-                .make(id: "1", position: 1, content: .assignment("1"), html_url: URL(string: "/courses/1/modules/items/1")!),
-                .make(id: "2", position: 2, content: .page("2")),
-            ]),
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [ .make(id: "1") ])
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
+            .make(id: "1", position: 1, content: .assignment("1"), html_url: URL(string: "/courses/1/modules/items/1")!),
+            .make(id: "2", position: 2, content: .page("2")),
         ])
         let svc = MockSplitViewController()
         svc.mockCollapsed = false
@@ -391,7 +377,10 @@ class ModuleListViewControllerTests: CoreTestCase {
     }
 
     func testViewWillAppearDeselectsSelectedRow() {
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [.make(items: [.make(content: .assignment("1"))])])
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "1") ])
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
+            .make(content: .assignment("1")),
+        ])
         viewController.view.layoutIfNeeded()
         viewController.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
         XCTAssertNotNil(viewController.tableView.indexPathForSelectedRow)
@@ -400,18 +389,15 @@ class ModuleListViewControllerTests: CoreTestCase {
     }
 
     func testModuleItemRequirementCompleted() {
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
-            .make(id: "1", items: [
-                .make(id: "1", completion_requirement: .make(type: .must_view, completed: false)),
-            ]),
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "1") ])
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
+            .make(id: "1", completion_requirement: .make(type: .must_view, completed: false)),
         ])
         viewController.view.layoutIfNeeded()
         var cell = moduleItemCell(at: IndexPath(row: 0, section: 0))
         XCTAssertEqual(cell.dueLabel.text, "View")
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
-            .make(id: "1", items: [
-                .make(id: "1", completion_requirement: .make(type: .must_view, completed: true)),
-            ]),
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
+            .make(id: "1", completion_requirement: .make(type: .must_view, completed: true)),
         ])
         NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
         cell = moduleItemCell(at: IndexPath(row: 0, section: 0))
@@ -420,10 +406,34 @@ class ModuleListViewControllerTests: CoreTestCase {
     }
 
     func testLockedMasteryPath() {
-        api.mock(GetModulesRequest(courseID: "1", include: [.items, .content_details]), value: [
-            .make(id: "1", items: [
-                .make(id: "1", mastery_paths: .make(locked: true)),
-            ]),
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "1")])
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
+            .make(id: "1", title: "Unlockable", mastery_paths: .make(locked: true)),
         ])
+        viewController.view.layoutIfNeeded()
+        XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 2)
+        let item = moduleItemCell(at: IndexPath(row: 0, section: 0))
+        XCTAssertEqual(item.nameLabel.text, "Unlockable")
+        let path = moduleItemCell(at: IndexPath(row: 1, section: 0))
+        XCTAssertEqual(path.nameLabel.text, "Locked until \"Unlockable\" is graded")
+    }
+
+    func testMasteryPath() {
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "1")])
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
+            .make(id: "1", title: "Unlockable", mastery_paths:
+                .make(locked: false, assignment_sets: [
+                    .init(assignments: [.init(model: .make())])
+                ])
+            ),
+        ])
+        viewController.view.layoutIfNeeded()
+        XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 2)
+        let item = moduleItemCell(at: IndexPath(row: 0, section: 0))
+        XCTAssertEqual(item.nameLabel.text, "Unlockable")
+        let path = moduleItemCell(at: IndexPath(row: 1, section: 0))
+        XCTAssertEqual(path.nameLabel.text, "Select a Path")
+        XCTAssertEqual(path.dueLabel.text, "1 Option")
+        XCTAssertEqual((path.accessoryView as? UIImageView)?.image, UIImage.icon(.masteryPaths))
     }
 }

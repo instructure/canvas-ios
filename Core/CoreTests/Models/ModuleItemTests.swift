@@ -27,7 +27,7 @@ class ModuleItemTests: CoreTestCase {
         XCTAssertEqual(model.id, item.id.value)
         XCTAssertEqual(model.title, item.title)
         XCTAssertEqual(model.moduleID, item.module_id.value)
-        XCTAssertEqual(model.position, item.position)
+        XCTAssertEqual(model.position, Double(item.position))
         XCTAssertEqual(model.indent, item.indent)
         XCTAssertEqual(model.htmlURL, item.html_url)
         XCTAssertEqual(model.url, item.url)

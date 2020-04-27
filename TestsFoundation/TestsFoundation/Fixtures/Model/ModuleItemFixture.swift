@@ -43,13 +43,7 @@ extension ModuleItemSequence {
         in client: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> ModuleItemSequence {
         let sequence: ModuleItemSequence = client.insert()
-        sequence.courseID = courseID
-        sequence.assetType = assetType
-        sequence.assetID = assetID
-        let node = api.items.first
-        sequence.prev = node?.prev.flatMap { .save($0, forCourse: courseID, in: client) }
-        sequence.next = node?.next.flatMap { .save($0, forCourse: courseID, in: client) }
-        sequence.current = node?.current.flatMap { .save($0, forCourse: courseID, in: client) }
+        sequence.update(api, courseID: courseID, assetType: assetType, assetID: assetID, in: client)
         return sequence
     }
 }
