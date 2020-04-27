@@ -193,6 +193,9 @@
 /* No comment provided by engineer. */
 "Complete" = "Fuldført";
 
+/* concluded datetime */
+"Concluded %@" = "Afsluttet %@";
+
 /* No comment provided by engineer. */
 "Concluded Conferences" = "Afsluttede konferencer";
 
@@ -219,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "Copied!" = "Kopieret!";
+
+/* No comment provided by engineer. */
+"Could not launch tool. Please try again." = "Kunne ikke starte værktøjet. Prøv igen.";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "Kunne ikke gemme meddelelsesindstilling";
@@ -347,6 +353,9 @@
 "External Tool" = "Eksternt værktøj";
 
 /* No comment provided by engineer. */
+"External URL" = "Ekstern URL";
+
+/* No comment provided by engineer. */
 "Extremely critical emergency" = "Ekstrem kritisk nødsituation";
 
 /* No comment provided by engineer. */
@@ -398,6 +407,9 @@
 "Forget %@" = "Glem %@";
 
 /* No comment provided by engineer. */
+"Front Page" = "Forside";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -408,6 +420,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "Gå til I dag";
+
+/* No comment provided by engineer. */
+"Grades" = "Karakterer";
 
 /* No comment provided by engineer. */
 "Grading" = "Karaktergivning";
@@ -465,6 +480,9 @@
 
 /* No comment provided by engineer. */
 "It looks like a great day to rest, relax, and recharge." = "Det er en alle tiders dag til at tage den med ro og slappe af.";
+
+/* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "Det ser ud til, at opgaver ikke er blevet oprettet i dette rum endnu.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Det ser ud til, at du ikke er tilmeldt til nogen fag som %@. En af vores andre apps kan være bedre egnet. Tryk på en for at besøge App Store.";
@@ -554,6 +572,9 @@
 "Login Error" = "Loginfejl";
 
 /* No comment provided by engineer. */
+"LTI Tool" = "LTI Værktøj";
+
+/* No comment provided by engineer. */
 "Make sure you enable camera permissions in Settings" = "Sørg for, at du aktiverer kameratilladelser i Indstillinger";
 
 /* No comment provided by engineer. */
@@ -596,6 +617,9 @@
 "Next" = "Næste";
 
 /* No comment provided by engineer. */
+"No Assignments" = "Ingen opgaver";
+
+/* No comment provided by engineer. */
 "No Conferences" = "Ingen konferencer";
 
 /* No comment provided by engineer. */
@@ -618,6 +642,9 @@
 
 /* No comment provided by engineer. */
 "No Modules" = "Ingen moduler";
+
+/* No comment provided by engineer. */
+"No Pages" = "Ingen sier";
 
 /* No comment provided by engineer. */
 "No Results" = "Ingen resultater";
@@ -675,6 +702,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "Side";
+
+/* No comment provided by engineer. */
+"Page Details" = "Sidedetaljer";
 
 /* No comment provided by engineer. */
 "Pages" = "Sider";
@@ -847,6 +877,9 @@
 /* No comment provided by engineer. */
 "Start recording" = "Start optagelsen";
 
+/* started datetime */
+"Started %@" = "Startet %@";
+
 /* No comment provided by engineer. */
 "Stop Act as User" = "Hold op med at fungere som bruger";
 
@@ -938,6 +971,9 @@
 "There are no modules to display yet." = "Der er ikke nogen moduler at vise endnu.";
 
 /* No comment provided by engineer. */
+"There are no pages to display yet." = "Der er ikke nogen sider at vise endnu.";
+
+/* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Der opstod et problem ved hentning af Betingelser for brug";
 
 /* No comment provided by engineer. */
@@ -950,7 +986,13 @@
 "There was an error loading events. Pull to refresh to try again." = "Der opstod en fejl under indlæsning af begivenheder. Træk for at opdatere for at prøve igen.";
 
 /* No comment provided by engineer. */
+"There was an error loading grades. Pull to refresh to try again." = "Der opstod en fejl under indlæsningen af karakterer. Træk for at opdatere for at prøve igen.";
+
+/* No comment provided by engineer. */
 "There was an error loading modules. Pull to refresh to try again." = "Der opstod en fejl under indlæsningen af moduler. Træk for at opdatere for at prøve igen.";
+
+/* No comment provided by engineer. */
+"There was an error loading pages. Pull to refresh to try again." = "Der opstod en fejl under indlæsningen af sider. Træk for at opdatere for at prøve igen.";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "Der opstod en fejl under indlæsning af deltagere. Træk for at opdatere for at prøve igen.";
@@ -986,6 +1028,9 @@
 "To Do" = "Opgaveliste";
 
 /* No comment provided by engineer. */
+"Total Grade" = "Total karakter";
+
+/* No comment provided by engineer. */
 "Total time" = "Samlet tid";
 
 /* Description for Twitter communication channel */
@@ -1002,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "unpublished" = "ikke offentliggjort";
+
+/* No comment provided by engineer. */
+"Unsupported Item" = "Ikke-understøttet element";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Opdaterede sprogindstillinger";

@@ -605,9 +605,6 @@
 /* Yellow course color button */
 "Yellow" = "Gul";
 
-/* Shows time limit on a quiz */
-"You have %d minutes." = "Du har %d minuter.";
-
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Du har använt alla dina tillgängliga försök på det här quizzet.";
 

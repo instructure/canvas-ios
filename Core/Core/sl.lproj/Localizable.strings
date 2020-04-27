@@ -193,6 +193,9 @@
 /* No comment provided by engineer. */
 "Complete" = "Zaključeno";
 
+/* concluded datetime */
+"Concluded %@" = "Zaključeno %@";
+
 /* No comment provided by engineer. */
 "Concluded Conferences" = "Zaključene konference";
 
@@ -219,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "Copied!" = "Kopirano.";
+
+/* No comment provided by engineer. */
+"Could not launch tool. Please try again." = "Orodja ni bilo mogoče zagnati. Poskusite znova.";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "Nastavitev sporočil ni bilo mogoče shraniti";
@@ -347,6 +353,9 @@
 "External Tool" = "Zunanje orodje";
 
 /* No comment provided by engineer. */
+"External URL" = "Zunanji naslov URL";
+
+/* No comment provided by engineer. */
 "Extremely critical emergency" = "Skrajno kritični nujni primer";
 
 /* No comment provided by engineer. */
@@ -398,6 +407,9 @@
 "Forget %@" = "Pozabi %@";
 
 /* No comment provided by engineer. */
+"Front Page" = "Prva stran";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -408,6 +420,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "Pojdi na danes";
+
+/* No comment provided by engineer. */
+"Grades" = "Ocene";
 
 /* No comment provided by engineer. */
 "Grading" = "Ocenjevanje";
@@ -465,6 +480,9 @@
 
 /* No comment provided by engineer. */
 "It looks like a great day to rest, relax, and recharge." = "Videti je, da je to krasen dan za počitek, sprostitev in regeneracijo.";
+
+/* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "Zdi se, da v tem prostoru naloge še niso bile ustvarjene.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Videti je, da v noben predmet niste vpisani kot %@. Morda bo primernejša ena od naših drugih aplikacij. Tapnite za obisk trgovine App Store.";
@@ -554,6 +572,9 @@
 "Login Error" = "Napaka pri vpisovanju";
 
 /* No comment provided by engineer. */
+"LTI Tool" = "Orodje LTI";
+
+/* No comment provided by engineer. */
 "Make sure you enable camera permissions in Settings" = "V možnosti »Nastavitve« omogočite dovoljenja za kamero.";
 
 /* No comment provided by engineer. */
@@ -596,6 +617,9 @@
 "Next" = "Naprej";
 
 /* No comment provided by engineer. */
+"No Assignments" = "Ni nalog";
+
+/* No comment provided by engineer. */
 "No Conferences" = "Ni konferenc";
 
 /* No comment provided by engineer. */
@@ -618,6 +642,9 @@
 
 /* No comment provided by engineer. */
 "No Modules" = "Ni modulov.";
+
+/* No comment provided by engineer. */
+"No Pages" = "Ni strani.";
 
 /* No comment provided by engineer. */
 "No Results" = "Ni rezultatov";
@@ -675,6 +702,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "Stran";
+
+/* No comment provided by engineer. */
+"Page Details" = "Podrobnosti o strani";
 
 /* No comment provided by engineer. */
 "Pages" = "Strani";
@@ -847,6 +877,9 @@
 /* No comment provided by engineer. */
 "Start recording" = "Zaženi snemanje";
 
+/* started datetime */
+"Started %@" = "Začeto %@";
+
 /* No comment provided by engineer. */
 "Stop Act as User" = "Opustite vlogo uporabnika";
 
@@ -938,6 +971,9 @@
 "There are no modules to display yet." = "Zaenkrat ni modulov za prikaz.";
 
 /* No comment provided by engineer. */
+"There are no pages to display yet." = "Zaenkrat ni strani za prikaz.";
+
+/* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Prišlo je do težav pri pridobivanju pogojev uporabe.";
 
 /* No comment provided by engineer. */
@@ -950,7 +986,13 @@
 "There was an error loading events. Pull to refresh to try again." = "Pri nalaganju dogodkov je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
 
 /* No comment provided by engineer. */
+"There was an error loading grades. Pull to refresh to try again." = "Pri nalaganju ocen je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
+
+/* No comment provided by engineer. */
 "There was an error loading modules. Pull to refresh to try again." = "Pri nalaganju modulov je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
+
+/* No comment provided by engineer. */
+"There was an error loading pages. Pull to refresh to try again." = "Pri nalaganju strani je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "Pri nalaganju ljudi je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
@@ -986,6 +1028,9 @@
 "To Do" = "Čakajoča opravila";
 
 /* No comment provided by engineer. */
+"Total Grade" = "Skupna ocena";
+
+/* No comment provided by engineer. */
 "Total time" = "Skupni čas";
 
 /* Description for Twitter communication channel */
@@ -1002,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "unpublished" = "neobjavljeno";
+
+/* No comment provided by engineer. */
+"Unsupported Item" = "Nepodprti element";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Posodobljene nastavitve jezika";

@@ -247,8 +247,7 @@
 /* No comment provided by engineer. */
 "Ask me later" = "Chiedimelo più tardi";
 
-/* Assignment icon a11y label
-   Assignment module item type */
+/* Label for an assignment */
 "Assignment" = "Compito";
 
 /* No comment provided by engineer. */
@@ -476,7 +475,7 @@
 /* No comment provided by engineer. */
 "Discard this entry?" = "Ignorare questa voce?";
 
-/* Discussion module item type */
+/* Title of the new discussion view */
 "Discussion" = "Discussione";
 
 /* Title for discussion entry submission */
@@ -804,7 +803,7 @@
 /* No comment provided by engineer. */
 "Love it!" = "Lo adoro!";
 
-/* Button title for mark as done. */
+/* Button title for mark as done */
 "Mark as Done" = "Contrassegna come fatto";
 
 /* Button title for beginning masquerading
@@ -852,7 +851,7 @@
 /* No comment provided by engineer. */
 "Module Item Not Found" = "Elemento del modulo non trovato";
 
-/* Modules title */
+/* title for the modules tab */
 "Modules" = "Moduli";
 
 /* time since creation (less than 1 minute) */
@@ -873,7 +872,7 @@
 /* format string saying what the minimum score must be */
 "Must score %@ or higher" = "Deve avere un punteggio di %@ o più";
 
-/* user must submit something to complete */
+/* user must submit something to complete requirement */
 "Must submit" = "Deve inviare";
 
 /* user must view item to complete requirement */
@@ -1104,7 +1103,8 @@
 /* No comment provided by engineer. */
 "Questions:" = "Domande:";
 
-/* Quiz module item type */
+/* Label for a quiz
+   Title for a quiz submission cell */
 "Quiz" = "Quiz";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
@@ -1498,7 +1498,8 @@
 /* No comment provided by engineer. */
 "Time Limit:" = "Limite di tempo:";
 
-/* Title of the Todo screen */
+/* Title of to do screen
+   To Do page title */
 "To Do" = "Elenco attività";
 
 /* No comment provided by engineer. */
