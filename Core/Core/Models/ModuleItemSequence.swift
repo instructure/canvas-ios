@@ -42,7 +42,7 @@ public class ModuleItemSequence: NSManagedObject {
         let node = response.items.first
         prev = node?.prev.flatMap { .save($0, in: context) }
         current = node?.current.flatMap { .save($0, in: context) }
-        next = node?.current.flatMap { .save($0, in: context) }
+        next = node?.next.flatMap { .save($0, in: context) }
     }
 }
 
