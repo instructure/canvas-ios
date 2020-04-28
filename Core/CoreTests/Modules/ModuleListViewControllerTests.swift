@@ -416,6 +416,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         XCTAssertEqual(item.nameLabel.text, "Unlockable")
         let path = moduleItemCell(at: IndexPath(row: 1, section: 0))
         XCTAssertEqual(path.nameLabel.text, "Locked until \"Unlockable\" is graded")
+        XCTAssertEqual(path.dueLabel.text, "")
     }
 
     func testMasteryPath() {

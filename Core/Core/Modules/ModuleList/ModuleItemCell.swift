@@ -45,7 +45,7 @@ class ModuleItemCell: UITableViewCell {
             )
         }
         let requirement = item.completionRequirement?.description
-        if let masteryPath = item.masteryPath, masteryPath.needsSelection {
+        if let masteryPath = item.masteryPath, masteryPath.needsSelection, !masteryPath.locked {
             let format = NSLocalizedString("d_options", bundle: .core, comment: "")
             dueLabel.text = String.localizedStringWithFormat(format, masteryPath.numberOfOptions)
             dueLabel.textColor = tintColor
@@ -65,6 +65,5 @@ class ModuleItemCell: UITableViewCell {
                     : NSLocalizedString("unpublished", bundle: .core, comment: ""),
             ].joined(separator: ", ")
         }
-        accessoryType = publishedIconView.isHidden ? .disclosureIndicator : .none
     }
 }
