@@ -36,10 +36,11 @@ class APIConversationTests: CoreTestCase {
     func testGetConversationsRequest() {
         XCTAssertEqual(GetConversationsRequest(include: [], perPage: nil, scope: nil, filter: nil).path, "conversations")
         XCTAssertEqual(GetConversationsRequest(include: [], perPage: nil, scope: nil, filter: nil).queryItems, [])
-        XCTAssertEqual(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent, filter: nil).queryItems, [
+        XCTAssertEqual(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent, filter: "course_1").queryItems, [
             URLQueryItem(name: "include[]", value: "participant_avatars"),
             URLQueryItem(name: "per_page", value: "50"),
             URLQueryItem(name: "scope", value: "sent"),
+            URLQueryItem(name: "filter[]", value: "course_1"),
         ])
     }
 
@@ -52,11 +53,14 @@ class APIConversationTests: CoreTestCase {
     }
 
     func testPutConversationRequest() {
-        let request = PutConversationRequest(id: "1", workflowState: .read)
+        let body = PutConversationRequest.Body(conversation:
+            PutConversationRequest.ConversationContainer(id: "1",
+                                                         workflow_state: .unread
+        ))
+        let request = PutConversationRequest(id: "1", workflowState: .unread)
         XCTAssertEqual(request.path, "conversations/1")
         XCTAssertEqual(request.method, .put)
-        XCTAssertEqual(request.body?.conversation.id, "1")
-        XCTAssertEqual(request.body?.conversation.workflow_state, .read)
+        XCTAssertEqual(request.body, body)
     }
 
     func testPostAddMessageRequest() throws {

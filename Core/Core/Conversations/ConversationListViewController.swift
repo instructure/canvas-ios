@@ -190,6 +190,7 @@ extension ConversationListViewController: UITableViewDataSource, UITableViewDele
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let conversation = conversations[indexPath] else { return }
         env.router.route(to: .conversation(conversation.id), from: self)
+        markConversation(conversation, workflowState: .read)
     }
 
     public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -198,7 +199,7 @@ extension ConversationListViewController: UITableViewDataSource, UITableViewDele
 
         let title = NSLocalizedString("Unread", comment: "")
         let markAsUnread = UIContextualAction(style: .normal, title: title) { [weak self]  _, _, success in
-            self?.markConversationAsUnread(c)
+            self?.markConversation(c, workflowState: .unread)
             success(true)
         }
         markAsUnread.backgroundColor = .named(.electric)
@@ -208,8 +209,8 @@ extension ConversationListViewController: UITableViewDataSource, UITableViewDele
         return UISwipeActionsConfiguration(actions: actions)
     }
 
-    func markConversationAsUnread(_ c: Conversation) {
-        let u = UpdateConversation(id: c.id, state: .unread)
+    func markConversation(_ c: Conversation, workflowState: ConversationWorkflowState) {
+        let u = UpdateConversation(id: c.id, state: workflowState)
         u.fetch(environment: env, force: true) { [weak self] (_, _, error) in
             if let error = error { self?.showError(error) }
         }

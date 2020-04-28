@@ -232,7 +232,7 @@ public struct GetConversationRequest: APIRequestable {
 
 public struct PutConversationRequest: APIRequestable {
     public typealias Response = APIConversation
-    public struct Body: Encodable {
+    public struct Body: Encodable, Equatable {
         let conversation: ConversationContainer
     }
 
@@ -241,7 +241,7 @@ public struct PutConversationRequest: APIRequestable {
     public var path: String { "conversations/\(id)" }
     public let method = APIMethod.put
 
-    struct ConversationContainer: Encodable {
+    struct ConversationContainer: Encodable, Equatable {
         let id: String
         let workflow_state: ConversationWorkflowState
     }
