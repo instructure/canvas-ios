@@ -247,8 +247,7 @@
 /* No comment provided by engineer. */
 "Ask me later" = "Spørg mig senere";
 
-/* Assignment icon a11y label
-   Assignment module item type */
+/* Label for an assignment */
 "Assignment" = "Opgave";
 
 /* No comment provided by engineer. */
@@ -476,7 +475,7 @@
 /* No comment provided by engineer. */
 "Discard this entry?" = "Kasser denne indtastning?";
 
-/* Discussion module item type */
+/* Title of the new discussion view */
 "Discussion" = "Diskussion";
 
 /* Title for discussion entry submission */
@@ -804,7 +803,7 @@
 /* No comment provided by engineer. */
 "Love it!" = "Elsker det!";
 
-/* Button title for mark as done. */
+/* Button title for mark as done */
 "Mark as Done" = "Marker som gjort";
 
 /* Button title for beginning masquerading
@@ -852,7 +851,7 @@
 /* No comment provided by engineer. */
 "Module Item Not Found" = "Modulelement ikke fundet";
 
-/* Modules title */
+/* title for the modules tab */
 "Modules" = "Moduler";
 
 /* time since creation (less than 1 minute) */
@@ -873,7 +872,7 @@
 /* format string saying what the minimum score must be */
 "Must score %@ or higher" = "Skal opnå %@ eller højere";
 
-/* user must submit something to complete */
+/* user must submit something to complete requirement */
 "Must submit" = "Skal indsende";
 
 /* user must view item to complete requirement */
@@ -1104,7 +1103,8 @@
 /* No comment provided by engineer. */
 "Questions:" = "Spørgsmål:";
 
-/* Quiz module item type */
+/* Label for a quiz
+   Title for a quiz submission cell */
 "Quiz" = "Test";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
@@ -1498,7 +1498,8 @@
 /* No comment provided by engineer. */
 "Time Limit:" = "Frist:";
 
-/* Title of the Todo screen */
+/* Title of to do screen
+   To Do page title */
 "To Do" = "Opgaveliste";
 
 /* No comment provided by engineer. */

@@ -28,6 +28,9 @@
 /* No comment provided by engineer. */
 "Add Student" = "Tapiri ākonga";
 
+/* No comment provided by engineer. */
+"Add students at the top or visit the global menu to masquerade as a student." = "Tāpiri ākonga ki runga ara haere ki te tahua o te ao ki te āhua rua hei ākonga";
+
 /* Alert Section Header */
 "Alert me when:" = "Matohi ahau ina:";
 
@@ -296,6 +299,9 @@
 
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "E tikiake ana %1$@ kei te %2$@";
+
+/* No comment provided by engineer. */
+"Welcome, Admin!" = "Haere mai Kaiwhakahaere";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Me tukua e koe ngā whakamōhiotanga i roto i ngā Tautuhinga ki te whakatau ngā whakamaharatanga.";

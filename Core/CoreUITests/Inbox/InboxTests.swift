@@ -170,7 +170,7 @@ class InboxTests: CoreUITestCase {
         photo.tap()
 
         app.find(label: "Upload complete").waitToExist()
-        let img = app.images["AttachmentView.image"]
+        let img = app.find(id: "AttachmentView.image")
         app.find(label: "Upload complete").tapUntil { img.exists == true }
         NavBar.dismissButton.tap()
 

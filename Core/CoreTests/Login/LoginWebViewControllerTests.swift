@@ -40,16 +40,10 @@ class LoginWebViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.webView.url, URL(string: "https://localhost:1/login/oauth2/auth?client_id=1&response_type=code&redirect_uri=https://canvas/login&mobile=1"))
     }
 
-    func xtestPreloaded() {
+    func testPreloaded() {
         controller.mdmLogin = MDMLogin(host: "localhost:1", username: "u", password: "p")
         controller.mobileVerifyModel = APIVerifyClient(authorized: true, base_url: url, client_id: "1", client_secret: "s")
         controller.view.layoutIfNeeded()
-        let done = expectation(description: "credentials get posted")
-        observation = controller.webView.observe(\.url) { (webView, _) in
-            guard webView.url?.query?.contains("username=") == true else { return }
-            self.observation = nil
-            done.fulfill()
-        }
         controller.webView.loadHTMLString("""
         <!doctype html>
         <form action="/" method="GET" id="login_form">
@@ -58,8 +52,8 @@ class LoginWebViewControllerTests: CoreTestCase {
         <input type="submit" />
         </form>
         """, baseURL: url)
+        let done = keyValueObservingExpectation(for: controller.webView, keyPath: #keyPath(WKWebView.url), expectedValue: URL(string: "https://localhost:1/?username=u&password=p"))
         wait(for: [done], timeout: 9)
-        XCTAssertEqual(controller.webView.url, URL(string: "https://localhost:1/?username=u&password=p"))
     }
 
     func testRedirectFlow() {

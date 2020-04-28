@@ -28,7 +28,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     var viewControllers: [UIViewController] = []
     var readyToLayoutTabs: Bool = false
     var didLayoutTabs: Bool = false
-    var env: AppEnvironment!
+    let env = AppEnvironment.shared
     var colorScheme: ColorScheme?
     var replyButton: FloatingButton?
     var replyStarted: Bool = false
@@ -57,9 +57,8 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         self?.courseReady()
     }
 
-    static func create(courseID: String, studentID: String, env: AppEnvironment = .shared) -> CourseDetailsViewController {
+    static func create(courseID: String, studentID: String) -> CourseDetailsViewController {
         let controller = CourseDetailsViewController(nibName: nil, bundle: nil)
-        controller.env = env
         controller.courseID = courseID
         controller.studentID = studentID
         return controller
