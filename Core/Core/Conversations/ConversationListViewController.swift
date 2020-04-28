@@ -123,7 +123,7 @@ public class ConversationListViewController: UIViewController, ConversationCours
     }
 
     @IBAction func createNewConversation() {
-        env.router.show(ConversationCoursesActionSheet.create(delegate: self), from: self, options: .modal())
+        env.router.route(to: URL(string: "/conversations/compose")!, from: self, options: .modal(embedInNav: true))
     }
 
     public func courseSelected(course: Course, user: User) {
