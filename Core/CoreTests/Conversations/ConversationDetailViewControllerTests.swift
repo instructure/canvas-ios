@@ -26,6 +26,7 @@ class ConversationDetailViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
+        environment.mockStore = false
         Clock.mockNow(DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 12, day: 25).date!)
 
         let c = APIConversation.make(

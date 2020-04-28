@@ -67,7 +67,7 @@ class ConversationListViewControllerTests: CoreTestCase {
     func testTappingComposeRoutesToCourseActionSheet() {
         loadView()
         controller.composeButton.sendActions(for: .primaryActionTriggered)
-        XCTAssertNotNil(router.presented as? ConversationCoursesActionSheet)
+        XCTAssert(router.lastRoutedTo(URL(string: "/conversations/compose")!))
     }
 
     func testRouteToCompose() {

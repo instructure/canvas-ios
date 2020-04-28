@@ -30,6 +30,11 @@ class EditComposeRecipientsViewControllerTests: CoreTestCase {
     )
     var callbackController: EditComposeRecipientsViewController?
 
+    override func setUp() {
+        super.setUp()
+        environment.mockStore = false
+    }
+
     func testLayout() {
         let teacher = APISearchRecipient.make(
             id: "2",
