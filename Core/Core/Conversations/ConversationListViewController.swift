@@ -210,8 +210,8 @@ extension ConversationListViewController: UITableViewDataSource, UITableViewDele
 
     func markConversationAsUnread(_ c: Conversation) {
         let u = UpdateConversation(id: c.id, state: .unread)
-        u.fetch(environment: env, force: true) { [weak self] (_, _, _) in
-            self?.conversations.refresh(force: true)
+        u.fetch(environment: env, force: true) { [weak self] (_, _, error) in
+            if let error = error { self?.showError(error) }
         }
     }
 }

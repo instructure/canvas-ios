@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import CoreData
 
 public class GetConversations: CollectionUseCase {
     public typealias Model = Conversation
@@ -119,4 +120,11 @@ public class UpdateConversation: APIUseCase {
         self.state = state
     }
 
+    public func write(response: APIConversation?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        // currently `UpdateConversations` is used to mark a discussion as unread. The response does not
+        //  include `context_name` field, so it makes cells jump, so not updating the whole object.
+        let conversation: Conversation? = client.first(where: #keyPath(Conversation.id), equals: response?.id.value ?? "")
+        if let workflowState = response?.workflow_state { conversation?.workflowState = workflowState }
+        try? client.save()
+    }
 }
