@@ -184,6 +184,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
         handlePush(userInfo: response.notification.request.content.userInfo)
+        completionHandler()
     }
 
     func userNotificationCenter(
