@@ -37,11 +37,11 @@ extension APIAlertThreshold {
     	threshold: UInt? = 100
     ) -> APIAlertThreshold {
         return APIAlertThreshold(
-			id: ID(id),
-			observer_id: ID(observer_id),
-			user_id: ID(user_id),
-			alert_type: alert_type,
-			threshold: threshold.flatMap { String($0) }
+            id: ID(id),
+            observer_id: ID(observer_id),
+            user_id: ID(user_id),
+            alert_type: alert_type,
+            threshold: threshold.flatMap { String($0) }
         )
     }
 }
