@@ -592,7 +592,7 @@ open class CoreUITestCase: XCTestCase {
         mockEncodableRequest("conversations/unread_count", value: ["unread_count": 0])
         mockEncodableRequest("conferences?state=live", value: [String]())
         if Bundle.main.isTeacherApp {
-            mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: nil), value: [])
+            mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: nil, filter: nil), value: [])
         }
     }
 

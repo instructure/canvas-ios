@@ -48,7 +48,6 @@ public class GetConversationCourses: APIUseCase {
                 ]
             )
         } else {
-            print("role: \(role.rawValue)")
             return Scope(
                 predicate: NSPredicate(format: "%K == %@ AND %K == %@",
                                        #keyPath(Enrollment.type), role.rawValue,
