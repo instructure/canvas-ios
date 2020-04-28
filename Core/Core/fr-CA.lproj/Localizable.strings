@@ -193,6 +193,9 @@
 /* No comment provided by engineer. */
 "Complete" = "Terminé";
 
+/* concluded datetime */
+"Concluded %@" = "Closes %@";
+
 /* No comment provided by engineer. */
 "Concluded Conferences" = "Conférences terminées";
 
@@ -219,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "Copied!" = "Copié!";
+
+/* No comment provided by engineer. */
+"Could not launch tool. Please try again." = "Impossible de lancer l'outil. Veuillez réessayer.";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "Impossible d’enregistrer les préférences de notification";
@@ -347,6 +353,9 @@
 "External Tool" = "Outil externe";
 
 /* No comment provided by engineer. */
+"External URL" = "URL externe";
+
+/* No comment provided by engineer. */
 "Extremely critical emergency" = "État d'urgence extrêmement critique";
 
 /* No comment provided by engineer. */
@@ -398,6 +407,9 @@
 "Forget %@" = "Oublier %@";
 
 /* No comment provided by engineer. */
+"Front Page" = "Page de couverture";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -408,6 +420,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "Aller à aujourd'hui";
+
+/* No comment provided by engineer. */
+"Grades" = "Notes";
 
 /* No comment provided by engineer. */
 "Grading" = "Notation";
@@ -465,6 +480,9 @@
 
 /* No comment provided by engineer. */
 "It looks like a great day to rest, relax, and recharge." = "C'est une belle journée pour se reposer, se détendre et recharger nos batteries.";
+
+/* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "Il semblerait qu’il n’y ait pas encore de tâche créée dans cet espace.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Il semblerait que vous ne soyez inscrit à aucun cours sous %@. L'une de nos autres applis pourrait mieux convenir.Appuyez sur l'une d'entre elles pour vous rendre sur l'App Store.";
@@ -554,6 +572,9 @@
 "Login Error" = "Erreur de connexion";
 
 /* No comment provided by engineer. */
+"LTI Tool" = "Outil LTI";
+
+/* No comment provided by engineer. */
 "Make sure you enable camera permissions in Settings" = "Assurez-vous d'activer les autorisations de caméra dans les paramètres";
 
 /* No comment provided by engineer. */
@@ -596,6 +617,9 @@
 "Next" = "Suivant";
 
 /* No comment provided by engineer. */
+"No Assignments" = "Aucune tâche";
+
+/* No comment provided by engineer. */
 "No Conferences" = "Pas de conférence";
 
 /* No comment provided by engineer. */
@@ -618,6 +642,9 @@
 
 /* No comment provided by engineer. */
 "No Modules" = "Aucun module";
+
+/* No comment provided by engineer. */
+"No Pages" = "Aucune page";
 
 /* No comment provided by engineer. */
 "No Results" = "Pas de résultat";
@@ -675,6 +702,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "Page";
+
+/* No comment provided by engineer. */
+"Page Details" = "Détails de la page";
 
 /* No comment provided by engineer. */
 "Pages" = "Pages";
@@ -847,6 +877,9 @@
 /* No comment provided by engineer. */
 "Start recording" = "Démarrer l’enregistrement.";
 
+/* started datetime */
+"Started %@" = "Débuté %@";
+
 /* No comment provided by engineer. */
 "Stop Act as User" = "Arrêter d'agir en tant qu'utilisateur";
 
@@ -938,6 +971,9 @@
 "There are no modules to display yet." = "Il n'y a pas encore de modules à afficher.";
 
 /* No comment provided by engineer. */
+"There are no pages to display yet." = "Il n'y a pas encore de pages à afficher.";
+
+/* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Un problème est survenu lors de la récupération des conditions d’utilisation.";
 
 /* No comment provided by engineer. */
@@ -950,7 +986,13 @@
 "There was an error loading events. Pull to refresh to try again." = "Une erreur est survenue lors du chargement des événements. Tirez pour actualiser et réessayer.";
 
 /* No comment provided by engineer. */
+"There was an error loading grades. Pull to refresh to try again." = "Une erreur est survenue lors du chargement des notes. Tirez pour actualiser et réessayer.";
+
+/* No comment provided by engineer. */
 "There was an error loading modules. Pull to refresh to try again." = "Une erreur est survenue lors du chargement des modules. Tirez pour actualiser et réessayer.";
+
+/* No comment provided by engineer. */
+"There was an error loading pages. Pull to refresh to try again." = "Une erreur est survenue lors du chargement des pages. Tirez pour actualiser et réessayer.";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "Une erreur est survenue lors du chargement des personnes. Tirez pour actualiser et réessayer.";
@@ -986,6 +1028,9 @@
 "To Do" = "À faire";
 
 /* No comment provided by engineer. */
+"Total Grade" = "Note totale";
+
+/* No comment provided by engineer. */
 "Total time" = "Temps total";
 
 /* Description for Twitter communication channel */
@@ -1002,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "unpublished" = "non publié";
+
+/* No comment provided by engineer. */
+"Unsupported Item" = "Élément non pris en charge";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Paramètres de langue mis à jour";

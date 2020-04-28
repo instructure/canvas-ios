@@ -193,6 +193,9 @@
 /* No comment provided by engineer. */
 "Complete" = "Cwblhau";
 
+/* concluded datetime */
+"Concluded %@" = "Wedi dirwyn i ben %@";
+
 /* No comment provided by engineer. */
 "Concluded Conferences" = "Cynadleddau wedi’u Dirwyn i Ben";
 
@@ -219,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "Copied!" = "Wedi copïo!";
+
+/* No comment provided by engineer. */
+"Could not launch tool. Please try again." = "Doedd dim modd lansio’r adnodd. Rhowch gynnig arall arni.";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "Doedd dim modd cadw'r flaenoriaeth hysbysiadau";
@@ -347,6 +353,9 @@
 "External Tool" = "Adnodd Allanol";
 
 /* No comment provided by engineer. */
+"External URL" = "URL allanol";
+
+/* No comment provided by engineer. */
 "Extremely critical emergency" = "Argyfwng difrifol iawn";
 
 /* No comment provided by engineer. */
@@ -398,6 +407,9 @@
 "Forget %@" = "Anghofio %@";
 
 /* No comment provided by engineer. */
+"Front Page" = "Tudalen Flaen";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -408,6 +420,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "Mynd i heddiw";
+
+/* No comment provided by engineer. */
+"Grades" = "Graddau";
 
 /* No comment provided by engineer. */
 "Grading" = "Graddio";
@@ -465,6 +480,9 @@
 
 /* No comment provided by engineer. */
 "It looks like a great day to rest, relax, and recharge." = "Mae’n edrych fel diwrnod gwych i orffwys, ymlacio a dod at eich hun.";
+
+/* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "Mae’n ymddangos nad oes aseiniadau wedi cael eu creu yn y gofod hwn eto.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Mae'n ymddangos nad ydych chi wedi ymrestru ar unrhyw gyrsiau fel %@. Efallai y byddai un o'n apiau eraill yn eich siwtio'n well. Tapiwch un i fynd i'r App Store.";
@@ -554,6 +572,9 @@
 "Login Error" = "Gwall Mewngofnodi";
 
 /* No comment provided by engineer. */
+"LTI Tool" = "Adnodd LTI";
+
+/* No comment provided by engineer. */
 "Make sure you enable camera permissions in Settings" = "Gwnewch yn siŵr eich bod chi’n galluogi hawliau camera yn y Gosodiadau";
 
 /* No comment provided by engineer. */
@@ -596,6 +617,9 @@
 "Next" = "Nesaf";
 
 /* No comment provided by engineer. */
+"No Assignments" = "Dim Aseiniadau";
+
+/* No comment provided by engineer. */
 "No Conferences" = "Dim Cynadleddau";
 
 /* No comment provided by engineer. */
@@ -618,6 +642,9 @@
 
 /* No comment provided by engineer. */
 "No Modules" = "Dim Modiwlau";
+
+/* No comment provided by engineer. */
+"No Pages" = "Dim Tudalennau";
 
 /* No comment provided by engineer. */
 "No Results" = "Dim Canlyniadau";
@@ -675,6 +702,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "Tudalen";
+
+/* No comment provided by engineer. */
+"Page Details" = "Manylion y Dudalen";
 
 /* No comment provided by engineer. */
 "Pages" = "Tudalennau";
@@ -847,6 +877,9 @@
 /* No comment provided by engineer. */
 "Start recording" = "Dechrau'r recordiad";
 
+/* started datetime */
+"Started %@" = "Wedi dechrau %@";
+
 /* No comment provided by engineer. */
 "Stop Act as User" = "Stopio Gweithredu fel Defnyddiwr";
 
@@ -938,6 +971,9 @@
 "There are no modules to display yet." = "Does dim modiwlau i’w dangos eto.";
 
 /* No comment provided by engineer. */
+"There are no pages to display yet." = "Does dim tudalennau i’w dangos eto.";
+
+/* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Problem wrth adfer y Telerau Defnyddio";
 
 /* No comment provided by engineer. */
@@ -950,7 +986,13 @@
 "There was an error loading events. Pull to refresh to try again." = "Gwall wrth lwytho Digwyddiad myfyrwyr. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
 
 /* No comment provided by engineer. */
+"There was an error loading grades. Pull to refresh to try again." = "Gwall wrth lwytho graddau. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
+
+/* No comment provided by engineer. */
 "There was an error loading modules. Pull to refresh to try again." = "Gwall wrth lwytho modiwlau. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
+
+/* No comment provided by engineer. */
+"There was an error loading pages. Pull to refresh to try again." = "Gwall wrth lwytho tudalennau. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "Gwall wrth lwytho pobl. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
@@ -986,6 +1028,9 @@
 "To Do" = "Tasgau i’w Gwneud";
 
 /* No comment provided by engineer. */
+"Total Grade" = "Gradd Gyffredinol";
+
+/* No comment provided by engineer. */
 "Total time" = "Cyfanswm amser";
 
 /* Description for Twitter communication channel */
@@ -1002,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "unpublished" = "heb gyhoeddi";
+
+/* No comment provided by engineer. */
+"Unsupported Item" = "Eitem Anghydnaws";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Gosodiadau Iaith wedi’u Diweddaru";

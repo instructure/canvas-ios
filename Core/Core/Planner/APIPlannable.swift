@@ -27,7 +27,6 @@ public struct APIPlannable: Codable, Equatable {
     let plannable_id: ID
     let plannable_type: String
     let html_url: APIURL?
-    let context_image: URL?
     let context_name: String?
     let plannable: plannable?
     public let plannable_date: Date
@@ -70,7 +69,6 @@ extension APIPlannable {
         plannable_id: ID = "1",
         plannable_type: String = "Assignment",
         html_url: URL? = URL(string: "http://localhost")!,
-        context_image: URL = URL(string: "https://live.staticflickr.com/1449/24823655706_a46286c12e.jpg")!,
         context_name: String? = "Assignment Grades",
         plannable: APIPlannable.plannable? = APIPlannable.plannable(title: "assignment a", details: "description"),
         plannable_date: Date = Clock.now
@@ -84,7 +82,6 @@ extension APIPlannable {
             plannable_id: plannable_id,
             plannable_type: plannable_type,
             html_url: APIURL(rawValue: html_url),
-            context_image: context_image,
             context_name: context_name,
             plannable: plannable,
             plannable_date: plannable_date

@@ -193,6 +193,9 @@
 /* No comment provided by engineer. */
 "Complete" = "Complet";
 
+/* concluded datetime */
+"Concluded %@" = "Finalitzat %@";
+
 /* No comment provided by engineer. */
 "Concluded Conferences" = "Conferències finalitzades";
 
@@ -219,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "Copied!" = "Copiat.";
+
+/* No comment provided by engineer. */
+"Could not launch tool. Please try again." = "No s'ha pogut iniciar l'eina. Torneu-ho a provar.";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "No s'ha pogut desar la preferència de notificació";
@@ -347,6 +353,9 @@
 "External Tool" = "Eina externa";
 
 /* No comment provided by engineer. */
+"External URL" = "URL externa";
+
+/* No comment provided by engineer. */
 "Extremely critical emergency" = "Emergència extremadament crítica";
 
 /* No comment provided by engineer. */
@@ -398,6 +407,9 @@
 "Forget %@" = "Oblida %@";
 
 /* No comment provided by engineer. */
+"Front Page" = "Pàgina frontal";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -408,6 +420,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "Vés a avui";
+
+/* No comment provided by engineer. */
+"Grades" = "Qualificacions";
 
 /* No comment provided by engineer. */
 "Grading" = "Qualificació";
@@ -465,6 +480,9 @@
 
 /* No comment provided by engineer. */
 "It looks like a great day to rest, relax, and recharge." = "Sembla un dia fabulós per descansar, relaxar-se i carregar piles.";
+
+/* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "Sembla que en aquest espai encara no s'ha creat cap tasca.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Sembla que no us heu inscrit en cap curs com a %@. És possible que alguna de les altres aplicacions nostres us sigui més útil. Toqueu-ne una per anar a App Store.";
@@ -554,6 +572,9 @@
 "Login Error" = "Error d'inici de sessió";
 
 /* No comment provided by engineer. */
+"LTI Tool" = "Eina LTI (interoperabilitat d'eines d'aprenentatge)";
+
+/* No comment provided by engineer. */
 "Make sure you enable camera permissions in Settings" = "Assegureu-vos que habiliteu els permisos de la càmera a la Configuració";
 
 /* No comment provided by engineer. */
@@ -596,6 +617,9 @@
 "Next" = "Següent";
 
 /* No comment provided by engineer. */
+"No Assignments" = "No hi ha cap tasca";
+
+/* No comment provided by engineer. */
 "No Conferences" = "Cap conferència";
 
 /* No comment provided by engineer. */
@@ -618,6 +642,9 @@
 
 /* No comment provided by engineer. */
 "No Modules" = "No hi ha cap mòdul";
+
+/* No comment provided by engineer. */
+"No Pages" = "No hi ha cap pàgina";
 
 /* No comment provided by engineer. */
 "No Results" = "No hi ha cap resultat";
@@ -675,6 +702,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "Pàgina";
+
+/* No comment provided by engineer. */
+"Page Details" = "Detalls de la pàgina";
 
 /* No comment provided by engineer. */
 "Pages" = "Pàgines";
@@ -847,6 +877,9 @@
 /* No comment provided by engineer. */
 "Start recording" = "Comença a enregistrar";
 
+/* started datetime */
+"Started %@" = "Iniciat %@";
+
 /* No comment provided by engineer. */
 "Stop Act as User" = "Deixa d'actuar com a usuari";
 
@@ -938,6 +971,9 @@
 "There are no modules to display yet." = "Encara no hi ha cap mòdul per mostrar.";
 
 /* No comment provided by engineer. */
+"There are no pages to display yet." = "Encara no hi ha cap pàgina per mostrar.";
+
+/* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "S'ha produït un problema en recuperar les condicions d'ús.";
 
 /* No comment provided by engineer. */
@@ -950,7 +986,13 @@
 "There was an error loading events. Pull to refresh to try again." = "S'ha produït un error en carregar els esdeveniments. Estireu per actualitzar per tornar-ho a provar.";
 
 /* No comment provided by engineer. */
+"There was an error loading grades. Pull to refresh to try again." = "S'ha produït un error en carregar les qualificacions. Estireu per actualitzar per tornar-ho a provar.";
+
+/* No comment provided by engineer. */
 "There was an error loading modules. Pull to refresh to try again." = "S'ha produït un error en carregar els mòduls. Estireu per actualitzar per tornar-ho a provar.";
+
+/* No comment provided by engineer. */
+"There was an error loading pages. Pull to refresh to try again." = "S'ha produït un error en carregar les pàgines. Estireu per actualitzar per tornar-ho a provar.";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "S'ha produït un error en carregar les persones. Estireu per actualitzar per tornar-ho a provar.";
@@ -986,6 +1028,9 @@
 "To Do" = "Tasques pendents";
 
 /* No comment provided by engineer. */
+"Total Grade" = "Qualificació total";
+
+/* No comment provided by engineer. */
 "Total time" = "Temps en total";
 
 /* Description for Twitter communication channel */
@@ -1002,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "unpublished" = "no publicat";
+
+/* No comment provided by engineer. */
+"Unsupported Item" = "Element no admès";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "S'ha actualitzat la configuració d'idioma";

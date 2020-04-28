@@ -18,35 +18,46 @@
 
 import UIKit
 
-public class SyllabusViewController: UIViewController {
+open class SyllabusViewController: UIViewController, CoreWebViewLinkDelegate {
+    public var courseID = ""
+    public let env = AppEnvironment.shared
+    public let refreshControl = CircleRefreshControl()
+    public var webView = CoreWebView()
 
-    @IBOutlet weak var webView: CoreWebView!
-    var presenter: SyllabusPresenter!
+    public lazy var courses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
+        self?.update()
+    }
 
     public static func create(courseID: String) -> SyllabusViewController {
-        let vc = loadFromStoryboard()
-        vc.presenter = SyllabusPresenter(view: vc, courseID: courseID)
-        return vc
+        let controller = SyllabusViewController()
+        controller.courseID = courseID
+        return controller
     }
 
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
-        webView.linkDelegate = self
+
+        refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
+
         webView.backgroundColor = .named(.backgroundLightest)
-        presenter.viewIsReady()
-    }
-}
+        webView.scrollView.refreshControl = refreshControl
+        webView.linkDelegate = self
 
-extension SyllabusViewController: SyllabusViewProtocol {
-    func loadHtml(_ html: String?) {
-        guard let html = html else { return }
-        webView?.loadHTMLString(html, baseURL: nil)
-    }
-}
+        view.addSubview(webView)
+        webView.pin(inside: view)
 
-extension SyllabusViewController: CoreWebViewLinkDelegate {
-    public func handleLink(_ url: URL) -> Bool {
-        presenter.show(url, from: self)
-        return true
+        courses.refresh()
+    }
+
+    func update() {
+        if let html = courses.first?.syllabusBody, !html.isEmpty {
+            webView.loadHTMLString(html)
+        }
+    }
+
+    @objc func refresh() {
+        courses.refresh(force: true) { [weak self] _ in
+            self?.refreshControl.endRefreshing()
+        }
     }
 }
