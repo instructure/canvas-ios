@@ -53,10 +53,13 @@ class APIConversationTests: CoreTestCase {
     }
 
     func testPutConversationRequest() {
-        let body = PutConversationRequest.Body(conversation:
-            PutConversationRequest.ConversationContainer(id: "1",
-                                                         workflow_state: .unread
-        ))
+        let body = PutConversationRequest.Body(
+            conversation:
+            PutConversationRequest.ConversationContainer(
+                id: "1",
+                workflow_state: .unread
+            )
+        )
         let request = PutConversationRequest(id: "1", workflowState: .unread)
         XCTAssertEqual(request.path, "conversations/1")
         XCTAssertEqual(request.method, .put)

@@ -26,7 +26,7 @@ public func inboxTab() -> UIViewController {
     let inboxNav: UINavigationController
     let inboxSplit = HelmSplitViewController()
 
-    if ExperimentalFeature.nativeStudentInbox.isEnabled {
+    if ExperimentalFeature.nativeStudentInbox.isEnabled || ExperimentalFeature.nativeTeacherInbox.isEnabled {
         inboxVC = ConversationsViewController.create()
         inboxNav = UINavigationController(rootViewController: inboxVC)
     } else {

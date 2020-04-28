@@ -37,10 +37,11 @@ public class GetConversationCourses: APIUseCase {
     public var scope: Scope {
         if role == .observer {
             return Scope(
-                predicate: NSPredicate(format: "%K == %@ AND %K == %@ AND %K != nil",
-                                       #keyPath(Enrollment.type), "ObserverEnrollment",
-                                       #keyPath(Enrollment.stateRaw), "active",
-                                       #keyPath(Enrollment.observedUser)
+                predicate: NSPredicate(
+                    format: "%K == %@ AND %K == %@ AND %K != nil",
+                    #keyPath(Enrollment.type), "ObserverEnrollment",
+                    #keyPath(Enrollment.stateRaw), "active",
+                    #keyPath(Enrollment.observedUser)
                 ),
                 order: [
                     NSSortDescriptor(key: #keyPath(Enrollment.observedUser.name), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),
@@ -49,9 +50,10 @@ public class GetConversationCourses: APIUseCase {
             )
         } else {
             return Scope(
-                predicate: NSPredicate(format: "%K == %@ AND %K == %@",
-                                       #keyPath(Enrollment.type), role.rawValue,
-                                       #keyPath(Enrollment.stateRaw), "active"
+                predicate: NSPredicate(
+                    format: "%K == %@ AND %K == %@",
+                    #keyPath(Enrollment.type), role.rawValue,
+                    #keyPath(Enrollment.stateRaw), "active"
                 ),
                 order: [
                     NSSortDescriptor(key: #keyPath(Enrollment.course.name), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),

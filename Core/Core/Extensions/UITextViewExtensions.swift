@@ -43,10 +43,12 @@ extension UITextView {
     }
 
     //  swiftlint:disable:next block_based_kvo
-    public override func observeValue(forKeyPath keyPath: String?,
-                                      of object: Any?,
-                                      change: [NSKeyValueChangeKey: Any]?,
-                                      context: UnsafeMutableRawPointer?) {
+    public override func observeValue(
+        forKeyPath keyPath: String?,
+        of object: Any?,
+        change: [NSKeyValueChangeKey: Any]?,
+        context: UnsafeMutableRawPointer?
+    ) {
         resizePlaceholder()
     }
 
@@ -90,10 +92,12 @@ extension UITextView {
 }
 
 extension UITextView: NSTextStorageDelegate {
-    public func textStorage(_ textStorage: NSTextStorage,
-                            didProcessEditing editedMask: NSTextStorage.EditActions,
-                            range editedRange: NSRange,
-                            changeInLength delta: Int) {
+    public func textStorage(
+        _ textStorage: NSTextStorage,
+        didProcessEditing editedMask: NSTextStorage.EditActions,
+        range editedRange: NSRange,
+        changeInLength delta: Int
+    ) {
         if editedMask.contains(.editedCharacters) {
             placeholderLabel.isHidden = !text.isEmpty
         }
