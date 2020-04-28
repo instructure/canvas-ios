@@ -19,10 +19,9 @@
 import AVKit
 import XCTest
 @testable import Core
-@testable import Parent
 import TestsFoundation
 
-class ConversationDetailViewControllerTests: ParentTestCase {
+class ConversationDetailViewControllerTests: CoreTestCase {
     lazy var controller = ConversationDetailViewController.create(conversationID: "1")
 
     override func setUp() {

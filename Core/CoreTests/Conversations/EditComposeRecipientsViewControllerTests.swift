@@ -18,10 +18,9 @@
 
 import XCTest
 @testable import Core
-@testable import Parent
 import TestsFoundation
 
-class EditComposeRecipientsViewControllerTests: ParentTestCase {
+class EditComposeRecipientsViewControllerTests: CoreTestCase {
     var courseID = "1"
     var observeeID = "2"
     lazy var controller = EditComposeRecipientsViewController.create(

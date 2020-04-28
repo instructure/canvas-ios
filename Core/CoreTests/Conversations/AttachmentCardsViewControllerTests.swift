@@ -19,10 +19,9 @@
 import AVKit
 import XCTest
 @testable import Core
-@testable import Parent
 import TestsFoundation
 
-class AttachmentCardsViewControllerTests: ParentTestCase {
+class AttachmentCardsViewControllerTests: CoreTestCase {
     lazy var controller = AttachmentCardsViewController.create()
 
     lazy var audioComment = MediaComment.make(from: .make(

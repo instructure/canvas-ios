@@ -19,10 +19,9 @@
 import XCTest
 import UIKit
 @testable import Core
-@testable import Parent
 import TestsFoundation
 
-class ComposeViewControllerTests: ParentTestCase {
+class ComposeViewControllerTests: CoreTestCase {
     lazy var controller = ComposeViewController.create(
         body: "body",
         context: ContextModel(.course, id: "1"),

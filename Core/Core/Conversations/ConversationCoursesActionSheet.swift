@@ -105,7 +105,8 @@ extension ConversationCoursesActionSheet: UITableViewDataSource, UITableViewDele
         guard let enrollment = enrollments[indexPath.row], let course = enrollment.course, let observedUser = enrollment.observedUser else {
             return
         }
-        dismiss(animated: true) { [weak self] in
+
+        env.router.dismiss(self) { [weak self] in
             self?.delegate?.courseSelected(course: course, user: observedUser)
         }
     }

@@ -69,6 +69,12 @@
 		3BDB8F3722E6389F003D81C3 /* PresenterPageViewLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB8F3622E6389F003D81C3 /* PresenterPageViewLoggerTests.swift */; };
 		3BE1A6FC23E46C0C0037CAB1 /* GetObservedStudentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE1A6FB23E46C0C0037CAB1 /* GetObservedStudentsTests.swift */; };
 		3BE2C76F219335FA004B8E5E /* ColoredNavViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2C76E219335FA004B8E5E /* ColoredNavViewProtocol.swift */; };
+		3BEA6CC824588D1400BE4589 /* EditComposeRecipientsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA6CC224588D1300BE4589 /* EditComposeRecipientsViewControllerTests.swift */; };
+		3BEA6CC924588D1400BE4589 /* ComposeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA6CC324588D1300BE4589 /* ComposeViewControllerTests.swift */; };
+		3BEA6CCA24588D1400BE4589 /* ConversationCoursesActionSheetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA6CC424588D1400BE4589 /* ConversationCoursesActionSheetTests.swift */; };
+		3BEA6CCB24588D1400BE4589 /* AttachmentCardsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA6CC524588D1400BE4589 /* AttachmentCardsViewControllerTests.swift */; };
+		3BEA6CCC24588D1400BE4589 /* ComposeReplyViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA6CC624588D1400BE4589 /* ComposeReplyViewControllerTests.swift */; };
+		3BEA6CCD24588D1400BE4589 /* ConversationDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA6CC724588D1400BE4589 /* ConversationDetailViewControllerTests.swift */; };
 		3BF5C55321879A430081A858 /* GetAssignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF5C55221879A430081A858 /* GetAssignmentsTests.swift */; };
 		5859503A27B333221FD6E835 /* DiscussionReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859511C5D2888D3B3E01A30 /* DiscussionReply.swift */; };
 		58595B6A6EAAE22DA53C92C0 /* DiscussionEditReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595EA114F4E468801AFEBE /* DiscussionEditReply.swift */; };
@@ -1085,6 +1091,12 @@
 		3BE2C75F218CB50B004B8E5E /* ColoredNavViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredNavViewProtocol.swift; sourceTree = "<group>"; };
 		3BE2C763218CB53F004B8E5E /* Enrollment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enrollment.swift; sourceTree = "<group>"; };
 		3BE2C76E219335FA004B8E5E /* ColoredNavViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredNavViewProtocol.swift; sourceTree = "<group>"; };
+		3BEA6CC224588D1300BE4589 /* EditComposeRecipientsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditComposeRecipientsViewControllerTests.swift; sourceTree = "<group>"; };
+		3BEA6CC324588D1300BE4589 /* ComposeViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewControllerTests.swift; sourceTree = "<group>"; };
+		3BEA6CC424588D1400BE4589 /* ConversationCoursesActionSheetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationCoursesActionSheetTests.swift; sourceTree = "<group>"; };
+		3BEA6CC524588D1400BE4589 /* AttachmentCardsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentCardsViewControllerTests.swift; sourceTree = "<group>"; };
+		3BEA6CC624588D1400BE4589 /* ComposeReplyViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeReplyViewControllerTests.swift; sourceTree = "<group>"; };
+		3BEA6CC724588D1400BE4589 /* ConversationDetailViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		3BF3428B233D2CC00095D0D3 /* SyllabusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusViewController.swift; sourceTree = "<group>"; };
 		3BF5C54E2187800B0081A858 /* GetAssignments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAssignments.swift; sourceTree = "<group>"; };
 		3BF5C55221879A430081A858 /* GetAssignmentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAssignmentsTests.swift; sourceTree = "<group>"; };
@@ -2732,6 +2744,12 @@
 		7D26B84523A8043900262380 /* Conversations */ = {
 			isa = PBXGroup;
 			children = (
+				3BEA6CC524588D1400BE4589 /* AttachmentCardsViewControllerTests.swift */,
+				3BEA6CC624588D1400BE4589 /* ComposeReplyViewControllerTests.swift */,
+				3BEA6CC324588D1300BE4589 /* ComposeViewControllerTests.swift */,
+				3BEA6CC424588D1400BE4589 /* ConversationCoursesActionSheetTests.swift */,
+				3BEA6CC724588D1400BE4589 /* ConversationDetailViewControllerTests.swift */,
+				3BEA6CC224588D1300BE4589 /* EditComposeRecipientsViewControllerTests.swift */,
 				7D8E820623C79B8700A8DA2C /* AddMessageTests.swift */,
 				B1BF4AB123A17BD800F61ACD /* APIConversationTests.swift */,
 				9F900E7823217CC000BB44B4 /* APISearchRecipientsTests.swift */,
@@ -4499,6 +4517,7 @@
 				7DFB2CF921C978D40077DEEE /* GetCustomColorsTests.swift in Sources */,
 				7D63F78E215D7B8100151E49 /* DynamicButtonTests.swift in Sources */,
 				7D37BE8821C824DA0063FAAC /* UIViewControllerExtensionsTests.swift in Sources */,
+				3BEA6CC824588D1400BE4589 /* EditComposeRecipientsViewControllerTests.swift in Sources */,
 				B17855B3226ABDDD00B30C80 /* UploadMediaTests.swift in Sources */,
 				B14FE5D92134F68800328CD7 /* CoreTestCase.swift in Sources */,
 				970862C82419700300112A6A /* GetCoursesRequestTests.swift in Sources */,
@@ -4525,6 +4544,7 @@
 				7D64A97723676025004EAEDF /* APICourseSectionTests.swift in Sources */,
 				9F62EDD82326D1E500EA9F79 /* GetSearchRecipientsTests.swift in Sources */,
 				3B635B2F225CD7B3001F353D /* APICalendarEventsRequestableTests.swift in Sources */,
+				3BEA6CCC24588D1400BE4589 /* ComposeReplyViewControllerTests.swift in Sources */,
 				7D70DE9A233EA2D200F5C3D4 /* APINotificationPreferencesTests.swift in Sources */,
 				B1487F97243E3FAF00013404 /* GetModuleItemSequenceTests.swift in Sources */,
 				B1F13290224BBFC0002C0555 /* ModuleItemTypeTests.swift in Sources */,
@@ -4534,6 +4554,7 @@
 				9F4D65B22396A3D600660038 /* ProfileSettingsViewControllerTests.swift in Sources */,
 				7D70DE98233E9F3400F5C3D4 /* APICommunicationChannelTests.swift in Sources */,
 				7D7472D6218CC4B200CE1430 /* APIDocViewerTests.swift in Sources */,
+				3BEA6CCA24588D1400BE4589 /* ConversationCoursesActionSheetTests.swift in Sources */,
 				B19792F9217699B70000369C /* CourseTests.swift in Sources */,
 				9FA690F223C7A683009D12D9 /* GetConversationCoursesTests.swift in Sources */,
 				7DE6A7092319B05700A5B796 /* APIErrorReportTests.swift in Sources */,
@@ -4585,6 +4606,7 @@
 				B18E19BB2386216B00B03C73 /* GradeFormatterTests.swift in Sources */,
 				3BA9FF792332B39700196A06 /* GradingPeriodUseCaseTests.swift in Sources */,
 				7DB0A1BA21BF1904009ABB40 /* LoginStartViewControllerTests.swift in Sources */,
+				3BEA6CCD24588D1400BE4589 /* ConversationDetailViewControllerTests.swift in Sources */,
 				7D7472D9218CD77C00CE1430 /* PSPDFAnnotationExtensionTests.swift in Sources */,
 				3B35F073230F01F600674FF5 /* APIGraphQLRequestableTests.swift in Sources */,
 				B1A6BC8C218A9843000515E3 /* APILatePolicyRequestableTests.swift in Sources */,
@@ -4664,6 +4686,7 @@
 				7D08B1D92372084B0075623A /* GetFileTests.swift in Sources */,
 				7D8B78FB215EC9BE005E08F1 /* BrandTests.swift in Sources */,
 				E8997906234F7E0600CA7D9B /* XCTestCaseTests.swift in Sources */,
+				3BEA6CCB24588D1400BE4589 /* AttachmentCardsViewControllerTests.swift in Sources */,
 				7D7F71DC241FD90600D6F9CB /* APIDateTests.swift in Sources */,
 				B11AAC3B237A1EB4002BC41F /* APIURLTests.swift in Sources */,
 				7D016B5D23E883AC00C6E0CA /* FilePickerTests.swift in Sources */,
@@ -4702,6 +4725,7 @@
 				7D26B84D23A8267600262380 /* ConversationParticipantTests.swift in Sources */,
 				7D016B6123E89B7F00C6E0CA /* CircleProgressViewTests.swift in Sources */,
 				B1F13294224BC656002C0555 /* ModuleItemTests.swift in Sources */,
+				3BEA6CC924588D1400BE4589 /* ComposeViewControllerTests.swift in Sources */,
 				B15CA273221DE1FA0014FB02 /* GetModulesTests.swift in Sources */,
 				9FBE536B223C2B9F001EC40C /* APIPermissionsRequestableTests.swift in Sources */,
 				B1B42C1622403AFD0087399A /* UploadManagerTests.swift in Sources */,

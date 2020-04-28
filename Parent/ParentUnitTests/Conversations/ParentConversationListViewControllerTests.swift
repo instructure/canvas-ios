@@ -21,8 +21,8 @@ import XCTest
 @testable import Parent
 import TestsFoundation
 
-class ConversationListViewControllerTests: ParentTestCase {
-    lazy var controller = ConversationListViewController.create()
+class ParentConversationListViewControllerTests: ParentTestCase {
+    lazy var controller = ParentConversationListViewController.create()
 
     override func setUp() {
         super.setUp()
