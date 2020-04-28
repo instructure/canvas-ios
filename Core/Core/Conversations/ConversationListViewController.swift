@@ -167,21 +167,24 @@ public class ConversationListViewController: UIViewController, ConversationCours
 
 extension ConversationListViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return conversations.count
+        var count = conversations.sections?[section].numberOfObjects ?? 0
+        if conversations.hasNextPage, conversations.sections?.count == section + 1 {
+            count += 1
+        }
+        return count
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if conversations.hasNextPage && indexPath.row == conversations.sections?[indexPath.section].numberOfObjects {
+            conversations.getNextPage()
+            return LoadingCell(style: .default, reuseIdentifier: nil)
+        }
+
         let cell: ConversationListCell = tableView.dequeue(for: indexPath)
         if let conversation = conversations[indexPath] {
             cell.update(conversation)
         }
         return cell
-    }
-
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.isBottomReached() {
-            conversations.getNextPage()
-        }
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
