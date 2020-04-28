@@ -45,7 +45,6 @@ public class GetModuleItem: APIUseCase {
 
     public func write(response: APIModuleItem?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
-        let item = ModuleItem.save(response, forCourse: courseID, in: client)
-        item.completionRequirement = response.completion_requirement
+        ModuleItem.save(response, forCourse: courseID, in: client)
     }
 }

@@ -22,27 +22,11 @@ import CoreData
 private let encoder = JSONEncoder()
 private let decoder = JSONDecoder()
 
-public class ModuleItemSequence: NSManagedObject {
-    public typealias AssetType = GetModuleItemSequenceRequest.AssetType
-
-    @NSManaged public var courseID: String
-    @NSManaged public var assetTypeRaw: String
-    @NSManaged public var assetID: String
-    @NSManaged public var prev: ModuleItem?
-    @NSManaged public var current: ModuleItem?
-    @NSManaged public var next: ModuleItem?
-
-    public var assetType: AssetType {
-        get { AssetType(rawValue: assetTypeRaw) ?? .moduleItem }
-        set { assetTypeRaw = newValue.rawValue }
-    }
-}
-
 public class ModuleItem: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var courseID: String
     @NSManaged public var moduleID: String
-    @NSManaged public var position: Int
+    @NSManaged public var position: Double
     @NSManaged public var title: String
     @NSManaged public var indent: Int
     @NSManaged public var htmlURL: URL?
@@ -57,6 +41,8 @@ public class ModuleItem: NSManagedObject {
     @NSManaged public var completed: Bool
     @NSManaged public var lockedForUser: Bool
     @NSManaged public var lockExplanation: String?
+    @NSManaged public var masteryPathItem: ModuleItem?
+    @NSManaged public var masteryPath: MasteryPath?
 
     public var published: Bool? {
         get { return publishedRaw?.boolValue }
@@ -114,26 +100,35 @@ public class ModuleItem: NSManagedObject {
             NSPredicate(key: #keyPath(ModuleItem.id), equals: item.id.value),
         ])
         let model: ModuleItem = context.fetch(predicate).first ?? context.insert()
-        model.update(item)
+        model.id = item.id.value
+        model.moduleID = item.module_id.value
+        model.position = Double(item.position)
+        model.title = item.title
+        model.indent = item.indent
+        model.htmlURL = item.html_url
+        model.url = item.url
+        model.published = item.published
+        model.type = item.content
+        model.pointsPossible = item.content_details?.points_possible
+        model.dueAt = item.content_details?.due_at
+        model.lockedForUser = item.content_details?.locked_for_user == true
+        model.lockExplanation = item.content_details?.lock_explanation
+        model.completionRequirement = item.completion_requirement
         model.courseID = courseID
-        return model
-    }
-
-    func update(_ item: APIModuleItem) {
-        id = item.id.value
-        moduleID = item.module_id.value
-        position = item.position
-        title = item.title
-        indent = item.indent
-        htmlURL = item.html_url
-        url = item.url
-        published = item.published
-        type = item.content
-        if let contentDetails = item.content_details {
-            pointsPossible = contentDetails.points_possible
-            dueAt = contentDetails.due_at
-            lockedForUser = contentDetails.locked_for_user == true
-            lockExplanation = contentDetails.lock_explanation
+        if let masteryPath = item.mastery_paths, masteryPath.selected_set_id == nil {
+            let path: ModuleItem = context.insert()
+            path.id = "\(item.id)-mastery-path"
+            path.courseID = courseID
+            path.moduleID = item.module_id.value
+            path.position = Double(item.position) + 0.5
+            path.title = item.mastery_paths?.locked == true
+                ? String.localizedStringWithFormat(NSLocalizedString("Locked until \"%@\" is graded", comment: ""), item.title)
+                : NSLocalizedString("Select a Path", comment: "")
+            path.indent = item.indent
+            path.type = item.content
+            path.masteryPath = MasteryPath.save(masteryPath, in: context)
+            model.masteryPathItem = path
         }
+        return model
     }
 }

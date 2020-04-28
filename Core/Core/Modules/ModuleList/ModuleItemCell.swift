@@ -30,10 +30,11 @@ class ModuleItemCell: UITableViewCell {
 
     func update(_ item: ModuleItem) {
         backgroundColor = .named(.backgroundLightest)
-        isUserInteractionEnabled = !item.lockedForUser
+        isUserInteractionEnabled = !item.lockedForUser && item.masteryPath?.locked != true
         nameLabel.text = item.title
         nameLabel.isEnabled = !item.lockedForUser
-        iconView.image = item.type?.icon
+        nameLabel.font = UIFont.scaledNamedFont(item.masteryPath?.locked == true ? .semibold16Italic : .semibold16)
+        iconView.image = item.masteryPath?.locked == true ? UIImage.icon(.lock) : item.type?.icon
         publishedIconView.published = item.published
         indentConstraint.constant = CGFloat(item.indent) * ModuleItemCell.IndentMultiplier
         let dueAt = item.dueAt.flatMap { DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .none) }
@@ -44,7 +45,16 @@ class ModuleItemCell: UITableViewCell {
             )
         }
         let requirement = item.completionRequirement?.description
-        dueLabel.text = [dueAt, points, requirement].compactMap { $0 }.joined(separator: " | ")
+        if let masteryPath = item.masteryPath, masteryPath.needsSelection, !masteryPath.locked {
+            let format = NSLocalizedString("d_options", bundle: .core, comment: "")
+            dueLabel.text = String.localizedStringWithFormat(format, masteryPath.numberOfOptions)
+            dueLabel.textColor = tintColor
+            accessoryView = UIImageView(image: .icon(.masteryPaths))
+        } else {
+            dueLabel.text = [dueAt, points, requirement].compactMap { $0 }.joined(separator: " | ")
+            dueLabel.textColor = .named(.textDark)
+            accessoryView = nil
+        }
         dueLabel.isHidden = dueLabel.text == nil
         accessibilityLabel = [item.title, dueLabel.text].compactMap { $0 }.joined(separator: ",")
         if !publishedIconView.isHidden {

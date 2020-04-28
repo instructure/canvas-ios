@@ -197,13 +197,17 @@ extension ModuleListViewController: UITableViewDataSource {
     func toggleSection(_ section: Int) {
         let module = store[section]
         if isSectionExpanded(section) {
-            let remove = (0..<tableView.numberOfRows(inSection: section)).map { IndexPath(row: $0, section: section) }
-            collapsedIDs[courseID]?.insert(module.id)
-            tableView.deleteRows(at: remove, with: .automatic)
+            tableView.performBatchUpdates({
+                let remove = (0..<tableView.numberOfRows(inSection: section)).map { IndexPath(row: $0, section: section) }
+                collapsedIDs[courseID]?.insert(module.id)
+                tableView.deleteRows(at: remove, with: .automatic)
+            }, completion: nil)
         } else {
             collapsedIDs[courseID]?.remove(module.id)
-            let add = (0..<tableView(tableView, numberOfRowsInSection: section)).map { IndexPath(row: $0, section: section) }
-            tableView.insertRows(at: add, with: .automatic)
+            tableView.performBatchUpdates({
+                let add = (0..<tableView(tableView, numberOfRowsInSection: section)).map { IndexPath(row: $0, section: section) }
+                tableView.insertRows(at: add, with: .automatic)
+            }, completion: nil)
         }
     }
 
@@ -247,7 +251,10 @@ extension ModuleListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard store.count > indexPath.section, store[indexPath.section].items.count > indexPath.row else { return }
         let item = store[indexPath.section].items[indexPath.row]
-        guard let htmlURL = item.htmlURL else { return }
+        guard let htmlURL = item.htmlURL else {
+            tableView.deselectRow(at: indexPath, animated: true)
+            return
+        }
         env.router.route(to: htmlURL, from: self, options: .detail)
     }
 

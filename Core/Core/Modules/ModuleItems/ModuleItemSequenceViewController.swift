@@ -106,7 +106,7 @@ public class ModuleItemSequenceViewController: UIViewController {
         self.view.layoutIfNeeded()
     }
 
-    func show(item: ModuleItem, direction: PagesViewController.Direction? = nil) {
+    func show(item: ModuleItemSequenceNode, direction: PagesViewController.Direction? = nil) {
         let details = ModuleItemDetailsViewController.create(courseID: courseID, moduleID: item.moduleID, itemID: item.id)
         setCurrentPage(details, direction: direction)
         store = env.subscribe(GetModuleItemSequence(courseID: courseID, assetType: .moduleItem, assetID: item.id)) { [weak self] in
