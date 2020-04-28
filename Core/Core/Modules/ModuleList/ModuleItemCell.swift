@@ -65,5 +65,6 @@ class ModuleItemCell: UITableViewCell {
                     : NSLocalizedString("unpublished", bundle: .core, comment: ""),
             ].joined(separator: ", ")
         }
+        accessoryType = publishedIconView.isHidden ? .disclosureIndicator : .none
     }
 }

@@ -423,7 +423,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
             .make(id: "1", title: "Unlockable", mastery_paths:
                 .make(locked: false, assignment_sets: [
-                    .init(assignments: [.init(model: .make())])
+                    .init(assignments: [.init(model: .make())]),
                 ])
             ),
         ])
