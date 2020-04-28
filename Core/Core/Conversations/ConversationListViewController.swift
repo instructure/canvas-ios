@@ -71,6 +71,7 @@ public class ConversationListViewController: UIViewController, ConversationCours
         tableView.separatorColor = .named(.borderMedium)
 
         filterButton.isEnabled = false
+        filterButton.setTitleColor(Brand.shared.primary, for: .normal)
         refreshConversations()
         enrollments.refresh(force: true)
     }
