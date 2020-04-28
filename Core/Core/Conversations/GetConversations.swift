@@ -25,19 +25,18 @@ public class GetConversations: CollectionUseCase {
     let requestScope: GetConversationsRequest.Scope?
     public var cacheKey: String? {
         let scope = requestScope?.rawValue ?? "all"
-        let filter = filters?.joined(separator: "-") ?? "nofilter"
-        return "conversations-\(scope)-\(filter)"
+        return "conversations-\(scope)-\(filter ?? "")"
     }
-    let filters: [String]?
+    let filter: String?
 
     public var request: GetConversationsRequest {
-        return GetConversationsRequest(include: include, perPage: perPage, scope: requestScope, filters: filters ?? [])
+        return GetConversationsRequest(include: include, perPage: perPage, scope: requestScope, filter: filter)
     }
 
     public var scope: Scope {
-        if let filters = filters {  //  TODO: - fix this to support multiple filters or change filter to support only 1 at a time since that is all we do
+        if let filter = filter {
             return Scope(
-                predicate: NSPredicate(format: "%K == %@", #keyPath(Conversation.contextCode), filters.first ?? ""),
+                predicate: NSPredicate(format: "%K == %@", #keyPath(Conversation.contextCode), filter),
                 order: [NSSortDescriptor(key: #keyPath(Conversation.lastMessageAt), ascending: false), ]
             )
         } else {
@@ -45,9 +44,9 @@ public class GetConversations: CollectionUseCase {
         }
     }
 
-    public init(scope: GetConversationsRequest.Scope? = nil, filters: [String]? = nil) {
+    public init(scope: GetConversationsRequest.Scope? = nil, filter: String? = nil) {
         self.requestScope = scope
-        self.filters = filters
+        self.filter = filter
     }
 }
 
@@ -59,7 +58,7 @@ public class GetConversationsWithSent: APIUseCase {
     public var cacheKey: String? = "conversations"
 
     public var request: GetConversationsRequest {
-        return GetConversationsRequest(include: include, perPage: perPage, scope: nil, filters: [])
+        return GetConversationsRequest(include: include, perPage: perPage, scope: nil, filter: nil)
     }
 
     public var scope = Scope.all(orderBy: #keyPath(Conversation.lastMessageAt), ascending: false)
@@ -73,7 +72,7 @@ public class GetConversationsWithSent: APIUseCase {
                 return
             }
 
-            let sentRequest = GetConversationsRequest(include: self.include, perPage: self.perPage, scope: .sent, filters: [])
+            let sentRequest = GetConversationsRequest(include: self.include, perPage: self.perPage, scope: .sent, filter: nil)
             environment.api.exhaust(sentRequest) { (sentConversations, sentResponse, sentError) in
                 if let error = sentError {
                     completionHandler(nil, sentResponse, error)

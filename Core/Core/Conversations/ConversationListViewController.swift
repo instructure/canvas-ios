@@ -89,9 +89,9 @@ public class ConversationListViewController: UIViewController, ConversationCours
     }
 
     func refreshConversations(force: Bool = false) {
-        var filters: [String]?
-        if let context = selectedCourse?.canvasContextID { filters = [context] }
-        conversations = env.subscribe(GetConversations(scope: scope, filters: filters)) { [weak self] in
+        var filter: String?
+        if let context = selectedCourse?.canvasContextID { filter = context }
+        conversations = env.subscribe(GetConversations(scope: scope, filter: filter)) { [weak self] in
             self?.update()
         }
         conversations.refresh(force: force)
