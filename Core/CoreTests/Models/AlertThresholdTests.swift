@@ -20,19 +20,38 @@ import XCTest
 @testable import Core
 
 class AlertThresholdTests: CoreTestCase {
+    func testTypeName() {
+        XCTAssertEqual(AlertThresholdType.assignmentGradeHigh.name, "Assignment grade above")
+        XCTAssertEqual(AlertThresholdType.assignmentGradeLow.name, "Assignment grade below")
+        XCTAssertEqual(AlertThresholdType.assignmentMissing.name, "Assignment missing")
+        XCTAssertEqual(AlertThresholdType.courseAnnouncement.name, "Course announcements")
+        XCTAssertEqual(AlertThresholdType.courseGradeHigh.name, "Course grade above")
+        XCTAssertEqual(AlertThresholdType.courseGradeLow.name, "Course grade below")
+        XCTAssertEqual(AlertThresholdType.institutionAnnouncement.name, "Institution announcements")
+    }
+
+    func testIsPercent() {
+        XCTAssertEqual(AlertThresholdType.assignmentGradeHigh.isPercent, true)
+        XCTAssertEqual(AlertThresholdType.assignmentGradeLow.isPercent, true)
+        XCTAssertEqual(AlertThresholdType.assignmentMissing.isPercent, false)
+        XCTAssertEqual(AlertThresholdType.courseAnnouncement.isPercent, false)
+        XCTAssertEqual(AlertThresholdType.courseGradeHigh.isPercent, true)
+        XCTAssertEqual(AlertThresholdType.courseGradeLow.isPercent, true)
+        XCTAssertEqual(AlertThresholdType.institutionAnnouncement.isPercent, false)
+    }
 
     func testModel() {
         let a = AlertThreshold(context: databaseClient)
         a.id = "1"
         a.observerID = "1"
         a.studentID = "2"
-        a.threshold = "100"
+        a.threshold = 100
         a.type = AlertThresholdType.assignmentMissing
 
         try? databaseClient.save()
         let alerts: [AlertThreshold] = databaseClient.fetch()
         XCTAssertNotNil(alerts.first)
-        XCTAssertEqual(alerts.first?.threshold, "100")
+        XCTAssertEqual(alerts.first?.value, 100)
         XCTAssertEqual(alerts.first?.type, .assignmentMissing)
     }
 }

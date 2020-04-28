@@ -19,24 +19,56 @@
 import Foundation
 import CoreData
 
-public enum AlertThresholdType: String, CaseIterable {
-    case courseAnnouncement = "course_announcement"
-    case institutionAnnouncement = "institution_announcement"
-    case assignmentGradeHigh = "assignment_grade_high"
-    case assignmentGradeLow = "assignment_grade_low"
-    case assignmentMissing = "assignment_missing"
+public enum AlertThresholdType: String, CaseIterable, Codable {
     case courseGradeHigh = "course_grade_high"
     case courseGradeLow = "course_grade_low"
+    case assignmentMissing = "assignment_missing"
+    case assignmentGradeHigh = "assignment_grade_high"
+    case assignmentGradeLow = "assignment_grade_low"
+    case courseAnnouncement = "course_announcement"
+    case institutionAnnouncement = "institution_announcement"
+
+    public var name: String {
+        switch self {
+        case .courseGradeLow:
+            return NSLocalizedString("Course grade below", bundle: .core, comment: "")
+        case .courseGradeHigh:
+            return NSLocalizedString("Course grade above", bundle: .core, comment: "")
+        case .assignmentMissing:
+            return NSLocalizedString("Assignment missing", bundle: .core, comment: "")
+        case .assignmentGradeLow:
+            return NSLocalizedString("Assignment grade below", bundle: .core, comment: "")
+        case .assignmentGradeHigh:
+            return NSLocalizedString("Assignment grade above", bundle: .core, comment: "")
+        case .institutionAnnouncement:
+            return NSLocalizedString("Institution announcements", bundle: .core, comment: "")
+        case .courseAnnouncement:
+            return NSLocalizedString("Course announcements", bundle: .core, comment: "")
+        }
+    }
+
+    public var isPercent: Bool {
+        switch self {
+        case .assignmentGradeLow, .assignmentGradeHigh, .courseGradeLow, .courseGradeHigh:
+            return true
+        case .assignmentMissing, .courseAnnouncement, .institutionAnnouncement:
+            return false
+        }
+    }
 }
 
-public class AlertThreshold: NSManagedObject {
+public final class AlertThreshold: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var observerID: String
     @NSManaged public var studentID: String
-    @NSManaged public var threshold: String?
+    @NSManaged public var threshold: NSNumber?
     @NSManaged public var typeRaw: String?
     public var type: AlertThresholdType? {
         get { return AlertThresholdType(rawValue: typeRaw ?? "") }
         set { typeRaw = newValue?.rawValue }
+    }
+    public var value: UInt? {
+        get { threshold?.uintValue }
+        set { threshold = newValue.map { NSNumber(value: $0) } }
     }
 }

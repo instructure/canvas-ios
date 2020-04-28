@@ -354,3 +354,34 @@ public struct PostObserveesRequest: APIRequestable {
         return query
     }
 }
+
+// https://canvas.instructure.com/doc/api/user_observees.html#method.user_observees.index
+/* Does not return manually linked observees
+public struct GetObserveesRequest: APIRequestable {
+    public typealias Response = [APIUser]
+
+    public let path = "users/self/observees"
+    public let query: [APIQueryItem] = [
+        .include([ "avatar_url" ]),
+        .perPage(100),
+    ]
+
+    public init() {}
+}
+*/
+
+// https://canvas.instructure.com/doc/api/user_observees.html#method.user_observees.show
+/* Does not work with manually linked observees
+public struct GetObserveeRequest: APIRequestable {
+    public typealias Response = APIUser
+
+    public let path: String
+    public let query: [APIQueryItem] = [
+        .include([ "avatar_url" ]),
+    ]
+
+    public init(observeeID: String) {
+        path = "users/self/observees/\(observeeID)"
+    }
+}
+*/
