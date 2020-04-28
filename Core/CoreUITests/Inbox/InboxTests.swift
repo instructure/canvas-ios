@@ -29,8 +29,8 @@ class InboxTests: CoreUITestCase {
     override func setUp() {
         super.setUp()
         mockBaseRequests()
-        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: nil), value: [conversation1])
-        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent), value: [])
+        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: nil, filter: nil), value: [conversation1])
+        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent, filter: nil), value: [])
         mockURL(avatarURL)
     }
 
@@ -49,7 +49,7 @@ class InboxTests: CoreUITestCase {
         )
 
         mockData(GetConversationRequest(id: "1", include: [.participant_avatars]), value: before)
-        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent), value: [after])
+        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent, filter: nil), value: [after])
         mockData(PutConversationRequest(id: "1", workflowState: .read), value: before)
         mockData(PostAddMessageRequest(conversationID: "1", body: .init(
             attachment_ids: nil,
@@ -89,7 +89,7 @@ class InboxTests: CoreUITestCase {
 
         let conversation = APIConversation.make(id: "2", subject: "Subject Two", properties: [.last_author])
         mockEncodableRequest("conversations", value: conversation)
-        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent),
+        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent, filter: nil),
                  value: [conversation])
 
         NewMessage.sendButton.tap().waitToVanish()
