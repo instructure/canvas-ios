@@ -181,12 +181,6 @@ public class Router: RouterProtocol {
         DeveloperMenuViewController.recordRouteInHistory(url.url?.absoluteString)
         #endif
         Analytics.shared.logEvent("route", parameters: ["url": String(describing: url)])
-
-        if url.host?.isEmpty == false && !urlMatchesSessionHost(url) {
-            fallback(url, from, options)
-            return
-        }
-
         for route in handlers {
             if let params = route.match(url) {
                 if let view = route.factory(url, params) {
@@ -196,10 +190,5 @@ public class Router: RouterProtocol {
             }
         }
         fallback(url, from, options)
-    }
-
-    private func urlMatchesSessionHost(_ url: URLComponents) -> Bool {
-        let sessionHost = AppEnvironment.shared.currentSession?.baseURL.host ?? ""
-        return url.host == sessionHost
     }
 }
