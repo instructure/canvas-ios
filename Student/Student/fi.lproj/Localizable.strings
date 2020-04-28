@@ -247,8 +247,7 @@
 /* No comment provided by engineer. */
 "Ask me later" = "Kysy minulta myöhemmin";
 
-/* Assignment icon a11y label
-   Assignment module item type */
+/* Label for an assignment */
 "Assignment" = "Tehtävä";
 
 /* No comment provided by engineer. */
@@ -476,7 +475,7 @@
 /* No comment provided by engineer. */
 "Discard this entry?" = "Ohitetaanko tämä merkintä?";
 
-/* Discussion module item type */
+/* Title of the new discussion view */
 "Discussion" = "Keskustelu";
 
 /* Title for discussion entry submission */
@@ -804,7 +803,7 @@
 /* No comment provided by engineer. */
 "Love it!" = "Tykkään siitä!";
 
-/* Button title for mark as done. */
+/* Button title for mark as done */
 "Mark as Done" = "Merkitse valmiiksi";
 
 /* Button title for beginning masquerading
@@ -852,7 +851,7 @@
 /* No comment provided by engineer. */
 "Module Item Not Found" = "Moduulin kohdetta ei löytynyt";
 
-/* Modules title */
+/* title for the modules tab */
 "Modules" = "Moduulit";
 
 /* time since creation (less than 1 minute) */
@@ -873,7 +872,7 @@
 /* format string saying what the minimum score must be */
 "Must score %@ or higher" = "Täytyy saada vähintään pistemäärä %@";
 
-/* user must submit something to complete */
+/* user must submit something to complete requirement */
 "Must submit" = "Täytyy lähettää";
 
 /* user must view item to complete requirement */
@@ -1104,7 +1103,8 @@
 /* No comment provided by engineer. */
 "Questions:" = "Kysymyksiä:";
 
-/* Quiz module item type */
+/* Label for a quiz
+   Title for a quiz submission cell */
 "Quiz" = "Tietovisa";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
@@ -1498,7 +1498,8 @@
 /* No comment provided by engineer. */
 "Time Limit:" = "Aikaraja:";
 
-/* Title of the Todo screen */
+/* Title of to do screen
+   To Do page title */
 "To Do" = "Tehtävä";
 
 /* No comment provided by engineer. */

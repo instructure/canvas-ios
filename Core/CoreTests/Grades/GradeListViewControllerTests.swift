@@ -156,6 +156,8 @@ class GradeListViewControllerTests: CoreTestCase {
         controller.tableView.refreshControl?.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(controller.errorView.isHidden, false)
         XCTAssertEqual(controller.emptyView.isHidden, true)
+
+        XCTAssertNoThrow(controller.viewWillDisappear(false))
     }
 
     func testHideTotals() {

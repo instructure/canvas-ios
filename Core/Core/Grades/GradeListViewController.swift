@@ -130,6 +130,12 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         if let color = color {
             navigationController?.navigationBar.useContextColor(color)
         }
+        env.pageViewLogger.startTrackingTimeOnViewController()
+    }
+
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "courses/\(courseID)/grades", attributes: [:])
     }
 
     @objc func refresh() {

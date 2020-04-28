@@ -193,6 +193,9 @@
 /* No comment provided by engineer. */
 "Complete" = "完成";
 
+/* concluded datetime */
+"Concluded %@" = "結束%@";
+
 /* No comment provided by engineer. */
 "Concluded Conferences" = "已結束的會議";
 
@@ -219,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "Copied!" = "已複製！";
+
+/* No comment provided by engineer. */
+"Could not launch tool. Please try again." = "無法啟動工具。請重試。";
 
 /* No comment provided by engineer. */
 "Could not save notification preference" = "無法保存通知偏好設定";
@@ -347,6 +353,9 @@
 "External Tool" = "外部工具";
 
 /* No comment provided by engineer. */
+"External URL" = "外部 URL";
+
+/* No comment provided by engineer. */
 "Extremely critical emergency" = "萬分危急的緊急情況";
 
 /* No comment provided by engineer. */
@@ -398,6 +407,9 @@
 "Forget %@" = "忘記%@";
 
 /* No comment provided by engineer. */
+"Front Page" = "首頁";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -408,6 +420,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "前往今天";
+
+/* No comment provided by engineer. */
+"Grades" = "成績";
 
 /* No comment provided by engineer. */
 "Grading" = "等級評分";
@@ -465,6 +480,9 @@
 
 /* No comment provided by engineer. */
 "It looks like a great day to rest, relax, and recharge." = "看來是適合休息、放鬆和充電的一天。";
+
+/* No comment provided by engineer. */
+"It looks like assignments haven’t been created in this space yet." = "看來此空間中尚未建立任何作業。";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "您尚未註冊任何課程為 %@。我們的其中一個其他應用程式可能較適合。點選一個以造訪 App Store。";
@@ -554,6 +572,9 @@
 "Login Error" = "登入錯誤";
 
 /* No comment provided by engineer. */
+"LTI Tool" = "LTI 工具";
+
+/* No comment provided by engineer. */
 "Make sure you enable camera permissions in Settings" = "請確保已在設定內啟用攝影機權限";
 
 /* No comment provided by engineer. */
@@ -596,6 +617,9 @@
 "Next" = "下一個";
 
 /* No comment provided by engineer. */
+"No Assignments" = "無作業";
+
+/* No comment provided by engineer. */
 "No Conferences" = "無會議";
 
 /* No comment provided by engineer. */
@@ -618,6 +642,9 @@
 
 /* No comment provided by engineer. */
 "No Modules" = "無單元";
+
+/* No comment provided by engineer. */
+"No Pages" = "無頁面";
 
 /* No comment provided by engineer. */
 "No Results" = "沒有結果";
@@ -675,6 +702,9 @@
 
 /* No comment provided by engineer. */
 "Page" = "頁面";
+
+/* No comment provided by engineer. */
+"Page Details" = "頁面詳情";
 
 /* No comment provided by engineer. */
 "Pages" = "頁面";
@@ -847,6 +877,9 @@
 /* No comment provided by engineer. */
 "Start recording" = "開始錄製";
 
+/* started datetime */
+"Started %@" = "已開始%@";
+
 /* No comment provided by engineer. */
 "Stop Act as User" = "停止作為使用者";
 
@@ -938,6 +971,9 @@
 "There are no modules to display yet." = "尚未有可顯示的單元。";
 
 /* No comment provided by engineer. */
+"There are no pages to display yet." = "尚未有可顯示的頁面。";
+
+/* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "取得使用條款時出現問題。";
 
 /* No comment provided by engineer. */
@@ -950,7 +986,13 @@
 "There was an error loading events. Pull to refresh to try again." = "載入活動時發生錯誤。提取以進行重新整理以再試一次。";
 
 /* No comment provided by engineer. */
+"There was an error loading grades. Pull to refresh to try again." = "載入成績時發生錯誤。提取以進行重新整理以再試一次。";
+
+/* No comment provided by engineer. */
 "There was an error loading modules. Pull to refresh to try again." = "載入單元時發生錯誤。提取以進行重新整理以再試一次。";
+
+/* No comment provided by engineer. */
+"There was an error loading pages. Pull to refresh to try again." = "載入頁面時發生錯誤。提取以進行重新整理以再試一次。";
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "載入成員時發生錯誤。提取以進行重新整理以再試一次。";
@@ -986,6 +1028,9 @@
 "To Do" = "待辦事項";
 
 /* No comment provided by engineer. */
+"Total Grade" = "總評級";
+
+/* No comment provided by engineer. */
 "Total time" = "總時間";
 
 /* Description for Twitter communication channel */
@@ -1002,6 +1047,9 @@
 
 /* No comment provided by engineer. */
 "unpublished" = "未發佈";
+
+/* No comment provided by engineer. */
+"Unsupported Item" = "不受支援項目";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "已更新語言設定";

@@ -29,33 +29,20 @@ class SyllabusViewControllerTests: CoreTestCase {
         }
     }
 
-    var vc: SyllabusViewController!
+    lazy var controller = SyllabusViewController.create(courseID: "1")
 
-    override func setUp() {
-        super.setUp()
-        vc = SyllabusViewController.create(courseID: "1")
-    }
-
-    func loadView() {
-        vc.view.frame = CGRect(x: 0, y: 0, width: 300, height: 800)
-        vc.view.layoutIfNeeded()
-    }
-
-    func testRender() {
-        //  given
+    func testLayout() {
+        environment.mockStore = false
         let html = "<body>hello world</body>"
         let webView = MockWebView()
+        api.mock(controller.courses, value: .make(syllabus_body: html))
 
-        environment.mockStore = false
-        api.mock(vc.presenter.courses, value: APICourse.make(syllabus_body: html))
-
-        //  when
-        loadView()
-        vc.webView = webView
-
-        vc.viewDidLoad()
-
-        //  then
+        controller.webView = webView
+        controller.view.layoutIfNeeded()
         XCTAssertEqual(webView.html, html)
+
+        api.mock(controller.courses, value: .make(syllabus_body: "syllabus"))
+        controller.webView.scrollView.refreshControl?.sendActions(for: .primaryActionTriggered)
+        XCTAssertEqual(webView.html, "syllabus")
     }
 }

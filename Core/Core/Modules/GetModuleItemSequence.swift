@@ -52,12 +52,6 @@ public class GetModuleItemSequence: APIUseCase {
     public func write(response: APIModuleItemSequence?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
         let sequence: ModuleItemSequence = client.fetch(scope: scope).first ?? client.insert()
-        sequence.courseID = courseID
-        sequence.assetType = assetType
-        sequence.assetID = assetID
-        let node = response.items.first
-        sequence.prev = node?.prev.flatMap { .save($0, forCourse: courseID, in: client) }
-        sequence.next = node?.next.flatMap { .save($0, forCourse: courseID, in: client) }
-        sequence.current = node?.current.flatMap { .save($0, forCourse: courseID, in: client) }
+        sequence.update(response, courseID: courseID, assetType: assetType, assetID: assetID, in: client)
     }
 }

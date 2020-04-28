@@ -22,7 +22,7 @@ import Foundation
 @testable import TestsFoundation
 
 class InboxTests: ParentUITestCase {
-    func xtestReplyWithAttachments() {
+    func testReplyWithAttachments() {
         mockBaseRequests()
         let message = APIConversationMessage.make(
             id: "1",
@@ -56,6 +56,7 @@ class InboxTests: ParentUITestCase {
             id: conversation.id.value,
             messages: [message, newMessage]
         ))
+
         logIn()
         Dashboard.profileButton.tap()
         Profile.inboxButton.tap()

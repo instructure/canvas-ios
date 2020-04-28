@@ -313,6 +313,22 @@
         <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="typeRaw" attributeType="String"/>
     </entity>
+    <entity name="MasteryPath" representedClassName="Core.MasteryPath" syncable="YES">
+        <attribute name="locked" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="selectedSetID" optional="YES" attributeType="String"/>
+        <relationship name="assignmentSets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MasteryPathAssignmentSet" inverseName="masteryPath" inverseEntity="MasteryPathAssignmentSet"/>
+        <relationship name="moduleItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItem" inverseName="masteryPath" inverseEntity="ModuleItem"/>
+    </entity>
+    <entity name="MasteryPathAssignment" representedClassName="Core.MasteryPathAssignment" syncable="YES">
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="pointsPossible" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="assignmentSet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MasteryPathAssignmentSet" inverseName="assignments" inverseEntity="MasteryPathAssignmentSet"/>
+    </entity>
+    <entity name="MasteryPathAssignmentSet" representedClassName="Core.MasteryPathAssignmentSet" syncable="YES">
+        <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MasteryPathAssignment" inverseName="assignmentSet" inverseEntity="MasteryPathAssignment"/>
+        <relationship name="masteryPath" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MasteryPath" inverseName="assignmentSets" inverseEntity="MasteryPath"/>
+    </entity>
     <entity name="MediaComment" representedClassName="Core.MediaComment" syncable="YES">
         <attribute name="contentType" attributeType="String"/>
         <attribute name="displayName" optional="YES" attributeType="String"/>
@@ -343,23 +359,30 @@
         <attribute name="minScoreRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="moduleID" attributeType="String"/>
         <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
-        <attribute name="position" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="position" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="publishedRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
         <attribute name="typeRaw" optional="YES" attributeType="Binary"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
+        <relationship name="masteryPath" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MasteryPath" inverseName="moduleItem" inverseEntity="MasteryPath"/>
+        <relationship name="masteryPathItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItem" inverseName="moduleItem" inverseEntity="ModuleItem"/>
         <relationship name="module" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Module" inverseName="itemsRaw" inverseEntity="Module"/>
-        <relationship name="sequenceCurrent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItemSequence" inverseName="current" inverseEntity="ModuleItemSequence"/>
-        <relationship name="sequenceNext" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItemSequence" inverseName="next" inverseEntity="ModuleItemSequence"/>
-        <relationship name="sequencePrev" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItemSequence" inverseName="prev" inverseEntity="ModuleItemSequence"/>
+        <relationship name="moduleItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItem" inverseName="masteryPathItem" inverseEntity="ModuleItem"/>
     </entity>
     <entity name="ModuleItemSequence" representedClassName="Core.ModuleItemSequence" syncable="YES">
         <attribute name="assetID" attributeType="String"/>
         <attribute name="assetTypeRaw" attributeType="String"/>
         <attribute name="courseID" attributeType="String"/>
-        <relationship name="current" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItem" inverseName="sequenceCurrent" inverseEntity="ModuleItem"/>
-        <relationship name="next" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItem" inverseName="sequenceNext" inverseEntity="ModuleItem"/>
-        <relationship name="prev" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItem" inverseName="sequencePrev" inverseEntity="ModuleItem"/>
+        <relationship name="current" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItemSequenceNode" inverseName="sequenceCurrent" inverseEntity="ModuleItemSequenceNode"/>
+        <relationship name="next" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItemSequenceNode" inverseName="sequenceNext" inverseEntity="ModuleItemSequenceNode"/>
+        <relationship name="prev" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItemSequenceNode" inverseName="sequencePrev" inverseEntity="ModuleItemSequenceNode"/>
+    </entity>
+    <entity name="ModuleItemSequenceNode" representedClassName="Core.ModuleItemSequenceNode" syncable="YES">
+        <attribute name="id" attributeType="String"/>
+        <attribute name="moduleID" attributeType="String"/>
+        <relationship name="sequenceCurrent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItemSequence" inverseName="current" inverseEntity="ModuleItemSequence"/>
+        <relationship name="sequenceNext" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItemSequence" inverseName="next" inverseEntity="ModuleItemSequence"/>
+        <relationship name="sequencePrev" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItemSequence" inverseName="prev" inverseEntity="ModuleItemSequence"/>
     </entity>
     <entity name="NotificationCategory" representedClassName="Core.NotificationCategory" syncable="YES">
         <attribute name="category" attributeType="String"/>
@@ -452,7 +475,6 @@
     </entity>
     <entity name="Plannable" representedClassName=".Plannable" syncable="YES">
         <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
-        <attribute name="contextImage" optional="YES" attributeType="URI"/>
         <attribute name="contextName" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="details" optional="YES" attributeType="String"/>
@@ -682,14 +704,18 @@
         <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="135"/>
         <element name="HelpLink" positionX="-540" positionY="-27" width="128" height="135"/>
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
+        <element name="MasteryPath" positionX="-540" positionY="-18" width="128" height="103"/>
+        <element name="MasteryPathAssignment" positionX="-522" positionY="0" width="128" height="103"/>
+        <element name="MasteryPathAssignmentSet" positionX="-531" positionY="-9" width="128" height="73"/>
         <element name="MediaComment" positionX="-369" positionY="-18" width="128" height="148"/>
         <element name="Module" positionX="-369" positionY="-18" width="128" height="133"/>
         <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="358"/>
         <element name="ModuleItemSequence" positionX="-540" positionY="-18" width="128" height="133"/>
+        <element name="ModuleItemSequenceNode" positionX="-540" positionY="-18" width="128" height="118"/>
         <element name="NotificationCategory" positionX="-522" positionY="0" width="128" height="103"/>
         <element name="Page" positionX="-549" positionY="-27" width="128" height="193"/>
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1080"/>
-        <element name="Plannable" positionX="-540" positionY="-18" width="128" height="208"/>
+        <element name="Plannable" positionX="-540" positionY="-18" width="128" height="193"/>
         <element name="Planner" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="463"/>
         <element name="QuizSubmission" positionX="-540" positionY="-27" width="128" height="240"/>

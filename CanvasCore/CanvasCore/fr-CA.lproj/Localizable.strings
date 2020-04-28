@@ -352,6 +352,9 @@
 /* label to be read for visually impaired users with quiz assignment types */
 "quiz" = "questionnaire";
 
+/* No comment provided by engineer. */
+"Quiz Details" = "Détails sur le questionnaire";
+
 /* Title for alert that shows when a quiz hits the due date */
 "Quiz Due" = "Questionnaire dû";
 
@@ -604,9 +607,6 @@
 
 /* Yellow course color button */
 "Yellow" = "Jaune";
-
-/* Shows time limit on a quiz */
-"You have %d minutes." = "Vous avez %d minutes.";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Vous avez utilisé toutes vos tentatives possibles pour ce questionnaire.";
