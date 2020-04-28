@@ -18,8 +18,9 @@
 
 import XCTest
 @testable import Core
+@testable import Parent
 
-class GetObservedStudentsTests: CoreTestCase {
+class GetObservedStudentsTests: ParentTestCase {
     func testSavesUserWithObserverID() {
         let useCase = GetObservedStudents(observerID: "1")
         let userA = APIUser.make(id: "1", name: "A")

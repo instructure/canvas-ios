@@ -18,6 +18,7 @@
 
 import Foundation
 import CoreData
+import Core
 
 public class GetObservedStudents: CollectionUseCase {
     public typealias Model = User
@@ -56,3 +57,18 @@ public class GetObservedStudents: CollectionUseCase {
         }
     }
 }
+
+/* Does not work with manually linked observees
+class GetObservedStudent: APIUseCase {
+    typealias Model = User
+
+    var cacheKey: String? { "get-observed-student-\(studentID)" }
+    var request: GetObserveeRequest { GetObserveeRequest(observeeID: studentID) }
+    var scope: Scope { .where(#keyPath(User.id), equals: studentID) }
+    let studentID: String
+
+    init(studentID: String) {
+        self.studentID = studentID
+    }
+}
+*/

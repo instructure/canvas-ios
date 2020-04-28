@@ -35,7 +35,7 @@ class GetAlertThresholdRequestTests: XCTestCase {
 
     func testQuery() {
         let expected = [
-            URLQueryItem(name: "per_page", value: "99"),
+            URLQueryItem(name: "per_page", value: "100"),
             URLQueryItem(name: "student_id", value: studentID),
         ]
         XCTAssertEqual(req.queryItems, expected)
@@ -72,7 +72,7 @@ class PutAlertThresholdRequestTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        req = PutAlertThresholdRequest(thresholdID: id, alertType: alertType, value: "100")
+        req = PutAlertThresholdRequest(thresholdID: id, alertType: alertType, value: 100)
     }
 
     func testPath() {
@@ -80,7 +80,7 @@ class PutAlertThresholdRequestTests: XCTestCase {
     }
 
     func testBody() {
-        let body = PutAlertThresholdRequest.Body(threshold: "100", alert_type: alertType.rawValue)
+        let body = PutAlertThresholdRequest.Body(threshold: 100, alert_type: alertType)
         XCTAssertEqual(req.body, body)
     }
 
@@ -96,7 +96,7 @@ class PostAlertThresholdRequestTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        req = PostAlertThresholdRequest(userID: userID, alertType: alertType, value: "100")
+        req = PostAlertThresholdRequest(userID: userID, alertType: alertType, value: 100)
     }
 
     func testPath() {
@@ -104,31 +104,7 @@ class PostAlertThresholdRequestTests: XCTestCase {
     }
 
     func testBody() {
-        let body = PostAlertThresholdRequest.Body(observer_alert_threshold: PostAlertThresholdRequest.AlertBody(user_id: userID, alert_type: alertType.rawValue, threshold: "100"))
+        let body = PostAlertThresholdRequest.Body(observer_alert_threshold: PostAlertThresholdRequest.AlertBody(user_id: userID, alert_type: alertType, threshold: 100))
         XCTAssertEqual(req.body, body)
-    }
-}
-
-class GetAlertThresholdsUseCaseTests: XCTestCase {
-
-    var useCase: GetAlertThresholds!
-    let studentID: String = "1"
-
-    override func setUp() {
-        super.setUp()
-        useCase = GetAlertThresholds(studentID: studentID)
-    }
-
-    func testCacheKey() {
-        XCTAssertEqual(useCase.cacheKey, "get-alertthresholds-\(studentID)")
-
-    }
-
-    func testScope() {
-        XCTAssertEqual(useCase.scope, Scope.where(#keyPath(Core.AlertThreshold.studentID), equals: studentID))
-    }
-
-    func testRequest() {
-        XCTAssertEqual(useCase.request.studentID, studentID)
     }
 }

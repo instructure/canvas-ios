@@ -102,8 +102,8 @@ let router = Router(routes: [
     },
 
     RouteHandler(.observeeThresholds(":userID")) { _, params in
-        guard let session = Session.current, let userID = params["userID"] else { return nil }
-        return StudentSettingsViewController.create(session, studentID: userID)
+        guard let userID = params["userID"] else { return nil }
+        return StudentDetailsViewController.create(studentID: userID)
     },
 
     RouteHandler(.errorReport(for: ":type")) { _, params in

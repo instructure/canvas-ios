@@ -22,24 +22,6 @@ import Foundation
 import CoreData
 import TestsFoundation
 
-extension APIAlertThreshold {
-    public static func make(
-    	id: String = "1",
-    	observer_id: String = "5",
-    	user_id: String = "1",
-    	alert_type: String = "assignment_grade_high",
-    	threshold: String? = "100"
-    ) -> APIAlertThreshold {
-        return APIAlertThreshold(
-			id: id,
-			observer_id: observer_id,
-			user_id: user_id,
-			alert_type: alert_type,
-			threshold: threshold
-        )
-    }
-}
-
 extension Core.AlertThreshold {
     @discardableResult
     public static func make(
@@ -47,11 +29,11 @@ extension Core.AlertThreshold {
         in context: NSManagedObjectContext = TestsFoundation.singleSharedTestDatabase.viewContext
         ) -> Core.AlertThreshold {
             let model: Core.AlertThreshold = context.insert()
-            model.id = api.id
-            model.observerID = api.observer_id
-            model.studentID = api.user_id
-            model.threshold = api.threshold
-            model.typeRaw = api.alert_type
+            model.id = api.id.value
+            model.observerID = api.observer_id.value
+            model.studentID = api.user_id.value
+            model.value = api.threshold.flatMap { UInt($0) }
+            model.type = api.alert_type
             //  swiftlint:disable:next force_try
             try! context.save()
             return model
