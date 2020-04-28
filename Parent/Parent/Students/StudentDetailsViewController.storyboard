@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="PV4-dm-5cR">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PV4-dm-5cR">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqD-0i-ZZP">
@@ -139,6 +139,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="fieldChanged:" destination="JSN-Mu-RvM" eventType="editingDidEnd" id="KTV-no-8uK"/>
+                                                            <outlet property="delegate" destination="JSN-Mu-RvM" id="g0w-4F-hz7"/>
                                                         </connections>
                                                     </textField>
                                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uy7-lp-N00" customClass="DividerView" customModule="Parent" customModuleProvider="target">
@@ -199,6 +200,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="fieldChanged:" destination="JSN-Mu-RvM" eventType="editingDidEnd" id="rvD-a1-y1j"/>
+                                                            <outlet property="delegate" destination="JSN-Mu-RvM" id="xek-XJ-J2u"/>
                                                         </connections>
                                                     </textField>
                                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OdG-BQ-2a0" customClass="DividerView" customModule="Parent" customModuleProvider="target">
@@ -302,6 +304,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="fieldChanged:" destination="JSN-Mu-RvM" eventType="editingDidEnd" id="zD2-c2-pZw"/>
+                                                            <outlet property="delegate" destination="JSN-Mu-RvM" id="o95-Gz-q70"/>
                                                         </connections>
                                                     </textField>
                                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NDs-eq-4Qw" customClass="DividerView" customModule="Parent" customModuleProvider="target">
@@ -359,6 +362,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="fieldChanged:" destination="JSN-Mu-RvM" eventType="editingDidEnd" id="oM2-Tp-gQU"/>
+                                                            <outlet property="delegate" destination="JSN-Mu-RvM" id="tAN-ok-sa6"/>
                                                         </connections>
                                                     </textField>
                                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nI7-xe-p4l" customClass="DividerView" customModule="Parent" customModuleProvider="target">
@@ -511,6 +515,7 @@
                     <connections>
                         <outlet property="alertHeaderLabel" destination="Kgz-Jr-ELK" id="s0T-OJ-TxX"/>
                         <outlet property="avatarView" destination="Jnn-Cr-aoO" id="K2G-n8-8Hh"/>
+                        <outlet property="keyboardSpace" destination="PKr-Yp-trV" id="97H-hl-NtG"/>
                         <outlet property="loadingView" destination="hAX-D0-DJs" id="Qrm-sD-XsU"/>
                         <outlet property="nameLabel" destination="472-We-z4E" id="8uX-DR-NXh"/>
                         <outlet property="scrollView" destination="PV4-dm-5cR" id="wnG-xt-Vzy"/>

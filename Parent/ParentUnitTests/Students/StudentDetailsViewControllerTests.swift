@@ -47,6 +47,7 @@ class StudentDetailsViewControllerTests: ParentTestCase {
                 let field = try XCTUnwrap(controller.alertFields.first { $0.tag == index })
                 XCTAssertEqual(field.accessibilityLabel, type.name)
                 XCTAssertEqual(field.text, type == .courseGradeLow ? "65" : "")
+                XCTAssert(field.delegate === controller)
             } else {
                 let toggle = try XCTUnwrap(controller.alertSwitches.first { $0.tag == index })
                 XCTAssertEqual(toggle.accessibilityLabel, type.name)
@@ -100,6 +101,7 @@ class StudentDetailsViewControllerTests: ParentTestCase {
         XCTAssertEqual(aGradeLow.text, "")
 
         aGradeLow.text = "95"
+        XCTAssertEqual(aGradeLow.delegate?.textFieldShouldReturn?(aGradeLow), true)
         aGradeLow.sendActions(for: .editingDidEnd)
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "You cannot set a low threshold that is higher or equal to a previously set high threshold.")
         XCTAssertEqual(aGradeLow.text, "")

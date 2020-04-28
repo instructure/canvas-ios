@@ -25,8 +25,9 @@ class StudentDetailsViewController: UIViewController, ErrorViewController {
     @IBOutlet var alertLabels: [UILabel]!
     @IBOutlet var alertSwitches: [UISwitch]!
     @IBOutlet weak var avatarView: AvatarView!
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var keyboardSpace: NSLayoutConstraint!
     @IBOutlet weak var loadingView: CircleProgressView!
+    @IBOutlet weak var nameLabel: UILabel!
     let refreshControl = CircleRefreshControl()
     @IBOutlet weak var scrollView: UIScrollView!
 
@@ -36,6 +37,7 @@ class StudentDetailsViewController: UIViewController, ErrorViewController {
         nf.numberStyle = .decimal
         return nf
     }()
+    var keyboard: KeyboardTransitioning?
     var loadingCount = 0 {
         didSet { updateLoading() }
     }
@@ -88,6 +90,7 @@ class StudentDetailsViewController: UIViewController, ErrorViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
         let color = ColorScheme.observee(studentID).color
         view.tintColor = color
         navigationController?.navigationBar.useContextColor(color)
@@ -204,5 +207,12 @@ class StudentDetailsViewController: UIViewController, ErrorViewController {
 
     func updateLoading() {
         loadingView.isHidden = loadingCount == 0
+    }
+}
+
+extension StudentDetailsViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
